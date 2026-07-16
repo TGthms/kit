@@ -22,7 +22,8 @@
     "terms": "Terms of Use",
     "aboutMe": "About Me",
     "license": "MIT License",
-    "copyright": "© {year} Tim G (TGthms). Kit is open source under MIT."
+    "copyright": "© {year} Tim G (TGthms). Kit is open source under MIT.",
+    "github": "GitHub"
   },
   "common": {
     "cancel": "Cancel",
@@ -117,14 +118,24 @@
     "popular": "Tools",
     "noResults": "No tools match your search.",
     "recent": "Continue",
-    "pinned": "Pinned"
+    "pinned": "Pinned",
+    "chooseCategory": "Choose a category",
+    "chooseCategoryHint": "Pick a group of tools to get started—or search across everything.",
+    "backToCategories": "All categories",
+    "toolsInCategory": "{count} tools",
+    "searchResults": "Search results"
   },
   "categories": {
     "pdf": "PDF",
     "image": "Image",
     "media": "Audio & Video",
     "convert": "Converters",
-    "text": "Text & Data"
+    "text": "Text & Data",
+    "pdfDesc": "Merge, split, compress, watermark, and more",
+    "imageDesc": "Compress, resize, convert, and adjust images",
+    "mediaDesc": "Convert, trim, and extract audio from video",
+    "convertDesc": "Smart conversion across common formats",
+    "textDesc": "Format, validate, encode, and compare text"
   },
   "history": {
     "title": "History",

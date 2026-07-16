@@ -22,7 +22,8 @@
     "terms": "使用条款",
     "aboutMe": "关于我",
     "license": "MIT 许可证",
-    "copyright": "© {year} Tim G (TGthms)。Kit 以 MIT 许可证开源。"
+    "copyright": "© {year} Tim G (TGthms)。Kit 以 MIT 许可证开源。",
+    "github": "GitHub"
   },
   "common": {
     "cancel": "取消",
@@ -117,14 +118,24 @@
     "popular": "工具",
     "noResults": "没有匹配的工具。",
     "recent": "继续",
-    "pinned": "已固定"
+    "pinned": "已固定",
+    "chooseCategory": "选择分类",
+    "chooseCategoryHint": "先选择一类工具开始，或搜索全部工具。",
+    "backToCategories": "全部分类",
+    "toolsInCategory": "{count} 个工具",
+    "searchResults": "搜索结果"
   },
   "categories": {
     "pdf": "PDF",
     "image": "图片",
     "media": "音视频",
     "convert": "转换",
-    "text": "文本与数据"
+    "text": "文本与数据",
+    "pdfDesc": "合并、拆分、压缩、水印等",
+    "imageDesc": "压缩、缩放、转换与调整图片",
+    "mediaDesc": "转换、裁剪，并从视频提取音频",
+    "convertDesc": "常见格式的智能转换",
+    "textDesc": "格式化、校验、编解码与文本对比"
   },
   "history": {
     "title": "历史记录",

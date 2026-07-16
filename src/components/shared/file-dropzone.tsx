@@ -56,7 +56,7 @@ export function FileDropzone({
     <div className="space-y-3" onPaste={onPaste}>
       <div
         className={cn(
-          "flex cursor-pointer flex-col items-center justify-center rounded-2xl border-2 border-dashed px-4 py-10 text-center transition-colors",
+          "flex min-h-[9.5rem] cursor-pointer flex-col items-center justify-center rounded-2xl border-2 border-dashed px-4 py-8 text-center transition-colors sm:min-h-[11rem] sm:py-10",
           drag ? "border-primary bg-accent/50" : "border-border bg-card hover:bg-accent/30"
         )}
         onDragOver={(e) => {
@@ -114,9 +114,9 @@ export function FileDropzone({
                 onChange(next);
                 dragId.current = null;
               }}
-              className="flex items-center justify-between gap-3 rounded-xl border border-border/60 bg-card px-3 py-2 text-sm"
+              className="flex items-center justify-between gap-2 rounded-xl border border-border/60 bg-card px-3 py-2.5 text-sm sm:gap-3"
             >
-              <div className="min-w-0">
+              <div className="min-w-0 flex-1">
                 <p className="truncate font-medium">
                   {reorder ? `${index + 1}. ` : ""}
                   {item.file.name}
@@ -126,6 +126,7 @@ export function FileDropzone({
               <Button
                 size="sm"
                 variant="ghost"
+                className="h-9 shrink-0 px-3"
                 onClick={(e) => {
                   e.stopPropagation();
                   onChange(files.filter((f) => f.id !== item.id));

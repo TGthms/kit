@@ -14,7 +14,7 @@ import { Slider } from "@/components/ui/slider";
 import { Switch } from "@/components/ui/switch";
 import { Progress } from "@/components/ui/progress";
 import { Card, CardContent } from "@/components/ui/card";
-import { downloadBlob, downloadText, formatBytes } from "@/lib/utils";
+import { downloadBlob, downloadText, formatBytes, bytesToBlob } from "@/lib/utils";
 import { useHistoryStore } from "@/stores/history-store";
 import { mergePdfs, splitPdf, organizePdf, watermarkPdf, redactPdf, getPdfPageCount } from "@/lib/pdf/core";
 import {
@@ -179,7 +179,7 @@ function PdfMerge() {
     try {
       const buffers = await Promise.all(files.map((f) => f.file.arrayBuffer()));
       const out = await mergePdfs(buffers);
-      downloadBlob(new Blob([out.buffer as ArrayBuffer], { type: "application/pdf" }), "merged.pdf");
+      downloadBlob(bytesToBlob(out, "application/pdf"), "merged.pdf");
       toast.success(t("success", { count: files.length }));
       log(`${files.length} files`, "success");
     } catch (e) {
@@ -227,7 +227,7 @@ function PdfSplit() {
     setLoading(true);
     try {
       const out = await splitPdf(await files[0].file.arrayBuffer(), range);
-      downloadBlob(new Blob([out.buffer as ArrayBuffer], { type: "application/pdf" }), "split.pdf");
+      downloadBlob(bytesToBlob(out, "application/pdf"), "split.pdf");
       toast.success(t("success"));
       log(range, "success", { range });
     } catch (e) {
@@ -276,7 +276,7 @@ function PdfOrganize() {
     setLoading(true);
     try {
       const out = await organizePdf(await files[0].file.arrayBuffer(), order, rotations, deleted);
-      downloadBlob(new Blob([out.buffer as ArrayBuffer], { type: "application/pdf" }), "organized.pdf");
+      downloadBlob(bytesToBlob(out, "application/pdf"), "organized.pdf");
       toast.success(t("success"));
       log(`${pageCount} pages`, "success");
     } catch (e) {
@@ -348,7 +348,7 @@ function PdfCompress() {
     try {
       const { compressPdfLossy } = await pdfjs();
       const out = await compressPdfLossy(await files[0].file.arrayBuffer(), quality);
-      downloadBlob(new Blob([out.buffer as ArrayBuffer], { type: "application/pdf" }), "compressed.pdf");
+      downloadBlob(bytesToBlob(out, "application/pdf"), "compressed.pdf");
       toast.success(t("success"));
       log(`q=${quality}`, "success", { quality });
     } catch (e) {
@@ -389,7 +389,7 @@ function PdfWatermark() {
     setLoading(true);
     try {
       const out = await watermarkPdf(await files[0].file.arrayBuffer(), text, position, opacity);
-      downloadBlob(new Blob([out.buffer as ArrayBuffer], { type: "application/pdf" }), "watermarked.pdf");
+      downloadBlob(bytesToBlob(out, "application/pdf"), "watermarked.pdf");
       toast.success(t("success"));
       log(text, "success");
     } catch (e) {
@@ -448,7 +448,7 @@ function PdfRedact() {
       const out = await redactPdf(await files[0].file.arrayBuffer(), [
         { page: Math.max(0, page - 1), x: 72, y: 400, w: 400, h: 40 },
       ]);
-      downloadBlob(new Blob([out.buffer as ArrayBuffer], { type: "application/pdf" }), "redacted.pdf");
+      downloadBlob(bytesToBlob(out, "application/pdf"), "redacted.pdf");
       toast.success(t("success"));
       log(`page ${page}`, "success");
     } catch (e) {
@@ -825,86 +825,28 @@ function ImageAdjust() {
   );
 }
 
-function MediaBase({
-  toolId,
-  buildArgs,
-  outputName,
-  accept = "audio/*,video/*",
-}: {
-  toolId: ToolId;
-  buildArgs: (input: string, output: string) => string[];
-  outputName: string;
-  accept?: string;
-}) {
-  const t = useTranslations(`tools.${toolId}`);
-  const tc = useTranslations("common");
-  const log = useToolHistory(toolId);
-  const [files, setFiles] = useState<FileItem[]>([]);
-  const [loading, setLoading] = useState(false);
-  const [progress, setProgress] = useState(0);
-  const [loadingEngine, setLoadingEngine] = useState(false);
-
-  const run = async () => {
-    if (!files[0]) return;
-    setLoading(true);
-    setLoadingEngine(true);
-    setProgress(0);
-    try {
-      const data = new Uint8Array(await files[0].file.arrayBuffer());
-      const ext = files[0].file.name.split(".").pop() || "bin";
-      const input = `input.${ext}`;
-      const { runFFmpeg } = await ffmpegApi();
-      const out = await runFFmpeg(input, data, outputName, buildArgs(input, outputName), (p) => {
-        setLoadingEngine(false);
-        setProgress(Math.round(p * 100));
-      });
-      downloadBlob(new Blob([out.buffer as ArrayBuffer]), outputName);
-      toast.success(t("success"));
-      log(files[0].file.name, "success");
-    } catch (e) {
-      toast.error(e instanceof Error ? e.message : tc("error"));
-      log("failed", "failed");
-    } finally {
-      setLoading(false);
-      setLoadingEngine(false);
-    }
-  };
-
-  return (
-    <Shell toolId={toolId}>
-      <FileDropzone accept={accept} multiple={false} files={files} onChange={setFiles} />
-      {loadingEngine && <p className="text-sm text-muted-foreground">{tc("loading")}</p>}
-      {loading && <Progress value={progress} />}
-      <ActionBar onRun={run} loading={loading} label={t("run")} disabled={!files[0]} />
-    </Shell>
-  );
-}
-
 function MediaConvert() {
   const t = useTranslations("tools.media-convert");
+  const tc = useTranslations("common");
   const [format, setFormat] = useState("mp4");
   return (
-    <div>
-      <Shell toolId="media-convert">
-        <p className="text-sm text-muted-foreground">{t("note")}</p>
-      </Shell>
-      <div className="-mt-4 space-y-4">
-        <div className="space-y-2">
-          <Label>Format</Label>
-          <select
-            className="h-10 w-full rounded-xl border border-input bg-background px-3 text-sm"
-            value={format}
-            onChange={(e) => setFormat(e.target.value)}
-          >
-            <option value="mp4">MP4</option>
-            <option value="webm">WEBM</option>
-            <option value="mp3">MP3</option>
-            <option value="wav">WAV</option>
-          </select>
-        </div>
-        <MediaConvertInner format={format} />
+    <Shell toolId="media-convert">
+      <p className="text-sm text-muted-foreground">{t("note")}</p>
+      <div className="space-y-2">
+        <Label>{tc("format")}</Label>
+        <select
+          className="h-10 w-full rounded-xl border border-input bg-background px-3 text-sm"
+          value={format}
+          onChange={(e) => setFormat(e.target.value)}
+        >
+          <option value="mp4">MP4</option>
+          <option value="webm">WEBM</option>
+          <option value="mp3">MP3</option>
+          <option value="wav">WAV</option>
+        </select>
       </div>
-    </div>
+      <MediaConvertInner format={format} />
+    </Shell>
   );
 }
 
@@ -932,7 +874,7 @@ function MediaConvertInner({ format }: { format: string }) {
       const { runFFmpeg } = await ffmpegApi();
       try {
         const out = await runFFmpeg(input, data, output, args, (p) => setProgress(Math.round(p * 100)));
-        downloadBlob(new Blob([out.buffer as ArrayBuffer]), output);
+        downloadBlob(bytesToBlob(out, "application/octet-stream"), output);
       } catch {
         // fallback re-encode
         const out = await runFFmpeg(
@@ -942,7 +884,7 @@ function MediaConvertInner({ format }: { format: string }) {
           ["-i", input, output],
           (p) => setProgress(Math.round(p * 100))
         );
-        downloadBlob(new Blob([out.buffer as ArrayBuffer]), output);
+        downloadBlob(bytesToBlob(out, "application/octet-stream"), output);
       }
       toast.success(t("success"));
       log(format, "success");
@@ -989,7 +931,7 @@ function MediaTrim() {
         ["-ss", start, "-to", end, "-i", input, "-c", "copy", output],
         (p) => setProgress(Math.round(p * 100))
       );
-      downloadBlob(new Blob([out.buffer as ArrayBuffer]), output);
+      downloadBlob(bytesToBlob(out, "application/octet-stream"), output);
       toast.success(t("success"));
       log(`${start}-${end}`, "success");
     } catch (e) {
@@ -1049,7 +991,7 @@ function MediaSpeed() {
         "[a]",
         output,
       ]);
-      downloadBlob(new Blob([out.buffer as ArrayBuffer]), output);
+      downloadBlob(bytesToBlob(out, "application/octet-stream"), output);
       toast.success(t("success"));
       log(`speed=${speed}`, "success");
     } catch {
@@ -1066,7 +1008,7 @@ function MediaSpeed() {
           `atempo=${Math.min(2, Math.max(0.5, speed))},volume=${volume}`,
           output,
         ]);
-        downloadBlob(new Blob([out.buffer as ArrayBuffer]), output);
+        downloadBlob(bytesToBlob(out, "application/octet-stream"), output);
         toast.success(t("success"));
         log(`audio speed=${speed}`, "success");
       } catch (e2) {
@@ -1120,7 +1062,7 @@ function MediaExtractAudio() {
         "libmp3lame",
         "audio.mp3",
       ]);
-      downloadBlob(new Blob([out.buffer as ArrayBuffer], { type: "audio/mpeg" }), "audio.mp3");
+      downloadBlob(bytesToBlob(out, "audio/mpeg"), "audio.mp3");
       toast.success(t("success"));
       log(files[0].file.name, "success");
     } catch (e) {
@@ -1536,5 +1478,3 @@ function UrlEncodeTool() {
   );
 }
 
-// silence unused helper warning in some builds
-void MediaBase;

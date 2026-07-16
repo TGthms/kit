@@ -14,20 +14,22 @@ export function ToolHeader({ toolId }: { toolId: ToolId }) {
   const fav = ids.includes(toolId);
 
   return (
-    <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
-      <div className="space-y-1">
-        <div className="flex items-center gap-2">
-          <h1 className="text-2xl font-semibold tracking-tight sm:text-3xl">{t("name")}</h1>
-        </div>
-        <p className="max-w-2xl text-sm text-muted-foreground sm:text-base">{t("description")}</p>
-        <Badge variant="secondary" className="mt-2 font-normal">
+    <div className="mb-5 flex flex-col gap-4 sm:mb-7 sm:flex-row sm:items-start sm:justify-between">
+      <div className="min-w-0 space-y-2">
+        <h1 className="text-[1.5rem] font-semibold leading-tight tracking-tight sm:text-3xl">
+          {t("name")}
+        </h1>
+        <p className="max-w-2xl text-sm leading-relaxed text-muted-foreground sm:text-[15px]">
+          {t("description")}
+        </p>
+        <Badge variant="secondary" className="mt-1 max-w-full whitespace-normal text-left font-normal">
           {tc("clientSideOnly")}
         </Badge>
       </div>
       <Button
         variant={fav ? "default" : "outline"}
         size="sm"
-        className="w-fit shrink-0 rounded-full"
+        className="h-10 w-full shrink-0 rounded-full sm:w-fit"
         onClick={() => toggle(toolId)}
       >
         <Star className={fav ? "fill-current" : ""} />

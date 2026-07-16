@@ -22,8 +22,19 @@ export function downloadBlob(blob: Blob, filename: string) {
   const a = document.createElement("a");
   a.href = url;
   a.download = filename;
+  a.rel = "noopener";
+  document.body.appendChild(a);
   a.click();
-  URL.revokeObjectURL(url);
+  a.remove();
+  // Delay revoke so Safari finishes the download
+  setTimeout(() => URL.revokeObjectURL(url), 1_000);
+}
+
+/** Safe Blob from Uint8Array (avoids SharedArrayBuffer / offset buffer issues). */
+export function bytesToBlob(bytes: Uint8Array, type: string): Blob {
+  const copy = new Uint8Array(bytes.byteLength);
+  copy.set(bytes);
+  return new Blob([copy], { type });
 }
 
 export function downloadText(text: string, filename: string, mime = "text/plain") {

@@ -1,24 +1,24 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f2f2f7;
-  --foreground: #1c1c1e;
+  --background: #f5f5f7;
+  --foreground: #1d1d1f;
   --card: #ffffff;
-  --card-foreground: #1c1c1e;
-  --primary: #007aff;
+  --card-foreground: #1d1d1f;
+  --primary: #0071e3;
   --primary-foreground: #ffffff;
-  --secondary: #e5e5ea;
-  --secondary-foreground: #1c1c1e;
-  --muted: #e5e5ea;
-  --muted-foreground: #8e8e93;
-  --accent: #e8f1ff;
-  --accent-foreground: #007aff;
+  --secondary: #e8e8ed;
+  --secondary-foreground: #1d1d1f;
+  --muted: #e8e8ed;
+  --muted-foreground: #6e6e73;
+  --accent: #e8f2ff;
+  --accent-foreground: #0071e3;
   --destructive: #ff3b30;
   --destructive-foreground: #ffffff;
-  --border: rgba(60, 60, 67, 0.12);
-  --input: rgba(60, 60, 67, 0.18);
-  --ring: #007aff;
-  --radius: 0.9rem;
+  --border: rgba(0, 0, 0, 0.08);
+  --input: rgba(0, 0, 0, 0.12);
+  --ring: #0071e3;
+  --radius: 0.95rem;
 }
 
 .dark {
@@ -31,13 +31,13 @@
   --secondary: #2c2c2e;
   --secondary-foreground: #f5f5f7;
   --muted: #2c2c2e;
-  --muted-foreground: #8e8e93;
-  --accent: #1a2a40;
-  --accent-foreground: #0a84ff;
+  --muted-foreground: #98989d;
+  --accent: #0b2540;
+  --accent-foreground: #64b5ff;
   --destructive: #ff453a;
   --destructive-foreground: #ffffff;
-  --border: rgba(84, 84, 88, 0.45);
-  --input: rgba(84, 84, 88, 0.55);
+  --border: rgba(255, 255, 255, 0.12);
+  --input: rgba(255, 255, 255, 0.16);
   --ring: #0a84ff;
 }
 
@@ -59,20 +59,28 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
-  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial,
-    "Noto Sans", "PingFang SC", "Hiragino Sans", "Microsoft YaHei", sans-serif;
+  /* System UI stack — not Apple-branded webfonts */
+  --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, "Noto Sans", "PingFang SC", "Hiragino Sans", "Microsoft YaHei", sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
     "Courier New", monospace;
   --radius-xl: calc(var(--radius) + 4px);
   --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 14px);
 }
 
-* {
+*,
+*::before,
+*::after {
   border-color: var(--border);
+  box-sizing: border-box;
 }
 
 html {
   color-scheme: light;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  scroll-behavior: smooth;
 }
 
 html.dark {
@@ -85,14 +93,53 @@ body {
   font-family: var(--font-sans);
   min-height: 100dvh;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  line-height: 1.5;
+}
+
+/* Improve touch targets & tap highlight on mobile */
+button,
+a,
+[role="button"] {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+img,
+svg,
+video,
+canvas {
+  max-width: 100%;
+  height: auto;
 }
 
 .glass {
-  background: color-mix(in srgb, var(--card) 72%, transparent);
-  backdrop-filter: saturate(180%) blur(16px);
-  -webkit-backdrop-filter: saturate(180%) blur(16px);
+  background: color-mix(in srgb, var(--card) 78%, transparent);
+  backdrop-filter: saturate(160%) blur(20px);
+  -webkit-backdrop-filter: saturate(160%) blur(20px);
 }
 
 .safe-pb {
-  padding-bottom: max(1rem, env(safe-area-inset-bottom));
+  padding-bottom: max(0.5rem, env(safe-area-inset-bottom));
+}
+
+/* Focus visible for keyboard users */
+:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+/* Prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

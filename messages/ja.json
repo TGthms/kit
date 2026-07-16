@@ -22,7 +22,8 @@
     "terms": "利用規約",
     "aboutMe": "私について",
     "license": "MIT ライセンス",
-    "copyright": "© {year} Tim G (TGthms). Kit は MIT ライセンスのオープンソースです。"
+    "copyright": "© {year} Tim G (TGthms). Kit は MIT ライセンスのオープンソースです。",
+    "github": "GitHub"
   },
   "common": {
     "cancel": "キャンセル",
@@ -117,14 +118,24 @@
     "popular": "ツール",
     "noResults": "一致するツールがありません。",
     "recent": "続ける",
-    "pinned": "ピン留め"
+    "pinned": "ピン留め",
+    "chooseCategory": "カテゴリを選ぶ",
+    "chooseCategoryHint": "ツールのグループを選んで開始するか、全体を検索します。",
+    "backToCategories": "すべてのカテゴリ",
+    "toolsInCategory": "{count} 個のツール",
+    "searchResults": "検索結果"
   },
   "categories": {
     "pdf": "PDF",
     "image": "画像",
     "media": "音声・動画",
     "convert": "変換",
-    "text": "テキスト・データ"
+    "text": "テキスト・データ",
+    "pdfDesc": "結合、分割、圧縮、透かしなど",
+    "imageDesc": "圧縮、リサイズ、変換、調整",
+    "mediaDesc": "変換、トリム、動画から音声抽出",
+    "convertDesc": "よく使う形式のスマート変換",
+    "textDesc": "整形、検証、エンコード、比較"
   },
   "history": {
     "title": "履歴",
