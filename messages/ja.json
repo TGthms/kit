@@ -1,0 +1,390 @@
+{
+  "meta": {
+    "title": "Kit — ブラウザで使える日常ツール",
+    "description": "PDF・画像・メディア・変換・テキスト向けの、クライアント完結のプライベートなユーティリティ。ファイルは端末から出ません。"
+  },
+  "brand": {
+    "name": "Kit",
+    "tagline": "ブラウザで使える日常ツール。プライバシーを前提に。"
+  },
+  "nav": {
+    "home": "ホーム",
+    "tools": "ツール",
+    "history": "履歴",
+    "favorites": "お気に入り",
+    "settings": "設定",
+    "searchPlaceholder": "ツールを検索…",
+    "openMenu": "メニューを開く",
+    "closeMenu": "メニューを閉じる"
+  },
+  "footer": {
+    "privacy": "プライバシーポリシー",
+    "terms": "利用規約",
+    "aboutMe": "私について",
+    "license": "MIT ライセンス",
+    "copyright": "© {year} Tim G (TGthms). Kit は MIT ライセンスのオープンソースです。"
+  },
+  "common": {
+    "cancel": "キャンセル",
+    "clear": "クリア",
+    "close": "閉じる",
+    "copy": "コピー",
+    "copied": "コピーしました",
+    "download": "ダウンロード",
+    "run": "実行",
+    "process": "処理",
+    "processing": "処理中…",
+    "done": "完了",
+    "error": "エラーが発生しました",
+    "retry": "再試行",
+    "addFiles": "ファイルを追加",
+    "dropFiles": "ここにファイルをドロップ",
+    "orBrowse": "またはクリックして選択",
+    "pasteSupported": "クリップボードからの貼り付けに対応",
+    "remove": "削除",
+    "reorder": "ドラッグして並べ替え",
+    "files": "ファイル",
+    "noFiles": "ファイルはまだありません",
+    "quality": "品質",
+    "options": "オプション",
+    "preview": "プレビュー",
+    "result": "結果",
+    "input": "入力",
+    "output": "出力",
+    "format": "形式",
+    "language": "言語",
+    "theme": "テーマ",
+    "themeSystem": "システム",
+    "themeLight": "ライト",
+    "themeDark": "ダーク",
+    "loading": "読み込み中…",
+    "save": "保存",
+    "delete": "削除",
+    "confirm": "確認",
+    "back": "戻る",
+    "allCategories": "すべて",
+    "pin": "ピン留め",
+    "unpin": "ピン解除",
+    "favorite": "お気に入り",
+    "unfavorite": "お気に入り解除",
+    "presets": "プリセット",
+    "applyPreset": "プリセットを適用",
+    "savePreset": "プリセットを保存",
+    "shortcuts": "キーボードショートカット",
+    "progress": "進捗",
+    "fileTooLarge": "ファイルが大きいため、処理に時間がかかることがあります。",
+    "unsupported": "未対応の形式",
+    "success": "成功",
+    "warning": "注意",
+    "info": "情報",
+    "selectAll": "すべて選択",
+    "none": "なし",
+    "reset": "リセット",
+    "maxWidth": "最大幅",
+    "maxHeight": "最大高さ",
+    "width": "幅",
+    "height": "高さ",
+    "rotate": "回転",
+    "pages": "ページ",
+    "page": "ページ",
+    "text": "テキスト",
+    "encode": "エンコード",
+    "decode": "デコード",
+    "validate": "検証",
+    "minify": "ミニファイ",
+    "beautify": "整形",
+    "valid": "有効",
+    "invalid": "無効",
+    "characters": "文字数",
+    "lines": "行数",
+    "from": "開始",
+    "to": "終了",
+    "start": "開始",
+    "end": "終了",
+    "speed": "速度",
+    "volume": "音量",
+    "trim": "トリム",
+    "extract": "抽出",
+    "batch": "一括",
+    "limitations": "制限事項",
+    "clientSideOnly": "すべてブラウザ内で動作します。ファイルはサーバーに送信されません。",
+    "aboutMeUrl": "https://tgthms.github.io/about/"
+  },
+  "home": {
+    "title": "何をしますか？",
+    "subtitle": "端末上で動くプライベートなツール。アカウント不要。アップロード不要。",
+    "categories": "カテゴリ",
+    "popular": "ツール",
+    "noResults": "一致するツールがありません。",
+    "recent": "続ける",
+    "pinned": "ピン留め"
+  },
+  "categories": {
+    "pdf": "PDF",
+    "image": "画像",
+    "media": "音声・動画",
+    "convert": "変換",
+    "text": "テキスト・データ"
+  },
+  "history": {
+    "title": "履歴",
+    "subtitle": "この端末での最近の操作。メタデータのみを保存し、ファイル本体は保存しません。",
+    "empty": "履歴はまだありません。ツールを使うとここに表示されます。",
+    "clear": "履歴をクリア",
+    "clearConfirm": "この端末の履歴をすべて削除しますか？",
+    "openTool": "ツールを開く",
+    "tool": "ツール",
+    "when": "日時",
+    "summary": "概要",
+    "status": "状態",
+    "success": "成功",
+    "failed": "失敗"
+  },
+  "favorites": {
+    "title": "お気に入り",
+    "subtitle": "素早く開くためにピン留めしたツール。",
+    "empty": "お気に入りはまだありません。ホームやツールページからピン留めできます。"
+  },
+  "settings": {
+    "title": "設定",
+    "subtitle": "設定はこの端末に保存されます。",
+    "appearance": "外観",
+    "language": "言語",
+    "data": "データとプライバシー",
+    "clearHistory": "履歴をクリア",
+    "clearHistoryDesc": "このブラウザに保存された履歴メタデータをすべて削除します。",
+    "privacyNote": "Kit はブラウザ内でファイルを処理します。設定や履歴のメタデータはローカルに保存される場合があります。詳細はプライバシーポリシーをご覧ください。",
+    "viewPrivacy": "プライバシーポリシー",
+    "viewTerms": "利用規約",
+    "shortcutsHelp": "? キーでショートカット一覧を表示します。",
+    "version": "バージョン"
+  },
+  "shortcuts": {
+    "title": "キーボードショートカット",
+    "global": "グローバル",
+    "search": "検索にフォーカス",
+    "settings": "設定を開く",
+    "home": "ホームへ",
+    "help": "このヘルプを表示",
+    "run": "現在のツール操作を実行"
+  },
+  "tools": {
+    "pdf-merge": {
+      "name": "PDF 結合",
+      "description": "サムネイル付きで PDF を結合し、並べ替えできます。",
+      "keywords": "pdf 結合 マージ",
+      "run": "PDF を結合",
+      "empty": "2 つ以上の PDF を追加してください。",
+      "success": "{count} 件のファイルを結合しました。"
+    },
+    "pdf-split": {
+      "name": "PDF 分割",
+      "description": "ページ範囲を新しい PDF に抽出します。",
+      "keywords": "pdf 分割 抽出 ページ",
+      "run": "PDF を分割",
+      "range": "ページ範囲（例: 1-3,5）",
+      "success": "分割 PDF を作成しました。"
+    },
+    "pdf-organize": {
+      "name": "PDF 整理",
+      "description": "ページの回転・削除・並べ替え。",
+      "keywords": "pdf 回転 削除 並べ替え",
+      "run": "変更を適用",
+      "success": "PDF を更新しました。"
+    },
+    "pdf-compress": {
+      "name": "PDF 圧縮",
+      "description": "ページ画像を再エンコードしてサイズを削減（非可逆）。",
+      "keywords": "pdf 圧縮 サイズ",
+      "run": "PDF を圧縮",
+      "note": "非可逆：ページがラスター化される場合があります。画像の多い PDF 向きです。",
+      "success": "圧縮 PDF の準備ができました。"
+    },
+    "pdf-watermark": {
+      "name": "PDF 透かし",
+      "description": "テキスト透かし、ヘッダー、フッターを追加。",
+      "keywords": "pdf 透かし ヘッダー フッター",
+      "run": "適用",
+      "text": "透かし文字",
+      "position": "位置",
+      "header": "ヘッダー",
+      "footer": "フッター",
+      "center": "中央・斜め",
+      "opacity": "不透明度",
+      "success": "透かしを適用しました。"
+    },
+    "pdf-redact": {
+      "name": "PDF 墨消し",
+      "description": "黒い矩形で領域を覆います（視覚的な覆い）。",
+      "keywords": "pdf 墨消し 隠す",
+      "run": "墨消しを適用",
+      "note": "視覚的な覆いのみで、下層テキストの完全削除を保証するものではありません。",
+      "success": "墨消しを適用しました。"
+    },
+    "pdf-extract": {
+      "name": "PDF 抽出",
+      "description": "PDF からテキストや埋め込み画像を抽出。",
+      "keywords": "pdf 抽出 テキスト 画像",
+      "run": "抽出",
+      "modeText": "テキスト",
+      "modeImages": "画像",
+      "success": "抽出が完了しました。"
+    },
+    "image-compress": {
+      "name": "画像圧縮",
+      "description": "品質と寸法を指定して画像を縮小。",
+      "keywords": "画像 圧縮 jpg png webp",
+      "run": "圧縮",
+      "success": "{count} 枚の画像を圧縮しました。"
+    },
+    "image-resize": {
+      "name": "画像リサイズ",
+      "description": "アスペクト比固定オプション付きでリサイズ。",
+      "keywords": "画像 リサイズ 拡大縮小",
+      "run": "リサイズ",
+      "lockAspect": "アスペクト比を固定",
+      "success": "{count} 枚の画像をリサイズしました。"
+    },
+    "image-crop": {
+      "name": "画像クロップ",
+      "description": "任意の領域で切り抜き。",
+      "keywords": "画像 クロップ 切り抜き",
+      "run": "クロップ",
+      "success": "クロップが完了しました。"
+    },
+    "image-convert": {
+      "name": "画像形式変換",
+      "description": "JPG / PNG / WEBP などへ変換。",
+      "keywords": "画像 変換 形式 webp",
+      "run": "変換",
+      "success": "{count} 枚の画像を変換しました。"
+    },
+    "image-metadata": {
+      "name": "メタデータ削除",
+      "description": "EXIF などのメタデータを除いて再出力。",
+      "keywords": "画像 exif メタデータ プライバシー",
+      "run": "メタデータを削除",
+      "note": "キャンバスで再エンコードし、埋め込みメタデータを除去します。",
+      "success": "{count} 枚からメタデータを削除しました。"
+    },
+    "image-adjust": {
+      "name": "画像調整",
+      "description": "明るさ・コントラスト・彩度。",
+      "keywords": "画像 明るさ コントラスト 彩度",
+      "run": "適用",
+      "brightness": "明るさ",
+      "contrast": "コントラスト",
+      "saturation": "彩度",
+      "success": "{count} 枚の画像を調整しました。"
+    },
+    "media-convert": {
+      "name": "メディア変換",
+      "description": "ブラウザ内で音声・動画を変換（FFmpeg）。",
+      "keywords": "動画 音声 変換 mp4 webm mp3",
+      "run": "変換",
+      "loadingFfmpeg": "メディアエンジンを読み込み中…",
+      "note": "単一スレッドの FFmpeg WASM を使用します。大きなファイルは遅く、コーデック対応は限定的です。",
+      "success": "変換が完了しました。"
+    },
+    "media-trim": {
+      "name": "メディアスリミング",
+      "description": "開始・終了時刻でクリップを切り出します。",
+      "keywords": "動画 音声 トリム カット",
+      "run": "トリム",
+      "success": "トリムが完了しました。"
+    },
+    "media-speed": {
+      "name": "速度と音量",
+      "description": "再生速度と音量を変更。",
+      "keywords": "動画 音声 速度 音量",
+      "run": "適用",
+      "success": "処理が完了しました。"
+    },
+    "media-extract-audio": {
+      "name": "音声抽出",
+      "description": "動画から音声トラックを取り出します。",
+      "keywords": "動画 音声 抽出 mp3",
+      "run": "音声を抽出",
+      "success": "音声を抽出しました。"
+    },
+    "convert-hub": {
+      "name": "スマート変換",
+      "description": "入力を判定し、適切な形式へ変換。",
+      "keywords": "変換 hub json yaml csv zip",
+      "run": "変換",
+      "detect": "判定結果",
+      "chooseOutput": "出力形式",
+      "success": "変換が完了しました。"
+    },
+    "json-format": {
+      "name": "JSON 整形",
+      "description": "JSON の整形・ミニファイ・検証。",
+      "keywords": "json 整形 検証 ミニファイ",
+      "run": "整形",
+      "success": "JSON は有効で整形済みです。"
+    },
+    "yaml-format": {
+      "name": "YAML 整形",
+      "description": "YAML の整形と検証。",
+      "keywords": "yaml 整形 検証",
+      "run": "整形",
+      "success": "YAML は有効です。"
+    },
+    "toml-format": {
+      "name": "TOML 整形",
+      "description": "TOML の整形と検証。",
+      "keywords": "toml 整形 検証",
+      "run": "整形",
+      "success": "TOML は有効です。"
+    },
+    "markdown-html": {
+      "name": "Markdown ↔ HTML",
+      "description": "Markdown と HTML を相互変換。",
+      "keywords": "markdown html 変換 md",
+      "run": "変換",
+      "toHtml": "Markdown → HTML",
+      "toMd": "HTML → Markdown",
+      "success": "変換しました。"
+    },
+    "csv-json": {
+      "name": "CSV ↔ JSON",
+      "description": "表形式データを CSV と JSON で相互変換。",
+      "keywords": "csv json 変換 表",
+      "run": "変換",
+      "toJson": "CSV → JSON",
+      "toCsv": "JSON → CSV",
+      "success": "変換しました。"
+    },
+    "text-diff": {
+      "name": "テキスト差分",
+      "description": "2 つのテキストを行単位で比較。",
+      "keywords": "diff 比較 テキスト 変更",
+      "run": "比較",
+      "left": "元",
+      "right": "変更後",
+      "success": "差分の準備ができました。"
+    },
+    "base64": {
+      "name": "Base64",
+      "description": "テキストやファイルを Base64 でエンコード／デコード。",
+      "keywords": "base64 エンコード デコード",
+      "run": "変換",
+      "mode": "モード",
+      "textMode": "テキスト",
+      "fileMode": "ファイル",
+      "success": "完了しました。"
+    },
+    "url-encode": {
+      "name": "URL エンコード",
+      "description": "URL 構成要素のエンコード／デコード。",
+      "keywords": "url エンコード デコード uri",
+      "run": "変換",
+      "success": "完了しました。"
+    }
+  },
+  "legal": {
+    "lastUpdated": "最終更新",
+    "privacyTitle": "プライバシーポリシー",
+    "termsTitle": "利用規約"
+  }
+}

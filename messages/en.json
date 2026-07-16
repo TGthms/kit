@@ -1,0 +1,390 @@
+{
+  "meta": {
+    "title": "Kit — Everyday tools in the browser",
+    "description": "A private, client-side utility toolkit for PDF, images, media, converters, and text. Files never leave your device."
+  },
+  "brand": {
+    "name": "Kit",
+    "tagline": "Everyday tools in the browser. Private by design."
+  },
+  "nav": {
+    "home": "Home",
+    "tools": "Tools",
+    "history": "History",
+    "favorites": "Favorites",
+    "settings": "Settings",
+    "searchPlaceholder": "Search tools…",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu"
+  },
+  "footer": {
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Use",
+    "aboutMe": "About Me",
+    "license": "MIT License",
+    "copyright": "© {year} Tim G (TGthms). Kit is open source under MIT."
+  },
+  "common": {
+    "cancel": "Cancel",
+    "clear": "Clear",
+    "close": "Close",
+    "copy": "Copy",
+    "copied": "Copied",
+    "download": "Download",
+    "run": "Run",
+    "process": "Process",
+    "processing": "Processing…",
+    "done": "Done",
+    "error": "Something went wrong",
+    "retry": "Retry",
+    "addFiles": "Add files",
+    "dropFiles": "Drop files here",
+    "orBrowse": "or click to browse",
+    "pasteSupported": "Paste from clipboard supported",
+    "remove": "Remove",
+    "reorder": "Drag to reorder",
+    "files": "Files",
+    "noFiles": "No files yet",
+    "quality": "Quality",
+    "options": "Options",
+    "preview": "Preview",
+    "result": "Result",
+    "input": "Input",
+    "output": "Output",
+    "format": "Format",
+    "language": "Language",
+    "theme": "Theme",
+    "themeSystem": "System",
+    "themeLight": "Light",
+    "themeDark": "Dark",
+    "loading": "Loading…",
+    "save": "Save",
+    "delete": "Delete",
+    "confirm": "Confirm",
+    "back": "Back",
+    "allCategories": "All",
+    "pin": "Pin",
+    "unpin": "Unpin",
+    "favorite": "Favorite",
+    "unfavorite": "Remove favorite",
+    "presets": "Presets",
+    "applyPreset": "Apply preset",
+    "savePreset": "Save preset",
+    "shortcuts": "Keyboard shortcuts",
+    "progress": "Progress",
+    "fileTooLarge": "This file is large and may be slow to process.",
+    "unsupported": "Unsupported format",
+    "success": "Success",
+    "warning": "Warning",
+    "info": "Info",
+    "selectAll": "Select all",
+    "none": "None",
+    "reset": "Reset",
+    "maxWidth": "Max width",
+    "maxHeight": "Max height",
+    "width": "Width",
+    "height": "Height",
+    "rotate": "Rotate",
+    "pages": "Pages",
+    "page": "Page",
+    "text": "Text",
+    "encode": "Encode",
+    "decode": "Decode",
+    "validate": "Validate",
+    "minify": "Minify",
+    "beautify": "Format",
+    "valid": "Valid",
+    "invalid": "Invalid",
+    "characters": "Characters",
+    "lines": "Lines",
+    "from": "From",
+    "to": "To",
+    "start": "Start",
+    "end": "End",
+    "speed": "Speed",
+    "volume": "Volume",
+    "trim": "Trim",
+    "extract": "Extract",
+    "batch": "Batch",
+    "limitations": "Limitations",
+    "clientSideOnly": "Runs entirely in your browser. Files are not uploaded to a server.",
+    "aboutMeUrl": "https://tgthms.github.io/about/"
+  },
+  "home": {
+    "title": "What do you need to do?",
+    "subtitle": "Private tools that run on your device. No account. No upload.",
+    "categories": "Categories",
+    "popular": "Tools",
+    "noResults": "No tools match your search.",
+    "recent": "Continue",
+    "pinned": "Pinned"
+  },
+  "categories": {
+    "pdf": "PDF",
+    "image": "Image",
+    "media": "Audio & Video",
+    "convert": "Converters",
+    "text": "Text & Data"
+  },
+  "history": {
+    "title": "History",
+    "subtitle": "Recent actions on this device. Only metadata is stored—never your files.",
+    "empty": "No history yet. Use a tool to get started.",
+    "clear": "Clear history",
+    "clearConfirm": "Clear all history entries on this device?",
+    "openTool": "Open tool",
+    "tool": "Tool",
+    "when": "When",
+    "summary": "Summary",
+    "status": "Status",
+    "success": "Success",
+    "failed": "Failed"
+  },
+  "favorites": {
+    "title": "Favorites",
+    "subtitle": "Tools you pinned for quick access.",
+    "empty": "No favorites yet. Pin tools from the home page or a tool page."
+  },
+  "settings": {
+    "title": "Settings",
+    "subtitle": "Preferences stay on this device.",
+    "appearance": "Appearance",
+    "language": "Language",
+    "data": "Data & privacy",
+    "clearHistory": "Clear history",
+    "clearHistoryDesc": "Remove all local history metadata from this browser.",
+    "privacyNote": "Kit processes files in your browser. Preferences and history metadata may be stored locally. See the Privacy Policy for details.",
+    "viewPrivacy": "Privacy Policy",
+    "viewTerms": "Terms of Use",
+    "shortcutsHelp": "Press ? to view keyboard shortcuts.",
+    "version": "Version"
+  },
+  "shortcuts": {
+    "title": "Keyboard shortcuts",
+    "global": "Global",
+    "search": "Focus search",
+    "settings": "Open settings",
+    "home": "Go home",
+    "help": "Show this help",
+    "run": "Run current tool action"
+  },
+  "tools": {
+    "pdf-merge": {
+      "name": "PDF Merge",
+      "description": "Combine PDFs with thumbnails and drag-to-reorder.",
+      "keywords": "pdf merge combine join",
+      "run": "Merge PDFs",
+      "empty": "Add two or more PDF files to merge.",
+      "success": "Merged {count} files."
+    },
+    "pdf-split": {
+      "name": "PDF Split",
+      "description": "Extract page ranges into a new PDF.",
+      "keywords": "pdf split extract pages",
+      "run": "Split PDF",
+      "range": "Page range (e.g. 1-3,5)",
+      "success": "Created split PDF."
+    },
+    "pdf-organize": {
+      "name": "PDF Organize",
+      "description": "Rotate, delete, and reorder pages.",
+      "keywords": "pdf rotate delete reorder pages",
+      "run": "Apply changes",
+      "success": "PDF updated."
+    },
+    "pdf-compress": {
+      "name": "PDF Compress",
+      "description": "Reduce size by re-encoding page images (lossy).",
+      "keywords": "pdf compress reduce size",
+      "run": "Compress PDF",
+      "note": "Lossy: pages may be rasterized. Best for image-heavy PDFs.",
+      "success": "Compressed PDF ready."
+    },
+    "pdf-watermark": {
+      "name": "PDF Watermark",
+      "description": "Add text watermark, header, or footer.",
+      "keywords": "pdf watermark header footer",
+      "run": "Apply",
+      "text": "Watermark text",
+      "position": "Position",
+      "header": "Header",
+      "footer": "Footer",
+      "center": "Center diagonal",
+      "opacity": "Opacity",
+      "success": "Watermark applied."
+    },
+    "pdf-redact": {
+      "name": "PDF Redact",
+      "description": "Cover regions with black boxes (visual cover).",
+      "keywords": "pdf redact blackout hide",
+      "run": "Apply redaction",
+      "note": "Visual cover only—does not guarantee removal of all underlying text streams.",
+      "success": "Redaction boxes applied."
+    },
+    "pdf-extract": {
+      "name": "PDF Extract",
+      "description": "Extract text or embedded images from a PDF.",
+      "keywords": "pdf extract text images",
+      "run": "Extract",
+      "modeText": "Text",
+      "modeImages": "Images",
+      "success": "Extraction complete."
+    },
+    "image-compress": {
+      "name": "Image Compress",
+      "description": "Shrink images with quality and dimension controls.",
+      "keywords": "image compress jpg png webp size",
+      "run": "Compress",
+      "success": "Compressed {count} image(s)."
+    },
+    "image-resize": {
+      "name": "Image Resize",
+      "description": "Resize images with optional aspect lock.",
+      "keywords": "image resize scale dimensions",
+      "run": "Resize",
+      "lockAspect": "Lock aspect ratio",
+      "success": "Resized {count} image(s)."
+    },
+    "image-crop": {
+      "name": "Image Crop",
+      "description": "Crop images to a custom region.",
+      "keywords": "image crop cut",
+      "run": "Crop",
+      "success": "Cropped image ready."
+    },
+    "image-convert": {
+      "name": "Image Convert",
+      "description": "Convert between JPG, PNG, WEBP, and more.",
+      "keywords": "image convert format webp avif png jpg",
+      "run": "Convert",
+      "success": "Converted {count} image(s)."
+    },
+    "image-metadata": {
+      "name": "Strip Metadata",
+      "description": "Re-export images without EXIF and other metadata.",
+      "keywords": "image exif metadata strip privacy",
+      "run": "Strip metadata",
+      "note": "Re-encodes pixels via canvas; embedded metadata is dropped.",
+      "success": "Metadata stripped from {count} image(s)."
+    },
+    "image-adjust": {
+      "name": "Image Adjust",
+      "description": "Brightness, contrast, and saturation.",
+      "keywords": "image brightness contrast saturation",
+      "run": "Apply",
+      "brightness": "Brightness",
+      "contrast": "Contrast",
+      "saturation": "Saturation",
+      "success": "Adjusted {count} image(s)."
+    },
+    "media-convert": {
+      "name": "Media Convert",
+      "description": "Convert audio/video formats in the browser (FFmpeg).",
+      "keywords": "video audio convert mp4 webm mp3",
+      "run": "Convert",
+      "loadingFfmpeg": "Loading media engine…",
+      "note": "Uses FFmpeg WASM (single-threaded). Large files may be slow; codec support is limited.",
+      "success": "Conversion complete."
+    },
+    "media-trim": {
+      "name": "Media Trim",
+      "description": "Cut a clip with start/end times.",
+      "keywords": "video audio trim cut clip",
+      "run": "Trim",
+      "success": "Trim complete."
+    },
+    "media-speed": {
+      "name": "Speed & Volume",
+      "description": "Change playback speed and volume.",
+      "keywords": "video audio speed volume",
+      "run": "Apply",
+      "success": "Processed media ready."
+    },
+    "media-extract-audio": {
+      "name": "Extract Audio",
+      "description": "Pull audio track from a video file.",
+      "keywords": "video extract audio mp3",
+      "run": "Extract audio",
+      "success": "Audio extracted."
+    },
+    "convert-hub": {
+      "name": "Smart Convert",
+      "description": "Detect input type and convert to a matching format.",
+      "keywords": "convert hub smart batch json yaml csv zip",
+      "run": "Convert",
+      "detect": "Detected",
+      "chooseOutput": "Output format",
+      "success": "Conversion complete."
+    },
+    "json-format": {
+      "name": "JSON Format",
+      "description": "Format, minify, and validate JSON.",
+      "keywords": "json format validate minify pretty",
+      "run": "Format",
+      "success": "JSON is valid and formatted."
+    },
+    "yaml-format": {
+      "name": "YAML Format",
+      "description": "Format and validate YAML.",
+      "keywords": "yaml format validate",
+      "run": "Format",
+      "success": "YAML is valid."
+    },
+    "toml-format": {
+      "name": "TOML Format",
+      "description": "Format and validate TOML.",
+      "keywords": "toml format validate",
+      "run": "Format",
+      "success": "TOML is valid."
+    },
+    "markdown-html": {
+      "name": "Markdown ↔ HTML",
+      "description": "Convert between Markdown and HTML.",
+      "keywords": "markdown html convert md",
+      "run": "Convert",
+      "toHtml": "Markdown → HTML",
+      "toMd": "HTML → Markdown",
+      "success": "Converted."
+    },
+    "csv-json": {
+      "name": "CSV ↔ JSON",
+      "description": "Convert tabular data between CSV and JSON.",
+      "keywords": "csv json convert table",
+      "run": "Convert",
+      "toJson": "CSV → JSON",
+      "toCsv": "JSON → CSV",
+      "success": "Converted."
+    },
+    "text-diff": {
+      "name": "Text Diff",
+      "description": "Compare two texts line by line.",
+      "keywords": "diff compare text changes",
+      "run": "Compare",
+      "left": "Original",
+      "right": "Modified",
+      "success": "Diff ready."
+    },
+    "base64": {
+      "name": "Base64",
+      "description": "Encode or decode Base64 for text and files.",
+      "keywords": "base64 encode decode",
+      "run": "Convert",
+      "mode": "Mode",
+      "textMode": "Text",
+      "fileMode": "File",
+      "success": "Done."
+    },
+    "url-encode": {
+      "name": "URL Encode",
+      "description": "Encode or decode URL components.",
+      "keywords": "url encode decode percent uri",
+      "run": "Convert",
+      "success": "Done."
+    }
+  },
+  "legal": {
+    "lastUpdated": "Last updated",
+    "privacyTitle": "Privacy Policy",
+    "termsTitle": "Terms of Use"
+  }
+}

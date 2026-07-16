@@ -1,0 +1,390 @@
+{
+  "meta": {
+    "title": "Kit — Herramientas cotidianas en el navegador",
+    "description": "Kit de utilidades privadas en el cliente para PDF, imágenes, medios, conversiones y texto. Tus archivos no salen de tu dispositivo."
+  },
+  "brand": {
+    "name": "Kit",
+    "tagline": "Herramientas cotidianas en el navegador. Privacidad por diseño."
+  },
+  "nav": {
+    "home": "Inicio",
+    "tools": "Herramientas",
+    "history": "Historial",
+    "favorites": "Favoritos",
+    "settings": "Ajustes",
+    "searchPlaceholder": "Buscar herramientas…",
+    "openMenu": "Abrir menú",
+    "closeMenu": "Cerrar menú"
+  },
+  "footer": {
+    "privacy": "Política de privacidad",
+    "terms": "Términos de uso",
+    "aboutMe": "Sobre mí",
+    "license": "Licencia MIT",
+    "copyright": "© {year} Tim G (TGthms). Kit es código abierto bajo MIT."
+  },
+  "common": {
+    "cancel": "Cancelar",
+    "clear": "Borrar",
+    "close": "Cerrar",
+    "copy": "Copiar",
+    "copied": "Copiado",
+    "download": "Descargar",
+    "run": "Ejecutar",
+    "process": "Procesar",
+    "processing": "Procesando…",
+    "done": "Listo",
+    "error": "Algo salió mal",
+    "retry": "Reintentar",
+    "addFiles": "Añadir archivos",
+    "dropFiles": "Suelta archivos aquí",
+    "orBrowse": "o haz clic para elegir",
+    "pasteSupported": "Puedes pegar desde el portapapeles",
+    "remove": "Quitar",
+    "reorder": "Arrastra para reordenar",
+    "files": "Archivos",
+    "noFiles": "Aún no hay archivos",
+    "quality": "Calidad",
+    "options": "Opciones",
+    "preview": "Vista previa",
+    "result": "Resultado",
+    "input": "Entrada",
+    "output": "Salida",
+    "format": "Formato",
+    "language": "Idioma",
+    "theme": "Tema",
+    "themeSystem": "Sistema",
+    "themeLight": "Claro",
+    "themeDark": "Oscuro",
+    "loading": "Cargando…",
+    "save": "Guardar",
+    "delete": "Eliminar",
+    "confirm": "Confirmar",
+    "back": "Volver",
+    "allCategories": "Todas",
+    "pin": "Fijar",
+    "unpin": "Quitar fijado",
+    "favorite": "Favorito",
+    "unfavorite": "Quitar de favoritos",
+    "presets": "Preajustes",
+    "applyPreset": "Aplicar preajuste",
+    "savePreset": "Guardar preajuste",
+    "shortcuts": "Atajos de teclado",
+    "progress": "Progreso",
+    "fileTooLarge": "Este archivo es grande y puede tardar en procesarse.",
+    "unsupported": "Formato no admitido",
+    "success": "Correcto",
+    "warning": "Aviso",
+    "info": "Info",
+    "selectAll": "Seleccionar todo",
+    "none": "Ninguno",
+    "reset": "Restablecer",
+    "maxWidth": "Ancho máx.",
+    "maxHeight": "Alto máx.",
+    "width": "Ancho",
+    "height": "Alto",
+    "rotate": "Rotar",
+    "pages": "Páginas",
+    "page": "Página",
+    "text": "Texto",
+    "encode": "Codificar",
+    "decode": "Decodificar",
+    "validate": "Validar",
+    "minify": "Minificar",
+    "beautify": "Formatear",
+    "valid": "Válido",
+    "invalid": "No válido",
+    "characters": "Caracteres",
+    "lines": "Líneas",
+    "from": "Desde",
+    "to": "Hasta",
+    "start": "Inicio",
+    "end": "Fin",
+    "speed": "Velocidad",
+    "volume": "Volumen",
+    "trim": "Recortar",
+    "extract": "Extraer",
+    "batch": "Lote",
+    "limitations": "Limitaciones",
+    "clientSideOnly": "Se ejecuta por completo en tu navegador. Los archivos no se suben a un servidor.",
+    "aboutMeUrl": "https://tgthms.github.io/about/"
+  },
+  "home": {
+    "title": "¿Qué necesitas hacer?",
+    "subtitle": "Herramientas privadas en tu dispositivo. Sin cuenta. Sin subidas.",
+    "categories": "Categorías",
+    "popular": "Herramientas",
+    "noResults": "Ninguna herramienta coincide con tu búsqueda.",
+    "recent": "Continuar",
+    "pinned": "Fijadas"
+  },
+  "categories": {
+    "pdf": "PDF",
+    "image": "Imagen",
+    "media": "Audio y vídeo",
+    "convert": "Convertidores",
+    "text": "Texto y datos"
+  },
+  "history": {
+    "title": "Historial",
+    "subtitle": "Acciones recientes en este dispositivo. Solo se guarda metadatos, nunca tus archivos.",
+    "empty": "Aún no hay historial. Usa una herramienta para empezar.",
+    "clear": "Borrar historial",
+    "clearConfirm": "¿Borrar todas las entradas del historial en este dispositivo?",
+    "openTool": "Abrir herramienta",
+    "tool": "Herramienta",
+    "when": "Cuándo",
+    "summary": "Resumen",
+    "status": "Estado",
+    "success": "Correcto",
+    "failed": "Fallido"
+  },
+  "favorites": {
+    "title": "Favoritos",
+    "subtitle": "Herramientas que fijaste para acceso rápido.",
+    "empty": "Aún no hay favoritos. Fija herramientas desde el inicio o la página de la herramienta."
+  },
+  "settings": {
+    "title": "Ajustes",
+    "subtitle": "Las preferencias se guardan en este dispositivo.",
+    "appearance": "Apariencia",
+    "language": "Idioma",
+    "data": "Datos y privacidad",
+    "clearHistory": "Borrar historial",
+    "clearHistoryDesc": "Elimina todos los metadatos del historial local de este navegador.",
+    "privacyNote": "Kit procesa los archivos en tu navegador. Las preferencias y el historial (metadatos) pueden guardarse en local. Consulta la Política de privacidad.",
+    "viewPrivacy": "Política de privacidad",
+    "viewTerms": "Términos de uso",
+    "shortcutsHelp": "Pulsa ? para ver los atajos de teclado.",
+    "version": "Versión"
+  },
+  "shortcuts": {
+    "title": "Atajos de teclado",
+    "global": "Global",
+    "search": "Enfocar búsqueda",
+    "settings": "Abrir ajustes",
+    "home": "Ir al inicio",
+    "help": "Mostrar esta ayuda",
+    "run": "Ejecutar la acción de la herramienta"
+  },
+  "tools": {
+    "pdf-merge": {
+      "name": "Unir PDF",
+      "description": "Combina PDFs con miniaturas y reordenación.",
+      "keywords": "pdf unir combinar merge",
+      "run": "Unir PDFs",
+      "empty": "Añade dos o más archivos PDF.",
+      "success": "Se unieron {count} archivos."
+    },
+    "pdf-split": {
+      "name": "Dividir PDF",
+      "description": "Extrae rangos de páginas a un PDF nuevo.",
+      "keywords": "pdf dividir páginas",
+      "run": "Dividir PDF",
+      "range": "Rango de páginas (p. ej. 1-3,5)",
+      "success": "PDF dividido creado."
+    },
+    "pdf-organize": {
+      "name": "Organizar PDF",
+      "description": "Rota, elimina y reordena páginas.",
+      "keywords": "pdf rotar eliminar reordenar",
+      "run": "Aplicar cambios",
+      "success": "PDF actualizado."
+    },
+    "pdf-compress": {
+      "name": "Comprimir PDF",
+      "description": "Reduce el tamaño re-codificando imágenes de página (con pérdida).",
+      "keywords": "pdf comprimir tamaño",
+      "run": "Comprimir PDF",
+      "note": "Con pérdida: las páginas pueden rasterizarse. Ideal para PDFs con muchas imágenes.",
+      "success": "PDF comprimido listo."
+    },
+    "pdf-watermark": {
+      "name": "Marca de agua PDF",
+      "description": "Añade marca de agua, encabezado o pie.",
+      "keywords": "pdf marca agua encabezado pie",
+      "run": "Aplicar",
+      "text": "Texto de la marca",
+      "position": "Posición",
+      "header": "Encabezado",
+      "footer": "Pie",
+      "center": "Centro diagonal",
+      "opacity": "Opacidad",
+      "success": "Marca de agua aplicada."
+    },
+    "pdf-redact": {
+      "name": "Redactar PDF",
+      "description": "Cubre zonas con cajas negras (cubierta visual).",
+      "keywords": "pdf redactar ocultar",
+      "run": "Aplicar redacción",
+      "note": "Solo cubierta visual: no garantiza eliminar todo el texto subyacente.",
+      "success": "Cajas de redacción aplicadas."
+    },
+    "pdf-extract": {
+      "name": "Extraer de PDF",
+      "description": "Extrae texto o imágenes incrustadas.",
+      "keywords": "pdf extraer texto imágenes",
+      "run": "Extraer",
+      "modeText": "Texto",
+      "modeImages": "Imágenes",
+      "success": "Extracción completa."
+    },
+    "image-compress": {
+      "name": "Comprimir imagen",
+      "description": "Reduce imágenes con calidad y dimensiones.",
+      "keywords": "imagen comprimir jpg png webp",
+      "run": "Comprimir",
+      "success": "Se comprimieron {count} imagen(es)."
+    },
+    "image-resize": {
+      "name": "Redimensionar imagen",
+      "description": "Cambia el tamaño con bloqueo de proporción opcional.",
+      "keywords": "imagen redimensionar escala",
+      "run": "Redimensionar",
+      "lockAspect": "Bloquear proporción",
+      "success": "Se redimensionaron {count} imagen(es)."
+    },
+    "image-crop": {
+      "name": "Recortar imagen",
+      "description": "Recorta a una región personalizada.",
+      "keywords": "imagen recortar",
+      "run": "Recortar",
+      "success": "Imagen recortada lista."
+    },
+    "image-convert": {
+      "name": "Convertir imagen",
+      "description": "Convierte entre JPG, PNG, WEBP y más.",
+      "keywords": "imagen convertir formato webp",
+      "run": "Convertir",
+      "success": "Se convirtieron {count} imagen(es)."
+    },
+    "image-metadata": {
+      "name": "Quitar metadatos",
+      "description": "Reexporta sin EXIF ni otros metadatos.",
+      "keywords": "imagen exif metadatos privacidad",
+      "run": "Quitar metadatos",
+      "note": "Re-codifica con canvas; se eliminan metadatos incrustados.",
+      "success": "Metadatos eliminados de {count} imagen(es)."
+    },
+    "image-adjust": {
+      "name": "Ajustar imagen",
+      "description": "Brillo, contraste y saturación.",
+      "keywords": "imagen brillo contraste saturación",
+      "run": "Aplicar",
+      "brightness": "Brillo",
+      "contrast": "Contraste",
+      "saturation": "Saturación",
+      "success": "Se ajustaron {count} imagen(es)."
+    },
+    "media-convert": {
+      "name": "Convertir medios",
+      "description": "Convierte audio/vídeo en el navegador (FFmpeg).",
+      "keywords": "vídeo audio convertir mp4 webm mp3",
+      "run": "Convertir",
+      "loadingFfmpeg": "Cargando motor de medios…",
+      "note": "Usa FFmpeg WASM (un hilo). Los archivos grandes pueden ser lentos; códecs limitados.",
+      "success": "Conversión completa."
+    },
+    "media-trim": {
+      "name": "Recortar medios",
+      "description": "Corta un clip con tiempos de inicio y fin.",
+      "keywords": "vídeo audio recortar clip",
+      "run": "Recortar",
+      "success": "Recorte completo."
+    },
+    "media-speed": {
+      "name": "Velocidad y volumen",
+      "description": "Cambia la velocidad y el volumen.",
+      "keywords": "vídeo audio velocidad volumen",
+      "run": "Aplicar",
+      "success": "Medio procesado listo."
+    },
+    "media-extract-audio": {
+      "name": "Extraer audio",
+      "description": "Obtiene la pista de audio de un vídeo.",
+      "keywords": "vídeo extraer audio mp3",
+      "run": "Extraer audio",
+      "success": "Audio extraído."
+    },
+    "convert-hub": {
+      "name": "Conversión inteligente",
+      "description": "Detecta el tipo de entrada y convierte al formato adecuado.",
+      "keywords": "convertir hub json yaml csv zip",
+      "run": "Convertir",
+      "detect": "Detectado",
+      "chooseOutput": "Formato de salida",
+      "success": "Conversión completa."
+    },
+    "json-format": {
+      "name": "Formatear JSON",
+      "description": "Formatea, minifica y valida JSON.",
+      "keywords": "json formatear validar minificar",
+      "run": "Formatear",
+      "success": "JSON válido y formateado."
+    },
+    "yaml-format": {
+      "name": "Formatear YAML",
+      "description": "Formatea y valida YAML.",
+      "keywords": "yaml formatear validar",
+      "run": "Formatear",
+      "success": "YAML válido."
+    },
+    "toml-format": {
+      "name": "Formatear TOML",
+      "description": "Formatea y valida TOML.",
+      "keywords": "toml formatear validar",
+      "run": "Formatear",
+      "success": "TOML válido."
+    },
+    "markdown-html": {
+      "name": "Markdown ↔ HTML",
+      "description": "Convierte entre Markdown y HTML.",
+      "keywords": "markdown html convertir md",
+      "run": "Convertir",
+      "toHtml": "Markdown → HTML",
+      "toMd": "HTML → Markdown",
+      "success": "Convertido."
+    },
+    "csv-json": {
+      "name": "CSV ↔ JSON",
+      "description": "Convierte datos tabulares entre CSV y JSON.",
+      "keywords": "csv json convertir tabla",
+      "run": "Convertir",
+      "toJson": "CSV → JSON",
+      "toCsv": "JSON → CSV",
+      "success": "Convertido."
+    },
+    "text-diff": {
+      "name": "Diff de texto",
+      "description": "Compara dos textos línea a línea.",
+      "keywords": "diff comparar texto cambios",
+      "run": "Comparar",
+      "left": "Original",
+      "right": "Modificado",
+      "success": "Diff listo."
+    },
+    "base64": {
+      "name": "Base64",
+      "description": "Codifica o decodifica Base64 de texto y archivos.",
+      "keywords": "base64 codificar decodificar",
+      "run": "Convertir",
+      "mode": "Modo",
+      "textMode": "Texto",
+      "fileMode": "Archivo",
+      "success": "Listo."
+    },
+    "url-encode": {
+      "name": "Codificar URL",
+      "description": "Codifica o decodifica componentes de URL.",
+      "keywords": "url codificar decodificar uri",
+      "run": "Convertir",
+      "success": "Listo."
+    }
+  },
+  "legal": {
+    "lastUpdated": "Última actualización",
+    "privacyTitle": "Política de privacidad",
+    "termsTitle": "Términos de uso"
+  }
+}
