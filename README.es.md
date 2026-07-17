@@ -14,7 +14,7 @@ Kit es un conjunto de utilidades de alta calidad que se ejecutan en el cliente: 
 
 ## Visión
 
-Un kit cohesivo, con diseño inspirado en iOS: interfaz clara, modo claro/oscuro, varios idiomas, shell PWA con capacidad sin conexión y límites honestos del procesamiento en el navegador.
+Un kit cohesivo y cuidado: interfaz clara, modo claro/oscuro, varios idiomas, shell PWA con capacidad sin conexión y límites honestos del procesamiento en el navegador.
 
 ## Idiomas
 

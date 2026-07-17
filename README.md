@@ -14,7 +14,7 @@ Kit is a high-quality, client-side utility toolkit for PDF, images, audio/video,
 
 ## Vision
 
-A cohesive, iOS-inspired toolkit that feels complete and polished: clear layout, light/dark mode, multi-language UI, offline-capable PWA shell, and honest limits for browser-based processing.
+A cohesive toolkit that feels complete and polished: clear layout, light/dark mode, multi-language UI, offline-capable PWA shell, and honest limits for browser-based processing.
 
 ## Languages
 
