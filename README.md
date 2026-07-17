@@ -4,21 +4,21 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-**Everyday tools in the browser. Private by design.**
+**Everyday tools in your browser. Private by design.**
 
-Kit is a high-quality, client-side utility toolkit for PDF, images, audio/video, converters, and text/data. Processing runs in your browser—files are not uploaded to a Kit server.
+Kit is a set of PDF, image, media, converter, and text tools that run on your device. Processing stays in the browser—nothing is uploaded to a Kit server.
 
-**Live (project Pages):** https://TGthms.github.io/kit/
+**Live site:** https://TGthms.github.io/kit/
 
 **About the author:** https://tgthms.github.io/about/
 
-## Vision
+## What you get
 
-A cohesive toolkit that feels complete and polished: clear layout, light/dark mode, multi-language UI, offline-capable PWA shell, and honest limits for browser-based processing.
+A complete, polished toolkit: clear layout, light and dark appearance, full multi-language UI, an installable PWA shell, and honest limits about what a browser can do.
 
 ## Languages
 
-UI and legal pages: **English · Español · 中文 · 日本語**
+Interface and legal pages: **English · Español · 中文 · 日本語**
 
 ## Tools
 

@@ -1,54 +1,54 @@
-# Términos de uso
+# Condiciones de uso
 
 **Última actualización:** 15 de julio de 2026
 
-Estos Términos de uso (“Términos”) rigen el acceso y uso del sitio y las herramientas de Kit (“Kit”, “el Servicio”). Al usar Kit, aceptas estos Términos. Si no estás de acuerdo, no uses Kit.
+Estas condiciones regulan el acceso y el uso del sitio y las herramientas de **Kit** («el Servicio»). Al usar Kit aceptas estas condiciones. Si no estás de acuerdo, no utilices el Servicio.
 
-## Descripción del Servicio
+## Qué es Kit
 
-Kit ofrece utilidades en el navegador para tareas cotidianas con archivos y texto. El procesamiento está pensado para ejecutarse **en el cliente**. Kit se ofrece como aplicación web estática y software de código abierto.
+Kit ofrece utilidades en el navegador para tareas cotidianas con archivos y texto. El procesamiento está pensado para ejecutarse **en el cliente**. Se publica como aplicación web estática y como software de código abierto.
 
-## Licencia del software
+## Licencia del código
 
-El código fuente de Kit se distribuye bajo la **licencia MIT**. Esa licencia rige la redistribución y el uso del código. Estos Términos rigen el uso del sitio alojado y del Servicio en línea.
+El código fuente de Kit se distribuye bajo la **licencia MIT**. Esa licencia rige la redistribución y el uso del software. Estas condiciones se refieren al uso del sitio alojado y del Servicio en línea.
 
-## Uso aceptable
+## Uso adecuado
 
-Te comprometes a no usar Kit para:
+Te comprometes a no emplear Kit para:
 
-- Violar la ley aplicable
-- Infringir derechos de propiedad intelectual o privacidad de terceros
-- Intentar interrumpir, sobrecargar o comprometer la infraestructura de alojamiento
-- Presentar Kit como un servicio que almacena o transmite tus archivos a nosotros para procesarlos, cuando no es así
+- Infringir la ley aplicable
+- Violar derechos de propiedad intelectual o de privacidad de terceros
+- Intentar saturar, interferir o comprometer la infraestructura de alojamiento
+- Presentar Kit como un servicio que guarda o transmite tus archivos a nosotros para procesarlos, cuando no es el caso
 
-Eres el único responsable de los archivos y contenidos que procesas con Kit y del cumplimiento de las leyes aplicables.
+Eres responsable de los archivos y contenidos que procesas y del cumplimiento de las normas que les resulten aplicables.
 
 ## Sin asesoramiento profesional
 
-Los resultados de las herramientas se ofrecen solo por comodidad. No constituyen asesoramiento legal, de seguridad, médico ni de otro tipo profesional. Funciones como la redacción visual pueden no eliminar todos los datos subyacentes: verifica los resultados en usos sensibles.
+Los resultados de las herramientas se ofrecen por comodidad. No constituyen asesoramiento jurídico, de seguridad, médico ni de otra índole profesional. Funciones como la cubierta visual de zonas en un PDF pueden no eliminar todos los datos subyacentes: verifica el resultado cuando el contenido sea sensible.
 
 ## Exención de garantías
 
-KIT SE OFRECE **“TAL CUAL”** Y **“SEGÚN DISPONIBILIDAD”.** EN LA MEDIDA MÁXIMA PERMITIDA POR LA LEY, RENUNCIAMOS A TODAS LAS GARANTÍAS, EXPRESAS O IMPLÍCITAS, INCLUIDAS COMERCIABILIDAD, IDONEIDAD PARA UN FIN DETERMINADO Y NO INFRACCIÓN. No garantizamos que Kit sea ininterrumpido, libre de errores o de componentes dañinos, ni que los resultados satisfagan tus necesidades.
+KIT SE OFRECE **«TAL CUAL»** Y **«SEGÚN DISPONIBILIDAD»**. En la medida máxima permitida por la ley, renunciamos a toda garantía, expresa o implícita, incluida la de comerciabilidad, idoneidad para un fin concreto y no infracción. No garantizamos un servicio ininterrumpido, libre de errores o de componentes dañinos, ni que los resultados se ajusten a tus necesidades.
 
 ## Limitación de responsabilidad
 
-EN LA MEDIDA MÁXIMA PERMITIDA POR LA LEY, TIM G / TGTHMS Y LOS COLABORADORES NO SERÁN RESPONSABLES DE DAÑOS INDIRECTOS, INCIDENTALES, ESPECIALES, CONSECUENTES O PUNITIVOS, NI DE PÉRDIDA DE DATOS, BENEFICIOS O NEGOCIO, DERIVADOS DEL USO DE KIT, INCLUSO SI SE ADvirtió DE SU POSIBILIDAD. NUESTRA RESPONSABILIDAD TOTAL POR CUALQUIER RECLAMACIÓN RELACIONADA CON KIT NO SUPERARÁ 0 USD (EL SERVICIO ES GRATUITO) O EL MÍNIMO QUE EXIJA LA LEY.
+En la medida máxima permitida por la ley, Tim G / TGthms y los colaboradores no responderán por daños indirectos, incidentales, especiales, consecuentes o punitivos, ni por pérdida de datos, beneficios o actividad, derivados del uso de Kit—aunque se hubiera advertido de su posibilidad. La responsabilidad total por reclamaciones relacionadas con Kit no superará 0 USD (el Servicio es gratuito) o el mínimo que imponga la ley.
 
-## Servicios y enlaces de terceros
+## Enlaces y servicios de terceros
 
-Kit puede enlazar a sitios externos o cargar bibliotecas de terceros. No somos responsables del contenido, las políticas ni la disponibilidad de terceros.
+Kit puede enlazar a sitios externos o cargar bibliotecas de terceros. No controlamos ni respondemos por su contenido, políticas o disponibilidad.
 
-## Cambios del Servicio y de los Términos
+## Cambios del Servicio y de estas condiciones
 
-Podemos modificar o discontinuar funciones en cualquier momento. Podemos actualizar estos Términos publicando una nueva versión con una fecha revisada. El uso continuado implica la aceptación de los Términos actualizados.
+Podemos modificar o retirar funciones en cualquier momento. Podemos actualizar estas condiciones publicando una versión nueva con fecha revisada. El uso continuado tras el cambio implica la aceptación de la versión actualizada.
 
 ## Ley aplicable
 
-Estos Términos se rigen por las leyes aplicables en tu lugar de residencia, salvo donde la protección obligatoria del consumidor disponga otra cosa. Nada en estos Términos limita derechos irrenunciables que te otorgue la ley local.
+Salvo que una norma imperativa de protección al consumidor disponga otra cosa, se aplican las leyes de tu lugar de residencia. Nada de lo aquí escrito limita derechos irrenunciables que te reconozca la ley local.
 
 ## Contacto
 
-Preguntas sobre estos Términos: [Sobre mí](https://tgthms.github.io/about/).
+Preguntas sobre estas condiciones: [Sobre mí](https://tgthms.github.io/about/).
 
 **Tim G (GitHub: TGthms)**

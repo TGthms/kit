@@ -4,44 +4,45 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-**ブラウザで使える日常ツール。プライバシーを前提に。**
+**日常のツールをブラウザで。プライバシーを前提に設計。**
 
-Kit は、PDF・画像・音声/動画・変換・テキスト/データ向けの、高品質なクライアント完結ユーティリティです。処理はブラウザ内で行われ、ファイルは Kit のサーバーへアップロードされません。
+Kit は、PDF・画像・音声/動画・変換・テキスト処理を端末上で完結させるユーティリティ集です。処理はブラウザ内で行われ、ファイルを Kit のサーバーへ送ることはありません。
 
-**公開サイト（GitHub Pages）:** https://TGthms.github.io/kit/
+**サイト:** https://TGthms.github.io/kit/
 
-**作者について:** https://tgthms.github.io/about/
+**作者:** https://tgthms.github.io/about/
 
-## ビジョン
+## このプロジェクトについて
 
-まとまりのある洗練されたツールキット。明快な UI、ライト/ダーク、多言語、オフライン可能な PWA シェル、ブラウザ処理の限界を正直に示すこと。
+まとまりのある、使いやすいツールキットです。明快な UI、ライト/ダーク、多言語対応、インストール可能な PWA シェル、そしてブラウザでできることの限界を正直に示すことを大切にしています。
 
-## 言語
+## 対応言語（UI）
 
-UI と法的ページ: **English · Español · 中文 · 日本語**
+**English · Español · 中文 · 日本語**
 
-## ツール
+## ツール一覧
 
 ### PDF
-結合、分割、整理、圧縮、透かし、墨消し（視覚的な覆い）、テキスト/画像抽出。
+結合、分割、ページ整理、圧縮、透かし、覆い（見た目）、テキスト/画像の取り出し。
 
 ### 画像
-圧縮、リサイズ、クロップ、形式変換、メタデータ削除、調整。
+圧縮、リサイズ、切り抜き、形式変換、メタデータ削除、明るさ/コントラスト/彩度。
 
 ### 音声・動画
-形式変換、トリム、速度・音量、音声抽出（FFmpeg WASM・単一スレッド。大きいファイルは遅い場合あり）。
+形式変換、切り取り、速度と音量、音声の取り出し  
+*（FFmpeg WASM。大きなファイルは遅く、コーデック対応にも限りがあります）*。
 
 ### 変換
-スマート変換ハブ（JSON/YAML/CSV/ZIP/画像）。
+スマート変換ハブ（JSON、YAML、CSV、ZIP、画像など）。
 
 ### テキスト・データ
-JSON/YAML/TOML、Markdown ↔ HTML、CSV ↔ JSON、差分、Base64、URL エンコード。
+JSON / YAML / TOML、Markdown ↔ HTML、CSV ↔ JSON、テキスト比較、Base64、URL エンコード。
 
 ## プライバシー
 
 - **端末上**で処理
-- 履歴は**メタデータのみ**
-- 設定はローカルストレージ
+- 履歴は**要約のみ**（ファイル本体は保存しません）
+- 設定はブラウザのローカルストレージ
 - [プライバシーポリシー](https://TGthms.github.io/kit/ja/privacy/) · [利用規約](https://TGthms.github.io/kit/ja/terms/)
 
 ## ローカル開発
@@ -61,19 +62,19 @@ npm run typecheck
 npm run lint
 ```
 
-### ベースパス
+### ベースパス（プロジェクト Pages）
 
 ```bash
 NEXT_PUBLIC_BASE_PATH=/kit npm run build
 ```
 
-## GitHub Pages へのデプロイ
+## GitHub Pages への公開
 
 ### 自動（推奨）
 
-1. リポジトリを **https://github.com/TGthms/kit** に push
+1. リポジトリ: **https://github.com/TGthms/kit**
 2. GitHub → **Settings → Pages → Source: GitHub Actions**
-3. [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml) が `NEXT_PUBLIC_BASE_PATH=/kit` でビルドし `out/` を公開
+3. [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml) が `NEXT_PUBLIC_BASE_PATH=/kit` でビルドし `out/` を公開します
 
 ### 手動
 

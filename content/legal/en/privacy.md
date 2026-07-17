@@ -2,15 +2,15 @@
 
 **Last updated:** July 15, 2026
 
-Kit (“Kit,” “we,” “us”) is a browser-based utility toolkit published as a static website. This Privacy Policy explains how information is handled when you use Kit.
+This policy describes how information is handled when you use **Kit**, a set of utilities published as a static website and built to run in your browser.
 
-## Our approach
+## Core idea
 
-We design Kit so that **your files are processed on your device**. Kit does not operate an application server that receives, stores, or analyzes the contents of files you open in the tools.
+Kit is designed so that **work on your files happens on your device**. We do not run an application server that receives, stores, or analyzes the contents of documents, images, or media you open in the tools.
 
-## What Kit does not collect
+## What Kit does not do
 
-When you use Kit’s tools (for example, merging PDFs or compressing images):
+When you use the tools (for example, merging PDFs or compressing images):
 
 - Your files are **not uploaded** to a Kit backend for processing.
 - We do **not** create user accounts.
@@ -21,38 +21,38 @@ When you use Kit’s tools (for example, merging PDFs or compressing images):
 
 ### 1. Data that stays on your device
 
-Kit may store limited information in your browser’s local storage (or similar client storage), such as:
+Your browser may store limited information locally, such as:
 
-- Appearance preferences (for example, theme)
-- Language preference
-- Favorites / pinned tools
-- **History metadata** (tool used, time, short summary)—not the full contents of your files
-- Optional presets you save
+- Appearance preferences (light, dark, or system)
+- Language choice
+- Favorites or pinned tools
+- **History summaries** (which tool you used, roughly when, a short description)—**not** the contents of your files
+- Presets you choose to save
 
-You can clear history and similar data from Settings or by clearing site data in your browser.
+You can clear history in Settings or by deleting this site’s data in your browser.
 
 ### 2. Network and hosting logs
 
-Kit is typically hosted as static files (for example on GitHub Pages). The hosting provider may automatically receive standard technical data when your browser requests pages and assets, such as IP address, user agent, timestamps, and requested URLs. That logging is controlled by the host’s infrastructure and policies, not by a Kit application server processing your documents.
+Kit is typically hosted as static files (for example on GitHub Pages). When your browser requests pages and assets, the host may automatically log standard technical data such as IP address, user agent, timestamps, and requested URLs. That logging is controlled by the host’s infrastructure and policies—not by a Kit server that opens your documents.
 
 ### 3. Optional third-party resources
 
-Some advanced features may load processing libraries (for example FFmpeg WebAssembly cores or PDF worker scripts) from content delivery networks when you use those features. Those requests may expose standard network metadata to the CDN. Your document contents are still processed in the browser; the CDN serves library code, not your files.
+Some advanced features may load processing libraries (for example FFmpeg WebAssembly cores or PDF worker scripts) from content delivery networks the first time you use them. Those requests may expose standard network metadata to the CDN. Your file contents are still processed in the browser; the CDN serves library code, not your documents.
 
 ## Progressive Web App (PWA)
 
-If you install Kit or allow offline caching, a service worker may cache **application shell assets** (pages, scripts, styles, icons) so the app loads offline. Kit is not designed to cache your personal files in the service worker.
+If you install Kit or allow offline use, a service worker may cache the **application shell** (pages, scripts, styles, icons). Kit is not designed to store your personal files in that cache.
 
 ## Children
 
-Kit is a general-purpose utility site. It is not directed at children under 13, and we do not knowingly collect personal information from children through Kit accounts—because Kit does not provide accounts.
+Kit is a general-purpose utility. It is not directed at children under 13, and because Kit does not offer accounts, we do not knowingly collect children’s personal information through a registration system.
 
 ## Changes
 
-We may update this Privacy Policy to reflect product or legal changes. The “Last updated” date at the top will change when we do. Continued use of Kit after updates means you acknowledge the revised policy.
+We may update this policy when the product or legal requirements change. We will revise the “Last updated” date when we do. Continued use of Kit after an update means you have reviewed the revised policy.
 
 ## Contact
 
-Questions about this policy or Kit’s privacy practices can be directed via the author’s site: [About Me](https://tgthms.github.io/about/).
+Privacy questions: [About Me](https://tgthms.github.io/about/).
 
 Published by **Tim G (GitHub: TGthms)**.

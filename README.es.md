@@ -4,49 +4,50 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-**Herramientas cotidianas en el navegador. Privacidad por diseño.**
+**Utilidades del día a día en el navegador. Pensadas para tu privacidad.**
 
-Kit es un conjunto de utilidades de alta calidad que se ejecutan en el cliente: PDF, imágenes, audio/vídeo, convertidores y texto/datos. El procesamiento ocurre en tu navegador; los archivos no se suben a un servidor de Kit.
+Kit es un conjunto de herramientas que se ejecutan en tu dispositivo: PDF, imágenes, audio y vídeo, conversiones y texto. El procesamiento ocurre en el cliente; no enviamos tus archivos a un servidor de Kit.
 
-**Sitio (GitHub Pages):** https://TGthms.github.io/kit/
+**Sitio:** https://TGthms.github.io/kit/
 
-**Sobre el autor:** https://tgthms.github.io/about/
+**Autor:** https://tgthms.github.io/about/
 
-## Visión
+## Para qué sirve
 
-Un kit cohesivo y cuidado: interfaz clara, modo claro/oscuro, varios idiomas, shell PWA con capacidad sin conexión y límites honestos del procesamiento en el navegador.
+Un kit de utilidades coherente y cuidado: interfaz clara, modo claro y oscuro, varios idiomas, shell PWA con uso sin conexión cuando ya has visitado la app, y límites honestos sobre lo que un navegador puede hacer.
 
-## Idiomas
+## Idiomas de la interfaz
 
-Interfaz y páginas legales: **English · Español · 中文 · 日本語**
+**English · Español · 中文 · 日本語**
 
 ## Herramientas
 
 ### PDF
-Unir, dividir, organizar, comprimir, marca de agua, redactar (cubierta visual), extraer texto/imágenes.
+Unir, dividir, organizar páginas, comprimir, marca de agua, cubrir zonas (visualmente), extraer texto o imágenes.
 
-### Imagen
-Comprimir, redimensionar, recortar, convertir formato, quitar metadatos, ajustar.
+### Imágenes
+Comprimir, redimensionar, recortar, convertir formato, quitar metadatos, ajustar brillo/contraste/saturación.
 
 ### Audio y vídeo
-Convertir, recortar, velocidad/volumen, extraer audio *(FFmpeg WASM; archivos grandes pueden ser lentos)*.
+Convertir, recortar, velocidad y volumen, extraer audio  
+*(FFmpeg WASM; los archivos grandes pueden ser lentos y no todos los códecs están disponibles)*.
 
 ### Convertidores
-Centro de conversión inteligente (JSON/YAML/CSV/ZIP/imágenes).
+Centro de conversión inteligente (JSON, YAML, CSV, ZIP, imágenes…).
 
 ### Texto y datos
-JSON/YAML/TOML, Markdown ↔ HTML, CSV ↔ JSON, diff, Base64, codificación URL.
+JSON / YAML / TOML, Markdown ↔ HTML, CSV ↔ JSON, comparación de textos, Base64, codificación de URL.
 
 ## Privacidad
 
-- Procesamiento **en tu dispositivo**
-- El historial guarda solo **metadatos**
-- Preferencias en almacenamiento local
-- [Política de privacidad](https://TGthms.github.io/kit/es/privacy/) · [Términos de uso](https://TGthms.github.io/kit/es/terms/)
+- El trabajo se hace **en tu dispositivo**
+- El historial guarda solo **resúmenes**, no el contenido de los archivos
+- Las preferencias viven en el almacenamiento local del navegador
+- [Política de privacidad](https://TGthms.github.io/kit/es/privacy/) · [Condiciones de uso](https://TGthms.github.io/kit/es/terms/)
 
 ## Desarrollo local
 
-Requisito: **Node.js 20+** (ver `.nvmrc`).
+Necesitas **Node.js 20+** (ver `.nvmrc`).
 
 ```bash
 git clone https://github.com/TGthms/kit.git
@@ -61,19 +62,19 @@ npm run typecheck
 npm run lint
 ```
 
-### Base path
+### Ruta base (GitHub Pages de proyecto)
 
 ```bash
 NEXT_PUBLIC_BASE_PATH=/kit npm run build
 ```
 
-## Desplegar en GitHub Pages
+## Publicar en GitHub Pages
 
 ### Automático (recomendado)
 
-1. Publica el repositorio en **https://github.com/TGthms/kit**
-2. GitHub → **Settings → Pages → Source: GitHub Actions**
-3. El flujo [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml) compila con `NEXT_PUBLIC_BASE_PATH=/kit` y publica `out/`
+1. El repositorio está en **https://github.com/TGthms/kit**
+2. En GitHub: **Settings → Pages → Source: GitHub Actions**
+3. El flujo [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml) compila con `NEXT_PUBLIC_BASE_PATH=/kit` y publica la carpeta `out/`
 
 ### Manual
 

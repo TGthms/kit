@@ -2,57 +2,57 @@
 
 **Última actualización:** 15 de julio de 2026
 
-Kit (“Kit”, “nosotros”) es un conjunto de utilidades que funciona en el navegador y se publica como un sitio web estático. Esta Política describe cómo se trata la información cuando usas Kit.
+Esta política explica cómo se trata la información cuando usas **Kit**, un conjunto de utilidades publicadas como sitio web estático y pensadas para funcionar en el navegador.
 
-## Nuestro enfoque
+## Principio básico
 
-Kit está diseñado para que **tus archivos se procesen en tu dispositivo**. No operamos un servidor de aplicación que reciba, almacene o analice el contenido de los archivos que abres en las herramientas.
+Kit está diseñado para que **el trabajo con tus archivos ocurra en tu dispositivo**. No operamos un servidor de aplicación que reciba, almacene o analice el contenido de los documentos, imágenes o medios que abres en las herramientas.
 
-## Lo que Kit no recopila
+## Qué no hace Kit
 
-Al usar las herramientas de Kit (por ejemplo, unir PDF o comprimir imágenes):
+Al utilizar las herramientas (por ejemplo, unir PDF o comprimir imágenes):
 
-- Tus archivos **no se suben** a un backend de Kit para su procesamiento.
+- Tus archivos **no se envían** a un backend de Kit para procesarlos.
 - **No** creamos cuentas de usuario.
 - **No** vendemos datos personales.
-- **No** usamos SDKs publicitarios ni seguimiento entre sitios con fines publicitarios.
+- **No** integramos SDKs publicitarios ni seguimientos entre sitios con fines de publicidad.
 
-## Información que puede existir en torno al servicio
+## Información que puede existir alrededor del servicio
 
 ### 1. Datos que permanecen en tu dispositivo
 
-Kit puede guardar información limitada en el almacenamiento local del navegador, por ejemplo:
+El navegador puede guardar en almacenamiento local información limitada, como:
 
-- Preferencias de apariencia (tema)
-- Idioma
-- Favoritos / herramientas fijadas
-- **Metadatos del historial** (herramienta, hora, resumen breve)—no el contenido completo de tus archivos
-- Preajustes que guardes de forma opcional
+- Preferencias de apariencia (tema claro, oscuro o del sistema)
+- Idioma elegido
+- Favoritos o herramientas fijadas
+- **Resúmenes del historial** (herramienta usada, momento aproximado, breve descripción)—**no** el contenido de tus archivos
+- Preajustes que decidas guardar
 
-Puedes borrar el historial y datos similares desde Ajustes o borrando los datos del sitio en el navegador.
+Puedes vaciar el historial desde Ajustes o borrar los datos del sitio en el navegador.
 
 ### 2. Registros de red y alojamiento
 
-Kit suele alojarse como archivos estáticos (por ejemplo en GitHub Pages). El proveedor de alojamiento puede registrar datos técnicos habituales cuando tu navegador solicita páginas y recursos: dirección IP, agente de usuario, marcas de tiempo y URL solicitadas. Ese registro lo controla la infraestructura del anfitrión, no un servidor de Kit que procese tus documentos.
+Kit suele servirse como archivos estáticos (por ejemplo, en GitHub Pages). Cuando tu navegador pide páginas o recursos, el proveedor de alojamiento puede registrar datos técnicos habituales: dirección IP, agente de usuario, hora y URL solicitada. Ese registro depende de la infraestructura del anfitrión, no de un servidor de Kit que abra tus documentos.
 
 ### 3. Recursos de terceros opcionales
 
-Algunas funciones avanzadas pueden cargar bibliotecas (por ejemplo núcleos de FFmpeg en WebAssembly o workers de PDF) desde redes de distribución de contenido (CDN) al usar esas funciones. Esas peticiones pueden exponer metadatos de red estándar a la CDN. El contenido de tus documentos se sigue procesando en el navegador; la CDN sirve código, no tus archivos.
+Algunas funciones avanzadas pueden descargar bibliotecas (por ejemplo, núcleos de FFmpeg en WebAssembly o workers de PDF) desde redes de distribución de contenido (CDN) la primera vez que las usas. Esas peticiones pueden revelar metadatos de red estándar a la CDN. El contenido de tus archivos sigue procesándose en el navegador; la CDN entrega código, no tus documentos.
 
 ## Aplicación web progresiva (PWA)
 
-Si instalas Kit o permites el almacenamiento sin conexión, un service worker puede almacenar en caché **recursos de la aplicación** (páginas, scripts, estilos, iconos). Kit no está diseñado para guardar tus archivos personales en el service worker.
+Si instalas Kit o permites el uso sin conexión, un *service worker* puede guardar en caché **la carcasa de la aplicación** (páginas, scripts, estilos, iconos). Kit no está pensado para almacenar tus archivos personales en esa caché.
 
-## Menores
+## Menores de edad
 
-Kit es un sitio de utilidades de uso general. No está dirigido a menores de 13 años y no recopilamos de forma consciente datos personales de menores mediante cuentas de Kit, porque Kit no ofrece cuentas.
+Kit es una herramienta de uso general. No está dirigida a menores de 13 años y, al no ofrecer cuentas, no recopilamos de forma deliberada datos personales de menores mediante un sistema de registro.
 
 ## Cambios
 
-Podemos actualizar esta Política para reflejar cambios del producto o de la normativa. La fecha de “Última actualización” cambiará cuando lo hagamos. El uso continuado de Kit implica que conoces la política revisada.
+Podemos actualizar esta política cuando cambie el producto o la normativa. Modificaremos la fecha de «Última actualización» al hacerlo. Si sigues usando Kit después del cambio, das por leída la versión revisada.
 
 ## Contacto
 
-Si tienes preguntas sobre esta política: [Sobre mí](https://tgthms.github.io/about/).
+Para preguntas sobre privacidad: [Sobre mí](https://tgthms.github.io/about/).
 
 Publicado por **Tim G (GitHub: TGthms)**.

@@ -2,15 +2,15 @@
 
 **Last updated:** July 15, 2026
 
-These Terms of Use (“Terms”) govern your access to and use of the Kit website and tools (“Kit,” “the Service”). By using Kit, you agree to these Terms. If you do not agree, do not use Kit.
+These Terms govern your access to and use of the **Kit** website and tools (the “Service”). By using Kit, you agree to these Terms. If you do not agree, do not use the Service.
 
-## Description of the Service
+## What Kit is
 
-Kit provides browser-based utilities for everyday file and text tasks. Processing is intended to run **client-side** in your browser. Kit is provided as a static web application and open-source software.
+Kit provides browser-based utilities for everyday file and text tasks. Processing is intended to run **client-side**. Kit is offered as a static web application and as open-source software.
 
-## License to the software
+## Software license
 
-The Kit source code is made available under the **MIT License**. That license governs redistribution and use of the software code. These Terms govern your use of the hosted site and the Service as offered online.
+Kit source code is available under the **MIT License**. That license governs redistribution and use of the code. These Terms govern use of the hosted site and the Service online.
 
 ## Acceptable use
 
@@ -18,26 +18,26 @@ You agree not to use Kit to:
 
 - Violate applicable law
 - Infringe others’ intellectual property or privacy rights
-- Attempt to disrupt, overload, or compromise the hosting infrastructure
+- Attempt to disrupt, overload, or compromise hosting infrastructure
 - Misrepresent Kit as a service that stores or transmits your files to us for processing when it does not
 
 You are solely responsible for the files and content you process with Kit and for complying with laws that apply to that content.
 
 ## No professional advice
 
-Outputs from tools (including formatting, conversion, or redaction-like features) are provided for convenience only. They are not legal, security, medical, or other professional advice. Visual redaction or similar features may not remove all underlying data—verify results yourself for sensitive use cases.
+Tool outputs are provided for convenience only. They are not legal, security, medical, or other professional advice. Features such as visual covers on PDF pages may not remove all underlying data—verify results for sensitive use cases.
 
 ## Disclaimers
 
-KIT IS PROVIDED **“AS IS”** AND **“AS AVAILABLE.”** TO THE MAXIMUM EXTENT PERMITTED BY LAW, WE DISCLAIM ALL WARRANTIES, EXPRESS OR IMPLIED, INCLUDING MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT. We do not warrant that Kit will be uninterrupted, error-free, or free of harmful components, or that results will meet your requirements.
+KIT IS PROVIDED **“AS IS”** AND **“AS AVAILABLE.”** To the maximum extent permitted by law, we disclaim all warranties, express or implied, including merchantability, fitness for a particular purpose, and non-infringement. We do not warrant that Kit will be uninterrupted, error-free, or free of harmful components, or that results will meet your requirements.
 
 ## Limitation of liability
 
-TO THE MAXIMUM EXTENT PERMITTED BY LAW, TIM G / TGTHMS AND CONTRIBUTORS SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, OR ANY LOSS OF DATA, PROFITS, OR BUSINESS, ARISING FROM YOUR USE OF KIT—EVEN IF ADVISED OF THE POSSIBILITY. OUR TOTAL LIABILITY FOR ANY CLAIM RELATING TO KIT SHALL NOT EXCEED US$0 (THE SERVICE IS FREE) OR THE MINIMUM PERMITTED BY LAW.
+To the maximum extent permitted by law, Tim G / TGthms and contributors shall not be liable for any indirect, incidental, special, consequential, or punitive damages, or any loss of data, profits, or business, arising from your use of Kit—even if advised of the possibility. Total liability for any claim relating to Kit shall not exceed US$0 (the Service is free) or the minimum permitted by law.
 
 ## Third-party services and links
 
-Kit may link to external sites (including the author’s About page) or load third-party libraries. We are not responsible for third-party content, policies, or availability.
+Kit may link to external sites or load third-party libraries. We are not responsible for third-party content, policies, or availability.
 
 ## Changes to the Service and Terms
 
@@ -45,10 +45,10 @@ We may modify or discontinue features at any time. We may update these Terms by 
 
 ## Governing law
 
-These Terms are governed by the laws applicable in your place of residence, except where mandatory consumer protections require otherwise. Nothing in these Terms limits rights you may have under mandatory local law.
+Except where mandatory consumer protections require otherwise, these Terms are governed by the laws applicable where you live. Nothing here limits rights you may have under mandatory local law.
 
 ## Contact
 
-For questions about these Terms: [About Me](https://tgthms.github.io/about/).
+Questions about these Terms: [About Me](https://tgthms.github.io/about/).
 
 **Tim G (GitHub: TGthms)**
