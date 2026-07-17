@@ -57,7 +57,7 @@ Interface and legal pages: **English · Español · 中文 · 日本語**
 
 ## Local development
 
-Requirements: **Node.js 20+** (see `.nvmrc`).
+Requirements: **Node.js 22.13+** (see `.nvmrc`).
 
 ```bash
 git clone https://github.com/TGthms/kit.git

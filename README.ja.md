@@ -47,7 +47,7 @@ JSON / YAML / TOML、Markdown ↔ HTML、CSV ↔ JSON、テキスト比較、Bas
 
 ## ローカル開発
 
-**Node.js 20+** が必要です（`.nvmrc` 参照）。
+**Node.js 22.13+** が必要です（`.nvmrc` 参照）。
 
 ```bash
 git clone https://github.com/TGthms/kit.git
