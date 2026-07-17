@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import { useTheme } from "next-themes";
 import { Link } from "@/lib/i18n/navigation";
@@ -13,8 +14,13 @@ export default function SettingsPage() {
   const t = useTranslations("settings");
   const tc = useTranslations("common");
   const th = useTranslations("history");
-  const { theme, setTheme } = useTheme();
+  const { resolvedTheme, setTheme } = useTheme();
   const clear = useHistoryStore((s) => s.clear);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => setMounted(true), []);
+
+  const appearance = mounted ? (resolvedTheme === "dark" ? "dark" : "light") : "light";
 
   return (
     <div className="mx-auto max-w-2xl space-y-6">
@@ -30,7 +36,6 @@ export default function SettingsPage() {
         <CardContent className="flex flex-wrap gap-2">
           {(
             [
-              ["system", tc("themeSystem")],
               ["light", tc("themeLight")],
               ["dark", tc("themeDark")],
             ] as const
@@ -38,8 +43,9 @@ export default function SettingsPage() {
             <Button
               key={value}
               size="sm"
-              variant={theme === value ? "default" : "outline"}
+              variant={appearance === value ? "default" : "outline"}
               onClick={() => setTheme(value)}
+              disabled={!mounted}
             >
               {label}
             </Button>
