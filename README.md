@@ -36,12 +36,17 @@ Interface and legal pages: **English · Español · 中文 · 日本語**
 - Strip metadata
 - Adjust (brightness / contrast / saturation)
 
-### Audio & Video
-- Format convert, Trim, Speed & volume, Extract audio  
-  *(FFmpeg WASM, single-threaded; large files may be slow)*
+### Audio
+- Convert (MP3 / WAV / OGG), Trim, Speed & volume  
+  *(FFmpeg WASM; large files may be slow; limited codecs)*
 
-### Converters
-- Smart Convert hub (JSON/YAML/CSV/ZIP/images)
+### Video
+- Convert (MP4 / WEBM), Trim, Speed & volume, Extract audio  
+  *(FFmpeg WASM; large files may be slow; limited codecs)*
+
+### File convert
+- Smart convert hub (JSON, YAML, CSV, ZIP, images…)
+
 
 ### Text & Data
 - JSON / YAML / TOML format & validate
