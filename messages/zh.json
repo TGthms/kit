@@ -128,14 +128,16 @@
   "categories": {
     "pdf": "PDF",
     "image": "图片",
-    "media": "音视频",
-    "convert": "格式转换",
+    "audio": "音频",
+    "video": "视频",
+    "convert": "文件转换",
     "text": "文本与数据",
-    "pdfDesc": "合并、拆分、压缩、加水印，整理文档更省事",
-    "imageDesc": "压缩体积、调整尺寸、转换格式、微调观感",
-    "mediaDesc": "转换封装、裁剪片段、变速，或提取音轨",
-    "convertDesc": "在常用文件与数据格式之间灵活转换",
-    "textDesc": "格式化、校验、编解码，以及文本对比"
+    "pdfDesc": "合并、拆分、压缩与标注 PDF 文档",
+    "imageDesc": "压缩、缩放、转格式与微调照片",
+    "audioDesc": "仅处理音频：转换、裁剪与变速",
+    "videoDesc": "视频转换、裁剪、变速，以及提取音轨",
+    "convertDesc": "跨格式智能转换（JSON、CSV、ZIP、图片等）",
+    "textDesc": "格式化、校验、编解码与文本对比"
   },
   "history": {
     "title": "历史记录",
@@ -288,36 +290,6 @@
       "saturation": "饱和度",
       "success": "已调整 {count} 张图片。"
     },
-    "media-convert": {
-      "name": "转换音视频",
-      "description": "在浏览器中更换音视频封装格式。",
-      "keywords": "视频 音频 转换 mp4 webm mp3 ffmpeg",
-      "run": "转换",
-      "loadingFfmpeg": "正在加载媒体引擎…",
-      "note": "基于单线程 FFmpeg WASM。大文件可能较慢，且并非所有编解码器都可用。",
-      "success": "转换完成。"
-    },
-    "media-trim": {
-      "name": "裁剪片段",
-      "description": "只保留两个时间点之间的内容。",
-      "keywords": "视频 音频 裁剪 片段 截取",
-      "run": "裁剪",
-      "success": "裁剪完成。"
-    },
-    "media-speed": {
-      "name": "速度与音量",
-      "description": "加快、放慢播放，或调节音量。",
-      "keywords": "视频 音频 速度 倍速 音量",
-      "run": "应用",
-      "success": "处理后的媒体已就绪。"
-    },
-    "media-extract-audio": {
-      "name": "提取音频",
-      "description": "从视频中单独保存音轨。",
-      "keywords": "视频 提取 音频 mp3 音轨",
-      "run": "提取音频",
-      "success": "音频已提取。"
-    },
     "convert-hub": {
       "name": "智能转换",
       "description": "识别输入类型，并给出合适的输出格式建议。",
@@ -391,6 +363,59 @@
       "keywords": "url 编码 解码 百分号 uri 查询",
       "run": "转换",
       "success": "完成。"
+    },
+    "audio-convert": {
+      "name": "转换音频",
+      "description": "在浏览器中转换 MP3、WAV、OGG 等音频格式。",
+      "keywords": "音频 转换 mp3 wav ogg 声音",
+      "run": "转换",
+      "loadingFfmpeg": "正在加载音频引擎…",
+      "note": "使用单线程 FFmpeg WASM。大文件可能较慢，编解码支持有限。",
+      "success": "音频转换完成。"
+    },
+    "audio-trim": {
+      "name": "裁剪音频",
+      "description": "只保留音频中两个时间点之间的片段。",
+      "keywords": "音频 裁剪 截取 mp3 wav",
+      "run": "裁剪",
+      "success": "音频裁剪完成。"
+    },
+    "audio-speed": {
+      "name": "音频速度与音量",
+      "description": "加快、放慢或调节音频音量。",
+      "keywords": "音频 速度 倍速 音量",
+      "run": "应用",
+      "success": "处理后的音频已就绪。"
+    },
+    "video-convert": {
+      "name": "转换视频",
+      "description": "在浏览器中转换 MP4、WEBM 等视频封装。",
+      "keywords": "视频 转换 mp4 webm",
+      "run": "转换",
+      "loadingFfmpeg": "正在加载视频引擎…",
+      "note": "使用单线程 FFmpeg WASM。大文件可能较慢，编解码支持有限。",
+      "success": "视频转换完成。"
+    },
+    "video-trim": {
+      "name": "裁剪视频",
+      "description": "只保留两个时间点之间的视频片段。",
+      "keywords": "视频 裁剪 截取 mp4",
+      "run": "裁剪",
+      "success": "视频裁剪完成。"
+    },
+    "video-speed": {
+      "name": "视频速度与音量",
+      "description": "调整视频播放速度与音量。",
+      "keywords": "视频 速度 倍速 音量",
+      "run": "应用",
+      "success": "处理后的视频已就绪。"
+    },
+    "video-extract-audio": {
+      "name": "从视频提取音频",
+      "description": "将视频中的音轨保存为音频文件。",
+      "keywords": "视频 提取 音频 mp3 音轨",
+      "run": "提取音频",
+      "success": "音频已提取。"
     }
   },
   "legal": {

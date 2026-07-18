@@ -128,14 +128,16 @@
   "categories": {
     "pdf": "PDF",
     "image": "Images",
-    "media": "Audio & video",
-    "convert": "Converters",
+    "audio": "Audio",
+    "video": "Video",
+    "convert": "File convert",
     "text": "Text & data",
-    "pdfDesc": "Merge, split, compress, watermark, and tidy up documents",
-    "imageDesc": "Compress, resize, convert formats, and fine-tune looks",
-    "mediaDesc": "Convert clips, trim, change speed, and pull out audio",
-    "convertDesc": "Move between everyday file and data formats",
-    "textDesc": "Format, check, encode, and compare text"
+    "pdfDesc": "Merge, split, compress, and mark up PDF documents",
+    "imageDesc": "Compress, resize, convert, and retouch photos",
+    "audioDesc": "Convert, trim, and change speed of audio only",
+    "videoDesc": "Convert, trim, speed up, and pull audio from video",
+    "convertDesc": "Cross-format smart conversion (JSON, CSV, ZIP, images…)",
+    "textDesc": "Format, validate, encode, and compare text"
   },
   "history": {
     "title": "History",
@@ -288,40 +290,10 @@
       "saturation": "Saturation",
       "success": "Adjusted {count} image(s)."
     },
-    "media-convert": {
-      "name": "Convert media",
-      "description": "Change audio or video containers with an in-browser engine.",
-      "keywords": "video audio convert mp4 webm mp3 ffmpeg",
-      "run": "Convert",
-      "loadingFfmpeg": "Loading media engine…",
-      "note": "Powered by single-thread FFmpeg WASM. Big files can be slow, and not every codec is available.",
-      "success": "Conversion finished."
-    },
-    "media-trim": {
-      "name": "Trim clip",
-      "description": "Keep only the stretch between two timestamps.",
-      "keywords": "video audio trim cut clip segment",
-      "run": "Trim",
-      "success": "Trim finished."
-    },
-    "media-speed": {
-      "name": "Speed & volume",
-      "description": "Speed up, slow down, or change loudness.",
-      "keywords": "video audio speed tempo volume",
-      "run": "Apply",
-      "success": "Processed media is ready."
-    },
-    "media-extract-audio": {
-      "name": "Extract audio",
-      "description": "Save the soundtrack from a video as audio.",
-      "keywords": "video extract audio mp3 soundtrack",
-      "run": "Extract audio",
-      "success": "Audio extracted."
-    },
     "convert-hub": {
       "name": "Smart convert",
-      "description": "Guess the input type and offer a sensible output format.",
-      "keywords": "convert hub smart batch json yaml csv zip",
+      "description": "Detect mixed file or text types and convert across formats (not a media studio).",
+      "keywords": "convert hub smart batch json yaml csv zip image data",
       "run": "Convert",
       "detect": "Detected as",
       "chooseOutput": "Output format",
@@ -391,6 +363,59 @@
       "keywords": "url encode decode percent uri query",
       "run": "Convert",
       "success": "Done."
+    },
+    "audio-convert": {
+      "name": "Convert audio",
+      "description": "Change audio containers such as MP3, WAV, and OGG in the browser.",
+      "keywords": "audio convert mp3 wav ogg ffmpeg sound",
+      "run": "Convert",
+      "loadingFfmpeg": "Loading audio engine…",
+      "note": "Uses single-thread FFmpeg WASM. Large files can be slow; codec support is limited.",
+      "success": "Audio conversion finished."
+    },
+    "audio-trim": {
+      "name": "Trim audio",
+      "description": "Keep only the stretch between two timestamps in an audio file.",
+      "keywords": "audio trim cut clip mp3 wav",
+      "run": "Trim",
+      "success": "Audio trim finished."
+    },
+    "audio-speed": {
+      "name": "Audio speed & volume",
+      "description": "Speed up, slow down, or change loudness of audio.",
+      "keywords": "audio speed tempo volume pitch",
+      "run": "Apply",
+      "success": "Processed audio is ready."
+    },
+    "video-convert": {
+      "name": "Convert video",
+      "description": "Change video containers such as MP4 and WEBM in the browser.",
+      "keywords": "video convert mp4 webm ffmpeg movie",
+      "run": "Convert",
+      "loadingFfmpeg": "Loading video engine…",
+      "note": "Uses single-thread FFmpeg WASM. Large files can be slow; codec support is limited.",
+      "success": "Video conversion finished."
+    },
+    "video-trim": {
+      "name": "Trim video",
+      "description": "Keep only the clip between two timestamps.",
+      "keywords": "video trim cut clip mp4",
+      "run": "Trim",
+      "success": "Video trim finished."
+    },
+    "video-speed": {
+      "name": "Video speed & volume",
+      "description": "Change playback speed and audio level of a video.",
+      "keywords": "video speed tempo volume",
+      "run": "Apply",
+      "success": "Processed video is ready."
+    },
+    "video-extract-audio": {
+      "name": "Extract audio from video",
+      "description": "Save the soundtrack from a video as an audio file.",
+      "keywords": "video extract audio mp3 soundtrack",
+      "run": "Extract audio",
+      "success": "Audio extracted."
     }
   },
   "legal": {

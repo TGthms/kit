@@ -128,14 +128,16 @@
   "categories": {
     "pdf": "PDF",
     "image": "画像",
-    "media": "音声・動画",
-    "convert": "変換",
+    "audio": "音声",
+    "video": "動画",
+    "convert": "ファイル変換",
     "text": "テキスト・データ",
-    "pdfDesc": "結合・分割・圧縮・透かし・ページ整理",
-    "imageDesc": "圧縮、リサイズ、形式変換、見た目の調整",
-    "mediaDesc": "形式変換、切り取り、速度変更、音声の取り出し",
-    "convertDesc": "よく使うファイル／データ形式の相互変換",
-    "textDesc": "整形、検証、エンコード、差分比較"
+    "pdfDesc": "PDF の結合・分割・圧縮・透かしなど",
+    "imageDesc": "画像の圧縮・リサイズ・形式変換・調整",
+    "audioDesc": "音声のみの変換・切り取り・速度変更",
+    "videoDesc": "動画の変換・切り取り・速度変更・音声抽出",
+    "convertDesc": "形式をまたぐスマート変換（JSON・CSV・ZIP・画像など）",
+    "textDesc": "整形・検証・エンコード・テキスト比較"
   },
   "history": {
     "title": "履歴",
@@ -288,36 +290,6 @@
       "saturation": "彩度",
       "success": "{count} 枚の画像を調整しました。"
     },
-    "media-convert": {
-      "name": "メディアを変換",
-      "description": "ブラウザ内のエンジンで音声・動画のコンテナを変更します。",
-      "keywords": "動画 音声 変換 mp4 webm mp3 ffmpeg",
-      "run": "変換する",
-      "loadingFfmpeg": "メディアエンジンを読み込み中…",
-      "note": "単一スレッドの FFmpeg WASM を使用します。大きなファイルは時間がかかり、利用できるコーデックにも限りがあります。",
-      "success": "変換が完了しました。"
-    },
-    "media-trim": {
-      "name": "クリップを切り取る",
-      "description": "2 つの時刻のあいだだけを残します。",
-      "keywords": "動画 音声 トリム カット クリップ",
-      "run": "切り取る",
-      "success": "切り取りが完了しました。"
-    },
-    "media-speed": {
-      "name": "速度と音量",
-      "description": "再生を速く／遅くしたり、音量を変えたりします。",
-      "keywords": "動画 音声 速度 テンポ 音量",
-      "run": "適用する",
-      "success": "処理したメディアの準備ができました。"
-    },
-    "media-extract-audio": {
-      "name": "音声を取り出す",
-      "description": "動画から音声トラックだけを保存します。",
-      "keywords": "動画 音声 抽出 mp3 サウンドトラック",
-      "run": "音声を取り出す",
-      "success": "音声を取り出しました。"
-    },
     "convert-hub": {
       "name": "スマート変換",
       "description": "入力の種類を判定し、適切な出力形式を提案します。",
@@ -391,6 +363,59 @@
       "keywords": "url エンコード デコード パーセント uri クエリ",
       "run": "変換する",
       "success": "完了しました。"
+    },
+    "audio-convert": {
+      "name": "音声を変換",
+      "description": "MP3 / WAV / OGG など音声形式をブラウザ内で変換します。",
+      "keywords": "音声 変換 mp3 wav ogg オーディオ",
+      "run": "変換する",
+      "loadingFfmpeg": "音声エンジンを読み込み中…",
+      "note": "単一スレッドの FFmpeg WASM を使用します。大きなファイルは時間がかかり、コーデック対応にも限りがあります。",
+      "success": "音声の変換が完了しました。"
+    },
+    "audio-trim": {
+      "name": "音声を切り取る",
+      "description": "音声ファイルの開始〜終了時刻だけを残します。",
+      "keywords": "音声 トリム カット mp3 wav",
+      "run": "切り取る",
+      "success": "音声の切り取りが完了しました。"
+    },
+    "audio-speed": {
+      "name": "音声の速度と音量",
+      "description": "音声を速く／遅くしたり、音量を変えたりします。",
+      "keywords": "音声 速度 テンポ 音量",
+      "run": "適用する",
+      "success": "処理した音声の準備ができました。"
+    },
+    "video-convert": {
+      "name": "動画を変換",
+      "description": "MP4 / WEBM など動画コンテナをブラウザ内で変換します。",
+      "keywords": "動画 変換 mp4 webm ビデオ",
+      "run": "変換する",
+      "loadingFfmpeg": "動画エンジンを読み込み中…",
+      "note": "単一スレッドの FFmpeg WASM を使用します。大きなファイルは時間がかかり、コーデック対応にも限りがあります。",
+      "success": "動画の変換が完了しました。"
+    },
+    "video-trim": {
+      "name": "動画を切り取る",
+      "description": "開始〜終了時刻のクリップだけを残します。",
+      "keywords": "動画 トリム カット mp4",
+      "run": "切り取る",
+      "success": "動画の切り取りが完了しました。"
+    },
+    "video-speed": {
+      "name": "動画の速度と音量",
+      "description": "動画の再生速度と音量を変更します。",
+      "keywords": "動画 速度 テンポ 音量",
+      "run": "適用する",
+      "success": "処理した動画の準備ができました。"
+    },
+    "video-extract-audio": {
+      "name": "動画から音声を取り出す",
+      "description": "動画の音声トラックを音声ファイルとして保存します。",
+      "keywords": "動画 音声 抽出 mp3 サウンドトラック",
+      "run": "音声を取り出す",
+      "success": "音声を取り出しました。"
     }
   },
   "legal": {

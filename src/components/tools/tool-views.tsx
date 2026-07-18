@@ -19,12 +19,13 @@ import {
   ImageMetadata,
   ImageAdjust,
 } from "./image-tools";
+import { AudioConvert, AudioTrim, AudioSpeed } from "./audio-tools";
 import {
-  MediaConvert,
-  MediaTrim,
-  MediaSpeed,
-  MediaExtractAudio,
-} from "./media-tools";
+  VideoConvert,
+  VideoTrim,
+  VideoSpeed,
+  VideoExtractAudio,
+} from "./video-tools";
 import { ConvertHub } from "./convert-tools";
 import {
   JsonFormat,
@@ -51,10 +52,13 @@ const TOOL_COMPONENTS: Record<ToolId, ComponentType> = {
   "image-convert": ImageConvert,
   "image-metadata": ImageMetadata,
   "image-adjust": ImageAdjust,
-  "media-convert": MediaConvert,
-  "media-trim": MediaTrim,
-  "media-speed": MediaSpeed,
-  "media-extract-audio": MediaExtractAudio,
+  "audio-convert": AudioConvert,
+  "audio-trim": AudioTrim,
+  "audio-speed": AudioSpeed,
+  "video-convert": VideoConvert,
+  "video-trim": VideoTrim,
+  "video-speed": VideoSpeed,
+  "video-extract-audio": VideoExtractAudio,
   "convert-hub": ConvertHub,
   "json-format": JsonFormat,
   "yaml-format": YamlFormat,

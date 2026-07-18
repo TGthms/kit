@@ -11,64 +11,45 @@ import { Progress } from "@/components/ui/progress";
 import { downloadBlob, bytesToBlob } from "@/lib/utils";
 import { ActionBar, ToolShell, useToolHistory, loadFfmpeg } from "./shared";
 
-export function MediaConvert() {
-  const t = useTranslations("tools.media-convert");
-  const tc = useTranslations("common");
-  const [format, setFormat] = useState("mp4");
-  return (
-    <ToolShell toolId="media-convert">
-      <p className="text-sm text-muted-foreground">{t("note")}</p>
-      <div className="space-y-2">
-        <Label>{tc("format")}</Label>
-        <select
-          className="flex h-10 w-full rounded-xl border border-input bg-background px-3 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-          value={format}
-          onChange={(e) => setFormat(e.target.value)}
-        >
-          <option value="mp4">MP4</option>
-          <option value="webm">WEBM</option>
-          <option value="mp3">MP3</option>
-          <option value="wav">WAV</option>
-        </select>
-      </div>
-      <MediaConvertInner format={format} />
-    </ToolShell>
-  );
-}
+const selectClass =
+  "flex h-10 w-full rounded-xl border border-input bg-background px-3 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring";
 
-function MediaConvertInner({ format }: { format: string }) {
-  const t = useTranslations("tools.media-convert");
+export function VideoConvert() {
+  const t = useTranslations("tools.video-convert");
   const tc = useTranslations("common");
-  const log = useToolHistory("media-convert");
+  const log = useToolHistory("video-convert");
   const [files, setFiles] = useState<FileItem[]>([]);
+  const [format, setFormat] = useState("mp4");
   const [loading, setLoading] = useState(false);
   const [progress, setProgress] = useState(0);
 
   const run = async () => {
     if (!files[0]) return;
     setLoading(true);
+    setProgress(0);
     try {
       const data = new Uint8Array(await files[0].file.arrayBuffer());
       const ext = files[0].file.name.split(".").pop() || "bin";
       const input = `input.${ext}`;
       const output = `output.${format}`;
       let args: string[];
-      if (format === "mp3") args = ["-i", input, "-vn", "-acodec", "libmp3lame", output];
-      else if (format === "wav") args = ["-i", input, "-vn", output];
-      else if (format === "webm") args = ["-i", input, "-c:v", "libvpx", "-c:a", "libvorbis", output];
-      else args = ["-i", input, "-c", "copy", output];
+      if (format === "webm") {
+        args = ["-i", input, "-c:v", "libvpx", "-c:a", "libvorbis", output];
+      } else if (format === "mp4") {
+        args = ["-i", input, "-c", "copy", output];
+      } else {
+        args = ["-i", input, output];
+      }
+
       const { runFFmpeg } = await loadFfmpeg();
       try {
-        const out = await runFFmpeg(input, data, output, args, (p) => setProgress(Math.round(p * 100)));
+        const out = await runFFmpeg(input, data, output, args, (p) =>
+          setProgress(Math.round(p * 100))
+        );
         downloadBlob(bytesToBlob(out, "application/octet-stream"), output);
       } catch {
-        // fallback re-encode
-        const out = await runFFmpeg(
-          input,
-          data,
-          output,
-          ["-i", input, output],
-          (p) => setProgress(Math.round(p * 100))
+        const out = await runFFmpeg(input, data, output, ["-i", input, output], (p) =>
+          setProgress(Math.round(p * 100))
         );
         downloadBlob(bytesToBlob(out, "application/octet-stream"), output);
       }
@@ -83,18 +64,26 @@ function MediaConvertInner({ format }: { format: string }) {
   };
 
   return (
-    <>
-      <FileDropzone accept="audio/*,video/*" multiple={false} files={files} onChange={setFiles} />
+    <ToolShell toolId="video-convert">
+      <p className="type-body text-muted-foreground">{t("note")}</p>
+      <div className="space-y-2">
+        <Label>{tc("format")}</Label>
+        <select className={selectClass} value={format} onChange={(e) => setFormat(e.target.value)}>
+          <option value="mp4">MP4</option>
+          <option value="webm">WEBM</option>
+        </select>
+      </div>
+      <FileDropzone accept="video/*" multiple={false} files={files} onChange={setFiles} />
       {loading && <Progress value={progress} />}
       <ActionBar onRun={run} loading={loading} label={t("run")} disabled={!files[0]} />
-    </>
+    </ToolShell>
   );
 }
 
-export function MediaTrim() {
-  const t = useTranslations("tools.media-trim");
+export function VideoTrim() {
+  const t = useTranslations("tools.video-trim");
   const tc = useTranslations("common");
-  const log = useToolHistory("media-trim");
+  const log = useToolHistory("video-trim");
   const [files, setFiles] = useState<FileItem[]>([]);
   const [start, setStart] = useState("0");
   const [end, setEnd] = useState("10");
@@ -129,16 +118,20 @@ export function MediaTrim() {
   };
 
   return (
-    <ToolShell toolId="media-trim">
-      <FileDropzone accept="audio/*,video/*" multiple={false} files={files} onChange={setFiles} />
+    <ToolShell toolId="video-trim">
+      <FileDropzone accept="video/*" multiple={false} files={files} onChange={setFiles} />
       <div className="grid gap-4 sm:grid-cols-2">
         <div className="space-y-2">
-          <Label>{tc("start")} (s)</Label>
-          <Input value={start} onChange={(e) => setStart(e.target.value)} />
+          <Label>
+            {tc("start")} (s)
+          </Label>
+          <Input value={start} onChange={(e) => setStart(e.target.value)} inputMode="decimal" />
         </div>
         <div className="space-y-2">
-          <Label>{tc("end")} (s)</Label>
-          <Input value={end} onChange={(e) => setEnd(e.target.value)} />
+          <Label>
+            {tc("end")} (s)
+          </Label>
+          <Input value={end} onChange={(e) => setEnd(e.target.value)} inputMode="decimal" />
         </div>
       </div>
       {loading && <Progress value={progress} />}
@@ -147,12 +140,12 @@ export function MediaTrim() {
   );
 }
 
-export function MediaSpeed() {
-  const t = useTranslations("tools.media-speed");
+export function VideoSpeed() {
+  const t = useTranslations("tools.video-speed");
   const tc = useTranslations("common");
-  const log = useToolHistory("media-speed");
+  const log = useToolHistory("video-speed");
   const [files, setFiles] = useState<FileItem[]>([]);
-  const [speed, setSpeed] = useState(1.5);
+  const [speed, setSpeed] = useState(1.25);
   const [volume, setVolume] = useState(1);
   const [loading, setLoading] = useState(false);
 
@@ -180,35 +173,17 @@ export function MediaSpeed() {
       downloadBlob(bytesToBlob(out, "application/octet-stream"), output);
       toast.success(t("success"));
       log(`speed=${speed}`, "success");
-    } catch {
-      // audio-only fallback
-      try {
-        const { runFFmpeg } = await loadFfmpeg();
-        const data = new Uint8Array(await files[0].file.arrayBuffer());
-        const input = "input.mp3";
-        const output = "processed.mp3";
-        const out = await runFFmpeg(input, data, output, [
-          "-i",
-          input,
-          "-filter:a",
-          `atempo=${Math.min(2, Math.max(0.5, speed))},volume=${volume}`,
-          output,
-        ]);
-        downloadBlob(bytesToBlob(out, "application/octet-stream"), output);
-        toast.success(t("success"));
-        log(`audio speed=${speed}`, "success");
-      } catch (e2) {
-        toast.error(e2 instanceof Error ? e2.message : tc("error"));
-        log("failed", "failed");
-      }
+    } catch (e) {
+      toast.error(e instanceof Error ? e.message : tc("error"));
+      log("failed", "failed");
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <ToolShell toolId="media-speed">
-      <FileDropzone accept="audio/*,video/*" multiple={false} files={files} onChange={setFiles} />
+    <ToolShell toolId="video-speed">
+      <FileDropzone accept="video/*" multiple={false} files={files} onChange={setFiles} />
       <div className="space-y-2">
         <Label>
           {tc("speed")}: {speed.toFixed(2)}x
@@ -226,10 +201,10 @@ export function MediaSpeed() {
   );
 }
 
-export function MediaExtractAudio() {
-  const t = useTranslations("tools.media-extract-audio");
+export function VideoExtractAudio() {
+  const t = useTranslations("tools.video-extract-audio");
   const tc = useTranslations("common");
-  const log = useToolHistory("media-extract-audio");
+  const log = useToolHistory("video-extract-audio");
   const [files, setFiles] = useState<FileItem[]>([]);
   const [loading, setLoading] = useState(false);
 
@@ -260,10 +235,9 @@ export function MediaExtractAudio() {
   };
 
   return (
-    <ToolShell toolId="media-extract-audio">
+    <ToolShell toolId="video-extract-audio">
       <FileDropzone accept="video/*" multiple={false} files={files} onChange={setFiles} />
       <ActionBar onRun={run} loading={loading} label={t("run")} disabled={!files[0]} />
     </ToolShell>
   );
 }
-

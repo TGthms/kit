@@ -128,14 +128,16 @@
   "categories": {
     "pdf": "PDF",
     "image": "Imágenes",
-    "media": "Audio y vídeo",
-    "convert": "Convertidores",
+    "audio": "Audio",
+    "video": "Vídeo",
+    "convert": "Conversión de archivos",
     "text": "Texto y datos",
-    "pdfDesc": "Unir, dividir, comprimir, marcar y ordenar documentos",
-    "imageDesc": "Comprimir, redimensionar, cambiar de formato y retocar",
-    "mediaDesc": "Convertir, recortar, cambiar la velocidad y sacar el audio",
-    "convertDesc": "Pasar entre formatos habituales de archivo y datos",
-    "textDesc": "Dar formato, validar, codificar y comparar textos"
+    "pdfDesc": "Unir, dividir, comprimir y marcar documentos PDF",
+    "imageDesc": "Comprimir, redimensionar, convertir y retocar fotos",
+    "audioDesc": "Convertir, recortar y cambiar la velocidad solo de audio",
+    "videoDesc": "Convertir, recortar, acelerar y extraer audio de vídeo",
+    "convertDesc": "Conversión inteligente entre formatos (JSON, CSV, ZIP, imágenes…)",
+    "textDesc": "Formatear, validar, codificar y comparar texto"
   },
   "history": {
     "title": "Historial",
@@ -288,36 +290,6 @@
       "saturation": "Saturación",
       "success": "Se han ajustado {count} imagen(es)."
     },
-    "media-convert": {
-      "name": "Convertir audio o vídeo",
-      "description": "Cambia el contenedor de audio o vídeo con un motor en el navegador.",
-      "keywords": "vídeo audio convertir mp4 webm mp3 ffmpeg",
-      "run": "Convertir",
-      "loadingFfmpeg": "Cargando el motor de medios…",
-      "note": "Usa FFmpeg WASM en un solo hilo. Los archivos grandes pueden ir lentos y no todos los códecs están disponibles.",
-      "success": "Conversión terminada."
-    },
-    "media-trim": {
-      "name": "Recortar clip",
-      "description": "Conserva solo el tramo entre dos momentos.",
-      "keywords": "vídeo audio recortar clip segmento",
-      "run": "Recortar",
-      "success": "Recorte terminado."
-    },
-    "media-speed": {
-      "name": "Velocidad y volumen",
-      "description": "Acelera, ralentiza o cambia el volumen.",
-      "keywords": "vídeo audio velocidad tempo volumen",
-      "run": "Aplicar",
-      "success": "El archivo procesado está listo."
-    },
-    "media-extract-audio": {
-      "name": "Extraer audio",
-      "description": "Guarda la pista de audio de un vídeo.",
-      "keywords": "vídeo extraer audio mp3 banda sonora",
-      "run": "Extraer audio",
-      "success": "Audio extraído."
-    },
     "convert-hub": {
       "name": "Conversión inteligente",
       "description": "Detecta el tipo de entrada y propone un formato de salida razonable.",
@@ -391,6 +363,59 @@
       "keywords": "url codificar decodificar porcentaje uri consulta",
       "run": "Convertir",
       "success": "Hecho."
+    },
+    "audio-convert": {
+      "name": "Convertir audio",
+      "description": "Cambia el formato de audio (MP3, WAV, OGG) en el navegador.",
+      "keywords": "audio convertir mp3 wav ogg sonido",
+      "run": "Convertir",
+      "loadingFfmpeg": "Cargando motor de audio…",
+      "note": "Usa FFmpeg WASM en un solo hilo. Los archivos grandes pueden ir lentos y no todos los códecs están disponibles.",
+      "success": "Conversión de audio terminada."
+    },
+    "audio-trim": {
+      "name": "Recortar audio",
+      "description": "Conserva solo el tramo entre dos momentos de un archivo de audio.",
+      "keywords": "audio recortar cortar clip mp3 wav",
+      "run": "Recortar",
+      "success": "Recorte de audio terminado."
+    },
+    "audio-speed": {
+      "name": "Velocidad y volumen de audio",
+      "description": "Acelera, ralentiza o cambia el volumen del audio.",
+      "keywords": "audio velocidad tempo volumen",
+      "run": "Aplicar",
+      "success": "Audio procesado listo."
+    },
+    "video-convert": {
+      "name": "Convertir vídeo",
+      "description": "Cambia el contenedor de vídeo (MP4, WEBM) en el navegador.",
+      "keywords": "vídeo convertir mp4 webm película",
+      "run": "Convertir",
+      "loadingFfmpeg": "Cargando motor de vídeo…",
+      "note": "Usa FFmpeg WASM en un solo hilo. Los archivos grandes pueden ir lentos y no todos los códecs están disponibles.",
+      "success": "Conversión de vídeo terminada."
+    },
+    "video-trim": {
+      "name": "Recortar vídeo",
+      "description": "Conserva solo el clip entre dos momentos.",
+      "keywords": "vídeo recortar cortar clip mp4",
+      "run": "Recortar",
+      "success": "Recorte de vídeo terminado."
+    },
+    "video-speed": {
+      "name": "Velocidad y volumen de vídeo",
+      "description": "Cambia la velocidad de reproducción y el nivel de audio de un vídeo.",
+      "keywords": "vídeo velocidad tempo volumen",
+      "run": "Aplicar",
+      "success": "Vídeo procesado listo."
+    },
+    "video-extract-audio": {
+      "name": "Extraer audio del vídeo",
+      "description": "Guarda la pista de audio de un vídeo como archivo de sonido.",
+      "keywords": "vídeo extraer audio mp3 banda sonora",
+      "run": "Extraer audio",
+      "success": "Audio extraído."
     }
   },
   "legal": {

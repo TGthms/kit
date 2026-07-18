@@ -9,6 +9,7 @@ import {
   FileText,
   ImageIcon,
   Clapperboard,
+  AudioLines,
   ArrowLeftRight,
   Type,
 } from "lucide-react";
@@ -34,7 +35,12 @@ const categoryMeta: Record<
     tint: "bg-violet-500/12 text-violet-600 dark:text-violet-400",
     ring: "hover:ring-violet-500/20",
   },
-  media: {
+  audio: {
+    icon: AudioLines,
+    tint: "bg-fuchsia-500/12 text-fuchsia-600 dark:text-fuchsia-400",
+    ring: "hover:ring-fuchsia-500/20",
+  },
+  video: {
     icon: Clapperboard,
     tint: "bg-rose-500/12 text-rose-600 dark:text-rose-400",
     ring: "hover:ring-rose-500/20",
@@ -155,8 +161,8 @@ export function HomePage() {
 
   return (
     <div className="space-y-8 sm:space-y-10">
-      <section className="space-y-4 pt-1 sm:pt-3">
-        <div className="max-w-2xl space-y-2.5">
+      <section className="space-y-4 pt-1 sm:pt-2">
+        <div className="max-w-2xl space-y-2">
           <h1 className="type-display text-foreground">{t("title")}</h1>
           <p className="type-body max-w-xl text-muted-foreground">{t("subtitle")}</p>
         </div>
@@ -167,7 +173,7 @@ export function HomePage() {
             value={q}
             onChange={(e) => setQ(e.target.value)}
             placeholder={tn("searchPlaceholder")}
-            className="h-12 rounded-2xl border-border/50 bg-card/90 pl-11 pr-4 surface-float"
+            className="h-11 rounded-[14px] border-border/40 bg-card/95 pl-11 pr-4 surface-float sm:h-12 sm:rounded-2xl"
             autoComplete="off"
             enterKeyHint="search"
           />
@@ -218,9 +224,9 @@ export function HomePage() {
                   type="button"
                   data-pressable
                   onClick={() => setSelectedCat(c)}
-                  style={{ animationDelay: `${index * 45}ms` }}
+                  style={{ animationDelay: `${index * 40}ms` }}
                   className={cn(
-                    "anim-list-item group rounded-3xl border border-border/40 bg-card p-5 text-left surface-float",
+                    "anim-list-item group rounded-[1.25rem] border border-border/40 bg-card p-5 text-left surface-float",
                     "pressable transition-[transform,box-shadow,ring] duration-200",
                     "hover:surface-float-lg hover:ring-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
                     meta.ring
@@ -228,13 +234,13 @@ export function HomePage() {
                 >
                   <span
                     className={cn(
-                      "mb-4 flex h-12 w-12 items-center justify-center rounded-2xl transition-transform duration-200 group-hover:scale-[1.04]",
+                      "mb-4 flex h-12 w-12 items-center justify-center rounded-[14px] transition-transform duration-200 group-hover:scale-[1.04]",
                       meta.tint
                     )}
                   >
                     <Icon className="h-6 w-6" />
                   </span>
-                  <h3 className="text-base font-semibold tracking-[-0.015em]">{tc(c)}</h3>
+                  <h3 className="text-[17px] font-semibold tracking-[-0.02em]">{tc(c)}</h3>
                   <p className="mt-1.5 type-caption leading-relaxed text-muted-foreground">
                     {tc(`${c}Desc`)}
                   </p>
@@ -269,7 +275,7 @@ export function HomePage() {
               <div
                 key={tool.id}
                 className="anim-list-item"
-                style={{ animationDelay: `${index * 40}ms` }}
+                style={{ animationDelay: `${index * 35}ms` }}
               >
                 <ToolCard
                   toolId={tool.id}
@@ -300,19 +306,24 @@ export function HomePage() {
             <p className="type-body text-muted-foreground">{t("noResults")}</p>
           ) : (
             <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 xl:grid-cols-3">
-              {searchResults.map((tool) => (
-                <ToolCard
+              {searchResults.map((tool, index) => (
+                <div
                   key={tool.id}
-                  toolId={tool.id}
-                  category={tc(tool.category)}
-                  icon={tool.icon}
-                  name={tt(`${tool.id}.name`)}
-                  description={tt(`${tool.id}.description`)}
-                  fav={favIds.includes(tool.id)}
-                  onToggleFav={() => toggle(tool.id)}
-                  favoriteLabel={tcommon("favorite")}
-                  unfavoriteLabel={tcommon("unfavorite")}
-                />
+                  className="anim-list-item"
+                  style={{ animationDelay: `${index * 30}ms` }}
+                >
+                  <ToolCard
+                    toolId={tool.id}
+                    category={tc(tool.category)}
+                    icon={tool.icon}
+                    name={tt(`${tool.id}.name`)}
+                    description={tt(`${tool.id}.description`)}
+                    fav={favIds.includes(tool.id)}
+                    onToggleFav={() => toggle(tool.id)}
+                    favoriteLabel={tcommon("favorite")}
+                    unfavoriteLabel={tcommon("unfavorite")}
+                  />
+                </div>
               ))}
             </div>
           )}

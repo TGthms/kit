@@ -6,7 +6,8 @@ import type { ToolId } from "@/lib/tools/registry";
 
 export interface HistoryEntry {
   id: string;
-  toolId: ToolId;
+  /** May include legacy ids; resolve with getTool/resolveToolId. */
+  toolId: ToolId | string;
   timestamp: number;
   summary: string;
   status: "success" | "failed";

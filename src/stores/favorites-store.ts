@@ -5,7 +5,8 @@ import { persist } from "zustand/middleware";
 import type { ToolId } from "@/lib/tools/registry";
 
 interface FavoritesState {
-  ids: ToolId[];
+  /** May include legacy ids; UI resolves via resolveToolId. */
+  ids: Array<ToolId | string>;
   toggle: (id: ToolId) => void;
   isFavorite: (id: ToolId) => boolean;
 }
