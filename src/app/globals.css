@@ -1,5 +1,11 @@
 @import "tailwindcss";
 
+/*
+  Design system: fluid, physical UI foundations
+  (response, materials, type, reduced motion) —
+  platform-native system fonts only.
+*/
+
 :root {
   --background: #f5f5f7;
   --foreground: #1d1d1f;
@@ -19,6 +25,22 @@
   --input: rgba(0, 0, 0, 0.12);
   --ring: #0071e3;
   --radius: 0.95rem;
+
+  /* Materials */
+  --glass-bg: rgba(255, 255, 255, 0.62);
+  --glass-bg-heavy: rgba(255, 255, 255, 0.78);
+  --glass-border: rgba(255, 255, 255, 0.55);
+  --glass-blur: 20px;
+  --scrim: rgba(0, 0, 0, 0.36);
+  --shadow-soft: 0 1px 2px rgba(0, 0, 0, 0.04), 0 8px 24px rgba(0, 0, 0, 0.06);
+  --shadow-float: 0 4px 24px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.06);
+
+  /* Motion (spring-like ease approximations; critically damped feel) */
+  --ease-out-soft: cubic-bezier(0.25, 0.1, 0.25, 1);
+  --ease-spring: cubic-bezier(0.32, 0.72, 0, 1);
+  --duration-press: 100ms;
+  --duration-ui: 320ms;
+  --duration-sheet: 380ms;
 }
 
 .dark {
@@ -39,6 +61,13 @@
   --border: rgba(255, 255, 255, 0.12);
   --input: rgba(255, 255, 255, 0.16);
   --ring: #0a84ff;
+
+  --glass-bg: rgba(28, 28, 30, 0.72);
+  --glass-bg-heavy: rgba(28, 28, 30, 0.88);
+  --glass-border: rgba(255, 255, 255, 0.12);
+  --scrim: rgba(0, 0, 0, 0.55);
+  --shadow-soft: 0 1px 2px rgba(0, 0, 0, 0.35), 0 8px 28px rgba(0, 0, 0, 0.4);
+  --shadow-float: 0 8px 32px rgba(0, 0, 0, 0.5);
 }
 
 @theme inline {
@@ -59,7 +88,6 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
-  /* System UI stack — not Apple-branded webfonts */
   --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
     Arial, "Noto Sans", "PingFang SC", "Hiragino Sans", "Microsoft YaHei", sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
@@ -81,6 +109,7 @@ html {
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
   scroll-behavior: smooth;
+  font-optical-sizing: auto;
 }
 
 html.dark {
@@ -91,19 +120,29 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans);
+  font-size: 100%;
+  line-height: 1.47;
+  letter-spacing: 0;
   min-height: 100dvh;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
-  line-height: 1.5;
 }
 
-/* Improve touch targets & tap highlight on mobile */
+/* Instant press response (pointer-down feedback) */
 button,
 a,
-[role="button"] {
+[role="button"],
+[data-pressable] {
   -webkit-tap-highlight-color: transparent;
   touch-action: manipulation;
+}
+
+button:not(:disabled):active,
+[role="button"]:not([aria-disabled="true"]):active,
+a:active,
+[data-pressable]:active {
+  transition: transform var(--duration-press) ease-out;
 }
 
 img,
@@ -114,32 +153,183 @@ canvas {
   height: auto;
 }
 
+/* ——— Materials ——— */
+
 .glass {
-  background: color-mix(in srgb, var(--card) 78%, transparent);
-  backdrop-filter: saturate(160%) blur(20px);
-  -webkit-backdrop-filter: saturate(160%) blur(20px);
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur)) saturate(180%);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(180%);
+  border-color: color-mix(in srgb, var(--glass-border) 80%, transparent);
+}
+
+.glass-heavy {
+  background: var(--glass-bg-heavy);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+}
+
+/* Scroll-edge fade under sticky chrome (not a hard 1px rule) */
+.chrome-edge {
+  box-shadow: 0 1px 0 color-mix(in srgb, var(--border) 70%, transparent),
+    0 8px 24px -12px rgba(0, 0, 0, 0.12);
+}
+
+.dark .chrome-edge {
+  box-shadow: 0 1px 0 color-mix(in srgb, var(--border) 90%, transparent),
+    0 12px 28px -14px rgba(0, 0, 0, 0.55);
+}
+
+.surface-float {
+  box-shadow: var(--shadow-soft);
+}
+
+.surface-float-lg {
+  box-shadow: var(--shadow-float);
 }
 
 .safe-pb {
   padding-bottom: max(0.5rem, env(safe-area-inset-bottom));
 }
 
-/* Focus visible for keyboard users */
+/* Typography scale helpers */
+.type-display {
+  font-size: clamp(1.75rem, 4.2vw, 2.5rem);
+  line-height: 1.08;
+  letter-spacing: -0.022em;
+  font-weight: 600;
+}
+
+.type-title {
+  font-size: clamp(1.25rem, 2.4vw, 1.5rem);
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+  font-weight: 600;
+}
+
+.type-body {
+  font-size: 0.9375rem;
+  line-height: 1.47;
+  letter-spacing: -0.006em;
+}
+
+.type-caption {
+  font-size: 0.8125rem;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+}
+
+/* Sheet / drawer motion (enter from left = exit to left) */
+@keyframes sheet-in-left {
+  from {
+    transform: translate3d(-100%, 0, 0);
+    opacity: 0.92;
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+}
+
+@keyframes scrim-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes surface-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 6px, 0) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+.anim-sheet-left {
+  animation: sheet-in-left var(--duration-sheet) var(--ease-spring) both;
+  will-change: transform, opacity;
+}
+
+.anim-scrim {
+  animation: scrim-in var(--duration-ui) var(--ease-out-soft) both;
+}
+
+.anim-surface {
+  animation: surface-in var(--duration-ui) var(--ease-spring) both;
+}
+
+/* Interactive press scale — use on cards/buttons */
+.pressable {
+  transition: transform var(--duration-press) ease-out, box-shadow var(--duration-ui) var(--ease-out-soft),
+    background-color var(--duration-ui) var(--ease-out-soft);
+}
+
+.pressable:active {
+  transform: scale(0.97);
+}
+
+.pressable-soft:active {
+  transform: scale(0.985);
+}
+
 :focus-visible {
   outline: 2px solid var(--ring);
   outline-offset: 2px;
 }
 
-/* Prefer reduced motion */
+/* Theme transition (gentle brightness change) */
+html {
+  transition: background-color 200ms ease, color 200ms ease;
+}
+
+/* Accessibility: reduced motion / transparency / contrast */
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
+  .anim-sheet-left,
+  .anim-scrim,
+  .anim-surface {
+    animation: none !important;
+  }
+  .pressable,
+  .pressable-soft,
+  button,
+  a,
+  [role="button"] {
+    transition: none !important;
+  }
+  .pressable:active,
+  .pressable-soft:active {
+    transform: none !important;
+  }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .glass,
+  .glass-heavy {
+    background: var(--card);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+}
+
+@media (prefers-contrast: more) {
+  :root {
+    --border: rgba(0, 0, 0, 0.35);
+    --glass-bg: #ffffff;
+  }
+  .dark {
+    --border: rgba(255, 255, 255, 0.45);
+    --glass-bg: #1c1c1e;
+  }
+  .glass,
+  .glass-heavy {
+    border: 1px solid var(--border);
   }
 }

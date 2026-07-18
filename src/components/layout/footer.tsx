@@ -18,19 +18,21 @@ export function SiteFooter() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="mt-auto border-t border-border/50 bg-card/30">
+    <footer className="mt-auto border-t border-border/40 bg-card/40">
       <div className="mx-auto flex max-w-6xl flex-col gap-5 px-4 py-8 sm:px-6 lg:px-8">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-          <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-muted-foreground">
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-2 type-caption text-muted-foreground">
             <Link
               href="/privacy"
-              className="inline-flex min-h-11 items-center transition-colors hover:text-foreground"
+              data-pressable
+              className="pressable-soft inline-flex min-h-11 items-center hover:text-foreground"
             >
               {t("privacy")}
             </Link>
             <Link
               href="/terms"
-              className="inline-flex min-h-11 items-center transition-colors hover:text-foreground"
+              data-pressable
+              className="pressable-soft inline-flex min-h-11 items-center hover:text-foreground"
             >
               {t("terms")}
             </Link>

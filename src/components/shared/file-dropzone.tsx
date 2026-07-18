@@ -56,8 +56,11 @@ export function FileDropzone({
     <div className="space-y-3" onPaste={onPaste}>
       <div
         className={cn(
-          "flex min-h-[9.5rem] cursor-pointer flex-col items-center justify-center rounded-2xl border-2 border-dashed px-4 py-8 text-center transition-colors sm:min-h-[11rem] sm:py-10",
-          drag ? "border-primary bg-accent/50" : "border-border bg-card hover:bg-accent/30"
+          "pressable-soft flex min-h-[9.5rem] cursor-pointer flex-col items-center justify-center rounded-2xl border-2 border-dashed px-4 py-8 text-center sm:min-h-[11rem] sm:py-10",
+          "transition-[border-color,background-color,transform,box-shadow] duration-150 ease-out",
+          drag
+            ? "border-primary bg-accent/50 surface-float"
+            : "border-border bg-card hover:bg-accent/30 hover:border-primary/35"
         )}
         onDragOver={(e) => {
           e.preventDefault();
