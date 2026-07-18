@@ -208,7 +208,7 @@ export function HomePage() {
             <p className="type-body text-muted-foreground">{t("chooseCategoryHint")}</p>
           </div>
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            {categories.map((c) => {
+            {categories.map((c, index) => {
               const meta = categoryMeta[c];
               const Icon = meta.icon;
               const count = tools.filter((x) => x.category === c).length;
@@ -218,8 +218,9 @@ export function HomePage() {
                   type="button"
                   data-pressable
                   onClick={() => setSelectedCat(c)}
+                  style={{ animationDelay: `${index * 45}ms` }}
                   className={cn(
-                    "group rounded-3xl border border-border/40 bg-card p-5 text-left surface-float",
+                    "anim-list-item group rounded-3xl border border-border/40 bg-card p-5 text-left surface-float",
                     "pressable transition-[transform,box-shadow,ring] duration-200",
                     "hover:surface-float-lg hover:ring-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
                     meta.ring
@@ -264,19 +265,24 @@ export function HomePage() {
             <p className="type-body text-muted-foreground">{tc(`${selectedCat}Desc`)}</p>
           </div>
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 xl:grid-cols-3">
-            {categoryTools.map((tool) => (
-              <ToolCard
+            {categoryTools.map((tool, index) => (
+              <div
                 key={tool.id}
-                toolId={tool.id}
-                category={tc(tool.category)}
-                icon={tool.icon}
-                name={tt(`${tool.id}.name`)}
-                description={tt(`${tool.id}.description`)}
-                fav={favIds.includes(tool.id)}
-                onToggleFav={() => toggle(tool.id)}
-                favoriteLabel={tcommon("favorite")}
-                unfavoriteLabel={tcommon("unfavorite")}
-              />
+                className="anim-list-item"
+                style={{ animationDelay: `${index * 40}ms` }}
+              >
+                <ToolCard
+                  toolId={tool.id}
+                  category={tc(tool.category)}
+                  icon={tool.icon}
+                  name={tt(`${tool.id}.name`)}
+                  description={tt(`${tool.id}.description`)}
+                  fav={favIds.includes(tool.id)}
+                  onToggleFav={() => toggle(tool.id)}
+                  favoriteLabel={tcommon("favorite")}
+                  unfavoriteLabel={tcommon("unfavorite")}
+                />
+              </div>
             ))}
           </div>
         </section>

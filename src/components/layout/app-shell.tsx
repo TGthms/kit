@@ -63,7 +63,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
             onClick={onNavigate}
             data-pressable
             className={cn(
-              "flex items-center font-medium pressable-soft",
+              "nav-item flex items-center font-medium pressable-soft",
               compact
                 ? "min-h-12 min-w-0 flex-1 flex-col justify-center gap-0.5 px-1 py-1.5 text-[10px] sm:text-[11px]"
                 : "gap-3 rounded-xl px-3 py-2.5 text-sm",
