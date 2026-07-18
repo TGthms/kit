@@ -1,11 +1,11 @@
 {
   "meta": {
-    "title": "Kit — 在浏览器里用的隐私工具",
-    "description": "PDF、图片、音视频、格式转换与文本处理，全部在你的设备上完成。我们不会把你的文件上传到任何 Kit 服务器。"
+    "title": "Kit — 完全在设备上运行的小工具",
+    "description": "PDF、图片、音视频、格式转换与文本处理，全部在你的设备上完成。"
   },
   "brand": {
     "name": "Kit",
-    "tagline": "日常小工具，就在浏览器里。从设计上保护隐私。"
+    "tagline": "在浏览器里的日常小工具，从设计之初力保隐私安全"
   },
   "nav": {
     "home": "首页",
@@ -112,7 +112,7 @@
     "aboutMeUrl": "https://tgthms.github.io/about/"
   },
   "home": {
-    "title": "你想做什么？",
+    "title": "今天有什么要做的？",
     "subtitle": "在这台设备上运行的实用工具——无需注册，也无需上传。",
     "categories": "分类",
     "popular": "工具",
@@ -210,7 +210,7 @@
       "description": "通过重编码页面图像减小体积（可能损失画质）。",
       "keywords": "pdf 压缩 体积 瘦身",
       "run": "压缩",
-      "note": "有损处理：页面可能被栅格化。更适合含大量图片的 PDF。",
+      "note": "压缩处理：页面可能被转化为位图。适合含大量图片的 PDF。",
       "success": "压缩后的 PDF 可以下载了。"
     },
     "pdf-watermark": {
