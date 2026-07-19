@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { withBasePath } from "@/lib/base-path";
+import { withBasePath, withAsset } from "@/lib/base-path";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -8,11 +8,11 @@ export const metadata: Metadata = {
   manifest: withBasePath("/manifest.webmanifest"),
   icons: {
     icon: [
-      { url: withBasePath("/icons/favicon.svg"), type: "image/svg+xml" },
-      { url: withBasePath("/icons/favicon-32.png"), sizes: "32x32", type: "image/png" },
-      { url: withBasePath("/icons/icon.svg"), type: "image/svg+xml" },
+      { url: withAsset("/icons/favicon.svg"), type: "image/svg+xml" },
+      { url: withAsset("/icons/favicon-32.png"), sizes: "32x32", type: "image/png" },
+      { url: withAsset("/icons/icon.svg"), type: "image/svg+xml" },
     ],
-    apple: [{ url: withBasePath("/icons/apple-touch-icon.png"), sizes: "180x180" }],
+    apple: [{ url: withAsset("/icons/apple-touch-icon.png"), sizes: "180x180" }],
   },
   appleWebApp: {
     capable: true,

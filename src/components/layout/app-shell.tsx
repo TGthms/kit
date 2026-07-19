@@ -4,7 +4,7 @@ import { useTranslations } from "next-intl";
 import { Link, usePathname } from "@/lib/i18n/navigation";
 import { Home, History, Star, Settings } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { withBasePath } from "@/lib/base-path";
+import { withAsset } from "@/lib/base-path";
 import { ThemeToggle } from "./theme-toggle";
 import { SiteFooter } from "./footer";
 import { LocaleSwitcher } from "./locale-switcher";
@@ -100,7 +100,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src={withBasePath("/icons/icon.svg")}
+              src={withAsset("/icons/icon.svg")}
               alt=""
               width={32}
               height={32}
