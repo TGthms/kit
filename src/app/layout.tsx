@@ -7,7 +7,12 @@ export const metadata: Metadata = {
   description: "Everyday tools in the browser. Private by design.",
   manifest: withBasePath("/manifest.webmanifest"),
   icons: {
-    icon: withBasePath("/icons/icon.svg"),
+    icon: [
+      { url: withBasePath("/icons/favicon.svg"), type: "image/svg+xml" },
+      { url: withBasePath("/icons/favicon-32.png"), sizes: "32x32", type: "image/png" },
+      { url: withBasePath("/icons/icon.svg"), type: "image/svg+xml" },
+    ],
+    apple: [{ url: withBasePath("/icons/apple-touch-icon.png"), sizes: "180x180" }],
   },
   appleWebApp: {
     capable: true,

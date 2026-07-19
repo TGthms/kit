@@ -2,8 +2,9 @@
 
 import { useTranslations } from "next-intl";
 import { Link, usePathname } from "@/lib/i18n/navigation";
-import { Home, History, Star, Settings, Wrench } from "lucide-react";
+import { Home, History, Star, Settings } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { withBasePath } from "@/lib/base-path";
 import { ThemeToggle } from "./theme-toggle";
 import { SiteFooter } from "./footer";
 import { LocaleSwitcher } from "./locale-switcher";
@@ -97,9 +98,15 @@ export function AppShell({ children }: { children: React.ReactNode }) {
             data-pressable
             className="pressable-soft flex min-w-0 items-center gap-2 font-semibold tracking-[-0.02em]"
           >
-            <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-[10px] bg-primary text-primary-foreground shadow-sm">
-              <Wrench className="h-4 w-4" />
-            </span>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={withBasePath("/icons/icon.svg")}
+              alt=""
+              width={32}
+              height={32}
+              className="h-8 w-8 shrink-0 rounded-[9px] shadow-sm"
+              draggable={false}
+            />
             <span className="truncate text-[17px] leading-none">{tb("name")}</span>
           </Link>
           <div className="flex shrink-0 items-center gap-1">

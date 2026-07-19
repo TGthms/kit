@@ -27,8 +27,10 @@ export default async function LocaleLayout({
   return (
     <html lang={locale} suppressHydrationWarning>
       <head>
-        <link rel="icon" href={withBasePath("/icons/icon.svg")} type="image/svg+xml" />
-        <meta name="theme-color" content="#007aff" media="(prefers-color-scheme: light)" />
+        <link rel="icon" href={withBasePath("/icons/favicon.svg")} type="image/svg+xml" />
+        <link rel="icon" href={withBasePath("/icons/favicon-32.png")} type="image/png" sizes="32x32" />
+        <link rel="apple-touch-icon" href={withBasePath("/icons/apple-touch-icon.png")} sizes="180x180" />
+        <meta name="theme-color" content="#0A84FF" media="(prefers-color-scheme: light)" />
         <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
       </head>
       <body className="min-h-dvh antialiased">
