@@ -121,8 +121,8 @@
     "pinned": "Pinned",
     "chooseCategory": "Start with a category",
     "chooseCategoryHint": "Open a group of related tools, or search everything above.",
-    "backToCategories": "All categories",
-    "toolsInCategory": "{count} tools",
+    "backToCategories": "Categories",
+    "toolsInCategory": "{count, plural, one {# tool} other {# tools}}",
     "searchResults": "Search results"
   },
   "categories": {

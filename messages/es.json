@@ -121,8 +121,8 @@
     "pinned": "Fijadas",
     "chooseCategory": "Empieza por una categoría",
     "chooseCategoryHint": "Abre un grupo de herramientas afines o usa la búsqueda de arriba.",
-    "backToCategories": "Todas las categorías",
-    "toolsInCategory": "{count} herramientas",
+    "backToCategories": "Categorías",
+    "toolsInCategory": "{count, plural, one {# herramienta} other {# herramientas}}",
     "searchResults": "Resultados de la búsqueda"
   },
   "categories": {

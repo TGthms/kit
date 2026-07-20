@@ -5,6 +5,7 @@ import { useTranslations } from "next-intl";
 import { useTheme } from "next-themes";
 import { Link } from "@/lib/i18n/navigation";
 import { LocaleSwitcher } from "@/components/layout/locale-switcher";
+import { PageHeader } from "@/components/layout/page-header";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useHistoryStore } from "@/stores/history-store";
@@ -13,6 +14,7 @@ export default function SettingsPage() {
   const t = useTranslations("settings");
   const tc = useTranslations("common");
   const th = useTranslations("history");
+  const tn = useTranslations("nav");
   const { resolvedTheme, setTheme } = useTheme();
   const clear = useHistoryStore((s) => s.clear);
   const [mounted, setMounted] = useState(false);
@@ -23,12 +25,9 @@ export default function SettingsPage() {
 
   return (
     <div className="mx-auto max-w-2xl space-y-6">
-      <div className="anim-surface">
-        <h1 className="type-display text-[1.75rem] sm:text-[2rem]">{t("title")}</h1>
-        <p className="mt-1.5 type-body text-muted-foreground">{t("subtitle")}</p>
-      </div>
+      <PageHeader title={t("title")} subtitle={t("subtitle")} backHref="/" backLabel={tn("home")} />
 
-      <Card className="anim-stagger" style={{ animationDelay: "40ms" }}>
+      <Card className="anim-stagger border-border/40" style={{ animationDelay: "40ms" }}>
         <CardHeader>
           <CardTitle>{t("appearance")}</CardTitle>
         </CardHeader>
@@ -53,7 +52,7 @@ export default function SettingsPage() {
         </CardContent>
       </Card>
 
-      <Card className="anim-stagger" style={{ animationDelay: "80ms" }}>
+      <Card className="anim-stagger border-border/40" style={{ animationDelay: "80ms" }}>
         <CardHeader>
           <CardTitle>{t("language")}</CardTitle>
         </CardHeader>
@@ -62,7 +61,7 @@ export default function SettingsPage() {
         </CardContent>
       </Card>
 
-      <Card className="anim-stagger" style={{ animationDelay: "120ms" }}>
+      <Card className="anim-stagger border-border/40" style={{ animationDelay: "120ms" }}>
         <CardHeader>
           <CardTitle>{t("data")}</CardTitle>
         </CardHeader>

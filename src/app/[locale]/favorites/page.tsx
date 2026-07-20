@@ -5,26 +5,26 @@ import { useTranslations } from "next-intl";
 import { Link } from "@/lib/i18n/navigation";
 import { tools, resolveToolId } from "@/lib/tools/registry";
 import { useFavoritesStore } from "@/stores/favorites-store";
+import { PageHeader } from "@/components/layout/page-header";
 import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
 export default function FavoritesPage() {
   const t = useTranslations("favorites");
   const tt = useTranslations("tools");
+  const tn = useTranslations("nav");
   const ids = useFavoritesStore((s) => s.ids);
 
   const list = useMemo(() => {
     const resolved = new Set(
-      ids.map((id) => resolveToolId(id as string)).filter(Boolean) as string[]
+      ids.map((id) => resolveToolId(String(id))).filter(Boolean) as string[]
     );
     return tools.filter((x) => resolved.has(x.id));
   }, [ids]);
 
   return (
     <div className="space-y-6">
-      <div>
-        <h1 className="type-display text-[1.75rem] sm:text-[2rem]">{t("title")}</h1>
-        <p className="mt-1.5 type-body text-muted-foreground">{t("subtitle")}</p>
-      </div>
+      <PageHeader title={t("title")} subtitle={t("subtitle")} backHref="/" backLabel={tn("home")} />
+
       {list.length === 0 ? (
         <p className="type-body text-muted-foreground">{t("empty")}</p>
       ) : (

@@ -121,7 +121,7 @@
     "pinned": "ピン留め",
     "chooseCategory": "カテゴリから選ぶ",
     "chooseCategoryHint": "関連ツールのグループを開くか、上の検索ですべてから探せます。",
-    "backToCategories": "すべてのカテゴリ",
+    "backToCategories": "カテゴリ",
     "toolsInCategory": "{count} 個のツール",
     "searchResults": "検索結果"
   },

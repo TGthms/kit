@@ -121,8 +121,8 @@
     "pinned": "已固定",
     "chooseCategory": "先选择一个分类",
     "chooseCategoryHint": "打开一组相关工具，或使用上方搜索查找全部功能。",
-    "backToCategories": "全部分类",
-    "toolsInCategory": "共 {count} 个工具",
+    "backToCategories": "分类",
+    "toolsInCategory": "{count} 个工具",
     "searchResults": "搜索结果"
   },
   "categories": {

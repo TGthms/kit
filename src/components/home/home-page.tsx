@@ -1,11 +1,11 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { Suspense, useCallback, useMemo, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
 import {
   Search,
   Star,
-  ChevronLeft,
   FileText,
   ImageIcon,
   Clapperboard,
@@ -14,10 +14,11 @@ import {
   Type,
 } from "lucide-react";
 import { tools, categories, type ToolCategory } from "@/lib/tools/registry";
-import { Link } from "@/lib/i18n/navigation";
+import { homeHref, parseCategoryParam } from "@/lib/navigation/routes";
+import { Link, useRouter } from "@/lib/i18n/navigation";
 import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
 import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { PageHeader } from "@/components/layout/page-header";
 import { useFavoritesStore } from "@/stores/favorites-store";
 import { cn } from "@/lib/utils";
 
@@ -120,65 +121,85 @@ function ToolCard({
   );
 }
 
-export function HomePage() {
+function HomePageInner() {
   const t = useTranslations("home");
   const tc = useTranslations("categories");
   const tcommon = useTranslations("common");
   const tt = useTranslations("tools");
   const tn = useTranslations("nav");
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const selectedCat = parseCategoryParam(searchParams.get("c"));
   const [q, setQ] = useState("");
-  const [selectedCat, setSelectedCat] = useState<ToolCategory | null>(null);
+
   const favIds = useFavoritesStore((s) => s.ids);
   const toggle = useFavoritesStore((s) => s.toggle);
+
+  const openCategory = useCallback(
+    (c: ToolCategory) => {
+      router.push(homeHref(c));
+    },
+    [router]
+  );
 
   const query = q.trim().toLowerCase();
   const isSearching = query.length > 0;
 
-  const searchResults = useMemo(() => {
-    if (!isSearching) return [];
-    return tools.filter((tool) => {
-      const name = tt(`${tool.id}.name`).toLowerCase();
-      const desc = tt(`${tool.id}.description`).toLowerCase();
-      const kw = tt(`${tool.id}.keywords`).toLowerCase();
+  const matchesQuery = useCallback(
+    (toolId: string) => {
+      if (!isSearching) return true;
+      const name = tt(`${toolId}.name`).toLowerCase();
+      const desc = tt(`${toolId}.description`).toLowerCase();
+      const kw = tt(`${toolId}.keywords`).toLowerCase();
       return (
         name.includes(query) ||
         desc.includes(query) ||
         kw.includes(query) ||
-        tool.id.includes(query)
+        toolId.includes(query)
       );
-    });
-  }, [isSearching, query, tt]);
+    },
+    [isSearching, query, tt]
+  );
+
+  const searchResults = useMemo(() => {
+    if (!isSearching) return [];
+    return tools.filter((tool) => matchesQuery(tool.id));
+  }, [isSearching, matchesQuery]);
 
   const categoryTools = useMemo(() => {
     if (!selectedCat) return [];
-    return tools.filter((tool) => tool.category === selectedCat);
-  }, [selectedCat]);
+    return tools.filter(
+      (tool) => tool.category === selectedCat && matchesQuery(tool.id)
+    );
+  }, [selectedCat, matchesQuery]);
 
   const pinned = tools.filter((x) => favIds.includes(x.id));
   const showCategories = !isSearching && !selectedCat;
-  const showCategoryTools = !isSearching && selectedCat !== null;
-  const showSearch = isSearching;
+  const showCategoryTools = selectedCat !== null;
+  const showGlobalSearch = isSearching && !selectedCat;
 
   return (
-    <div className="space-y-8 sm:space-y-10">
-      <section className="space-y-4 pt-1 sm:pt-2">
-        <div className="max-w-2xl space-y-2">
-          <h1 className="type-display text-foreground">{t("title")}</h1>
-          <p className="type-body max-w-xl text-muted-foreground">{t("subtitle")}</p>
-        </div>
-        <div className="relative max-w-xl">
-          <Search className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-          <Input
-            id="kit-search"
-            value={q}
-            onChange={(e) => setQ(e.target.value)}
-            placeholder={tn("searchPlaceholder")}
-            className="h-11 rounded-[14px] border-border/40 bg-card/95 pl-11 pr-4 surface-float sm:h-12 sm:rounded-2xl"
-            autoComplete="off"
-            enterKeyHint="search"
-          />
-        </div>
-      </section>
+    <div className="space-y-7 sm:space-y-9">
+      {(showCategories || showGlobalSearch) && (
+        <section className="space-y-4 pt-0.5 sm:pt-1">
+          <div className="max-w-2xl space-y-2">
+            <h1 className="type-display text-foreground">{t("title")}</h1>
+            <p className="type-body max-w-xl text-muted-foreground">{t("subtitle")}</p>
+          </div>
+          <div className="relative max-w-xl">
+            <Search className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+            <Input
+              id="kit-search"
+              value={q}
+              onChange={(e) => setQ(e.target.value)}
+              placeholder={tn("searchPlaceholder")}
+              className="h-11 rounded-[14px] border-border/40 bg-card/95 pl-11 pr-4 surface-float sm:h-12 sm:rounded-2xl"
+              autoComplete="off"
+              enterKeyHint="search"
+            />
+          </div>
+        </section>
+      )}
 
       {showCategories && pinned.length > 0 && (
         <section className="space-y-3">
@@ -223,7 +244,7 @@ export function HomePage() {
                   key={c}
                   type="button"
                   data-pressable
-                  onClick={() => setSelectedCat(c)}
+                  onClick={() => openCategory(c)}
                   style={{ animationDelay: `${index * 40}ms` }}
                   className={cn(
                     "anim-list-item group rounded-[1.25rem] border border-border/40 bg-card p-5 text-left surface-float",
@@ -256,45 +277,53 @@ export function HomePage() {
 
       {showCategoryTools && selectedCat && (
         <section className="space-y-4">
-          <div className="space-y-1">
-            <Button
-              type="button"
-              variant="ghost"
-              size="sm"
-              className="-ml-2 h-9 gap-1 rounded-full px-2 text-muted-foreground"
-              onClick={() => setSelectedCat(null)}
-            >
-              <ChevronLeft className="h-4 w-4" />
-              {t("backToCategories")}
-            </Button>
-            <h2 className="type-title text-foreground">{tc(selectedCat)}</h2>
-            <p className="type-body text-muted-foreground">{tc(`${selectedCat}Desc`)}</p>
+          <PageHeader
+            title={tc(selectedCat)}
+            subtitle={tc(`${selectedCat}Desc`)}
+            backHref={homeHref()}
+            backLabel={t("backToCategories")}
+          />
+          <div className="relative max-w-xl">
+            <Search className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+            <Input
+              id="kit-search"
+              value={q}
+              onChange={(e) => setQ(e.target.value)}
+              placeholder={tn("searchPlaceholder")}
+              className="h-11 rounded-[14px] border-border/40 bg-card/95 pl-11 pr-4 surface-float"
+              autoComplete="off"
+              enterKeyHint="search"
+            />
           </div>
-          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 xl:grid-cols-3">
-            {categoryTools.map((tool, index) => (
-              <div
-                key={tool.id}
-                className="anim-list-item"
-                style={{ animationDelay: `${index * 35}ms` }}
-              >
-                <ToolCard
-                  toolId={tool.id}
-                  category={tc(tool.category)}
-                  icon={tool.icon}
-                  name={tt(`${tool.id}.name`)}
-                  description={tt(`${tool.id}.description`)}
-                  fav={favIds.includes(tool.id)}
-                  onToggleFav={() => toggle(tool.id)}
-                  favoriteLabel={tcommon("favorite")}
-                  unfavoriteLabel={tcommon("unfavorite")}
-                />
-              </div>
-            ))}
-          </div>
+          {categoryTools.length === 0 ? (
+            <p className="type-body text-muted-foreground">{t("noResults")}</p>
+          ) : (
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 xl:grid-cols-3">
+              {categoryTools.map((tool, index) => (
+                <div
+                  key={tool.id}
+                  className="anim-list-item"
+                  style={{ animationDelay: `${index * 35}ms` }}
+                >
+                  <ToolCard
+                    toolId={tool.id}
+                    category={tc(tool.category)}
+                    icon={tool.icon}
+                    name={tt(`${tool.id}.name`)}
+                    description={tt(`${tool.id}.description`)}
+                    fav={favIds.includes(tool.id)}
+                    onToggleFav={() => toggle(tool.id)}
+                    favoriteLabel={tcommon("favorite")}
+                    unfavoriteLabel={tcommon("unfavorite")}
+                  />
+                </div>
+              ))}
+            </div>
+          )}
         </section>
       )}
 
-      {showSearch && (
+      {showGlobalSearch && (
         <section className="space-y-4">
           <h2 className="type-title text-foreground">
             {t("searchResults")}
@@ -330,5 +359,17 @@ export function HomePage() {
         </section>
       )}
     </div>
+  );
+}
+
+export function HomePage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="type-body text-muted-foreground py-8">…</div>
+      }
+    >
+      <HomePageInner />
+    </Suspense>
   );
 }

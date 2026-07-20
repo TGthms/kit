@@ -3,38 +3,45 @@
 import { useTranslations } from "next-intl";
 import { Star } from "lucide-react";
 import type { ToolId } from "@/lib/tools/registry";
+import { getTool } from "@/lib/tools/registry";
+import { toolBackHref } from "@/lib/navigation/routes";
 import { useFavoritesStore } from "@/stores/favorites-store";
+import { PageHeader } from "@/components/layout/page-header";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 
 export function ToolHeader({ toolId }: { toolId: ToolId }) {
   const t = useTranslations(`tools.${toolId}`);
   const tc = useTranslations("common");
+  const tCat = useTranslations("categories");
   const { ids, toggle } = useFavoritesStore();
   const fav = ids.includes(toolId);
+  const tool = getTool(toolId);
+  const backHref = toolBackHref(toolId);
+  const backLabel = tool ? tCat(tool.category) : tc("back");
 
   return (
-    <div className="mb-5 flex flex-col gap-4 sm:mb-7 sm:flex-row sm:items-start sm:justify-between">
-      <div className="min-w-0 space-y-2">
-        <h1 className="type-display text-[1.5rem] sm:text-[2rem]">
-          {t("name")}
-        </h1>
-        <p className="type-body max-w-2xl text-muted-foreground">
-          {t("description")}
-        </p>
-        <Badge variant="secondary" className="mt-1 max-w-full whitespace-normal text-left font-normal">
+    <PageHeader
+      title={t("name")}
+      subtitle={t("description")}
+      backHref={backHref}
+      backLabel={backLabel}
+      below={
+        <Badge variant="secondary" className="mt-0.5 max-w-full whitespace-normal text-left font-normal">
           {tc("clientSideOnly")}
         </Badge>
-      </div>
-      <Button
-        variant={fav ? "default" : "outline"}
-        size="sm"
-        className="h-10 w-full shrink-0 rounded-full sm:w-fit"
-        onClick={() => toggle(toolId)}
-      >
-        <Star className={fav ? "fill-current" : ""} />
-        {fav ? tc("unfavorite") : tc("favorite")}
-      </Button>
-    </div>
+      }
+      trailing={
+        <Button
+          variant={fav ? "default" : "outline"}
+          size="sm"
+          className="h-10 w-full rounded-full sm:w-fit"
+          onClick={() => toggle(toolId)}
+        >
+          <Star className={fav ? "fill-current" : ""} />
+          {fav ? tc("unfavorite") : tc("favorite")}
+        </Button>
+      }
+    />
   );
 }
