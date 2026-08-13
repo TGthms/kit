@@ -109,7 +109,8 @@
     "batch": "一括",
     "limitations": "制限事項",
     "clientSideOnly": "処理はブラウザ内のみ。ファイルを Kit のサーバーへ送信することはありません。",
-    "aboutMeUrl": "https://tgthms.github.io/about/"
+    "aboutMeUrl": "https://tgthms.github.io/about/",
+    "howItWorks": "仕組みと制限"
   },
   "home": {
     "title": "何をしますか？",
@@ -179,7 +180,8 @@
     "settings": "設定を開く",
     "home": "ホームへ移動",
     "help": "この一覧を表示",
-    "run": "現在のツールを実行"
+    "run": "現在のツールを実行",
+    "close": "閉じる"
   },
   "tools": {
     "pdf-merge": {
@@ -241,7 +243,8 @@
       "run": "取り出す",
       "modeText": "テキスト",
       "modeImages": "画像",
-      "success": "取り出しが完了しました。"
+      "success": "取り出しが完了しました。",
+      "imagesReady": "{count} ページ分の画像を ZIP に書き出しました。"
     },
     "image-compress": {
       "name": "画像を圧縮",
@@ -273,12 +276,15 @@
       "success": "{count} 枚の画像を変換しました。"
     },
     "image-metadata": {
-      "name": "メタデータを削除",
-      "description": "EXIF などのタグを含まないクリーンなコピーを書き出します。",
+      "name": "画像メタデータ",
+      "description": "EXIF などのタグを確認し、取り除いたコピーを書き出します。",
       "keywords": "画像 exif メタデータ プライバシー 位置情報",
       "run": "メタデータを削除",
       "note": "ブラウザ内で画素を再エンコードし、埋め込みメタデータを除去します。",
-      "success": "{count} 枚からメタデータを削除しました。"
+      "success": "{count} 枚からメタデータを削除しました。",
+      "tag": "タグ",
+      "value": "値",
+      "noExif": "このファイルに読める EXIF / テキストメタデータはありません。"
     },
     "image-adjust": {
       "name": "画像を調整",
@@ -416,11 +422,203 @@
       "keywords": "動画 音声 抽出 mp3 サウンドトラック",
       "run": "音声を取り出す",
       "success": "音声を取り出しました。"
+    },
+    "pdf-numbers": {
+      "name": "ページ番号",
+      "description": "各ページに 1 / 12 のようなラベルを入れます。",
+      "keywords": "pdf ページ番号 フッター ヘッダー",
+      "run": "番号を入れる",
+      "template": "ラベル（{page} と {pages}）",
+      "position": "位置",
+      "start": "開始番号",
+      "headerLeft": "ヘッダー左",
+      "headerCenter": "ヘッダー中央",
+      "headerRight": "ヘッダー右",
+      "footerLeft": "フッター左",
+      "footerCenter": "フッター中央",
+      "footerRight": "フッター右",
+      "success": "ページ番号を追加しました。"
+    },
+    "pdf-to-images": {
+      "name": "PDF → 画像",
+      "description": "全ページを JPEG にして ZIP でダウンロードします。",
+      "keywords": "pdf 画像 jpg zip 書き出し",
+      "run": "ページを書き出す",
+      "limits": "ページはタブ内の PDF.js で描画します。巨大な文書は遅く、メモリも使います。埋め込み画像オブジェクトの抽出ではなく、見た目のラスタ化です。",
+      "success": "{count} ページを書き出しました。"
+    },
+    "images-to-pdf": {
+      "name": "画像 → PDF",
+      "description": "写真を 1 枚 1 ページの PDF にまとめます。",
+      "keywords": "画像 pdf jpg png",
+      "run": "PDF を作る",
+      "success": "{count} 枚の画像から PDF を作りました。"
+    },
+    "pdf-flatten": {
+      "name": "フォームを固定",
+      "description": "AcroForm フィールドをページに焼き込み、編集できないようにします。",
+      "keywords": "pdf フォーム flatten フィールド",
+      "run": "固定する",
+      "limits": "標準の AcroForm に対応します。動的 XFA は完全には扱えません。",
+      "success": "{count} 個のフィールドを固定しました。"
+    },
+    "pdf-metadata": {
+      "name": "PDF のメタデータ",
+      "description": "タイトルや作成者などの Info を表示・編集・削除します。",
+      "keywords": "キーワード",
+      "run": "メタデータを保存",
+      "strip": "すべての項目を削除",
+      "title": "タイトル",
+      "author": "作成者",
+      "subject": "サブタイトル",
+      "creator": "作成アプリ",
+      "producer": "変換元",
+      "saved": "メタデータを保存しました。",
+      "stripped": "メタデータを削除しました。"
+    },
+    "pdf-protect": {
+      "name": "PDF のロック / 解除",
+      "description": "ユーザーパスワードを付けたり外したりします。暗号化はこのブラウザ内で行います。",
+      "keywords": "pdf パスワード 暗号化 解除",
+      "run": "実行",
+      "lock": "ロック",
+      "unlock": "解除",
+      "password": "パスワード",
+      "limits": "クライアント側の PDF 暗号化ライブラリを使います。古い、または特殊な暗号方式は解除できないことがあります。ファイルもパスワードもサーバーには送りません。",
+      "success": "PDF の準備ができました。"
+    },
+    "image-rotate": {
+      "name": "回転と反転",
+      "description": "90° 単位で回すか、左右・上下に反転します。",
+      "keywords": "画像 回転 反転 ミラー",
+      "run": "適用",
+      "operation": "変換",
+      "rot90": "90° 回転",
+      "rot180": "180° 回転",
+      "rot270": "270° 回転",
+      "flipH": "左右反転",
+      "flipV": "上下反転",
+      "success": "{count} 枚を変換しました。"
+    },
+    "image-filters": {
+      "name": "画像フィルター",
+      "description": "グレースケール、セピア、階調反転を 1 枚または複数に適用します。",
+      "keywords": "画像 フィルター グレースケール セピア",
+      "run": "適用",
+      "filter": "フィルター",
+      "grayscale": "グレースケール",
+      "sepia": "セピア",
+      "invert": "階調反転",
+      "success": "{count} 枚にフィルターをかけました。"
+    },
+    "image-favicon": {
+      "name": "ファビコン一式",
+      "description": "元画像をよく使うアイコンサイズで ZIP に書き出します。",
+      "keywords": "favicon アイコン 16 32 180 192 512",
+      "run": "アイコンを書き出す",
+      "note": "16 / 32 / 48 / 180 / 192 / 512 ピクセルの PNG を書き出します。",
+      "success": "アイコン一式の準備ができました。"
+    },
+    "video-gif": {
+      "name": "動画 → GIF",
+      "description": "短いクリップをブラウザ内でループ GIF にします。",
+      "keywords": "動画 gif ffmpeg",
+      "run": "GIF を作る",
+      "limits": "FFmpeg WASM を使います。短いクリップにしてください。GIF エンコードは遅く、メモリも使います。対応コーデックはブラウザ内ビルドに依存します。",
+      "success": "GIF の準備ができました。"
+    },
+    "xml-json": {
+      "name": "XML ↔ JSON",
+      "description": "XML を JSON に、またはその逆に変換します。",
+      "keywords": "xml json 変換",
+      "run": "変換",
+      "toJson": "XML → JSON",
+      "toXml": "JSON → XML",
+      "success": "変換しました。"
+    },
+    "sql-format": {
+      "name": "SQL 整形",
+      "description": "SQL を読みやすいように整形します。",
+      "keywords": "sql 整形 クエリ",
+      "run": "整形",
+      "success": "SQL を整形しました。"
+    },
+    "regex-tester": {
+      "name": "正規表現テスター",
+      "description": "サンプルテキストで正規表現を試し、置換もできます。",
+      "keywords": "正規表現 regex 置換",
+      "pattern": "パターン",
+      "flags": "フラグ",
+      "input": "サンプル",
+      "replace": "置換文字列",
+      "runReplace": "置換",
+      "matches": "{count} 件マッチ",
+      "success": "置換結果ができました。"
+    },
+    "hash-generator": {
+      "name": "ハッシュ生成",
+      "description": "テキストやファイルの SHA-1/256/384/512 と MD5 をこの端末で計算します。",
+      "keywords": "ハッシュ sha256 md5 チェックサム",
+      "run": "計算",
+      "algo": "アルゴリズム",
+      "digest": "ダイジェスト",
+      "limits": "ハッシュはこのブラウザで計算します（SHA は Web Crypto、MD5 はローカル実装）。MD5 は衝突耐性がありません。チェックサム用途に限ってください。",
+      "success": "ハッシュの準備ができました。"
+    },
+    "uuid-generator": {
+      "name": "UUID 生成",
+      "description": "この端末で UUID v4 または v7 を作ります。",
+      "keywords": "uuid guid v4 v7",
+      "run": "生成",
+      "count": "個数",
+      "version": "バージョン",
+      "success": "UUID を生成しました。"
+    },
+    "color-convert": {
+      "name": "カラー変換",
+      "description": "HEX / RGB / HSL / HSV を相互変換し、カラーピッカーも使えます。",
+      "keywords": "色 hex rgb hsl hsv",
+      "picker": "カラーピッカー",
+      "invalid": "3 桁または 6 桁の 16 進カラーを入力してください。"
+    },
+    "lorem-ipsum": {
+      "name": "Lorem ipsum",
+      "description": "段落・文・単語のダミーテキストを生成します。",
+      "keywords": "lorem ダミー プレースホルダー",
+      "run": "生成",
+      "count": "数",
+      "mode": "種類",
+      "paragraphs": "段落",
+      "sentences": "文",
+      "words": "単語",
+      "success": "テキストを生成しました。"
+    },
+    "qr-code": {
+      "name": "QR コード",
+      "description": "テキストから QR を作る、または画像から読み取ります。",
+      "keywords": "qr コード 生成 読み取り",
+      "run": "生成",
+      "payload": "テキストまたは URL",
+      "read": "画像から読む",
+      "runRead": "QR を読む",
+      "generated": "QR コードの準備ができました。",
+      "decoded": "内容を読み取りました。",
+      "none": "その画像に QR コードは見つかりませんでした。"
     }
   },
   "legal": {
     "lastUpdated": "最終更新",
     "privacyTitle": "プライバシーポリシー",
     "termsTitle": "利用規約"
+  },
+  "notFound": {
+    "title": "ページが見つかりません",
+    "body": "Kit にそのアドレスはありません。ホームに戻ってツールを選んでください。",
+    "home": "ホームへ戻る"
+  },
+  "errorPage": {
+    "title": "問題が発生しました",
+    "body": "直前の操作がこのブラウザで失敗しました。ページを離れずに再試行できます。",
+    "retry": "再試行"
   }
 }

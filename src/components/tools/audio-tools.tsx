@@ -9,7 +9,9 @@ import { Label } from "@/components/ui/label";
 import { Slider } from "@/components/ui/slider";
 import { Progress } from "@/components/ui/progress";
 import { downloadBlob, bytesToBlob } from "@/lib/utils";
-import { ActionBar, ToolShell, useToolHistory, loadFfmpeg } from "./shared";
+import { MediaTimeline } from "@/components/shared/media-timeline";
+import { AUDIO_FORMATS, audioConvertArgs } from "@/lib/media/ffmpeg";
+import { ActionBar, ToolLimits, ToolShell, useToolHistory, loadFfmpeg } from "./shared";
 
 const selectClass =
   "flex h-10 w-full rounded-xl border border-input bg-background px-3 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring";
@@ -22,9 +24,12 @@ export function AudioConvert() {
   const [format, setFormat] = useState("mp3");
   const [loading, setLoading] = useState(false);
   const [progress, setProgress] = useState(0);
+  const [controller, setController] = useState<AbortController | null>(null);
 
   const run = async () => {
     if (!files[0]) return;
+    const ac = new AbortController();
+    setController(ac);
     setLoading(true);
     setProgress(0);
     try {
@@ -32,48 +37,59 @@ export function AudioConvert() {
       const ext = files[0].file.name.split(".").pop() || "bin";
       const input = `input.${ext}`;
       const output = `output.${format}`;
-      let args: string[];
-      if (format === "mp3") args = ["-i", input, "-vn", "-acodec", "libmp3lame", output];
-      else if (format === "wav") args = ["-i", input, "-vn", output];
-      else if (format === "ogg") args = ["-i", input, "-vn", "-acodec", "libvorbis", output];
-      else args = ["-i", input, "-vn", output];
-
+      const args = audioConvertArgs(input, output, format);
       const { runFFmpeg } = await loadFfmpeg();
       try {
-        const out = await runFFmpeg(input, data, output, args, (p) =>
-          setProgress(Math.round(p * 100))
-        );
+        const out = await runFFmpeg(input, data, output, args, (p) => setProgress(Math.round(p * 100)), ac.signal);
         downloadBlob(bytesToBlob(out, "application/octet-stream"), output);
-      } catch {
-        const out = await runFFmpeg(input, data, output, ["-i", input, "-vn", output], (p) =>
-          setProgress(Math.round(p * 100))
+      } catch (err) {
+        if (ac.signal.aborted) throw err;
+        const out = await runFFmpeg(
+          input,
+          data,
+          output,
+          ["-i", input, "-vn", output],
+          (p) => setProgress(Math.round(p * 100)),
+          ac.signal
         );
         downloadBlob(bytesToBlob(out, "application/octet-stream"), output);
       }
       toast.success(t("success"));
       log(format, "success");
     } catch (e) {
-      toast.error(e instanceof Error ? e.message : tc("error"));
+      if (e instanceof DOMException && e.name === "AbortError") toast.error(tc("cancel"));
+      else toast.error(e instanceof Error ? e.message : tc("error"));
       log("failed", "failed");
     } finally {
       setLoading(false);
+      setController(null);
     }
   };
 
   return (
     <ToolShell toolId="audio-convert">
-      <p className="type-body text-muted-foreground">{t("note")}</p>
+      <ToolLimits>
+        <p>{t("note")}</p>
+      </ToolLimits>
       <div className="space-y-2">
         <Label>{tc("format")}</Label>
         <select className={selectClass} value={format} onChange={(e) => setFormat(e.target.value)}>
-          <option value="mp3">MP3</option>
-          <option value="wav">WAV</option>
-          <option value="ogg">OGG</option>
+          {AUDIO_FORMATS.map((f) => (
+            <option key={f} value={f}>
+              {f.toUpperCase()}
+            </option>
+          ))}
         </select>
       </div>
       <FileDropzone accept="audio/*" multiple={false} files={files} onChange={setFiles} />
       {loading && <Progress value={progress} />}
-      <ActionBar onRun={run} loading={loading} label={t("run")} disabled={!files[0]} />
+      <ActionBar
+        onRun={run}
+        loading={loading}
+        label={t("run")}
+        disabled={!files[0]}
+        onCancel={() => controller?.abort()}
+      />
     </ToolShell>
   );
 }
@@ -83,13 +99,16 @@ export function AudioTrim() {
   const tc = useTranslations("common");
   const log = useToolHistory("audio-trim");
   const [files, setFiles] = useState<FileItem[]>([]);
-  const [start, setStart] = useState("0");
-  const [end, setEnd] = useState("10");
+  const [start, setStart] = useState(0);
+  const [end, setEnd] = useState(10);
   const [loading, setLoading] = useState(false);
   const [progress, setProgress] = useState(0);
+  const [controller, setController] = useState<AbortController | null>(null);
 
   const run = async () => {
     if (!files[0]) return;
+    const ac = new AbortController();
+    setController(ac);
     setLoading(true);
     try {
       const data = new Uint8Array(await files[0].file.arrayBuffer());
@@ -101,39 +120,67 @@ export function AudioTrim() {
         input,
         data,
         output,
-        ["-ss", start, "-to", end, "-i", input, "-c", "copy", output],
-        (p) => setProgress(Math.round(p * 100))
+        ["-ss", String(start), "-to", String(end), "-i", input, "-c", "copy", output],
+        (p) => setProgress(Math.round(p * 100)),
+        ac.signal
       );
       downloadBlob(bytesToBlob(out, "application/octet-stream"), output);
       toast.success(t("success"));
       log(`${start}-${end}`, "success");
     } catch (e) {
-      toast.error(e instanceof Error ? e.message : tc("error"));
+      if (e instanceof DOMException && e.name === "AbortError") toast.error(tc("cancel"));
+      else toast.error(e instanceof Error ? e.message : tc("error"));
       log("failed", "failed");
     } finally {
       setLoading(false);
+      setController(null);
     }
   };
 
   return (
     <ToolShell toolId="audio-trim">
       <FileDropzone accept="audio/*" multiple={false} files={files} onChange={setFiles} />
+      <MediaTimeline
+        file={files[0]?.file ?? null}
+        start={start}
+        end={end}
+        onChange={(a, b) => {
+          setStart(a);
+          setEnd(b);
+        }}
+        startLabel={tc("start")}
+        endLabel={tc("end")}
+      />
       <div className="grid gap-4 sm:grid-cols-2">
         <div className="space-y-2">
           <Label>
             {tc("start")} (s)
           </Label>
-          <Input value={start} onChange={(e) => setStart(e.target.value)} inputMode="decimal" />
+          <Input
+            value={start}
+            onChange={(e) => setStart(Number(e.target.value) || 0)}
+            inputMode="decimal"
+          />
         </div>
         <div className="space-y-2">
           <Label>
             {tc("end")} (s)
           </Label>
-          <Input value={end} onChange={(e) => setEnd(e.target.value)} inputMode="decimal" />
+          <Input
+            value={end}
+            onChange={(e) => setEnd(Number(e.target.value) || 0)}
+            inputMode="decimal"
+          />
         </div>
       </div>
       {loading && <Progress value={progress} />}
-      <ActionBar onRun={run} loading={loading} label={t("run")} disabled={!files[0]} />
+      <ActionBar
+        onRun={run}
+        loading={loading}
+        label={t("run")}
+        disabled={!files[0]}
+        onCancel={() => controller?.abort()}
+      />
     </ToolShell>
   );
 }

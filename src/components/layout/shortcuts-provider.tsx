@@ -47,7 +47,7 @@ export function ShortcutsProvider({ children }: { children: React.ReactNode }) {
           <div className="w-full max-w-md rounded-2xl border bg-card p-5 shadow-xl">
             <div className="mb-4 flex items-center justify-between">
               <h2 className="text-lg font-semibold">{t("title")}</h2>
-              <Button size="sm" variant="ghost" onClick={() => setOpen(false)}>
+              <Button size="sm" variant="ghost" onClick={() => setOpen(false)} aria-label={t("close")}>
                 ×
               </Button>
             </div>

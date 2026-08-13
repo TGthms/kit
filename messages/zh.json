@@ -109,7 +109,8 @@
     "batch": "批量",
     "limitations": "使用限制",
     "clientSideOnly": "仅在浏览器本地运行。你的文件不会发送到任何 Kit 服务器。",
-    "aboutMeUrl": "https://tgthms.github.io/about/"
+    "aboutMeUrl": "https://tgthms.github.io/about/",
+    "howItWorks": "原理与限制"
   },
   "home": {
     "title": "今天有什么要做的？",
@@ -179,7 +180,8 @@
     "settings": "打开设置",
     "home": "返回首页",
     "help": "显示本列表",
-    "run": "运行当前工具"
+    "run": "运行当前工具",
+    "close": "关闭"
   },
   "tools": {
     "pdf-merge": {
@@ -241,7 +243,8 @@
       "run": "提取",
       "modeText": "文本",
       "modeImages": "图片",
-      "success": "提取完成。"
+      "success": "提取完成。",
+      "imagesReady": "已将 {count} 页导出为 ZIP。"
     },
     "image-compress": {
       "name": "压缩图片",
@@ -273,12 +276,15 @@
       "success": "已转换 {count} 张图片。"
     },
     "image-metadata": {
-      "name": "清除图片元数据",
-      "description": "导出不含 EXIF 等标签的干净副本。",
+      "name": "图片元数据",
+      "description": "查看 EXIF 等标签，再导出一份去掉它们的副本。",
       "keywords": "图片 exif 元数据 隐私 定位",
       "run": "清除元数据",
       "note": "在浏览器中重编码像素，从而丢弃嵌入的元数据。",
-      "success": "已清除 {count} 张图片的元数据。"
+      "success": "已清除 {count} 张图片的元数据。",
+      "tag": "标签",
+      "value": "值",
+      "noExif": "这个文件里没有可读的 EXIF 或文本元数据。"
     },
     "image-adjust": {
       "name": "调整图片",
@@ -416,11 +422,203 @@
       "keywords": "视频 提取 音频 mp3 音轨",
       "run": "提取音频",
       "success": "音频已提取。"
+    },
+    "pdf-numbers": {
+      "name": "页码",
+      "description": "在每一页加上类似 1 / 12 的页码。",
+      "keywords": "pdf 页码 页脚 页眉",
+      "run": "添加页码",
+      "template": "文案（{page} 和 {pages}）",
+      "position": "位置",
+      "start": "起始页码",
+      "headerLeft": "页眉左",
+      "headerCenter": "页眉中",
+      "headerRight": "页眉右",
+      "footerLeft": "页脚左",
+      "footerCenter": "页脚中",
+      "footerRight": "页脚右",
+      "success": "页码已添加。"
+    },
+    "pdf-to-images": {
+      "name": "PDF → 图片",
+      "description": "把每一页渲染成 JPEG，打包成 ZIP 下载。",
+      "keywords": "pdf 图片 jpg zip 导出",
+      "run": "导出页面",
+      "limits": "页面由本标签页中的 PDF.js 绘制。超大文档会较慢并占用较多内存。这是视觉栅格化，不是抽取内嵌图像对象。",
+      "success": "已导出 {count} 页。"
+    },
+    "images-to-pdf": {
+      "name": "图片 → PDF",
+      "description": "把多张图片合成一个 PDF，一页一张。",
+      "keywords": "图片 pdf jpg png",
+      "run": "生成 PDF",
+      "success": "已用 {count} 张图片生成 PDF。"
+    },
+    "pdf-flatten": {
+      "name": "压平表单",
+      "description": "把 AcroForm 字段画进页面，之后不能再编辑。",
+      "keywords": "pdf 表单 压平 字段",
+      "run": "压平",
+      "limits": "适用于标准 AcroForm 字段。动态 XFA 表单支持不完整。",
+      "success": "已压平 {count} 个字段。"
+    },
+    "pdf-metadata": {
+      "name": "PDF 元数据",
+      "description": "查看、编辑或清除标题、作者等信息字段。",
+      "keywords": "关键词",
+      "run": "保存元数据",
+      "strip": "清除全部字段",
+      "title": "标题",
+      "author": "作者",
+      "subject": "主题",
+      "creator": "创建者",
+      "producer": "生成器",
+      "saved": "元数据已保存。",
+      "stripped": "元数据已清除。"
+    },
+    "pdf-protect": {
+      "name": "锁定或解锁 PDF",
+      "description": "添加或移除用户密码。加密只在这个浏览器里完成。",
+      "keywords": "pdf 密码 加密 解锁",
+      "run": "应用",
+      "lock": "锁定",
+      "unlock": "解锁",
+      "password": "密码",
+      "limits": "使用客户端 PDF 加密库。部分较旧或不常见的加密版本可能无法解锁。Kit 不会把文件或密码发到服务器。",
+      "success": "PDF 已就绪。"
+    },
+    "image-rotate": {
+      "name": "旋转与翻转",
+      "description": "按 90° 旋转，或水平 / 垂直翻转图片。",
+      "keywords": "图片 旋转 翻转 镜像",
+      "run": "应用",
+      "operation": "变换",
+      "rot90": "旋转 90°",
+      "rot180": "旋转 180°",
+      "rot270": "旋转 270°",
+      "flipH": "水平翻转",
+      "flipV": "垂直翻转",
+      "success": "已处理 {count} 张图片。"
+    },
+    "image-filters": {
+      "name": "图片滤镜",
+      "description": "对一张或多张照片应用灰度、褐色或反相。",
+      "keywords": "图片 滤镜 灰度 褐色 反相",
+      "run": "应用",
+      "filter": "滤镜",
+      "grayscale": "灰度",
+      "sepia": "褐色",
+      "invert": "反相",
+      "success": "已处理 {count} 张图片。"
+    },
+    "image-favicon": {
+      "name": "网站图标包",
+      "description": "把一张图导出为常用图标尺寸，打包成 ZIP。",
+      "keywords": "favicon 图标 16 32 180 192 512",
+      "run": "导出图标",
+      "note": "导出 16、32、48、180、192、512 像素的 PNG。",
+      "success": "图标包已就绪。"
+    },
+    "video-gif": {
+      "name": "视频 → GIF",
+      "description": "在浏览器里把一小段视频做成循环 GIF。",
+      "keywords": "视频 gif ffmpeg",
+      "run": "生成 GIF",
+      "limits": "使用 FFmpeg WASM。请保持片段较短——GIF 编码又慢又占内存。编码能力取决于浏览器内的构建。",
+      "success": "GIF 已就绪。"
+    },
+    "xml-json": {
+      "name": "XML ↔ JSON",
+      "description": "在 XML 与 JSON 之间转换。",
+      "keywords": "xml json 转换",
+      "run": "转换",
+      "toJson": "XML → JSON",
+      "toXml": "JSON → XML",
+      "success": "已转换。"
+    },
+    "sql-format": {
+      "name": "SQL 格式化",
+      "description": "整理 SQL 语句，让子句和列表更好读。",
+      "keywords": "sql 格式化 查询",
+      "run": "格式化",
+      "success": "SQL 已格式化。"
+    },
+    "regex-tester": {
+      "name": "正则测试",
+      "description": "用样本文本测试正则，并替换匹配项。",
+      "keywords": "正则 表达式 替换",
+      "pattern": "模式",
+      "flags": "标志",
+      "input": "样本文本",
+      "replace": "替换为",
+      "runReplace": "替换",
+      "matches": "{count} 处匹配",
+      "success": "替换结果已就绪。"
+    },
+    "hash-generator": {
+      "name": "哈希生成",
+      "description": "在本地计算文本或文件的 SHA-1/256/384/512 与 MD5。",
+      "keywords": "哈希 sha256 md5 校验",
+      "run": "计算",
+      "algo": "算法",
+      "digest": "摘要",
+      "limits": "哈希在本浏览器计算（SHA 用 Web Crypto，MD5 为本地实现）。MD5 不抗碰撞，只适合做校验和。",
+      "success": "哈希已就绪。"
+    },
+    "uuid-generator": {
+      "name": "UUID 生成",
+      "description": "在本机生成 UUID v4 或 v7。",
+      "keywords": "uuid guid v4 v7",
+      "run": "生成",
+      "count": "数量",
+      "version": "版本",
+      "success": "已生成 UUID。"
+    },
+    "color-convert": {
+      "name": "颜色转换",
+      "description": "在 HEX、RGB、HSL、HSV 之间转换，并带取色器。",
+      "keywords": "颜色 hex rgb hsl hsv",
+      "picker": "取色器",
+      "invalid": "请输入 3 位或 6 位十六进制颜色。"
+    },
+    "lorem-ipsum": {
+      "name": "占位文本",
+      "description": "生成段落、句子或单词占位文案。",
+      "keywords": "lorem 占位 假文",
+      "run": "生成",
+      "count": "数量",
+      "mode": "模式",
+      "paragraphs": "段落",
+      "sentences": "句子",
+      "words": "单词",
+      "success": "文本已生成。"
+    },
+    "qr-code": {
+      "name": "二维码",
+      "description": "用文字生成二维码，或从图片中识别。",
+      "keywords": "二维码 qr 生成 识别",
+      "run": "生成",
+      "payload": "文本或网址",
+      "read": "从图片识别",
+      "runRead": "识别二维码",
+      "generated": "二维码已就绪。",
+      "decoded": "已读出内容。",
+      "none": "这张图里没有找到二维码。"
     }
   },
   "legal": {
     "lastUpdated": "最近更新",
     "privacyTitle": "隐私政策",
     "termsTitle": "使用条款"
+  },
+  "notFound": {
+    "title": "找不到页面",
+    "body": "Kit 里没有这个地址。回到首页再选一个工具即可。",
+    "home": "返回首页"
+  },
+  "errorPage": {
+    "title": "出了点问题",
+    "body": "刚才的操作在这个浏览器里失败了。可以留在本页重试。",
+    "retry": "重试"
   }
 }

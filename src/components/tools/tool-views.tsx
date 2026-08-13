@@ -12,6 +12,14 @@ import {
   PdfExtract,
 } from "./pdf-tools";
 import {
+  PdfNumbers,
+  PdfToImages,
+  ImagesToPdf,
+  PdfFlatten,
+  PdfMetadata,
+  PdfProtect,
+} from "./pdf-extra-tools";
+import {
   ImageCompress,
   ImageResize,
   ImageCrop,
@@ -19,12 +27,14 @@ import {
   ImageMetadata,
   ImageAdjust,
 } from "./image-tools";
+import { ImageRotate, ImageFilters, ImageFavicon } from "./image-extra-tools";
 import { AudioConvert, AudioTrim, AudioSpeed } from "./audio-tools";
 import {
   VideoConvert,
   VideoTrim,
   VideoSpeed,
   VideoExtractAudio,
+  VideoGif,
 } from "./video-tools";
 import { ConvertHub } from "./convert-tools";
 import {
@@ -37,6 +47,16 @@ import {
   Base64Tool,
   UrlEncodeTool,
 } from "./text-tools";
+import {
+  XmlJson,
+  SqlFormat,
+  RegexTester,
+  HashGenerator,
+  UuidGenerator,
+  ColorConvert,
+  LoremIpsum,
+  QrCodeTool,
+} from "./text-extra-tools";
 
 const TOOL_COMPONENTS: Record<ToolId, ComponentType> = {
   "pdf-merge": PdfMerge,
@@ -46,12 +66,21 @@ const TOOL_COMPONENTS: Record<ToolId, ComponentType> = {
   "pdf-watermark": PdfWatermark,
   "pdf-redact": PdfRedact,
   "pdf-extract": PdfExtract,
+  "pdf-numbers": PdfNumbers,
+  "pdf-to-images": PdfToImages,
+  "images-to-pdf": ImagesToPdf,
+  "pdf-flatten": PdfFlatten,
+  "pdf-metadata": PdfMetadata,
+  "pdf-protect": PdfProtect,
   "image-compress": ImageCompress,
   "image-resize": ImageResize,
   "image-crop": ImageCrop,
   "image-convert": ImageConvert,
   "image-metadata": ImageMetadata,
   "image-adjust": ImageAdjust,
+  "image-rotate": ImageRotate,
+  "image-filters": ImageFilters,
+  "image-favicon": ImageFavicon,
   "audio-convert": AudioConvert,
   "audio-trim": AudioTrim,
   "audio-speed": AudioSpeed,
@@ -59,6 +88,7 @@ const TOOL_COMPONENTS: Record<ToolId, ComponentType> = {
   "video-trim": VideoTrim,
   "video-speed": VideoSpeed,
   "video-extract-audio": VideoExtractAudio,
+  "video-gif": VideoGif,
   "convert-hub": ConvertHub,
   "json-format": JsonFormat,
   "yaml-format": YamlFormat,
@@ -68,6 +98,14 @@ const TOOL_COMPONENTS: Record<ToolId, ComponentType> = {
   "text-diff": TextDiff,
   "base64": Base64Tool,
   "url-encode": UrlEncodeTool,
+  "xml-json": XmlJson,
+  "sql-format": SqlFormat,
+  "regex-tester": RegexTester,
+  "hash-generator": HashGenerator,
+  "uuid-generator": UuidGenerator,
+  "color-convert": ColorConvert,
+  "lorem-ipsum": LoremIpsum,
+  "qr-code": QrCodeTool,
 };
 
 export function ToolView({ toolId }: { toolId: ToolId }) {

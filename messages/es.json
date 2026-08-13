@@ -109,7 +109,8 @@
     "batch": "Lote",
     "limitations": "Limitaciones",
     "clientSideOnly": "Todo ocurre en tu navegador. Kit no sube tus archivos a un servidor propio.",
-    "aboutMeUrl": "https://tgthms.github.io/about/"
+    "aboutMeUrl": "https://tgthms.github.io/about/",
+    "howItWorks": "Cómo funciona y límites"
   },
   "home": {
     "title": "¿Qué quieres hacer?",
@@ -179,7 +180,8 @@
     "settings": "Abrir ajustes",
     "home": "Ir al inicio",
     "help": "Mostrar esta lista",
-    "run": "Ejecutar la herramienta actual"
+    "run": "Ejecutar la herramienta actual",
+    "close": "Cerrar"
   },
   "tools": {
     "pdf-merge": {
@@ -241,7 +243,8 @@
       "run": "Extraer",
       "modeText": "Texto",
       "modeImages": "Imágenes",
-      "success": "Extracción terminada."
+      "success": "Extracción terminada.",
+      "imagesReady": "Se han exportado {count} imagen(es) de página en un ZIP."
     },
     "image-compress": {
       "name": "Comprimir imágenes",
@@ -273,12 +276,15 @@
       "success": "Se han convertido {count} imagen(es)."
     },
     "image-metadata": {
-      "name": "Quitar metadatos",
-      "description": "Exporta una copia limpia sin EXIF ni etiquetas similares.",
+      "name": "Metadatos de imagen",
+      "description": "Consulta EXIF y etiquetas similares, y exporta una copia limpia sin ellas.",
       "keywords": "imagen exif metadatos privacidad ubicación",
       "run": "Quitar metadatos",
       "note": "Los píxeles se re-codifican en el navegador y se descartan los metadatos incrustados.",
-      "success": "Metadatos eliminados de {count} imagen(es)."
+      "success": "Metadatos eliminados de {count} imagen(es).",
+      "tag": "Etiqueta",
+      "value": "Valor",
+      "noExif": "Este archivo no tiene EXIF ni metadatos de texto legibles."
     },
     "image-adjust": {
       "name": "Ajustar imagen",
@@ -416,11 +422,203 @@
       "keywords": "vídeo extraer audio mp3 banda sonora",
       "run": "Extraer audio",
       "success": "Audio extraído."
+    },
+    "pdf-numbers": {
+      "name": "Números de página",
+      "description": "Añade una etiqueta como 1 / 12 en cada página.",
+      "keywords": "pdf números página pie cabecera",
+      "run": "Numerar",
+      "template": "Etiqueta ({page} y {pages})",
+      "position": "Posición",
+      "start": "Empezar en",
+      "headerLeft": "Cabecera izquierda",
+      "headerCenter": "Cabecera centro",
+      "headerRight": "Cabecera derecha",
+      "footerLeft": "Pie izquierda",
+      "footerCenter": "Pie centro",
+      "footerRight": "Pie derecha",
+      "success": "Números añadidos."
+    },
+    "pdf-to-images": {
+      "name": "PDF → imágenes",
+      "description": "Rasteriza cada página a JPEG y descárgalas en un ZIP.",
+      "keywords": "pdf imagen jpg zip páginas",
+      "run": "Exportar páginas",
+      "limits": "Las páginas se dibujan con PDF.js en esta pestaña. Los documentos muy grandes pueden ser lentos y usar mucha memoria. Es un raster visual, no una extracción de objetos de imagen embebidos.",
+      "success": "Se han exportado {count} página(s)."
+    },
+    "images-to-pdf": {
+      "name": "Imágenes → PDF",
+      "description": "Junta fotos en un PDF, una imagen por página.",
+      "keywords": "imágenes pdf jpg png",
+      "run": "Crear PDF",
+      "success": "PDF creado con {count} imagen(es)."
+    },
+    "pdf-flatten": {
+      "name": "Aplanar formularios",
+      "description": "Convierte los campos AcroForm en dibujo para que ya no se puedan editar.",
+      "keywords": "pdf aplanar formulario campos",
+      "run": "Aplanar",
+      "limits": "Funciona con campos AcroForm estándar. Los formularios XFA dinámicos no están totalmente soportados.",
+      "success": "Se han aplanado {count} campo(s)."
+    },
+    "pdf-metadata": {
+      "name": "Metadatos del PDF",
+      "description": "Consulta, edita o elimina título, autor y otros campos de información.",
+      "keywords": "Palabras clave",
+      "run": "Guardar metadatos",
+      "strip": "Eliminar todos los campos",
+      "title": "Título",
+      "author": "Autor",
+      "subject": "Asunto",
+      "creator": "Creador",
+      "producer": "Productor",
+      "saved": "Metadatos guardados.",
+      "stripped": "Metadatos eliminados."
+    },
+    "pdf-protect": {
+      "name": "Bloquear o desbloquear PDF",
+      "description": "Añade o quita una contraseña de usuario. El cifrado ocurre en este navegador.",
+      "keywords": "pdf contraseña bloquear cifrar",
+      "run": "Aplicar",
+      "lock": "Bloquear",
+      "unlock": "Desbloquear",
+      "password": "Contraseña",
+      "limits": "Usa una biblioteca de cifrado PDF en el cliente. Algunas revisiones antiguas o poco habituales pueden no desbloquearse. Kit no envía el archivo ni la contraseña a ningún servidor.",
+      "success": "El PDF está listo."
+    },
+    "image-rotate": {
+      "name": "Girar y voltear",
+      "description": "Gira imágenes de 90 en 90 grados o inviértelas en horizontal o vertical.",
+      "keywords": "imagen girar voltear espejo",
+      "run": "Aplicar",
+      "operation": "Transformación",
+      "rot90": "Girar 90°",
+      "rot180": "Girar 180°",
+      "rot270": "Girar 270°",
+      "flipH": "Voltear horizontal",
+      "flipV": "Voltear vertical",
+      "success": "Se han transformado {count} imagen(es)."
+    },
+    "image-filters": {
+      "name": "Filtros de imagen",
+      "description": "Aplica escala de grises, sepia o negativo a una o varias fotos.",
+      "keywords": "imagen filtro gris sepia negativo",
+      "run": "Aplicar",
+      "filter": "Filtro",
+      "grayscale": "Escala de grises",
+      "sepia": "Sepia",
+      "invert": "Negativo",
+      "success": "Se han filtrado {count} imagen(es)."
+    },
+    "image-favicon": {
+      "name": "Pack de favicon",
+      "description": "Exporta una imagen en los tamaños de icono habituales, en un ZIP.",
+      "keywords": "favicon icono 16 32 180 192 512",
+      "run": "Exportar iconos",
+      "note": "Exporta PNG de 16, 32, 48, 180, 192 y 512 píxeles.",
+      "success": "El pack de iconos está listo."
+    },
+    "video-gif": {
+      "name": "Vídeo → GIF",
+      "description": "Convierte un clip corto en un GIF en bucle, en el navegador.",
+      "keywords": "vídeo gif clip ffmpeg",
+      "run": "Crear GIF",
+      "limits": "Usa FFmpeg WASM. Mantén los clips cortos: codificar GIF es lento y consume memoria. Los códecs dependen de la compilación del navegador.",
+      "success": "El GIF está listo."
+    },
+    "xml-json": {
+      "name": "XML ↔ JSON",
+      "description": "Convierte documentos XML a JSON, o JSON de vuelta a XML.",
+      "keywords": "xml json convertir",
+      "run": "Convertir",
+      "toJson": "XML → JSON",
+      "toXml": "JSON → XML",
+      "success": "Convertido."
+    },
+    "sql-format": {
+      "name": "Formatear SQL",
+      "description": "Da formato a consultas SQL para que se lean mejor.",
+      "keywords": "sql formato consulta",
+      "run": "Formatear",
+      "success": "SQL formateado."
+    },
+    "regex-tester": {
+      "name": "Probador de regex",
+      "description": "Prueba una expresión regular sobre un texto y sustituye coincidencias.",
+      "keywords": "regex expresión regular",
+      "pattern": "Patrón",
+      "flags": "Indicadores",
+      "input": "Texto de prueba",
+      "replace": "Sustitución",
+      "runReplace": "Sustituir",
+      "matches": "{count, plural, one {# coincidencia} other {# coincidencias}}",
+      "success": "Sustitución lista."
+    },
+    "hash-generator": {
+      "name": "Generador de hash",
+      "description": "SHA-1/256/384/512 y MD5 de texto o un archivo, calculados aquí.",
+      "keywords": "hash sha256 md5 checksum",
+      "run": "Calcular",
+      "algo": "Algoritmo",
+      "digest": "Resumen",
+      "limits": "Los hashes se calculan en este navegador (Web Crypto para SHA; MD5 es una implementación local). MD5 no es resistente a colisiones: úsalo solo como suma de comprobación.",
+      "success": "Hash listo."
+    },
+    "uuid-generator": {
+      "name": "Generador de UUID",
+      "description": "Crea UUID versión 4 o 7 en este dispositivo.",
+      "keywords": "uuid guid v4 v7",
+      "run": "Generar",
+      "count": "Cantidad",
+      "version": "Versión",
+      "success": "UUID generados."
+    },
+    "color-convert": {
+      "name": "Conversor de color",
+      "description": "Pasa entre HEX, RGB, HSL y HSV, con un selector de color.",
+      "keywords": "color hex rgb hsl hsv",
+      "picker": "Selector de color",
+      "invalid": "Introduce un color hexadecimal de 3 o 6 dígitos."
+    },
+    "lorem-ipsum": {
+      "name": "Lorem ipsum",
+      "description": "Genera párrafos, frases o palabras de relleno.",
+      "keywords": "lorem ipsum texto ficticio",
+      "run": "Generar",
+      "count": "Cantidad",
+      "mode": "Modo",
+      "paragraphs": "Párrafos",
+      "sentences": "Frases",
+      "words": "Palabras",
+      "success": "Texto generado."
+    },
+    "qr-code": {
+      "name": "Código QR",
+      "description": "Crea un código QR a partir de texto, o léelo desde una imagen.",
+      "keywords": "qr código generar leer",
+      "run": "Generar",
+      "payload": "Texto o URL",
+      "read": "Leer desde imagen",
+      "runRead": "Leer QR",
+      "generated": "Código QR listo.",
+      "decoded": "Contenido leído.",
+      "none": "No se ha encontrado un código QR en esa imagen."
     }
   },
   "legal": {
     "lastUpdated": "Última actualización",
     "privacyTitle": "Política de privacidad",
     "termsTitle": "Condiciones de uso"
+  },
+  "notFound": {
+    "title": "Página no encontrada",
+    "body": "Esa dirección no existe en Kit. Vuelve al inicio y elige una herramienta.",
+    "home": "Volver al inicio"
+  },
+  "errorPage": {
+    "title": "Algo ha fallado",
+    "body": "La última acción ha fallado en este navegador. Puedes reintentar sin salir de la página.",
+    "retry": "Reintentar"
   }
 }

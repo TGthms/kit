@@ -11,8 +11,10 @@ import { Slider } from "@/components/ui/slider";
 import { Card, CardContent } from "@/components/ui/card";
 import { Textarea } from "@/components/ui/textarea";
 import { downloadBlob, downloadText, bytesToBlob } from "@/lib/utils";
+import JSZip from "jszip";
+import { ActionBar, ToolLimits, ToolShell, useToolHistory, loadPdfjs } from "./shared";
 import { mergePdfs, splitPdf, organizePdf, watermarkPdf, redactPdf, getPdfPageCount } from "@/lib/pdf/core";
-import { ActionBar, ToolShell, useToolHistory, loadPdfjs } from "./shared";
+
 
 export function PdfMerge() {
   const t = useTranslations("tools.pdf-merge");
@@ -226,7 +228,9 @@ export function PdfCompress() {
 
   return (
     <ToolShell toolId="pdf-compress">
-      <p className="text-sm text-muted-foreground">{t("note")}</p>
+      <ToolLimits>
+        <p>{t("note")}</p>
+      </ToolLimits>
       <FileDropzone accept="application/pdf" multiple={false} files={files} onChange={setFiles} />
       <div className="space-y-2">
         <Label>
@@ -326,7 +330,9 @@ export function PdfRedact() {
 
   return (
     <ToolShell toolId="pdf-redact">
-      <p className="text-sm text-amber-600 dark:text-amber-400">{t("note")}</p>
+      <ToolLimits>
+        <p className="text-amber-700 dark:text-amber-300">{t("note")}</p>
+      </ToolLimits>
       <FileDropzone accept="application/pdf" multiple={false} files={files} onChange={setFiles} />
       <div className="space-y-2">
         <Label>
@@ -352,18 +358,20 @@ export function PdfExtract() {
     if (!files[0]) return;
     setLoading(true);
     try {
-      const { extractPdfText, renderPdfThumbnail } = await loadPdfjs();
+      const { extractPdfText, renderPdfPagesToBlobs } = await loadPdfjs();
       if (mode === "text") {
         const text = await extractPdfText(await files[0].file.arrayBuffer());
         setResult(text);
         downloadText(text, "extract.txt");
       } else {
-        // Image extract via page raster is covered by compress path; export first page thumbnail as demo image extract
-        const url = await renderPdfThumbnail(await files[0].file.arrayBuffer(), 1, 1.5);
-        const res = await fetch(url);
-        const blob = await res.blob();
-        downloadBlob(blob, "page-1.jpg");
-        setResult("Image export: page 1 raster (embedded XObject extract is limited client-side).");
+        const blobs = await renderPdfPagesToBlobs(await files[0].file.arrayBuffer(), {
+          mime: "image/jpeg",
+          scale: 1.5,
+        });
+        const zip = new JSZip();
+        blobs.forEach((blob, i) => zip.file(`page-${String(i + 1).padStart(3, "0")}.jpg`, blob));
+        downloadBlob(await zip.generateAsync({ type: "blob" }), "pdf-pages.zip");
+        setResult(t("imagesReady", { count: blobs.length }));
       }
       toast.success(t("success"));
       log(mode, "success");

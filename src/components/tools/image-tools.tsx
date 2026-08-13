@@ -10,7 +10,8 @@ import { Label } from "@/components/ui/label";
 import { Slider } from "@/components/ui/slider";
 import { Switch } from "@/components/ui/switch";
 import { Progress } from "@/components/ui/progress";
-import { downloadBlob } from "@/lib/utils";
+import { downloadBlob, downloadMany } from "@/lib/utils";
+import { parseImageMetadata } from "@/lib/image/exif";
 import {
   compressImage,
   resizeImage,
@@ -100,10 +101,12 @@ export function ImageResize() {
     if (!files.length) return;
     setLoading(true);
     try {
+      const items = [];
       for (const f of files) {
         const blob = await resizeImage(f.file, { width, height, lockAspect: lock });
-        downloadBlob(blob, f.file.name.replace(/\.\w+$/, "") + "-resized.png");
+        items.push({ blob, name: f.file.name.replace(/\.\w+$/, "") + "-resized.png" });
       }
+      await downloadMany(items, "resized-images.zip");
       toast.success(t("success", { count: files.length }));
       log(`${width}x${height}`, "success");
     } catch (e) {
@@ -202,10 +205,12 @@ export function ImageConvert() {
     setLoading(true);
     try {
       const ext = mime.split("/")[1];
+      const items = [];
       for (const f of files) {
         const blob = await convertImage(f.file, mime);
-        downloadBlob(blob, f.file.name.replace(/\.\w+$/, "") + `.${ext}`);
+        items.push({ blob, name: f.file.name.replace(/\.\w+$/, "") + `.${ext}` });
       }
+      await downloadMany(items, "converted-images.zip");
       toast.success(t("success", { count: files.length }));
       log(mime, "success");
     } catch (e) {
@@ -241,16 +246,33 @@ export function ImageMetadata() {
   const tc = useTranslations("common");
   const log = useToolHistory("image-metadata");
   const [files, setFiles] = useState<FileItem[]>([]);
+  const [tags, setTags] = useState<Array<{ tag: string; value: string }>>([]);
   const [loading, setLoading] = useState(false);
+
+  const onFiles = async (items: FileItem[]) => {
+    setFiles(items);
+    if (!items[0]) {
+      setTags([]);
+      return;
+    }
+    try {
+      const bytes = new Uint8Array(await items[0].file.arrayBuffer());
+      setTags(parseImageMetadata(bytes));
+    } catch {
+      setTags([]);
+    }
+  };
 
   const run = async () => {
     if (!files.length) return;
     setLoading(true);
     try {
+      const items = [];
       for (const f of files) {
         const blob = await stripMetadata(f.file);
-        downloadBlob(blob, f.file.name.replace(/\.\w+$/, "") + "-clean.jpg");
+        items.push({ blob, name: f.file.name.replace(/\.\w+$/, "") + "-clean.jpg" });
       }
+      await downloadMany(items, "stripped-images.zip");
       toast.success(t("success", { count: files.length }));
       log(`${files.length}`, "success");
     } catch (e) {
@@ -264,7 +286,31 @@ export function ImageMetadata() {
   return (
     <ToolShell toolId="image-metadata">
       <p className="text-sm text-muted-foreground">{t("note")}</p>
-      <FileDropzone accept="image/*" files={files} onChange={setFiles} />
+      <FileDropzone accept="image/*" files={files} onChange={onFiles} />
+      {files[0] ? (
+        tags.length ? (
+          <div className="overflow-x-auto rounded-2xl border bg-card">
+            <table className="w-full text-left text-sm">
+              <thead>
+                <tr className="border-b text-muted-foreground">
+                  <th className="px-3 py-2 font-medium">{t("tag")}</th>
+                  <th className="px-3 py-2 font-medium">{t("value")}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {tags.map((row) => (
+                  <tr key={row.tag} className="border-b border-border/50 last:border-0">
+                    <td className="px-3 py-2 font-medium">{row.tag}</td>
+                    <td className="px-3 py-2 break-all">{row.value}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        ) : (
+          <p className="text-sm text-muted-foreground">{t("noExif")}</p>
+        )
+      ) : null}
       <ActionBar onRun={run} loading={loading} label={t("run")} disabled={!files.length} />
     </ToolShell>
   );
@@ -284,10 +330,12 @@ export function ImageAdjust() {
     if (!files.length) return;
     setLoading(true);
     try {
+      const items = [];
       for (const f of files) {
         const blob = await adjustImage(f.file, { brightness, contrast, saturation });
-        downloadBlob(blob, f.file.name.replace(/\.\w+$/, "") + "-adjusted.png");
+        items.push({ blob, name: f.file.name.replace(/\.\w+$/, "") + "-adjusted.png" });
       }
+      await downloadMany(items, "adjusted-images.zip");
       toast.success(t("success", { count: files.length }));
       log("adjusted", "success");
     } catch (e) {

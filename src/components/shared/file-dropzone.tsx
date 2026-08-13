@@ -3,7 +3,7 @@
 import { useCallback, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 import { Upload } from "lucide-react";
-import { cn, formatBytes } from "@/lib/utils";
+import { cn, formatBytes, isLargeFile } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 
 export interface FileItem {
@@ -58,6 +58,7 @@ export function FileDropzone({
         className={cn(
           "pressable-soft flex min-h-[9.5rem] cursor-pointer flex-col items-center justify-center rounded-2xl border-2 border-dashed px-4 py-8 text-center sm:min-h-[11rem] sm:py-10",
           "transition-[border-color,background-color,transform,box-shadow] duration-150 ease-out",
+          "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
           drag
             ? "border-primary bg-accent/50 surface-float"
             : "border-border bg-card hover:bg-accent/30 hover:border-primary/35"
@@ -75,8 +76,12 @@ export function FileDropzone({
         onClick={() => inputRef.current?.click()}
         role="button"
         tabIndex={0}
+        aria-label={t("dropFiles")}
         onKeyDown={(e) => {
-          if (e.key === "Enter" || e.key === " ") inputRef.current?.click();
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            inputRef.current?.click();
+          }
         }}
       >
         <Upload className="mb-3 h-8 w-8 text-primary" />
@@ -95,6 +100,10 @@ export function FileDropzone({
           }}
         />
       </div>
+
+      {files.some((f) => isLargeFile(f.file.size)) ? (
+        <p className="text-xs text-amber-700 dark:text-amber-300">{t("fileTooLarge")}</p>
+      ) : null}
 
       {files.length > 0 ? (
         <ul className="space-y-2">

@@ -109,7 +109,8 @@
     "batch": "Batch",
     "limitations": "Limitations",
     "clientSideOnly": "Runs in your browser only. Your files are never sent to a Kit server.",
-    "aboutMeUrl": "https://tgthms.github.io/about/"
+    "aboutMeUrl": "https://tgthms.github.io/about/",
+    "howItWorks": "How it works & limits"
   },
   "home": {
     "title": "What do you need to do?",
@@ -179,7 +180,8 @@
     "settings": "Open settings",
     "home": "Go home",
     "help": "Show this list",
-    "run": "Run the current tool"
+    "run": "Run the current tool",
+    "close": "Close"
   },
   "tools": {
     "pdf-merge": {
@@ -241,7 +243,8 @@
       "run": "Extract",
       "modeText": "Text",
       "modeImages": "Images",
-      "success": "Extraction finished."
+      "success": "Extraction finished.",
+      "imagesReady": "Exported {count} page image(s) as a ZIP."
     },
     "image-compress": {
       "name": "Compress images",
@@ -273,12 +276,15 @@
       "success": "Converted {count} image(s)."
     },
     "image-metadata": {
-      "name": "Strip image metadata",
-      "description": "Export a clean copy without EXIF and similar tags.",
+      "name": "Image metadata",
+      "description": "Inspect EXIF and similar tags, then export a clean copy without them.",
       "keywords": "image exif metadata strip privacy location",
       "run": "Strip metadata",
       "note": "Pixels are re-encoded in the browser so embedded metadata is dropped.",
-      "success": "Stripped metadata from {count} image(s)."
+      "success": "Stripped metadata from {count} image(s).",
+      "tag": "Tag",
+      "value": "Value",
+      "noExif": "No readable EXIF or text metadata in this file."
     },
     "image-adjust": {
       "name": "Adjust image",
@@ -416,11 +422,203 @@
       "keywords": "video extract audio mp3 soundtrack",
       "run": "Extract audio",
       "success": "Audio extracted."
+    },
+    "pdf-numbers": {
+      "name": "Page numbers",
+      "description": "Stamp a page label such as 1 / 12 on every page.",
+      "keywords": "pdf page numbers footer header pagination",
+      "run": "Add numbers",
+      "template": "Label ({page} and {pages})",
+      "position": "Placement",
+      "start": "Start at",
+      "headerLeft": "Header left",
+      "headerCenter": "Header center",
+      "headerRight": "Header right",
+      "footerLeft": "Footer left",
+      "footerCenter": "Footer center",
+      "footerRight": "Footer right",
+      "success": "Page numbers added."
+    },
+    "pdf-to-images": {
+      "name": "PDF → images",
+      "description": "Rasterize every page to JPEG and download them as a ZIP.",
+      "keywords": "pdf to image jpg jpeg zip pages export",
+      "run": "Export pages",
+      "limits": "Pages are drawn with PDF.js in this tab. Very large documents can be slow and use a lot of memory. This is a visual raster, not an extract of embedded image objects.",
+      "success": "Exported {count} page(s)."
+    },
+    "images-to-pdf": {
+      "name": "Images → PDF",
+      "description": "Stack photos into a PDF, one image per page.",
+      "keywords": "images to pdf jpg png combine",
+      "run": "Create PDF",
+      "success": "Built a PDF from {count} image(s)."
+    },
+    "pdf-flatten": {
+      "name": "Flatten forms",
+      "description": "Bake AcroForm fields into the page so they can no longer be edited.",
+      "keywords": "pdf flatten form fields acroform",
+      "run": "Flatten",
+      "limits": "Works on standard AcroForm fields. Dynamic XFA forms are not fully supported.",
+      "success": "Flattened {count} field(s)."
+    },
+    "pdf-metadata": {
+      "name": "PDF metadata",
+      "description": "View, edit, or strip title, author, and other document Info fields.",
+      "keywords": "Keywords",
+      "run": "Save metadata",
+      "strip": "Strip all fields",
+      "title": "Title",
+      "author": "Author",
+      "subject": "Subject",
+      "creator": "Creator",
+      "producer": "Producer",
+      "saved": "Metadata saved.",
+      "stripped": "Metadata stripped."
+    },
+    "pdf-protect": {
+      "name": "Lock or unlock PDF",
+      "description": "Add or remove a user password. Encryption stays in this browser.",
+      "keywords": "pdf password lock unlock encrypt decrypt",
+      "run": "Apply",
+      "lock": "Lock",
+      "unlock": "Unlock",
+      "password": "Password",
+      "limits": "Uses a client-side PDF encryption library. Some older or unusual encryption revisions may not unlock. Kit never sends the file or password to a server.",
+      "success": "PDF is ready."
+    },
+    "image-rotate": {
+      "name": "Rotate & flip",
+      "description": "Turn images 90° at a time or flip them horizontally or vertically.",
+      "keywords": "image rotate flip mirror",
+      "run": "Apply",
+      "operation": "Transform",
+      "rot90": "Rotate 90°",
+      "rot180": "Rotate 180°",
+      "rot270": "Rotate 270°",
+      "flipH": "Flip horizontal",
+      "flipV": "Flip vertical",
+      "success": "Transformed {count} image(s)."
+    },
+    "image-filters": {
+      "name": "Image filters",
+      "description": "Apply grayscale, sepia, or invert to one or many photos.",
+      "keywords": "image filter grayscale sepia invert",
+      "run": "Apply",
+      "filter": "Filter",
+      "grayscale": "Grayscale",
+      "sepia": "Sepia",
+      "invert": "Invert",
+      "success": "Filtered {count} image(s)."
+    },
+    "image-favicon": {
+      "name": "Favicon pack",
+      "description": "Export a source image as common icon sizes in a ZIP.",
+      "keywords": "favicon icon 16 32 180 192 512 apple touch",
+      "run": "Export icons",
+      "note": "Exports PNG files at 16, 32, 48, 180, 192, and 512 pixels.",
+      "success": "Icon pack is ready."
+    },
+    "video-gif": {
+      "name": "Video → GIF",
+      "description": "Turn a short clip into a looping GIF in the browser.",
+      "keywords": "video gif clip convert ffmpeg",
+      "run": "Make GIF",
+      "limits": "Uses FFmpeg WASM. Keep clips short — GIF encode is slow and memory-heavy. Palette and codec support follow the in-browser build.",
+      "success": "GIF is ready."
+    },
+    "xml-json": {
+      "name": "XML ↔ JSON",
+      "description": "Convert XML documents to JSON, or JSON back to XML.",
+      "keywords": "xml json convert parse",
+      "run": "Convert",
+      "toJson": "XML → JSON",
+      "toXml": "JSON → XML",
+      "success": "Converted."
+    },
+    "sql-format": {
+      "name": "SQL formatter",
+      "description": "Pretty-print SQL so clauses and lists are easier to read.",
+      "keywords": "sql format pretty query",
+      "run": "Format",
+      "success": "SQL formatted."
+    },
+    "regex-tester": {
+      "name": "Regex tester",
+      "description": "Try a regular expression against sample text and replace matches.",
+      "keywords": "regex regular expression test replace",
+      "pattern": "Pattern",
+      "flags": "Flags",
+      "input": "Sample text",
+      "replace": "Replacement",
+      "runReplace": "Replace",
+      "matches": "{count, plural, one {# match} other {# matches}}",
+      "success": "Replacement ready."
+    },
+    "hash-generator": {
+      "name": "Hash generator",
+      "description": "SHA-1/256/384/512 and MD5 of text or a file, computed locally.",
+      "keywords": "hash sha256 md5 sha1 checksum digest",
+      "run": "Hash",
+      "algo": "Algorithm",
+      "digest": "Digest",
+      "limits": "Hashes are computed in this browser (Web Crypto for SHA, a local MD5 implementation). MD5 is not collision-resistant — use it only for checksums.",
+      "success": "Hash ready."
+    },
+    "uuid-generator": {
+      "name": "UUID generator",
+      "description": "Create version 4 or version 7 UUIDs on this device.",
+      "keywords": "uuid guid v4 v7 generate",
+      "run": "Generate",
+      "count": "How many",
+      "version": "Version",
+      "success": "UUIDs generated."
+    },
+    "color-convert": {
+      "name": "Color converter",
+      "description": "Convert between HEX, RGB, HSL, and HSV, with a color picker.",
+      "keywords": "color hex rgb hsl hsv picker",
+      "picker": "Color picker",
+      "invalid": "Enter a 3- or 6-digit hex color."
+    },
+    "lorem-ipsum": {
+      "name": "Lorem ipsum",
+      "description": "Generate placeholder paragraphs, sentences, or words.",
+      "keywords": "lorem ipsum placeholder dummy text",
+      "run": "Generate",
+      "count": "Count",
+      "mode": "Mode",
+      "paragraphs": "Paragraphs",
+      "sentences": "Sentences",
+      "words": "Words",
+      "success": "Text generated."
+    },
+    "qr-code": {
+      "name": "QR code",
+      "description": "Create a QR code from text, or read one from an image.",
+      "keywords": "qr code generate scan read barcode",
+      "run": "Generate",
+      "payload": "Text or URL",
+      "read": "Read from image",
+      "runRead": "Read QR",
+      "generated": "QR code ready.",
+      "decoded": "QR contents read.",
+      "none": "No QR code found in that image."
     }
   },
   "legal": {
     "lastUpdated": "Last updated",
     "privacyTitle": "Privacy Policy",
     "termsTitle": "Terms of Use"
+  },
+  "notFound": {
+    "title": "Page not found",
+    "body": "That address isn’t in Kit. Head home and pick a tool from there.",
+    "home": "Back to home"
+  },
+  "errorPage": {
+    "title": "Something went wrong",
+    "body": "The last action failed in this browser. You can try again without leaving the page.",
+    "retry": "Try again"
   }
 }

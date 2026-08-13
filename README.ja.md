@@ -8,7 +8,7 @@
 
 Kit は、PDF・画像・音声/動画・変換・テキスト処理を端末上で完結させるユーティリティ集です。処理はブラウザ内で行われ、ファイルを Kit のサーバーへ送ることはありません。
 
-**サイト:** https://TGthms.github.io/kit/
+**サイト:** https://trykit.pages.dev
 
 **作者:** https://tgthms.github.io/about/
 
@@ -23,27 +23,27 @@ Kit は、PDF・画像・音声/動画・変換・テキスト処理を端末上
 ## ツール一覧
 
 ### PDF
-結合、分割、ページ整理、圧縮、透かし、覆い（見た目）、テキスト/画像の取り出し。
+結合、分割、ページ整理、圧縮、透かし、覆い（見た目）、テキスト/全ページ画像の取り出し、ページ番号、PDF↔画像、フォーム固定、メタデータ、ロック/解除。
 
 ### 画像
-圧縮、リサイズ、切り抜き、形式変換、メタデータ削除、明るさ/コントラスト/彩度。
+圧縮、リサイズ、切り抜き、形式変換、EXIF の表示と削除、明るさ/コントラスト/彩度、回転/反転、フィルター、ファビコン一式。
 
 ### 音声・動画
-形式変換、切り取り、速度と音量、音声の取り出し  
+より多くの形式変換、波形つき切り取り、速度と音量、音声の取り出し、クリップ → GIF  
 *（FFmpeg WASM。大きなファイルは遅く、コーデック対応にも限りがあります）*。
 
 ### 変換
 スマート変換ハブ（JSON、YAML、CSV、ZIP、画像など）。
 
 ### テキスト・データ
-JSON / YAML / TOML、Markdown ↔ HTML、CSV ↔ JSON、テキスト比較、Base64、URL エンコード。
+JSON / YAML / TOML、Markdown ↔ HTML、CSV ↔ JSON、XML ↔ JSON、SQL 整形、正規表現、テキスト比較、Base64、URL、ハッシュ（SHA/MD5）、UUID、カラー、Lorem ipsum、QR。
 
 ## プライバシー
 
 - **端末上**で処理
 - 履歴は**要約のみ**（ファイル本体は保存しません）
 - 設定はブラウザのローカルストレージ
-- [プライバシーポリシー](https://TGthms.github.io/kit/ja/privacy/) · [利用規約](https://TGthms.github.io/kit/ja/terms/)
+- [プライバシーポリシー](https://trykit.pages.dev/ja/privacy/) · [利用規約](https://trykit.pages.dev/ja/terms/)
 
 ## ローカル開発
 

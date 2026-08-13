@@ -8,7 +8,7 @@
 
 Kit 是一套在本地运行的实用工具：PDF、图片、音视频、格式转换与文本处理。处理过程发生在你的浏览器中，文件不会上传到任何 Kit 服务器。
 
-**网站：** https://TGthms.github.io/kit/
+**网站：** https://trykit.pages.dev
 
 **作者：** https://tgthms.github.io/about/
 
@@ -23,27 +23,27 @@ Kit 是一套在本地运行的实用工具：PDF、图片、音视频、格式�
 ## 工具一览
 
 ### PDF
-合并、拆分、整理页面、压缩、水印、遮盖（视觉遮盖）、提取文本或图片。
+合并、拆分、整理页面、压缩、水印、遮盖（视觉遮盖）、提取文本或全部页面图片、页码、PDF↔图片、压平表单、元数据、锁定/解锁。
 
 ### 图片
-压缩、调整尺寸、裁剪、格式转换、清除元数据、亮度/对比度/饱和度。
+压缩、调整尺寸、裁剪、格式转换、查看并清除 EXIF、亮度/对比度/饱和度、旋转/翻转、滤镜、网站图标包。
 
 ### 音视频
-格式转换、裁剪、速度与音量、提取音频  
+更多格式转换、带波形的裁剪、速度与音量、提取音频、片段 → GIF  
 *（FFmpeg WASM；大文件可能较慢，编解码支持有限）*。
 
 ### 转换
 智能转换中心（JSON、YAML、CSV、ZIP、图片等）。
 
 ### 文本与数据
-JSON / YAML / TOML、Markdown ↔ HTML、CSV ↔ JSON、文本对比、Base64、URL 编解码。
+JSON / YAML / TOML、Markdown ↔ HTML、CSV ↔ JSON、XML ↔ JSON、SQL 格式化、正则、文本对比、Base64、URL、哈希（SHA/MD5）、UUID、颜色、占位文本、二维码。
 
 ## 隐私
 
 - 在**本机浏览器**中处理
 - 历史只保存**摘要**，不保存文件内容
 - 偏好设置保存在浏览器本地存储
-- [隐私政策](https://TGthms.github.io/kit/zh/privacy/) · [使用条款](https://TGthms.github.io/kit/zh/terms/)
+- [隐私政策](https://trykit.pages.dev/zh/privacy/) · [使用条款](https://trykit.pages.dev/zh/terms/)
 
 ## 本地开发
 

@@ -8,7 +8,7 @@
 
 Kit is a set of PDF, image, media, converter, and text tools that run on your device. Processing stays in the browser—nothing is uploaded to a Kit server.
 
-**Live site:** https://TGthms.github.io/kit/
+**Live site:** https://trykit.pages.dev
 
 **About the author:** https://tgthms.github.io/about/
 
@@ -28,37 +28,45 @@ Interface and legal pages: **English · Español · 中文 · 日本語**
 - Compress (lossy page re-encode)
 - Watermark / header / footer
 - Redact (visual cover—see in-app note)
-- Extract text / page images
+- Extract text / all-page image ZIP
+- Page numbers
+- PDF → images (per-page ZIP) and Images → PDF
+- Flatten form fields
+- Metadata view / edit / strip
+- Lock or unlock with a password (client-side)
 
 ### Image
 - Compress, Resize, Crop
 - Format convert (JPEG / PNG / WEBP)
-- Strip metadata
+- View EXIF and strip metadata
 - Adjust (brightness / contrast / saturation)
+- Rotate / flip, simple filters
+- Favicon / multi-size icon export
 
 ### Audio
-- Convert (MP3 / WAV / OGG), Trim, Speed & volume  
+- Convert (MP3 / WAV / OGG / AAC / FLAC / M4A), Trim with waveform, Speed & volume  
   *(FFmpeg WASM; large files may be slow; limited codecs)*
 
 ### Video
-- Convert (MP4 / WEBM), Trim, Speed & volume, Extract audio  
+- Convert (MP4 / WEBM / GIF / MOV / MKV), Trim with waveform, Speed & volume, Extract audio, Clip → GIF  
   *(FFmpeg WASM; large files may be slow; limited codecs)*
 
 ### File convert
 - Smart convert hub (JSON, YAML, CSV, ZIP, images…)
 
-
 ### Text & Data
 - JSON / YAML / TOML format & validate
-- Markdown ↔ HTML, CSV ↔ JSON
+- Markdown ↔ HTML, CSV ↔ JSON, XML ↔ JSON
+- SQL formatter, regex tester
 - Text diff, Base64, URL encode/decode
+- Hash (SHA / MD5), UUID, color converter, Lorem ipsum, QR generate / read
 
 ## Privacy
 
 - Tools process data **on your device**
 - History stores **metadata only** (not file contents)
 - Preferences stay in local storage
-- [Privacy Policy](https://TGthms.github.io/kit/en/privacy/) · [Terms of Use](https://TGthms.github.io/kit/en/terms/)
+- [Privacy Policy](https://trykit.pages.dev/en/privacy/) · [Terms of Use](https://trykit.pages.dev/en/terms/)
 
 ## Local development
 
@@ -104,7 +112,8 @@ NEXT_PUBLIC_BASE_PATH=/kit npm run build
 # Upload contents of out/ to your Pages target, or use actions/upload-pages-artifact
 ```
 
-Site URL: `https://TGthms.github.io/kit/`
+GitHub Pages URL: `https://TGthms.github.io/kit/`  
+Canonical live site: `https://trykit.pages.dev`
 
 ## Tech stack
 

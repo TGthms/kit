@@ -27,6 +27,22 @@ import {
   GitCompare,
   Binary,
   Link2,
+  Hash,
+  Images,
+  FileImage,
+  Layers,
+  FilePenLine,
+  Lock,
+  RotateCw,
+  Sparkles,
+  AppWindow,
+  FileJson,
+  Database,
+  Search,
+  Fingerprint,
+  Palette,
+  Type,
+  QrCode,
 } from "lucide-react";
 
 /** Precise product categories (one job family each). */
@@ -40,12 +56,21 @@ export type ToolId =
   | "pdf-watermark"
   | "pdf-redact"
   | "pdf-extract"
+  | "pdf-numbers"
+  | "pdf-to-images"
+  | "images-to-pdf"
+  | "pdf-flatten"
+  | "pdf-metadata"
+  | "pdf-protect"
   | "image-compress"
   | "image-resize"
   | "image-crop"
   | "image-convert"
   | "image-metadata"
   | "image-adjust"
+  | "image-rotate"
+  | "image-filters"
+  | "image-favicon"
   | "audio-convert"
   | "audio-trim"
   | "audio-speed"
@@ -53,6 +78,7 @@ export type ToolId =
   | "video-trim"
   | "video-speed"
   | "video-extract-audio"
+  | "video-gif"
   | "convert-hub"
   | "json-format"
   | "yaml-format"
@@ -61,7 +87,15 @@ export type ToolId =
   | "csv-json"
   | "text-diff"
   | "base64"
-  | "url-encode";
+  | "url-encode"
+  | "xml-json"
+  | "sql-format"
+  | "regex-tester"
+  | "hash-generator"
+  | "uuid-generator"
+  | "color-convert"
+  | "lorem-ipsum"
+  | "qr-code";
 
 export interface ToolDef {
   id: ToolId;
@@ -78,6 +112,12 @@ export const tools: ToolDef[] = [
   { id: "pdf-watermark", category: "pdf", icon: Stamp },
   { id: "pdf-redact", category: "pdf", icon: EyeOff },
   { id: "pdf-extract", category: "pdf", icon: FileSearch },
+  { id: "pdf-numbers", category: "pdf", icon: Hash },
+  { id: "pdf-to-images", category: "pdf", icon: Images },
+  { id: "images-to-pdf", category: "pdf", icon: FileImage },
+  { id: "pdf-flatten", category: "pdf", icon: Layers },
+  { id: "pdf-metadata", category: "pdf", icon: FilePenLine },
+  { id: "pdf-protect", category: "pdf", icon: Lock },
   // Images
   { id: "image-compress", category: "image", icon: ImageDown },
   { id: "image-resize", category: "image", icon: Scaling },
@@ -85,6 +125,9 @@ export const tools: ToolDef[] = [
   { id: "image-convert", category: "image", icon: RefreshCw },
   { id: "image-metadata", category: "image", icon: Eraser },
   { id: "image-adjust", category: "image", icon: SlidersHorizontal },
+  { id: "image-rotate", category: "image", icon: RotateCw },
+  { id: "image-filters", category: "image", icon: Sparkles },
+  { id: "image-favicon", category: "image", icon: AppWindow },
   // Audio
   { id: "audio-convert", category: "audio", icon: AudioLines },
   { id: "audio-trim", category: "audio", icon: Timer },
@@ -94,6 +137,7 @@ export const tools: ToolDef[] = [
   { id: "video-trim", category: "video", icon: Timer },
   { id: "video-speed", category: "video", icon: Gauge },
   { id: "video-extract-audio", category: "video", icon: Music },
+  { id: "video-gif", category: "video", icon: Film },
   // Cross-format converters
   { id: "convert-hub", category: "convert", icon: ArrowLeftRight },
   // Text & data
@@ -105,6 +149,14 @@ export const tools: ToolDef[] = [
   { id: "text-diff", category: "text", icon: GitCompare },
   { id: "base64", category: "text", icon: Binary },
   { id: "url-encode", category: "text", icon: Link2 },
+  { id: "xml-json", category: "text", icon: FileJson },
+  { id: "sql-format", category: "text", icon: Database },
+  { id: "regex-tester", category: "text", icon: Search },
+  { id: "hash-generator", category: "text", icon: Fingerprint },
+  { id: "uuid-generator", category: "text", icon: Hash },
+  { id: "color-convert", category: "text", icon: Palette },
+  { id: "lorem-ipsum", category: "text", icon: Type },
+  { id: "qr-code", category: "text", icon: QrCode },
 ];
 
 export const toolMap = Object.fromEntries(tools.map((t) => [t.id, t])) as Record<
