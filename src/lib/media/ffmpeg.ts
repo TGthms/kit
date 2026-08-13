@@ -30,6 +30,30 @@ export function videoConvertArgs(input: string, output: string, format: string):
   return ["-i", input, output];
 }
 
+export function audioSpeedArgs(input: string, output: string, speed: number, volume: number): string[] {
+  const atempo = Math.min(2, Math.max(0.5, speed));
+  return ["-i", input, "-filter:a", `atempo=${atempo},volume=${volume}`, output];
+}
+
+export function videoSpeedArgs(input: string, output: string, speed: number, volume: number): string[] {
+  const atempo = Math.min(2, Math.max(0.5, speed));
+  return [
+    "-i",
+    input,
+    "-filter_complex",
+    `[0:v]setpts=${(1 / speed).toFixed(3)}*PTS[v];[0:a]atempo=${atempo},volume=${volume}[a]`,
+    "-map",
+    "[v]",
+    "-map",
+    "[a]",
+    output,
+  ];
+}
+
+export function videoExtractAudioArgs(input: string, output: string): string[] {
+  return ["-i", input, "-vn", "-acodec", "libmp3lame", output];
+}
+
 export function gifClipArgs(input: string, output: string, start: string, end: string): string[] {
   return [
     "-ss",

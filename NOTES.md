@@ -19,7 +19,7 @@ Current baseline: **29 tools** (registry lists 29 ids), Next.js 15 static-export
 | Form-field flatten | No `getForm()` / `flatten()` path. |
 | Metadata edit / strip | No title/author/subject/keywords/creator/producer UI. Image metadata is the only metadata tool, and it only strips. |
 | OCR for scanned pages | Not present. `extractPdfText` is pdf.js text-layer only. Client-side OCR (Tesseract.js + trained data) is a large extra download that would break the static PWA size bar — **defer**. Digital-PDF extract stays as-is. |
-| Batch | Merge is multi-file. Split / organize / compress / watermark / redact / extract are `multiple={false}`. Watermark and compress are naturally batchable. |
+| Batch | Merge, compress, watermark, and page-numbers accept multiple files (ZIP when count > 1). Split / organize / redact / extract stay single-file by nature. |
 | Redact UX | Hard-coded center band box; no draw-to-redact. Visual cover only (already disclosed). |
 
 ### Image (6 tools: compress, resize, crop, convert, metadata, adjust)
@@ -41,8 +41,8 @@ Current baseline: **29 tools** (registry lists 29 ids), Next.js 15 static-export
 | Waveform preview | None. |
 | Trim-by-drag | Trim is two numeric timestamp fields (`start`/`end` strings). No drag handles. |
 | GIF from video clip | Missing. |
-| Progress / cancel | Convert/trim show `<Progress>`. Speed and extract-audio do not. No cancel / `ffmpeg.terminate()`. |
-| Batch | All AV tools force `multiple={false}`. Convert is the only naturally batchable job; WASM is slow so sequential + ZIP is the honest path. |
+| Progress / cancel | Convert, trim, speed, extract-audio, and GIF show progress and can abort (FFmpeg `terminate`). |
+| Batch | Convert accepts multiple files (sequential + ZIP). Trim / speed / GIF stay one timeline. |
 
 ### Convert hub (1)
 
@@ -90,7 +90,7 @@ TOML “format” only validates and returns trimmed original (`formatToml`).
 | Testing | No Vitest/Jest. Zero `*.test.ts`. Riskiest logic (`parsePageRange`, conversions, future EXIF) is untested. |
 | Error boundaries | No `not-found.tsx` (locale-aware). No `error.tsx` on `[locale]` or `tools/[toolId]`. Unknown tool ids call `notFound()` but the UI is the default Next 404. |
 | Accessibility | Focus rings exist on `Button`. Icon-only close on shortcuts overlay is `×` without `aria-label`. Dropzone keyboard works. Contrast relies on shadcn tokens — needs a light/dark pass. |
-| Large-file / cancel | FFmpeg progress callback exists; no abort. PDF compress loops pages with no yield/cancel. |
+| Large-file / cancel | FFmpeg jobs accept AbortSignal and terminate the engine. PDF compress checks cancel between pages via `forEachJobIndex`. |
 | Metadata / OG | No per-tool OG tags sourced from i18n. |
 | README / deploy URL | README still advertises `https://TGthms.github.io/kit/` as the live site. Product context says live is `https://trykit.pages.dev`. |
 | Privacy | Processing is client-side. pdf.js worker + ffmpeg-core load from jsDelivr (engine, not user files). New tools must not POST file bytes. |

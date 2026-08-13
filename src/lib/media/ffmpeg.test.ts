@@ -1,5 +1,12 @@
 import { describe, expect, it } from "vitest";
-import { audioConvertArgs, gifClipArgs, videoConvertArgs } from "./ffmpeg";
+import {
+  audioConvertArgs,
+  audioSpeedArgs,
+  gifClipArgs,
+  videoConvertArgs,
+  videoExtractAudioArgs,
+  videoSpeedArgs,
+} from "./ffmpeg";
 import { mixToMono, peaksFromChannel } from "./peaks";
 
 describe("ffmpeg args", () => {
@@ -14,6 +21,22 @@ describe("ffmpeg args", () => {
     ]);
     expect(audioConvertArgs("in.wav", "out.flac", "flac").includes("flac")).toBe(true);
     expect(videoConvertArgs("in.mp4", "out.gif", "gif")).toContain("fps=12,scale=480:-1:flags=lanczos");
+    expect(audioSpeedArgs("in.mp3", "out.mp3", 1.25, 1)).toEqual([
+      "-i",
+      "in.mp3",
+      "-filter:a",
+      "atempo=1.25,volume=1",
+      "out.mp3",
+    ]);
+    expect(videoSpeedArgs("in.mp4", "out.mp4", 2, 0.5)[2]).toBe("-filter_complex");
+    expect(videoExtractAudioArgs("in.mp4", "audio.mp3")).toEqual([
+      "-i",
+      "in.mp4",
+      "-vn",
+      "-acodec",
+      "libmp3lame",
+      "audio.mp3",
+    ]);
     expect(gifClipArgs("in.mp4", "out.gif", "1", "3")).toEqual([
       "-ss",
       "1",

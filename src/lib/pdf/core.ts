@@ -65,12 +65,12 @@ export async function organizePdf(
 }
 
 export async function watermarkPdf(
-  buf: ArrayBuffer,
+  buf: PdfInput,
   text: string,
   position: "header" | "footer" | "center",
   opacity: number
 ): Promise<Uint8Array> {
-  const doc = await PDFDocument.load(buf, { ignoreEncryption: true });
+  const doc = await PDFDocument.load(asPdfBytes(buf), { ignoreEncryption: true });
   const font = await doc.embedFont(StandardFonts.Helvetica);
   const pages = doc.getPages();
   for (const page of pages) {

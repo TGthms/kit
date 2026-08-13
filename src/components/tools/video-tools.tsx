@@ -8,9 +8,16 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Slider } from "@/components/ui/slider";
 import { Progress } from "@/components/ui/progress";
-import { downloadBlob, bytesToBlob } from "@/lib/utils";
+import { downloadBlob, downloadMany, bytesToBlob } from "@/lib/utils";
 import { MediaTimeline } from "@/components/shared/media-timeline";
-import { VIDEO_FORMATS, gifClipArgs, videoConvertArgs } from "@/lib/media/ffmpeg";
+import {
+  VIDEO_FORMATS,
+  gifClipArgs,
+  videoConvertArgs,
+  videoExtractAudioArgs,
+  videoSpeedArgs,
+} from "@/lib/media/ffmpeg";
+import { runSequentialBatch, stemmedName } from "@/lib/jobs/batch";
 import { ActionBar, ToolLimits, ToolShell, useToolHistory, loadFfmpeg } from "./shared";
 
 const selectClass =
@@ -27,35 +34,40 @@ export function VideoConvert() {
   const [controller, setController] = useState<AbortController | null>(null);
 
   const run = async () => {
-    if (!files[0]) return;
+    if (!files.length) return;
     const ac = new AbortController();
     setController(ac);
     setLoading(true);
     setProgress(0);
     try {
-      const data = new Uint8Array(await files[0].file.arrayBuffer());
-      const ext = files[0].file.name.split(".").pop() || "bin";
-      const input = `input.${ext}`;
-      const output = `output.${format}`;
-      const args = videoConvertArgs(input, output, format);
       const { runFFmpeg } = await loadFfmpeg();
-      try {
-        const out = await runFFmpeg(input, data, output, args, (p) => setProgress(Math.round(p * 100)), ac.signal);
-        downloadBlob(bytesToBlob(out, "application/octet-stream"), output);
-      } catch (err) {
-        if (ac.signal.aborted) throw err;
-        const out = await runFFmpeg(
-          input,
-          data,
-          output,
-          ["-i", input, output],
-          (p) => setProgress(Math.round(p * 100)),
-          ac.signal
-        );
-        downloadBlob(bytesToBlob(out, "application/octet-stream"), output);
-      }
+      const items = await runSequentialBatch(
+        files,
+        async (f, index) => {
+          const data = new Uint8Array(await f.file.arrayBuffer());
+          const ext = f.file.name.split(".").pop() || "bin";
+          const input = `input-${index}.${ext}`;
+          const output = `output-${index}.${format}`;
+          const report = (p: number) =>
+            setProgress(Math.round(((index + p) / files.length) * 100));
+          const args = videoConvertArgs(input, output, format);
+          let out: Uint8Array;
+          try {
+            out = await runFFmpeg(input, data, output, args, report, ac.signal);
+          } catch (err) {
+            if (ac.signal.aborted) throw err;
+            out = await runFFmpeg(input, data, output, ["-i", input, output], report, ac.signal);
+          }
+          return {
+            blob: bytesToBlob(out, "application/octet-stream"),
+            name: stemmedName(f.file.name, "-converted", format),
+          };
+        },
+        { signal: ac.signal }
+      );
+      await downloadMany(items, `converted-video.${format}.zip`);
       toast.success(t("success"));
-      log(format, "success");
+      log(`${format} n=${files.length}`, "success");
     } catch (e) {
       if (e instanceof DOMException && e.name === "AbortError") toast.error(tc("cancel"));
       else toast.error(e instanceof Error ? e.message : tc("error"));
@@ -81,13 +93,13 @@ export function VideoConvert() {
           ))}
         </select>
       </div>
-      <FileDropzone accept="video/*" multiple={false} files={files} onChange={setFiles} />
+      <FileDropzone accept="video/*" files={files} onChange={setFiles} />
       {loading && <Progress value={progress} />}
       <ActionBar
         onRun={run}
         loading={loading}
         label={t("run")}
-        disabled={!files[0]}
+        disabled={!files.length}
         onCancel={() => controller?.abort()}
       />
     </ToolShell>
@@ -185,36 +197,39 @@ export function VideoSpeed() {
   const [speed, setSpeed] = useState(1.25);
   const [volume, setVolume] = useState(1);
   const [loading, setLoading] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const [controller, setController] = useState<AbortController | null>(null);
 
   const run = async () => {
     if (!files[0]) return;
+    const ac = new AbortController();
+    setController(ac);
     setLoading(true);
+    setProgress(0);
     try {
       const data = new Uint8Array(await files[0].file.arrayBuffer());
       const ext = files[0].file.name.split(".").pop() || "mp4";
       const input = `input.${ext}`;
       const output = `processed.${ext}`;
-      const atempo = Math.min(2, Math.max(0.5, speed));
       const { runFFmpeg } = await loadFfmpeg();
-      const out = await runFFmpeg(input, data, output, [
-        "-i",
+      const out = await runFFmpeg(
         input,
-        "-filter_complex",
-        `[0:v]setpts=${(1 / speed).toFixed(3)}*PTS[v];[0:a]atempo=${atempo},volume=${volume}[a]`,
-        "-map",
-        "[v]",
-        "-map",
-        "[a]",
+        data,
         output,
-      ]);
+        videoSpeedArgs(input, output, speed, volume),
+        (p) => setProgress(Math.round(p * 100)),
+        ac.signal
+      );
       downloadBlob(bytesToBlob(out, "application/octet-stream"), output);
       toast.success(t("success"));
       log(`speed=${speed}`, "success");
     } catch (e) {
-      toast.error(e instanceof Error ? e.message : tc("error"));
+      if (e instanceof DOMException && e.name === "AbortError") toast.error(tc("cancel"));
+      else toast.error(e instanceof Error ? e.message : tc("error"));
       log("failed", "failed");
     } finally {
       setLoading(false);
+      setController(null);
     }
   };
 
@@ -233,7 +248,14 @@ export function VideoSpeed() {
         </Label>
         <Slider value={[volume]} min={0} max={2} step={0.05} onValueChange={(v) => setVolume(v[0])} />
       </div>
-      <ActionBar onRun={run} loading={loading} label={t("run")} disabled={!files[0]} />
+      {loading && <Progress value={progress} />}
+      <ActionBar
+        onRun={run}
+        loading={loading}
+        label={t("run")}
+        disabled={!files[0]}
+        onCancel={() => controller?.abort()}
+      />
     </ToolShell>
   );
 }
@@ -244,37 +266,53 @@ export function VideoExtractAudio() {
   const log = useToolHistory("video-extract-audio");
   const [files, setFiles] = useState<FileItem[]>([]);
   const [loading, setLoading] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const [controller, setController] = useState<AbortController | null>(null);
 
   const run = async () => {
     if (!files[0]) return;
+    const ac = new AbortController();
+    setController(ac);
     setLoading(true);
+    setProgress(0);
     try {
       const data = new Uint8Array(await files[0].file.arrayBuffer());
       const ext = files[0].file.name.split(".").pop() || "mp4";
+      const input = `input.${ext}`;
+      const output = "audio.mp3";
       const { runFFmpeg } = await loadFfmpeg();
-      const out = await runFFmpeg(`input.${ext}`, data, "audio.mp3", [
-        "-i",
-        `input.${ext}`,
-        "-vn",
-        "-acodec",
-        "libmp3lame",
-        "audio.mp3",
-      ]);
-      downloadBlob(bytesToBlob(out, "audio/mpeg"), "audio.mp3");
+      const out = await runFFmpeg(
+        input,
+        data,
+        output,
+        videoExtractAudioArgs(input, output),
+        (p) => setProgress(Math.round(p * 100)),
+        ac.signal
+      );
+      downloadBlob(bytesToBlob(out, "audio/mpeg"), output);
       toast.success(t("success"));
       log(files[0].file.name, "success");
     } catch (e) {
-      toast.error(e instanceof Error ? e.message : tc("error"));
+      if (e instanceof DOMException && e.name === "AbortError") toast.error(tc("cancel"));
+      else toast.error(e instanceof Error ? e.message : tc("error"));
       log("failed", "failed");
     } finally {
       setLoading(false);
+      setController(null);
     }
   };
 
   return (
     <ToolShell toolId="video-extract-audio">
       <FileDropzone accept="video/*" multiple={false} files={files} onChange={setFiles} />
-      <ActionBar onRun={run} loading={loading} label={t("run")} disabled={!files[0]} />
+      {loading && <Progress value={progress} />}
+      <ActionBar
+        onRun={run}
+        loading={loading}
+        label={t("run")}
+        disabled={!files[0]}
+        onCancel={() => controller?.abort()}
+      />
     </ToolShell>
   );
 }

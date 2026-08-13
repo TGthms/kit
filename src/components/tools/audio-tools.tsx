@@ -8,9 +8,10 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Slider } from "@/components/ui/slider";
 import { Progress } from "@/components/ui/progress";
-import { downloadBlob, bytesToBlob } from "@/lib/utils";
+import { downloadBlob, downloadMany, bytesToBlob } from "@/lib/utils";
 import { MediaTimeline } from "@/components/shared/media-timeline";
-import { AUDIO_FORMATS, audioConvertArgs } from "@/lib/media/ffmpeg";
+import { AUDIO_FORMATS, audioConvertArgs, audioSpeedArgs } from "@/lib/media/ffmpeg";
+import { runSequentialBatch, stemmedName } from "@/lib/jobs/batch";
 import { ActionBar, ToolLimits, ToolShell, useToolHistory, loadFfmpeg } from "./shared";
 
 const selectClass =
@@ -27,35 +28,40 @@ export function AudioConvert() {
   const [controller, setController] = useState<AbortController | null>(null);
 
   const run = async () => {
-    if (!files[0]) return;
+    if (!files.length) return;
     const ac = new AbortController();
     setController(ac);
     setLoading(true);
     setProgress(0);
     try {
-      const data = new Uint8Array(await files[0].file.arrayBuffer());
-      const ext = files[0].file.name.split(".").pop() || "bin";
-      const input = `input.${ext}`;
-      const output = `output.${format}`;
-      const args = audioConvertArgs(input, output, format);
       const { runFFmpeg } = await loadFfmpeg();
-      try {
-        const out = await runFFmpeg(input, data, output, args, (p) => setProgress(Math.round(p * 100)), ac.signal);
-        downloadBlob(bytesToBlob(out, "application/octet-stream"), output);
-      } catch (err) {
-        if (ac.signal.aborted) throw err;
-        const out = await runFFmpeg(
-          input,
-          data,
-          output,
-          ["-i", input, "-vn", output],
-          (p) => setProgress(Math.round(p * 100)),
-          ac.signal
-        );
-        downloadBlob(bytesToBlob(out, "application/octet-stream"), output);
-      }
+      const items = await runSequentialBatch(
+        files,
+        async (f, index) => {
+          const data = new Uint8Array(await f.file.arrayBuffer());
+          const ext = f.file.name.split(".").pop() || "bin";
+          const input = `input-${index}.${ext}`;
+          const output = `output-${index}.${format}`;
+          const report = (p: number) =>
+            setProgress(Math.round(((index + p) / files.length) * 100));
+          const args = audioConvertArgs(input, output, format);
+          let out: Uint8Array;
+          try {
+            out = await runFFmpeg(input, data, output, args, report, ac.signal);
+          } catch (err) {
+            if (ac.signal.aborted) throw err;
+            out = await runFFmpeg(input, data, output, ["-i", input, "-vn", output], report, ac.signal);
+          }
+          return {
+            blob: bytesToBlob(out, "application/octet-stream"),
+            name: stemmedName(f.file.name, "-converted", format),
+          };
+        },
+        { signal: ac.signal }
+      );
+      await downloadMany(items, `converted-audio.${format}.zip`);
       toast.success(t("success"));
-      log(format, "success");
+      log(`${format} n=${files.length}`, "success");
     } catch (e) {
       if (e instanceof DOMException && e.name === "AbortError") toast.error(tc("cancel"));
       else toast.error(e instanceof Error ? e.message : tc("error"));
@@ -81,13 +87,13 @@ export function AudioConvert() {
           ))}
         </select>
       </div>
-      <FileDropzone accept="audio/*" multiple={false} files={files} onChange={setFiles} />
+      <FileDropzone accept="audio/*" files={files} onChange={setFiles} />
       {loading && <Progress value={progress} />}
       <ActionBar
         onRun={run}
         loading={loading}
         label={t("run")}
-        disabled={!files[0]}
+        disabled={!files.length}
         onCancel={() => controller?.abort()}
       />
     </ToolShell>
@@ -193,32 +199,39 @@ export function AudioSpeed() {
   const [speed, setSpeed] = useState(1.25);
   const [volume, setVolume] = useState(1);
   const [loading, setLoading] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const [controller, setController] = useState<AbortController | null>(null);
 
   const run = async () => {
     if (!files[0]) return;
+    const ac = new AbortController();
+    setController(ac);
     setLoading(true);
+    setProgress(0);
     try {
       const data = new Uint8Array(await files[0].file.arrayBuffer());
       const ext = files[0].file.name.split(".").pop() || "mp3";
       const input = `input.${ext}`;
       const output = `processed.${ext}`;
-      const atempo = Math.min(2, Math.max(0.5, speed));
       const { runFFmpeg } = await loadFfmpeg();
-      const out = await runFFmpeg(input, data, output, [
-        "-i",
+      const out = await runFFmpeg(
         input,
-        "-filter:a",
-        `atempo=${atempo},volume=${volume}`,
+        data,
         output,
-      ]);
+        audioSpeedArgs(input, output, speed, volume),
+        (p) => setProgress(Math.round(p * 100)),
+        ac.signal
+      );
       downloadBlob(bytesToBlob(out, "application/octet-stream"), output);
       toast.success(t("success"));
       log(`speed=${speed}`, "success");
     } catch (e) {
-      toast.error(e instanceof Error ? e.message : tc("error"));
+      if (e instanceof DOMException && e.name === "AbortError") toast.error(tc("cancel"));
+      else toast.error(e instanceof Error ? e.message : tc("error"));
       log("failed", "failed");
     } finally {
       setLoading(false);
+      setController(null);
     }
   };
 
@@ -237,7 +250,14 @@ export function AudioSpeed() {
         </Label>
         <Slider value={[volume]} min={0} max={2} step={0.05} onValueChange={(v) => setVolume(v[0])} />
       </div>
-      <ActionBar onRun={run} loading={loading} label={t("run")} disabled={!files[0]} />
+      {loading && <Progress value={progress} />}
+      <ActionBar
+        onRun={run}
+        loading={loading}
+        label={t("run")}
+        disabled={!files[0]}
+        onCancel={() => controller?.abort()}
+      />
     </ToolShell>
   );
 }

@@ -11,8 +11,10 @@ import {
   imagesToPdf,
   detectImageMime,
   splitPdf,
+  watermarkPdf,
 } from "./core";
 import { lockPdf, unlockPdf, isPdfEncrypted } from "./protect";
+import { runSequentialBatch, stemmedName } from "@/lib/jobs/batch";
 
 const TINY_PNG = Uint8Array.from(
   atob("iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg=="),
@@ -115,6 +117,22 @@ describe("imagesToPdf", () => {
     const page = doc.getPages()[0];
     expect(page.getWidth()).toBe(1);
     expect(page.getHeight()).toBe(1);
+  });
+});
+
+describe("watermark batch", () => {
+  it("watermarks each PDF in a sequential batch", async () => {
+    const first = await blankPdf(1);
+    const second = await blankPdf(2);
+    const items = await runSequentialBatch([first, second], async (bytes, i) => {
+      const out = await watermarkPdf(bytes, "DRAFT", "footer", 0.2);
+      const doc = await PDFDocument.load(out);
+      expect(doc.getPageCount()).toBe(i === 0 ? 1 : 2);
+      const copy = new Uint8Array(out.byteLength);
+      copy.set(out);
+      return { blob: new Blob([copy]), name: stemmedName(`doc-${i}.pdf`, "-watermarked", "pdf") };
+    });
+    expect(items.map((x) => x.name)).toEqual(["doc-0-watermarked.pdf", "doc-1-watermarked.pdf"]);
   });
 });
 

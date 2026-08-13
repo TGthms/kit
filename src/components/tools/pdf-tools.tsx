@@ -10,8 +10,10 @@ import { Label } from "@/components/ui/label";
 import { Slider } from "@/components/ui/slider";
 import { Card, CardContent } from "@/components/ui/card";
 import { Textarea } from "@/components/ui/textarea";
-import { downloadBlob, downloadText, bytesToBlob } from "@/lib/utils";
+import { downloadBlob, downloadText, downloadMany, bytesToBlob } from "@/lib/utils";
 import JSZip from "jszip";
+import { Progress } from "@/components/ui/progress";
+import { runSequentialBatch, stemmedName } from "@/lib/jobs/batch";
 import { ActionBar, ToolLimits, ToolShell, useToolHistory, loadPdfjs } from "./shared";
 import { mergePdfs, splitPdf, organizePdf, watermarkPdf, redactPdf, getPdfPageCount } from "@/lib/pdf/core";
 
@@ -208,21 +210,42 @@ export function PdfCompress() {
   const [files, setFiles] = useState<FileItem[]>([]);
   const [quality, setQuality] = useState(0.65);
   const [loading, setLoading] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const [controller, setController] = useState<AbortController | null>(null);
 
   const run = async () => {
-    if (!files[0]) return;
+    if (!files.length) return;
+    const ac = new AbortController();
+    setController(ac);
     setLoading(true);
+    setProgress(0);
     try {
       const { compressPdfLossy } = await loadPdfjs();
-      const out = await compressPdfLossy(await files[0].file.arrayBuffer(), quality);
-      downloadBlob(bytesToBlob(out, "application/pdf"), "compressed.pdf");
+      const items = await runSequentialBatch(
+        files,
+        async (f, index) => {
+          const out = await compressPdfLossy(await f.file.arrayBuffer(), quality, 1.2, {
+            signal: ac.signal,
+            onProgress: (pageRatio) =>
+              setProgress(Math.round(((index + pageRatio) / files.length) * 100)),
+          });
+          return {
+            blob: bytesToBlob(out, "application/pdf"),
+            name: stemmedName(f.file.name, "-compressed", "pdf"),
+          };
+        },
+        { signal: ac.signal }
+      );
+      await downloadMany(items, "compressed-pdfs.zip");
       toast.success(t("success"));
-      log(`q=${quality}`, "success", { quality });
+      log(`q=${quality} n=${files.length}`, "success", { quality, count: files.length });
     } catch (e) {
-      toast.error(e instanceof Error ? e.message : tc("error"));
+      if (e instanceof DOMException && e.name === "AbortError") toast.error(tc("cancel"));
+      else toast.error(e instanceof Error ? e.message : tc("error"));
       log("failed", "failed");
     } finally {
       setLoading(false);
+      setController(null);
     }
   };
 
@@ -231,14 +254,21 @@ export function PdfCompress() {
       <ToolLimits>
         <p>{t("note")}</p>
       </ToolLimits>
-      <FileDropzone accept="application/pdf" multiple={false} files={files} onChange={setFiles} />
+      <FileDropzone accept="application/pdf" files={files} onChange={setFiles} />
       <div className="space-y-2">
         <Label>
           {tc("quality")}: {Math.round(quality * 100)}%
         </Label>
         <Slider value={[quality]} min={0.3} max={0.95} step={0.05} onValueChange={(v) => setQuality(v[0])} />
       </div>
-      <ActionBar onRun={run} loading={loading} label={t("run")} disabled={!files[0]} />
+      {loading && <Progress value={progress} />}
+      <ActionBar
+        onRun={run}
+        loading={loading}
+        label={t("run")}
+        disabled={!files.length}
+        onCancel={() => controller?.abort()}
+      />
     </ToolShell>
   );
 }
@@ -252,26 +282,43 @@ export function PdfWatermark() {
   const [position, setPosition] = useState<"header" | "footer" | "center">("center");
   const [opacity, setOpacity] = useState(0.25);
   const [loading, setLoading] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const [controller, setController] = useState<AbortController | null>(null);
 
   const run = async () => {
-    if (!files[0]) return;
+    if (!files.length) return;
+    const ac = new AbortController();
+    setController(ac);
     setLoading(true);
+    setProgress(0);
     try {
-      const out = await watermarkPdf(await files[0].file.arrayBuffer(), text, position, opacity);
-      downloadBlob(bytesToBlob(out, "application/pdf"), "watermarked.pdf");
+      const items = await runSequentialBatch(
+        files,
+        async (f) => {
+          const out = await watermarkPdf(await f.file.arrayBuffer(), text, position, opacity);
+          return {
+            blob: bytesToBlob(out, "application/pdf"),
+            name: stemmedName(f.file.name, "-watermarked", "pdf"),
+          };
+        },
+        { signal: ac.signal, onProgress: (r) => setProgress(Math.round(r * 100)) }
+      );
+      await downloadMany(items, "watermarked-pdfs.zip");
       toast.success(t("success"));
-      log(text, "success");
+      log(`${text} n=${files.length}`, "success");
     } catch (e) {
-      toast.error(e instanceof Error ? e.message : tc("error"));
+      if (e instanceof DOMException && e.name === "AbortError") toast.error(tc("cancel"));
+      else toast.error(e instanceof Error ? e.message : tc("error"));
       log("failed", "failed");
     } finally {
       setLoading(false);
+      setController(null);
     }
   };
 
   return (
     <ToolShell toolId="pdf-watermark">
-      <FileDropzone accept="application/pdf" multiple={false} files={files} onChange={setFiles} />
+      <FileDropzone accept="application/pdf" files={files} onChange={setFiles} />
       <div className="grid gap-4 sm:grid-cols-2">
         <div className="space-y-2">
           <Label>{t("text")}</Label>
@@ -296,7 +343,14 @@ export function PdfWatermark() {
         </Label>
         <Slider value={[opacity]} min={0.05} max={0.8} step={0.05} onValueChange={(v) => setOpacity(v[0])} />
       </div>
-      <ActionBar onRun={run} loading={loading} label={t("run")} disabled={!files[0] || !text} />
+      {loading && <Progress value={progress} />}
+      <ActionBar
+        onRun={run}
+        loading={loading}
+        label={t("run")}
+        disabled={!files.length || !text}
+        onCancel={() => controller?.abort()}
+      />
     </ToolShell>
   );
 }

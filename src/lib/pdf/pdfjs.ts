@@ -1,4 +1,5 @@
 import * as pdfjs from "pdfjs-dist";
+import { forEachJobIndex } from "@/lib/jobs/batch";
 
 let workerReady = false;
 
@@ -74,29 +75,34 @@ export async function extractPdfText(data: ArrayBuffer): Promise<string> {
 export async function compressPdfLossy(
   data: ArrayBuffer,
   quality = 0.6,
-  scale = 1.2
+  scale = 1.2,
+  opts?: { onProgress?: (ratio: number) => void; signal?: AbortSignal }
 ): Promise<Uint8Array> {
   ensurePdfWorker();
   const { PDFDocument } = await import("pdf-lib");
   const src = await pdfjs.getDocument({ data: data.slice(0) }).promise;
   const out = await PDFDocument.create();
 
-  for (let i = 1; i <= src.numPages; i++) {
-    const page = await src.getPage(i);
-    const viewport = page.getViewport({ scale });
-    const canvas = document.createElement("canvas");
-    canvas.width = viewport.width;
-    canvas.height = viewport.height;
-    const ctx = canvas.getContext("2d")!;
-    await page.render({ canvasContext: ctx, viewport, canvas }).promise;
-    const blob: Blob = await new Promise((resolve, reject) =>
-      canvas.toBlob((b) => (b ? resolve(b) : reject(new Error("blob failed"))), "image/jpeg", quality)
-    );
-    const bytes = new Uint8Array(await blob.arrayBuffer());
-    const img = await out.embedJpg(bytes);
-    const p = out.addPage([viewport.width, viewport.height]);
-    p.drawImage(img, { x: 0, y: 0, width: viewport.width, height: viewport.height });
-  }
+  await forEachJobIndex(
+    src.numPages,
+    async (i) => {
+      const page = await src.getPage(i);
+      const viewport = page.getViewport({ scale });
+      const canvas = document.createElement("canvas");
+      canvas.width = viewport.width;
+      canvas.height = viewport.height;
+      const ctx = canvas.getContext("2d")!;
+      await page.render({ canvasContext: ctx, viewport, canvas }).promise;
+      const blob: Blob = await new Promise((resolve, reject) =>
+        canvas.toBlob((b) => (b ? resolve(b) : reject(new Error("blob failed"))), "image/jpeg", quality)
+      );
+      const bytes = new Uint8Array(await blob.arrayBuffer());
+      const img = await out.embedJpg(bytes);
+      const p = out.addPage([viewport.width, viewport.height]);
+      p.drawImage(img, { x: 0, y: 0, width: viewport.width, height: viewport.height });
+    },
+    { signal: opts?.signal, onProgress: opts?.onProgress }
+  );
   await src.cleanup();
   return out.save();
 }
