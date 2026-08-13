@@ -40,3 +40,24 @@ export function bytesToBlob(bytes: Uint8Array, type: string): Blob {
 export function downloadText(text: string, filename: string, mime = "text/plain") {
   downloadBlob(new Blob([text], { type: mime }), filename);
 }
+
+export const LARGE_FILE_BYTES = 80 * 1024 * 1024;
+
+export function isLargeFile(size: number): boolean {
+  return size >= LARGE_FILE_BYTES;
+}
+
+export async function downloadMany(
+  items: Array<{ blob: Blob; name: string }>,
+  zipName: string
+): Promise<void> {
+  if (!items.length) return;
+  if (items.length === 1) {
+    downloadBlob(items[0].blob, items[0].name);
+    return;
+  }
+  const JSZip = (await import("jszip")).default;
+  const zip = new JSZip();
+  for (const item of items) zip.file(item.name, item.blob);
+  downloadBlob(await zip.generateAsync({ type: "blob" }), zipName);
+}

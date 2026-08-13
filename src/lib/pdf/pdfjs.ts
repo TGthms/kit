@@ -28,6 +28,33 @@ export async function renderPdfThumbnail(
   return url;
 }
 
+export async function renderPdfPagesToBlobs(
+  data: ArrayBuffer,
+  opts: { scale?: number; mime?: "image/jpeg" | "image/png"; quality?: number } = {}
+): Promise<Blob[]> {
+  ensurePdfWorker();
+  const scale = opts.scale ?? 1.5;
+  const mime = opts.mime ?? "image/jpeg";
+  const quality = opts.quality ?? 0.85;
+  const doc = await pdfjs.getDocument({ data: data.slice(0) }).promise;
+  const blobs: Blob[] = [];
+  for (let i = 1; i <= doc.numPages; i++) {
+    const page = await doc.getPage(i);
+    const viewport = page.getViewport({ scale });
+    const canvas = document.createElement("canvas");
+    canvas.width = viewport.width;
+    canvas.height = viewport.height;
+    const ctx = canvas.getContext("2d")!;
+    await page.render({ canvasContext: ctx, viewport, canvas }).promise;
+    const blob: Blob = await new Promise((resolve, reject) =>
+      canvas.toBlob((b) => (b ? resolve(b) : reject(new Error("toBlob failed"))), mime, quality)
+    );
+    blobs.push(blob);
+  }
+  await doc.cleanup();
+  return blobs;
+}
+
 export async function extractPdfText(data: ArrayBuffer): Promise<string> {
   ensurePdfWorker();
   const doc = await pdfjs.getDocument({ data: data.slice(0) }).promise;

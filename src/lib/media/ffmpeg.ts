@@ -3,15 +3,78 @@ import { toBlobURL } from "@ffmpeg/util";
 
 let ffmpeg: FFmpeg | null = null;
 let loading: Promise<FFmpeg> | null = null;
+let progressHandler: ((event: { progress: number }) => void) | null = null;
+
+export const AUDIO_FORMATS = ["mp3", "wav", "ogg", "aac", "flac", "m4a"] as const;
+export const VIDEO_FORMATS = ["mp4", "webm", "gif", "mov", "mkv"] as const;
+export type AudioFormat = (typeof AUDIO_FORMATS)[number];
+export type VideoFormat = (typeof VIDEO_FORMATS)[number];
+
+export function audioConvertArgs(input: string, output: string, format: string): string[] {
+  if (format === "mp3") return ["-i", input, "-vn", "-acodec", "libmp3lame", output];
+  if (format === "wav") return ["-i", input, "-vn", output];
+  if (format === "ogg") return ["-i", input, "-vn", "-acodec", "libvorbis", output];
+  if (format === "aac" || format === "m4a") return ["-i", input, "-vn", "-c:a", "aac", output];
+  if (format === "flac") return ["-i", input, "-vn", "-c:a", "flac", output];
+  return ["-i", input, "-vn", output];
+}
+
+export function videoConvertArgs(input: string, output: string, format: string): string[] {
+  if (format === "webm") return ["-i", input, "-c:v", "libvpx", "-c:a", "libvorbis", output];
+  if (format === "gif") {
+    return ["-i", input, "-vf", "fps=12,scale=480:-1:flags=lanczos", "-loop", "0", output];
+  }
+  if (format === "mp4" || format === "mov" || format === "mkv") {
+    return ["-i", input, "-c", "copy", output];
+  }
+  return ["-i", input, output];
+}
+
+export function gifClipArgs(input: string, output: string, start: string, end: string): string[] {
+  return [
+    "-ss",
+    start,
+    "-to",
+    end,
+    "-i",
+    input,
+    "-vf",
+    "fps=12,scale=480:-1:flags=lanczos",
+    "-loop",
+    "0",
+    output,
+  ];
+}
+
+export function cancelFFmpeg() {
+  if (ffmpeg) {
+    try {
+      ffmpeg.terminate();
+    } catch {
+      /* already dead */
+    }
+  }
+  ffmpeg = null;
+  loading = null;
+  progressHandler = null;
+}
 
 export async function getFFmpeg(onProgress?: (ratio: number) => void): Promise<FFmpeg> {
-  if (ffmpeg?.loaded) return ffmpeg;
+  if (ffmpeg?.loaded) {
+    if (onProgress) {
+      if (progressHandler) ffmpeg.off("progress", progressHandler);
+      progressHandler = ({ progress }) => onProgress(progress);
+      ffmpeg.on("progress", progressHandler);
+    }
+    return ffmpeg;
+  }
   if (loading) return loading;
 
   loading = (async () => {
     const instance = new FFmpeg();
     if (onProgress) {
-      instance.on("progress", ({ progress }) => onProgress(progress));
+      progressHandler = ({ progress }) => onProgress(progress);
+      instance.on("progress", progressHandler);
     }
     const base = "https://cdn.jsdelivr.net/npm/@ffmpeg/core@0.12.10/dist/umd";
     await instance.load({
@@ -34,16 +97,25 @@ export async function runFFmpeg(
   inputData: Uint8Array,
   outputName: string,
   args: string[],
-  onProgress?: (ratio: number) => void
+  onProgress?: (ratio: number) => void,
+  signal?: AbortSignal
 ): Promise<Uint8Array> {
-  const ff = await getFFmpeg(onProgress);
-  await ff.writeFile(inputName, inputData);
-  await ff.exec(args);
-  const data = await ff.readFile(outputName);
-  await ff.deleteFile(inputName).catch(() => undefined);
-  await ff.deleteFile(outputName).catch(() => undefined);
-  if (typeof data === "string") {
-    return new TextEncoder().encode(data);
+  if (signal?.aborted) throw new DOMException("Aborted", "AbortError");
+  const onAbort = () => cancelFFmpeg();
+  signal?.addEventListener("abort", onAbort);
+  try {
+    const ff = await getFFmpeg(onProgress);
+    if (signal?.aborted) throw new DOMException("Aborted", "AbortError");
+    await ff.writeFile(inputName, inputData);
+    await ff.exec(args);
+    const data = await ff.readFile(outputName);
+    await ff.deleteFile(inputName).catch(() => undefined);
+    await ff.deleteFile(outputName).catch(() => undefined);
+    if (typeof data === "string") {
+      return new TextEncoder().encode(data);
+    }
+    return data as Uint8Array;
+  } finally {
+    signal?.removeEventListener("abort", onAbort);
   }
-  return data as Uint8Array;
 }

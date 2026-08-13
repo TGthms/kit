@@ -111,3 +111,80 @@ export async function adjustImage(
   bmp.close();
   return canvasToBlob(canvas, file.type || "image/png", 0.92);
 }
+
+async function bitmapToBuffer(file: Blob) {
+  const bmp = await loadImageBitmap(file);
+  const canvas = document.createElement("canvas");
+  canvas.width = bmp.width;
+  canvas.height = bmp.height;
+  const ctx = canvas.getContext("2d")!;
+  ctx.drawImage(bmp, 0, 0);
+  bmp.close();
+  const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+  return { canvas, ctx, imageData };
+}
+
+function bufferToCanvas(buf: { data: Uint8ClampedArray; width: number; height: number }) {
+  const canvas = document.createElement("canvas");
+  canvas.width = buf.width;
+  canvas.height = buf.height;
+  const ctx = canvas.getContext("2d")!;
+  const copy = new Uint8ClampedArray(buf.data.length);
+  copy.set(buf.data);
+  ctx.putImageData(new ImageData(copy, buf.width, buf.height), 0, 0);
+  return canvas;
+}
+
+export async function rotateImage(file: Blob, degrees: 90 | 180 | 270, mime?: string): Promise<Blob> {
+  const { rotatePixels } = await import("./transform");
+  const { imageData } = await bitmapToBuffer(file);
+  const next = rotatePixels(
+    { data: imageData.data, width: imageData.width, height: imageData.height },
+    degrees
+  );
+  return canvasToBlob(bufferToCanvas(next), mime || file.type || "image/png", 0.92);
+}
+
+export async function flipImage(file: Blob, axis: "h" | "v", mime?: string): Promise<Blob> {
+  const { flipPixels } = await import("./transform");
+  const { imageData } = await bitmapToBuffer(file);
+  const next = flipPixels(
+    { data: imageData.data, width: imageData.width, height: imageData.height },
+    axis
+  );
+  return canvasToBlob(bufferToCanvas(next), mime || file.type || "image/png", 0.92);
+}
+
+export async function filterImage(
+  file: Blob,
+  filter: "grayscale" | "sepia" | "invert",
+  mime?: string
+): Promise<Blob> {
+  const { applyFilterPixels } = await import("./transform");
+  const { imageData } = await bitmapToBuffer(file);
+  const next = applyFilterPixels(
+    { data: imageData.data, width: imageData.width, height: imageData.height },
+    filter
+  );
+  return canvasToBlob(bufferToCanvas(next), mime || file.type || "image/png", 0.92);
+}
+
+export async function exportFavicons(
+  file: Blob,
+  sizes: readonly number[] = [16, 32, 48, 180, 192, 512]
+): Promise<Array<{ name: string; blob: Blob }>> {
+  const bmp = await loadImageBitmap(file);
+  const out: Array<{ name: string; blob: Blob }> = [];
+  for (const size of sizes) {
+    const canvas = document.createElement("canvas");
+    canvas.width = size;
+    canvas.height = size;
+    const ctx = canvas.getContext("2d")!;
+    ctx.imageSmoothingEnabled = true;
+    ctx.imageSmoothingQuality = "high";
+    ctx.drawImage(bmp, 0, 0, size, size);
+    out.push({ name: `icon-${size}.png`, blob: await canvasToBlob(canvas, "image/png") });
+  }
+  bmp.close();
+  return out;
+}

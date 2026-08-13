@@ -96,3 +96,20 @@ export function urlEncode(text: string): string {
 export function urlDecode(text: string): string {
   return decodeURIComponent(text);
 }
+
+export { xmlToJson, jsonToXml, xmlToJsonText, jsonToXmlText, parseXml } from "./xml";
+export { formatSql } from "./sql";
+export { hashText, hashBytes, HASH_ALGOS, type HashAlgo } from "./hash";
+export { generateUuid, generateUuids } from "./uuid";
+export {
+  parseHex,
+  rgbToHex,
+  rgbToHsl,
+  hslToRgb,
+  rgbToHsv,
+  hsvToRgb,
+  convertColor,
+} from "./color";
+export { runRegex, replaceRegex } from "./regex";
+export { generateLorem, type LoremMode } from "./lorem";
+export { generateQrDataUrl, readQrFromImageData, qrToPixels } from "./qr";

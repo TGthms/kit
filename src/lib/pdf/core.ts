@@ -1,5 +1,11 @@
 import { PDFDocument, degrees, rgb, StandardFonts } from "pdf-lib";
 
+export type PdfInput = ArrayBuffer | Uint8Array;
+
+export function asPdfBytes(buf: PdfInput): Uint8Array {
+  return buf instanceof Uint8Array ? buf : new Uint8Array(buf);
+}
+
 export async function mergePdfs(files: ArrayBuffer[]): Promise<Uint8Array> {
   const out = await PDFDocument.create();
   for (const buf of files) {
@@ -29,8 +35,8 @@ export function parsePageRange(range: string, pageCount: number): number[] {
   return [...set].sort((a, b) => a - b);
 }
 
-export async function splitPdf(buf: ArrayBuffer, range: string): Promise<Uint8Array> {
-  const src = await PDFDocument.load(buf, { ignoreEncryption: true });
+export async function splitPdf(buf: PdfInput, range: string): Promise<Uint8Array> {
+  const src = await PDFDocument.load(asPdfBytes(buf), { ignoreEncryption: true });
   const indices = parsePageRange(range, src.getPageCount());
   if (!indices.length) throw new Error("No valid pages in range");
   const out = await PDFDocument.create();
@@ -108,7 +114,153 @@ export async function redactPdf(
   return doc.save();
 }
 
-export async function getPdfPageCount(buf: ArrayBuffer): Promise<number> {
-  const doc = await PDFDocument.load(buf, { ignoreEncryption: true });
+export async function getPdfPageCount(buf: PdfInput): Promise<number> {
+  const doc = await PDFDocument.load(asPdfBytes(buf), { ignoreEncryption: true });
   return doc.getPageCount();
+}
+
+export function formatPageLabel(page: number, total: number, template: string): string {
+  return template.replaceAll("{page}", String(page)).replaceAll("{pages}", String(total));
+}
+
+export type PageNumberPosition =
+  | "header-left"
+  | "header-center"
+  | "header-right"
+  | "footer-left"
+  | "footer-center"
+  | "footer-right";
+
+export async function numberPdfPages(
+  buf: PdfInput,
+  opts: {
+    template?: string;
+    position?: PageNumberPosition;
+    start?: number;
+  } = {}
+): Promise<Uint8Array> {
+  const template = opts.template || "{page} / {pages}";
+  const position = opts.position || "footer-center";
+  const start = opts.start ?? 1;
+  const doc = await PDFDocument.load(asPdfBytes(buf), { ignoreEncryption: true });
+  const font = await doc.embedFont(StandardFonts.Helvetica);
+  const pages = doc.getPages();
+  const total = pages.length;
+  const size = 10;
+
+  for (let i = 0; i < pages.length; i++) {
+    const page = pages[i];
+    const { width, height } = page.getSize();
+    const text = formatPageLabel(start + i, start + total - 1, template);
+    const tw = font.widthOfTextAtSize(text, size);
+    const margin = 28;
+    const header = position.startsWith("header");
+    const y = header ? height - 22 : 16;
+    let x = (width - tw) / 2;
+    if (position.endsWith("left")) x = margin;
+    if (position.endsWith("right")) x = Math.max(margin, width - tw - margin);
+    page.drawText(text, { x, y, size, font, color: rgb(0.25, 0.25, 0.25) });
+  }
+  return doc.save();
+}
+
+export type EmbeddableImage = {
+  bytes: Uint8Array;
+  mime: "image/jpeg" | "image/png";
+};
+
+export function detectImageMime(bytes: Uint8Array): EmbeddableImage["mime"] | null {
+  if (bytes.length >= 3 && bytes[0] === 0xff && bytes[1] === 0xd8 && bytes[2] === 0xff) {
+    return "image/jpeg";
+  }
+  if (
+    bytes.length >= 8 &&
+    bytes[0] === 0x89 &&
+    bytes[1] === 0x50 &&
+    bytes[2] === 0x4e &&
+    bytes[3] === 0x47
+  ) {
+    return "image/png";
+  }
+  return null;
+}
+
+export async function imagesToPdf(images: EmbeddableImage[]): Promise<Uint8Array> {
+  if (!images.length) throw new Error("No images");
+  const doc = await PDFDocument.create();
+  for (const img of images) {
+    const embedded =
+      img.mime === "image/png" ? await doc.embedPng(img.bytes) : await doc.embedJpg(img.bytes);
+    const page = doc.addPage([embedded.width, embedded.height]);
+    page.drawImage(embedded, {
+      x: 0,
+      y: 0,
+      width: embedded.width,
+      height: embedded.height,
+    });
+  }
+  return doc.save();
+}
+
+export async function flattenPdfForms(
+  buf: PdfInput
+): Promise<{ bytes: Uint8Array; fieldCount: number }> {
+  const doc = await PDFDocument.load(asPdfBytes(buf), { ignoreEncryption: true });
+  const form = doc.getForm();
+  const fieldCount = form.getFields().length;
+  if (fieldCount > 0) form.flatten();
+  return { bytes: await doc.save(), fieldCount };
+}
+
+export type PdfMeta = {
+  title: string;
+  author: string;
+  subject: string;
+  keywords: string;
+  creator: string;
+  producer: string;
+};
+
+export async function getPdfMetadata(buf: PdfInput): Promise<PdfMeta> {
+  const doc = await PDFDocument.load(asPdfBytes(buf), {
+    ignoreEncryption: true,
+    updateMetadata: false,
+  });
+  return {
+    title: doc.getTitle() ?? "",
+    author: doc.getAuthor() ?? "",
+    subject: doc.getSubject() ?? "",
+    keywords: doc.getKeywords() ?? "",
+    creator: doc.getCreator() ?? "",
+    producer: doc.getProducer() ?? "",
+  };
+}
+
+export async function setPdfMetadata(buf: PdfInput, meta: Partial<PdfMeta>): Promise<Uint8Array> {
+  const doc = await PDFDocument.load(asPdfBytes(buf), { ignoreEncryption: true });
+  if (meta.title !== undefined) doc.setTitle(meta.title);
+  if (meta.author !== undefined) doc.setAuthor(meta.author);
+  if (meta.subject !== undefined) doc.setSubject(meta.subject);
+  if (meta.keywords !== undefined) {
+    doc.setKeywords(
+      meta.keywords
+        .split(",")
+        .map((k) => k.trim())
+        .filter(Boolean)
+    );
+  }
+  if (meta.creator !== undefined) doc.setCreator(meta.creator);
+  if (meta.producer !== undefined) doc.setProducer(meta.producer);
+  return doc.save();
+}
+
+export async function stripPdfMetadata(buf: PdfInput): Promise<Uint8Array> {
+  const doc = await PDFDocument.load(asPdfBytes(buf), { ignoreEncryption: true });
+  doc.setTitle("");
+  doc.setAuthor("");
+  doc.setSubject("");
+  doc.setKeywords([]);
+  doc.setCreator("");
+  doc.setProducer("Kit");
+  return doc.save();
 }
