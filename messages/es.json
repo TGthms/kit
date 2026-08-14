@@ -121,10 +121,26 @@
     "recent": "Seguir donde lo dejaste",
     "pinned": "Fijadas",
     "chooseCategory": "Empieza por una categoría",
-    "chooseCategoryHint": "Abre un grupo de herramientas afines o usa la búsqueda de arriba.",
+    "chooseCategoryHint": "Elige una familia de trabajo. Dentro, las herramientas van agrupadas para que puedas ojealas.",
     "backToCategories": "Categorías",
     "toolsInCategory": "{count, plural, one {# herramienta} other {# herramientas}}",
-    "searchResults": "Resultados de la búsqueda"
+    "searchResults": "Resultados de la búsqueda",
+    "featured": "Empieza por aquí",
+    "groups": {
+      "pages": "Páginas",
+      "protect": "Proteger e info",
+      "markup": "Marcas",
+      "export": "Exportar / convertir",
+      "transform": "Tamaño y recorte",
+      "look": "Aspecto",
+      "file": "Archivo",
+      "clip": "Clips",
+      "formats": "Formatos",
+      "write": "Escritura",
+      "inspect": "Inspeccionar",
+      "encode": "Codificar",
+      "generate": "Generar"
+    }
   },
   "categories": {
     "pdf": "PDF",
@@ -132,13 +148,17 @@
     "audio": "Audio",
     "video": "Vídeo",
     "convert": "Conversión de archivos",
-    "text": "Texto y datos",
+    "text": "Escritura",
     "pdfDesc": "Unir, dividir, comprimir y marcar documentos PDF",
     "imageDesc": "Comprimir, redimensionar, convertir y retocar fotos",
     "audioDesc": "Convertir, recortar y cambiar la velocidad solo de audio",
     "videoDesc": "Convertir, recortar, acelerar y extraer audio de vídeo",
     "convertDesc": "Conversión inteligente entre formatos (JSON, CSV, ZIP, imágenes…)",
-    "textDesc": "Formatear, validar, codificar y comparar texto"
+    "textDesc": "Compara textos, cambia mayúsculas y pasa Markdown a HTML",
+    "data": "Datos",
+    "dataDesc": "JSON, YAML, CSV, XML, SQL y conversión entre formatos",
+    "developer": "Desarrollo",
+    "developerDesc": "Tokens, hashes, encodings, contraseñas y útiles de banco"
   },
   "history": {
     "title": "Historial",
@@ -604,6 +624,97 @@
       "generated": "Código QR listo.",
       "decoded": "Contenido leído.",
       "none": "No se ha encontrado un código QR en esa imagen."
+    },
+    "pdf-sign": {
+      "name": "Firmar PDF",
+      "description": "Estampa una firma escrita en cada página. Solo visual, no es un certificado.",
+      "keywords": "pdf firmar firma nombre",
+      "run": "Firmar",
+      "signature": "Texto de la firma",
+      "placeholder": "Tu nombre",
+      "limits": "Dibuja tu nombre en la página. No es una firma digital criptográfica.",
+      "success": "Firma aplicada."
+    },
+    "image-watermark": {
+      "name": "Marca de agua",
+      "description": "Superpone texto en fotos, una o por lote.",
+      "keywords": "imagen marca agua copyright",
+      "run": "Aplicar",
+      "text": "Texto",
+      "position": "Posición",
+      "bottomRight": "Abajo derecha",
+      "bottomLeft": "Abajo izquierda",
+      "topRight": "Arriba derecha",
+      "center": "Centro",
+      "success": "Marca aplicada a {count} imagen(es)."
+    },
+    "password-generator": {
+      "name": "Generador de contraseñas",
+      "description": "Crea una contraseña fuerte en este dispositivo. No se guarda.",
+      "keywords": "contraseña generar aleatoria",
+      "run": "Generar",
+      "length": "Longitud",
+      "lower": "Minúsculas",
+      "upper": "Mayúsculas",
+      "digits": "Dígitos",
+      "symbols": "Símbolos",
+      "success": "Contraseña lista."
+    },
+    "case-convert": {
+      "name": "Cambiar mayúsculas",
+      "description": "Pasa entre camel, snake, kebab, título y más.",
+      "keywords": "mayúsculas camel snake kebab",
+      "run": "Convertir",
+      "style": "Estilo",
+      "success": "Convertido."
+    },
+    "jwt-decode": {
+      "name": "Decodificar JWT",
+      "description": "Lee cabecera y payload de un JWT en local. No verifica la firma.",
+      "keywords": "jwt token bearer",
+      "run": "Decodificar",
+      "limits": "Kit solo decodifica Base64url. Sin la clave no puede demostrar que el token es auténtico.",
+      "hasSig": "Hay parte de firma (no verificada).",
+      "noSig": "Sin parte de firma.",
+      "empty": "Pega un token primero.",
+      "success": "Token decodificado."
+    },
+    "unix-timestamp": {
+      "name": "Marca de tiempo Unix",
+      "description": "Convierte tiempo Unix a ISO y al revés.",
+      "keywords": "unix epoch timestamp iso",
+      "now": "Usar ahora"
+    },
+    "cron-explain": {
+      "name": "Explicar cron",
+      "description": "Pasa una expresión cron de 5 campos a lenguaje claro.",
+      "keywords": "cron crontab horario",
+      "run": "Explicar",
+      "success": "Explicado."
+    },
+    "number-base": {
+      "name": "Base numérica",
+      "description": "Convierte enteros entre las bases 2 y 36.",
+      "keywords": "binario hex decimal base",
+      "value": "Número",
+      "from": "Desde base",
+      "to": "A base"
+    },
+    "html-entities": {
+      "name": "Entidades HTML",
+      "description": "Codifica o decodifica &lt; &amp; y entidades numéricas.",
+      "keywords": "html entidades escape",
+      "run": "Convertir",
+      "encode": "Codificar",
+      "decode": "Decodificar",
+      "success": "Convertido."
+    },
+    "json-types": {
+      "name": "JSON → TypeScript",
+      "description": "Infiere interfaces TypeScript a partir de un JSON de ejemplo.",
+      "keywords": "json typescript interface",
+      "run": "Generar tipos",
+      "success": "Tipos generados."
     }
   },
   "legal": {

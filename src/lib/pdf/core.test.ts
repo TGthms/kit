@@ -12,6 +12,7 @@ import {
   detectImageMime,
   splitPdf,
   watermarkPdf,
+  stampPdfSignature,
 } from "./core";
 import { lockPdf, unlockPdf, isPdfEncrypted } from "./protect";
 import { runSequentialBatch, stemmedName } from "@/lib/jobs/batch";
@@ -133,6 +134,16 @@ describe("watermark batch", () => {
       return { blob: new Blob([copy]), name: stemmedName(`doc-${i}.pdf`, "-watermarked", "pdf") };
     });
     expect(items.map((x) => x.name)).toEqual(["doc-0-watermarked.pdf", "doc-1-watermarked.pdf"]);
+  });
+});
+
+describe("stampPdfSignature", () => {
+  it("stamps signed text and keeps the page count", async () => {
+    const src = await blankPdf(2);
+    const out = await stampPdfSignature(src, "Tim G", "all");
+    const doc = await PDFDocument.load(out);
+    expect(doc.getPageCount()).toBe(2);
+    expect(out.byteLength).toBeGreaterThan(src.byteLength);
   });
 });
 

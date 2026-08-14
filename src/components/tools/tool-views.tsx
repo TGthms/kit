@@ -18,6 +18,7 @@ import {
   PdfFlatten,
   PdfMetadata,
   PdfProtect,
+  PdfSign,
 } from "./pdf-extra-tools";
 import {
   ImageCompress,
@@ -27,7 +28,7 @@ import {
   ImageMetadata,
   ImageAdjust,
 } from "./image-tools";
-import { ImageRotate, ImageFilters, ImageFavicon } from "./image-extra-tools";
+import { ImageRotate, ImageFilters, ImageFavicon, ImageWatermark } from "./image-extra-tools";
 import { AudioConvert, AudioTrim, AudioSpeed } from "./audio-tools";
 import {
   VideoConvert,
@@ -57,6 +58,16 @@ import {
   LoremIpsum,
   QrCodeTool,
 } from "./text-extra-tools";
+import {
+  JwtDecode,
+  UnixTimestamp,
+  CronExplain,
+  NumberBase,
+  HtmlEntities,
+  CaseConvert,
+  PasswordGenerator,
+  JsonTypes,
+} from "./work-tools";
 
 const TOOL_COMPONENTS: Record<ToolId, ComponentType> = {
   "pdf-merge": PdfMerge,
@@ -72,6 +83,7 @@ const TOOL_COMPONENTS: Record<ToolId, ComponentType> = {
   "pdf-flatten": PdfFlatten,
   "pdf-metadata": PdfMetadata,
   "pdf-protect": PdfProtect,
+  "pdf-sign": PdfSign,
   "image-compress": ImageCompress,
   "image-resize": ImageResize,
   "image-crop": ImageCrop,
@@ -81,6 +93,7 @@ const TOOL_COMPONENTS: Record<ToolId, ComponentType> = {
   "image-rotate": ImageRotate,
   "image-filters": ImageFilters,
   "image-favicon": ImageFavicon,
+  "image-watermark": ImageWatermark,
   "audio-convert": AudioConvert,
   "audio-trim": AudioTrim,
   "audio-speed": AudioSpeed,
@@ -106,6 +119,14 @@ const TOOL_COMPONENTS: Record<ToolId, ComponentType> = {
   "color-convert": ColorConvert,
   "lorem-ipsum": LoremIpsum,
   "qr-code": QrCodeTool,
+  "password-generator": PasswordGenerator,
+  "case-convert": CaseConvert,
+  "jwt-decode": JwtDecode,
+  "unix-timestamp": UnixTimestamp,
+  "cron-explain": CronExplain,
+  "number-base": NumberBase,
+  "html-entities": HtmlEntities,
+  "json-types": JsonTypes,
 };
 
 export function ToolView({ toolId }: { toolId: ToolId }) {

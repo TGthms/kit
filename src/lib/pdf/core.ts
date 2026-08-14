@@ -254,6 +254,33 @@ export async function setPdfMetadata(buf: PdfInput, meta: Partial<PdfMeta>): Pro
   return doc.save();
 }
 
+export async function stampPdfSignature(
+  buf: PdfInput,
+  text: string,
+  where: "all" | number = "all"
+): Promise<Uint8Array> {
+  if (!text.trim()) throw new Error("Signature is empty");
+  const doc = await PDFDocument.load(asPdfBytes(buf), { ignoreEncryption: true });
+  const font = await doc.embedFont(StandardFonts.HelveticaOblique);
+  const pages = doc.getPages();
+  const targets =
+    where === "all" ? pages : pages[Math.max(0, where - 1)] ? [pages[Math.max(0, where - 1)]] : [];
+  if (!targets.length) throw new Error("Page not found");
+  for (const page of targets) {
+    const { width } = page.getSize();
+    const size = 14;
+    const tw = font.widthOfTextAtSize(text, size);
+    page.drawText(text, {
+      x: Math.max(28, width - tw - 36),
+      y: 28,
+      size,
+      font,
+      color: rgb(0.12, 0.12, 0.16),
+    });
+  }
+  return doc.save();
+}
+
 export async function stripPdfMetadata(buf: PdfInput): Promise<Uint8Array> {
   const doc = await PDFDocument.load(asPdfBytes(buf), { ignoreEncryption: true });
   doc.setTitle("");

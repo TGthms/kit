@@ -121,10 +121,26 @@
     "recent": "Pick up where you left off",
     "pinned": "Pinned",
     "chooseCategory": "Start with a category",
-    "chooseCategoryHint": "Open a group of related tools, or search everything above.",
+    "chooseCategoryHint": "Pick a job family. Tools inside are grouped so you can scan instead of hunt.",
     "backToCategories": "Categories",
     "toolsInCategory": "{count, plural, one {# tool} other {# tools}}",
-    "searchResults": "Search results"
+    "searchResults": "Search results",
+    "featured": "Start here",
+    "groups": {
+      "pages": "Pages",
+      "protect": "Protect & info",
+      "markup": "Markup",
+      "export": "Export / convert",
+      "transform": "Size & crop",
+      "look": "Look",
+      "file": "File",
+      "clip": "Clips",
+      "formats": "Formats",
+      "write": "Writing",
+      "inspect": "Inspect",
+      "encode": "Encode",
+      "generate": "Generate"
+    }
   },
   "categories": {
     "pdf": "PDF",
@@ -132,13 +148,17 @@
     "audio": "Audio",
     "video": "Video",
     "convert": "File convert",
-    "text": "Text & data",
+    "text": "Writing",
     "pdfDesc": "Merge, split, compress, and mark up PDF documents",
     "imageDesc": "Compress, resize, convert, and retouch photos",
     "audioDesc": "Convert, trim, and change speed of audio only",
     "videoDesc": "Convert, trim, speed up, and pull audio from video",
     "convertDesc": "Cross-format smart conversion (JSON, CSV, ZIP, images…)",
-    "textDesc": "Format, validate, encode, and compare text"
+    "textDesc": "Compare copy, change case, and turn Markdown into HTML",
+    "data": "Data",
+    "dataDesc": "JSON, YAML, CSV, XML, SQL, and cross-format conversion",
+    "developer": "Developer",
+    "developerDesc": "Tokens, hashes, encodings, passwords, and other bench tools"
   },
   "history": {
     "title": "History",
@@ -604,6 +624,97 @@
       "generated": "QR code ready.",
       "decoded": "QR contents read.",
       "none": "No QR code found in that image."
+    },
+    "pdf-sign": {
+      "name": "Sign PDF",
+      "description": "Stamp a typed signature on every page. Visual only — not a certificate.",
+      "keywords": "pdf sign signature stamp name",
+      "run": "Sign",
+      "signature": "Signature text",
+      "placeholder": "Your name",
+      "limits": "This draws your name on the page. It is not a cryptographic digital signature.",
+      "success": "Signature stamped."
+    },
+    "image-watermark": {
+      "name": "Watermark images",
+      "description": "Overlay text on photos, one file or a whole batch.",
+      "keywords": "image watermark stamp copyright",
+      "run": "Apply",
+      "text": "Watermark text",
+      "position": "Placement",
+      "bottomRight": "Bottom right",
+      "bottomLeft": "Bottom left",
+      "topRight": "Top right",
+      "center": "Center",
+      "success": "Watermarked {count} image(s)."
+    },
+    "password-generator": {
+      "name": "Password generator",
+      "description": "Create a strong password on this device. Nothing is stored.",
+      "keywords": "password generate random secret",
+      "run": "Generate",
+      "length": "Length",
+      "lower": "Lowercase",
+      "upper": "Uppercase",
+      "digits": "Digits",
+      "symbols": "Symbols",
+      "success": "Password ready."
+    },
+    "case-convert": {
+      "name": "Change case",
+      "description": "Switch between camel, snake, kebab, title, and more.",
+      "keywords": "case camel snake kebab pascal title",
+      "run": "Convert",
+      "style": "Style",
+      "success": "Converted."
+    },
+    "jwt-decode": {
+      "name": "JWT decoder",
+      "description": "Read a JWT header and payload locally. Signatures are not verified.",
+      "keywords": "jwt decode token bearer auth",
+      "run": "Decode",
+      "limits": "Kit only decodes Base64url. It cannot prove the token is authentic without a key.",
+      "hasSig": "Signature part is present (not verified).",
+      "noSig": "No signature part.",
+      "empty": "Paste a token first.",
+      "success": "Token decoded."
+    },
+    "unix-timestamp": {
+      "name": "Unix timestamp",
+      "description": "Convert Unix time to ISO and back.",
+      "keywords": "unix epoch timestamp iso date",
+      "now": "Use now"
+    },
+    "cron-explain": {
+      "name": "Cron explainer",
+      "description": "Turn a 5-field cron expression into plain language.",
+      "keywords": "cron schedule crontab explain",
+      "run": "Explain",
+      "success": "Explained."
+    },
+    "number-base": {
+      "name": "Number base",
+      "description": "Convert integers between bases 2 and 36.",
+      "keywords": "binary hex decimal base convert",
+      "value": "Number",
+      "from": "From base",
+      "to": "To base"
+    },
+    "html-entities": {
+      "name": "HTML entities",
+      "description": "Encode or decode &lt; &amp; and numeric entities.",
+      "keywords": "html entities encode decode escape",
+      "run": "Convert",
+      "encode": "Encode",
+      "decode": "Decode",
+      "success": "Converted."
+    },
+    "json-types": {
+      "name": "JSON → TypeScript",
+      "description": "Infer TypeScript interfaces from a JSON sample.",
+      "keywords": "json typescript interface type generate",
+      "run": "Generate types",
+      "success": "Types generated."
     }
   },
   "legal": {

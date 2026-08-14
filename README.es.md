@@ -22,21 +22,19 @@ Un kit de utilidades coherente y cuidado: interfaz clara, modo claro y oscuro, v
 
 ## Herramientas
 
+La portada agrupa las herramientas por trabajo (páginas PDF, datos, desarrollo…).
+
 ### PDF
-Unir, dividir, organizar páginas, comprimir, marca de agua, cubrir zonas (visualmente), extraer texto o imágenes de todas las páginas, numerar, PDF↔imagen, aplanar formularios, metadatos, bloquear/desbloquear.
+Unir, dividir, organizar, numerar, comprimir, bloquear, metadatos, aplanar, marca de agua, cubrir, firmar (visual), extraer, PDF↔imagen.
 
 ### Imágenes
-Comprimir, redimensionar, recortar, convertir formato, ver y quitar EXIF, ajustar brillo/contraste/saturación, girar/voltear, filtros, pack de favicon.
+Comprimir, recortar, girar, filtros, marca de agua, EXIF, favicon.
 
 ### Audio y vídeo
-Convertir (más formatos), recortar con forma de onda, velocidad y volumen, extraer audio, clip → GIF  
-*(FFmpeg WASM; los archivos grandes pueden ser lentos y no todos los códecs están disponibles)*.
+Convertir, recortar con forma de onda, velocidad, extraer audio, clip → GIF.
 
-### Convertidores
-Centro de conversión inteligente (JSON, YAML, CSV, ZIP, imágenes…).
-
-### Texto y datos
-JSON / YAML / TOML, Markdown ↔ HTML, CSV ↔ JSON, XML ↔ JSON, formatear SQL, regex, comparación de textos, Base64, URL, hash (SHA/MD5), UUID, color, Lorem ipsum, QR.
+### Datos / escritura / desarrollo
+JSON, YAML, SQL, XML, JSON→TypeScript; Markdown, diff, mayúsculas; JWT, timestamp, cron, hash, contraseñas, QR.
 
 ## Privacidad
 

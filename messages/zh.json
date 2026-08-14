@@ -121,10 +121,26 @@
     "recent": "继续上次的工作",
     "pinned": "已固定",
     "chooseCategory": "先选择一个分类",
-    "chooseCategoryHint": "打开一组相关工具，或使用上方搜索查找全部功能。",
+    "chooseCategoryHint": "先选一类工作。类目里再分组，方便扫一眼而不是翻列表。",
     "backToCategories": "分类",
     "toolsInCategory": "{count} 个工具",
-    "searchResults": "搜索结果"
+    "searchResults": "搜索结果",
+    "featured": "从这里开始",
+    "groups": {
+      "pages": "页面",
+      "protect": "保护与信息",
+      "markup": "标注",
+      "export": "导出 / 转换",
+      "transform": "尺寸与裁剪",
+      "look": "外观",
+      "file": "文件",
+      "clip": "片段",
+      "formats": "格式",
+      "write": "写作",
+      "inspect": "查看",
+      "encode": "编码",
+      "generate": "生成"
+    }
   },
   "categories": {
     "pdf": "PDF",
@@ -132,13 +148,17 @@
     "audio": "音频",
     "video": "视频",
     "convert": "文件转换",
-    "text": "文本与数据",
+    "text": "写作",
     "pdfDesc": "合并、拆分、压缩与标注 PDF 文档",
     "imageDesc": "压缩、缩放、转格式与微调照片",
     "audioDesc": "仅处理音频：转换、裁剪与变速",
     "videoDesc": "视频转换、裁剪、变速，以及提取音轨",
     "convertDesc": "跨格式智能转换（JSON、CSV、ZIP、图片等）",
-    "textDesc": "格式化、校验、编解码与文本对比"
+    "textDesc": "对比文本、转换大小写、Markdown 转 HTML",
+    "data": "数据",
+    "dataDesc": "JSON、YAML、CSV、XML、SQL 以及格式互转",
+    "developer": "开发",
+    "developerDesc": "令牌、哈希、编码、密码和其他工作台工具"
   },
   "history": {
     "title": "历史记录",
@@ -604,6 +624,97 @@
       "generated": "二维码已就绪。",
       "decoded": "已读出内容。",
       "none": "这张图里没有找到二维码。"
+    },
+    "pdf-sign": {
+      "name": "签署 PDF",
+      "description": "在每一页盖上打字签名。仅视觉效果，不是证书签名。",
+      "keywords": "pdf 签名 盖章",
+      "run": "签署",
+      "signature": "签名文字",
+      "placeholder": "你的名字",
+      "limits": "只是把名字画在页面上，不是加密数字签名。",
+      "success": "已盖上签名。"
+    },
+    "image-watermark": {
+      "name": "图片水印",
+      "description": "在照片上叠文字，支持单张或批量。",
+      "keywords": "图片 水印 版权",
+      "run": "应用",
+      "text": "水印文字",
+      "position": "位置",
+      "bottomRight": "右下",
+      "bottomLeft": "左下",
+      "topRight": "右上",
+      "center": "居中",
+      "success": "已为 {count} 张图片加水印。"
+    },
+    "password-generator": {
+      "name": "密码生成",
+      "description": "在本机生成强密码，不会保存。",
+      "keywords": "密码 随机 生成",
+      "run": "生成",
+      "length": "长度",
+      "lower": "小写",
+      "upper": "大写",
+      "digits": "数字",
+      "symbols": "符号",
+      "success": "密码已就绪。"
+    },
+    "case-convert": {
+      "name": "大小写转换",
+      "description": "在 camel、snake、kebab、标题等风格之间转换。",
+      "keywords": "大小写 camel snake kebab",
+      "run": "转换",
+      "style": "风格",
+      "success": "已转换。"
+    },
+    "jwt-decode": {
+      "name": "JWT 解码",
+      "description": "在本地查看 JWT 的头和载荷。不验证签名。",
+      "keywords": "jwt token 令牌",
+      "run": "解码",
+      "limits": "Kit 只做 Base64url 解码。没有密钥就无法证明令牌真实。",
+      "hasSig": "包含签名部分（未验证）。",
+      "noSig": "没有签名部分。",
+      "empty": "请先粘贴令牌。",
+      "success": "已解码。"
+    },
+    "unix-timestamp": {
+      "name": "Unix 时间戳",
+      "description": "在 Unix 时间与 ISO 之间转换。",
+      "keywords": "unix 时间戳 iso",
+      "now": "使用现在"
+    },
+    "cron-explain": {
+      "name": "Cron 说明",
+      "description": "把 5 段 cron 表达式翻译成白话。",
+      "keywords": "cron 定时 计划",
+      "run": "说明",
+      "success": "已说明。"
+    },
+    "number-base": {
+      "name": "进制转换",
+      "description": "在 2–36 进制之间转换整数。",
+      "keywords": "二进制 十六进制 十进制",
+      "value": "数字",
+      "from": "从",
+      "to": "到"
+    },
+    "html-entities": {
+      "name": "HTML 实体",
+      "description": "编码或解码 &lt; &amp; 以及数字实体。",
+      "keywords": "html 实体 转义",
+      "run": "转换",
+      "encode": "编码",
+      "decode": "解码",
+      "success": "已转换。"
+    },
+    "json-types": {
+      "name": "JSON → TypeScript",
+      "description": "根据 JSON 样例推断 TypeScript 接口。",
+      "keywords": "json typescript 接口",
+      "run": "生成类型",
+      "success": "类型已生成。"
     }
   },
   "legal": {

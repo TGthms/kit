@@ -121,10 +121,26 @@
     "recent": "続きから",
     "pinned": "ピン留め",
     "chooseCategory": "カテゴリから選ぶ",
-    "chooseCategoryHint": "関連ツールのグループを開くか、上の検索ですべてから探せます。",
+    "chooseCategoryHint": "仕事の種類を選びます。中はグループ分けしてあるので、探さずに眺められます。",
     "backToCategories": "カテゴリ",
     "toolsInCategory": "{count} 個のツール",
-    "searchResults": "検索結果"
+    "searchResults": "検索結果",
+    "featured": "まずはここから",
+    "groups": {
+      "pages": "ページ",
+      "protect": "保護と情報",
+      "markup": "マーク",
+      "export": "書き出し / 変換",
+      "transform": "サイズと切り抜き",
+      "look": "見た目",
+      "file": "ファイル",
+      "clip": "クリップ",
+      "formats": "形式",
+      "write": "文章",
+      "inspect": "確認",
+      "encode": "エンコード",
+      "generate": "生成"
+    }
   },
   "categories": {
     "pdf": "PDF",
@@ -132,13 +148,17 @@
     "audio": "音声",
     "video": "動画",
     "convert": "ファイル変換",
-    "text": "テキスト・データ",
+    "text": "文章",
     "pdfDesc": "PDF の結合・分割・圧縮・透かしなど",
     "imageDesc": "画像の圧縮・リサイズ・形式変換・調整",
     "audioDesc": "音声のみの変換・切り取り・速度変更",
     "videoDesc": "動画の変換・切り取り・速度変更・音声抽出",
     "convertDesc": "形式をまたぐスマート変換（JSON・CSV・ZIP・画像など）",
-    "textDesc": "整形・検証・エンコード・テキスト比較"
+    "textDesc": "テキスト比較、大文字小文字、Markdown を HTML に",
+    "data": "データ",
+    "dataDesc": "JSON / YAML / CSV / XML / SQL と形式変換",
+    "developer": "開発",
+    "developerDesc": "トークン、ハッシュ、エンコード、パスワードなどの作業台"
   },
   "history": {
     "title": "履歴",
@@ -604,6 +624,97 @@
       "generated": "QR コードの準備ができました。",
       "decoded": "内容を読み取りました。",
       "none": "その画像に QR コードは見つかりませんでした。"
+    },
+    "pdf-sign": {
+      "name": "PDF に署名",
+      "description": "入力した署名を全ページに押します。見た目だけで、証明書ではありません。",
+      "keywords": "pdf 署名 スタンプ",
+      "run": "署名する",
+      "signature": "署名テキスト",
+      "placeholder": "氏名",
+      "limits": "名前をページに描くだけです。暗号学的な電子署名ではありません。",
+      "success": "署名を押しました。"
+    },
+    "image-watermark": {
+      "name": "画像透かし",
+      "description": "写真に文字を重ねます。1 枚でもまとめてでも。",
+      "keywords": "画像 透かし 著作権",
+      "run": "適用",
+      "text": "透かし文字",
+      "position": "位置",
+      "bottomRight": "右下",
+      "bottomLeft": "左下",
+      "topRight": "右上",
+      "center": "中央",
+      "success": "{count} 枚に透かしを入れました。"
+    },
+    "password-generator": {
+      "name": "パスワード生成",
+      "description": "この端末で強いパスワードを作ります。保存しません。",
+      "keywords": "パスワード 生成 乱数",
+      "run": "生成",
+      "length": "長さ",
+      "lower": "英小文字",
+      "upper": "英大文字",
+      "digits": "数字",
+      "symbols": "記号",
+      "success": "パスワードの準備ができました。"
+    },
+    "case-convert": {
+      "name": "ケース変換",
+      "description": "camel / snake / kebab / タイトルなどを切り替えます。",
+      "keywords": "ケース camel snake kebab",
+      "run": "変換",
+      "style": "スタイル",
+      "success": "変換しました。"
+    },
+    "jwt-decode": {
+      "name": "JWT デコード",
+      "description": "JWT のヘッダーとペイロードをこの端末で読みます。署名は検証しません。",
+      "keywords": "jwt トークン bearer",
+      "run": "デコード",
+      "limits": "Kit は Base64url を読むだけです。鍵がなければ真正性は証明できません。",
+      "hasSig": "署名パートがあります（未検証）。",
+      "noSig": "署名パートはありません。",
+      "empty": "先にトークンを貼ってください。",
+      "success": "デコードしました。"
+    },
+    "unix-timestamp": {
+      "name": "Unix タイムスタンプ",
+      "description": "Unix 時刻と ISO を相互変換します。",
+      "keywords": "unix epoch iso",
+      "now": "現在を使う"
+    },
+    "cron-explain": {
+      "name": "Cron の説明",
+      "description": "5 フィールドの cron を普通の言葉にします。",
+      "keywords": "cron crontab スケジュール",
+      "run": "説明する",
+      "success": "説明しました。"
+    },
+    "number-base": {
+      "name": "基数変換",
+      "description": "2〜36 進の整数を変換します。",
+      "keywords": "2進 16進 10進",
+      "value": "数値",
+      "from": "変換元",
+      "to": "変換先"
+    },
+    "html-entities": {
+      "name": "HTML 実体参照",
+      "description": "&lt; や &amp;、数値実体をエンコード / デコードします。",
+      "keywords": "html 実体 エスケープ",
+      "run": "変換",
+      "encode": "エンコード",
+      "decode": "デコード",
+      "success": "変換しました。"
+    },
+    "json-types": {
+      "name": "JSON → TypeScript",
+      "description": "JSON の例から TypeScript の interface を推定します。",
+      "keywords": "json typescript interface",
+      "run": "型を生成",
+      "success": "型を生成しました。"
     }
   },
   "legal": {

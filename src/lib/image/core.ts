@@ -169,6 +169,47 @@ export async function filterImage(
   return canvasToBlob(bufferToCanvas(next), mime || file.type || "image/png", 0.92);
 }
 
+export async function watermarkImage(
+  file: Blob,
+  opts: {
+    text: string;
+    position?: "center" | "bottom-right" | "bottom-left" | "top-right";
+    opacity?: number;
+  }
+): Promise<Blob> {
+  const bmp = await loadImageBitmap(file);
+  const canvas = document.createElement("canvas");
+  canvas.width = bmp.width;
+  canvas.height = bmp.height;
+  const ctx = canvas.getContext("2d")!;
+  ctx.drawImage(bmp, 0, 0);
+  bmp.close();
+  const size = Math.max(14, Math.round(Math.min(canvas.width, canvas.height) * 0.045));
+  ctx.font = `600 ${size}px system-ui, sans-serif`;
+  ctx.fillStyle = `rgba(255,255,255,${opts.opacity ?? 0.7})`;
+  ctx.strokeStyle = `rgba(0,0,0,${(opts.opacity ?? 0.7) * 0.55})`;
+  ctx.lineWidth = Math.max(1, size / 12);
+  const text = opts.text;
+  const tw = ctx.measureText(text).width;
+  const pad = size;
+  let x = (canvas.width - tw) / 2;
+  let y = canvas.height / 2;
+  const pos = opts.position ?? "bottom-right";
+  if (pos === "bottom-right") {
+    x = canvas.width - tw - pad;
+    y = canvas.height - pad;
+  } else if (pos === "bottom-left") {
+    x = pad;
+    y = canvas.height - pad;
+  } else if (pos === "top-right") {
+    x = canvas.width - tw - pad;
+    y = pad + size;
+  }
+  ctx.strokeText(text, x, y);
+  ctx.fillText(text, x, y);
+  return canvasToBlob(canvas, file.type || "image/png", 0.92);
+}
+
 export async function exportFavicons(
   file: Blob,
   sizes: readonly number[] = [16, 32, 48, 180, 192, 512]

@@ -22,44 +22,36 @@ Interface and legal pages: **English · Español · 中文 · 日本語**
 
 ## Tools
 
+The home screen groups tools by job (PDF pages vs markup, developer inspect vs encode) instead of one flat dump.
+
 ### PDF
-- Merge (thumbnails + reorder)
-- Split, Organize (rotate/delete/reorder)
-- Compress (lossy page re-encode)
-- Watermark / header / footer
-- Redact (visual cover—see in-app note)
-- Extract text / all-page image ZIP
-- Page numbers
-- PDF → images (per-page ZIP) and Images → PDF
-- Flatten form fields
-- Metadata view / edit / strip
-- Lock or unlock with a password (client-side)
+- Merge, split, organize, page numbers
+- Compress, lock/unlock, metadata, flatten
+- Watermark, visual redact, typed signature stamp
+- Extract text, PDF → images ZIP, images → PDF
 
-### Image
-- Compress, Resize, Crop
-- Format convert (JPEG / PNG / WEBP)
-- View EXIF and strip metadata
-- Adjust (brightness / contrast / saturation)
-- Rotate / flip, simple filters
-- Favicon / multi-size icon export
+### Images
+- Compress, resize, crop, rotate/flip, favicon pack
+- Adjust, filters, image watermark
+- Convert JPEG/PNG/WEBP, view/strip EXIF
 
-### Audio
-- Convert (MP3 / WAV / OGG / AAC / FLAC / M4A), Trim with waveform, Speed & volume  
+### Audio & Video
+- Convert, trim with waveform, speed/volume, extract audio, clip → GIF  
   *(FFmpeg WASM; large files may be slow; limited codecs)*
 
-### Video
-- Convert (MP4 / WEBM / GIF / MOV / MKV), Trim with waveform, Speed & volume, Extract audio, Clip → GIF  
-  *(FFmpeg WASM; large files may be slow; limited codecs)*
+### Data
+- JSON / YAML / TOML / SQL, CSV ↔ JSON, XML ↔ JSON
+- JSON → TypeScript interfaces
+- Smart convert hub
 
-### File convert
-- Smart convert hub (JSON, YAML, CSV, ZIP, images…)
+### Writing
+- Markdown ↔ HTML, text diff, case convert, Lorem ipsum
 
-### Text & Data
-- JSON / YAML / TOML format & validate
-- Markdown ↔ HTML, CSV ↔ JSON, XML ↔ JSON
-- SQL formatter, regex tester
-- Text diff, Base64, URL encode/decode
-- Hash (SHA / MD5), UUID, color converter, Lorem ipsum, QR generate / read
+### Developer
+- JWT decode, Unix timestamp, cron explainer, number base
+- Hash (SHA/MD5), regex, color
+- Base64, URL, HTML entities
+- UUID, password generator, QR generate/read
 
 ## Privacy
 

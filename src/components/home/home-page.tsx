@@ -10,10 +10,11 @@ import {
   ImageIcon,
   Clapperboard,
   AudioLines,
-  ArrowLeftRight,
+  Database,
   Type,
+  Code2,
 } from "lucide-react";
-import { tools, categories, type ToolCategory } from "@/lib/tools/registry";
+import { tools, categories, featuredToolIds, groupedTools, type ToolCategory } from "@/lib/tools/registry";
 import { homeHref, parseCategoryParam } from "@/lib/navigation/routes";
 import { Link, useRouter } from "@/lib/i18n/navigation";
 import { Input } from "@/components/ui/input";
@@ -46,8 +47,8 @@ const categoryMeta: Record<
     tint: "bg-rose-500/12 text-rose-600 dark:text-rose-400",
     ring: "hover:ring-rose-500/20",
   },
-  convert: {
-    icon: ArrowLeftRight,
+  data: {
+    icon: Database,
     tint: "bg-amber-500/12 text-amber-700 dark:text-amber-400",
     ring: "hover:ring-amber-500/20",
   },
@@ -55,6 +56,11 @@ const categoryMeta: Record<
     icon: Type,
     tint: "bg-emerald-500/12 text-emerald-700 dark:text-emerald-400",
     ring: "hover:ring-emerald-500/20",
+  },
+  developer: {
+    icon: Code2,
+    tint: "bg-slate-500/12 text-slate-700 dark:text-slate-300",
+    ring: "hover:ring-slate-500/25",
   },
 };
 
@@ -201,6 +207,40 @@ function HomePageInner() {
         </section>
       )}
 
+      {showCategories && (
+        <section className="space-y-3">
+          <h2 className="text-xs font-semibold uppercase tracking-[0.06em] text-muted-foreground">
+            {t("featured")}
+          </h2>
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {featuredToolIds.map((id) => {
+              const tool = tools.find((x) => x.id === id);
+              if (!tool) return null;
+              const Icon = tool.icon;
+              return (
+                <Link key={id} href={`/tools/${id}`} className="block" data-pressable>
+                  <Card className="h-full border-border/40 pressable-soft transition-shadow hover:surface-float-lg">
+                    <CardHeader className="flex-row items-center gap-3 space-y-0 p-4">
+                      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                        <Icon className="h-5 w-5" />
+                      </span>
+                      <div className="min-w-0">
+                        <CardTitle className="truncate text-sm font-medium tracking-[-0.01em]">
+                          {tt(`${id}.name`)}
+                        </CardTitle>
+                        <CardDescription className="mt-0.5 line-clamp-1 text-xs">
+                          {tt(`${id}.description`)}
+                        </CardDescription>
+                      </div>
+                    </CardHeader>
+                  </Card>
+                </Link>
+              );
+            })}
+          </div>
+        </section>
+      )}
+
       {showCategories && pinned.length > 0 && (
         <section className="space-y-3">
           <h2 className="text-xs font-semibold uppercase tracking-[0.06em] text-muted-foreground">
@@ -298,26 +338,41 @@ function HomePageInner() {
           {categoryTools.length === 0 ? (
             <p className="type-body text-muted-foreground">{t("noResults")}</p>
           ) : (
-            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 xl:grid-cols-3">
-              {categoryTools.map((tool, index) => (
-                <div
-                  key={tool.id}
-                  className="anim-list-item"
-                  style={{ animationDelay: `${index * 35}ms` }}
-                >
-                  <ToolCard
-                    toolId={tool.id}
-                    category={tc(tool.category)}
-                    icon={tool.icon}
-                    name={tt(`${tool.id}.name`)}
-                    description={tt(`${tool.id}.description`)}
-                    fav={favIds.includes(tool.id)}
-                    onToggleFav={() => toggle(tool.id)}
-                    favoriteLabel={tcommon("favorite")}
-                    unfavoriteLabel={tcommon("unfavorite")}
-                  />
-                </div>
-              ))}
+            <div className="space-y-8">
+              {groupedTools(selectedCat)
+                .map((block) => ({
+                  ...block,
+                  tools: block.tools.filter((tool) => matchesQuery(tool.id)),
+                }))
+                .filter((block) => block.tools.length > 0)
+                .map((block) => (
+                  <div key={block.group} className="space-y-3">
+                    <h3 className="text-xs font-semibold uppercase tracking-[0.06em] text-muted-foreground">
+                      {t(`groups.${block.group}`)}
+                    </h3>
+                    <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 xl:grid-cols-3">
+                      {block.tools.map((tool, index) => (
+                        <div
+                          key={tool.id}
+                          className="anim-list-item"
+                          style={{ animationDelay: `${index * 35}ms` }}
+                        >
+                          <ToolCard
+                            toolId={tool.id}
+                            category={tc(tool.category)}
+                            icon={tool.icon}
+                            name={tt(`${tool.id}.name`)}
+                            description={tt(`${tool.id}.description`)}
+                            fav={favIds.includes(tool.id)}
+                            onToggleFav={() => toggle(tool.id)}
+                            favoriteLabel={tcommon("favorite")}
+                            unfavoriteLabel={tcommon("unfavorite")}
+                          />
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                ))}
             </div>
           )}
         </section>
