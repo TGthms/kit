@@ -7,6 +7,8 @@ import { Providers } from "@/components/providers";
 import { AppShell } from "@/components/layout/app-shell";
 import { ShortcutsProvider } from "@/components/layout/shortcuts-provider";
 import { ServiceWorkerRegister } from "@/components/pwa/sw-register";
+import { SiteJsonLd } from "@/lib/seo/json-ld";
+import { SITE_NAME } from "@/lib/seo/site";
 
 export function generateStaticParams() {
   return pathLocales.map((locale) => ({ locale }));
@@ -25,6 +27,7 @@ export default async function LocaleLayout({
   const messages = await getMessages();
   const lang = localeHtmlLang(locale);
   const dir = localeDir(locale);
+  const meta = messages.meta as { title?: string; description?: string };
 
   return (
     <html lang={lang} dir={dir} suppressHydrationWarning>
@@ -34,6 +37,7 @@ export default async function LocaleLayout({
         <link rel="apple-touch-icon" href={withAsset("/icons/apple-touch-icon.png")} sizes="180x180" />
         <meta name="theme-color" content="#0A84FF" media="(prefers-color-scheme: light)" />
         <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
+        <SiteJsonLd name={SITE_NAME} description={meta.description ?? ""} locale={lang} />
       </head>
       <body className="min-h-dvh antialiased">
         <NextIntlClientProvider messages={messages}>

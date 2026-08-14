@@ -1,8 +1,19 @@
+import type { Metadata } from "next";
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import { isPathLocale } from "@/lib/i18n/config";
 import { notFound } from "next/navigation";
 import { loadLegal, renderSimpleMarkdown } from "@/lib/legal/load";
 import { LegalPageShell } from "@/components/layout/legal-page-shell";
+import { buildSectionMetadata } from "@/lib/seo/metadata";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  return buildSectionMetadata(locale, "terms");
+}
 
 export default async function TermsPage({
   params,

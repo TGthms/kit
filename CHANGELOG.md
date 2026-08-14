@@ -18,3 +18,4 @@
 ### Project
 - GitHub Actions runs typecheck, lint, and Vitest before the Pages build.
 - Lockfile regenerated for npm 10 so `npm ci` matches GitHub’s Node 22.
+- Open Graph / Twitter cards: 1200×630 brand image, localized titles and descriptions, hreflang, JSON-LD.
