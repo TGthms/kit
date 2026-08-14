@@ -22,8 +22,9 @@ SUB = (199, 199, 204, 255)
 ACCENT = (100, 210, 255, 255)
 MUTED = (142, 142, 147, 255)
 LINE = (255, 255, 255, 28)
-PILL_BG = (255, 255, 255, 28)
-PILL_FG = (244, 244, 247, 255)
+PILL_BG = (6, 10, 18, 150)
+PILL_STROKE = (255, 255, 255, 38)
+PILL_FG = (174, 180, 190, 255)
 
 FONTS = {
     "display_bold": "/Library/Fonts/SF-Pro-Display-Bold.otf",
@@ -81,8 +82,13 @@ def draw_pills(draw: ImageDraw.ImageDraw, labels: list[str], x: int, y: int, fnt
         bbox = draw.textbbox((0, 0), label, font=fnt)
         tw, th = bbox[2] - bbox[0], bbox[3] - bbox[1]
         w, h = tw + pad_x * 2, th + pad_y * 2
-        draw.rounded_rectangle((cx, y, cx + w, y + h), radius=h // 2, fill=PILL_BG)
-        # Vertically center using bbox offset
+        draw.rounded_rectangle(
+            (cx, y, cx + w, y + h),
+            radius=h // 2,
+            fill=PILL_BG,
+            outline=PILL_STROKE,
+            width=2,
+        )
         draw.text((cx + pad_x, y + pad_y - bbox[1]), label, font=fnt, fill=PILL_FG)
         cx += w + gap
 
@@ -106,7 +112,7 @@ def render() -> None:
     title_font = font("display_bold", 168)
     sub_font = font("text_regular", 48)
     accent_font = font("display_medium", 46)
-    pill_font = font("text_medium", 28)
+    pill_font = font("text_medium", 30)
     url_font = font("text_regular", 30)
 
     text_x = 620
