@@ -1,67 +1,82 @@
 #!/usr/bin/env python3
-"""Emit GitHub README.<locale>.md files with a shared 30-language switcher."""
+"""Emit the root English README and localized copies under docs/readme/."""
 
 from __future__ import annotations
 
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
+README_DIR = ROOT / "docs" / "readme"
 
-# (code, native name, filename) — README.md is English.
-FILES: list[tuple[str, str, str]] = [
-    ("en", "English", "README.md"),
-    ("es", "Español", "README.es.md"),
-    ("fr", "Français", "README.fr.md"),
-    ("de", "Deutsch", "README.de.md"),
-    ("it", "Italiano", "README.it.md"),
-    ("pt-BR", "Português (Brasil)", "README.pt-BR.md"),
-    ("pt-PT", "Português (Portugal)", "README.pt-PT.md"),
-    ("nl", "Nederlands", "README.nl.md"),
-    ("da", "Dansk", "README.da.md"),
-    ("sv", "Svenska", "README.sv.md"),
-    ("nb", "Norsk Bokmål", "README.nb.md"),
-    ("fi", "Suomi", "README.fi.md"),
-    ("pl", "Polski", "README.pl.md"),
-    ("cs", "Čeština", "README.cs.md"),
-    ("hu", "Magyar", "README.hu.md"),
-    ("ro", "Română", "README.ro.md"),
-    ("el", "Ελληνικά", "README.el.md"),
-    ("tr", "Türkçe", "README.tr.md"),
-    ("ru", "Русский", "README.ru.md"),
-    ("uk", "Українська", "README.uk.md"),
-    ("ar", "العربية", "README.ar.md"),
-    ("he", "עברית", "README.he.md"),
-    ("hi", "हिन्दी", "README.hi.md"),
-    ("th", "ไทย", "README.th.md"),
-    ("vi", "Tiếng Việt", "README.vi.md"),
-    ("id", "Bahasa Indonesia", "README.id.md"),
-    ("ja", "日本語", "README.ja.md"),
-    ("ko", "한국어", "README.ko.md"),
-    ("zh-Hans", "简体中文", "README.zh-Hans.md"),
-    ("zh-Hant", "繁體中文", "README.zh-Hant.md"),
+# (code, native name). English stays at /README.md; others at docs/readme/<code>.md
+FILES: list[tuple[str, str]] = [
+    ("en", "English"),
+    ("es", "Español"),
+    ("fr", "Français"),
+    ("de", "Deutsch"),
+    ("it", "Italiano"),
+    ("pt-BR", "Português (Brasil)"),
+    ("pt-PT", "Português (Portugal)"),
+    ("nl", "Nederlands"),
+    ("da", "Dansk"),
+    ("sv", "Svenska"),
+    ("nb", "Norsk Bokmål"),
+    ("fi", "Suomi"),
+    ("pl", "Polski"),
+    ("cs", "Čeština"),
+    ("hu", "Magyar"),
+    ("ro", "Română"),
+    ("el", "Ελληνικά"),
+    ("tr", "Türkçe"),
+    ("ru", "Русский"),
+    ("uk", "Українська"),
+    ("ar", "العربية"),
+    ("he", "עברית"),
+    ("hi", "हिन्दी"),
+    ("th", "ไทย"),
+    ("vi", "Tiếng Việt"),
+    ("id", "Bahasa Indonesia"),
+    ("ja", "日本語"),
+    ("ko", "한국어"),
+    ("zh-Hans", "简体中文"),
+    ("zh-Hant", "繁體中文"),
 ]
 
 FEATURED = ["en", "es", "fr", "de", "pt-BR", "ja", "zh-Hans", "zh-Hant", "ko", "ar"]
 
-# Privacy/terms path: official locale, plus /zh/ for the legacy README.zh.md alias.
+# Privacy/terms path: official locale. zh-Hans still uses the /zh/ app route.
 SITE = "https://trykit.pages.dev"
 ABOUT = "https://tgthms.github.io/about/"
 PAGES = "https://TGthms.github.io/kit/"
 REPO = "https://github.com/TGthms/kit"
 
 
+def dest_path(code: str) -> Path:
+    if code == "en":
+        return ROOT / "README.md"
+    return README_DIR / f"{code}.md"
+
+
+def link_href(from_code: str, to_code: str) -> str:
+    """Relative link from one README to another."""
+    if to_code == "en":
+        return "README.md" if from_code == "en" else "../../README.md"
+    if from_code == "en":
+        return f"docs/readme/{to_code}.md"
+    return f"{to_code}.md"
+
+
 def switcher(current: str, details_label: str) -> str:
-    name = {code: n for code, n, _ in FILES}
-    path = {code: p for code, _, p in FILES}
+    name = {code: n for code, n in FILES}
 
     def link(code: str) -> str:
         label = name[code]
         if code == current:
             return f"**{label}**"
-        return f"[{label}]({path[code]})"
+        return f"[{label}]({link_href(current, code)})"
 
     featured = " · ".join(link(c) for c in FEATURED)
-    full = "\n".join(f"- {link(code)}" for code, _, _ in FILES)
+    full = "\n".join(f"- {link(code)}" for code, _ in FILES)
     return f"""{featured}
 
 <details>
@@ -83,7 +98,7 @@ COPY: dict[str, dict[str, str]] = {
         "what_h": "What you get",
         "what": "A complete, polished toolkit: clear layout, light and dark appearance, a 30-language UI with a native picker, an installable PWA shell, and honest limits about what a browser can do.",
         "lang_h": "Languages",
-        "lang": "The app interface and this GitHub README are available in **30 languages**. Switch in Settings (or the header) with a native picker, or use the links at the top of this file. Included: English, Español, Français, Deutsch, Italiano, Português (Brasil / Portugal), Nederlands, Dansk, Svenska, Norsk Bokmål, Suomi, Polski, Čeština, Magyar, Română, Ελληνικά, Türkçe, Русский, Українська, العربية, עברית, हिन्दी, ไทย, Tiếng Việt, Bahasa Indonesia, 日本語, 한국어, 简体中文, and 繁體中文. Arabic and Hebrew use right-to-left layout. Privacy and Terms are localized where we have native legal text; other locales fall back to English. Old `/zh/` app links still resolve to Simplified Chinese.",
+        "lang": "The app interface and this GitHub README are available in **30 languages**. Switch in Settings (or the header) with a native picker, or use the links at the top of this file. Translations live in [`docs/readme/`](docs/readme/). Included: English, Español, Français, Deutsch, Italiano, Português (Brasil / Portugal), Nederlands, Dansk, Svenska, Norsk Bokmål, Suomi, Polski, Čeština, Magyar, Română, Ελληνικά, Türkçe, Русский, Українська, العربية, עברית, हिन्दी, ไทย, Tiếng Việt, Bahasa Indonesia, 日本語, 한국어, 简体中文, and 繁體中文. Arabic and Hebrew use right-to-left layout. Privacy and Terms are localized where we have native legal text; other locales fall back to English. Old `/zh/` app links still resolve to Simplified Chinese.",
         "tools_h": "Tools",
         "tools_intro": "The home screen groups tools by job (PDF pages vs markup, developer inspect vs encode) instead of one flat dump.",
         "pdf": "Merge, split, organize, page numbers\n- Compress, lock/unlock, metadata, flatten\n- Watermark, visual redact, typed signature stamp\n- Extract text, PDF → images ZIP, images → PDF",
@@ -1648,7 +1663,7 @@ def privacy_path(code: str) -> str:
     return code
 
 
-def render(code: str, filename: str) -> str:
+def render(code: str) -> str:
     c = COPY[code]
     nav = switcher(code, c["details"])
     loc = privacy_path(code)
@@ -1672,7 +1687,7 @@ npm run lint
 ```
 """
 
-    return f"""# Kit
+    text = f"""# Kit
 
 {nav}
 
@@ -1771,23 +1786,49 @@ NEXT_PUBLIC_BASE_PATH=/kit npm run build
 
 {c["license"]}
 """
+    if code != "en":
+        text = text.replace("](LICENSE)", "](../../LICENSE)")
+        text = text.replace(
+            "](.github/workflows/deploy.yml)",
+            "](../../.github/workflows/deploy.yml)",
+        )
+    return text
+
+
+def write_index() -> None:
+    lines = [
+        "# README translations",
+        "",
+        "The default GitHub landing page is the English [README.md](../../README.md).",
+        "Localized copies live here so the repository root stays uncluttered.",
+        "",
+    ]
+    for code, name in FILES:
+        if code == "en":
+            lines.append(f"- [{name}](../../README.md)")
+        else:
+            lines.append(f"- [{name}]({code}.md)")
+    README_DIR.mkdir(parents=True, exist_ok=True)
+    (README_DIR / "README.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
+    print("wrote docs/readme/README.md")
 
 
 def main() -> None:
-    missing = [code for code, _, _ in FILES if code not in COPY]
+    missing = [code for code, _ in FILES if code not in COPY]
     if missing:
         raise SystemExit(f"missing README copy for: {missing}")
 
-    for code, _, filename in FILES:
-        path = ROOT / filename
-        text = render(code, filename).rstrip() + "\n"
-        path.write_text(text, encoding="utf-8")
-        print(f"wrote {filename}")
+    README_DIR.mkdir(parents=True, exist_ok=True)
+    for code, _ in FILES:
+        path = dest_path(code)
+        path.write_text(render(code).rstrip() + "\n", encoding="utf-8")
+        print(f"wrote {path.relative_to(ROOT)}")
 
-    # Keep README.zh.md as an alias of Simplified so old GitHub links still work.
-    hans = (ROOT / "README.zh-Hans.md").read_text(encoding="utf-8")
-    (ROOT / "README.zh.md").write_text(hans, encoding="utf-8")
-    print("wrote README.zh.md (alias of zh-Hans)")
+    # Alias so older docs/readme/zh.md links still open Simplified Chinese.
+    hans = dest_path("zh-Hans").read_text(encoding="utf-8")
+    (README_DIR / "zh.md").write_text(hans, encoding="utf-8")
+    print("wrote docs/readme/zh.md (alias of zh-Hans)")
+    write_index()
 
 
 if __name__ == "__main__":

@@ -1,44 +1,44 @@
 # Kit
 
-[English](README.md) · [Español](README.es.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Português (Brasil)](README.pt-BR.md) · [日本語](README.ja.md) · [简体中文](README.zh-Hans.md) · [繁體中文](README.zh-Hant.md) · **한국어** · [العربية](README.ar.md)
+[English](../../README.md) · [Español](es.md) · [Français](fr.md) · [Deutsch](de.md) · [Português (Brasil)](pt-BR.md) · [日本語](ja.md) · [简体中文](zh-Hans.md) · [繁體中文](zh-Hant.md) · **한국어** · [العربية](ar.md)
 
 <details>
 <summary>README 30개 언어 모두</summary>
 
-- [English](README.md)
-- [Español](README.es.md)
-- [Français](README.fr.md)
-- [Deutsch](README.de.md)
-- [Italiano](README.it.md)
-- [Português (Brasil)](README.pt-BR.md)
-- [Português (Portugal)](README.pt-PT.md)
-- [Nederlands](README.nl.md)
-- [Dansk](README.da.md)
-- [Svenska](README.sv.md)
-- [Norsk Bokmål](README.nb.md)
-- [Suomi](README.fi.md)
-- [Polski](README.pl.md)
-- [Čeština](README.cs.md)
-- [Magyar](README.hu.md)
-- [Română](README.ro.md)
-- [Ελληνικά](README.el.md)
-- [Türkçe](README.tr.md)
-- [Русский](README.ru.md)
-- [Українська](README.uk.md)
-- [العربية](README.ar.md)
-- [עברית](README.he.md)
-- [हिन्दी](README.hi.md)
-- [ไทย](README.th.md)
-- [Tiếng Việt](README.vi.md)
-- [Bahasa Indonesia](README.id.md)
-- [日本語](README.ja.md)
+- [English](../../README.md)
+- [Español](es.md)
+- [Français](fr.md)
+- [Deutsch](de.md)
+- [Italiano](it.md)
+- [Português (Brasil)](pt-BR.md)
+- [Português (Portugal)](pt-PT.md)
+- [Nederlands](nl.md)
+- [Dansk](da.md)
+- [Svenska](sv.md)
+- [Norsk Bokmål](nb.md)
+- [Suomi](fi.md)
+- [Polski](pl.md)
+- [Čeština](cs.md)
+- [Magyar](hu.md)
+- [Română](ro.md)
+- [Ελληνικά](el.md)
+- [Türkçe](tr.md)
+- [Русский](ru.md)
+- [Українська](uk.md)
+- [العربية](ar.md)
+- [עברית](he.md)
+- [हिन्दी](hi.md)
+- [ไทย](th.md)
+- [Tiếng Việt](vi.md)
+- [Bahasa Indonesia](id.md)
+- [日本語](ja.md)
 - **한국어**
-- [简体中文](README.zh-Hans.md)
-- [繁體中文](README.zh-Hant.md)
+- [简体中文](zh-Hans.md)
+- [繁體中文](zh-Hant.md)
 
 </details>
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](../../LICENSE)
 
 **브라우저에서 쓰는 일상 도구. 처음부터 비공개.**
 
@@ -131,7 +131,7 @@ NEXT_PUBLIC_BASE_PATH=/kit npm run build
 
 1. 이 저장소를 **https://github.com/TGthms/kit** 로 푸시
 2. GitHub → **Settings → Pages → Source: GitHub Actions**
-3. [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml) 가 `NEXT_PUBLIC_BASE_PATH=/kit` 로 빌드하고 `out/` 을 공개합니다
+3. [`.github/workflows/deploy.yml`](../../.github/workflows/deploy.yml) 가 `NEXT_PUBLIC_BASE_PATH=/kit` 로 빌드하고 `out/` 을 공개합니다
 
 ### 수동
 
@@ -149,4 +149,4 @@ Next.js 15(App Router, 정적 내보내기) · TypeScript · Tailwind CSS · sha
 
 ## 라이선스
 
-[MIT](LICENSE) © Tim G (GitHub: [TGthms](https://github.com/TGthms))
+[MIT](../../LICENSE) © Tim G (GitHub: [TGthms](https://github.com/TGthms))

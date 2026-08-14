@@ -1,44 +1,44 @@
 # Kit
 
-[English](README.md) · [Español](README.es.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Português (Brasil)](README.pt-BR.md) · [日本語](README.ja.md) · [简体中文](README.zh-Hans.md) · [繁體中文](README.zh-Hant.md) · [한국어](README.ko.md) · [العربية](README.ar.md)
+[English](../../README.md) · [Español](es.md) · [Français](fr.md) · [Deutsch](de.md) · [Português (Brasil)](pt-BR.md) · [日本語](ja.md) · [简体中文](zh-Hans.md) · [繁體中文](zh-Hant.md) · [한국어](ko.md) · [العربية](ar.md)
 
 <details>
 <summary>Alle 30 README-talen</summary>
 
-- [English](README.md)
-- [Español](README.es.md)
-- [Français](README.fr.md)
-- [Deutsch](README.de.md)
-- [Italiano](README.it.md)
-- [Português (Brasil)](README.pt-BR.md)
-- [Português (Portugal)](README.pt-PT.md)
+- [English](../../README.md)
+- [Español](es.md)
+- [Français](fr.md)
+- [Deutsch](de.md)
+- [Italiano](it.md)
+- [Português (Brasil)](pt-BR.md)
+- [Português (Portugal)](pt-PT.md)
 - **Nederlands**
-- [Dansk](README.da.md)
-- [Svenska](README.sv.md)
-- [Norsk Bokmål](README.nb.md)
-- [Suomi](README.fi.md)
-- [Polski](README.pl.md)
-- [Čeština](README.cs.md)
-- [Magyar](README.hu.md)
-- [Română](README.ro.md)
-- [Ελληνικά](README.el.md)
-- [Türkçe](README.tr.md)
-- [Русский](README.ru.md)
-- [Українська](README.uk.md)
-- [العربية](README.ar.md)
-- [עברית](README.he.md)
-- [हिन्दी](README.hi.md)
-- [ไทย](README.th.md)
-- [Tiếng Việt](README.vi.md)
-- [Bahasa Indonesia](README.id.md)
-- [日本語](README.ja.md)
-- [한국어](README.ko.md)
-- [简体中文](README.zh-Hans.md)
-- [繁體中文](README.zh-Hant.md)
+- [Dansk](da.md)
+- [Svenska](sv.md)
+- [Norsk Bokmål](nb.md)
+- [Suomi](fi.md)
+- [Polski](pl.md)
+- [Čeština](cs.md)
+- [Magyar](hu.md)
+- [Română](ro.md)
+- [Ελληνικά](el.md)
+- [Türkçe](tr.md)
+- [Русский](ru.md)
+- [Українська](uk.md)
+- [العربية](ar.md)
+- [עברית](he.md)
+- [हिन्दी](hi.md)
+- [ไทย](th.md)
+- [Tiếng Việt](vi.md)
+- [Bahasa Indonesia](id.md)
+- [日本語](ja.md)
+- [한국어](ko.md)
+- [简体中文](zh-Hans.md)
+- [繁體中文](zh-Hant.md)
 
 </details>
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](../../LICENSE)
 
 **Alledaagse tools in de browser. Privé vanaf het ontwerp.**
 
@@ -131,7 +131,7 @@ Lokaal geen voorvoegsel (`NEXT_PUBLIC_BASE_PATH` leeg).
 
 1. Push deze repo naar **https://github.com/TGthms/kit**
 2. GitHub → **Settings → Pages → Source: GitHub Actions**
-3. De workflow [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml) bouwt met `NEXT_PUBLIC_BASE_PATH=/kit` en publiceert `out/`
+3. De workflow [`.github/workflows/deploy.yml`](../../.github/workflows/deploy.yml) bouwt met `NEXT_PUBLIC_BASE_PATH=/kit` en publiceert `out/`
 
 ### Handmatig
 
@@ -149,4 +149,4 @@ Next.js 15 (App Router, statische export) · TypeScript · Tailwind CSS · UI in
 
 ## Licentie
 
-[MIT](LICENSE) © Tim G (GitHub: [TGthms](https://github.com/TGthms))
+[MIT](../../LICENSE) © Tim G (GitHub: [TGthms](https://github.com/TGthms))

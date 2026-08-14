@@ -1,44 +1,44 @@
 # Kit
 
-[English](README.md) · [Español](README.es.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Português (Brasil)](README.pt-BR.md) · [日本語](README.ja.md) · [简体中文](README.zh-Hans.md) · [繁體中文](README.zh-Hant.md) · [한국어](README.ko.md) · [العربية](README.ar.md)
+[English](../../README.md) · [Español](es.md) · [Français](fr.md) · [Deutsch](de.md) · [Português (Brasil)](pt-BR.md) · [日本語](ja.md) · [简体中文](zh-Hans.md) · [繁體中文](zh-Hant.md) · [한국어](ko.md) · [العربية](ar.md)
 
 <details>
 <summary>Και οι 30 γλώσσες του README</summary>
 
-- [English](README.md)
-- [Español](README.es.md)
-- [Français](README.fr.md)
-- [Deutsch](README.de.md)
-- [Italiano](README.it.md)
-- [Português (Brasil)](README.pt-BR.md)
-- [Português (Portugal)](README.pt-PT.md)
-- [Nederlands](README.nl.md)
-- [Dansk](README.da.md)
-- [Svenska](README.sv.md)
-- [Norsk Bokmål](README.nb.md)
-- [Suomi](README.fi.md)
-- [Polski](README.pl.md)
-- [Čeština](README.cs.md)
-- [Magyar](README.hu.md)
-- [Română](README.ro.md)
+- [English](../../README.md)
+- [Español](es.md)
+- [Français](fr.md)
+- [Deutsch](de.md)
+- [Italiano](it.md)
+- [Português (Brasil)](pt-BR.md)
+- [Português (Portugal)](pt-PT.md)
+- [Nederlands](nl.md)
+- [Dansk](da.md)
+- [Svenska](sv.md)
+- [Norsk Bokmål](nb.md)
+- [Suomi](fi.md)
+- [Polski](pl.md)
+- [Čeština](cs.md)
+- [Magyar](hu.md)
+- [Română](ro.md)
 - **Ελληνικά**
-- [Türkçe](README.tr.md)
-- [Русский](README.ru.md)
-- [Українська](README.uk.md)
-- [العربية](README.ar.md)
-- [עברית](README.he.md)
-- [हिन्दी](README.hi.md)
-- [ไทย](README.th.md)
-- [Tiếng Việt](README.vi.md)
-- [Bahasa Indonesia](README.id.md)
-- [日本語](README.ja.md)
-- [한국어](README.ko.md)
-- [简体中文](README.zh-Hans.md)
-- [繁體中文](README.zh-Hant.md)
+- [Türkçe](tr.md)
+- [Русский](ru.md)
+- [Українська](uk.md)
+- [العربية](ar.md)
+- [עברית](he.md)
+- [हिन्दी](hi.md)
+- [ไทย](th.md)
+- [Tiếng Việt](vi.md)
+- [Bahasa Indonesia](id.md)
+- [日本語](ja.md)
+- [한국어](ko.md)
+- [简体中文](zh-Hans.md)
+- [繁體中文](zh-Hant.md)
 
 </details>
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](../../LICENSE)
 
 **Καθημερινά εργαλεία στο πρόγραμμα περιήγησης. Ιδιωτικά από τον σχεδιασμό.**
 
@@ -131,7 +131,7 @@ NEXT_PUBLIC_BASE_PATH=/kit npm run build
 
 1. Στείλτε αυτό το αποθετήριο στο **https://github.com/TGthms/kit**
 2. GitHub → **Settings → Pages → Source: GitHub Actions**
-3. Η ροή [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml) μεταγλωττίζει με `NEXT_PUBLIC_BASE_PATH=/kit` και δημοσιεύει το `out/`
+3. Η ροή [`.github/workflows/deploy.yml`](../../.github/workflows/deploy.yml) μεταγλωττίζει με `NEXT_PUBLIC_BASE_PATH=/kit` και δημοσιεύει το `out/`
 
 ### Χειροκίνητα
 
@@ -149,4 +149,4 @@ Next.js 15 (App Router, στατική εξαγωγή) · TypeScript · Tailwind
 
 ## Άδεια
 
-[MIT](LICENSE) © Tim G (GitHub: [TGthms](https://github.com/TGthms))
+[MIT](../../LICENSE) © Tim G (GitHub: [TGthms](https://github.com/TGthms))
