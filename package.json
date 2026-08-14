@@ -5,6 +5,7 @@
   "engines": {
     "node": ">=22.13.0"
   },
+  "packageManager": "npm@10.9.8",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
