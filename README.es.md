@@ -1,6 +1,42 @@
 # Kit
 
-**[English](README.md) | [Español](README.es.md) | [中文](README.zh.md) | [日本語](README.ja.md)**
+[English](README.md) · **Español** · [Français](README.fr.md) · [Deutsch](README.de.md) · [Português (Brasil)](README.pt-BR.md) · [日本語](README.ja.md) · [简体中文](README.zh-Hans.md) · [繁體中文](README.zh-Hant.md) · [한국어](README.ko.md) · [العربية](README.ar.md)
+
+<details>
+<summary>Los 30 idiomas del README</summary>
+
+- [English](README.md)
+- **Español**
+- [Français](README.fr.md)
+- [Deutsch](README.de.md)
+- [Italiano](README.it.md)
+- [Português (Brasil)](README.pt-BR.md)
+- [Português (Portugal)](README.pt-PT.md)
+- [Nederlands](README.nl.md)
+- [Dansk](README.da.md)
+- [Svenska](README.sv.md)
+- [Norsk Bokmål](README.nb.md)
+- [Suomi](README.fi.md)
+- [Polski](README.pl.md)
+- [Čeština](README.cs.md)
+- [Magyar](README.hu.md)
+- [Română](README.ro.md)
+- [Ελληνικά](README.el.md)
+- [Türkçe](README.tr.md)
+- [Русский](README.ru.md)
+- [Українська](README.uk.md)
+- [العربية](README.ar.md)
+- [עברית](README.he.md)
+- [हिन्दी](README.hi.md)
+- [ไทย](README.th.md)
+- [Tiếng Việt](README.vi.md)
+- [Bahasa Indonesia](README.id.md)
+- [日本語](README.ja.md)
+- [한국어](README.ko.md)
+- [简体中文](README.zh-Hans.md)
+- [繁體中文](README.zh-Hant.md)
+
+</details>
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
@@ -14,27 +50,44 @@ Kit es un conjunto de herramientas que se ejecutan en tu dispositivo: PDF, imág
 
 ## Para qué sirve
 
-Un kit de utilidades coherente y cuidado: interfaz clara, modo claro y oscuro, varios idiomas, shell PWA con uso sin conexión cuando ya has visitado la app, y límites honestos sobre lo que un navegador puede hacer.
+Un kit coherente y cuidado: interfaz clara, modo claro y oscuro, interfaz en 30 idiomas con un selector nativo, PWA instalable y límites honestos sobre lo que un navegador puede hacer.
 
-## Idiomas de la interfaz
+## Idiomas
 
-**English · Español · 中文 · 日本語**
+La interfaz de la app y este README de GitHub están en **30 idiomas**. Cámbialos en Ajustes (o en la cabecera) con un selector nativo, o usa los enlaces de arriba. Árabe y hebreo van de derecha a izquierda. Privacidad y términos están traducidos cuando hay texto legal nativo; el resto usa inglés. Los enlaces antiguos `/zh/` siguen yendo al chino simplificado.
 
 ## Herramientas
 
-La portada agrupa las herramientas por trabajo (páginas PDF, datos, desarrollo…).
+La portada agrupa las herramientas por trabajo (páginas PDF, datos, desarrollo…) en lugar de una lista plana.
 
 ### PDF
-Unir, dividir, organizar, numerar, comprimir, bloquear, metadatos, aplanar, marca de agua, cubrir, firmar (visual), extraer, PDF↔imagen.
+- Unir, dividir, organizar, numerar
+- Comprimir, bloquear/desbloquear, metadatos, aplanar
+- Marca de agua, cubrir (visual), firma mecanografiada
+- Extraer texto, PDF → imágenes ZIP, imágenes → PDF
 
 ### Imágenes
-Comprimir, recortar, girar, filtros, marca de agua, EXIF, favicon.
+- Comprimir, redimensionar, recortar, girar/voltear, paquete favicon
+- Ajustar, filtros, marca de agua
+- Convertir JPEG/PNG/WEBP, ver/quitar EXIF
 
 ### Audio y vídeo
-Convertir, recortar con forma de onda, velocidad, extraer audio, clip → GIF.
+- Convertir, recortar con forma de onda, velocidad/volumen, extraer audio, clip → GIF  
+  *(FFmpeg WASM; los archivos grandes pueden ser lentos; códecs limitados)*
 
-### Datos / escritura / desarrollo
-JSON, YAML, SQL, XML, JSON→TypeScript; Markdown, diff, mayúsculas; JWT, timestamp, cron, hash, contraseñas, QR.
+### Datos
+- JSON / YAML / TOML / SQL, CSV ↔ JSON, XML ↔ JSON
+- JSON → interfaces TypeScript
+- Concentrador de conversión
+
+### Escritura
+- Markdown ↔ HTML, comparación de texto, mayúsculas/minúsculas, Lorem ipsum
+
+### Desarrollo
+- Decodificar JWT, marca de tiempo Unix, cron, base numérica
+- Hash (SHA/MD5), regex, color
+- Base64, URL, entidades HTML
+- UUID, generador de contraseñas, QR
 
 ## Privacidad
 
@@ -54,17 +107,23 @@ npm install
 npm run dev
 ```
 
+Abre http://localhost:3000 — el idioma por defecto redirige a `/en/`.
+
 ```bash
 npm run build
 npm run typecheck
 npm run lint
 ```
 
-### Ruta base (GitHub Pages de proyecto)
+### Ruta base
+
+Para GitHub Pages de proyecto, compila con:
 
 ```bash
 NEXT_PUBLIC_BASE_PATH=/kit npm run build
 ```
+
+En local no hay prefijo (`NEXT_PUBLIC_BASE_PATH` vacío).
 
 ## Publicar en GitHub Pages
 
@@ -72,15 +131,21 @@ NEXT_PUBLIC_BASE_PATH=/kit npm run build
 
 1. El repositorio está en **https://github.com/TGthms/kit**
 2. En GitHub: **Settings → Pages → Source: GitHub Actions**
-3. El flujo [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml) compila con `NEXT_PUBLIC_BASE_PATH=/kit` y publica la carpeta `out/`
+3. El flujo [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml) compila con `NEXT_PUBLIC_BASE_PATH=/kit` y publica `out/`
 
 ### Manual
 
 ```bash
 NEXT_PUBLIC_BASE_PATH=/kit npm run build
+# Upload contents of out/ to your Pages target, or use actions/upload-pages-artifact
 ```
 
-URL: `https://TGthms.github.io/kit/`
+URL de Pages: `https://TGthms.github.io/kit/`  
+Sitio canónico: `https://trykit.pages.dev`
+
+## Tecnología
+
+Next.js 15 (App Router, exportación estática) · TypeScript · Tailwind CSS · UI estilo shadcn · Zustand · next-intl · pdf-lib / PDF.js · Canvas · FFmpeg WASM · service worker PWA
 
 ## Licencia
 

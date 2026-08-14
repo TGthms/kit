@@ -1,7 +1,7 @@
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
-import { locales, isLocale } from "@/lib/i18n/config";
+import { pathLocales, isPathLocale, localeDir, localeHtmlLang } from "@/lib/i18n/config";
 import { withAsset } from "@/lib/base-path";
 import { Providers } from "@/components/providers";
 import { AppShell } from "@/components/layout/app-shell";
@@ -9,7 +9,7 @@ import { ShortcutsProvider } from "@/components/layout/shortcuts-provider";
 import { ServiceWorkerRegister } from "@/components/pwa/sw-register";
 
 export function generateStaticParams() {
-  return locales.map((locale) => ({ locale }));
+  return pathLocales.map((locale) => ({ locale }));
 }
 
 export default async function LocaleLayout({
@@ -20,12 +20,14 @@ export default async function LocaleLayout({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
-  if (!isLocale(locale)) notFound();
+  if (!isPathLocale(locale)) notFound();
   setRequestLocale(locale);
   const messages = await getMessages();
+  const lang = localeHtmlLang(locale);
+  const dir = localeDir(locale);
 
   return (
-    <html lang={locale} suppressHydrationWarning>
+    <html lang={lang} dir={dir} suppressHydrationWarning>
       <head>
         <link rel="icon" href={withAsset("/icons/favicon.svg")} type="image/svg+xml" />
         <link rel="icon" href={withAsset("/icons/favicon-32.png")} type="image/png" sizes="32x32" />

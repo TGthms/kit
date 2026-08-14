@@ -1,0 +1,587 @@
+Kit — Tarayıcıda kalan, gizli araçlar
+PDF, görüntü, medya, dönüştürücü ve metin araçları cihazınızda çalışır. Sunucularımıza hiçbir şey yüklenmez.
+Kit
+Tarayıcıda günlük araçlar. Tasarımdan özel.
+Ana sayfa
+Araçlar
+Geçmiş
+Sık kullanılanlar
+Ayarlar
+Araç ara…
+Menüyü aç
+Menüyü kapat
+Gizlilik Politikası
+Kullanım Koşulları
+Hakkımda
+MIT Lisansı
+© {year} Tim G (TGthms). Kit, MIT Lisansı altında açık kaynaktır.
+GitHub
+İptal
+Temizle
+Kapat
+Kopyala
+Panoya kopyalandı
+İndir
+Çalıştır
+İşle
+İşleniyor…
+Bitti
+Bir şeyler ters gitti
+Yeniden dene
+Dosya ekle
+Dosyaları buraya bırakın
+veya cihazınızdan seçin
+Panodan da yapıştırabilirsiniz
+Kaldır
+Sırayı değiştirmek için sürükleyin
+Dosyalar
+Henüz dosya seçilmedi
+Kalite
+Seçenekler
+Önizleme
+Sonuç
+Girdi
+Çıktı
+Biçim
+Dil
+Görünüm
+Sistemle eşleşsin
+Açık
+Koyu
+Yükleniyor…
+Kaydet
+Sil
+Onayla
+Geri
+Tümü
+Sabitle
+Sabitlemeyi kaldır
+Sık kullanılanlara ekle
+Sık kullanılanlardan çıkar
+Hazır ayarlar
+Hazır ayarı kullan
+Hazır ayar olarak kaydet
+Klavye kısayolları
+İlerleme
+Bu dosya büyük — işlem biraz sürebilir.
+Bu biçim desteklenmiyor
+Başarılı
+Dikkat
+Not
+Tümünü seç
+Hiçbiri
+Sıfırla
+En fazla genişlik
+En fazla yükseklik
+Genişlik
+Yükseklik
+Döndür
+Sayfalar
+Sayfa
+Metin
+Kodla
+Çöz
+Doğrula
+Küçült
+Güzel yazdır
+Geçerli
+Geçersiz
+Karakter
+Satır
+Kaynak
+Hedef
+Başlangıç
+Bitiş
+Hız
+Ses
+Kırp
+Ayıkla
+Toplu
+Sınırlar
+Yalnızca tarayıcınızda çalışır. Dosyalarınız asla bir Kit sunucusuna gönderilmez.
+https://tgthms.github.io/about/
+Nasıl çalışır ve sınırlar
+Ne yapmak istiyorsunuz?
+Bu cihazda çalışan pratik araçlar — hesap yok, yükleme yok.
+Kategoriler
+Araçlar
+Bu aramayla eşleşen bir şey yok.
+Kaldığınız yerden devam edin
+Sabitlenmiş
+Bir kategoriden başlayın
+Bir iş ailesi seçin. İçerideki araçlar gruplanmıştır; avlamak yerine tararsınız.
+Kategoriler
+{count, plural, one {# araç} other {# araç}}
+Arama sonuçları
+Buradan başlayın
+Sayfalar
+Koruma ve bilgi
+İşaretleme
+Dışa aktar / dönüştür
+Boyut ve kırpma
+Görünüş
+Dosya
+Klipler
+Biçimler
+Yazım
+İncele
+Kodla
+Üret
+PDF
+Görüntüler
+Ses
+Video
+Dosya dönüştürme
+Yazım
+PDF belgelerini birleştirin, bölün, sıkıştırın ve işaretleyin
+Fotoğrafları sıkıştırın, yeniden boyutlandırın, dönüştürün ve rötuşlayın
+Yalnızca sesi dönüştürün, kırpın ve hızını değiştirin
+Videoyu dönüştürün, kırpın, hızlandırın ve sesini ayıklayın
+Biçimler arası akıllı dönüştürme (JSON, CSV, ZIP, görüntüler…)
+Metni karşılaştırın, büyük/küçük harfi değiştirin, Markdown’ı HTML’ye çevirin
+Veri
+JSON, YAML, CSV, XML, SQL ve biçimler arası dönüştürme
+Geliştirici
+Belirteçler, özetler, kodlamalar, parolalar ve diğer tezgâh araçları
+Geçmiş
+Bu cihazda çalıştırdıklarınız. Yalnızca kısa özetler tutarız — dosyalarınızı asla.
+Henüz etkinlik yok. Bir araç çalıştırın, burada görünsün.
+Geçmişi temizle
+Bu cihazdaki tüm geçmiş silinsin mi?
+Aracı aç
+Araç
+Ne zaman
+Özet
+Durum
+Başarılı
+Başarısız
+Sık kullanılanlar
+Tek dokunuşla erişmek için yakın tuttuğunuz araçlar.
+Henüz sık kullanılan yok. Ana sayfadan veya araç sayfasından yıldızlayın.
+Ayarlar
+Bu seçimler yalnızca bu tarayıcıda kalır.
+Görünüm
+Dil
+Veri ve gizlilik
+Geçmişi temizle
+Bu sitenin sakladığı yerel geçmiş özetlerini kaldırır.
+Kit dosyalarınızı tarayıcıda işler. Tercihler ve geçmiş özetleri yerelde saklanabilir. Ayrıntılar Gizlilik Politikası’ndadır.
+Gizlilik Politikası
+Kullanım Koşulları
+Klavye kısayolları için istediğiniz zaman ? tuşuna basın.
+Sürüm
+Klavye kısayolları
+Her yerde
+Aramaya odaklan
+Ayarları aç
+Ana sayfaya git
+Bu listeyi göster
+Geçerli aracı çalıştır
+Kapat
+PDF birleştir
+Birkaç PDF’yi tek dosyada toplayın. Sayfaları önizleyin ve sürükleyerek sıralayın.
+pdf birleştir birleştir ekle çok sayfa
+Birleştir
+En az iki PDF dosyası ekleyin.
+{count} dosya tek PDF’de birleştirildi.
+PDF böl
+Bir sayfa aralığını yepyeni bir PDF’ye çıkarın.
+pdf böl ayıkla sayfalar aralık
+Böl
+Sayfalar (örneğin 1-3,5)
+Bölünmüş PDF hazır.
+Sayfaları düzenle
+Sayfaları döndürün, gerekmeyenleri silin ve yeni bir sıra verin.
+pdf döndür sil yeniden sırala düzenle sayfalar
+PDF’yi kaydet
+PDF güncellendi.
+PDF sıkıştır
+Sayfa görüntülerini yeniden kodlayarak boyutu küçültün (kalite ödünleşimi).
+pdf sıkıştır küçült boyut
+Sıkıştır
+Kayıplı bir yol — sayfalar rasterleştirilebilir. Görüntü ağırlıklı PDF’lerde en iyisidir.
+Sıkıştırılmış PDF indirilmeye hazır.
+PDF filigranı
+Her sayfaya filigran, üst bilgi veya alt bilgi olarak metin damgalayın.
+pdf filigran damga üst bilgi alt bilgi gizli
+Uygula
+Filigran metni
+Yerleşim
+Üst bilgi
+Alt bilgi
+Çapraz ortada
+Opaklık
+Filigran uygulandı.
+İçeriği ört
+Hassas bölgelerin üzerine düz siyah kutular koyun (görsel örtü).
+pdf karart ört gizle hassas
+Örtüyü uygula
+Yalnızca görsel örtü. Altta kalan her metin akışının silindiğini garanti etmez — hassas belgeleri iki kez kontrol edin.
+Örtü kutuları uygulandı.
+PDF’den ayıkla
+Okunabilir metni çekin veya bir sayfayı görüntü olarak dışa aktarın.
+pdf ayıkla metin görüntüler
+Ayıkla
+Metin
+Görüntüler
+Ayıklama bitti.
+{count} sayfa görüntüsü ZIP olarak dışa aktarıldı.
+Görüntüleri sıkıştır
+Kaliteyi ve en büyük boyutu düşürün ki fotoğraflar paylaşılabilir kalsın.
+görüntü sıkıştır jpg png webp boyut fotoğraf
+Sıkıştır
+{count} görüntü sıkıştırıldı.
+Görüntüleri yeniden boyutlandır
+İsteğe bağlı en-boy kilidiyle tam boyutları ayarlayın.
+görüntü boyut ölçek ölçü genişlik yükseklik
+Yeniden boyutlandır
+En-boy oranını koru
+{count} görüntü yeniden boyutlandırıldı.
+Görüntü kırp
+Yalnızca önemsediğiniz dikdörtgeni bırakın.
+görüntü kırp kes bölge
+Kırp
+Kırpılmış görüntü hazır.
+Görüntü biçimini dönüştür
+JPEG, PNG, WEBP ve benzeri web biçimleri arasında geçiş yapın.
+görüntü dönüştür biçim webp avif png jpg jpeg
+Dönüştür
+{count} görüntü dönüştürüldü.
+Görüntü üst verisi
+EXIF ve benzeri etiketleri inceleyin, ardından bunlarsız temiz bir kopya dışa aktarın.
+görüntü exif üstveri sil gizlilik konum
+Üst veriyi sil
+Pikseller tarayıcıda yeniden kodlanır; gömülü üst veri düşer.
+{count} görüntüden üst veri silindi.
+Etiket
+Değer
+Bu dosyada okunabilir EXIF veya metin üst verisi yok.
+Görüntüyü ayarla
+Parlaklık, karşıtlık ve doygunluğu ince ayarlayın.
+görüntü parlaklık karşıtlık doygunluk renk
+Uygula
+Parlaklık
+Karşıtlık
+Doygunluk
+{count} görüntü ayarlandı.
+Akıllı dönüştür
+Karışık dosya veya metin türlerini algılar ve biçimler arasında dönüştürür (medya stüdyosu değil).
+dönüştür merkez akıllı toplu json yaml csv zip görüntü veri
+Dönüştür
+Algılanan
+Çıktı biçimi
+Dönüştürme bitti.
+JSON biçimleyici
+JSON’u güzelleştirin, küçültün ve hataları erken yakalayın.
+json biçim doğrula küçült pretty
+Biçimlendir
+JSON geçerli ve biçimlendirildi.
+YAML biçimleyici
+YAML yapısını denetleyin ve düzeni toparlayın.
+yaml biçim doğrula yml
+Biçimlendir
+YAML geçerli.
+TOML biçimleyici
+TOML’u doğrulayın ve dosyayı düzenli tutun.
+toml biçim doğrula config
+Biçimlendir
+TOML geçerli.
+Markdown ↔ HTML
+Markdown’ı HTML’ye veya HTML’yi Markdown’a çevirin.
+markdown html dönüştür md işaretleme
+Dönüştür
+Markdown → HTML
+HTML → Markdown
+Dönüştürüldü.
+CSV ↔ JSON
+Tablo verisini CSV ile JSON dizileri arasında taşıyın.
+csv json dönüştür tablo e-tablo
+Dönüştür
+CSV → JSON
+JSON → CSV
+Dönüştürüldü.
+Metin karşılaştır
+İki sürüm arasındaki satır satır değişiklikleri görün.
+diff karşılaştır metin değişiklikler patch
+Karşılaştır
+Özgün
+Güncellenmiş
+Karşılaştırma hazır.
+Base64
+Düz metin veya tüm dosyalar için Base64 kodlayın veya çözün.
+base64 kodla çöz ikili
+Dönüştür
+Yön
+Metin
+Dosya
+Bitti.
+URL kodlama
+URL parçalarını güvenle yüzde kodlayın veya çözün.
+url kodla çöz yüzde uri sorgu
+Dönüştür
+Bitti.
+Sesi dönüştür
+MP3, WAV ve OGG gibi ses kaplarını tarayıcıda değiştirin.
+ses dönüştür mp3 wav ogg ffmpeg ses
+Dönüştür
+Ses motoru yükleniyor…
+Tek iş parçacıklı FFmpeg WASM kullanır. Büyük dosyalar yavaş olabilir; kodlayıcı desteği sınırlıdır.
+Ses dönüştürme bitti.
+Sesi kırp
+Bir ses dosyasında yalnızca iki zaman damgası arasındaki dilimi bırakın.
+ses kırp kes klip mp3 wav
+Kırp
+Ses kırpma bitti.
+Ses hızı ve ses düzeyi
+Sesi hızlandırın, yavaşlatın veya ses düzeyini değiştirin.
+ses hız tempo düzey perde
+Uygula
+İşlenmiş ses hazır.
+Videoyu dönüştür
+MP4 ve WEBM gibi video kaplarını tarayıcıda değiştirin.
+video dönüştür mp4 webm ffmpeg film
+Dönüştür
+Video motoru yükleniyor…
+Tek iş parçacıklı FFmpeg WASM kullanır. Büyük dosyalar yavaş olabilir; kodlayıcı desteği sınırlıdır.
+Video dönüştürme bitti.
+Videoyu kırp
+Yalnızca iki zaman damgası arasındaki klibi bırakın.
+video kırp kes klip mp4
+Kırp
+Video kırpma bitti.
+Video hızı ve ses düzeyi
+Bir videonun oynatma hızını ve ses düzeyini değiştirin.
+video hız tempo düzey
+Uygula
+İşlenmiş video hazır.
+Videodan ses ayıkla
+Bir videonun ses izini ses dosyası olarak kaydedin.
+video ses ayıkla mp3 ses izi
+Sesi ayıkla
+Ses ayıklandı.
+Sayfa numaraları
+Her sayfaya 1 / 12 gibi bir etiket damgalayın.
+pdf sayfa numaraları alt bilgi üst bilgi sayfalama
+Numara ekle
+Etiket ({page} ve {pages})
+Yerleşim
+Başlangıç
+Üst bilgi sol
+Üst bilgi orta
+Üst bilgi sağ
+Alt bilgi sol
+Alt bilgi orta
+Alt bilgi sağ
+Sayfa numaraları eklendi.
+PDF → görüntüler
+Her sayfayı JPEG’e rasterleştirip ZIP olarak indirin.
+pdf görüntü jpg jpeg zip sayfalar dışa aktar
+Sayfaları dışa aktar
+Sayfalar bu sekmede PDF.js ile çizilir. Çok büyük belgeler yavaş olabilir ve çok bellek kullanabilir. Bu görsel bir rasterdir, gömülü görüntü nesnelerinin ayıklanması değildir.
+{count} sayfa dışa aktarıldı.
+Görüntüler → PDF
+Fotoğrafları PDF’de toplayın, sayfa başına bir görüntü.
+görüntüler pdf jpg png birleştir
+PDF oluştur
+{count} görüntüden bir PDF oluşturuldu.
+Formları düzleştir
+AcroForm alanlarını sayfaya pişirin ki artık düzenlenemesin.
+pdf düzleştir form alanlar acroform
+Düzleştir
+Standart AcroForm alanlarında çalışır. Dinamik XFA formları tam desteklenmez.
+{count} alan düzleştirildi.
+PDF üst verisi
+Başlık, yazar ve diğer Info alanlarını görüntüleyin, düzenleyin veya silin.
+Anahtar sözcükler
+Üst veriyi kaydet
+Tüm alanları sil
+Başlık
+Yazar
+Konu
+Oluşturan
+Üretici
+Üst veri kaydedildi.
+Üst veri silindi.
+PDF kilitle veya aç
+Kullanıcı parolası ekleyin veya kaldırın. Şifreleme bu tarayıcıda kalır.
+pdf parola kilitle aç şifrele çöz
+Uygula
+Kilitle
+Aç
+Parola
+İstemci tarafı bir PDF şifreleme kitaplığı kullanır. Bazı eski veya alışılmadık şifreleme sürümleri açılamayabilir. Kit dosyayı veya parolayı asla bir sunucuya göndermez.
+PDF hazır.
+Döndür ve çevir
+Görüntüleri 90° adımlarla döndürün veya yatay ya da dikey çevirin.
+görüntü döndür çevir ayna
+Uygula
+Dönüşüm
+90° döndür
+180° döndür
+270° döndür
+Yatay çevir
+Dikey çevir
+{count} görüntü dönüştürüldü.
+Görüntü süzgeçleri
+Bir veya birçok fotoğrafa gri ton, sepia veya ters çevirme uygulayın.
+görüntü süzgeç gri sepia ters
+Uygula
+Süzgeç
+Gri ton
+Sepia
+Ters çevir
+{count} görüntü süzgeçlendi.
+Favicon paketi
+Kaynak görüntüyü yaygın simge boyutlarında bir ZIP olarak dışa aktarın.
+favicon icon 16 32 180 192 512 apple touch
+Simgeleri dışa aktar
+16, 32, 48, 180, 192 ve 512 piksel PNG dosyaları dışa aktarır.
+Simge paketi hazır.
+Video → GIF
+Kısa bir klibi tarayıcıda döngülü GIF’e çevirin.
+video gif klip dönüştür ffmpeg
+GIF yap
+FFmpeg WASM kullanır. Klipleri kısa tutun — GIF kodlama yavaştır ve bellek yer. Palet ve kodlayıcılar tarayıcı derlemesini izler.
+GIF hazır.
+XML ↔ JSON
+XML belgelerini JSON’a veya JSON’u XML’e çevirin.
+xml json dönüştür ayrıştır
+Dönüştür
+XML → JSON
+JSON → XML
+Dönüştürüldü.
+SQL biçimleyici
+SQL’i güzelleştirin ki yan tümceler ve listeler daha kolay okunsun.
+sql biçim pretty sorgu
+Biçimlendir
+SQL biçimlendirildi.
+Düzenli ifade sınayıcı
+Örnek metne karşı bir düzenli ifade deneyin ve eşleşmeleri değiştirin.
+regex düzenli ifade sınama değiştir
+Desen
+Bayraklar
+Örnek metin
+Değiştirme
+Değiştir
+{count, plural, one {# eşleşme} other {# eşleşme}}
+Değiştirme hazır.
+Özet üreteci
+Metnin veya bir dosyanın SHA-1/256/384/512 ve MD5 özeti, yerelde hesaplanır.
+hash sha256 md5 sha1 sağlama özet
+Özetle
+Algoritma
+Özet
+Özetler bu tarayıcıda hesaplanır (SHA için Web Crypto, yerel bir MD5 uygulaması). MD5 çarpışmaya dayanıklı değildir — yalnızca sağlama için kullanın.
+Özet hazır.
+UUID üreteci
+Bu cihazda sürüm 4 veya 7 UUID oluşturun.
+uuid guid v4 v7 üret
+Üret
+Kaç tane
+Sürüm
+UUID’ler üretildi.
+Renk dönüştürücü
+Renk seçiciyle HEX, RGB, HSL ve HSV arasında dönüştürün.
+renk hex rgb hsl hsv seçici
+Renk seçici
+3 veya 6 basamaklı bir onaltılık renk girin.
+Lorem ipsum
+Yer tutucu paragraflar, cümleler veya sözcükler üretin.
+lorem ipsum yer tutucu dummy metin
+Üret
+Sayı
+Mod
+Paragraflar
+Cümleler
+Sözcükler
+Metin üretildi.
+QR kod
+Metinden QR kod oluşturun veya bir görüntüden okuyun.
+qr kod üret tara oku barkod
+Üret
+Metin veya URL
+Görüntüden oku
+QR oku
+QR kod hazır.
+QR içeriği okundu.
+Bu görüntüde QR kod bulunamadı.
+PDF imzala
+Her sayfaya yazılmış bir imza damgalayın. Yalnızca görsel — sertifika değil.
+pdf imza damga ad
+İmzala
+İmza metni
+Adınız
+Adınızı sayfaya çizer. Kriptografik bir dijital imza değildir.
+İmza damgalandı.
+Görüntülere filigran
+Fotoğrafların üzerine metin koyun, tek dosya veya tüm parti.
+görüntü filigran damga telif
+Uygula
+Filigran metni
+Yerleşim
+Sağ alt
+Sol alt
+Sağ üst
+Orta
+{count} görüntüye filigran eklendi.
+Parola üreteci
+Bu cihazda güçlü bir parola oluşturun. Hiçbir şey saklanmaz.
+parola üret rastgele gizli
+Üret
+Uzunluk
+Küçük harf
+Büyük harf
+Rakamlar
+Semboller
+Parola hazır.
+Büyük/küçük harf
+Camel, snake, kebab, başlık ve diğer stiller arasında geçiş yapın.
+harf camel snake kebab pascal başlık
+Dönüştür
+Stil
+Dönüştürüldü.
+JWT çözücü
+JWT başlığını ve yükünü yerelde okuyun. İmzalar doğrulanmaz.
+jwt çöz token bearer auth
+Çöz
+Kit yalnızca Base64url çözer. Anahtar olmadan belirtecin gerçek olduğunu kanıtlayamaz.
+İmza bölümü var (doğrulanmadı).
+İmza bölümü yok.
+Önce bir belirteç yapıştırın.
+Belirteç çözüldü.
+Unix zaman damgası
+Unix zamanını ISO’ya ve geri dönüştürün.
+unix epoch zaman damgası iso tarih
+Şimdi kullan
+Cron açıklayıcı
+5 alanlı bir cron ifadesini sade dile çevirin.
+cron zamanlama crontab açıkla
+Açıkla
+Açıklandı.
+Sayı tabanı
+Tam sayıları 2 ile 36 tabanları arasında dönüştürün.
+ikili hex ondalık taban dönüştür
+Sayı
+Kaynak taban
+Hedef taban
+HTML varlıkları
+&lt; &amp; ve sayısal varlıkları kodlayın veya çözün.
+html varlık kodla çöz escape
+Dönüştür
+Kodla
+Çöz
+Dönüştürüldü.
+JSON → TypeScript
+Bir JSON örneğinden TypeScript arayüzleri çıkarın.
+json typescript interface tip üret
+Tipleri üret
+Tipler üretildi.
+Son güncelleme
+Gizlilik Politikası
+Kullanım Koşulları
+Sayfa bulunamadı
+Bu adres Kit’te yok. Ana sayfaya dönüp oradan bir araç seçin.
+Ana sayfaya dön
+Bir şeyler ters gitti
+Son işlem bu tarayıcıda başarısız oldu. Sayfadan ayrılmadan yeniden deneyebilirsiniz.
+Yeniden dene

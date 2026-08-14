@@ -1,0 +1,587 @@
+Kit — Alat peramban yang tetap privat
+Alat PDF, gambar, media, konversi, dan teks yang berjalan di perangkat Anda. Tidak ada yang diunggah ke server kami.
+Kit
+Alat sehari-hari di peramban. Privat sejak dirancang.
+Beranda
+Alat
+Riwayat
+Favorit
+Pengaturan
+Cari alat…
+Buka menu
+Tutup menu
+Kebijakan Privasi
+Ketentuan Penggunaan
+Tentang saya
+Lisensi MIT
+© {year} Tim G (TGthms). Kit bersumber terbuka di bawah Lisensi MIT.
+GitHub
+Batal
+Hapus
+Tutup
+Salin
+Disalin ke papan klip
+Unduh
+Jalankan
+Proses
+Memproses…
+Selesai
+Terjadi kesalahan
+Coba lagi
+Tambah berkas
+Letakkan berkas di sini
+atau pilih dari perangkat Anda
+Anda juga dapat menempel dari papan klip
+Hapus
+Seret untuk mengubah urutan
+Berkas
+Belum ada berkas yang dipilih
+Kualitas
+Opsi
+Pratinjau
+Hasil
+Masukan
+Keluaran
+Format
+Bahasa
+Tampilan
+Ikuti sistem
+Terang
+Gelap
+Memuat…
+Simpan
+Hapus
+Konfirmasi
+Kembali
+Semua
+Sematkan
+Lepas sematan
+Tambah ke favorit
+Hapus dari favorit
+Prasetel
+Gunakan prasetel
+Simpan sebagai prasetel
+Pintasan papan ketik
+Progres
+Berkas ini besar — pemrosesan mungkin memakan waktu.
+Format ini tidak didukung
+Berhasil
+Perhatian
+Catatan
+Pilih semua
+Tidak ada
+Atur ulang
+Lebar maks.
+Tinggi maks.
+Lebar
+Tinggi
+Putar
+Halaman
+Halaman
+Teks
+Kodekan
+Dekode
+Validasi
+Perkecil
+Rapikan
+Valid
+Tidak valid
+Karakter
+Baris
+Dari
+Ke
+Mulai
+Selesai
+Kecepatan
+Volume
+Potong
+Ekstrak
+Massal
+Batasan
+Hanya berjalan di peramban Anda. Berkas Anda tidak pernah dikirim ke server Kit.
+https://tgthms.github.io/about/
+Cara kerja dan batasannya
+Apa yang ingin Anda lakukan?
+Alat praktis di perangkat ini — tanpa akun, tanpa unggahan.
+Kategori
+Alat
+Tidak ada yang cocok dengan pencarian itu.
+Lanjutkan dari terakhir kali
+Disematkan
+Mulai dari kategori
+Pilih keluarga pekerjaan. Alat di dalamnya dikelompokkan agar Anda memindai, bukan mencari-cari.
+Kategori
+{count, plural, one {# alat} other {# alat}}
+Hasil pencarian
+Mulai di sini
+Halaman
+Lindungi & info
+Markup
+Ekspor / konversi
+Ukuran & potong
+Tampilan
+Berkas
+Klip
+Format
+Menulis
+Periksa
+Kodekan
+Hasilkan
+PDF
+Gambar
+Audio
+Video
+Konversi berkas
+Menulis
+Gabungkan, pisahkan, kompres, dan tandai dokumen PDF
+Kompres, ubah ukuran, konversi, dan retus foto
+Konversi, potong, dan ubah kecepatan audio saja
+Konversi, potong, percepat, dan tarik audio dari video
+Konversi cerdas lintas format (JSON, CSV, ZIP, gambar…)
+Bandingkan teks, ubah huruf, dan ubah Markdown menjadi HTML
+Data
+JSON, YAML, CSV, XML, SQL, dan konversi lintas format
+Pengembang
+Token, hash, pengodean, kata sandi, dan alat bangku lainnya
+Riwayat
+Apa yang Anda jalankan di perangkat ini. Kami hanya menyimpan ringkasan singkat — bukan berkas Anda.
+Belum ada aktivitas. Jalankan alat dan hasilnya akan muncul di sini.
+Hapus riwayat
+Hapus semua riwayat di perangkat ini?
+Buka alat
+Alat
+Kapan
+Ringkasan
+Status
+Berhasil
+Gagal
+Favorit
+Alat yang Anda simpan dekat untuk satu ketukan.
+Belum ada favorit. Bintangi alat dari Beranda atau dari halamannya.
+Pengaturan
+Pilihan ini hanya tersimpan di peramban ini.
+Tampilan
+Bahasa
+Data & privasi
+Hapus riwayat
+Menghapus ringkasan riwayat lokal yang disimpan situs ini.
+Kit memproses berkas Anda di peramban. Preferensi dan ringkasan riwayat dapat disimpan secara lokal. Detail lengkap ada di Kebijakan Privasi.
+Kebijakan Privasi
+Ketentuan Penggunaan
+Tekan ? kapan saja untuk pintasan papan ketik.
+Versi
+Pintasan papan ketik
+Di mana saja
+Fokus pencarian
+Buka pengaturan
+Ke beranda
+Tampilkan daftar ini
+Jalankan alat saat ini
+Tutup
+Gabungkan PDF
+Tumpuk beberapa PDF menjadi satu. Pratinjau halaman dan seret untuk mengurutkan ulang.
+pdf gabung satukan jahit banyak halaman
+Gabungkan
+Tambahkan setidaknya dua berkas PDF.
+Menggabungkan {count} berkas menjadi satu PDF.
+Pisahkan PDF
+Ambil rentang halaman menjadi PDF baru.
+pdf pisah ekstrak halaman rentang
+Pisahkan
+Halaman (misalnya 1-3,5)
+PDF yang dipisah siap.
+Atur halaman
+Putar halaman, hapus yang tidak perlu, dan tetapkan urutan baru.
+pdf putar hapus urut atur halaman
+Simpan PDF
+PDF Anda telah diperbarui.
+Kompres PDF
+Perkecil ukuran dengan mengkodekan ulang gambar halaman (kompromi kualitas).
+pdf kompres perkecil ukuran
+Kompres
+Ini jalur berkehilangan — halaman bisa diraster. Paling baik untuk PDF yang penuh gambar.
+PDF terkompres siap diunduh.
+Tanda air PDF
+Cap teks sebagai tanda air, kepala, atau kaki di setiap halaman.
+pdf tanda air cap kepala kaki rahasia
+Terapkan
+Teks tanda air
+Penempatan
+Kepala
+Kaki
+Diagonal di tengah
+Opasitas
+Tanda air diterapkan.
+Tutupi konten
+Letakkan kotak hitam padat di atas area sensitif (penutup visual).
+pdf redaksi hitam sembunyi sensitif
+Terapkan penutup
+Hanya penutup visual. Tidak menjamin penghapusan setiap aliran teks di bawahnya — periksa ulang dokumen sensitif.
+Kotak penutup diterapkan.
+Ekstrak dari PDF
+Ambil teks yang dapat dibaca atau ekspor halaman sebagai gambar.
+pdf ekstrak teks gambar
+Ekstrak
+Teks
+Gambar
+Ekstraksi selesai.
+Mengekspor {count} gambar halaman sebagai ZIP.
+Kompres gambar
+Turunkan kualitas dan ukuran maksimum agar foto tetap mudah dibagikan.
+gambar kompres jpg png webp ukuran foto
+Kompres
+Mengompres {count} gambar.
+Ubah ukuran gambar
+Tetapkan dimensi pasti, dengan kunci rasio aspek opsional.
+gambar ukuran skala dimensi lebar tinggi
+Ubah ukuran
+Pertahankan rasio aspek
+Mengubah ukuran {count} gambar.
+Potong gambar
+Simpan hanya persegi yang Anda butuhkan.
+gambar potong potong wilayah
+Potong
+Gambar yang dipotong siap.
+Konversi format gambar
+Beralih antara JPEG, PNG, WEBP, dan format web serupa.
+gambar konversi format webp avif png jpg jpeg
+Konversi
+Mengonversi {count} gambar.
+Metadata gambar
+Periksa EXIF dan tag serupa, lalu ekspor salinan bersih tanpanya.
+gambar exif metadata hapus privasi lokasi
+Hapus metadata
+Piksel dikodekan ulang di peramban sehingga metadata tertanam dihapus.
+Menghapus metadata dari {count} gambar.
+Tag
+Nilai
+Tidak ada EXIF atau metadata teks yang dapat dibaca di berkas ini.
+Sesuaikan gambar
+Ubah kecerahan, kontras, dan saturasi.
+gambar kecerahan kontras saturasi warna
+Terapkan
+Kecerahan
+Kontras
+Saturasi
+Menyesuaikan {count} gambar.
+Konversi cerdas
+Mendeteksi jenis berkas atau teks campuran dan mengonversi antarformat (bukan studio media).
+konversi hub cerdas massal json yaml csv zip gambar data
+Konversi
+Terdeteksi sebagai
+Format keluaran
+Konversi selesai.
+Pemformat JSON
+Rapikan, perkecil, dan tangkap kesalahan JSON lebih awal.
+json format validasi perkecil pretty
+Format
+JSON valid dan terformat.
+Pemformat YAML
+Periksa struktur YAML dan rapikan tata letak.
+yaml format validasi yml
+Format
+YAML valid.
+Pemformat TOML
+Validasi TOML dan jaga berkas tetap rapi.
+toml format validasi config
+Format
+TOML valid.
+Markdown ↔ HTML
+Ubah Markdown menjadi HTML, atau HTML kembali menjadi Markdown.
+markdown html konversi md markup
+Konversi
+Markdown → HTML
+HTML → Markdown
+Dikonversi.
+CSV ↔ JSON
+Pindahkan data tabular antara CSV dan array JSON.
+csv json konversi tabel spreadsheet
+Konversi
+CSV → JSON
+JSON → CSV
+Dikonversi.
+Bandingkan teks
+Lihat perubahan baris demi baris antara dua versi.
+diff banding teks perubahan patch
+Bandingkan
+Asli
+Diperbarui
+Perbandingan siap.
+Base64
+Kodekan atau dekode Base64 untuk teks biasa atau seluruh berkas.
+base64 kodekan dekode biner
+Konversi
+Arah
+Teks
+Berkas
+Selesai.
+Pengodean URL
+Kodekan atau dekode komponen URL secara aman dengan persen.
+url kodekan dekode persen uri kueri
+Konversi
+Selesai.
+Konversi audio
+Ubah wadah audio seperti MP3, WAV, dan OGG di peramban.
+audio konversi mp3 wav ogg ffmpeg suara
+Konversi
+Memuat mesin audio…
+Menggunakan FFmpeg WASM satu utas. Berkas besar bisa lambat; dukungan codec terbatas.
+Konversi audio selesai.
+Potong audio
+Simpan hanya rentang antara dua stempel waktu dalam berkas audio.
+audio potong klip mp3 wav
+Potong
+Pemotongan audio selesai.
+Kecepatan & volume audio
+Percepat, perlambat, atau ubah kekerasan audio.
+audio kecepatan tempo volume nada
+Terapkan
+Audio yang diproses siap.
+Konversi video
+Ubah wadah video seperti MP4 dan WEBM di peramban.
+video konversi mp4 webm ffmpeg film
+Konversi
+Memuat mesin video…
+Menggunakan FFmpeg WASM satu utas. Berkas besar bisa lambat; dukungan codec terbatas.
+Konversi video selesai.
+Potong video
+Simpan hanya klip antara dua stempel waktu.
+video potong klip mp4
+Potong
+Pemotongan video selesai.
+Kecepatan & volume video
+Ubah kecepatan putar dan tingkat audio sebuah video.
+video kecepatan tempo volume
+Terapkan
+Video yang diproses siap.
+Ekstrak audio dari video
+Simpan jalur suara video sebagai berkas audio.
+video ekstrak audio mp3 jalur suara
+Ekstrak audio
+Audio diekstrak.
+Nomor halaman
+Cap label halaman seperti 1 / 12 di setiap halaman.
+pdf nomor halaman kaki kepala paginasi
+Tambah nomor
+Label ({page} dan {pages})
+Penempatan
+Mulai dari
+Kepala kiri
+Kepala tengah
+Kepala kanan
+Kaki kiri
+Kaki tengah
+Kaki kanan
+Nomor halaman ditambahkan.
+PDF → gambar
+Raster setiap halaman ke JPEG dan unduh sebagai ZIP.
+pdf gambar jpg jpeg zip halaman ekspor
+Ekspor halaman
+Halaman digambar dengan PDF.js di tab ini. Dokumen yang sangat besar bisa lambat dan memakai banyak memori. Ini raster visual, bukan ekstrak objek gambar tertanam.
+Mengekspor {count} halaman.
+Gambar → PDF
+Tumpuk foto menjadi PDF, satu gambar per halaman.
+gambar pdf jpg png gabung
+Buat PDF
+Membangun PDF dari {count} gambar.
+Ratakan formulir
+Panggang bidang AcroForm ke halaman agar tidak bisa diedit lagi.
+pdf ratakan formulir bidang acroform
+Ratakan
+Berfungsi pada bidang AcroForm standar. Formulir XFA dinamis tidak didukung sepenuhnya.
+Meratakan {count} bidang.
+Metadata PDF
+Lihat, sunting, atau hapus judul, penulis, dan bidang Info lainnya.
+Kata kunci
+Simpan metadata
+Hapus semua bidang
+Judul
+Penulis
+Subjek
+Pembuat
+Produsen
+Metadata disimpan.
+Metadata dihapus.
+Kunci atau buka PDF
+Tambah atau hapus kata sandi pengguna. Enkripsi tetap di peramban ini.
+pdf kata sandi kunci buka enkripsi dekripsi
+Terapkan
+Kunci
+Buka
+Kata sandi
+Menggunakan pustaka enkripsi PDF sisi klien. Beberapa revisi enkripsi lama atau tidak biasa mungkin tidak terbuka. Kit tidak pernah mengirim berkas atau kata sandi ke server.
+PDF siap.
+Putar & balik
+Putar gambar 90° sekaligus atau balik secara horizontal atau vertikal.
+gambar putar balik cermin
+Terapkan
+Transformasi
+Putar 90°
+Putar 180°
+Putar 270°
+Balik horizontal
+Balik vertikal
+Mentransformasi {count} gambar.
+Filter gambar
+Terapkan skala abu-abu, sepia, atau invert pada satu atau banyak foto.
+gambar filter abu sepia invert
+Terapkan
+Filter
+Skala abu-abu
+Sepia
+Invert
+Memfilter {count} gambar.
+Paket favicon
+Ekspor gambar sumber sebagai ukuran ikon umum dalam ZIP.
+favicon icon 16 32 180 192 512 apple touch
+Ekspor ikon
+Mengekspor berkas PNG pada 16, 32, 48, 180, 192, dan 512 piksel.
+Paket ikon siap.
+Video → GIF
+Ubah klip pendek menjadi GIF berulang di peramban.
+video gif klip konversi ffmpeg
+Buat GIF
+Menggunakan FFmpeg WASM. Jaga klip tetap pendek — pengodean GIF lambat dan boros memori. Palet dan codec mengikuti build di peramban.
+GIF siap.
+XML ↔ JSON
+Konversi dokumen XML ke JSON, atau JSON kembali ke XML.
+xml json konversi uraikan
+Konversi
+XML → JSON
+JSON → XML
+Dikonversi.
+Pemformat SQL
+Rapikan SQL agar klausa dan daftar lebih mudah dibaca.
+sql format pretty kueri
+Format
+SQL diformat.
+Penguji regex
+Uji ekspresi reguler terhadap teks sampel dan ganti kecocokan.
+regex ekspresi reguler uji ganti
+Pola
+Bendera
+Teks sampel
+Pengganti
+Ganti
+{count, plural, one {# kecocokan} other {# kecocokan}}
+Pengganti siap.
+Pembuat hash
+SHA-1/256/384/512 dan MD5 dari teks atau berkas, dihitung secara lokal.
+hash sha256 md5 sha1 checksum digest
+Hash
+Algoritma
+Digest
+Hash dihitung di peramban ini (Web Crypto untuk SHA, implementasi MD5 lokal). MD5 tidak tahan tabrakan — gunakan hanya untuk checksum.
+Hash siap.
+Pembuat UUID
+Buat UUID versi 4 atau 7 di perangkat ini.
+uuid guid v4 v7 hasilkan
+Hasilkan
+Berapa banyak
+Versi
+UUID dihasilkan.
+Konverter warna
+Konversi antara HEX, RGB, HSL, dan HSV, dengan pemilih warna.
+warna hex rgb hsl hsv pemilih
+Pemilih warna
+Masukkan warna hex 3 atau 6 digit.
+Lorem ipsum
+Hasilkan paragraf, kalimat, atau kata placeholder.
+lorem ipsum placeholder dummy teks
+Hasilkan
+Jumlah
+Mode
+Paragraf
+Kalimat
+Kata
+Teks dihasilkan.
+Kode QR
+Buat kode QR dari teks, atau baca dari gambar.
+qr kode hasilkan pindai baca barcode
+Hasilkan
+Teks atau URL
+Baca dari gambar
+Baca QR
+Kode QR siap.
+Isi QR dibaca.
+Tidak ada kode QR di gambar itu.
+Tandai PDF
+Cap tanda tangan ketikan di setiap halaman. Hanya visual — bukan sertifikat.
+pdf tanda tangan cap nama
+Tandai
+Teks tanda tangan
+Nama Anda
+Ini menggambar nama Anda di halaman. Bukan tanda tangan digital kriptografis.
+Tanda tangan dicap.
+Tanda air gambar
+Lapisi teks pada foto, satu berkas atau seluruh batch.
+gambar tanda air cap hak cipta
+Terapkan
+Teks tanda air
+Penempatan
+Kanan bawah
+Kiri bawah
+Kanan atas
+Tengah
+Memberi tanda air pada {count} gambar.
+Pembuat kata sandi
+Buat kata sandi kuat di perangkat ini. Tidak ada yang disimpan.
+kata sandi hasilkan acak rahasia
+Hasilkan
+Panjang
+Huruf kecil
+Huruf besar
+Digit
+Simbol
+Kata sandi siap.
+Ubah huruf
+Beralih antara camel, snake, kebab, judul, dan lainnya.
+huruf camel snake kebab pascal judul
+Konversi
+Gaya
+Dikonversi.
+Dekoder JWT
+Baca header dan payload JWT secara lokal. Tanda tangan tidak diverifikasi.
+jwt dekode token bearer auth
+Dekode
+Kit hanya mendekode Base64url. Tanpa kunci ia tidak dapat membuktikan token asli.
+Bagian tanda tangan ada (tidak diverifikasi).
+Tidak ada bagian tanda tangan.
+Tempel token terlebih dahulu.
+Token didekode.
+Stempel waktu Unix
+Konversi waktu Unix ke ISO dan sebaliknya.
+unix epoch stempel waktu iso tanggal
+Gunakan sekarang
+Penjelas cron
+Ubah ekspresi cron 5 bidang menjadi bahasa biasa.
+cron jadwal crontab jelaskan
+Jelaskan
+Dijelaskan.
+Basis bilangan
+Konversi bilangan bulat antara basis 2 dan 36.
+biner hex desimal basis konversi
+Angka
+Dari basis
+Ke basis
+Entitas HTML
+Kodekan atau dekode &lt; &amp; dan entitas numerik.
+html entitas kodekan dekode escape
+Konversi
+Kodekan
+Dekode
+Dikonversi.
+JSON → TypeScript
+Simpulkan antarmuka TypeScript dari sampel JSON.
+json typescript interface tipe hasilkan
+Hasilkan tipe
+Tipe dihasilkan.
+Terakhir diperbarui
+Kebijakan Privasi
+Ketentuan Penggunaan
+Halaman tidak ditemukan
+Alamat itu tidak ada di Kit. Kembali ke beranda dan pilih alat dari sana.
+Kembali ke beranda
+Terjadi kesalahan
+Tindakan terakhir gagal di peramban ini. Anda dapat mencoba lagi tanpa meninggalkan halaman.
+Coba lagi

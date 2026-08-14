@@ -1,0 +1,587 @@
+Kit — Browser-Werkzeuge, die privat bleiben
+PDF, Bilder, Medien, Konverter und Textwerkzeuge laufen auf Ihrem Gerät. Nichts wird auf unsere Server hochgeladen.
+Kit
+Alltagswerkzeuge im Browser. Von Grund auf privat.
+Start
+Werkzeuge
+Verlauf
+Favoriten
+Einstellungen
+Werkzeuge suchen…
+Menü öffnen
+Menü schließen
+Datenschutz
+Nutzungsbedingungen
+Über mich
+MIT-Lizenz
+© {year} Tim G (TGthms). Kit ist Open Source unter der MIT-Lizenz.
+GitHub
+Abbrechen
+Leeren
+Schließen
+Kopieren
+In die Zwischenablage kopiert
+Herunterladen
+Starten
+Verarbeiten
+Wird verarbeitet…
+Fertig
+Etwas ist schiefgelaufen
+Erneut versuchen
+Dateien hinzufügen
+Dateien hier ablegen
+oder vom Gerät auswählen
+Sie können auch aus der Zwischenablage einfügen
+Entfernen
+Zum Umsortieren ziehen
+Dateien
+Noch keine Dateien ausgewählt
+Qualität
+Optionen
+Vorschau
+Ergebnis
+Eingabe
+Ausgabe
+Format
+Sprache
+Erscheinungsbild
+System
+Hell
+Dunkel
+Wird geladen…
+Speichern
+Löschen
+Bestätigen
+Zurück
+Alle
+Anheften
+Lösen
+Zu Favoriten
+Aus Favoriten
+Voreinstellungen
+Voreinstellung nutzen
+Als Voreinstellung speichern
+Tastenkürzel
+Fortschritt
+Diese Datei ist groß — die Verarbeitung kann dauern.
+Dieses Format wird nicht unterstützt
+Erfolg
+Hinweis
+Info
+Alle auswählen
+Keine
+Zurücksetzen
+Max. Breite
+Max. Höhe
+Breite
+Höhe
+Drehen
+Seiten
+Seite
+Text
+Kodieren
+Dekodieren
+Prüfen
+Verkleinern
+Schön formatieren
+Gültig
+Ungültig
+Zeichen
+Zeilen
+Von
+Nach
+Start
+Ende
+Geschwindigkeit
+Lautstärke
+Zuschneiden
+Extrahieren
+Stapel
+Grenzen
+Läuft nur in Ihrem Browser. Ihre Dateien werden nie an einen Kit-Server gesendet.
+https://tgthms.github.io/about/
+So funktioniert’s und Grenzen
+Was möchten Sie tun?
+Praktische Werkzeuge auf diesem Gerät — kein Konto, kein Upload.
+Kategorien
+Werkzeuge
+Nichts passt zu dieser Suche.
+Dort weitermachen, wo Sie aufgehört haben
+Angeheftet
+Mit einer Kategorie starten
+Wählen Sie eine Aufgabenfamilie. Die Werkzeuge darin sind gruppiert, damit Sie scannen statt suchen.
+Kategorien
+{count, plural, one {# Werkzeug} other {# Werkzeuge}}
+Suchergebnisse
+Hier starten
+Seiten
+Schützen und Infos
+Markierungen
+Export / Konvertieren
+Größe und Zuschnitt
+Aussehen
+Datei
+Clips
+Formate
+Schreiben
+Prüfen
+Kodieren
+Erzeugen
+PDF
+Bilder
+Audio
+Video
+Konvertieren
+Schreiben
+PDFs zusammenführen, teilen, komprimieren und markieren
+Fotos komprimieren, skalieren, konvertieren und nachbearbeiten
+Nur Audio: konvertieren, zuschneiden, Tempo ändern
+Video konvertieren, zuschneiden, beschleunigen und Tonspur ziehen
+Intelligente Konvertierung zwischen Formaten (JSON, CSV, ZIP, Bilder…)
+Text vergleichen, Groß/Kleinschreibung ändern, Markdown zu HTML
+Daten
+JSON, YAML, CSV, XML, SQL und Formatwechsel
+Entwicklung
+Tokens, Hashes, Kodierungen, Passwörter und andere Werkbank-Tools
+Verlauf
+Was Sie auf diesem Gerät ausgeführt haben. Wir speichern nur kurze Zusammenfassungen — nie Ihre Dateien.
+Noch keine Aktivität. Führen Sie ein Werkzeug aus, dann erscheint es hier.
+Verlauf löschen
+Gesamten Verlauf auf diesem Gerät löschen?
+Werkzeug öffnen
+Werkzeug
+Wann
+Zusammenfassung
+Status
+Erfolgreich
+Fehlgeschlagen
+Favoriten
+Werkzeuge, die Sie griffbereit halten.
+Noch keine Favoriten. Markieren Sie eines auf der Startseite oder der Werkzeugseite.
+Einstellungen
+Diese Einstellungen bleiben nur in diesem Browser.
+Erscheinungsbild
+Sprache
+Daten und Datenschutz
+Verlauf löschen
+Entfernt lokale Verlaufszusammenfassungen dieser Website.
+Kit verarbeitet Ihre Dateien im Browser. Einstellungen und Verlaufszusammenfassungen können lokal gespeichert werden. Details stehen in der Datenschutzerklärung.
+Datenschutz
+Nutzungsbedingungen
+Drücken Sie jederzeit ?, um die Tastenkürzel zu sehen.
+Version
+Tastenkürzel
+Überall
+Suche fokussieren
+Einstellungen öffnen
+Zur Startseite
+Diese Liste zeigen
+Aktuelles Werkzeug ausführen
+Schließen
+PDFs zusammenführen
+Mehrere PDFs zu einem stapeln. Seiten vorschauen und per Ziehen sortieren.
+pdf zusammenführen kombinieren verbinden mehrseitig
+Zusammenführen
+Fügen Sie mindestens zwei PDF-Dateien hinzu.
+{count} Dateien zu einem PDF zusammengeführt.
+PDF teilen
+Einen Seitenbereich in ein neues PDF extrahieren.
+pdf teilen extrahieren seiten bereich
+Teilen
+Seiten (zum Beispiel 1-3,5)
+Ihr geteiltes PDF ist bereit.
+Seiten organisieren
+Drehen, überflüssige entfernen und eine neue Reihenfolge setzen.
+pdf drehen löschen umsortieren organisieren seiten
+PDF speichern
+Ihr PDF wurde aktualisiert.
+PDF komprimieren
+Dateigröße durch erneutes Kodieren der Seitenbilder senken (Qualitätskompromiss).
+pdf komprimieren verkleinern größe
+Komprimieren
+Verlustbehaftet: Seiten können gerastert werden. Am besten bei bildlastigen PDFs.
+Das komprimierte PDF kann heruntergeladen werden.
+PDF-Wasserzeichen
+Text als Wasserzeichen, Kopf- oder Fußzeile auf jeder Seite.
+pdf wasserzeichen stempel kopfzeile fußzeile vertraulich
+Anwenden
+Wasserzeichentext
+Platzierung
+Kopfzeile
+Fußzeile
+Diagonal in der Mitte
+Deckkraft
+Wasserzeichen angewendet.
+Inhalt abdecken
+Schwarze Rechtecke über sensible Bereiche (nur visuell).
+pdf schwärzen abdecken verbergen sensibel
+Abdeckung anwenden
+Nur visuelle Abdeckung. Darunterliegender Text wird nicht zuverlässig entfernt — prüfen Sie sensible Dokumente.
+Abdeckungen angewendet.
+Aus PDF extrahieren
+Lesbaren Text ziehen oder eine Seite als Bild exportieren.
+pdf extrahieren text bilder
+Extrahieren
+Text
+Bilder
+Extraktion abgeschlossen.
+{count} Seitenbild(er) als ZIP exportiert.
+Bilder komprimieren
+Qualität und Maximalgröße senken, damit Fotos teilbar bleiben.
+bild komprimieren jpg png webp größe foto
+Komprimieren
+{count} Bild(er) komprimiert.
+Bilder skalieren
+Genaue Maße setzen, optional mit festem Seitenverhältnis.
+bild skalieren maße breite höhe
+Skalieren
+Seitenverhältnis beibehalten
+{count} Bild(er) skaliert.
+Bild zuschneiden
+Nur das gewünschte Rechteck behalten.
+bild zuschneiden schneiden bereich
+Zuschneiden
+Zugeschnittenes Bild bereit.
+Bildformat konvertieren
+Zwischen JPEG, PNG, WEBP und ähnlichen Webformaten wechseln.
+bild konvertieren format webp avif png jpg jpeg
+Konvertieren
+{count} Bild(er) konvertiert.
+Bildmetadaten
+EXIF und ähnliche Tags ansehen, dann eine saubere Kopie ohne sie exportieren.
+bild exif metadaten entfernen datenschutz standort
+Metadaten entfernen
+Pixel werden im Browser neu kodiert, eingebettete Metadaten entfallen.
+Metadaten von {count} Bild(ern) entfernt.
+Tag
+Wert
+Keine lesbaren EXIF- oder Textmetadaten in dieser Datei.
+Bild anpassen
+Helligkeit, Kontrast und Sättigung ändern.
+bild helligkeit kontrast sättigung farbe
+Anwenden
+Helligkeit
+Kontrast
+Sättigung
+{count} Bild(er) angepasst.
+Intelligentes Konvertieren
+Erkennt gemischte Datei- oder Texttypen und konvertiert zwischen Formaten (kein Medienstudio).
+konvertieren hub intelligent stapel json yaml csv zip bild daten
+Konvertieren
+Erkannt als
+Ausgabeformat
+Konvertierung abgeschlossen.
+JSON-Formatierer
+Einrücken, verkleinern und JSON-Fehler früh finden.
+json formatieren prüfen verkleinern pretty
+Formatieren
+JSON ist gültig und formatiert.
+YAML-Formatierer
+YAML-Struktur prüfen und das Layout aufräumen.
+yaml formatieren prüfen yml
+Formatieren
+YAML ist gültig.
+TOML-Formatierer
+TOML prüfen und die Datei ordentlich halten.
+toml formatieren prüfen config
+Formatieren
+TOML ist gültig.
+Markdown ↔ HTML
+Markdown in HTML verwandeln oder umgekehrt.
+markdown html konvertieren md auszeichnung
+Konvertieren
+Markdown → HTML
+HTML → Markdown
+Konvertiert.
+CSV ↔ JSON
+Tabellendaten zwischen CSV und JSON-Arrays bewegen.
+csv json konvertieren tabelle tabellenkalkulation
+Konvertieren
+CSV → JSON
+JSON → CSV
+Konvertiert.
+Text vergleichen
+Zeilenweise Änderungen zwischen zwei Versionen sehen.
+diff vergleichen text änderungen patch
+Vergleichen
+Original
+Aktualisiert
+Vergleich bereit.
+Base64
+Base64 für Klartext oder ganze Dateien kodieren oder dekodieren.
+base64 kodieren dekodieren binär
+Konvertieren
+Richtung
+Text
+Datei
+Fertig.
+URL-Kodierung
+URL-Bestandteile sicher prozentkodieren oder dekodieren.
+url kodieren dekodieren prozent uri abfrage
+Konvertieren
+Fertig.
+Audio konvertieren
+Audiocontainer wie MP3, WAV und OGG im Browser wechseln.
+audio konvertieren mp3 wav ogg ffmpeg ton
+Konvertieren
+Audio-Engine wird geladen…
+Nutzt einthreadiges FFmpeg WASM. Große Dateien können langsam sein; Codec-Unterstützung ist begrenzt.
+Audiokonvertierung abgeschlossen.
+Audio zuschneiden
+Nur den Abschnitt zwischen zwei Zeitpunkten behalten.
+audio zuschneiden schneiden clip mp3 wav
+Zuschneiden
+Audiozuschnitt fertig.
+Audio-Tempo und Lautstärke
+Audio beschleunigen, verlangsamen oder die Lautstärke ändern.
+audio tempo geschwindigkeit lautstärke tonhöhe
+Anwenden
+Verarbeitetes Audio ist bereit.
+Video konvertieren
+Videocontainer wie MP4 und WEBM im Browser wechseln.
+video konvertieren mp4 webm ffmpeg film
+Konvertieren
+Video-Engine wird geladen…
+Nutzt einthreadiges FFmpeg WASM. Große Dateien können langsam sein; Codec-Unterstützung ist begrenzt.
+Videokonvertierung abgeschlossen.
+Video zuschneiden
+Nur den Clip zwischen zwei Zeitpunkten behalten.
+video zuschneiden schneiden clip mp4
+Zuschneiden
+Videozuschnitt fertig.
+Video-Tempo und Lautstärke
+Wiedergabegeschwindigkeit und Audiopegel eines Videos ändern.
+video tempo geschwindigkeit lautstärke
+Anwenden
+Verarbeitetes Video ist bereit.
+Audio aus Video extrahieren
+Die Tonspur eines Videos als Audiodatei speichern.
+video audio extrahieren mp3 tonspur
+Audio extrahieren
+Audio extrahiert.
+Seitenzahlen
+Eine Beschriftung wie 1 / 12 auf jeder Seite anbringen.
+pdf seitenzahlen fußzeile kopfzeile pagination
+Zahlen setzen
+Beschriftung ({page} und {pages})
+Platzierung
+Beginnen bei
+Kopfzeile links
+Kopfzeile mitte
+Kopfzeile rechts
+Fußzeile links
+Fußzeile mitte
+Fußzeile rechts
+Seitenzahlen hinzugefügt.
+PDF → Bilder
+Jede Seite als JPEG rastern und als ZIP herunterladen.
+pdf bild jpg jpeg zip seiten export
+Seiten exportieren
+Seiten werden mit PDF.js in diesem Tab gezeichnet. Sehr große Dokumente können langsam sein und viel Speicher brauchen. Das ist ein sichtbares Raster, kein Extrakt eingebetteter Bildobjekte.
+{count} Seite(n) exportiert.
+Bilder → PDF
+Fotos zu einem PDF stapeln, ein Bild pro Seite.
+bilder pdf jpg png kombinieren
+PDF erstellen
+PDF aus {count} Bild(ern) erstellt.
+Formulare flachlegen
+AcroForm-Felder in die Seite brennen, sodass sie nicht mehr bearbeitet werden können.
+pdf flachlegen formular felder acroform
+Flachlegen
+Funktioniert mit Standard-AcroForm-Feldern. Dynamische XFA-Formulare werden nicht vollständig unterstützt.
+{count} Feld(er) flachgelegt.
+PDF-Metadaten
+Titel, Autor und andere Info-Felder ansehen, bearbeiten oder entfernen.
+Schlüsselwörter
+Metadaten speichern
+Alle Felder entfernen
+Titel
+Autor
+Betreff
+Ersteller
+Produzent
+Metadaten gespeichert.
+Metadaten entfernt.
+PDF sperren oder entsperren
+Ein Benutzerpasswort setzen oder entfernen. Die Verschlüsselung bleibt in diesem Browser.
+pdf passwort sperren entsperren verschlüsseln
+Anwenden
+Sperren
+Entsperren
+Passwort
+Nutzt eine clientseitige PDF-Verschlüsselungsbibliothek. Manche alten oder ungewöhnlichen Revisionen lassen sich nicht öffnen. Kit sendet Datei und Passwort nie an einen Server.
+Das PDF ist bereit.
+Drehen und spiegeln
+Bilder in 90°-Schritten drehen oder horizontal bzw. vertikal spiegeln.
+bild drehen spiegeln
+Anwenden
+Transformation
+Um 90° drehen
+Um 180° drehen
+Um 270° drehen
+Horizontal spiegeln
+Vertikal spiegeln
+{count} Bild(er) transformiert.
+Bildfilter
+Graustufen, Sepia oder Invertieren auf ein oder mehrere Fotos anwenden.
+bild filter graustufen sepia invertieren
+Anwenden
+Filter
+Graustufen
+Sepia
+Invertieren
+{count} Bild(er) gefiltert.
+Favicon-Paket
+Ein Quellbild als übliche Icon-Größen in einem ZIP exportieren.
+favicon icon 16 32 180 192 512 apple touch
+Icons exportieren
+Exportiert PNGs in 16, 32, 48, 180, 192 und 512 Pixeln.
+Das Icon-Paket ist bereit.
+Video → GIF
+Einen kurzen Clip im Browser in eine loopende GIF verwandeln.
+video gif clip konvertieren ffmpeg
+GIF erzeugen
+Nutzt FFmpeg WASM. Clips kurz halten — GIF-Kodierung ist langsam und speicherhungrig. Codecs folgen dem Browser-Build.
+Das GIF ist bereit.
+XML ↔ JSON
+XML-Dokumente nach JSON wandeln oder umgekehrt.
+xml json konvertieren parsen
+Konvertieren
+XML → JSON
+JSON → XML
+Konvertiert.
+SQL-Formatierer
+SQL einrücken, damit Klauseln und Listen lesbarer sind.
+sql formatieren pretty abfrage
+Formatieren
+SQL formatiert.
+Regex-Tester
+Einen regulären Ausdruck an einem Text ausprobieren und Treffer ersetzen.
+regex regulärer ausdruck testen ersetzen
+Muster
+Flags
+Beispieltext
+Ersatz
+Ersetzen
+{count, plural, one {# Treffer} other {# Treffer}}
+Ersatz bereit.
+Hash-Generator
+SHA-1/256/384/512 und MD5 von Text oder einer Datei, lokal berechnet.
+hash sha256 md5 sha1 prüfsumme
+Hashen
+Algorithmus
+Digest
+Hashes werden in diesem Browser berechnet (Web Crypto für SHA, lokale MD5-Implementierung). MD5 ist nicht kollisionssicher — nur für Prüfsummen nutzen.
+Hash bereit.
+UUID-Generator
+UUID Version 4 oder 7 auf diesem Gerät erzeugen.
+uuid guid v4 v7 erzeugen
+Erzeugen
+Wie viele
+Version
+UUIDs erzeugt.
+Farbkonverter
+Zwischen HEX, RGB, HSL und HSV wechseln, mit Farbwähler.
+farbe hex rgb hsl hsv wähler
+Farbwähler
+Geben Sie eine 3- oder 6-stellige Hex-Farbe ein.
+Lorem ipsum
+Platzhalterabsätze, Sätze oder Wörter erzeugen.
+lorem ipsum platzhalter dummy text
+Erzeugen
+Anzahl
+Modus
+Absätze
+Sätze
+Wörter
+Text erzeugt.
+QR-Code
+Einen QR-Code aus Text erzeugen oder einen aus einem Bild lesen.
+qr code erzeugen scannen lesen barcode
+Erzeugen
+Text oder URL
+Aus Bild lesen
+QR lesen
+QR-Code bereit.
+QR-Inhalt gelesen.
+Kein QR-Code in diesem Bild gefunden.
+PDF unterschreiben
+Eine getippte Signatur auf jeder Seite stempeln. Nur visuell — kein Zertifikat.
+pdf unterschreiben signatur stempel name
+Unterschreiben
+Signaturtext
+Ihr Name
+Das zeichnet Ihren Namen auf die Seite. Es ist keine kryptografische digitale Signatur.
+Signatur gestempelt.
+Bilder mit Wasserzeichen
+Text über Fotos legen, einzeln oder im Stapel.
+bild wasserzeichen stempel urheberrecht
+Anwenden
+Wasserzeichentext
+Platzierung
+Unten rechts
+Unten links
+Oben rechts
+Mitte
+Wasserzeichen auf {count} Bild(er) gesetzt.
+Passwortgenerator
+Ein starkes Passwort auf diesem Gerät erzeugen. Nichts wird gespeichert.
+passwort erzeugen zufall geheim
+Erzeugen
+Länge
+Kleinbuchstaben
+Großbuchstaben
+Ziffern
+Symbole
+Passwort bereit.
+Groß-/Kleinschreibung
+Zwischen camel, snake, kebab, Titel und mehr wechseln.
+schreibweise camel snake kebab pascal titel
+Konvertieren
+Stil
+Konvertiert.
+JWT-Decoder
+JWT-Header und Payload lokal lesen. Signaturen werden nicht geprüft.
+jwt dekodieren token bearer auth
+Dekodieren
+Kit dekodiert nur Base64url. Ohne Schlüssel kann es die Echtheit des Tokens nicht beweisen.
+Signaturteil vorhanden (nicht geprüft).
+Kein Signaturteil.
+Fügen Sie zuerst ein Token ein.
+Token dekodiert.
+Unix-Zeitstempel
+Unix-Zeit nach ISO und zurück wandeln.
+unix epoch zeitstempel iso datum
+Jetzt verwenden
+Cron erklären
+Einen 5-Feld-Cron-Ausdruck in klare Sprache bringen.
+cron zeitplan crontab erklären
+Erklären
+Erklärt.
+Zahlenbasis
+Ganzzahlen zwischen Basis 2 und 36 umrechnen.
+binär hex dezimal basis umrechnen
+Zahl
+Von Basis
+Nach Basis
+HTML-Entitäten
+&lt; &amp; und numerische Entitäten kodieren oder dekodieren.
+html entitäten kodieren dekodieren escapen
+Konvertieren
+Kodieren
+Dekodieren
+Konvertiert.
+JSON → TypeScript
+TypeScript-Interfaces aus einem JSON-Beispiel ableiten.
+json typescript interface typ erzeugen
+Typen erzeugen
+Typen erzeugt.
+Zuletzt aktualisiert
+Datenschutz
+Nutzungsbedingungen
+Seite nicht gefunden
+Diese Adresse gibt es in Kit nicht. Zurück zur Startseite und ein Werkzeug wählen.
+Zur Startseite
+Etwas ist schiefgelaufen
+Die letzte Aktion ist in diesem Browser fehlgeschlagen. Sie können es auf der Seite erneut versuchen.
+Erneut versuchen

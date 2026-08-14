@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { locales } from "@/lib/i18n/config";
+import { pathLocales } from "@/lib/i18n/config";
 import { tools } from "@/lib/tools/registry";
 import { absoluteUrl } from "@/lib/seo/site";
 
@@ -8,7 +8,7 @@ export const dynamic = "force-static";
 export default function sitemap(): MetadataRoute.Sitemap {
   const pages = ["", "/settings", "/history", "/favorites", "/privacy", "/terms"];
   const entries: MetadataRoute.Sitemap = [];
-  for (const locale of locales) {
+  for (const locale of pathLocales) {
     for (const page of pages) {
       entries.push({
         url: absoluteUrl(`/${locale}${page}/`),

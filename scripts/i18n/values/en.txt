@@ -1,0 +1,587 @@
+Kit — Browser tools that stay private
+PDF, images, media, converters, and text tools that run on your device. Nothing is uploaded to our servers.
+Kit
+Everyday tools in your browser. Private by design.
+Home
+Tools
+History
+Favorites
+Settings
+Search tools…
+Open menu
+Close menu
+Privacy Policy
+Terms of Use
+About Me
+MIT License
+© {year} Tim G (TGthms). Kit is open source under the MIT License.
+GitHub
+Cancel
+Clear
+Close
+Copy
+Copied to clipboard
+Download
+Run
+Process
+Working…
+Done
+Something went wrong
+Try again
+Add files
+Drop files here
+or browse from your device
+You can also paste from the clipboard
+Remove
+Drag to change order
+Files
+No files selected yet
+Quality
+Options
+Preview
+Result
+Input
+Output
+Format
+Language
+Appearance
+Match system
+Light
+Dark
+Loading…
+Save
+Delete
+Confirm
+Back
+All
+Pin
+Unpin
+Add to favorites
+Remove from favorites
+Presets
+Use preset
+Save as preset
+Keyboard shortcuts
+Progress
+This file is large—processing may take a while.
+This format isn’t supported
+Success
+Heads up
+Note
+Select all
+None
+Reset
+Max width
+Max height
+Width
+Height
+Rotate
+Pages
+Page
+Text
+Encode
+Decode
+Validate
+Minify
+Pretty-print
+Valid
+Invalid
+Characters
+Lines
+From
+To
+Start
+End
+Speed
+Volume
+Trim
+Extract
+Batch
+Limitations
+Runs in your browser only. Your files are never sent to a Kit server.
+https://tgthms.github.io/about/
+How it works & limits
+What do you need to do?
+Handy tools that run on this device—no account, no uploads.
+Categories
+Tools
+Nothing matches that search.
+Pick up where you left off
+Pinned
+Start with a category
+Pick a job family. Tools inside are grouped so you can scan instead of hunt.
+Categories
+{count, plural, one {# tool} other {# tools}}
+Search results
+Start here
+Pages
+Protect & info
+Markup
+Export / convert
+Size & crop
+Look
+File
+Clips
+Formats
+Writing
+Inspect
+Encode
+Generate
+PDF
+Images
+Audio
+Video
+File convert
+Writing
+Merge, split, compress, and mark up PDF documents
+Compress, resize, convert, and retouch photos
+Convert, trim, and change speed of audio only
+Convert, trim, speed up, and pull audio from video
+Cross-format smart conversion (JSON, CSV, ZIP, images…)
+Compare copy, change case, and turn Markdown into HTML
+Data
+JSON, YAML, CSV, XML, SQL, and cross-format conversion
+Developer
+Tokens, hashes, encodings, passwords, and other bench tools
+History
+What you’ve run on this device. We only keep short summaries—never your files.
+No activity yet. Run a tool and it will show up here.
+Clear history
+Delete all history on this device?
+Open tool
+Tool
+When
+Summary
+Status
+Succeeded
+Failed
+Favorites
+Tools you keep close for one-tap access.
+No favorites yet. Star a tool from Home or from its page.
+Settings
+These choices stay in this browser only.
+Appearance
+Language
+Data & privacy
+Clear history
+Removes local history summaries stored by this site.
+Kit works on your files in the browser. Preferences and history summaries may be saved locally. Full details are in the Privacy Policy.
+Privacy Policy
+Terms of Use
+Press ? anytime for keyboard shortcuts.
+Version
+Keyboard shortcuts
+Everywhere
+Focus search
+Open settings
+Go home
+Show this list
+Run the current tool
+Close
+Merge PDFs
+Stack several PDFs into one. Preview pages and drag to reorder.
+pdf merge combine join stitch multipage
+Merge
+Add at least two PDF files.
+Merged {count} files into one PDF.
+Split PDF
+Pull out a page range into a brand-new PDF.
+pdf split extract pages range
+Split
+Pages (for example 1-3,5)
+Your split PDF is ready.
+Organize pages
+Rotate pages, remove the ones you don’t need, and set a new order.
+pdf rotate delete reorder organize pages
+Save PDF
+Your PDF has been updated.
+Compress PDF
+Shrink file size by re-encoding page images (quality trade-off).
+pdf compress reduce size smaller
+Compress
+This is a lossy path—pages may be rasterized. Works best on image-heavy PDFs.
+Compressed PDF is ready to download.
+Watermark PDF
+Stamp text as a watermark, header, or footer on every page.
+pdf watermark stamp header footer confidential
+Apply
+Watermark text
+Placement
+Header
+Footer
+Diagonal center
+Opacity
+Watermark applied.
+Cover content
+Place solid black boxes over sensitive areas (visual cover).
+pdf redact blackout hide sensitive
+Apply cover
+This is a visual cover only. It does not guarantee removal of every underlying text stream—double-check sensitive documents.
+Cover boxes applied.
+Extract from PDF
+Pull readable text or export a page as an image.
+pdf extract text images ocr-free
+Extract
+Text
+Images
+Extraction finished.
+Exported {count} page image(s) as a ZIP.
+Compress images
+Dial quality and max size down so photos stay shareable.
+image compress jpg png webp size photo
+Compress
+Compressed {count} image(s).
+Resize images
+Set exact dimensions, with optional aspect-ratio lock.
+image resize scale dimensions width height
+Resize
+Keep aspect ratio
+Resized {count} image(s).
+Crop image
+Keep only the rectangle you care about.
+image crop cut region
+Crop
+Cropped image ready.
+Convert image format
+Switch between JPEG, PNG, WEBP, and similar web formats.
+image convert format webp avif png jpg jpeg
+Convert
+Converted {count} image(s).
+Image metadata
+Inspect EXIF and similar tags, then export a clean copy without them.
+image exif metadata strip privacy location
+Strip metadata
+Pixels are re-encoded in the browser so embedded metadata is dropped.
+Stripped metadata from {count} image(s).
+Tag
+Value
+No readable EXIF or text metadata in this file.
+Adjust image
+Tweak brightness, contrast, and saturation.
+image brightness contrast saturation color
+Apply
+Brightness
+Contrast
+Saturation
+Adjusted {count} image(s).
+Smart convert
+Detect mixed file or text types and convert across formats (not a media studio).
+convert hub smart batch json yaml csv zip image data
+Convert
+Detected as
+Output format
+Conversion finished.
+JSON formatter
+Pretty-print, minify, and catch JSON errors early.
+json format validate minify pretty print
+Format
+JSON looks valid and is formatted.
+YAML formatter
+Check YAML structure and tidy the layout.
+yaml format validate yml
+Format
+YAML looks valid.
+TOML formatter
+Validate TOML and keep the file neat.
+toml format validate config
+Format
+TOML looks valid.
+Markdown ↔ HTML
+Turn Markdown into HTML, or HTML back into Markdown.
+markdown html convert md markup
+Convert
+Markdown → HTML
+HTML → Markdown
+Converted.
+CSV ↔ JSON
+Move tabular data between CSV and JSON arrays.
+csv json convert table spreadsheet
+Convert
+CSV → JSON
+JSON → CSV
+Converted.
+Text compare
+See line-by-line changes between two versions.
+diff compare text changes patch
+Compare
+Original
+Updated
+Comparison ready.
+Base64
+Encode or decode Base64 for plain text or whole files.
+base64 encode decode binary
+Convert
+Direction
+Text
+File
+Done.
+URL encode
+Percent-encode or decode URL components safely.
+url encode decode percent uri query
+Convert
+Done.
+Convert audio
+Change audio containers such as MP3, WAV, and OGG in the browser.
+audio convert mp3 wav ogg ffmpeg sound
+Convert
+Loading audio engine…
+Uses single-thread FFmpeg WASM. Large files can be slow; codec support is limited.
+Audio conversion finished.
+Trim audio
+Keep only the stretch between two timestamps in an audio file.
+audio trim cut clip mp3 wav
+Trim
+Audio trim finished.
+Audio speed & volume
+Speed up, slow down, or change loudness of audio.
+audio speed tempo volume pitch
+Apply
+Processed audio is ready.
+Convert video
+Change video containers such as MP4 and WEBM in the browser.
+video convert mp4 webm ffmpeg movie
+Convert
+Loading video engine…
+Uses single-thread FFmpeg WASM. Large files can be slow; codec support is limited.
+Video conversion finished.
+Trim video
+Keep only the clip between two timestamps.
+video trim cut clip mp4
+Trim
+Video trim finished.
+Video speed & volume
+Change playback speed and audio level of a video.
+video speed tempo volume
+Apply
+Processed video is ready.
+Extract audio from video
+Save the soundtrack from a video as an audio file.
+video extract audio mp3 soundtrack
+Extract audio
+Audio extracted.
+Page numbers
+Stamp a page label such as 1 / 12 on every page.
+pdf page numbers footer header pagination
+Add numbers
+Label ({page} and {pages})
+Placement
+Start at
+Header left
+Header center
+Header right
+Footer left
+Footer center
+Footer right
+Page numbers added.
+PDF → images
+Rasterize every page to JPEG and download them as a ZIP.
+pdf to image jpg jpeg zip pages export
+Export pages
+Pages are drawn with PDF.js in this tab. Very large documents can be slow and use a lot of memory. This is a visual raster, not an extract of embedded image objects.
+Exported {count} page(s).
+Images → PDF
+Stack photos into a PDF, one image per page.
+images to pdf jpg png combine
+Create PDF
+Built a PDF from {count} image(s).
+Flatten forms
+Bake AcroForm fields into the page so they can no longer be edited.
+pdf flatten form fields acroform
+Flatten
+Works on standard AcroForm fields. Dynamic XFA forms are not fully supported.
+Flattened {count} field(s).
+PDF metadata
+View, edit, or strip title, author, and other document Info fields.
+Keywords
+Save metadata
+Strip all fields
+Title
+Author
+Subject
+Creator
+Producer
+Metadata saved.
+Metadata stripped.
+Lock or unlock PDF
+Add or remove a user password. Encryption stays in this browser.
+pdf password lock unlock encrypt decrypt
+Apply
+Lock
+Unlock
+Password
+Uses a client-side PDF encryption library. Some older or unusual encryption revisions may not unlock. Kit never sends the file or password to a server.
+PDF is ready.
+Rotate & flip
+Turn images 90° at a time or flip them horizontally or vertically.
+image rotate flip mirror
+Apply
+Transform
+Rotate 90°
+Rotate 180°
+Rotate 270°
+Flip horizontal
+Flip vertical
+Transformed {count} image(s).
+Image filters
+Apply grayscale, sepia, or invert to one or many photos.
+image filter grayscale sepia invert
+Apply
+Filter
+Grayscale
+Sepia
+Invert
+Filtered {count} image(s).
+Favicon pack
+Export a source image as common icon sizes in a ZIP.
+favicon icon 16 32 180 192 512 apple touch
+Export icons
+Exports PNG files at 16, 32, 48, 180, 192, and 512 pixels.
+Icon pack is ready.
+Video → GIF
+Turn a short clip into a looping GIF in the browser.
+video gif clip convert ffmpeg
+Make GIF
+Uses FFmpeg WASM. Keep clips short — GIF encode is slow and memory-heavy. Palette and codec support follow the in-browser build.
+GIF is ready.
+XML ↔ JSON
+Convert XML documents to JSON, or JSON back to XML.
+xml json convert parse
+Convert
+XML → JSON
+JSON → XML
+Converted.
+SQL formatter
+Pretty-print SQL so clauses and lists are easier to read.
+sql format pretty query
+Format
+SQL formatted.
+Regex tester
+Try a regular expression against sample text and replace matches.
+regex regular expression test replace
+Pattern
+Flags
+Sample text
+Replacement
+Replace
+{count, plural, one {# match} other {# matches}}
+Replacement ready.
+Hash generator
+SHA-1/256/384/512 and MD5 of text or a file, computed locally.
+hash sha256 md5 sha1 checksum digest
+Hash
+Algorithm
+Digest
+Hashes are computed in this browser (Web Crypto for SHA, a local MD5 implementation). MD5 is not collision-resistant — use it only for checksums.
+Hash ready.
+UUID generator
+Create version 4 or version 7 UUIDs on this device.
+uuid guid v4 v7 generate
+Generate
+How many
+Version
+UUIDs generated.
+Color converter
+Convert between HEX, RGB, HSL, and HSV, with a color picker.
+color hex rgb hsl hsv picker
+Color picker
+Enter a 3- or 6-digit hex color.
+Lorem ipsum
+Generate placeholder paragraphs, sentences, or words.
+lorem ipsum placeholder dummy text
+Generate
+Count
+Mode
+Paragraphs
+Sentences
+Words
+Text generated.
+QR code
+Create a QR code from text, or read one from an image.
+qr code generate scan read barcode
+Generate
+Text or URL
+Read from image
+Read QR
+QR code ready.
+QR contents read.
+No QR code found in that image.
+Sign PDF
+Stamp a typed signature on every page. Visual only — not a certificate.
+pdf sign signature stamp name
+Sign
+Signature text
+Your name
+This draws your name on the page. It is not a cryptographic digital signature.
+Signature stamped.
+Watermark images
+Overlay text on photos, one file or a whole batch.
+image watermark stamp copyright
+Apply
+Watermark text
+Placement
+Bottom right
+Bottom left
+Top right
+Center
+Watermarked {count} image(s).
+Password generator
+Create a strong password on this device. Nothing is stored.
+password generate random secret
+Generate
+Length
+Lowercase
+Uppercase
+Digits
+Symbols
+Password ready.
+Change case
+Switch between camel, snake, kebab, title, and more.
+case camel snake kebab pascal title
+Convert
+Style
+Converted.
+JWT decoder
+Read a JWT header and payload locally. Signatures are not verified.
+jwt decode token bearer auth
+Decode
+Kit only decodes Base64url. It cannot prove the token is authentic without a key.
+Signature part is present (not verified).
+No signature part.
+Paste a token first.
+Token decoded.
+Unix timestamp
+Convert Unix time to ISO and back.
+unix epoch timestamp iso date
+Use now
+Cron explainer
+Turn a 5-field cron expression into plain language.
+cron schedule crontab explain
+Explain
+Explained.
+Number base
+Convert integers between bases 2 and 36.
+binary hex decimal base convert
+Number
+From base
+To base
+HTML entities
+Encode or decode &lt; &amp; and numeric entities.
+html entities encode decode escape
+Convert
+Encode
+Decode
+Converted.
+JSON → TypeScript
+Infer TypeScript interfaces from a JSON sample.
+json typescript interface type generate
+Generate types
+Types generated.
+Last updated
+Privacy Policy
+Terms of Use
+Page not found
+That address isn’t in Kit. Head home and pick a tool from there.
+Back to home
+Something went wrong
+The last action failed in this browser. You can try again without leaving the page.
+Try again

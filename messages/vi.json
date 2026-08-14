@@ -1,0 +1,735 @@
+{
+  "meta": {
+    "title": "Kit — Công cụ trình duyệt vẫn giữ riêng tư",
+    "description": "Công cụ PDF, ảnh, media, chuyển đổi và văn bản chạy trên thiết bị của bạn. Không gì được tải lên máy chủ của chúng tôi."
+  },
+  "brand": {
+    "name": "Kit",
+    "tagline": "Công cụ hàng ngày trong trình duyệt. Riêng tư ngay từ thiết kế."
+  },
+  "nav": {
+    "home": "Trang chủ",
+    "tools": "Công cụ",
+    "history": "Lịch sử",
+    "favorites": "Yêu thích",
+    "settings": "Cài đặt",
+    "searchPlaceholder": "Tìm công cụ…",
+    "openMenu": "Mở menu",
+    "closeMenu": "Đóng menu"
+  },
+  "footer": {
+    "privacy": "Chính sách quyền riêng tư",
+    "terms": "Điều khoản sử dụng",
+    "aboutMe": "Về tôi",
+    "license": "Giấy phép MIT",
+    "copyright": "© {year} Tim G (TGthms). Kit là mã nguồn mở theo Giấy phép MIT.",
+    "github": "GitHub"
+  },
+  "common": {
+    "cancel": "Hủy",
+    "clear": "Xóa",
+    "close": "Đóng",
+    "copy": "Sao chép",
+    "copied": "Đã sao chép vào clipboard",
+    "download": "Tải xuống",
+    "run": "Chạy",
+    "process": "Xử lý",
+    "processing": "Đang xử lý…",
+    "done": "Xong",
+    "error": "Đã xảy ra sự cố",
+    "retry": "Thử lại",
+    "addFiles": "Thêm tệp",
+    "dropFiles": "Thả tệp vào đây",
+    "orBrowse": "hoặc chọn từ thiết bị của bạn",
+    "pasteSupported": "Bạn cũng có thể dán từ clipboard",
+    "remove": "Gỡ",
+    "reorder": "Kéo để đổi thứ tự",
+    "files": "Tệp",
+    "noFiles": "Chưa chọn tệp nào",
+    "quality": "Chất lượng",
+    "options": "Tùy chọn",
+    "preview": "Xem trước",
+    "result": "Kết quả",
+    "input": "Đầu vào",
+    "output": "Đầu ra",
+    "format": "Định dạng",
+    "language": "Ngôn ngữ",
+    "theme": "Giao diện",
+    "themeSystem": "Theo hệ thống",
+    "themeLight": "Sáng",
+    "themeDark": "Tối",
+    "loading": "Đang tải…",
+    "save": "Lưu",
+    "delete": "Xóa",
+    "confirm": "Xác nhận",
+    "back": "Quay lại",
+    "allCategories": "Tất cả",
+    "pin": "Ghim",
+    "unpin": "Bỏ ghim",
+    "favorite": "Thêm vào yêu thích",
+    "unfavorite": "Xóa khỏi yêu thích",
+    "presets": "Cài đặt sẵn",
+    "applyPreset": "Dùng cài đặt sẵn",
+    "savePreset": "Lưu thành cài đặt sẵn",
+    "shortcuts": "Phím tắt",
+    "progress": "Tiến trình",
+    "fileTooLarge": "Tệp này lớn — việc xử lý có thể mất thời gian.",
+    "unsupported": "Định dạng này không được hỗ trợ",
+    "success": "Thành công",
+    "warning": "Lưu ý",
+    "info": "Ghi chú",
+    "selectAll": "Chọn tất cả",
+    "none": "Không",
+    "reset": "Đặt lại",
+    "maxWidth": "Chiều rộng tối đa",
+    "maxHeight": "Chiều cao tối đa",
+    "width": "Chiều rộng",
+    "height": "Chiều cao",
+    "rotate": "Xoay",
+    "pages": "Trang",
+    "page": "Trang",
+    "text": "Văn bản",
+    "encode": "Mã hóa",
+    "decode": "Giải mã",
+    "validate": "Xác thực",
+    "minify": "Thu nhỏ",
+    "beautify": "In đẹp",
+    "valid": "Hợp lệ",
+    "invalid": "Không hợp lệ",
+    "characters": "Ký tự",
+    "lines": "Dòng",
+    "from": "Từ",
+    "to": "Đến",
+    "start": "Bắt đầu",
+    "end": "Kết thúc",
+    "speed": "Tốc độ",
+    "volume": "Âm lượng",
+    "trim": "Cắt",
+    "extract": "Trích xuất",
+    "batch": "Hàng loạt",
+    "limitations": "Giới hạn",
+    "clientSideOnly": "Chỉ chạy trong trình duyệt của bạn. Tệp của bạn không bao giờ được gửi tới máy chủ Kit.",
+    "aboutMeUrl": "https://tgthms.github.io/about/",
+    "howItWorks": "Cách hoạt động và giới hạn"
+  },
+  "home": {
+    "title": "Bạn cần làm gì?",
+    "subtitle": "Công cụ tiện lợi trên thiết bị này — không tài khoản, không tải lên.",
+    "categories": "Danh mục",
+    "popular": "Công cụ",
+    "noResults": "Không có kết quả khớp với tìm kiếm đó.",
+    "recent": "Tiếp tục từ chỗ bạn dừng",
+    "pinned": "Đã ghim",
+    "chooseCategory": "Bắt đầu bằng một danh mục",
+    "chooseCategoryHint": "Chọn một nhóm việc. Công cụ bên trong được nhóm để bạn lướt thay vì lục tìm.",
+    "backToCategories": "Danh mục",
+    "toolsInCategory": "{count, plural, one {# công cụ} other {# công cụ}}",
+    "searchResults": "Kết quả tìm kiếm",
+    "featured": "Bắt đầu tại đây",
+    "groups": {
+      "pages": "Trang",
+      "protect": "Bảo vệ và thông tin",
+      "markup": "Đánh dấu",
+      "export": "Xuất / chuyển đổi",
+      "transform": "Kích thước và cắt",
+      "look": "Diện mạo",
+      "file": "Tệp",
+      "clip": "Clip",
+      "formats": "Định dạng",
+      "write": "Viết",
+      "inspect": "Kiểm tra",
+      "encode": "Mã hóa",
+      "generate": "Tạo"
+    }
+  },
+  "categories": {
+    "pdf": "PDF",
+    "image": "Ảnh",
+    "audio": "Âm thanh",
+    "video": "Video",
+    "convert": "Chuyển đổi tệp",
+    "text": "Viết",
+    "pdfDesc": "Gộp, tách, nén và đánh dấu tài liệu PDF",
+    "imageDesc": "Nén, đổi kích thước, chuyển đổi và chỉnh ảnh",
+    "audioDesc": "Chuyển đổi, cắt và đổi tốc độ chỉ với âm thanh",
+    "videoDesc": "Chuyển đổi, cắt, tăng tốc và tách âm thanh từ video",
+    "convertDesc": "Chuyển đổi thông minh giữa các định dạng (JSON, CSV, ZIP, ảnh…)",
+    "textDesc": "So sánh văn bản, đổi kiểu chữ và chuyển Markdown thành HTML",
+    "data": "Dữ liệu",
+    "dataDesc": "JSON, YAML, CSV, XML, SQL và chuyển đổi định dạng",
+    "developer": "Nhà phát triển",
+    "developerDesc": "Token, hash, mã hóa, mật khẩu và các công cụ bàn làm việc khác"
+  },
+  "history": {
+    "title": "Lịch sử",
+    "subtitle": "Những gì bạn đã chạy trên thiết bị này. Chúng tôi chỉ giữ tóm tắt ngắn — không bao giờ giữ tệp của bạn.",
+    "empty": "Chưa có hoạt động. Chạy một công cụ và nó sẽ hiện ở đây.",
+    "clear": "Xóa lịch sử",
+    "clearConfirm": "Xóa toàn bộ lịch sử trên thiết bị này?",
+    "openTool": "Mở công cụ",
+    "tool": "Công cụ",
+    "when": "Khi nào",
+    "summary": "Tóm tắt",
+    "status": "Trạng thái",
+    "success": "Thành công",
+    "failed": "Thất bại"
+  },
+  "favorites": {
+    "title": "Yêu thích",
+    "subtitle": "Công cụ bạn giữ gần để chạm một cái là tới.",
+    "empty": "Chưa có mục yêu thích. Gắn sao từ Trang chủ hoặc từ trang công cụ."
+  },
+  "settings": {
+    "title": "Cài đặt",
+    "subtitle": "Các lựa chọn này chỉ nằm trong trình duyệt này.",
+    "appearance": "Giao diện",
+    "language": "Ngôn ngữ",
+    "data": "Dữ liệu và quyền riêng tư",
+    "clearHistory": "Xóa lịch sử",
+    "clearHistoryDesc": "Gỡ các tóm tắt lịch sử cục bộ mà trang này lưu.",
+    "privacyNote": "Kit xử lý tệp của bạn trong trình duyệt. Tùy chọn và tóm tắt lịch sử có thể được lưu cục bộ. Chi tiết nằm trong Chính sách quyền riêng tư.",
+    "viewPrivacy": "Chính sách quyền riêng tư",
+    "viewTerms": "Điều khoản sử dụng",
+    "shortcutsHelp": "Nhấn ? bất cứ lúc nào để xem phím tắt.",
+    "version": "Phiên bản"
+  },
+  "shortcuts": {
+    "title": "Phím tắt",
+    "global": "Mọi nơi",
+    "search": "Tập trung tìm kiếm",
+    "settings": "Mở cài đặt",
+    "home": "Về trang chủ",
+    "help": "Hiện danh sách này",
+    "run": "Chạy công cụ hiện tại",
+    "close": "Đóng"
+  },
+  "tools": {
+    "pdf-merge": {
+      "name": "Gộp PDF",
+      "description": "Xếp nhiều PDF thành một. Xem trước trang và kéo để sắp lại.",
+      "keywords": "pdf gộp nối ghép nhiều trang",
+      "run": "Gộp",
+      "empty": "Thêm ít nhất hai tệp PDF.",
+      "success": "Đã gộp {count} tệp thành một PDF."
+    },
+    "pdf-split": {
+      "name": "Tách PDF",
+      "description": "Lấy một dải trang ra thành PDF mới.",
+      "keywords": "pdf tách trích trang dải",
+      "run": "Tách",
+      "range": "Trang (ví dụ 1-3,5)",
+      "success": "PDF đã tách sẵn sàng."
+    },
+    "pdf-organize": {
+      "name": "Sắp xếp trang",
+      "description": "Xoay trang, xóa những trang không cần và đặt thứ tự mới.",
+      "keywords": "pdf xoay xóa sắp xếp tổ chức trang",
+      "run": "Lưu PDF",
+      "success": "PDF của bạn đã được cập nhật."
+    },
+    "pdf-compress": {
+      "name": "Nén PDF",
+      "description": "Thu nhỏ kích thước bằng cách mã hóa lại ảnh trang (đánh đổi chất lượng).",
+      "keywords": "pdf nén giảm kích thước",
+      "run": "Nén",
+      "note": "Đường đi có mất mát — trang có thể bị raster. Tốt nhất với PDF nhiều ảnh.",
+      "success": "PDF đã nén sẵn sàng để tải."
+    },
+    "pdf-watermark": {
+      "name": "Hình mờ PDF",
+      "description": "Đóng dấu văn bản làm hình mờ, đầu trang hoặc chân trang trên mọi trang.",
+      "keywords": "pdf hình mờ đóng dấu đầu trang chân trang mật",
+      "run": "Áp dụng",
+      "text": "Văn bản hình mờ",
+      "position": "Vị trí",
+      "header": "Đầu trang",
+      "footer": "Chân trang",
+      "center": "Chéo giữa",
+      "opacity": "Độ mờ",
+      "success": "Đã áp dụng hình mờ."
+    },
+    "pdf-redact": {
+      "name": "Che nội dung",
+      "description": "Đặt hộp đen đặc lên vùng nhạy cảm (che bằng mắt).",
+      "keywords": "pdf che đen ẩn nhạy cảm",
+      "run": "Áp dụng lớp che",
+      "note": "Chỉ là lớp che bằng mắt. Không bảo đảm xóa mọi luồng văn bản bên dưới — hãy kiểm tra lại tài liệu nhạy cảm.",
+      "success": "Đã áp dụng hộp che."
+    },
+    "pdf-extract": {
+      "name": "Trích từ PDF",
+      "description": "Lấy văn bản đọc được hoặc xuất một trang thành ảnh.",
+      "keywords": "pdf trích văn bản ảnh",
+      "run": "Trích xuất",
+      "modeText": "Văn bản",
+      "modeImages": "Ảnh",
+      "success": "Trích xuất xong.",
+      "imagesReady": "Đã xuất {count} ảnh trang dưới dạng ZIP."
+    },
+    "image-compress": {
+      "name": "Nén ảnh",
+      "description": "Giảm chất lượng và kích thước tối đa để ảnh vẫn dễ chia sẻ.",
+      "keywords": "ảnh nén jpg png webp kích thước ảnh",
+      "run": "Nén",
+      "success": "Đã nén {count} ảnh."
+    },
+    "image-resize": {
+      "name": "Đổi kích thước ảnh",
+      "description": "Đặt kích thước chính xác, có thể khóa tỉ lệ.",
+      "keywords": "ảnh kích thước tỉ lệ rộng cao",
+      "run": "Đổi kích thước",
+      "lockAspect": "Giữ tỉ lệ khung hình",
+      "success": "Đã đổi kích thước {count} ảnh."
+    },
+    "image-crop": {
+      "name": "Cắt ảnh",
+      "description": "Chỉ giữ hình chữ nhật bạn quan tâm.",
+      "keywords": "ảnh cắt vùng",
+      "run": "Cắt",
+      "success": "Ảnh đã cắt sẵn sàng."
+    },
+    "image-convert": {
+      "name": "Chuyển định dạng ảnh",
+      "description": "Chuyển giữa JPEG, PNG, WEBP và các định dạng web tương tự.",
+      "keywords": "ảnh chuyển định dạng webp avif png jpg jpeg",
+      "run": "Chuyển đổi",
+      "success": "Đã chuyển {count} ảnh."
+    },
+    "image-metadata": {
+      "name": "Siêu dữ liệu ảnh",
+      "description": "Xem EXIF và thẻ tương tự, rồi xuất bản sao sạch không còn chúng.",
+      "keywords": "ảnh exif siêu dữ liệu xóa riêng tư vị trí",
+      "run": "Xóa siêu dữ liệu",
+      "note": "Pixel được mã hóa lại trong trình duyệt nên siêu dữ liệu nhúng bị bỏ.",
+      "success": "Đã xóa siêu dữ liệu khỏi {count} ảnh.",
+      "tag": "Thẻ",
+      "value": "Giá trị",
+      "noExif": "Không có EXIF hoặc siêu dữ liệu văn bản đọc được trong tệp này."
+    },
+    "image-adjust": {
+      "name": "Chỉnh ảnh",
+      "description": "Chỉnh độ sáng, tương phản và độ bão hòa.",
+      "keywords": "ảnh sáng tương phản bão hòa màu",
+      "run": "Áp dụng",
+      "brightness": "Độ sáng",
+      "contrast": "Tương phản",
+      "saturation": "Độ bão hòa",
+      "success": "Đã chỉnh {count} ảnh."
+    },
+    "convert-hub": {
+      "name": "Chuyển đổi thông minh",
+      "description": "Nhận loại tệp hoặc văn bản lẫn lộn và chuyển giữa các định dạng (không phải studio media).",
+      "keywords": "chuyển đổi trung tâm thông minh hàng loạt json yaml csv zip ảnh dữ liệu",
+      "run": "Chuyển đổi",
+      "detect": "Nhận dạng là",
+      "chooseOutput": "Định dạng đầu ra",
+      "success": "Chuyển đổi xong."
+    },
+    "json-format": {
+      "name": "Bộ định dạng JSON",
+      "description": "In đẹp, thu nhỏ và bắt lỗi JSON sớm.",
+      "keywords": "json định dạng kiểm tra thu nhỏ pretty",
+      "run": "Định dạng",
+      "success": "JSON hợp lệ và đã được định dạng."
+    },
+    "yaml-format": {
+      "name": "Bộ định dạng YAML",
+      "description": "Kiểm tra cấu trúc YAML và chỉnh bố cục.",
+      "keywords": "yaml định dạng kiểm tra yml",
+      "run": "Định dạng",
+      "success": "YAML hợp lệ."
+    },
+    "toml-format": {
+      "name": "Bộ định dạng TOML",
+      "description": "Xác thực TOML và giữ tệp gọn gàng.",
+      "keywords": "toml định dạng kiểm tra config",
+      "run": "Định dạng",
+      "success": "TOML hợp lệ."
+    },
+    "markdown-html": {
+      "name": "Markdown ↔ HTML",
+      "description": "Chuyển Markdown thành HTML, hoặc HTML ngược lại thành Markdown.",
+      "keywords": "markdown html chuyển md đánh dấu",
+      "run": "Chuyển đổi",
+      "toHtml": "Markdown → HTML",
+      "toMd": "HTML → Markdown",
+      "success": "Đã chuyển."
+    },
+    "csv-json": {
+      "name": "CSV ↔ JSON",
+      "description": "Chuyển dữ liệu bảng giữa CSV và mảng JSON.",
+      "keywords": "csv json chuyển bảng bảng tính",
+      "run": "Chuyển đổi",
+      "toJson": "CSV → JSON",
+      "toCsv": "JSON → CSV",
+      "success": "Đã chuyển."
+    },
+    "text-diff": {
+      "name": "So sánh văn bản",
+      "description": "Xem thay đổi từng dòng giữa hai phiên bản.",
+      "keywords": "diff so sánh văn bản thay đổi patch",
+      "run": "So sánh",
+      "left": "Gốc",
+      "right": "Đã cập nhật",
+      "success": "So sánh sẵn sàng."
+    },
+    "base64": {
+      "name": "Base64",
+      "description": "Mã hóa hoặc giải mã Base64 cho văn bản thuần hoặc cả tệp.",
+      "keywords": "base64 mã hóa giải mã nhị phân",
+      "run": "Chuyển đổi",
+      "mode": "Hướng",
+      "textMode": "Văn bản",
+      "fileMode": "Tệp",
+      "success": "Xong."
+    },
+    "url-encode": {
+      "name": "Mã hóa URL",
+      "description": "Phần trăm-mã hóa hoặc giải mã thành phần URL an toàn.",
+      "keywords": "url mã hóa giải mã phần trăm uri truy vấn",
+      "run": "Chuyển đổi",
+      "success": "Xong."
+    },
+    "audio-convert": {
+      "name": "Chuyển đổi âm thanh",
+      "description": "Đổi container âm thanh như MP3, WAV và OGG trong trình duyệt.",
+      "keywords": "âm thanh chuyển mp3 wav ogg ffmpeg tiếng",
+      "run": "Chuyển đổi",
+      "loadingFfmpeg": "Đang tải engine âm thanh…",
+      "note": "Dùng FFmpeg WASM một luồng. Tệp lớn có thể chậm; hỗ trợ codec bị giới hạn.",
+      "success": "Chuyển đổi âm thanh xong."
+    },
+    "audio-trim": {
+      "name": "Cắt âm thanh",
+      "description": "Chỉ giữ đoạn giữa hai mốc thời gian trong tệp âm thanh.",
+      "keywords": "âm thanh cắt clip mp3 wav",
+      "run": "Cắt",
+      "success": "Cắt âm thanh xong."
+    },
+    "audio-speed": {
+      "name": "Tốc độ và âm lượng",
+      "description": "Tăng tốc, làm chậm hoặc đổi độ lớn của âm thanh.",
+      "keywords": "âm thanh tốc độ nhịp âm lượng cao độ",
+      "run": "Áp dụng",
+      "success": "Âm thanh đã xử lý sẵn sàng."
+    },
+    "video-convert": {
+      "name": "Chuyển đổi video",
+      "description": "Đổi container video như MP4 và WEBM trong trình duyệt.",
+      "keywords": "video chuyển mp4 webm ffmpeg phim",
+      "run": "Chuyển đổi",
+      "loadingFfmpeg": "Đang tải engine video…",
+      "note": "Dùng FFmpeg WASM một luồng. Tệp lớn có thể chậm; hỗ trợ codec bị giới hạn.",
+      "success": "Chuyển đổi video xong."
+    },
+    "video-trim": {
+      "name": "Cắt video",
+      "description": "Chỉ giữ clip giữa hai mốc thời gian.",
+      "keywords": "video cắt clip mp4",
+      "run": "Cắt",
+      "success": "Cắt video xong."
+    },
+    "video-speed": {
+      "name": "Tốc độ và âm lượng video",
+      "description": "Đổi tốc độ phát và mức âm thanh của video.",
+      "keywords": "video tốc độ nhịp âm lượng",
+      "run": "Áp dụng",
+      "success": "Video đã xử lý sẵn sàng."
+    },
+    "video-extract-audio": {
+      "name": "Tách âm thanh từ video",
+      "description": "Lưu nhạc nền của video thành tệp âm thanh.",
+      "keywords": "video tách âm thanh mp3 nhạc nền",
+      "run": "Tách âm thanh",
+      "success": "Đã tách âm thanh."
+    },
+    "pdf-numbers": {
+      "name": "Số trang",
+      "description": "Đóng dấu nhãn trang như 1 / 12 trên mọi trang.",
+      "keywords": "pdf số trang chân trang đầu trang phân trang",
+      "run": "Thêm số",
+      "template": "Nhãn ({page} và {pages})",
+      "position": "Vị trí",
+      "start": "Bắt đầu từ",
+      "headerLeft": "Đầu trang trái",
+      "headerCenter": "Đầu trang giữa",
+      "headerRight": "Đầu trang phải",
+      "footerLeft": "Chân trang trái",
+      "footerCenter": "Chân trang giữa",
+      "footerRight": "Chân trang phải",
+      "success": "Đã thêm số trang."
+    },
+    "pdf-to-images": {
+      "name": "PDF → ảnh",
+      "description": "Raster mọi trang thành JPEG và tải chúng dưới dạng ZIP.",
+      "keywords": "pdf ảnh jpg jpeg zip trang xuất",
+      "run": "Xuất trang",
+      "limits": "Trang được vẽ bằng PDF.js trong thẻ này. Tài liệu rất lớn có thể chậm và dùng nhiều bộ nhớ. Đây là raster hình ảnh, không phải trích xuất đối tượng ảnh nhúng.",
+      "success": "Đã xuất {count} trang."
+    },
+    "images-to-pdf": {
+      "name": "Ảnh → PDF",
+      "description": "Xếp ảnh thành PDF, một ảnh mỗi trang.",
+      "keywords": "ảnh pdf jpg png gộp",
+      "run": "Tạo PDF",
+      "success": "Đã tạo PDF từ {count} ảnh."
+    },
+    "pdf-flatten": {
+      "name": "Làm phẳng biểu mẫu",
+      "description": "Nướng trường AcroForm vào trang để không còn chỉnh sửa được.",
+      "keywords": "pdf làm phẳng biểu mẫu trường acroform",
+      "run": "Làm phẳng",
+      "limits": "Hoạt động với trường AcroForm chuẩn. Biểu mẫu XFA động chưa được hỗ trợ đầy đủ.",
+      "success": "Đã làm phẳng {count} trường."
+    },
+    "pdf-metadata": {
+      "name": "Siêu dữ liệu PDF",
+      "description": "Xem, sửa hoặc xóa tiêu đề, tác giả và các trường Info khác.",
+      "keywords": "Từ khóa",
+      "run": "Lưu siêu dữ liệu",
+      "strip": "Xóa mọi trường",
+      "title": "Tiêu đề",
+      "author": "Tác giả",
+      "subject": "Chủ đề",
+      "creator": "Người tạo",
+      "producer": "Nhà sản xuất",
+      "saved": "Đã lưu siêu dữ liệu.",
+      "stripped": "Đã xóa siêu dữ liệu."
+    },
+    "pdf-protect": {
+      "name": "Khóa hoặc mở khóa PDF",
+      "description": "Thêm hoặc gỡ mật khẩu người dùng. Mã hóa ở lại trình duyệt này.",
+      "keywords": "pdf mật khẩu khóa mở khóa mã hóa giải mã",
+      "run": "Áp dụng",
+      "lock": "Khóa",
+      "unlock": "Mở khóa",
+      "password": "Mật khẩu",
+      "limits": "Dùng thư viện mã hóa PDF phía máy khách. Một số bản mã hóa cũ hoặc khác thường có thể không mở được. Kit không bao giờ gửi tệp hay mật khẩu tới máy chủ.",
+      "success": "PDF đã sẵn sàng."
+    },
+    "image-rotate": {
+      "name": "Xoay và lật",
+      "description": "Xoay ảnh từng 90° hoặc lật ngang hay dọc.",
+      "keywords": "ảnh xoay lật gương",
+      "run": "Áp dụng",
+      "operation": "Biến đổi",
+      "rot90": "Xoay 90°",
+      "rot180": "Xoay 180°",
+      "rot270": "Xoay 270°",
+      "flipH": "Lật ngang",
+      "flipV": "Lật dọc",
+      "success": "Đã biến đổi {count} ảnh."
+    },
+    "image-filters": {
+      "name": "Bộ lọc ảnh",
+      "description": "Áp dụng xám, sepia hoặc đảo màu cho một hoặc nhiều ảnh.",
+      "keywords": "ảnh bộ lọc xám sepia đảo",
+      "run": "Áp dụng",
+      "filter": "Bộ lọc",
+      "grayscale": "Xám",
+      "sepia": "Sepia",
+      "invert": "Đảo màu",
+      "success": "Đã lọc {count} ảnh."
+    },
+    "image-favicon": {
+      "name": "Gói favicon",
+      "description": "Xuất ảnh nguồn thành các kích thước biểu tượng phổ biến trong ZIP.",
+      "keywords": "favicon icon 16 32 180 192 512 apple touch",
+      "run": "Xuất biểu tượng",
+      "note": "Xuất tệp PNG ở 16, 32, 48, 180, 192 và 512 pixel.",
+      "success": "Gói biểu tượng sẵn sàng."
+    },
+    "video-gif": {
+      "name": "Video → GIF",
+      "description": "Biến clip ngắn thành GIF lặp trong trình duyệt.",
+      "keywords": "video gif clip chuyển ffmpeg",
+      "run": "Tạo GIF",
+      "limits": "Dùng FFmpeg WASM. Giữ clip ngắn — mã hóa GIF chậm và tốn bộ nhớ. Bảng màu và codec theo bản dựng trong trình duyệt.",
+      "success": "GIF sẵn sàng."
+    },
+    "xml-json": {
+      "name": "XML ↔ JSON",
+      "description": "Chuyển tài liệu XML thành JSON, hoặc JSON ngược lại thành XML.",
+      "keywords": "xml json chuyển phân tích",
+      "run": "Chuyển đổi",
+      "toJson": "XML → JSON",
+      "toXml": "JSON → XML",
+      "success": "Đã chuyển."
+    },
+    "sql-format": {
+      "name": "Bộ định dạng SQL",
+      "description": "In đẹp SQL để mệnh đề và danh sách dễ đọc hơn.",
+      "keywords": "sql định dạng pretty truy vấn",
+      "run": "Định dạng",
+      "success": "Đã định dạng SQL."
+    },
+    "regex-tester": {
+      "name": "Trình thử regex",
+      "description": "Thử biểu thức chính quy trên văn bản mẫu và thay các khớp.",
+      "keywords": "regex biểu thức chính quy thử thay",
+      "pattern": "Mẫu",
+      "flags": "Cờ",
+      "input": "Văn bản mẫu",
+      "replace": "Thay thế",
+      "runReplace": "Thay",
+      "matches": "{count, plural, one {# khớp} other {# khớp}}",
+      "success": "Thay thế sẵn sàng."
+    },
+    "hash-generator": {
+      "name": "Trình tạo hash",
+      "description": "SHA-1/256/384/512 và MD5 của văn bản hoặc tệp, tính cục bộ.",
+      "keywords": "hash sha256 md5 sha1 tổng kiểm tra digest",
+      "run": "Hash",
+      "algo": "Thuật toán",
+      "digest": "Digest",
+      "limits": "Hash được tính trong trình duyệt này (Web Crypto cho SHA, triển khai MD5 cục bộ). MD5 không chống va chạm — chỉ dùng cho tổng kiểm tra.",
+      "success": "Hash sẵn sàng."
+    },
+    "uuid-generator": {
+      "name": "Trình tạo UUID",
+      "description": "Tạo UUID phiên bản 4 hoặc 7 trên thiết bị này.",
+      "keywords": "uuid guid v4 v7 tạo",
+      "run": "Tạo",
+      "count": "Bao nhiêu",
+      "version": "Phiên bản",
+      "success": "Đã tạo UUID."
+    },
+    "color-convert": {
+      "name": "Bộ chuyển màu",
+      "description": "Chuyển giữa HEX, RGB, HSL và HSV, kèm bộ chọn màu.",
+      "keywords": "màu hex rgb hsl hsv chọn",
+      "picker": "Bộ chọn màu",
+      "invalid": "Nhập màu hex 3 hoặc 6 chữ số."
+    },
+    "lorem-ipsum": {
+      "name": "Lorem ipsum",
+      "description": "Tạo đoạn, câu hoặc từ giữ chỗ.",
+      "keywords": "lorem ipsum giữ chỗ dummy văn bản",
+      "run": "Tạo",
+      "count": "Số lượng",
+      "mode": "Chế độ",
+      "paragraphs": "Đoạn",
+      "sentences": "Câu",
+      "words": "Từ",
+      "success": "Đã tạo văn bản."
+    },
+    "qr-code": {
+      "name": "Mã QR",
+      "description": "Tạo mã QR từ văn bản, hoặc đọc từ ảnh.",
+      "keywords": "qr mã tạo quét đọc mã vạch",
+      "run": "Tạo",
+      "payload": "Văn bản hoặc URL",
+      "read": "Đọc từ ảnh",
+      "runRead": "Đọc QR",
+      "generated": "Mã QR sẵn sàng.",
+      "decoded": "Đã đọc nội dung QR.",
+      "none": "Không tìm thấy mã QR trong ảnh đó."
+    },
+    "pdf-sign": {
+      "name": "Ký PDF",
+      "description": "Đóng dấu chữ ký gõ trên mọi trang. Chỉ bằng mắt — không phải chứng chỉ.",
+      "keywords": "pdf ký chữ ký đóng dấu tên",
+      "run": "Ký",
+      "signature": "Văn bản chữ ký",
+      "placeholder": "Tên của bạn",
+      "limits": "Vẽ tên bạn lên trang. Đây không phải chữ ký số mật mã.",
+      "success": "Đã đóng dấu chữ ký."
+    },
+    "image-watermark": {
+      "name": "Hình mờ ảnh",
+      "description": "Phủ văn bản lên ảnh, một tệp hoặc cả lô.",
+      "keywords": "ảnh hình mờ đóng dấu bản quyền",
+      "run": "Áp dụng",
+      "text": "Văn bản hình mờ",
+      "position": "Vị trí",
+      "bottomRight": "Dưới phải",
+      "bottomLeft": "Dưới trái",
+      "topRight": "Trên phải",
+      "center": "Giữa",
+      "success": "Đã gắn hình mờ cho {count} ảnh."
+    },
+    "password-generator": {
+      "name": "Trình tạo mật khẩu",
+      "description": "Tạo mật khẩu mạnh trên thiết bị này. Không lưu gì cả.",
+      "keywords": "mật khẩu tạo ngẫu nhiên bí mật",
+      "run": "Tạo",
+      "length": "Độ dài",
+      "lower": "Chữ thường",
+      "upper": "Chữ hoa",
+      "digits": "Chữ số",
+      "symbols": "Ký hiệu",
+      "success": "Mật khẩu sẵn sàng."
+    },
+    "case-convert": {
+      "name": "Đổi kiểu chữ",
+      "description": "Chuyển giữa camel, snake, kebab, title và hơn thế.",
+      "keywords": "kiểu chữ camel snake kebab pascal tiêu đề",
+      "run": "Chuyển đổi",
+      "style": "Kiểu",
+      "success": "Đã chuyển."
+    },
+    "jwt-decode": {
+      "name": "Bộ giải JWT",
+      "description": "Đọc header và payload JWT cục bộ. Không xác minh chữ ký.",
+      "keywords": "jwt giải mã token bearer auth",
+      "run": "Giải mã",
+      "limits": "Kit chỉ giải Base64url. Không có khóa thì không thể chứng minh token là thật.",
+      "hasSig": "Có phần chữ ký (chưa xác minh).",
+      "noSig": "Không có phần chữ ký.",
+      "empty": "Hãy dán token trước.",
+      "success": "Đã giải mã token."
+    },
+    "unix-timestamp": {
+      "name": "Dấu thời gian Unix",
+      "description": "Chuyển thời gian Unix sang ISO và ngược lại.",
+      "keywords": "unix epoch dấu thời gian iso ngày",
+      "now": "Dùng lúc này"
+    },
+    "cron-explain": {
+      "name": "Trình giải thích cron",
+      "description": "Đưa biểu thức cron 5 trường thành ngôn ngữ thường.",
+      "keywords": "cron lịch crontab giải thích",
+      "run": "Giải thích",
+      "success": "Đã giải thích."
+    },
+    "number-base": {
+      "name": "Cơ số số",
+      "description": "Chuyển số nguyên giữa các cơ số từ 2 đến 36.",
+      "keywords": "nhị phân hex thập phân cơ số chuyển",
+      "value": "Số",
+      "from": "Từ cơ số",
+      "to": "Sang cơ số"
+    },
+    "html-entities": {
+      "name": "Thực thể HTML",
+      "description": "Mã hóa hoặc giải mã &lt; &amp; và thực thể số.",
+      "keywords": "html thực thể mã hóa giải mã escape",
+      "run": "Chuyển đổi",
+      "encode": "Mã hóa",
+      "decode": "Giải mã",
+      "success": "Đã chuyển."
+    },
+    "json-types": {
+      "name": "JSON → TypeScript",
+      "description": "Suy ra interface TypeScript từ mẫu JSON.",
+      "keywords": "json typescript interface kiểu tạo",
+      "run": "Tạo kiểu",
+      "success": "Đã tạo kiểu."
+    }
+  },
+  "legal": {
+    "lastUpdated": "Cập nhật lần cuối",
+    "privacyTitle": "Chính sách quyền riêng tư",
+    "termsTitle": "Điều khoản sử dụng"
+  },
+  "notFound": {
+    "title": "Không tìm thấy trang",
+    "body": "Địa chỉ đó không có trong Kit. Về trang chủ và chọn công cụ từ đó.",
+    "home": "Về trang chủ"
+  },
+  "errorPage": {
+    "title": "Đã xảy ra sự cố",
+    "body": "Hành động vừa rồi thất bại trong trình duyệt này. Bạn có thể thử lại mà không rời trang.",
+    "retry": "Thử lại"
+  }
+}

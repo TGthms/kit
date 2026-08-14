@@ -1,0 +1,735 @@
+{
+  "meta": {
+    "title": "Kit — Des outils dans le navigateur, privés par conception",
+    "description": "PDF, images, médias, convertisseurs et texte : tout s’exécute sur votre appareil. Rien n’est envoyé sur nos serveurs."
+  },
+  "brand": {
+    "name": "Kit",
+    "tagline": "Des outils du quotidien dans votre navigateur. Privés par conception."
+  },
+  "nav": {
+    "home": "Accueil",
+    "tools": "Outils",
+    "history": "Historique",
+    "favorites": "Favoris",
+    "settings": "Réglages",
+    "searchPlaceholder": "Rechercher un outil…",
+    "openMenu": "Ouvrir le menu",
+    "closeMenu": "Fermer le menu"
+  },
+  "footer": {
+    "privacy": "Politique de confidentialité",
+    "terms": "Conditions d’utilisation",
+    "aboutMe": "À propos",
+    "license": "Licence MIT",
+    "copyright": "© {year} Tim G (TGthms). Kit est un logiciel libre sous licence MIT.",
+    "github": "GitHub"
+  },
+  "common": {
+    "cancel": "Annuler",
+    "clear": "Effacer",
+    "close": "Fermer",
+    "copy": "Copier",
+    "copied": "Copié dans le presse-papiers",
+    "download": "Télécharger",
+    "run": "Lancer",
+    "process": "Traiter",
+    "processing": "Traitement…",
+    "done": "Terminé",
+    "error": "Une erreur s’est produite",
+    "retry": "Réessayer",
+    "addFiles": "Ajouter des fichiers",
+    "dropFiles": "Déposez les fichiers ici",
+    "orBrowse": "ou parcourez votre appareil",
+    "pasteSupported": "Vous pouvez aussi coller depuis le presse-papiers",
+    "remove": "Retirer",
+    "reorder": "Glissez pour changer l’ordre",
+    "files": "Fichiers",
+    "noFiles": "Aucun fichier sélectionné",
+    "quality": "Qualité",
+    "options": "Options",
+    "preview": "Aperçu",
+    "result": "Résultat",
+    "input": "Entrée",
+    "output": "Sortie",
+    "format": "Format",
+    "language": "Langue",
+    "theme": "Apparence",
+    "themeSystem": "Système",
+    "themeLight": "Clair",
+    "themeDark": "Sombre",
+    "loading": "Chargement…",
+    "save": "Enregistrer",
+    "delete": "Supprimer",
+    "confirm": "Confirmer",
+    "back": "Retour",
+    "allCategories": "Toutes",
+    "pin": "Épingler",
+    "unpin": "Désépingler",
+    "favorite": "Ajouter aux favoris",
+    "unfavorite": "Retirer des favoris",
+    "presets": "Préréglages",
+    "applyPreset": "Utiliser le préréglage",
+    "savePreset": "Enregistrer comme préréglage",
+    "shortcuts": "Raccourcis clavier",
+    "progress": "Progression",
+    "fileTooLarge": "Ce fichier est volumineux — le traitement peut prendre un moment.",
+    "unsupported": "Ce format n’est pas pris en charge",
+    "success": "Succès",
+    "warning": "Attention",
+    "info": "Info",
+    "selectAll": "Tout sélectionner",
+    "none": "Aucun",
+    "reset": "Réinitialiser",
+    "maxWidth": "Largeur max.",
+    "maxHeight": "Hauteur max.",
+    "width": "Largeur",
+    "height": "Hauteur",
+    "rotate": "Pivoter",
+    "pages": "Pages",
+    "page": "Page",
+    "text": "Texte",
+    "encode": "Encoder",
+    "decode": "Décoder",
+    "validate": "Valider",
+    "minify": "Minifier",
+    "beautify": "Indentation",
+    "valid": "Valide",
+    "invalid": "Invalide",
+    "characters": "Caractères",
+    "lines": "Lignes",
+    "from": "De",
+    "to": "Vers",
+    "start": "Début",
+    "end": "Fin",
+    "speed": "Vitesse",
+    "volume": "Volume",
+    "trim": "Rogner",
+    "extract": "Extraire",
+    "batch": "Lot",
+    "limitations": "Limites",
+    "clientSideOnly": "S’exécute uniquement dans votre navigateur. Vos fichiers ne sont jamais envoyés à un serveur Kit.",
+    "aboutMeUrl": "https://tgthms.github.io/about/",
+    "howItWorks": "Fonctionnement et limites"
+  },
+  "home": {
+    "title": "Que voulez-vous faire ?",
+    "subtitle": "Des outils pratiques qui tournent sur cet appareil — pas de compte, pas d’envoi.",
+    "categories": "Catégories",
+    "popular": "Outils",
+    "noResults": "Aucun résultat pour cette recherche.",
+    "recent": "Reprendre où vous en étiez",
+    "pinned": "Épinglés",
+    "chooseCategory": "Commencez par une catégorie",
+    "chooseCategoryHint": "Choisissez une famille de tâches. Les outils y sont regroupés pour que vous puissiez balayer d’un coup d’œil.",
+    "backToCategories": "Catégories",
+    "toolsInCategory": "{count, plural, one {# outil} other {# outils}}",
+    "searchResults": "Résultats de recherche",
+    "featured": "Pour commencer",
+    "groups": {
+      "pages": "Pages",
+      "protect": "Protéger et infos",
+      "markup": "Annotations",
+      "export": "Exporter / convertir",
+      "transform": "Taille et recadrage",
+      "look": "Rendu",
+      "file": "Fichier",
+      "clip": "Extraits",
+      "formats": "Formats",
+      "write": "Écriture",
+      "inspect": "Inspecter",
+      "encode": "Encoder",
+      "generate": "Générer"
+    }
+  },
+  "categories": {
+    "pdf": "PDF",
+    "image": "Images",
+    "audio": "Audio",
+    "video": "Vidéo",
+    "convert": "Conversion",
+    "text": "Écriture",
+    "pdfDesc": "Fusionner, découper, compresser et annoter des PDF",
+    "imageDesc": "Compresser, redimensionner, convertir et retoucher des photos",
+    "audioDesc": "Convertir, rogner et changer la vitesse de l’audio uniquement",
+    "videoDesc": "Convertir, rogner, accélérer et extraire l’audio d’une vidéo",
+    "convertDesc": "Conversion intelligente entre formats (JSON, CSV, ZIP, images…)",
+    "textDesc": "Comparer du texte, changer la casse et passer du Markdown en HTML",
+    "data": "Données",
+    "dataDesc": "JSON, YAML, CSV, XML, SQL et conversion entre formats",
+    "developer": "Développement",
+    "developerDesc": "Jetons, empreintes, encodages, mots de passe et autres outils d’établi"
+  },
+  "history": {
+    "title": "Historique",
+    "subtitle": "Ce que vous avez lancé sur cet appareil. Nous ne gardons que de courts résumés — jamais vos fichiers.",
+    "empty": "Aucune activité pour l’instant. Lancez un outil et il apparaîtra ici.",
+    "clear": "Effacer l’historique",
+    "clearConfirm": "Supprimer tout l’historique de cet appareil ?",
+    "openTool": "Ouvrir l’outil",
+    "tool": "Outil",
+    "when": "Quand",
+    "summary": "Résumé",
+    "status": "Statut",
+    "success": "Réussi",
+    "failed": "Échoué"
+  },
+  "favorites": {
+    "title": "Favoris",
+    "subtitle": "Les outils que vous gardez à portée de main.",
+    "empty": "Aucun favori. Ajoutez une étoile depuis l’accueil ou la page de l’outil."
+  },
+  "settings": {
+    "title": "Réglages",
+    "subtitle": "Ces choix restent dans ce navigateur uniquement.",
+    "appearance": "Apparence",
+    "language": "Langue",
+    "data": "Données et confidentialité",
+    "clearHistory": "Effacer l’historique",
+    "clearHistoryDesc": "Supprime les résumés d’historique enregistrés localement par ce site.",
+    "privacyNote": "Kit traite vos fichiers dans le navigateur. Les préférences et résumés d’historique peuvent être enregistrés localement. Le détail est dans la politique de confidentialité.",
+    "viewPrivacy": "Politique de confidentialité",
+    "viewTerms": "Conditions d’utilisation",
+    "shortcutsHelp": "Appuyez sur ? à tout moment pour les raccourcis.",
+    "version": "Version"
+  },
+  "shortcuts": {
+    "title": "Raccourcis clavier",
+    "global": "Partout",
+    "search": "Mettre le focus sur la recherche",
+    "settings": "Ouvrir les réglages",
+    "home": "Aller à l’accueil",
+    "help": "Afficher cette liste",
+    "run": "Lancer l’outil actuel",
+    "close": "Fermer"
+  },
+  "tools": {
+    "pdf-merge": {
+      "name": "Fusionner des PDF",
+      "description": "Empilez plusieurs PDF en un seul. Prévisualisez les pages et glissez pour réordonner.",
+      "keywords": "pdf fusionner combiner joindre assembler multipage",
+      "run": "Fusionner",
+      "empty": "Ajoutez au moins deux fichiers PDF.",
+      "success": "{count} fichiers fusionnés en un PDF."
+    },
+    "pdf-split": {
+      "name": "Découper un PDF",
+      "description": "Extrayez une plage de pages vers un nouveau PDF.",
+      "keywords": "pdf découper extraire pages plage",
+      "run": "Découper",
+      "range": "Pages (par exemple 1-3,5)",
+      "success": "Votre PDF découpé est prêt."
+    },
+    "pdf-organize": {
+      "name": "Organiser les pages",
+      "description": "Faites pivoter, supprimez celles dont vous n’avez pas besoin et définissez un nouvel ordre.",
+      "keywords": "pdf pivoter supprimer réordonner organiser pages",
+      "run": "Enregistrer le PDF",
+      "success": "Votre PDF a été mis à jour."
+    },
+    "pdf-compress": {
+      "name": "Compresser un PDF",
+      "description": "Réduisez la taille en réencodant les images des pages (compromis qualité).",
+      "keywords": "pdf compresser réduire taille plus léger",
+      "run": "Compresser",
+      "note": "Parcours avec perte : les pages peuvent être rasterisées. Idéal pour les PDF surtout composés d’images.",
+      "success": "Le PDF compressé est prêt à télécharger."
+    },
+    "pdf-watermark": {
+      "name": "Filigrane PDF",
+      "description": "Ajoutez un texte en filigrane, en-tête ou pied de page sur chaque page.",
+      "keywords": "pdf filigrane tampon en-tête pied confidentiel",
+      "run": "Appliquer",
+      "text": "Texte du filigrane",
+      "position": "Emplacement",
+      "header": "En-tête",
+      "footer": "Pied de page",
+      "center": "Centre en diagonale",
+      "opacity": "Opacité",
+      "success": "Filigrane appliqué."
+    },
+    "pdf-redact": {
+      "name": "Masquer du contenu",
+      "description": "Placez des rectangles noirs sur les zones sensibles (masquage visuel).",
+      "keywords": "pdf masquer caviarder cacher sensible",
+      "run": "Appliquer le masque",
+      "note": "Masquage visuel uniquement. Cela ne garantit pas la suppression de tout le flux de texte sous-jacent — vérifiez les documents sensibles.",
+      "success": "Masques appliqués."
+    },
+    "pdf-extract": {
+      "name": "Extraire d’un PDF",
+      "description": "Récupérez le texte lisible ou exportez une page en image.",
+      "keywords": "pdf extraire texte images",
+      "run": "Extraire",
+      "modeText": "Texte",
+      "modeImages": "Images",
+      "success": "Extraction terminée.",
+      "imagesReady": "{count} image(s) de page exportée(s) dans un ZIP."
+    },
+    "image-compress": {
+      "name": "Compresser des images",
+      "description": "Baissez la qualité et la taille max pour que les photos restent partageables.",
+      "keywords": "image compresser jpg png webp taille photo",
+      "run": "Compresser",
+      "success": "{count} image(s) compressée(s)."
+    },
+    "image-resize": {
+      "name": "Redimensionner des images",
+      "description": "Fixez les dimensions exactes, avec verrouillage du ratio en option.",
+      "keywords": "image redimensionner échelle largeur hauteur",
+      "run": "Redimensionner",
+      "lockAspect": "Conserver les proportions",
+      "success": "{count} image(s) redimensionnée(s)."
+    },
+    "image-crop": {
+      "name": "Recadrer une image",
+      "description": "Ne gardez que le rectangle qui vous intéresse.",
+      "keywords": "image recadrer couper zone",
+      "run": "Recadrer",
+      "success": "Image recadrée prête."
+    },
+    "image-convert": {
+      "name": "Convertir le format d’image",
+      "description": "Passez de JPEG à PNG, WEBP et formats web similaires.",
+      "keywords": "image convertir format webp avif png jpg jpeg",
+      "run": "Convertir",
+      "success": "{count} image(s) convertie(s)."
+    },
+    "image-metadata": {
+      "name": "Métadonnées d’image",
+      "description": "Consultez l’EXIF et les balises similaires, puis exportez une copie sans elles.",
+      "keywords": "image exif métadonnées supprimer confidentialité localisation",
+      "run": "Supprimer les métadonnées",
+      "note": "Les pixels sont réencodés dans le navigateur : les métadonnées embarquées disparaissent.",
+      "success": "Métadonnées retirées de {count} image(s).",
+      "tag": "Balise",
+      "value": "Valeur",
+      "noExif": "Pas d’EXIF ni de métadonnées texte lisibles dans ce fichier."
+    },
+    "image-adjust": {
+      "name": "Ajuster une image",
+      "description": "Modifiez luminosité, contraste et saturation.",
+      "keywords": "image luminosité contraste saturation couleur",
+      "run": "Appliquer",
+      "brightness": "Luminosité",
+      "contrast": "Contraste",
+      "saturation": "Saturation",
+      "success": "{count} image(s) ajustée(s)."
+    },
+    "convert-hub": {
+      "name": "Conversion intelligente",
+      "description": "Détecte des fichiers ou textes mélangés et convertit entre formats (pas un studio média).",
+      "keywords": "convertir hub intelligent lot json yaml csv zip image données",
+      "run": "Convertir",
+      "detect": "Détecté comme",
+      "chooseOutput": "Format de sortie",
+      "success": "Conversion terminée."
+    },
+    "json-format": {
+      "name": "Formateur JSON",
+      "description": "Indente, minifie et détecte tôt les erreurs JSON.",
+      "keywords": "json formater valider minifier pretty",
+      "run": "Formater",
+      "success": "Le JSON est valide et formaté."
+    },
+    "yaml-format": {
+      "name": "Formateur YAML",
+      "description": "Vérifie la structure YAML et range la mise en page.",
+      "keywords": "yaml formater valider yml",
+      "run": "Formater",
+      "success": "Le YAML est valide."
+    },
+    "toml-format": {
+      "name": "Formateur TOML",
+      "description": "Validez le TOML et gardez le fichier net.",
+      "keywords": "toml formater valider config",
+      "run": "Formater",
+      "success": "Le TOML est valide."
+    },
+    "markdown-html": {
+      "name": "Markdown ↔ HTML",
+      "description": "Passez du Markdown en HTML, ou l’inverse.",
+      "keywords": "markdown html convertir md balisage",
+      "run": "Convertir",
+      "toHtml": "Markdown → HTML",
+      "toMd": "HTML → Markdown",
+      "success": "Converti."
+    },
+    "csv-json": {
+      "name": "CSV ↔ JSON",
+      "description": "Passez des données tabulaires entre CSV et tableaux JSON.",
+      "keywords": "csv json convertir tableau tableur",
+      "run": "Convertir",
+      "toJson": "CSV → JSON",
+      "toCsv": "JSON → CSV",
+      "success": "Converti."
+    },
+    "text-diff": {
+      "name": "Comparer du texte",
+      "description": "Voyez les changements ligne par ligne entre deux versions.",
+      "keywords": "diff comparer texte changements patch",
+      "run": "Comparer",
+      "left": "Original",
+      "right": "Mis à jour",
+      "success": "Comparaison prête."
+    },
+    "base64": {
+      "name": "Base64",
+      "description": "Encodez ou décodez du Base64 pour du texte ou des fichiers entiers.",
+      "keywords": "base64 encoder décoder binaire",
+      "run": "Convertir",
+      "mode": "Sens",
+      "textMode": "Texte",
+      "fileMode": "Fichier",
+      "success": "Terminé."
+    },
+    "url-encode": {
+      "name": "Encodage d’URL",
+      "description": "Encodez ou décodez en pourcent les composants d’URL.",
+      "keywords": "url encoder décoder pourcent uri requête",
+      "run": "Convertir",
+      "success": "Terminé."
+    },
+    "audio-convert": {
+      "name": "Convertir l’audio",
+      "description": "Changez de conteneur audio (MP3, WAV, OGG…) dans le navigateur.",
+      "keywords": "audio convertir mp3 wav ogg ffmpeg son",
+      "run": "Convertir",
+      "loadingFfmpeg": "Chargement du moteur audio…",
+      "note": "Utilise FFmpeg WASM monothread. Les gros fichiers peuvent être lents ; les codecs sont limités.",
+      "success": "Conversion audio terminée."
+    },
+    "audio-trim": {
+      "name": "Rogner l’audio",
+      "description": "Ne gardez que l’intervalle entre deux instants d’un fichier audio.",
+      "keywords": "audio rogner couper extrait mp3 wav",
+      "run": "Rogner",
+      "success": "Rognage audio terminé."
+    },
+    "audio-speed": {
+      "name": "Vitesse et volume audio",
+      "description": "Accélérez, ralentissez ou changez le volume d’un audio.",
+      "keywords": "audio vitesse tempo volume hauteur",
+      "run": "Appliquer",
+      "success": "L’audio traité est prêt."
+    },
+    "video-convert": {
+      "name": "Convertir la vidéo",
+      "description": "Changez de conteneur vidéo (MP4, WEBM…) dans le navigateur.",
+      "keywords": "vidéo convertir mp4 webm ffmpeg film",
+      "run": "Convertir",
+      "loadingFfmpeg": "Chargement du moteur vidéo…",
+      "note": "Utilise FFmpeg WASM monothread. Les gros fichiers peuvent être lents ; les codecs sont limités.",
+      "success": "Conversion vidéo terminée."
+    },
+    "video-trim": {
+      "name": "Rogner la vidéo",
+      "description": "Ne gardez que le clip entre deux instants.",
+      "keywords": "vidéo rogner couper extrait mp4",
+      "run": "Rogner",
+      "success": "Rognage vidéo terminé."
+    },
+    "video-speed": {
+      "name": "Vitesse et volume vidéo",
+      "description": "Changez la vitesse de lecture et le niveau audio d’une vidéo.",
+      "keywords": "vidéo vitesse tempo volume",
+      "run": "Appliquer",
+      "success": "La vidéo traitée est prête."
+    },
+    "video-extract-audio": {
+      "name": "Extraire l’audio d’une vidéo",
+      "description": "Enregistrez la bande-son d’une vidéo en fichier audio.",
+      "keywords": "vidéo extraire audio mp3 bande-son",
+      "run": "Extraire l’audio",
+      "success": "Audio extrait."
+    },
+    "pdf-numbers": {
+      "name": "Numéros de page",
+      "description": "Ajoutez une étiquette du type 1 / 12 sur chaque page.",
+      "keywords": "pdf numéros page pied en-tête pagination",
+      "run": "Ajouter les numéros",
+      "template": "Libellé ({page} et {pages})",
+      "position": "Emplacement",
+      "start": "Commencer à",
+      "headerLeft": "En-tête gauche",
+      "headerCenter": "En-tête centre",
+      "headerRight": "En-tête droite",
+      "footerLeft": "Pied gauche",
+      "footerCenter": "Pied centre",
+      "footerRight": "Pied droite",
+      "success": "Numéros ajoutés."
+    },
+    "pdf-to-images": {
+      "name": "PDF → images",
+      "description": "Rasterisez chaque page en JPEG et téléchargez-les en ZIP.",
+      "keywords": "pdf image jpg jpeg zip pages exporter",
+      "run": "Exporter les pages",
+      "limits": "Les pages sont dessinées avec PDF.js dans cet onglet. Les très gros documents peuvent être lents et gourmands. C’est un raster visuel, pas une extraction d’objets image embarqués.",
+      "success": "{count} page(s) exportée(s)."
+    },
+    "images-to-pdf": {
+      "name": "Images → PDF",
+      "description": "Empilez des photos dans un PDF, une image par page.",
+      "keywords": "images pdf jpg png combiner",
+      "run": "Créer le PDF",
+      "success": "PDF créé à partir de {count} image(s)."
+    },
+    "pdf-flatten": {
+      "name": "Aplatir les formulaires",
+      "description": "Intègre les champs AcroForm à la page pour qu’ils ne soient plus modifiables.",
+      "keywords": "pdf aplatir formulaire champs acroform",
+      "run": "Aplatir",
+      "limits": "Fonctionne avec les champs AcroForm standard. Les formulaires XFA dynamiques ne sont pas entièrement pris en charge.",
+      "success": "{count} champ(s) aplati(s)."
+    },
+    "pdf-metadata": {
+      "name": "Métadonnées PDF",
+      "description": "Consultez, modifiez ou effacez titre, auteur et autres champs Info.",
+      "keywords": "Mots-clés",
+      "run": "Enregistrer les métadonnées",
+      "strip": "Effacer tous les champs",
+      "title": "Titre",
+      "author": "Auteur",
+      "subject": "Sujet",
+      "creator": "Créateur",
+      "producer": "Producteur",
+      "saved": "Métadonnées enregistrées.",
+      "stripped": "Métadonnées effacées."
+    },
+    "pdf-protect": {
+      "name": "Verrouiller ou déverrouiller un PDF",
+      "description": "Ajoutez ou retirez un mot de passe utilisateur. Le chiffrement reste dans ce navigateur.",
+      "keywords": "pdf mot de passe verrouiller déverrouiller chiffrer",
+      "run": "Appliquer",
+      "lock": "Verrouiller",
+      "unlock": "Déverrouiller",
+      "password": "Mot de passe",
+      "limits": "Utilise une bibliothèque de chiffrement PDF côté client. Certaines révisions anciennes ou inhabituelles peuvent échouer. Kit n’envoie jamais le fichier ni le mot de passe à un serveur.",
+      "success": "Le PDF est prêt."
+    },
+    "image-rotate": {
+      "name": "Pivoter et retourner",
+      "description": "Tournez les images de 90° ou retournez-les horizontalement ou verticalement.",
+      "keywords": "image pivoter retourner miroir",
+      "run": "Appliquer",
+      "operation": "Transformation",
+      "rot90": "Pivoter de 90°",
+      "rot180": "Pivoter de 180°",
+      "rot270": "Pivoter de 270°",
+      "flipH": "Retourner horizontalement",
+      "flipV": "Retourner verticalement",
+      "success": "{count} image(s) transformée(s)."
+    },
+    "image-filters": {
+      "name": "Filtres d’image",
+      "description": "Appliquez niveaux de gris, sépia ou inversion à une ou plusieurs photos.",
+      "keywords": "image filtre gris sépia inverser",
+      "run": "Appliquer",
+      "filter": "Filtre",
+      "grayscale": "Niveaux de gris",
+      "sepia": "Sépia",
+      "invert": "Inverser",
+      "success": "{count} image(s) filtrée(s)."
+    },
+    "image-favicon": {
+      "name": "Pack de favicon",
+      "description": "Exportez une image source aux tailles d’icône courantes dans un ZIP.",
+      "keywords": "favicon icône 16 32 180 192 512 apple touch",
+      "run": "Exporter les icônes",
+      "note": "Exporte des PNG en 16, 32, 48, 180, 192 et 512 pixels.",
+      "success": "Le pack d’icônes est prêt."
+    },
+    "video-gif": {
+      "name": "Vidéo → GIF",
+      "description": "Transformez un court extrait en GIF en boucle, dans le navigateur.",
+      "keywords": "vidéo gif extrait convertir ffmpeg",
+      "run": "Créer le GIF",
+      "limits": "Utilise FFmpeg WASM. Gardez les extraits courts : l’encodage GIF est lent et gourmand. Codecs selon la compilation dans le navigateur.",
+      "success": "Le GIF est prêt."
+    },
+    "xml-json": {
+      "name": "XML ↔ JSON",
+      "description": "Convertissez des documents XML en JSON, ou l’inverse.",
+      "keywords": "xml json convertir analyser",
+      "run": "Convertir",
+      "toJson": "XML → JSON",
+      "toXml": "JSON → XML",
+      "success": "Converti."
+    },
+    "sql-format": {
+      "name": "Formateur SQL",
+      "description": "Indente le SQL pour rendre clauses et listes plus lisibles.",
+      "keywords": "sql formater pretty requête",
+      "run": "Formater",
+      "success": "SQL formaté."
+    },
+    "regex-tester": {
+      "name": "Testeur d’expressions rationnelles",
+      "description": "Essayez une expression rationnelle sur un texte et remplacez les correspondances.",
+      "keywords": "regex expression rationnelle tester remplacer",
+      "pattern": "Motif",
+      "flags": "Options",
+      "input": "Texte d’exemple",
+      "replace": "Remplacement",
+      "runReplace": "Remplacer",
+      "matches": "{count, plural, one {# correspondance} other {# correspondances}}",
+      "success": "Remplacement prêt."
+    },
+    "hash-generator": {
+      "name": "Générateur de hash",
+      "description": "SHA-1/256/384/512 et MD5 d’un texte ou d’un fichier, calculés localement.",
+      "keywords": "hash sha256 md5 sha1 somme contrôle",
+      "run": "Hasher",
+      "algo": "Algorithme",
+      "digest": "Empreinte",
+      "limits": "Les hash sont calculés dans ce navigateur (Web Crypto pour SHA, implémentation locale pour MD5). MD5 n’est pas résistant aux collisions — réservez-le aux sommes de contrôle.",
+      "success": "Hash prêt."
+    },
+    "uuid-generator": {
+      "name": "Générateur d’UUID",
+      "description": "Créez des UUID version 4 ou 7 sur cet appareil.",
+      "keywords": "uuid guid v4 v7 générer",
+      "run": "Générer",
+      "count": "Combien",
+      "version": "Version",
+      "success": "UUID générés."
+    },
+    "color-convert": {
+      "name": "Convertisseur de couleurs",
+      "description": "Passez de HEX à RGB, HSL et HSV, avec un sélecteur de couleur.",
+      "keywords": "couleur hex rgb hsl hsv sélecteur",
+      "picker": "Sélecteur de couleur",
+      "invalid": "Saisissez une couleur hexadécimale de 3 ou 6 chiffres."
+    },
+    "lorem-ipsum": {
+      "name": "Lorem ipsum",
+      "description": "Générez des paragraphes, phrases ou mots de remplacement.",
+      "keywords": "lorem ipsum faux texte placeholder",
+      "run": "Générer",
+      "count": "Nombre",
+      "mode": "Mode",
+      "paragraphs": "Paragraphes",
+      "sentences": "Phrases",
+      "words": "Mots",
+      "success": "Texte généré."
+    },
+    "qr-code": {
+      "name": "Code QR",
+      "description": "Créez un QR à partir d’un texte, ou lisez-en un depuis une image.",
+      "keywords": "qr code générer scanner lire code-barres",
+      "run": "Générer",
+      "payload": "Texte ou URL",
+      "read": "Lire depuis une image",
+      "runRead": "Lire le QR",
+      "generated": "QR prêt.",
+      "decoded": "Contenu du QR lu.",
+      "none": "Aucun QR trouvé dans cette image."
+    },
+    "pdf-sign": {
+      "name": "Signer un PDF",
+      "description": "Apposez une signature tapée sur chaque page. Visuel uniquement — pas un certificat.",
+      "keywords": "pdf signer signature tampon nom",
+      "run": "Signer",
+      "signature": "Texte de la signature",
+      "placeholder": "Votre nom",
+      "limits": "Cela dessine votre nom sur la page. Ce n’est pas une signature numérique cryptographique.",
+      "success": "Signature apposée."
+    },
+    "image-watermark": {
+      "name": "Filigrane d’images",
+      "description": "Superposez du texte sur des photos, une ou par lot.",
+      "keywords": "image filigrane tampon copyright",
+      "run": "Appliquer",
+      "text": "Texte du filigrane",
+      "position": "Emplacement",
+      "bottomRight": "Bas droite",
+      "bottomLeft": "Bas gauche",
+      "topRight": "Haut droite",
+      "center": "Centre",
+      "success": "Filigrane ajouté à {count} image(s)."
+    },
+    "password-generator": {
+      "name": "Générateur de mot de passe",
+      "description": "Créez un mot de passe robuste sur cet appareil. Rien n’est stocké.",
+      "keywords": "mot de passe générer aléatoire secret",
+      "run": "Générer",
+      "length": "Longueur",
+      "lower": "Minuscules",
+      "upper": "Majuscules",
+      "digits": "Chiffres",
+      "symbols": "Symboles",
+      "success": "Mot de passe prêt."
+    },
+    "case-convert": {
+      "name": "Changer la casse",
+      "description": "Passez de camel à snake, kebab, titre, etc.",
+      "keywords": "casse camel snake kebab pascal titre",
+      "run": "Convertir",
+      "style": "Style",
+      "success": "Converti."
+    },
+    "jwt-decode": {
+      "name": "Décodeur JWT",
+      "description": "Lisez l’en-tête et la charge d’un JWT en local. Les signatures ne sont pas vérifiées.",
+      "keywords": "jwt décoder jeton bearer auth",
+      "run": "Décoder",
+      "limits": "Kit ne décode que le Base64url. Sans clé, il ne peut pas prouver l’authenticité du jeton.",
+      "hasSig": "Une partie signature est présente (non vérifiée).",
+      "noSig": "Pas de partie signature.",
+      "empty": "Collez d’abord un jeton.",
+      "success": "Jeton décodé."
+    },
+    "unix-timestamp": {
+      "name": "Horodatage Unix",
+      "description": "Convertissez un temps Unix en ISO et inversement.",
+      "keywords": "unix epoch horodatage iso date",
+      "now": "Utiliser maintenant"
+    },
+    "cron-explain": {
+      "name": "Expliquer une cron",
+      "description": "Transformez une cron à 5 champs en langage clair.",
+      "keywords": "cron planning crontab expliquer",
+      "run": "Expliquer",
+      "success": "Expliqué."
+    },
+    "number-base": {
+      "name": "Base numérique",
+      "description": "Convertissez des entiers entre les bases 2 et 36.",
+      "keywords": "binaire hexadécimal décimal base convertir",
+      "value": "Nombre",
+      "from": "Depuis la base",
+      "to": "Vers la base"
+    },
+    "html-entities": {
+      "name": "Entités HTML",
+      "description": "Encodez ou décodez &lt; &amp; et les entités numériques.",
+      "keywords": "html entités encoder décoder échapper",
+      "run": "Convertir",
+      "encode": "Encoder",
+      "decode": "Décoder",
+      "success": "Converti."
+    },
+    "json-types": {
+      "name": "JSON → TypeScript",
+      "description": "Déduisez des interfaces TypeScript à partir d’un exemple JSON.",
+      "keywords": "json typescript interface type générer",
+      "run": "Générer les types",
+      "success": "Types générés."
+    }
+  },
+  "legal": {
+    "lastUpdated": "Dernière mise à jour",
+    "privacyTitle": "Politique de confidentialité",
+    "termsTitle": "Conditions d’utilisation"
+  },
+  "notFound": {
+    "title": "Page introuvable",
+    "body": "Cette adresse n’existe pas dans Kit. Revenez à l’accueil et choisissez un outil.",
+    "home": "Retour à l’accueil"
+  },
+  "errorPage": {
+    "title": "Une erreur s’est produite",
+    "body": "La dernière action a échoué dans ce navigateur. Vous pouvez réessayer sans quitter la page.",
+    "retry": "Réessayer"
+  }
+}

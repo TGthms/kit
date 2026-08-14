@@ -1,0 +1,587 @@
+Kit — Instrumente în browser care rămân private
+PDF, imagini, media, convertoare și unelte de text rulează pe dispozitivul tău. Nimic nu este încărcat pe serverele noastre.
+Kit
+Unelte de zi cu zi în browser. Private prin concepție.
+Acasă
+Instrumente
+Istoric
+Favorite
+Setări
+Caută instrumente…
+Deschide meniul
+Închide meniul
+Politica de confidențialitate
+Termeni de utilizare
+Despre mine
+Licență MIT
+© {year} Tim G (TGthms). Kit este open source sub licența MIT.
+GitHub
+Anulează
+Golește
+Închide
+Copiază
+Copiat în clipboard
+Descarcă
+Rulează
+Procesează
+Se procesează…
+Gata
+Ceva nu a mers bine
+Încearcă din nou
+Adaugă fișiere
+Trage fișierele aici
+sau alege de pe dispozitiv
+Poți lipi și din clipboard
+Elimină
+Trage pentru a schimba ordinea
+Fișiere
+Niciun fișier selectat încă
+Calitate
+Opțiuni
+Previzualizare
+Rezultat
+Intrare
+Ieșire
+Format
+Limbă
+Aspect
+Ca în sistem
+Deschis
+Întunecat
+Se încarcă…
+Salvează
+Șterge
+Confirmă
+Înapoi
+Toate
+Fixează
+Anulează fixarea
+Adaugă la favorite
+Scoate din favorite
+Presetări
+Folosește presetarea
+Salvează ca presetare
+Scurtături de tastatură
+Progres
+Fișierul este mare — procesarea poate dura.
+Acest format nu este acceptat
+Succes
+Atenție
+Notă
+Selectează tot
+Niciunul
+Resetează
+Lățime max.
+Înălțime max.
+Lățime
+Înălțime
+Rotește
+Pagini
+Pagină
+Text
+Codifică
+Decodifică
+Validează
+Minifică
+Formatează frumos
+Valid
+Invalid
+Caractere
+Linii
+De la
+Până la
+Start
+Sfârșit
+Viteză
+Volum
+Taie
+Extrage
+Lot
+Limitări
+Rulează doar în browser. Fișierele tale nu sunt trimise niciodată pe un server Kit.
+https://tgthms.github.io/about/
+Cum funcționează și limite
+Ce ai de făcut?
+Unelte practice pe acest dispozitiv — fără cont, fără încărcări.
+Categorii
+Instrumente
+Nimic nu se potrivește căutării.
+Continuă de unde ai rămas
+Fixate
+Începe cu o categorie
+Alege o familie de sarcini. Instrumentele dinăuntru sunt grupate ca să le parcurgi, nu să le vânezi.
+Categorii
+{count, plural, one {# instrument} few {# instrumente} other {# de instrumente}}
+Rezultatele căutării
+Începe aici
+Pagini
+Protecție și info
+Marcaje
+Export / conversie
+Dimensiune și decupare
+Aspect
+Fișier
+Clipuri
+Formate
+Scriere
+Inspectare
+Codificare
+Generare
+PDF
+Imagini
+Audio
+Video
+Conversie de fișiere
+Scriere
+Unește, împarte, comprimă și marchează documente PDF
+Comprimă, redimensionează, convertește și retușează fotografii
+Convertește, taie și schimbă viteza doar pentru audio
+Convertește, taie, accelerează și extrage audio din video
+Conversie inteligentă între formate (JSON, CSV, ZIP, imagini…)
+Compară text, schimbă majusculele și transformă Markdown în HTML
+Date
+JSON, YAML, CSV, XML, SQL și conversie între formate
+Dezvoltare
+Tokenuri, hash-uri, codificări, parole și alte unelte de banc
+Istoric
+Ce ai rulat pe acest dispozitiv. Păstrăm doar rezumate scurte — niciodată fișierele tale.
+Nicio activitate încă. Rulează un instrument și va apărea aici.
+Golește istoricul
+Ștergi tot istoricul de pe acest dispozitiv?
+Deschide instrumentul
+Instrument
+Când
+Rezumat
+Stare
+Reușit
+Eșuat
+Favorite
+Instrumente la îndemână, dintr-o atingere.
+Niciun favorit încă. Marchează cu stea un instrument de pe Acasă sau de pe pagina lui.
+Setări
+Aceste alegeri rămân doar în acest browser.
+Aspect
+Limbă
+Date și confidențialitate
+Golește istoricul
+Elimină rezumatele locale de istoric stocate de acest site.
+Kit prelucrează fișierele tale în browser. Preferințele și rezumatele de istoric pot fi salvate local. Detaliile sunt în Politica de confidențialitate.
+Politica de confidențialitate
+Termeni de utilizare
+Apasă ? oricând pentru scurtăturile de tastatură.
+Versiune
+Scurtături de tastatură
+Pretutindeni
+Focalizează căutarea
+Deschide setările
+Mergi acasă
+Arată această listă
+Rulează instrumentul curent
+Închide
+Unește PDF-uri
+Stivuiește mai multe PDF-uri într-unul. Previzualizează paginile și trage pentru a reordona.
+pdf unește combină lipește coase multipagină
+Unește
+Adaugă cel puțin două fișiere PDF.
+S-au unit {count} fișiere într-un singur PDF.
+Împarte PDF
+Scoate un interval de pagini într-un PDF nou-nouț.
+pdf împarte extrage pagini interval
+Împarte
+Pagini (de exemplu 1-3,5)
+PDF-ul împărțit este gata.
+Organizează paginile
+Rotește pagini, elimină-le pe cele de prisos și setează o ordine nouă.
+pdf rotește șterge reordonează organizează pagini
+Salvează PDF
+PDF-ul tău a fost actualizat.
+Comprimă PDF
+Micșorează fișierul recodificând imaginile paginilor (compromis de calitate).
+pdf comprimă reduce dimensiune mai mic
+Comprimă
+Este o cale cu pierderi — paginile pot fi rasterizate. Funcționează cel mai bine pe PDF-uri pline de imagini.
+PDF-ul comprimat este gata de descărcat.
+Filigran PDF
+Pune text ca filigran, antet sau subsol pe fiecare pagină.
+pdf filigran ștampilă antet subsol confidențial
+Aplică
+Textul filigranului
+Plasare
+Antet
+Subsol
+Centru pe diagonală
+Opacitate
+Filigranul a fost aplicat.
+Acoperă conținutul
+Pune dreptunghiuri negre peste zonele sensibile (doar vizual).
+pdf redactare înnegrire ascunde sensibil
+Aplică acoperirea
+Este doar o acoperire vizuală. Nu garantează eliminarea fiecărui flux de text de dedesubt — verifică documentele sensibile.
+Cutiile de acoperire au fost aplicate.
+Extrage din PDF
+Scoate text lizibil sau exportă o pagină ca imagine.
+pdf extrage text imagini
+Extrage
+Text
+Imagini
+Extracția s-a încheiat.
+S-au exportat {count} imagini de pagină ca ZIP.
+Comprimă imagini
+Scade calitatea și dimensiunea maximă ca fotografiile să rămână ușor de trimis.
+imagine comprimă jpg png webp dimensiune foto
+Comprimă
+S-au comprimat {count} imagini.
+Redimensionează imagini
+Setează dimensiuni exacte, cu blocarea opțională a raportului de aspect.
+imagine redimensionează scară dimensiuni lățime înălțime
+Redimensionează
+Păstrează raportul de aspect
+S-au redimensionat {count} imagini.
+Decupează imaginea
+Păstrează doar dreptunghiul care te interesează.
+imagine decupează taie zonă
+Decupează
+Imaginea decupată este gata.
+Convertește formatul imaginii
+Treci între JPEG, PNG, WEBP și formate web similare.
+imagine convertește format webp avif png jpg jpeg
+Convertește
+S-au convertit {count} imagini.
+Metadate imagine
+Inspectează EXIF și etichete similare, apoi exportă o copie curată fără ele.
+imagine exif metadate elimină confidențialitate locație
+Elimină metadatele
+Pixelii sunt recodificați în browser, deci metadatele încorporate dispar.
+S-au eliminat metadatele de la {count} imagini.
+Etichetă
+Valoare
+Nicio metadată EXIF sau text lizibilă în acest fișier.
+Ajustează imaginea
+Reglează luminozitatea, contrastul și saturația.
+imagine luminozitate contrast saturație culoare
+Aplică
+Luminozitate
+Contrast
+Saturație
+S-au ajustat {count} imagini.
+Conversie inteligentă
+Detectează tipuri mixte de fișiere sau text și convertește între formate (nu e un studio media).
+conversie hub inteligent lot json yaml csv zip imagine date
+Convertește
+Detectat ca
+Format de ieșire
+Conversia s-a încheiat.
+Formator JSON
+Formatează frumos, minifică și prinde erorile JSON din timp.
+json format validează minifică pretty
+Formatează
+JSON-ul pare valid și este formatat.
+Formator YAML
+Verifică structura YAML și curăță aranjamentul.
+yaml format validează yml
+Formatează
+YAML-ul pare valid.
+Formator TOML
+Validează TOML și păstrează fișierul îngrijit.
+toml format validează config
+Formatează
+TOML-ul pare valid.
+Markdown ↔ HTML
+Transformă Markdown în HTML sau HTML înapoi în Markdown.
+markdown html convertește md marcaj
+Convertește
+Markdown → HTML
+HTML → Markdown
+Convertit.
+CSV ↔ JSON
+Mută date tabelare între CSV și tablouri JSON.
+csv json convertește tabel foaie
+Convertește
+CSV → JSON
+JSON → CSV
+Convertit.
+Compară text
+Vezi modificările linie cu linie între două versiuni.
+diff compară text modificări patch
+Compară
+Original
+Actualizat
+Comparația este gata.
+Base64
+Codifică sau decodifică Base64 pentru text simplu sau fișiere întregi.
+base64 codifică decodifică binar
+Convertește
+Direcție
+Text
+Fișier
+Gata.
+Codificare URL
+Codifică sau decodifică în siguranță componentele URL (percent-encoding).
+url codifică decodifică percent uri interogare
+Convertește
+Gata.
+Convertește audio
+Schimbă containere audio precum MP3, WAV și OGG în browser.
+audio convertește mp3 wav ogg ffmpeg sunet
+Convertește
+Se încarcă motorul audio…
+Folosește FFmpeg WASM pe un singur fir. Fișierele mari pot fi lente; suportul de codecuri este limitat.
+Conversia audio s-a încheiat.
+Taie audio
+Păstrează doar intervalul dintre două marcaje de timp dintr-un fișier audio.
+audio taie decupează clip mp3 wav
+Taie
+Tăierea audio s-a încheiat.
+Viteză și volum audio
+Accelerează, încetinește sau schimbă tăria sunetului.
+audio tempo viteză volum înălțime
+Aplică
+Audio-ul procesat este gata.
+Convertește video
+Schimbă containere video precum MP4 și WEBM în browser.
+video convertește mp4 webm ffmpeg film
+Convertește
+Se încarcă motorul video…
+Folosește FFmpeg WASM pe un singur fir. Fișierele mari pot fi lente; suportul de codecuri este limitat.
+Conversia video s-a încheiat.
+Taie video
+Păstrează doar clipul dintre două marcaje de timp.
+video taie decupează clip mp4
+Taie
+Tăierea video s-a încheiat.
+Viteză și volum video
+Schimbă viteza de redare și nivelul audio al unui video.
+video tempo viteză volum
+Aplică
+Videoclipul procesat este gata.
+Extrage audio din video
+Salvează pista sonoră a unui video ca fișier audio.
+video extrage audio mp3 pistă
+Extrage audio
+Audio extras.
+Numere de pagină
+Pune o etichetă de pagină, de exemplu 1 / 12, pe fiecare pagină.
+pdf numere pagină subsol antet paginare
+Adaugă numere
+Etichetă ({page} și {pages})
+Plasare
+Începe de la
+Antet stânga
+Antet centru
+Antet dreapta
+Subsol stânga
+Subsol centru
+Subsol dreapta
+Numerele de pagină au fost adăugate.
+PDF → imagini
+Rasterizează fiecare pagină în JPEG și descarcă-le ca ZIP.
+pdf imagine jpg jpeg zip pagini export
+Exportă paginile
+Paginile sunt desenate cu PDF.js în această filă. Documentele foarte mari pot fi lente și consumă multă memorie. Este un raster vizual, nu o extragere a obiectelor de imagine încorporate.
+S-au exportat {count} pagini.
+Imagini → PDF
+Stivuiește fotografii într-un PDF, o imagine pe pagină.
+imagini pdf jpg png combină
+Creează PDF
+S-a construit un PDF din {count} imagini.
+Aplatizează formulare
+Coace câmpurile AcroForm în pagină ca să nu mai poată fi editate.
+pdf aplatizează formular câmpuri acroform
+Aplatizează
+Funcționează pe câmpuri AcroForm standard. Formularele XFA dinamice nu sunt pe deplin acceptate.
+S-au aplatizat {count} câmpuri.
+Metadate PDF
+Vezi, editează sau elimină titlul, autorul și alte câmpuri Info ale documentului.
+Cuvinte cheie
+Salvează metadatele
+Elimină toate câmpurile
+Titlu
+Autor
+Subiect
+Creator
+Producător
+Metadatele au fost salvate.
+Metadatele au fost eliminate.
+Blochează sau deblochează PDF
+Adaugă sau elimină o parolă de utilizator. Criptarea rămâne în acest browser.
+pdf parolă blochează deblochează criptează decriptează
+Aplică
+Blochează
+Deblochează
+Parolă
+Folosește o bibliotecă de criptare PDF pe client. Unele revizii de criptare mai vechi sau neobișnuite s-ar putea să nu se deblocheze. Kit nu trimite niciodată fișierul sau parola pe un server.
+PDF-ul este gata.
+Rotește și inversează
+Rotește imaginile din 90° în 90° sau inversează-le orizontal ori vertical.
+imagine rotește inversează oglindă
+Aplică
+Transformare
+Rotește 90°
+Rotește 180°
+Rotește 270°
+Inversează orizontal
+Inversează vertical
+S-au transformat {count} imagini.
+Filtre de imagine
+Aplică tonuri de gri, sepia sau inversare pe una sau mai multe fotografii.
+imagine filtru gri sepia inversare
+Aplică
+Filtru
+Tonuri de gri
+Sepia
+Inversare
+S-au filtrat {count} imagini.
+Pachet favicon
+Exportă o imagine-sursă ca dimensiuni obișnuite de icoane într-un ZIP.
+favicon icon 16 32 180 192 512 apple touch
+Exportă icoanele
+Exportă fișiere PNG de 16, 32, 48, 180, 192 și 512 pixeli.
+Pachetul de icoane este gata.
+Video → GIF
+Transformă un clip scurt într-un GIF în buclă, în browser.
+video gif clip convertește ffmpeg
+Fă GIF
+Folosește FFmpeg WASM. Ține clipurile scurte — codificarea GIF este lentă și consumă memorie. Paleta și codecurile urmează build-ul din browser.
+GIF-ul este gata.
+XML ↔ JSON
+Convertește documente XML în JSON sau JSON înapoi în XML.
+xml json convertește parsează
+Convertește
+XML → JSON
+JSON → XML
+Convertit.
+Formator SQL
+Formatează frumos SQL ca să citești mai ușor clauzele și listele.
+sql format pretty interogare
+Formatează
+SQL formatat.
+Tester regex
+Încearcă o expresie regulată pe un text-exemplu și înlocuiește potrivirile.
+regex expresie regulată test înlocuiește
+Model
+Flaguri
+Text-exemplu
+Înlocuire
+Înlocuiește
+{count, plural, one {# potrivire} few {# potriviri} other {# de potriviri}}
+Înlocuirea este gata.
+Generator de hash
+SHA-1/256/384/512 și MD5 din text sau fișier, calculate local.
+hash sha256 md5 sha1 sumă de control digest
+Hash
+Algoritm
+Digest
+Hash-urile se calculează în acest browser (Web Crypto pentru SHA, o implementare locală MD5). MD5 nu rezistă la coliziuni — folosește-l doar pentru sume de control.
+Hash-ul este gata.
+Generator UUID
+Creează UUID versiunea 4 sau 7 pe acest dispozitiv.
+uuid guid v4 v7 generează
+Generează
+Câte
+Versiune
+UUID-urile au fost generate.
+Convertor de culori
+Convertește între HEX, RGB, HSL și HSV, cu un selector de culoare.
+culoare hex rgb hsl hsv selector
+Selector de culoare
+Introdu o culoare hex de 3 sau 6 cifre.
+Lorem ipsum
+Generează paragrafe, propoziții sau cuvinte de umplutură.
+lorem ipsum substituent dummy text
+Generează
+Număr
+Mod
+Paragrafe
+Propoziții
+Cuvinte
+Textul a fost generat.
+Cod QR
+Creează un cod QR din text sau citește unul dintr-o imagine.
+qr cod generează scanează citește barcode
+Generează
+Text sau URL
+Citește din imagine
+Citește QR
+Codul QR este gata.
+Conținutul QR a fost citit.
+Nu s-a găsit niciun cod QR în acea imagine.
+Semnează PDF
+Pune o semnătură tastată pe fiecare pagină. Doar vizual — nu e un certificat.
+pdf semnează semnătură ștampilă nume
+Semnează
+Textul semnăturii
+Numele tău
+Desenează numele pe pagină. Nu este o semnătură digitală criptografică.
+Semnătura a fost ștampilată.
+Filigran pe imagini
+Suprapune text pe fotografii, un fișier sau un lot întreg.
+imagine filigran ștampilă copyright
+Aplică
+Textul filigranului
+Plasare
+Dreapta jos
+Stânga jos
+Dreapta sus
+Centru
+S-a pus filigran pe {count} imagini.
+Generator de parole
+Creează o parolă puternică pe acest dispozitiv. Nimic nu este stocat.
+parolă generează aleator secret
+Generează
+Lungime
+Minuscule
+Majuscule
+Cifre
+Simboluri
+Parola este gata.
+Schimbă majusculele
+Treci între camel, snake, kebab, title și altele.
+majuscule camel snake kebab pascal title
+Convertește
+Stil
+Convertit.
+Decodor JWT
+Citește local antetul și payload-ul unui JWT. Semnăturile nu sunt verificate.
+jwt decodifică token bearer auth
+Decodifică
+Kit decodifică doar Base64url. Fără o cheie nu poate dovedi că tokenul e autentic.
+Partea de semnătură este prezentă (neverificată).
+Nicio parte de semnătură.
+Lipește mai întâi un token.
+Tokenul a fost decodificat.
+Marcaj de timp Unix
+Convertește timpul Unix în ISO și înapoi.
+unix epoch marcaj iso dată
+Folosește acum
+Explicator cron
+Transformă o expresie cron cu 5 câmpuri în limbaj clar.
+cron program crontab explică
+Explică
+Explicat.
+Bază numerică
+Convertește întregi între bazele 2 și 36.
+binar hex zecimal bază convertește
+Număr
+Din baza
+În baza
+Entități HTML
+Codifică sau decodifică &lt; &amp; și entitățile numerice.
+html entități codifică decodifică escape
+Convertește
+Codifică
+Decodifică
+Convertit.
+JSON → TypeScript
+Deduce interfețe TypeScript dintr-un eșantion JSON.
+json typescript interface tip generează
+Generează tipuri
+Tipurile au fost generate.
+Ultima actualizare
+Politica de confidențialitate
+Termeni de utilizare
+Pagina nu a fost găsită
+Această adresă nu există în Kit. Du-te acasă și alege un instrument de acolo.
+Înapoi acasă
+Ceva nu a mers bine
+Ultima acțiune a eșuat în acest browser. Poți încerca din nou fără să părăsești pagina.
+Încearcă din nou

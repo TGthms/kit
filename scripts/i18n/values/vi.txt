@@ -1,0 +1,587 @@
+Kit — Công cụ trình duyệt vẫn giữ riêng tư
+Công cụ PDF, ảnh, media, chuyển đổi và văn bản chạy trên thiết bị của bạn. Không gì được tải lên máy chủ của chúng tôi.
+Kit
+Công cụ hàng ngày trong trình duyệt. Riêng tư ngay từ thiết kế.
+Trang chủ
+Công cụ
+Lịch sử
+Yêu thích
+Cài đặt
+Tìm công cụ…
+Mở menu
+Đóng menu
+Chính sách quyền riêng tư
+Điều khoản sử dụng
+Về tôi
+Giấy phép MIT
+© {year} Tim G (TGthms). Kit là mã nguồn mở theo Giấy phép MIT.
+GitHub
+Hủy
+Xóa
+Đóng
+Sao chép
+Đã sao chép vào clipboard
+Tải xuống
+Chạy
+Xử lý
+Đang xử lý…
+Xong
+Đã xảy ra sự cố
+Thử lại
+Thêm tệp
+Thả tệp vào đây
+hoặc chọn từ thiết bị của bạn
+Bạn cũng có thể dán từ clipboard
+Gỡ
+Kéo để đổi thứ tự
+Tệp
+Chưa chọn tệp nào
+Chất lượng
+Tùy chọn
+Xem trước
+Kết quả
+Đầu vào
+Đầu ra
+Định dạng
+Ngôn ngữ
+Giao diện
+Theo hệ thống
+Sáng
+Tối
+Đang tải…
+Lưu
+Xóa
+Xác nhận
+Quay lại
+Tất cả
+Ghim
+Bỏ ghim
+Thêm vào yêu thích
+Xóa khỏi yêu thích
+Cài đặt sẵn
+Dùng cài đặt sẵn
+Lưu thành cài đặt sẵn
+Phím tắt
+Tiến trình
+Tệp này lớn — việc xử lý có thể mất thời gian.
+Định dạng này không được hỗ trợ
+Thành công
+Lưu ý
+Ghi chú
+Chọn tất cả
+Không
+Đặt lại
+Chiều rộng tối đa
+Chiều cao tối đa
+Chiều rộng
+Chiều cao
+Xoay
+Trang
+Trang
+Văn bản
+Mã hóa
+Giải mã
+Xác thực
+Thu nhỏ
+In đẹp
+Hợp lệ
+Không hợp lệ
+Ký tự
+Dòng
+Từ
+Đến
+Bắt đầu
+Kết thúc
+Tốc độ
+Âm lượng
+Cắt
+Trích xuất
+Hàng loạt
+Giới hạn
+Chỉ chạy trong trình duyệt của bạn. Tệp của bạn không bao giờ được gửi tới máy chủ Kit.
+https://tgthms.github.io/about/
+Cách hoạt động và giới hạn
+Bạn cần làm gì?
+Công cụ tiện lợi trên thiết bị này — không tài khoản, không tải lên.
+Danh mục
+Công cụ
+Không có kết quả khớp với tìm kiếm đó.
+Tiếp tục từ chỗ bạn dừng
+Đã ghim
+Bắt đầu bằng một danh mục
+Chọn một nhóm việc. Công cụ bên trong được nhóm để bạn lướt thay vì lục tìm.
+Danh mục
+{count, plural, one {# công cụ} other {# công cụ}}
+Kết quả tìm kiếm
+Bắt đầu tại đây
+Trang
+Bảo vệ và thông tin
+Đánh dấu
+Xuất / chuyển đổi
+Kích thước và cắt
+Diện mạo
+Tệp
+Clip
+Định dạng
+Viết
+Kiểm tra
+Mã hóa
+Tạo
+PDF
+Ảnh
+Âm thanh
+Video
+Chuyển đổi tệp
+Viết
+Gộp, tách, nén và đánh dấu tài liệu PDF
+Nén, đổi kích thước, chuyển đổi và chỉnh ảnh
+Chuyển đổi, cắt và đổi tốc độ chỉ với âm thanh
+Chuyển đổi, cắt, tăng tốc và tách âm thanh từ video
+Chuyển đổi thông minh giữa các định dạng (JSON, CSV, ZIP, ảnh…)
+So sánh văn bản, đổi kiểu chữ và chuyển Markdown thành HTML
+Dữ liệu
+JSON, YAML, CSV, XML, SQL và chuyển đổi định dạng
+Nhà phát triển
+Token, hash, mã hóa, mật khẩu và các công cụ bàn làm việc khác
+Lịch sử
+Những gì bạn đã chạy trên thiết bị này. Chúng tôi chỉ giữ tóm tắt ngắn — không bao giờ giữ tệp của bạn.
+Chưa có hoạt động. Chạy một công cụ và nó sẽ hiện ở đây.
+Xóa lịch sử
+Xóa toàn bộ lịch sử trên thiết bị này?
+Mở công cụ
+Công cụ
+Khi nào
+Tóm tắt
+Trạng thái
+Thành công
+Thất bại
+Yêu thích
+Công cụ bạn giữ gần để chạm một cái là tới.
+Chưa có mục yêu thích. Gắn sao từ Trang chủ hoặc từ trang công cụ.
+Cài đặt
+Các lựa chọn này chỉ nằm trong trình duyệt này.
+Giao diện
+Ngôn ngữ
+Dữ liệu và quyền riêng tư
+Xóa lịch sử
+Gỡ các tóm tắt lịch sử cục bộ mà trang này lưu.
+Kit xử lý tệp của bạn trong trình duyệt. Tùy chọn và tóm tắt lịch sử có thể được lưu cục bộ. Chi tiết nằm trong Chính sách quyền riêng tư.
+Chính sách quyền riêng tư
+Điều khoản sử dụng
+Nhấn ? bất cứ lúc nào để xem phím tắt.
+Phiên bản
+Phím tắt
+Mọi nơi
+Tập trung tìm kiếm
+Mở cài đặt
+Về trang chủ
+Hiện danh sách này
+Chạy công cụ hiện tại
+Đóng
+Gộp PDF
+Xếp nhiều PDF thành một. Xem trước trang và kéo để sắp lại.
+pdf gộp nối ghép nhiều trang
+Gộp
+Thêm ít nhất hai tệp PDF.
+Đã gộp {count} tệp thành một PDF.
+Tách PDF
+Lấy một dải trang ra thành PDF mới.
+pdf tách trích trang dải
+Tách
+Trang (ví dụ 1-3,5)
+PDF đã tách sẵn sàng.
+Sắp xếp trang
+Xoay trang, xóa những trang không cần và đặt thứ tự mới.
+pdf xoay xóa sắp xếp tổ chức trang
+Lưu PDF
+PDF của bạn đã được cập nhật.
+Nén PDF
+Thu nhỏ kích thước bằng cách mã hóa lại ảnh trang (đánh đổi chất lượng).
+pdf nén giảm kích thước
+Nén
+Đường đi có mất mát — trang có thể bị raster. Tốt nhất với PDF nhiều ảnh.
+PDF đã nén sẵn sàng để tải.
+Hình mờ PDF
+Đóng dấu văn bản làm hình mờ, đầu trang hoặc chân trang trên mọi trang.
+pdf hình mờ đóng dấu đầu trang chân trang mật
+Áp dụng
+Văn bản hình mờ
+Vị trí
+Đầu trang
+Chân trang
+Chéo giữa
+Độ mờ
+Đã áp dụng hình mờ.
+Che nội dung
+Đặt hộp đen đặc lên vùng nhạy cảm (che bằng mắt).
+pdf che đen ẩn nhạy cảm
+Áp dụng lớp che
+Chỉ là lớp che bằng mắt. Không bảo đảm xóa mọi luồng văn bản bên dưới — hãy kiểm tra lại tài liệu nhạy cảm.
+Đã áp dụng hộp che.
+Trích từ PDF
+Lấy văn bản đọc được hoặc xuất một trang thành ảnh.
+pdf trích văn bản ảnh
+Trích xuất
+Văn bản
+Ảnh
+Trích xuất xong.
+Đã xuất {count} ảnh trang dưới dạng ZIP.
+Nén ảnh
+Giảm chất lượng và kích thước tối đa để ảnh vẫn dễ chia sẻ.
+ảnh nén jpg png webp kích thước ảnh
+Nén
+Đã nén {count} ảnh.
+Đổi kích thước ảnh
+Đặt kích thước chính xác, có thể khóa tỉ lệ.
+ảnh kích thước tỉ lệ rộng cao
+Đổi kích thước
+Giữ tỉ lệ khung hình
+Đã đổi kích thước {count} ảnh.
+Cắt ảnh
+Chỉ giữ hình chữ nhật bạn quan tâm.
+ảnh cắt vùng
+Cắt
+Ảnh đã cắt sẵn sàng.
+Chuyển định dạng ảnh
+Chuyển giữa JPEG, PNG, WEBP và các định dạng web tương tự.
+ảnh chuyển định dạng webp avif png jpg jpeg
+Chuyển đổi
+Đã chuyển {count} ảnh.
+Siêu dữ liệu ảnh
+Xem EXIF và thẻ tương tự, rồi xuất bản sao sạch không còn chúng.
+ảnh exif siêu dữ liệu xóa riêng tư vị trí
+Xóa siêu dữ liệu
+Pixel được mã hóa lại trong trình duyệt nên siêu dữ liệu nhúng bị bỏ.
+Đã xóa siêu dữ liệu khỏi {count} ảnh.
+Thẻ
+Giá trị
+Không có EXIF hoặc siêu dữ liệu văn bản đọc được trong tệp này.
+Chỉnh ảnh
+Chỉnh độ sáng, tương phản và độ bão hòa.
+ảnh sáng tương phản bão hòa màu
+Áp dụng
+Độ sáng
+Tương phản
+Độ bão hòa
+Đã chỉnh {count} ảnh.
+Chuyển đổi thông minh
+Nhận loại tệp hoặc văn bản lẫn lộn và chuyển giữa các định dạng (không phải studio media).
+chuyển đổi trung tâm thông minh hàng loạt json yaml csv zip ảnh dữ liệu
+Chuyển đổi
+Nhận dạng là
+Định dạng đầu ra
+Chuyển đổi xong.
+Bộ định dạng JSON
+In đẹp, thu nhỏ và bắt lỗi JSON sớm.
+json định dạng kiểm tra thu nhỏ pretty
+Định dạng
+JSON hợp lệ và đã được định dạng.
+Bộ định dạng YAML
+Kiểm tra cấu trúc YAML và chỉnh bố cục.
+yaml định dạng kiểm tra yml
+Định dạng
+YAML hợp lệ.
+Bộ định dạng TOML
+Xác thực TOML và giữ tệp gọn gàng.
+toml định dạng kiểm tra config
+Định dạng
+TOML hợp lệ.
+Markdown ↔ HTML
+Chuyển Markdown thành HTML, hoặc HTML ngược lại thành Markdown.
+markdown html chuyển md đánh dấu
+Chuyển đổi
+Markdown → HTML
+HTML → Markdown
+Đã chuyển.
+CSV ↔ JSON
+Chuyển dữ liệu bảng giữa CSV và mảng JSON.
+csv json chuyển bảng bảng tính
+Chuyển đổi
+CSV → JSON
+JSON → CSV
+Đã chuyển.
+So sánh văn bản
+Xem thay đổi từng dòng giữa hai phiên bản.
+diff so sánh văn bản thay đổi patch
+So sánh
+Gốc
+Đã cập nhật
+So sánh sẵn sàng.
+Base64
+Mã hóa hoặc giải mã Base64 cho văn bản thuần hoặc cả tệp.
+base64 mã hóa giải mã nhị phân
+Chuyển đổi
+Hướng
+Văn bản
+Tệp
+Xong.
+Mã hóa URL
+Phần trăm-mã hóa hoặc giải mã thành phần URL an toàn.
+url mã hóa giải mã phần trăm uri truy vấn
+Chuyển đổi
+Xong.
+Chuyển đổi âm thanh
+Đổi container âm thanh như MP3, WAV và OGG trong trình duyệt.
+âm thanh chuyển mp3 wav ogg ffmpeg tiếng
+Chuyển đổi
+Đang tải engine âm thanh…
+Dùng FFmpeg WASM một luồng. Tệp lớn có thể chậm; hỗ trợ codec bị giới hạn.
+Chuyển đổi âm thanh xong.
+Cắt âm thanh
+Chỉ giữ đoạn giữa hai mốc thời gian trong tệp âm thanh.
+âm thanh cắt clip mp3 wav
+Cắt
+Cắt âm thanh xong.
+Tốc độ và âm lượng
+Tăng tốc, làm chậm hoặc đổi độ lớn của âm thanh.
+âm thanh tốc độ nhịp âm lượng cao độ
+Áp dụng
+Âm thanh đã xử lý sẵn sàng.
+Chuyển đổi video
+Đổi container video như MP4 và WEBM trong trình duyệt.
+video chuyển mp4 webm ffmpeg phim
+Chuyển đổi
+Đang tải engine video…
+Dùng FFmpeg WASM một luồng. Tệp lớn có thể chậm; hỗ trợ codec bị giới hạn.
+Chuyển đổi video xong.
+Cắt video
+Chỉ giữ clip giữa hai mốc thời gian.
+video cắt clip mp4
+Cắt
+Cắt video xong.
+Tốc độ và âm lượng video
+Đổi tốc độ phát và mức âm thanh của video.
+video tốc độ nhịp âm lượng
+Áp dụng
+Video đã xử lý sẵn sàng.
+Tách âm thanh từ video
+Lưu nhạc nền của video thành tệp âm thanh.
+video tách âm thanh mp3 nhạc nền
+Tách âm thanh
+Đã tách âm thanh.
+Số trang
+Đóng dấu nhãn trang như 1 / 12 trên mọi trang.
+pdf số trang chân trang đầu trang phân trang
+Thêm số
+Nhãn ({page} và {pages})
+Vị trí
+Bắt đầu từ
+Đầu trang trái
+Đầu trang giữa
+Đầu trang phải
+Chân trang trái
+Chân trang giữa
+Chân trang phải
+Đã thêm số trang.
+PDF → ảnh
+Raster mọi trang thành JPEG và tải chúng dưới dạng ZIP.
+pdf ảnh jpg jpeg zip trang xuất
+Xuất trang
+Trang được vẽ bằng PDF.js trong thẻ này. Tài liệu rất lớn có thể chậm và dùng nhiều bộ nhớ. Đây là raster hình ảnh, không phải trích xuất đối tượng ảnh nhúng.
+Đã xuất {count} trang.
+Ảnh → PDF
+Xếp ảnh thành PDF, một ảnh mỗi trang.
+ảnh pdf jpg png gộp
+Tạo PDF
+Đã tạo PDF từ {count} ảnh.
+Làm phẳng biểu mẫu
+Nướng trường AcroForm vào trang để không còn chỉnh sửa được.
+pdf làm phẳng biểu mẫu trường acroform
+Làm phẳng
+Hoạt động với trường AcroForm chuẩn. Biểu mẫu XFA động chưa được hỗ trợ đầy đủ.
+Đã làm phẳng {count} trường.
+Siêu dữ liệu PDF
+Xem, sửa hoặc xóa tiêu đề, tác giả và các trường Info khác.
+Từ khóa
+Lưu siêu dữ liệu
+Xóa mọi trường
+Tiêu đề
+Tác giả
+Chủ đề
+Người tạo
+Nhà sản xuất
+Đã lưu siêu dữ liệu.
+Đã xóa siêu dữ liệu.
+Khóa hoặc mở khóa PDF
+Thêm hoặc gỡ mật khẩu người dùng. Mã hóa ở lại trình duyệt này.
+pdf mật khẩu khóa mở khóa mã hóa giải mã
+Áp dụng
+Khóa
+Mở khóa
+Mật khẩu
+Dùng thư viện mã hóa PDF phía máy khách. Một số bản mã hóa cũ hoặc khác thường có thể không mở được. Kit không bao giờ gửi tệp hay mật khẩu tới máy chủ.
+PDF đã sẵn sàng.
+Xoay và lật
+Xoay ảnh từng 90° hoặc lật ngang hay dọc.
+ảnh xoay lật gương
+Áp dụng
+Biến đổi
+Xoay 90°
+Xoay 180°
+Xoay 270°
+Lật ngang
+Lật dọc
+Đã biến đổi {count} ảnh.
+Bộ lọc ảnh
+Áp dụng xám, sepia hoặc đảo màu cho một hoặc nhiều ảnh.
+ảnh bộ lọc xám sepia đảo
+Áp dụng
+Bộ lọc
+Xám
+Sepia
+Đảo màu
+Đã lọc {count} ảnh.
+Gói favicon
+Xuất ảnh nguồn thành các kích thước biểu tượng phổ biến trong ZIP.
+favicon icon 16 32 180 192 512 apple touch
+Xuất biểu tượng
+Xuất tệp PNG ở 16, 32, 48, 180, 192 và 512 pixel.
+Gói biểu tượng sẵn sàng.
+Video → GIF
+Biến clip ngắn thành GIF lặp trong trình duyệt.
+video gif clip chuyển ffmpeg
+Tạo GIF
+Dùng FFmpeg WASM. Giữ clip ngắn — mã hóa GIF chậm và tốn bộ nhớ. Bảng màu và codec theo bản dựng trong trình duyệt.
+GIF sẵn sàng.
+XML ↔ JSON
+Chuyển tài liệu XML thành JSON, hoặc JSON ngược lại thành XML.
+xml json chuyển phân tích
+Chuyển đổi
+XML → JSON
+JSON → XML
+Đã chuyển.
+Bộ định dạng SQL
+In đẹp SQL để mệnh đề và danh sách dễ đọc hơn.
+sql định dạng pretty truy vấn
+Định dạng
+Đã định dạng SQL.
+Trình thử regex
+Thử biểu thức chính quy trên văn bản mẫu và thay các khớp.
+regex biểu thức chính quy thử thay
+Mẫu
+Cờ
+Văn bản mẫu
+Thay thế
+Thay
+{count, plural, one {# khớp} other {# khớp}}
+Thay thế sẵn sàng.
+Trình tạo hash
+SHA-1/256/384/512 và MD5 của văn bản hoặc tệp, tính cục bộ.
+hash sha256 md5 sha1 tổng kiểm tra digest
+Hash
+Thuật toán
+Digest
+Hash được tính trong trình duyệt này (Web Crypto cho SHA, triển khai MD5 cục bộ). MD5 không chống va chạm — chỉ dùng cho tổng kiểm tra.
+Hash sẵn sàng.
+Trình tạo UUID
+Tạo UUID phiên bản 4 hoặc 7 trên thiết bị này.
+uuid guid v4 v7 tạo
+Tạo
+Bao nhiêu
+Phiên bản
+Đã tạo UUID.
+Bộ chuyển màu
+Chuyển giữa HEX, RGB, HSL và HSV, kèm bộ chọn màu.
+màu hex rgb hsl hsv chọn
+Bộ chọn màu
+Nhập màu hex 3 hoặc 6 chữ số.
+Lorem ipsum
+Tạo đoạn, câu hoặc từ giữ chỗ.
+lorem ipsum giữ chỗ dummy văn bản
+Tạo
+Số lượng
+Chế độ
+Đoạn
+Câu
+Từ
+Đã tạo văn bản.
+Mã QR
+Tạo mã QR từ văn bản, hoặc đọc từ ảnh.
+qr mã tạo quét đọc mã vạch
+Tạo
+Văn bản hoặc URL
+Đọc từ ảnh
+Đọc QR
+Mã QR sẵn sàng.
+Đã đọc nội dung QR.
+Không tìm thấy mã QR trong ảnh đó.
+Ký PDF
+Đóng dấu chữ ký gõ trên mọi trang. Chỉ bằng mắt — không phải chứng chỉ.
+pdf ký chữ ký đóng dấu tên
+Ký
+Văn bản chữ ký
+Tên của bạn
+Vẽ tên bạn lên trang. Đây không phải chữ ký số mật mã.
+Đã đóng dấu chữ ký.
+Hình mờ ảnh
+Phủ văn bản lên ảnh, một tệp hoặc cả lô.
+ảnh hình mờ đóng dấu bản quyền
+Áp dụng
+Văn bản hình mờ
+Vị trí
+Dưới phải
+Dưới trái
+Trên phải
+Giữa
+Đã gắn hình mờ cho {count} ảnh.
+Trình tạo mật khẩu
+Tạo mật khẩu mạnh trên thiết bị này. Không lưu gì cả.
+mật khẩu tạo ngẫu nhiên bí mật
+Tạo
+Độ dài
+Chữ thường
+Chữ hoa
+Chữ số
+Ký hiệu
+Mật khẩu sẵn sàng.
+Đổi kiểu chữ
+Chuyển giữa camel, snake, kebab, title và hơn thế.
+kiểu chữ camel snake kebab pascal tiêu đề
+Chuyển đổi
+Kiểu
+Đã chuyển.
+Bộ giải JWT
+Đọc header và payload JWT cục bộ. Không xác minh chữ ký.
+jwt giải mã token bearer auth
+Giải mã
+Kit chỉ giải Base64url. Không có khóa thì không thể chứng minh token là thật.
+Có phần chữ ký (chưa xác minh).
+Không có phần chữ ký.
+Hãy dán token trước.
+Đã giải mã token.
+Dấu thời gian Unix
+Chuyển thời gian Unix sang ISO và ngược lại.
+unix epoch dấu thời gian iso ngày
+Dùng lúc này
+Trình giải thích cron
+Đưa biểu thức cron 5 trường thành ngôn ngữ thường.
+cron lịch crontab giải thích
+Giải thích
+Đã giải thích.
+Cơ số số
+Chuyển số nguyên giữa các cơ số từ 2 đến 36.
+nhị phân hex thập phân cơ số chuyển
+Số
+Từ cơ số
+Sang cơ số
+Thực thể HTML
+Mã hóa hoặc giải mã &lt; &amp; và thực thể số.
+html thực thể mã hóa giải mã escape
+Chuyển đổi
+Mã hóa
+Giải mã
+Đã chuyển.
+JSON → TypeScript
+Suy ra interface TypeScript từ mẫu JSON.
+json typescript interface kiểu tạo
+Tạo kiểu
+Đã tạo kiểu.
+Cập nhật lần cuối
+Chính sách quyền riêng tư
+Điều khoản sử dụng
+Không tìm thấy trang
+Địa chỉ đó không có trong Kit. Về trang chủ và chọn công cụ từ đó.
+Về trang chủ
+Đã xảy ra sự cố
+Hành động vừa rồi thất bại trong trình duyệt này. Bạn có thể thử lại mà không rời trang.
+Thử lại

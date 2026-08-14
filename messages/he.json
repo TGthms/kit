@@ -1,0 +1,735 @@
+{
+  "meta": {
+    "title": "Kit — כלי דפדפן שנשארים פרטיים",
+    "description": "כלי PDF, תמונות, מדיה, המרה וטקסט רצים במכשיר שלך. שום דבר לא מועלה לשרתים שלנו."
+  },
+  "brand": {
+    "name": "Kit",
+    "tagline": "כלי יומיום בדפדפן. פרטיות כברירת מחדל."
+  },
+  "nav": {
+    "home": "בית",
+    "tools": "כלים",
+    "history": "היסטוריה",
+    "favorites": "מועדפים",
+    "settings": "הגדרות",
+    "searchPlaceholder": "חיפוש כלים…",
+    "openMenu": "פתיחת תפריט",
+    "closeMenu": "סגירת תפריט"
+  },
+  "footer": {
+    "privacy": "מדיניות פרטיות",
+    "terms": "תנאי שימוש",
+    "aboutMe": "עליי",
+    "license": "רישיון MIT",
+    "copyright": "© {year} Tim G (TGthms). Kit הוא קוד פתוח ברישיון MIT.",
+    "github": "GitHub"
+  },
+  "common": {
+    "cancel": "ביטול",
+    "clear": "ניקוי",
+    "close": "סגירה",
+    "copy": "העתקה",
+    "copied": "הועתק ללוח",
+    "download": "הורדה",
+    "run": "הפעלה",
+    "process": "עיבוד",
+    "processing": "בעבודה…",
+    "done": "בוצע",
+    "error": "משהו השתבש",
+    "retry": "נסה שוב",
+    "addFiles": "הוספת קבצים",
+    "dropFiles": "שחררו קבצים כאן",
+    "orBrowse": "או בחרו מהמכשיר",
+    "pasteSupported": "אפשר גם להדביק מהלוח",
+    "remove": "הסרה",
+    "reorder": "גררו לשינוי הסדר",
+    "files": "קבצים",
+    "noFiles": "עדיין לא נבחרו קבצים",
+    "quality": "איכות",
+    "options": "אפשרויות",
+    "preview": "תצוגה מקדימה",
+    "result": "תוצאה",
+    "input": "קלט",
+    "output": "פלט",
+    "format": "פורמט",
+    "language": "שפה",
+    "theme": "מראה",
+    "themeSystem": "לפי המערכת",
+    "themeLight": "בהיר",
+    "themeDark": "כהה",
+    "loading": "טוען…",
+    "save": "שמירה",
+    "delete": "מחיקה",
+    "confirm": "אישור",
+    "back": "חזרה",
+    "allCategories": "הכול",
+    "pin": "הצמדה",
+    "unpin": "ביטול הצמדה",
+    "favorite": "הוספה למועדפים",
+    "unfavorite": "הסרה מהמועדפים",
+    "presets": "ערכות שמורות",
+    "applyPreset": "שימוש בערכה",
+    "savePreset": "שמירה כערכה",
+    "shortcuts": "קיצורי מקלדת",
+    "progress": "התקדמות",
+    "fileTooLarge": "הקובץ גדול—העיבוד עלול לארוך זמן.",
+    "unsupported": "הפורמט הזה אינו נתמך",
+    "success": "הצלחה",
+    "warning": "שימו לב",
+    "info": "הערה",
+    "selectAll": "בחירת הכול",
+    "none": "ללא",
+    "reset": "איפוס",
+    "maxWidth": "רוחב מרבי",
+    "maxHeight": "גובה מרבי",
+    "width": "רוחב",
+    "height": "גובה",
+    "rotate": "סיבוב",
+    "pages": "עמודים",
+    "page": "עמוד",
+    "text": "טקסט",
+    "encode": "קידוד",
+    "decode": "פענוח",
+    "validate": "אימות",
+    "minify": "כיווץ",
+    "beautify": "עיצוב יפה",
+    "valid": "תקין",
+    "invalid": "לא תקין",
+    "characters": "תווים",
+    "lines": "שורות",
+    "from": "מ",
+    "to": "אל",
+    "start": "התחלה",
+    "end": "סיום",
+    "speed": "מהירות",
+    "volume": "עוצמה",
+    "trim": "חיתוך",
+    "extract": "חילוץ",
+    "batch": "אצווה",
+    "limitations": "מגבלות",
+    "clientSideOnly": "רץ בדפדפן בלבד. הקבצים שלך לעולם לא נשלחים לשרת של Kit.",
+    "aboutMeUrl": "https://tgthms.github.io/about/",
+    "howItWorks": "איך זה עובד ומגבלות"
+  },
+  "home": {
+    "title": "מה תרצו לעשות?",
+    "subtitle": "כלים שימושיים שרצים במכשיר הזה—בלי חשבון ובלי העלאות.",
+    "categories": "קטגוריות",
+    "popular": "כלים",
+    "noResults": "אין התאמה לחיפוש הזה.",
+    "recent": "המשיכו מאיפה שהפסקתם",
+    "pinned": "מוצמדים",
+    "chooseCategory": "התחילו בקטגוריה",
+    "chooseCategoryHint": "בחרו משפחת משימות. הכלים בפנים מקובצים כדי לסרוק במקום לחפש.",
+    "backToCategories": "קטגוריות",
+    "toolsInCategory": "{count, plural, one {# כלי} other {# כלים}}",
+    "searchResults": "תוצאות חיפוש",
+    "featured": "התחילו כאן",
+    "groups": {
+      "pages": "עמודים",
+      "protect": "הגנה ומידע",
+      "markup": "סימון",
+      "export": "ייצוא / המרה",
+      "transform": "גודל וחיתוך",
+      "look": "מראה",
+      "file": "קובץ",
+      "clip": "קטעים",
+      "formats": "פורמטים",
+      "write": "כתיבה",
+      "inspect": "בדיקה",
+      "encode": "קידוד",
+      "generate": "יצירה"
+    }
+  },
+  "categories": {
+    "pdf": "PDF",
+    "image": "תמונות",
+    "audio": "שמע",
+    "video": "וידאו",
+    "convert": "המרת קבצים",
+    "text": "כתיבה",
+    "pdfDesc": "מיזוג, פיצול, כיווץ וסימון מסמכי PDF",
+    "imageDesc": "כיווץ, שינוי גודל, המרה וליטוש תמונות",
+    "audioDesc": "המרה, חיתוך ושינוי מהירות של שמע בלבד",
+    "videoDesc": "המרה, חיתוך, האצה וחילוץ שמע מווידאו",
+    "convertDesc": "המרה חכמה בין פורמטים (JSON, CSV, ZIP, תמונות…)",
+    "textDesc": "השוואת טקסט, שינוי רישיות והמרת Markdown ל-HTML",
+    "data": "נתונים",
+    "dataDesc": "JSON, YAML, CSV, XML, SQL והמרה בין פורמטים",
+    "developer": "מפתחים",
+    "developerDesc": "אסימונים, גיבובים, קידודים, סיסמאות וכלי ספסל נוספים"
+  },
+  "history": {
+    "title": "היסטוריה",
+    "subtitle": "מה שהרצתם במכשיר הזה. נשמרות רק תקצירים קצרים—לעולם לא הקבצים עצמם.",
+    "empty": "עדיין אין פעילות. הריצו כלי והוא יופיע כאן.",
+    "clear": "ניקוי היסטוריה",
+    "clearConfirm": "למחוק את כל ההיסטוריה במכשיר הזה?",
+    "openTool": "פתיחת כלי",
+    "tool": "כלי",
+    "when": "מתי",
+    "summary": "תקציר",
+    "status": "סטטוס",
+    "success": "הצליח",
+    "failed": "נכשל"
+  },
+  "favorites": {
+    "title": "מועדפים",
+    "subtitle": "כלים ששומרים קרוב לגישה בנגיעה אחת.",
+    "empty": "עדיין אין מועדפים. סמנו כוכב לכלי מהבית או מעמוד הכלי."
+  },
+  "settings": {
+    "title": "הגדרות",
+    "subtitle": "הבחירות האלה נשארות בדפדפן הזה בלבד.",
+    "appearance": "מראה",
+    "language": "שפה",
+    "data": "נתונים ופרטיות",
+    "clearHistory": "ניקוי היסטוריה",
+    "clearHistoryDesc": "מוחק תקצירי היסטוריה מקומיים שהאתר שומר.",
+    "privacyNote": "Kit מעבד את הקבצים בדפדפן. העדפות ותקצירי היסטוריה עשויים להישמר מקומית. הפרטים המלאים במדיניות הפרטיות.",
+    "viewPrivacy": "מדיניות פרטיות",
+    "viewTerms": "תנאי שימוש",
+    "shortcutsHelp": "לחצו ? בכל עת לקיצורי מקלדת.",
+    "version": "גרסה"
+  },
+  "shortcuts": {
+    "title": "קיצורי מקלדת",
+    "global": "בכל מקום",
+    "search": "מיקוד לחיפוש",
+    "settings": "פתיחת הגדרות",
+    "home": "מעבר לבית",
+    "help": "הצגת הרשימה הזאת",
+    "run": "הפעלת הכלי הנוכחי",
+    "close": "סגירה"
+  },
+  "tools": {
+    "pdf-merge": {
+      "name": "מיזוג קובצי PDF",
+      "description": "ערמו כמה קובצי PDF לאחד. תצוגה מקדימה וגרירה לסידור מחדש.",
+      "keywords": "pdf מיזוג איחוד חיבור עמודים",
+      "run": "מיזוג",
+      "empty": "הוסיפו לפחות שני קובצי PDF.",
+      "success": "מוזגו {count} קבצים לקובץ PDF אחד."
+    },
+    "pdf-split": {
+      "name": "פיצול PDF",
+      "description": "חלצו טווח עמודים לקובץ PDF חדש לגמרי.",
+      "keywords": "pdf פיצול חילוץ עמודים טווח",
+      "run": "פיצול",
+      "range": "עמודים (למשל 1-3,5)",
+      "success": "קובץ ה-PDF המפוצל מוכן."
+    },
+    "pdf-organize": {
+      "name": "ארגון עמודים",
+      "description": "סובבו עמודים, הסירו מיותרים וקבעו סדר חדש.",
+      "keywords": "pdf סיבוב מחיקה סידור ארגון עמודים",
+      "run": "שמירת PDF",
+      "success": "קובץ ה-PDF עודכן."
+    },
+    "pdf-compress": {
+      "name": "כיווץ PDF",
+      "description": "הקטינו את גודל הקובץ באמצעות קידוד מחדש של תמונות העמודים (פשרת איכות).",
+      "keywords": "pdf כיווץ הקטנה גודל קטן",
+      "run": "כיווץ",
+      "note": "זה נתיב מאבד—ייתכן שהעמודים ירוסתו. עובד הכי טוב ב-PDF עמוס תמונות.",
+      "success": "קובץ ה-PDF המכווץ מוכן להורדה."
+    },
+    "pdf-watermark": {
+      "name": "סימן מים ב-PDF",
+      "description": "הטביעו טקסט כסימן מים, כותרת עליונה או תחתונה בכל עמוד.",
+      "keywords": "pdf סימן מים חותמת כותרת תחתונה סודי",
+      "run": "החלה",
+      "text": "טקסט סימן המים",
+      "position": "מיקום",
+      "header": "כותרת עליונה",
+      "footer": "כותרת תחתונה",
+      "center": "מרכז אלכסוני",
+      "opacity": "אטימות",
+      "success": "סימן המים הוחל."
+    },
+    "pdf-redact": {
+      "name": "כיסוי תוכן",
+      "description": "שימו קופסאות שחורות מלאות מעל אזורים רגישים (כיסוי חזותי).",
+      "keywords": "pdf השחרה כיסוי הסתרה רגיש",
+      "run": "החלת כיסוי",
+      "note": "זה כיסוי חזותי בלבד. אין הבטחה להסרת כל זרם הטקסט שמתחת—בדקו מסמכים רגישים בעצמכם.",
+      "success": "קופסאות הכיסוי הוחלו."
+    },
+    "pdf-extract": {
+      "name": "חילוץ מ-PDF",
+      "description": "חלצו טקסט קריא או ייצאו עמוד כתמונה.",
+      "keywords": "pdf חילוץ טקסט תמונות",
+      "run": "חילוץ",
+      "modeText": "טקסט",
+      "modeImages": "תמונות",
+      "success": "החילוץ הסתיים.",
+      "imagesReady": "יוצאו {count} תמונות עמוד כקובץ ZIP."
+    },
+    "image-compress": {
+      "name": "כיווץ תמונות",
+      "description": "הורידו איכות וגודל מרבי כדי שהתמונות יישארו נוחות לשיתוף.",
+      "keywords": "תמונה כיווץ jpg png webp גודל",
+      "run": "כיווץ",
+      "success": "כווצו {count} תמונות."
+    },
+    "image-resize": {
+      "name": "שינוי גודל תמונות",
+      "description": "קבעו ממדים מדויקים, עם נעילת יחס גובה-רוחב אופציונלית.",
+      "keywords": "תמונה גודל קנה מידה ממדים רוחב גובה",
+      "run": "שינוי גודל",
+      "lockAspect": "שמירה על יחס הגובה-רוחב",
+      "success": "שונה הגודל של {count} תמונות."
+    },
+    "image-crop": {
+      "name": "חיתוך תמונה",
+      "description": "השאירו רק את המלבן שחשוב לכם.",
+      "keywords": "תמונה חיתוך גזירה אזור",
+      "run": "חיתוך",
+      "success": "התמונה החתוכה מוכנה."
+    },
+    "image-convert": {
+      "name": "המרת פורמט תמונה",
+      "description": "החליפו בין JPEG, PNG, WEBP ופורמטי ווב דומים.",
+      "keywords": "תמונה המרה פורמט webp avif png jpg jpeg",
+      "run": "המרה",
+      "success": "הומרו {count} תמונות."
+    },
+    "image-metadata": {
+      "name": "מטא-נתוני תמונה",
+      "description": "בדקו תגי EXIF דומים וייצאו עותק נקי בלעדיהם.",
+      "keywords": "תמונה exif מטא הסרה פרטיות מיקום",
+      "run": "הסרת מטא-נתונים",
+      "note": "הפיקסלים מקודדים מחדש בדפדפן כך שהמטא-נתונים המוטמעים נשמטים.",
+      "success": "הוסרו מטא-נתונים מ-{count} תמונות.",
+      "tag": "תג",
+      "value": "ערך",
+      "noExif": "אין מטא-נתוני EXIF או טקסט קריאים בקובץ הזה."
+    },
+    "image-adjust": {
+      "name": "כיוון תמונה",
+      "description": "כווננו בהירות, ניגודיות ורוויה.",
+      "keywords": "תמונה בהירות ניגודיות רוויה צבע",
+      "run": "החלה",
+      "brightness": "בהירות",
+      "contrast": "ניגודיות",
+      "saturation": "רוויה",
+      "success": "כוונו {count} תמונות."
+    },
+    "convert-hub": {
+      "name": "המרה חכמה",
+      "description": "זהו סוגי קבצים או טקסט מעורבים והמירו בין פורמטים (לא אולפן מדיה).",
+      "keywords": "המרה חכם אצווה json yaml csv zip תמונה נתונים",
+      "run": "המרה",
+      "detect": "זוהה כ",
+      "chooseOutput": "פורמט פלט",
+      "success": "ההמרה הסתיימה."
+    },
+    "json-format": {
+      "name": "מעצב JSON",
+      "description": "עיצוב יפה, כיווץ ואיתור שגיאות JSON מוקדם.",
+      "keywords": "json עיצוב אימות כיווץ יפה",
+      "run": "עיצוב",
+      "success": "JSON תקין ומעוצב."
+    },
+    "yaml-format": {
+      "name": "מעצב YAML",
+      "description": "בדקו את מבנה ה-YAML וייפו את הפריסה.",
+      "keywords": "yaml עיצוב אימות yml",
+      "run": "עיצוב",
+      "success": "YAML תקין."
+    },
+    "toml-format": {
+      "name": "מעצב TOML",
+      "description": "אמתו TOML והשאירו את הקובץ מסודר.",
+      "keywords": "toml עיצוב אימות הגדרות",
+      "run": "עיצוב",
+      "success": "TOML תקין."
+    },
+    "markdown-html": {
+      "name": "Markdown ↔ HTML",
+      "description": "המירו Markdown ל-HTML, או HTML חזרה ל-Markdown.",
+      "keywords": "markdown html המרה md סימון",
+      "run": "המרה",
+      "toHtml": "Markdown → HTML",
+      "toMd": "HTML → Markdown",
+      "success": "הומר."
+    },
+    "csv-json": {
+      "name": "CSV ↔ JSON",
+      "description": "העבירו נתונים טבלאיים בין CSV למערכי JSON.",
+      "keywords": "csv json המרה טבלה גיליון",
+      "run": "המרה",
+      "toJson": "CSV → JSON",
+      "toCsv": "JSON → CSV",
+      "success": "הומר."
+    },
+    "text-diff": {
+      "name": "השוואת טקסט",
+      "description": "ראו שינויים שורה-שורה בין שתי גרסאות.",
+      "keywords": "diff השוואה טקסט שינויים תיקון",
+      "run": "השוואה",
+      "left": "מקורי",
+      "right": "מעודכן",
+      "success": "ההשוואה מוכנה."
+    },
+    "base64": {
+      "name": "Base64",
+      "description": "קודדו או פענוחו Base64 לטקסט רגיל או לקבצים שלמים.",
+      "keywords": "base64 קידוד פענוח בינארי",
+      "run": "המרה",
+      "mode": "כיוון",
+      "textMode": "טקסט",
+      "fileMode": "קובץ",
+      "success": "בוצע."
+    },
+    "url-encode": {
+      "name": "קידוד URL",
+      "description": "קידוד או פענוח אחוזים לרכיבי URL בבטחה.",
+      "keywords": "url קידוד פענוח אחוז uri שאילתה",
+      "run": "המרה",
+      "success": "בוצע."
+    },
+    "audio-convert": {
+      "name": "המרת שמע",
+      "description": "שנו מיכלי שמע כמו MP3, WAV ו-OGG בדפדפן.",
+      "keywords": "שמע המרה mp3 wav ogg ffmpeg",
+      "run": "המרה",
+      "loadingFfmpeg": "טוען מנוע שמע…",
+      "note": "משתמש ב-FFmpeg WASM בשרשור יחיד. קבצים גדולים עלולים להיות איטיים; תמיכת הקידוד מוגבלת.",
+      "success": "המרת השמע הסתיימה."
+    },
+    "audio-trim": {
+      "name": "חיתוך שמע",
+      "description": "השאירו רק את הקטע בין שני חותמות זמן בקובץ שמע.",
+      "keywords": "שמע חיתוך גזירה קטע mp3 wav",
+      "run": "חיתוך",
+      "success": "חיתוך השמע הסתיים."
+    },
+    "audio-speed": {
+      "name": "מהירות ועוצמת שמע",
+      "description": "האיצו, האטו או שנו את עוצמת השמע.",
+      "keywords": "שמע מהירות טמפו עוצמה גובה",
+      "run": "החלה",
+      "success": "השמע המעובד מוכן."
+    },
+    "video-convert": {
+      "name": "המרת וידאו",
+      "description": "שנו מיכלי וידאו כמו MP4 ו-WEBM בדפדפן.",
+      "keywords": "וידאו המרה mp4 webm ffmpeg סרט",
+      "run": "המרה",
+      "loadingFfmpeg": "טוען מנוע וידאו…",
+      "note": "משתמש ב-FFmpeg WASM בשרשור יחיד. קבצים גדולים עלולים להיות איטיים; תמיכת הקידוד מוגבלת.",
+      "success": "המרת הווידאו הסתיימה."
+    },
+    "video-trim": {
+      "name": "חיתוך וידאו",
+      "description": "השאירו רק את הקליפ בין שני חותמות זמן.",
+      "keywords": "וידאו חיתוך גזירה קליפ mp4",
+      "run": "חיתוך",
+      "success": "חיתוך הווידאו הסתיים."
+    },
+    "video-speed": {
+      "name": "מהירות ועוצמת וידאו",
+      "description": "שנו מהירות השמעה ורמת שמע של וידאו.",
+      "keywords": "וידאו מהירות טמפו עוצמה",
+      "run": "החלה",
+      "success": "הווידאו המעובד מוכן."
+    },
+    "video-extract-audio": {
+      "name": "חילוץ שמע מווידאו",
+      "description": "שמרו את פס הקול מווידאו כקובץ שמע.",
+      "keywords": "וידאו חילוץ שמע mp3 פסקול",
+      "run": "חילוץ שמע",
+      "success": "השמע חולץ."
+    },
+    "pdf-numbers": {
+      "name": "מספרי עמודים",
+      "description": "הטביעו תווית עמוד כמו 1 / 12 בכל עמוד.",
+      "keywords": "pdf מספרי עמודים תחתונה עליונה עימוד",
+      "run": "הוספת מספרים",
+      "template": "תווית ({page} ו-{pages})",
+      "position": "מיקום",
+      "start": "התחלה ב",
+      "headerLeft": "כותרת עליונה שמאל",
+      "headerCenter": "כותרת עליונה מרכז",
+      "headerRight": "כותרת עליונה ימין",
+      "footerLeft": "כותרת תחתונה שמאל",
+      "footerCenter": "כותרת תחתונה מרכז",
+      "footerRight": "כותרת תחתונה ימין",
+      "success": "נוספו מספרי עמודים."
+    },
+    "pdf-to-images": {
+      "name": "PDF → תמונות",
+      "description": "רסתו כל עמוד ל-JPEG והורידו אותם כ-ZIP.",
+      "keywords": "pdf לתמונה jpg jpeg zip עמודים ייצוא",
+      "run": "ייצוא עמודים",
+      "limits": "העמודים מצוירים עם PDF.js בלשונית הזו. מסמכים גדולים מאוד עלולים להיות איטיים ולצרוך הרבה זיכרון. זה רסטר חזותי, לא חילוץ של אובייקטי תמונה מוטמעים.",
+      "success": "יוצאו {count} עמודים."
+    },
+    "images-to-pdf": {
+      "name": "תמונות → PDF",
+      "description": "ערמו תמונות לקובץ PDF, תמונה אחת בכל עמוד.",
+      "keywords": "תמונות ל-pdf jpg png איחוד",
+      "run": "יצירת PDF",
+      "success": "נבנה PDF מ-{count} תמונות."
+    },
+    "pdf-flatten": {
+      "name": "שיטוח טפסים",
+      "description": "אפו שדות AcroForm לתוך העמוד כדי שלא יהיה אפשר לערוך אותם יותר.",
+      "keywords": "pdf שיטוח טופס שדות acroform",
+      "run": "שיטוח",
+      "limits": "עובד על שדות AcroForm רגילים. טפסי XFA דינמיים אינם נתמכים במלואם.",
+      "success": "שוטחו {count} שדות."
+    },
+    "pdf-metadata": {
+      "name": "מטא-נתוני PDF",
+      "description": "צפו, ערכו או הסירו כותרת, מחבר ושדות Info אחרים.",
+      "keywords": "מילות מפתח",
+      "run": "שמירת מטא-נתונים",
+      "strip": "הסרת כל השדות",
+      "title": "כותרת",
+      "author": "מחבר",
+      "subject": "נושא",
+      "creator": "יוצר",
+      "producer": "מפיק",
+      "saved": "המטא-נתונים נשמרו.",
+      "stripped": "המטא-נתונים הוסרו."
+    },
+    "pdf-protect": {
+      "name": "נעילה או שחרור PDF",
+      "description": "הוסיפו או הסירו סיסמת משתמש. ההצפנה נשארת בדפדפן הזה.",
+      "keywords": "pdf סיסמה נעילה שחרור הצפנה פענוח",
+      "run": "החלה",
+      "lock": "נעילה",
+      "unlock": "שחרור",
+      "password": "סיסמה",
+      "limits": "משתמש בספריית הצפנת PDF בצד הלקוח. גרסאות הצפנה ישנות או חריגות עלולות שלא להיפתח. Kit לעולם לא שולח את הקובץ או הסיסמה לשרת.",
+      "success": "קובץ ה-PDF מוכן."
+    },
+    "image-rotate": {
+      "name": "סיבוב והיפוך",
+      "description": "סובבו תמונות ב-90° בכל פעם או הפכו אותן אופקית או אנכית.",
+      "keywords": "תמונה סיבוב היפוך מראה",
+      "run": "החלה",
+      "operation": "המרה",
+      "rot90": "סיבוב 90°",
+      "rot180": "סיבוב 180°",
+      "rot270": "סיבוב 270°",
+      "flipH": "היפוך אופקי",
+      "flipV": "היפוך אנכי",
+      "success": "הומרו {count} תמונות."
+    },
+    "image-filters": {
+      "name": "מסנני תמונה",
+      "description": "החילו גווני אפור, ספיה או היפוך על תמונה אחת או רבות.",
+      "keywords": "תמונה מסנן אפור ספיה היפוך",
+      "run": "החלה",
+      "filter": "מסנן",
+      "grayscale": "גווני אפור",
+      "sepia": "ספיה",
+      "invert": "היפוך",
+      "success": "סוננו {count} תמונות."
+    },
+    "image-favicon": {
+      "name": "חבילת Favicon",
+      "description": "ייצאו תמונת מקור בגדלי סמלים נפוצים לקובץ ZIP.",
+      "keywords": "favicon סמל 16 32 180 192 512 apple",
+      "run": "ייצוא סמלים",
+      "note": "מייצא קובצי PNG בגדלים 16, 32, 48, 180, 192 ו-512 פיקסלים.",
+      "success": "חבילת הסמלים מוכנה."
+    },
+    "video-gif": {
+      "name": "וידאו → GIF",
+      "description": "הפכו קליפ קצר ל-GIF חוזר בדפדפן.",
+      "keywords": "וידאו gif קליפ המרה ffmpeg",
+      "run": "יצירת GIF",
+      "limits": "משתמש ב-FFmpeg WASM. השאירו קליפים קצרים — קידוד GIF איטי וכבד בזיכרון. תמיכת לוח וקידוד תלויה בגרסה שבדפדפן.",
+      "success": "קובץ ה-GIF מוכן."
+    },
+    "xml-json": {
+      "name": "XML ↔ JSON",
+      "description": "המירו מסמכי XML ל-JSON, או JSON חזרה ל-XML.",
+      "keywords": "xml json המרה ניתוח",
+      "run": "המרה",
+      "toJson": "XML → JSON",
+      "toXml": "JSON → XML",
+      "success": "הומר."
+    },
+    "sql-format": {
+      "name": "מעצב SQL",
+      "description": "עצבו SQL כדי שסעיפים ורשימות יהיו קריאים יותר.",
+      "keywords": "sql עיצוב שאילתה",
+      "run": "עיצוב",
+      "success": "SQL עוצב."
+    },
+    "regex-tester": {
+      "name": "בודק ביטויים רגולריים",
+      "description": "נסו ביטוי רגולרי על טקסט לדוגמה והחליפו התאמות.",
+      "keywords": "regex ביטוי רגולרי בדיקה החלפה",
+      "pattern": "תבנית",
+      "flags": "דגלים",
+      "input": "טקסט לדוגמה",
+      "replace": "החלפה",
+      "runReplace": "החלף",
+      "matches": "{count, plural, one {# התאמה} other {# התאמות}}",
+      "success": "ההחלפה מוכנה."
+    },
+    "hash-generator": {
+      "name": "מחולל גיבוב",
+      "description": "SHA-1/256/384/512 ו-MD5 של טקסט או קובץ, מחושבים מקומית.",
+      "keywords": "גיבוב sha256 md5 sha1 סיכום ביקורת",
+      "run": "גיבוב",
+      "algo": "אלגוריתם",
+      "digest": "תמצית",
+      "limits": "הגיבובים מחושבים בדפדפן הזה (Web Crypto ל-SHA, מימוש MD5 מקומי). MD5 אינו עמיד להתנגשויות — השתמשו בו רק לסיכומי ביקורת.",
+      "success": "הגיבוב מוכן."
+    },
+    "uuid-generator": {
+      "name": "מחולל UUID",
+      "description": "צרו מזהי UUID גרסה 4 או 7 במכשיר הזה.",
+      "keywords": "uuid guid v4 v7 יצירה",
+      "run": "יצירה",
+      "count": "כמה",
+      "version": "גרסה",
+      "success": "נוצרו מזהי UUID."
+    },
+    "color-convert": {
+      "name": "ממיר צבעים",
+      "description": "המירו בין HEX, RGB, HSL ו-HSV, עם בוחר צבעים.",
+      "keywords": "צבע hex rgb hsl hsv בוחר",
+      "picker": "בוחר צבעים",
+      "invalid": "הזינו צבע hex בן 3 או 6 ספרות."
+    },
+    "lorem-ipsum": {
+      "name": "Lorem ipsum",
+      "description": "צרו פסקאות, משפטים או מילים ממלאות.",
+      "keywords": "lorem ipsum ממלא דמה טקסט",
+      "run": "יצירה",
+      "count": "כמות",
+      "mode": "מצב",
+      "paragraphs": "פסקאות",
+      "sentences": "משפטים",
+      "words": "מילים",
+      "success": "הטקסט נוצר."
+    },
+    "qr-code": {
+      "name": "קוד QR",
+      "description": "צרו קוד QR מטקסט, או קראו אחד מתמונה.",
+      "keywords": "qr קוד יצירה סריקה קריאה ברקוד",
+      "run": "יצירה",
+      "payload": "טקסט או URL",
+      "read": "קריאה מתמונה",
+      "runRead": "קריאת QR",
+      "generated": "קוד ה-QR מוכן.",
+      "decoded": "תוכן ה-QR נקרא.",
+      "none": "לא נמצא קוד QR בתמונה הזאת."
+    },
+    "pdf-sign": {
+      "name": "חתימה על PDF",
+      "description": "הטביעו חתימה מוקלדת בכל עמוד. חזותי בלבד — לא תעודה.",
+      "keywords": "pdf חתימה חותמת שם",
+      "run": "חתימה",
+      "signature": "טקסט החתימה",
+      "placeholder": "השם שלך",
+      "limits": "זה מצייר את שמכם על העמוד. זו אינה חתימה דיגיטלית קריפטוגרפית.",
+      "success": "החתימה הוטבעה."
+    },
+    "image-watermark": {
+      "name": "סימן מים לתמונות",
+      "description": "הניחו טקסט מעל תמונות, קובץ אחד או אצווה שלמה.",
+      "keywords": "תמונה סימן מים חותמת זכויות",
+      "run": "החלה",
+      "text": "טקסט סימן המים",
+      "position": "מיקום",
+      "bottomRight": "ימין למטה",
+      "bottomLeft": "שמאל למטה",
+      "topRight": "ימין למעלה",
+      "center": "מרכז",
+      "success": "הושם סימן מים על {count} תמונות."
+    },
+    "password-generator": {
+      "name": "מחולל סיסמאות",
+      "description": "צרו סיסמה חזקה במכשיר הזה. שום דבר לא נשמר.",
+      "keywords": "סיסמה יצירה אקראי סוד",
+      "run": "יצירה",
+      "length": "אורך",
+      "lower": "אותיות קטנות",
+      "upper": "אותיות גדולות",
+      "digits": "ספרות",
+      "symbols": "סמלים",
+      "success": "הסיסמה מוכנה."
+    },
+    "case-convert": {
+      "name": "שינוי רישיות",
+      "description": "החליפו בין camel, snake, kebab, כותרת ועוד.",
+      "keywords": "רישיות camel snake kebab pascal כותרת",
+      "run": "המרה",
+      "style": "סגנון",
+      "success": "הומר."
+    },
+    "jwt-decode": {
+      "name": "מפענח JWT",
+      "description": "קראו כותרת ועומס JWT מקומית. חתימות אינן מאומתות.",
+      "keywords": "jwt פענוח אסימון bearer אימות",
+      "run": "פענוח",
+      "limits": "Kit מפענח רק Base64url. בלי מפתח אי אפשר להוכיח שהאסימון אותנטי.",
+      "hasSig": "חלק החתימה קיים (לא אומת).",
+      "noSig": "אין חלק חתימה.",
+      "empty": "הדביקו אסימון תחילה.",
+      "success": "האסימון פוענח."
+    },
+    "unix-timestamp": {
+      "name": "חותמת זמן Unix",
+      "description": "המירו זמן Unix ל-ISO ובחזרה.",
+      "keywords": "unix epoch חותמת iso תאריך",
+      "now": "שימוש בעכשיו"
+    },
+    "cron-explain": {
+      "name": "מסביר Cron",
+      "description": "הפכו ביטוי cron בן 5 שדות לשפה פשוטה.",
+      "keywords": "cron לוח crontab הסבר",
+      "run": "הסבר",
+      "success": "הוסבר."
+    },
+    "number-base": {
+      "name": "בסיס מספרים",
+      "description": "המירו מספרים שלמים בין בסיסים 2 ו-36.",
+      "keywords": "בינארי hex עשרוני בסיס המרה",
+      "value": "מספר",
+      "from": "מבסיס",
+      "to": "לבסיס"
+    },
+    "html-entities": {
+      "name": "ישויות HTML",
+      "description": "קודדו או פענוחו &lt; &amp; וישויות מספריות.",
+      "keywords": "html ישויות קידוד פענוח בריחה",
+      "run": "המרה",
+      "encode": "קידוד",
+      "decode": "פענוח",
+      "success": "הומר."
+    },
+    "json-types": {
+      "name": "JSON → TypeScript",
+      "description": "הסיקו ממשקי TypeScript מדוגמת JSON.",
+      "keywords": "json typescript interface סוג יצירה",
+      "run": "יצירת סוגים",
+      "success": "הסוגים נוצרו."
+    }
+  },
+  "legal": {
+    "lastUpdated": "עודכן לאחרונה",
+    "privacyTitle": "מדיניות פרטיות",
+    "termsTitle": "תנאי שימוש"
+  },
+  "notFound": {
+    "title": "העמוד לא נמצא",
+    "body": "הכתובת הזאת אינה ב-Kit. חזרו הביתה ובחרו כלי משם.",
+    "home": "חזרה לבית"
+  },
+  "errorPage": {
+    "title": "משהו השתבש",
+    "body": "הפעולה האחרונה נכשלה בדפדפן הזה. אפשר לנסות שוב בלי לעזוב את העמוד.",
+    "retry": "נסה שוב"
+  }
+}

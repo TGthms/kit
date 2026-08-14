@@ -1,11 +1,9 @@
-import { redirect } from "next/navigation";
-import { defaultLocale } from "@/lib/i18n/config";
+import { LocaleGate } from "@/components/layout/locale-gate";
 
 /**
- * Root entry for static export.
- * With `basePath` set, next/navigation `redirect` paths are app-relative
- * (do not prefix basePath manually — Next adds it).
+ * Static `/` entry: pick a locale from stored preference or the browser
+ * language, then replace to `/{locale}/`.
  */
 export default function RootPage() {
-  redirect(`/${defaultLocale}/`);
+  return <LocaleGate />;
 }

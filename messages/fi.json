@@ -1,0 +1,735 @@
+{
+  "meta": {
+    "title": "Kit — Selaintyökalut, jotka pysyvät yksityisinä",
+    "description": "PDF-, kuva-, media-, muunto- ja tekstityökalut toimivat laitteellasi. Mitään ei ladata palvelimillemme."
+  },
+  "brand": {
+    "name": "Kit",
+    "tagline": "Arjen työkalut selaimessa. Yksityinen suunnittelultaan."
+  },
+  "nav": {
+    "home": "Koti",
+    "tools": "Työkalut",
+    "history": "Historia",
+    "favorites": "Suosikit",
+    "settings": "Asetukset",
+    "searchPlaceholder": "Hae työkaluja…",
+    "openMenu": "Avaa valikko",
+    "closeMenu": "Sulje valikko"
+  },
+  "footer": {
+    "privacy": "Tietosuojakäytäntö",
+    "terms": "Käyttöehdot",
+    "aboutMe": "Tietoa minusta",
+    "license": "MIT-lisenssi",
+    "copyright": "© {year} Tim G (TGthms). Kit on avointa lähdekoodia MIT-lisenssillä.",
+    "github": "GitHub"
+  },
+  "common": {
+    "cancel": "Peruuta",
+    "clear": "Tyhjennä",
+    "close": "Sulje",
+    "copy": "Kopioi",
+    "copied": "Kopioitu leikepöydälle",
+    "download": "Lataa",
+    "run": "Suorita",
+    "process": "Käsittele",
+    "processing": "Käsitellään…",
+    "done": "Valmis",
+    "error": "Jokin meni pieleen",
+    "retry": "Yritä uudelleen",
+    "addFiles": "Lisää tiedostoja",
+    "dropFiles": "Pudota tiedostot tähän",
+    "orBrowse": "tai selaa laitteeltasi",
+    "pasteSupported": "Voit myös liittää leikepöydältä",
+    "remove": "Poista",
+    "reorder": "Vedä järjestyksen muuttamiseksi",
+    "files": "Tiedostot",
+    "noFiles": "Ei vielä valittuja tiedostoja",
+    "quality": "Laatu",
+    "options": "Asetukset",
+    "preview": "Esikatselu",
+    "result": "Tulos",
+    "input": "Syöte",
+    "output": "Tuloste",
+    "format": "Muoto",
+    "language": "Kieli",
+    "theme": "Ulkoasu",
+    "themeSystem": "Järjestelmän mukaan",
+    "themeLight": "Vaalea",
+    "themeDark": "Tumma",
+    "loading": "Ladataan…",
+    "save": "Tallenna",
+    "delete": "Poista",
+    "confirm": "Vahvista",
+    "back": "Takaisin",
+    "allCategories": "Kaikki",
+    "pin": "Kiinnitä",
+    "unpin": "Irrota",
+    "favorite": "Lisää suosikkeihin",
+    "unfavorite": "Poista suosikeista",
+    "presets": "Esiasetukset",
+    "applyPreset": "Käytä esiasetusta",
+    "savePreset": "Tallenna esiasetukseksi",
+    "shortcuts": "Pikanäppäimet",
+    "progress": "Edistyminen",
+    "fileTooLarge": "Tämä tiedosto on suuri — käsittely voi kestää.",
+    "unsupported": "Tätä muotoa ei tueta",
+    "success": "Onnistui",
+    "warning": "Huomio",
+    "info": "Huomautus",
+    "selectAll": "Valitse kaikki",
+    "none": "Ei yhtään",
+    "reset": "Palauta",
+    "maxWidth": "Enimmäisleveys",
+    "maxHeight": "Enimmäiskorkeus",
+    "width": "Leveys",
+    "height": "Korkeus",
+    "rotate": "Kierrä",
+    "pages": "Sivut",
+    "page": "Sivu",
+    "text": "Teksti",
+    "encode": "Koodaa",
+    "decode": "Pura koodi",
+    "validate": "Tarkista",
+    "minify": "Pienennä",
+    "beautify": "Kaunista",
+    "valid": "Kelvollinen",
+    "invalid": "Virheellinen",
+    "characters": "Merkit",
+    "lines": "Rivit",
+    "from": "Mistä",
+    "to": "Mihin",
+    "start": "Alku",
+    "end": "Loppu",
+    "speed": "Nopeus",
+    "volume": "Äänenvoimakkuus",
+    "trim": "Leikkaa",
+    "extract": "Pura",
+    "batch": "Erä",
+    "limitations": "Rajoitukset",
+    "clientSideOnly": "Toimii vain selaimessasi. Tiedostojasi ei koskaan lähetetä Kit-palvelimelle.",
+    "aboutMeUrl": "https://tgthms.github.io/about/",
+    "howItWorks": "Miten se toimii ja rajoitukset"
+  },
+  "home": {
+    "title": "Mitä haluat tehdä?",
+    "subtitle": "Käytännöllisiä työkaluja tällä laitteella — ei tiliä, ei latauksia.",
+    "categories": "Luokat",
+    "popular": "Työkalut",
+    "noResults": "Mikään ei vastaa hakua.",
+    "recent": "Jatka siitä mihin jäit",
+    "pinned": "Kiinnitetty",
+    "chooseCategory": "Aloita luokasta",
+    "chooseCategoryHint": "Valitse tehtäväperhe. Työkalut on ryhmitelty, jotta voit silmäillä etsimisen sijaan.",
+    "backToCategories": "Luokat",
+    "toolsInCategory": "{count, plural, one {# työkalu} other {# työkalua}}",
+    "searchResults": "Hakutulokset",
+    "featured": "Aloita tästä",
+    "groups": {
+      "pages": "Sivut",
+      "protect": "Suojaa ja tiedot",
+      "markup": "Merkinnät",
+      "export": "Vienti / muunto",
+      "transform": "Koko ja rajaus",
+      "look": "Ulkoasu",
+      "file": "Tiedosto",
+      "clip": "Leikkeet",
+      "formats": "Muodot",
+      "write": "Kirjoittaminen",
+      "inspect": "Tarkastus",
+      "encode": "Koodaus",
+      "generate": "Luonti"
+    }
+  },
+  "categories": {
+    "pdf": "PDF",
+    "image": "Kuvat",
+    "audio": "Ääni",
+    "video": "Video",
+    "convert": "Tiedostomuunto",
+    "text": "Kirjoittaminen",
+    "pdfDesc": "Yhdistä, jaa, pakkaa ja merkitse PDF-asiakirjoja",
+    "imageDesc": "Pakkaa, skaalaa, muunna ja viimeistele valokuvia",
+    "audioDesc": "Muunna, leikkaa ja muuta vain äänen nopeutta",
+    "videoDesc": "Muunna, leikkaa, nopeuta ja irrota ääni videosta",
+    "convertDesc": "Älykäs muunto formaattien välillä (JSON, CSV, ZIP, kuvat…)",
+    "textDesc": "Vertaa tekstiä, vaihda kirjainkokoa ja muunna Markdown HTML:ksi",
+    "data": "Data",
+    "dataDesc": "JSON, YAML, CSV, XML, SQL ja formaattien välinen muunto",
+    "developer": "Kehitys",
+    "developerDesc": "Tunnisteet, tiivisteet, koodaukset, salasanat ja muut työpöytätyökalut"
+  },
+  "history": {
+    "title": "Historia",
+    "subtitle": "Mitä olet suorittanut tällä laitteella. Säilytämme vain lyhyet yhteenvedot — emme tiedostojasi.",
+    "empty": "Ei vielä toimintaa. Suorita työkalu, niin se näkyy täällä.",
+    "clear": "Tyhjennä historia",
+    "clearConfirm": "Poistetaanko kaikki historia tältä laitteelta?",
+    "openTool": "Avaa työkalu",
+    "tool": "Työkalu",
+    "when": "Milloin",
+    "summary": "Yhteenveto",
+    "status": "Tila",
+    "success": "Onnistui",
+    "failed": "Epäonnistui"
+  },
+  "favorites": {
+    "title": "Suosikit",
+    "subtitle": "Työkalut, jotka pidät yhdellä napautuksella käsillä.",
+    "empty": "Ei vielä suosikkeja. Merkitse tähti etusivulta tai työkalun sivulta."
+  },
+  "settings": {
+    "title": "Asetukset",
+    "subtitle": "Nämä valinnat pysyvät vain tässä selaimessa.",
+    "appearance": "Ulkoasu",
+    "language": "Kieli",
+    "data": "Data ja tietosuoja",
+    "clearHistory": "Tyhjennä historia",
+    "clearHistoryDesc": "Poistaa tällä sivustolla tallennetut paikalliset historiatiivistelmät.",
+    "privacyNote": "Kit käsittelee tiedostosi selaimessa. Asetukset ja historiatiivistelmät voidaan tallentaa paikallisesti. Lisätiedot ovat tietosuojakäytännössä.",
+    "viewPrivacy": "Tietosuojakäytäntö",
+    "viewTerms": "Käyttöehdot",
+    "shortcutsHelp": "Paina ? milloin tahansa nähdäksesi pikanäppäimet.",
+    "version": "Versio"
+  },
+  "shortcuts": {
+    "title": "Pikanäppäimet",
+    "global": "Kaikkialla",
+    "search": "Kohdista haku",
+    "settings": "Avaa asetukset",
+    "home": "Siirry kotiin",
+    "help": "Näytä tämä lista",
+    "run": "Suorita nykyinen työkalu",
+    "close": "Sulje"
+  },
+  "tools": {
+    "pdf-merge": {
+      "name": "Yhdistä PDF:t",
+      "description": "Pinoa useita PDF-tiedostoja yhdeksi. Esikatsele sivuja ja vedä järjestykseen.",
+      "keywords": "pdf yhdistä liitä yhdistä monisivu",
+      "run": "Yhdistä",
+      "empty": "Lisää vähintään kaksi PDF-tiedostoa.",
+      "success": "{count} tiedostoa yhdistettiin yhdeksi PDF:ksi."
+    },
+    "pdf-split": {
+      "name": "Jaa PDF",
+      "description": "Poimi sivualue uuteen PDF-tiedostoon.",
+      "keywords": "pdf jaa poimi sivut alue",
+      "run": "Jaa",
+      "range": "Sivut (esimerkiksi 1-3,5)",
+      "success": "Jaettu PDF on valmis."
+    },
+    "pdf-organize": {
+      "name": "Järjestä sivut",
+      "description": "Kierrä sivuja, poista turhat ja aseta uusi järjestys.",
+      "keywords": "pdf kierrä poista järjestä sivut",
+      "run": "Tallenna PDF",
+      "success": "PDF on päivitetty."
+    },
+    "pdf-compress": {
+      "name": "Pakkaa PDF",
+      "description": "Pienennä kokoa koodaamalla sivukuvat uudelleen (laatukompromissi).",
+      "keywords": "pdf pakkaa pienennä koko",
+      "run": "Pakkaa",
+      "note": "Häviöllinen polku — sivut voidaan rasteroida. Toimii parhaiten kuvapainotteisissa PDF:issä.",
+      "success": "Pakattu PDF on valmis ladattavaksi."
+    },
+    "pdf-watermark": {
+      "name": "PDF-vesileima",
+      "description": "Leimaa teksti vesileimaksi, ylätunnisteeksi tai alatunnisteeksi jokaiselle sivulle.",
+      "keywords": "pdf vesileima leima ylätunniste alatunniste luottamuksellinen",
+      "run": "Käytä",
+      "text": "Vesileimateksti",
+      "position": "Sijoittelu",
+      "header": "Ylätunniste",
+      "footer": "Alatunniste",
+      "center": "Vinosti keskellä",
+      "opacity": "Peittävyys",
+      "success": "Vesileima lisätty."
+    },
+    "pdf-redact": {
+      "name": "Peitä sisältö",
+      "description": "Aseta mustia laatikoita arkaluontoisten alueiden päälle (visuaalinen peitto).",
+      "keywords": "pdf peitä mustaa piilota arkaluontoinen",
+      "run": "Käytä peittoa",
+      "note": "Vain visuaalinen peitto. Se ei takaa kaikkien tekstivirtojen poistoa — tarkista arkaluontoiset asiakirjat.",
+      "success": "Peittolaatikot lisätty."
+    },
+    "pdf-extract": {
+      "name": "Pura PDF:stä",
+      "description": "Poimi luettava teksti tai vie sivu kuvana.",
+      "keywords": "pdf pura teksti kuvat",
+      "run": "Pura",
+      "modeText": "Teksti",
+      "modeImages": "Kuvat",
+      "success": "Purku valmis.",
+      "imagesReady": "Vietiin {count} sivukuvaa ZIP-tiedostona."
+    },
+    "image-compress": {
+      "name": "Pakkaa kuvat",
+      "description": "Laske laatua ja enimmäiskokoa, jotta kuvat pysyvät jaettavina.",
+      "keywords": "kuva pakkaa jpg png webp koko valokuva",
+      "run": "Pakkaa",
+      "success": "Pakattiin {count} kuvaa."
+    },
+    "image-resize": {
+      "name": "Muuta kuvien kokoa",
+      "description": "Aseta tarkat mitat, valinnaisesti lukitulla kuvasuhteella.",
+      "keywords": "kuva koko skaalaa leveys korkeus",
+      "run": "Muuta kokoa",
+      "lockAspect": "Säilytä kuvasuhde",
+      "success": "Muutettiin {count} kuvan kokoa."
+    },
+    "image-crop": {
+      "name": "Rajaa kuva",
+      "description": "Säilytä vain haluamasi suorakulmio.",
+      "keywords": "kuva rajaa leikkaa alue",
+      "run": "Rajaa",
+      "success": "Rajattu kuva on valmis."
+    },
+    "image-convert": {
+      "name": "Muunna kuvamuoto",
+      "description": "Vaihda JPEG-, PNG-, WEBP- ja vastaavien verkkomuotojen välillä.",
+      "keywords": "kuva muunna muoto webp avif png jpg jpeg",
+      "run": "Muunna",
+      "success": "Muunnettiin {count} kuvaa."
+    },
+    "image-metadata": {
+      "name": "Kuvan metatiedot",
+      "description": "Tarkastele EXIF- ja vastaavia tunnisteita ja vie puhdas kopio ilman niitä.",
+      "keywords": "kuva exif metatiedot poista tietosuoja sijainti",
+      "run": "Poista metatiedot",
+      "note": "Pikselit koodataan uudelleen selaimessa, joten upotetut metatiedot poistuvat.",
+      "success": "Metatiedot poistettiin {count} kuvasta.",
+      "tag": "Tunniste",
+      "value": "Arvo",
+      "noExif": "Tässä tiedostossa ei ole luettavia EXIF- tai tekstimetatietoja."
+    },
+    "image-adjust": {
+      "name": "Säädä kuvaa",
+      "description": "Muuta kirkkautta, kontrastia ja värikylläisyyttä.",
+      "keywords": "kuva kirkkaus kontrasti kylläisyys väri",
+      "run": "Käytä",
+      "brightness": "Kirkkaus",
+      "contrast": "Kontrasti",
+      "saturation": "Värikylläisyys",
+      "success": "Säädettiin {count} kuvaa."
+    },
+    "convert-hub": {
+      "name": "Älykäs muunto",
+      "description": "Tunnistaa sekoitetut tiedosto- tai tekstityypit ja muuntaa formaattien välillä (ei mediastudio).",
+      "keywords": "muunto keskus älykäs erä json yaml csv zip kuva data",
+      "run": "Muunna",
+      "detect": "Tunnistettu",
+      "chooseOutput": "Tulostemuoto",
+      "success": "Muunto valmis."
+    },
+    "json-format": {
+      "name": "JSON-muotoilija",
+      "description": "Sisenna, pienennä ja havaitse JSON-virheet ajoissa.",
+      "keywords": "json muotoile tarkista pienennä pretty",
+      "run": "Muotoile",
+      "success": "JSON on kelvollinen ja muotoiltu."
+    },
+    "yaml-format": {
+      "name": "YAML-muotoilija",
+      "description": "Tarkista YAML-rakenne ja siisti asettelu.",
+      "keywords": "yaml muotoile tarkista yml",
+      "run": "Muotoile",
+      "success": "YAML on kelvollinen."
+    },
+    "toml-format": {
+      "name": "TOML-muotoilija",
+      "description": "Tarkista TOML ja pidä tiedosto siistinä.",
+      "keywords": "toml muotoile tarkista config",
+      "run": "Muotoile",
+      "success": "TOML on kelvollinen."
+    },
+    "markdown-html": {
+      "name": "Markdown ↔ HTML",
+      "description": "Muuta Markdown HTML:ksi tai HTML takaisin Markdowniksi.",
+      "keywords": "markdown html muunna md merkintä",
+      "run": "Muunna",
+      "toHtml": "Markdown → HTML",
+      "toMd": "HTML → Markdown",
+      "success": "Muunnettu."
+    },
+    "csv-json": {
+      "name": "CSV ↔ JSON",
+      "description": "Siirrä taulukkodataa CSV:n ja JSON-taulukoiden välillä.",
+      "keywords": "csv json muunna taulukko laskentataulukko",
+      "run": "Muunna",
+      "toJson": "CSV → JSON",
+      "toCsv": "JSON → CSV",
+      "success": "Muunnettu."
+    },
+    "text-diff": {
+      "name": "Tekstivertailu",
+      "description": "Näe rivikohtaiset muutokset kahden version välillä.",
+      "keywords": "diff vertaa teksti muutokset patch",
+      "run": "Vertaa",
+      "left": "Alkuperäinen",
+      "right": "Päivitetty",
+      "success": "Vertailu valmis."
+    },
+    "base64": {
+      "name": "Base64",
+      "description": "Koodaa tai pura Base64 pelkkänä tekstinä tai kokonaisina tiedostoina.",
+      "keywords": "base64 koodaa pura binääri",
+      "run": "Muunna",
+      "mode": "Suunta",
+      "textMode": "Teksti",
+      "fileMode": "Tiedosto",
+      "success": "Valmis."
+    },
+    "url-encode": {
+      "name": "URL-koodaus",
+      "description": "Prosenttikoodaa tai pura URL-osia turvallisesti.",
+      "keywords": "url koodaa pura prosentti uri kysely",
+      "run": "Muunna",
+      "success": "Valmis."
+    },
+    "audio-convert": {
+      "name": "Muunna ääntä",
+      "description": "Vaihda äänisäiliöitä kuten MP3, WAV ja OGG selaimessa.",
+      "keywords": "ääni muunna mp3 wav ogg ffmpeg ääni",
+      "run": "Muunna",
+      "loadingFfmpeg": "Ladataan äänimoottoria…",
+      "note": "Käyttää yksisäikeistä FFmpeg WASM:ia. Suuret tiedostot voivat olla hitaita; koodekkituki on rajallinen.",
+      "success": "Äänen muunto valmis."
+    },
+    "audio-trim": {
+      "name": "Leikkaa ääntä",
+      "description": "Säilytä vain kahden aikaleiman välinen jakso äänitiedostosta.",
+      "keywords": "ääni leikkaa clip mp3 wav",
+      "run": "Leikkaa",
+      "success": "Äänen leikkaus valmis."
+    },
+    "audio-speed": {
+      "name": "Äänen nopeus ja voimakkuus",
+      "description": "Nopeuta, hidasta tai muuta äänenvoimakkuutta.",
+      "keywords": "ääni nopeus tempo voimakkuus sävelkorkeus",
+      "run": "Käytä",
+      "success": "Käsitelty ääni on valmis."
+    },
+    "video-convert": {
+      "name": "Muunna video",
+      "description": "Vaihda videosäiliöitä kuten MP4 ja WEBM selaimessa.",
+      "keywords": "video muunna mp4 webm ffmpeg elokuva",
+      "run": "Muunna",
+      "loadingFfmpeg": "Ladataan videomoottoria…",
+      "note": "Käyttää yksisäikeistä FFmpeg WASM:ia. Suuret tiedostot voivat olla hitaita; koodekkituki on rajallinen.",
+      "success": "Videon muunto valmis."
+    },
+    "video-trim": {
+      "name": "Leikkaa video",
+      "description": "Säilytä vain kahden aikaleiman välinen leike.",
+      "keywords": "video leikkaa clip mp4",
+      "run": "Leikkaa",
+      "success": "Videon leikkaus valmis."
+    },
+    "video-speed": {
+      "name": "Videon nopeus ja voimakkuus",
+      "description": "Muuta videon toistonopeutta ja äänitasoa.",
+      "keywords": "video nopeus tempo voimakkuus",
+      "run": "Käytä",
+      "success": "Käsitelty video on valmis."
+    },
+    "video-extract-audio": {
+      "name": "Pura ääni videosta",
+      "description": "Tallenna videon ääniraita äänitiedostona.",
+      "keywords": "video pura ääni mp3 ääniraita",
+      "run": "Pura ääni",
+      "success": "Ääni purettu."
+    },
+    "pdf-numbers": {
+      "name": "Sivunumerot",
+      "description": "Leimaa sivumerkintä kuten 1 / 12 jokaiselle sivulle.",
+      "keywords": "pdf sivunumerot alatunniste ylätunniste sivutus",
+      "run": "Lisää numerot",
+      "template": "Merkintä ({page} ja {pages})",
+      "position": "Sijoittelu",
+      "start": "Aloita kohdasta",
+      "headerLeft": "Ylätunniste vasen",
+      "headerCenter": "Ylätunniste keski",
+      "headerRight": "Ylätunniste oikea",
+      "footerLeft": "Alatunniste vasen",
+      "footerCenter": "Alatunniste keski",
+      "footerRight": "Alatunniste oikea",
+      "success": "Sivunumerot lisätty."
+    },
+    "pdf-to-images": {
+      "name": "PDF → kuvat",
+      "description": "Rasteroi jokainen sivu JPEG-kuvaksi ja lataa ne ZIP-tiedostona.",
+      "keywords": "pdf kuva jpg jpeg zip sivut vienti",
+      "run": "Vie sivut",
+      "limits": "Sivut piirretään PDF.js:llä tässä välilehdessä. Hyvin suuret asiakirjat voivat olla hitaita ja käyttää paljon muistia. Tämä on visuaalinen rasteri, ei upotettujen kuvaobjektien poiminta.",
+      "success": "Vietiin {count} sivua."
+    },
+    "images-to-pdf": {
+      "name": "Kuvat → PDF",
+      "description": "Pinoa valokuvat PDF:ksi, yksi kuva per sivu.",
+      "keywords": "kuvat pdf jpg png yhdistä",
+      "run": "Luo PDF",
+      "success": "Luotiin PDF {count} kuvasta."
+    },
+    "pdf-flatten": {
+      "name": "Litistä lomakkeet",
+      "description": "Paista AcroForm-kentät sivulle niin, ettei niitä voi enää muokata.",
+      "keywords": "pdf litistä lomake kentät acroform",
+      "run": "Litistä",
+      "limits": "Toimii tavallisilla AcroForm-kentillä. Dynaamisia XFA-lomakkeita ei tueta täysin.",
+      "success": "Litistettiin {count} kenttää."
+    },
+    "pdf-metadata": {
+      "name": "PDF-metatiedot",
+      "description": "Tarkastele, muokkaa tai poista otsikko, tekijä ja muut Info-kentät.",
+      "keywords": "Avainsanat",
+      "run": "Tallenna metatiedot",
+      "strip": "Poista kaikki kentät",
+      "title": "Otsikko",
+      "author": "Tekijä",
+      "subject": "Aihe",
+      "creator": "Luonut",
+      "producer": "Tuottaja",
+      "saved": "Metatiedot tallennettu.",
+      "stripped": "Metatiedot poistettu."
+    },
+    "pdf-protect": {
+      "name": "Lukitse tai avaa PDF",
+      "description": "Lisää tai poista käyttäjän salasana. Salaus pysyy tässä selaimessa.",
+      "keywords": "pdf salasana lukitse avaa salaa",
+      "run": "Käytä",
+      "lock": "Lukitse",
+      "unlock": "Avaa",
+      "password": "Salasana",
+      "limits": "Käyttää asiakaspuolen PDF-salauskirjastoa. Jotkin vanhat tai epätavalliset salausversiot eivät ehkä aukea. Kit ei koskaan lähetä tiedostoa tai salasanaa palvelimelle.",
+      "success": "PDF on valmis."
+    },
+    "image-rotate": {
+      "name": "Kierrä ja peilaa",
+      "description": "Käännä kuvia 90° kerrallaan tai peilaa vaakasuunnassa tai pystysuunnassa.",
+      "keywords": "kuva kierrä peilaa",
+      "run": "Käytä",
+      "operation": "Muunnos",
+      "rot90": "Kierrä 90°",
+      "rot180": "Kierrä 180°",
+      "rot270": "Kierrä 270°",
+      "flipH": "Peilaa vaakasuunnassa",
+      "flipV": "Peilaa pystysuunnassa",
+      "success": "Muunnettiin {count} kuvaa."
+    },
+    "image-filters": {
+      "name": "Kuvasuodattimet",
+      "description": "Käytä harmaasävyä, seepiaa tai inversiota yhteen tai useaan kuvaan.",
+      "keywords": "kuva suodatin harmaasävy seepia inversio",
+      "run": "Käytä",
+      "filter": "Suodatin",
+      "grayscale": "Harmaasävy",
+      "sepia": "Seepia",
+      "invert": "Inversio",
+      "success": "Suodatettiin {count} kuvaa."
+    },
+    "image-favicon": {
+      "name": "Favicon-paketti",
+      "description": "Vie lähdekuva yleisinä kuvakekokoina ZIP-tiedostoon.",
+      "keywords": "favicon icon 16 32 180 192 512 apple touch",
+      "run": "Vie kuvakkeet",
+      "note": "Vie PNG-tiedostot koossa 16, 32, 48, 180, 192 ja 512 pikseliä.",
+      "success": "Kuvakepaketti on valmis."
+    },
+    "video-gif": {
+      "name": "Video → GIF",
+      "description": "Muuta lyhyt leike silmukoivaksi GIF:ksi selaimessa.",
+      "keywords": "video gif leike muunna ffmpeg",
+      "run": "Tee GIF",
+      "limits": "Käyttää FFmpeg WASM:ia. Pidä leikkeet lyhyinä — GIF-koodaus on hidasta ja muistia vievää. Paletti ja koodekit noudattavat selainkoontia.",
+      "success": "GIF on valmis."
+    },
+    "xml-json": {
+      "name": "XML ↔ JSON",
+      "description": "Muunna XML-asiakirjat JSON:ksi tai JSON takaisin XML:ksi.",
+      "keywords": "xml json muunna jäsennä",
+      "run": "Muunna",
+      "toJson": "XML → JSON",
+      "toXml": "JSON → XML",
+      "success": "Muunnettu."
+    },
+    "sql-format": {
+      "name": "SQL-muotoilija",
+      "description": "Kaunista SQL, jotta lausekkeet ja listat ovat helpompia lukea.",
+      "keywords": "sql muotoile pretty kysely",
+      "run": "Muotoile",
+      "success": "SQL muotoiltu."
+    },
+    "regex-tester": {
+      "name": "Säännöllisen lausekkeen testaaja",
+      "description": "Kokeile säännöllistä lauseketta esimerkkitekstiin ja korvaa osumat.",
+      "keywords": "regex säännöllinen lauseke testi korvaa",
+      "pattern": "Kuvio",
+      "flags": "Liput",
+      "input": "Esimerkkiteksti",
+      "replace": "Korvaus",
+      "runReplace": "Korvaa",
+      "matches": "{count, plural, one {# osuma} other {# osumaa}}",
+      "success": "Korvaus valmis."
+    },
+    "hash-generator": {
+      "name": "Tiivistegeneraattori",
+      "description": "SHA-1/256/384/512 ja MD5 tekstistä tai tiedostosta, lasketaan paikallisesti.",
+      "keywords": "hash sha256 md5 sha1 tarkiste tiiviste",
+      "run": "Tiivistä",
+      "algo": "Algoritmi",
+      "digest": "Tiiviste",
+      "limits": "Tiivisteet lasketaan tässä selaimessa (Web Crypto SHA:lle, paikallinen MD5). MD5 ei ole törmäyskestävä — käytä sitä vain tarkisteisiin.",
+      "success": "Tiiviste valmis."
+    },
+    "uuid-generator": {
+      "name": "UUID-generaattori",
+      "description": "Luo version 4 tai 7 UUID:itä tällä laitteella.",
+      "keywords": "uuid guid v4 v7 luo",
+      "run": "Luo",
+      "count": "Kuinka monta",
+      "version": "Versio",
+      "success": "UUID:t luotu."
+    },
+    "color-convert": {
+      "name": "Värimuunnin",
+      "description": "Muunna HEX-, RGB-, HSL- ja HSV-arvojen välillä värivalitsimella.",
+      "keywords": "väri hex rgb hsl hsv valitsin",
+      "picker": "Värivalitsin",
+      "invalid": "Anna 3- tai 6-merkkinen heksaväri."
+    },
+    "lorem-ipsum": {
+      "name": "Lorem ipsum",
+      "description": "Luo paikkamerkkikappaleita, lauseita tai sanoja.",
+      "keywords": "lorem ipsum paikkamerkki dummy teksti",
+      "run": "Luo",
+      "count": "Määrä",
+      "mode": "Tila",
+      "paragraphs": "Kappaleet",
+      "sentences": "Lauseet",
+      "words": "Sanat",
+      "success": "Teksti luotu."
+    },
+    "qr-code": {
+      "name": "QR-koodi",
+      "description": "Luo QR-koodi tekstistä tai lue se kuvasta.",
+      "keywords": "qr koodi luo skannaa lue viivakoodi",
+      "run": "Luo",
+      "payload": "Teksti tai URL",
+      "read": "Lue kuvasta",
+      "runRead": "Lue QR",
+      "generated": "QR-koodi valmis.",
+      "decoded": "QR-sisältö luettu.",
+      "none": "Kuvasta ei löytynyt QR-koodia."
+    },
+    "pdf-sign": {
+      "name": "Allekirjoita PDF",
+      "description": "Leimaa kirjoitettu allekirjoitus jokaiselle sivulle. Vain visuaalinen — ei varmenne.",
+      "keywords": "pdf allekirjoita leima nimi",
+      "run": "Allekirjoita",
+      "signature": "Allekirjoitusteksti",
+      "placeholder": "Nimesi",
+      "limits": "Tämä piirtää nimesi sivulle. Se ei ole kryptografinen digitaalinen allekirjoitus.",
+      "success": "Allekirjoitus leimattu."
+    },
+    "image-watermark": {
+      "name": "Vesileimaa kuvat",
+      "description": "Lisää teksti valokuviin, yksi tiedosto tai koko erä.",
+      "keywords": "kuva vesileima leima tekijänoikeus",
+      "run": "Käytä",
+      "text": "Vesileimateksti",
+      "position": "Sijoittelu",
+      "bottomRight": "Alhaalla oikealla",
+      "bottomLeft": "Alhaalla vasemmalla",
+      "topRight": "Ylhäällä oikealla",
+      "center": "Keskellä",
+      "success": "Vesileima lisättiin {count} kuvaan."
+    },
+    "password-generator": {
+      "name": "Salasanageneraattori",
+      "description": "Luo vahva salasana tällä laitteella. Mitään ei tallenneta.",
+      "keywords": "salasana luo satunnainen salainen",
+      "run": "Luo",
+      "length": "Pituus",
+      "lower": "Pienaakkoset",
+      "upper": "Suuraakkoset",
+      "digits": "Numerot",
+      "symbols": "Symbolit",
+      "success": "Salasana valmis."
+    },
+    "case-convert": {
+      "name": "Vaihda kirjainkoko",
+      "description": "Vaihda camel-, snake-, kebab-, title-tyylien ja muiden välillä.",
+      "keywords": "kirjainkoko camel snake kebab pascal title",
+      "run": "Muunna",
+      "style": "Tyyli",
+      "success": "Muunnettu."
+    },
+    "jwt-decode": {
+      "name": "JWT-purkaja",
+      "description": "Lue JWT-otsikko ja sisältö paikallisesti. Allekirjoituksia ei varmenneta.",
+      "keywords": "jwt pura token bearer auth",
+      "run": "Pura",
+      "limits": "Kit purkaa vain Base64url:n. Ilman avainta se ei voi todistaa tunnisteen aitoutta.",
+      "hasSig": "Allekirjoitusosa on läsnä (ei varmennettu).",
+      "noSig": "Ei allekirjoitusosaa.",
+      "empty": "Liitä ensin token.",
+      "success": "Token purettu."
+    },
+    "unix-timestamp": {
+      "name": "Unix-aikaleima",
+      "description": "Muunna Unix-aika ISO-muotoon ja takaisin.",
+      "keywords": "unix epoch aikaleima iso päivämäärä",
+      "now": "Käytä nykyhetkeä"
+    },
+    "cron-explain": {
+      "name": "Cron-selittäjä",
+      "description": "Muuta 5-kenttäinen cron-lauseke selkokieleksi.",
+      "keywords": "cron aikataulu crontab selitä",
+      "run": "Selitä",
+      "success": "Selitetty."
+    },
+    "number-base": {
+      "name": "Lukujärjestelmä",
+      "description": "Muunna kokonaislukuja kantalukujen 2 ja 36 välillä.",
+      "keywords": "binääri hex desimaali kanta muunna",
+      "value": "Luku",
+      "from": "Lähtökanta",
+      "to": "Kohdekanta"
+    },
+    "html-entities": {
+      "name": "HTML-entiteetit",
+      "description": "Koodaa tai pura &lt; &amp; ja numeeriset entiteetit.",
+      "keywords": "html entiteetit koodaa pura escape",
+      "run": "Muunna",
+      "encode": "Koodaa",
+      "decode": "Pura",
+      "success": "Muunnettu."
+    },
+    "json-types": {
+      "name": "JSON → TypeScript",
+      "description": "Päättele TypeScript-rajapinnat JSON-esimerkistä.",
+      "keywords": "json typescript interface tyyppi luo",
+      "run": "Luo tyypit",
+      "success": "Tyypit luotu."
+    }
+  },
+  "legal": {
+    "lastUpdated": "Viimeksi päivitetty",
+    "privacyTitle": "Tietosuojakäytäntö",
+    "termsTitle": "Käyttöehdot"
+  },
+  "notFound": {
+    "title": "Sivua ei löytynyt",
+    "body": "Tätä osoitetta ei ole Kitissä. Palaa kotiin ja valitse työkalu sieltä.",
+    "home": "Takaisin kotiin"
+  },
+  "errorPage": {
+    "title": "Jokin meni pieleen",
+    "body": "Viimeinen toiminto epäonnistui tässä selaimessa. Voit yrittää uudelleen poistumatta sivulta.",
+    "retry": "Yritä uudelleen"
+  }
+}

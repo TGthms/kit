@@ -1,0 +1,735 @@
+{
+  "meta": {
+    "title": "Kit — Böngészős eszközök, amelyek privátak maradnak",
+    "description": "A PDF, a képek, a média, az átalakítók és a szöveges eszközök az eszközödön futnak. Semmit nem töltünk fel a szervereinkre."
+  },
+  "brand": {
+    "name": "Kit",
+    "tagline": "Mindennapi eszközök a böngészőben. Alapból privát."
+  },
+  "nav": {
+    "home": "Kezdőlap",
+    "tools": "Eszközök",
+    "history": "Előzmények",
+    "favorites": "Kedvencek",
+    "settings": "Beállítások",
+    "searchPlaceholder": "Eszközök keresése…",
+    "openMenu": "Menü megnyitása",
+    "closeMenu": "Menü bezárása"
+  },
+  "footer": {
+    "privacy": "Adatvédelmi irányelvek",
+    "terms": "Felhasználási feltételek",
+    "aboutMe": "Rólam",
+    "license": "MIT-licenc",
+    "copyright": "© {year} Tim G (TGthms). A Kit nyílt forráskódú, MIT-licenc alatt.",
+    "github": "GitHub"
+  },
+  "common": {
+    "cancel": "Mégse",
+    "clear": "Törlés",
+    "close": "Bezárás",
+    "copy": "Másolás",
+    "copied": "Vágólapra másolva",
+    "download": "Letöltés",
+    "run": "Futtatás",
+    "process": "Feldolgozás",
+    "processing": "Feldolgozás…",
+    "done": "Kész",
+    "error": "Valami hiba történt",
+    "retry": "Újrapróbálás",
+    "addFiles": "Fájlok hozzáadása",
+    "dropFiles": "Húzd ide a fájlokat",
+    "orBrowse": "vagy tallózz az eszközödről",
+    "pasteSupported": "A vágólapról is beilleszthetsz",
+    "remove": "Eltávolítás",
+    "reorder": "Húzd a sorrend módosításához",
+    "files": "Fájlok",
+    "noFiles": "Még nincs kijelölt fájl",
+    "quality": "Minőség",
+    "options": "Beállítások",
+    "preview": "Előnézet",
+    "result": "Eredmény",
+    "input": "Bemenet",
+    "output": "Kimenet",
+    "format": "Formátum",
+    "language": "Nyelv",
+    "theme": "Megjelenés",
+    "themeSystem": "Rendszer szerint",
+    "themeLight": "Világos",
+    "themeDark": "Sötét",
+    "loading": "Betöltés…",
+    "save": "Mentés",
+    "delete": "Törlés",
+    "confirm": "Megerősítés",
+    "back": "Vissza",
+    "allCategories": "Összes",
+    "pin": "Kitűzés",
+    "unpin": "Kitűzés feloldása",
+    "favorite": "Hozzáadás a kedvencekhez",
+    "unfavorite": "Eltávolítás a kedvencekből",
+    "presets": "Előbeállítások",
+    "applyPreset": "Előbeállítás használata",
+    "savePreset": "Mentés előbeállításként",
+    "shortcuts": "Billentyűparancsok",
+    "progress": "Folyamat",
+    "fileTooLarge": "Ez a fájl nagy — a feldolgozás eltarthat egy ideig.",
+    "unsupported": "Ez a formátum nem támogatott",
+    "success": "Siker",
+    "warning": "Figyelem",
+    "info": "Megjegyzés",
+    "selectAll": "Összes kijelölése",
+    "none": "Egyik sem",
+    "reset": "Visszaállítás",
+    "maxWidth": "Max. szélesség",
+    "maxHeight": "Max. magasság",
+    "width": "Szélesség",
+    "height": "Magasság",
+    "rotate": "Forgatás",
+    "pages": "Oldalak",
+    "page": "Oldal",
+    "text": "Szöveg",
+    "encode": "Kódolás",
+    "decode": "Dekódolás",
+    "validate": "Ellenőrzés",
+    "minify": "Tömörítés",
+    "beautify": "Szép formázás",
+    "valid": "Érvényes",
+    "invalid": "Érvénytelen",
+    "characters": "Karakterek",
+    "lines": "Sorok",
+    "from": "Ettől",
+    "to": "Eddig",
+    "start": "Kezdet",
+    "end": "Vég",
+    "speed": "Sebesség",
+    "volume": "Hangerő",
+    "trim": "Vágás",
+    "extract": "Kinyerés",
+    "batch": "Köteg",
+    "limitations": "Korlátok",
+    "clientSideOnly": "Csak a böngésződben fut. A fájljaid soha nem mennek Kit-szerverre.",
+    "aboutMeUrl": "https://tgthms.github.io/about/",
+    "howItWorks": "Hogyan működik és korlátok"
+  },
+  "home": {
+    "title": "Mit szeretnél csinálni?",
+    "subtitle": "Hasznos eszközök ezen a készüléken — nincs fiók, nincs feltöltés.",
+    "categories": "Kategóriák",
+    "popular": "Eszközök",
+    "noResults": "Nincs találat erre a keresésre.",
+    "recent": "Folytatás onnan, ahol abbahagytad",
+    "pinned": "Kitűzve",
+    "chooseCategory": "Kezdd egy kategóriával",
+    "chooseCategoryHint": "Válassz egy feladattípust. Az eszközök csoportosítva vannak, hogy át tudd futni őket, ne keresgélj.",
+    "backToCategories": "Kategóriák",
+    "toolsInCategory": "{count, plural, one {# eszköz} other {# eszköz}}",
+    "searchResults": "Keresési találatok",
+    "featured": "Itt kezdd",
+    "groups": {
+      "pages": "Oldalak",
+      "protect": "Védelem és infó",
+      "markup": "Jelölések",
+      "export": "Exportálás / átalakítás",
+      "transform": "Méret és vágás",
+      "look": "Megjelenés",
+      "file": "Fájl",
+      "clip": "Klipek",
+      "formats": "Formátumok",
+      "write": "Írás",
+      "inspect": "Vizsgálat",
+      "encode": "Kódolás",
+      "generate": "Előállítás"
+    }
+  },
+  "categories": {
+    "pdf": "PDF",
+    "image": "Képek",
+    "audio": "Hang",
+    "video": "Videó",
+    "convert": "Fájlátalakítás",
+    "text": "Írás",
+    "pdfDesc": "PDF-ek egyesítése, darabolása, tömörítése és megjelölése",
+    "imageDesc": "Fotók tömörítése, átméretezése, átalakítása és utómunkája",
+    "audioDesc": "Hang konvertálása, vágása és tempójának módosítása",
+    "videoDesc": "Videó konvertálása, vágása, gyorsítása és hang kinyerése",
+    "convertDesc": "Okos konverzió formátumok között (JSON, CSV, ZIP, képek…)",
+    "textDesc": "Szöveg összevetése, kis- és nagybetű váltása, Markdown HTML-lé",
+    "data": "Adatok",
+    "dataDesc": "JSON, YAML, CSV, XML, SQL és formátumok közötti konverzió",
+    "developer": "Fejlesztői",
+    "developerDesc": "Tokenek, hashek, kódolások, jelszavak és egyéb műhelyeszközök"
+  },
+  "history": {
+    "title": "Előzmények",
+    "subtitle": "Amit ezen a készüléken futtattál. Csak rövid összefoglalókat tartunk meg — soha nem a fájljaidat.",
+    "empty": "Még nincs tevékenység. Futtass egy eszközt, és itt megjelenik.",
+    "clear": "Előzmények törlése",
+    "clearConfirm": "Törlöd az összes előzményt ezen a készüléken?",
+    "openTool": "Eszköz megnyitása",
+    "tool": "Eszköz",
+    "when": "Mikor",
+    "summary": "Összefoglaló",
+    "status": "Állapot",
+    "success": "Sikeres",
+    "failed": "Sikertelen"
+  },
+  "favorites": {
+    "title": "Kedvencek",
+    "subtitle": "Eszközök kéznél, egy koppintásra.",
+    "empty": "Még nincs kedvenced. Csillagozz egy eszközt a kezdőlapon vagy a saját oldalán."
+  },
+  "settings": {
+    "title": "Beállítások",
+    "subtitle": "Ezek a választások csak ebben a böngészőben maradnak.",
+    "appearance": "Megjelenés",
+    "language": "Nyelv",
+    "data": "Adatok és adatvédelem",
+    "clearHistory": "Előzmények törlése",
+    "clearHistoryDesc": "Eltávolítja az oldal által tárolt helyi előzmény-összefoglalókat.",
+    "privacyNote": "A Kit a böngészőben dolgozza fel a fájljaidat. A beállítások és az előzmény-összefoglalók helyben mentődhetnek. A részletek az Adatvédelmi irányelvekben vannak.",
+    "viewPrivacy": "Adatvédelmi irányelvek",
+    "viewTerms": "Felhasználási feltételek",
+    "shortcutsHelp": "Bármikor nyomj ?-t a billentyűparancsokhoz.",
+    "version": "Verzió"
+  },
+  "shortcuts": {
+    "title": "Billentyűparancsok",
+    "global": "Mindenhol",
+    "search": "Keresés fókuszálása",
+    "settings": "Beállítások megnyitása",
+    "home": "Ugrás a kezdőlapra",
+    "help": "Lista megjelenítése",
+    "run": "Aktuális eszköz futtatása",
+    "close": "Bezárás"
+  },
+  "tools": {
+    "pdf-merge": {
+      "name": "PDF-ek egyesítése",
+      "description": "Több PDF egymásra rakása egyetlen fájlba. Oldalak előnézete és húzás a sorrendhez.",
+      "keywords": "pdf egyesítés összevonás összekapcsolás fűzés többoldalas",
+      "run": "Egyesítés",
+      "empty": "Adj hozzá legalább két PDF-fájlt.",
+      "success": "{count} fájl egyesítve egy PDF-fé."
+    },
+    "pdf-split": {
+      "name": "PDF darabolása",
+      "description": "Oldaltartomány kinyerése egy vadonatúj PDF-be.",
+      "keywords": "pdf darabolás kinyerés oldalak tartomány",
+      "run": "Darabolás",
+      "range": "Oldalak (például 1-3,5)",
+      "success": "A darabolt PDF kész."
+    },
+    "pdf-organize": {
+      "name": "Oldalak rendezése",
+      "description": "Oldalak forgatása, a feleslegesek törlése és új sorrend beállítása.",
+      "keywords": "pdf forgatás törlés átrendezés rendezés oldalak",
+      "run": "PDF mentése",
+      "success": "A PDF frissült."
+    },
+    "pdf-compress": {
+      "name": "PDF tömörítése",
+      "description": "Fájlméret csökkentése az oldalak képeinek újrakódolásával (minőségi kompromisszum).",
+      "keywords": "pdf tömörítés csökkentés méret kisebb",
+      "run": "Tömörítés",
+      "note": "Ez veszteséges út — az oldalak raszterizálódhatnak. Képdús PDF-eken működik a legjobban.",
+      "success": "A tömörített PDF letölthető."
+    },
+    "pdf-watermark": {
+      "name": "PDF vízjel",
+      "description": "Szöveg pecsételése vízjelként, élőfejként vagy élőlábként minden oldalra.",
+      "keywords": "pdf vízjel pecsét élőfej élőláb bizalmas",
+      "run": "Alkalmazás",
+      "text": "Vízjel szövege",
+      "position": "Elhelyezés",
+      "header": "Élőfej",
+      "footer": "Élőláb",
+      "center": "Átlósan középen",
+      "opacity": "Átlátszatlanság",
+      "success": "Vízjel alkalmazva."
+    },
+    "pdf-redact": {
+      "name": "Tartalom takarása",
+      "description": "Fekete téglalapok érzékeny területekre (csak vizuális takarás).",
+      "keywords": "pdf kitakarás feketítés elrejtés érzékeny",
+      "run": "Takarás alkalmazása",
+      "note": "Ez csak vizuális takarás. Nem garantálja minden mögöttes szövegfolyam eltávolítását — ellenőrizd az érzékeny dokumentumokat.",
+      "success": "Takarómezők alkalmazva."
+    },
+    "pdf-extract": {
+      "name": "Kinyerés PDF-ből",
+      "description": "Olvasható szöveg kinyerése vagy egy oldal exportálása képként.",
+      "keywords": "pdf kinyerés szöveg képek",
+      "run": "Kinyerés",
+      "modeText": "Szöveg",
+      "modeImages": "Képek",
+      "success": "A kinyerés kész.",
+      "imagesReady": "{count} oldal kép exportálva ZIP-ként."
+    },
+    "image-compress": {
+      "name": "Képek tömörítése",
+      "description": "Csökkentsd a minőséget és a maximális méretet, hogy a fotók könnyen megoszthatók maradjanak.",
+      "keywords": "kép tömörítés jpg png webp méret fotó",
+      "run": "Tömörítés",
+      "success": "{count} kép tömörítve."
+    },
+    "image-resize": {
+      "name": "Képek átméretezése",
+      "description": "Pontos méretek beállítása, opcionális oldalarány-zárral.",
+      "keywords": "kép átméretezés skála méretek szélesség magasság",
+      "run": "Átméretezés",
+      "lockAspect": "Oldalarány megtartása",
+      "success": "{count} kép átméretezve."
+    },
+    "image-crop": {
+      "name": "Kép vágása",
+      "description": "Csak azt a téglalapot tartsd meg, ami számít.",
+      "keywords": "kép vágás kivágás terület",
+      "run": "Vágás",
+      "success": "A vágott kép kész."
+    },
+    "image-convert": {
+      "name": "Képformátum átalakítása",
+      "description": "Váltás JPEG, PNG, WEBP és hasonló webes formátumok között.",
+      "keywords": "kép átalakítás formátum webp avif png jpg jpeg",
+      "run": "Átalakítás",
+      "success": "{count} kép átalakítva."
+    },
+    "image-metadata": {
+      "name": "Kép metaadatai",
+      "description": "EXIF és hasonló címkék megtekintése, majd tiszta másolat exportálása nélkülük.",
+      "keywords": "kép exif metaadat eltávolítás adatvédelem hely",
+      "run": "Metaadatok eltávolítása",
+      "note": "A pixelek a böngészőben újra kódolódnak, így a beágyazott metaadatok kiesnek.",
+      "success": "Metaadatok eltávolítva {count} képről.",
+      "tag": "Címke",
+      "value": "Érték",
+      "noExif": "Nincs olvasható EXIF vagy szöveges metaadat ebben a fájlban."
+    },
+    "image-adjust": {
+      "name": "Kép igazítása",
+      "description": "Fényerő, kontraszt és telítettség finomhangolása.",
+      "keywords": "kép fényerő kontraszt telítettség szín",
+      "run": "Alkalmazás",
+      "brightness": "Fényerő",
+      "contrast": "Kontraszt",
+      "saturation": "Telítettség",
+      "success": "{count} kép igazítva."
+    },
+    "convert-hub": {
+      "name": "Okos átalakítás",
+      "description": "Vegyes fájl- vagy szövegtípusok felismerése és konverzió formátumok között (nem médiastúdió).",
+      "keywords": "átalakítás hub okos köteg json yaml csv zip kép adat",
+      "run": "Átalakítás",
+      "detect": "Felismerve mint",
+      "chooseOutput": "Kimeneti formátum",
+      "success": "Az átalakítás kész."
+    },
+    "json-format": {
+      "name": "JSON-formázó",
+      "description": "Szép formázás, tömörítés és a JSON-hibák korai kiszűrése.",
+      "keywords": "json formázás ellenőrzés minifikálás pretty",
+      "run": "Formázás",
+      "success": "A JSON érvényesnek tűnik és formázva van."
+    },
+    "yaml-format": {
+      "name": "YAML-formázó",
+      "description": "YAML-szerkezet ellenőrzése és az elrendezés rendezése.",
+      "keywords": "yaml formázás ellenőrzés yml",
+      "run": "Formázás",
+      "success": "A YAML érvényesnek tűnik."
+    },
+    "toml-format": {
+      "name": "TOML-formázó",
+      "description": "TOML ellenőrzése és a fájl rendben tartása.",
+      "keywords": "toml formázás ellenőrzés config",
+      "run": "Formázás",
+      "success": "A TOML érvényesnek tűnik."
+    },
+    "markdown-html": {
+      "name": "Markdown ↔ HTML",
+      "description": "Markdown átalakítása HTML-lé, vagy HTML vissza Markdownná.",
+      "keywords": "markdown html átalakítás md jelölés",
+      "run": "Átalakítás",
+      "toHtml": "Markdown → HTML",
+      "toMd": "HTML → Markdown",
+      "success": "Átalakítva."
+    },
+    "csv-json": {
+      "name": "CSV ↔ JSON",
+      "description": "Táblázatos adatok mozgatása CSV és JSON-tömbök között.",
+      "keywords": "csv json átalakítás tábla táblázat",
+      "run": "Átalakítás",
+      "toJson": "CSV → JSON",
+      "toCsv": "JSON → CSV",
+      "success": "Átalakítva."
+    },
+    "text-diff": {
+      "name": "Szöveg-összehasonlítás",
+      "description": "Soronkénti változások két verzió között.",
+      "keywords": "diff összehasonlítás szöveg változások patch",
+      "run": "Összehasonlítás",
+      "left": "Eredeti",
+      "right": "Frissített",
+      "success": "Az összehasonlítás kész."
+    },
+    "base64": {
+      "name": "Base64",
+      "description": "Base64 kódolása vagy dekódolása sima szöveghez vagy egész fájlokhoz.",
+      "keywords": "base64 kódolás dekódolás bináris",
+      "run": "Átalakítás",
+      "mode": "Irány",
+      "textMode": "Szöveg",
+      "fileMode": "Fájl",
+      "success": "Kész."
+    },
+    "url-encode": {
+      "name": "URL-kódolás",
+      "description": "URL-részek biztonságos percent-kódolása vagy dekódolása.",
+      "keywords": "url kódolás dekódolás percent uri lekérdezés",
+      "run": "Átalakítás",
+      "success": "Kész."
+    },
+    "audio-convert": {
+      "name": "Hang átalakítása",
+      "description": "Hangkonténerek cseréje, például MP3, WAV és OGG a böngészőben.",
+      "keywords": "audio átalakítás mp3 wav ogg ffmpeg hang",
+      "run": "Átalakítás",
+      "loadingFfmpeg": "A hangmotor betöltése…",
+      "note": "Egyszálas FFmpeg WASM-ot használ. A nagy fájlok lassúak lehetnek; a kodektámogatás korlátozott.",
+      "success": "A hangátalakítás kész."
+    },
+    "audio-trim": {
+      "name": "Hang vágása",
+      "description": "Csak a két időbélyeg közötti szakasz megtartása egy hangfájlban.",
+      "keywords": "audio vágás kivágás klip mp3 wav",
+      "run": "Vágás",
+      "success": "A hangvágás kész."
+    },
+    "audio-speed": {
+      "name": "Hangsebesség és hangerő",
+      "description": "Hang gyorsítása, lassítása vagy hangerőjének módosítása.",
+      "keywords": "audio tempó sebesség hangerő hangmagasság",
+      "run": "Alkalmazás",
+      "success": "A feldolgozott hang kész."
+    },
+    "video-convert": {
+      "name": "Videó átalakítása",
+      "description": "Videókonténerek cseréje, például MP4 és WEBM a böngészőben.",
+      "keywords": "video átalakítás mp4 webm ffmpeg film",
+      "run": "Átalakítás",
+      "loadingFfmpeg": "A videómotor betöltése…",
+      "note": "Egyszálas FFmpeg WASM-ot használ. A nagy fájlok lassúak lehetnek; a kodektámogatás korlátozott.",
+      "success": "A videóátalakítás kész."
+    },
+    "video-trim": {
+      "name": "Videó vágása",
+      "description": "Csak a két időbélyeg közötti klip megtartása.",
+      "keywords": "video vágás kivágás klip mp4",
+      "run": "Vágás",
+      "success": "A videóvágás kész."
+    },
+    "video-speed": {
+      "name": "Videósebesség és hangerő",
+      "description": "A videó lejátszási sebességének és hangsávjának módosítása.",
+      "keywords": "video tempó sebesség hangerő",
+      "run": "Alkalmazás",
+      "success": "A feldolgozott videó kész."
+    },
+    "video-extract-audio": {
+      "name": "Hang kinyerése videóból",
+      "description": "A videó hangsávjának mentése hangfájlként.",
+      "keywords": "video kinyerés audio mp3 hangsáv",
+      "run": "Hang kinyerése",
+      "success": "Hang kinyerve."
+    },
+    "pdf-numbers": {
+      "name": "Oldalszámok",
+      "description": "Oldalcímke pecsételése, például 1 / 12, minden oldalra.",
+      "keywords": "pdf oldalszámok élőláb élőfej lapszámozás",
+      "run": "Számok hozzáadása",
+      "template": "Címke ({page} és {pages})",
+      "position": "Elhelyezés",
+      "start": "Kezdés ettől",
+      "headerLeft": "Élőfej balra",
+      "headerCenter": "Élőfej középen",
+      "headerRight": "Élőfej jobbra",
+      "footerLeft": "Élőláb balra",
+      "footerCenter": "Élőláb középen",
+      "footerRight": "Élőláb jobbra",
+      "success": "Oldalszámok hozzáadva."
+    },
+    "pdf-to-images": {
+      "name": "PDF → képek",
+      "description": "Minden oldal raszterizálása JPEG-gé, majd letöltés ZIP-ként.",
+      "keywords": "pdf kép jpg jpeg zip oldalak export",
+      "run": "Oldalak exportálása",
+      "limits": "Az oldalakat a PDF.js rajzolja ebben a lapon. A nagyon nagy dokumentumok lassúak lehetnek és sok memóriát használhatnak. Ez vizuális raszter, nem a beágyazott képtárgyak kinyerése.",
+      "success": "{count} oldal exportálva."
+    },
+    "images-to-pdf": {
+      "name": "Képek → PDF",
+      "description": "Fotók egymásra rakása PDF-be, oldalanként egy kép.",
+      "keywords": "képek pdf jpg png egyesítés",
+      "run": "PDF létrehozása",
+      "success": "PDF készült {count} képből."
+    },
+    "pdf-flatten": {
+      "name": "Űrlapok lapítása",
+      "description": "AcroForm-mezők beégetése az oldalba, hogy ne legyenek szerkeszthetők.",
+      "keywords": "pdf lapítás űrlap mezők acroform",
+      "run": "Lapítás",
+      "limits": "A szabványos AcroForm-mezőkön működik. A dinamikus XFA-űrlapok nem teljesen támogatottak.",
+      "success": "{count} mező lapítva."
+    },
+    "pdf-metadata": {
+      "name": "PDF-metaadatok",
+      "description": "Cím, szerző és egyéb Info-mezők megtekintése, szerkesztése vagy eltávolítása.",
+      "keywords": "Kulcsszavak",
+      "run": "Metaadatok mentése",
+      "strip": "Minden mező eltávolítása",
+      "title": "Cím",
+      "author": "Szerző",
+      "subject": "Tárgy",
+      "creator": "Létrehozó",
+      "producer": "Előállító",
+      "saved": "Metaadatok mentve.",
+      "stripped": "Metaadatok eltávolítva."
+    },
+    "pdf-protect": {
+      "name": "PDF zárolása vagy feloldása",
+      "description": "Felhasználói jelszó hozzáadása vagy eltávolítása. A titkosítás ebben a böngészőben marad.",
+      "keywords": "pdf jelszó zárolás feloldás titkosítás visszafejtés",
+      "run": "Alkalmazás",
+      "lock": "Zárolás",
+      "unlock": "Feloldás",
+      "password": "Jelszó",
+      "limits": "Kliensoldali PDF-titkosító könyvtárat használ. Egyes régebbi vagy szokatlan titkosítási változatok nem oldhatók fel. A Kit soha nem küldi a fájlt vagy a jelszót szerverre.",
+      "success": "A PDF kész."
+    },
+    "image-rotate": {
+      "name": "Forgatás és tükrözés",
+      "description": "Képek forgatása 90°-onként, vagy vízszintes illetve függőleges tükrözése.",
+      "keywords": "kép forgatás tükrözés tükör",
+      "run": "Alkalmazás",
+      "operation": "Átalakítás",
+      "rot90": "Forgatás 90°-kal",
+      "rot180": "Forgatás 180°-kal",
+      "rot270": "Forgatás 270°-kal",
+      "flipH": "Vízszintes tükrözés",
+      "flipV": "Függőleges tükrözés",
+      "success": "{count} kép átalakítva."
+    },
+    "image-filters": {
+      "name": "Képszűrők",
+      "description": "Szürkeárnyalat, szépia vagy invertálás egy vagy több fotón.",
+      "keywords": "kép szűrő szürkeárnyalat szépia invertálás",
+      "run": "Alkalmazás",
+      "filter": "Szűrő",
+      "grayscale": "Szürkeárnyalat",
+      "sepia": "Szépia",
+      "invert": "Invertálás",
+      "success": "{count} kép szűrve."
+    },
+    "image-favicon": {
+      "name": "Favicon-csomag",
+      "description": "Forráskép exportálása gyakori ikonméretekben, ZIP-ben.",
+      "keywords": "favicon icon 16 32 180 192 512 apple touch",
+      "run": "Ikonok exportálása",
+      "note": "PNG-fájlokat exportál 16, 32, 48, 180, 192 és 512 pixelen.",
+      "success": "Az ikoncsomag kész."
+    },
+    "video-gif": {
+      "name": "Videó → GIF",
+      "description": "Rövid klip hurkolt GIF-fé alakítása a böngészőben.",
+      "keywords": "video gif klip átalakítás ffmpeg",
+      "run": "GIF készítése",
+      "limits": "FFmpeg WASM-ot használ. Tartsd röviden a klipeket — a GIF-kódolás lassú és memóriazabáló. A paletta és a kodekek a böngészős buildet követik.",
+      "success": "A GIF kész."
+    },
+    "xml-json": {
+      "name": "XML ↔ JSON",
+      "description": "XML-dokumentumok konvertálása JSON-né, vagy JSON vissza XML-lé.",
+      "keywords": "xml json átalakítás parse",
+      "run": "Átalakítás",
+      "toJson": "XML → JSON",
+      "toXml": "JSON → XML",
+      "success": "Átalakítva."
+    },
+    "sql-format": {
+      "name": "SQL-formázó",
+      "description": "SQL szép formázása, hogy a záradékok és listák olvashatóbbak legyenek.",
+      "keywords": "sql formázás pretty lekérdezés",
+      "run": "Formázás",
+      "success": "SQL formázva."
+    },
+    "regex-tester": {
+      "name": "Regex-tesztelő",
+      "description": "Reguláris kifejezés kipróbálása mintaszövegen és a találatok cseréje.",
+      "keywords": "regex reguláris kifejezés teszt csere",
+      "pattern": "Minta",
+      "flags": "Jelzők",
+      "input": "Mintaszöveg",
+      "replace": "Csere",
+      "runReplace": "Csere",
+      "matches": "{count, plural, one {# találat} other {# találat}}",
+      "success": "A csere kész."
+    },
+    "hash-generator": {
+      "name": "Hash-generátor",
+      "description": "Szöveg vagy fájl SHA-1/256/384/512 és MD5 értéke, helyben számolva.",
+      "keywords": "hash sha256 md5 sha1 ellenőrzőösszeg digest",
+      "run": "Hash",
+      "algo": "Algoritmus",
+      "digest": "Digest",
+      "limits": "A hashek ebben a böngészőben készülnek (Web Crypto a SHA-hoz, helyi MD5-implementáció). Az MD5 nem ütközésálló — csak ellenőrzőösszeghez használd.",
+      "success": "A hash kész."
+    },
+    "uuid-generator": {
+      "name": "UUID-generátor",
+      "description": "4-es vagy 7-es verziójú UUID-k létrehozása ezen a készüléken.",
+      "keywords": "uuid guid v4 v7 generálás",
+      "run": "Generálás",
+      "count": "Hány darab",
+      "version": "Verzió",
+      "success": "UUID-k létrehozva."
+    },
+    "color-convert": {
+      "name": "Színkonverter",
+      "description": "Konverzió HEX, RGB, HSL és HSV között, színválasztóval.",
+      "keywords": "szín hex rgb hsl hsv választó",
+      "picker": "Színválasztó",
+      "invalid": "Adj meg 3 vagy 6 jegyű hex színt."
+    },
+    "lorem-ipsum": {
+      "name": "Lorem ipsum",
+      "description": "Helykitöltő bekezdések, mondatok vagy szavak generálása.",
+      "keywords": "lorem ipsum helykitöltő dummy szöveg",
+      "run": "Generálás",
+      "count": "Darabszám",
+      "mode": "Mód",
+      "paragraphs": "Bekezdések",
+      "sentences": "Mondatok",
+      "words": "Szavak",
+      "success": "Szöveg létrehozva."
+    },
+    "qr-code": {
+      "name": "QR-kód",
+      "description": "QR-kód készítése szövegből, vagy beolvasása egy képről.",
+      "keywords": "qr kód generálás beolvasás olvasás barcode",
+      "run": "Generálás",
+      "payload": "Szöveg vagy URL",
+      "read": "Beolvasás képről",
+      "runRead": "QR beolvasása",
+      "generated": "A QR-kód kész.",
+      "decoded": "QR-tartalom beolvasva.",
+      "none": "Nem található QR-kód ezen a képen."
+    },
+    "pdf-sign": {
+      "name": "PDF aláírása",
+      "description": "Gépelt aláírás pecsételése minden oldalra. Csak vizuális — nem tanúsítvány.",
+      "keywords": "pdf aláírás pecsét név",
+      "run": "Aláírás",
+      "signature": "Aláírás szövege",
+      "placeholder": "A neved",
+      "limits": "Ez a nevedet rajzolja az oldalra. Nem kriptográfiai digitális aláírás.",
+      "success": "Aláírás pecsételve."
+    },
+    "image-watermark": {
+      "name": "Képek vízjelezése",
+      "description": "Szöveg ráhelyezése fotókra, egy fájlra vagy egy egész kötegre.",
+      "keywords": "kép vízjel pecsét copyright",
+      "run": "Alkalmazás",
+      "text": "Vízjel szövege",
+      "position": "Elhelyezés",
+      "bottomRight": "Jobb alsó",
+      "bottomLeft": "Bal alsó",
+      "topRight": "Jobb felső",
+      "center": "Közép",
+      "success": "Vízjel {count} képen."
+    },
+    "password-generator": {
+      "name": "Jelszógenerátor",
+      "description": "Erős jelszó létrehozása ezen a készüléken. Semmi sem tárolódik.",
+      "keywords": "jelszó generálás véletlen titkos",
+      "run": "Generálás",
+      "length": "Hossz",
+      "lower": "Kisbetűk",
+      "upper": "Nagybetűk",
+      "digits": "Számjegyek",
+      "symbols": "Szimbólumok",
+      "success": "A jelszó kész."
+    },
+    "case-convert": {
+      "name": "Kis- és nagybetű",
+      "description": "Váltás camel, snake, kebab, title és más stílusok között.",
+      "keywords": "kisbetű camel snake kebab pascal title",
+      "run": "Átalakítás",
+      "style": "Stílus",
+      "success": "Átalakítva."
+    },
+    "jwt-decode": {
+      "name": "JWT-dekódoló",
+      "description": "JWT-fejléc és payload helyi olvasása. Az aláírások nincsenek ellenőrizve.",
+      "keywords": "jwt dekódolás token bearer auth",
+      "run": "Dekódolás",
+      "limits": "A Kit csak Base64url-t dekódol. Kulcs nélkül nem tudja igazolni a token hitelességét.",
+      "hasSig": "Az aláírásrész megvan (nincs ellenőrizve).",
+      "noSig": "Nincs aláírásrész.",
+      "empty": "Először illessz be egy tokent.",
+      "success": "Token dekódolva."
+    },
+    "unix-timestamp": {
+      "name": "Unix időbélyeg",
+      "description": "Unix-idő konvertálása ISO-ra és vissza.",
+      "keywords": "unix epoch időbélyeg iso dátum",
+      "now": "Most használata"
+    },
+    "cron-explain": {
+      "name": "Cron-magyarázó",
+      "description": "5 mezős cron-kifejezés közérthető nyelvre fordítása.",
+      "keywords": "cron ütemezés crontab magyarázat",
+      "run": "Magyarázat",
+      "success": "Megmagyarázva."
+    },
+    "number-base": {
+      "name": "Számrendszer",
+      "description": "Egészek konvertálása a 2-es és 36-os alapok között.",
+      "keywords": "bináris hex decimális alap átalakítás",
+      "value": "Szám",
+      "from": "Erről az alapról",
+      "to": "Erre az alapra"
+    },
+    "html-entities": {
+      "name": "HTML-entitások",
+      "description": "&lt; &amp; és numerikus entitások kódolása vagy dekódolása.",
+      "keywords": "html entitások kódolás dekódolás escape",
+      "run": "Átalakítás",
+      "encode": "Kódolás",
+      "decode": "Dekódolás",
+      "success": "Átalakítva."
+    },
+    "json-types": {
+      "name": "JSON → TypeScript",
+      "description": "TypeScript-interfészek következtetése egy JSON-mintából.",
+      "keywords": "json typescript interface típus generálás",
+      "run": "Típusok generálása",
+      "success": "Típusok létrehozva."
+    }
+  },
+  "legal": {
+    "lastUpdated": "Utolsó frissítés",
+    "privacyTitle": "Adatvédelmi irányelvek",
+    "termsTitle": "Felhasználási feltételek"
+  },
+  "notFound": {
+    "title": "Az oldal nem található",
+    "body": "Ez a cím nincs a Kitben. Menj haza, és onnan válassz eszközt.",
+    "home": "Vissza a kezdőlapra"
+  },
+  "errorPage": {
+    "title": "Valami hiba történt",
+    "body": "Az utolsó művelet ebben a böngészőben sikertelen volt. Újrapróbálhatod anélkül, hogy elhagynád az oldalt.",
+    "retry": "Újrapróbálás"
+  }
+}

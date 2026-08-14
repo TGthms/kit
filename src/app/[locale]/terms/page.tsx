@@ -1,5 +1,5 @@
 import { setRequestLocale, getTranslations } from "next-intl/server";
-import { isLocale, type Locale } from "@/lib/i18n/config";
+import { isPathLocale } from "@/lib/i18n/config";
 import { notFound } from "next/navigation";
 import { loadLegal, renderSimpleMarkdown } from "@/lib/legal/load";
 import { LegalPageShell } from "@/components/layout/legal-page-shell";
@@ -10,10 +10,10 @@ export default async function TermsPage({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
-  if (!isLocale(locale)) notFound();
+  if (!isPathLocale(locale)) notFound();
   setRequestLocale(locale);
   const t = await getTranslations("legal");
-  const md = loadLegal(locale as Locale, "terms");
+  const md = loadLegal(locale, "terms");
   const body = md.replace(/^#\s+.+\n+/, "");
   const html = renderSimpleMarkdown(body);
 

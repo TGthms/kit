@@ -1,0 +1,587 @@
+Kit — Nettleserverktøy som forblir private
+PDF, bilder, media, konvertering og tekstverktøy kjører på enheten din. Ingenting lastes opp til serverne våre.
+Kit
+Hverdagsverktøy i nettleseren. Private fra starten.
+Hjem
+Verktøy
+Historikk
+Favoritter
+Innstillinger
+Søk etter verktøy…
+Åpne meny
+Lukk meny
+Personvernerklæring
+Bruksvilkår
+Om meg
+MIT-lisens
+© {year} Tim G (TGthms). Kit er åpen kildekode under MIT-lisensen.
+GitHub
+Avbryt
+Tøm
+Lukk
+Kopier
+Kopiert til utklippstavlen
+Last ned
+Kjør
+Behandle
+Jobber…
+Ferdig
+Noe gikk galt
+Prøv igjen
+Legg til filer
+Slipp filer her
+eller bla fra enheten din
+Du kan også lime inn fra utklippstavlen
+Fjern
+Dra for å endre rekkefølgen
+Filer
+Ingen filer valgt ennå
+Kvalitet
+Valg
+Forhåndsvisning
+Resultat
+Inndata
+Utdata
+Format
+Språk
+Utseende
+Følg systemet
+Lyst
+Mørkt
+Laster…
+Lagre
+Slett
+Bekreft
+Tilbake
+Alle
+Fest
+Løsne
+Legg til i favoritter
+Fjern fra favoritter
+Forhåndsinnstillinger
+Bruk forhåndsinnstilling
+Lagre som forhåndsinnstilling
+Tastatursnarveier
+Fremdrift
+Denne filen er stor — behandlingen kan ta en stund.
+Dette formatet støttes ikke
+Vellykket
+Merk
+Info
+Velg alle
+Ingen
+Tilbakestill
+Maks. bredde
+Maks. høyde
+Bredde
+Høyde
+Roter
+Sider
+Side
+Tekst
+Kod
+Avkod
+Valider
+Minifiser
+Pent format
+Gyldig
+Ugyldig
+Tegn
+Linjer
+Fra
+Til
+Start
+Slutt
+Hastighet
+Volum
+Klipp
+Trekk ut
+Batch
+Begrensninger
+Kjører bare i nettleseren din. Filene dine sendes aldri til en Kit-server.
+https://tgthms.github.io/about/
+Slik fungerer det og grenser
+Hva trenger du å gjøre?
+Praktiske verktøy som kjører på denne enheten — ingen konto, ingen opplastinger.
+Kategorier
+Verktøy
+Ingenting matcher det søket.
+Fortsett der du slapp
+Festet
+Start med en kategori
+Velg en oppgavefamilie. Verktøyene inni er gruppert, så du kan skumme i stedet for å lete.
+Kategorier
+{count, plural, one {# verktøy} other {# verktøy}}
+Søkeresultater
+Start her
+Sider
+Beskytt og info
+Markering
+Eksporter / konverter
+Størrelse og beskjæring
+Utseende
+Fil
+Klipp
+Formater
+Skriving
+Inspiser
+Kod
+Generer
+PDF
+Bilder
+Lyd
+Video
+Filkonvertering
+Skriving
+Slå sammen, del, komprimer og merk PDF-dokumenter
+Komprimer, skaler, konverter og retusjer bilder
+Konverter, klipp og endre hastighet bare for lyd
+Konverter, klipp, øk farten og trekk lyd ut av video
+Smart konvertering på tvers av formater (JSON, CSV, ZIP, bilder…)
+Sammenlign tekst, endre store/små bokstaver og gjør Markdown om til HTML
+Data
+JSON, YAML, CSV, XML, SQL og konvertering på tvers av formater
+Utvikling
+Token, hasher, kodinger, passord og andre benkeverktøy
+Historikk
+Det du har kjørt på denne enheten. Vi lagrer bare korte sammendrag — aldri filene dine.
+Ingen aktivitet ennå. Kjør et verktøy, så vises det her.
+Tøm historikk
+Slette all historikk på denne enheten?
+Åpne verktøy
+Verktøy
+Når
+Sammendrag
+Status
+Lyktes
+Mislyktes
+Favoritter
+Verktøy du holder nært for ett trykk.
+Ingen favoritter ennå. Sett stjerne på et verktøy fra Hjem eller fra siden det.
+Innstillinger
+Disse valgene blir bare i denne nettleseren.
+Utseende
+Språk
+Data og personvern
+Tøm historikk
+Fjerner lokale historikksammendrag som dette nettstedet lagrer.
+Kit jobber med filene dine i nettleseren. Innstillinger og historikksammendrag kan lagres lokalt. Alle detaljer står i personvernerklæringen.
+Personvernerklæring
+Bruksvilkår
+Trykk ? når som helst for tastatursnarveier.
+Versjon
+Tastatursnarveier
+Overalt
+Fokuser søk
+Åpne innstillinger
+Gå hjem
+Vis denne listen
+Kjør gjeldende verktøy
+Lukk
+Slå sammen PDF-er
+Stable flere PDF-er til én. Forhåndsvis sider og dra for å endre rekkefølge.
+pdf slå sammen kombinere sammenføye hefte flere sider
+Slå sammen
+Legg til minst to PDF-filer.
+{count} filer slått sammen til én PDF.
+Del PDF
+Trekk ut et sideintervall til en helt ny PDF.
+pdf dele trekke ut sider intervall
+Del
+Sider (for eksempel 1-3,5)
+Den delte PDF-en din er klar.
+Organiser sider
+Roter sider, fjern dem du ikke trenger, og sett en ny rekkefølge.
+pdf rotere slette omorganisere organisere sider
+Lagre PDF
+PDF-en din er oppdatert.
+Komprimer PDF
+Reduser filstørrelsen ved å kode sidebilder på nytt (kvalitetskompromiss).
+pdf komprimere redusere størrelse mindre
+Komprimer
+Dette er en tapende vei — sider kan rasteriseres. Fungerer best på bilderike PDF-er.
+Den komprimerte PDF-en er klar til nedlasting.
+Vannmerke PDF
+Stempl tekst som vannmerke, topptekst eller bunntekst på hver side.
+pdf vannmerke stempel topptekst bunntekst konfidensielt
+Bruk
+Vannmerketekst
+Plassering
+Topptekst
+Bunntekst
+Diagonal midt
+Gjennomsiktighet
+Vannmerke brukt.
+Dekk innhold
+Legg helsvarte bokser over sensitive områder (visuell dekning).
+pdf sverte dekke skjule sensitivt
+Bruk dekning
+Bare visuell dekning. Det garanterer ikke fjerning av hver underliggende tekststrøm — dobbeltsjekk sensitive dokumenter.
+Dekninger brukt.
+Trekk ut fra PDF
+Hent lesbar tekst, eller eksporter en side som bilde.
+pdf trekke ut tekst bilder
+Trekk ut
+Tekst
+Bilder
+Uttrekk ferdig.
+Eksporterte {count} sidebilde(r) som ZIP.
+Komprimer bilder
+Skru ned kvalitet og maks. størrelse slik at bilder forblir delbare.
+bilde komprimere jpg png webp størrelse foto
+Komprimer
+Komprimerte {count} bilde(r).
+Skaler bilder
+Sett nøyaktige mål, med valgfri låsing av sideforhold.
+bilde skalere mål dimensjoner bredde høyde
+Skaler
+Behold sideforhold
+Skalerte {count} bilde(r).
+Beskjær bilde
+Behold bare rektangelet du bryr deg om.
+bilde beskjære klippe område
+Beskjær
+Beskåret bilde klart.
+Konverter bildeformat
+Bytt mellom JPEG, PNG, WEBP og lignende nettformater.
+bilde konvertere format webp avif png jpg jpeg
+Konverter
+Konverterte {count} bilde(r).
+Bildemetadata
+Se EXIF og lignende tagger, og eksporter en ren kopi uten dem.
+bilde exif metadata fjerne personvern plassering
+Fjern metadata
+Piksler kodes på nytt i nettleseren, så innebygd metadata droppes.
+Fjernet metadata fra {count} bilde(r).
+Tagg
+Verdi
+Ingen lesbar EXIF- eller tekstmetadata i denne filen.
+Juster bilde
+Juster lysstyrke, kontrast og metning.
+bilde lysstyrke kontrast metning farge
+Bruk
+Lysstyrke
+Kontrast
+Metning
+Justerte {count} bilde(r).
+Smart konvertering
+Oppdager blandede fil- eller teksttyper og konverterer på tvers av formater (ikke et mediastudio).
+konvertere hub smart batch json yaml csv zip bilde data
+Konverter
+Oppdaget som
+Utdataformat
+Konvertering ferdig.
+JSON-formatter
+Pent format, minifisering og tidlig fangst av JSON-feil.
+json formatere validere minifisere pretty
+Formater
+JSON ser gyldig ut og er formatert.
+YAML-formatter
+Sjekk YAML-strukturen og rydd i oppsettet.
+yaml formatere validere yml
+Formater
+YAML ser gyldig ut.
+TOML-formatter
+Valider TOML og hold filen ryddig.
+toml formatere validere config
+Formater
+TOML ser gyldig ut.
+Markdown ↔ HTML
+Gjør Markdown om til HTML, eller HTML tilbake til Markdown.
+markdown html konvertere md markup
+Konverter
+Markdown → HTML
+HTML → Markdown
+Konvertert.
+CSV ↔ JSON
+Flytt tabelldata mellom CSV og JSON-arrayer.
+csv json konvertere tabell regneark
+Konverter
+CSV → JSON
+JSON → CSV
+Konvertert.
+Sammenlign tekst
+Se linje-for-linje-endringer mellom to versjoner.
+diff sammenligne tekst endringer patch
+Sammenlign
+Original
+Oppdatert
+Sammenligning klar.
+Base64
+Kod eller avkod Base64 for vanlig tekst eller hele filer.
+base64 kode avkode binær
+Konverter
+Retning
+Tekst
+Fil
+Ferdig.
+URL-koding
+Prosentkod eller avkod URL-deler trygt.
+url kode avkode prosent uri spørring
+Konverter
+Ferdig.
+Konverter lyd
+Bytt lydbeholdere som MP3, WAV og OGG i nettleseren.
+lyd konvertere mp3 wav ogg ffmpeg lyd
+Konverter
+Laster lydmotor…
+Bruker enkelttrådet FFmpeg WASM. Store filer kan være trege; kodekstøtten er begrenset.
+Lydkonvertering ferdig.
+Klipp lyd
+Behold bare strekket mellom to tidspunkter i en lydfil.
+lyd klippe beskjære klipp mp3 wav
+Klipp
+Lydklipp ferdig.
+Lydhastighet og volum
+Øk farten, senk den, eller endre lydstyrken.
+lyd hastighet tempo volum tonehøyde
+Bruk
+Den behandlede lyden er klar.
+Konverter video
+Bytt videobeholdere som MP4 og WEBM i nettleseren.
+video konvertere mp4 webm ffmpeg film
+Konverter
+Laster videomotor…
+Bruker enkelttrådet FFmpeg WASM. Store filer kan være trege; kodekstøtten er begrenset.
+Videokonvertering ferdig.
+Klipp video
+Behold bare klippet mellom to tidspunkter.
+video klippe beskjære klipp mp4
+Klipp
+Videoklipp ferdig.
+Videohastighet og volum
+Endre avspillingshastighet og lydnivå for en video.
+video hastighet tempo volum
+Bruk
+Den behandlede videoen er klar.
+Trekk ut lyd fra video
+Lagre lydsporet fra en video som en lydfil.
+video trekke ut lyd mp3 soundtrack
+Trekk ut lyd
+Lyd trukket ut.
+Sidenumre
+Stempl en etikett som 1 / 12 på hver side.
+pdf sidenumre bunntekst topptekst paginering
+Legg til numre
+Etikett ({page} og {pages})
+Plassering
+Start på
+Topptekst venstre
+Topptekst midten
+Topptekst høyre
+Bunntekst venstre
+Bunntekst midten
+Bunntekst høyre
+Sidenumre lagt til.
+PDF → bilder
+Rasteriser hver side til JPEG og last dem ned som ZIP.
+pdf bilde jpg jpeg zip sider eksportere
+Eksporter sider
+Sider tegnes med PDF.js i denne fanen. Svært store dokumenter kan være trege og bruke mye minne. Dette er et visuelt raster, ikke et uttrekk av innebygde bildeobjekter.
+Eksporterte {count} side(r).
+Bilder → PDF
+Stable bilder til en PDF, ett bilde per side.
+bilder pdf jpg png kombinere
+Opprett PDF
+Bygget en PDF av {count} bilde(r).
+Flat ut skjemaer
+Bak AcroForm-felt inn i siden slik at de ikke lenger kan redigeres.
+pdf flat ut skjema felt acroform
+Flat ut
+Fungerer på vanlige AcroForm-felt. Dynamiske XFA-skjemaer støttes ikke fullt ut.
+Flatet ut {count} felt.
+PDF-metadata
+Vis, rediger eller fjern tittel, forfatter og andre Info-felt.
+Nøkkelord
+Lagre metadata
+Fjern alle felt
+Tittel
+Forfatter
+Emne
+Opphavsmann
+Produsent
+Metadata lagret.
+Metadata fjernet.
+Lås eller lås opp PDF
+Legg til eller fjern et brukerpassord. Krypteringen blir i denne nettleseren.
+pdf passord låse låse opp kryptere dekryptere
+Bruk
+Lås
+Lås opp
+Passord
+Bruker et PDF-krypteringsbibliotek på klientsiden. Noen eldre eller uvanlige revisjoner kan kanskje ikke låses opp. Kit sender aldri filen eller passordet til en server.
+PDF-en er klar.
+Roter og speilvend
+Drei bilder 90° om gangen, eller speilvend dem horisontalt eller vertikalt.
+bilde rotere speile vende
+Bruk
+Transformasjon
+Roter 90°
+Roter 180°
+Roter 270°
+Vend horisontalt
+Vend vertikalt
+Transformerte {count} bilde(r).
+Bildefiltre
+Bruk gråtoner, sepia eller inverter på ett eller flere bilder.
+bilde filter gråtoner sepia invertere
+Bruk
+Filter
+Gråtoner
+Sepia
+Inverter
+Filtrerte {count} bilde(r).
+Favicon-pakke
+Eksporter et kildebilde som vanlige ikonstørrelser i en ZIP.
+favicon ikon 16 32 180 192 512 apple touch
+Eksporter ikoner
+Eksporterer PNG-filer på 16, 32, 48, 180, 192 og 512 piksler.
+Ikonpakken er klar.
+Video → GIF
+Gjør et kort klipp om til en løkkende GIF i nettleseren.
+video gif klipp konvertere ffmpeg
+Lag GIF
+Bruker FFmpeg WASM. Hold klippene korte — GIF-koding er treg og minnekrevende. Palett og kodeker følger bygget i nettleseren.
+GIF-en er klar.
+XML ↔ JSON
+Konverter XML-dokumenter til JSON, eller JSON tilbake til XML.
+xml json konvertere parse
+Konverter
+XML → JSON
+JSON → XML
+Konvertert.
+SQL-formatter
+Formater SQL slik at klausuler og lister blir lettere å lese.
+sql formatere pretty spørring
+Formater
+SQL formatert.
+Regex-tester
+Prøv et regulært uttrykk mot eksempeltekst og erstatt treff.
+regex regulært uttrykk teste erstatte
+Mønster
+Flagg
+Eksempeltekst
+Erstatning
+Erstatt
+{count, plural, one {# treff} other {# treff}}
+Erstatning klar.
+Hash-generator
+SHA-1/256/384/512 og MD5 av tekst eller en fil, beregnet lokalt.
+hash sha256 md5 sha1 sjekksum digest
+Hash
+Algoritme
+Digest
+Hasher beregnes i denne nettleseren (Web Crypto for SHA, en lokal MD5-implementasjon). MD5 er ikke kollisjonssikker — bruk den bare til sjekksummer.
+Hash klar.
+UUID-generator
+Opprett UUID versjon 4 eller 7 på denne enheten.
+uuid guid v4 v7 generere
+Generer
+Hvor mange
+Versjon
+UUID-er generert.
+Fargekonverterer
+Konverter mellom HEX, RGB, HSL og HSV, med en fargevelger.
+farge hex rgb hsl hsv velger
+Fargevelger
+Skriv inn en hex-farge med 3 eller 6 siffer.
+Lorem ipsum
+Generer plassholderavsnitt, setninger eller ord.
+lorem ipsum plassholder dummy tekst
+Generer
+Antall
+Modus
+Avsnitt
+Setninger
+Ord
+Tekst generert.
+QR-kode
+Lag en QR-kode fra tekst, eller les en fra et bilde.
+qr kode generere skanne lese strekkode
+Generer
+Tekst eller URL
+Les fra bilde
+Les QR
+QR-kode klar.
+QR-innhold lest.
+Ingen QR-kode funnet i det bildet.
+Signer PDF
+Stempl en innskrevet signatur på hver side. Bare visuelt — ikke et sertifikat.
+pdf signere signatur stempel navn
+Signer
+Signaturtekst
+Navnet ditt
+Dette tegner navnet ditt på siden. Det er ikke en kryptografisk digital signatur.
+Signatur stemplet.
+Vannmerke bilder
+Legg tekst over bilder, én fil eller et helt batch.
+bilde vannmerke stempel opphavsrett
+Bruk
+Vannmerketekst
+Plassering
+Nede til høyre
+Nede til venstre
+Oppe til høyre
+Midten
+Vannmerket {count} bilde(r).
+Passordgenerator
+Lag et sterkt passord på denne enheten. Ingenting lagres.
+passord generere tilfeldig hemmelig
+Generer
+Lengde
+Små bokstaver
+Store bokstaver
+Siffer
+Symboler
+Passord klart.
+Endre store/små bokstaver
+Bytt mellom camel, snake, kebab, tittel og mer.
+bokstaver camel snake kebab pascal tittel
+Konverter
+Stil
+Konvertert.
+JWT-avkoder
+Les JWT-header og payload lokalt. Signaturer verifiseres ikke.
+jwt avkode token bearer auth
+Avkod
+Kit avkoder bare Base64url. Uten en nøkkel kan den ikke bevise at tokenet er ekte.
+Signaturdel er til stede (ikke verifisert).
+Ingen signaturdel.
+Lim inn et token først.
+Token avkodet.
+Unix-tidsstempel
+Konverter Unix-tid til ISO og tilbake.
+unix epoch tidsstempel iso dato
+Bruk nå
+Forklar cron
+Gjør et cron-uttrykk med 5 felt om til vanlig språk.
+cron tidsplan crontab forklare
+Forklar
+Forklart.
+Tallbase
+Konverter heltall mellom base 2 og 36.
+binær hex desimal base konvertere
+Tall
+Fra base
+Til base
+HTML-entiteter
+Kod eller avkod &lt; &amp; og numeriske entiteter.
+html entiteter kode avkode escape
+Konverter
+Kod
+Avkod
+Konvertert.
+JSON → TypeScript
+Utled TypeScript-grensesnitt fra et JSON-eksempel.
+json typescript interface type generere
+Generer typer
+Typer generert.
+Sist oppdatert
+Personvernerklæring
+Bruksvilkår
+Siden ble ikke funnet
+Den adressen finnes ikke i Kit. Gå hjem og velg et verktøy derfra.
+Tilbake til hjem
+Noe gikk galt
+Den siste handlingen mislyktes i denne nettleseren. Du kan prøve igjen uten å forlate siden.
+Prøv igjen

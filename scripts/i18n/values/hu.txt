@@ -1,0 +1,587 @@
+Kit — Böngészős eszközök, amelyek privátak maradnak
+A PDF, a képek, a média, az átalakítók és a szöveges eszközök az eszközödön futnak. Semmit nem töltünk fel a szervereinkre.
+Kit
+Mindennapi eszközök a böngészőben. Alapból privát.
+Kezdőlap
+Eszközök
+Előzmények
+Kedvencek
+Beállítások
+Eszközök keresése…
+Menü megnyitása
+Menü bezárása
+Adatvédelmi irányelvek
+Felhasználási feltételek
+Rólam
+MIT-licenc
+© {year} Tim G (TGthms). A Kit nyílt forráskódú, MIT-licenc alatt.
+GitHub
+Mégse
+Törlés
+Bezárás
+Másolás
+Vágólapra másolva
+Letöltés
+Futtatás
+Feldolgozás
+Feldolgozás…
+Kész
+Valami hiba történt
+Újrapróbálás
+Fájlok hozzáadása
+Húzd ide a fájlokat
+vagy tallózz az eszközödről
+A vágólapról is beilleszthetsz
+Eltávolítás
+Húzd a sorrend módosításához
+Fájlok
+Még nincs kijelölt fájl
+Minőség
+Beállítások
+Előnézet
+Eredmény
+Bemenet
+Kimenet
+Formátum
+Nyelv
+Megjelenés
+Rendszer szerint
+Világos
+Sötét
+Betöltés…
+Mentés
+Törlés
+Megerősítés
+Vissza
+Összes
+Kitűzés
+Kitűzés feloldása
+Hozzáadás a kedvencekhez
+Eltávolítás a kedvencekből
+Előbeállítások
+Előbeállítás használata
+Mentés előbeállításként
+Billentyűparancsok
+Folyamat
+Ez a fájl nagy — a feldolgozás eltarthat egy ideig.
+Ez a formátum nem támogatott
+Siker
+Figyelem
+Megjegyzés
+Összes kijelölése
+Egyik sem
+Visszaállítás
+Max. szélesség
+Max. magasság
+Szélesség
+Magasság
+Forgatás
+Oldalak
+Oldal
+Szöveg
+Kódolás
+Dekódolás
+Ellenőrzés
+Tömörítés
+Szép formázás
+Érvényes
+Érvénytelen
+Karakterek
+Sorok
+Ettől
+Eddig
+Kezdet
+Vég
+Sebesség
+Hangerő
+Vágás
+Kinyerés
+Köteg
+Korlátok
+Csak a böngésződben fut. A fájljaid soha nem mennek Kit-szerverre.
+https://tgthms.github.io/about/
+Hogyan működik és korlátok
+Mit szeretnél csinálni?
+Hasznos eszközök ezen a készüléken — nincs fiók, nincs feltöltés.
+Kategóriák
+Eszközök
+Nincs találat erre a keresésre.
+Folytatás onnan, ahol abbahagytad
+Kitűzve
+Kezdd egy kategóriával
+Válassz egy feladattípust. Az eszközök csoportosítva vannak, hogy át tudd futni őket, ne keresgélj.
+Kategóriák
+{count, plural, one {# eszköz} other {# eszköz}}
+Keresési találatok
+Itt kezdd
+Oldalak
+Védelem és infó
+Jelölések
+Exportálás / átalakítás
+Méret és vágás
+Megjelenés
+Fájl
+Klipek
+Formátumok
+Írás
+Vizsgálat
+Kódolás
+Előállítás
+PDF
+Képek
+Hang
+Videó
+Fájlátalakítás
+Írás
+PDF-ek egyesítése, darabolása, tömörítése és megjelölése
+Fotók tömörítése, átméretezése, átalakítása és utómunkája
+Hang konvertálása, vágása és tempójának módosítása
+Videó konvertálása, vágása, gyorsítása és hang kinyerése
+Okos konverzió formátumok között (JSON, CSV, ZIP, képek…)
+Szöveg összevetése, kis- és nagybetű váltása, Markdown HTML-lé
+Adatok
+JSON, YAML, CSV, XML, SQL és formátumok közötti konverzió
+Fejlesztői
+Tokenek, hashek, kódolások, jelszavak és egyéb műhelyeszközök
+Előzmények
+Amit ezen a készüléken futtattál. Csak rövid összefoglalókat tartunk meg — soha nem a fájljaidat.
+Még nincs tevékenység. Futtass egy eszközt, és itt megjelenik.
+Előzmények törlése
+Törlöd az összes előzményt ezen a készüléken?
+Eszköz megnyitása
+Eszköz
+Mikor
+Összefoglaló
+Állapot
+Sikeres
+Sikertelen
+Kedvencek
+Eszközök kéznél, egy koppintásra.
+Még nincs kedvenced. Csillagozz egy eszközt a kezdőlapon vagy a saját oldalán.
+Beállítások
+Ezek a választások csak ebben a böngészőben maradnak.
+Megjelenés
+Nyelv
+Adatok és adatvédelem
+Előzmények törlése
+Eltávolítja az oldal által tárolt helyi előzmény-összefoglalókat.
+A Kit a böngészőben dolgozza fel a fájljaidat. A beállítások és az előzmény-összefoglalók helyben mentődhetnek. A részletek az Adatvédelmi irányelvekben vannak.
+Adatvédelmi irányelvek
+Felhasználási feltételek
+Bármikor nyomj ?-t a billentyűparancsokhoz.
+Verzió
+Billentyűparancsok
+Mindenhol
+Keresés fókuszálása
+Beállítások megnyitása
+Ugrás a kezdőlapra
+Lista megjelenítése
+Aktuális eszköz futtatása
+Bezárás
+PDF-ek egyesítése
+Több PDF egymásra rakása egyetlen fájlba. Oldalak előnézete és húzás a sorrendhez.
+pdf egyesítés összevonás összekapcsolás fűzés többoldalas
+Egyesítés
+Adj hozzá legalább két PDF-fájlt.
+{count} fájl egyesítve egy PDF-fé.
+PDF darabolása
+Oldaltartomány kinyerése egy vadonatúj PDF-be.
+pdf darabolás kinyerés oldalak tartomány
+Darabolás
+Oldalak (például 1-3,5)
+A darabolt PDF kész.
+Oldalak rendezése
+Oldalak forgatása, a feleslegesek törlése és új sorrend beállítása.
+pdf forgatás törlés átrendezés rendezés oldalak
+PDF mentése
+A PDF frissült.
+PDF tömörítése
+Fájlméret csökkentése az oldalak képeinek újrakódolásával (minőségi kompromisszum).
+pdf tömörítés csökkentés méret kisebb
+Tömörítés
+Ez veszteséges út — az oldalak raszterizálódhatnak. Képdús PDF-eken működik a legjobban.
+A tömörített PDF letölthető.
+PDF vízjel
+Szöveg pecsételése vízjelként, élőfejként vagy élőlábként minden oldalra.
+pdf vízjel pecsét élőfej élőláb bizalmas
+Alkalmazás
+Vízjel szövege
+Elhelyezés
+Élőfej
+Élőláb
+Átlósan középen
+Átlátszatlanság
+Vízjel alkalmazva.
+Tartalom takarása
+Fekete téglalapok érzékeny területekre (csak vizuális takarás).
+pdf kitakarás feketítés elrejtés érzékeny
+Takarás alkalmazása
+Ez csak vizuális takarás. Nem garantálja minden mögöttes szövegfolyam eltávolítását — ellenőrizd az érzékeny dokumentumokat.
+Takarómezők alkalmazva.
+Kinyerés PDF-ből
+Olvasható szöveg kinyerése vagy egy oldal exportálása képként.
+pdf kinyerés szöveg képek
+Kinyerés
+Szöveg
+Képek
+A kinyerés kész.
+{count} oldal kép exportálva ZIP-ként.
+Képek tömörítése
+Csökkentsd a minőséget és a maximális méretet, hogy a fotók könnyen megoszthatók maradjanak.
+kép tömörítés jpg png webp méret fotó
+Tömörítés
+{count} kép tömörítve.
+Képek átméretezése
+Pontos méretek beállítása, opcionális oldalarány-zárral.
+kép átméretezés skála méretek szélesség magasság
+Átméretezés
+Oldalarány megtartása
+{count} kép átméretezve.
+Kép vágása
+Csak azt a téglalapot tartsd meg, ami számít.
+kép vágás kivágás terület
+Vágás
+A vágott kép kész.
+Képformátum átalakítása
+Váltás JPEG, PNG, WEBP és hasonló webes formátumok között.
+kép átalakítás formátum webp avif png jpg jpeg
+Átalakítás
+{count} kép átalakítva.
+Kép metaadatai
+EXIF és hasonló címkék megtekintése, majd tiszta másolat exportálása nélkülük.
+kép exif metaadat eltávolítás adatvédelem hely
+Metaadatok eltávolítása
+A pixelek a böngészőben újra kódolódnak, így a beágyazott metaadatok kiesnek.
+Metaadatok eltávolítva {count} képről.
+Címke
+Érték
+Nincs olvasható EXIF vagy szöveges metaadat ebben a fájlban.
+Kép igazítása
+Fényerő, kontraszt és telítettség finomhangolása.
+kép fényerő kontraszt telítettség szín
+Alkalmazás
+Fényerő
+Kontraszt
+Telítettség
+{count} kép igazítva.
+Okos átalakítás
+Vegyes fájl- vagy szövegtípusok felismerése és konverzió formátumok között (nem médiastúdió).
+átalakítás hub okos köteg json yaml csv zip kép adat
+Átalakítás
+Felismerve mint
+Kimeneti formátum
+Az átalakítás kész.
+JSON-formázó
+Szép formázás, tömörítés és a JSON-hibák korai kiszűrése.
+json formázás ellenőrzés minifikálás pretty
+Formázás
+A JSON érvényesnek tűnik és formázva van.
+YAML-formázó
+YAML-szerkezet ellenőrzése és az elrendezés rendezése.
+yaml formázás ellenőrzés yml
+Formázás
+A YAML érvényesnek tűnik.
+TOML-formázó
+TOML ellenőrzése és a fájl rendben tartása.
+toml formázás ellenőrzés config
+Formázás
+A TOML érvényesnek tűnik.
+Markdown ↔ HTML
+Markdown átalakítása HTML-lé, vagy HTML vissza Markdownná.
+markdown html átalakítás md jelölés
+Átalakítás
+Markdown → HTML
+HTML → Markdown
+Átalakítva.
+CSV ↔ JSON
+Táblázatos adatok mozgatása CSV és JSON-tömbök között.
+csv json átalakítás tábla táblázat
+Átalakítás
+CSV → JSON
+JSON → CSV
+Átalakítva.
+Szöveg-összehasonlítás
+Soronkénti változások két verzió között.
+diff összehasonlítás szöveg változások patch
+Összehasonlítás
+Eredeti
+Frissített
+Az összehasonlítás kész.
+Base64
+Base64 kódolása vagy dekódolása sima szöveghez vagy egész fájlokhoz.
+base64 kódolás dekódolás bináris
+Átalakítás
+Irány
+Szöveg
+Fájl
+Kész.
+URL-kódolás
+URL-részek biztonságos percent-kódolása vagy dekódolása.
+url kódolás dekódolás percent uri lekérdezés
+Átalakítás
+Kész.
+Hang átalakítása
+Hangkonténerek cseréje, például MP3, WAV és OGG a böngészőben.
+audio átalakítás mp3 wav ogg ffmpeg hang
+Átalakítás
+A hangmotor betöltése…
+Egyszálas FFmpeg WASM-ot használ. A nagy fájlok lassúak lehetnek; a kodektámogatás korlátozott.
+A hangátalakítás kész.
+Hang vágása
+Csak a két időbélyeg közötti szakasz megtartása egy hangfájlban.
+audio vágás kivágás klip mp3 wav
+Vágás
+A hangvágás kész.
+Hangsebesség és hangerő
+Hang gyorsítása, lassítása vagy hangerőjének módosítása.
+audio tempó sebesség hangerő hangmagasság
+Alkalmazás
+A feldolgozott hang kész.
+Videó átalakítása
+Videókonténerek cseréje, például MP4 és WEBM a böngészőben.
+video átalakítás mp4 webm ffmpeg film
+Átalakítás
+A videómotor betöltése…
+Egyszálas FFmpeg WASM-ot használ. A nagy fájlok lassúak lehetnek; a kodektámogatás korlátozott.
+A videóátalakítás kész.
+Videó vágása
+Csak a két időbélyeg közötti klip megtartása.
+video vágás kivágás klip mp4
+Vágás
+A videóvágás kész.
+Videósebesség és hangerő
+A videó lejátszási sebességének és hangsávjának módosítása.
+video tempó sebesség hangerő
+Alkalmazás
+A feldolgozott videó kész.
+Hang kinyerése videóból
+A videó hangsávjának mentése hangfájlként.
+video kinyerés audio mp3 hangsáv
+Hang kinyerése
+Hang kinyerve.
+Oldalszámok
+Oldalcímke pecsételése, például 1 / 12, minden oldalra.
+pdf oldalszámok élőláb élőfej lapszámozás
+Számok hozzáadása
+Címke ({page} és {pages})
+Elhelyezés
+Kezdés ettől
+Élőfej balra
+Élőfej középen
+Élőfej jobbra
+Élőláb balra
+Élőláb középen
+Élőláb jobbra
+Oldalszámok hozzáadva.
+PDF → képek
+Minden oldal raszterizálása JPEG-gé, majd letöltés ZIP-ként.
+pdf kép jpg jpeg zip oldalak export
+Oldalak exportálása
+Az oldalakat a PDF.js rajzolja ebben a lapon. A nagyon nagy dokumentumok lassúak lehetnek és sok memóriát használhatnak. Ez vizuális raszter, nem a beágyazott képtárgyak kinyerése.
+{count} oldal exportálva.
+Képek → PDF
+Fotók egymásra rakása PDF-be, oldalanként egy kép.
+képek pdf jpg png egyesítés
+PDF létrehozása
+PDF készült {count} képből.
+Űrlapok lapítása
+AcroForm-mezők beégetése az oldalba, hogy ne legyenek szerkeszthetők.
+pdf lapítás űrlap mezők acroform
+Lapítás
+A szabványos AcroForm-mezőkön működik. A dinamikus XFA-űrlapok nem teljesen támogatottak.
+{count} mező lapítva.
+PDF-metaadatok
+Cím, szerző és egyéb Info-mezők megtekintése, szerkesztése vagy eltávolítása.
+Kulcsszavak
+Metaadatok mentése
+Minden mező eltávolítása
+Cím
+Szerző
+Tárgy
+Létrehozó
+Előállító
+Metaadatok mentve.
+Metaadatok eltávolítva.
+PDF zárolása vagy feloldása
+Felhasználói jelszó hozzáadása vagy eltávolítása. A titkosítás ebben a böngészőben marad.
+pdf jelszó zárolás feloldás titkosítás visszafejtés
+Alkalmazás
+Zárolás
+Feloldás
+Jelszó
+Kliensoldali PDF-titkosító könyvtárat használ. Egyes régebbi vagy szokatlan titkosítási változatok nem oldhatók fel. A Kit soha nem küldi a fájlt vagy a jelszót szerverre.
+A PDF kész.
+Forgatás és tükrözés
+Képek forgatása 90°-onként, vagy vízszintes illetve függőleges tükrözése.
+kép forgatás tükrözés tükör
+Alkalmazás
+Átalakítás
+Forgatás 90°-kal
+Forgatás 180°-kal
+Forgatás 270°-kal
+Vízszintes tükrözés
+Függőleges tükrözés
+{count} kép átalakítva.
+Képszűrők
+Szürkeárnyalat, szépia vagy invertálás egy vagy több fotón.
+kép szűrő szürkeárnyalat szépia invertálás
+Alkalmazás
+Szűrő
+Szürkeárnyalat
+Szépia
+Invertálás
+{count} kép szűrve.
+Favicon-csomag
+Forráskép exportálása gyakori ikonméretekben, ZIP-ben.
+favicon icon 16 32 180 192 512 apple touch
+Ikonok exportálása
+PNG-fájlokat exportál 16, 32, 48, 180, 192 és 512 pixelen.
+Az ikoncsomag kész.
+Videó → GIF
+Rövid klip hurkolt GIF-fé alakítása a böngészőben.
+video gif klip átalakítás ffmpeg
+GIF készítése
+FFmpeg WASM-ot használ. Tartsd röviden a klipeket — a GIF-kódolás lassú és memóriazabáló. A paletta és a kodekek a böngészős buildet követik.
+A GIF kész.
+XML ↔ JSON
+XML-dokumentumok konvertálása JSON-né, vagy JSON vissza XML-lé.
+xml json átalakítás parse
+Átalakítás
+XML → JSON
+JSON → XML
+Átalakítva.
+SQL-formázó
+SQL szép formázása, hogy a záradékok és listák olvashatóbbak legyenek.
+sql formázás pretty lekérdezés
+Formázás
+SQL formázva.
+Regex-tesztelő
+Reguláris kifejezés kipróbálása mintaszövegen és a találatok cseréje.
+regex reguláris kifejezés teszt csere
+Minta
+Jelzők
+Mintaszöveg
+Csere
+Csere
+{count, plural, one {# találat} other {# találat}}
+A csere kész.
+Hash-generátor
+Szöveg vagy fájl SHA-1/256/384/512 és MD5 értéke, helyben számolva.
+hash sha256 md5 sha1 ellenőrzőösszeg digest
+Hash
+Algoritmus
+Digest
+A hashek ebben a böngészőben készülnek (Web Crypto a SHA-hoz, helyi MD5-implementáció). Az MD5 nem ütközésálló — csak ellenőrzőösszeghez használd.
+A hash kész.
+UUID-generátor
+4-es vagy 7-es verziójú UUID-k létrehozása ezen a készüléken.
+uuid guid v4 v7 generálás
+Generálás
+Hány darab
+Verzió
+UUID-k létrehozva.
+Színkonverter
+Konverzió HEX, RGB, HSL és HSV között, színválasztóval.
+szín hex rgb hsl hsv választó
+Színválasztó
+Adj meg 3 vagy 6 jegyű hex színt.
+Lorem ipsum
+Helykitöltő bekezdések, mondatok vagy szavak generálása.
+lorem ipsum helykitöltő dummy szöveg
+Generálás
+Darabszám
+Mód
+Bekezdések
+Mondatok
+Szavak
+Szöveg létrehozva.
+QR-kód
+QR-kód készítése szövegből, vagy beolvasása egy képről.
+qr kód generálás beolvasás olvasás barcode
+Generálás
+Szöveg vagy URL
+Beolvasás képről
+QR beolvasása
+A QR-kód kész.
+QR-tartalom beolvasva.
+Nem található QR-kód ezen a képen.
+PDF aláírása
+Gépelt aláírás pecsételése minden oldalra. Csak vizuális — nem tanúsítvány.
+pdf aláírás pecsét név
+Aláírás
+Aláírás szövege
+A neved
+Ez a nevedet rajzolja az oldalra. Nem kriptográfiai digitális aláírás.
+Aláírás pecsételve.
+Képek vízjelezése
+Szöveg ráhelyezése fotókra, egy fájlra vagy egy egész kötegre.
+kép vízjel pecsét copyright
+Alkalmazás
+Vízjel szövege
+Elhelyezés
+Jobb alsó
+Bal alsó
+Jobb felső
+Közép
+Vízjel {count} képen.
+Jelszógenerátor
+Erős jelszó létrehozása ezen a készüléken. Semmi sem tárolódik.
+jelszó generálás véletlen titkos
+Generálás
+Hossz
+Kisbetűk
+Nagybetűk
+Számjegyek
+Szimbólumok
+A jelszó kész.
+Kis- és nagybetű
+Váltás camel, snake, kebab, title és más stílusok között.
+kisbetű camel snake kebab pascal title
+Átalakítás
+Stílus
+Átalakítva.
+JWT-dekódoló
+JWT-fejléc és payload helyi olvasása. Az aláírások nincsenek ellenőrizve.
+jwt dekódolás token bearer auth
+Dekódolás
+A Kit csak Base64url-t dekódol. Kulcs nélkül nem tudja igazolni a token hitelességét.
+Az aláírásrész megvan (nincs ellenőrizve).
+Nincs aláírásrész.
+Először illessz be egy tokent.
+Token dekódolva.
+Unix időbélyeg
+Unix-idő konvertálása ISO-ra és vissza.
+unix epoch időbélyeg iso dátum
+Most használata
+Cron-magyarázó
+5 mezős cron-kifejezés közérthető nyelvre fordítása.
+cron ütemezés crontab magyarázat
+Magyarázat
+Megmagyarázva.
+Számrendszer
+Egészek konvertálása a 2-es és 36-os alapok között.
+bináris hex decimális alap átalakítás
+Szám
+Erről az alapról
+Erre az alapra
+HTML-entitások
+&lt; &amp; és numerikus entitások kódolása vagy dekódolása.
+html entitások kódolás dekódolás escape
+Átalakítás
+Kódolás
+Dekódolás
+Átalakítva.
+JSON → TypeScript
+TypeScript-interfészek következtetése egy JSON-mintából.
+json typescript interface típus generálás
+Típusok generálása
+Típusok létrehozva.
+Utolsó frissítés
+Adatvédelmi irányelvek
+Felhasználási feltételek
+Az oldal nem található
+Ez a cím nincs a Kitben. Menj haza, és onnan válassz eszközt.
+Vissza a kezdőlapra
+Valami hiba történt
+Az utolsó művelet ebben a böngészőben sikertelen volt. Újrapróbálhatod anélkül, hogy elhagynád az oldalt.
+Újrapróbálás

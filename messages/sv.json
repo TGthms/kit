@@ -1,0 +1,735 @@
+{
+  "meta": {
+    "title": "Kit — Webbläsarverktyg som förblir privata",
+    "description": "PDF, bilder, media, konvertering och textverktyg körs på din enhet. Inget laddas upp till våra servrar."
+  },
+  "brand": {
+    "name": "Kit",
+    "tagline": "Vardagsverktyg i din webbläsare. Privata från grunden."
+  },
+  "nav": {
+    "home": "Hem",
+    "tools": "Verktyg",
+    "history": "Historik",
+    "favorites": "Favoriter",
+    "settings": "Inställningar",
+    "searchPlaceholder": "Sök verktyg…",
+    "openMenu": "Öppna menyn",
+    "closeMenu": "Stäng menyn"
+  },
+  "footer": {
+    "privacy": "Integritetspolicy",
+    "terms": "Användarvillkor",
+    "aboutMe": "Om mig",
+    "license": "MIT-licens",
+    "copyright": "© {year} Tim G (TGthms). Kit är öppen källkod under MIT-licensen.",
+    "github": "GitHub"
+  },
+  "common": {
+    "cancel": "Avbryt",
+    "clear": "Rensa",
+    "close": "Stäng",
+    "copy": "Kopiera",
+    "copied": "Kopierat till urklipp",
+    "download": "Hämta",
+    "run": "Kör",
+    "process": "Bearbeta",
+    "processing": "Arbetar…",
+    "done": "Klart",
+    "error": "Något gick fel",
+    "retry": "Försök igen",
+    "addFiles": "Lägg till filer",
+    "dropFiles": "Släpp filer här",
+    "orBrowse": "eller bläddra från din enhet",
+    "pasteSupported": "Du kan också klistra in från urklipp",
+    "remove": "Ta bort",
+    "reorder": "Dra för att ändra ordning",
+    "files": "Filer",
+    "noFiles": "Inga filer valda ännu",
+    "quality": "Kvalitet",
+    "options": "Alternativ",
+    "preview": "Förhandsgranska",
+    "result": "Resultat",
+    "input": "Indata",
+    "output": "Utdata",
+    "format": "Format",
+    "language": "Språk",
+    "theme": "Utseende",
+    "themeSystem": "Följ systemet",
+    "themeLight": "Ljust",
+    "themeDark": "Mörkt",
+    "loading": "Läser in…",
+    "save": "Spara",
+    "delete": "Ta bort",
+    "confirm": "Bekräfta",
+    "back": "Tillbaka",
+    "allCategories": "Alla",
+    "pin": "Fäst",
+    "unpin": "Lossa",
+    "favorite": "Lägg till i favoriter",
+    "unfavorite": "Ta bort från favoriter",
+    "presets": "Förinställningar",
+    "applyPreset": "Använd förinställning",
+    "savePreset": "Spara som förinställning",
+    "shortcuts": "Kortkommandon",
+    "progress": "Förlopp",
+    "fileTooLarge": "Den här filen är stor — bearbetningen kan ta ett tag.",
+    "unsupported": "Det här formatet stöds inte",
+    "success": "Lyckades",
+    "warning": "Obs",
+    "info": "Info",
+    "selectAll": "Markera alla",
+    "none": "Ingen",
+    "reset": "Återställ",
+    "maxWidth": "Maxbredd",
+    "maxHeight": "Maxhöjd",
+    "width": "Bredd",
+    "height": "Höjd",
+    "rotate": "Rotera",
+    "pages": "Sidor",
+    "page": "Sida",
+    "text": "Text",
+    "encode": "Koda",
+    "decode": "Avkoda",
+    "validate": "Validera",
+    "minify": "Minifiera",
+    "beautify": "Snygg formatering",
+    "valid": "Giltig",
+    "invalid": "Ogiltig",
+    "characters": "Tecken",
+    "lines": "Rader",
+    "from": "Från",
+    "to": "Till",
+    "start": "Start",
+    "end": "Slut",
+    "speed": "Hastighet",
+    "volume": "Volym",
+    "trim": "Klipp",
+    "extract": "Extrahera",
+    "batch": "Batch",
+    "limitations": "Begränsningar",
+    "clientSideOnly": "Körs bara i din webbläsare. Dina filer skickas aldrig till en Kit-server.",
+    "aboutMeUrl": "https://tgthms.github.io/about/",
+    "howItWorks": "Så fungerar det och gränser"
+  },
+  "home": {
+    "title": "Vad behöver du göra?",
+    "subtitle": "Praktiska verktyg som körs på den här enheten — inget konto, inga uppladdningar.",
+    "categories": "Kategorier",
+    "popular": "Verktyg",
+    "noResults": "Inget matchar den sökningen.",
+    "recent": "Fortsätt där du slutade",
+    "pinned": "Fästa",
+    "chooseCategory": "Börja med en kategori",
+    "chooseCategoryHint": "Välj en uppgiftsfamilj. Verktygen inuti är grupperade så att du kan skanna i stället för att leta.",
+    "backToCategories": "Kategorier",
+    "toolsInCategory": "{count, plural, one {# verktyg} other {# verktyg}}",
+    "searchResults": "Sökresultat",
+    "featured": "Börja här",
+    "groups": {
+      "pages": "Sidor",
+      "protect": "Skydda och info",
+      "markup": "Markering",
+      "export": "Exportera / konvertera",
+      "transform": "Storlek och beskärning",
+      "look": "Utseende",
+      "file": "Fil",
+      "clip": "Klipp",
+      "formats": "Format",
+      "write": "Skrivande",
+      "inspect": "Inspektera",
+      "encode": "Koda",
+      "generate": "Generera"
+    }
+  },
+  "categories": {
+    "pdf": "PDF",
+    "image": "Bilder",
+    "audio": "Ljud",
+    "video": "Video",
+    "convert": "Filkonvertering",
+    "text": "Skrivande",
+    "pdfDesc": "Slå ihop, dela, komprimera och märk PDF-dokument",
+    "imageDesc": "Komprimera, skala, konvertera och retuschera foton",
+    "audioDesc": "Konvertera, klipp och ändra hastighet bara för ljud",
+    "videoDesc": "Konvertera, klipp, snabba upp och dra ljud ur video",
+    "convertDesc": "Smart konvertering mellan format (JSON, CSV, ZIP, bilder…)",
+    "textDesc": "Jämför text, byt skiftläge och gör om Markdown till HTML",
+    "data": "Data",
+    "dataDesc": "JSON, YAML, CSV, XML, SQL och konvertering mellan format",
+    "developer": "Utveckling",
+    "developerDesc": "Token, hashar, kodningar, lösenord och andra bänkverktyg"
+  },
+  "history": {
+    "title": "Historik",
+    "subtitle": "Det du har kört på den här enheten. Vi sparar bara korta sammanfattningar — aldrig dina filer.",
+    "empty": "Ingen aktivitet ännu. Kör ett verktyg så visas det här.",
+    "clear": "Rensa historik",
+    "clearConfirm": "Ta bort all historik på den här enheten?",
+    "openTool": "Öppna verktyg",
+    "tool": "Verktyg",
+    "when": "När",
+    "summary": "Sammanfattning",
+    "status": "Status",
+    "success": "Lyckades",
+    "failed": "Misslyckades"
+  },
+  "favorites": {
+    "title": "Favoriter",
+    "subtitle": "Verktyg du håller nära för ett tryck.",
+    "empty": "Inga favoriter ännu. Stjärnmärk ett verktyg från Hem eller från dess sida."
+  },
+  "settings": {
+    "title": "Inställningar",
+    "subtitle": "De här valen stannar bara i den här webbläsaren.",
+    "appearance": "Utseende",
+    "language": "Språk",
+    "data": "Data och integritet",
+    "clearHistory": "Rensa historik",
+    "clearHistoryDesc": "Tar bort lokala historiksammanfattningar som den här webbplatsen sparar.",
+    "privacyNote": "Kit arbetar med dina filer i webbläsaren. Inställningar och historiksammanfattningar kan sparas lokalt. Alla detaljer finns i integritetspolicyn.",
+    "viewPrivacy": "Integritetspolicy",
+    "viewTerms": "Användarvillkor",
+    "shortcutsHelp": "Tryck på ? när som helst för kortkommandon.",
+    "version": "Version"
+  },
+  "shortcuts": {
+    "title": "Kortkommandon",
+    "global": "Överallt",
+    "search": "Fokusera sökning",
+    "settings": "Öppna inställningar",
+    "home": "Gå hem",
+    "help": "Visa den här listan",
+    "run": "Kör det aktuella verktyget",
+    "close": "Stäng"
+  },
+  "tools": {
+    "pdf-merge": {
+      "name": "Slå ihop PDF:er",
+      "description": "Stapla flera PDF:er till en. Förhandsgranska sidor och dra för att ändra ordning.",
+      "keywords": "pdf slå ihop kombinera sammanfoga häfta flera sidor",
+      "run": "Slå ihop",
+      "empty": "Lägg till minst två PDF-filer.",
+      "success": "{count} filer sammanslagna till en PDF."
+    },
+    "pdf-split": {
+      "name": "Dela PDF",
+      "description": "Dra ut ett sidintervall till en helt ny PDF.",
+      "keywords": "pdf dela extrahera sidor intervall",
+      "run": "Dela",
+      "range": "Sidor (till exempel 1-3,5)",
+      "success": "Din delade PDF är klar."
+    },
+    "pdf-organize": {
+      "name": "Ordna sidor",
+      "description": "Rotera sidor, ta bort dem du inte behöver och sätt en ny ordning.",
+      "keywords": "pdf rotera ta bort ordna om organisera sidor",
+      "run": "Spara PDF",
+      "success": "Din PDF har uppdaterats."
+    },
+    "pdf-compress": {
+      "name": "Komprimera PDF",
+      "description": "Minska filstorleken genom att koda om sidbilder (kvalitetskompromiss).",
+      "keywords": "pdf komprimera minska storlek mindre",
+      "run": "Komprimera",
+      "note": "Detta är en förlustbringande väg — sidor kan rastreras. Fungerar bäst på bildtunga PDF:er.",
+      "success": "Den komprimerade PDF:en är redo att hämtas."
+    },
+    "pdf-watermark": {
+      "name": "Vattenstämpel på PDF",
+      "description": "Stämpla text som vattenstämpel, sidhuvud eller sidfot på varje sida.",
+      "keywords": "pdf vattenstämpel stämpel sidhuvud sidfot konfidentiellt",
+      "run": "Tillämpa",
+      "text": "Vattenstämpeltext",
+      "position": "Placering",
+      "header": "Sidhuvud",
+      "footer": "Sidfot",
+      "center": "Diagonalt i mitten",
+      "opacity": "Opacitet",
+      "success": "Vattenstämpel tillämpad."
+    },
+    "pdf-redact": {
+      "name": "Täck innehåll",
+      "description": "Lägg helt svarta rutor över känsliga områden (visuell täckning).",
+      "keywords": "pdf svärta täcka dölja känsligt",
+      "run": "Tillämpa täckning",
+      "note": "Endast visuell täckning. Det garanterar inte att varje underliggande textström tas bort — dubbelkolla känsliga dokument.",
+      "success": "Täckningar tillämpade."
+    },
+    "pdf-extract": {
+      "name": "Extrahera från PDF",
+      "description": "Hämta läsbar text eller exportera en sida som bild.",
+      "keywords": "pdf extrahera text bilder",
+      "run": "Extrahera",
+      "modeText": "Text",
+      "modeImages": "Bilder",
+      "success": "Extrahering klar.",
+      "imagesReady": "Exporterade {count} sidbild(er) som ZIP."
+    },
+    "image-compress": {
+      "name": "Komprimera bilder",
+      "description": "Sänk kvalitet och maxstorlek så att foton förblir delbara.",
+      "keywords": "bild komprimera jpg png webp storlek foto",
+      "run": "Komprimera",
+      "success": "Komprimerade {count} bild(er)."
+    },
+    "image-resize": {
+      "name": "Skala bilder",
+      "description": "Ange exakta mått, med valfritt låst bildförhållande.",
+      "keywords": "bild skala mått dimensioner bredd höjd",
+      "run": "Skala",
+      "lockAspect": "Behåll bildförhållande",
+      "success": "Skalade {count} bild(er)."
+    },
+    "image-crop": {
+      "name": "Beskär bild",
+      "description": "Behåll bara den rektangel du bryr dig om.",
+      "keywords": "bild beskära klippa område",
+      "run": "Beskär",
+      "success": "Beskuren bild klar."
+    },
+    "image-convert": {
+      "name": "Konvertera bildformat",
+      "description": "Växla mellan JPEG, PNG, WEBP och liknande webbformat.",
+      "keywords": "bild konvertera format webp avif png jpg jpeg",
+      "run": "Konvertera",
+      "success": "Konverterade {count} bild(er)."
+    },
+    "image-metadata": {
+      "name": "Bildmetadata",
+      "description": "Granska EXIF och liknande taggar och exportera en ren kopia utan dem.",
+      "keywords": "bild exif metadata ta bort integritet plats",
+      "run": "Ta bort metadata",
+      "note": "Pixlar kodas om i webbläsaren så att inbäddad metadata slängs.",
+      "success": "Tog bort metadata från {count} bild(er).",
+      "tag": "Tagg",
+      "value": "Värde",
+      "noExif": "Ingen läsbar EXIF- eller textmetadata i den här filen."
+    },
+    "image-adjust": {
+      "name": "Justera bild",
+      "description": "Justera ljusstyrka, kontrast och mättnad.",
+      "keywords": "bild ljusstyrka kontrast mättnad färg",
+      "run": "Tillämpa",
+      "brightness": "Ljusstyrka",
+      "contrast": "Kontrast",
+      "saturation": "Mättnad",
+      "success": "Justerade {count} bild(er)."
+    },
+    "convert-hub": {
+      "name": "Smart konvertering",
+      "description": "Identifierar blandade fil- eller texttyper och konverterar mellan format (ingen mediastudio).",
+      "keywords": "konvertera hub smart batch json yaml csv zip bild data",
+      "run": "Konvertera",
+      "detect": "Identifierad som",
+      "chooseOutput": "Utdataformat",
+      "success": "Konvertering klar."
+    },
+    "json-format": {
+      "name": "JSON-formaterare",
+      "description": "Snygg formatering, minifiering och tidig upptäckt av JSON-fel.",
+      "keywords": "json formatera validera minifiera pretty",
+      "run": "Formatera",
+      "success": "JSON ser giltig ut och är formaterad."
+    },
+    "yaml-format": {
+      "name": "YAML-formaterare",
+      "description": "Kontrollera YAML-strukturen och städa layouten.",
+      "keywords": "yaml formatera validera yml",
+      "run": "Formatera",
+      "success": "YAML ser giltig ut."
+    },
+    "toml-format": {
+      "name": "TOML-formaterare",
+      "description": "Validera TOML och håll filen prydlig.",
+      "keywords": "toml formatera validera config",
+      "run": "Formatera",
+      "success": "TOML ser giltig ut."
+    },
+    "markdown-html": {
+      "name": "Markdown ↔ HTML",
+      "description": "Gör om Markdown till HTML, eller HTML tillbaka till Markdown.",
+      "keywords": "markdown html konvertera md markup",
+      "run": "Konvertera",
+      "toHtml": "Markdown → HTML",
+      "toMd": "HTML → Markdown",
+      "success": "Konverterat."
+    },
+    "csv-json": {
+      "name": "CSV ↔ JSON",
+      "description": "Flytta tabelldata mellan CSV och JSON-arrayer.",
+      "keywords": "csv json konvertera tabell kalkylblad",
+      "run": "Konvertera",
+      "toJson": "CSV → JSON",
+      "toCsv": "JSON → CSV",
+      "success": "Konverterat."
+    },
+    "text-diff": {
+      "name": "Jämför text",
+      "description": "Se rad-för-rad-ändringar mellan två versioner.",
+      "keywords": "diff jämföra text ändringar patch",
+      "run": "Jämför",
+      "left": "Original",
+      "right": "Uppdaterad",
+      "success": "Jämförelse klar."
+    },
+    "base64": {
+      "name": "Base64",
+      "description": "Koda eller avkoda Base64 för vanlig text eller hela filer.",
+      "keywords": "base64 koda avkoda binär",
+      "run": "Konvertera",
+      "mode": "Riktning",
+      "textMode": "Text",
+      "fileMode": "Fil",
+      "success": "Klart."
+    },
+    "url-encode": {
+      "name": "URL-kodning",
+      "description": "Procentkoda eller avkoda URL-delar säkert.",
+      "keywords": "url koda avkoda procent uri fråga",
+      "run": "Konvertera",
+      "success": "Klart."
+    },
+    "audio-convert": {
+      "name": "Konvertera ljud",
+      "description": "Byt ljudbehållare som MP3, WAV och OGG i webbläsaren.",
+      "keywords": "ljud konvertera mp3 wav ogg ffmpeg ljud",
+      "run": "Konvertera",
+      "loadingFfmpeg": "Läser in ljudmotor…",
+      "note": "Använder enkeltrådad FFmpeg WASM. Stora filer kan vara långsamma; kodekstödet är begränsat.",
+      "success": "Ljudkonvertering klar."
+    },
+    "audio-trim": {
+      "name": "Klipp ljud",
+      "description": "Behåll bara sträckan mellan två tidpunkter i en ljudfil.",
+      "keywords": "ljud klippa beskära klipp mp3 wav",
+      "run": "Klipp",
+      "success": "Ljudklipp klart."
+    },
+    "audio-speed": {
+      "name": "Ljudhastighet och volym",
+      "description": "Snabba upp, sakta ner eller ändra ljudstyrkan.",
+      "keywords": "ljud hastighet tempo volym tonhöjd",
+      "run": "Tillämpa",
+      "success": "Det bearbetade ljudet är klart."
+    },
+    "video-convert": {
+      "name": "Konvertera video",
+      "description": "Byt videobehållare som MP4 och WEBM i webbläsaren.",
+      "keywords": "video konvertera mp4 webm ffmpeg film",
+      "run": "Konvertera",
+      "loadingFfmpeg": "Läser in videomotor…",
+      "note": "Använder enkeltrådad FFmpeg WASM. Stora filer kan vara långsamma; kodekstödet är begränsat.",
+      "success": "Videokonvertering klar."
+    },
+    "video-trim": {
+      "name": "Klipp video",
+      "description": "Behåll bara klippet mellan två tidpunkter.",
+      "keywords": "video klippa beskära klipp mp4",
+      "run": "Klipp",
+      "success": "Videoklipp klart."
+    },
+    "video-speed": {
+      "name": "Videohastighet och volym",
+      "description": "Ändra uppspelningshastighet och ljudnivå för en video.",
+      "keywords": "video hastighet tempo volym",
+      "run": "Tillämpa",
+      "success": "Den bearbetade videon är klar."
+    },
+    "video-extract-audio": {
+      "name": "Extrahera ljud från video",
+      "description": "Spara ljudspåret från en video som en ljudfil.",
+      "keywords": "video extrahera ljud mp3 soundtrack",
+      "run": "Extrahera ljud",
+      "success": "Ljud extraherat."
+    },
+    "pdf-numbers": {
+      "name": "Sidnummer",
+      "description": "Stämpla en etikett som 1 / 12 på varje sida.",
+      "keywords": "pdf sidnummer sidfot sidhuvud paginering",
+      "run": "Lägg till nummer",
+      "template": "Etikett ({page} och {pages})",
+      "position": "Placering",
+      "start": "Börja vid",
+      "headerLeft": "Sidhuvud vänster",
+      "headerCenter": "Sidhuvud mitten",
+      "headerRight": "Sidhuvud höger",
+      "footerLeft": "Sidfot vänster",
+      "footerCenter": "Sidfot mitten",
+      "footerRight": "Sidfot höger",
+      "success": "Sidnummer tillagda."
+    },
+    "pdf-to-images": {
+      "name": "PDF → bilder",
+      "description": "Rastrera varje sida till JPEG och hämta dem som ZIP.",
+      "keywords": "pdf bild jpg jpeg zip sidor exportera",
+      "run": "Exportera sidor",
+      "limits": "Sidor ritas med PDF.js i den här fliken. Mycket stora dokument kan vara långsamma och använda mycket minne. Detta är en visuell raster, inte ett utdrag av inbäddade bildobjekt.",
+      "success": "Exporterade {count} sida/sidor."
+    },
+    "images-to-pdf": {
+      "name": "Bilder → PDF",
+      "description": "Stapla foton till en PDF, en bild per sida.",
+      "keywords": "bilder pdf jpg png kombinera",
+      "run": "Skapa PDF",
+      "success": "Byggde en PDF av {count} bild(er)."
+    },
+    "pdf-flatten": {
+      "name": "Platta ut formulär",
+      "description": "Baka in AcroForm-fält i sidan så att de inte längre kan redigeras.",
+      "keywords": "pdf platta ut formulär fält acroform",
+      "run": "Platta ut",
+      "limits": "Fungerar på vanliga AcroForm-fält. Dynamiska XFA-formulär stöds inte fullt ut.",
+      "success": "Plattade ut {count} fält."
+    },
+    "pdf-metadata": {
+      "name": "PDF-metadata",
+      "description": "Visa, redigera eller ta bort titel, författare och andra Info-fält.",
+      "keywords": "Nyckelord",
+      "run": "Spara metadata",
+      "strip": "Ta bort alla fält",
+      "title": "Titel",
+      "author": "Författare",
+      "subject": "Ämne",
+      "creator": "Skapare",
+      "producer": "Producent",
+      "saved": "Metadata sparad.",
+      "stripped": "Metadata borttagen."
+    },
+    "pdf-protect": {
+      "name": "Lås eller lås upp PDF",
+      "description": "Lägg till eller ta bort ett användarlösenord. Krypteringen stannar i den här webbläsaren.",
+      "keywords": "pdf lösenord låsa låsa upp kryptera dekryptera",
+      "run": "Tillämpa",
+      "lock": "Lås",
+      "unlock": "Lås upp",
+      "password": "Lösenord",
+      "limits": "Använder ett PDF-krypteringsbibliotek på klientsidan. Vissa äldre eller ovanliga revisioner kanske inte låses upp. Kit skickar aldrig filen eller lösenordet till en server.",
+      "success": "PDF:en är klar."
+    },
+    "image-rotate": {
+      "name": "Rotera och vänd",
+      "description": "Vrid bilder 90° i taget eller vänd dem horisontellt eller vertikalt.",
+      "keywords": "bild rotera vända spegla",
+      "run": "Tillämpa",
+      "operation": "Transformering",
+      "rot90": "Rotera 90°",
+      "rot180": "Rotera 180°",
+      "rot270": "Rotera 270°",
+      "flipH": "Vänd horisontellt",
+      "flipV": "Vänd vertikalt",
+      "success": "Transformerade {count} bild(er)."
+    },
+    "image-filters": {
+      "name": "Bildfilter",
+      "description": "Tillämpa gråskala, sepia eller invertera på ett eller flera foton.",
+      "keywords": "bild filter gråskala sepia invertera",
+      "run": "Tillämpa",
+      "filter": "Filter",
+      "grayscale": "Gråskala",
+      "sepia": "Sepia",
+      "invert": "Invertera",
+      "success": "Filtrerade {count} bild(er)."
+    },
+    "image-favicon": {
+      "name": "Favicon-paket",
+      "description": "Exportera en källbild som vanliga ikonstorlekar i en ZIP.",
+      "keywords": "favicon ikon 16 32 180 192 512 apple touch",
+      "run": "Exportera ikoner",
+      "note": "Exporterar PNG-filer på 16, 32, 48, 180, 192 och 512 pixlar.",
+      "success": "Ikonpaketet är klart."
+    },
+    "video-gif": {
+      "name": "Video → GIF",
+      "description": "Gör om ett kort klipp till en loopande GIF i webbläsaren.",
+      "keywords": "video gif klipp konvertera ffmpeg",
+      "run": "Skapa GIF",
+      "limits": "Använder FFmpeg WASM. Håll klippen korta — GIF-kodning är långsam och minneskrävande. Palett och kodekar följer bygget i webbläsaren.",
+      "success": "GIF:en är klar."
+    },
+    "xml-json": {
+      "name": "XML ↔ JSON",
+      "description": "Konvertera XML-dokument till JSON, eller JSON tillbaka till XML.",
+      "keywords": "xml json konvertera tolka",
+      "run": "Konvertera",
+      "toJson": "XML → JSON",
+      "toXml": "JSON → XML",
+      "success": "Konverterat."
+    },
+    "sql-format": {
+      "name": "SQL-formaterare",
+      "description": "Formatera SQL så att satser och listor blir lättare att läsa.",
+      "keywords": "sql formatera pretty fråga",
+      "run": "Formatera",
+      "success": "SQL formaterad."
+    },
+    "regex-tester": {
+      "name": "Regex-testare",
+      "description": "Prova ett reguljärt uttryck mot exempeltext och ersätt träffar.",
+      "keywords": "regex reguljärt uttryck testa ersätta",
+      "pattern": "Mönster",
+      "flags": "Flaggor",
+      "input": "Exempeltext",
+      "replace": "Ersättning",
+      "runReplace": "Ersätt",
+      "matches": "{count, plural, one {# träff} other {# träffar}}",
+      "success": "Ersättning klar."
+    },
+    "hash-generator": {
+      "name": "Hashgenerator",
+      "description": "SHA-1/256/384/512 och MD5 av text eller en fil, beräknat lokalt.",
+      "keywords": "hash sha256 md5 sha1 kontrollsumma digest",
+      "run": "Hasha",
+      "algo": "Algoritm",
+      "digest": "Digest",
+      "limits": "Hashar beräknas i den här webbläsaren (Web Crypto för SHA, en lokal MD5-implementation). MD5 är inte kollisionssäker — använd den bara för kontrollsummor.",
+      "success": "Hash klar."
+    },
+    "uuid-generator": {
+      "name": "UUID-generator",
+      "description": "Skapa UUID version 4 eller 7 på den här enheten.",
+      "keywords": "uuid guid v4 v7 generera",
+      "run": "Generera",
+      "count": "Hur många",
+      "version": "Version",
+      "success": "UUID:er genererade."
+    },
+    "color-convert": {
+      "name": "Färgkonverterare",
+      "description": "Konvertera mellan HEX, RGB, HSL och HSV, med en färgväljare.",
+      "keywords": "färg hex rgb hsl hsv väljare",
+      "picker": "Färgväljare",
+      "invalid": "Ange en hex-färg med 3 eller 6 siffror."
+    },
+    "lorem-ipsum": {
+      "name": "Lorem ipsum",
+      "description": "Generera platshållarstycken, meningar eller ord.",
+      "keywords": "lorem ipsum platshållare dummy text",
+      "run": "Generera",
+      "count": "Antal",
+      "mode": "Läge",
+      "paragraphs": "Stycken",
+      "sentences": "Meningar",
+      "words": "Ord",
+      "success": "Text genererad."
+    },
+    "qr-code": {
+      "name": "QR-kod",
+      "description": "Skapa en QR-kod från text, eller läs en från en bild.",
+      "keywords": "qr kod generera skanna läsa streckkod",
+      "run": "Generera",
+      "payload": "Text eller URL",
+      "read": "Läs från bild",
+      "runRead": "Läs QR",
+      "generated": "QR-kod klar.",
+      "decoded": "QR-innehåll läst.",
+      "none": "Ingen QR-kod hittades i den bilden."
+    },
+    "pdf-sign": {
+      "name": "Signera PDF",
+      "description": "Stämpla en inskriven signatur på varje sida. Endast visuell — inte ett certifikat.",
+      "keywords": "pdf signera signatur stämpel namn",
+      "run": "Signera",
+      "signature": "Signaturtext",
+      "placeholder": "Ditt namn",
+      "limits": "Detta ritar ditt namn på sidan. Det är inte en kryptografisk digital signatur.",
+      "success": "Signatur stämplad."
+    },
+    "image-watermark": {
+      "name": "Vattenstämpel på bilder",
+      "description": "Lägg text över foton, en fil eller en hel batch.",
+      "keywords": "bild vattenstämpel stämpel upphovsrätt",
+      "run": "Tillämpa",
+      "text": "Vattenstämpeltext",
+      "position": "Placering",
+      "bottomRight": "Nedre höger",
+      "bottomLeft": "Nedre vänster",
+      "topRight": "Övre höger",
+      "center": "Mitten",
+      "success": "Vattenstämplade {count} bild(er)."
+    },
+    "password-generator": {
+      "name": "Lösenordsgenerator",
+      "description": "Skapa ett starkt lösenord på den här enheten. Ingenting sparas.",
+      "keywords": "lösenord generera slumpmässigt hemligt",
+      "run": "Generera",
+      "length": "Längd",
+      "lower": "Gemener",
+      "upper": "Versaler",
+      "digits": "Siffror",
+      "symbols": "Symboler",
+      "success": "Lösenord klart."
+    },
+    "case-convert": {
+      "name": "Ändra skiftläge",
+      "description": "Växla mellan camel, snake, kebab, titel och mer.",
+      "keywords": "skiftläge camel snake kebab pascal titel",
+      "run": "Konvertera",
+      "style": "Stil",
+      "success": "Konverterat."
+    },
+    "jwt-decode": {
+      "name": "JWT-avkodare",
+      "description": "Läs JWT-header och payload lokalt. Signaturer verifieras inte.",
+      "keywords": "jwt avkoda token bearer auth",
+      "run": "Avkoda",
+      "limits": "Kit avkodar bara Base64url. Utan en nyckel kan den inte bevisa att tokenet är äkta.",
+      "hasSig": "Signaturdel finns (inte verifierad).",
+      "noSig": "Ingen signaturdel.",
+      "empty": "Klistra in en token först.",
+      "success": "Token avkodad."
+    },
+    "unix-timestamp": {
+      "name": "Unix-tidsstämpel",
+      "description": "Konvertera Unix-tid till ISO och tillbaka.",
+      "keywords": "unix epoch tidsstämpel iso datum",
+      "now": "Använd nu"
+    },
+    "cron-explain": {
+      "name": "Förklara cron",
+      "description": "Gör om ett cron-uttryck med 5 fält till vanlig svenska.",
+      "keywords": "cron schema crontab förklara",
+      "run": "Förklara",
+      "success": "Förklarat."
+    },
+    "number-base": {
+      "name": "Talbas",
+      "description": "Konvertera heltal mellan bas 2 och 36.",
+      "keywords": "binär hex decimal bas konvertera",
+      "value": "Tal",
+      "from": "Från bas",
+      "to": "Till bas"
+    },
+    "html-entities": {
+      "name": "HTML-entiteter",
+      "description": "Koda eller avkoda &lt; &amp; och numeriska entiteter.",
+      "keywords": "html entiteter koda avkoda escape",
+      "run": "Konvertera",
+      "encode": "Koda",
+      "decode": "Avkoda",
+      "success": "Konverterat."
+    },
+    "json-types": {
+      "name": "JSON → TypeScript",
+      "description": "Härled TypeScript-gränssnitt från ett JSON-exempel.",
+      "keywords": "json typescript interface typ generera",
+      "run": "Generera typer",
+      "success": "Typer genererade."
+    }
+  },
+  "legal": {
+    "lastUpdated": "Senast uppdaterad",
+    "privacyTitle": "Integritetspolicy",
+    "termsTitle": "Användarvillkor"
+  },
+  "notFound": {
+    "title": "Sidan hittades inte",
+    "body": "Den adressen finns inte i Kit. Gå hem och välj ett verktyg därifrån.",
+    "home": "Tillbaka till hem"
+  },
+  "errorPage": {
+    "title": "Något gick fel",
+    "body": "Den senaste åtgärden misslyckades i den här webbläsaren. Du kan försöka igen utan att lämna sidan.",
+    "retry": "Försök igen"
+  }
+}

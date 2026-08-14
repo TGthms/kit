@@ -1,10 +1,21 @@
 import fs from "fs";
 import path from "path";
-import type { Locale } from "@/lib/i18n/config";
+import { resolveLocale } from "@/lib/i18n/config";
 
-export function loadLegal(locale: Locale, doc: "privacy" | "terms"): string {
-  const file = path.join(process.cwd(), "content", "legal", locale, `${doc}.md`);
-  return fs.readFileSync(file, "utf8");
+export function loadLegal(locale: string, doc: "privacy" | "terms"): string {
+  const resolved = resolveLocale(locale);
+  const candidates = [
+    path.join(process.cwd(), "content", "legal", resolved, `${doc}.md`),
+    path.join(process.cwd(), "content", "legal", "zh", `${doc}.md`),
+    path.join(process.cwd(), "content", "legal", "en", `${doc}.md`),
+  ];
+  if (resolved !== "zh-Hans") {
+    candidates.splice(1, 1);
+  }
+  for (const file of candidates) {
+    if (fs.existsSync(file)) return fs.readFileSync(file, "utf8");
+  }
+  return fs.readFileSync(path.join(process.cwd(), "content", "legal", "en", `${doc}.md`), "utf8");
 }
 
 export function renderSimpleMarkdown(md: string): string {

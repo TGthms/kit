@@ -1,0 +1,735 @@
+{
+  "meta": {
+    "title": "Kit — Alat peramban yang tetap privat",
+    "description": "Alat PDF, gambar, media, konversi, dan teks yang berjalan di perangkat Anda. Tidak ada yang diunggah ke server kami."
+  },
+  "brand": {
+    "name": "Kit",
+    "tagline": "Alat sehari-hari di peramban. Privat sejak dirancang."
+  },
+  "nav": {
+    "home": "Beranda",
+    "tools": "Alat",
+    "history": "Riwayat",
+    "favorites": "Favorit",
+    "settings": "Pengaturan",
+    "searchPlaceholder": "Cari alat…",
+    "openMenu": "Buka menu",
+    "closeMenu": "Tutup menu"
+  },
+  "footer": {
+    "privacy": "Kebijakan Privasi",
+    "terms": "Ketentuan Penggunaan",
+    "aboutMe": "Tentang saya",
+    "license": "Lisensi MIT",
+    "copyright": "© {year} Tim G (TGthms). Kit bersumber terbuka di bawah Lisensi MIT.",
+    "github": "GitHub"
+  },
+  "common": {
+    "cancel": "Batal",
+    "clear": "Hapus",
+    "close": "Tutup",
+    "copy": "Salin",
+    "copied": "Disalin ke papan klip",
+    "download": "Unduh",
+    "run": "Jalankan",
+    "process": "Proses",
+    "processing": "Memproses…",
+    "done": "Selesai",
+    "error": "Terjadi kesalahan",
+    "retry": "Coba lagi",
+    "addFiles": "Tambah berkas",
+    "dropFiles": "Letakkan berkas di sini",
+    "orBrowse": "atau pilih dari perangkat Anda",
+    "pasteSupported": "Anda juga dapat menempel dari papan klip",
+    "remove": "Hapus",
+    "reorder": "Seret untuk mengubah urutan",
+    "files": "Berkas",
+    "noFiles": "Belum ada berkas yang dipilih",
+    "quality": "Kualitas",
+    "options": "Opsi",
+    "preview": "Pratinjau",
+    "result": "Hasil",
+    "input": "Masukan",
+    "output": "Keluaran",
+    "format": "Format",
+    "language": "Bahasa",
+    "theme": "Tampilan",
+    "themeSystem": "Ikuti sistem",
+    "themeLight": "Terang",
+    "themeDark": "Gelap",
+    "loading": "Memuat…",
+    "save": "Simpan",
+    "delete": "Hapus",
+    "confirm": "Konfirmasi",
+    "back": "Kembali",
+    "allCategories": "Semua",
+    "pin": "Sematkan",
+    "unpin": "Lepas sematan",
+    "favorite": "Tambah ke favorit",
+    "unfavorite": "Hapus dari favorit",
+    "presets": "Prasetel",
+    "applyPreset": "Gunakan prasetel",
+    "savePreset": "Simpan sebagai prasetel",
+    "shortcuts": "Pintasan papan ketik",
+    "progress": "Progres",
+    "fileTooLarge": "Berkas ini besar — pemrosesan mungkin memakan waktu.",
+    "unsupported": "Format ini tidak didukung",
+    "success": "Berhasil",
+    "warning": "Perhatian",
+    "info": "Catatan",
+    "selectAll": "Pilih semua",
+    "none": "Tidak ada",
+    "reset": "Atur ulang",
+    "maxWidth": "Lebar maks.",
+    "maxHeight": "Tinggi maks.",
+    "width": "Lebar",
+    "height": "Tinggi",
+    "rotate": "Putar",
+    "pages": "Halaman",
+    "page": "Halaman",
+    "text": "Teks",
+    "encode": "Kodekan",
+    "decode": "Dekode",
+    "validate": "Validasi",
+    "minify": "Perkecil",
+    "beautify": "Rapikan",
+    "valid": "Valid",
+    "invalid": "Tidak valid",
+    "characters": "Karakter",
+    "lines": "Baris",
+    "from": "Dari",
+    "to": "Ke",
+    "start": "Mulai",
+    "end": "Selesai",
+    "speed": "Kecepatan",
+    "volume": "Volume",
+    "trim": "Potong",
+    "extract": "Ekstrak",
+    "batch": "Massal",
+    "limitations": "Batasan",
+    "clientSideOnly": "Hanya berjalan di peramban Anda. Berkas Anda tidak pernah dikirim ke server Kit.",
+    "aboutMeUrl": "https://tgthms.github.io/about/",
+    "howItWorks": "Cara kerja dan batasannya"
+  },
+  "home": {
+    "title": "Apa yang ingin Anda lakukan?",
+    "subtitle": "Alat praktis di perangkat ini — tanpa akun, tanpa unggahan.",
+    "categories": "Kategori",
+    "popular": "Alat",
+    "noResults": "Tidak ada yang cocok dengan pencarian itu.",
+    "recent": "Lanjutkan dari terakhir kali",
+    "pinned": "Disematkan",
+    "chooseCategory": "Mulai dari kategori",
+    "chooseCategoryHint": "Pilih keluarga pekerjaan. Alat di dalamnya dikelompokkan agar Anda memindai, bukan mencari-cari.",
+    "backToCategories": "Kategori",
+    "toolsInCategory": "{count, plural, one {# alat} other {# alat}}",
+    "searchResults": "Hasil pencarian",
+    "featured": "Mulai di sini",
+    "groups": {
+      "pages": "Halaman",
+      "protect": "Lindungi & info",
+      "markup": "Markup",
+      "export": "Ekspor / konversi",
+      "transform": "Ukuran & potong",
+      "look": "Tampilan",
+      "file": "Berkas",
+      "clip": "Klip",
+      "formats": "Format",
+      "write": "Menulis",
+      "inspect": "Periksa",
+      "encode": "Kodekan",
+      "generate": "Hasilkan"
+    }
+  },
+  "categories": {
+    "pdf": "PDF",
+    "image": "Gambar",
+    "audio": "Audio",
+    "video": "Video",
+    "convert": "Konversi berkas",
+    "text": "Menulis",
+    "pdfDesc": "Gabungkan, pisahkan, kompres, dan tandai dokumen PDF",
+    "imageDesc": "Kompres, ubah ukuran, konversi, dan retus foto",
+    "audioDesc": "Konversi, potong, dan ubah kecepatan audio saja",
+    "videoDesc": "Konversi, potong, percepat, dan tarik audio dari video",
+    "convertDesc": "Konversi cerdas lintas format (JSON, CSV, ZIP, gambar…)",
+    "textDesc": "Bandingkan teks, ubah huruf, dan ubah Markdown menjadi HTML",
+    "data": "Data",
+    "dataDesc": "JSON, YAML, CSV, XML, SQL, dan konversi lintas format",
+    "developer": "Pengembang",
+    "developerDesc": "Token, hash, pengodean, kata sandi, dan alat bangku lainnya"
+  },
+  "history": {
+    "title": "Riwayat",
+    "subtitle": "Apa yang Anda jalankan di perangkat ini. Kami hanya menyimpan ringkasan singkat — bukan berkas Anda.",
+    "empty": "Belum ada aktivitas. Jalankan alat dan hasilnya akan muncul di sini.",
+    "clear": "Hapus riwayat",
+    "clearConfirm": "Hapus semua riwayat di perangkat ini?",
+    "openTool": "Buka alat",
+    "tool": "Alat",
+    "when": "Kapan",
+    "summary": "Ringkasan",
+    "status": "Status",
+    "success": "Berhasil",
+    "failed": "Gagal"
+  },
+  "favorites": {
+    "title": "Favorit",
+    "subtitle": "Alat yang Anda simpan dekat untuk satu ketukan.",
+    "empty": "Belum ada favorit. Bintangi alat dari Beranda atau dari halamannya."
+  },
+  "settings": {
+    "title": "Pengaturan",
+    "subtitle": "Pilihan ini hanya tersimpan di peramban ini.",
+    "appearance": "Tampilan",
+    "language": "Bahasa",
+    "data": "Data & privasi",
+    "clearHistory": "Hapus riwayat",
+    "clearHistoryDesc": "Menghapus ringkasan riwayat lokal yang disimpan situs ini.",
+    "privacyNote": "Kit memproses berkas Anda di peramban. Preferensi dan ringkasan riwayat dapat disimpan secara lokal. Detail lengkap ada di Kebijakan Privasi.",
+    "viewPrivacy": "Kebijakan Privasi",
+    "viewTerms": "Ketentuan Penggunaan",
+    "shortcutsHelp": "Tekan ? kapan saja untuk pintasan papan ketik.",
+    "version": "Versi"
+  },
+  "shortcuts": {
+    "title": "Pintasan papan ketik",
+    "global": "Di mana saja",
+    "search": "Fokus pencarian",
+    "settings": "Buka pengaturan",
+    "home": "Ke beranda",
+    "help": "Tampilkan daftar ini",
+    "run": "Jalankan alat saat ini",
+    "close": "Tutup"
+  },
+  "tools": {
+    "pdf-merge": {
+      "name": "Gabungkan PDF",
+      "description": "Tumpuk beberapa PDF menjadi satu. Pratinjau halaman dan seret untuk mengurutkan ulang.",
+      "keywords": "pdf gabung satukan jahit banyak halaman",
+      "run": "Gabungkan",
+      "empty": "Tambahkan setidaknya dua berkas PDF.",
+      "success": "Menggabungkan {count} berkas menjadi satu PDF."
+    },
+    "pdf-split": {
+      "name": "Pisahkan PDF",
+      "description": "Ambil rentang halaman menjadi PDF baru.",
+      "keywords": "pdf pisah ekstrak halaman rentang",
+      "run": "Pisahkan",
+      "range": "Halaman (misalnya 1-3,5)",
+      "success": "PDF yang dipisah siap."
+    },
+    "pdf-organize": {
+      "name": "Atur halaman",
+      "description": "Putar halaman, hapus yang tidak perlu, dan tetapkan urutan baru.",
+      "keywords": "pdf putar hapus urut atur halaman",
+      "run": "Simpan PDF",
+      "success": "PDF Anda telah diperbarui."
+    },
+    "pdf-compress": {
+      "name": "Kompres PDF",
+      "description": "Perkecil ukuran dengan mengkodekan ulang gambar halaman (kompromi kualitas).",
+      "keywords": "pdf kompres perkecil ukuran",
+      "run": "Kompres",
+      "note": "Ini jalur berkehilangan — halaman bisa diraster. Paling baik untuk PDF yang penuh gambar.",
+      "success": "PDF terkompres siap diunduh."
+    },
+    "pdf-watermark": {
+      "name": "Tanda air PDF",
+      "description": "Cap teks sebagai tanda air, kepala, atau kaki di setiap halaman.",
+      "keywords": "pdf tanda air cap kepala kaki rahasia",
+      "run": "Terapkan",
+      "text": "Teks tanda air",
+      "position": "Penempatan",
+      "header": "Kepala",
+      "footer": "Kaki",
+      "center": "Diagonal di tengah",
+      "opacity": "Opasitas",
+      "success": "Tanda air diterapkan."
+    },
+    "pdf-redact": {
+      "name": "Tutupi konten",
+      "description": "Letakkan kotak hitam padat di atas area sensitif (penutup visual).",
+      "keywords": "pdf redaksi hitam sembunyi sensitif",
+      "run": "Terapkan penutup",
+      "note": "Hanya penutup visual. Tidak menjamin penghapusan setiap aliran teks di bawahnya — periksa ulang dokumen sensitif.",
+      "success": "Kotak penutup diterapkan."
+    },
+    "pdf-extract": {
+      "name": "Ekstrak dari PDF",
+      "description": "Ambil teks yang dapat dibaca atau ekspor halaman sebagai gambar.",
+      "keywords": "pdf ekstrak teks gambar",
+      "run": "Ekstrak",
+      "modeText": "Teks",
+      "modeImages": "Gambar",
+      "success": "Ekstraksi selesai.",
+      "imagesReady": "Mengekspor {count} gambar halaman sebagai ZIP."
+    },
+    "image-compress": {
+      "name": "Kompres gambar",
+      "description": "Turunkan kualitas dan ukuran maksimum agar foto tetap mudah dibagikan.",
+      "keywords": "gambar kompres jpg png webp ukuran foto",
+      "run": "Kompres",
+      "success": "Mengompres {count} gambar."
+    },
+    "image-resize": {
+      "name": "Ubah ukuran gambar",
+      "description": "Tetapkan dimensi pasti, dengan kunci rasio aspek opsional.",
+      "keywords": "gambar ukuran skala dimensi lebar tinggi",
+      "run": "Ubah ukuran",
+      "lockAspect": "Pertahankan rasio aspek",
+      "success": "Mengubah ukuran {count} gambar."
+    },
+    "image-crop": {
+      "name": "Potong gambar",
+      "description": "Simpan hanya persegi yang Anda butuhkan.",
+      "keywords": "gambar potong potong wilayah",
+      "run": "Potong",
+      "success": "Gambar yang dipotong siap."
+    },
+    "image-convert": {
+      "name": "Konversi format gambar",
+      "description": "Beralih antara JPEG, PNG, WEBP, dan format web serupa.",
+      "keywords": "gambar konversi format webp avif png jpg jpeg",
+      "run": "Konversi",
+      "success": "Mengonversi {count} gambar."
+    },
+    "image-metadata": {
+      "name": "Metadata gambar",
+      "description": "Periksa EXIF dan tag serupa, lalu ekspor salinan bersih tanpanya.",
+      "keywords": "gambar exif metadata hapus privasi lokasi",
+      "run": "Hapus metadata",
+      "note": "Piksel dikodekan ulang di peramban sehingga metadata tertanam dihapus.",
+      "success": "Menghapus metadata dari {count} gambar.",
+      "tag": "Tag",
+      "value": "Nilai",
+      "noExif": "Tidak ada EXIF atau metadata teks yang dapat dibaca di berkas ini."
+    },
+    "image-adjust": {
+      "name": "Sesuaikan gambar",
+      "description": "Ubah kecerahan, kontras, dan saturasi.",
+      "keywords": "gambar kecerahan kontras saturasi warna",
+      "run": "Terapkan",
+      "brightness": "Kecerahan",
+      "contrast": "Kontras",
+      "saturation": "Saturasi",
+      "success": "Menyesuaikan {count} gambar."
+    },
+    "convert-hub": {
+      "name": "Konversi cerdas",
+      "description": "Mendeteksi jenis berkas atau teks campuran dan mengonversi antarformat (bukan studio media).",
+      "keywords": "konversi hub cerdas massal json yaml csv zip gambar data",
+      "run": "Konversi",
+      "detect": "Terdeteksi sebagai",
+      "chooseOutput": "Format keluaran",
+      "success": "Konversi selesai."
+    },
+    "json-format": {
+      "name": "Pemformat JSON",
+      "description": "Rapikan, perkecil, dan tangkap kesalahan JSON lebih awal.",
+      "keywords": "json format validasi perkecil pretty",
+      "run": "Format",
+      "success": "JSON valid dan terformat."
+    },
+    "yaml-format": {
+      "name": "Pemformat YAML",
+      "description": "Periksa struktur YAML dan rapikan tata letak.",
+      "keywords": "yaml format validasi yml",
+      "run": "Format",
+      "success": "YAML valid."
+    },
+    "toml-format": {
+      "name": "Pemformat TOML",
+      "description": "Validasi TOML dan jaga berkas tetap rapi.",
+      "keywords": "toml format validasi config",
+      "run": "Format",
+      "success": "TOML valid."
+    },
+    "markdown-html": {
+      "name": "Markdown ↔ HTML",
+      "description": "Ubah Markdown menjadi HTML, atau HTML kembali menjadi Markdown.",
+      "keywords": "markdown html konversi md markup",
+      "run": "Konversi",
+      "toHtml": "Markdown → HTML",
+      "toMd": "HTML → Markdown",
+      "success": "Dikonversi."
+    },
+    "csv-json": {
+      "name": "CSV ↔ JSON",
+      "description": "Pindahkan data tabular antara CSV dan array JSON.",
+      "keywords": "csv json konversi tabel spreadsheet",
+      "run": "Konversi",
+      "toJson": "CSV → JSON",
+      "toCsv": "JSON → CSV",
+      "success": "Dikonversi."
+    },
+    "text-diff": {
+      "name": "Bandingkan teks",
+      "description": "Lihat perubahan baris demi baris antara dua versi.",
+      "keywords": "diff banding teks perubahan patch",
+      "run": "Bandingkan",
+      "left": "Asli",
+      "right": "Diperbarui",
+      "success": "Perbandingan siap."
+    },
+    "base64": {
+      "name": "Base64",
+      "description": "Kodekan atau dekode Base64 untuk teks biasa atau seluruh berkas.",
+      "keywords": "base64 kodekan dekode biner",
+      "run": "Konversi",
+      "mode": "Arah",
+      "textMode": "Teks",
+      "fileMode": "Berkas",
+      "success": "Selesai."
+    },
+    "url-encode": {
+      "name": "Pengodean URL",
+      "description": "Kodekan atau dekode komponen URL secara aman dengan persen.",
+      "keywords": "url kodekan dekode persen uri kueri",
+      "run": "Konversi",
+      "success": "Selesai."
+    },
+    "audio-convert": {
+      "name": "Konversi audio",
+      "description": "Ubah wadah audio seperti MP3, WAV, dan OGG di peramban.",
+      "keywords": "audio konversi mp3 wav ogg ffmpeg suara",
+      "run": "Konversi",
+      "loadingFfmpeg": "Memuat mesin audio…",
+      "note": "Menggunakan FFmpeg WASM satu utas. Berkas besar bisa lambat; dukungan codec terbatas.",
+      "success": "Konversi audio selesai."
+    },
+    "audio-trim": {
+      "name": "Potong audio",
+      "description": "Simpan hanya rentang antara dua stempel waktu dalam berkas audio.",
+      "keywords": "audio potong klip mp3 wav",
+      "run": "Potong",
+      "success": "Pemotongan audio selesai."
+    },
+    "audio-speed": {
+      "name": "Kecepatan & volume audio",
+      "description": "Percepat, perlambat, atau ubah kekerasan audio.",
+      "keywords": "audio kecepatan tempo volume nada",
+      "run": "Terapkan",
+      "success": "Audio yang diproses siap."
+    },
+    "video-convert": {
+      "name": "Konversi video",
+      "description": "Ubah wadah video seperti MP4 dan WEBM di peramban.",
+      "keywords": "video konversi mp4 webm ffmpeg film",
+      "run": "Konversi",
+      "loadingFfmpeg": "Memuat mesin video…",
+      "note": "Menggunakan FFmpeg WASM satu utas. Berkas besar bisa lambat; dukungan codec terbatas.",
+      "success": "Konversi video selesai."
+    },
+    "video-trim": {
+      "name": "Potong video",
+      "description": "Simpan hanya klip antara dua stempel waktu.",
+      "keywords": "video potong klip mp4",
+      "run": "Potong",
+      "success": "Pemotongan video selesai."
+    },
+    "video-speed": {
+      "name": "Kecepatan & volume video",
+      "description": "Ubah kecepatan putar dan tingkat audio sebuah video.",
+      "keywords": "video kecepatan tempo volume",
+      "run": "Terapkan",
+      "success": "Video yang diproses siap."
+    },
+    "video-extract-audio": {
+      "name": "Ekstrak audio dari video",
+      "description": "Simpan jalur suara video sebagai berkas audio.",
+      "keywords": "video ekstrak audio mp3 jalur suara",
+      "run": "Ekstrak audio",
+      "success": "Audio diekstrak."
+    },
+    "pdf-numbers": {
+      "name": "Nomor halaman",
+      "description": "Cap label halaman seperti 1 / 12 di setiap halaman.",
+      "keywords": "pdf nomor halaman kaki kepala paginasi",
+      "run": "Tambah nomor",
+      "template": "Label ({page} dan {pages})",
+      "position": "Penempatan",
+      "start": "Mulai dari",
+      "headerLeft": "Kepala kiri",
+      "headerCenter": "Kepala tengah",
+      "headerRight": "Kepala kanan",
+      "footerLeft": "Kaki kiri",
+      "footerCenter": "Kaki tengah",
+      "footerRight": "Kaki kanan",
+      "success": "Nomor halaman ditambahkan."
+    },
+    "pdf-to-images": {
+      "name": "PDF → gambar",
+      "description": "Raster setiap halaman ke JPEG dan unduh sebagai ZIP.",
+      "keywords": "pdf gambar jpg jpeg zip halaman ekspor",
+      "run": "Ekspor halaman",
+      "limits": "Halaman digambar dengan PDF.js di tab ini. Dokumen yang sangat besar bisa lambat dan memakai banyak memori. Ini raster visual, bukan ekstrak objek gambar tertanam.",
+      "success": "Mengekspor {count} halaman."
+    },
+    "images-to-pdf": {
+      "name": "Gambar → PDF",
+      "description": "Tumpuk foto menjadi PDF, satu gambar per halaman.",
+      "keywords": "gambar pdf jpg png gabung",
+      "run": "Buat PDF",
+      "success": "Membangun PDF dari {count} gambar."
+    },
+    "pdf-flatten": {
+      "name": "Ratakan formulir",
+      "description": "Panggang bidang AcroForm ke halaman agar tidak bisa diedit lagi.",
+      "keywords": "pdf ratakan formulir bidang acroform",
+      "run": "Ratakan",
+      "limits": "Berfungsi pada bidang AcroForm standar. Formulir XFA dinamis tidak didukung sepenuhnya.",
+      "success": "Meratakan {count} bidang."
+    },
+    "pdf-metadata": {
+      "name": "Metadata PDF",
+      "description": "Lihat, sunting, atau hapus judul, penulis, dan bidang Info lainnya.",
+      "keywords": "Kata kunci",
+      "run": "Simpan metadata",
+      "strip": "Hapus semua bidang",
+      "title": "Judul",
+      "author": "Penulis",
+      "subject": "Subjek",
+      "creator": "Pembuat",
+      "producer": "Produsen",
+      "saved": "Metadata disimpan.",
+      "stripped": "Metadata dihapus."
+    },
+    "pdf-protect": {
+      "name": "Kunci atau buka PDF",
+      "description": "Tambah atau hapus kata sandi pengguna. Enkripsi tetap di peramban ini.",
+      "keywords": "pdf kata sandi kunci buka enkripsi dekripsi",
+      "run": "Terapkan",
+      "lock": "Kunci",
+      "unlock": "Buka",
+      "password": "Kata sandi",
+      "limits": "Menggunakan pustaka enkripsi PDF sisi klien. Beberapa revisi enkripsi lama atau tidak biasa mungkin tidak terbuka. Kit tidak pernah mengirim berkas atau kata sandi ke server.",
+      "success": "PDF siap."
+    },
+    "image-rotate": {
+      "name": "Putar & balik",
+      "description": "Putar gambar 90° sekaligus atau balik secara horizontal atau vertikal.",
+      "keywords": "gambar putar balik cermin",
+      "run": "Terapkan",
+      "operation": "Transformasi",
+      "rot90": "Putar 90°",
+      "rot180": "Putar 180°",
+      "rot270": "Putar 270°",
+      "flipH": "Balik horizontal",
+      "flipV": "Balik vertikal",
+      "success": "Mentransformasi {count} gambar."
+    },
+    "image-filters": {
+      "name": "Filter gambar",
+      "description": "Terapkan skala abu-abu, sepia, atau invert pada satu atau banyak foto.",
+      "keywords": "gambar filter abu sepia invert",
+      "run": "Terapkan",
+      "filter": "Filter",
+      "grayscale": "Skala abu-abu",
+      "sepia": "Sepia",
+      "invert": "Invert",
+      "success": "Memfilter {count} gambar."
+    },
+    "image-favicon": {
+      "name": "Paket favicon",
+      "description": "Ekspor gambar sumber sebagai ukuran ikon umum dalam ZIP.",
+      "keywords": "favicon icon 16 32 180 192 512 apple touch",
+      "run": "Ekspor ikon",
+      "note": "Mengekspor berkas PNG pada 16, 32, 48, 180, 192, dan 512 piksel.",
+      "success": "Paket ikon siap."
+    },
+    "video-gif": {
+      "name": "Video → GIF",
+      "description": "Ubah klip pendek menjadi GIF berulang di peramban.",
+      "keywords": "video gif klip konversi ffmpeg",
+      "run": "Buat GIF",
+      "limits": "Menggunakan FFmpeg WASM. Jaga klip tetap pendek — pengodean GIF lambat dan boros memori. Palet dan codec mengikuti build di peramban.",
+      "success": "GIF siap."
+    },
+    "xml-json": {
+      "name": "XML ↔ JSON",
+      "description": "Konversi dokumen XML ke JSON, atau JSON kembali ke XML.",
+      "keywords": "xml json konversi uraikan",
+      "run": "Konversi",
+      "toJson": "XML → JSON",
+      "toXml": "JSON → XML",
+      "success": "Dikonversi."
+    },
+    "sql-format": {
+      "name": "Pemformat SQL",
+      "description": "Rapikan SQL agar klausa dan daftar lebih mudah dibaca.",
+      "keywords": "sql format pretty kueri",
+      "run": "Format",
+      "success": "SQL diformat."
+    },
+    "regex-tester": {
+      "name": "Penguji regex",
+      "description": "Uji ekspresi reguler terhadap teks sampel dan ganti kecocokan.",
+      "keywords": "regex ekspresi reguler uji ganti",
+      "pattern": "Pola",
+      "flags": "Bendera",
+      "input": "Teks sampel",
+      "replace": "Pengganti",
+      "runReplace": "Ganti",
+      "matches": "{count, plural, one {# kecocokan} other {# kecocokan}}",
+      "success": "Pengganti siap."
+    },
+    "hash-generator": {
+      "name": "Pembuat hash",
+      "description": "SHA-1/256/384/512 dan MD5 dari teks atau berkas, dihitung secara lokal.",
+      "keywords": "hash sha256 md5 sha1 checksum digest",
+      "run": "Hash",
+      "algo": "Algoritma",
+      "digest": "Digest",
+      "limits": "Hash dihitung di peramban ini (Web Crypto untuk SHA, implementasi MD5 lokal). MD5 tidak tahan tabrakan — gunakan hanya untuk checksum.",
+      "success": "Hash siap."
+    },
+    "uuid-generator": {
+      "name": "Pembuat UUID",
+      "description": "Buat UUID versi 4 atau 7 di perangkat ini.",
+      "keywords": "uuid guid v4 v7 hasilkan",
+      "run": "Hasilkan",
+      "count": "Berapa banyak",
+      "version": "Versi",
+      "success": "UUID dihasilkan."
+    },
+    "color-convert": {
+      "name": "Konverter warna",
+      "description": "Konversi antara HEX, RGB, HSL, dan HSV, dengan pemilih warna.",
+      "keywords": "warna hex rgb hsl hsv pemilih",
+      "picker": "Pemilih warna",
+      "invalid": "Masukkan warna hex 3 atau 6 digit."
+    },
+    "lorem-ipsum": {
+      "name": "Lorem ipsum",
+      "description": "Hasilkan paragraf, kalimat, atau kata placeholder.",
+      "keywords": "lorem ipsum placeholder dummy teks",
+      "run": "Hasilkan",
+      "count": "Jumlah",
+      "mode": "Mode",
+      "paragraphs": "Paragraf",
+      "sentences": "Kalimat",
+      "words": "Kata",
+      "success": "Teks dihasilkan."
+    },
+    "qr-code": {
+      "name": "Kode QR",
+      "description": "Buat kode QR dari teks, atau baca dari gambar.",
+      "keywords": "qr kode hasilkan pindai baca barcode",
+      "run": "Hasilkan",
+      "payload": "Teks atau URL",
+      "read": "Baca dari gambar",
+      "runRead": "Baca QR",
+      "generated": "Kode QR siap.",
+      "decoded": "Isi QR dibaca.",
+      "none": "Tidak ada kode QR di gambar itu."
+    },
+    "pdf-sign": {
+      "name": "Tandai PDF",
+      "description": "Cap tanda tangan ketikan di setiap halaman. Hanya visual — bukan sertifikat.",
+      "keywords": "pdf tanda tangan cap nama",
+      "run": "Tandai",
+      "signature": "Teks tanda tangan",
+      "placeholder": "Nama Anda",
+      "limits": "Ini menggambar nama Anda di halaman. Bukan tanda tangan digital kriptografis.",
+      "success": "Tanda tangan dicap."
+    },
+    "image-watermark": {
+      "name": "Tanda air gambar",
+      "description": "Lapisi teks pada foto, satu berkas atau seluruh batch.",
+      "keywords": "gambar tanda air cap hak cipta",
+      "run": "Terapkan",
+      "text": "Teks tanda air",
+      "position": "Penempatan",
+      "bottomRight": "Kanan bawah",
+      "bottomLeft": "Kiri bawah",
+      "topRight": "Kanan atas",
+      "center": "Tengah",
+      "success": "Memberi tanda air pada {count} gambar."
+    },
+    "password-generator": {
+      "name": "Pembuat kata sandi",
+      "description": "Buat kata sandi kuat di perangkat ini. Tidak ada yang disimpan.",
+      "keywords": "kata sandi hasilkan acak rahasia",
+      "run": "Hasilkan",
+      "length": "Panjang",
+      "lower": "Huruf kecil",
+      "upper": "Huruf besar",
+      "digits": "Digit",
+      "symbols": "Simbol",
+      "success": "Kata sandi siap."
+    },
+    "case-convert": {
+      "name": "Ubah huruf",
+      "description": "Beralih antara camel, snake, kebab, judul, dan lainnya.",
+      "keywords": "huruf camel snake kebab pascal judul",
+      "run": "Konversi",
+      "style": "Gaya",
+      "success": "Dikonversi."
+    },
+    "jwt-decode": {
+      "name": "Dekoder JWT",
+      "description": "Baca header dan payload JWT secara lokal. Tanda tangan tidak diverifikasi.",
+      "keywords": "jwt dekode token bearer auth",
+      "run": "Dekode",
+      "limits": "Kit hanya mendekode Base64url. Tanpa kunci ia tidak dapat membuktikan token asli.",
+      "hasSig": "Bagian tanda tangan ada (tidak diverifikasi).",
+      "noSig": "Tidak ada bagian tanda tangan.",
+      "empty": "Tempel token terlebih dahulu.",
+      "success": "Token didekode."
+    },
+    "unix-timestamp": {
+      "name": "Stempel waktu Unix",
+      "description": "Konversi waktu Unix ke ISO dan sebaliknya.",
+      "keywords": "unix epoch stempel waktu iso tanggal",
+      "now": "Gunakan sekarang"
+    },
+    "cron-explain": {
+      "name": "Penjelas cron",
+      "description": "Ubah ekspresi cron 5 bidang menjadi bahasa biasa.",
+      "keywords": "cron jadwal crontab jelaskan",
+      "run": "Jelaskan",
+      "success": "Dijelaskan."
+    },
+    "number-base": {
+      "name": "Basis bilangan",
+      "description": "Konversi bilangan bulat antara basis 2 dan 36.",
+      "keywords": "biner hex desimal basis konversi",
+      "value": "Angka",
+      "from": "Dari basis",
+      "to": "Ke basis"
+    },
+    "html-entities": {
+      "name": "Entitas HTML",
+      "description": "Kodekan atau dekode &lt; &amp; dan entitas numerik.",
+      "keywords": "html entitas kodekan dekode escape",
+      "run": "Konversi",
+      "encode": "Kodekan",
+      "decode": "Dekode",
+      "success": "Dikonversi."
+    },
+    "json-types": {
+      "name": "JSON → TypeScript",
+      "description": "Simpulkan antarmuka TypeScript dari sampel JSON.",
+      "keywords": "json typescript interface tipe hasilkan",
+      "run": "Hasilkan tipe",
+      "success": "Tipe dihasilkan."
+    }
+  },
+  "legal": {
+    "lastUpdated": "Terakhir diperbarui",
+    "privacyTitle": "Kebijakan Privasi",
+    "termsTitle": "Ketentuan Penggunaan"
+  },
+  "notFound": {
+    "title": "Halaman tidak ditemukan",
+    "body": "Alamat itu tidak ada di Kit. Kembali ke beranda dan pilih alat dari sana.",
+    "home": "Kembali ke beranda"
+  },
+  "errorPage": {
+    "title": "Terjadi kesalahan",
+    "body": "Tindakan terakhir gagal di peramban ini. Anda dapat mencoba lagi tanpa meninggalkan halaman.",
+    "retry": "Coba lagi"
+  }
+}

@@ -1,0 +1,587 @@
+Kit — Selaintyökalut, jotka pysyvät yksityisinä
+PDF-, kuva-, media-, muunto- ja tekstityökalut toimivat laitteellasi. Mitään ei ladata palvelimillemme.
+Kit
+Arjen työkalut selaimessa. Yksityinen suunnittelultaan.
+Koti
+Työkalut
+Historia
+Suosikit
+Asetukset
+Hae työkaluja…
+Avaa valikko
+Sulje valikko
+Tietosuojakäytäntö
+Käyttöehdot
+Tietoa minusta
+MIT-lisenssi
+© {year} Tim G (TGthms). Kit on avointa lähdekoodia MIT-lisenssillä.
+GitHub
+Peruuta
+Tyhjennä
+Sulje
+Kopioi
+Kopioitu leikepöydälle
+Lataa
+Suorita
+Käsittele
+Käsitellään…
+Valmis
+Jokin meni pieleen
+Yritä uudelleen
+Lisää tiedostoja
+Pudota tiedostot tähän
+tai selaa laitteeltasi
+Voit myös liittää leikepöydältä
+Poista
+Vedä järjestyksen muuttamiseksi
+Tiedostot
+Ei vielä valittuja tiedostoja
+Laatu
+Asetukset
+Esikatselu
+Tulos
+Syöte
+Tuloste
+Muoto
+Kieli
+Ulkoasu
+Järjestelmän mukaan
+Vaalea
+Tumma
+Ladataan…
+Tallenna
+Poista
+Vahvista
+Takaisin
+Kaikki
+Kiinnitä
+Irrota
+Lisää suosikkeihin
+Poista suosikeista
+Esiasetukset
+Käytä esiasetusta
+Tallenna esiasetukseksi
+Pikanäppäimet
+Edistyminen
+Tämä tiedosto on suuri — käsittely voi kestää.
+Tätä muotoa ei tueta
+Onnistui
+Huomio
+Huomautus
+Valitse kaikki
+Ei yhtään
+Palauta
+Enimmäisleveys
+Enimmäiskorkeus
+Leveys
+Korkeus
+Kierrä
+Sivut
+Sivu
+Teksti
+Koodaa
+Pura koodi
+Tarkista
+Pienennä
+Kaunista
+Kelvollinen
+Virheellinen
+Merkit
+Rivit
+Mistä
+Mihin
+Alku
+Loppu
+Nopeus
+Äänenvoimakkuus
+Leikkaa
+Pura
+Erä
+Rajoitukset
+Toimii vain selaimessasi. Tiedostojasi ei koskaan lähetetä Kit-palvelimelle.
+https://tgthms.github.io/about/
+Miten se toimii ja rajoitukset
+Mitä haluat tehdä?
+Käytännöllisiä työkaluja tällä laitteella — ei tiliä, ei latauksia.
+Luokat
+Työkalut
+Mikään ei vastaa hakua.
+Jatka siitä mihin jäit
+Kiinnitetty
+Aloita luokasta
+Valitse tehtäväperhe. Työkalut on ryhmitelty, jotta voit silmäillä etsimisen sijaan.
+Luokat
+{count, plural, one {# työkalu} other {# työkalua}}
+Hakutulokset
+Aloita tästä
+Sivut
+Suojaa ja tiedot
+Merkinnät
+Vienti / muunto
+Koko ja rajaus
+Ulkoasu
+Tiedosto
+Leikkeet
+Muodot
+Kirjoittaminen
+Tarkastus
+Koodaus
+Luonti
+PDF
+Kuvat
+Ääni
+Video
+Tiedostomuunto
+Kirjoittaminen
+Yhdistä, jaa, pakkaa ja merkitse PDF-asiakirjoja
+Pakkaa, skaalaa, muunna ja viimeistele valokuvia
+Muunna, leikkaa ja muuta vain äänen nopeutta
+Muunna, leikkaa, nopeuta ja irrota ääni videosta
+Älykäs muunto formaattien välillä (JSON, CSV, ZIP, kuvat…)
+Vertaa tekstiä, vaihda kirjainkokoa ja muunna Markdown HTML:ksi
+Data
+JSON, YAML, CSV, XML, SQL ja formaattien välinen muunto
+Kehitys
+Tunnisteet, tiivisteet, koodaukset, salasanat ja muut työpöytätyökalut
+Historia
+Mitä olet suorittanut tällä laitteella. Säilytämme vain lyhyet yhteenvedot — emme tiedostojasi.
+Ei vielä toimintaa. Suorita työkalu, niin se näkyy täällä.
+Tyhjennä historia
+Poistetaanko kaikki historia tältä laitteelta?
+Avaa työkalu
+Työkalu
+Milloin
+Yhteenveto
+Tila
+Onnistui
+Epäonnistui
+Suosikit
+Työkalut, jotka pidät yhdellä napautuksella käsillä.
+Ei vielä suosikkeja. Merkitse tähti etusivulta tai työkalun sivulta.
+Asetukset
+Nämä valinnat pysyvät vain tässä selaimessa.
+Ulkoasu
+Kieli
+Data ja tietosuoja
+Tyhjennä historia
+Poistaa tällä sivustolla tallennetut paikalliset historiatiivistelmät.
+Kit käsittelee tiedostosi selaimessa. Asetukset ja historiatiivistelmät voidaan tallentaa paikallisesti. Lisätiedot ovat tietosuojakäytännössä.
+Tietosuojakäytäntö
+Käyttöehdot
+Paina ? milloin tahansa nähdäksesi pikanäppäimet.
+Versio
+Pikanäppäimet
+Kaikkialla
+Kohdista haku
+Avaa asetukset
+Siirry kotiin
+Näytä tämä lista
+Suorita nykyinen työkalu
+Sulje
+Yhdistä PDF:t
+Pinoa useita PDF-tiedostoja yhdeksi. Esikatsele sivuja ja vedä järjestykseen.
+pdf yhdistä liitä yhdistä monisivu
+Yhdistä
+Lisää vähintään kaksi PDF-tiedostoa.
+{count} tiedostoa yhdistettiin yhdeksi PDF:ksi.
+Jaa PDF
+Poimi sivualue uuteen PDF-tiedostoon.
+pdf jaa poimi sivut alue
+Jaa
+Sivut (esimerkiksi 1-3,5)
+Jaettu PDF on valmis.
+Järjestä sivut
+Kierrä sivuja, poista turhat ja aseta uusi järjestys.
+pdf kierrä poista järjestä sivut
+Tallenna PDF
+PDF on päivitetty.
+Pakkaa PDF
+Pienennä kokoa koodaamalla sivukuvat uudelleen (laatukompromissi).
+pdf pakkaa pienennä koko
+Pakkaa
+Häviöllinen polku — sivut voidaan rasteroida. Toimii parhaiten kuvapainotteisissa PDF:issä.
+Pakattu PDF on valmis ladattavaksi.
+PDF-vesileima
+Leimaa teksti vesileimaksi, ylätunnisteeksi tai alatunnisteeksi jokaiselle sivulle.
+pdf vesileima leima ylätunniste alatunniste luottamuksellinen
+Käytä
+Vesileimateksti
+Sijoittelu
+Ylätunniste
+Alatunniste
+Vinosti keskellä
+Peittävyys
+Vesileima lisätty.
+Peitä sisältö
+Aseta mustia laatikoita arkaluontoisten alueiden päälle (visuaalinen peitto).
+pdf peitä mustaa piilota arkaluontoinen
+Käytä peittoa
+Vain visuaalinen peitto. Se ei takaa kaikkien tekstivirtojen poistoa — tarkista arkaluontoiset asiakirjat.
+Peittolaatikot lisätty.
+Pura PDF:stä
+Poimi luettava teksti tai vie sivu kuvana.
+pdf pura teksti kuvat
+Pura
+Teksti
+Kuvat
+Purku valmis.
+Vietiin {count} sivukuvaa ZIP-tiedostona.
+Pakkaa kuvat
+Laske laatua ja enimmäiskokoa, jotta kuvat pysyvät jaettavina.
+kuva pakkaa jpg png webp koko valokuva
+Pakkaa
+Pakattiin {count} kuvaa.
+Muuta kuvien kokoa
+Aseta tarkat mitat, valinnaisesti lukitulla kuvasuhteella.
+kuva koko skaalaa leveys korkeus
+Muuta kokoa
+Säilytä kuvasuhde
+Muutettiin {count} kuvan kokoa.
+Rajaa kuva
+Säilytä vain haluamasi suorakulmio.
+kuva rajaa leikkaa alue
+Rajaa
+Rajattu kuva on valmis.
+Muunna kuvamuoto
+Vaihda JPEG-, PNG-, WEBP- ja vastaavien verkkomuotojen välillä.
+kuva muunna muoto webp avif png jpg jpeg
+Muunna
+Muunnettiin {count} kuvaa.
+Kuvan metatiedot
+Tarkastele EXIF- ja vastaavia tunnisteita ja vie puhdas kopio ilman niitä.
+kuva exif metatiedot poista tietosuoja sijainti
+Poista metatiedot
+Pikselit koodataan uudelleen selaimessa, joten upotetut metatiedot poistuvat.
+Metatiedot poistettiin {count} kuvasta.
+Tunniste
+Arvo
+Tässä tiedostossa ei ole luettavia EXIF- tai tekstimetatietoja.
+Säädä kuvaa
+Muuta kirkkautta, kontrastia ja värikylläisyyttä.
+kuva kirkkaus kontrasti kylläisyys väri
+Käytä
+Kirkkaus
+Kontrasti
+Värikylläisyys
+Säädettiin {count} kuvaa.
+Älykäs muunto
+Tunnistaa sekoitetut tiedosto- tai tekstityypit ja muuntaa formaattien välillä (ei mediastudio).
+muunto keskus älykäs erä json yaml csv zip kuva data
+Muunna
+Tunnistettu
+Tulostemuoto
+Muunto valmis.
+JSON-muotoilija
+Sisenna, pienennä ja havaitse JSON-virheet ajoissa.
+json muotoile tarkista pienennä pretty
+Muotoile
+JSON on kelvollinen ja muotoiltu.
+YAML-muotoilija
+Tarkista YAML-rakenne ja siisti asettelu.
+yaml muotoile tarkista yml
+Muotoile
+YAML on kelvollinen.
+TOML-muotoilija
+Tarkista TOML ja pidä tiedosto siistinä.
+toml muotoile tarkista config
+Muotoile
+TOML on kelvollinen.
+Markdown ↔ HTML
+Muuta Markdown HTML:ksi tai HTML takaisin Markdowniksi.
+markdown html muunna md merkintä
+Muunna
+Markdown → HTML
+HTML → Markdown
+Muunnettu.
+CSV ↔ JSON
+Siirrä taulukkodataa CSV:n ja JSON-taulukoiden välillä.
+csv json muunna taulukko laskentataulukko
+Muunna
+CSV → JSON
+JSON → CSV
+Muunnettu.
+Tekstivertailu
+Näe rivikohtaiset muutokset kahden version välillä.
+diff vertaa teksti muutokset patch
+Vertaa
+Alkuperäinen
+Päivitetty
+Vertailu valmis.
+Base64
+Koodaa tai pura Base64 pelkkänä tekstinä tai kokonaisina tiedostoina.
+base64 koodaa pura binääri
+Muunna
+Suunta
+Teksti
+Tiedosto
+Valmis.
+URL-koodaus
+Prosenttikoodaa tai pura URL-osia turvallisesti.
+url koodaa pura prosentti uri kysely
+Muunna
+Valmis.
+Muunna ääntä
+Vaihda äänisäiliöitä kuten MP3, WAV ja OGG selaimessa.
+ääni muunna mp3 wav ogg ffmpeg ääni
+Muunna
+Ladataan äänimoottoria…
+Käyttää yksisäikeistä FFmpeg WASM:ia. Suuret tiedostot voivat olla hitaita; koodekkituki on rajallinen.
+Äänen muunto valmis.
+Leikkaa ääntä
+Säilytä vain kahden aikaleiman välinen jakso äänitiedostosta.
+ääni leikkaa clip mp3 wav
+Leikkaa
+Äänen leikkaus valmis.
+Äänen nopeus ja voimakkuus
+Nopeuta, hidasta tai muuta äänenvoimakkuutta.
+ääni nopeus tempo voimakkuus sävelkorkeus
+Käytä
+Käsitelty ääni on valmis.
+Muunna video
+Vaihda videosäiliöitä kuten MP4 ja WEBM selaimessa.
+video muunna mp4 webm ffmpeg elokuva
+Muunna
+Ladataan videomoottoria…
+Käyttää yksisäikeistä FFmpeg WASM:ia. Suuret tiedostot voivat olla hitaita; koodekkituki on rajallinen.
+Videon muunto valmis.
+Leikkaa video
+Säilytä vain kahden aikaleiman välinen leike.
+video leikkaa clip mp4
+Leikkaa
+Videon leikkaus valmis.
+Videon nopeus ja voimakkuus
+Muuta videon toistonopeutta ja äänitasoa.
+video nopeus tempo voimakkuus
+Käytä
+Käsitelty video on valmis.
+Pura ääni videosta
+Tallenna videon ääniraita äänitiedostona.
+video pura ääni mp3 ääniraita
+Pura ääni
+Ääni purettu.
+Sivunumerot
+Leimaa sivumerkintä kuten 1 / 12 jokaiselle sivulle.
+pdf sivunumerot alatunniste ylätunniste sivutus
+Lisää numerot
+Merkintä ({page} ja {pages})
+Sijoittelu
+Aloita kohdasta
+Ylätunniste vasen
+Ylätunniste keski
+Ylätunniste oikea
+Alatunniste vasen
+Alatunniste keski
+Alatunniste oikea
+Sivunumerot lisätty.
+PDF → kuvat
+Rasteroi jokainen sivu JPEG-kuvaksi ja lataa ne ZIP-tiedostona.
+pdf kuva jpg jpeg zip sivut vienti
+Vie sivut
+Sivut piirretään PDF.js:llä tässä välilehdessä. Hyvin suuret asiakirjat voivat olla hitaita ja käyttää paljon muistia. Tämä on visuaalinen rasteri, ei upotettujen kuvaobjektien poiminta.
+Vietiin {count} sivua.
+Kuvat → PDF
+Pinoa valokuvat PDF:ksi, yksi kuva per sivu.
+kuvat pdf jpg png yhdistä
+Luo PDF
+Luotiin PDF {count} kuvasta.
+Litistä lomakkeet
+Paista AcroForm-kentät sivulle niin, ettei niitä voi enää muokata.
+pdf litistä lomake kentät acroform
+Litistä
+Toimii tavallisilla AcroForm-kentillä. Dynaamisia XFA-lomakkeita ei tueta täysin.
+Litistettiin {count} kenttää.
+PDF-metatiedot
+Tarkastele, muokkaa tai poista otsikko, tekijä ja muut Info-kentät.
+Avainsanat
+Tallenna metatiedot
+Poista kaikki kentät
+Otsikko
+Tekijä
+Aihe
+Luonut
+Tuottaja
+Metatiedot tallennettu.
+Metatiedot poistettu.
+Lukitse tai avaa PDF
+Lisää tai poista käyttäjän salasana. Salaus pysyy tässä selaimessa.
+pdf salasana lukitse avaa salaa
+Käytä
+Lukitse
+Avaa
+Salasana
+Käyttää asiakaspuolen PDF-salauskirjastoa. Jotkin vanhat tai epätavalliset salausversiot eivät ehkä aukea. Kit ei koskaan lähetä tiedostoa tai salasanaa palvelimelle.
+PDF on valmis.
+Kierrä ja peilaa
+Käännä kuvia 90° kerrallaan tai peilaa vaakasuunnassa tai pystysuunnassa.
+kuva kierrä peilaa
+Käytä
+Muunnos
+Kierrä 90°
+Kierrä 180°
+Kierrä 270°
+Peilaa vaakasuunnassa
+Peilaa pystysuunnassa
+Muunnettiin {count} kuvaa.
+Kuvasuodattimet
+Käytä harmaasävyä, seepiaa tai inversiota yhteen tai useaan kuvaan.
+kuva suodatin harmaasävy seepia inversio
+Käytä
+Suodatin
+Harmaasävy
+Seepia
+Inversio
+Suodatettiin {count} kuvaa.
+Favicon-paketti
+Vie lähdekuva yleisinä kuvakekokoina ZIP-tiedostoon.
+favicon icon 16 32 180 192 512 apple touch
+Vie kuvakkeet
+Vie PNG-tiedostot koossa 16, 32, 48, 180, 192 ja 512 pikseliä.
+Kuvakepaketti on valmis.
+Video → GIF
+Muuta lyhyt leike silmukoivaksi GIF:ksi selaimessa.
+video gif leike muunna ffmpeg
+Tee GIF
+Käyttää FFmpeg WASM:ia. Pidä leikkeet lyhyinä — GIF-koodaus on hidasta ja muistia vievää. Paletti ja koodekit noudattavat selainkoontia.
+GIF on valmis.
+XML ↔ JSON
+Muunna XML-asiakirjat JSON:ksi tai JSON takaisin XML:ksi.
+xml json muunna jäsennä
+Muunna
+XML → JSON
+JSON → XML
+Muunnettu.
+SQL-muotoilija
+Kaunista SQL, jotta lausekkeet ja listat ovat helpompia lukea.
+sql muotoile pretty kysely
+Muotoile
+SQL muotoiltu.
+Säännöllisen lausekkeen testaaja
+Kokeile säännöllistä lauseketta esimerkkitekstiin ja korvaa osumat.
+regex säännöllinen lauseke testi korvaa
+Kuvio
+Liput
+Esimerkkiteksti
+Korvaus
+Korvaa
+{count, plural, one {# osuma} other {# osumaa}}
+Korvaus valmis.
+Tiivistegeneraattori
+SHA-1/256/384/512 ja MD5 tekstistä tai tiedostosta, lasketaan paikallisesti.
+hash sha256 md5 sha1 tarkiste tiiviste
+Tiivistä
+Algoritmi
+Tiiviste
+Tiivisteet lasketaan tässä selaimessa (Web Crypto SHA:lle, paikallinen MD5). MD5 ei ole törmäyskestävä — käytä sitä vain tarkisteisiin.
+Tiiviste valmis.
+UUID-generaattori
+Luo version 4 tai 7 UUID:itä tällä laitteella.
+uuid guid v4 v7 luo
+Luo
+Kuinka monta
+Versio
+UUID:t luotu.
+Värimuunnin
+Muunna HEX-, RGB-, HSL- ja HSV-arvojen välillä värivalitsimella.
+väri hex rgb hsl hsv valitsin
+Värivalitsin
+Anna 3- tai 6-merkkinen heksaväri.
+Lorem ipsum
+Luo paikkamerkkikappaleita, lauseita tai sanoja.
+lorem ipsum paikkamerkki dummy teksti
+Luo
+Määrä
+Tila
+Kappaleet
+Lauseet
+Sanat
+Teksti luotu.
+QR-koodi
+Luo QR-koodi tekstistä tai lue se kuvasta.
+qr koodi luo skannaa lue viivakoodi
+Luo
+Teksti tai URL
+Lue kuvasta
+Lue QR
+QR-koodi valmis.
+QR-sisältö luettu.
+Kuvasta ei löytynyt QR-koodia.
+Allekirjoita PDF
+Leimaa kirjoitettu allekirjoitus jokaiselle sivulle. Vain visuaalinen — ei varmenne.
+pdf allekirjoita leima nimi
+Allekirjoita
+Allekirjoitusteksti
+Nimesi
+Tämä piirtää nimesi sivulle. Se ei ole kryptografinen digitaalinen allekirjoitus.
+Allekirjoitus leimattu.
+Vesileimaa kuvat
+Lisää teksti valokuviin, yksi tiedosto tai koko erä.
+kuva vesileima leima tekijänoikeus
+Käytä
+Vesileimateksti
+Sijoittelu
+Alhaalla oikealla
+Alhaalla vasemmalla
+Ylhäällä oikealla
+Keskellä
+Vesileima lisättiin {count} kuvaan.
+Salasanageneraattori
+Luo vahva salasana tällä laitteella. Mitään ei tallenneta.
+salasana luo satunnainen salainen
+Luo
+Pituus
+Pienaakkoset
+Suuraakkoset
+Numerot
+Symbolit
+Salasana valmis.
+Vaihda kirjainkoko
+Vaihda camel-, snake-, kebab-, title-tyylien ja muiden välillä.
+kirjainkoko camel snake kebab pascal title
+Muunna
+Tyyli
+Muunnettu.
+JWT-purkaja
+Lue JWT-otsikko ja sisältö paikallisesti. Allekirjoituksia ei varmenneta.
+jwt pura token bearer auth
+Pura
+Kit purkaa vain Base64url:n. Ilman avainta se ei voi todistaa tunnisteen aitoutta.
+Allekirjoitusosa on läsnä (ei varmennettu).
+Ei allekirjoitusosaa.
+Liitä ensin token.
+Token purettu.
+Unix-aikaleima
+Muunna Unix-aika ISO-muotoon ja takaisin.
+unix epoch aikaleima iso päivämäärä
+Käytä nykyhetkeä
+Cron-selittäjä
+Muuta 5-kenttäinen cron-lauseke selkokieleksi.
+cron aikataulu crontab selitä
+Selitä
+Selitetty.
+Lukujärjestelmä
+Muunna kokonaislukuja kantalukujen 2 ja 36 välillä.
+binääri hex desimaali kanta muunna
+Luku
+Lähtökanta
+Kohdekanta
+HTML-entiteetit
+Koodaa tai pura &lt; &amp; ja numeeriset entiteetit.
+html entiteetit koodaa pura escape
+Muunna
+Koodaa
+Pura
+Muunnettu.
+JSON → TypeScript
+Päättele TypeScript-rajapinnat JSON-esimerkistä.
+json typescript interface tyyppi luo
+Luo tyypit
+Tyypit luotu.
+Viimeksi päivitetty
+Tietosuojakäytäntö
+Käyttöehdot
+Sivua ei löytynyt
+Tätä osoitetta ei ole Kitissä. Palaa kotiin ja valitse työkalu sieltä.
+Takaisin kotiin
+Jokin meni pieleen
+Viimeinen toiminto epäonnistui tässä selaimessa. Voit yrittää uudelleen poistumatta sivulta.
+Yritä uudelleen

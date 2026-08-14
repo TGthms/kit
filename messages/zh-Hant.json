@@ -1,0 +1,735 @@
+{
+  "meta": {
+    "title": "Kit — 完全在裝置上執行的小工具",
+    "description": "PDF、圖片、音影片、格式轉換與文本處理，全部在你的裝置上完成。"
+  },
+  "brand": {
+    "name": "Kit",
+    "tagline": "在瀏覽器裡的日常小工具，從設計之初力保隱私安全"
+  },
+  "nav": {
+    "home": "首頁",
+    "tools": "工具",
+    "history": "歷史记錄",
+    "favorites": "收藏",
+    "settings": "設定",
+    "searchPlaceholder": "搜索工具…",
+    "openMenu": "打開菜單",
+    "closeMenu": "關闭菜單"
+  },
+  "footer": {
+    "privacy": "隱私權政策",
+    "terms": "使用條款",
+    "aboutMe": "關於我",
+    "license": "MIT 许可證",
+    "copyright": "© {year} Tim G（TGthms）。Kit 以 MIT 许可證開源發布。",
+    "github": "GitHub"
+  },
+  "common": {
+    "cancel": "取消",
+    "clear": "清空",
+    "close": "關闭",
+    "copy": "復製",
+    "copied": "已復製到剪貼簿",
+    "download": "下载",
+    "run": "開始",
+    "process": "處理",
+    "processing": "處理中…",
+    "done": "完成",
+    "error": "出了點問題",
+    "retry": "重試",
+    "addFiles": "添加檔案",
+    "dropFiles": "把檔案拖到這裡",
+    "orBrowse": "或從本機選擇",
+    "pasteSupported": "也可以從剪貼簿粘貼",
+    "remove": "移除",
+    "reorder": "拖動可调整順序",
+    "files": "檔案",
+    "noFiles": "還沒有選擇檔案",
+    "quality": "質量",
+    "options": "選项",
+    "preview": "預覽",
+    "result": "結果",
+    "input": "輸入",
+    "output": "輸出",
+    "format": "格式",
+    "language": "語言",
+    "theme": "外觀",
+    "themeSystem": "跟随系統",
+    "themeLight": "淺色",
+    "themeDark": "深色",
+    "loading": "加载中…",
+    "save": "保存",
+    "delete": "刪除",
+    "confirm": "確認",
+    "back": "返回",
+    "allCategories": "全部",
+    "pin": "固定",
+    "unpin": "取消固定",
+    "favorite": "加入收藏",
+    "unfavorite": "取消收藏",
+    "presets": "預設",
+    "applyPreset": "使用預設",
+    "savePreset": "存為預設",
+    "shortcuts": "键盤快捷键",
+    "progress": "进度",
+    "fileTooLarge": "檔案较大，處理可能需要一些時間。",
+    "unsupported": "暫不支持該格式",
+    "success": "成功",
+    "warning": "請註意",
+    "info": "說明",
+    "selectAll": "全選",
+    "none": "無",
+    "reset": "重置",
+    "maxWidth": "最大宽度",
+    "maxHeight": "最大高度",
+    "width": "宽度",
+    "height": "高度",
+    "rotate": "旋轉",
+    "pages": "頁",
+    "page": "頁",
+    "text": "文本",
+    "encode": "編碼",
+    "decode": "解碼",
+    "validate": "校驗",
+    "minify": "壓縮代碼",
+    "beautify": "美化格式",
+    "valid": "有效",
+    "invalid": "無效",
+    "characters": "字符數",
+    "lines": "行數",
+    "from": "從",
+    "to": "到",
+    "start": "開始",
+    "end": "結束",
+    "speed": "速度",
+    "volume": "音量",
+    "trim": "裁剪",
+    "extract": "提取",
+    "batch": "批量",
+    "limitations": "使用限製",
+    "clientSideOnly": "僅在瀏覽器本地執行。你的檔案不會發送到任何 Kit 伺服器。",
+    "aboutMeUrl": "https://tgthms.github.io/about/",
+    "howItWorks": "原理與限製"
+  },
+  "home": {
+    "title": "今天有什麼要做的？",
+    "subtitle": "在這台裝置上執行的实用工具——無需註冊，也無需上傳。",
+    "categories": "分類",
+    "popular": "工具",
+    "noResults": "沒有找到匹配的工具。",
+    "recent": "繼續上次的工作",
+    "pinned": "已固定",
+    "chooseCategory": "先選擇一個分類",
+    "chooseCategoryHint": "先選一類工作。類目裡再分組，方便掃一眼而不是翻列表。",
+    "backToCategories": "分類",
+    "toolsInCategory": "{count} 個工具",
+    "searchResults": "搜索結果",
+    "featured": "從這裡開始",
+    "groups": {
+      "pages": "頁面",
+      "protect": "保護與信息",
+      "markup": "標註",
+      "export": "导出 / 轉換",
+      "transform": "尺寸與裁剪",
+      "look": "外觀",
+      "file": "檔案",
+      "clip": "片段",
+      "formats": "格式",
+      "write": "寫作",
+      "inspect": "查看",
+      "encode": "編碼",
+      "generate": "生成"
+    }
+  },
+  "categories": {
+    "pdf": "PDF",
+    "image": "圖片",
+    "audio": "音頻",
+    "video": "影片",
+    "convert": "檔案轉換",
+    "text": "寫作",
+    "pdfDesc": "合並、拆分、壓縮與標註 PDF 文件",
+    "imageDesc": "壓縮、縮放、轉格式與微调照片",
+    "audioDesc": "僅處理音頻：轉換、裁剪與变速",
+    "videoDesc": "影片轉換、裁剪、变速，以及提取音轨",
+    "convertDesc": "跨格式智能轉換（JSON、CSV、ZIP、圖片等）",
+    "textDesc": "對比文本、轉換大小寫、Markdown 轉 HTML",
+    "data": "數據",
+    "dataDesc": "JSON、YAML、CSV、XML、SQL 以及格式互轉",
+    "developer": "開發",
+    "developerDesc": "令牌、哈希、編碼、密碼和其他工作台工具"
+  },
+  "history": {
+    "title": "歷史记錄",
+    "subtitle": "记錄你在本裝置上用過的操作。只保存簡短摘要，不會保存檔案內容。",
+    "empty": "還沒有记錄。使用任意工具後，會出現在這裡。",
+    "clear": "清空歷史",
+    "clearConfirm": "確定清空本裝置上的全部歷史记錄？",
+    "openTool": "打開工具",
+    "tool": "工具",
+    "when": "時間",
+    "summary": "摘要",
+    "status": "狀态",
+    "success": "成功",
+    "failed": "失败"
+  },
+  "favorites": {
+    "title": "收藏",
+    "subtitle": "把常用工具固定在這裡，一键打開。",
+    "empty": "還沒有收藏。可在首頁或工具頁點星標添加。"
+  },
+  "settings": {
+    "title": "設定",
+    "subtitle": "這些選项只保存在當前瀏覽器中。",
+    "appearance": "外觀",
+    "language": "語言",
+    "data": "數據與隱私",
+    "clearHistory": "清空歷史",
+    "clearHistoryDesc": "刪除本站保存在本地的歷史摘要。",
+    "privacyNote": "Kit 在瀏覽器中處理你的檔案。偏好設定與歷史摘要可能保存在本地。完整說明見隱私權政策。",
+    "viewPrivacy": "隱私權政策",
+    "viewTerms": "使用條款",
+    "shortcutsHelp": "随時按 ? 查看键盤快捷键。",
+    "version": "版本"
+  },
+  "shortcuts": {
+    "title": "键盤快捷键",
+    "global": "全局",
+    "search": "聚焦搜索框",
+    "settings": "打開設定",
+    "home": "返回首頁",
+    "help": "顯示本列表",
+    "run": "執行當前工具",
+    "close": "關闭"
+  },
+  "tools": {
+    "pdf-merge": {
+      "name": "合並 PDF",
+      "description": "把多個 PDF 合成一份。可預覽頁面並拖動排序。",
+      "keywords": "pdf 合並 組合 拼接 多頁",
+      "run": "合並",
+      "empty": "請至少添加兩個 PDF 檔案。",
+      "success": "已将 {count} 個檔案合並為一個 PDF。"
+    },
+    "pdf-split": {
+      "name": "拆分 PDF",
+      "description": "按頁碼范围提取頁面，生成新的 PDF。",
+      "keywords": "pdf 拆分 提取 頁碼 范围",
+      "run": "拆分",
+      "range": "頁碼（例如 1-3,5）",
+      "success": "拆分後的 PDF 已就緒。"
+    },
+    "pdf-organize": {
+      "name": "整理頁面",
+      "description": "旋轉頁面、刪除不需要的頁，並重新設定順序。",
+      "keywords": "pdf 旋轉 刪除 排序 整理",
+      "run": "保存 PDF",
+      "success": "PDF 已更新。"
+    },
+    "pdf-compress": {
+      "name": "壓縮 PDF",
+      "description": "通過重編碼頁面图像減小體積（可能損失畫質）。",
+      "keywords": "pdf 壓縮 體積 瘦身",
+      "run": "壓縮",
+      "note": "壓縮處理：頁面可能被轉化為位图。適合含大量圖片的 PDF。",
+      "success": "壓縮後的 PDF 可以下载了。"
+    },
+    "pdf-watermark": {
+      "name": "添加浮水印",
+      "description": "在每一頁加上文字浮水印、頁眉或頁脚。",
+      "keywords": "pdf 浮水印 頁眉 頁脚 機密",
+      "run": "應用",
+      "text": "浮水印文字",
+      "position": "位置",
+      "header": "頁眉",
+      "footer": "頁脚",
+      "center": "居中斜向",
+      "opacity": "不透明度",
+      "success": "浮水印已添加。"
+    },
+    "pdf-redact": {
+      "name": "遮蓋內容",
+      "description": "在敏感區域覆蓋黑色方块（視覺遮蓋）。",
+      "keywords": "pdf 遮蓋 涂黑 隱私 敏感",
+      "run": "應用遮蓋",
+      "note": "僅為視覺遮蓋，不保證清除底层全部文本。處理敏感檔案時請務必自行核對。",
+      "success": "遮蓋已應用。"
+    },
+    "pdf-extract": {
+      "name": "從 PDF 提取",
+      "description": "提取可讀文本，或将頁面导出為圖片。",
+      "keywords": "pdf 提取 文本 圖片",
+      "run": "提取",
+      "modeText": "文本",
+      "modeImages": "圖片",
+      "success": "提取完成。",
+      "imagesReady": "已将 {count} 頁导出為 ZIP。"
+    },
+    "image-compress": {
+      "name": "壓縮圖片",
+      "description": "调节畫質與最大尺寸，讓照片更易分享。",
+      "keywords": "圖片 壓縮 照片 jpg png webp 體積",
+      "run": "壓縮",
+      "success": "已壓縮 {count} 张圖片。"
+    },
+    "image-resize": {
+      "name": "调整圖片尺寸",
+      "description": "指定宽高，可選鎖定宽高比。",
+      "keywords": "圖片 縮放 尺寸 宽高",
+      "run": "调整尺寸",
+      "lockAspect": "保持宽高比",
+      "success": "已调整 {count} 张圖片的尺寸。"
+    },
+    "image-crop": {
+      "name": "裁剪圖片",
+      "description": "只保留你需要的矩形區域。",
+      "keywords": "圖片 裁剪 區域",
+      "run": "裁剪",
+      "success": "裁剪完成。"
+    },
+    "image-convert": {
+      "name": "轉換圖片格式",
+      "description": "在 JPEG、PNG、WEBP 等常見網頁格式之間轉換。",
+      "keywords": "圖片 格式 轉換 webp png jpg jpeg",
+      "run": "轉換",
+      "success": "已轉換 {count} 张圖片。"
+    },
+    "image-metadata": {
+      "name": "圖片元數據",
+      "description": "查看 EXIF 等標簽，再导出一份去掉它們的副本。",
+      "keywords": "圖片 exif 元數據 隱私 定位",
+      "run": "清除元數據",
+      "note": "在瀏覽器中重編碼像素，從而丢弃嵌入的元數據。",
+      "success": "已清除 {count} 张圖片的元數據。",
+      "tag": "標簽",
+      "value": "值",
+      "noExif": "這個檔案裡沒有可讀的 EXIF 或文本元數據。"
+    },
+    "image-adjust": {
+      "name": "调整圖片",
+      "description": "调节亮度、對比度與饱和度。",
+      "keywords": "圖片 亮度 對比度 饱和度 色彩",
+      "run": "應用",
+      "brightness": "亮度",
+      "contrast": "對比度",
+      "saturation": "饱和度",
+      "success": "已调整 {count} 张圖片。"
+    },
+    "convert-hub": {
+      "name": "智能轉換",
+      "description": "識別輸入類型，並給出合適的輸出格式建议。",
+      "keywords": "轉換 智能 json yaml csv zip",
+      "run": "轉換",
+      "detect": "識別為",
+      "chooseOutput": "輸出格式",
+      "success": "轉換完成。"
+    },
+    "json-format": {
+      "name": "JSON 格式化",
+      "description": "美化縮进、壓縮體積，並尽早發現 JSON 错误。",
+      "keywords": "json 格式化 校驗 壓縮 美化",
+      "run": "格式化",
+      "success": "JSON 有效，並已格式化。"
+    },
+    "yaml-format": {
+      "name": "YAML 格式化",
+      "description": "檢查 YAML 結構並整理排版。",
+      "keywords": "yaml 格式化 校驗 yml",
+      "run": "格式化",
+      "success": "YAML 有效。"
+    },
+    "toml-format": {
+      "name": "TOML 格式化",
+      "description": "校驗 TOML，並保持檔案整潔易讀。",
+      "keywords": "toml 格式化 校驗 配置",
+      "run": "格式化",
+      "success": "TOML 有效。"
+    },
+    "markdown-html": {
+      "name": "Markdown ↔ HTML",
+      "description": "在 Markdown 與 HTML 之間互相轉換。",
+      "keywords": "markdown html 轉換 md 標记",
+      "run": "轉換",
+      "toHtml": "Markdown → HTML",
+      "toMd": "HTML → Markdown",
+      "success": "轉換完成。"
+    },
+    "csv-json": {
+      "name": "CSV ↔ JSON",
+      "description": "在 CSV 表格與 JSON 數組之間轉換數據。",
+      "keywords": "csv json 轉換 表格 电子表格",
+      "run": "轉換",
+      "toJson": "CSV → JSON",
+      "toCsv": "JSON → CSV",
+      "success": "轉換完成。"
+    },
+    "text-diff": {
+      "name": "文本對比",
+      "description": "逐行查看兩個版本之間的差异。",
+      "keywords": "diff 對比 文本 变更 差异",
+      "run": "對比",
+      "left": "原文",
+      "right": "修改後",
+      "success": "對比結果已生成。"
+    },
+    "base64": {
+      "name": "Base64",
+      "description": "對純文本或完整檔案进行 Base64 編碼或解碼。",
+      "keywords": "base64 編碼 解碼 二进製",
+      "run": "轉換",
+      "mode": "方向",
+      "textMode": "文本",
+      "fileMode": "檔案",
+      "success": "完成。"
+    },
+    "url-encode": {
+      "name": "URL 編解碼",
+      "description": "對 URL 組件进行百分號編碼，或安全還原。",
+      "keywords": "url 編碼 解碼 百分號 uri 查询",
+      "run": "轉換",
+      "success": "完成。"
+    },
+    "audio-convert": {
+      "name": "轉換音頻",
+      "description": "在瀏覽器中轉換 MP3、WAV、OGG 等音頻格式。",
+      "keywords": "音頻 轉換 mp3 wav ogg 声音",
+      "run": "轉換",
+      "loadingFfmpeg": "正在加载音頻引擎…",
+      "note": "使用單線程 FFmpeg WASM。大檔案可能较慢，編解碼支持有限。",
+      "success": "音頻轉換完成。"
+    },
+    "audio-trim": {
+      "name": "裁剪音頻",
+      "description": "只保留音頻中兩個時間點之間的片段。",
+      "keywords": "音頻 裁剪 截取 mp3 wav",
+      "run": "裁剪",
+      "success": "音頻裁剪完成。"
+    },
+    "audio-speed": {
+      "name": "音頻速度與音量",
+      "description": "加快、放慢或调节音頻音量。",
+      "keywords": "音頻 速度 倍速 音量",
+      "run": "應用",
+      "success": "處理後的音頻已就緒。"
+    },
+    "video-convert": {
+      "name": "轉換影片",
+      "description": "在瀏覽器中轉換 MP4、WEBM 等影片封装。",
+      "keywords": "影片 轉換 mp4 webm",
+      "run": "轉換",
+      "loadingFfmpeg": "正在加载影片引擎…",
+      "note": "使用單線程 FFmpeg WASM。大檔案可能较慢，編解碼支持有限。",
+      "success": "影片轉換完成。"
+    },
+    "video-trim": {
+      "name": "裁剪影片",
+      "description": "只保留兩個時間點之間的影片片段。",
+      "keywords": "影片 裁剪 截取 mp4",
+      "run": "裁剪",
+      "success": "影片裁剪完成。"
+    },
+    "video-speed": {
+      "name": "影片速度與音量",
+      "description": "调整影片播放速度與音量。",
+      "keywords": "影片 速度 倍速 音量",
+      "run": "應用",
+      "success": "處理後的影片已就緒。"
+    },
+    "video-extract-audio": {
+      "name": "從影片提取音頻",
+      "description": "将影片中的音轨保存為音頻檔案。",
+      "keywords": "影片 提取 音頻 mp3 音轨",
+      "run": "提取音頻",
+      "success": "音頻已提取。"
+    },
+    "pdf-numbers": {
+      "name": "頁碼",
+      "description": "在每一頁加上類似 1 / 12 的頁碼。",
+      "keywords": "pdf 頁碼 頁脚 頁眉",
+      "run": "添加頁碼",
+      "template": "文案（{page} 和 {pages}）",
+      "position": "位置",
+      "start": "起始頁碼",
+      "headerLeft": "頁眉左",
+      "headerCenter": "頁眉中",
+      "headerRight": "頁眉右",
+      "footerLeft": "頁脚左",
+      "footerCenter": "頁脚中",
+      "footerRight": "頁脚右",
+      "success": "頁碼已添加。"
+    },
+    "pdf-to-images": {
+      "name": "PDF → 圖片",
+      "description": "把每一頁渲染成 JPEG，打包成 ZIP 下载。",
+      "keywords": "pdf 圖片 jpg zip 导出",
+      "run": "导出頁面",
+      "limits": "頁面由本標簽頁中的 PDF.js 繪製。超大文件會较慢並占用较多內存。這是視覺栅格化，不是抽取內嵌图像對象。",
+      "success": "已导出 {count} 頁。"
+    },
+    "images-to-pdf": {
+      "name": "圖片 → PDF",
+      "description": "把多张圖片合成一個 PDF，一頁一张。",
+      "keywords": "圖片 pdf jpg png",
+      "run": "生成 PDF",
+      "success": "已用 {count} 张圖片生成 PDF。"
+    },
+    "pdf-flatten": {
+      "name": "壓平表單",
+      "description": "把 AcroForm 字段畫进頁面，之後不能再編輯。",
+      "keywords": "pdf 表單 壓平 字段",
+      "run": "壓平",
+      "limits": "適用於標準 AcroForm 字段。動态 XFA 表單支持不完整。",
+      "success": "已壓平 {count} 個字段。"
+    },
+    "pdf-metadata": {
+      "name": "PDF 元數據",
+      "description": "查看、編輯或清除標題、作者等信息字段。",
+      "keywords": "關键词",
+      "run": "保存元數據",
+      "strip": "清除全部字段",
+      "title": "標題",
+      "author": "作者",
+      "subject": "主題",
+      "creator": "創建者",
+      "producer": "生成器",
+      "saved": "元數據已保存。",
+      "stripped": "元數據已清除。"
+    },
+    "pdf-protect": {
+      "name": "鎖定或解鎖 PDF",
+      "description": "添加或移除用户密碼。加密只在這個瀏覽器裡完成。",
+      "keywords": "pdf 密碼 加密 解鎖",
+      "run": "應用",
+      "lock": "鎖定",
+      "unlock": "解鎖",
+      "password": "密碼",
+      "limits": "使用客户端 PDF 加密库。部分较舊或不常見的加密版本可能無法解鎖。Kit 不會把檔案或密碼發到伺服器。",
+      "success": "PDF 已就緒。"
+    },
+    "image-rotate": {
+      "name": "旋轉與翻轉",
+      "description": "按 90° 旋轉，或水平 / 垂直翻轉圖片。",
+      "keywords": "圖片 旋轉 翻轉 镜像",
+      "run": "應用",
+      "operation": "变換",
+      "rot90": "旋轉 90°",
+      "rot180": "旋轉 180°",
+      "rot270": "旋轉 270°",
+      "flipH": "水平翻轉",
+      "flipV": "垂直翻轉",
+      "success": "已處理 {count} 张圖片。"
+    },
+    "image-filters": {
+      "name": "圖片濾镜",
+      "description": "對一张或多张照片應用灰度、褐色或反相。",
+      "keywords": "圖片 濾镜 灰度 褐色 反相",
+      "run": "應用",
+      "filter": "濾镜",
+      "grayscale": "灰度",
+      "sepia": "褐色",
+      "invert": "反相",
+      "success": "已處理 {count} 张圖片。"
+    },
+    "image-favicon": {
+      "name": "網站圖示包",
+      "description": "把一张图导出為常用图標尺寸，打包成 ZIP。",
+      "keywords": "favicon 图標 16 32 180 192 512",
+      "run": "导出图標",
+      "note": "导出 16、32、48、180、192、512 像素的 PNG。",
+      "success": "图標包已就緒。"
+    },
+    "video-gif": {
+      "name": "影片 → GIF",
+      "description": "在瀏覽器裡把一小段影片做成循環 GIF。",
+      "keywords": "影片 gif ffmpeg",
+      "run": "生成 GIF",
+      "limits": "使用 FFmpeg WASM。請保持片段较短——GIF 編碼又慢又占內存。編碼能力取決於瀏覽器內的構建。",
+      "success": "GIF 已就緒。"
+    },
+    "xml-json": {
+      "name": "XML ↔ JSON",
+      "description": "在 XML 與 JSON 之間轉換。",
+      "keywords": "xml json 轉換",
+      "run": "轉換",
+      "toJson": "XML → JSON",
+      "toXml": "JSON → XML",
+      "success": "已轉換。"
+    },
+    "sql-format": {
+      "name": "SQL 格式化",
+      "description": "整理 SQL 語句，讓子句和列表更好讀。",
+      "keywords": "sql 格式化 查询",
+      "run": "格式化",
+      "success": "SQL 已格式化。"
+    },
+    "regex-tester": {
+      "name": "正則測試",
+      "description": "用樣本文本測試正則，並替換匹配项。",
+      "keywords": "正則 表达式 替換",
+      "pattern": "模式",
+      "flags": "標志",
+      "input": "樣本文本",
+      "replace": "替換為",
+      "runReplace": "替換",
+      "matches": "{count} 處匹配",
+      "success": "替換結果已就緒。"
+    },
+    "hash-generator": {
+      "name": "哈希生成",
+      "description": "在本地計算文本或檔案的 SHA-1/256/384/512 與 MD5。",
+      "keywords": "哈希 sha256 md5 校驗",
+      "run": "計算",
+      "algo": "算法",
+      "digest": "摘要",
+      "limits": "哈希在本瀏覽器計算（SHA 用 Web Crypto，MD5 為本地实現）。MD5 不抗碰撞，只適合做校驗和。",
+      "success": "哈希已就緒。"
+    },
+    "uuid-generator": {
+      "name": "UUID 生成",
+      "description": "在本機生成 UUID v4 或 v7。",
+      "keywords": "uuid guid v4 v7",
+      "run": "生成",
+      "count": "數量",
+      "version": "版本",
+      "success": "已生成 UUID。"
+    },
+    "color-convert": {
+      "name": "顏色轉換",
+      "description": "在 HEX、RGB、HSL、HSV 之間轉換，並带取色器。",
+      "keywords": "顏色 hex rgb hsl hsv",
+      "picker": "取色器",
+      "invalid": "請輸入 3 位或 6 位十六进製顏色。"
+    },
+    "lorem-ipsum": {
+      "name": "占位文本",
+      "description": "生成段落、句子或單词占位文案。",
+      "keywords": "lorem 占位 假文",
+      "run": "生成",
+      "count": "數量",
+      "mode": "模式",
+      "paragraphs": "段落",
+      "sentences": "句子",
+      "words": "單词",
+      "success": "文本已生成。"
+    },
+    "qr-code": {
+      "name": "QR 圖碼",
+      "description": "用文字生成QR 圖碼，或從圖片中識別。",
+      "keywords": "QR 圖碼 qr 生成 識別",
+      "run": "生成",
+      "payload": "文本或網址",
+      "read": "從圖片識別",
+      "runRead": "識別QR 圖碼",
+      "generated": "QR 圖碼已就緒。",
+      "decoded": "已讀出內容。",
+      "none": "這张图裡沒有找到QR 圖碼。"
+    },
+    "pdf-sign": {
+      "name": "簽署 PDF",
+      "description": "在每一頁蓋上打字簽名。僅視覺效果，不是證書簽名。",
+      "keywords": "pdf 簽名 蓋章",
+      "run": "簽署",
+      "signature": "簽名文字",
+      "placeholder": "你的名字",
+      "limits": "只是把名字畫在頁面上，不是加密數字簽名。",
+      "success": "已蓋上簽名。"
+    },
+    "image-watermark": {
+      "name": "圖片浮水印",
+      "description": "在照片上叠文字，支持單张或批量。",
+      "keywords": "圖片 浮水印 版權",
+      "run": "應用",
+      "text": "浮水印文字",
+      "position": "位置",
+      "bottomRight": "右下",
+      "bottomLeft": "左下",
+      "topRight": "右上",
+      "center": "居中",
+      "success": "已為 {count} 张圖片加浮水印。"
+    },
+    "password-generator": {
+      "name": "密碼生成",
+      "description": "在本機生成强密碼，不會保存。",
+      "keywords": "密碼 随機 生成",
+      "run": "生成",
+      "length": "長度",
+      "lower": "小寫",
+      "upper": "大寫",
+      "digits": "數字",
+      "symbols": "符號",
+      "success": "密碼已就緒。"
+    },
+    "case-convert": {
+      "name": "大小寫轉換",
+      "description": "在 camel、snake、kebab、標題等風格之間轉換。",
+      "keywords": "大小寫 camel snake kebab",
+      "run": "轉換",
+      "style": "風格",
+      "success": "已轉換。"
+    },
+    "jwt-decode": {
+      "name": "JWT 解碼",
+      "description": "在本地查看 JWT 的頭和载荷。不驗證簽名。",
+      "keywords": "jwt token 令牌",
+      "run": "解碼",
+      "limits": "Kit 只做 Base64url 解碼。沒有密钥就無法證明令牌真实。",
+      "hasSig": "包含簽名部分（未驗證）。",
+      "noSig": "沒有簽名部分。",
+      "empty": "請先粘貼令牌。",
+      "success": "已解碼。"
+    },
+    "unix-timestamp": {
+      "name": "Unix 時間戳",
+      "description": "在 Unix 時間與 ISO 之間轉換。",
+      "keywords": "unix 時間戳 iso",
+      "now": "使用現在"
+    },
+    "cron-explain": {
+      "name": "Cron 說明",
+      "description": "把 5 段 cron 表达式翻譯成白話。",
+      "keywords": "cron 定時 計劃",
+      "run": "說明",
+      "success": "已說明。"
+    },
+    "number-base": {
+      "name": "进製轉換",
+      "description": "在 2–36 进製之間轉換整數。",
+      "keywords": "二进製 十六进製 十进製",
+      "value": "數字",
+      "from": "從",
+      "to": "到"
+    },
+    "html-entities": {
+      "name": "HTML 实體",
+      "description": "編碼或解碼 &lt; &amp; 以及數字实體。",
+      "keywords": "html 实體 轉義",
+      "run": "轉換",
+      "encode": "編碼",
+      "decode": "解碼",
+      "success": "已轉換。"
+    },
+    "json-types": {
+      "name": "JSON → TypeScript",
+      "description": "根據 JSON 樣例推斷 TypeScript 接口。",
+      "keywords": "json typescript 接口",
+      "run": "生成類型",
+      "success": "類型已生成。"
+    }
+  },
+  "legal": {
+    "lastUpdated": "最近更新",
+    "privacyTitle": "隱私權政策",
+    "termsTitle": "使用條款"
+  },
+  "notFound": {
+    "title": "找不到頁面",
+    "body": "Kit 裡沒有這個地址。回到首頁再選一個工具即可。",
+    "home": "返回首頁"
+  },
+  "errorPage": {
+    "title": "出了點問題",
+    "body": "剛才的操作在這個瀏覽器裡失败了。可以留在本頁重試。",
+    "retry": "重試"
+  }
+}

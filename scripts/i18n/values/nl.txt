@@ -1,0 +1,587 @@
+Kit — Browserhulpmiddelen die privé blijven
+PDF, afbeeldingen, media, conversies en tekst: alles draait op jouw apparaat. Er wordt niets naar onze servers geüpload.
+Kit
+Dagelijkse hulpmiddelen in je browser. Privé van ontwerp.
+Start
+Hulpmiddelen
+Geschiedenis
+Favorieten
+Instellingen
+Hulpmiddelen zoeken…
+Menu openen
+Menu sluiten
+Privacybeleid
+Gebruiksvoorwaarden
+Over mij
+MIT-licentie
+© {year} Tim G (TGthms). Kit is opensource onder de MIT-licentie.
+GitHub
+Annuleren
+Wissen
+Sluiten
+Kopiëren
+Gekopieerd naar het klembord
+Downloaden
+Uitvoeren
+Verwerken
+Bezig…
+Klaar
+Er ging iets mis
+Opnieuw proberen
+Bestanden toevoegen
+Sleep bestanden hierheen
+of blader op je apparaat
+Je kunt ook plakken vanaf het klembord
+Verwijderen
+Sleep om de volgorde te wijzigen
+Bestanden
+Nog geen bestanden geselecteerd
+Kwaliteit
+Opties
+Voorbeeld
+Resultaat
+Invoer
+Uitvoer
+Formaat
+Taal
+Weergave
+Systeem volgen
+Licht
+Donker
+Laden…
+Opslaan
+Verwijderen
+Bevestigen
+Terug
+Alle
+Vastmaken
+Losmaken
+Aan favorieten toevoegen
+Uit favorieten verwijderen
+Voorinstellingen
+Voorinstelling gebruiken
+Opslaan als voorinstelling
+Sneltoetsen
+Voortgang
+Dit bestand is groot — verwerken kan even duren.
+Dit formaat wordt niet ondersteund
+Gelukt
+Let op
+Info
+Alles selecteren
+Geen
+Herstellen
+Max. breedte
+Max. hoogte
+Breedte
+Hoogte
+Draaien
+Pagina’s
+Pagina
+Tekst
+Coderen
+Decoderen
+Valideren
+Minificeren
+Netjes opmaken
+Geldig
+Ongeldig
+Tekens
+Regels
+Van
+Naar
+Start
+Einde
+Snelheid
+Volume
+Knippen
+Extraheren
+Batch
+Beperkingen
+Draait alleen in je browser. Je bestanden gaan nooit naar een Kit-server.
+https://tgthms.github.io/about/
+Hoe het werkt en limieten
+Wat wil je doen?
+Handige hulpmiddelen op dit apparaat — geen account, geen uploads.
+Categorieën
+Hulpmiddelen
+Niets komt overeen met die zoekopdracht.
+Ga verder waar je gebleven was
+Vastgemaakt
+Begin met een categorie
+Kies een takenfamilie. De hulpmiddelen erin zijn gegroepeerd, zodat je kunt scannen in plaats van zoeken.
+Categorieën
+{count, plural, one {# hulpmiddel} other {# hulpmiddelen}}
+Zoekresultaten
+Begin hier
+Pagina’s
+Beschermen en info
+Markeringen
+Exporteren / converteren
+Formaat en bijsnijden
+Uiterlijk
+Bestand
+Clips
+Formaten
+Schrijven
+Inspecteren
+Coderen
+Genereren
+PDF
+Afbeeldingen
+Audio
+Video
+Bestanden converteren
+Schrijven
+PDF’s samenvoegen, splitsen, comprimeren en markeren
+Foto’s comprimeren, schalen, converteren en bijwerken
+Alleen audio converteren, knippen en van tempo veranderen
+Video converteren, knippen, versnellen en audio eruit halen
+Slim converteren tussen formaten (JSON, CSV, ZIP, afbeeldingen…)
+Tekst vergelijken, hoofdletters wijzigen en Markdown naar HTML
+Gegevens
+JSON, YAML, CSV, XML, SQL en conversie tussen formaten
+Ontwikkeling
+Tokens, hashes, encodings, wachtwoorden en andere bankgereedschappen
+Geschiedenis
+Wat je op dit apparaat hebt uitgevoerd. We bewaren alleen korte samenvattingen — nooit je bestanden.
+Nog geen activiteit. Voer een hulpmiddel uit en het verschijnt hier.
+Geschiedenis wissen
+Alle geschiedenis op dit apparaat verwijderen?
+Hulpmiddel openen
+Hulpmiddel
+Wanneer
+Samenvatting
+Status
+Gelukt
+Mislukt
+Favorieten
+Hulpmiddelen die je bij de hand houdt.
+Nog geen favorieten. Ster een hulpmiddel op de startpagina of op de pagina ervan.
+Instellingen
+Deze keuzes blijven alleen in deze browser.
+Weergave
+Taal
+Gegevens en privacy
+Geschiedenis wissen
+Verwijdert lokale geschiedenissamenvattingen die deze site bewaart.
+Kit verwerkt je bestanden in de browser. Voorkeuren en geschiedenissamenvattingen kunnen lokaal worden opgeslagen. Details staan in het privacybeleid.
+Privacybeleid
+Gebruiksvoorwaarden
+Druk op elk moment op ? voor sneltoetsen.
+Versie
+Sneltoetsen
+Overal
+Zoekveld focussen
+Instellingen openen
+Naar start
+Deze lijst tonen
+Huidig hulpmiddel uitvoeren
+Sluiten
+PDF’s samenvoegen
+Stapel meerdere PDF’s tot één. Bekijk pagina’s en sleep om te herschikken.
+pdf samenvoegen combineren voegen hechten meerdere pagina’s
+Samenvoegen
+Voeg minstens twee PDF-bestanden toe.
+{count} bestanden samengevoegd tot één PDF.
+PDF splitsen
+Haal een paginabereik naar een gloednieuwe PDF.
+pdf splitsen extraheren pagina’s bereik
+Splitsen
+Pagina’s (bijvoorbeeld 1-3,5)
+Je gesplitste PDF is klaar.
+Pagina’s ordenen
+Draai pagina’s, verwijder wat je niet nodig hebt en stel een nieuwe volgorde in.
+pdf draaien verwijderen herschikken ordenen pagina’s
+PDF opslaan
+Je PDF is bijgewerkt.
+PDF comprimeren
+Verklein het bestand door paginabeelden opnieuw te coderen (kwaliteitsafweging).
+pdf comprimeren verkleinen formaat kleiner
+Comprimeren
+Dit is een verliesgevend pad — pagina’s kunnen worden gerasterd. Werkt het best bij PDF’s met veel afbeeldingen.
+Gecomprimeerde PDF is klaar om te downloaden.
+Watermerk op PDF
+Zet tekst als watermerk, kop- of voettekst op elke pagina.
+pdf watermerk stempel koptekst voettekst vertrouwelijk
+Toepassen
+Watermerktekst
+Plaatsing
+Koptekst
+Voettekst
+Diagonaal midden
+Dekking
+Watermerk toegepast.
+Inhoud afdekken
+Plaats zwarte vlakken over gevoelige gebieden (visuele afdekking).
+pdf zwarten afdekken verbergen gevoelig
+Afdekking toepassen
+Alleen een visuele afdekking. Het garandeert niet dat elke onderliggende tekststroom verdwijnt — controleer gevoelige documenten.
+Afdekkingen toegepast.
+Uit PDF extraheren
+Haal leesbare tekst of exporteer een pagina als afbeelding.
+pdf extraheren tekst afbeeldingen
+Extraheren
+Tekst
+Afbeeldingen
+Extractie voltooid.
+{count} paginabeeld(en) als ZIP geëxporteerd.
+Afbeeldingen comprimeren
+Zet kwaliteit en maximale grootte lager zodat foto’s deelbaar blijven.
+afbeelding comprimeren jpg png webp grootte foto
+Comprimeren
+{count} afbeelding(en) gecomprimeerd.
+Afbeeldingen schalen
+Stel exacte afmetingen in, optioneel met vast beeldformaat.
+afbeelding schalen afmetingen breedte hoogte
+Schalen
+Beeldverhouding behouden
+{count} afbeelding(en) geschaald.
+Afbeelding bijsnijden
+Houd alleen de rechthoek die je nodig hebt.
+afbeelding bijsnijden knippen gebied
+Bijsnijden
+Bijgesneden afbeelding klaar.
+Afbeeldingsformaat converteren
+Schakel tussen JPEG, PNG, WEBP en vergelijkbare webformaten.
+afbeelding converteren formaat webp avif png jpg jpeg
+Converteren
+{count} afbeelding(en) geconverteerd.
+Metagegevens van afbeelding
+Bekijk EXIF en vergelijkbare tags en exporteer een schone kopie zonder.
+afbeelding exif metagegevens verwijderen privacy locatie
+Metagegevens verwijderen
+Pixels worden in de browser opnieuw gecodeerd, zodat ingesloten metagegevens verdwijnen.
+Metagegevens van {count} afbeelding(en) verwijderd.
+Tag
+Waarde
+Geen leesbare EXIF- of tekstmetagegevens in dit bestand.
+Afbeelding aanpassen
+Pas helderheid, contrast en verzadiging aan.
+afbeelding helderheid contrast verzadiging kleur
+Toepassen
+Helderheid
+Contrast
+Verzadiging
+{count} afbeelding(en) aangepast.
+Slim converteren
+Herkent gemengde bestand- of teksttypen en converteert tussen formaten (geen mediastudio).
+converteren hub slim batch json yaml csv zip afbeelding gegevens
+Converteren
+Herkend als
+Uitvoerformaat
+Conversie voltooid.
+JSON-opmaker
+Netjes opmaken, minificeren en JSON-fouten vroeg vinden.
+json opmaken valideren minificeren pretty
+Opmaak
+JSON lijkt geldig en is opgemaakt.
+YAML-opmaker
+Controleer de YAML-structuur en ruim de lay-out op.
+yaml opmaken valideren yml
+Opmaak
+YAML lijkt geldig.
+TOML-opmaker
+Valideer TOML en houd het bestand netjes.
+toml opmaken valideren config
+Opmaak
+TOML lijkt geldig.
+Markdown ↔ HTML
+Zet Markdown om in HTML, of HTML terug in Markdown.
+markdown html converteren md opmaak
+Converteren
+Markdown → HTML
+HTML → Markdown
+Geconverteerd.
+CSV ↔ JSON
+Verplaats tabelgegevens tussen CSV en JSON-arrays.
+csv json converteren tabel spreadsheet
+Converteren
+CSV → JSON
+JSON → CSV
+Geconverteerd.
+Tekst vergelijken
+Zie regel-voor-regel wijzigingen tussen twee versies.
+diff vergelijken tekst wijzigingen patch
+Vergelijken
+Origineel
+Bijgewerkt
+Vergelijking klaar.
+Base64
+Codeer of decodeer Base64 voor platte tekst of hele bestanden.
+base64 coderen decoderen binair
+Converteren
+Richting
+Tekst
+Bestand
+Klaar.
+URL coderen
+Percent-codeer of decodeer URL-onderdelen veilig.
+url coderen decoderen procent uri query
+Converteren
+Klaar.
+Audio converteren
+Wissel audiocontainers zoals MP3, WAV en OGG in de browser.
+audio converteren mp3 wav ogg ffmpeg geluid
+Converteren
+Audio-engine laden…
+Gebruikt single-thread FFmpeg WASM. Grote bestanden kunnen traag zijn; codecondersteuning is beperkt.
+Audioconversie voltooid.
+Audio knippen
+Houd alleen het stuk tussen twee tijdstippen in een audiobestand.
+audio knippen trimmen clip mp3 wav
+Knippen
+Audioknippen voltooid.
+Audiosnelheid en -volume
+Versnel, vertraag of verander de luidheid van audio.
+audio snelheid tempo volume toonhoogte
+Toepassen
+Verwerkte audio is klaar.
+Video converteren
+Wissel videocontainers zoals MP4 en WEBM in de browser.
+video converteren mp4 webm ffmpeg film
+Converteren
+Video-engine laden…
+Gebruikt single-thread FFmpeg WASM. Grote bestanden kunnen traag zijn; codecondersteuning is beperkt.
+Videoconversie voltooid.
+Video knippen
+Houd alleen de clip tussen twee tijdstippen.
+video knippen trimmen clip mp4
+Knippen
+Videoknippen voltooid.
+Videosnelheid en -volume
+Wijzig afspeelsnelheid en audioniveau van een video.
+video snelheid tempo volume
+Toepassen
+Verwerkte video is klaar.
+Audio uit video extraheren
+Sla de soundtrack van een video op als audiobestand.
+video audio extraheren mp3 soundtrack
+Audio extraheren
+Audio geëxtraheerd.
+Paginanummers
+Zet een label zoals 1 / 12 op elke pagina.
+pdf paginanummers voettekst koptekst paginering
+Nummers toevoegen
+Label ({page} en {pages})
+Plaatsing
+Begin bij
+Koptekst links
+Koptekst midden
+Koptekst rechts
+Voettekst links
+Voettekst midden
+Voettekst rechts
+Paginanummers toegevoegd.
+PDF → afbeeldingen
+Raster elke pagina naar JPEG en download ze als ZIP.
+pdf afbeelding jpg jpeg zip pagina’s exporteren
+Pagina’s exporteren
+Pagina’s worden met PDF.js in dit tabblad getekend. Zeer grote documenten kunnen traag zijn en veel geheugen gebruiken. Dit is een visueel raster, geen extractie van ingesloten afbeeldingsobjecten.
+{count} pagina(’s) geëxporteerd.
+Afbeeldingen → PDF
+Stapel foto’s tot een PDF, één afbeelding per pagina.
+afbeeldingen pdf jpg png combineren
+PDF maken
+PDF gemaakt van {count} afbeelding(en).
+Formulieren platleggen
+Bak AcroForm-velden in de pagina zodat ze niet meer bewerkbaar zijn.
+pdf platleggen formulier velden acroform
+Platleggen
+Werkt met standaard AcroForm-velden. Dynamische XFA-formulieren worden niet volledig ondersteund.
+{count} veld(en) platgelegd.
+PDF-metagegevens
+Bekijk, bewerk of verwijder titel, auteur en andere Info-velden van het document.
+Trefwoorden
+Metagegevens opslaan
+Alle velden verwijderen
+Titel
+Auteur
+Onderwerp
+Maker
+Producent
+Metagegevens opgeslagen.
+Metagegevens verwijderd.
+PDF vergrendelen of ontgrendelen
+Voeg een gebruikerswachtwoord toe of verwijder het. Versleuteling blijft in deze browser.
+pdf wachtwoord vergrendelen ontgrendelen versleutelen ontsleutelen
+Toepassen
+Vergrendelen
+Ontgrendelen
+Wachtwoord
+Gebruikt een client-side PDF-versleutelingsbibliotheek. Sommige oudere of ongebruikelijke revisies ontgrendelen mogelijk niet. Kit stuurt het bestand of wachtwoord nooit naar een server.
+De PDF is klaar.
+Draaien en spiegelen
+Draai afbeeldingen per 90° of spiegel ze horizontaal of verticaal.
+afbeelding draaien spiegelen
+Toepassen
+Transformatie
+90° draaien
+180° draaien
+270° draaien
+Horizontaal spiegelen
+Verticaal spiegelen
+{count} afbeelding(en) getransformeerd.
+Afbeeldingsfilters
+Pas grijswaarden, sepia of inverteren toe op één of meer foto’s.
+afbeelding filter grijswaarden sepia inverteren
+Toepassen
+Filter
+Grijswaarden
+Sepia
+Inverteren
+{count} afbeelding(en) gefilterd.
+Faviconpakket
+Exporteer een bronafbeelding als gangbare pictogramgroottes in een ZIP.
+favicon pictogram 16 32 180 192 512 apple touch
+Pictogrammen exporteren
+Exporteert PNG-bestanden van 16, 32, 48, 180, 192 en 512 pixels.
+Het pictogrampakket is klaar.
+Video → GIF
+Zet een kort fragment om in een herhalende GIF in de browser.
+video gif clip converteren ffmpeg
+GIF maken
+Gebruikt FFmpeg WASM. Houd clips kort — GIF-codering is traag en geheugenintensief. Palet en codecs volgen de build in de browser.
+De GIF is klaar.
+XML ↔ JSON
+Zet XML-documenten om naar JSON, of JSON terug naar XML.
+xml json converteren ontleden
+Converteren
+XML → JSON
+JSON → XML
+Geconverteerd.
+SQL-opmaker
+Maak SQL netjes op zodat clausules en lijsten beter leesbaar zijn.
+sql opmaken pretty query
+Opmaak
+SQL opgemaakt.
+Regex-tester
+Probeer een reguliere expressie op voorbeeldtekst en vervang treffers.
+regex reguliere expressie testen vervangen
+Patroon
+Flags
+Voorbeeldtekst
+Vervanging
+Vervangen
+{count, plural, one {# treffer} other {# treffers}}
+Vervanging klaar.
+Hashgenerator
+SHA-1/256/384/512 en MD5 van tekst of een bestand, lokaal berekend.
+hash sha256 md5 sha1 controlesom digest
+Hashen
+Algoritme
+Digest
+Hashes worden in deze browser berekend (Web Crypto voor SHA, een lokale MD5-implementatie). MD5 is niet botsingsbestendig — gebruik het alleen voor controlesommen.
+Hash klaar.
+UUID-generator
+Maak UUID versie 4 of 7 op dit apparaat.
+uuid guid v4 v7 genereren
+Genereren
+Hoeveel
+Versie
+UUID’s gegenereerd.
+Kleurconverter
+Converteer tussen HEX, RGB, HSL en HSV, met een kleurkiezer.
+kleur hex rgb hsl hsv kiezer
+Kleurkiezer
+Voer een hex-kleur van 3 of 6 cijfers in.
+Lorem ipsum
+Genereer plaatshouderalinea’s, zinnen of woorden.
+lorem ipsum plaatshouder dummy tekst
+Genereren
+Aantal
+Modus
+Alinea’s
+Zinnen
+Woorden
+Tekst gegenereerd.
+QR-code
+Maak een QR-code van tekst, of lees er een uit een afbeelding.
+qr code genereren scannen lezen barcode
+Genereren
+Tekst of URL
+Uit afbeelding lezen
+QR lezen
+QR-code klaar.
+QR-inhoud gelezen.
+Geen QR-code in die afbeelding gevonden.
+PDF ondertekenen
+Zet een getypte handtekening op elke pagina. Alleen visueel — geen certificaat.
+pdf ondertekenen handtekening stempel naam
+Ondertekenen
+Handtekeningtekst
+Je naam
+Dit tekent je naam op de pagina. Het is geen cryptografische digitale handtekening.
+Handtekening geplaatst.
+Watermerk op afbeeldingen
+Leg tekst over foto’s, één bestand of een hele batch.
+afbeelding watermerk stempel copyright
+Toepassen
+Watermerktekst
+Plaatsing
+Rechtsonder
+Linksonder
+Rechtsboven
+Midden
+Watermerk op {count} afbeelding(en).
+Wachtwoordgenerator
+Maak een sterk wachtwoord op dit apparaat. Er wordt niets opgeslagen.
+wachtwoord genereren willekeurig geheim
+Genereren
+Lengte
+Kleine letters
+Hoofdletters
+Cijfers
+Symbolen
+Wachtwoord klaar.
+Hoofdletters wijzigen
+Schakel tussen camel, snake, kebab, titel en meer.
+hoofdletters camel snake kebab pascal titel
+Converteren
+Stijl
+Geconverteerd.
+JWT-decoder
+Lees JWT-header en payload lokaal. Handtekeningen worden niet gecontroleerd.
+jwt decoderen token bearer auth
+Decoderen
+Kit decodeert alleen Base64url. Zonder sleutel kan het niet bewijzen dat het token echt is.
+Handtekeningdeel is aanwezig (niet geverifieerd).
+Geen handtekeningdeel.
+Plak eerst een token.
+Token gedecodeerd.
+Unix-tijdstempel
+Zet Unix-tijd om naar ISO en terug.
+unix epoch tijdstempel iso datum
+Nu gebruiken
+Cron uitleggen
+Zet een cron-expressie van 5 velden om in gewone taal.
+cron planning crontab uitleggen
+Uitleggen
+Uitgelegd.
+Getallenstelsel
+Converteer gehele getallen tussen grondtal 2 en 36.
+binair hex decimaal grondtal converteren
+Getal
+Van grondtal
+Naar grondtal
+HTML-entiteiten
+Codeer of decodeer &lt; &amp; en numerieke entiteiten.
+html entiteiten coderen decoderen escapen
+Converteren
+Coderen
+Decoderen
+Geconverteerd.
+JSON → TypeScript
+Leid TypeScript-interfaces af van een JSON-voorbeeld.
+json typescript interface type genereren
+Typen genereren
+Typen gegenereerd.
+Laatst bijgewerkt
+Privacybeleid
+Gebruiksvoorwaarden
+Pagina niet gevonden
+Dat adres zit niet in Kit. Ga naar start en kies daar een hulpmiddel.
+Terug naar start
+Er ging iets mis
+De laatste actie is in deze browser mislukt. Je kunt het opnieuw proberen zonder de pagina te verlaten.
+Opnieuw proberen

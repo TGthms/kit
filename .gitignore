@@ -39,3 +39,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# python (i18n emit scripts)
+__pycache__/
+*.py[cod]

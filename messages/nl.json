@@ -1,0 +1,735 @@
+{
+  "meta": {
+    "title": "Kit — Browserhulpmiddelen die privé blijven",
+    "description": "PDF, afbeeldingen, media, conversies en tekst: alles draait op jouw apparaat. Er wordt niets naar onze servers geüpload."
+  },
+  "brand": {
+    "name": "Kit",
+    "tagline": "Dagelijkse hulpmiddelen in je browser. Privé van ontwerp."
+  },
+  "nav": {
+    "home": "Start",
+    "tools": "Hulpmiddelen",
+    "history": "Geschiedenis",
+    "favorites": "Favorieten",
+    "settings": "Instellingen",
+    "searchPlaceholder": "Hulpmiddelen zoeken…",
+    "openMenu": "Menu openen",
+    "closeMenu": "Menu sluiten"
+  },
+  "footer": {
+    "privacy": "Privacybeleid",
+    "terms": "Gebruiksvoorwaarden",
+    "aboutMe": "Over mij",
+    "license": "MIT-licentie",
+    "copyright": "© {year} Tim G (TGthms). Kit is opensource onder de MIT-licentie.",
+    "github": "GitHub"
+  },
+  "common": {
+    "cancel": "Annuleren",
+    "clear": "Wissen",
+    "close": "Sluiten",
+    "copy": "Kopiëren",
+    "copied": "Gekopieerd naar het klembord",
+    "download": "Downloaden",
+    "run": "Uitvoeren",
+    "process": "Verwerken",
+    "processing": "Bezig…",
+    "done": "Klaar",
+    "error": "Er ging iets mis",
+    "retry": "Opnieuw proberen",
+    "addFiles": "Bestanden toevoegen",
+    "dropFiles": "Sleep bestanden hierheen",
+    "orBrowse": "of blader op je apparaat",
+    "pasteSupported": "Je kunt ook plakken vanaf het klembord",
+    "remove": "Verwijderen",
+    "reorder": "Sleep om de volgorde te wijzigen",
+    "files": "Bestanden",
+    "noFiles": "Nog geen bestanden geselecteerd",
+    "quality": "Kwaliteit",
+    "options": "Opties",
+    "preview": "Voorbeeld",
+    "result": "Resultaat",
+    "input": "Invoer",
+    "output": "Uitvoer",
+    "format": "Formaat",
+    "language": "Taal",
+    "theme": "Weergave",
+    "themeSystem": "Systeem volgen",
+    "themeLight": "Licht",
+    "themeDark": "Donker",
+    "loading": "Laden…",
+    "save": "Opslaan",
+    "delete": "Verwijderen",
+    "confirm": "Bevestigen",
+    "back": "Terug",
+    "allCategories": "Alle",
+    "pin": "Vastmaken",
+    "unpin": "Losmaken",
+    "favorite": "Aan favorieten toevoegen",
+    "unfavorite": "Uit favorieten verwijderen",
+    "presets": "Voorinstellingen",
+    "applyPreset": "Voorinstelling gebruiken",
+    "savePreset": "Opslaan als voorinstelling",
+    "shortcuts": "Sneltoetsen",
+    "progress": "Voortgang",
+    "fileTooLarge": "Dit bestand is groot — verwerken kan even duren.",
+    "unsupported": "Dit formaat wordt niet ondersteund",
+    "success": "Gelukt",
+    "warning": "Let op",
+    "info": "Info",
+    "selectAll": "Alles selecteren",
+    "none": "Geen",
+    "reset": "Herstellen",
+    "maxWidth": "Max. breedte",
+    "maxHeight": "Max. hoogte",
+    "width": "Breedte",
+    "height": "Hoogte",
+    "rotate": "Draaien",
+    "pages": "Pagina’s",
+    "page": "Pagina",
+    "text": "Tekst",
+    "encode": "Coderen",
+    "decode": "Decoderen",
+    "validate": "Valideren",
+    "minify": "Minificeren",
+    "beautify": "Netjes opmaken",
+    "valid": "Geldig",
+    "invalid": "Ongeldig",
+    "characters": "Tekens",
+    "lines": "Regels",
+    "from": "Van",
+    "to": "Naar",
+    "start": "Start",
+    "end": "Einde",
+    "speed": "Snelheid",
+    "volume": "Volume",
+    "trim": "Knippen",
+    "extract": "Extraheren",
+    "batch": "Batch",
+    "limitations": "Beperkingen",
+    "clientSideOnly": "Draait alleen in je browser. Je bestanden gaan nooit naar een Kit-server.",
+    "aboutMeUrl": "https://tgthms.github.io/about/",
+    "howItWorks": "Hoe het werkt en limieten"
+  },
+  "home": {
+    "title": "Wat wil je doen?",
+    "subtitle": "Handige hulpmiddelen op dit apparaat — geen account, geen uploads.",
+    "categories": "Categorieën",
+    "popular": "Hulpmiddelen",
+    "noResults": "Niets komt overeen met die zoekopdracht.",
+    "recent": "Ga verder waar je gebleven was",
+    "pinned": "Vastgemaakt",
+    "chooseCategory": "Begin met een categorie",
+    "chooseCategoryHint": "Kies een takenfamilie. De hulpmiddelen erin zijn gegroepeerd, zodat je kunt scannen in plaats van zoeken.",
+    "backToCategories": "Categorieën",
+    "toolsInCategory": "{count, plural, one {# hulpmiddel} other {# hulpmiddelen}}",
+    "searchResults": "Zoekresultaten",
+    "featured": "Begin hier",
+    "groups": {
+      "pages": "Pagina’s",
+      "protect": "Beschermen en info",
+      "markup": "Markeringen",
+      "export": "Exporteren / converteren",
+      "transform": "Formaat en bijsnijden",
+      "look": "Uiterlijk",
+      "file": "Bestand",
+      "clip": "Clips",
+      "formats": "Formaten",
+      "write": "Schrijven",
+      "inspect": "Inspecteren",
+      "encode": "Coderen",
+      "generate": "Genereren"
+    }
+  },
+  "categories": {
+    "pdf": "PDF",
+    "image": "Afbeeldingen",
+    "audio": "Audio",
+    "video": "Video",
+    "convert": "Bestanden converteren",
+    "text": "Schrijven",
+    "pdfDesc": "PDF’s samenvoegen, splitsen, comprimeren en markeren",
+    "imageDesc": "Foto’s comprimeren, schalen, converteren en bijwerken",
+    "audioDesc": "Alleen audio converteren, knippen en van tempo veranderen",
+    "videoDesc": "Video converteren, knippen, versnellen en audio eruit halen",
+    "convertDesc": "Slim converteren tussen formaten (JSON, CSV, ZIP, afbeeldingen…)",
+    "textDesc": "Tekst vergelijken, hoofdletters wijzigen en Markdown naar HTML",
+    "data": "Gegevens",
+    "dataDesc": "JSON, YAML, CSV, XML, SQL en conversie tussen formaten",
+    "developer": "Ontwikkeling",
+    "developerDesc": "Tokens, hashes, encodings, wachtwoorden en andere bankgereedschappen"
+  },
+  "history": {
+    "title": "Geschiedenis",
+    "subtitle": "Wat je op dit apparaat hebt uitgevoerd. We bewaren alleen korte samenvattingen — nooit je bestanden.",
+    "empty": "Nog geen activiteit. Voer een hulpmiddel uit en het verschijnt hier.",
+    "clear": "Geschiedenis wissen",
+    "clearConfirm": "Alle geschiedenis op dit apparaat verwijderen?",
+    "openTool": "Hulpmiddel openen",
+    "tool": "Hulpmiddel",
+    "when": "Wanneer",
+    "summary": "Samenvatting",
+    "status": "Status",
+    "success": "Gelukt",
+    "failed": "Mislukt"
+  },
+  "favorites": {
+    "title": "Favorieten",
+    "subtitle": "Hulpmiddelen die je bij de hand houdt.",
+    "empty": "Nog geen favorieten. Ster een hulpmiddel op de startpagina of op de pagina ervan."
+  },
+  "settings": {
+    "title": "Instellingen",
+    "subtitle": "Deze keuzes blijven alleen in deze browser.",
+    "appearance": "Weergave",
+    "language": "Taal",
+    "data": "Gegevens en privacy",
+    "clearHistory": "Geschiedenis wissen",
+    "clearHistoryDesc": "Verwijdert lokale geschiedenissamenvattingen die deze site bewaart.",
+    "privacyNote": "Kit verwerkt je bestanden in de browser. Voorkeuren en geschiedenissamenvattingen kunnen lokaal worden opgeslagen. Details staan in het privacybeleid.",
+    "viewPrivacy": "Privacybeleid",
+    "viewTerms": "Gebruiksvoorwaarden",
+    "shortcutsHelp": "Druk op elk moment op ? voor sneltoetsen.",
+    "version": "Versie"
+  },
+  "shortcuts": {
+    "title": "Sneltoetsen",
+    "global": "Overal",
+    "search": "Zoekveld focussen",
+    "settings": "Instellingen openen",
+    "home": "Naar start",
+    "help": "Deze lijst tonen",
+    "run": "Huidig hulpmiddel uitvoeren",
+    "close": "Sluiten"
+  },
+  "tools": {
+    "pdf-merge": {
+      "name": "PDF’s samenvoegen",
+      "description": "Stapel meerdere PDF’s tot één. Bekijk pagina’s en sleep om te herschikken.",
+      "keywords": "pdf samenvoegen combineren voegen hechten meerdere pagina’s",
+      "run": "Samenvoegen",
+      "empty": "Voeg minstens twee PDF-bestanden toe.",
+      "success": "{count} bestanden samengevoegd tot één PDF."
+    },
+    "pdf-split": {
+      "name": "PDF splitsen",
+      "description": "Haal een paginabereik naar een gloednieuwe PDF.",
+      "keywords": "pdf splitsen extraheren pagina’s bereik",
+      "run": "Splitsen",
+      "range": "Pagina’s (bijvoorbeeld 1-3,5)",
+      "success": "Je gesplitste PDF is klaar."
+    },
+    "pdf-organize": {
+      "name": "Pagina’s ordenen",
+      "description": "Draai pagina’s, verwijder wat je niet nodig hebt en stel een nieuwe volgorde in.",
+      "keywords": "pdf draaien verwijderen herschikken ordenen pagina’s",
+      "run": "PDF opslaan",
+      "success": "Je PDF is bijgewerkt."
+    },
+    "pdf-compress": {
+      "name": "PDF comprimeren",
+      "description": "Verklein het bestand door paginabeelden opnieuw te coderen (kwaliteitsafweging).",
+      "keywords": "pdf comprimeren verkleinen formaat kleiner",
+      "run": "Comprimeren",
+      "note": "Dit is een verliesgevend pad — pagina’s kunnen worden gerasterd. Werkt het best bij PDF’s met veel afbeeldingen.",
+      "success": "Gecomprimeerde PDF is klaar om te downloaden."
+    },
+    "pdf-watermark": {
+      "name": "Watermerk op PDF",
+      "description": "Zet tekst als watermerk, kop- of voettekst op elke pagina.",
+      "keywords": "pdf watermerk stempel koptekst voettekst vertrouwelijk",
+      "run": "Toepassen",
+      "text": "Watermerktekst",
+      "position": "Plaatsing",
+      "header": "Koptekst",
+      "footer": "Voettekst",
+      "center": "Diagonaal midden",
+      "opacity": "Dekking",
+      "success": "Watermerk toegepast."
+    },
+    "pdf-redact": {
+      "name": "Inhoud afdekken",
+      "description": "Plaats zwarte vlakken over gevoelige gebieden (visuele afdekking).",
+      "keywords": "pdf zwarten afdekken verbergen gevoelig",
+      "run": "Afdekking toepassen",
+      "note": "Alleen een visuele afdekking. Het garandeert niet dat elke onderliggende tekststroom verdwijnt — controleer gevoelige documenten.",
+      "success": "Afdekkingen toegepast."
+    },
+    "pdf-extract": {
+      "name": "Uit PDF extraheren",
+      "description": "Haal leesbare tekst of exporteer een pagina als afbeelding.",
+      "keywords": "pdf extraheren tekst afbeeldingen",
+      "run": "Extraheren",
+      "modeText": "Tekst",
+      "modeImages": "Afbeeldingen",
+      "success": "Extractie voltooid.",
+      "imagesReady": "{count} paginabeeld(en) als ZIP geëxporteerd."
+    },
+    "image-compress": {
+      "name": "Afbeeldingen comprimeren",
+      "description": "Zet kwaliteit en maximale grootte lager zodat foto’s deelbaar blijven.",
+      "keywords": "afbeelding comprimeren jpg png webp grootte foto",
+      "run": "Comprimeren",
+      "success": "{count} afbeelding(en) gecomprimeerd."
+    },
+    "image-resize": {
+      "name": "Afbeeldingen schalen",
+      "description": "Stel exacte afmetingen in, optioneel met vast beeldformaat.",
+      "keywords": "afbeelding schalen afmetingen breedte hoogte",
+      "run": "Schalen",
+      "lockAspect": "Beeldverhouding behouden",
+      "success": "{count} afbeelding(en) geschaald."
+    },
+    "image-crop": {
+      "name": "Afbeelding bijsnijden",
+      "description": "Houd alleen de rechthoek die je nodig hebt.",
+      "keywords": "afbeelding bijsnijden knippen gebied",
+      "run": "Bijsnijden",
+      "success": "Bijgesneden afbeelding klaar."
+    },
+    "image-convert": {
+      "name": "Afbeeldingsformaat converteren",
+      "description": "Schakel tussen JPEG, PNG, WEBP en vergelijkbare webformaten.",
+      "keywords": "afbeelding converteren formaat webp avif png jpg jpeg",
+      "run": "Converteren",
+      "success": "{count} afbeelding(en) geconverteerd."
+    },
+    "image-metadata": {
+      "name": "Metagegevens van afbeelding",
+      "description": "Bekijk EXIF en vergelijkbare tags en exporteer een schone kopie zonder.",
+      "keywords": "afbeelding exif metagegevens verwijderen privacy locatie",
+      "run": "Metagegevens verwijderen",
+      "note": "Pixels worden in de browser opnieuw gecodeerd, zodat ingesloten metagegevens verdwijnen.",
+      "success": "Metagegevens van {count} afbeelding(en) verwijderd.",
+      "tag": "Tag",
+      "value": "Waarde",
+      "noExif": "Geen leesbare EXIF- of tekstmetagegevens in dit bestand."
+    },
+    "image-adjust": {
+      "name": "Afbeelding aanpassen",
+      "description": "Pas helderheid, contrast en verzadiging aan.",
+      "keywords": "afbeelding helderheid contrast verzadiging kleur",
+      "run": "Toepassen",
+      "brightness": "Helderheid",
+      "contrast": "Contrast",
+      "saturation": "Verzadiging",
+      "success": "{count} afbeelding(en) aangepast."
+    },
+    "convert-hub": {
+      "name": "Slim converteren",
+      "description": "Herkent gemengde bestand- of teksttypen en converteert tussen formaten (geen mediastudio).",
+      "keywords": "converteren hub slim batch json yaml csv zip afbeelding gegevens",
+      "run": "Converteren",
+      "detect": "Herkend als",
+      "chooseOutput": "Uitvoerformaat",
+      "success": "Conversie voltooid."
+    },
+    "json-format": {
+      "name": "JSON-opmaker",
+      "description": "Netjes opmaken, minificeren en JSON-fouten vroeg vinden.",
+      "keywords": "json opmaken valideren minificeren pretty",
+      "run": "Opmaak",
+      "success": "JSON lijkt geldig en is opgemaakt."
+    },
+    "yaml-format": {
+      "name": "YAML-opmaker",
+      "description": "Controleer de YAML-structuur en ruim de lay-out op.",
+      "keywords": "yaml opmaken valideren yml",
+      "run": "Opmaak",
+      "success": "YAML lijkt geldig."
+    },
+    "toml-format": {
+      "name": "TOML-opmaker",
+      "description": "Valideer TOML en houd het bestand netjes.",
+      "keywords": "toml opmaken valideren config",
+      "run": "Opmaak",
+      "success": "TOML lijkt geldig."
+    },
+    "markdown-html": {
+      "name": "Markdown ↔ HTML",
+      "description": "Zet Markdown om in HTML, of HTML terug in Markdown.",
+      "keywords": "markdown html converteren md opmaak",
+      "run": "Converteren",
+      "toHtml": "Markdown → HTML",
+      "toMd": "HTML → Markdown",
+      "success": "Geconverteerd."
+    },
+    "csv-json": {
+      "name": "CSV ↔ JSON",
+      "description": "Verplaats tabelgegevens tussen CSV en JSON-arrays.",
+      "keywords": "csv json converteren tabel spreadsheet",
+      "run": "Converteren",
+      "toJson": "CSV → JSON",
+      "toCsv": "JSON → CSV",
+      "success": "Geconverteerd."
+    },
+    "text-diff": {
+      "name": "Tekst vergelijken",
+      "description": "Zie regel-voor-regel wijzigingen tussen twee versies.",
+      "keywords": "diff vergelijken tekst wijzigingen patch",
+      "run": "Vergelijken",
+      "left": "Origineel",
+      "right": "Bijgewerkt",
+      "success": "Vergelijking klaar."
+    },
+    "base64": {
+      "name": "Base64",
+      "description": "Codeer of decodeer Base64 voor platte tekst of hele bestanden.",
+      "keywords": "base64 coderen decoderen binair",
+      "run": "Converteren",
+      "mode": "Richting",
+      "textMode": "Tekst",
+      "fileMode": "Bestand",
+      "success": "Klaar."
+    },
+    "url-encode": {
+      "name": "URL coderen",
+      "description": "Percent-codeer of decodeer URL-onderdelen veilig.",
+      "keywords": "url coderen decoderen procent uri query",
+      "run": "Converteren",
+      "success": "Klaar."
+    },
+    "audio-convert": {
+      "name": "Audio converteren",
+      "description": "Wissel audiocontainers zoals MP3, WAV en OGG in de browser.",
+      "keywords": "audio converteren mp3 wav ogg ffmpeg geluid",
+      "run": "Converteren",
+      "loadingFfmpeg": "Audio-engine laden…",
+      "note": "Gebruikt single-thread FFmpeg WASM. Grote bestanden kunnen traag zijn; codecondersteuning is beperkt.",
+      "success": "Audioconversie voltooid."
+    },
+    "audio-trim": {
+      "name": "Audio knippen",
+      "description": "Houd alleen het stuk tussen twee tijdstippen in een audiobestand.",
+      "keywords": "audio knippen trimmen clip mp3 wav",
+      "run": "Knippen",
+      "success": "Audioknippen voltooid."
+    },
+    "audio-speed": {
+      "name": "Audiosnelheid en -volume",
+      "description": "Versnel, vertraag of verander de luidheid van audio.",
+      "keywords": "audio snelheid tempo volume toonhoogte",
+      "run": "Toepassen",
+      "success": "Verwerkte audio is klaar."
+    },
+    "video-convert": {
+      "name": "Video converteren",
+      "description": "Wissel videocontainers zoals MP4 en WEBM in de browser.",
+      "keywords": "video converteren mp4 webm ffmpeg film",
+      "run": "Converteren",
+      "loadingFfmpeg": "Video-engine laden…",
+      "note": "Gebruikt single-thread FFmpeg WASM. Grote bestanden kunnen traag zijn; codecondersteuning is beperkt.",
+      "success": "Videoconversie voltooid."
+    },
+    "video-trim": {
+      "name": "Video knippen",
+      "description": "Houd alleen de clip tussen twee tijdstippen.",
+      "keywords": "video knippen trimmen clip mp4",
+      "run": "Knippen",
+      "success": "Videoknippen voltooid."
+    },
+    "video-speed": {
+      "name": "Videosnelheid en -volume",
+      "description": "Wijzig afspeelsnelheid en audioniveau van een video.",
+      "keywords": "video snelheid tempo volume",
+      "run": "Toepassen",
+      "success": "Verwerkte video is klaar."
+    },
+    "video-extract-audio": {
+      "name": "Audio uit video extraheren",
+      "description": "Sla de soundtrack van een video op als audiobestand.",
+      "keywords": "video audio extraheren mp3 soundtrack",
+      "run": "Audio extraheren",
+      "success": "Audio geëxtraheerd."
+    },
+    "pdf-numbers": {
+      "name": "Paginanummers",
+      "description": "Zet een label zoals 1 / 12 op elke pagina.",
+      "keywords": "pdf paginanummers voettekst koptekst paginering",
+      "run": "Nummers toevoegen",
+      "template": "Label ({page} en {pages})",
+      "position": "Plaatsing",
+      "start": "Begin bij",
+      "headerLeft": "Koptekst links",
+      "headerCenter": "Koptekst midden",
+      "headerRight": "Koptekst rechts",
+      "footerLeft": "Voettekst links",
+      "footerCenter": "Voettekst midden",
+      "footerRight": "Voettekst rechts",
+      "success": "Paginanummers toegevoegd."
+    },
+    "pdf-to-images": {
+      "name": "PDF → afbeeldingen",
+      "description": "Raster elke pagina naar JPEG en download ze als ZIP.",
+      "keywords": "pdf afbeelding jpg jpeg zip pagina’s exporteren",
+      "run": "Pagina’s exporteren",
+      "limits": "Pagina’s worden met PDF.js in dit tabblad getekend. Zeer grote documenten kunnen traag zijn en veel geheugen gebruiken. Dit is een visueel raster, geen extractie van ingesloten afbeeldingsobjecten.",
+      "success": "{count} pagina(’s) geëxporteerd."
+    },
+    "images-to-pdf": {
+      "name": "Afbeeldingen → PDF",
+      "description": "Stapel foto’s tot een PDF, één afbeelding per pagina.",
+      "keywords": "afbeeldingen pdf jpg png combineren",
+      "run": "PDF maken",
+      "success": "PDF gemaakt van {count} afbeelding(en)."
+    },
+    "pdf-flatten": {
+      "name": "Formulieren platleggen",
+      "description": "Bak AcroForm-velden in de pagina zodat ze niet meer bewerkbaar zijn.",
+      "keywords": "pdf platleggen formulier velden acroform",
+      "run": "Platleggen",
+      "limits": "Werkt met standaard AcroForm-velden. Dynamische XFA-formulieren worden niet volledig ondersteund.",
+      "success": "{count} veld(en) platgelegd."
+    },
+    "pdf-metadata": {
+      "name": "PDF-metagegevens",
+      "description": "Bekijk, bewerk of verwijder titel, auteur en andere Info-velden van het document.",
+      "keywords": "Trefwoorden",
+      "run": "Metagegevens opslaan",
+      "strip": "Alle velden verwijderen",
+      "title": "Titel",
+      "author": "Auteur",
+      "subject": "Onderwerp",
+      "creator": "Maker",
+      "producer": "Producent",
+      "saved": "Metagegevens opgeslagen.",
+      "stripped": "Metagegevens verwijderd."
+    },
+    "pdf-protect": {
+      "name": "PDF vergrendelen of ontgrendelen",
+      "description": "Voeg een gebruikerswachtwoord toe of verwijder het. Versleuteling blijft in deze browser.",
+      "keywords": "pdf wachtwoord vergrendelen ontgrendelen versleutelen ontsleutelen",
+      "run": "Toepassen",
+      "lock": "Vergrendelen",
+      "unlock": "Ontgrendelen",
+      "password": "Wachtwoord",
+      "limits": "Gebruikt een client-side PDF-versleutelingsbibliotheek. Sommige oudere of ongebruikelijke revisies ontgrendelen mogelijk niet. Kit stuurt het bestand of wachtwoord nooit naar een server.",
+      "success": "De PDF is klaar."
+    },
+    "image-rotate": {
+      "name": "Draaien en spiegelen",
+      "description": "Draai afbeeldingen per 90° of spiegel ze horizontaal of verticaal.",
+      "keywords": "afbeelding draaien spiegelen",
+      "run": "Toepassen",
+      "operation": "Transformatie",
+      "rot90": "90° draaien",
+      "rot180": "180° draaien",
+      "rot270": "270° draaien",
+      "flipH": "Horizontaal spiegelen",
+      "flipV": "Verticaal spiegelen",
+      "success": "{count} afbeelding(en) getransformeerd."
+    },
+    "image-filters": {
+      "name": "Afbeeldingsfilters",
+      "description": "Pas grijswaarden, sepia of inverteren toe op één of meer foto’s.",
+      "keywords": "afbeelding filter grijswaarden sepia inverteren",
+      "run": "Toepassen",
+      "filter": "Filter",
+      "grayscale": "Grijswaarden",
+      "sepia": "Sepia",
+      "invert": "Inverteren",
+      "success": "{count} afbeelding(en) gefilterd."
+    },
+    "image-favicon": {
+      "name": "Faviconpakket",
+      "description": "Exporteer een bronafbeelding als gangbare pictogramgroottes in een ZIP.",
+      "keywords": "favicon pictogram 16 32 180 192 512 apple touch",
+      "run": "Pictogrammen exporteren",
+      "note": "Exporteert PNG-bestanden van 16, 32, 48, 180, 192 en 512 pixels.",
+      "success": "Het pictogrampakket is klaar."
+    },
+    "video-gif": {
+      "name": "Video → GIF",
+      "description": "Zet een kort fragment om in een herhalende GIF in de browser.",
+      "keywords": "video gif clip converteren ffmpeg",
+      "run": "GIF maken",
+      "limits": "Gebruikt FFmpeg WASM. Houd clips kort — GIF-codering is traag en geheugenintensief. Palet en codecs volgen de build in de browser.",
+      "success": "De GIF is klaar."
+    },
+    "xml-json": {
+      "name": "XML ↔ JSON",
+      "description": "Zet XML-documenten om naar JSON, of JSON terug naar XML.",
+      "keywords": "xml json converteren ontleden",
+      "run": "Converteren",
+      "toJson": "XML → JSON",
+      "toXml": "JSON → XML",
+      "success": "Geconverteerd."
+    },
+    "sql-format": {
+      "name": "SQL-opmaker",
+      "description": "Maak SQL netjes op zodat clausules en lijsten beter leesbaar zijn.",
+      "keywords": "sql opmaken pretty query",
+      "run": "Opmaak",
+      "success": "SQL opgemaakt."
+    },
+    "regex-tester": {
+      "name": "Regex-tester",
+      "description": "Probeer een reguliere expressie op voorbeeldtekst en vervang treffers.",
+      "keywords": "regex reguliere expressie testen vervangen",
+      "pattern": "Patroon",
+      "flags": "Flags",
+      "input": "Voorbeeldtekst",
+      "replace": "Vervanging",
+      "runReplace": "Vervangen",
+      "matches": "{count, plural, one {# treffer} other {# treffers}}",
+      "success": "Vervanging klaar."
+    },
+    "hash-generator": {
+      "name": "Hashgenerator",
+      "description": "SHA-1/256/384/512 en MD5 van tekst of een bestand, lokaal berekend.",
+      "keywords": "hash sha256 md5 sha1 controlesom digest",
+      "run": "Hashen",
+      "algo": "Algoritme",
+      "digest": "Digest",
+      "limits": "Hashes worden in deze browser berekend (Web Crypto voor SHA, een lokale MD5-implementatie). MD5 is niet botsingsbestendig — gebruik het alleen voor controlesommen.",
+      "success": "Hash klaar."
+    },
+    "uuid-generator": {
+      "name": "UUID-generator",
+      "description": "Maak UUID versie 4 of 7 op dit apparaat.",
+      "keywords": "uuid guid v4 v7 genereren",
+      "run": "Genereren",
+      "count": "Hoeveel",
+      "version": "Versie",
+      "success": "UUID’s gegenereerd."
+    },
+    "color-convert": {
+      "name": "Kleurconverter",
+      "description": "Converteer tussen HEX, RGB, HSL en HSV, met een kleurkiezer.",
+      "keywords": "kleur hex rgb hsl hsv kiezer",
+      "picker": "Kleurkiezer",
+      "invalid": "Voer een hex-kleur van 3 of 6 cijfers in."
+    },
+    "lorem-ipsum": {
+      "name": "Lorem ipsum",
+      "description": "Genereer plaatshouderalinea’s, zinnen of woorden.",
+      "keywords": "lorem ipsum plaatshouder dummy tekst",
+      "run": "Genereren",
+      "count": "Aantal",
+      "mode": "Modus",
+      "paragraphs": "Alinea’s",
+      "sentences": "Zinnen",
+      "words": "Woorden",
+      "success": "Tekst gegenereerd."
+    },
+    "qr-code": {
+      "name": "QR-code",
+      "description": "Maak een QR-code van tekst, of lees er een uit een afbeelding.",
+      "keywords": "qr code genereren scannen lezen barcode",
+      "run": "Genereren",
+      "payload": "Tekst of URL",
+      "read": "Uit afbeelding lezen",
+      "runRead": "QR lezen",
+      "generated": "QR-code klaar.",
+      "decoded": "QR-inhoud gelezen.",
+      "none": "Geen QR-code in die afbeelding gevonden."
+    },
+    "pdf-sign": {
+      "name": "PDF ondertekenen",
+      "description": "Zet een getypte handtekening op elke pagina. Alleen visueel — geen certificaat.",
+      "keywords": "pdf ondertekenen handtekening stempel naam",
+      "run": "Ondertekenen",
+      "signature": "Handtekeningtekst",
+      "placeholder": "Je naam",
+      "limits": "Dit tekent je naam op de pagina. Het is geen cryptografische digitale handtekening.",
+      "success": "Handtekening geplaatst."
+    },
+    "image-watermark": {
+      "name": "Watermerk op afbeeldingen",
+      "description": "Leg tekst over foto’s, één bestand of een hele batch.",
+      "keywords": "afbeelding watermerk stempel copyright",
+      "run": "Toepassen",
+      "text": "Watermerktekst",
+      "position": "Plaatsing",
+      "bottomRight": "Rechtsonder",
+      "bottomLeft": "Linksonder",
+      "topRight": "Rechtsboven",
+      "center": "Midden",
+      "success": "Watermerk op {count} afbeelding(en)."
+    },
+    "password-generator": {
+      "name": "Wachtwoordgenerator",
+      "description": "Maak een sterk wachtwoord op dit apparaat. Er wordt niets opgeslagen.",
+      "keywords": "wachtwoord genereren willekeurig geheim",
+      "run": "Genereren",
+      "length": "Lengte",
+      "lower": "Kleine letters",
+      "upper": "Hoofdletters",
+      "digits": "Cijfers",
+      "symbols": "Symbolen",
+      "success": "Wachtwoord klaar."
+    },
+    "case-convert": {
+      "name": "Hoofdletters wijzigen",
+      "description": "Schakel tussen camel, snake, kebab, titel en meer.",
+      "keywords": "hoofdletters camel snake kebab pascal titel",
+      "run": "Converteren",
+      "style": "Stijl",
+      "success": "Geconverteerd."
+    },
+    "jwt-decode": {
+      "name": "JWT-decoder",
+      "description": "Lees JWT-header en payload lokaal. Handtekeningen worden niet gecontroleerd.",
+      "keywords": "jwt decoderen token bearer auth",
+      "run": "Decoderen",
+      "limits": "Kit decodeert alleen Base64url. Zonder sleutel kan het niet bewijzen dat het token echt is.",
+      "hasSig": "Handtekeningdeel is aanwezig (niet geverifieerd).",
+      "noSig": "Geen handtekeningdeel.",
+      "empty": "Plak eerst een token.",
+      "success": "Token gedecodeerd."
+    },
+    "unix-timestamp": {
+      "name": "Unix-tijdstempel",
+      "description": "Zet Unix-tijd om naar ISO en terug.",
+      "keywords": "unix epoch tijdstempel iso datum",
+      "now": "Nu gebruiken"
+    },
+    "cron-explain": {
+      "name": "Cron uitleggen",
+      "description": "Zet een cron-expressie van 5 velden om in gewone taal.",
+      "keywords": "cron planning crontab uitleggen",
+      "run": "Uitleggen",
+      "success": "Uitgelegd."
+    },
+    "number-base": {
+      "name": "Getallenstelsel",
+      "description": "Converteer gehele getallen tussen grondtal 2 en 36.",
+      "keywords": "binair hex decimaal grondtal converteren",
+      "value": "Getal",
+      "from": "Van grondtal",
+      "to": "Naar grondtal"
+    },
+    "html-entities": {
+      "name": "HTML-entiteiten",
+      "description": "Codeer of decodeer &lt; &amp; en numerieke entiteiten.",
+      "keywords": "html entiteiten coderen decoderen escapen",
+      "run": "Converteren",
+      "encode": "Coderen",
+      "decode": "Decoderen",
+      "success": "Geconverteerd."
+    },
+    "json-types": {
+      "name": "JSON → TypeScript",
+      "description": "Leid TypeScript-interfaces af van een JSON-voorbeeld.",
+      "keywords": "json typescript interface type genereren",
+      "run": "Typen genereren",
+      "success": "Typen gegenereerd."
+    }
+  },
+  "legal": {
+    "lastUpdated": "Laatst bijgewerkt",
+    "privacyTitle": "Privacybeleid",
+    "termsTitle": "Gebruiksvoorwaarden"
+  },
+  "notFound": {
+    "title": "Pagina niet gevonden",
+    "body": "Dat adres zit niet in Kit. Ga naar start en kies daar een hulpmiddel.",
+    "home": "Terug naar start"
+  },
+  "errorPage": {
+    "title": "Er ging iets mis",
+    "body": "De laatste actie is in deze browser mislukt. Je kunt het opnieuw proberen zonder de pagina te verlaten.",
+    "retry": "Opnieuw proberen"
+  }
+}

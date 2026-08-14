@@ -1,0 +1,735 @@
+{
+  "meta": {
+    "title": "Kit — Tarayıcıda kalan, gizli araçlar",
+    "description": "PDF, görüntü, medya, dönüştürücü ve metin araçları cihazınızda çalışır. Sunucularımıza hiçbir şey yüklenmez."
+  },
+  "brand": {
+    "name": "Kit",
+    "tagline": "Tarayıcıda günlük araçlar. Tasarımdan özel."
+  },
+  "nav": {
+    "home": "Ana sayfa",
+    "tools": "Araçlar",
+    "history": "Geçmiş",
+    "favorites": "Sık kullanılanlar",
+    "settings": "Ayarlar",
+    "searchPlaceholder": "Araç ara…",
+    "openMenu": "Menüyü aç",
+    "closeMenu": "Menüyü kapat"
+  },
+  "footer": {
+    "privacy": "Gizlilik Politikası",
+    "terms": "Kullanım Koşulları",
+    "aboutMe": "Hakkımda",
+    "license": "MIT Lisansı",
+    "copyright": "© {year} Tim G (TGthms). Kit, MIT Lisansı altında açık kaynaktır.",
+    "github": "GitHub"
+  },
+  "common": {
+    "cancel": "İptal",
+    "clear": "Temizle",
+    "close": "Kapat",
+    "copy": "Kopyala",
+    "copied": "Panoya kopyalandı",
+    "download": "İndir",
+    "run": "Çalıştır",
+    "process": "İşle",
+    "processing": "İşleniyor…",
+    "done": "Bitti",
+    "error": "Bir şeyler ters gitti",
+    "retry": "Yeniden dene",
+    "addFiles": "Dosya ekle",
+    "dropFiles": "Dosyaları buraya bırakın",
+    "orBrowse": "veya cihazınızdan seçin",
+    "pasteSupported": "Panodan da yapıştırabilirsiniz",
+    "remove": "Kaldır",
+    "reorder": "Sırayı değiştirmek için sürükleyin",
+    "files": "Dosyalar",
+    "noFiles": "Henüz dosya seçilmedi",
+    "quality": "Kalite",
+    "options": "Seçenekler",
+    "preview": "Önizleme",
+    "result": "Sonuç",
+    "input": "Girdi",
+    "output": "Çıktı",
+    "format": "Biçim",
+    "language": "Dil",
+    "theme": "Görünüm",
+    "themeSystem": "Sistemle eşleşsin",
+    "themeLight": "Açık",
+    "themeDark": "Koyu",
+    "loading": "Yükleniyor…",
+    "save": "Kaydet",
+    "delete": "Sil",
+    "confirm": "Onayla",
+    "back": "Geri",
+    "allCategories": "Tümü",
+    "pin": "Sabitle",
+    "unpin": "Sabitlemeyi kaldır",
+    "favorite": "Sık kullanılanlara ekle",
+    "unfavorite": "Sık kullanılanlardan çıkar",
+    "presets": "Hazır ayarlar",
+    "applyPreset": "Hazır ayarı kullan",
+    "savePreset": "Hazır ayar olarak kaydet",
+    "shortcuts": "Klavye kısayolları",
+    "progress": "İlerleme",
+    "fileTooLarge": "Bu dosya büyük — işlem biraz sürebilir.",
+    "unsupported": "Bu biçim desteklenmiyor",
+    "success": "Başarılı",
+    "warning": "Dikkat",
+    "info": "Not",
+    "selectAll": "Tümünü seç",
+    "none": "Hiçbiri",
+    "reset": "Sıfırla",
+    "maxWidth": "En fazla genişlik",
+    "maxHeight": "En fazla yükseklik",
+    "width": "Genişlik",
+    "height": "Yükseklik",
+    "rotate": "Döndür",
+    "pages": "Sayfalar",
+    "page": "Sayfa",
+    "text": "Metin",
+    "encode": "Kodla",
+    "decode": "Çöz",
+    "validate": "Doğrula",
+    "minify": "Küçült",
+    "beautify": "Güzel yazdır",
+    "valid": "Geçerli",
+    "invalid": "Geçersiz",
+    "characters": "Karakter",
+    "lines": "Satır",
+    "from": "Kaynak",
+    "to": "Hedef",
+    "start": "Başlangıç",
+    "end": "Bitiş",
+    "speed": "Hız",
+    "volume": "Ses",
+    "trim": "Kırp",
+    "extract": "Ayıkla",
+    "batch": "Toplu",
+    "limitations": "Sınırlar",
+    "clientSideOnly": "Yalnızca tarayıcınızda çalışır. Dosyalarınız asla bir Kit sunucusuna gönderilmez.",
+    "aboutMeUrl": "https://tgthms.github.io/about/",
+    "howItWorks": "Nasıl çalışır ve sınırlar"
+  },
+  "home": {
+    "title": "Ne yapmak istiyorsunuz?",
+    "subtitle": "Bu cihazda çalışan pratik araçlar — hesap yok, yükleme yok.",
+    "categories": "Kategoriler",
+    "popular": "Araçlar",
+    "noResults": "Bu aramayla eşleşen bir şey yok.",
+    "recent": "Kaldığınız yerden devam edin",
+    "pinned": "Sabitlenmiş",
+    "chooseCategory": "Bir kategoriden başlayın",
+    "chooseCategoryHint": "Bir iş ailesi seçin. İçerideki araçlar gruplanmıştır; avlamak yerine tararsınız.",
+    "backToCategories": "Kategoriler",
+    "toolsInCategory": "{count, plural, one {# araç} other {# araç}}",
+    "searchResults": "Arama sonuçları",
+    "featured": "Buradan başlayın",
+    "groups": {
+      "pages": "Sayfalar",
+      "protect": "Koruma ve bilgi",
+      "markup": "İşaretleme",
+      "export": "Dışa aktar / dönüştür",
+      "transform": "Boyut ve kırpma",
+      "look": "Görünüş",
+      "file": "Dosya",
+      "clip": "Klipler",
+      "formats": "Biçimler",
+      "write": "Yazım",
+      "inspect": "İncele",
+      "encode": "Kodla",
+      "generate": "Üret"
+    }
+  },
+  "categories": {
+    "pdf": "PDF",
+    "image": "Görüntüler",
+    "audio": "Ses",
+    "video": "Video",
+    "convert": "Dosya dönüştürme",
+    "text": "Yazım",
+    "pdfDesc": "PDF belgelerini birleştirin, bölün, sıkıştırın ve işaretleyin",
+    "imageDesc": "Fotoğrafları sıkıştırın, yeniden boyutlandırın, dönüştürün ve rötuşlayın",
+    "audioDesc": "Yalnızca sesi dönüştürün, kırpın ve hızını değiştirin",
+    "videoDesc": "Videoyu dönüştürün, kırpın, hızlandırın ve sesini ayıklayın",
+    "convertDesc": "Biçimler arası akıllı dönüştürme (JSON, CSV, ZIP, görüntüler…)",
+    "textDesc": "Metni karşılaştırın, büyük/küçük harfi değiştirin, Markdown’ı HTML’ye çevirin",
+    "data": "Veri",
+    "dataDesc": "JSON, YAML, CSV, XML, SQL ve biçimler arası dönüştürme",
+    "developer": "Geliştirici",
+    "developerDesc": "Belirteçler, özetler, kodlamalar, parolalar ve diğer tezgâh araçları"
+  },
+  "history": {
+    "title": "Geçmiş",
+    "subtitle": "Bu cihazda çalıştırdıklarınız. Yalnızca kısa özetler tutarız — dosyalarınızı asla.",
+    "empty": "Henüz etkinlik yok. Bir araç çalıştırın, burada görünsün.",
+    "clear": "Geçmişi temizle",
+    "clearConfirm": "Bu cihazdaki tüm geçmiş silinsin mi?",
+    "openTool": "Aracı aç",
+    "tool": "Araç",
+    "when": "Ne zaman",
+    "summary": "Özet",
+    "status": "Durum",
+    "success": "Başarılı",
+    "failed": "Başarısız"
+  },
+  "favorites": {
+    "title": "Sık kullanılanlar",
+    "subtitle": "Tek dokunuşla erişmek için yakın tuttuğunuz araçlar.",
+    "empty": "Henüz sık kullanılan yok. Ana sayfadan veya araç sayfasından yıldızlayın."
+  },
+  "settings": {
+    "title": "Ayarlar",
+    "subtitle": "Bu seçimler yalnızca bu tarayıcıda kalır.",
+    "appearance": "Görünüm",
+    "language": "Dil",
+    "data": "Veri ve gizlilik",
+    "clearHistory": "Geçmişi temizle",
+    "clearHistoryDesc": "Bu sitenin sakladığı yerel geçmiş özetlerini kaldırır.",
+    "privacyNote": "Kit dosyalarınızı tarayıcıda işler. Tercihler ve geçmiş özetleri yerelde saklanabilir. Ayrıntılar Gizlilik Politikası’ndadır.",
+    "viewPrivacy": "Gizlilik Politikası",
+    "viewTerms": "Kullanım Koşulları",
+    "shortcutsHelp": "Klavye kısayolları için istediğiniz zaman ? tuşuna basın.",
+    "version": "Sürüm"
+  },
+  "shortcuts": {
+    "title": "Klavye kısayolları",
+    "global": "Her yerde",
+    "search": "Aramaya odaklan",
+    "settings": "Ayarları aç",
+    "home": "Ana sayfaya git",
+    "help": "Bu listeyi göster",
+    "run": "Geçerli aracı çalıştır",
+    "close": "Kapat"
+  },
+  "tools": {
+    "pdf-merge": {
+      "name": "PDF birleştir",
+      "description": "Birkaç PDF’yi tek dosyada toplayın. Sayfaları önizleyin ve sürükleyerek sıralayın.",
+      "keywords": "pdf birleştir birleştir ekle çok sayfa",
+      "run": "Birleştir",
+      "empty": "En az iki PDF dosyası ekleyin.",
+      "success": "{count} dosya tek PDF’de birleştirildi."
+    },
+    "pdf-split": {
+      "name": "PDF böl",
+      "description": "Bir sayfa aralığını yepyeni bir PDF’ye çıkarın.",
+      "keywords": "pdf böl ayıkla sayfalar aralık",
+      "run": "Böl",
+      "range": "Sayfalar (örneğin 1-3,5)",
+      "success": "Bölünmüş PDF hazır."
+    },
+    "pdf-organize": {
+      "name": "Sayfaları düzenle",
+      "description": "Sayfaları döndürün, gerekmeyenleri silin ve yeni bir sıra verin.",
+      "keywords": "pdf döndür sil yeniden sırala düzenle sayfalar",
+      "run": "PDF’yi kaydet",
+      "success": "PDF güncellendi."
+    },
+    "pdf-compress": {
+      "name": "PDF sıkıştır",
+      "description": "Sayfa görüntülerini yeniden kodlayarak boyutu küçültün (kalite ödünleşimi).",
+      "keywords": "pdf sıkıştır küçült boyut",
+      "run": "Sıkıştır",
+      "note": "Kayıplı bir yol — sayfalar rasterleştirilebilir. Görüntü ağırlıklı PDF’lerde en iyisidir.",
+      "success": "Sıkıştırılmış PDF indirilmeye hazır."
+    },
+    "pdf-watermark": {
+      "name": "PDF filigranı",
+      "description": "Her sayfaya filigran, üst bilgi veya alt bilgi olarak metin damgalayın.",
+      "keywords": "pdf filigran damga üst bilgi alt bilgi gizli",
+      "run": "Uygula",
+      "text": "Filigran metni",
+      "position": "Yerleşim",
+      "header": "Üst bilgi",
+      "footer": "Alt bilgi",
+      "center": "Çapraz ortada",
+      "opacity": "Opaklık",
+      "success": "Filigran uygulandı."
+    },
+    "pdf-redact": {
+      "name": "İçeriği ört",
+      "description": "Hassas bölgelerin üzerine düz siyah kutular koyun (görsel örtü).",
+      "keywords": "pdf karart ört gizle hassas",
+      "run": "Örtüyü uygula",
+      "note": "Yalnızca görsel örtü. Altta kalan her metin akışının silindiğini garanti etmez — hassas belgeleri iki kez kontrol edin.",
+      "success": "Örtü kutuları uygulandı."
+    },
+    "pdf-extract": {
+      "name": "PDF’den ayıkla",
+      "description": "Okunabilir metni çekin veya bir sayfayı görüntü olarak dışa aktarın.",
+      "keywords": "pdf ayıkla metin görüntüler",
+      "run": "Ayıkla",
+      "modeText": "Metin",
+      "modeImages": "Görüntüler",
+      "success": "Ayıklama bitti.",
+      "imagesReady": "{count} sayfa görüntüsü ZIP olarak dışa aktarıldı."
+    },
+    "image-compress": {
+      "name": "Görüntüleri sıkıştır",
+      "description": "Kaliteyi ve en büyük boyutu düşürün ki fotoğraflar paylaşılabilir kalsın.",
+      "keywords": "görüntü sıkıştır jpg png webp boyut fotoğraf",
+      "run": "Sıkıştır",
+      "success": "{count} görüntü sıkıştırıldı."
+    },
+    "image-resize": {
+      "name": "Görüntüleri yeniden boyutlandır",
+      "description": "İsteğe bağlı en-boy kilidiyle tam boyutları ayarlayın.",
+      "keywords": "görüntü boyut ölçek ölçü genişlik yükseklik",
+      "run": "Yeniden boyutlandır",
+      "lockAspect": "En-boy oranını koru",
+      "success": "{count} görüntü yeniden boyutlandırıldı."
+    },
+    "image-crop": {
+      "name": "Görüntü kırp",
+      "description": "Yalnızca önemsediğiniz dikdörtgeni bırakın.",
+      "keywords": "görüntü kırp kes bölge",
+      "run": "Kırp",
+      "success": "Kırpılmış görüntü hazır."
+    },
+    "image-convert": {
+      "name": "Görüntü biçimini dönüştür",
+      "description": "JPEG, PNG, WEBP ve benzeri web biçimleri arasında geçiş yapın.",
+      "keywords": "görüntü dönüştür biçim webp avif png jpg jpeg",
+      "run": "Dönüştür",
+      "success": "{count} görüntü dönüştürüldü."
+    },
+    "image-metadata": {
+      "name": "Görüntü üst verisi",
+      "description": "EXIF ve benzeri etiketleri inceleyin, ardından bunlarsız temiz bir kopya dışa aktarın.",
+      "keywords": "görüntü exif üstveri sil gizlilik konum",
+      "run": "Üst veriyi sil",
+      "note": "Pikseller tarayıcıda yeniden kodlanır; gömülü üst veri düşer.",
+      "success": "{count} görüntüden üst veri silindi.",
+      "tag": "Etiket",
+      "value": "Değer",
+      "noExif": "Bu dosyada okunabilir EXIF veya metin üst verisi yok."
+    },
+    "image-adjust": {
+      "name": "Görüntüyü ayarla",
+      "description": "Parlaklık, karşıtlık ve doygunluğu ince ayarlayın.",
+      "keywords": "görüntü parlaklık karşıtlık doygunluk renk",
+      "run": "Uygula",
+      "brightness": "Parlaklık",
+      "contrast": "Karşıtlık",
+      "saturation": "Doygunluk",
+      "success": "{count} görüntü ayarlandı."
+    },
+    "convert-hub": {
+      "name": "Akıllı dönüştür",
+      "description": "Karışık dosya veya metin türlerini algılar ve biçimler arasında dönüştürür (medya stüdyosu değil).",
+      "keywords": "dönüştür merkez akıllı toplu json yaml csv zip görüntü veri",
+      "run": "Dönüştür",
+      "detect": "Algılanan",
+      "chooseOutput": "Çıktı biçimi",
+      "success": "Dönüştürme bitti."
+    },
+    "json-format": {
+      "name": "JSON biçimleyici",
+      "description": "JSON’u güzelleştirin, küçültün ve hataları erken yakalayın.",
+      "keywords": "json biçim doğrula küçült pretty",
+      "run": "Biçimlendir",
+      "success": "JSON geçerli ve biçimlendirildi."
+    },
+    "yaml-format": {
+      "name": "YAML biçimleyici",
+      "description": "YAML yapısını denetleyin ve düzeni toparlayın.",
+      "keywords": "yaml biçim doğrula yml",
+      "run": "Biçimlendir",
+      "success": "YAML geçerli."
+    },
+    "toml-format": {
+      "name": "TOML biçimleyici",
+      "description": "TOML’u doğrulayın ve dosyayı düzenli tutun.",
+      "keywords": "toml biçim doğrula config",
+      "run": "Biçimlendir",
+      "success": "TOML geçerli."
+    },
+    "markdown-html": {
+      "name": "Markdown ↔ HTML",
+      "description": "Markdown’ı HTML’ye veya HTML’yi Markdown’a çevirin.",
+      "keywords": "markdown html dönüştür md işaretleme",
+      "run": "Dönüştür",
+      "toHtml": "Markdown → HTML",
+      "toMd": "HTML → Markdown",
+      "success": "Dönüştürüldü."
+    },
+    "csv-json": {
+      "name": "CSV ↔ JSON",
+      "description": "Tablo verisini CSV ile JSON dizileri arasında taşıyın.",
+      "keywords": "csv json dönüştür tablo e-tablo",
+      "run": "Dönüştür",
+      "toJson": "CSV → JSON",
+      "toCsv": "JSON → CSV",
+      "success": "Dönüştürüldü."
+    },
+    "text-diff": {
+      "name": "Metin karşılaştır",
+      "description": "İki sürüm arasındaki satır satır değişiklikleri görün.",
+      "keywords": "diff karşılaştır metin değişiklikler patch",
+      "run": "Karşılaştır",
+      "left": "Özgün",
+      "right": "Güncellenmiş",
+      "success": "Karşılaştırma hazır."
+    },
+    "base64": {
+      "name": "Base64",
+      "description": "Düz metin veya tüm dosyalar için Base64 kodlayın veya çözün.",
+      "keywords": "base64 kodla çöz ikili",
+      "run": "Dönüştür",
+      "mode": "Yön",
+      "textMode": "Metin",
+      "fileMode": "Dosya",
+      "success": "Bitti."
+    },
+    "url-encode": {
+      "name": "URL kodlama",
+      "description": "URL parçalarını güvenle yüzde kodlayın veya çözün.",
+      "keywords": "url kodla çöz yüzde uri sorgu",
+      "run": "Dönüştür",
+      "success": "Bitti."
+    },
+    "audio-convert": {
+      "name": "Sesi dönüştür",
+      "description": "MP3, WAV ve OGG gibi ses kaplarını tarayıcıda değiştirin.",
+      "keywords": "ses dönüştür mp3 wav ogg ffmpeg ses",
+      "run": "Dönüştür",
+      "loadingFfmpeg": "Ses motoru yükleniyor…",
+      "note": "Tek iş parçacıklı FFmpeg WASM kullanır. Büyük dosyalar yavaş olabilir; kodlayıcı desteği sınırlıdır.",
+      "success": "Ses dönüştürme bitti."
+    },
+    "audio-trim": {
+      "name": "Sesi kırp",
+      "description": "Bir ses dosyasında yalnızca iki zaman damgası arasındaki dilimi bırakın.",
+      "keywords": "ses kırp kes klip mp3 wav",
+      "run": "Kırp",
+      "success": "Ses kırpma bitti."
+    },
+    "audio-speed": {
+      "name": "Ses hızı ve ses düzeyi",
+      "description": "Sesi hızlandırın, yavaşlatın veya ses düzeyini değiştirin.",
+      "keywords": "ses hız tempo düzey perde",
+      "run": "Uygula",
+      "success": "İşlenmiş ses hazır."
+    },
+    "video-convert": {
+      "name": "Videoyu dönüştür",
+      "description": "MP4 ve WEBM gibi video kaplarını tarayıcıda değiştirin.",
+      "keywords": "video dönüştür mp4 webm ffmpeg film",
+      "run": "Dönüştür",
+      "loadingFfmpeg": "Video motoru yükleniyor…",
+      "note": "Tek iş parçacıklı FFmpeg WASM kullanır. Büyük dosyalar yavaş olabilir; kodlayıcı desteği sınırlıdır.",
+      "success": "Video dönüştürme bitti."
+    },
+    "video-trim": {
+      "name": "Videoyu kırp",
+      "description": "Yalnızca iki zaman damgası arasındaki klibi bırakın.",
+      "keywords": "video kırp kes klip mp4",
+      "run": "Kırp",
+      "success": "Video kırpma bitti."
+    },
+    "video-speed": {
+      "name": "Video hızı ve ses düzeyi",
+      "description": "Bir videonun oynatma hızını ve ses düzeyini değiştirin.",
+      "keywords": "video hız tempo düzey",
+      "run": "Uygula",
+      "success": "İşlenmiş video hazır."
+    },
+    "video-extract-audio": {
+      "name": "Videodan ses ayıkla",
+      "description": "Bir videonun ses izini ses dosyası olarak kaydedin.",
+      "keywords": "video ses ayıkla mp3 ses izi",
+      "run": "Sesi ayıkla",
+      "success": "Ses ayıklandı."
+    },
+    "pdf-numbers": {
+      "name": "Sayfa numaraları",
+      "description": "Her sayfaya 1 / 12 gibi bir etiket damgalayın.",
+      "keywords": "pdf sayfa numaraları alt bilgi üst bilgi sayfalama",
+      "run": "Numara ekle",
+      "template": "Etiket ({page} ve {pages})",
+      "position": "Yerleşim",
+      "start": "Başlangıç",
+      "headerLeft": "Üst bilgi sol",
+      "headerCenter": "Üst bilgi orta",
+      "headerRight": "Üst bilgi sağ",
+      "footerLeft": "Alt bilgi sol",
+      "footerCenter": "Alt bilgi orta",
+      "footerRight": "Alt bilgi sağ",
+      "success": "Sayfa numaraları eklendi."
+    },
+    "pdf-to-images": {
+      "name": "PDF → görüntüler",
+      "description": "Her sayfayı JPEG’e rasterleştirip ZIP olarak indirin.",
+      "keywords": "pdf görüntü jpg jpeg zip sayfalar dışa aktar",
+      "run": "Sayfaları dışa aktar",
+      "limits": "Sayfalar bu sekmede PDF.js ile çizilir. Çok büyük belgeler yavaş olabilir ve çok bellek kullanabilir. Bu görsel bir rasterdir, gömülü görüntü nesnelerinin ayıklanması değildir.",
+      "success": "{count} sayfa dışa aktarıldı."
+    },
+    "images-to-pdf": {
+      "name": "Görüntüler → PDF",
+      "description": "Fotoğrafları PDF’de toplayın, sayfa başına bir görüntü.",
+      "keywords": "görüntüler pdf jpg png birleştir",
+      "run": "PDF oluştur",
+      "success": "{count} görüntüden bir PDF oluşturuldu."
+    },
+    "pdf-flatten": {
+      "name": "Formları düzleştir",
+      "description": "AcroForm alanlarını sayfaya pişirin ki artık düzenlenemesin.",
+      "keywords": "pdf düzleştir form alanlar acroform",
+      "run": "Düzleştir",
+      "limits": "Standart AcroForm alanlarında çalışır. Dinamik XFA formları tam desteklenmez.",
+      "success": "{count} alan düzleştirildi."
+    },
+    "pdf-metadata": {
+      "name": "PDF üst verisi",
+      "description": "Başlık, yazar ve diğer Info alanlarını görüntüleyin, düzenleyin veya silin.",
+      "keywords": "Anahtar sözcükler",
+      "run": "Üst veriyi kaydet",
+      "strip": "Tüm alanları sil",
+      "title": "Başlık",
+      "author": "Yazar",
+      "subject": "Konu",
+      "creator": "Oluşturan",
+      "producer": "Üretici",
+      "saved": "Üst veri kaydedildi.",
+      "stripped": "Üst veri silindi."
+    },
+    "pdf-protect": {
+      "name": "PDF kilitle veya aç",
+      "description": "Kullanıcı parolası ekleyin veya kaldırın. Şifreleme bu tarayıcıda kalır.",
+      "keywords": "pdf parola kilitle aç şifrele çöz",
+      "run": "Uygula",
+      "lock": "Kilitle",
+      "unlock": "Aç",
+      "password": "Parola",
+      "limits": "İstemci tarafı bir PDF şifreleme kitaplığı kullanır. Bazı eski veya alışılmadık şifreleme sürümleri açılamayabilir. Kit dosyayı veya parolayı asla bir sunucuya göndermez.",
+      "success": "PDF hazır."
+    },
+    "image-rotate": {
+      "name": "Döndür ve çevir",
+      "description": "Görüntüleri 90° adımlarla döndürün veya yatay ya da dikey çevirin.",
+      "keywords": "görüntü döndür çevir ayna",
+      "run": "Uygula",
+      "operation": "Dönüşüm",
+      "rot90": "90° döndür",
+      "rot180": "180° döndür",
+      "rot270": "270° döndür",
+      "flipH": "Yatay çevir",
+      "flipV": "Dikey çevir",
+      "success": "{count} görüntü dönüştürüldü."
+    },
+    "image-filters": {
+      "name": "Görüntü süzgeçleri",
+      "description": "Bir veya birçok fotoğrafa gri ton, sepia veya ters çevirme uygulayın.",
+      "keywords": "görüntü süzgeç gri sepia ters",
+      "run": "Uygula",
+      "filter": "Süzgeç",
+      "grayscale": "Gri ton",
+      "sepia": "Sepia",
+      "invert": "Ters çevir",
+      "success": "{count} görüntü süzgeçlendi."
+    },
+    "image-favicon": {
+      "name": "Favicon paketi",
+      "description": "Kaynak görüntüyü yaygın simge boyutlarında bir ZIP olarak dışa aktarın.",
+      "keywords": "favicon icon 16 32 180 192 512 apple touch",
+      "run": "Simgeleri dışa aktar",
+      "note": "16, 32, 48, 180, 192 ve 512 piksel PNG dosyaları dışa aktarır.",
+      "success": "Simge paketi hazır."
+    },
+    "video-gif": {
+      "name": "Video → GIF",
+      "description": "Kısa bir klibi tarayıcıda döngülü GIF’e çevirin.",
+      "keywords": "video gif klip dönüştür ffmpeg",
+      "run": "GIF yap",
+      "limits": "FFmpeg WASM kullanır. Klipleri kısa tutun — GIF kodlama yavaştır ve bellek yer. Palet ve kodlayıcılar tarayıcı derlemesini izler.",
+      "success": "GIF hazır."
+    },
+    "xml-json": {
+      "name": "XML ↔ JSON",
+      "description": "XML belgelerini JSON’a veya JSON’u XML’e çevirin.",
+      "keywords": "xml json dönüştür ayrıştır",
+      "run": "Dönüştür",
+      "toJson": "XML → JSON",
+      "toXml": "JSON → XML",
+      "success": "Dönüştürüldü."
+    },
+    "sql-format": {
+      "name": "SQL biçimleyici",
+      "description": "SQL’i güzelleştirin ki yan tümceler ve listeler daha kolay okunsun.",
+      "keywords": "sql biçim pretty sorgu",
+      "run": "Biçimlendir",
+      "success": "SQL biçimlendirildi."
+    },
+    "regex-tester": {
+      "name": "Düzenli ifade sınayıcı",
+      "description": "Örnek metne karşı bir düzenli ifade deneyin ve eşleşmeleri değiştirin.",
+      "keywords": "regex düzenli ifade sınama değiştir",
+      "pattern": "Desen",
+      "flags": "Bayraklar",
+      "input": "Örnek metin",
+      "replace": "Değiştirme",
+      "runReplace": "Değiştir",
+      "matches": "{count, plural, one {# eşleşme} other {# eşleşme}}",
+      "success": "Değiştirme hazır."
+    },
+    "hash-generator": {
+      "name": "Özet üreteci",
+      "description": "Metnin veya bir dosyanın SHA-1/256/384/512 ve MD5 özeti, yerelde hesaplanır.",
+      "keywords": "hash sha256 md5 sha1 sağlama özet",
+      "run": "Özetle",
+      "algo": "Algoritma",
+      "digest": "Özet",
+      "limits": "Özetler bu tarayıcıda hesaplanır (SHA için Web Crypto, yerel bir MD5 uygulaması). MD5 çarpışmaya dayanıklı değildir — yalnızca sağlama için kullanın.",
+      "success": "Özet hazır."
+    },
+    "uuid-generator": {
+      "name": "UUID üreteci",
+      "description": "Bu cihazda sürüm 4 veya 7 UUID oluşturun.",
+      "keywords": "uuid guid v4 v7 üret",
+      "run": "Üret",
+      "count": "Kaç tane",
+      "version": "Sürüm",
+      "success": "UUID’ler üretildi."
+    },
+    "color-convert": {
+      "name": "Renk dönüştürücü",
+      "description": "Renk seçiciyle HEX, RGB, HSL ve HSV arasında dönüştürün.",
+      "keywords": "renk hex rgb hsl hsv seçici",
+      "picker": "Renk seçici",
+      "invalid": "3 veya 6 basamaklı bir onaltılık renk girin."
+    },
+    "lorem-ipsum": {
+      "name": "Lorem ipsum",
+      "description": "Yer tutucu paragraflar, cümleler veya sözcükler üretin.",
+      "keywords": "lorem ipsum yer tutucu dummy metin",
+      "run": "Üret",
+      "count": "Sayı",
+      "mode": "Mod",
+      "paragraphs": "Paragraflar",
+      "sentences": "Cümleler",
+      "words": "Sözcükler",
+      "success": "Metin üretildi."
+    },
+    "qr-code": {
+      "name": "QR kod",
+      "description": "Metinden QR kod oluşturun veya bir görüntüden okuyun.",
+      "keywords": "qr kod üret tara oku barkod",
+      "run": "Üret",
+      "payload": "Metin veya URL",
+      "read": "Görüntüden oku",
+      "runRead": "QR oku",
+      "generated": "QR kod hazır.",
+      "decoded": "QR içeriği okundu.",
+      "none": "Bu görüntüde QR kod bulunamadı."
+    },
+    "pdf-sign": {
+      "name": "PDF imzala",
+      "description": "Her sayfaya yazılmış bir imza damgalayın. Yalnızca görsel — sertifika değil.",
+      "keywords": "pdf imza damga ad",
+      "run": "İmzala",
+      "signature": "İmza metni",
+      "placeholder": "Adınız",
+      "limits": "Adınızı sayfaya çizer. Kriptografik bir dijital imza değildir.",
+      "success": "İmza damgalandı."
+    },
+    "image-watermark": {
+      "name": "Görüntülere filigran",
+      "description": "Fotoğrafların üzerine metin koyun, tek dosya veya tüm parti.",
+      "keywords": "görüntü filigran damga telif",
+      "run": "Uygula",
+      "text": "Filigran metni",
+      "position": "Yerleşim",
+      "bottomRight": "Sağ alt",
+      "bottomLeft": "Sol alt",
+      "topRight": "Sağ üst",
+      "center": "Orta",
+      "success": "{count} görüntüye filigran eklendi."
+    },
+    "password-generator": {
+      "name": "Parola üreteci",
+      "description": "Bu cihazda güçlü bir parola oluşturun. Hiçbir şey saklanmaz.",
+      "keywords": "parola üret rastgele gizli",
+      "run": "Üret",
+      "length": "Uzunluk",
+      "lower": "Küçük harf",
+      "upper": "Büyük harf",
+      "digits": "Rakamlar",
+      "symbols": "Semboller",
+      "success": "Parola hazır."
+    },
+    "case-convert": {
+      "name": "Büyük/küçük harf",
+      "description": "Camel, snake, kebab, başlık ve diğer stiller arasında geçiş yapın.",
+      "keywords": "harf camel snake kebab pascal başlık",
+      "run": "Dönüştür",
+      "style": "Stil",
+      "success": "Dönüştürüldü."
+    },
+    "jwt-decode": {
+      "name": "JWT çözücü",
+      "description": "JWT başlığını ve yükünü yerelde okuyun. İmzalar doğrulanmaz.",
+      "keywords": "jwt çöz token bearer auth",
+      "run": "Çöz",
+      "limits": "Kit yalnızca Base64url çözer. Anahtar olmadan belirtecin gerçek olduğunu kanıtlayamaz.",
+      "hasSig": "İmza bölümü var (doğrulanmadı).",
+      "noSig": "İmza bölümü yok.",
+      "empty": "Önce bir belirteç yapıştırın.",
+      "success": "Belirteç çözüldü."
+    },
+    "unix-timestamp": {
+      "name": "Unix zaman damgası",
+      "description": "Unix zamanını ISO’ya ve geri dönüştürün.",
+      "keywords": "unix epoch zaman damgası iso tarih",
+      "now": "Şimdi kullan"
+    },
+    "cron-explain": {
+      "name": "Cron açıklayıcı",
+      "description": "5 alanlı bir cron ifadesini sade dile çevirin.",
+      "keywords": "cron zamanlama crontab açıkla",
+      "run": "Açıkla",
+      "success": "Açıklandı."
+    },
+    "number-base": {
+      "name": "Sayı tabanı",
+      "description": "Tam sayıları 2 ile 36 tabanları arasında dönüştürün.",
+      "keywords": "ikili hex ondalık taban dönüştür",
+      "value": "Sayı",
+      "from": "Kaynak taban",
+      "to": "Hedef taban"
+    },
+    "html-entities": {
+      "name": "HTML varlıkları",
+      "description": "&lt; &amp; ve sayısal varlıkları kodlayın veya çözün.",
+      "keywords": "html varlık kodla çöz escape",
+      "run": "Dönüştür",
+      "encode": "Kodla",
+      "decode": "Çöz",
+      "success": "Dönüştürüldü."
+    },
+    "json-types": {
+      "name": "JSON → TypeScript",
+      "description": "Bir JSON örneğinden TypeScript arayüzleri çıkarın.",
+      "keywords": "json typescript interface tip üret",
+      "run": "Tipleri üret",
+      "success": "Tipler üretildi."
+    }
+  },
+  "legal": {
+    "lastUpdated": "Son güncelleme",
+    "privacyTitle": "Gizlilik Politikası",
+    "termsTitle": "Kullanım Koşulları"
+  },
+  "notFound": {
+    "title": "Sayfa bulunamadı",
+    "body": "Bu adres Kit’te yok. Ana sayfaya dönüp oradan bir araç seçin.",
+    "home": "Ana sayfaya dön"
+  },
+  "errorPage": {
+    "title": "Bir şeyler ters gitti",
+    "body": "Son işlem bu tarayıcıda başarısız oldu. Sayfadan ayrılmadan yeniden deneyebilirsiniz.",
+    "retry": "Yeniden dene"
+  }
+}

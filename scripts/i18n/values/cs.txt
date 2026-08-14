@@ -1,0 +1,587 @@
+Kit — Nástroje v prohlížeči, které zůstanou soukromé
+PDF, obrázky, média, převodníky a textové nástroje běží na vašem zařízení. Nic se na naše servery nenahrává.
+Kit
+Každodenní nástroje v prohlížeči. Soukromé od základu.
+Domů
+Nástroje
+Historie
+Oblíbené
+Nastavení
+Hledat nástroje…
+Otevřít nabídku
+Zavřít nabídku
+Zásady ochrany soukromí
+Podmínky použití
+O mně
+Licence MIT
+© {year} Tim G (TGthms). Kit je open source pod licencí MIT.
+GitHub
+Zrušit
+Vymazat
+Zavřít
+Kopírovat
+Zkopírováno do schránky
+Stáhnout
+Spustit
+Zpracovat
+Zpracovává se…
+Hotovo
+Něco se pokazilo
+Zkusit znovu
+Přidat soubory
+Přetáhněte soubory sem
+nebo vyberte ze zařízení
+Můžete také vložit ze schránky
+Odebrat
+Přetažením změňte pořadí
+Soubory
+Zatím nejsou vybrány žádné soubory
+Kvalita
+Možnosti
+Náhled
+Výsledek
+Vstup
+Výstup
+Formát
+Jazyk
+Vzhled
+Podle systému
+Světlý
+Tmavý
+Načítání…
+Uložit
+Smazat
+Potvrdit
+Zpět
+Vše
+Připnout
+Odepnout
+Přidat k oblíbeným
+Odebrat z oblíbených
+Předvolby
+Použít předvolbu
+Uložit jako předvolbu
+Klávesové zkratky
+Průběh
+Tento soubor je velký — zpracování může chvíli trvat.
+Tento formát není podporován
+Hotovo
+Pozor
+Poznámka
+Vybrat vše
+Nic
+Obnovit
+Max. šířka
+Max. výška
+Šířka
+Výška
+Otočit
+Stránky
+Stránka
+Text
+Kódovat
+Dekódovat
+Ověřit
+Minifikovat
+Hezky formátovat
+Platné
+Neplatné
+Znaky
+Řádky
+Od
+Do
+Začátek
+Konec
+Rychlost
+Hlasitost
+Oříznout
+Extrahovat
+Dávka
+Omezení
+Běží jen ve vašem prohlížeči. Soubory se nikdy neodesílají na server Kit.
+https://tgthms.github.io/about/
+Jak to funguje a limity
+Co potřebujete udělat?
+Šikovné nástroje na tomto zařízení — bez účtu, bez nahrávání.
+Kategorie
+Nástroje
+Hledání nic nenašlo.
+Navázat tam, kde jste skončili
+Připnuté
+Začněte kategorií
+Vyberte skupinu úloh. Nástroje uvnitř jsou seskupené, abyste je mohli procházet místo hledání.
+Kategorie
+{count, plural, one {# nástroj} few {# nástroje} other {# nástrojů}}
+Výsledky hledání
+Začněte tady
+Stránky
+Ochrana a info
+Značky
+Export / převod
+Velikost a ořez
+Vzhled
+Soubor
+Klipy
+Formáty
+Psaní
+Kontrola
+Kódování
+Generování
+PDF
+Obrázky
+Audio
+Video
+Převod souborů
+Psaní
+Slučujte, rozdělujte, komprimujte a označujte dokumenty PDF
+Komprimujte, měňte velikost, převádějte a upravujte fotky
+Převádějte, ořezávejte a měňte tempo pouze u audia
+Převádějte, ořezávejte, zrychlujte a vytahujte zvuk z videa
+Chytrý převod mezi formáty (JSON, CSV, ZIP, obrázky…)
+Porovnávejte text, měňte velikost písmen a převádějte Markdown na HTML
+Data
+JSON, YAML, CSV, XML, SQL a převod mezi formáty
+Vývoj
+Tokeny, hashe, kódování, hesla a další dílenské nástroje
+Historie
+Co jste na tomto zařízení spustili. Uchováváme jen krátké souhrny — nikdy vaše soubory.
+Zatím žádná aktivita. Spusťte nástroj a objeví se tady.
+Vymazat historii
+Smazat veškerou historii na tomto zařízení?
+Otevřít nástroj
+Nástroj
+Kdy
+Souhrn
+Stav
+Úspěch
+Selhání
+Oblíbené
+Nástroje po ruce na jedno klepnutí.
+Zatím žádné oblíbené. Označte nástroj hvězdičkou na úvodní stránce nebo na jeho stránce.
+Nastavení
+Tyto volby zůstanou jen v tomto prohlížeči.
+Vzhled
+Jazyk
+Data a soukromí
+Vymazat historii
+Odstraní místní souhrny historie uložené touto stránkou.
+Kit zpracovává vaše soubory v prohlížeči. Předvolby a souhrny historie se mohou ukládat lokálně. Podrobnosti najdete v Zásadách ochrany soukromí.
+Zásady ochrany soukromí
+Podmínky použití
+Stiskněte kdykoli ?, zobrazí se klávesové zkratky.
+Verze
+Klávesové zkratky
+Všude
+Zaměřit hledání
+Otevřít nastavení
+Přejít domů
+Zobrazit tento seznam
+Spustit aktuální nástroj
+Zavřít
+Sloučit PDF
+Složit několik PDF do jednoho. Náhled stránek a přetažením změňte pořadí.
+pdf sloučit spojit spojovat sešít vícestránkový
+Sloučit
+Přidejte alespoň dva soubory PDF.
+Sloučeno {count} souborů do jednoho PDF.
+Rozdělit PDF
+Vyjmout rozsah stránek do úplně nového PDF.
+pdf rozdělit extrahovat stránky rozsah
+Rozdělit
+Stránky (například 1-3,5)
+Vaše rozdělené PDF je připravené.
+Uspořádat stránky
+Otočte stránky, odstraňte nepotřebné a nastavte nové pořadí.
+pdf otočit smazat přerovnat uspořádat stránky
+Uložit PDF
+Vaše PDF bylo aktualizováno.
+Komprimovat PDF
+Zmenšit soubor opětovným kódováním obrázků stránek (kompromis kvality).
+pdf komprimovat zmenšit velikost menší
+Komprimovat
+Jde o ztrátovou cestu — stránky se mohou rastrovat. Nejlépe funguje u PDF plných obrázků.
+Komprimované PDF je připravené ke stažení.
+Vodoznak PDF
+Vytisknout text jako vodoznak, záhlaví nebo zápatí na každou stránku.
+pdf vodoznak razítko záhlaví zápatí důvěrné
+Použít
+Text vodoznaku
+Umístění
+Záhlaví
+Zápatí
+Šikmo na střed
+Krytí
+Vodoznak použit.
+Zakryt obsah
+Položit plné černé rámečky přes citlivá místa (jen vizuálně).
+pdf začernit zakrýt skrýt citlivé
+Použít zakrytí
+Jde jen o vizuální zakrytí. Nezaručuje odstranění každého textového proudu — citlivé dokumenty zkontrolujte.
+Zakrytí použito.
+Extrahovat z PDF
+Vytáhnout čitelný text nebo exportovat stránku jako obrázek.
+pdf extrahovat text obrázky
+Extrahovat
+Text
+Obrázky
+Extrakce dokončena.
+Exportováno {count} obrázků stránek jako ZIP.
+Komprimovat obrázky
+Snižte kvalitu a maximální velikost, aby se fotky daly snadno sdílet.
+obrázek komprimovat jpg png webp velikost foto
+Komprimovat
+Komprimováno {count} obrázků.
+Změnit velikost obrázků
+Nastavte přesné rozměry, volitelně se zámkem poměru stran.
+obrázek velikost měřítko rozměry šířka výška
+Změnit velikost
+Zachovat poměr stran
+Změněna velikost {count} obrázků.
+Oříznout obrázek
+Nechte jen obdélník, na kterém vám záleží.
+obrázek oříznout vyříznout oblast
+Oříznout
+Oříznutý obrázek je připravený.
+Převést formát obrázku
+Přepínejte mezi JPEG, PNG, WEBP a podobnými webovými formáty.
+obrázek převést formát webp avif png jpg jpeg
+Převést
+Převedeno {count} obrázků.
+Metadata obrázku
+Prohlédněte EXIF a podobné značky a exportujte čistou kopii bez nich.
+obrázek exif metadata odstranit soukromí poloha
+Odstranit metadata
+Pixely se v prohlížeči znovu kódují, takže vložená metadata zmizí.
+Metadata odstraněna z {count} obrázků.
+Značka
+Hodnota
+V tomto souboru nejsou čitelná EXIF ani textová metadata.
+Upravit obrázek
+Upravte jas, kontrast a sytost.
+obrázek jas kontrast sytost barva
+Použít
+Jas
+Kontrast
+Sytost
+Upraveno {count} obrázků.
+Chytrý převod
+Rozpozná smíšené typy souborů nebo textu a převádí mezi formáty (není to mediální studio).
+převod hub chytrý dávka json yaml csv zip obrázek data
+Převést
+Rozpoznáno jako
+Výstupní formát
+Převod dokončen.
+Formátovač JSON
+Hezky formátovat, minifikovat a včas zachytit chyby JSON.
+json formát ověřit minifikovat pretty
+Formátovat
+JSON vypadá platně a je naformátovaný.
+Formátovač YAML
+Zkontrolovat strukturu YAML a upravit rozložení.
+yaml formát ověřit yml
+Formátovat
+YAML vypadá platně.
+Formátovač TOML
+Ověřit TOML a udržet soubor úhledný.
+toml formát ověřit config
+Formátovat
+TOML vypadá platně.
+Markdown ↔ HTML
+Převést Markdown na HTML nebo HTML zpět na Markdown.
+markdown html převést md značky
+Převést
+Markdown → HTML
+HTML → Markdown
+Převedeno.
+CSV ↔ JSON
+Přesouvat tabulková data mezi CSV a poli JSON.
+csv json převést tabulka sešit
+Převést
+CSV → JSON
+JSON → CSV
+Převedeno.
+Porovnat text
+Zobrazit změny řádek po řádku mezi dvěma verzemi.
+diff porovnat text změny patch
+Porovnat
+Původní
+Aktualizované
+Porovnání je připravené.
+Base64
+Kódovat nebo dekódovat Base64 pro prostý text nebo celé soubory.
+base64 kódovat dekódovat binární
+Převést
+Směr
+Text
+Soubor
+Hotovo.
+Kódování URL
+Bezpečně percent-kódovat nebo dekódovat části URL.
+url kódovat dekódovat percent uri dotaz
+Převést
+Hotovo.
+Převést audio
+Měnit audio kontejnery jako MP3, WAV a OGG v prohlížeči.
+audio převést mp3 wav ogg ffmpeg zvuk
+Převést
+Načítání audio enginu…
+Používá jednovláknové FFmpeg WASM. Velké soubory mohou být pomalé; podpora kodeků je omezená.
+Převod audia dokončen.
+Oříznout audio
+Nechat jen úsek mezi dvěma časovými značkami v audio souboru.
+audio oříznout vystřihnout klip mp3 wav
+Oříznout
+Ořez audia dokončen.
+Tempo a hlasitost audia
+Zrychlit, zpomalit nebo změnit hlasitost audia.
+audio tempo rychlost hlasitost výška
+Použít
+Zpracované audio je připravené.
+Převést video
+Měnit video kontejnery jako MP4 a WEBM v prohlížeči.
+video převést mp4 webm ffmpeg film
+Převést
+Načítání video enginu…
+Používá jednovláknové FFmpeg WASM. Velké soubory mohou být pomalé; podpora kodeků je omezená.
+Převod videa dokončen.
+Oříznout video
+Nechat jen klip mezi dvěma časovými značkami.
+video oříznout vystřihnout klip mp4
+Oříznout
+Ořez videa dokončen.
+Tempo a hlasitost videa
+Změnit rychlost přehrávání a úroveň zvuku videa.
+video tempo rychlost hlasitost
+Použít
+Zpracované video je připravené.
+Extrahovat audio z videa
+Uložit zvukovou stopu z videa jako audio soubor.
+video extrahovat audio mp3 stopa
+Extrahovat audio
+Audio extrahováno.
+Čísla stránek
+Vytisknout označení stránky, například 1 / 12, na každou stránku.
+pdf čísla stránek zápatí záhlaví stránkování
+Přidat čísla
+Popisek ({page} a {pages})
+Umístění
+Začít od
+Záhlaví vlevo
+Záhlaví na střed
+Záhlaví vpravo
+Zápatí vlevo
+Zápatí na střed
+Zápatí vpravo
+Čísla stránek přidána.
+PDF → obrázky
+Zrastrovat každou stránku do JPEG a stáhnout je jako ZIP.
+pdf obrázek jpg jpeg zip stránky export
+Exportovat stránky
+Stránky se kreslí pomocí PDF.js na této kartě. Velmi velké dokumenty mohou být pomalé a spotřebovat hodně paměti. Jde o vizuální rastr, ne o extrakci vložených obrazových objektů.
+Exportováno {count} stránek.
+Obrázky → PDF
+Složit fotky do PDF, jeden obrázek na stránku.
+obrázky pdf jpg png spojit
+Vytvořit PDF
+Vytvořeno PDF z {count} obrázků.
+Zploštit formuláře
+Zapečovat pole AcroForm do stránky, aby je už nešlo upravovat.
+pdf zploštit formulář pole acroform
+Zploštit
+Funguje se standardními poli AcroForm. Dynamické formuláře XFA nejsou plně podporované.
+Zploštěno {count} polí.
+Metadata PDF
+Zobrazit, upravit nebo odstranit název, autora a další pole Info dokumentu.
+Klíčová slova
+Uložit metadata
+Odstranit všechna pole
+Název
+Autor
+Předmět
+Tvůrce
+Producent
+Metadata uložena.
+Metadata odstraněna.
+Zamknout nebo odemknout PDF
+Přidat nebo odebrat uživatelské heslo. Šifrování zůstane v tomto prohlížeči.
+pdf heslo zamknout odemknout šifrovat dešifrovat
+Použít
+Zamknout
+Odemknout
+Heslo
+Používá klientskou knihovnu pro šifrování PDF. Některé starší nebo neobvyklé revize šifrování se nemusí odemknout. Kit nikdy neodesílá soubor ani heslo na server.
+PDF je připravené.
+Otočit a převrátit
+Otáčet obrázky po 90° nebo je převracet vodorovně či svisle.
+obrázek otočit převrátit zrcadlo
+Použít
+Transformace
+Otočit o 90°
+Otočit o 180°
+Otočit o 270°
+Převrátit vodorovně
+Převrátit svisle
+Transformováno {count} obrázků.
+Filtry obrázku
+Použít stupně šedi, sépii nebo inverzi na jednu či více fotek.
+obrázek filtr šedá sépie invertovat
+Použít
+Filtr
+Stupně šedi
+Sépie
+Invertovat
+Filtrováno {count} obrázků.
+Balíček favicon
+Exportovat zdrojový obrázek jako běžné velikosti ikon v ZIP.
+favicon icon 16 32 180 192 512 apple touch
+Exportovat ikony
+Exportuje soubory PNG o velikosti 16, 32, 48, 180, 192 a 512 pixelů.
+Balíček ikon je připravený.
+Video → GIF
+Proměnit krátký klip v prohlížeči na smyčkové GIF.
+video gif klip převést ffmpeg
+Vytvořit GIF
+Používá FFmpeg WASM. Držte klipy krátké — kódování GIF je pomalé a náročné na paměť. Paleta a kodeky odpovídají sestavení v prohlížeči.
+GIF je připravené.
+XML ↔ JSON
+Převádět dokumenty XML na JSON nebo JSON zpět na XML.
+xml json převést parsovat
+Převést
+XML → JSON
+JSON → XML
+Převedeno.
+Formátovač SQL
+Hezky formátovat SQL, aby se klauzule a seznamy lépe četly.
+sql formát pretty dotaz
+Formátovat
+SQL naformátováno.
+Tester regulárních výrazů
+Vyzkoušet regulární výraz na ukázkovém textu a nahradit shody.
+regex regulární výraz test nahradit
+Vzor
+Příznaky
+Ukázkový text
+Náhrada
+Nahradit
+{count, plural, one {# shoda} few {# shody} other {# shod}}
+Náhrada je připravená.
+Generátor hash
+SHA-1/256/384/512 a MD5 textu nebo souboru, počítané lokálně.
+hash sha256 md5 sha1 kontrolní součet digest
+Hash
+Algoritmus
+Digest
+Hashe se počítají v tomto prohlížeči (Web Crypto pro SHA, místní implementace MD5). MD5 není odolné vůči kolizím — používejte ho jen pro kontrolní součty.
+Hash je připravený.
+Generátor UUID
+Vytvářet UUID verze 4 nebo 7 na tomto zařízení.
+uuid guid v4 v7 generovat
+Generovat
+Kolik
+Verze
+UUID vygenerována.
+Převodník barev
+Převádět mezi HEX, RGB, HSL a HSV, s výběrem barvy.
+barva hex rgb hsl hsv výběr
+Výběr barvy
+Zadejte 3- nebo 6místnou hex barvu.
+Lorem ipsum
+Generovat zástupné odstavce, věty nebo slova.
+lorem ipsum zástupný dummy text
+Generovat
+Počet
+Režim
+Odstavce
+Věty
+Slova
+Text vygenerován.
+QR kód
+Vytvořit QR kód z textu nebo jeden přečíst z obrázku.
+qr kód generovat skenovat číst barcode
+Generovat
+Text nebo URL
+Číst z obrázku
+Číst QR
+QR kód je připravený.
+Obsah QR přečten.
+V tomto obrázku nebyl nalezen žádný QR kód.
+Podepsat PDF
+Vytisknout napsaný podpis na každou stránku. Jen vizuálně — není to certifikát.
+pdf podepsat podpis razítko jméno
+Podepsat
+Text podpisu
+Vaše jméno
+Nakreslí vaše jméno na stránku. Nejde o kryptografický digitální podpis.
+Podpis orazítkován.
+Vodoznak na obrázcích
+Překrýt text na fotkách, jeden soubor nebo celá dávka.
+obrázek vodoznak razítko copyright
+Použít
+Text vodoznaku
+Umístění
+Vpravo dole
+Vlevo dole
+Vpravo nahoře
+Střed
+Vodoznak na {count} obrázcích.
+Generátor hesel
+Vytvořit silné heslo na tomto zařízení. Nic se neukládá.
+heslo generovat náhodné tajné
+Generovat
+Délka
+Malá písmena
+Velká písmena
+Číslice
+Symboly
+Heslo je připravené.
+Změnit velikost písmen
+Přepínat mezi camel, snake, kebab, title a dalšími.
+velikost camel snake kebab pascal title
+Převést
+Styl
+Převedeno.
+Dekodér JWT
+Číst hlavičku a payload JWT lokálně. Podpisy se neověřují.
+jwt dekódovat token bearer auth
+Dekódovat
+Kit dekóduje jen Base64url. Bez klíče nemůže prokázat pravost tokenu.
+Část podpisu je přítomná (neověřená).
+Žádná část podpisu.
+Nejprve vložte token.
+Token dekódován.
+Unixové časové razítko
+Převádět unixový čas na ISO a zpět.
+unix epoch razítko iso datum
+Použít teď
+Vysvětlení cronu
+Převést 5polový cron výraz do srozumitelného jazyka.
+cron plán crontab vysvětlit
+Vysvětlit
+Vysvětleno.
+Číselná soustava
+Převádět celá čísla mezi základy 2 a 36.
+binární hex desítková základ převést
+Číslo
+Ze základu
+Do základu
+Entity HTML
+Kódovat nebo dekódovat &lt; &amp; a číselné entity.
+html entity kódovat dekódovat escape
+Převést
+Kódovat
+Dekódovat
+Převedeno.
+JSON → TypeScript
+Odvozovat rozhraní TypeScript ze vzorku JSON.
+json typescript interface typ generovat
+Generovat typy
+Typy vygenerovány.
+Naposledy aktualizováno
+Zásady ochrany soukromí
+Podmínky použití
+Stránka nenalezena
+Tato adresa v Kitu není. Vraťte se domů a vyberte nástroj odtamtud.
+Zpět domů
+Něco se pokazilo
+Poslední akce v tomto prohlížeči selhala. Můžete to zkusit znovu, aniž byste stránku opustili.
+Zkusit znovu

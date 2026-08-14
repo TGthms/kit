@@ -1,0 +1,735 @@
+{
+  "meta": {
+    "title": "Kit — 기기 안에서만 동작하는 브라우저 도구",
+    "description": "PDF, 이미지, 미디어, 변환, 텍스트 도구가 기기에서 실행됩니다. 서버로 아무것도 업로드하지 않습니다."
+  },
+  "brand": {
+    "name": "Kit",
+    "tagline": "브라우저에서 쓰는 일상 도구. 처음부터 비공개."
+  },
+  "nav": {
+    "home": "홈",
+    "tools": "도구",
+    "history": "기록",
+    "favorites": "즐겨찾기",
+    "settings": "설정",
+    "searchPlaceholder": "도구 검색…",
+    "openMenu": "메뉴 열기",
+    "closeMenu": "메뉴 닫기"
+  },
+  "footer": {
+    "privacy": "개인정보 처리방침",
+    "terms": "이용약관",
+    "aboutMe": "소개",
+    "license": "MIT 라이선스",
+    "copyright": "© {year} Tim G (TGthms). Kit는 MIT 라이선스의 오픈 소스입니다.",
+    "github": "GitHub"
+  },
+  "common": {
+    "cancel": "취소",
+    "clear": "지우기",
+    "close": "닫기",
+    "copy": "복사",
+    "copied": "클립보드에 복사됨",
+    "download": "다운로드",
+    "run": "실행",
+    "process": "처리",
+    "processing": "처리 중…",
+    "done": "완료",
+    "error": "문제가 발생했습니다",
+    "retry": "다시 시도",
+    "addFiles": "파일 추가",
+    "dropFiles": "여기에 파일을 놓으세요",
+    "orBrowse": "또는 기기에서 찾아보기",
+    "pasteSupported": "클립보드에서 붙여넣을 수도 있습니다",
+    "remove": "제거",
+    "reorder": "끌어다 순서를 바꾸세요",
+    "files": "파일",
+    "noFiles": "아직 선택한 파일이 없습니다",
+    "quality": "품질",
+    "options": "옵션",
+    "preview": "미리보기",
+    "result": "결과",
+    "input": "입력",
+    "output": "출력",
+    "format": "형식",
+    "language": "언어",
+    "theme": "모양",
+    "themeSystem": "시스템과 맞춤",
+    "themeLight": "라이트",
+    "themeDark": "다크",
+    "loading": "불러오는 중…",
+    "save": "저장",
+    "delete": "삭제",
+    "confirm": "확인",
+    "back": "뒤로",
+    "allCategories": "전체",
+    "pin": "고정",
+    "unpin": "고정 해제",
+    "favorite": "즐겨찾기에 추가",
+    "unfavorite": "즐겨찾기에서 제거",
+    "presets": "프리셋",
+    "applyPreset": "프리셋 사용",
+    "savePreset": "프리셋으로 저장",
+    "shortcuts": "키보드 단축키",
+    "progress": "진행률",
+    "fileTooLarge": "파일이 큽니다. 처리에 시간이 걸릴 수 있습니다.",
+    "unsupported": "이 형식은 지원되지 않습니다",
+    "success": "성공",
+    "warning": "주의",
+    "info": "참고",
+    "selectAll": "모두 선택",
+    "none": "없음",
+    "reset": "재설정",
+    "maxWidth": "최대 너비",
+    "maxHeight": "최대 높이",
+    "width": "너비",
+    "height": "높이",
+    "rotate": "회전",
+    "pages": "페이지",
+    "page": "페이지",
+    "text": "텍스트",
+    "encode": "인코딩",
+    "decode": "디코딩",
+    "validate": "검증",
+    "minify": "축소",
+    "beautify": "예쁘게 출력",
+    "valid": "유효",
+    "invalid": "무효",
+    "characters": "문자",
+    "lines": "줄",
+    "from": "원본",
+    "to": "대상",
+    "start": "시작",
+    "end": "끝",
+    "speed": "속도",
+    "volume": "음량",
+    "trim": "자르기",
+    "extract": "추출",
+    "batch": "일괄",
+    "limitations": "제한",
+    "clientSideOnly": "브라우저에서만 실행됩니다. 파일은 Kit 서버로 전송되지 않습니다.",
+    "aboutMeUrl": "https://tgthms.github.io/about/",
+    "howItWorks": "작동 방식과 한계"
+  },
+  "home": {
+    "title": "무엇을 하시겠어요?",
+    "subtitle": "이 기기에서 바로 쓰는 도구입니다. 계정 없이, 업로드 없이.",
+    "categories": "분류",
+    "popular": "도구",
+    "noResults": "검색과 일치하는 항목이 없습니다.",
+    "recent": "이어서 하기",
+    "pinned": "고정됨",
+    "chooseCategory": "분류부터 시작",
+    "chooseCategoryHint": "작업 묶음을 고르세요. 도구가 그룹으로 나뉘어 찾아 헤매지 않고 훑어볼 수 있습니다.",
+    "backToCategories": "분류",
+    "toolsInCategory": "{count, plural, other {#개의 도구}}",
+    "searchResults": "검색 결과",
+    "featured": "여기서 시작",
+    "groups": {
+      "pages": "페이지",
+      "protect": "보호와 정보",
+      "markup": "표시",
+      "export": "내보내기 / 변환",
+      "transform": "크기와 자르기",
+      "look": "모습",
+      "file": "파일",
+      "clip": "클립",
+      "formats": "형식",
+      "write": "쓰기",
+      "inspect": "검사",
+      "encode": "인코딩",
+      "generate": "생성"
+    }
+  },
+  "categories": {
+    "pdf": "PDF",
+    "image": "이미지",
+    "audio": "오디오",
+    "video": "비디오",
+    "convert": "파일 변환",
+    "text": "쓰기",
+    "pdfDesc": "PDF 문서를 합치고, 나누고, 압축하고, 표시합니다",
+    "imageDesc": "사진을 압축하고, 크기를 바꾸고, 변환하고, 보정합니다",
+    "audioDesc": "오디오만 변환, 자르기, 속도 변경",
+    "videoDesc": "비디오를 변환, 자르기, 가속하고 오디오를 뽑습니다",
+    "convertDesc": "형식 간 스마트 변환 (JSON, CSV, ZIP, 이미지…)",
+    "textDesc": "글을 비교하고, 대소문자를 바꾸고, Markdown을 HTML로 바꿉니다",
+    "data": "데이터",
+    "dataDesc": "JSON, YAML, CSV, XML, SQL 및 형식 변환",
+    "developer": "개발자",
+    "developerDesc": "토큰, 해시, 인코딩, 비밀번호와 기타 작업대 도구"
+  },
+  "history": {
+    "title": "기록",
+    "subtitle": "이 기기에서 실행한 작업입니다. 짧은 요약만 남기고 파일은 저장하지 않습니다.",
+    "empty": "아직 활동이 없습니다. 도구를 실행하면 여기에 나타납니다.",
+    "clear": "기록 지우기",
+    "clearConfirm": "이 기기의 기록을 모두 삭제할까요?",
+    "openTool": "도구 열기",
+    "tool": "도구",
+    "when": "언제",
+    "summary": "요약",
+    "status": "상태",
+    "success": "성공",
+    "failed": "실패"
+  },
+  "favorites": {
+    "title": "즐겨찾기",
+    "subtitle": "한 번 눌러 바로 쓰는 도구입니다.",
+    "empty": "아직 즐겨찾기가 없습니다. 홈이나 도구 페이지에서 별표를 누르세요."
+  },
+  "settings": {
+    "title": "설정",
+    "subtitle": "이 선택은 이 브라우저에만 남습니다.",
+    "appearance": "모양",
+    "language": "언어",
+    "data": "데이터와 개인정보",
+    "clearHistory": "기록 지우기",
+    "clearHistoryDesc": "이 사이트가 저장한 로컬 기록 요약을 제거합니다.",
+    "privacyNote": "Kit는 브라우저에서 파일을 처리합니다. 환경설정과 기록 요약은 기기에 저장될 수 있습니다. 자세한 내용은 개인정보 처리방침을 보세요.",
+    "viewPrivacy": "개인정보 처리방침",
+    "viewTerms": "이용약관",
+    "shortcutsHelp": "언제든지 ?를 눌러 단축키를 보세요.",
+    "version": "버전"
+  },
+  "shortcuts": {
+    "title": "키보드 단축키",
+    "global": "어디서나",
+    "search": "검색에 초점",
+    "settings": "설정 열기",
+    "home": "홈으로",
+    "help": "이 목록 표시",
+    "run": "현재 도구 실행",
+    "close": "닫기"
+  },
+  "tools": {
+    "pdf-merge": {
+      "name": "PDF 합치기",
+      "description": "여러 PDF를 하나로 쌓습니다. 페이지를 미리 보고 끌어 순서를 바꿉니다.",
+      "keywords": "pdf 합치기 결합 연결 여러 페이지",
+      "run": "합치기",
+      "empty": "PDF 파일을 두 개 이상 추가하세요.",
+      "success": "{count}개 파일을 하나의 PDF로 합쳤습니다."
+    },
+    "pdf-split": {
+      "name": "PDF 나누기",
+      "description": "페이지 범위를 새 PDF로 뽑습니다.",
+      "keywords": "pdf 나누기 추출 페이지 범위",
+      "run": "나누기",
+      "range": "페이지 (예: 1-3,5)",
+      "success": "나눈 PDF가 준비되었습니다."
+    },
+    "pdf-organize": {
+      "name": "페이지 정리",
+      "description": "페이지를 회전하고, 필요 없는 것을 지우고, 새 순서를 정합니다.",
+      "keywords": "pdf 회전 삭제 재정렬 정리 페이지",
+      "run": "PDF 저장",
+      "success": "PDF가 업데이트되었습니다."
+    },
+    "pdf-compress": {
+      "name": "PDF 압축",
+      "description": "페이지 이미지를 다시 인코딩해 용량을 줄입니다 (품질과 타협).",
+      "keywords": "pdf 압축 줄이기 크기",
+      "run": "압축",
+      "note": "손실 경로입니다. 페이지가 래스터화될 수 있습니다. 이미지가 많은 PDF에 가장 잘 맞습니다.",
+      "success": "압축된 PDF를 다운로드할 수 있습니다."
+    },
+    "pdf-watermark": {
+      "name": "PDF 워터마크",
+      "description": "모든 페이지에 텍스트를 워터마크, 머리글, 바닥글로 찍습니다.",
+      "keywords": "pdf 워터마크 스탬프 머리글 바닥글 기밀",
+      "run": "적용",
+      "text": "워터마크 텍스트",
+      "position": "위치",
+      "header": "머리글",
+      "footer": "바닥글",
+      "center": "가운데 대각선",
+      "opacity": "불투명도",
+      "success": "워터마크를 적용했습니다."
+    },
+    "pdf-redact": {
+      "name": "내용 가리기",
+      "description": "민감한 영역 위에 검은 상자를 올립니다 (시각적 가림).",
+      "keywords": "pdf 가리기 검정 숨기기 민감",
+      "run": "가림 적용",
+      "note": "시각적 가림일 뿐입니다. 아래 텍스트 스트림이 모두 제거된다고 보장하지 않습니다. 민감한 문서는 다시 확인하세요.",
+      "success": "가림 상자를 적용했습니다."
+    },
+    "pdf-extract": {
+      "name": "PDF에서 추출",
+      "description": "읽을 수 있는 텍스트를 뽑거나 페이지를 이미지로 내보냅니다.",
+      "keywords": "pdf 추출 텍스트 이미지",
+      "run": "추출",
+      "modeText": "텍스트",
+      "modeImages": "이미지",
+      "success": "추출이 끝났습니다.",
+      "imagesReady": "페이지 이미지 {count}개를 ZIP으로 내보냈습니다."
+    },
+    "image-compress": {
+      "name": "이미지 압축",
+      "description": "품질과 최대 크기를 낮춰 사진을 공유하기 쉽게 합니다.",
+      "keywords": "이미지 압축 jpg png webp 크기 사진",
+      "run": "압축",
+      "success": "이미지 {count}개를 압축했습니다."
+    },
+    "image-resize": {
+      "name": "이미지 크기 조정",
+      "description": "정확한 크기를 지정하고, 필요하면 비율을 고정합니다.",
+      "keywords": "이미지 크기 비율 너비 높이",
+      "run": "크기 조정",
+      "lockAspect": "가로세로 비율 유지",
+      "success": "이미지 {count}개의 크기를 바꿨습니다."
+    },
+    "image-crop": {
+      "name": "이미지 자르기",
+      "description": "원하는 사각형만 남깁니다.",
+      "keywords": "이미지 자르기 영역",
+      "run": "자르기",
+      "success": "자른 이미지가 준비되었습니다."
+    },
+    "image-convert": {
+      "name": "이미지 형식 변환",
+      "description": "JPEG, PNG, WEBP 등 웹 형식 사이를 바꿉니다.",
+      "keywords": "이미지 변환 형식 webp avif png jpg jpeg",
+      "run": "변환",
+      "success": "이미지 {count}개를 변환했습니다."
+    },
+    "image-metadata": {
+      "name": "이미지 메타데이터",
+      "description": "EXIF와 비슷한 태그를 본 뒤, 없는 깨끗한 사본을 내보냅니다.",
+      "keywords": "이미지 exif 메타데이터 제거 개인정보 위치",
+      "run": "메타데이터 제거",
+      "note": "브라우저에서 픽셀을 다시 인코딩하므로 임베디드 메타데이터가 빠집니다.",
+      "success": "이미지 {count}개에서 메타데이터를 제거했습니다.",
+      "tag": "태그",
+      "value": "값",
+      "noExif": "이 파일에 읽을 수 있는 EXIF나 텍스트 메타데이터가 없습니다."
+    },
+    "image-adjust": {
+      "name": "이미지 조정",
+      "description": "밝기, 대비, 채도를 미세 조정합니다.",
+      "keywords": "이미지 밝기 대비 채도 색",
+      "run": "적용",
+      "brightness": "밝기",
+      "contrast": "대비",
+      "saturation": "채도",
+      "success": "이미지 {count}개를 조정했습니다."
+    },
+    "convert-hub": {
+      "name": "스마트 변환",
+      "description": "섞인 파일이나 텍스트 종류를 감지하고 형식 간에 변환합니다 (미디어 스튜디오가 아님).",
+      "keywords": "변환 허브 스마트 일괄 json yaml csv zip 이미지 데이터",
+      "run": "변환",
+      "detect": "다음으로 감지됨",
+      "chooseOutput": "출력 형식",
+      "success": "변환이 끝났습니다."
+    },
+    "json-format": {
+      "name": "JSON 포맷터",
+      "description": "예쁘게 출력하고, 줄이고, JSON 오류를 일찍 잡습니다.",
+      "keywords": "json 포맷 검증 축소 pretty",
+      "run": "포맷",
+      "success": "JSON이 유효하며 포맷되었습니다."
+    },
+    "yaml-format": {
+      "name": "YAML 포맷터",
+      "description": "YAML 구조를 확인하고 레이아웃을 정리합니다.",
+      "keywords": "yaml 포맷 검증 yml",
+      "run": "포맷",
+      "success": "YAML이 유효합니다."
+    },
+    "toml-format": {
+      "name": "TOML 포맷터",
+      "description": "TOML을 검증하고 파일을 단정하게 유지합니다.",
+      "keywords": "toml 포맷 검증 config",
+      "run": "포맷",
+      "success": "TOML이 유효합니다."
+    },
+    "markdown-html": {
+      "name": "Markdown ↔ HTML",
+      "description": "Markdown을 HTML로, 또는 HTML을 Markdown으로 바꿉니다.",
+      "keywords": "markdown html 변환 md 마크업",
+      "run": "변환",
+      "toHtml": "Markdown → HTML",
+      "toMd": "HTML → Markdown",
+      "success": "변환되었습니다."
+    },
+    "csv-json": {
+      "name": "CSV ↔ JSON",
+      "description": "표 데이터를 CSV와 JSON 배열 사이에서 옮깁니다.",
+      "keywords": "csv json 변환 표 스프레드시트",
+      "run": "변환",
+      "toJson": "CSV → JSON",
+      "toCsv": "JSON → CSV",
+      "success": "변환되었습니다."
+    },
+    "text-diff": {
+      "name": "텍스트 비교",
+      "description": "두 버전 사이의 줄 단위 변경을 봅니다.",
+      "keywords": "diff 비교 텍스트 변경 patch",
+      "run": "비교",
+      "left": "원본",
+      "right": "업데이트됨",
+      "success": "비교가 준비되었습니다."
+    },
+    "base64": {
+      "name": "Base64",
+      "description": "일반 텍스트나 파일 전체를 Base64로 인코딩하거나 디코딩합니다.",
+      "keywords": "base64 인코딩 디코딩 바이너리",
+      "run": "변환",
+      "mode": "방향",
+      "textMode": "텍스트",
+      "fileMode": "파일",
+      "success": "완료."
+    },
+    "url-encode": {
+      "name": "URL 인코딩",
+      "description": "URL 구성 요소를 안전하게 퍼센트 인코딩하거나 디코딩합니다.",
+      "keywords": "url 인코딩 디코딩 퍼센트 uri 쿼리",
+      "run": "변환",
+      "success": "완료."
+    },
+    "audio-convert": {
+      "name": "오디오 변환",
+      "description": "브라우저에서 MP3, WAV, OGG 같은 오디오 컨테이너를 바꿉니다.",
+      "keywords": "오디오 변환 mp3 wav ogg ffmpeg 소리",
+      "run": "변환",
+      "loadingFfmpeg": "오디오 엔진을 불러오는 중…",
+      "note": "단일 스레드 FFmpeg WASM을 사용합니다. 큰 파일은 느릴 수 있고 코덱 지원은 제한적입니다.",
+      "success": "오디오 변환이 끝났습니다."
+    },
+    "audio-trim": {
+      "name": "오디오 자르기",
+      "description": "오디오 파일에서 두 시각 사이의 구간만 남깁니다.",
+      "keywords": "오디오 자르기 클립 mp3 wav",
+      "run": "자르기",
+      "success": "오디오 자르기가 끝났습니다."
+    },
+    "audio-speed": {
+      "name": "오디오 속도와 음량",
+      "description": "오디오를 빠르게, 느리게, 또는 크게 바꿉니다.",
+      "keywords": "오디오 속도 템포 음량 음정",
+      "run": "적용",
+      "success": "처리된 오디오가 준비되었습니다."
+    },
+    "video-convert": {
+      "name": "비디오 변환",
+      "description": "브라우저에서 MP4, WEBM 같은 비디오 컨테이너를 바꿉니다.",
+      "keywords": "비디오 변환 mp4 webm ffmpeg 영화",
+      "run": "변환",
+      "loadingFfmpeg": "비디오 엔진을 불러오는 중…",
+      "note": "단일 스레드 FFmpeg WASM을 사용합니다. 큰 파일은 느릴 수 있고 코덱 지원은 제한적입니다.",
+      "success": "비디오 변환이 끝났습니다."
+    },
+    "video-trim": {
+      "name": "비디오 자르기",
+      "description": "두 시각 사이의 클립만 남깁니다.",
+      "keywords": "비디오 자르기 클립 mp4",
+      "run": "자르기",
+      "success": "비디오 자르기가 끝났습니다."
+    },
+    "video-speed": {
+      "name": "비디오 속도와 음량",
+      "description": "비디오의 재생 속도와 오디오 레벨을 바꿉니다.",
+      "keywords": "비디오 속도 템포 음량",
+      "run": "적용",
+      "success": "처리된 비디오가 준비되었습니다."
+    },
+    "video-extract-audio": {
+      "name": "비디오에서 오디오 추출",
+      "description": "비디오의 사운드트랙을 오디오 파일로 저장합니다.",
+      "keywords": "비디오 추출 오디오 mp3 사운드트랙",
+      "run": "오디오 추출",
+      "success": "오디오를 추출했습니다."
+    },
+    "pdf-numbers": {
+      "name": "쪽 번호",
+      "description": "모든 페이지에 1 / 12 같은 쪽 번호를 찍습니다.",
+      "keywords": "pdf 쪽번호 바닥글 머리글 쪽매김",
+      "run": "번호 추가",
+      "template": "레이블 ({page} 및 {pages})",
+      "position": "위치",
+      "start": "시작 번호",
+      "headerLeft": "머리글 왼쪽",
+      "headerCenter": "머리글 가운데",
+      "headerRight": "머리글 오른쪽",
+      "footerLeft": "바닥글 왼쪽",
+      "footerCenter": "바닥글 가운데",
+      "footerRight": "바닥글 오른쪽",
+      "success": "쪽 번호를 추가했습니다."
+    },
+    "pdf-to-images": {
+      "name": "PDF → 이미지",
+      "description": "모든 페이지를 JPEG로 래스터화해 ZIP으로 다운로드합니다.",
+      "keywords": "pdf 이미지 jpg jpeg zip 페이지 내보내기",
+      "run": "페이지 내보내기",
+      "limits": "이 탭에서 PDF.js로 페이지를 그립니다. 아주 큰 문서는 느리고 메모리를 많이 쓸 수 있습니다. 시각적 래스터이며 임베디드 이미지 객체를 뽑는 것이 아닙니다.",
+      "success": "페이지 {count}개를 내보냈습니다."
+    },
+    "images-to-pdf": {
+      "name": "이미지 → PDF",
+      "description": "사진을 PDF로 쌓습니다. 페이지당 이미지 하나.",
+      "keywords": "이미지 pdf jpg png 결합",
+      "run": "PDF 만들기",
+      "success": "이미지 {count}개로 PDF를 만들었습니다."
+    },
+    "pdf-flatten": {
+      "name": "양식 병합",
+      "description": "AcroForm 필드를 페이지에 구워 더 이상 편집할 수 없게 합니다.",
+      "keywords": "pdf 병합 양식 필드 acroform",
+      "run": "병합",
+      "limits": "표준 AcroForm 필드에서 동작합니다. 동적 XFA 양식은 완전히 지원되지 않습니다.",
+      "success": "필드 {count}개를 병합했습니다."
+    },
+    "pdf-metadata": {
+      "name": "PDF 메타데이터",
+      "description": "제목, 작성자 및 기타 Info 필드를 보거나 고치거나 지웁니다.",
+      "keywords": "키워드",
+      "run": "메타데이터 저장",
+      "strip": "모든 필드 지우기",
+      "title": "제목",
+      "author": "작성자",
+      "subject": "주제",
+      "creator": "만든 이",
+      "producer": "생성 프로그램",
+      "saved": "메타데이터를 저장했습니다.",
+      "stripped": "메타데이터를 지웠습니다."
+    },
+    "pdf-protect": {
+      "name": "PDF 잠금 또는 잠금 해제",
+      "description": "사용자 비밀번호를 추가하거나 제거합니다. 암호화는 이 브라우저에 남습니다.",
+      "keywords": "pdf 비밀번호 잠금 잠금해제 암호화 복호화",
+      "run": "적용",
+      "lock": "잠금",
+      "unlock": "잠금 해제",
+      "password": "비밀번호",
+      "limits": "클라이언트 측 PDF 암호화 라이브러리를 사용합니다. 일부 오래되거나 특이한 암호화 개정은 열리지 않을 수 있습니다. Kit는 파일이나 비밀번호를 서버로 보내지 않습니다.",
+      "success": "PDF가 준비되었습니다."
+    },
+    "image-rotate": {
+      "name": "회전과 뒤집기",
+      "description": "이미지를 90°씩 돌리거나 가로 또는 세로로 뒤집습니다.",
+      "keywords": "이미지 회전 뒤집기 거울",
+      "run": "적용",
+      "operation": "변환",
+      "rot90": "90° 회전",
+      "rot180": "180° 회전",
+      "rot270": "270° 회전",
+      "flipH": "가로 뒤집기",
+      "flipV": "세로 뒤집기",
+      "success": "이미지 {count}개를 변환했습니다."
+    },
+    "image-filters": {
+      "name": "이미지 필터",
+      "description": "하나 또는 여러 사진에 회색조, 세피아, 반전을 적용합니다.",
+      "keywords": "이미지 필터 회색조 세피아 반전",
+      "run": "적용",
+      "filter": "필터",
+      "grayscale": "회색조",
+      "sepia": "세피아",
+      "invert": "반전",
+      "success": "이미지 {count}개에 필터를 적용했습니다."
+    },
+    "image-favicon": {
+      "name": "파비콘 팩",
+      "description": "원본 이미지를 흔한 아이콘 크기로 ZIP에 내보냅니다.",
+      "keywords": "favicon icon 16 32 180 192 512 apple touch",
+      "run": "아이콘 내보내기",
+      "note": "16, 32, 48, 180, 192, 512픽셀 PNG를 내보냅니다.",
+      "success": "아이콘 팩이 준비되었습니다."
+    },
+    "video-gif": {
+      "name": "비디오 → GIF",
+      "description": "짧은 클립을 브라우저에서 반복 GIF로 만듭니다.",
+      "keywords": "비디오 gif 클립 변환 ffmpeg",
+      "run": "GIF 만들기",
+      "limits": "FFmpeg WASM을 사용합니다. 클립을 짧게 유지하세요. GIF 인코딩은 느리고 메모리를 많이 씁니다. 팔레트와 코덱은 브라우저 빌드를 따릅니다.",
+      "success": "GIF가 준비되었습니다."
+    },
+    "xml-json": {
+      "name": "XML ↔ JSON",
+      "description": "XML 문서를 JSON으로, 또는 JSON을 XML로 변환합니다.",
+      "keywords": "xml json 변환 구문 분석",
+      "run": "변환",
+      "toJson": "XML → JSON",
+      "toXml": "JSON → XML",
+      "success": "변환되었습니다."
+    },
+    "sql-format": {
+      "name": "SQL 포맷터",
+      "description": "절과 목록을 읽기 쉽게 SQL을 예쁘게 출력합니다.",
+      "keywords": "sql 포맷 pretty 쿼리",
+      "run": "포맷",
+      "success": "SQL을 포맷했습니다."
+    },
+    "regex-tester": {
+      "name": "정규식 테스터",
+      "description": "샘플 텍스트에 정규식을 시험하고 일치 항목을 바꿉니다.",
+      "keywords": "regex 정규식 테스트 바꾸기",
+      "pattern": "패턴",
+      "flags": "플래그",
+      "input": "샘플 텍스트",
+      "replace": "바꿀 내용",
+      "runReplace": "바꾸기",
+      "matches": "{count, plural, other {#개 일치}}",
+      "success": "바꾸기가 준비되었습니다."
+    },
+    "hash-generator": {
+      "name": "해시 생성기",
+      "description": "텍스트나 파일의 SHA-1/256/384/512 및 MD5를 기기에서 계산합니다.",
+      "keywords": "hash sha256 md5 sha1 체크섬 다이제스트",
+      "run": "해시",
+      "algo": "알고리즘",
+      "digest": "다이제스트",
+      "limits": "해시는 이 브라우저에서 계산됩니다 (SHA는 Web Crypto, MD5는 로컬 구현). MD5는 충돌에 강하지 않으니 체크섬에만 쓰세요.",
+      "success": "해시가 준비되었습니다."
+    },
+    "uuid-generator": {
+      "name": "UUID 생성기",
+      "description": "이 기기에서 버전 4 또는 7 UUID를 만듭니다.",
+      "keywords": "uuid guid v4 v7 생성",
+      "run": "생성",
+      "count": "개수",
+      "version": "버전",
+      "success": "UUID를 생성했습니다."
+    },
+    "color-convert": {
+      "name": "색 변환기",
+      "description": "색 선택기와 함께 HEX, RGB, HSL, HSV를 변환합니다.",
+      "keywords": "색 hex rgb hsl hsv 선택기",
+      "picker": "색 선택기",
+      "invalid": "3자리 또는 6자리 16진 색을 입력하세요."
+    },
+    "lorem-ipsum": {
+      "name": "Lorem ipsum",
+      "description": "자리 표시용 문단, 문장, 단어를 만듭니다.",
+      "keywords": "lorem ipsum 자리표시 dummy 텍스트",
+      "run": "생성",
+      "count": "개수",
+      "mode": "모드",
+      "paragraphs": "문단",
+      "sentences": "문장",
+      "words": "단어",
+      "success": "텍스트를 생성했습니다."
+    },
+    "qr-code": {
+      "name": "QR 코드",
+      "description": "텍스트로 QR 코드를 만들거나 이미지에서 읽습니다.",
+      "keywords": "qr 코드 생성 스캔 읽기 바코드",
+      "run": "생성",
+      "payload": "텍스트 또는 URL",
+      "read": "이미지에서 읽기",
+      "runRead": "QR 읽기",
+      "generated": "QR 코드가 준비되었습니다.",
+      "decoded": "QR 내용을 읽었습니다.",
+      "none": "그 이미지에서 QR 코드를 찾지 못했습니다."
+    },
+    "pdf-sign": {
+      "name": "PDF 서명",
+      "description": "모든 페이지에 입력한 서명을 찍습니다. 시각적일 뿐이며 인증서가 아닙니다.",
+      "keywords": "pdf 서명 스탬프 이름",
+      "run": "서명",
+      "signature": "서명 텍스트",
+      "placeholder": "이름",
+      "limits": "페이지에 이름을 그립니다. 암호학적 디지털 서명이 아닙니다.",
+      "success": "서명을 찍었습니다."
+    },
+    "image-watermark": {
+      "name": "이미지 워터마크",
+      "description": "사진 위에 텍스트를 올립니다. 한 파일 또는 일괄.",
+      "keywords": "이미지 워터마크 스탬프 저작권",
+      "run": "적용",
+      "text": "워터마크 텍스트",
+      "position": "위치",
+      "bottomRight": "오른쪽 아래",
+      "bottomLeft": "왼쪽 아래",
+      "topRight": "오른쪽 위",
+      "center": "가운데",
+      "success": "이미지 {count}개에 워터마크를 넣었습니다."
+    },
+    "password-generator": {
+      "name": "비밀번호 생성기",
+      "description": "이 기기에서 강한 비밀번호를 만듭니다. 아무것도 저장하지 않습니다.",
+      "keywords": "비밀번호 생성 난수 비밀",
+      "run": "생성",
+      "length": "길이",
+      "lower": "소문자",
+      "upper": "대문자",
+      "digits": "숫자",
+      "symbols": "기호",
+      "success": "비밀번호가 준비되었습니다."
+    },
+    "case-convert": {
+      "name": "대소문자 바꾸기",
+      "description": "camel, snake, kebab, 제목 등 스타일 사이를 바꿉니다.",
+      "keywords": "대소문자 camel snake kebab pascal 제목",
+      "run": "변환",
+      "style": "스타일",
+      "success": "변환되었습니다."
+    },
+    "jwt-decode": {
+      "name": "JWT 디코더",
+      "description": "JWT 헤더와 페이로드를 로컬에서 읽습니다. 서명은 검증하지 않습니다.",
+      "keywords": "jwt 디코드 token bearer auth",
+      "run": "디코드",
+      "limits": "Kit는 Base64url만 디코드합니다. 키 없이는 토큰이 진짜인지 증명할 수 없습니다.",
+      "hasSig": "서명 부분이 있습니다 (검증되지 않음).",
+      "noSig": "서명 부분이 없습니다.",
+      "empty": "먼저 토큰을 붙여넣으세요.",
+      "success": "토큰을 디코드했습니다."
+    },
+    "unix-timestamp": {
+      "name": "유닉스 타임스탬프",
+      "description": "유닉스 시간을 ISO로, 다시 되돌립니다.",
+      "keywords": "unix epoch 타임스탬프 iso 날짜",
+      "now": "지금 사용"
+    },
+    "cron-explain": {
+      "name": "Cron 설명",
+      "description": "5필드 cron 식을 쉬운 말로 바꿉니다.",
+      "keywords": "cron 일정 crontab 설명",
+      "run": "설명",
+      "success": "설명했습니다."
+    },
+    "number-base": {
+      "name": "진법",
+      "description": "정수를 2진부터 36진까지 변환합니다.",
+      "keywords": "이진 hex 십진 진법 변환",
+      "value": "숫자",
+      "from": "원래 진법",
+      "to": "대상 진법"
+    },
+    "html-entities": {
+      "name": "HTML 엔티티",
+      "description": "&lt; &amp; 및 숫자 엔티티를 인코딩하거나 디코딩합니다.",
+      "keywords": "html 엔티티 인코딩 디코딩 escape",
+      "run": "변환",
+      "encode": "인코딩",
+      "decode": "디코딩",
+      "success": "변환되었습니다."
+    },
+    "json-types": {
+      "name": "JSON → TypeScript",
+      "description": "JSON 샘플에서 TypeScript 인터페이스를 추론합니다.",
+      "keywords": "json typescript interface 타입 생성",
+      "run": "타입 생성",
+      "success": "타입을 생성했습니다."
+    }
+  },
+  "legal": {
+    "lastUpdated": "마지막 업데이트",
+    "privacyTitle": "개인정보 처리방침",
+    "termsTitle": "이용약관"
+  },
+  "notFound": {
+    "title": "페이지를 찾을 수 없음",
+    "body": "그 주소는 Kit에 없습니다. 홈으로 돌아가 도구를 고르세요.",
+    "home": "홈으로"
+  },
+  "errorPage": {
+    "title": "문제가 발생했습니다",
+    "body": "이 브라우저에서 마지막 작업이 실패했습니다. 페이지를 떠나지 않고 다시 시도할 수 있습니다.",
+    "retry": "다시 시도"
+  }
+}

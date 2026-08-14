@@ -1,0 +1,735 @@
+{
+  "meta": {
+    "title": "Kit — Browser-værktøjer der forbliver private",
+    "description": "PDF, billeder, medier, konvertering og tekstværktøjer kører på din enhed. Intet uploades til vores servere."
+  },
+  "brand": {
+    "name": "Kit",
+    "tagline": "Hverdagsværktøjer i din browser. Private fra starten."
+  },
+  "nav": {
+    "home": "Start",
+    "tools": "Værktøjer",
+    "history": "Historik",
+    "favorites": "Favoritter",
+    "settings": "Indstillinger",
+    "searchPlaceholder": "Søg efter værktøjer…",
+    "openMenu": "Åbn menu",
+    "closeMenu": "Luk menu"
+  },
+  "footer": {
+    "privacy": "Privatlivspolitik",
+    "terms": "Brugsvilkår",
+    "aboutMe": "Om mig",
+    "license": "MIT-licens",
+    "copyright": "© {year} Tim G (TGthms). Kit er open source under MIT-licensen.",
+    "github": "GitHub"
+  },
+  "common": {
+    "cancel": "Annuller",
+    "clear": "Ryd",
+    "close": "Luk",
+    "copy": "Kopiér",
+    "copied": "Kopieret til udklipsholderen",
+    "download": "Download",
+    "run": "Kør",
+    "process": "Behandl",
+    "processing": "Arbejder…",
+    "done": "Færdig",
+    "error": "Noget gik galt",
+    "retry": "Prøv igen",
+    "addFiles": "Tilføj filer",
+    "dropFiles": "Slip filer her",
+    "orBrowse": "eller gennemse fra din enhed",
+    "pasteSupported": "Du kan også indsætte fra udklipsholderen",
+    "remove": "Fjern",
+    "reorder": "Træk for at ændre rækkefølgen",
+    "files": "Filer",
+    "noFiles": "Ingen filer valgt endnu",
+    "quality": "Kvalitet",
+    "options": "Indstillinger",
+    "preview": "Forhåndsvisning",
+    "result": "Resultat",
+    "input": "Input",
+    "output": "Output",
+    "format": "Format",
+    "language": "Sprog",
+    "theme": "Udseende",
+    "themeSystem": "Følg systemet",
+    "themeLight": "Lyst",
+    "themeDark": "Mørkt",
+    "loading": "Indlæser…",
+    "save": "Gem",
+    "delete": "Slet",
+    "confirm": "Bekræft",
+    "back": "Tilbage",
+    "allCategories": "Alle",
+    "pin": "Fastgør",
+    "unpin": "Frigør",
+    "favorite": "Føj til favoritter",
+    "unfavorite": "Fjern fra favoritter",
+    "presets": "Forudindstillinger",
+    "applyPreset": "Brug forudindstilling",
+    "savePreset": "Gem som forudindstilling",
+    "shortcuts": "Tastaturgenveje",
+    "progress": "Forløb",
+    "fileTooLarge": "Denne fil er stor — behandlingen kan tage et stykke tid.",
+    "unsupported": "Dette format understøttes ikke",
+    "success": "Lykkedes",
+    "warning": "Bemærk",
+    "info": "Info",
+    "selectAll": "Vælg alle",
+    "none": "Ingen",
+    "reset": "Nulstil",
+    "maxWidth": "Maks. bredde",
+    "maxHeight": "Maks. højde",
+    "width": "Bredde",
+    "height": "Højde",
+    "rotate": "Roter",
+    "pages": "Sider",
+    "page": "Side",
+    "text": "Tekst",
+    "encode": "Kod",
+    "decode": "Afkod",
+    "validate": "Validér",
+    "minify": "Minificer",
+    "beautify": "Pæn formattering",
+    "valid": "Gyldig",
+    "invalid": "Ugyldig",
+    "characters": "Tegn",
+    "lines": "Linjer",
+    "from": "Fra",
+    "to": "Til",
+    "start": "Start",
+    "end": "Slut",
+    "speed": "Hastighed",
+    "volume": "Lydstyrke",
+    "trim": "Klip",
+    "extract": "Udtræk",
+    "batch": "Batch",
+    "limitations": "Begrænsninger",
+    "clientSideOnly": "Kører kun i din browser. Dine filer sendes aldrig til en Kit-server.",
+    "aboutMeUrl": "https://tgthms.github.io/about/",
+    "howItWorks": "Sådan virker det og grænser"
+  },
+  "home": {
+    "title": "Hvad skal du have gjort?",
+    "subtitle": "Praktiske værktøjer der kører på denne enhed — ingen konto, ingen uploads.",
+    "categories": "Kategorier",
+    "popular": "Værktøjer",
+    "noResults": "Intet matcher den søgning.",
+    "recent": "Fortsæt hvor du slap",
+    "pinned": "Fastgjorte",
+    "chooseCategory": "Start med en kategori",
+    "chooseCategoryHint": "Vælg en opgavefamilie. Værktøjerne inden i er grupperet, så du kan skimme i stedet for at lede.",
+    "backToCategories": "Kategorier",
+    "toolsInCategory": "{count, plural, one {# værktøj} other {# værktøjer}}",
+    "searchResults": "Søgeresultater",
+    "featured": "Start her",
+    "groups": {
+      "pages": "Sider",
+      "protect": "Beskyt og info",
+      "markup": "Markering",
+      "export": "Eksportér / konvertér",
+      "transform": "Størrelse og beskæring",
+      "look": "Udseende",
+      "file": "Fil",
+      "clip": "Klip",
+      "formats": "Formater",
+      "write": "Skrivning",
+      "inspect": "Undersøg",
+      "encode": "Kod",
+      "generate": "Generér"
+    }
+  },
+  "categories": {
+    "pdf": "PDF",
+    "image": "Billeder",
+    "audio": "Lyd",
+    "video": "Video",
+    "convert": "Filkonvertering",
+    "text": "Skrivning",
+    "pdfDesc": "Flet, opdel, komprimér og markér PDF-dokumenter",
+    "imageDesc": "Komprimér, skaler, konvertér og retoucher fotos",
+    "audioDesc": "Konvertér, klip og ændr kun hastigheden på lyd",
+    "videoDesc": "Konvertér, klip, sæt farten op, og træk lyd ud af video",
+    "convertDesc": "Smart konvertering på tværs af formater (JSON, CSV, ZIP, billeder…)",
+    "textDesc": "Sammenlign tekst, skift store/små bogstaver, og gør Markdown til HTML",
+    "data": "Data",
+    "dataDesc": "JSON, YAML, CSV, XML, SQL og konvertering på tværs af formater",
+    "developer": "Udvikling",
+    "developerDesc": "Tokens, hashes, kodninger, adgangskoder og andre arbejdsbænkværktøjer"
+  },
+  "history": {
+    "title": "Historik",
+    "subtitle": "Det du har kørt på denne enhed. Vi gemmer kun korte resuméer — aldrig dine filer.",
+    "empty": "Ingen aktivitet endnu. Kør et værktøj, så vises det her.",
+    "clear": "Ryd historik",
+    "clearConfirm": "Slet al historik på denne enhed?",
+    "openTool": "Åbn værktøj",
+    "tool": "Værktøj",
+    "when": "Hvornår",
+    "summary": "Resumé",
+    "status": "Status",
+    "success": "Lykkedes",
+    "failed": "Mislykkedes"
+  },
+  "favorites": {
+    "title": "Favoritter",
+    "subtitle": "Værktøjer du holder tæt på til ét tryk.",
+    "empty": "Ingen favoritter endnu. Sæt stjerne på et værktøj fra Start eller fra dets side."
+  },
+  "settings": {
+    "title": "Indstillinger",
+    "subtitle": "Disse valg bliver kun i denne browser.",
+    "appearance": "Udseende",
+    "language": "Sprog",
+    "data": "Data og privatliv",
+    "clearHistory": "Ryd historik",
+    "clearHistoryDesc": "Fjerner lokale historikresuméer, som dette websted gemmer.",
+    "privacyNote": "Kit arbejder med dine filer i browseren. Præferencer og historikresuméer kan gemmes lokalt. De fulde detaljer står i privatlivspolitikken.",
+    "viewPrivacy": "Privatlivspolitik",
+    "viewTerms": "Brugsvilkår",
+    "shortcutsHelp": "Tryk på ? når som helst for tastaturgenveje.",
+    "version": "Version"
+  },
+  "shortcuts": {
+    "title": "Tastaturgenveje",
+    "global": "Overalt",
+    "search": "Fokusér søgning",
+    "settings": "Åbn indstillinger",
+    "home": "Gå til start",
+    "help": "Vis denne liste",
+    "run": "Kør det aktuelle værktøj",
+    "close": "Luk"
+  },
+  "tools": {
+    "pdf-merge": {
+      "name": "Flet PDF’er",
+      "description": "Saml flere PDF’er til én. Forhåndsvis sider, og træk for at omsortere.",
+      "keywords": "pdf flette kombinere samle hæfte flere sider",
+      "run": "Flet",
+      "empty": "Tilføj mindst to PDF-filer.",
+      "success": "{count} filer flettet til én PDF."
+    },
+    "pdf-split": {
+      "name": "Opdel PDF",
+      "description": "Træk et sideinterval ud til en helt ny PDF.",
+      "keywords": "pdf opdele udtrække sider interval",
+      "run": "Opdel",
+      "range": "Sider (for eksempel 1-3,5)",
+      "success": "Din opdelte PDF er klar."
+    },
+    "pdf-organize": {
+      "name": "Organisér sider",
+      "description": "Rotér sider, fjern dem du ikke har brug for, og sæt en ny rækkefølge.",
+      "keywords": "pdf rotere slette omsortere organisere sider",
+      "run": "Gem PDF",
+      "success": "Din PDF er opdateret."
+    },
+    "pdf-compress": {
+      "name": "Komprimér PDF",
+      "description": "Formindsk filstørrelsen ved at omkode sidebilleder (kvalitetskompromis).",
+      "keywords": "pdf komprimere reducere størrelse mindre",
+      "run": "Komprimér",
+      "note": "Dette er en tabsgivende vej — sider kan rasteriseres. Virker bedst på billedtunge PDF’er.",
+      "success": "Den komprimerede PDF er klar til download."
+    },
+    "pdf-watermark": {
+      "name": "Vandmærke PDF",
+      "description": "Sæt tekst som vandmærke, sidehoved eller sidefod på hver side.",
+      "keywords": "pdf vandmærke stempel sidehoved sidefod fortroligt",
+      "run": "Anvend",
+      "text": "Vandmærketekst",
+      "position": "Placering",
+      "header": "Sidehoved",
+      "footer": "Sidefod",
+      "center": "Diagonal midte",
+      "opacity": "Gennemsigtighed",
+      "success": "Vandmærke anvendt."
+    },
+    "pdf-redact": {
+      "name": "Dæk indhold",
+      "description": "Læg helt sorte felter over følsomme områder (visuel dækning).",
+      "keywords": "pdf sløre dække skjule følsomt",
+      "run": "Anvend dækning",
+      "note": "Kun visuel dækning. Det garanterer ikke fjernelse af hver underliggende tekststrøm — dobbelttjek følsomme dokumenter.",
+      "success": "Dækninger anvendt."
+    },
+    "pdf-extract": {
+      "name": "Udtræk fra PDF",
+      "description": "Hent læsbar tekst, eller eksportér en side som billede.",
+      "keywords": "pdf udtrække tekst billeder",
+      "run": "Udtræk",
+      "modeText": "Tekst",
+      "modeImages": "Billeder",
+      "success": "Udtræk afsluttet.",
+      "imagesReady": "Eksporterede {count} sidebillede(r) som ZIP."
+    },
+    "image-compress": {
+      "name": "Komprimér billeder",
+      "description": "Skru ned for kvalitet og maks. størrelse, så fotos forbliver til at dele.",
+      "keywords": "billede komprimere jpg png webp størrelse foto",
+      "run": "Komprimér",
+      "success": "Komprimerede {count} billede(r)."
+    },
+    "image-resize": {
+      "name": "Skaler billeder",
+      "description": "Sæt præcise mål, med valgfri lås af billedforhold.",
+      "keywords": "billede skalere mål dimensioner bredde højde",
+      "run": "Skaler",
+      "lockAspect": "Behold billedforhold",
+      "success": "Skalerede {count} billede(r)."
+    },
+    "image-crop": {
+      "name": "Beskær billede",
+      "description": "Behold kun det rektangel, du interesserer dig for.",
+      "keywords": "billede beskære klippe område",
+      "run": "Beskær",
+      "success": "Beskåret billede klar."
+    },
+    "image-convert": {
+      "name": "Konvertér billedformat",
+      "description": "Skift mellem JPEG, PNG, WEBP og lignende webformater.",
+      "keywords": "billede konvertere format webp avif png jpg jpeg",
+      "run": "Konvertér",
+      "success": "Konverterede {count} billede(r)."
+    },
+    "image-metadata": {
+      "name": "Billedmetadata",
+      "description": "Se EXIF og lignende tags, og eksportér en ren kopi uden dem.",
+      "keywords": "billede exif metadata fjerne privatliv placering",
+      "run": "Fjern metadata",
+      "note": "Pixels omkodes i browseren, så indlejrede metadata droppes.",
+      "success": "Fjernede metadata fra {count} billede(r).",
+      "tag": "Tag",
+      "value": "Værdi",
+      "noExif": "Ingen læsbar EXIF- eller tekstmetadata i denne fil."
+    },
+    "image-adjust": {
+      "name": "Justér billede",
+      "description": "Justér lysstyrke, kontrast og mætning.",
+      "keywords": "billede lysstyrke kontrast mætning farve",
+      "run": "Anvend",
+      "brightness": "Lysstyrke",
+      "contrast": "Kontrast",
+      "saturation": "Mætning",
+      "success": "Justerede {count} billede(r)."
+    },
+    "convert-hub": {
+      "name": "Smart konvertering",
+      "description": "Registrerer blandede fil- eller teksttyper og konverterer på tværs af formater (ikke et mediastudie).",
+      "keywords": "konvertere hub smart batch json yaml csv zip billede data",
+      "run": "Konvertér",
+      "detect": "Registreret som",
+      "chooseOutput": "Outputformat",
+      "success": "Konvertering afsluttet."
+    },
+    "json-format": {
+      "name": "JSON-formatter",
+      "description": "Pæn formattering, minificering og tidlig opfangning af JSON-fejl.",
+      "keywords": "json formatere validere minificere pretty",
+      "run": "Formatér",
+      "success": "JSON ser gyldig ud og er formateret."
+    },
+    "yaml-format": {
+      "name": "YAML-formatter",
+      "description": "Tjek YAML-strukturen, og ryd op i layoutet.",
+      "keywords": "yaml formatere validere yml",
+      "run": "Formatér",
+      "success": "YAML ser gyldig ud."
+    },
+    "toml-format": {
+      "name": "TOML-formatter",
+      "description": "Validér TOML, og hold filen pæn.",
+      "keywords": "toml formatere validere config",
+      "run": "Formatér",
+      "success": "TOML ser gyldig ud."
+    },
+    "markdown-html": {
+      "name": "Markdown ↔ HTML",
+      "description": "Gør Markdown til HTML, eller HTML tilbage til Markdown.",
+      "keywords": "markdown html konvertere md markup",
+      "run": "Konvertér",
+      "toHtml": "Markdown → HTML",
+      "toMd": "HTML → Markdown",
+      "success": "Konverteret."
+    },
+    "csv-json": {
+      "name": "CSV ↔ JSON",
+      "description": "Flyt tabeldata mellem CSV og JSON-arrays.",
+      "keywords": "csv json konvertere tabel regneark",
+      "run": "Konvertér",
+      "toJson": "CSV → JSON",
+      "toCsv": "JSON → CSV",
+      "success": "Konverteret."
+    },
+    "text-diff": {
+      "name": "Sammenlign tekst",
+      "description": "Se ændringer linje for linje mellem to versioner.",
+      "keywords": "diff sammenligne tekst ændringer patch",
+      "run": "Sammenlign",
+      "left": "Original",
+      "right": "Opdateret",
+      "success": "Sammenligning klar."
+    },
+    "base64": {
+      "name": "Base64",
+      "description": "Kod eller afkod Base64 for almindelig tekst eller hele filer.",
+      "keywords": "base64 kode afkode binær",
+      "run": "Konvertér",
+      "mode": "Retning",
+      "textMode": "Tekst",
+      "fileMode": "Fil",
+      "success": "Færdig."
+    },
+    "url-encode": {
+      "name": "URL-kodning",
+      "description": "Procentkod eller afkod URL-dele sikkert.",
+      "keywords": "url kode afkode procent uri forespørgsel",
+      "run": "Konvertér",
+      "success": "Færdig."
+    },
+    "audio-convert": {
+      "name": "Konvertér lyd",
+      "description": "Skift lydcontainere som MP3, WAV og OGG i browseren.",
+      "keywords": "lyd konvertere mp3 wav ogg ffmpeg lyd",
+      "run": "Konvertér",
+      "loadingFfmpeg": "Indlæser lydmotor…",
+      "note": "Bruger enkelttrådet FFmpeg WASM. Store filer kan være langsomme; codec-understøttelse er begrænset.",
+      "success": "Lydkonvertering afsluttet."
+    },
+    "audio-trim": {
+      "name": "Klip lyd",
+      "description": "Behold kun stykket mellem to tidspunkter i en lydfil.",
+      "keywords": "lyd klippe beskære klip mp3 wav",
+      "run": "Klip",
+      "success": "Lydklip afsluttet."
+    },
+    "audio-speed": {
+      "name": "Lydhastighed og -styrke",
+      "description": "Sæt farten op, ned, eller ændr lydstyrken.",
+      "keywords": "lyd hastighed tempo lydstyrke tonehøjde",
+      "run": "Anvend",
+      "success": "Den behandlede lyd er klar."
+    },
+    "video-convert": {
+      "name": "Konvertér video",
+      "description": "Skift videocontainere som MP4 og WEBM i browseren.",
+      "keywords": "video konvertere mp4 webm ffmpeg film",
+      "run": "Konvertér",
+      "loadingFfmpeg": "Indlæser videomotor…",
+      "note": "Bruger enkelttrådet FFmpeg WASM. Store filer kan være langsomme; codec-understøttelse er begrænset.",
+      "success": "Videokonvertering afsluttet."
+    },
+    "video-trim": {
+      "name": "Klip video",
+      "description": "Behold kun klippet mellem to tidspunkter.",
+      "keywords": "video klippe beskære klip mp4",
+      "run": "Klip",
+      "success": "Videoklip afsluttet."
+    },
+    "video-speed": {
+      "name": "Videohastighed og -styrke",
+      "description": "Ændr afspilningshastighed og lydniveau på en video.",
+      "keywords": "video hastighed tempo lydstyrke",
+      "run": "Anvend",
+      "success": "Den behandlede video er klar."
+    },
+    "video-extract-audio": {
+      "name": "Udtræk lyd fra video",
+      "description": "Gem lydsporet fra en video som en lydfil.",
+      "keywords": "video udtrække lyd mp3 soundtrack",
+      "run": "Udtræk lyd",
+      "success": "Lyd udtrukket."
+    },
+    "pdf-numbers": {
+      "name": "Sidenumre",
+      "description": "Sæt en etiket som 1 / 12 på hver side.",
+      "keywords": "pdf sidenumre sidefod sidehoved paginering",
+      "run": "Tilføj numre",
+      "template": "Etiket ({page} og {pages})",
+      "position": "Placering",
+      "start": "Start ved",
+      "headerLeft": "Sidehoved venstre",
+      "headerCenter": "Sidehoved midt",
+      "headerRight": "Sidehoved højre",
+      "footerLeft": "Sidefod venstre",
+      "footerCenter": "Sidefod midt",
+      "footerRight": "Sidefod højre",
+      "success": "Sidenumre tilføjet."
+    },
+    "pdf-to-images": {
+      "name": "PDF → billeder",
+      "description": "Rasterisér hver side til JPEG, og download dem som ZIP.",
+      "keywords": "pdf billede jpg jpeg zip sider eksportere",
+      "run": "Eksportér sider",
+      "limits": "Sider tegnes med PDF.js i denne fane. Meget store dokumenter kan være langsomme og bruge meget hukommelse. Dette er et visuelt raster, ikke et udtræk af indlejrede billedobjekter.",
+      "success": "Eksporterede {count} side(r)."
+    },
+    "images-to-pdf": {
+      "name": "Billeder → PDF",
+      "description": "Saml fotos i en PDF, ét billede pr. side.",
+      "keywords": "billeder pdf jpg png kombinere",
+      "run": "Opret PDF",
+      "success": "Byggede en PDF af {count} billede(r)."
+    },
+    "pdf-flatten": {
+      "name": "Fladgør formularer",
+      "description": "Bag AcroForm-felter ind i siden, så de ikke længere kan redigeres.",
+      "keywords": "pdf fladgøre formular felter acroform",
+      "run": "Fladgør",
+      "limits": "Virker på standard AcroForm-felter. Dynamiske XFA-formularer understøttes ikke fuldt ud.",
+      "success": "Fladgjorde {count} felt(er)."
+    },
+    "pdf-metadata": {
+      "name": "PDF-metadata",
+      "description": "Se, rediger eller fjern titel, forfatter og andre Info-felter.",
+      "keywords": "Nøgleord",
+      "run": "Gem metadata",
+      "strip": "Fjern alle felter",
+      "title": "Titel",
+      "author": "Forfatter",
+      "subject": "Emne",
+      "creator": "Ophavsmand",
+      "producer": "Producent",
+      "saved": "Metadata gemt.",
+      "stripped": "Metadata fjernet."
+    },
+    "pdf-protect": {
+      "name": "Lås eller lås PDF op",
+      "description": "Tilføj eller fjern en brugeradgangskode. Krypteringen bliver i denne browser.",
+      "keywords": "pdf adgangskode låse låse op kryptere dekryptere",
+      "run": "Anvend",
+      "lock": "Lås",
+      "unlock": "Lås op",
+      "password": "Adgangskode",
+      "limits": "Bruger et PDF-krypteringsbibliotek på klientsiden. Nogle ældre eller usædvanlige revisioner kan muligvis ikke låses op. Kit sender aldrig filen eller adgangskoden til en server.",
+      "success": "PDF’en er klar."
+    },
+    "image-rotate": {
+      "name": "Rotér og spejlvend",
+      "description": "Drej billeder 90° ad gangen, eller spejlvend dem vandret eller lodret.",
+      "keywords": "billede rotere spejle vende",
+      "run": "Anvend",
+      "operation": "Transformation",
+      "rot90": "Rotér 90°",
+      "rot180": "Rotér 180°",
+      "rot270": "Rotér 270°",
+      "flipH": "Vend vandret",
+      "flipV": "Vend lodret",
+      "success": "Transformerede {count} billede(r)."
+    },
+    "image-filters": {
+      "name": "Billedfiltre",
+      "description": "Anvend gråtoner, sepia eller invertér på ét eller flere fotos.",
+      "keywords": "billede filter gråtoner sepia invertere",
+      "run": "Anvend",
+      "filter": "Filter",
+      "grayscale": "Gråtoner",
+      "sepia": "Sepia",
+      "invert": "Invertér",
+      "success": "Filtrerede {count} billede(r)."
+    },
+    "image-favicon": {
+      "name": "Favicon-pakke",
+      "description": "Eksportér et kildebillede som almindelige ikonstørrelser i en ZIP.",
+      "keywords": "favicon ikon 16 32 180 192 512 apple touch",
+      "run": "Eksportér ikoner",
+      "note": "Eksporterer PNG-filer på 16, 32, 48, 180, 192 og 512 pixels.",
+      "success": "Ikonpakken er klar."
+    },
+    "video-gif": {
+      "name": "Video → GIF",
+      "description": "Gør et kort klip til en looping GIF i browseren.",
+      "keywords": "video gif klip konvertere ffmpeg",
+      "run": "Lav GIF",
+      "limits": "Bruger FFmpeg WASM. Hold klip korte — GIF-kodning er langsom og hukommelsestung. Palet og codecs følger buildet i browseren.",
+      "success": "GIF’en er klar."
+    },
+    "xml-json": {
+      "name": "XML ↔ JSON",
+      "description": "Konvertér XML-dokumenter til JSON, eller JSON tilbage til XML.",
+      "keywords": "xml json konvertere parse",
+      "run": "Konvertér",
+      "toJson": "XML → JSON",
+      "toXml": "JSON → XML",
+      "success": "Konverteret."
+    },
+    "sql-format": {
+      "name": "SQL-formatter",
+      "description": "Formatér SQL, så klausuler og lister er lettere at læse.",
+      "keywords": "sql formatere pretty forespørgsel",
+      "run": "Formatér",
+      "success": "SQL formateret."
+    },
+    "regex-tester": {
+      "name": "Regex-tester",
+      "description": "Prøv et regulært udtryk på en eksempeltekst, og erstat forekomster.",
+      "keywords": "regex regulært udtryk teste erstatte",
+      "pattern": "Mønster",
+      "flags": "Flags",
+      "input": "Eksempeltekst",
+      "replace": "Erstatning",
+      "runReplace": "Erstat",
+      "matches": "{count, plural, one {# forekomst} other {# forekomster}}",
+      "success": "Erstatning klar."
+    },
+    "hash-generator": {
+      "name": "Hash-generator",
+      "description": "SHA-1/256/384/512 og MD5 af tekst eller en fil, beregnet lokalt.",
+      "keywords": "hash sha256 md5 sha1 kontrolsum digest",
+      "run": "Hash",
+      "algo": "Algoritme",
+      "digest": "Digest",
+      "limits": "Hashes beregnes i denne browser (Web Crypto til SHA, en lokal MD5-implementering). MD5 er ikke kollisionssikker — brug den kun til kontrolsummer.",
+      "success": "Hash klar."
+    },
+    "uuid-generator": {
+      "name": "UUID-generator",
+      "description": "Opret UUID version 4 eller 7 på denne enhed.",
+      "keywords": "uuid guid v4 v7 generere",
+      "run": "Generér",
+      "count": "Hvor mange",
+      "version": "Version",
+      "success": "UUID’er genereret."
+    },
+    "color-convert": {
+      "name": "Farvekonverter",
+      "description": "Konvertér mellem HEX, RGB, HSL og HSV med en farvevælger.",
+      "keywords": "farve hex rgb hsl hsv vælger",
+      "picker": "Farvevælger",
+      "invalid": "Indtast en hex-farve med 3 eller 6 cifre."
+    },
+    "lorem-ipsum": {
+      "name": "Lorem ipsum",
+      "description": "Generér pladsholderafsnit, sætninger eller ord.",
+      "keywords": "lorem ipsum pladsholder dummy tekst",
+      "run": "Generér",
+      "count": "Antal",
+      "mode": "Tilstand",
+      "paragraphs": "Afsnit",
+      "sentences": "Sætninger",
+      "words": "Ord",
+      "success": "Tekst genereret."
+    },
+    "qr-code": {
+      "name": "QR-kode",
+      "description": "Opret en QR-kode fra tekst, eller læs en fra et billede.",
+      "keywords": "qr kode generere scanne læse stregkode",
+      "run": "Generér",
+      "payload": "Tekst eller URL",
+      "read": "Læs fra billede",
+      "runRead": "Læs QR",
+      "generated": "QR-kode klar.",
+      "decoded": "QR-indhold læst.",
+      "none": "Ingen QR-kode fundet i det billede."
+    },
+    "pdf-sign": {
+      "name": "Underskriv PDF",
+      "description": "Sæt en indtastet underskrift på hver side. Kun visuelt — ikke et certifikat.",
+      "keywords": "pdf underskrive signatur stempel navn",
+      "run": "Underskriv",
+      "signature": "Underskriftstekst",
+      "placeholder": "Dit navn",
+      "limits": "Dette tegner dit navn på siden. Det er ikke en kryptografisk digital signatur.",
+      "success": "Underskrift sat på."
+    },
+    "image-watermark": {
+      "name": "Vandmærke billeder",
+      "description": "Læg tekst over fotos, én fil eller et helt batch.",
+      "keywords": "billede vandmærke stempel ophavsret",
+      "run": "Anvend",
+      "text": "Vandmærketekst",
+      "position": "Placering",
+      "bottomRight": "Nederst til højre",
+      "bottomLeft": "Nederst til venstre",
+      "topRight": "Øverst til højre",
+      "center": "Midten",
+      "success": "Vandmærkede {count} billede(r)."
+    },
+    "password-generator": {
+      "name": "Adgangskodegenerator",
+      "description": "Opret en stærk adgangskode på denne enhed. Intet gemmes.",
+      "keywords": "adgangskode generere tilfældig hemmelig",
+      "run": "Generér",
+      "length": "Længde",
+      "lower": "Små bogstaver",
+      "upper": "Store bogstaver",
+      "digits": "Cifre",
+      "symbols": "Symboler",
+      "success": "Adgangskode klar."
+    },
+    "case-convert": {
+      "name": "Skift store/små bogstaver",
+      "description": "Skift mellem camel, snake, kebab, titel og mere.",
+      "keywords": "bogstaver camel snake kebab pascal titel",
+      "run": "Konvertér",
+      "style": "Stil",
+      "success": "Konverteret."
+    },
+    "jwt-decode": {
+      "name": "JWT-afkoder",
+      "description": "Læs JWT-header og payload lokalt. Signaturer verificeres ikke.",
+      "keywords": "jwt afkode token bearer auth",
+      "run": "Afkod",
+      "limits": "Kit afkoder kun Base64url. Uden en nøgle kan den ikke bevise, at tokenet er ægte.",
+      "hasSig": "Signaturdel er til stede (ikke verificeret).",
+      "noSig": "Ingen signaturdel.",
+      "empty": "Indsæt først et token.",
+      "success": "Token afkodet."
+    },
+    "unix-timestamp": {
+      "name": "Unix-tidsstempel",
+      "description": "Konvertér Unix-tid til ISO og tilbage.",
+      "keywords": "unix epoch tidsstempel iso dato",
+      "now": "Brug nu"
+    },
+    "cron-explain": {
+      "name": "Forklar cron",
+      "description": "Gør et cron-udtryk med 5 felter til almindeligt sprog.",
+      "keywords": "cron tidsplan crontab forklare",
+      "run": "Forklar",
+      "success": "Forklaret."
+    },
+    "number-base": {
+      "name": "Talbase",
+      "description": "Konvertér heltal mellem base 2 og 36.",
+      "keywords": "binær hex decimal base konvertere",
+      "value": "Tal",
+      "from": "Fra base",
+      "to": "Til base"
+    },
+    "html-entities": {
+      "name": "HTML-entiteter",
+      "description": "Kod eller afkod &lt; &amp; og numeriske entiteter.",
+      "keywords": "html entiteter kode afkode escape",
+      "run": "Konvertér",
+      "encode": "Kod",
+      "decode": "Afkod",
+      "success": "Konverteret."
+    },
+    "json-types": {
+      "name": "JSON → TypeScript",
+      "description": "Udled TypeScript-interfaces fra et JSON-eksempel.",
+      "keywords": "json typescript interface type generere",
+      "run": "Generér typer",
+      "success": "Typer genereret."
+    }
+  },
+  "legal": {
+    "lastUpdated": "Sidst opdateret",
+    "privacyTitle": "Privatlivspolitik",
+    "termsTitle": "Brugsvilkår"
+  },
+  "notFound": {
+    "title": "Siden blev ikke fundet",
+    "body": "Den adresse findes ikke i Kit. Gå hjem, og vælg et værktøj derfra.",
+    "home": "Tilbage til start"
+  },
+  "errorPage": {
+    "title": "Noget gik galt",
+    "body": "Den sidste handling mislykkedes i denne browser. Du kan prøve igen uden at forlade siden.",
+    "retry": "Prøv igen"
+  }
+}

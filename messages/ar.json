@@ -1,0 +1,735 @@
+{
+  "meta": {
+    "title": "Kit — أدوات في المتصفح تبقى خاصة",
+    "description": "ملفات PDF والصور والوسائط والمحوّلات والنص تعمل على جهازك. لا يُرفع شيء إلى خوادمنا."
+  },
+  "brand": {
+    "name": "Kit",
+    "tagline": "أدوات يومية في متصفحك. خاصة منذ التصميم."
+  },
+  "nav": {
+    "home": "الرئيسية",
+    "tools": "الأدوات",
+    "history": "السجل",
+    "favorites": "المفضلة",
+    "settings": "الإعدادات",
+    "searchPlaceholder": "ابحث عن أداة…",
+    "openMenu": "فتح القائمة",
+    "closeMenu": "إغلاق القائمة"
+  },
+  "footer": {
+    "privacy": "سياسة الخصوصية",
+    "terms": "شروط الاستخدام",
+    "aboutMe": "عني",
+    "license": "رخصة MIT",
+    "copyright": "© {year} Tim G (TGthms). Kit برنامج مفتوح المصدر برخصة MIT.",
+    "github": "GitHub"
+  },
+  "common": {
+    "cancel": "إلغاء",
+    "clear": "مسح",
+    "close": "إغلاق",
+    "copy": "نسخ",
+    "copied": "نُسخ إلى الحافظة",
+    "download": "تنزيل",
+    "run": "تشغيل",
+    "process": "معالجة",
+    "processing": "جارٍ العمل…",
+    "done": "تم",
+    "error": "حدث خطأ ما",
+    "retry": "إعادة المحاولة",
+    "addFiles": "إضافة ملفات",
+    "dropFiles": "أسقط الملفات هنا",
+    "orBrowse": "أو تصفّح من جهازك",
+    "pasteSupported": "يمكنك أيضاً اللصق من الحافظة",
+    "remove": "إزالة",
+    "reorder": "اسحب لتغيير الترتيب",
+    "files": "الملفات",
+    "noFiles": "لم يُختر أي ملف بعد",
+    "quality": "الجودة",
+    "options": "خيارات",
+    "preview": "معاينة",
+    "result": "النتيجة",
+    "input": "الإدخال",
+    "output": "الإخراج",
+    "format": "التنسيق",
+    "language": "اللغة",
+    "theme": "المظهر",
+    "themeSystem": "النظام",
+    "themeLight": "فاتح",
+    "themeDark": "داكن",
+    "loading": "جارٍ التحميل…",
+    "save": "حفظ",
+    "delete": "حذف",
+    "confirm": "تأكيد",
+    "back": "رجوع",
+    "allCategories": "الكل",
+    "pin": "تثبيت",
+    "unpin": "إلغاء التثبيت",
+    "favorite": "إضافة إلى المفضلة",
+    "unfavorite": "إزالة من المفضلة",
+    "presets": "الإعدادات المسبقة",
+    "applyPreset": "استخدام إعداد مسبق",
+    "savePreset": "حفظ كإعداد مسبق",
+    "shortcuts": "اختصارات لوحة المفاتيح",
+    "progress": "التقدم",
+    "fileTooLarge": "هذا الملف كبير — قد تستغرق المعالجة وقتاً.",
+    "unsupported": "هذا التنسيق غير مدعوم",
+    "success": "نجاح",
+    "warning": "تنبيه",
+    "info": "معلومة",
+    "selectAll": "تحديد الكل",
+    "none": "لا شيء",
+    "reset": "إعادة ضبط",
+    "maxWidth": "أقصى عرض",
+    "maxHeight": "أقصى ارتفاع",
+    "width": "العرض",
+    "height": "الارتفاع",
+    "rotate": "تدوير",
+    "pages": "صفحات",
+    "page": "صفحة",
+    "text": "نص",
+    "encode": "ترميز",
+    "decode": "فك الترميز",
+    "validate": "تحقق",
+    "minify": "تصغير",
+    "beautify": "تنسيق جميل",
+    "valid": "صالح",
+    "invalid": "غير صالح",
+    "characters": "أحرف",
+    "lines": "أسطر",
+    "from": "من",
+    "to": "إلى",
+    "start": "البداية",
+    "end": "النهاية",
+    "speed": "السرعة",
+    "volume": "مستوى الصوت",
+    "trim": "قص",
+    "extract": "استخراج",
+    "batch": "دفعة",
+    "limitations": "الحدود",
+    "clientSideOnly": "يعمل في متصفحك فقط. لا تُرسل ملفاتك أبداً إلى خادم Kit.",
+    "aboutMeUrl": "https://tgthms.github.io/about/",
+    "howItWorks": "كيف يعمل والحدود"
+  },
+  "home": {
+    "title": "ماذا تريد أن تفعل؟",
+    "subtitle": "أدوات عملية تعمل على هذا الجهاز — بلا حساب وبلا رفع.",
+    "categories": "التصنيفات",
+    "popular": "الأدوات",
+    "noResults": "لا توجد نتائج لهذا البحث.",
+    "recent": "أكمل من حيث توقفت",
+    "pinned": "المثبّت",
+    "chooseCategory": "ابدأ بتصنيف",
+    "chooseCategoryHint": "اختر عائلة مهام. الأدوات داخلها مجمّعة لتتصفحها بدل البحث العشوائي.",
+    "backToCategories": "التصنيفات",
+    "toolsInCategory": "{count, plural, one {أداة واحدة} other {# أدوات}}",
+    "searchResults": "نتائج البحث",
+    "featured": "ابدأ من هنا",
+    "groups": {
+      "pages": "صفحات",
+      "protect": "حماية ومعلومات",
+      "markup": "علامات",
+      "export": "تصدير / تحويل",
+      "transform": "الحجم والقص",
+      "look": "المظهر",
+      "file": "ملف",
+      "clip": "مقاطع",
+      "formats": "تنسيقات",
+      "write": "كتابة",
+      "inspect": "فحص",
+      "encode": "ترميز",
+      "generate": "توليد"
+    }
+  },
+  "categories": {
+    "pdf": "PDF",
+    "image": "صور",
+    "audio": "صوت",
+    "video": "فيديو",
+    "convert": "تحويل",
+    "text": "كتابة",
+    "pdfDesc": "دمج وتقسيم وضغط ووضع علامات على ملفات PDF",
+    "imageDesc": "ضغط الصور وتغيير حجمها وتحويلها وتنقيحها",
+    "audioDesc": "تحويل الصوت وقصّه وتغيير سرعته فقط",
+    "videoDesc": "تحويل الفيديو وقصّه وتسريعه واستخراج الصوت",
+    "convertDesc": "تحويل ذكي بين التنسيقات (JSON وCSV وZIP والصور…)",
+    "textDesc": "مقارنة النصوص وتغيير حالة الأحرف وتحويل Markdown إلى HTML",
+    "data": "بيانات",
+    "dataDesc": "JSON وYAML وCSV وXML وSQL والتحويل بين التنسيقات",
+    "developer": "تطوير",
+    "developerDesc": "الرموز والتجزئات والترميزات وكلمات المرور وأدوات المكتب الأخرى"
+  },
+  "history": {
+    "title": "السجل",
+    "subtitle": "ما شغّلته على هذا الجهاز. نحتفظ بملخصات قصيرة فقط — أبداً بملفاتك.",
+    "empty": "لا نشاط بعد. شغّل أداة وستظهر هنا.",
+    "clear": "مسح السجل",
+    "clearConfirm": "حذف كل السجل على هذا الجهاز؟",
+    "openTool": "فتح الأداة",
+    "tool": "الأداة",
+    "when": "متى",
+    "summary": "الملخص",
+    "status": "الحالة",
+    "success": "نجح",
+    "failed": "فشل"
+  },
+  "favorites": {
+    "title": "المفضلة",
+    "subtitle": "الأدوات التي تبقيها في متناول اليد.",
+    "empty": "لا مفضلة بعد. أضف نجمة من الرئيسية أو من صفحة الأداة."
+  },
+  "settings": {
+    "title": "الإعدادات",
+    "subtitle": "هذه الاختيارات تبقى في هذا المتصفح فقط.",
+    "appearance": "المظهر",
+    "language": "اللغة",
+    "data": "البيانات والخصوصية",
+    "clearHistory": "مسح السجل",
+    "clearHistoryDesc": "يزيل ملخصات السجل المحلية التي يحفظها هذا الموقع.",
+    "privacyNote": "يعالج Kit ملفاتك في المتصفح. قد تُحفظ التفضيلات وملخصات السجل محلياً. التفاصيل في سياسة الخصوصية.",
+    "viewPrivacy": "سياسة الخصوصية",
+    "viewTerms": "شروط الاستخدام",
+    "shortcutsHelp": "اضغط ؟ في أي وقت لعرض الاختصارات.",
+    "version": "الإصدار"
+  },
+  "shortcuts": {
+    "title": "اختصارات لوحة المفاتيح",
+    "global": "في كل مكان",
+    "search": "التركيز على البحث",
+    "settings": "فتح الإعدادات",
+    "home": "الذهاب للرئيسية",
+    "help": "عرض هذه القائمة",
+    "run": "تشغيل الأداة الحالية",
+    "close": "إغلاق"
+  },
+  "tools": {
+    "pdf-merge": {
+      "name": "دمج ملفات PDF",
+      "description": "اجمع عدة ملفات PDF في ملف واحد. عاين الصفحات واسحب لإعادة الترتيب.",
+      "keywords": "pdf دمج جمع ضم صفحات متعددة",
+      "run": "دمج",
+      "empty": "أضف ملفي PDF على الأقل.",
+      "success": "دُمج {count} ملفاً في PDF واحد."
+    },
+    "pdf-split": {
+      "name": "تقسيم PDF",
+      "description": "استخرج نطاقاً من الصفحات إلى PDF جديد.",
+      "keywords": "pdf تقسيم استخراج صفحات نطاق",
+      "run": "تقسيم",
+      "range": "الصفحات (مثلاً 1-3,5)",
+      "success": "ملف PDF المقسّم جاهز."
+    },
+    "pdf-organize": {
+      "name": "تنظيم الصفحات",
+      "description": "دوّر الصفحات واحذف ما لا تحتاجه وعيّن ترتيباً جديداً.",
+      "keywords": "pdf تدوير حذف إعادة ترتيب تنظيم صفحات",
+      "run": "حفظ PDF",
+      "success": "تم تحديث ملف PDF."
+    },
+    "pdf-compress": {
+      "name": "ضغط PDF",
+      "description": "قلّل الحجم بإعادة ترميز صور الصفحات (مقايضة للجودة).",
+      "keywords": "pdf ضغط تصغير حجم",
+      "run": "ضغط",
+      "note": "مسار بفقدان: قد تُحوَّل الصفحات إلى نقط. الأفضل لملفات PDF الغنية بالصور.",
+      "success": "ملف PDF المضغوط جاهز للتنزيل."
+    },
+    "pdf-watermark": {
+      "name": "علامة مائية على PDF",
+      "description": "ضع نصاً كعلامة أو ترويسة أو تذييل على كل صفحة.",
+      "keywords": "pdf علامة ختم ترويسة تذييل سري",
+      "run": "تطبيق",
+      "text": "نص العلامة",
+      "position": "الموضع",
+      "header": "الترويسة",
+      "footer": "التذييل",
+      "center": "الوسط قطرياً",
+      "opacity": "العتامة",
+      "success": "طُبقت العلامة المائية."
+    },
+    "pdf-redact": {
+      "name": "تغطية المحتوى",
+      "description": "ضع مستطيلات سوداء على المناطق الحساسة (تغطية بصرية).",
+      "keywords": "pdf تغطية إخفاء حساس",
+      "run": "تطبيق التغطية",
+      "note": "تغطية بصرية فقط. لا تضمن إزالة كل تدفق النص تحتها — راجع المستندات الحساسة.",
+      "success": "طُبقت التغطيات."
+    },
+    "pdf-extract": {
+      "name": "استخراج من PDF",
+      "description": "اسحب النص المقروء أو صدّر صفحة كصورة.",
+      "keywords": "pdf استخراج نص صور",
+      "run": "استخراج",
+      "modeText": "نص",
+      "modeImages": "صور",
+      "success": "انتهى الاستخراج.",
+      "imagesReady": "صُدّرت {count} صورة صفحة في ZIP."
+    },
+    "image-compress": {
+      "name": "ضغط الصور",
+      "description": "اخفض الجودة والحجم الأقصى لتبقى الصور قابلة للمشاركة.",
+      "keywords": "صورة ضغط jpg png webp حجم صورة",
+      "run": "ضغط",
+      "success": "ضُغطت {count} صورة."
+    },
+    "image-resize": {
+      "name": "تغيير حجم الصور",
+      "description": "حدّد الأبعاد بدقة مع قفل اختياري لنسبة العرض إلى الارتفاع.",
+      "keywords": "صورة تحجيم أبعاد عرض ارتفاع",
+      "run": "تحجيم",
+      "lockAspect": "الحفاظ على النسبة",
+      "success": "غُيّر حجم {count} صورة."
+    },
+    "image-crop": {
+      "name": "قص صورة",
+      "description": "أبقِ المستطيل الذي يهمك فقط.",
+      "keywords": "صورة قص قطع منطقة",
+      "run": "قص",
+      "success": "الصورة المقصوصة جاهزة."
+    },
+    "image-convert": {
+      "name": "تحويل تنسيق الصورة",
+      "description": "بدّل بين JPEG وPNG وWEBP وتنسيقات الويب المشابهة.",
+      "keywords": "صورة تحويل تنسيق webp avif png jpg jpeg",
+      "run": "تحويل",
+      "success": "حُوّلت {count} صورة."
+    },
+    "image-metadata": {
+      "name": "بيانات الصورة الوصفية",
+      "description": "اعرض EXIF والوسوم المشابهة ثم صدّر نسخة نظيفة بدونها.",
+      "keywords": "صورة exif بيانات وصفية إزالة خصوصية موقع",
+      "run": "إزالة البيانات الوصفية",
+      "note": "يُعاد ترميز البكسل في المتصفح فتسقط البيانات المضمّنة.",
+      "success": "أُزيلت البيانات الوصفية من {count} صورة.",
+      "tag": "وسم",
+      "value": "قيمة",
+      "noExif": "لا توجد بيانات EXIF أو نصية قابلة للقراءة في هذا الملف."
+    },
+    "image-adjust": {
+      "name": "ضبط صورة",
+      "description": "عدّل السطوع والتباين والتشبع.",
+      "keywords": "صورة سطوع تباين تشبع لون",
+      "run": "تطبيق",
+      "brightness": "السطوع",
+      "contrast": "التباين",
+      "saturation": "التشبع",
+      "success": "ضُبطت {count} صورة."
+    },
+    "convert-hub": {
+      "name": "تحويل ذكي",
+      "description": "يكتشف أنواعاً مختلطة من الملفات أو النصوص ويحوّل بينها (ليس استوديو وسائط).",
+      "keywords": "تحويل مركز ذكي دفعة json yaml csv zip صورة بيانات",
+      "run": "تحويل",
+      "detect": "اكتُشف كـ",
+      "chooseOutput": "تنسيق الإخراج",
+      "success": "انتهى التحويل."
+    },
+    "json-format": {
+      "name": "منسّق JSON",
+      "description": " sensّق وصغّر والتقط أخطاء JSON مبكراً.",
+      "keywords": "json تنسيق تحقق تصغير",
+      "run": "تنسيق",
+      "success": "JSON صالح ومنسّق."
+    },
+    "yaml-format": {
+      "name": "منسّق YAML",
+      "description": "تحقق من بنية YAML ونظّم التخطيط.",
+      "keywords": "yaml تنسيق تحقق yml",
+      "run": "تنسيق",
+      "success": "YAML صالح."
+    },
+    "toml-format": {
+      "name": "منسّق TOML",
+      "description": "تحقق من TOML وأبقِ الملف مرتباً.",
+      "keywords": "toml تنسيق تحقق إعداد",
+      "run": "تنسيق",
+      "success": "TOML صالح."
+    },
+    "markdown-html": {
+      "name": "Markdown ↔ HTML",
+      "description": "حوّل Markdown إلى HTML أو العكس.",
+      "keywords": "markdown html تحويل md ترميز",
+      "run": "تحويل",
+      "toHtml": "Markdown → HTML",
+      "toMd": "HTML → Markdown",
+      "success": "تم التحويل."
+    },
+    "csv-json": {
+      "name": "CSV ↔ JSON",
+      "description": "انقل البيانات الجدولية بين CSV ومصفوفات JSON.",
+      "keywords": "csv json تحويل جدول",
+      "run": "تحويل",
+      "toJson": "CSV → JSON",
+      "toCsv": "JSON → CSV",
+      "success": "تم التحويل."
+    },
+    "text-diff": {
+      "name": "مقارنة النص",
+      "description": "اطلع على التغييرات سطراً بسطر بين نسختين.",
+      "keywords": "diff مقارنة نص تغييرات",
+      "run": "مقارنة",
+      "left": "الأصل",
+      "right": "المحدَّث",
+      "success": "المقارنة جاهزة."
+    },
+    "base64": {
+      "name": "Base64",
+      "description": "رمّز أو فك Base64 للنص أو لملفات كاملة.",
+      "keywords": "base64 ترميز فك ثنائي",
+      "run": "تحويل",
+      "mode": "الاتجاه",
+      "textMode": "نص",
+      "fileMode": "ملف",
+      "success": "تم."
+    },
+    "url-encode": {
+      "name": "ترميز URL",
+      "description": "رمّز أو فك مكوّنات العنوان بنسبة مئوية بأمان.",
+      "keywords": "url ترميز فك نسبة uri استعلام",
+      "run": "تحويل",
+      "success": "تم."
+    },
+    "audio-convert": {
+      "name": "تحويل الصوت",
+      "description": "غيّر حاويات الصوت مثل MP3 وWAV وOGG في المتصفح.",
+      "keywords": "صوت تحويل mp3 wav ogg ffmpeg",
+      "run": "تحويل",
+      "loadingFfmpeg": "جارٍ تحميل محرك الصوت…",
+      "note": "يستخدم FFmpeg WASM بخيط واحد. قد تبطئ الملفات الكبيرة؛ دعم الترميز محدود.",
+      "success": "انتهى تحويل الصوت."
+    },
+    "audio-trim": {
+      "name": "قص الصوت",
+      "description": "أبقِ فقط الفترة بين لحظتين في ملف صوتي.",
+      "keywords": "صوت قص مقطع mp3 wav",
+      "run": "قص",
+      "success": "انتهى قص الصوت."
+    },
+    "audio-speed": {
+      "name": "سرعة الصوت ومستواه",
+      "description": "سرّع أو أبطئ أو غيّر علو الصوت.",
+      "keywords": "صوت سرعة إيقاع مستوى طبقة",
+      "run": "تطبيق",
+      "success": "الصوت المعالج جاهز."
+    },
+    "video-convert": {
+      "name": "تحويل الفيديو",
+      "description": "غيّر حاويات الفيديو مثل MP4 وWEBM في المتصفح.",
+      "keywords": "فيديو تحويل mp4 webm ffmpeg",
+      "run": "تحويل",
+      "loadingFfmpeg": "جارٍ تحميل محرك الفيديو…",
+      "note": "يستخدم FFmpeg WASM بخيط واحد. قد تبطئ الملفات الكبيرة؛ دعم الترميز محدود.",
+      "success": "انتهى تحويل الفيديو."
+    },
+    "video-trim": {
+      "name": "قص الفيديو",
+      "description": "أبقِ المقطع بين لحظتين فقط.",
+      "keywords": "فيديو قص مقطع mp4",
+      "run": "قص",
+      "success": "انتهى قص الفيديو."
+    },
+    "video-speed": {
+      "name": "سرعة الفيديو ومستواه",
+      "description": "غيّر سرعة التشغيل ومستوى الصوت لفيديو.",
+      "keywords": "فيديو سرعة إيقاع مستوى",
+      "run": "تطبيق",
+      "success": "الفيديو المعالج جاهز."
+    },
+    "video-extract-audio": {
+      "name": "استخراج الصوت من فيديو",
+      "description": "احفظ الشريط الصوتي لفيديو كملف صوتي.",
+      "keywords": "فيديو استخراج صوت mp3",
+      "run": "استخراج الصوت",
+      "success": "استُخرج الصوت."
+    },
+    "pdf-numbers": {
+      "name": "أرقام الصفحات",
+      "description": "ضع عنواناً مثل 1 / 12 على كل صفحة.",
+      "keywords": "pdf أرقام صفحات تذييل ترويسة ترقيم",
+      "run": "إضافة الأرقام",
+      "template": "التسمية ({page} و {pages})",
+      "position": "الموضع",
+      "start": "البدء من",
+      "headerLeft": "الترويسة يساراً",
+      "headerCenter": "الترويسة وسطاً",
+      "headerRight": "الترويسة يميناً",
+      "footerLeft": "التذييل يساراً",
+      "footerCenter": "التذييل وسطاً",
+      "footerRight": "التذييل يميناً",
+      "success": "أُضيفت أرقام الصفحات."
+    },
+    "pdf-to-images": {
+      "name": "PDF → صور",
+      "description": "حوّل كل صفحة إلى JPEG ونزّلها في ZIP.",
+      "keywords": "pdf صورة jpg jpeg zip صفحات تصدير",
+      "run": "تصدير الصفحات",
+      "limits": "تُرسم الصفحات بـ PDF.js في هذا التبويب. قد تبطئ المستندات الضخمة وتستهلك ذاكرة كثيرة. هذا تنقيط بصري لا استخراج لكائنات الصور المضمّنة.",
+      "success": "صُدّرت {count} صفحة."
+    },
+    "images-to-pdf": {
+      "name": "صور → PDF",
+      "description": "كدّس الصور في PDF، صورة واحدة في كل صفحة.",
+      "keywords": "صور pdf jpg png جمع",
+      "run": "إنشاء PDF",
+      "success": "أُنشئ PDF من {count} صورة."
+    },
+    "pdf-flatten": {
+      "name": "تسطيح النماذج",
+      "description": "اثبِت حقول AcroForm في الصفحة كي يتعذّر تحريرها.",
+      "keywords": "pdf تسطيح نموذج حقول acroform",
+      "run": "تسطيح",
+      "limits": "يعمل مع حقول AcroForm القياسية. نماذج XFA الديناميكية غير مدعومة بالكامل.",
+      "success": "سُطّح {count} حقلاً."
+    },
+    "pdf-metadata": {
+      "name": "بيانات PDF الوصفية",
+      "description": "اعرض أو حرّر أو امسح العنوان والمؤلف وحقول المعلومات الأخرى.",
+      "keywords": "كلمات مفتاحية",
+      "run": "حفظ البيانات الوصفية",
+      "strip": "مسح كل الحقول",
+      "title": "العنوان",
+      "author": "المؤلف",
+      "subject": "الموضوع",
+      "creator": "المنشئ",
+      "producer": "المنتج",
+      "saved": "حُفظت البيانات الوصفية.",
+      "stripped": "مُسحت البيانات الوصفية."
+    },
+    "pdf-protect": {
+      "name": "قفل أو فتح PDF",
+      "description": "أضف كلمة مرور مستخدم أو أزلها. يبقى التشفير في هذا المتصفح.",
+      "keywords": "pdf كلمة مرور قفل فتح تشفير",
+      "run": "تطبيق",
+      "lock": "قفل",
+      "unlock": "فتح",
+      "password": "كلمة المرور",
+      "limits": "يستخدم مكتبة تشفير PDF على الجهاز. قد تفشل بعض المراجعات القديمة أو غير المعتادة. لا يرسل Kit الملف ولا كلمة المرور إلى خادم.",
+      "success": "ملف PDF جاهز."
+    },
+    "image-rotate": {
+      "name": "تدوير وعكس",
+      "description": "أدر الصور بخطوات 90° أو اعكسها أفقياً أو عمودياً.",
+      "keywords": "صورة تدوير عكس مرآة",
+      "run": "تطبيق",
+      "operation": "التحويل",
+      "rot90": "تدوير 90°",
+      "rot180": "تدوير 180°",
+      "rot270": "تدوير 270°",
+      "flipH": "عكس أفقي",
+      "flipV": "عكس عمودي",
+      "success": "حُوّلت {count} صورة."
+    },
+    "image-filters": {
+      "name": "مرشحات الصورة",
+      "description": "طبّق تدرّج الرمادي أوsepia أو العكس على صورة أو أكثر.",
+      "keywords": "صورة مرشح رمادي بني عكس",
+      "run": "تطبيق",
+      "filter": "مرشح",
+      "grayscale": "تدرّج رمادي",
+      "sepia": "بني داكن",
+      "invert": "عكس",
+      "success": "فُلترت {count} صورة."
+    },
+    "image-favicon": {
+      "name": "حزمة أيقونة الموقع",
+      "description": "صدّر صورة المصدر بأحجام أيقونات شائعة في ZIP.",
+      "keywords": "أيقونة favicon 16 32 180 192 512",
+      "run": "تصدير الأيقونات",
+      "note": "يصدّر ملفات PNG بأبعاد 16 و32 و48 و180 و192 و512 بكسل.",
+      "success": "حزمة الأيقونات جاهزة."
+    },
+    "video-gif": {
+      "name": "فيديو → GIF",
+      "description": "حوّل مقطعاً قصيراً إلى GIF متكرر في المتصفح.",
+      "keywords": "فيديو gif مقطع تحويل ffmpeg",
+      "run": "إنشاء GIF",
+      "limits": "يستخدم FFmpeg WASM. أبقِ المقاطع قصيرة — ترميز GIF بطيء ويستهلك الذاكرة. تتبع الترميزات بناء المتصفح.",
+      "success": "ملف GIF جاهز."
+    },
+    "xml-json": {
+      "name": "XML ↔ JSON",
+      "description": "حوّل مستندات XML إلى JSON أو العكس.",
+      "keywords": "xml json تحويل تحليل",
+      "run": "تحويل",
+      "toJson": "XML → JSON",
+      "toXml": "JSON → XML",
+      "success": "تم التحويل."
+    },
+    "sql-format": {
+      "name": "منسّق SQL",
+      "description": " sensّق SQL لتسهيل قراءة الجمل والقوائم.",
+      "keywords": "sql تنسيق استعلام",
+      "run": "تنسيق",
+      "success": "نُسّق SQL."
+    },
+    "regex-tester": {
+      "name": "مختبر التعابير النمطية",
+      "description": "جرّب تعبيراً نمطياً على نص واستبدل المطابقات.",
+      "keywords": "regex تعبير نمطي اختبار استبدال",
+      "pattern": "النمط",
+      "flags": "الأعلام",
+      "input": "نص العينة",
+      "replace": "الاستبدال",
+      "runReplace": "استبدال",
+      "matches": "{count, plural, one {مطابقة واحدة} other {# مطابقات}}",
+      "success": "الاستبدال جاهز."
+    },
+    "hash-generator": {
+      "name": "مولّد التجزئة",
+      "description": "SHA-1/256/384/512 وMD5 لنص أو ملف، تُحسب محلياً.",
+      "keywords": "hash sha256 md5 sha1 مجموع",
+      "run": "تجزئة",
+      "algo": "الخوارزمية",
+      "digest": "الملخص",
+      "limits": "تُحسب التجزئات في هذا المتصفح (Web Crypto لـ SHA وتنفيذ محلي لـ MD5). MD5 غير مقاوم للتصادم — استخدمه للمجاميع فقط.",
+      "success": "التجزئة جاهزة."
+    },
+    "uuid-generator": {
+      "name": "مولّد UUID",
+      "description": "أنشئ UUID بالإصدار 4 أو 7 على هذا الجهاز.",
+      "keywords": "uuid guid v4 v7 توليد",
+      "run": "توليد",
+      "count": "العدد",
+      "version": "الإصدار",
+      "success": "أُنشئت المعرّفات."
+    },
+    "color-convert": {
+      "name": "محوّل الألوان",
+      "description": "حوّل بين HEX وRGB وHSL وHSV مع منتقي ألوان.",
+      "keywords": "لون hex rgb hsl hsv منتقي",
+      "picker": "منتقي الألوان",
+      "invalid": "أدخل لوناً ست عشرياً من 3 أو 6 خانات."
+    },
+    "lorem-ipsum": {
+      "name": "لوريم إيبسوم",
+      "description": "ولّد فقرات أو جملاً أو كلمات نائبة.",
+      "keywords": "lorem ipsum نص نائب",
+      "run": "توليد",
+      "count": "العدد",
+      "mode": "الوضع",
+      "paragraphs": "فقرات",
+      "sentences": "جمل",
+      "words": "كلمات",
+      "success": "أُنشئ النص."
+    },
+    "qr-code": {
+      "name": "رمز QR",
+      "description": "أنشئ رمز QR من نص أو اقرأه من صورة.",
+      "keywords": "qr رمز توليد مسح قراءة",
+      "run": "توليد",
+      "payload": "نص أو رابط",
+      "read": "قراءة من صورة",
+      "runRead": "قراءة QR",
+      "generated": "رمز QR جاهز.",
+      "decoded": "قُرئ محتوى QR.",
+      "none": "لم يُعثر على رمز QR في تلك الصورة."
+    },
+    "pdf-sign": {
+      "name": "توقيع PDF",
+      "description": "اختم توقيعاً مطبوعاً على كل صفحة. بصري فقط — ليس شهادة.",
+      "keywords": "pdf توقيع ختم اسم",
+      "run": "توقيع",
+      "signature": "نص التوقيع",
+      "placeholder": "اسمك",
+      "limits": "يرسم اسمك على الصفحة. ليس توقيعاً رقمياً تشفيرياً.",
+      "success": "وُضع التوقيع."
+    },
+    "image-watermark": {
+      "name": "علامة مائية على الصور",
+      "description": "ضع نصاً فوق الصور، ملفاً واحداً أو دفعة.",
+      "keywords": "صورة علامة ختم حقوق",
+      "run": "تطبيق",
+      "text": "نص العلامة",
+      "position": "الموضع",
+      "bottomRight": "أسفل اليمين",
+      "bottomLeft": "أسفل اليسار",
+      "topRight": "أعلى اليمين",
+      "center": "الوسط",
+      "success": "وُضعت العلامة على {count} صورة."
+    },
+    "password-generator": {
+      "name": "مولّد كلمات المرور",
+      "description": "أنشئ كلمة مرور قوية على هذا الجهاز. لا يُخزَّن شيء.",
+      "keywords": "كلمة مرور توليد عشوائي سر",
+      "run": "توليد",
+      "length": "الطول",
+      "lower": "أحرف صغيرة",
+      "upper": "أحرف كبيرة",
+      "digits": "أرقام",
+      "symbols": "رموز",
+      "success": "كلمة المرور جاهزة."
+    },
+    "case-convert": {
+      "name": "تغيير حالة الأحرف",
+      "description": "بدّل بين camel وsnake وkebab والعنوان وغيرها.",
+      "keywords": "حالة أحرف camel snake kebab",
+      "run": "تحويل",
+      "style": "النمط",
+      "success": "تم التحويل."
+    },
+    "jwt-decode": {
+      "name": "فك JWT",
+      "description": "اقرأ ترويسة JWT والحمولة محلياً. لا تُتحقق التواقيع.",
+      "keywords": "jwt فك رمز حامل مصادقة",
+      "run": "فك",
+      "limits": "يفك Kit ترميز Base64url فقط. دون مفتاح لا يمكنه إثبات صحة الرمز.",
+      "hasSig": "جزء التوقيع موجود (غير متحقَّق).",
+      "noSig": "لا جزء توقيع.",
+      "empty": "الصق رمزاً أولاً.",
+      "success": "فُك الرمز."
+    },
+    "unix-timestamp": {
+      "name": "طابع زمني يونكس",
+      "description": "حوّل وقت يونكس إلى ISO وبالعكس.",
+      "keywords": "unix حقبة طابع iso تاريخ",
+      "now": "استخدم الآن"
+    },
+    "cron-explain": {
+      "name": "شرح cron",
+      "description": "حوّل تعبير cron من 5 حقول إلى لغة واضحة.",
+      "keywords": "cron جدول crontab شرح",
+      "run": "شرح",
+      "success": "شُرح."
+    },
+    "number-base": {
+      "name": "أساس العدد",
+      "description": "حوّل الأعداد الصحيحة بين الأساسين 2 و36.",
+      "keywords": "ثنائي ست عشري عشري أساس تحويل",
+      "value": "العدد",
+      "from": "من الأساس",
+      "to": "إلى الأساس"
+    },
+    "html-entities": {
+      "name": "كيانات HTML",
+      "description": "رمّز أو فك &lt; و&amp; والكيانات الرقمية.",
+      "keywords": "html كيانات ترميز فك تهريب",
+      "run": "تحويل",
+      "encode": "ترميز",
+      "decode": "فك",
+      "success": "تم التحويل."
+    },
+    "json-types": {
+      "name": "JSON → TypeScript",
+      "description": "استنتج واجهات TypeScript من عيّنة JSON.",
+      "keywords": "json typescript واجهة نوع توليد",
+      "run": "توليد الأنواع",
+      "success": "أُنشئت الأنواع."
+    }
+  },
+  "legal": {
+    "lastUpdated": "آخر تحديث",
+    "privacyTitle": "سياسة الخصوصية",
+    "termsTitle": "شروط الاستخدام"
+  },
+  "notFound": {
+    "title": "الصفحة غير موجودة",
+    "body": "هذا العنوان ليس في Kit. عُد للرئيسية واختر أداة.",
+    "home": "العودة للرئيسية"
+  },
+  "errorPage": {
+    "title": "حدث خطأ ما",
+    "body": "فشل آخر إجراء في هذا المتصفح. يمكنك المحاولة مجدداً دون مغادرة الصفحة.",
+    "retry": "إعادة المحاولة"
+  }
+}

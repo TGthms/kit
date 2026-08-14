@@ -1,0 +1,735 @@
+{
+  "meta": {
+    "title": "Kit — Nástroje v prohlížeči, které zůstanou soukromé",
+    "description": "PDF, obrázky, média, převodníky a textové nástroje běží na vašem zařízení. Nic se na naše servery nenahrává."
+  },
+  "brand": {
+    "name": "Kit",
+    "tagline": "Každodenní nástroje v prohlížeči. Soukromé od základu."
+  },
+  "nav": {
+    "home": "Domů",
+    "tools": "Nástroje",
+    "history": "Historie",
+    "favorites": "Oblíbené",
+    "settings": "Nastavení",
+    "searchPlaceholder": "Hledat nástroje…",
+    "openMenu": "Otevřít nabídku",
+    "closeMenu": "Zavřít nabídku"
+  },
+  "footer": {
+    "privacy": "Zásady ochrany soukromí",
+    "terms": "Podmínky použití",
+    "aboutMe": "O mně",
+    "license": "Licence MIT",
+    "copyright": "© {year} Tim G (TGthms). Kit je open source pod licencí MIT.",
+    "github": "GitHub"
+  },
+  "common": {
+    "cancel": "Zrušit",
+    "clear": "Vymazat",
+    "close": "Zavřít",
+    "copy": "Kopírovat",
+    "copied": "Zkopírováno do schránky",
+    "download": "Stáhnout",
+    "run": "Spustit",
+    "process": "Zpracovat",
+    "processing": "Zpracovává se…",
+    "done": "Hotovo",
+    "error": "Něco se pokazilo",
+    "retry": "Zkusit znovu",
+    "addFiles": "Přidat soubory",
+    "dropFiles": "Přetáhněte soubory sem",
+    "orBrowse": "nebo vyberte ze zařízení",
+    "pasteSupported": "Můžete také vložit ze schránky",
+    "remove": "Odebrat",
+    "reorder": "Přetažením změňte pořadí",
+    "files": "Soubory",
+    "noFiles": "Zatím nejsou vybrány žádné soubory",
+    "quality": "Kvalita",
+    "options": "Možnosti",
+    "preview": "Náhled",
+    "result": "Výsledek",
+    "input": "Vstup",
+    "output": "Výstup",
+    "format": "Formát",
+    "language": "Jazyk",
+    "theme": "Vzhled",
+    "themeSystem": "Podle systému",
+    "themeLight": "Světlý",
+    "themeDark": "Tmavý",
+    "loading": "Načítání…",
+    "save": "Uložit",
+    "delete": "Smazat",
+    "confirm": "Potvrdit",
+    "back": "Zpět",
+    "allCategories": "Vše",
+    "pin": "Připnout",
+    "unpin": "Odepnout",
+    "favorite": "Přidat k oblíbeným",
+    "unfavorite": "Odebrat z oblíbených",
+    "presets": "Předvolby",
+    "applyPreset": "Použít předvolbu",
+    "savePreset": "Uložit jako předvolbu",
+    "shortcuts": "Klávesové zkratky",
+    "progress": "Průběh",
+    "fileTooLarge": "Tento soubor je velký — zpracování může chvíli trvat.",
+    "unsupported": "Tento formát není podporován",
+    "success": "Hotovo",
+    "warning": "Pozor",
+    "info": "Poznámka",
+    "selectAll": "Vybrat vše",
+    "none": "Nic",
+    "reset": "Obnovit",
+    "maxWidth": "Max. šířka",
+    "maxHeight": "Max. výška",
+    "width": "Šířka",
+    "height": "Výška",
+    "rotate": "Otočit",
+    "pages": "Stránky",
+    "page": "Stránka",
+    "text": "Text",
+    "encode": "Kódovat",
+    "decode": "Dekódovat",
+    "validate": "Ověřit",
+    "minify": "Minifikovat",
+    "beautify": "Hezky formátovat",
+    "valid": "Platné",
+    "invalid": "Neplatné",
+    "characters": "Znaky",
+    "lines": "Řádky",
+    "from": "Od",
+    "to": "Do",
+    "start": "Začátek",
+    "end": "Konec",
+    "speed": "Rychlost",
+    "volume": "Hlasitost",
+    "trim": "Oříznout",
+    "extract": "Extrahovat",
+    "batch": "Dávka",
+    "limitations": "Omezení",
+    "clientSideOnly": "Běží jen ve vašem prohlížeči. Soubory se nikdy neodesílají na server Kit.",
+    "aboutMeUrl": "https://tgthms.github.io/about/",
+    "howItWorks": "Jak to funguje a limity"
+  },
+  "home": {
+    "title": "Co potřebujete udělat?",
+    "subtitle": "Šikovné nástroje na tomto zařízení — bez účtu, bez nahrávání.",
+    "categories": "Kategorie",
+    "popular": "Nástroje",
+    "noResults": "Hledání nic nenašlo.",
+    "recent": "Navázat tam, kde jste skončili",
+    "pinned": "Připnuté",
+    "chooseCategory": "Začněte kategorií",
+    "chooseCategoryHint": "Vyberte skupinu úloh. Nástroje uvnitř jsou seskupené, abyste je mohli procházet místo hledání.",
+    "backToCategories": "Kategorie",
+    "toolsInCategory": "{count, plural, one {# nástroj} few {# nástroje} other {# nástrojů}}",
+    "searchResults": "Výsledky hledání",
+    "featured": "Začněte tady",
+    "groups": {
+      "pages": "Stránky",
+      "protect": "Ochrana a info",
+      "markup": "Značky",
+      "export": "Export / převod",
+      "transform": "Velikost a ořez",
+      "look": "Vzhled",
+      "file": "Soubor",
+      "clip": "Klipy",
+      "formats": "Formáty",
+      "write": "Psaní",
+      "inspect": "Kontrola",
+      "encode": "Kódování",
+      "generate": "Generování"
+    }
+  },
+  "categories": {
+    "pdf": "PDF",
+    "image": "Obrázky",
+    "audio": "Audio",
+    "video": "Video",
+    "convert": "Převod souborů",
+    "text": "Psaní",
+    "pdfDesc": "Slučujte, rozdělujte, komprimujte a označujte dokumenty PDF",
+    "imageDesc": "Komprimujte, měňte velikost, převádějte a upravujte fotky",
+    "audioDesc": "Převádějte, ořezávejte a měňte tempo pouze u audia",
+    "videoDesc": "Převádějte, ořezávejte, zrychlujte a vytahujte zvuk z videa",
+    "convertDesc": "Chytrý převod mezi formáty (JSON, CSV, ZIP, obrázky…)",
+    "textDesc": "Porovnávejte text, měňte velikost písmen a převádějte Markdown na HTML",
+    "data": "Data",
+    "dataDesc": "JSON, YAML, CSV, XML, SQL a převod mezi formáty",
+    "developer": "Vývoj",
+    "developerDesc": "Tokeny, hashe, kódování, hesla a další dílenské nástroje"
+  },
+  "history": {
+    "title": "Historie",
+    "subtitle": "Co jste na tomto zařízení spustili. Uchováváme jen krátké souhrny — nikdy vaše soubory.",
+    "empty": "Zatím žádná aktivita. Spusťte nástroj a objeví se tady.",
+    "clear": "Vymazat historii",
+    "clearConfirm": "Smazat veškerou historii na tomto zařízení?",
+    "openTool": "Otevřít nástroj",
+    "tool": "Nástroj",
+    "when": "Kdy",
+    "summary": "Souhrn",
+    "status": "Stav",
+    "success": "Úspěch",
+    "failed": "Selhání"
+  },
+  "favorites": {
+    "title": "Oblíbené",
+    "subtitle": "Nástroje po ruce na jedno klepnutí.",
+    "empty": "Zatím žádné oblíbené. Označte nástroj hvězdičkou na úvodní stránce nebo na jeho stránce."
+  },
+  "settings": {
+    "title": "Nastavení",
+    "subtitle": "Tyto volby zůstanou jen v tomto prohlížeči.",
+    "appearance": "Vzhled",
+    "language": "Jazyk",
+    "data": "Data a soukromí",
+    "clearHistory": "Vymazat historii",
+    "clearHistoryDesc": "Odstraní místní souhrny historie uložené touto stránkou.",
+    "privacyNote": "Kit zpracovává vaše soubory v prohlížeči. Předvolby a souhrny historie se mohou ukládat lokálně. Podrobnosti najdete v Zásadách ochrany soukromí.",
+    "viewPrivacy": "Zásady ochrany soukromí",
+    "viewTerms": "Podmínky použití",
+    "shortcutsHelp": "Stiskněte kdykoli ?, zobrazí se klávesové zkratky.",
+    "version": "Verze"
+  },
+  "shortcuts": {
+    "title": "Klávesové zkratky",
+    "global": "Všude",
+    "search": "Zaměřit hledání",
+    "settings": "Otevřít nastavení",
+    "home": "Přejít domů",
+    "help": "Zobrazit tento seznam",
+    "run": "Spustit aktuální nástroj",
+    "close": "Zavřít"
+  },
+  "tools": {
+    "pdf-merge": {
+      "name": "Sloučit PDF",
+      "description": "Složit několik PDF do jednoho. Náhled stránek a přetažením změňte pořadí.",
+      "keywords": "pdf sloučit spojit spojovat sešít vícestránkový",
+      "run": "Sloučit",
+      "empty": "Přidejte alespoň dva soubory PDF.",
+      "success": "Sloučeno {count} souborů do jednoho PDF."
+    },
+    "pdf-split": {
+      "name": "Rozdělit PDF",
+      "description": "Vyjmout rozsah stránek do úplně nového PDF.",
+      "keywords": "pdf rozdělit extrahovat stránky rozsah",
+      "run": "Rozdělit",
+      "range": "Stránky (například 1-3,5)",
+      "success": "Vaše rozdělené PDF je připravené."
+    },
+    "pdf-organize": {
+      "name": "Uspořádat stránky",
+      "description": "Otočte stránky, odstraňte nepotřebné a nastavte nové pořadí.",
+      "keywords": "pdf otočit smazat přerovnat uspořádat stránky",
+      "run": "Uložit PDF",
+      "success": "Vaše PDF bylo aktualizováno."
+    },
+    "pdf-compress": {
+      "name": "Komprimovat PDF",
+      "description": "Zmenšit soubor opětovným kódováním obrázků stránek (kompromis kvality).",
+      "keywords": "pdf komprimovat zmenšit velikost menší",
+      "run": "Komprimovat",
+      "note": "Jde o ztrátovou cestu — stránky se mohou rastrovat. Nejlépe funguje u PDF plných obrázků.",
+      "success": "Komprimované PDF je připravené ke stažení."
+    },
+    "pdf-watermark": {
+      "name": "Vodoznak PDF",
+      "description": "Vytisknout text jako vodoznak, záhlaví nebo zápatí na každou stránku.",
+      "keywords": "pdf vodoznak razítko záhlaví zápatí důvěrné",
+      "run": "Použít",
+      "text": "Text vodoznaku",
+      "position": "Umístění",
+      "header": "Záhlaví",
+      "footer": "Zápatí",
+      "center": "Šikmo na střed",
+      "opacity": "Krytí",
+      "success": "Vodoznak použit."
+    },
+    "pdf-redact": {
+      "name": "Zakryt obsah",
+      "description": "Položit plné černé rámečky přes citlivá místa (jen vizuálně).",
+      "keywords": "pdf začernit zakrýt skrýt citlivé",
+      "run": "Použít zakrytí",
+      "note": "Jde jen o vizuální zakrytí. Nezaručuje odstranění každého textového proudu — citlivé dokumenty zkontrolujte.",
+      "success": "Zakrytí použito."
+    },
+    "pdf-extract": {
+      "name": "Extrahovat z PDF",
+      "description": "Vytáhnout čitelný text nebo exportovat stránku jako obrázek.",
+      "keywords": "pdf extrahovat text obrázky",
+      "run": "Extrahovat",
+      "modeText": "Text",
+      "modeImages": "Obrázky",
+      "success": "Extrakce dokončena.",
+      "imagesReady": "Exportováno {count} obrázků stránek jako ZIP."
+    },
+    "image-compress": {
+      "name": "Komprimovat obrázky",
+      "description": "Snižte kvalitu a maximální velikost, aby se fotky daly snadno sdílet.",
+      "keywords": "obrázek komprimovat jpg png webp velikost foto",
+      "run": "Komprimovat",
+      "success": "Komprimováno {count} obrázků."
+    },
+    "image-resize": {
+      "name": "Změnit velikost obrázků",
+      "description": "Nastavte přesné rozměry, volitelně se zámkem poměru stran.",
+      "keywords": "obrázek velikost měřítko rozměry šířka výška",
+      "run": "Změnit velikost",
+      "lockAspect": "Zachovat poměr stran",
+      "success": "Změněna velikost {count} obrázků."
+    },
+    "image-crop": {
+      "name": "Oříznout obrázek",
+      "description": "Nechte jen obdélník, na kterém vám záleží.",
+      "keywords": "obrázek oříznout vyříznout oblast",
+      "run": "Oříznout",
+      "success": "Oříznutý obrázek je připravený."
+    },
+    "image-convert": {
+      "name": "Převést formát obrázku",
+      "description": "Přepínejte mezi JPEG, PNG, WEBP a podobnými webovými formáty.",
+      "keywords": "obrázek převést formát webp avif png jpg jpeg",
+      "run": "Převést",
+      "success": "Převedeno {count} obrázků."
+    },
+    "image-metadata": {
+      "name": "Metadata obrázku",
+      "description": "Prohlédněte EXIF a podobné značky a exportujte čistou kopii bez nich.",
+      "keywords": "obrázek exif metadata odstranit soukromí poloha",
+      "run": "Odstranit metadata",
+      "note": "Pixely se v prohlížeči znovu kódují, takže vložená metadata zmizí.",
+      "success": "Metadata odstraněna z {count} obrázků.",
+      "tag": "Značka",
+      "value": "Hodnota",
+      "noExif": "V tomto souboru nejsou čitelná EXIF ani textová metadata."
+    },
+    "image-adjust": {
+      "name": "Upravit obrázek",
+      "description": "Upravte jas, kontrast a sytost.",
+      "keywords": "obrázek jas kontrast sytost barva",
+      "run": "Použít",
+      "brightness": "Jas",
+      "contrast": "Kontrast",
+      "saturation": "Sytost",
+      "success": "Upraveno {count} obrázků."
+    },
+    "convert-hub": {
+      "name": "Chytrý převod",
+      "description": "Rozpozná smíšené typy souborů nebo textu a převádí mezi formáty (není to mediální studio).",
+      "keywords": "převod hub chytrý dávka json yaml csv zip obrázek data",
+      "run": "Převést",
+      "detect": "Rozpoznáno jako",
+      "chooseOutput": "Výstupní formát",
+      "success": "Převod dokončen."
+    },
+    "json-format": {
+      "name": "Formátovač JSON",
+      "description": "Hezky formátovat, minifikovat a včas zachytit chyby JSON.",
+      "keywords": "json formát ověřit minifikovat pretty",
+      "run": "Formátovat",
+      "success": "JSON vypadá platně a je naformátovaný."
+    },
+    "yaml-format": {
+      "name": "Formátovač YAML",
+      "description": "Zkontrolovat strukturu YAML a upravit rozložení.",
+      "keywords": "yaml formát ověřit yml",
+      "run": "Formátovat",
+      "success": "YAML vypadá platně."
+    },
+    "toml-format": {
+      "name": "Formátovač TOML",
+      "description": "Ověřit TOML a udržet soubor úhledný.",
+      "keywords": "toml formát ověřit config",
+      "run": "Formátovat",
+      "success": "TOML vypadá platně."
+    },
+    "markdown-html": {
+      "name": "Markdown ↔ HTML",
+      "description": "Převést Markdown na HTML nebo HTML zpět na Markdown.",
+      "keywords": "markdown html převést md značky",
+      "run": "Převést",
+      "toHtml": "Markdown → HTML",
+      "toMd": "HTML → Markdown",
+      "success": "Převedeno."
+    },
+    "csv-json": {
+      "name": "CSV ↔ JSON",
+      "description": "Přesouvat tabulková data mezi CSV a poli JSON.",
+      "keywords": "csv json převést tabulka sešit",
+      "run": "Převést",
+      "toJson": "CSV → JSON",
+      "toCsv": "JSON → CSV",
+      "success": "Převedeno."
+    },
+    "text-diff": {
+      "name": "Porovnat text",
+      "description": "Zobrazit změny řádek po řádku mezi dvěma verzemi.",
+      "keywords": "diff porovnat text změny patch",
+      "run": "Porovnat",
+      "left": "Původní",
+      "right": "Aktualizované",
+      "success": "Porovnání je připravené."
+    },
+    "base64": {
+      "name": "Base64",
+      "description": "Kódovat nebo dekódovat Base64 pro prostý text nebo celé soubory.",
+      "keywords": "base64 kódovat dekódovat binární",
+      "run": "Převést",
+      "mode": "Směr",
+      "textMode": "Text",
+      "fileMode": "Soubor",
+      "success": "Hotovo."
+    },
+    "url-encode": {
+      "name": "Kódování URL",
+      "description": "Bezpečně percent-kódovat nebo dekódovat části URL.",
+      "keywords": "url kódovat dekódovat percent uri dotaz",
+      "run": "Převést",
+      "success": "Hotovo."
+    },
+    "audio-convert": {
+      "name": "Převést audio",
+      "description": "Měnit audio kontejnery jako MP3, WAV a OGG v prohlížeči.",
+      "keywords": "audio převést mp3 wav ogg ffmpeg zvuk",
+      "run": "Převést",
+      "loadingFfmpeg": "Načítání audio enginu…",
+      "note": "Používá jednovláknové FFmpeg WASM. Velké soubory mohou být pomalé; podpora kodeků je omezená.",
+      "success": "Převod audia dokončen."
+    },
+    "audio-trim": {
+      "name": "Oříznout audio",
+      "description": "Nechat jen úsek mezi dvěma časovými značkami v audio souboru.",
+      "keywords": "audio oříznout vystřihnout klip mp3 wav",
+      "run": "Oříznout",
+      "success": "Ořez audia dokončen."
+    },
+    "audio-speed": {
+      "name": "Tempo a hlasitost audia",
+      "description": "Zrychlit, zpomalit nebo změnit hlasitost audia.",
+      "keywords": "audio tempo rychlost hlasitost výška",
+      "run": "Použít",
+      "success": "Zpracované audio je připravené."
+    },
+    "video-convert": {
+      "name": "Převést video",
+      "description": "Měnit video kontejnery jako MP4 a WEBM v prohlížeči.",
+      "keywords": "video převést mp4 webm ffmpeg film",
+      "run": "Převést",
+      "loadingFfmpeg": "Načítání video enginu…",
+      "note": "Používá jednovláknové FFmpeg WASM. Velké soubory mohou být pomalé; podpora kodeků je omezená.",
+      "success": "Převod videa dokončen."
+    },
+    "video-trim": {
+      "name": "Oříznout video",
+      "description": "Nechat jen klip mezi dvěma časovými značkami.",
+      "keywords": "video oříznout vystřihnout klip mp4",
+      "run": "Oříznout",
+      "success": "Ořez videa dokončen."
+    },
+    "video-speed": {
+      "name": "Tempo a hlasitost videa",
+      "description": "Změnit rychlost přehrávání a úroveň zvuku videa.",
+      "keywords": "video tempo rychlost hlasitost",
+      "run": "Použít",
+      "success": "Zpracované video je připravené."
+    },
+    "video-extract-audio": {
+      "name": "Extrahovat audio z videa",
+      "description": "Uložit zvukovou stopu z videa jako audio soubor.",
+      "keywords": "video extrahovat audio mp3 stopa",
+      "run": "Extrahovat audio",
+      "success": "Audio extrahováno."
+    },
+    "pdf-numbers": {
+      "name": "Čísla stránek",
+      "description": "Vytisknout označení stránky, například 1 / 12, na každou stránku.",
+      "keywords": "pdf čísla stránek zápatí záhlaví stránkování",
+      "run": "Přidat čísla",
+      "template": "Popisek ({page} a {pages})",
+      "position": "Umístění",
+      "start": "Začít od",
+      "headerLeft": "Záhlaví vlevo",
+      "headerCenter": "Záhlaví na střed",
+      "headerRight": "Záhlaví vpravo",
+      "footerLeft": "Zápatí vlevo",
+      "footerCenter": "Zápatí na střed",
+      "footerRight": "Zápatí vpravo",
+      "success": "Čísla stránek přidána."
+    },
+    "pdf-to-images": {
+      "name": "PDF → obrázky",
+      "description": "Zrastrovat každou stránku do JPEG a stáhnout je jako ZIP.",
+      "keywords": "pdf obrázek jpg jpeg zip stránky export",
+      "run": "Exportovat stránky",
+      "limits": "Stránky se kreslí pomocí PDF.js na této kartě. Velmi velké dokumenty mohou být pomalé a spotřebovat hodně paměti. Jde o vizuální rastr, ne o extrakci vložených obrazových objektů.",
+      "success": "Exportováno {count} stránek."
+    },
+    "images-to-pdf": {
+      "name": "Obrázky → PDF",
+      "description": "Složit fotky do PDF, jeden obrázek na stránku.",
+      "keywords": "obrázky pdf jpg png spojit",
+      "run": "Vytvořit PDF",
+      "success": "Vytvořeno PDF z {count} obrázků."
+    },
+    "pdf-flatten": {
+      "name": "Zploštit formuláře",
+      "description": "Zapečovat pole AcroForm do stránky, aby je už nešlo upravovat.",
+      "keywords": "pdf zploštit formulář pole acroform",
+      "run": "Zploštit",
+      "limits": "Funguje se standardními poli AcroForm. Dynamické formuláře XFA nejsou plně podporované.",
+      "success": "Zploštěno {count} polí."
+    },
+    "pdf-metadata": {
+      "name": "Metadata PDF",
+      "description": "Zobrazit, upravit nebo odstranit název, autora a další pole Info dokumentu.",
+      "keywords": "Klíčová slova",
+      "run": "Uložit metadata",
+      "strip": "Odstranit všechna pole",
+      "title": "Název",
+      "author": "Autor",
+      "subject": "Předmět",
+      "creator": "Tvůrce",
+      "producer": "Producent",
+      "saved": "Metadata uložena.",
+      "stripped": "Metadata odstraněna."
+    },
+    "pdf-protect": {
+      "name": "Zamknout nebo odemknout PDF",
+      "description": "Přidat nebo odebrat uživatelské heslo. Šifrování zůstane v tomto prohlížeči.",
+      "keywords": "pdf heslo zamknout odemknout šifrovat dešifrovat",
+      "run": "Použít",
+      "lock": "Zamknout",
+      "unlock": "Odemknout",
+      "password": "Heslo",
+      "limits": "Používá klientskou knihovnu pro šifrování PDF. Některé starší nebo neobvyklé revize šifrování se nemusí odemknout. Kit nikdy neodesílá soubor ani heslo na server.",
+      "success": "PDF je připravené."
+    },
+    "image-rotate": {
+      "name": "Otočit a převrátit",
+      "description": "Otáčet obrázky po 90° nebo je převracet vodorovně či svisle.",
+      "keywords": "obrázek otočit převrátit zrcadlo",
+      "run": "Použít",
+      "operation": "Transformace",
+      "rot90": "Otočit o 90°",
+      "rot180": "Otočit o 180°",
+      "rot270": "Otočit o 270°",
+      "flipH": "Převrátit vodorovně",
+      "flipV": "Převrátit svisle",
+      "success": "Transformováno {count} obrázků."
+    },
+    "image-filters": {
+      "name": "Filtry obrázku",
+      "description": "Použít stupně šedi, sépii nebo inverzi na jednu či více fotek.",
+      "keywords": "obrázek filtr šedá sépie invertovat",
+      "run": "Použít",
+      "filter": "Filtr",
+      "grayscale": "Stupně šedi",
+      "sepia": "Sépie",
+      "invert": "Invertovat",
+      "success": "Filtrováno {count} obrázků."
+    },
+    "image-favicon": {
+      "name": "Balíček favicon",
+      "description": "Exportovat zdrojový obrázek jako běžné velikosti ikon v ZIP.",
+      "keywords": "favicon icon 16 32 180 192 512 apple touch",
+      "run": "Exportovat ikony",
+      "note": "Exportuje soubory PNG o velikosti 16, 32, 48, 180, 192 a 512 pixelů.",
+      "success": "Balíček ikon je připravený."
+    },
+    "video-gif": {
+      "name": "Video → GIF",
+      "description": "Proměnit krátký klip v prohlížeči na smyčkové GIF.",
+      "keywords": "video gif klip převést ffmpeg",
+      "run": "Vytvořit GIF",
+      "limits": "Používá FFmpeg WASM. Držte klipy krátké — kódování GIF je pomalé a náročné na paměť. Paleta a kodeky odpovídají sestavení v prohlížeči.",
+      "success": "GIF je připravené."
+    },
+    "xml-json": {
+      "name": "XML ↔ JSON",
+      "description": "Převádět dokumenty XML na JSON nebo JSON zpět na XML.",
+      "keywords": "xml json převést parsovat",
+      "run": "Převést",
+      "toJson": "XML → JSON",
+      "toXml": "JSON → XML",
+      "success": "Převedeno."
+    },
+    "sql-format": {
+      "name": "Formátovač SQL",
+      "description": "Hezky formátovat SQL, aby se klauzule a seznamy lépe četly.",
+      "keywords": "sql formát pretty dotaz",
+      "run": "Formátovat",
+      "success": "SQL naformátováno."
+    },
+    "regex-tester": {
+      "name": "Tester regulárních výrazů",
+      "description": "Vyzkoušet regulární výraz na ukázkovém textu a nahradit shody.",
+      "keywords": "regex regulární výraz test nahradit",
+      "pattern": "Vzor",
+      "flags": "Příznaky",
+      "input": "Ukázkový text",
+      "replace": "Náhrada",
+      "runReplace": "Nahradit",
+      "matches": "{count, plural, one {# shoda} few {# shody} other {# shod}}",
+      "success": "Náhrada je připravená."
+    },
+    "hash-generator": {
+      "name": "Generátor hash",
+      "description": "SHA-1/256/384/512 a MD5 textu nebo souboru, počítané lokálně.",
+      "keywords": "hash sha256 md5 sha1 kontrolní součet digest",
+      "run": "Hash",
+      "algo": "Algoritmus",
+      "digest": "Digest",
+      "limits": "Hashe se počítají v tomto prohlížeči (Web Crypto pro SHA, místní implementace MD5). MD5 není odolné vůči kolizím — používejte ho jen pro kontrolní součty.",
+      "success": "Hash je připravený."
+    },
+    "uuid-generator": {
+      "name": "Generátor UUID",
+      "description": "Vytvářet UUID verze 4 nebo 7 na tomto zařízení.",
+      "keywords": "uuid guid v4 v7 generovat",
+      "run": "Generovat",
+      "count": "Kolik",
+      "version": "Verze",
+      "success": "UUID vygenerována."
+    },
+    "color-convert": {
+      "name": "Převodník barev",
+      "description": "Převádět mezi HEX, RGB, HSL a HSV, s výběrem barvy.",
+      "keywords": "barva hex rgb hsl hsv výběr",
+      "picker": "Výběr barvy",
+      "invalid": "Zadejte 3- nebo 6místnou hex barvu."
+    },
+    "lorem-ipsum": {
+      "name": "Lorem ipsum",
+      "description": "Generovat zástupné odstavce, věty nebo slova.",
+      "keywords": "lorem ipsum zástupný dummy text",
+      "run": "Generovat",
+      "count": "Počet",
+      "mode": "Režim",
+      "paragraphs": "Odstavce",
+      "sentences": "Věty",
+      "words": "Slova",
+      "success": "Text vygenerován."
+    },
+    "qr-code": {
+      "name": "QR kód",
+      "description": "Vytvořit QR kód z textu nebo jeden přečíst z obrázku.",
+      "keywords": "qr kód generovat skenovat číst barcode",
+      "run": "Generovat",
+      "payload": "Text nebo URL",
+      "read": "Číst z obrázku",
+      "runRead": "Číst QR",
+      "generated": "QR kód je připravený.",
+      "decoded": "Obsah QR přečten.",
+      "none": "V tomto obrázku nebyl nalezen žádný QR kód."
+    },
+    "pdf-sign": {
+      "name": "Podepsat PDF",
+      "description": "Vytisknout napsaný podpis na každou stránku. Jen vizuálně — není to certifikát.",
+      "keywords": "pdf podepsat podpis razítko jméno",
+      "run": "Podepsat",
+      "signature": "Text podpisu",
+      "placeholder": "Vaše jméno",
+      "limits": "Nakreslí vaše jméno na stránku. Nejde o kryptografický digitální podpis.",
+      "success": "Podpis orazítkován."
+    },
+    "image-watermark": {
+      "name": "Vodoznak na obrázcích",
+      "description": "Překrýt text na fotkách, jeden soubor nebo celá dávka.",
+      "keywords": "obrázek vodoznak razítko copyright",
+      "run": "Použít",
+      "text": "Text vodoznaku",
+      "position": "Umístění",
+      "bottomRight": "Vpravo dole",
+      "bottomLeft": "Vlevo dole",
+      "topRight": "Vpravo nahoře",
+      "center": "Střed",
+      "success": "Vodoznak na {count} obrázcích."
+    },
+    "password-generator": {
+      "name": "Generátor hesel",
+      "description": "Vytvořit silné heslo na tomto zařízení. Nic se neukládá.",
+      "keywords": "heslo generovat náhodné tajné",
+      "run": "Generovat",
+      "length": "Délka",
+      "lower": "Malá písmena",
+      "upper": "Velká písmena",
+      "digits": "Číslice",
+      "symbols": "Symboly",
+      "success": "Heslo je připravené."
+    },
+    "case-convert": {
+      "name": "Změnit velikost písmen",
+      "description": "Přepínat mezi camel, snake, kebab, title a dalšími.",
+      "keywords": "velikost camel snake kebab pascal title",
+      "run": "Převést",
+      "style": "Styl",
+      "success": "Převedeno."
+    },
+    "jwt-decode": {
+      "name": "Dekodér JWT",
+      "description": "Číst hlavičku a payload JWT lokálně. Podpisy se neověřují.",
+      "keywords": "jwt dekódovat token bearer auth",
+      "run": "Dekódovat",
+      "limits": "Kit dekóduje jen Base64url. Bez klíče nemůže prokázat pravost tokenu.",
+      "hasSig": "Část podpisu je přítomná (neověřená).",
+      "noSig": "Žádná část podpisu.",
+      "empty": "Nejprve vložte token.",
+      "success": "Token dekódován."
+    },
+    "unix-timestamp": {
+      "name": "Unixové časové razítko",
+      "description": "Převádět unixový čas na ISO a zpět.",
+      "keywords": "unix epoch razítko iso datum",
+      "now": "Použít teď"
+    },
+    "cron-explain": {
+      "name": "Vysvětlení cronu",
+      "description": "Převést 5polový cron výraz do srozumitelného jazyka.",
+      "keywords": "cron plán crontab vysvětlit",
+      "run": "Vysvětlit",
+      "success": "Vysvětleno."
+    },
+    "number-base": {
+      "name": "Číselná soustava",
+      "description": "Převádět celá čísla mezi základy 2 a 36.",
+      "keywords": "binární hex desítková základ převést",
+      "value": "Číslo",
+      "from": "Ze základu",
+      "to": "Do základu"
+    },
+    "html-entities": {
+      "name": "Entity HTML",
+      "description": "Kódovat nebo dekódovat &lt; &amp; a číselné entity.",
+      "keywords": "html entity kódovat dekódovat escape",
+      "run": "Převést",
+      "encode": "Kódovat",
+      "decode": "Dekódovat",
+      "success": "Převedeno."
+    },
+    "json-types": {
+      "name": "JSON → TypeScript",
+      "description": "Odvozovat rozhraní TypeScript ze vzorku JSON.",
+      "keywords": "json typescript interface typ generovat",
+      "run": "Generovat typy",
+      "success": "Typy vygenerovány."
+    }
+  },
+  "legal": {
+    "lastUpdated": "Naposledy aktualizováno",
+    "privacyTitle": "Zásady ochrany soukromí",
+    "termsTitle": "Podmínky použití"
+  },
+  "notFound": {
+    "title": "Stránka nenalezena",
+    "body": "Tato adresa v Kitu není. Vraťte se domů a vyberte nástroj odtamtud.",
+    "home": "Zpět domů"
+  },
+  "errorPage": {
+    "title": "Něco se pokazilo",
+    "body": "Poslední akce v tomto prohlížeči selhala. Můžete to zkusit znovu, aniž byste stránku opustili.",
+    "retry": "Zkusit znovu"
+  }
+}

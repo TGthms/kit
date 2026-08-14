@@ -1,0 +1,587 @@
+Kit — Ferramentas no navegador que continuam privadas
+PDF, imagens, mídia, conversões e texto: tudo roda no seu dispositivo. Nada é enviado aos nossos servidores.
+Kit
+Ferramentas do dia a dia no navegador. Privadas por definição.
+Início
+Ferramentas
+Histórico
+Favoritos
+Configurações
+Buscar ferramentas…
+Abrir menu
+Fechar menu
+Política de privacidade
+Termos de uso
+Sobre mim
+Licença MIT
+© {year} Tim G (TGthms). Kit é código aberto sob a licença MIT.
+GitHub
+Cancelar
+Limpar
+Fechar
+Copiar
+Copiado para a área de transferência
+Baixar
+Executar
+Processar
+Processando…
+Pronto
+Algo deu errado
+Tentar de novo
+Adicionar arquivos
+Solte os arquivos aqui
+ou escolha no seu dispositivo
+Você também pode colar da área de transferência
+Remover
+Arraste para mudar a ordem
+Arquivos
+Nenhum arquivo selecionado ainda
+Qualidade
+Opções
+Prévia
+Resultado
+Entrada
+Saída
+Formato
+Idioma
+Aparência
+Seguir o sistema
+Claro
+Escuro
+Carregando…
+Salvar
+Excluir
+Confirmar
+Voltar
+Todas
+Fixar
+Desafixar
+Adicionar aos favoritos
+Remover dos favoritos
+Predefinições
+Usar predefinição
+Salvar como predefinição
+Atalhos de teclado
+Progresso
+Este arquivo é grande — o processamento pode demorar.
+Este formato não é compatível
+Sucesso
+Atenção
+Nota
+Selecionar tudo
+Nenhum
+Redefinir
+Largura máx.
+Altura máx.
+Largura
+Altura
+Girar
+Páginas
+Página
+Texto
+Codificar
+Decodificar
+Validar
+Minificar
+Formatar
+Válido
+Inválido
+Caracteres
+Linhas
+De
+Para
+Início
+Fim
+Velocidade
+Volume
+Cortar
+Extrair
+Lote
+Limitações
+Roda só no seu navegador. Seus arquivos nunca são enviados a um servidor Kit.
+https://tgthms.github.io/about/
+Como funciona e limites
+O que você precisa fazer?
+Ferramentas práticas que rodam neste dispositivo — sem conta, sem envio.
+Categorias
+Ferramentas
+Nada corresponde a essa busca.
+Continue de onde parou
+Fixadas
+Comece por uma categoria
+Escolha uma família de tarefas. As ferramentas vêm agrupadas para você percorrer em vez de caçar.
+Categorias
+{count, plural, one {# ferramenta} other {# ferramentas}}
+Resultados da busca
+Comece aqui
+Páginas
+Proteger e info
+Marcações
+Exportar / converter
+Tamanho e recorte
+Aparência
+Arquivo
+Clipes
+Formatos
+Escrita
+Inspecionar
+Codificar
+Gerar
+PDF
+Imagens
+Áudio
+Vídeo
+Converter arquivos
+Escrita
+Unir, dividir, compactar e marcar documentos PDF
+Compactar, redimensionar, converter e retocar fotos
+Converter, cortar e mudar a velocidade só do áudio
+Converter, cortar, acelerar e extrair o áudio de um vídeo
+Conversão inteligente entre formatos (JSON, CSV, ZIP, imagens…)
+Comparar textos, mudar maiúsculas e transformar Markdown em HTML
+Dados
+JSON, YAML, CSV, XML, SQL e conversão entre formatos
+Desenvolvimento
+Tokens, hashes, encodings, senhas e outras ferramentas de bancada
+Histórico
+O que você executou neste dispositivo. Guardamos só resumos curtos — nunca os seus arquivos.
+Nenhuma atividade ainda. Execute uma ferramenta e ela aparece aqui.
+Limpar histórico
+Excluir todo o histórico neste dispositivo?
+Abrir ferramenta
+Ferramenta
+Quando
+Resumo
+Status
+Concluído
+Falhou
+Favoritos
+Ferramentas que você deixa à mão para um toque.
+Nenhum favorito ainda. Marque uma estrela no Início ou na página da ferramenta.
+Configurações
+Essas escolhas ficam só neste navegador.
+Aparência
+Idioma
+Dados e privacidade
+Limpar histórico
+Remove os resumos de histórico que este site guarda localmente.
+Kit trabalha com seus arquivos no navegador. Preferências e resumos de histórico podem ser salvos localmente. Os detalhes estão na Política de privacidade.
+Política de privacidade
+Termos de uso
+Pressione ? a qualquer momento para ver os atalhos de teclado.
+Versão
+Atalhos de teclado
+Em qualquer lugar
+Focar a busca
+Abrir configurações
+Ir ao início
+Mostrar esta lista
+Executar a ferramenta atual
+Fechar
+Unir PDFs
+Empilhe vários PDFs em um só. Veja as páginas e arraste para reordenar.
+pdf unir combinar juntar costurar várias páginas
+Unir
+Adicione pelo menos dois arquivos PDF.
+{count} arquivos unidos em um PDF.
+Dividir PDF
+Extraia um intervalo de páginas para um PDF novo.
+pdf dividir extrair páginas intervalo
+Dividir
+Páginas (por exemplo 1-3,5)
+Seu PDF dividido está pronto.
+Organizar páginas
+Gire páginas, remova as que não precisa e defina uma nova ordem.
+pdf girar excluir reordenar organizar páginas
+Salvar PDF
+Seu PDF foi atualizado.
+Compactar PDF
+Reduza o tamanho recodificando as imagens das páginas (há troca de qualidade).
+pdf compactar reduzir tamanho menor
+Compactar
+Caminho com perda — as páginas podem ser rasterizadas. Funciona melhor em PDFs cheios de imagens.
+O PDF compactado está pronto para baixar.
+Marca d’água no PDF
+Carimbe um texto como marca d’água, cabeçalho ou rodapé em cada página.
+pdf marca d’água carimbo cabeçalho rodapé confidencial
+Aplicar
+Texto da marca d’água
+Posição
+Cabeçalho
+Rodapé
+Centro na diagonal
+Opacidade
+Marca d’água aplicada.
+Cobrir conteúdo
+Coloque caixas pretas sólidas sobre áreas sensíveis (cobertura visual).
+pdf ocultar tapar cobrir sensível
+Aplicar cobertura
+É só uma cobertura visual. Não garante a remoção de todo o fluxo de texto por baixo — revise documentos sensíveis.
+Coberturas aplicadas.
+Extrair do PDF
+Puxe o texto legível ou exporte uma página como imagem.
+pdf extrair texto imagens
+Extrair
+Texto
+Imagens
+Extração concluída.
+Exportadas {count} imagens de página em um ZIP.
+Compactar imagens
+Baixe qualidade e tamanho máximo para as fotos continuarem compartilháveis.
+imagem compactar jpg png webp tamanho foto
+Compactar
+Compactadas {count} imagens.
+Redimensionar imagens
+Defina dimensões exatas, com trava opcional da proporção.
+imagem redimensionar escala dimensões largura altura
+Redimensionar
+Manter proporção
+Redimensionadas {count} imagens.
+Recortar imagem
+Fique só com o retângulo que importa.
+imagem recortar cortar região
+Recortar
+Imagem recortada pronta.
+Converter formato de imagem
+Alterne entre JPEG, PNG, WEBP e formatos web parecidos.
+imagem converter formato webp avif png jpg jpeg
+Converter
+Convertidas {count} imagens.
+Metadados da imagem
+Inspecione EXIF e tags parecidas e exporte uma cópia limpa sem eles.
+imagem exif metadados remover privacidade localização
+Remover metadados
+Os pixels são recodificados no navegador, então os metadados embutidos são descartados.
+Metadados removidos de {count} imagens.
+Tag
+Valor
+Nenhum EXIF ou metadado de texto legível neste arquivo.
+Ajustar imagem
+Altere brilho, contraste e saturação.
+imagem brilho contraste saturação cor
+Aplicar
+Brilho
+Contraste
+Saturação
+Ajustadas {count} imagens.
+Conversão inteligente
+Detecta tipos mistos de arquivo ou texto e converte entre formatos (não é um estúdio de mídia).
+converter hub inteligente lote json yaml csv zip imagem dados
+Converter
+Detectado como
+Formato de saída
+Conversão concluída.
+Formatador JSON
+Indenta, minifica e encontra erros de JSON cedo.
+json formatar validar minificar pretty
+Formatar
+O JSON parece válido e está formatado.
+Formatador YAML
+Confira a estrutura YAML e organize o layout.
+yaml formatar validar yml
+Formatar
+O YAML parece válido.
+Formatador TOML
+Valide TOML e mantenha o arquivo organizado.
+toml formatar validar config
+Formatar
+O TOML parece válido.
+Markdown ↔ HTML
+Transforme Markdown em HTML, ou HTML de volta em Markdown.
+markdown html converter md marcação
+Converter
+Markdown → HTML
+HTML → Markdown
+Convertido.
+CSV ↔ JSON
+Mova dados tabulares entre CSV e arrays JSON.
+csv json converter tabela planilha
+Converter
+CSV → JSON
+JSON → CSV
+Convertido.
+Comparar texto
+Veja as mudanças linha a linha entre duas versões.
+diff comparar texto mudanças patch
+Comparar
+Original
+Atualizado
+Comparação pronta.
+Base64
+Codifique ou decodifique Base64 para texto simples ou arquivos inteiros.
+base64 codificar decodificar binário
+Converter
+Direção
+Texto
+Arquivo
+Pronto.
+Codificar URL
+Aplique ou reverta a codificação percentual de componentes de URL com segurança.
+url codificar decodificar percentual uri consulta
+Converter
+Pronto.
+Converter áudio
+Troque contêineres de áudio como MP3, WAV e OGG no navegador.
+áudio converter mp3 wav ogg ffmpeg som
+Converter
+Carregando motor de áudio…
+Usa FFmpeg WASM em um único thread. Arquivos grandes podem ser lentos; o suporte a codecs é limitado.
+Conversão de áudio concluída.
+Cortar áudio
+Fique só com o trecho entre dois instantes de um arquivo de áudio.
+áudio cortar recortar clipe mp3 wav
+Cortar
+Corte de áudio concluído.
+Velocidade e volume do áudio
+Acelere, desacelere ou mude o volume do áudio.
+áudio velocidade tempo volume tom
+Aplicar
+O áudio processado está pronto.
+Converter vídeo
+Troque contêineres de vídeo como MP4 e WEBM no navegador.
+vídeo converter mp4 webm ffmpeg filme
+Converter
+Carregando motor de vídeo…
+Usa FFmpeg WASM em um único thread. Arquivos grandes podem ser lentos; o suporte a codecs é limitado.
+Conversão de vídeo concluída.
+Cortar vídeo
+Fique só com o clipe entre dois instantes.
+vídeo cortar recortar clipe mp4
+Cortar
+Corte de vídeo concluído.
+Velocidade e volume do vídeo
+Mude a velocidade de reprodução e o nível de áudio de um vídeo.
+vídeo velocidade tempo volume
+Aplicar
+O vídeo processado está pronto.
+Extrair áudio do vídeo
+Salve a trilha sonora de um vídeo como arquivo de áudio.
+vídeo extrair áudio mp3 trilha
+Extrair áudio
+Áudio extraído.
+Números de página
+Carimbe um rótulo como 1 / 12 em cada página.
+pdf números página rodapé cabeçalho paginação
+Adicionar números
+Rótulo ({page} e {pages})
+Posição
+Começar em
+Cabeçalho à esquerda
+Cabeçalho ao centro
+Cabeçalho à direita
+Rodapé à esquerda
+Rodapé ao centro
+Rodapé à direita
+Números de página adicionados.
+PDF → imagens
+Rasterize cada página em JPEG e baixe-as em um ZIP.
+pdf imagem jpg jpeg zip páginas exportar
+Exportar páginas
+As páginas são desenhadas com PDF.js nesta aba. Documentos muito grandes podem ser lentos e usar bastante memória. É um raster visual, não uma extração de objetos de imagem embutidos.
+Exportadas {count} páginas.
+Imagens → PDF
+Empilhe fotos em um PDF, uma imagem por página.
+imagens pdf jpg png combinar
+Criar PDF
+PDF criado a partir de {count} imagens.
+Achatar formulários
+Queime os campos AcroForm na página para que não possam mais ser editados.
+pdf achatar formulário campos acroform
+Achatar
+Funciona com campos AcroForm padrão. Formulários XFA dinâmicos não são totalmente compatíveis.
+Achatados {count} campos.
+Metadados do PDF
+Veja, edite ou remova título, autor e outros campos Info do documento.
+Palavras-chave
+Salvar metadados
+Remover todos os campos
+Título
+Autor
+Assunto
+Criador
+Produtor
+Metadados salvos.
+Metadados removidos.
+Bloquear ou desbloquear PDF
+Adicione ou remova uma senha de usuário. A criptografia fica neste navegador.
+pdf senha bloquear desbloquear criptografar descriptografar
+Aplicar
+Bloquear
+Desbloquear
+Senha
+Usa uma biblioteca de criptografia de PDF no cliente. Algumas revisões antigas ou incomuns podem não desbloquear. Kit nunca envia o arquivo nem a senha a um servidor.
+O PDF está pronto.
+Girar e inverter
+Gire imagens de 90° em 90° ou inverta na horizontal ou na vertical.
+imagem girar inverter espelhar
+Aplicar
+Transformação
+Girar 90°
+Girar 180°
+Girar 270°
+Inverter na horizontal
+Inverter na vertical
+Transformadas {count} imagens.
+Filtros de imagem
+Aplique escala de cinza, sépia ou inversão a uma ou várias fotos.
+imagem filtro cinza sépia inverter
+Aplicar
+Filtro
+Escala de cinza
+Sépia
+Inverter
+Filtradas {count} imagens.
+Pacote de favicon
+Exporte uma imagem de origem nos tamanhos de ícone comuns em um ZIP.
+favicon ícone 16 32 180 192 512 apple touch
+Exportar ícones
+Exporta arquivos PNG de 16, 32, 48, 180, 192 e 512 pixels.
+O pacote de ícones está pronto.
+Vídeo → GIF
+Transforme um clipe curto em um GIF em loop, no navegador.
+vídeo gif clipe converter ffmpeg
+Criar GIF
+Usa FFmpeg WASM. Mantenha os clipes curtos — a codificação GIF é lenta e pesada em memória. Paleta e codecs seguem a compilação no navegador.
+O GIF está pronto.
+XML ↔ JSON
+Converta documentos XML em JSON, ou JSON de volta em XML.
+xml json converter analisar
+Converter
+XML → JSON
+JSON → XML
+Convertido.
+Formatador SQL
+Deixe o SQL indentado para cláusulas e listas ficarem mais fáceis de ler.
+sql formatar pretty consulta
+Formatar
+SQL formatado.
+Testador de regex
+Teste uma expressão regular em um texto de exemplo e substitua as ocorrências.
+regex expressão regular testar substituir
+Padrão
+Flags
+Texto de exemplo
+Substituição
+Substituir
+{count, plural, one {# ocorrência} other {# ocorrências}}
+Substituição pronta.
+Gerador de hash
+SHA-1/256/384/512 e MD5 de um texto ou arquivo, calculados localmente.
+hash sha256 md5 sha1 checksum digest
+Calcular
+Algoritmo
+Digest
+Os hashes são calculados neste navegador (Web Crypto para SHA, implementação local de MD5). MD5 não é resistente a colisões — use só para checksums.
+Hash pronto.
+Gerador de UUID
+Crie UUIDs versão 4 ou 7 neste dispositivo.
+uuid guid v4 v7 gerar
+Gerar
+Quantos
+Versão
+UUIDs gerados.
+Conversor de cores
+Converta entre HEX, RGB, HSL e HSV, com um seletor de cores.
+cor hex rgb hsl hsv seletor
+Seletor de cores
+Digite uma cor hexadecimal de 3 ou 6 dígitos.
+Lorem ipsum
+Gere parágrafos, frases ou palavras de preenchimento.
+lorem ipsum preenchimento texto fictício
+Gerar
+Quantidade
+Modo
+Parágrafos
+Frases
+Palavras
+Texto gerado.
+Código QR
+Crie um código QR a partir de um texto, ou leia um de uma imagem.
+qr código gerar escanear ler código de barras
+Gerar
+Texto ou URL
+Ler da imagem
+Ler QR
+Código QR pronto.
+Conteúdo do QR lido.
+Nenhum código QR encontrado nessa imagem.
+Assinar PDF
+Carimbe uma assinatura digitada em cada página. Só visual — não é um certificado.
+pdf assinar assinatura carimbo nome
+Assinar
+Texto da assinatura
+Seu nome
+Isso desenha seu nome na página. Não é uma assinatura digital criptográfica.
+Assinatura aplicada.
+Marca d’água em imagens
+Sobreponha texto nas fotos, um arquivo ou um lote inteiro.
+imagem marca d’água carimbo copyright
+Aplicar
+Texto da marca d’água
+Posição
+Canto inferior direito
+Canto inferior esquerdo
+Canto superior direito
+Centro
+Marca d’água em {count} imagens.
+Gerador de senha
+Crie uma senha forte neste dispositivo. Nada é armazenado.
+senha gerar aleatória secreto
+Gerar
+Comprimento
+Minúsculas
+Maiúsculas
+Dígitos
+Símbolos
+Senha pronta.
+Alterar maiúsculas
+Alterne entre camel, snake, kebab, título e outros.
+maiúsculas camel snake kebab pascal título
+Converter
+Estilo
+Convertido.
+Decodificador JWT
+Leia o cabeçalho e o payload de um JWT localmente. Assinaturas não são verificadas.
+jwt decodificar token bearer auth
+Decodificar
+Kit só decodifica Base64url. Sem uma chave, não pode provar que o token é autêntico.
+A parte da assinatura está presente (não verificada).
+Sem parte de assinatura.
+Cole um token primeiro.
+Token decodificado.
+Timestamp Unix
+Converta tempo Unix para ISO e de volta.
+unix epoch timestamp iso data
+Usar agora
+Explicar cron
+Transforme uma expressão cron de 5 campos em linguagem clara.
+cron agendamento crontab explicar
+Explicar
+Explicado.
+Base numérica
+Converta inteiros entre as bases 2 e 36.
+binário hex decimal base converter
+Número
+Da base
+Para a base
+Entidades HTML
+Codifique ou decodifique &lt; &amp; e entidades numéricas.
+html entidades codificar decodificar escape
+Converter
+Codificar
+Decodificar
+Convertido.
+JSON → TypeScript
+Infira interfaces TypeScript a partir de um exemplo JSON.
+json typescript interface tipo gerar
+Gerar tipos
+Tipos gerados.
+Última atualização
+Política de privacidade
+Termos de uso
+Página não encontrada
+Esse endereço não existe no Kit. Volte ao início e escolha uma ferramenta por lá.
+Voltar ao início
+Algo deu errado
+A última ação falhou neste navegador. Você pode tentar de novo sem sair da página.
+Tentar de novo

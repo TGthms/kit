@@ -2,15 +2,14 @@
 
 import { useLocale, useTranslations } from "next-intl";
 import { usePathname, useRouter } from "@/lib/i18n/navigation";
-import { locales, localeNames, type Locale } from "@/lib/i18n/config";
-import { Button } from "@/components/ui/button";
+import { locales, localeNames, resolveLocale, type Locale } from "@/lib/i18n/config";
 import { cn } from "@/lib/utils";
 
 type LocaleSwitcherVariant = "compact" | "settings";
 
 /**
- * compact  — header/drawer: tight segmented control, width fits content
- * settings — settings page: same discrete buttons as Appearance
+ * Native language picker listing every first-class locale.
+ * Settings uses a full-width select; header chrome uses a compact select.
  */
 export function LocaleSwitcher({
   className,
@@ -19,12 +18,14 @@ export function LocaleSwitcher({
   className?: string;
   variant?: LocaleSwitcherVariant;
 }) {
-  const locale = useLocale() as Locale;
+  const pathLocale = useLocale();
+  const locale = resolveLocale(pathLocale);
   const pathname = usePathname();
   const router = useRouter();
   const t = useTranslations("common");
 
   const select = (l: Locale) => {
+    if (l === locale) return;
     try {
       localStorage.setItem("kit-locale", l);
     } catch {
@@ -33,58 +34,25 @@ export function LocaleSwitcher({
     router.replace(pathname, { locale: l });
   };
 
-  if (variant === "settings") {
-    return (
-      <div
-        className={cn("flex flex-wrap gap-2", className)}
-        role="group"
-        aria-label={t("language")}
-      >
-        {locales.map((l) => (
-          <Button
-            key={l}
-            type="button"
-            size="sm"
-            variant={l === locale ? "default" : "outline"}
-            className="transition-[background-color,color,box-shadow,transform] duration-200 ease-out"
-            onClick={() => select(l)}
-            aria-pressed={l === locale}
-          >
-            {localeNames[l]}
-          </Button>
-        ))}
-      </div>
-    );
-  }
-
   return (
-    <div
+    <select
+      aria-label={t("language")}
       className={cn(
-        "inline-flex w-fit max-w-full flex-wrap items-center gap-0.5 rounded-full border border-border/50 bg-secondary/50 p-0.5",
+        "rounded-xl border border-input bg-background text-sm",
+        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+        variant === "settings"
+          ? "h-11 w-full max-w-md px-3"
+          : "h-9 max-w-[11rem] px-2 text-xs sm:text-sm",
         className
       )}
-      role="group"
-      aria-label={t("language")}
+      value={locale}
+      onChange={(e) => select(e.target.value as Locale)}
     >
       {locales.map((l) => (
-        <Button
-          key={l}
-          type="button"
-          size="sm"
-          variant="ghost"
-          className={cn(
-            "h-8 min-w-0 rounded-full px-2.5 text-[11px] font-medium sm:text-xs",
-            "transition-[background-color,color,box-shadow,transform] duration-200 ease-out",
-            l === locale
-              ? "bg-background text-foreground shadow-sm hover:bg-background"
-              : "text-muted-foreground hover:text-foreground"
-          )}
-          onClick={() => select(l)}
-          aria-pressed={l === locale}
-        >
+        <option key={l} value={l}>
           {localeNames[l]}
-        </Button>
+        </option>
       ))}
-    </div>
+    </select>
   );
 }

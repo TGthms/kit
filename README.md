@@ -1,6 +1,42 @@
 # Kit
 
-**[English](README.md) | [Español](README.es.md) | [中文](README.zh.md) | [日本語](README.ja.md)**
+**English** · [Español](README.es.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Português (Brasil)](README.pt-BR.md) · [日本語](README.ja.md) · [简体中文](README.zh-Hans.md) · [繁體中文](README.zh-Hant.md) · [한국어](README.ko.md) · [العربية](README.ar.md)
+
+<details>
+<summary>All 30 README languages</summary>
+
+- **English**
+- [Español](README.es.md)
+- [Français](README.fr.md)
+- [Deutsch](README.de.md)
+- [Italiano](README.it.md)
+- [Português (Brasil)](README.pt-BR.md)
+- [Português (Portugal)](README.pt-PT.md)
+- [Nederlands](README.nl.md)
+- [Dansk](README.da.md)
+- [Svenska](README.sv.md)
+- [Norsk Bokmål](README.nb.md)
+- [Suomi](README.fi.md)
+- [Polski](README.pl.md)
+- [Čeština](README.cs.md)
+- [Magyar](README.hu.md)
+- [Română](README.ro.md)
+- [Ελληνικά](README.el.md)
+- [Türkçe](README.tr.md)
+- [Русский](README.ru.md)
+- [Українська](README.uk.md)
+- [العربية](README.ar.md)
+- [עברית](README.he.md)
+- [हिन्दी](README.hi.md)
+- [ไทย](README.th.md)
+- [Tiếng Việt](README.vi.md)
+- [Bahasa Indonesia](README.id.md)
+- [日本語](README.ja.md)
+- [한국어](README.ko.md)
+- [简体中文](README.zh-Hans.md)
+- [繁體中文](README.zh-Hant.md)
+
+</details>
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
@@ -14,11 +50,11 @@ Kit is a set of PDF, image, media, converter, and text tools that run on your de
 
 ## What you get
 
-A complete, polished toolkit: clear layout, light and dark appearance, full multi-language UI, an installable PWA shell, and honest limits about what a browser can do.
+A complete, polished toolkit: clear layout, light and dark appearance, a 30-language UI with a native picker, an installable PWA shell, and honest limits about what a browser can do.
 
 ## Languages
 
-Interface and legal pages: **English · Español · 中文 · 日本語**
+The app interface and this GitHub README are available in **30 languages**. Switch in Settings (or the header) with a native picker, or use the links at the top of this file. Included: English, Español, Français, Deutsch, Italiano, Português (Brasil / Portugal), Nederlands, Dansk, Svenska, Norsk Bokmål, Suomi, Polski, Čeština, Magyar, Română, Ελληνικά, Türkçe, Русский, Українська, العربية, עברית, हिन्दी, ไทย, Tiếng Việt, Bahasa Indonesia, 日本語, 한국어, 简体中文, and 繁體中文. Arabic and Hebrew use right-to-left layout. Privacy and Terms are localized where we have native legal text; other locales fall back to English. Old `/zh/` app links still resolve to Simplified Chinese.
 
 ## Tools
 

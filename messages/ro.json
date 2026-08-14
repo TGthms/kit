@@ -1,0 +1,735 @@
+{
+  "meta": {
+    "title": "Kit — Instrumente în browser care rămân private",
+    "description": "PDF, imagini, media, convertoare și unelte de text rulează pe dispozitivul tău. Nimic nu este încărcat pe serverele noastre."
+  },
+  "brand": {
+    "name": "Kit",
+    "tagline": "Unelte de zi cu zi în browser. Private prin concepție."
+  },
+  "nav": {
+    "home": "Acasă",
+    "tools": "Instrumente",
+    "history": "Istoric",
+    "favorites": "Favorite",
+    "settings": "Setări",
+    "searchPlaceholder": "Caută instrumente…",
+    "openMenu": "Deschide meniul",
+    "closeMenu": "Închide meniul"
+  },
+  "footer": {
+    "privacy": "Politica de confidențialitate",
+    "terms": "Termeni de utilizare",
+    "aboutMe": "Despre mine",
+    "license": "Licență MIT",
+    "copyright": "© {year} Tim G (TGthms). Kit este open source sub licența MIT.",
+    "github": "GitHub"
+  },
+  "common": {
+    "cancel": "Anulează",
+    "clear": "Golește",
+    "close": "Închide",
+    "copy": "Copiază",
+    "copied": "Copiat în clipboard",
+    "download": "Descarcă",
+    "run": "Rulează",
+    "process": "Procesează",
+    "processing": "Se procesează…",
+    "done": "Gata",
+    "error": "Ceva nu a mers bine",
+    "retry": "Încearcă din nou",
+    "addFiles": "Adaugă fișiere",
+    "dropFiles": "Trage fișierele aici",
+    "orBrowse": "sau alege de pe dispozitiv",
+    "pasteSupported": "Poți lipi și din clipboard",
+    "remove": "Elimină",
+    "reorder": "Trage pentru a schimba ordinea",
+    "files": "Fișiere",
+    "noFiles": "Niciun fișier selectat încă",
+    "quality": "Calitate",
+    "options": "Opțiuni",
+    "preview": "Previzualizare",
+    "result": "Rezultat",
+    "input": "Intrare",
+    "output": "Ieșire",
+    "format": "Format",
+    "language": "Limbă",
+    "theme": "Aspect",
+    "themeSystem": "Ca în sistem",
+    "themeLight": "Deschis",
+    "themeDark": "Întunecat",
+    "loading": "Se încarcă…",
+    "save": "Salvează",
+    "delete": "Șterge",
+    "confirm": "Confirmă",
+    "back": "Înapoi",
+    "allCategories": "Toate",
+    "pin": "Fixează",
+    "unpin": "Anulează fixarea",
+    "favorite": "Adaugă la favorite",
+    "unfavorite": "Scoate din favorite",
+    "presets": "Presetări",
+    "applyPreset": "Folosește presetarea",
+    "savePreset": "Salvează ca presetare",
+    "shortcuts": "Scurtături de tastatură",
+    "progress": "Progres",
+    "fileTooLarge": "Fișierul este mare — procesarea poate dura.",
+    "unsupported": "Acest format nu este acceptat",
+    "success": "Succes",
+    "warning": "Atenție",
+    "info": "Notă",
+    "selectAll": "Selectează tot",
+    "none": "Niciunul",
+    "reset": "Resetează",
+    "maxWidth": "Lățime max.",
+    "maxHeight": "Înălțime max.",
+    "width": "Lățime",
+    "height": "Înălțime",
+    "rotate": "Rotește",
+    "pages": "Pagini",
+    "page": "Pagină",
+    "text": "Text",
+    "encode": "Codifică",
+    "decode": "Decodifică",
+    "validate": "Validează",
+    "minify": "Minifică",
+    "beautify": "Formatează frumos",
+    "valid": "Valid",
+    "invalid": "Invalid",
+    "characters": "Caractere",
+    "lines": "Linii",
+    "from": "De la",
+    "to": "Până la",
+    "start": "Start",
+    "end": "Sfârșit",
+    "speed": "Viteză",
+    "volume": "Volum",
+    "trim": "Taie",
+    "extract": "Extrage",
+    "batch": "Lot",
+    "limitations": "Limitări",
+    "clientSideOnly": "Rulează doar în browser. Fișierele tale nu sunt trimise niciodată pe un server Kit.",
+    "aboutMeUrl": "https://tgthms.github.io/about/",
+    "howItWorks": "Cum funcționează și limite"
+  },
+  "home": {
+    "title": "Ce ai de făcut?",
+    "subtitle": "Unelte practice pe acest dispozitiv — fără cont, fără încărcări.",
+    "categories": "Categorii",
+    "popular": "Instrumente",
+    "noResults": "Nimic nu se potrivește căutării.",
+    "recent": "Continuă de unde ai rămas",
+    "pinned": "Fixate",
+    "chooseCategory": "Începe cu o categorie",
+    "chooseCategoryHint": "Alege o familie de sarcini. Instrumentele dinăuntru sunt grupate ca să le parcurgi, nu să le vânezi.",
+    "backToCategories": "Categorii",
+    "toolsInCategory": "{count, plural, one {# instrument} few {# instrumente} other {# de instrumente}}",
+    "searchResults": "Rezultatele căutării",
+    "featured": "Începe aici",
+    "groups": {
+      "pages": "Pagini",
+      "protect": "Protecție și info",
+      "markup": "Marcaje",
+      "export": "Export / conversie",
+      "transform": "Dimensiune și decupare",
+      "look": "Aspect",
+      "file": "Fișier",
+      "clip": "Clipuri",
+      "formats": "Formate",
+      "write": "Scriere",
+      "inspect": "Inspectare",
+      "encode": "Codificare",
+      "generate": "Generare"
+    }
+  },
+  "categories": {
+    "pdf": "PDF",
+    "image": "Imagini",
+    "audio": "Audio",
+    "video": "Video",
+    "convert": "Conversie de fișiere",
+    "text": "Scriere",
+    "pdfDesc": "Unește, împarte, comprimă și marchează documente PDF",
+    "imageDesc": "Comprimă, redimensionează, convertește și retușează fotografii",
+    "audioDesc": "Convertește, taie și schimbă viteza doar pentru audio",
+    "videoDesc": "Convertește, taie, accelerează și extrage audio din video",
+    "convertDesc": "Conversie inteligentă între formate (JSON, CSV, ZIP, imagini…)",
+    "textDesc": "Compară text, schimbă majusculele și transformă Markdown în HTML",
+    "data": "Date",
+    "dataDesc": "JSON, YAML, CSV, XML, SQL și conversie între formate",
+    "developer": "Dezvoltare",
+    "developerDesc": "Tokenuri, hash-uri, codificări, parole și alte unelte de banc"
+  },
+  "history": {
+    "title": "Istoric",
+    "subtitle": "Ce ai rulat pe acest dispozitiv. Păstrăm doar rezumate scurte — niciodată fișierele tale.",
+    "empty": "Nicio activitate încă. Rulează un instrument și va apărea aici.",
+    "clear": "Golește istoricul",
+    "clearConfirm": "Ștergi tot istoricul de pe acest dispozitiv?",
+    "openTool": "Deschide instrumentul",
+    "tool": "Instrument",
+    "when": "Când",
+    "summary": "Rezumat",
+    "status": "Stare",
+    "success": "Reușit",
+    "failed": "Eșuat"
+  },
+  "favorites": {
+    "title": "Favorite",
+    "subtitle": "Instrumente la îndemână, dintr-o atingere.",
+    "empty": "Niciun favorit încă. Marchează cu stea un instrument de pe Acasă sau de pe pagina lui."
+  },
+  "settings": {
+    "title": "Setări",
+    "subtitle": "Aceste alegeri rămân doar în acest browser.",
+    "appearance": "Aspect",
+    "language": "Limbă",
+    "data": "Date și confidențialitate",
+    "clearHistory": "Golește istoricul",
+    "clearHistoryDesc": "Elimină rezumatele locale de istoric stocate de acest site.",
+    "privacyNote": "Kit prelucrează fișierele tale în browser. Preferințele și rezumatele de istoric pot fi salvate local. Detaliile sunt în Politica de confidențialitate.",
+    "viewPrivacy": "Politica de confidențialitate",
+    "viewTerms": "Termeni de utilizare",
+    "shortcutsHelp": "Apasă ? oricând pentru scurtăturile de tastatură.",
+    "version": "Versiune"
+  },
+  "shortcuts": {
+    "title": "Scurtături de tastatură",
+    "global": "Pretutindeni",
+    "search": "Focalizează căutarea",
+    "settings": "Deschide setările",
+    "home": "Mergi acasă",
+    "help": "Arată această listă",
+    "run": "Rulează instrumentul curent",
+    "close": "Închide"
+  },
+  "tools": {
+    "pdf-merge": {
+      "name": "Unește PDF-uri",
+      "description": "Stivuiește mai multe PDF-uri într-unul. Previzualizează paginile și trage pentru a reordona.",
+      "keywords": "pdf unește combină lipește coase multipagină",
+      "run": "Unește",
+      "empty": "Adaugă cel puțin două fișiere PDF.",
+      "success": "S-au unit {count} fișiere într-un singur PDF."
+    },
+    "pdf-split": {
+      "name": "Împarte PDF",
+      "description": "Scoate un interval de pagini într-un PDF nou-nouț.",
+      "keywords": "pdf împarte extrage pagini interval",
+      "run": "Împarte",
+      "range": "Pagini (de exemplu 1-3,5)",
+      "success": "PDF-ul împărțit este gata."
+    },
+    "pdf-organize": {
+      "name": "Organizează paginile",
+      "description": "Rotește pagini, elimină-le pe cele de prisos și setează o ordine nouă.",
+      "keywords": "pdf rotește șterge reordonează organizează pagini",
+      "run": "Salvează PDF",
+      "success": "PDF-ul tău a fost actualizat."
+    },
+    "pdf-compress": {
+      "name": "Comprimă PDF",
+      "description": "Micșorează fișierul recodificând imaginile paginilor (compromis de calitate).",
+      "keywords": "pdf comprimă reduce dimensiune mai mic",
+      "run": "Comprimă",
+      "note": "Este o cale cu pierderi — paginile pot fi rasterizate. Funcționează cel mai bine pe PDF-uri pline de imagini.",
+      "success": "PDF-ul comprimat este gata de descărcat."
+    },
+    "pdf-watermark": {
+      "name": "Filigran PDF",
+      "description": "Pune text ca filigran, antet sau subsol pe fiecare pagină.",
+      "keywords": "pdf filigran ștampilă antet subsol confidențial",
+      "run": "Aplică",
+      "text": "Textul filigranului",
+      "position": "Plasare",
+      "header": "Antet",
+      "footer": "Subsol",
+      "center": "Centru pe diagonală",
+      "opacity": "Opacitate",
+      "success": "Filigranul a fost aplicat."
+    },
+    "pdf-redact": {
+      "name": "Acoperă conținutul",
+      "description": "Pune dreptunghiuri negre peste zonele sensibile (doar vizual).",
+      "keywords": "pdf redactare înnegrire ascunde sensibil",
+      "run": "Aplică acoperirea",
+      "note": "Este doar o acoperire vizuală. Nu garantează eliminarea fiecărui flux de text de dedesubt — verifică documentele sensibile.",
+      "success": "Cutiile de acoperire au fost aplicate."
+    },
+    "pdf-extract": {
+      "name": "Extrage din PDF",
+      "description": "Scoate text lizibil sau exportă o pagină ca imagine.",
+      "keywords": "pdf extrage text imagini",
+      "run": "Extrage",
+      "modeText": "Text",
+      "modeImages": "Imagini",
+      "success": "Extracția s-a încheiat.",
+      "imagesReady": "S-au exportat {count} imagini de pagină ca ZIP."
+    },
+    "image-compress": {
+      "name": "Comprimă imagini",
+      "description": "Scade calitatea și dimensiunea maximă ca fotografiile să rămână ușor de trimis.",
+      "keywords": "imagine comprimă jpg png webp dimensiune foto",
+      "run": "Comprimă",
+      "success": "S-au comprimat {count} imagini."
+    },
+    "image-resize": {
+      "name": "Redimensionează imagini",
+      "description": "Setează dimensiuni exacte, cu blocarea opțională a raportului de aspect.",
+      "keywords": "imagine redimensionează scară dimensiuni lățime înălțime",
+      "run": "Redimensionează",
+      "lockAspect": "Păstrează raportul de aspect",
+      "success": "S-au redimensionat {count} imagini."
+    },
+    "image-crop": {
+      "name": "Decupează imaginea",
+      "description": "Păstrează doar dreptunghiul care te interesează.",
+      "keywords": "imagine decupează taie zonă",
+      "run": "Decupează",
+      "success": "Imaginea decupată este gata."
+    },
+    "image-convert": {
+      "name": "Convertește formatul imaginii",
+      "description": "Treci între JPEG, PNG, WEBP și formate web similare.",
+      "keywords": "imagine convertește format webp avif png jpg jpeg",
+      "run": "Convertește",
+      "success": "S-au convertit {count} imagini."
+    },
+    "image-metadata": {
+      "name": "Metadate imagine",
+      "description": "Inspectează EXIF și etichete similare, apoi exportă o copie curată fără ele.",
+      "keywords": "imagine exif metadate elimină confidențialitate locație",
+      "run": "Elimină metadatele",
+      "note": "Pixelii sunt recodificați în browser, deci metadatele încorporate dispar.",
+      "success": "S-au eliminat metadatele de la {count} imagini.",
+      "tag": "Etichetă",
+      "value": "Valoare",
+      "noExif": "Nicio metadată EXIF sau text lizibilă în acest fișier."
+    },
+    "image-adjust": {
+      "name": "Ajustează imaginea",
+      "description": "Reglează luminozitatea, contrastul și saturația.",
+      "keywords": "imagine luminozitate contrast saturație culoare",
+      "run": "Aplică",
+      "brightness": "Luminozitate",
+      "contrast": "Contrast",
+      "saturation": "Saturație",
+      "success": "S-au ajustat {count} imagini."
+    },
+    "convert-hub": {
+      "name": "Conversie inteligentă",
+      "description": "Detectează tipuri mixte de fișiere sau text și convertește între formate (nu e un studio media).",
+      "keywords": "conversie hub inteligent lot json yaml csv zip imagine date",
+      "run": "Convertește",
+      "detect": "Detectat ca",
+      "chooseOutput": "Format de ieșire",
+      "success": "Conversia s-a încheiat."
+    },
+    "json-format": {
+      "name": "Formator JSON",
+      "description": "Formatează frumos, minifică și prinde erorile JSON din timp.",
+      "keywords": "json format validează minifică pretty",
+      "run": "Formatează",
+      "success": "JSON-ul pare valid și este formatat."
+    },
+    "yaml-format": {
+      "name": "Formator YAML",
+      "description": "Verifică structura YAML și curăță aranjamentul.",
+      "keywords": "yaml format validează yml",
+      "run": "Formatează",
+      "success": "YAML-ul pare valid."
+    },
+    "toml-format": {
+      "name": "Formator TOML",
+      "description": "Validează TOML și păstrează fișierul îngrijit.",
+      "keywords": "toml format validează config",
+      "run": "Formatează",
+      "success": "TOML-ul pare valid."
+    },
+    "markdown-html": {
+      "name": "Markdown ↔ HTML",
+      "description": "Transformă Markdown în HTML sau HTML înapoi în Markdown.",
+      "keywords": "markdown html convertește md marcaj",
+      "run": "Convertește",
+      "toHtml": "Markdown → HTML",
+      "toMd": "HTML → Markdown",
+      "success": "Convertit."
+    },
+    "csv-json": {
+      "name": "CSV ↔ JSON",
+      "description": "Mută date tabelare între CSV și tablouri JSON.",
+      "keywords": "csv json convertește tabel foaie",
+      "run": "Convertește",
+      "toJson": "CSV → JSON",
+      "toCsv": "JSON → CSV",
+      "success": "Convertit."
+    },
+    "text-diff": {
+      "name": "Compară text",
+      "description": "Vezi modificările linie cu linie între două versiuni.",
+      "keywords": "diff compară text modificări patch",
+      "run": "Compară",
+      "left": "Original",
+      "right": "Actualizat",
+      "success": "Comparația este gata."
+    },
+    "base64": {
+      "name": "Base64",
+      "description": "Codifică sau decodifică Base64 pentru text simplu sau fișiere întregi.",
+      "keywords": "base64 codifică decodifică binar",
+      "run": "Convertește",
+      "mode": "Direcție",
+      "textMode": "Text",
+      "fileMode": "Fișier",
+      "success": "Gata."
+    },
+    "url-encode": {
+      "name": "Codificare URL",
+      "description": "Codifică sau decodifică în siguranță componentele URL (percent-encoding).",
+      "keywords": "url codifică decodifică percent uri interogare",
+      "run": "Convertește",
+      "success": "Gata."
+    },
+    "audio-convert": {
+      "name": "Convertește audio",
+      "description": "Schimbă containere audio precum MP3, WAV și OGG în browser.",
+      "keywords": "audio convertește mp3 wav ogg ffmpeg sunet",
+      "run": "Convertește",
+      "loadingFfmpeg": "Se încarcă motorul audio…",
+      "note": "Folosește FFmpeg WASM pe un singur fir. Fișierele mari pot fi lente; suportul de codecuri este limitat.",
+      "success": "Conversia audio s-a încheiat."
+    },
+    "audio-trim": {
+      "name": "Taie audio",
+      "description": "Păstrează doar intervalul dintre două marcaje de timp dintr-un fișier audio.",
+      "keywords": "audio taie decupează clip mp3 wav",
+      "run": "Taie",
+      "success": "Tăierea audio s-a încheiat."
+    },
+    "audio-speed": {
+      "name": "Viteză și volum audio",
+      "description": "Accelerează, încetinește sau schimbă tăria sunetului.",
+      "keywords": "audio tempo viteză volum înălțime",
+      "run": "Aplică",
+      "success": "Audio-ul procesat este gata."
+    },
+    "video-convert": {
+      "name": "Convertește video",
+      "description": "Schimbă containere video precum MP4 și WEBM în browser.",
+      "keywords": "video convertește mp4 webm ffmpeg film",
+      "run": "Convertește",
+      "loadingFfmpeg": "Se încarcă motorul video…",
+      "note": "Folosește FFmpeg WASM pe un singur fir. Fișierele mari pot fi lente; suportul de codecuri este limitat.",
+      "success": "Conversia video s-a încheiat."
+    },
+    "video-trim": {
+      "name": "Taie video",
+      "description": "Păstrează doar clipul dintre două marcaje de timp.",
+      "keywords": "video taie decupează clip mp4",
+      "run": "Taie",
+      "success": "Tăierea video s-a încheiat."
+    },
+    "video-speed": {
+      "name": "Viteză și volum video",
+      "description": "Schimbă viteza de redare și nivelul audio al unui video.",
+      "keywords": "video tempo viteză volum",
+      "run": "Aplică",
+      "success": "Videoclipul procesat este gata."
+    },
+    "video-extract-audio": {
+      "name": "Extrage audio din video",
+      "description": "Salvează pista sonoră a unui video ca fișier audio.",
+      "keywords": "video extrage audio mp3 pistă",
+      "run": "Extrage audio",
+      "success": "Audio extras."
+    },
+    "pdf-numbers": {
+      "name": "Numere de pagină",
+      "description": "Pune o etichetă de pagină, de exemplu 1 / 12, pe fiecare pagină.",
+      "keywords": "pdf numere pagină subsol antet paginare",
+      "run": "Adaugă numere",
+      "template": "Etichetă ({page} și {pages})",
+      "position": "Plasare",
+      "start": "Începe de la",
+      "headerLeft": "Antet stânga",
+      "headerCenter": "Antet centru",
+      "headerRight": "Antet dreapta",
+      "footerLeft": "Subsol stânga",
+      "footerCenter": "Subsol centru",
+      "footerRight": "Subsol dreapta",
+      "success": "Numerele de pagină au fost adăugate."
+    },
+    "pdf-to-images": {
+      "name": "PDF → imagini",
+      "description": "Rasterizează fiecare pagină în JPEG și descarcă-le ca ZIP.",
+      "keywords": "pdf imagine jpg jpeg zip pagini export",
+      "run": "Exportă paginile",
+      "limits": "Paginile sunt desenate cu PDF.js în această filă. Documentele foarte mari pot fi lente și consumă multă memorie. Este un raster vizual, nu o extragere a obiectelor de imagine încorporate.",
+      "success": "S-au exportat {count} pagini."
+    },
+    "images-to-pdf": {
+      "name": "Imagini → PDF",
+      "description": "Stivuiește fotografii într-un PDF, o imagine pe pagină.",
+      "keywords": "imagini pdf jpg png combină",
+      "run": "Creează PDF",
+      "success": "S-a construit un PDF din {count} imagini."
+    },
+    "pdf-flatten": {
+      "name": "Aplatizează formulare",
+      "description": "Coace câmpurile AcroForm în pagină ca să nu mai poată fi editate.",
+      "keywords": "pdf aplatizează formular câmpuri acroform",
+      "run": "Aplatizează",
+      "limits": "Funcționează pe câmpuri AcroForm standard. Formularele XFA dinamice nu sunt pe deplin acceptate.",
+      "success": "S-au aplatizat {count} câmpuri."
+    },
+    "pdf-metadata": {
+      "name": "Metadate PDF",
+      "description": "Vezi, editează sau elimină titlul, autorul și alte câmpuri Info ale documentului.",
+      "keywords": "Cuvinte cheie",
+      "run": "Salvează metadatele",
+      "strip": "Elimină toate câmpurile",
+      "title": "Titlu",
+      "author": "Autor",
+      "subject": "Subiect",
+      "creator": "Creator",
+      "producer": "Producător",
+      "saved": "Metadatele au fost salvate.",
+      "stripped": "Metadatele au fost eliminate."
+    },
+    "pdf-protect": {
+      "name": "Blochează sau deblochează PDF",
+      "description": "Adaugă sau elimină o parolă de utilizator. Criptarea rămâne în acest browser.",
+      "keywords": "pdf parolă blochează deblochează criptează decriptează",
+      "run": "Aplică",
+      "lock": "Blochează",
+      "unlock": "Deblochează",
+      "password": "Parolă",
+      "limits": "Folosește o bibliotecă de criptare PDF pe client. Unele revizii de criptare mai vechi sau neobișnuite s-ar putea să nu se deblocheze. Kit nu trimite niciodată fișierul sau parola pe un server.",
+      "success": "PDF-ul este gata."
+    },
+    "image-rotate": {
+      "name": "Rotește și inversează",
+      "description": "Rotește imaginile din 90° în 90° sau inversează-le orizontal ori vertical.",
+      "keywords": "imagine rotește inversează oglindă",
+      "run": "Aplică",
+      "operation": "Transformare",
+      "rot90": "Rotește 90°",
+      "rot180": "Rotește 180°",
+      "rot270": "Rotește 270°",
+      "flipH": "Inversează orizontal",
+      "flipV": "Inversează vertical",
+      "success": "S-au transformat {count} imagini."
+    },
+    "image-filters": {
+      "name": "Filtre de imagine",
+      "description": "Aplică tonuri de gri, sepia sau inversare pe una sau mai multe fotografii.",
+      "keywords": "imagine filtru gri sepia inversare",
+      "run": "Aplică",
+      "filter": "Filtru",
+      "grayscale": "Tonuri de gri",
+      "sepia": "Sepia",
+      "invert": "Inversare",
+      "success": "S-au filtrat {count} imagini."
+    },
+    "image-favicon": {
+      "name": "Pachet favicon",
+      "description": "Exportă o imagine-sursă ca dimensiuni obișnuite de icoane într-un ZIP.",
+      "keywords": "favicon icon 16 32 180 192 512 apple touch",
+      "run": "Exportă icoanele",
+      "note": "Exportă fișiere PNG de 16, 32, 48, 180, 192 și 512 pixeli.",
+      "success": "Pachetul de icoane este gata."
+    },
+    "video-gif": {
+      "name": "Video → GIF",
+      "description": "Transformă un clip scurt într-un GIF în buclă, în browser.",
+      "keywords": "video gif clip convertește ffmpeg",
+      "run": "Fă GIF",
+      "limits": "Folosește FFmpeg WASM. Ține clipurile scurte — codificarea GIF este lentă și consumă memorie. Paleta și codecurile urmează build-ul din browser.",
+      "success": "GIF-ul este gata."
+    },
+    "xml-json": {
+      "name": "XML ↔ JSON",
+      "description": "Convertește documente XML în JSON sau JSON înapoi în XML.",
+      "keywords": "xml json convertește parsează",
+      "run": "Convertește",
+      "toJson": "XML → JSON",
+      "toXml": "JSON → XML",
+      "success": "Convertit."
+    },
+    "sql-format": {
+      "name": "Formator SQL",
+      "description": "Formatează frumos SQL ca să citești mai ușor clauzele și listele.",
+      "keywords": "sql format pretty interogare",
+      "run": "Formatează",
+      "success": "SQL formatat."
+    },
+    "regex-tester": {
+      "name": "Tester regex",
+      "description": "Încearcă o expresie regulată pe un text-exemplu și înlocuiește potrivirile.",
+      "keywords": "regex expresie regulată test înlocuiește",
+      "pattern": "Model",
+      "flags": "Flaguri",
+      "input": "Text-exemplu",
+      "replace": "Înlocuire",
+      "runReplace": "Înlocuiește",
+      "matches": "{count, plural, one {# potrivire} few {# potriviri} other {# de potriviri}}",
+      "success": "Înlocuirea este gata."
+    },
+    "hash-generator": {
+      "name": "Generator de hash",
+      "description": "SHA-1/256/384/512 și MD5 din text sau fișier, calculate local.",
+      "keywords": "hash sha256 md5 sha1 sumă de control digest",
+      "run": "Hash",
+      "algo": "Algoritm",
+      "digest": "Digest",
+      "limits": "Hash-urile se calculează în acest browser (Web Crypto pentru SHA, o implementare locală MD5). MD5 nu rezistă la coliziuni — folosește-l doar pentru sume de control.",
+      "success": "Hash-ul este gata."
+    },
+    "uuid-generator": {
+      "name": "Generator UUID",
+      "description": "Creează UUID versiunea 4 sau 7 pe acest dispozitiv.",
+      "keywords": "uuid guid v4 v7 generează",
+      "run": "Generează",
+      "count": "Câte",
+      "version": "Versiune",
+      "success": "UUID-urile au fost generate."
+    },
+    "color-convert": {
+      "name": "Convertor de culori",
+      "description": "Convertește între HEX, RGB, HSL și HSV, cu un selector de culoare.",
+      "keywords": "culoare hex rgb hsl hsv selector",
+      "picker": "Selector de culoare",
+      "invalid": "Introdu o culoare hex de 3 sau 6 cifre."
+    },
+    "lorem-ipsum": {
+      "name": "Lorem ipsum",
+      "description": "Generează paragrafe, propoziții sau cuvinte de umplutură.",
+      "keywords": "lorem ipsum substituent dummy text",
+      "run": "Generează",
+      "count": "Număr",
+      "mode": "Mod",
+      "paragraphs": "Paragrafe",
+      "sentences": "Propoziții",
+      "words": "Cuvinte",
+      "success": "Textul a fost generat."
+    },
+    "qr-code": {
+      "name": "Cod QR",
+      "description": "Creează un cod QR din text sau citește unul dintr-o imagine.",
+      "keywords": "qr cod generează scanează citește barcode",
+      "run": "Generează",
+      "payload": "Text sau URL",
+      "read": "Citește din imagine",
+      "runRead": "Citește QR",
+      "generated": "Codul QR este gata.",
+      "decoded": "Conținutul QR a fost citit.",
+      "none": "Nu s-a găsit niciun cod QR în acea imagine."
+    },
+    "pdf-sign": {
+      "name": "Semnează PDF",
+      "description": "Pune o semnătură tastată pe fiecare pagină. Doar vizual — nu e un certificat.",
+      "keywords": "pdf semnează semnătură ștampilă nume",
+      "run": "Semnează",
+      "signature": "Textul semnăturii",
+      "placeholder": "Numele tău",
+      "limits": "Desenează numele pe pagină. Nu este o semnătură digitală criptografică.",
+      "success": "Semnătura a fost ștampilată."
+    },
+    "image-watermark": {
+      "name": "Filigran pe imagini",
+      "description": "Suprapune text pe fotografii, un fișier sau un lot întreg.",
+      "keywords": "imagine filigran ștampilă copyright",
+      "run": "Aplică",
+      "text": "Textul filigranului",
+      "position": "Plasare",
+      "bottomRight": "Dreapta jos",
+      "bottomLeft": "Stânga jos",
+      "topRight": "Dreapta sus",
+      "center": "Centru",
+      "success": "S-a pus filigran pe {count} imagini."
+    },
+    "password-generator": {
+      "name": "Generator de parole",
+      "description": "Creează o parolă puternică pe acest dispozitiv. Nimic nu este stocat.",
+      "keywords": "parolă generează aleator secret",
+      "run": "Generează",
+      "length": "Lungime",
+      "lower": "Minuscule",
+      "upper": "Majuscule",
+      "digits": "Cifre",
+      "symbols": "Simboluri",
+      "success": "Parola este gata."
+    },
+    "case-convert": {
+      "name": "Schimbă majusculele",
+      "description": "Treci între camel, snake, kebab, title și altele.",
+      "keywords": "majuscule camel snake kebab pascal title",
+      "run": "Convertește",
+      "style": "Stil",
+      "success": "Convertit."
+    },
+    "jwt-decode": {
+      "name": "Decodor JWT",
+      "description": "Citește local antetul și payload-ul unui JWT. Semnăturile nu sunt verificate.",
+      "keywords": "jwt decodifică token bearer auth",
+      "run": "Decodifică",
+      "limits": "Kit decodifică doar Base64url. Fără o cheie nu poate dovedi că tokenul e autentic.",
+      "hasSig": "Partea de semnătură este prezentă (neverificată).",
+      "noSig": "Nicio parte de semnătură.",
+      "empty": "Lipește mai întâi un token.",
+      "success": "Tokenul a fost decodificat."
+    },
+    "unix-timestamp": {
+      "name": "Marcaj de timp Unix",
+      "description": "Convertește timpul Unix în ISO și înapoi.",
+      "keywords": "unix epoch marcaj iso dată",
+      "now": "Folosește acum"
+    },
+    "cron-explain": {
+      "name": "Explicator cron",
+      "description": "Transformă o expresie cron cu 5 câmpuri în limbaj clar.",
+      "keywords": "cron program crontab explică",
+      "run": "Explică",
+      "success": "Explicat."
+    },
+    "number-base": {
+      "name": "Bază numerică",
+      "description": "Convertește întregi între bazele 2 și 36.",
+      "keywords": "binar hex zecimal bază convertește",
+      "value": "Număr",
+      "from": "Din baza",
+      "to": "În baza"
+    },
+    "html-entities": {
+      "name": "Entități HTML",
+      "description": "Codifică sau decodifică &lt; &amp; și entitățile numerice.",
+      "keywords": "html entități codifică decodifică escape",
+      "run": "Convertește",
+      "encode": "Codifică",
+      "decode": "Decodifică",
+      "success": "Convertit."
+    },
+    "json-types": {
+      "name": "JSON → TypeScript",
+      "description": "Deduce interfețe TypeScript dintr-un eșantion JSON.",
+      "keywords": "json typescript interface tip generează",
+      "run": "Generează tipuri",
+      "success": "Tipurile au fost generate."
+    }
+  },
+  "legal": {
+    "lastUpdated": "Ultima actualizare",
+    "privacyTitle": "Politica de confidențialitate",
+    "termsTitle": "Termeni de utilizare"
+  },
+  "notFound": {
+    "title": "Pagina nu a fost găsită",
+    "body": "Această adresă nu există în Kit. Du-te acasă și alege un instrument de acolo.",
+    "home": "Înapoi acasă"
+  },
+  "errorPage": {
+    "title": "Ceva nu a mers bine",
+    "body": "Ultima acțiune a eșuat în acest browser. Poți încerca din nou fără să părăsești pagina.",
+    "retry": "Încearcă din nou"
+  }
+}
