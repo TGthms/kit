@@ -29,17 +29,25 @@ export function Providers({ children }: { children: React.ReactNode }) {
  * light/dark choice the user made earlier, so the app always tracks the
  * real system setting once it changes — it just doesn't fight the user
  * in between OS-level flips.
+ *
+ * Uses the legacy addListener/removeListener API as a fallback for older
+ * Safari (<14), which doesn't support addEventListener on MediaQueryList.
  */
 function SystemThemeSync() {
   const { setTheme } = useTheme();
 
   useEffect(() => {
     const mql = window.matchMedia("(prefers-color-scheme: dark)");
-
     const handleSystemChange = () => setTheme("system");
 
-    mql.addEventListener("change", handleSystemChange);
-    return () => mql.removeEventListener("change", handleSystemChange);
+    if (typeof mql.addEventListener === "function") {
+      mql.addEventListener("change", handleSystemChange);
+      return () => mql.removeEventListener("change", handleSystemChange);
+    }
+
+    // Legacy Safari fallback.
+    mql.addListener(handleSystemChange);
+    return () => mql.removeListener(handleSystemChange);
   }, [setTheme]);
 
   return null;
