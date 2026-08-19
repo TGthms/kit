@@ -4,19 +4,23 @@ import { useEffect } from "react";
 import { ThemeProvider, useTheme } from "next-themes";
 import { Toaster } from "sonner";
 
+// Must match next-themes' default storageKey ("theme"), since we don't
+// override it below.
+const THEME_STORAGE_KEY = "theme";
+
 export function Providers({ children }: { children: React.ReactNode }) {
   return (
     <ThemeProvider
       attribute="class"
       defaultTheme="system"
       enableSystem
-      // Manual light/dark choices apply immediately, but SystemThemeSync
-      // (below) snaps back to "system" whenever the OS preference actually
-      // changes, so a manual pick never gets stuck once the real system
-      // setting flips (e.g. macOS auto dark mode at night).
+      // Manual light/dark choices apply immediately for the current visit,
+      // but ResetToSystem (below) always resets the persisted value back to
+      // "system" on load, so every fresh visit/reload starts from System
+      // again regardless of what was picked last time.
       disableTransitionOnChange
     >
-      <SystemThemeSync />
+      <ResetToSystem />
       {children}
       <Toaster richColors position="top-center" closeButton />
     </ThemeProvider>
@@ -24,31 +28,26 @@ export function Providers({ children }: { children: React.ReactNode }) {
 }
 
 /**
- * Listens for the OS's actual light/dark preference changing and forces
- * the app back to "system" mode when it does. This overrides any manual
- * light/dark choice the user made earlier, so the app always tracks the
- * real system setting once it changes — it just doesn't fight the user
- * in between OS-level flips.
- *
- * Uses the legacy addListener/removeListener API as a fallback for older
- * Safari (<14), which doesn't support addEventListener on MediaQueryList.
+ * Forces the theme back to "system" on every mount, overwriting whatever
+ * was persisted from a previous manual light/dark pick. Manual switching
+ * still works live during the current session (via ThemeToggle / Settings),
+ * it just never survives a reload or new visit.
  */
-function SystemThemeSync() {
+function ResetToSystem() {
   const { setTheme } = useTheme();
 
   useEffect(() => {
-    const mql = window.matchMedia("(prefers-color-scheme: dark)");
-    const handleSystemChange = () => setTheme("system");
-
-    if (typeof mql.addEventListener === "function") {
-      mql.addEventListener("change", handleSystemChange);
-      return () => mql.removeEventListener("change", handleSystemChange);
+    // Clear out any previously-persisted manual choice before anything
+    // else can read it, then explicitly resync to system.
+    try {
+      window.localStorage.setItem(THEME_STORAGE_KEY, "system");
+    } catch {
+      // localStorage may be unavailable (e.g. private mode); ignore.
     }
-
-    // Legacy Safari fallback.
-    mql.addListener(handleSystemChange);
-    return () => mql.removeListener(handleSystemChange);
-  }, [setTheme]);
+    setTheme("system");
+    // Intentionally run once on mount only.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return null;
 }
