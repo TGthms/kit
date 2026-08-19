@@ -15,13 +15,15 @@ export default function SettingsPage() {
   const tc = useTranslations("common");
   const th = useTranslations("history");
   const tn = useTranslations("nav");
-  const { resolvedTheme, setTheme } = useTheme();
+  const { theme, setTheme } = useTheme();
   const clear = useHistoryStore((s) => s.clear);
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => setMounted(true), []);
 
-  const appearance = mounted ? (resolvedTheme === "dark" ? "dark" : "light") : "light";
+  // Use the raw `theme` (not `resolvedTheme`) so "system" stays its own
+  // selectable state instead of collapsing into whichever mode it resolves to.
+  const appearance = mounted ? (theme ?? "system") : "system";
 
   return (
     <div className="mx-auto max-w-2xl space-y-6">
@@ -34,6 +36,7 @@ export default function SettingsPage() {
         <CardContent className="flex flex-wrap gap-2">
           {(
             [
+              ["system", tc("themeSystem")],
               ["light", tc("themeLight")],
               ["dark", tc("themeDark")],
             ] as const
