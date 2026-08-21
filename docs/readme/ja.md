@@ -46,7 +46,7 @@ Kit は、PDF・画像・音声/動画・変換・テキスト処理を端末上
 
 **サイト:** https://trykit.pages.dev
 
-**作者について:** https://tgthms.github.io/about/
+**作者について:** https://t-g.pages.dev
 
 ## できること
 

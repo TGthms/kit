@@ -99,7 +99,7 @@ Trích xuất
 Hàng loạt
 Giới hạn
 Chỉ chạy trong trình duyệt của bạn. Tệp của bạn không bao giờ được gửi tới máy chủ Kit.
-https://tgthms.github.io/about/
+https://t-g.pages.dev
 Cách hoạt động và giới hạn
 Bạn cần làm gì?
 Công cụ tiện lợi trên thiết bị này — không tài khoản, không tải lên.

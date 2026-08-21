@@ -99,7 +99,7 @@ Estrai
 In blocco
 Limitazioni
 Funziona solo nel browser. I file non vengono mai inviati a un server Kit.
-https://tgthms.github.io/about/
+https://t-g.pages.dev
 Come funziona e limiti
 Cosa ti serve fare?
 Strumenti comodi che girano su questo dispositivo: niente account, niente caricamenti.

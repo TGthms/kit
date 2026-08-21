@@ -99,7 +99,7 @@ Pura
 Erä
 Rajoitukset
 Toimii vain selaimessasi. Tiedostojasi ei koskaan lähetetä Kit-palvelimelle.
-https://tgthms.github.io/about/
+https://t-g.pages.dev
 Miten se toimii ja rajoitukset
 Mitä haluat tehdä?
 Käytännöllisiä työkaluja tällä laitteella — ei tiliä, ei latauksia.

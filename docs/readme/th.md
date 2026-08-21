@@ -46,7 +46,7 @@ Kit คือชุดเครื่องมือ PDF รูปภาพ ส�
 
 **เว็บไซต์:** https://trykit.pages.dev
 
-**เกี่ยวกับผู้เขียน:** https://tgthms.github.io/about/
+**เกี่ยวกับผู้เขียน:** https://t-g.pages.dev
 
 ## สิ่งที่คุณได้
 

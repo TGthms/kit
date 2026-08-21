@@ -99,7 +99,7 @@ Ayıkla
 Toplu
 Sınırlar
 Yalnızca tarayıcınızda çalışır. Dosyalarınız asla bir Kit sunucusuna gönderilmez.
-https://tgthms.github.io/about/
+https://t-g.pages.dev
 Nasıl çalışır ve sınırlar
 Ne yapmak istiyorsunuz?
 Bu cihazda çalışan pratik araçlar — hesap yok, yükleme yok.

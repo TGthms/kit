@@ -99,7 +99,7 @@ GitHub
 批量
 使用限製
 僅在瀏覽器本地執行。你的檔案不會發送到任何 Kit 伺服器。
-https://tgthms.github.io/about/
+https://t-g.pages.dev
 原理與限製
 今天有什麼要做的？
 在這台裝置上執行的实用工具——無需註冊，也無需上傳。

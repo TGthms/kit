@@ -46,7 +46,7 @@ Kit este un set de unelte PDF, imagine, media, conversie și text care rulează 
 
 **Site:** https://trykit.pages.dev
 
-**Despre autor:** https://tgthms.github.io/about/
+**Despre autor:** https://t-g.pages.dev
 
 ## Ce obții
 

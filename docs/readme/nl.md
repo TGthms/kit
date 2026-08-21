@@ -46,7 +46,7 @@ Kit is een set pdf-, beeld-, media-, conversie- en teksttools die op uw apparaat
 
 **Site:** https://trykit.pages.dev
 
-**Over de auteur:** https://tgthms.github.io/about/
+**Over de auteur:** https://t-g.pages.dev
 
 ## Wat u krijgt
 

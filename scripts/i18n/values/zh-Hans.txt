@@ -99,7 +99,7 @@ GitHub
 批量
 使用限制
 仅在浏览器本地运行。你的文件不会发送到任何 Kit 服务器。
-https://tgthms.github.io/about/
+https://t-g.pages.dev
 原理与限制
 今天有什么要做的？
 在这台设备上运行的实用工具——无需注册，也无需上传。

@@ -46,7 +46,7 @@ Kit es un conjunto de herramientas que se ejecutan en tu dispositivo: PDF, imág
 
 **Sitio:** https://trykit.pages.dev
 
-**Autor:** https://tgthms.github.io/about/
+**Autor:** https://t-g.pages.dev
 
 ## Para qué sirve
 

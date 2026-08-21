@@ -49,6 +49,6 @@ Salvo que una norma imperativa de protección al consumidor disponga otra cosa, 
 
 ## Contacto
 
-Preguntas sobre estas condiciones: [Sobre mí](https://tgthms.github.io/about/).
+Preguntas sobre estas condiciones: [Sobre mí](https://t-g.pages.dev).
 
 **Tim G (GitHub: TGthms)**

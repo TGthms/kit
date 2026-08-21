@@ -46,7 +46,7 @@ Kit PDF, छवि, मीडिया, रूपांतरण और पा�
 
 **साइट:** https://trykit.pages.dev
 
-**लेखक के बारे में:** https://tgthms.github.io/about/
+**लेखक के बारे में:** https://t-g.pages.dev
 
 ## आपको क्या मिलता है
 

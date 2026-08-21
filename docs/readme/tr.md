@@ -46,7 +46,7 @@ Kit, cihazınızda çalışan PDF, görüntü, medya, dönüştürme ve metin ar
 
 **Site:** https://trykit.pages.dev
 
-**Yazar hakkında:** https://tgthms.github.io/about/
+**Yazar hakkında:** https://t-g.pages.dev
 
 ## Ne elde edersiniz
 

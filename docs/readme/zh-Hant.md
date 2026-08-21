@@ -46,7 +46,7 @@ Kit 是一套在本機執行的實用工具：PDF、圖片、影音、格式轉�
 
 **網站:** https://trykit.pages.dev
 
-**作者:** https://tgthms.github.io/about/
+**作者:** https://t-g.pages.dev
 
 ## 產品定位
 

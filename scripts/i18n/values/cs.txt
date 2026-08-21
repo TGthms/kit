@@ -99,7 +99,7 @@ Extrahovat
 Dávka
 Omezení
 Běží jen ve vašem prohlížeči. Soubory se nikdy neodesílají na server Kit.
-https://tgthms.github.io/about/
+https://t-g.pages.dev
 Jak to funguje a limity
 Co potřebujete udělat?
 Šikovné nástroje na tomto zařízení — bez účtu, bez nahrávání.

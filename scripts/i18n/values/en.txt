@@ -99,7 +99,7 @@ Extract
 Batch
 Limitations
 Runs in your browser only. Your files are never sent to a Kit server.
-https://tgthms.github.io/about/
+https://t-g.pages.dev
 How it works & limits
 What do you need to do?
 Handy tools that run on this device—no account, no uploads.

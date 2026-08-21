@@ -46,7 +46,7 @@ Kit er et sæt PDF-, billed-, medie-, konverterings- og tekstværktøjer, der k�
 
 **Websted:** https://trykit.pages.dev
 
-**Om forfatteren:** https://tgthms.github.io/about/
+**Om forfatteren:** https://t-g.pages.dev
 
 ## Hvad du får
 

@@ -46,7 +46,7 @@ Kit is a set of PDF, image, media, converter, and text tools that run on your de
 
 **Live site:** https://trykit.pages.dev
 
-**About the author:** https://tgthms.github.io/about/
+**About the author:** https://t-g.pages.dev
 
 ## What you get
 

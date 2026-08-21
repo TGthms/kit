@@ -49,6 +49,6 @@ Except where mandatory consumer protections require otherwise, these Terms are g
 
 ## Contact
 
-Questions about these Terms: [About Me](https://tgthms.github.io/about/).
+Questions about these Terms: [About Me](https://t-g.pages.dev).
 
 **Tim G (GitHub: TGthms)**

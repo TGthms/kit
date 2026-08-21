@@ -46,7 +46,7 @@ Kit on joukko PDF-, kuva-, media-, muunto- ja tekstityökaluja, jotka toimivat l
 
 **Sivusto:** https://trykit.pages.dev
 
-**Tietoa tekijästä:** https://tgthms.github.io/about/
+**Tietoa tekijästä:** https://t-g.pages.dev
 
 ## Mitä saat
 

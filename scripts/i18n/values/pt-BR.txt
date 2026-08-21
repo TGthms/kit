@@ -99,7 +99,7 @@ Extrair
 Lote
 Limitações
 Roda só no seu navegador. Seus arquivos nunca são enviados a um servidor Kit.
-https://tgthms.github.io/about/
+https://t-g.pages.dev
 Como funciona e limites
 O que você precisa fazer?
 Ferramentas práticas que rodam neste dispositivo — sem conta, sem envio.

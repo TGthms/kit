@@ -99,7 +99,7 @@ Extrahera
 Batch
 Begränsningar
 Körs bara i din webbläsare. Dina filer skickas aldrig till en Kit-server.
-https://tgthms.github.io/about/
+https://t-g.pages.dev
 Så fungerar det och gränser
 Vad behöver du göra?
 Praktiska verktyg som körs på den här enheten — inget konto, inga uppladdningar.

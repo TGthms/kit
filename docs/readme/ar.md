@@ -46,7 +46,7 @@ Kit مجموعة أدوات PDF وصور ووسائط وتحويل ونص تعم
 
 **الموقع:** https://trykit.pages.dev
 
-**عن المؤلف:** https://tgthms.github.io/about/
+**عن المؤلف:** https://t-g.pages.dev
 
 ## ماذا تحصل عليه
 

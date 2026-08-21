@@ -99,7 +99,7 @@ Trekk ut
 Batch
 Begrensninger
 Kjører bare i nettleseren din. Filene dine sendes aldri til en Kit-server.
-https://tgthms.github.io/about/
+https://t-g.pages.dev
 Slik fungerer det og grenser
 Hva trenger du å gjøre?
 Praktiske verktøy som kjører på denne enheten — ingen konto, ingen opplastinger.

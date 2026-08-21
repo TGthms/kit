@@ -46,7 +46,7 @@ Kit 是一套在本地运行的实用工具：PDF、图片、音视频、格式�
 
 **网站:** https://trykit.pages.dev
 
-**作者:** https://tgthms.github.io/about/
+**作者:** https://t-g.pages.dev
 
 ## 产品定位
 

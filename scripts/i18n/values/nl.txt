@@ -99,7 +99,7 @@ Extraheren
 Batch
 Beperkingen
 Draait alleen in je browser. Je bestanden gaan nooit naar een Kit-server.
-https://tgthms.github.io/about/
+https://t-g.pages.dev
 Hoe het werkt en limieten
 Wat wil je doen?
 Handige hulpmiddelen op dit apparaat — geen account, geen uploads.

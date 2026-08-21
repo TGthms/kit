@@ -99,7 +99,7 @@ Kinyerés
 Köteg
 Korlátok
 Csak a böngésződben fut. A fájljaid soha nem mennek Kit-szerverre.
-https://tgthms.github.io/about/
+https://t-g.pages.dev
 Hogyan működik és korlátok
 Mit szeretnél csinálni?
 Hasznos eszközök ezen a készüléken — nincs fiók, nincs feltöltés.

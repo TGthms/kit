@@ -46,7 +46,7 @@ Kit — набір інструментів для PDF, зображень, ме
 
 **Сайт:** https://trykit.pages.dev
 
-**Про автора:** https://tgthms.github.io/about/
+**Про автора:** https://t-g.pages.dev
 
 ## Що ви отримуєте
 

@@ -46,7 +46,7 @@ Kit é um conjunto de ferramentas de PDF, imagem, média, conversão e texto que
 
 **Sítio:** https://trykit.pages.dev
 
-**Sobre o autor:** https://tgthms.github.io/about/
+**Sobre o autor:** https://t-g.pages.dev
 
 ## O que obtém
 

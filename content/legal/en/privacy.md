@@ -53,6 +53,6 @@ We may update this policy when the product or legal requirements change. We will
 
 ## Contact
 
-Privacy questions: [About Me](https://tgthms.github.io/about/).
+Privacy questions: [About Me](https://t-g.pages.dev).
 
 Published by **Tim G (GitHub: TGthms)**.

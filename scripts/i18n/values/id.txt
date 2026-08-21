@@ -99,7 +99,7 @@ Ekstrak
 Massal
 Batasan
 Hanya berjalan di peramban Anda. Berkas Anda tidak pernah dikirim ke server Kit.
-https://tgthms.github.io/about/
+https://t-g.pages.dev
 Cara kerja dan batasannya
 Apa yang ingin Anda lakukan?
 Alat praktis di perangkat ini — tanpa akun, tanpa unggahan.

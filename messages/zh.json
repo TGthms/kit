@@ -109,7 +109,7 @@
     "batch": "批量",
     "limitations": "使用限制",
     "clientSideOnly": "仅在浏览器本地运行。你的文件不会发送到任何 Kit 服务器。",
-    "aboutMeUrl": "https://tgthms.github.io/about/",
+    "aboutMeUrl": "https://t-g.pages.dev",
     "howItWorks": "原理与限制"
   },
   "home": {

@@ -99,7 +99,7 @@ Extrahieren
 Stapel
 Grenzen
 Läuft nur in Ihrem Browser. Ihre Dateien werden nie an einen Kit-Server gesendet.
-https://tgthms.github.io/about/
+https://t-g.pages.dev
 So funktioniert’s und Grenzen
 Was möchten Sie tun?
 Praktische Werkzeuge auf diesem Gerät — kein Konto, kein Upload.

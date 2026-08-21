@@ -49,6 +49,6 @@ Kit 可能链接到外部网站或加载第三方库。我们不控制也不对�
 
 ## 联系方式
 
-条款相关问题：[关于我](https://tgthms.github.io/about/)。
+条款相关问题：[关于我](https://t-g.pages.dev)。
 
 **Tim G（GitHub: TGthms）**

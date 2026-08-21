@@ -53,6 +53,6 @@ Podemos actualizar esta política cuando cambie el producto o la normativa. Modi
 
 ## Contacto
 
-Para preguntas sobre privacidad: [Sobre mí](https://tgthms.github.io/about/).
+Para preguntas sobre privacidad: [Sobre mí](https://t-g.pages.dev).
 
 Publicado por **Tim G (GitHub: TGthms)**.

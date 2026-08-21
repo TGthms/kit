@@ -99,7 +99,7 @@ GitHub
 일괄
 제한
 브라우저에서만 실행됩니다. 파일은 Kit 서버로 전송되지 않습니다.
-https://tgthms.github.io/about/
+https://t-g.pages.dev
 작동 방식과 한계
 무엇을 하시겠어요?
 이 기기에서 바로 쓰는 도구입니다. 계정 없이, 업로드 없이.

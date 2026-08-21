@@ -99,7 +99,7 @@ Extraire
 Lot
 Limites
 S’exécute uniquement dans votre navigateur. Vos fichiers ne sont jamais envoyés à un serveur Kit.
-https://tgthms.github.io/about/
+https://t-g.pages.dev
 Fonctionnement et limites
 Que voulez-vous faire ?
 Des outils pratiques qui tournent sur cet appareil — pas de compte, pas d’envoi.

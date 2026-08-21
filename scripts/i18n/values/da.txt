@@ -99,7 +99,7 @@ Udtræk
 Batch
 Begrænsninger
 Kører kun i din browser. Dine filer sendes aldrig til en Kit-server.
-https://tgthms.github.io/about/
+https://t-g.pages.dev
 Sådan virker det og grænser
 Hvad skal du have gjort?
 Praktiske værktøjer der kører på denne enhed — ingen konto, ingen uploads.

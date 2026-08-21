@@ -46,7 +46,7 @@ Kit adalah kumpulan alat PDF, gambar, media, konversi, dan teks yang berjalan di
 
 **Situs:** https://trykit.pages.dev
 
-**Tentang penulis:** https://tgthms.github.io/about/
+**Tentang penulis:** https://t-g.pages.dev
 
 ## Apa yang Anda dapatkan
 

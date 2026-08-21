@@ -1,7 +1,7 @@
 export const SITE_URL = "https://trykit.pages.dev";
 export const SITE_NAME = "Kit";
 export const SITE_AUTHOR = "Tim G";
-export const SITE_AUTHOR_URL = "https://tgthms.github.io/about/";
+export const SITE_AUTHOR_URL = "https://t-g.pages.dev";
 
 /** Default social card. Always on the canonical host (no GitHub Pages /kit prefix). */
 export const OG_IMAGE_PATH = "/og/kit.png";

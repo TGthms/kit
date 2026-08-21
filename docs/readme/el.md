@@ -46,7 +46,7 @@
 
 **Ιστότοπος:** https://trykit.pages.dev
 
-**Σχετικά με τον συγγραφέα:** https://tgthms.github.io/about/
+**Σχετικά με τον συγγραφέα:** https://t-g.pages.dev
 
 ## Τι παίρνετε
 

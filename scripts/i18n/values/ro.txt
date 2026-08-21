@@ -99,7 +99,7 @@ Extrage
 Lot
 Limitări
 Rulează doar în browser. Fișierele tale nu sunt trimise niciodată pe un server Kit.
-https://tgthms.github.io/about/
+https://t-g.pages.dev
 Cum funcționează și limite
 Ce ai de făcut?
 Unelte practice pe acest dispozitiv — fără cont, fără încărcări.

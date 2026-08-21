@@ -41,7 +41,7 @@ export function SiteFooter() {
           <div className="flex flex-wrap items-center gap-2">
             <Button asChild variant="outline" size="sm" className="h-10 rounded-full px-4">
               <a
-                href="https://tgthms.github.io/about/"
+                href="https://t-g.pages.dev"
                 target="_blank"
                 rel="noopener noreferrer"
               >

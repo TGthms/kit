@@ -99,7 +99,7 @@ Extraer
 Lote
 Limitaciones
 Todo ocurre en tu navegador. Kit no sube tus archivos a un servidor propio.
-https://tgthms.github.io/about/
+https://t-g.pages.dev
 Cómo funciona y límites
 ¿Qué quieres hacer?
 Utilidades que funcionan en este dispositivo: sin cuenta y sin enviar archivos.

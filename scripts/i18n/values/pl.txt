@@ -99,7 +99,7 @@ Wyodrębnij
 Wsadowo
 Ograniczenia
 Działa tylko w przeglądarce. Twoje pliki nigdy nie są wysyłane na serwer Kit.
-https://tgthms.github.io/about/
+https://t-g.pages.dev
 Jak to działa i limity
 Co chcesz zrobić?
 Przydatne narzędzia na tym urządzeniu — bez konta, bez wysyłania plików.

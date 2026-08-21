@@ -46,7 +46,7 @@ Kit là bộ công cụ PDF, ảnh, media, chuyển đổi và văn bản chạy
 
 **Trang web:** https://trykit.pages.dev
 
-**Về tác giả:** https://tgthms.github.io/about/
+**Về tác giả:** https://t-g.pages.dev
 
 ## Bạn nhận được gì
 
