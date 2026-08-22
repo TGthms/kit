@@ -24,6 +24,9 @@ export const metadata: Metadata = {
     "Kit",
   ],
   manifest: withBasePath("/manifest.webmanifest"),
+  verification: {
+    google: "0rE0QD0vWPSfPxelCpS8qL2_n3JGrd_ZYPJBaGwnLZQ",
+  },
   icons: {
     icon: [
       { url: withAsset("/icons/favicon.svg"), type: "image/svg+xml" },
