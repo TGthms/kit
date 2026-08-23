@@ -9,10 +9,10 @@ export const OG_IMAGE_WIDTH = 1200;
 export const OG_IMAGE_HEIGHT = 630;
 export const OG_IMAGE_ALT = "Kit — everyday browser tools that stay on your device";
 
+/** Canonical URL for SEO and discovery, independent of the backup host's base path. */
 export function absoluteUrl(path: string): string {
-  const base = process.env.NEXT_PUBLIC_BASE_PATH || "";
   const normalized = path.startsWith("/") ? path : `/${path}`;
-  return `${SITE_URL}${base}${normalized}`;
+  return `${SITE_URL}${normalized}`;
 }
 
 /** Absolute URL on trykit.pages.dev, ignoring NEXT_PUBLIC_BASE_PATH. */

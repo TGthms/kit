@@ -75,6 +75,7 @@ describe("html entities", () => {
     expect(enc).toContain("&lt;");
     expect(enc).toContain("&amp;");
     expect(decodeHtmlEntities("&lt;b&gt;Kit&#33;&lt;/b&gt;")).toBe("<b>Kit!</b>");
+    expect(decodeHtmlEntities("&#99999999;")).toBe("&#99999999;");
   });
 });
 
@@ -106,5 +107,9 @@ describe("jsonToTypescript", () => {
     expect(r.text).toContain("name: string");
     expect(r.text).toContain("tags: string[]");
     expect(r.text).toContain("n: number");
+
+    const quoted = jsonToTypescript(JSON.stringify({ "first-name": "AJ" }), "Person");
+    expect(quoted.ok).toBe(true);
+    if (quoted.ok) expect(quoted.text).toContain('"first-name": string');
   });
 });

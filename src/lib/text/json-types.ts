@@ -3,6 +3,10 @@ function ident(name: string): string {
   return /^[A-Za-z_]/.test(cleaned) ? cleaned : `_${cleaned}`;
 }
 
+function propertyName(name: string): string {
+  return /^[A-Za-z_$][A-Za-z0-9_$]*$/.test(name) ? name : JSON.stringify(name);
+}
+
 function infer(value: unknown, name: string, types: Map<string, string>): string {
   if (value === null) return "null";
   if (Array.isArray(value)) {
@@ -13,7 +17,7 @@ function infer(value: unknown, name: string, types: Map<string, string>): string
   if (typeof value === "object") {
     const typeName = ident(name[0].toUpperCase() + name.slice(1));
     const fields = Object.entries(value as Record<string, unknown>).map(([k, v]) => {
-      return `  ${ident(k)}: ${infer(v, k, types)};`;
+      return `  ${propertyName(k)}: ${infer(v, k, types)};`;
     });
     let unique = typeName;
     let n = 2;

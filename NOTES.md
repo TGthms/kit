@@ -1,8 +1,23 @@
 # Kit inventory and backlog
 
-Recorded 2026-08-12 from a full source map of `/Users/timgong/Desktop/kit` plus baseline `typecheck`/`lint`/`build`. Runtime notes come from reading every tool view and lib, exercising logic that can be driven without a GPU browser, and inspecting the existing static `out/` HTML. This file is the backlog — work is not invented from vibes.
+This file is the active backlog and implementation record. Do not use the disposable `out/` directory as source evidence. Current source is under `src/`, `messages/`, `content/`, `public/`, and `scripts/`.
 
-Current baseline: **29 tools** (registry lists 29 ids), Next.js 15 static-export PWA, 4 locales (`en`/`es`/`zh`/`ja`), no test runner, site-level metadata only.
+Current baseline (2026-08-22): **57 tools**, Next.js 15 static-export PWA, 30 first-class locales plus the legacy `/zh/` path alias, localized tool metadata, sitemap/robots, Vitest coverage, and GitHub Pages CI. The canonical production site is `trykit.pages.dev`; GitHub Pages at `/kit` is the backup deployment.
+
+Completed in the current correctness pass:
+
+- FFmpeg trim and GIF clipping now use explicit `start` + `duration` semantics and re-encode instead of relying on container stream-copy timing.
+- MP4/MOV/MKV conversion uses explicit H.264/AAC transcoding; silent-video speed processing has a video-only fallback.
+- History summaries and options are sanitized so filenames, watermark text, ranges, and arbitrary free-form values are not persisted.
+- PDF watermark, page-number, and signature rendering can use browser Unicode text rendering for non-Latin input.
+- Media waveform decoding skips files over 100 MB to avoid freezing the tab.
+- Image download extensions are derived from the resulting Blob MIME type.
+- PDF organize now has drag-and-drop page reordering.
+- PDF.js documents are explicitly destroyed after normal processing.
+- Privacy Policy and Terms files now exist for all 31 path locales (62 documents total); legal-loading tests cover every first-class locale.
+- SQL comments and non-identifier JSON keys are preserved; invalid HTML entity code points no longer crash decoding.
+
+Remaining entries below should be reviewed against the current source before implementation because parts of this historical inventory predate the current registry and feature set.
 
 ---
 

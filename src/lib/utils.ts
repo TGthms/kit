@@ -41,6 +41,19 @@ export function downloadText(text: string, filename: string, mime = "text/plain"
   downloadBlob(new Blob([text], { type: mime }), filename);
 }
 
+export function extensionForMime(mime: string, fallback = "bin"): string {
+  const normalized = mime.toLowerCase().split(";", 1)[0];
+  if (normalized === "image/jpeg") return "jpg";
+  if (normalized === "image/png") return "png";
+  if (normalized === "image/webp") return "webp";
+  if (normalized === "image/gif") return "gif";
+  if (normalized === "application/pdf") return "pdf";
+  if (normalized === "audio/mpeg") return "mp3";
+  if (normalized === "audio/wav" || normalized === "audio/x-wav") return "wav";
+  if (normalized === "video/mp4") return "mp4";
+  return fallback.replace(/^\./, "") || "bin";
+}
+
 export const LARGE_FILE_BYTES = 80 * 1024 * 1024;
 
 export function isLargeFile(size: number): boolean {

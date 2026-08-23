@@ -6,7 +6,7 @@ import { toast } from "sonner";
 import { FileDropzone, type FileItem } from "@/components/shared/file-dropzone";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { downloadMany } from "@/lib/utils";
+import { downloadMany, extensionForMime } from "@/lib/utils";
 import { rotateImage, flipImage, filterImage, exportFavicons } from "@/lib/image/core";
 import type { FilterName } from "@/lib/image/transform";
 import { ActionBar, ToolShell, useToolHistory } from "./shared";
@@ -32,7 +32,10 @@ export function ImageRotate() {
           op === "h" || op === "v"
             ? await flipImage(f.file, op)
             : await rotateImage(f.file, Number(op) as 90 | 180 | 270);
-        items.push({ blob, name: f.file.name.replace(/\.\w+$/, "") + "-rotated.png" });
+        items.push({
+          blob,
+          name: f.file.name.replace(/\.\w+$/, "") + `-rotated.${extensionForMime(blob.type, "png")}`,
+        });
       }
       await downloadMany(items, "rotated-images.zip");
       toast.success(t("success", { count: files.length }));
@@ -78,7 +81,10 @@ export function ImageFilters() {
       const items: Array<{ blob: Blob; name: string }> = [];
       for (const f of files) {
         const blob = await filterImage(f.file, filter);
-        items.push({ blob, name: f.file.name.replace(/\.\w+$/, "") + `-${filter}.png` });
+        items.push({
+          blob,
+          name: f.file.name.replace(/\.\w+$/, "") + `-${filter}.${extensionForMime(blob.type, "png")}`,
+        });
       }
       await downloadMany(items, "filtered-images.zip");
       toast.success(t("success", { count: files.length }));
@@ -131,7 +137,10 @@ export function ImageWatermark() {
       const items = [];
       for (const f of files) {
         const blob = await watermarkImage(f.file, { text: text.trim(), position });
-        items.push({ blob, name: f.file.name.replace(/\.\w+$/, "") + "-marked.png" });
+        items.push({
+          blob,
+          name: f.file.name.replace(/\.\w+$/, "") + `-marked.${extensionForMime(blob.type, "png")}`,
+        });
       }
       await downloadMany(items, "watermarked-images.zip");
       toast.success(t("success", { count: files.length }));

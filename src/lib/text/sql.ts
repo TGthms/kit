@@ -100,12 +100,16 @@ export function formatSql(input: string): { ok: true; text: string } | { ok: fal
     }
     if (c === "-" && src[i + 1] === "-") {
       const end = src.indexOf("\n", i);
+      const comment = src.slice(i, end < 0 ? src.length : end).trimEnd();
+      tokens.push(comment);
       i = end < 0 ? src.length : end + 1;
       continue;
     }
     if (c === "/" && src[i + 1] === "*") {
       const end = src.indexOf("*/", i + 2);
-      i = end < 0 ? src.length : end + 2;
+      const commentEnd = end < 0 ? src.length : end + 2;
+      tokens.push(src.slice(i, commentEnd));
+      i = commentEnd;
       continue;
     }
     if (",()".includes(c)) {
@@ -131,6 +135,12 @@ export function formatSql(input: string): { ok: true; text: string } | { ok: fal
 
   for (let t = 0; t < tokens.length; t++) {
     const raw = tokens[t];
+    if (raw.startsWith("--") || raw.startsWith("/*")) {
+      if (line.trim()) pushLine();
+      line += raw;
+      pushLine();
+      continue;
+    }
     const upper = raw.toUpperCase();
     const word = KEYWORDS.has(upper) ? upper : raw;
 

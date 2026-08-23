@@ -11,6 +11,7 @@ import {
   imagesToPdf,
   detectImageMime,
   splitPdf,
+  organizePdf,
   watermarkPdf,
   stampPdfSignature,
 } from "./core";
@@ -58,6 +59,15 @@ describe("splitPdf / page-range", () => {
   it("extracts the requested pages", async () => {
     const src = await blankPdf(5);
     const out = await splitPdf(src, "2-4");
+    const doc = await PDFDocument.load(out);
+    expect(doc.getPageCount()).toBe(3);
+  });
+});
+
+describe("organizePdf", () => {
+  it("keeps the requested page order while applying deletion", async () => {
+    const src = await blankPdf(4);
+    const out = await organizePdf(src, [3, 1, 0, 2], {}, new Set([1]));
     const doc = await PDFDocument.load(out);
     expect(doc.getPageCount()).toBe(3);
   });

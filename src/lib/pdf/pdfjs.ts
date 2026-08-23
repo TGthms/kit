@@ -10,13 +10,18 @@ export function ensurePdfWorker() {
   workerReady = true;
 }
 
+async function openPdfDocument(data: ArrayBuffer) {
+  const loadingTask = pdfjs.getDocument({ data: data.slice(0) });
+  return { loadingTask, doc: await loadingTask.promise };
+}
+
 export async function renderPdfThumbnail(
   data: ArrayBuffer,
   pageNum = 1,
   scale = 0.35
 ): Promise<string> {
   ensurePdfWorker();
-  const doc = await pdfjs.getDocument({ data: data.slice(0) }).promise;
+  const { doc, loadingTask } = await openPdfDocument(data);
   const page = await doc.getPage(pageNum);
   const viewport = page.getViewport({ scale });
   const canvas = document.createElement("canvas");
@@ -26,6 +31,7 @@ export async function renderPdfThumbnail(
   await page.render({ canvasContext: ctx, viewport, canvas }).promise;
   const url = canvas.toDataURL("image/jpeg", 0.7);
   await doc.cleanup();
+  await loadingTask.destroy();
   return url;
 }
 
@@ -37,7 +43,7 @@ export async function renderPdfPagesToBlobs(
   const scale = opts.scale ?? 1.5;
   const mime = opts.mime ?? "image/jpeg";
   const quality = opts.quality ?? 0.85;
-  const doc = await pdfjs.getDocument({ data: data.slice(0) }).promise;
+  const { doc, loadingTask } = await openPdfDocument(data);
   const blobs: Blob[] = [];
   for (let i = 1; i <= doc.numPages; i++) {
     const page = await doc.getPage(i);
@@ -53,12 +59,13 @@ export async function renderPdfPagesToBlobs(
     blobs.push(blob);
   }
   await doc.cleanup();
+  await loadingTask.destroy();
   return blobs;
 }
 
 export async function extractPdfText(data: ArrayBuffer): Promise<string> {
   ensurePdfWorker();
-  const doc = await pdfjs.getDocument({ data: data.slice(0) }).promise;
+  const { doc, loadingTask } = await openPdfDocument(data);
   const parts: string[] = [];
   for (let i = 1; i <= doc.numPages; i++) {
     const page = await doc.getPage(i);
@@ -69,6 +76,7 @@ export async function extractPdfText(data: ArrayBuffer): Promise<string> {
     parts.push(text);
   }
   await doc.cleanup();
+  await loadingTask.destroy();
   return parts.join("\n\n");
 }
 
@@ -80,7 +88,7 @@ export async function compressPdfLossy(
 ): Promise<Uint8Array> {
   ensurePdfWorker();
   const { PDFDocument } = await import("pdf-lib");
-  const src = await pdfjs.getDocument({ data: data.slice(0) }).promise;
+  const { doc: src, loadingTask } = await openPdfDocument(data);
   const out = await PDFDocument.create();
 
   await forEachJobIndex(
@@ -104,5 +112,6 @@ export async function compressPdfLossy(
     { signal: opts?.signal, onProgress: opts?.onProgress }
   );
   await src.cleanup();
+  await loadingTask.destroy();
   return out.save();
 }

@@ -24,10 +24,22 @@ export function videoConvertArgs(input: string, output: string, format: string):
   if (format === "gif") {
     return ["-i", input, "-vf", "fps=12,scale=480:-1:flags=lanczos", "-loop", "0", output];
   }
-  if (format === "mp4" || format === "mov" || format === "mkv") {
-    return ["-i", input, "-c", "copy", output];
+  // Stream copy only re-muxes. It can leave codecs incompatible with the
+  // target container, such as VP9 copied from WebM into MP4.
+  if (format === "mp4" || format === "mov") {
+    return ["-i", input, "-c:v", "libx264", "-c:a", "aac", "-movflags", "+faststart", output];
+  }
+  if (format === "mkv") {
+    return ["-i", input, "-c:v", "libx264", "-c:a", "aac", output];
   }
   return ["-i", input, output];
+}
+
+export function trimArgs(input: string, output: string, start: number, end: number): string[] {
+  const duration = Math.max(0, end - start);
+  // Input comes first and -t is an explicit duration, so end means end rather
+  // than "duration after start". Omitting -c copy favors accurate cuts.
+  return ["-i", input, "-ss", String(Math.max(0, start)), "-t", String(duration), output];
 }
 
 export function audioSpeedArgs(input: string, output: string, speed: number, volume: number): string[] {
@@ -50,18 +62,25 @@ export function videoSpeedArgs(input: string, output: string, speed: number, vol
   ];
 }
 
+/** Fallback for a video that has no audio stream. */
+export function videoSpeedVideoOnlyArgs(input: string, output: string, speed: number): string[] {
+  return ["-i", input, "-filter:v", `setpts=${(1 / speed).toFixed(3)}*PTS`, "-an", output];
+}
+
 export function videoExtractAudioArgs(input: string, output: string): string[] {
   return ["-i", input, "-vn", "-acodec", "libmp3lame", output];
 }
 
 export function gifClipArgs(input: string, output: string, start: string, end: string): string[] {
+  const startSeconds = Math.max(0, Number(start) || 0);
+  const duration = Math.max(0, (Number(end) || 0) - startSeconds);
   return [
-    "-ss",
-    start,
-    "-to",
-    end,
     "-i",
     input,
+    "-ss",
+    String(startSeconds),
+    "-t",
+    String(duration),
     "-vf",
     "fps=12,scale=480:-1:flags=lanczos",
     "-loop",

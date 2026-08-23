@@ -42,6 +42,13 @@ describe("SQL format", () => {
     expect(r.text).toContain("WHERE");
     expect(r.text).toContain("ORDER");
     expect(r.text.split("\n").length).toBeGreaterThan(1);
+
+    const withComments = formatSql("select id -- keep this\nfrom users /* keep that */");
+    expect(withComments.ok).toBe(true);
+    if (withComments.ok) {
+      expect(withComments.text).toContain("-- keep this");
+      expect(withComments.text).toContain("/* keep that */");
+    }
   });
 });
 

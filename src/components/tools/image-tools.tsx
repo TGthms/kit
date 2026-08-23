@@ -10,7 +10,7 @@ import { Label } from "@/components/ui/label";
 import { Slider } from "@/components/ui/slider";
 import { Switch } from "@/components/ui/switch";
 import { Progress } from "@/components/ui/progress";
-import { downloadBlob, downloadMany } from "@/lib/utils";
+import { downloadBlob, downloadMany, extensionForMime } from "@/lib/utils";
 import { parseImageMetadata } from "@/lib/image/exif";
 import {
   compressImage,
@@ -47,7 +47,7 @@ export function ImageCompress() {
           maxHeight: maxW,
           mime: f.file.type === "image/png" ? "image/png" : "image/jpeg",
         });
-        const name = f.file.name.replace(/\.\w+$/, "") + "-compressed.jpg";
+        const name = f.file.name.replace(/\.\w+$/, "") + `-compressed.${extensionForMime(blob.type, "jpg")}`;
         zip.file(name, blob);
         if (files.length === 1) downloadBlob(blob, name);
         setProgress(Math.round(((i + 1) / files.length) * 100));
@@ -104,7 +104,10 @@ export function ImageResize() {
       const items = [];
       for (const f of files) {
         const blob = await resizeImage(f.file, { width, height, lockAspect: lock });
-        items.push({ blob, name: f.file.name.replace(/\.\w+$/, "") + "-resized.png" });
+        items.push({
+          blob,
+          name: f.file.name.replace(/\.\w+$/, "") + `-resized.${extensionForMime(blob.type, "png")}`,
+        });
       }
       await downloadMany(items, "resized-images.zip");
       toast.success(t("success", { count: files.length }));
@@ -155,7 +158,7 @@ export function ImageCrop() {
     setLoading(true);
     try {
       const blob = await cropImage(files[0].file, { x, y, w, h });
-      downloadBlob(blob, "cropped.png");
+      downloadBlob(blob, `cropped.${extensionForMime(blob.type, "png")}`);
       toast.success(t("success"));
       log(`${w}x${h}`, "success");
     } catch (e) {
@@ -204,11 +207,13 @@ export function ImageConvert() {
     if (!files.length) return;
     setLoading(true);
     try {
-      const ext = mime.split("/")[1];
       const items = [];
       for (const f of files) {
         const blob = await convertImage(f.file, mime);
-        items.push({ blob, name: f.file.name.replace(/\.\w+$/, "") + `.${ext}` });
+        items.push({
+          blob,
+          name: f.file.name.replace(/\.\w+$/, "") + `.${extensionForMime(blob.type, "webp")}`,
+        });
       }
       await downloadMany(items, "converted-images.zip");
       toast.success(t("success", { count: files.length }));
@@ -270,7 +275,10 @@ export function ImageMetadata() {
       const items = [];
       for (const f of files) {
         const blob = await stripMetadata(f.file);
-        items.push({ blob, name: f.file.name.replace(/\.\w+$/, "") + "-clean.jpg" });
+        items.push({
+          blob,
+          name: f.file.name.replace(/\.\w+$/, "") + `-clean.${extensionForMime(blob.type, "jpg")}`,
+        });
       }
       await downloadMany(items, "stripped-images.zip");
       toast.success(t("success", { count: files.length }));
@@ -333,7 +341,10 @@ export function ImageAdjust() {
       const items = [];
       for (const f of files) {
         const blob = await adjustImage(f.file, { brightness, contrast, saturation });
-        items.push({ blob, name: f.file.name.replace(/\.\w+$/, "") + "-adjusted.png" });
+        items.push({
+          blob,
+          name: f.file.name.replace(/\.\w+$/, "") + `-adjusted.${extensionForMime(blob.type, "png")}`,
+        });
       }
       await downloadMany(items, "adjusted-images.zip");
       toast.success(t("success", { count: files.length }));

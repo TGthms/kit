@@ -16,6 +16,45 @@ export async function mergePdfs(files: ArrayBuffer[]): Promise<Uint8Array> {
   return out.save();
 }
 
+function needsBrowserUnicodeFont(text: string): boolean {
+  return /[^\x00-\x7F]/u.test(text);
+}
+
+async function embedBrowserText(
+  doc: PDFDocument,
+  text: string,
+  size: number,
+  color: [number, number, number],
+  opacity = 1,
+  italic = false
+) {
+  if (typeof document === "undefined" || !needsBrowserUnicodeFont(text)) return null;
+  const scale = 3;
+  const fontSize = Math.max(1, Math.round(size * scale));
+  const canvas = document.createElement("canvas");
+  const measure = canvas.getContext("2d");
+  if (!measure) throw new Error("Canvas is unavailable");
+  measure.font = `${italic ? "italic " : ""}600 ${fontSize}px system-ui, sans-serif`;
+  const metrics = measure.measureText(text);
+  const pad = Math.ceil(fontSize * 0.35);
+  canvas.width = Math.max(1, Math.ceil(metrics.width + pad * 2));
+  canvas.height = Math.max(1, Math.ceil(fontSize * 1.6));
+  const ctx = canvas.getContext("2d");
+  if (!ctx) throw new Error("Canvas is unavailable");
+  ctx.font = measure.font;
+  ctx.textBaseline = "middle";
+  const alpha = Math.min(1, Math.max(0, opacity));
+  ctx.fillStyle = `rgba(${Math.round(color[0] * 255)}, ${Math.round(color[1] * 255)}, ${Math.round(
+    color[2] * 255
+  )}, ${alpha})`;
+  ctx.fillText(text, pad, canvas.height / 2);
+  const blob = await new Promise<Blob>((resolve, reject) =>
+    canvas.toBlob((value) => (value ? resolve(value) : reject(new Error("Text rendering failed"))), "image/png")
+  );
+  const image = await doc.embedPng(new Uint8Array(await blob.arrayBuffer()));
+  return { image, width: canvas.width / scale, height: canvas.height / scale };
+}
+
 export function parsePageRange(range: string, pageCount: number): number[] {
   const set = new Set<number>();
   for (const part of range.split(",")) {
@@ -46,7 +85,7 @@ export async function splitPdf(buf: PdfInput, range: string): Promise<Uint8Array
 }
 
 export async function organizePdf(
-  buf: ArrayBuffer,
+  buf: PdfInput,
   order: number[],
   rotations: Record<number, number>,
   deleted: Set<number>
@@ -71,11 +110,28 @@ export async function watermarkPdf(
   opacity: number
 ): Promise<Uint8Array> {
   const doc = await PDFDocument.load(asPdfBytes(buf), { ignoreEncryption: true });
-  const font = await doc.embedFont(StandardFonts.Helvetica);
+  const font = needsBrowserUnicodeFont(text) ? null : await doc.embedFont(StandardFonts.Helvetica);
   const pages = doc.getPages();
+  const alpha = Math.min(1, Math.max(0.05, opacity));
   for (const page of pages) {
     const { width, height } = page.getSize();
     const size = position === "center" ? 36 : 12;
+    const rendered = await embedBrowserText(doc, text, size, [0.4, 0.4, 0.4], alpha);
+    if (rendered) {
+      const x = (width - rendered.width) / 2;
+      let y = height - rendered.height - 16;
+      if (position === "footer") y = 12;
+      if (position === "center") y = (height - rendered.height) / 2;
+      page.drawImage(rendered.image, {
+        x,
+        y,
+        width: rendered.width,
+        height: rendered.height,
+        rotate: position === "center" ? degrees(-30) : undefined,
+      });
+      continue;
+    }
+    if (!font) throw new Error("PDF font is unavailable");
     const tw = font.widthOfTextAtSize(text, size);
     const x = (width - tw) / 2;
     let y = height - 28;
@@ -87,7 +143,7 @@ export async function watermarkPdf(
       size,
       font,
       color: rgb(0.4, 0.4, 0.4),
-      opacity: Math.min(1, Math.max(0.05, opacity)),
+      opacity: alpha,
       rotate: position === "center" ? degrees(-30) : undefined,
     });
   }
@@ -143,7 +199,7 @@ export async function numberPdfPages(
   const position = opts.position || "footer-center";
   const start = opts.start ?? 1;
   const doc = await PDFDocument.load(asPdfBytes(buf), { ignoreEncryption: true });
-  const font = await doc.embedFont(StandardFonts.Helvetica);
+  const font = needsBrowserUnicodeFont(template) ? null : await doc.embedFont(StandardFonts.Helvetica);
   const pages = doc.getPages();
   const total = pages.length;
   const size = 10;
@@ -152,10 +208,19 @@ export async function numberPdfPages(
     const page = pages[i];
     const { width, height } = page.getSize();
     const text = formatPageLabel(start + i, start + total - 1, template);
-    const tw = font.widthOfTextAtSize(text, size);
+    const rendered = await embedBrowserText(doc, text, size, [0.25, 0.25, 0.25]);
     const margin = 28;
     const header = position.startsWith("header");
     const y = header ? height - 22 : 16;
+    if (rendered) {
+      let x = (width - rendered.width) / 2;
+      if (position.endsWith("left")) x = margin;
+      if (position.endsWith("right")) x = Math.max(margin, width - rendered.width - margin);
+      page.drawImage(rendered.image, { x, y, width: rendered.width, height: rendered.height });
+      continue;
+    }
+    if (!font) throw new Error("PDF font is unavailable");
+    const tw = font.widthOfTextAtSize(text, size);
     let x = (width - tw) / 2;
     if (position.endsWith("left")) x = margin;
     if (position.endsWith("right")) x = Math.max(margin, width - tw - margin);
@@ -261,7 +326,7 @@ export async function stampPdfSignature(
 ): Promise<Uint8Array> {
   if (!text.trim()) throw new Error("Signature is empty");
   const doc = await PDFDocument.load(asPdfBytes(buf), { ignoreEncryption: true });
-  const font = await doc.embedFont(StandardFonts.HelveticaOblique);
+  const font = needsBrowserUnicodeFont(text) ? null : await doc.embedFont(StandardFonts.HelveticaOblique);
   const pages = doc.getPages();
   const targets =
     where === "all" ? pages : pages[Math.max(0, where - 1)] ? [pages[Math.max(0, where - 1)]] : [];
@@ -269,6 +334,17 @@ export async function stampPdfSignature(
   for (const page of targets) {
     const { width } = page.getSize();
     const size = 14;
+    const rendered = await embedBrowserText(doc, text, size, [0.12, 0.12, 0.16], 1, true);
+    if (rendered) {
+      page.drawImage(rendered.image, {
+        x: Math.max(28, width - rendered.width - 36),
+        y: 20,
+        width: rendered.width,
+        height: rendered.height,
+      });
+      continue;
+    }
+    if (!font) throw new Error("PDF font is unavailable");
     const tw = font.widthOfTextAtSize(text, size);
     page.drawText(text, {
       x: Math.max(28, width - tw - 36),

@@ -4,6 +4,8 @@ import { useEffect, useRef, useState } from "react";
 import { peaksFromChannel } from "@/lib/media/peaks";
 import { cn } from "@/lib/utils";
 
+const MAX_WAVEFORM_BYTES = 100 * 1024 * 1024;
+
 type Props = {
   file: File | null;
   start: number;
@@ -35,18 +37,29 @@ export function MediaTimeline({ file, start, end, onChange, startLabel, endLabel
     el.addEventListener("loadedmetadata", onMeta);
 
     let cancelled = false;
-    file.arrayBuffer().then(async (buf) => {
-      try {
-        const Ctx = window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
-        const ctx = new Ctx();
-        const decoded = await ctx.decodeAudioData(buf.slice(0));
-        const ch = decoded.getChannelData(0);
-        if (!cancelled) setPeaks(peaksFromChannel(ch, 80));
-        await ctx.close();
-      } catch {
-        if (!cancelled) setPeaks([]);
-      }
-    });
+    // Decoding a large video into PCM can allocate several times the source
+    // size and freeze the tab. Keep the timeline usable with numeric controls
+    // and placeholder bars instead of attempting the waveform.
+    if (file.size <= MAX_WAVEFORM_BYTES) {
+      file.arrayBuffer().then(async (buf) => {
+        let ctx: AudioContext | null = null;
+        try {
+          const Ctx =
+            window.AudioContext ||
+            (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
+          ctx = new Ctx();
+          const decoded = await ctx.decodeAudioData(buf.slice(0));
+          const ch = decoded.getChannelData(0);
+          if (!cancelled) setPeaks(peaksFromChannel(ch, 80));
+        } catch {
+          if (!cancelled) setPeaks([]);
+        } finally {
+          await ctx?.close().catch(() => undefined);
+        }
+      });
+    } else {
+      setPeaks([]);
+    }
 
     return () => {
       cancelled = true;

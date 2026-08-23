@@ -13,9 +13,11 @@ import { MediaTimeline } from "@/components/shared/media-timeline";
 import {
   VIDEO_FORMATS,
   gifClipArgs,
+  trimArgs,
   videoConvertArgs,
   videoExtractAudioArgs,
   videoSpeedArgs,
+  videoSpeedVideoOnlyArgs,
 } from "@/lib/media/ffmpeg";
 import { runSequentialBatch, stemmedName } from "@/lib/jobs/batch";
 import { ActionBar, ToolLimits, ToolShell, useToolHistory, loadFfmpeg } from "./shared";
@@ -118,7 +120,10 @@ export function VideoTrim() {
   const [controller, setController] = useState<AbortController | null>(null);
 
   const run = async () => {
-    if (!files[0]) return;
+    if (!files[0] || !Number.isFinite(start) || !Number.isFinite(end) || end <= start) {
+      toast.error(tc("error"));
+      return;
+    }
     const ac = new AbortController();
     setController(ac);
     setLoading(true);
@@ -132,13 +137,13 @@ export function VideoTrim() {
         input,
         data,
         output,
-        ["-ss", String(start), "-to", String(end), "-i", input, "-c", "copy", output],
+        trimArgs(input, output, start, end),
         (p) => setProgress(Math.round(p * 100)),
         ac.signal
       );
       downloadBlob(bytesToBlob(out, "application/octet-stream"), output);
       toast.success(t("success"));
-      log(`${start}-${end}`, "success");
+      log("completed", "success");
     } catch (e) {
       if (e instanceof DOMException && e.name === "AbortError") toast.error(tc("cancel"));
       else toast.error(e instanceof Error ? e.message : tc("error"));
@@ -212,14 +217,28 @@ export function VideoSpeed() {
       const input = `input.${ext}`;
       const output = `processed.${ext}`;
       const { runFFmpeg } = await loadFfmpeg();
-      const out = await runFFmpeg(
-        input,
-        data,
-        output,
-        videoSpeedArgs(input, output, speed, volume),
-        (p) => setProgress(Math.round(p * 100)),
-        ac.signal
-      );
+      let out: Uint8Array;
+      try {
+        out = await runFFmpeg(
+          input,
+          data,
+          output,
+          videoSpeedArgs(input, output, speed, volume),
+          (p) => setProgress(Math.round(p * 100)),
+          ac.signal
+        );
+      } catch (err) {
+        if (ac.signal.aborted) throw err;
+        // Silent videos have no [0:a] stream for the audio filter graph.
+        out = await runFFmpeg(
+          input,
+          data,
+          output,
+          videoSpeedVideoOnlyArgs(input, output, speed),
+          (p) => setProgress(Math.round(p * 100)),
+          ac.signal
+        );
+      }
       downloadBlob(bytesToBlob(out, "application/octet-stream"), output);
       toast.success(t("success"));
       log(`speed=${speed}`, "success");
@@ -291,7 +310,7 @@ export function VideoExtractAudio() {
       );
       downloadBlob(bytesToBlob(out, "audio/mpeg"), output);
       toast.success(t("success"));
-      log(files[0].file.name, "success");
+      log("completed", "success");
     } catch (e) {
       if (e instanceof DOMException && e.name === "AbortError") toast.error(tc("cancel"));
       else toast.error(e instanceof Error ? e.message : tc("error"));
@@ -329,7 +348,10 @@ export function VideoGif() {
   const [controller, setController] = useState<AbortController | null>(null);
 
   const run = async () => {
-    if (!files[0]) return;
+    if (!files[0] || !Number.isFinite(start) || !Number.isFinite(end) || end <= start) {
+      toast.error(tc("error"));
+      return;
+    }
     const ac = new AbortController();
     setController(ac);
     setLoading(true);
@@ -350,7 +372,7 @@ export function VideoGif() {
       );
       downloadBlob(bytesToBlob(out, "image/gif"), output);
       toast.success(t("success"));
-      log(`${start}-${end}`, "success");
+      log("completed", "success");
     } catch (e) {
       if (e instanceof DOMException && e.name === "AbortError") toast.error(tc("cancel"));
       else toast.error(e instanceof Error ? e.message : tc("error"));

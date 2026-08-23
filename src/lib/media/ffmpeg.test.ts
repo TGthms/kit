@@ -3,9 +3,11 @@ import {
   audioConvertArgs,
   audioSpeedArgs,
   gifClipArgs,
+  trimArgs,
   videoConvertArgs,
   videoExtractAudioArgs,
   videoSpeedArgs,
+  videoSpeedVideoOnlyArgs,
 } from "./ffmpeg";
 import { mixToMono, peaksFromChannel } from "./peaks";
 
@@ -21,6 +23,26 @@ describe("ffmpeg args", () => {
     ]);
     expect(audioConvertArgs("in.wav", "out.flac", "flac").includes("flac")).toBe(true);
     expect(videoConvertArgs("in.mp4", "out.gif", "gif")).toContain("fps=12,scale=480:-1:flags=lanczos");
+    expect(videoConvertArgs("in.webm", "out.mp4", "mp4")).toEqual([
+      "-i",
+      "in.webm",
+      "-c:v",
+      "libx264",
+      "-c:a",
+      "aac",
+      "-movflags",
+      "+faststart",
+      "out.mp4",
+    ]);
+    expect(trimArgs("in.mp4", "out.mp4", 10, 20)).toEqual([
+      "-i",
+      "in.mp4",
+      "-ss",
+      "10",
+      "-t",
+      "10",
+      "out.mp4",
+    ]);
     expect(audioSpeedArgs("in.mp3", "out.mp3", 1.25, 1)).toEqual([
       "-i",
       "in.mp3",
@@ -29,6 +51,14 @@ describe("ffmpeg args", () => {
       "out.mp3",
     ]);
     expect(videoSpeedArgs("in.mp4", "out.mp4", 2, 0.5)[2]).toBe("-filter_complex");
+    expect(videoSpeedVideoOnlyArgs("in.mp4", "out.mp4", 2)).toEqual([
+      "-i",
+      "in.mp4",
+      "-filter:v",
+      "setpts=0.500*PTS",
+      "-an",
+      "out.mp4",
+    ]);
     expect(videoExtractAudioArgs("in.mp4", "audio.mp3")).toEqual([
       "-i",
       "in.mp4",
@@ -38,12 +68,12 @@ describe("ffmpeg args", () => {
       "audio.mp3",
     ]);
     expect(gifClipArgs("in.mp4", "out.gif", "1", "3")).toEqual([
-      "-ss",
-      "1",
-      "-to",
-      "3",
       "-i",
       "in.mp4",
+      "-ss",
+      "1",
+      "-t",
+      "2",
       "-vf",
       "fps=12,scale=480:-1:flags=lanczos",
       "-loop",

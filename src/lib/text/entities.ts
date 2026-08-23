@@ -1,3 +1,7 @@
+function validCodePoint(value: number): boolean {
+  return Number.isInteger(value) && value >= 0 && value <= 0x10ffff && !(value >= 0xd800 && value <= 0xdfff);
+}
+
 const NAMED: Record<string, string> = {
   amp: "&",
   lt: "<",
@@ -28,11 +32,11 @@ export function decodeHtmlEntities(input: string): string {
   return input.replace(/&(#x?[0-9a-fA-F]+|[a-zA-Z]+);/g, (full, body: string) => {
     if (body.startsWith("#x") || body.startsWith("#X")) {
       const n = parseInt(body.slice(2), 16);
-      return Number.isFinite(n) ? String.fromCodePoint(n) : full;
+      return validCodePoint(n) ? String.fromCodePoint(n) : full;
     }
     if (body.startsWith("#")) {
       const n = parseInt(body.slice(1), 10);
-      return Number.isFinite(n) ? String.fromCodePoint(n) : full;
+      return validCodePoint(n) ? String.fromCodePoint(n) : full;
     }
     return NAMED[body.toLowerCase()] ?? full;
   });

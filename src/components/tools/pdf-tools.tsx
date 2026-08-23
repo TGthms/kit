@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 import { FileDropzone, type FileItem } from "@/components/shared/file-dropzone";
@@ -98,7 +98,7 @@ export function PdfSplit() {
       const out = await splitPdf(await files[0].file.arrayBuffer(), range);
       downloadBlob(bytesToBlob(out, "application/pdf"), "split.pdf");
       toast.success(t("success"));
-      log(range, "success", { range });
+      log("completed", "success");
     } catch (e) {
       toast.error(e instanceof Error ? e.message : tc("error"));
       log("failed", "failed");
@@ -127,6 +127,7 @@ export function PdfOrganize() {
   const [pageCount, setPageCount] = useState(0);
   const [order, setOrder] = useState<number[]>([]);
   const [rotations, setRotations] = useState<Record<number, number>>({});
+  const dragPage = useRef<number | null>(null);
   const [deleted, setDeleted] = useState<Set<number>>(new Set());
   const [loading, setLoading] = useState(false);
 
@@ -162,7 +163,32 @@ export function PdfOrganize() {
       {pageCount > 0 && (
         <div className="grid gap-2 sm:grid-cols-2">
           {order.map((idx) => (
-            <Card key={idx} className={deleted.has(idx) ? "opacity-40" : ""}>
+            <Card
+              key={idx}
+              draggable
+              onDragStart={() => {
+                dragPage.current = idx;
+              }}
+              onDragOver={(e) => e.preventDefault()}
+              onDrop={() => {
+                const fromPage = dragPage.current;
+                if (fromPage === null || fromPage === idx) return;
+                setOrder((current) => {
+                  const from = current.indexOf(fromPage);
+                  const to = current.indexOf(idx);
+                  if (from < 0 || to < 0) return current;
+                  const next = [...current];
+                  const [moved] = next.splice(from, 1);
+                  next.splice(to, 0, moved);
+                  return next;
+                });
+                dragPage.current = null;
+              }}
+              onDragEnd={() => {
+                dragPage.current = null;
+              }}
+              className={deleted.has(idx) ? "cursor-grab opacity-40" : "cursor-grab"}
+            >
               <CardContent className="flex items-center justify-between gap-2 p-3 text-sm">
                 <span>
                   {tc("page")} {idx + 1}
@@ -305,7 +331,7 @@ export function PdfWatermark() {
       );
       await downloadMany(items, "watermarked-pdfs.zip");
       toast.success(t("success"));
-      log(`${text} n=${files.length}`, "success");
+      log(`n=${files.length}`, "success");
     } catch (e) {
       if (e instanceof DOMException && e.name === "AbortError") toast.error(tc("cancel"));
       else toast.error(e instanceof Error ? e.message : tc("error"));
