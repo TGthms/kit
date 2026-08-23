@@ -13,7 +13,13 @@ import { LocaleGate } from "@/components/layout/locale-gate";
 export default function RootPage() {
   return (
     <html lang="en">
-      <head />
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var d=document.documentElement,s=localStorage.getItem("theme")||"system",t=s==="system"?(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"):s;if(t==="dark"){d.classList.add("dark");d.style.colorScheme="dark";}else{d.classList.remove("dark");d.style.colorScheme="light";}}catch(e){}})();`,
+          }}
+        />
+      </head>
       <body>
         <LocaleGate />
       </body>

@@ -32,6 +32,11 @@ export default async function LocaleLayout({
   return (
     <html lang={lang} dir={dir} suppressHydrationWarning>
       <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var d=document.documentElement,s=localStorage.getItem("theme")||"system",t=s==="system"?(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"):s;if(t==="dark"){d.classList.add("dark");d.style.colorScheme="dark";}else{d.classList.remove("dark");d.style.colorScheme="light";}}catch(e){}})();`,
+          }}
+        />
         <link rel="icon" href={withAsset("/icons/favicon.svg")} type="image/svg+xml" />
         <link rel="icon" href={withAsset("/icons/favicon-32.png")} type="image/png" sizes="32x32" />
         <link rel="apple-touch-icon" href={withAsset("/icons/apple-touch-icon.png")} sizes="180x180" />

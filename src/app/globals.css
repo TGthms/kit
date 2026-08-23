@@ -309,11 +309,6 @@ canvas {
   outline-offset: 2px;
 }
 
-/* Theme transition (gentle brightness change) */
-html {
-  transition: background-color 200ms ease, color 200ms ease;
-}
-
 /* Accessibility: reduced motion / transparency / contrast */
 @media (prefers-reduced-motion: reduce) {
   html {
