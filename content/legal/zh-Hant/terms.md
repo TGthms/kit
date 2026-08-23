@@ -49,6 +49,6 @@ Kit 可能連結到外部網站或載入第三方函式庫。我們不控制也�
 
 ## 聯絡方式
 
-條款相關問題：[關於我](https://t-g.pages.dev)。
+條款相關問題：[contact.timg@icloud.com](mailto:contact.timg@icloud.com)。
 
 **Tim G（GitHub: TGthms）**

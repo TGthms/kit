@@ -49,6 +49,6 @@
 
 ## Επικοινωνία
 
-Ερωτήσεις σχετικά με τους παρόντες Όρους: [Σχετικά με εμένα](https://t-g.pages.dev).
+Ερωτήσεις σχετικά με τους παρόντες Όρους: [contact.timg@icloud.com](mailto:contact.timg@icloud.com).
 
 **Tim G (GitHub: TGthms)**

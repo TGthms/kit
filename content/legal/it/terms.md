@@ -49,6 +49,6 @@ Salvo quando siano altrimenti richieste norme imperative a tutela dei consumator
 
 ## Contatti
 
-Domande su questi Termini: [Chi sono](https://t-g.pages.dev).
+Domande su questi Termini: [contact.timg@icloud.com](mailto:contact.timg@icloud.com).
 
 **Tim G (GitHub: TGthms)**

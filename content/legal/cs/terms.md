@@ -49,6 +49,6 @@ S výjimkou případů, kdy závazná ochrana spotřebitelů vyžaduje jinak, se
 
 ## Kontakt
 
-Dotazy k těmto Podmínkám: [O mně](https://t-g.pages.dev).
+Dotazy k těmto Podmínkám: [contact.timg@icloud.com](mailto:contact.timg@icloud.com).
 
 **Tim G (GitHub: TGthms)**

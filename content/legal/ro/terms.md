@@ -49,6 +49,6 @@ Cu excepția cazului în care protecția obligatorie a consumatorilor impune alt
 
 ## Contact
 
-Întrebări despre aceste Condiții: [Despre mine](https://t-g.pages.dev).
+Întrebări despre aceste Condiții: [contact.timg@icloud.com](mailto:contact.timg@icloud.com).
 
 **Tim G (GitHub: TGthms)**

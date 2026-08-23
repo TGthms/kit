@@ -53,6 +53,6 @@ Vi kan opdatere denne politik, når produktet eller de juridiske krav ændrer si
 
 ## Kontakt
 
-Spørgsmål om privatliv: [Om mig](https://t-g.pages.dev).
+Spørgsmål om privatliv: [contact.timg@icloud.com](mailto:contact.timg@icloud.com).
 
 Udgivet af **Tim G (GitHub: TGthms)**.

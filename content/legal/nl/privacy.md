@@ -53,6 +53,6 @@ We kunnen dit beleid bijwerken wanneer het product of wettelijke vereisten veran
 
 ## Contact
 
-Vragen over privacy: [Over mij](https://t-g.pages.dev).
+Vragen over privacy: [contact.timg@icloud.com](mailto:contact.timg@icloud.com).
 
 Gepubliceerd door **Tim G (GitHub: TGthms)**.

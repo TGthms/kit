@@ -49,6 +49,6 @@ Kecuali perlindungan konsumen yang bersifat wajib mengharuskan sebaliknya, Keten
 
 ## Kontak
 
-Pertanyaan tentang Ketentuan ini: [Tentang saya](https://t-g.pages.dev).
+Pertanyaan tentang Ketentuan ini: [contact.timg@icloud.com](mailto:contact.timg@icloud.com).
 
 **Tim G (GitHub: TGthms)**

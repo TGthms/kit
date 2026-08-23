@@ -53,6 +53,6 @@ Kit은 일반적인 용도의 유틸리티입니다. 13세 미만의 아동을 �
 
 ## 문의
 
-개인정보 관련 문의: [소개](https://t-g.pages.dev).
+개인정보 관련 문의: [contact.timg@icloud.com](mailto:contact.timg@icloud.com).
 
 게시자: **Tim G (GitHub: TGthms)**.

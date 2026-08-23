@@ -49,6 +49,6 @@ Z wyjątkiem sytuacji, w których bezwzględnie obowiązujące przepisy ochrony 
 
 ## Kontakt
 
-Pytania dotyczące tych Warunków: [O mnie](https://t-g.pages.dev).
+Pytania dotyczące tych Warunków: [contact.timg@icloud.com](mailto:contact.timg@icloud.com).
 
 **Tim G (GitHub: TGthms)**

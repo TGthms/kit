@@ -53,6 +53,6 @@ Możemy aktualizować tę politykę, gdy zmieni się produkt lub wymagania prawn
 
 ## Kontakt
 
-Pytania dotyczące prywatności: [O mnie](https://t-g.pages.dev).
+Pytania dotyczące prywatności: [contact.timg@icloud.com](mailto:contact.timg@icloud.com).
 
 Opublikowano przez **Tim G (GitHub: TGthms)**.

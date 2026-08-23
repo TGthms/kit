@@ -49,6 +49,6 @@ Kit อาจเชื่อมโยงไปยังเว็บไซต์�
 
 ## ติดต่อ
 
-คำถามเกี่ยวกับข้อกำหนดเหล่านี้: [เกี่ยวกับฉัน](https://t-g.pages.dev)
+คำถามเกี่ยวกับข้อกำหนดเหล่านี้: [contact.timg@icloud.com](mailto:contact.timg@icloud.com)
 
 **Tim G (GitHub: TGthms)**

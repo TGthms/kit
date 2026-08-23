@@ -49,6 +49,6 @@ Om inte tvingande konsumentskydd kräver annat regleras dessa villkor av lagarna
 
 ## Kontakt
 
-Frågor om dessa villkor: [Om mig](https://t-g.pages.dev).
+Frågor om dessa villkor: [contact.timg@icloud.com](mailto:contact.timg@icloud.com).
 
 **Tim G (GitHub: TGthms)**

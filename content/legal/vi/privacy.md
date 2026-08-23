@@ -53,6 +53,6 @@ Chúng tôi có thể cập nhật chính sách này khi sản phẩm hoặc yê
 
 ## Liên hệ
 
-Câu hỏi về quyền riêng tư: [Giới thiệu](https://t-g.pages.dev).
+Câu hỏi về quyền riêng tư: [contact.timg@icloud.com](mailto:contact.timg@icloud.com).
 
 Được xuất bản bởi **Tim G (GitHub: TGthms)**.

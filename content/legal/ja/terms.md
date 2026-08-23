@@ -49,6 +49,6 @@ Kit は外部サイトへのリンクや第三者ライブラリの読み込み�
 
 ## お問い合わせ
 
-本規約に関するお問い合わせは、[運営者について](https://t-g.pages.dev) からお願いします。
+本規約に関するお問い合わせは、[contact.timg@icloud.com](mailto:contact.timg@icloud.com) からお願いします。
 
 **Tim G（GitHub: TGthms）**

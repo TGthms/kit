@@ -206,7 +206,7 @@ export const featuredToolIds: ToolId[] = [
   "pdf-merge",
   "image-compress",
   "json-format",
-  "jwt-decode",
+  "qr-code",
   "password-generator",
   "image-watermark",
 ];

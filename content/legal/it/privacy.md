@@ -53,6 +53,6 @@ Potremmo aggiornare questa informativa quando cambiano il prodotto o i requisiti
 
 ## Contatti
 
-Domande sulla privacy: [Chi sono](https://t-g.pages.dev).
+Domande sulla privacy: [contact.timg@icloud.com](mailto:contact.timg@icloud.com).
 
 Pubblicato da **Tim G (GitHub: TGthms)**.

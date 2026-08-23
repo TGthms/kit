@@ -53,6 +53,6 @@ Kit เป็นเครื่องมือสำหรับการใช�
 
 ## ติดต่อ
 
-คำถามเกี่ยวกับความเป็นส่วนตัว: [เกี่ยวกับฉัน](https://t-g.pages.dev)
+คำถามเกี่ยวกับความเป็นส่วนตัว: [contact.timg@icloud.com](mailto:contact.timg@icloud.com)
 
 เผยแพร่โดย **Tim G (GitHub: TGthms)**

@@ -49,6 +49,6 @@ Kivéve, ha kötelező fogyasztóvédelmi szabályok másként rendelkeznek, eze
 
 ## Kapcsolat
 
-A Feltételekkel kapcsolatos kérdések: [Rólam](https://t-g.pages.dev).
+A Feltételekkel kapcsolatos kérdések: [contact.timg@icloud.com](mailto:contact.timg@icloud.com).
 
 **Tim G (GitHub: TGthms)**

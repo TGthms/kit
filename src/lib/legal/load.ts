@@ -78,7 +78,7 @@ function inline(s: string) {
   let out = escapeHtml(s);
   out = out.replace(/\*\*(.+?)\*\*/g, "<strong class=\"text-foreground font-semibold\">$1</strong>");
   out = out.replace(
-    /\[([^\]]+)\]\((https?:\/\/[^)]+)\)/g,
+    /\[([^\]]+)\]\(((?:https?:\/\/|mailto:)[^)]+)\)/g,
     '<a class="text-primary underline-offset-4 hover:underline" href="$2" target="_blank" rel="noopener noreferrer">$1</a>'
   );
   return out;

@@ -53,6 +53,6 @@ Vi kan oppdatere denne erklæringen når produktet eller juridiske krav endres. 
 
 ## Kontakt
 
-Personvernspørsmål: [Om meg](https://t-g.pages.dev).
+Personvernspørsmål: [contact.timg@icloud.com](mailto:contact.timg@icloud.com).
 
 Publisert av **Tim G (GitHub: TGthms)**.

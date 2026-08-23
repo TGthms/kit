@@ -49,6 +49,6 @@ Zorunlu tüketici korumaları aksini gerektirmedikçe bu Koşullar, yaşadığı
 
 ## İletişim
 
-Bu Koşullar hakkındaki sorular: [Hakkımda](https://t-g.pages.dev).
+Bu Koşullar hakkındaki sorular: [contact.timg@icloud.com](mailto:contact.timg@icloud.com).
 
 **Tim G (GitHub: TGthms)**

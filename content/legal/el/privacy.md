@@ -53,6 +53,6 @@
 
 ## Επικοινωνία
 
-Ερωτήσεις σχετικά με το απόρρητο: [Σχετικά με εμένα](https://t-g.pages.dev).
+Ερωτήσεις σχετικά με το απόρρητο: [contact.timg@icloud.com](mailto:contact.timg@icloud.com).
 
 Δημοσιεύτηκε από **Tim G (GitHub: TGthms)**.

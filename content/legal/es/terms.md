@@ -49,6 +49,6 @@ Salvo que una norma imperativa de protección al consumidor disponga otra cosa, 
 
 ## Contacto
 
-Preguntas sobre estas condiciones: [Sobre mí](https://t-g.pages.dev).
+Preguntas sobre estas condiciones: [contact.timg@icloud.com](mailto:contact.timg@icloud.com).
 
 **Tim G (GitHub: TGthms)**

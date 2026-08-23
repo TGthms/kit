@@ -53,6 +53,6 @@ Putem actualiza această politică atunci când se modifică produsul sau cerin�
 
 ## Contact
 
-Întrebări despre confidențialitate: [Despre mine](https://t-g.pages.dev).
+Întrebări despre confidențialitate: [contact.timg@icloud.com](mailto:contact.timg@icloud.com).
 
 Publicat de **Tim G (GitHub: TGthms)**.

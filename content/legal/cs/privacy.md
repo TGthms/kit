@@ -53,6 +53,6 @@ Tyto zásady můžeme aktualizovat, pokud se změní produkt nebo právní poža
 
 ## Kontakt
 
-Dotazy týkající se soukromí: [O mně](https://t-g.pages.dev).
+Dotazy týkající se soukromí: [contact.timg@icloud.com](mailto:contact.timg@icloud.com).
 
 Vydal **Tim G (GitHub: TGthms)**.

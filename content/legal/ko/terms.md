@@ -49,6 +49,6 @@ Kit은 외부 사이트로 연결되거나 타사 라이브러리를 로드할 �
 
 ## 문의
 
-이 약관에 대한 문의: [소개](https://t-g.pages.dev).
+이 약관에 대한 문의: [contact.timg@icloud.com](mailto:contact.timg@icloud.com).
 
 **Tim G (GitHub: TGthms)**

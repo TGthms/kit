@@ -49,6 +49,6 @@ Exceto quando proteções obrigatórias ao consumidor exigirem o contrário, est
 
 ## Contato
 
-Dúvidas sobre estes Termos: [Sobre mim](https://t-g.pages.dev).
+Dúvidas sobre estes Termos: [contact.timg@icloud.com](mailto:contact.timg@icloud.com).
 
 **Tim G (GitHub: TGthms)**

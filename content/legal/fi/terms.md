@@ -49,6 +49,6 @@ Ellei pakottava kuluttajansuoja edellytä muuta, näihin ehtoihin sovelletaan as
 
 ## Yhteystiedot
 
-Näitä ehtoja koskevat kysymykset: [Tietoa minusta](https://t-g.pages.dev).
+Näitä ehtoja koskevat kysymykset: [contact.timg@icloud.com](mailto:contact.timg@icloud.com).
 
 **Tim G (GitHub: TGthms)**

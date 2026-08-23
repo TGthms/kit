@@ -53,6 +53,6 @@ Kami dapat memperbarui kebijakan ini ketika produk atau persyaratan hukum beruba
 
 ## Kontak
 
-Pertanyaan privasi: [Tentang saya](https://t-g.pages.dev).
+Pertanyaan privasi: [contact.timg@icloud.com](mailto:contact.timg@icloud.com).
 
 Diterbitkan oleh **Tim G (GitHub: TGthms)**.

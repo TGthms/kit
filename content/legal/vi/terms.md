@@ -49,6 +49,6 @@ Trừ khi các biện pháp bảo vệ người tiêu dùng bắt buộc có quy
 
 ## Liên hệ
 
-Câu hỏi về các Điều khoản này: [Giới thiệu](https://t-g.pages.dev).
+Câu hỏi về các Điều khoản này: [contact.timg@icloud.com](mailto:contact.timg@icloud.com).
 
 **Tim G (GitHub: TGthms)**

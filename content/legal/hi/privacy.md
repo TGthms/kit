@@ -53,6 +53,6 @@ Kit सामान्य उपयोग के लिए एक उपयो�
 
 ## संपर्क
 
-गोपनीयता से जुड़े प्रश्न: [मेरे बारे में](https://t-g.pages.dev)।
+गोपनीयता से जुड़े प्रश्न: [contact.timg@icloud.com](mailto:contact.timg@icloud.com)।
 
 **Tim G (GitHub: TGthms)** द्वारा प्रकाशित।

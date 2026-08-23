@@ -53,6 +53,6 @@ Kit 面向一般用途，并非专门针对 13 岁以下儿童。由于不提供
 
 ## 联系方式
 
-隐私相关问题请通过：[关于我](https://t-g.pages.dev)。
+隐私相关问题请通过：[contact.timg@icloud.com](mailto:contact.timg@icloud.com)。
 
 发布者：**Tim G（GitHub: TGthms）**

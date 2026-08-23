@@ -49,6 +49,6 @@
 
 ## التواصل
 
-أسئلة حول هذه الشروط: [نبذة عني](https://t-g.pages.dev).
+أسئلة حول هذه الشروط: [contact.timg@icloud.com](mailto:contact.timg@icloud.com).
 
 **Tim G (GitHub: TGthms)**

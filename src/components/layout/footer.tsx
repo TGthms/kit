@@ -3,7 +3,6 @@
 import { useTranslations } from "next-intl";
 import { Link } from "@/lib/i18n/navigation";
 import { Button } from "@/components/ui/button";
-import { ExternalLink } from "lucide-react";
 
 function GitHubMark({ className }: { className?: string }) {
   return (
@@ -40,13 +39,8 @@ export function SiteFooter() {
 
           <div className="flex flex-wrap items-center gap-2">
             <Button asChild variant="outline" size="sm" className="h-10 rounded-full px-4">
-              <a
-                href="https://t-g.pages.dev"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {t("aboutMe")}
-                <ExternalLink className="h-3.5 w-3.5" />
+              <a href="mailto:contact.timg@icloud.com">
+                contact.timg@icloud.com
               </a>
             </Button>
             <Button asChild variant="outline" size="sm" className="h-10 rounded-full px-4">

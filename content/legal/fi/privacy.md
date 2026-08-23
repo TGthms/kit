@@ -53,6 +53,6 @@ Voimme päivittää tätä käytäntöä, kun tuote tai lakisääteiset vaatimuk
 
 ## Yhteystiedot
 
-Tietosuojaa koskevat kysymykset: [Tietoa minusta](https://t-g.pages.dev).
+Tietosuojaa koskevat kysymykset: [contact.timg@icloud.com](mailto:contact.timg@icloud.com).
 
 Julkaisija **Tim G (GitHub: TGthms)**.

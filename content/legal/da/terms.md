@@ -49,6 +49,6 @@ Medmindre ufravigelig forbrugerbeskyttelse kræver andet, er disse vilkår under
 
 ## Kontakt
 
-Spørgsmål om disse vilkår: [Om mig](https://t-g.pages.dev).
+Spørgsmål om disse vilkår: [contact.timg@icloud.com](mailto:contact.timg@icloud.com).
 
 **Tim G (GitHub: TGthms)**

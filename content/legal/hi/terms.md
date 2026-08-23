@@ -49,6 +49,6 @@ Kit बाहरी साइटों से लिंक कर सकता �
 
 ## संपर्क
 
-इन शर्तों के बारे में प्रश्न: [मेरे बारे में](https://t-g.pages.dev)।
+इन शर्तों के बारे में प्रश्न: [contact.timg@icloud.com](mailto:contact.timg@icloud.com)।
 
 **Tim G (GitHub: TGthms)**

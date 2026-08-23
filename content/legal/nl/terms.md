@@ -49,6 +49,6 @@ Behalve wanneer dwingende consumentenbescherming anders vereist, worden deze voo
 
 ## Contact
 
-Vragen over deze voorwaarden: [Over mij](https://t-g.pages.dev).
+Vragen over deze voorwaarden: [contact.timg@icloud.com](mailto:contact.timg@icloud.com).
 
 **Tim G (GitHub: TGthms)**

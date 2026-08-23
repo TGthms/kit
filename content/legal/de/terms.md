@@ -49,6 +49,6 @@ Soweit keine zwingenden Verbraucherschutzvorschriften etwas anderes verlangen, g
 
 ## Kontakt
 
-Fragen zu diesen Bedingungen: [Über mich](https://t-g.pages.dev).
+Fragen zu diesen Bedingungen: [contact.timg@icloud.com](mailto:contact.timg@icloud.com).
 
 **Tim G (GitHub: TGthms)**

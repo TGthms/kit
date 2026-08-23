@@ -49,6 +49,6 @@ Sauf lorsque des protections impératives des consommateurs l'exigent, les prés
 
 ## Contact
 
-Questions concernant ces conditions : [À propos de moi](https://t-g.pages.dev).
+Questions concernant ces conditions : [contact.timg@icloud.com](mailto:contact.timg@icloud.com).
 
 **Tim G (GitHub : TGthms)**

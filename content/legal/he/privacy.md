@@ -53,6 +53,6 @@ Kit הוא כלי לשימוש כללי. הוא אינו מיועד לילדים
 
 ## יצירת קשר
 
-שאלות בנושא פרטיות: [קצת עליי](https://t-g.pages.dev).
+שאלות בנושא פרטיות: [contact.timg@icloud.com](mailto:contact.timg@icloud.com).
 
 פורסם על ידי **Tim G (GitHub: TGthms)**.

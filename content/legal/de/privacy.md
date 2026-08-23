@@ -53,6 +53,6 @@ Wir können diese Richtlinie aktualisieren, wenn sich das Produkt oder gesetzlic
 
 ## Kontakt
 
-Fragen zum Datenschutz: [Über mich](https://t-g.pages.dev).
+Fragen zum Datenschutz: [contact.timg@icloud.com](mailto:contact.timg@icloud.com).
 
 Veröffentlicht von **Tim G (GitHub: TGthms)**.

@@ -53,6 +53,6 @@ Ezt a szabályzatot frissíthetjük, ha a termék vagy a jogi követelmények v�
 
 ## Kapcsolat
 
-Adatvédelmi kérdések: [Rólam](https://t-g.pages.dev).
+Adatvédelmi kérdések: [contact.timg@icloud.com](mailto:contact.timg@icloud.com).
 
 Közzétette: **Tim G (GitHub: TGthms)**.

@@ -53,6 +53,6 @@ Kit أداة عامة الاستخدام. ولا يستهدف الأطفال د�
 
 ## التواصل
 
-أسئلة الخصوصية: [نبذة عني](https://t-g.pages.dev).
+أسئلة الخصوصية: [contact.timg@icloud.com](mailto:contact.timg@icloud.com).
 
 نشرها **Tim G (GitHub: TGthms)**.

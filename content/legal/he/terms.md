@@ -49,6 +49,6 @@ Kit עשוי לקשר לאתרים חיצוניים או לטעון ספריות
 
 ## יצירת קשר
 
-שאלות בנוגע לתנאים אלה: [קצת עליי](https://t-g.pages.dev).
+שאלות בנוגע לתנאים אלה: [contact.timg@icloud.com](mailto:contact.timg@icloud.com).
 
 **Tim G (GitHub: TGthms)**

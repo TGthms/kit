@@ -53,6 +53,6 @@ Kit — утилита общего назначения. Она не предн
 
 ## Контакты
 
-Вопросы о конфиденциальности: [Обо мне](https://t-g.pages.dev).
+Вопросы о конфиденциальности: [contact.timg@icloud.com](mailto:contact.timg@icloud.com).
 
 Опубликовано **Tim G (GitHub: TGthms)**.

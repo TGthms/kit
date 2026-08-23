@@ -49,6 +49,6 @@ Kit може містити посилання на зовнішні сайти 
 
 ## Контакти
 
-Запитання щодо цих Умов: [Про мене](https://t-g.pages.dev).
+Запитання щодо цих Умов: [contact.timg@icloud.com](mailto:contact.timg@icloud.com).
 
 **Tim G (GitHub: TGthms)**

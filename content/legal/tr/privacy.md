@@ -53,6 +53,6 @@ Kit genel amaçlı bir yardımcı araçtır. 13 yaşın altındaki çocuklara y�
 
 ## İletişim
 
-Gizlilik soruları: [Hakkımda](https://t-g.pages.dev).
+Gizlilik soruları: [contact.timg@icloud.com](mailto:contact.timg@icloud.com).
 
 **Tim G (GitHub: TGthms)** tarafından yayımlanmıştır.

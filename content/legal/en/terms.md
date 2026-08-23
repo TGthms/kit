@@ -49,6 +49,6 @@ Except where mandatory consumer protections require otherwise, these Terms are g
 
 ## Contact
 
-Questions about these Terms: [About Me](https://t-g.pages.dev).
+Questions about these Terms: [contact.timg@icloud.com](mailto:contact.timg@icloud.com).
 
 **Tim G (GitHub: TGthms)**
