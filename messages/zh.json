@@ -146,6 +146,15 @@
       "money": "金钱",
       "everyday-text": "日常文本",
       "quick": "快捷"
+    },
+    "greeting": {
+      "morning": "早上好，祝你{day}愉快。",
+      "afternoon": "下午好，祝你{day}愉快。",
+      "evening": "晚上好，祝你{day}愉快。",
+      "night": "晚上好，愿你在{day}剩下的时间里一切顺利。",
+      "extra1": "What can we make easier today?",
+      "extra2": "Ready when you are.",
+      "extra3": "Let’s get something useful done."
     }
   },
   "categories": {

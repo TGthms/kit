@@ -146,6 +146,15 @@
       "money": "Dinero",
       "everyday-text": "Texto cotidiano",
       "quick": "Rápido"
+    },
+    "greeting": {
+      "morning": "Buenos días — feliz {day}.",
+      "afternoon": "Buenas tardes — feliz {day}.",
+      "evening": "Buenas noches — feliz {day}.",
+      "night": "Buenas noches — disfruta lo que queda de {day}.",
+      "extra1": "¿Qué podemos hacer más fácil hoy?",
+      "extra2": "Cuando quieras, empezamos.",
+      "extra3": "Hagamos algo útil."
     }
   },
   "categories": {

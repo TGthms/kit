@@ -146,6 +146,15 @@
       "money": "Tiền",
       "everyday-text": "Văn bản hằng ngày",
       "quick": "Nhanh"
+    },
+    "greeting": {
+      "morning": "Chào buổi sáng — chúc bạn một {day} vui vẻ.",
+      "afternoon": "Chào buổi chiều — chúc bạn một {day} vui vẻ.",
+      "evening": "Chào buổi tối — chúc bạn một {day} vui vẻ.",
+      "night": "Chào buổi tối — chúc bạn tận hưởng phần còn lại của {day}.",
+      "extra1": "Hôm nay chúng ta có thể làm gì dễ dàng hơn?",
+      "extra2": "Bạn sẵn sàng lúc nào thì bắt đầu lúc đó.",
+      "extra3": "Cùng hoàn thành một việc hữu ích nhé."
     }
   },
   "categories": {

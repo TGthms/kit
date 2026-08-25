@@ -146,6 +146,15 @@
       "money": "Geld",
       "everyday-text": "Dagelijkse tekst",
       "quick": "Snel"
+    },
+    "greeting": {
+      "morning": "Goedemorgen — een fijne {day}.",
+      "afternoon": "Goedemiddag — een fijne {day}.",
+      "evening": "Goedenavond — een fijne {day}.",
+      "night": "Goedenavond — geniet van de rest van {day}.",
+      "extra1": "Wat kunnen we vandaag eenvoudiger maken?",
+      "extra2": "Klaar wanneer jij dat bent.",
+      "extra3": "Laten we iets nuttigs doen."
     }
   },
   "categories": {

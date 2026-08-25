@@ -146,6 +146,15 @@
       "money": "Pénz",
       "everyday-text": "Mindennapi szöveg",
       "quick": "Gyors"
+    },
+    "greeting": {
+      "morning": "Jó reggelt — szép {day}ot!",
+      "afternoon": "Jó napot — szép {day}ot!",
+      "evening": "Jó estét — szép {day}ot!",
+      "night": "Jó estét — élvezd a {day} hátralévő részét.",
+      "extra1": "Mit tehetünk ma egyszerűbbé?",
+      "extra2": "Kezdjük, amikor készen állsz.",
+      "extra3": "Végezzünk el valami hasznosat."
     }
   },
   "categories": {

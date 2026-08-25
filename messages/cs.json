@@ -146,6 +146,15 @@
       "money": "Peníze",
       "everyday-text": "Každodenní text",
       "quick": "Rychlé"
+    },
+    "greeting": {
+      "morning": "Dobré ráno — krásný {day}.",
+      "afternoon": "Dobré odpoledne — krásný {day}.",
+      "evening": "Dobrý večer — krásný {day}.",
+      "night": "Dobrý večer — užijte si zbytek {day}.",
+      "extra1": "Co můžeme dnes zjednodušit?",
+      "extra2": "Až budete připraveni, můžeme začít.",
+      "extra3": "Pusťme se do něčeho užitečného."
     }
   },
   "categories": {

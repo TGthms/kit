@@ -146,6 +146,15 @@
       "money": "Bani",
       "everyday-text": "Text de zi cu zi",
       "quick": "Rapid"
+    },
+    "greeting": {
+      "morning": "Bună dimineața — o zi de {day} plăcută!",
+      "afternoon": "Bună ziua — o zi de {day} plăcută!",
+      "evening": "Bună seara — o seară de {day} plăcută!",
+      "night": "Bună seara — bucură-te de restul zilei de {day}.",
+      "extra1": "Ce putem face mai ușor astăzi?",
+      "extra2": "Începem când ești gata.",
+      "extra3": "Să facem ceva util."
     }
   },
   "categories": {

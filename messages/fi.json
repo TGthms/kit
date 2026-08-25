@@ -146,6 +146,15 @@
       "money": "Raha",
       "everyday-text": "Arjen teksti",
       "quick": "Pikatyökalut"
+    },
+    "greeting": {
+      "morning": "Hyvää huomenta — hyvää {day}.",
+      "afternoon": "Hyvää iltapäivää — hyvää {day}.",
+      "evening": "Hyvää iltaa — hyvää {day}.",
+      "night": "Hyvää iltaa — nauti {day} jäljellä olevasta ajasta.",
+      "extra1": "Mitä voisimme helpottaa tänään?",
+      "extra2": "Aloitetaan, kun olet valmis.",
+      "extra3": "Tehdään jotain hyödyllistä."
     }
   },
   "categories": {

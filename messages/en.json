@@ -146,6 +146,15 @@
       "money": "Money",
       "everyday-text": "Everyday text",
       "quick": "Quick"
+    },
+    "greeting": {
+      "morning": "Good morning — happy {day}.",
+      "afternoon": "Good afternoon — happy {day}.",
+      "evening": "Good evening — happy {day}.",
+      "night": "Good evening — enjoy the rest of {day}.",
+      "extra1": "What can we make easier today?",
+      "extra2": "Ready when you are.",
+      "extra3": "Let’s get something useful done."
     }
   },
   "categories": {

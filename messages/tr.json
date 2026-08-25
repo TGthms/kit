@@ -146,6 +146,15 @@
       "money": "Para",
       "everyday-text": "Günlük metin",
       "quick": "Hızlı"
+    },
+    "greeting": {
+      "morning": "Günaydın — güzel bir {day} olsun.",
+      "afternoon": "Tünaydın — güzel bir {day} olsun.",
+      "evening": "İyi akşamlar — güzel bir {day} olsun.",
+      "night": "İyi akşamlar — {day} gününün kalanının tadını çıkarın.",
+      "extra1": "Bugün neyi kolaylaştırabiliriz?",
+      "extra2": "Hazır olduğunda başlayalım.",
+      "extra3": "Faydalı bir iş yapalım."
     }
   },
   "categories": {

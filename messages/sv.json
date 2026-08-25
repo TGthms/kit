@@ -146,6 +146,15 @@
       "money": "Pengar",
       "everyday-text": "Vardagstext",
       "quick": "Snabbt"
+    },
+    "greeting": {
+      "morning": "God morgon — ha en fin {day}.",
+      "afternoon": "God eftermiddag — ha en fin {day}.",
+      "evening": "God kväll — ha en fin {day}.",
+      "night": "God kväll — njut av resten av {day}.",
+      "extra1": "Vad kan vi göra enklare i dag?",
+      "extra2": "Redo när du är det.",
+      "extra3": "Låt oss få något användbart gjort."
     }
   },
   "categories": {

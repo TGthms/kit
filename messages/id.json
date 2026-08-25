@@ -146,6 +146,15 @@
       "money": "Uang",
       "everyday-text": "Teks sehari-hari",
       "quick": "Cepat"
+    },
+    "greeting": {
+      "morning": "Selamat pagi — semoga {day} Anda menyenangkan.",
+      "afternoon": "Selamat siang — semoga {day} Anda menyenangkan.",
+      "evening": "Selamat malam — semoga {day} Anda menyenangkan.",
+      "night": "Selamat malam — nikmati sisa {day} Anda.",
+      "extra1": "Apa yang bisa kita buat lebih mudah hari ini?",
+      "extra2": "Kita mulai saat Anda siap.",
+      "extra3": "Mari selesaikan sesuatu yang berguna."
     }
   },
   "categories": {

@@ -146,6 +146,15 @@
       "money": "Penge",
       "everyday-text": "Hverdagstekst",
       "quick": "Hurtigt"
+    },
+    "greeting": {
+      "morning": "Godmorgen — god {day}.",
+      "afternoon": "God eftermiddag — god {day}.",
+      "evening": "Godaften — god {day}.",
+      "night": "Godaften — nyd resten af {day}.",
+      "extra1": "Hvad kan vi gøre lettere i dag?",
+      "extra2": "Klar, når du er.",
+      "extra3": "Lad os få noget nyttigt fra hånden."
     }
   },
   "categories": {

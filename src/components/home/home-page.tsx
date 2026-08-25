@@ -1,8 +1,8 @@
 "use client";
 
-import { Suspense, useCallback, useMemo, useState } from "react";
+import { Suspense, useCallback, useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import {
   Search,
   Star,
@@ -23,6 +23,7 @@ import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/ca
 import { PageHeader } from "@/components/layout/page-header";
 import { useFavoritesStore } from "@/stores/favorites-store";
 import { cn } from "@/lib/utils";
+import { getGreetingDay, getGreetingPeriod, getGreetingVariant, type GreetingPeriod } from "@/lib/home/greeting";
 
 const categoryMeta: Record<
   ToolCategory,
@@ -141,6 +142,7 @@ function ToolCard({
 
 function HomePageInner() {
   const t = useTranslations("home");
+  const locale = useLocale();
   const tc = useTranslations("categories");
   const tcommon = useTranslations("common");
   const tt = useTranslations("tools");
@@ -149,6 +151,17 @@ function HomePageInner() {
   const searchParams = useSearchParams();
   const selectedCat = parseCategoryParam(searchParams.get("c"));
   const [q, setQ] = useState("");
+  const [greeting, setGreeting] = useState<{ period: GreetingPeriod; day: string; variant: number } | null>(null);
+
+  useEffect(() => {
+    const updateGreeting = () => {
+      const now = new Date();
+      setGreeting({ period: getGreetingPeriod(now), day: getGreetingDay(now, locale), variant: getGreetingVariant(now) });
+    };
+    updateGreeting();
+    const interval = window.setInterval(updateGreeting, 60_000);
+    return () => window.clearInterval(interval);
+  }, [locale]);
 
   const favIds = useFavoritesStore((s) => s.ids);
   const toggle = useFavoritesStore((s) => s.toggle);
@@ -201,7 +214,14 @@ function HomePageInner() {
       {(showCategories || showGlobalSearch) && (
         <section className="space-y-4 pt-0.5 sm:pt-1">
           <div className="max-w-2xl space-y-2">
-            <h1 className="type-display text-foreground">{t("title")}</h1>
+            <h1 className="type-display text-foreground">
+              {greeting ? (
+                <>
+                  {t(`greeting.${greeting.period}`, { day: greeting.day })}
+                  {greeting.variant > 0 ? ` ${t(`greeting.extra${greeting.variant}`, { day: greeting.day })}` : null}
+                </>
+              ) : t("title")}
+            </h1>
             <p className="type-body max-w-xl text-muted-foreground">{t("subtitle")}</p>
           </div>
           <div className="relative max-w-xl">

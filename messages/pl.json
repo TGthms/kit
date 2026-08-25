@@ -146,6 +146,15 @@
       "money": "Pieniądze",
       "everyday-text": "Tekst codzienny",
       "quick": "Szybkie"
+    },
+    "greeting": {
+      "morning": "Dzień dobry — miłego {day}.",
+      "afternoon": "Dzień dobry — miłego {day}.",
+      "evening": "Dobry wieczór — miłego {day}.",
+      "night": "Dobry wieczór — ciesz się resztą {day}.",
+      "extra1": "Co możemy dziś uprościć?",
+      "extra2": "Zaczynamy, gdy tylko chcesz.",
+      "extra3": "Zróbmy coś pożytecznego."
     }
   },
   "categories": {

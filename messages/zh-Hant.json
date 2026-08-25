@@ -146,6 +146,15 @@
       "money": "金錢",
       "everyday-text": "日常文字",
       "quick": "快速"
+    },
+    "greeting": {
+      "morning": "早安，祝你{day}愉快。",
+      "afternoon": "午安，祝你{day}愉快。",
+      "evening": "晚安，祝你{day}愉快。",
+      "night": "晚安，願你在{day}剩下的時間裡一切順利。",
+      "extra1": "今天想讓什麼變得更簡單？",
+      "extra2": "準備好就開始吧。",
+      "extra3": "一起完成一件有用的事。"
     }
   },
   "categories": {

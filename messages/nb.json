@@ -146,6 +146,15 @@
       "money": "Penger",
       "everyday-text": "Hverdagstekst",
       "quick": "Hurtig"
+    },
+    "greeting": {
+      "morning": "God morgen — ha en fin {day}.",
+      "afternoon": "God ettermiddag — ha en fin {day}.",
+      "evening": "God kveld — ha en fin {day}.",
+      "night": "God kveld — nyt resten av {day}.",
+      "extra1": "Hva kan vi gjøre enklere i dag?",
+      "extra2": "Klar når du er det.",
+      "extra3": "La oss få gjort noe nyttig."
     }
   },
   "categories": {

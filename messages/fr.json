@@ -146,6 +146,15 @@
       "money": "Argent",
       "everyday-text": "Texte du quotidien",
       "quick": "Rapide"
+    },
+    "greeting": {
+      "morning": "Bonjour — bon {day}.",
+      "afternoon": "Bon après-midi — bon {day}.",
+      "evening": "Bonsoir — bon {day}.",
+      "night": "Bonsoir — profitez du reste de {day}.",
+      "extra1": "Que pouvons-nous simplifier aujourd’hui ?",
+      "extra2": "Prêt quand vous l’êtes.",
+      "extra3": "Faisons quelque chose d’utile."
     }
   },
   "categories": {

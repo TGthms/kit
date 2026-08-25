@@ -146,6 +146,15 @@
       "money": "Geld",
       "everyday-text": "Alltagstext",
       "quick": "Schnell"
+    },
+    "greeting": {
+      "morning": "Guten Morgen — einen schönen {day}.",
+      "afternoon": "Guten Tag — einen schönen {day}.",
+      "evening": "Guten Abend — einen schönen {day}.",
+      "night": "Guten Abend — genießen Sie den restlichen {day}.",
+      "extra1": "Was können wir heute einfacher machen?",
+      "extra2": "Bereit, wenn Sie es sind.",
+      "extra3": "Erledigen wir etwas Nützliches."
     }
   },
   "categories": {
