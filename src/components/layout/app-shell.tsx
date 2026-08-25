@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import { useTranslations } from "next-intl";
 import { Link, usePathname } from "@/lib/i18n/navigation";
 import { Home, History, Star, Settings } from "lucide-react";
@@ -19,6 +20,41 @@ const nav = [
 function isActive(pathname: string, href: string) {
   if (href === "/") return pathname === "/" || pathname === "";
   return pathname === href || pathname.startsWith(`${href}/`);
+}
+
+const SCROLL_STORAGE_PREFIX = "kit-scroll:";
+
+function ScrollRestoration({ pathname }: { pathname: string }) {
+  useEffect(() => {
+    const previousRestoration = window.history.scrollRestoration;
+    window.history.scrollRestoration = "manual";
+    const key = `${SCROLL_STORAGE_PREFIX}${window.location.pathname}${window.location.search}`;
+    const saved = sessionStorage.getItem(key);
+    const frame = window.requestAnimationFrame(() => {
+      window.requestAnimationFrame(() => {
+        if (saved !== null) window.scrollTo({ top: Number(saved), behavior: "auto" });
+      });
+    });
+    return () => {
+      window.cancelAnimationFrame(frame);
+      sessionStorage.setItem(key, String(window.scrollY));
+      window.history.scrollRestoration = previousRestoration;
+    };
+  }, [pathname]);
+
+  useEffect(() => {
+    const rememberBeforeNavigation = (event: MouseEvent) => {
+      const target = event.target instanceof Element ? event.target.closest("a") : null;
+      if (!(target instanceof HTMLAnchorElement) || target.target === "_blank" || target.hasAttribute("download")) return;
+      if (target.origin !== window.location.origin) return;
+      const key = `${SCROLL_STORAGE_PREFIX}${window.location.pathname}${window.location.search}`;
+      sessionStorage.setItem(key, String(window.scrollY));
+    };
+    document.addEventListener("click", rememberBeforeNavigation, true);
+    return () => document.removeEventListener("click", rememberBeforeNavigation, true);
+  }, []);
+
+  return null;
 }
 
 /**
@@ -91,7 +127,8 @@ export function AppShell({ children }: { children: React.ReactNode }) {
 
   return (
     <div className="flex min-h-dvh flex-col overflow-x-hidden bg-background">
-      <header className="glass chrome-edge sticky top-0 z-40 pt-[env(safe-area-inset-top)]">
+      <ScrollRestoration pathname={pathname} />
+      <header className="glass chrome-edge sticky top-0 z-50 shrink-0 pt-[env(safe-area-inset-top)]">
         <div className="mx-auto flex h-12 max-w-6xl items-center justify-between gap-2 px-4 sm:h-14 sm:gap-3 sm:px-6 lg:px-8">
           <Link
             href="/"

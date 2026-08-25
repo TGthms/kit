@@ -91,7 +91,7 @@ type TranslationFn = (key: string, values?: Record<string, string | number>) => 
 type ConverterCategory = UnitCategory | "currency";
 type UnitOption = { code: UnitCode; label: string };
 
-type City = { name: string; zone: string; emoji: string };
+type City = { name: string; zone: string; emoji: string; key: string };
 
 function text(t: ReturnType<typeof useTranslations>, key: string, fallback: string, values?: Record<string, string | number>) {
   try {
@@ -350,15 +350,65 @@ const CURRENCIES = [
   ["EGP", "Egyptian pound · Egypt"],
 ] as const;
 
+const CURRENCY_MESSAGE_KEYS: Record<string, string> = {
+  USD: "currencyUsd",
+  CAD: "currencyCad",
+  MXN: "currencyMxn",
+  BRL: "currencyBrl",
+  ARS: "currencyArs",
+  EUR: "currencyEur",
+  GBP: "currencyGbp",
+  CHF: "currencyChf",
+  SEK: "currencySek",
+  NOK: "currencyNok",
+  DKK: "currencyDkk",
+  PLN: "currencyPln",
+  CZK: "currencyCzk",
+  TRY: "currencyTry",
+  JPY: "currencyJpy",
+  CNY: "currencyCny",
+  HKD: "currencyHkd",
+  SGD: "currencySgd",
+  KRW: "currencyKrw",
+  INR: "currencyInr",
+  THB: "currencyThb",
+  IDR: "currencyIdr",
+  MYR: "currencyMyr",
+  PHP: "currencyPhp",
+  VND: "currencyVnd",
+  NZD: "currencyNzd",
+  AED: "currencyAed",
+  SAR: "currencySar",
+  ILS: "currencyIls",
+  ZAR: "currencyZar",
+  EGP: "currencyEgp",
+};
+
+const UNIT_MESSAGE_KEYS: Record<string, string> = {
+  mm: "unitMm", cm: "unitCm", m: "unitM", km: "unitKm", in: "unitIn", ft: "unitFt", yd: "unitYd", mi: "unitMi", nmi: "unitNmi",
+  mg: "unitMg", g: "unitG", kg: "unitKg", t: "unitT", oz: "unitOz", lb: "unitLb", stone: "unitStone",
+  C: "unitC", F: "unitF", K: "unitK", "m/s": "unitM_s", "km/h": "unitKm_h", mph: "unitMph", knot: "unitKnot",
+  ms: "unitMs", s: "unitS", min: "unitMin", h: "unitH", day: "unitDay", week: "unitWeek",
+  mL: "unitMl", L: "unitL", m3: "unitM3", "us-tsp": "unitUsTsp", "us-tbsp": "unitUsTbsp", "us-fl-oz": "unitUsFlOz", "us-cup": "unitUsCup", "us-pt": "unitUsPt", "us-qt": "unitUsQt", "us-gal": "unitUsGal", "imp-gal": "unitImpGal",
+  W: "unitW", kW: "unitKw", MW: "unitMw", GW: "unitGw", hp: "unitHp", J: "unitJ", kJ: "unitKj", MJ: "unitMj", Wh: "unitWh", kWh: "unitKwh", cal: "unitCal", kcal: "unitKcal", eV: "unitEv",
+  Pa: "unitPa", kPa: "unitKpa", MPa: "unitMpa", bar: "unitBar", psi: "unitPsi", atm: "unitAtm", mmHg: "unitMmHg",
+  mm2: "unitMm2", cm2: "unitCm2", m2: "unitM2", km2: "unitKm2", in2: "unitIn2", ft2: "unitFt2", yd2: "unitYd2", acre: "unitAcre", hectare: "unitHectare",
+  bit: "unitBit", B: "unitB", kB: "unitKb", MB: "unitMb", GB: "unitGb", TB: "unitTb", PB: "unitPb", KiB: "unitKib", MiB: "unitMib", GiB: "unitGib", TiB: "unitTib", PiB: "unitPib",
+  deg: "unitDeg", rad: "unitRad", grad: "unitGrad", arcmin: "unitArcmin", arcsec: "unitArcsec", turn: "unitTurn", Hz: "unitHz", kHz: "unitKhz", MHz: "unitMhz", GHz: "unitGhz", rpm: "unitRpm",
+  N: "unitN", kN: "unitKn", lbf: "unitLbf", kgf: "unitKgf", "L/100km": "unitL_100km", "km/L": "unitKm_L", "mpg-us": "unitMpgUs", "mpg-imperial": "unitMpgImperial",
+  "m/s2": "unitM_s2", g0: "unitG0", "ft/s2": "unitFt_s2", Nm: "unitNm", kNm: "unitKnm", "lb-ft": "unitLbFt", "lb-in": "unitLbIn",
+  mV: "unitMv", V: "unitV", kV: "unitKv", mA: "unitMa", A: "unitA", kA: "unitKa", mOhm: "unitMOhm", Ohm: "unitOhm", kOhm: "unitKOhm", MOhm: "unitMOhmBig", px: "unitPx", pt: "unitPt", pc: "unitPc", rem: "unitRem", em: "unitEm",
+};
+
 const CITIES: City[] = [
-  { name: "San Francisco", zone: "America/Los_Angeles", emoji: "SF" },
-  { name: "New York", zone: "America/New_York", emoji: "NY" },
-  { name: "London", zone: "Europe/London", emoji: "LDN" },
-  { name: "Berlin", zone: "Europe/Berlin", emoji: "BER" },
-  { name: "Dubai", zone: "Asia/Dubai", emoji: "DXB" },
-  { name: "Singapore", zone: "Asia/Singapore", emoji: "SIN" },
-  { name: "Tokyo", zone: "Asia/Tokyo", emoji: "TYO" },
-  { name: "Sydney", zone: "Australia/Sydney", emoji: "SYD" },
+  { name: "San Francisco", key: "citySanFrancisco", zone: "America/Los_Angeles", emoji: "SF" },
+  { name: "New York", key: "cityNewYork", zone: "America/New_York", emoji: "NY" },
+  { name: "London", key: "cityLondon", zone: "Europe/London", emoji: "LDN" },
+  { name: "Berlin", key: "cityBerlin", zone: "Europe/Berlin", emoji: "BER" },
+  { name: "Dubai", key: "cityDubai", zone: "Asia/Dubai", emoji: "DXB" },
+  { name: "Singapore", key: "citySingapore", zone: "Asia/Singapore", emoji: "SIN" },
+  { name: "Tokyo", key: "cityTokyo", zone: "Asia/Tokyo", emoji: "TYO" },
+  { name: "Sydney", key: "citySydney", zone: "Australia/Sydney", emoji: "SYD" },
 ];
 
 function SearchableSelect({
@@ -366,11 +416,13 @@ function SearchableSelect({
   value,
   options,
   onChange,
+  searchable = options.length > 4,
 }: {
   label: string;
   value: string;
   options: Array<{ value: string; label: string }>;
   onChange: (value: string) => void;
+  searchable?: boolean;
 }) {
   const t = useTranslations("tools.everyday-converter");
   const [query, setQuery] = useState("");
@@ -384,16 +436,19 @@ function SearchableSelect({
   return (
     <div className="space-y-2">
       <Label>{label}</Label>
-      <div className="relative">
-        <Search className="pointer-events-none absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
-        <Input
-          value={query}
-          onChange={(event) => setQuery(event.target.value)}
-          placeholder={text(t, "search", "Search")}
-          className="pl-9"
-          aria-label={text(t, "searchAria", `${label} search`, { label })}
-        />
-      </div>
+      {searchable ? (
+        <div className="relative">
+          <Search className="pointer-events-none absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+          <Input
+            value={query}
+            onChange={(event) => setQuery(event.target.value)}
+            placeholder={text(t, "search", "Search")}
+            className="pl-9"
+            aria-label={text(t, "searchAria", `${label} search`, { label })}
+            type="search"
+          />
+        </div>
+      ) : null}
       <select className={selectClass} value={value} onChange={(event) => onChange(event.target.value)}>
         {filtered.map((option) => (
           <option key={option.value} value={option.value}>
@@ -447,6 +502,10 @@ function UnitConverter({ category, onBack }: { category: UnitCategory; onBack: (
   const t = useTranslations("tools.everyday-converter");
   const log = useToolHistory(toolId("everyday-converter"));
   const options = UNIT_CATALOG[category];
+  const localizedOptions = useMemo(
+    () => options.map((option) => ({ ...option, label: UNIT_MESSAGE_KEYS[option.code] ? text(t, UNIT_MESSAGE_KEYS[option.code], option.label) : option.label })),
+    [options, t]
+  );
   const [amount, setAmount] = useState("1");
   const [from, setFrom] = useState<UnitCode>(options[0].code);
   const [to, setTo] = useState<UnitCode>(options[1]?.code ?? options[0].code);
@@ -493,9 +552,11 @@ function UnitConverter({ category, onBack }: { category: UnitCategory; onBack: (
   };
   return (
     <div className="space-y-5">
-      <Button variant="ghost" onClick={onBack} className="-ml-2">
-        ← {text(t, "back", "All categories")}
-      </Button>
+      {onBack ? (
+        <Button variant="ghost" onClick={onBack} className="-ml-2">
+          ← {text(t, "back", "All categories")}
+        </Button>
+      ) : null}
       <div className="grid gap-4 lg:grid-cols-[1fr_auto_1fr] lg:items-end">
         <div className="space-y-2">
           <Label>{text(t, "amount", "Amount")}</Label>
@@ -505,7 +566,7 @@ function UnitConverter({ category, onBack }: { category: UnitCategory; onBack: (
           type="button"
           variant="outline"
           size="icon"
-          aria-label="Swap units"
+          aria-label={text(t, "swapUnits", "Swap units")}
           onClick={() => {
             setFrom(to);
             setTo(from);
@@ -525,26 +586,26 @@ function UnitConverter({ category, onBack }: { category: UnitCategory; onBack: (
         <SearchableSelect
           label={text(t, "from", "From")}
           value={from}
-          options={options.map((option) => ({ value: option.code, label: option.label }))}
+          options={localizedOptions.map((option) => ({ value: option.code, label: option.label }))}
           onChange={(value) => setFrom(value as UnitCode)}
         />
         <SearchableSelect
           label={text(t, "to", "To")}
           value={to}
-          options={options.map((option) => ({ value: option.code, label: option.label }))}
+          options={localizedOptions.map((option) => ({ value: option.code, label: option.label }))}
           onChange={(value) => setTo(value as UnitCode)}
         />
       </div>
       {category === "typography" ? (
         <Card>
           <CardHeader className="pb-3">
-            <CardTitle className="text-sm">Typography references</CardTitle>
-            <CardDescription>Set the root, parent, or screen reference used by rem, em, and pt.</CardDescription>
+            <CardTitle className="text-sm">{text(t, "typographyReferences", "Typography references")}</CardTitle>
+            <CardDescription>{text(t, "typographyHint", "Set the root, parent, or screen reference used by rem, em, and pt.")}</CardDescription>
           </CardHeader>
           <CardContent className="grid gap-3 sm:grid-cols-3">
-            <Input type="number" min="1" value={rootFontSizePx} onChange={(event) => setRootFontSizePx(event.target.value)} aria-label="Root font size" />
-            <Input type="number" min="1" value={parentFontSizePx} onChange={(event) => setParentFontSizePx(event.target.value)} aria-label="Parent font size" />
-            <Input type="number" min="1" value={dpi} onChange={(event) => setDpi(event.target.value)} aria-label="DPI" />
+            <Input type="number" min="1" value={rootFontSizePx} onChange={(event) => setRootFontSizePx(event.target.value)} aria-label={text(t, "rootFontSize", "Root font size")} />
+            <Input type="number" min="1" value={parentFontSizePx} onChange={(event) => setParentFontSizePx(event.target.value)} aria-label={text(t, "parentFontSize", "Parent font size")} />
+            <Input type="number" min="1" value={dpi} onChange={(event) => setDpi(event.target.value)} aria-label={text(t, "dpi", "DPI")} />
           </CardContent>
         </Card>
       ) : null}
@@ -590,10 +651,11 @@ function readCurrencyCache(): CachedRateRecord[] {
   }
 }
 
-function CurrencyConverter({ onBack }: { onBack: () => void }) {
-  const t = useTranslations("tools.everyday-converter");
+export function CurrencyConverter({ onBack, namespace = "tools.everyday-converter" }: { onBack?: () => void; namespace?: "tools.everyday-converter" | "tools.currency-converter" } = {}) {
+  const t = useTranslations(namespace);
   const locale = useLocale();
-  const log = useToolHistory(toolId("everyday-converter"));
+  const toolIdValue = namespace === "tools.currency-converter" ? "currency-converter" : "everyday-converter";
+  const log = useToolHistory(toolId(toolIdValue));
   const [amount, setAmount] = useState("100");
   const [base, setBase] = useState("USD");
   const [quote, setQuote] = useState("EUR");
@@ -602,7 +664,21 @@ function CurrencyConverter({ onBack }: { onBack: () => void }) {
   const [error, setError] = useState("");
   const [updatedAt, setUpdatedAt] = useState<number | null>(null);
   const [refreshToken, setRefreshToken] = useState(0);
-  const currencyOptions = useMemo(() => CURRENCIES.map(([value, label]) => ({ value, label })), []);
+  const currencyOptions = useMemo(
+    () => CURRENCIES.map(([value, fallback]) => {
+      const country = fallback.split(" · ")[1] ?? "";
+      let localizedName = text(t, CURRENCY_MESSAGE_KEYS[value] ?? "", fallback);
+      let localizedCountry = country;
+      try {
+        localizedName = new Intl.DisplayNames([locale], { type: "currency" }).of(value) ?? localizedName;
+        if (/^[A-Z]{2}/u.test(country)) localizedCountry = new Intl.DisplayNames([locale], { type: "region" }).of(country) ?? country;
+      } catch {
+        // Keep the catalog fallback when DisplayNames is unavailable.
+      }
+      return { value, label: localizedCountry ? `${localizedName} · ${localizedCountry}` : localizedName };
+    }),
+    [locale, t]
+  );
   const match = useMemo(() => (base === quote ? null : findCachedRate(rates, base, quote)), [base, quote, rates]);
   const stale = match ? isCachedRateStale(match.record) : false;
   const output = useMemo(() => {
@@ -650,9 +726,11 @@ function CurrencyConverter({ onBack }: { onBack: () => void }) {
 
   return (
     <div className="space-y-5">
-      <Button variant="ghost" onClick={onBack} className="-ml-2">
-        ← {text(t, "back", "All categories")}
-      </Button>
+      {onBack ? (
+        <Button variant="ghost" onClick={onBack} className="-ml-2">
+          ← {text(t, "back", "All categories")}
+        </Button>
+      ) : null}
       <div className="grid gap-4 lg:grid-cols-[1fr_auto_1fr] lg:items-end">
         <div className="space-y-2">
           <Label>{text(t, "amount", "Amount")}</Label>
@@ -710,6 +788,14 @@ function CurrencyConverter({ onBack }: { onBack: () => void }) {
         <Check /> {text(t, "record", "Record conversion")}
       </Button>
     </div>
+  );
+}
+
+export function CurrencyConverterTool() {
+  return (
+    <ToolShell toolId={toolId("currency-converter")}>
+      <CurrencyConverter namespace="tools.currency-converter" />
+    </ToolShell>
   );
 }
 
@@ -847,7 +933,7 @@ export function TimezoneConverter() {
               <Card key={city.zone}>
                 <CardContent className="p-4">
                   <div className="flex items-center justify-between"><span className="rounded-lg bg-secondary px-2 py-1 text-xs font-semibold">{city.emoji}</span><span className="text-xs text-muted-foreground">UTC {sign}{Math.floor(absOffset / 60)}:{String(absOffset % 60).padStart(2, "0")}</span></div>
-                  <p className="mt-3 font-medium">{city.name}</p>
+                  <p className="mt-3 font-medium">{text(t, city.key, city.name)}</p>
                   <p className="mt-1 font-mono text-xl font-semibold">{String(parts.hour).padStart(2, "0")}:{String(parts.minute).padStart(2, "0")}:{String(parts.second).padStart(2, "0")}</p>
                   <p className="mt-1 text-xs text-muted-foreground">{formatTimeZone(now, city.zone, { dateStyle: "medium", locale })}</p>
                 </CardContent>

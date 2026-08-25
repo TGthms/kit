@@ -1,6 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
+import { useSearchParams } from "next/navigation";
 import { Star } from "lucide-react";
 import type { ToolId } from "@/lib/tools/registry";
 import { getTool } from "@/lib/tools/registry";
@@ -10,26 +11,50 @@ import { PageHeader } from "@/components/layout/page-header";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 
+const FILE_TOOL_IDS = new Set<ToolId>([
+  "pdf-merge", "pdf-split", "pdf-organize", "pdf-compress", "pdf-watermark", "pdf-redact", "pdf-extract",
+  "pdf-numbers", "pdf-to-images", "images-to-pdf", "pdf-flatten", "pdf-metadata", "pdf-protect", "pdf-sign",
+  "image-compress", "image-resize", "image-crop", "image-convert", "image-metadata", "image-adjust", "image-rotate",
+  "image-filters", "image-favicon", "image-watermark", "audio-convert", "audio-trim", "audio-speed", "video-convert",
+  "video-trim", "video-speed", "video-extract-audio", "video-gif", "convert-hub",
+]);
+
+function safeInternalHref(value: string | null): string | null {
+  if (!value) return null;
+  try {
+    const decoded = decodeURIComponent(value);
+    return decoded.startsWith("/") && !decoded.startsWith("//") ? decoded : null;
+  } catch {
+    return null;
+  }
+}
+
 export function ToolHeader({ toolId }: { toolId: ToolId }) {
   const t = useTranslations(`tools.${toolId}`);
   const tc = useTranslations("common");
   const tCat = useTranslations("categories");
+  const searchParams = useSearchParams();
   const { ids, toggle } = useFavoritesStore();
   const fav = ids.includes(toolId);
   const tool = getTool(toolId);
-  const backHref = toolBackHref(toolId);
-  const backLabel = tool ? tCat(tool.category) : tc("back");
+  const fromHref = safeInternalHref(searchParams.get("from"));
+  const backHref = fromHref ?? toolBackHref(toolId);
+  const backLabel = fromHref ? tc("back") : tool ? tCat(tool.category) : tc("back");
+  const showClientSideNote = FILE_TOOL_IDS.has(toolId);
 
   return (
     <PageHeader
+      sticky
       title={t("name")}
       subtitle={t("description")}
       backHref={backHref}
       backLabel={backLabel}
       below={
-        <Badge variant="secondary" className="mt-0.5 max-w-full whitespace-normal text-left font-normal">
-          {tc("clientSideOnly")}
-        </Badge>
+        showClientSideNote ? (
+          <Badge variant="secondary" className="mt-0.5 max-w-full whitespace-normal text-left font-normal">
+            {tc("clientSideOnly")}
+          </Badge>
+        ) : undefined
       }
       trailing={
         <Button

@@ -36,7 +36,7 @@ export function PageHeader({
         "mb-5 sm:mb-6",
         sticky &&
           [
-            "sticky z-30 -mx-4 border-b border-border/40 px-4 py-2.5",
+            "sticky z-40 -mx-4 border-b border-border/40 px-4 py-2.5",
             "top-[calc(3rem+env(safe-area-inset-top))] sm:top-[calc(3.5rem+env(safe-area-inset-top))]",
             "bg-background/90 backdrop-blur-xl",
             "sm:static sm:mx-0 sm:border-0 sm:bg-transparent sm:px-0 sm:py-0 sm:backdrop-blur-none",

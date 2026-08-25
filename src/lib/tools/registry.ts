@@ -19,6 +19,7 @@ import {
   Music,
   AudioLines,
   ArrowLeftRight,
+  Coins,
   Braces,
   FileCode2,
   FileType,
@@ -148,6 +149,7 @@ export type ToolId =
   | "html-entities"
   | "json-types"
   | "everyday-converter"
+  | "currency-converter"
   | "text-counter"
   | "timezone-converter"
   | "date-calculator"
@@ -216,6 +218,7 @@ export const tools: ToolDef[] = [
   { id: "hash-generator", category: "developer", group: "inspect", icon: Fingerprint },
 
   { id: "everyday-converter", category: "everyday", group: "convert", icon: ArrowLeftRight },
+  { id: "currency-converter", category: "everyday", group: "convert", icon: Coins },
   { id: "text-counter", category: "everyday", group: "everyday-text", icon: TextCursorInput },
   { id: "timezone-converter", category: "everyday", group: "time", icon: Globe2 },
   { id: "date-calculator", category: "everyday", group: "time", icon: CalendarDays },
@@ -237,13 +240,15 @@ export const tools: ToolDef[] = [
 ];
 
 export const featuredToolIds: ToolId[] = [
-  "pdf-merge",
-  "image-compress",
   "everyday-converter",
-  "text-counter",
+  "timezone-converter",
+  "currency-converter",
   "qr-code",
   "password-generator",
-  "image-watermark",
+  "text-counter",
+  "random-generator",
+  "image-compress",
+  "images-to-pdf",
 ];
 
 export const toolMap = Object.fromEntries(tools.map((t) => [t.id, t])) as Record<ToolId, ToolDef>;

@@ -69,6 +69,7 @@ import {
 } from "./work-tools";
 import {
   EverydayConverter,
+  CurrencyConverterTool,
   TextCounter,
   TimezoneConverter,
   DateCalculator,
@@ -137,6 +138,7 @@ const TOOL_COMPONENTS: Record<ToolId, ComponentType> = {
   "html-entities": HtmlEntities,
   "json-types": JsonTypes,
   "everyday-converter": EverydayConverter,
+  "currency-converter": CurrencyConverterTool,
   "text-counter": TextCounter,
   "timezone-converter": TimezoneConverter,
   "date-calculator": DateCalculator,

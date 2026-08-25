@@ -70,9 +70,14 @@ const categoryMeta: Record<
   },
 };
 
+function toolHref(toolId: string, fromHref = "/") {
+  return `/tools/${toolId}?from=${encodeURIComponent(fromHref)}`;
+}
+
 function ToolCard({
   toolId,
   category,
+  fromHref = "/",
   icon: Icon,
   name,
   description,
@@ -83,6 +88,7 @@ function ToolCard({
 }: {
   toolId: string;
   category: string;
+  fromHref?: string;
   icon: typeof FileText;
   name: string;
   description: string;
@@ -113,7 +119,7 @@ function ToolCard({
       >
         <Star className={cn("h-4 w-4", fav && "fill-current")} />
       </button>
-      <Link href={`/tools/${toolId}`} className="block h-full focus-visible:outline-none">
+      <Link href={toolHref(toolId, fromHref)} className="block h-full focus-visible:outline-none">
         <CardHeader className="space-y-3 p-4 sm:p-5">
           <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-primary/10 text-primary">
             <Icon className="h-5 w-5" />
@@ -224,7 +230,7 @@ function HomePageInner() {
               if (!tool) return null;
               const Icon = tool.icon;
               return (
-                <Link key={id} href={`/tools/${id}`} className="block" data-pressable>
+                <Link key={id} href={toolHref(id)} className="block" data-pressable>
                   <Card className="h-full border-border/40 pressable-soft transition-shadow hover:surface-float-lg">
                     <CardHeader className="flex-row items-center gap-3 space-y-0 p-4">
                       <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
@@ -256,7 +262,7 @@ function HomePageInner() {
             {pinned.map((tool) => {
               const Icon = tool.icon;
               return (
-                <Link key={tool.id} href={`/tools/${tool.id}`} className="block" data-pressable>
+                <Link key={tool.id} href={toolHref(tool.id)} className="block" data-pressable>
                   <Card className="h-full border-border/40 pressable-soft transition-shadow hover:surface-float-lg">
                     <CardHeader className="flex-row items-center gap-3 space-y-0 p-4">
                       <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
@@ -366,6 +372,7 @@ function HomePageInner() {
                           <ToolCard
                             toolId={tool.id}
                             category={tc(tool.category)}
+                            fromHref={homeHref(selectedCat)}
                             icon={tool.icon}
                             name={tt(`${tool.id}.name`)}
                             description={tt(`${tool.id}.description`)}
@@ -405,6 +412,7 @@ function HomePageInner() {
                   <ToolCard
                     toolId={tool.id}
                     category={tc(tool.category)}
+                    fromHref="/"
                     icon={tool.icon}
                     name={tt(`${tool.id}.name`)}
                     description={tt(`${tool.id}.description`)}
