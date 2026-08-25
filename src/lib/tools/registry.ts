@@ -249,6 +249,7 @@ export const featuredToolIds: ToolId[] = [
 export const toolMap = Object.fromEntries(tools.map((t) => [t.id, t])) as Record<ToolId, ToolDef>;
 
 export const categories: ToolCategory[] = [
+  "everyday",
   "pdf",
   "image",
   "audio",
@@ -256,7 +257,6 @@ export const categories: ToolCategory[] = [
   "data",
   "text",
   "developer",
-  "everyday",
 ];
 
 export const categoryGroupOrder: Record<ToolCategory, ToolGroup[]> = {
