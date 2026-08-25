@@ -39,6 +39,9 @@ A törvény által megengedett legnagyobb mértékben Tim G / TGthms és a közr
 
 A Kit külső webhelyekre hivatkozhat, illetve harmadik felek könyvtárait töltheti be. Nem felelünk harmadik felek tartalmáért, szabályzataiért vagy elérhetőségéért.
 
+
+Az árfolyamok frissítésekor ez a böngésző lekérdezi a Frankfurter nyilvános API-ját. A kérés szabványos hálózati metaadatokat, például IP-címet, user agentet, időpontot és a kért URL-t is megoszthatja a Frankfurterrel. Az árfolyamok származhatnak a böngésző gyorsítótárából, ezért elavultak lehetnek. Ezek kizárólag napi referenciaadatok, és nem jelentenek garanciát kereskedési, könyvelési, adózási vagy elszámolási célokra.
+
 ## A Szolgáltatás és a Feltételek módosítása
 
 A funkciókat bármikor módosíthatjuk vagy megszüntethetjük. Ezeket a Feltételeket a „Utoljára frissítve” módosított dátumával ellátott új verzió közzétételével frissíthetjük. A változtatások utáni további használat a frissített Feltételek elfogadását jelenti.

@@ -39,6 +39,9 @@ I den grad loven tillater det, er Tim G / TGthms og bidragsytere ikke ansvarlige
 
 Kit kan lenke til eksterne nettsteder eller laste inn tredjepartsbiblioteker. Vi er ikke ansvarlige for tredjeparts innhold, retningslinjer eller tilgjengelighet.
 
+
+Når du oppdaterer valutakurser, spør denne nettleseren Frankfurters offentlige API. Forespørselen kan dele standard nettverksmetadata (for eksempel IP-adresse, user agent, tidspunkt og forespurt URL) med Frankfurter. Kurser kan komme fra hurtigbufferet i denne nettleseren og kan være utdaterte. De er bare daglige referansedata og er ingen garanti for handel, regnskap, skatt eller oppgjør.
+
 ## Endringer i Tjenesten og vilkårene
 
 Vi kan endre eller avvikle funksjoner når som helst. Vi kan oppdatere disse vilkårene ved å publisere en ny versjon med en revidert «Sist oppdatert»-dato. Fortsatt bruk etter endringer innebærer at du godtar de oppdaterte vilkårene.

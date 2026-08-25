@@ -39,6 +39,9 @@ V maximálním rozsahu povoleném zákonem Tim G / TGthms a přispěvatelé neod
 
 Kit může odkazovat na externí weby nebo načítat knihovny třetích stran. Neodpovídáme za obsah, zásady ani dostupnost třetích stran.
 
+
+Při obnovení měnových kurzů se tento prohlížeč dotazuje veřejného API Frankfurter. Požadavek může s Frankfurter sdílet standardní síťová metadata, například IP adresu, user-agent, čas a požadovanou URL. Kurzy mohou pocházet z mezipaměti tohoto prohlížeče a mohou být zastaralé. Jde pouze o denní referenční data, nikoli o záruku pro obchodování, účetnictví, daně nebo vypořádání.
+
 ## Změny Služby a Podmínek
 
 Funkce můžeme kdykoli změnit nebo ukončit. Tyto Podmínky můžeme aktualizovat zveřejněním nové verze s revidovaným datem „Naposledy aktualizováno“. Pokračování v používání po změnách představuje souhlas s aktualizovanými Podmínkami.

@@ -39,6 +39,9 @@ W maksymalnym zakresie dozwolonym przez prawo Tim G / TGthms i współtwórcy ni
 
 Kit może zawierać linki do zewnętrznych witryn lub ładować biblioteki stron trzecich. Nie odpowiadamy za treści, zasady ani dostępność stron trzecich.
 
+
+Po odświeżeniu kursów walut ta przeglądarka wysyła zapytanie do publicznego API Frankfurter. Żądanie może udostępniać Frankfurter standardowe metadane sieciowe, takie jak adres IP, user agent, czas i żądany URL. Kursy mogą pochodzić z pamięci podręcznej tej przeglądarki i być nieaktualne. Są wyłącznie dziennymi danymi referencyjnymi, a nie gwarancją do celów handlowych, księgowych, podatkowych ani rozliczeniowych.
+
 ## Zmiany Usługi i Warunków
 
 Możemy w dowolnym momencie modyfikować funkcje lub z nich rezygnować. Możemy aktualizować te Warunki, publikując nową wersję ze zmienioną datą „Ostatnia aktualizacja”. Dalsze korzystanie po zmianach oznacza akceptację zaktualizowanych Warunków.

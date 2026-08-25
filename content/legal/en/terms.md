@@ -39,6 +39,9 @@ To the maximum extent permitted by law, Tim G / TGthms and contributors shall no
 
 Kit may link to external sites or load third-party libraries. We are not responsible for third-party content, policies, or availability.
 
+
+When you refresh currency rates, this browser queries Frankfurter's public API. The request may share standard network metadata (such as IP address, user agent, time, and requested URL) with Frankfurter. Rates may come from this browser's cache and may be stale. They are daily reference data only, not a guarantee for trading, accounting, tax, or settlement purposes.
+
 ## Changes to the Service and Terms
 
 We may modify or discontinue features at any time. We may update these Terms by posting a new version with a revised “Last updated” date. Continued use after changes constitutes acceptance of the updated Terms.

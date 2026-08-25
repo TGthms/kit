@@ -39,6 +39,9 @@ KIT ESTE FURNIZAT **„CA ATARE”** ȘI **„ÎN FUNCȚIE DE DISPONIBILITATE”
 
 Kit poate trimite către site-uri externe sau poate încărca biblioteci ale terților. Nu suntem responsabili pentru conținutul, politicile sau disponibilitatea terților.
 
+
+Când reîmprospătezi cursurile valutare, acest browser interoghează API-ul public Frankfurter. Cererea poate partaja cu Frankfurter metadate standard de rețea, precum adresa IP, user agent, ora și URL-ul solicitat. Cursurile pot proveni din cache-ul acestui browser și pot fi învechite. Sunt doar date de referință zilnice, nu o garanție pentru tranzacționare, contabilitate, taxe sau decontare.
+
 ## Modificări ale Serviciului și Condițiilor
 
 Putem modifica sau întrerupe funcții în orice moment. Putem actualiza aceste Condiții publicând o versiune nouă cu o dată „Ultima actualizare” revizuită. Utilizarea continuă după modificări constituie acceptarea Condițiilor actualizate.

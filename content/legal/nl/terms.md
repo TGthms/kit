@@ -39,6 +39,9 @@ Voor zover maximaal wettelijk toegestaan zijn Tim G / TGthms en bijdragers niet 
 
 Kit kan naar externe sites linken of bibliotheken van derden laden. Wij zijn niet verantwoordelijk voor inhoud, beleid of beschikbaarheid van derden.
 
+
+Wanneer je wisselkoersen vernieuwt, vraagt deze browser de openbare API van Frankfurter op. Het verzoek kan standaardnetwerkmetadata (zoals IP-adres, user agent, tijdstip en de opgevraagde URL) met Frankfurter delen. Koersen kunnen uit de cache van deze browser komen en verouderd zijn. Het zijn uitsluitend dagelijkse referentiegegevens en geen garantie voor handel, boekhouding, belasting of afwikkeling.
+
 ## Wijzigingen aan de Dienst en de voorwaarden
 
 We kunnen functies op elk moment wijzigen of stopzetten. We kunnen deze voorwaarden bijwerken door een nieuwe versie te publiceren met een herziene datum “Laatst bijgewerkt”. Voortgezet gebruik na wijzigingen houdt aanvaarding van de bijgewerkte voorwaarden in.

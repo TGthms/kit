@@ -39,6 +39,10 @@ Kit je obvykle hostován jako statické soubory (například na GitHub Pages). K
 
 Některé pokročilé funkce mohou při prvním použití načíst z distribučních sítí obsahu knihovny pro zpracování (například jádra FFmpeg WebAssembly nebo skripty PDF worker). Tyto požadavky mohou síti CDN zpřístupnit standardní síťová metadata. Obsah vašich souborů je stále zpracováván v prohlížeči; CDN poskytuje kód, nikoli vaše dokumenty.
 
+### 4. Měnové kurzy
+
+Při obnovení měnových kurzů se tento prohlížeč dotazuje veřejného API Frankfurter. Požadavek může s Frankfurter sdílet standardní síťová metadata, například IP adresu, user-agent, čas a požadovanou URL. Kurzy mohou pocházet z mezipaměti tohoto prohlížeče a mohou být zastaralé. Jde pouze o denní referenční data, nikoli o záruku pro obchodování, účetnictví, daně nebo vypořádání.
+
 ## Progresivní webová aplikace (PWA)
 
 Pokud Kit nainstalujete nebo povolíte používání offline, může service worker uložit do mezipaměti **aplikační shell** (stránky, skripty, styly a ikony). Kit není navržen k ukládání vašich osobních souborů v této mezipaměti.

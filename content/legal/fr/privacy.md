@@ -39,6 +39,10 @@ Kit est généralement hébergé sous forme de fichiers statiques (par exemple s
 
 Certaines fonctions avancées peuvent charger des bibliothèques de traitement (par exemple des cœurs FFmpeg WebAssembly ou des scripts worker pour PDF) depuis des réseaux de diffusion de contenu la première fois que vous les utilisez. Ces requêtes peuvent transmettre des métadonnées réseau standard au CDN. Le contenu de vos fichiers reste traité dans le navigateur ; le CDN fournit du code, pas vos documents.
 
+### 4. Taux de change
+
+Lorsque vous actualisez les taux de change, ce navigateur interroge l'API publique de Frankfurter. La requête peut partager avec Frankfurter des métadonnées réseau standard (adresse IP, agent utilisateur, heure et URL demandée, par exemple). Les taux peuvent provenir du cache de ce navigateur et être obsolètes. Il s'agit uniquement de données de référence quotidiennes, sans garantie pour le trading, la comptabilité, la fiscalité ou le règlement.
+
 ## Application web progressive (PWA)
 
 Si vous installez Kit ou autorisez l'utilisation hors ligne, un service worker peut mettre en cache **le shell de l'application** (pages, scripts, styles, icônes). Kit n'est pas conçu pour stocker vos fichiers personnels dans ce cache.

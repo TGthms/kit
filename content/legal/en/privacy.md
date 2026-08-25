@@ -39,6 +39,10 @@ Kit is typically hosted as static files (for example on GitHub Pages). When your
 
 Some advanced features may load processing libraries (for example FFmpeg WebAssembly cores or PDF worker scripts) from content delivery networks the first time you use them. Those requests may expose standard network metadata to the CDN. Your file contents are still processed in the browser; the CDN serves library code, not your documents.
 
+### 4. Currency rates
+
+When you refresh currency rates, this browser queries Frankfurter's public API. The request may share standard network metadata (such as IP address, user agent, time, and requested URL) with Frankfurter. Rates may come from this browser's cache and may be stale. They are daily reference data only, not a guarantee for trading, accounting, tax, or settlement purposes.
+
 ## Progressive Web App (PWA)
 
 If you install Kit or allow offline use, a service worker may cache the **application shell** (pages, scripts, styles, icons). Kit is not designed to store your personal files in that cache.

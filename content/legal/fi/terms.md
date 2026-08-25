@@ -39,6 +39,9 @@ Lain sallimassa enimmäislaajuudessa Tim G / TGthms ja avustajat eivät vastaa m
 
 Kit voi linkittää ulkoisille sivustoille tai ladata kolmansien osapuolten kirjastoja. Emme vastaa kolmansien osapuolten sisällöstä, käytännöistä tai saatavuudesta.
 
+
+Kun päivität valuuttakursseja, tämä selain kysyy tietoja Frankfurterin julkisesta API:sta. Pyyntö voi jakaa Frankfurterin kanssa tavallisia verkkometatietoja, kuten IP-osoitteen, user agentin, ajan ja pyydetyn URL-osoitteen. Kurssit voivat tulla tämän selaimen välimuistista ja olla vanhentuneita. Ne ovat vain päivittäisiä viitetietoja eivätkä takaa kaupankäyntiä, kirjanpitoa, verotusta tai selvitystä.
+
 ## Palvelun ja ehtojen muutokset
 
 Voimme muuttaa tai lopettaa ominaisuuksia milloin tahansa. Voimme päivittää näitä ehtoja julkaisemalla uuden version, jossa on tarkistettu ”Päivitetty viimeksi” -päivämäärä. Käytön jatkaminen muutosten jälkeen merkitsee päivitettyjen ehtojen hyväksymistä.

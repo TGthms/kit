@@ -39,6 +39,10 @@ Kit jest zwykle hostowany jako pliki statyczne (na przykład w GitHub Pages). Gd
 
 Niektóre zaawansowane funkcje mogą przy pierwszym użyciu ładować biblioteki przetwarzania (na przykład rdzenie FFmpeg WebAssembly lub skrypty worker PDF) z sieci dostarczania treści. Żądania te mogą ujawniać CDN-owi standardowe metadane sieciowe. Zawartość plików nadal jest przetwarzana w przeglądarce; CDN dostarcza kod, a nie Twoje dokumenty.
 
+### 4. Kursy walut
+
+Po odświeżeniu kursów walut ta przeglądarka wysyła zapytanie do publicznego API Frankfurter. Żądanie może udostępniać Frankfurter standardowe metadane sieciowe, takie jak adres IP, user agent, czas i żądany URL. Kursy mogą pochodzić z pamięci podręcznej tej przeglądarki i być nieaktualne. Są wyłącznie dziennymi danymi referencyjnymi, a nie gwarancją do celów handlowych, księgowych, podatkowych ani rozliczeniowych.
+
 ## Progresywna aplikacja internetowa (PWA)
 
 Jeśli zainstalujesz Kit lub zezwolisz na korzystanie offline, service worker może buforować **powłokę aplikacji** (strony, skrypty, style i ikony). Kit nie jest przeznaczony do przechowywania osobistych plików w tej pamięci podręcznej.

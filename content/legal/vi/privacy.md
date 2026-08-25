@@ -39,6 +39,10 @@ Kit thường được lưu trữ dưới dạng các tệp tĩnh (ví dụ trê
 
 Một số tính năng nâng cao có thể tải các thư viện xử lý (ví dụ lõi FFmpeg WebAssembly hoặc tập lệnh PDF worker) từ mạng phân phối nội dung trong lần đầu bạn sử dụng. Các yêu cầu này có thể làm lộ siêu dữ liệu mạng tiêu chuẩn cho CDN. Nội dung tệp của bạn vẫn được xử lý trong trình duyệt; CDN cung cấp mã, không cung cấp tài liệu của bạn.
 
+### 4. Tỷ giá tiền tệ
+
+Khi bạn làm mới tỷ giá, trình duyệt này truy vấn API công khai của Frankfurter. Yêu cầu có thể chia sẻ với Frankfurter siêu dữ liệu mạng tiêu chuẩn như địa chỉ IP, user agent, thời gian và URL được yêu cầu. Tỷ giá có thể lấy từ bộ nhớ đệm của trình duyệt này và có thể đã cũ. Đây chỉ là dữ liệu tham khảo hằng ngày, không phải bảo đảm cho giao dịch, kế toán, thuế hoặc quyết toán.
+
 ## Ứng dụng web lũy tiến (PWA)
 
 Nếu bạn cài đặt Kit hoặc cho phép sử dụng ngoại tuyến, service worker có thể lưu vào bộ nhớ đệm **vỏ ứng dụng** (trang, tập lệnh, kiểu và biểu tượng). Kit không được thiết kế để lưu trữ các tệp cá nhân của bạn trong bộ nhớ đệm đó.

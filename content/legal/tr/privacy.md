@@ -39,6 +39,10 @@ Kit genellikle statik dosyalar olarak barındırılır (örneğin GitHub Pages't
 
 Bazı gelişmiş özellikler, onları ilk kez kullandığınızda içerik dağıtım ağlarından işleme kitaplıkları (örneğin FFmpeg WebAssembly çekirdekleri veya PDF worker komut dosyaları) yükleyebilir. Bu istekler CDN'ye standart ağ meta verilerini gösterebilir. Dosya içerikleriniz tarayıcıda işlenmeye devam eder; CDN belgelerinizi değil, kodu sunar.
 
+### 4. Para birimi kurları
+
+Para birimi kurlarını yenilediğinizde bu tarayıcı Frankfurter’ın herkese açık API’sine sorgu gönderir. İstek, IP adresi, user agent, zaman ve istenen URL gibi standart ağ meta verilerini Frankfurter ile paylaşabilir. Kurlar bu tarayıcının önbelleğinden gelebilir ve güncelliğini yitirmiş olabilir. Bunlar yalnızca günlük referans verileridir; alım satım, muhasebe, vergi veya takas için garanti değildir.
+
 ## Aşamalı Web Uygulaması (PWA)
 
 Kit'i yüklerseniz veya çevrimdışı kullanıma izin verirseniz bir service worker **uygulama kabuğunu** (sayfalar, komut dosyaları, stiller, simgeler) önbelleğe alabilir. Kit, kişisel dosyalarınızı bu önbellekte saklamak üzere tasarlanmamıştır.

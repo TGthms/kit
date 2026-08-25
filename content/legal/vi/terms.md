@@ -39,6 +39,9 @@ Trong phạm vi tối đa pháp luật cho phép, Tim G / TGthms và những ng�
 
 Kit có thể liên kết đến các trang web bên ngoài hoặc tải thư viện của bên thứ ba. Chúng tôi không chịu trách nhiệm về nội dung, chính sách hoặc khả năng cung cấp của bên thứ ba.
 
+
+Khi bạn làm mới tỷ giá, trình duyệt này truy vấn API công khai của Frankfurter. Yêu cầu có thể chia sẻ với Frankfurter siêu dữ liệu mạng tiêu chuẩn như địa chỉ IP, user agent, thời gian và URL được yêu cầu. Tỷ giá có thể lấy từ bộ nhớ đệm của trình duyệt này và có thể đã cũ. Đây chỉ là dữ liệu tham khảo hằng ngày, không phải bảo đảm cho giao dịch, kế toán, thuế hoặc quyết toán.
+
 ## Thay đổi Dịch vụ và Điều khoản
 
 Chúng tôi có thể sửa đổi hoặc ngừng các tính năng bất kỳ lúc nào. Chúng tôi có thể cập nhật các Điều khoản này bằng cách đăng phiên bản mới với ngày “Cập nhật lần cuối” được sửa đổi. Việc tiếp tục sử dụng sau khi có thay đổi cấu thành sự chấp nhận các Điều khoản đã cập nhật.

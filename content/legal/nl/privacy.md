@@ -39,6 +39,10 @@ Kit wordt doorgaans gehost als statische bestanden (bijvoorbeeld op GitHub Pages
 
 Sommige geavanceerde functies kunnen verwerkingsbibliotheken (bijvoorbeeld FFmpeg WebAssembly-cores of PDF-workescripts) de eerste keer dat je ze gebruikt vanaf contentdelivery-netwerken laden. Deze verzoeken kunnen standaard netwerkmetagegevens aan het CDN blootstellen. Je bestanden worden nog steeds in de browser verwerkt; het CDN levert code, niet je documenten.
 
+### 4. Wisselkoersen
+
+Wanneer je wisselkoersen vernieuwt, vraagt deze browser de openbare API van Frankfurter op. Het verzoek kan standaardnetwerkmetadata (zoals IP-adres, user agent, tijdstip en de opgevraagde URL) met Frankfurter delen. Koersen kunnen uit de cache van deze browser komen en verouderd zijn. Het zijn uitsluitend dagelijkse referentiegegevens en geen garantie voor handel, boekhouding, belasting of afwikkeling.
+
 ## Progressive Web App (PWA)
 
 Als je Kit installeert of offlinegebruik toestaat, kan een serviceworker **de applicatieschil** (pagina's, scripts, stijlen en pictogrammen) cachen. Kit is niet ontworpen om je persoonlijke bestanden in die cache op te slaan.

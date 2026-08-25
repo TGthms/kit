@@ -39,6 +39,10 @@ O Kit é normalmente alojado como ficheiros estáticos (por exemplo, no GitHub P
 
 Algumas funcionalidades avançadas podem carregar bibliotecas de processamento (por exemplo, núcleos FFmpeg WebAssembly ou scripts worker de PDF) a partir de redes de distribuição de conteúdos na primeira vez que as utiliza. Esses pedidos podem expor metadados de rede padrão ao CDN. O conteúdo dos seus ficheiros continua a ser processado no navegador; o CDN fornece código, não os seus documentos.
 
+### 4. Taxas de câmbio
+
+Ao atualizar taxas de câmbio, este navegador consulta a API pública do Frankfurter. O pedido pode partilhar com o Frankfurter metadados de rede padrão, como endereço IP, user agent, hora e URL pedida. As taxas podem vir da cache deste navegador e estar desatualizadas. São apenas dados de referência diários, não uma garantia para negociação, contabilidade, impostos ou liquidação.
+
 ## Aplicação Web Progressiva (PWA)
 
 Se instalar o Kit ou permitir a utilização offline, um service worker poderá colocar em cache **a estrutura da aplicação** (páginas, scripts, estilos e ícones). O Kit não foi concebido para armazenar os seus ficheiros pessoais nessa cache.

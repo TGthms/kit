@@ -39,6 +39,9 @@ Na máxima medida permitida por lei, Tim G / TGthms e os colaboradores não ser�
 
 O Kit pode estabelecer ligações para sites externos ou carregar bibliotecas de terceiros. Não somos responsáveis pelo conteúdo, pelas políticas ou pela disponibilidade de terceiros.
 
+
+Ao atualizar taxas de câmbio, este navegador consulta a API pública do Frankfurter. O pedido pode partilhar com o Frankfurter metadados de rede padrão, como endereço IP, user agent, hora e URL pedida. As taxas podem vir da cache deste navegador e estar desatualizadas. São apenas dados de referência diários, não uma garantia para negociação, contabilidade, impostos ou liquidação.
+
 ## Alterações ao Serviço e aos Termos
 
 Podemos modificar ou descontinuar funcionalidades a qualquer momento. Podemos atualizar estes Termos publicando uma nova versão com uma data de “Última atualização” revista. A utilização continuada após as alterações constitui aceitação dos Termos atualizados.

@@ -39,6 +39,10 @@ Kit isännöidään yleensä staattisina tiedostoina (esimerkiksi GitHub Pages -
 
 Jotkin edistyneet ominaisuudet voivat ladata käsittelykirjastoja (esimerkiksi FFmpeg WebAssembly -ytimiä tai PDF-työntekijäskriptejä) sisältöjakeluverkoista, kun käytät niitä ensimmäisen kerran. Pyynnöt voivat paljastaa CDN:lle tavanomaisia verkkotietoja. Tiedostojesi sisältö käsitellään edelleen selaimessa; CDN toimittaa koodia, ei asiakirjojasi.
 
+### 4. Valuuttakurssit
+
+Kun päivität valuuttakursseja, tämä selain kysyy tietoja Frankfurterin julkisesta API:sta. Pyyntö voi jakaa Frankfurterin kanssa tavallisia verkkometatietoja, kuten IP-osoitteen, user agentin, ajan ja pyydetyn URL-osoitteen. Kurssit voivat tulla tämän selaimen välimuistista ja olla vanhentuneita. Ne ovat vain päivittäisiä viitetietoja eivätkä takaa kaupankäyntiä, kirjanpitoa, verotusta tai selvitystä.
+
 ## Progressiivinen verkkosovellus (PWA)
 
 Jos asennat Kitin tai sallit offline-käytön, service worker voi tallentaa välimuistiin **sovelluksen rungon** (sivut, skriptit, tyylit ja kuvakkeet). Kitiä ei ole suunniteltu henkilökohtaisten tiedostojesi tallentamiseen tähän välimuistiin.

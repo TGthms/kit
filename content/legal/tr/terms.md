@@ -39,6 +39,9 @@ Yasaların izin verdiği azami ölçüde Tim G / TGthms ve katkıda bulunanlar, 
 
 Kit harici sitelere bağlantı verebilir veya üçüncü taraf kitaplıklarını yükleyebilir. Üçüncü tarafların içeriğinden, politikalarından veya kullanılabilirliğinden sorumlu değiliz.
 
+
+Para birimi kurlarını yenilediğinizde bu tarayıcı Frankfurter’ın herkese açık API’sine sorgu gönderir. İstek, IP adresi, user agent, zaman ve istenen URL gibi standart ağ meta verilerini Frankfurter ile paylaşabilir. Kurlar bu tarayıcının önbelleğinden gelebilir ve güncelliğini yitirmiş olabilir. Bunlar yalnızca günlük referans verileridir; alım satım, muhasebe, vergi veya takas için garanti değildir.
+
 ## Hizmette ve Koşullarda değişiklikler
 
 Özellikleri istediğimiz zaman değiştirebilir veya sonlandırabiliriz. Bu Koşulları, “Son güncelleme” tarihi revize edilmiş yeni bir sürüm yayımlayarak güncelleyebiliriz. Değişikliklerden sonra kullanmaya devam etmeniz güncellenmiş Koşulları kabul ettiğiniz anlamına gelir.

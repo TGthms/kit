@@ -39,6 +39,9 @@ Sejauh yang diizinkan oleh hukum, Tim G / TGthms dan para kontributor tidak bert
 
 Kit dapat menautkan ke situs eksternal atau memuat pustaka pihak ketiga. Kami tidak bertanggung jawab atas konten, kebijakan, atau ketersediaan pihak ketiga.
 
+
+Saat Anda menyegarkan kurs mata uang, browser ini meminta data dari API publik Frankfurter. Permintaan tersebut dapat membagikan metadata jaringan standar (seperti alamat IP, user agent, waktu, dan URL yang diminta) kepada Frankfurter. Kurs dapat berasal dari cache browser ini dan mungkin sudah kedaluwarsa. Kurs tersebut hanya data referensi harian, bukan jaminan untuk perdagangan, akuntansi, pajak, atau penyelesaian transaksi.
+
 ## Perubahan pada Layanan dan Ketentuan
 
 Kami dapat mengubah atau menghentikan fitur kapan saja. Kami dapat memperbarui Ketentuan ini dengan menerbitkan versi baru dengan tanggal “Terakhir diperbarui” yang telah direvisi. Penggunaan berkelanjutan setelah perubahan berarti menerima Ketentuan yang telah diperbarui.

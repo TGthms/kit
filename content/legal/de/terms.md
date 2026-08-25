@@ -39,6 +39,9 @@ Soweit gesetzlich zulässig, haften Tim G / TGthms und die Mitwirkenden nicht f�
 
 Kit kann auf externe Websites verlinken oder Bibliotheken Dritter laden. Wir sind nicht für Inhalte, Richtlinien oder Verfügbarkeit Dritter verantwortlich.
 
+
+Wenn Sie Wechselkurse aktualisieren, fragt dieser Browser die öffentliche API von Frankfurter ab. Die Anfrage kann Standard-Netzwerkmetadaten (z. B. IP-Adresse, User-Agent, Zeitpunkt und angeforderte URL) an Frankfurter übermitteln. Kurse können aus dem Cache dieses Browsers stammen und veraltet sein. Sie sind ausschließlich tägliche Referenzdaten und keine Garantie für Handels-, Bilanzierungs-, Steuer- oder Abwicklungszwecke.
+
 ## Änderungen des Dienstes und der Bedingungen
 
 Wir können Funktionen jederzeit ändern oder einstellen. Wir können diese Bedingungen aktualisieren, indem wir eine neue Version mit einem geänderten Datum „Zuletzt aktualisiert“ veröffentlichen. Die weitere Nutzung nach Änderungen gilt als Zustimmung zu den aktualisierten Bedingungen.

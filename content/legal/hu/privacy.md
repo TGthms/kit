@@ -39,6 +39,10 @@ A Kitet általában statikus fájlként tárolják (például a GitHub Pagesen).
 
 Egyes speciális funkciók első használatkor feldolgozókönyvtárakat (például FFmpeg WebAssembly-magokat vagy PDF worker-szkripteket) tölthetnek be tartalomkézbesítési hálózatokról. Ezek a kérések szabványos hálózati metaadatokat tehetnek elérhetővé a CDN számára. A fájlok tartalmának feldolgozása továbbra is a böngészőben történik; a CDN kódot, nem pedig az Ön dokumentumait szolgáltatja.
 
+### 4. Árfolyamok
+
+Az árfolyamok frissítésekor ez a böngésző lekérdezi a Frankfurter nyilvános API-ját. A kérés szabványos hálózati metaadatokat, például IP-címet, user agentet, időpontot és a kért URL-t is megoszthatja a Frankfurterrel. Az árfolyamok származhatnak a böngésző gyorsítótárából, ezért elavultak lehetnek. Ezek kizárólag napi referenciaadatok, és nem jelentenek garanciát kereskedési, könyvelési, adózási vagy elszámolási célokra.
+
 ## Progresszív webalkalmazás (PWA)
 
 Ha telepíti a Kitet vagy engedélyezi az offline használatot, egy service worker gyorsítótárazhatja **az alkalmazás héját** (oldalakat, szkripteket, stílusokat és ikonokat). A Kitet nem úgy terveztük, hogy személyes fájlokat tároljon ebben a gyorsítótárban.

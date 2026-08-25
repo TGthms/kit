@@ -39,6 +39,10 @@ Kit hostes typisk som statiske filer (for eksempel på GitHub Pages). Når din b
 
 Nogle avancerede funktioner kan indlæse behandlingsbiblioteker (for eksempel FFmpeg WebAssembly-kerner eller PDF-worker-scripts) fra indholdsleveringsnetværk, første gang du bruger dem. Disse anmodninger kan afsløre standardnetværksmetadata for CDN'et. Dine filer behandles stadig i browseren; CDN'et leverer biblioteks-kode, ikke dine dokumenter.
 
+### 4. Valutakurser
+
+Når du opdaterer valutakurser, forespørger denne browser Frankfurters offentlige API. Anmodningen kan dele standardnetværksmetadata (for eksempel IP-adresse, user agent, tidspunkt og den anmodede URL) med Frankfurter. Kurser kan komme fra denne browsers cache og kan være forældede. De er kun daglige referencedata og er ikke en garanti til handels-, regnskabs-, skatte- eller afviklingsformål.
+
 ## Progressiv webapp (PWA)
 
 Hvis du installerer Kit eller tillader offlinebrug, kan en service worker cache **programmets skal** (sider, scripts, typografi og ikoner). Kit er ikke designet til at gemme dine personlige filer i denne cache.

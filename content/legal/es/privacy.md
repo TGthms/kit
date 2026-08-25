@@ -39,6 +39,10 @@ Kit suele servirse como archivos estáticos (por ejemplo, en GitHub Pages). Cuan
 
 Algunas funciones avanzadas pueden descargar bibliotecas (por ejemplo, núcleos de FFmpeg en WebAssembly o workers de PDF) desde redes de distribución de contenido (CDN) la primera vez que las usas. Esas peticiones pueden revelar metadatos de red estándar a la CDN. El contenido de tus archivos sigue procesándose en el navegador; la CDN entrega código, no tus documentos.
 
+### 4. Tipos de cambio
+
+Cuando actualizas los tipos de cambio, este navegador consulta la API pública de Frankfurter. La solicitud puede compartir con Frankfurter metadatos de red estándar (como dirección IP, agente de usuario, hora y URL solicitada). Los tipos pueden proceder de la caché de este navegador y estar desactualizados. Son únicamente datos de referencia diarios, no una garantía para operaciones, contabilidad, impuestos o liquidaciones.
+
 ## Aplicación web progresiva (PWA)
 
 Si instalas Kit o permites el uso sin conexión, un *service worker* puede guardar en caché **la carcasa de la aplicación** (páginas, scripts, estilos, iconos). Kit no está pensado para almacenar tus archivos personales en esa caché.

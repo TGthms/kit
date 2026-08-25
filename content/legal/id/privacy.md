@@ -39,6 +39,10 @@ Kit biasanya di-host sebagai file statis (misalnya di GitHub Pages). Saat browse
 
 Beberapa fitur lanjutan dapat memuat pustaka pemrosesan (misalnya inti FFmpeg WebAssembly atau skrip PDF worker) dari jaringan pengiriman konten saat pertama kali Anda menggunakannya. Permintaan tersebut dapat mengekspos metadata jaringan standar kepada CDN. Isi file Anda tetap diproses di browser; CDN menyediakan kode, bukan dokumen Anda.
 
+### 4. Kurs mata uang
+
+Saat Anda menyegarkan kurs mata uang, browser ini meminta data dari API publik Frankfurter. Permintaan tersebut dapat membagikan metadata jaringan standar (seperti alamat IP, user agent, waktu, dan URL yang diminta) kepada Frankfurter. Kurs dapat berasal dari cache browser ini dan mungkin sudah kedaluwarsa. Kurs tersebut hanya data referensi harian, bukan jaminan untuk perdagangan, akuntansi, pajak, atau penyelesaian transaksi.
+
 ## Progressive Web App (PWA)
 
 Jika Anda menginstal Kit atau mengizinkan penggunaan offline, service worker dapat menyimpan **kerangka aplikasi** (halaman, skrip, gaya, dan ikon) di cache. Kit tidak dirancang untuk menyimpan file pribadi Anda di cache tersebut.

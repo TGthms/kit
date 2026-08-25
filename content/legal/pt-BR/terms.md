@@ -39,6 +39,9 @@ Na máxima extensão permitida por lei, Tim G / TGthms e os colaboradores não s
 
 O Kit pode criar links para sites externos ou carregar bibliotecas de terceiros. Não somos responsáveis pelo conteúdo, pelas políticas ou pela disponibilidade de terceiros.
 
+
+Ao atualizar cotações de moedas, este navegador consulta a API pública do Frankfurter. A solicitação pode compartilhar com o Frankfurter metadados de rede padrão, como endereço IP, user agent, horário e URL solicitada. As cotações podem vir do cache deste navegador e estar desatualizadas. São apenas dados de referência diários, não uma garantia para negociação, contabilidade, impostos ou liquidação.
+
 ## Alterações no Serviço e nos Termos
 
 Podemos modificar ou descontinuar recursos a qualquer momento. Podemos atualizar estes Termos publicando uma nova versão com uma data de “Última atualização” revisada. O uso continuado após as alterações constitui aceitação dos Termos atualizados.

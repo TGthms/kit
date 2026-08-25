@@ -39,6 +39,9 @@ Dans toute la mesure permise par la loi, Tim G / TGthms et les contributeurs ne 
 
 Kit peut renvoyer vers des sites externes ou charger des bibliothèques tierces. Nous ne sommes pas responsables du contenu, des politiques ou de la disponibilité des tiers.
 
+
+Lorsque vous actualisez les taux de change, ce navigateur interroge l'API publique de Frankfurter. La requête peut partager avec Frankfurter des métadonnées réseau standard (adresse IP, agent utilisateur, heure et URL demandée, par exemple). Les taux peuvent provenir du cache de ce navigateur et être obsolètes. Il s'agit uniquement de données de référence quotidiennes, sans garantie pour le trading, la comptabilité, la fiscalité ou le règlement.
+
 ## Modifications du Service et des conditions
 
 Nous pouvons modifier ou interrompre des fonctions à tout moment. Nous pouvons mettre à jour ces conditions en publiant une nouvelle version avec une date « Dernière mise à jour » révisée. Continuer à utiliser le Service après ces changements constitue une acceptation des conditions mises à jour.

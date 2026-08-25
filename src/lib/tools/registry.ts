@@ -48,12 +48,26 @@ import {
   CaseSensitive,
   Clock,
   CalendarClock,
+  CalendarDays,
   Code2,
   Shield,
+  Globe2,
+  TextCursorInput,
+  Dice5,
+  TimerReset,
+  WalletCards,
 } from "lucide-react";
 
 /** Precise product categories (one job family each). */
-export type ToolCategory = "pdf" | "image" | "audio" | "video" | "data" | "text" | "developer";
+export type ToolCategory =
+  | "pdf"
+  | "image"
+  | "audio"
+  | "video"
+  | "data"
+  | "text"
+  | "developer"
+  | "everyday";
 
 export type ToolGroup =
   | "pages"
@@ -68,7 +82,12 @@ export type ToolGroup =
   | "write"
   | "inspect"
   | "encode"
-  | "generate";
+  | "generate"
+  | "convert"
+  | "time"
+  | "money"
+  | "everyday-text"
+  | "quick";
 
 export type ToolId =
   | "pdf-merge"
@@ -127,7 +146,14 @@ export type ToolId =
   | "cron-explain"
   | "number-base"
   | "html-entities"
-  | "json-types";
+  | "json-types"
+  | "everyday-converter"
+  | "text-counter"
+  | "timezone-converter"
+  | "date-calculator"
+  | "tip-split-calculator"
+  | "stopwatch-timer"
+  | "random-generator";
 
 export interface ToolDef {
   id: ToolId;
@@ -150,7 +176,7 @@ export const tools: ToolDef[] = [
   { id: "pdf-sign", category: "pdf", group: "markup", icon: PenLine },
   { id: "pdf-extract", category: "pdf", group: "export", icon: FileSearch },
   { id: "pdf-to-images", category: "pdf", group: "export", icon: Images },
-  { id: "images-to-pdf", category: "pdf", group: "export", icon: FileImage },
+  { id: "images-to-pdf", category: "everyday", group: "quick", icon: FileImage },
 
   { id: "image-compress", category: "image", group: "transform", icon: ImageDown },
   { id: "image-resize", category: "image", group: "transform", icon: Scaling },
@@ -188,6 +214,14 @@ export const tools: ToolDef[] = [
   { id: "lorem-ipsum", category: "text", group: "write", icon: Type },
 
   { id: "hash-generator", category: "developer", group: "inspect", icon: Fingerprint },
+
+  { id: "everyday-converter", category: "everyday", group: "convert", icon: ArrowLeftRight },
+  { id: "text-counter", category: "everyday", group: "everyday-text", icon: TextCursorInput },
+  { id: "timezone-converter", category: "everyday", group: "time", icon: Globe2 },
+  { id: "date-calculator", category: "everyday", group: "time", icon: CalendarDays },
+  { id: "tip-split-calculator", category: "everyday", group: "money", icon: WalletCards },
+  { id: "stopwatch-timer", category: "everyday", group: "time", icon: TimerReset },
+  { id: "random-generator", category: "everyday", group: "quick", icon: Dice5 },
   { id: "jwt-decode", category: "developer", group: "inspect", icon: Shield },
   { id: "regex-tester", category: "developer", group: "inspect", icon: Search },
   { id: "unix-timestamp", category: "developer", group: "inspect", icon: Clock },
@@ -198,14 +232,15 @@ export const tools: ToolDef[] = [
   { id: "url-encode", category: "developer", group: "encode", icon: Link2 },
   { id: "html-entities", category: "developer", group: "encode", icon: Code2 },
   { id: "uuid-generator", category: "developer", group: "generate", icon: Hash },
-  { id: "password-generator", category: "developer", group: "generate", icon: KeyRound },
-  { id: "qr-code", category: "developer", group: "generate", icon: QrCode },
+  { id: "password-generator", category: "everyday", group: "quick", icon: KeyRound },
+  { id: "qr-code", category: "everyday", group: "quick", icon: QrCode },
 ];
 
 export const featuredToolIds: ToolId[] = [
   "pdf-merge",
   "image-compress",
-  "json-format",
+  "everyday-converter",
+  "text-counter",
   "qr-code",
   "password-generator",
   "image-watermark",
@@ -221,6 +256,7 @@ export const categories: ToolCategory[] = [
   "data",
   "text",
   "developer",
+  "everyday",
 ];
 
 export const categoryGroupOrder: Record<ToolCategory, ToolGroup[]> = {
@@ -231,6 +267,7 @@ export const categoryGroupOrder: Record<ToolCategory, ToolGroup[]> = {
   data: ["formats"],
   text: ["write"],
   developer: ["inspect", "encode", "generate"],
+  everyday: ["convert", "time", "money", "everyday-text", "quick"],
 };
 
 /** Map retired tool ids so old history/favorites still resolve. */

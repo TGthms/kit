@@ -13,6 +13,7 @@ import {
   Database,
   Type,
   Code2,
+  Calculator,
 } from "lucide-react";
 import { tools, categories, featuredToolIds, groupedTools, type ToolCategory } from "@/lib/tools/registry";
 import { homeHref, parseCategoryParam } from "@/lib/navigation/routes";
@@ -61,6 +62,11 @@ const categoryMeta: Record<
     icon: Code2,
     tint: "bg-slate-500/12 text-slate-700 dark:text-slate-300",
     ring: "hover:ring-slate-500/25",
+  },
+  everyday: {
+    icon: Calculator,
+    tint: "bg-orange-500/12 text-orange-700 dark:text-orange-400",
+    ring: "hover:ring-orange-500/25",
   },
 };
 

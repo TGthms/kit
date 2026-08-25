@@ -39,6 +39,9 @@ En la medida máxima permitida por la ley, Tim G / TGthms y los colaboradores no
 
 Kit puede enlazar a sitios externos o cargar bibliotecas de terceros. No controlamos ni respondemos por su contenido, políticas o disponibilidad.
 
+
+Cuando actualizas los tipos de cambio, este navegador consulta la API pública de Frankfurter. La solicitud puede compartir con Frankfurter metadatos de red estándar (como dirección IP, agente de usuario, hora y URL solicitada). Los tipos pueden proceder de la caché de este navegador y estar desactualizados. Son únicamente datos de referencia diarios, no una garantía para operaciones, contabilidad, impuestos o liquidaciones.
+
 ## Cambios del Servicio y de estas condiciones
 
 Podemos modificar o retirar funciones en cualquier momento. Podemos actualizar estas condiciones publicando una versión nueva con fecha revisada. El uso continuado tras el cambio implica la aceptación de la versión actualizada.

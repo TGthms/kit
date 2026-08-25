@@ -39,6 +39,9 @@ Nella misura massima consentita dalla legge, Tim G / TGthms e i collaboratori no
 
 Kit può collegarsi a siti esterni o caricare librerie di terze parti. Non siamo responsabili dei contenuti, delle politiche o della disponibilità di terze parti.
 
+
+Quando aggiorni i tassi di cambio, questo browser interroga l'API pubblica di Frankfurter. La richiesta può condividere con Frankfurter metadati di rete standard, come indirizzo IP, user agent, ora e URL richiesto. I tassi possono provenire dalla cache di questo browser ed essere obsoleti. Sono solo dati di riferimento giornalieri e non costituiscono una garanzia per trading, contabilità, imposte o regolamento.
+
 ## Modifiche al Servizio e ai Termini
 
 Possiamo modificare o interrompere le funzioni in qualsiasi momento. Possiamo aggiornare questi Termini pubblicando una nuova versione con una data «Ultimo aggiornamento» rivista. L'uso continuato dopo le modifiche costituisce accettazione dei Termini aggiornati.

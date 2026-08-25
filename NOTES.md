@@ -17,6 +17,14 @@ Completed in the current correctness pass:
 - Privacy Policy and Terms files now exist for all 31 path locales (62 documents total); legal-loading tests cover every first-class locale.
 - SQL comments and non-identifier JSON keys are preserved; invalid HTML entity code points no longer crash decoding.
 
+Everyday Tools implementation started (2026-08-24):
+
+- Added the new Everyday category and registered Everyday Converter, Text Counter, Time Zone Converter, Date Calculator, Tip & Split Calculator, Stopwatch / Timer, Random Generator, plus the promoted Image → PDF quick tool, QR Code, and Password Generator.
+- Added pure converter engines and tests under `src/lib/converter/` for local units, Frankfurter rates/cache validation, Unicode text metrics, time zones, dates, tips/splits, random generation, and timer state.
+- Added responsive client views under `src/components/tools/everyday-tools.tsx` with category landing, currency cache fallback, world clock, calculators, timer, random modes, and local image-to-PDF assembly.
+- Added localized message keys across all 31 catalogs and updated all 62 legal documents with Frankfurter currency-rate disclosure.
+- Current validation: typecheck, lint, and 83 Vitest tests pass.
+
 Remaining entries below should be reviewed against the current source before implementation because parts of this historical inventory predate the current registry and feature set.
 
 ---

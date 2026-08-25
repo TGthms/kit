@@ -39,6 +39,10 @@ Kit hostas vanligtvis som statiska filer (till exempel på GitHub Pages). När d
 
 Vissa avancerade funktioner kan läsa in bearbetningsbibliotek (till exempel FFmpeg WebAssembly-kärnor eller PDF-worker-skript) från innehållsleveransnätverk första gången du använder dem. Förfrågningarna kan lämna ut standardiserade nätverksmetadata till CDN:et. Filinnehållet bearbetas fortfarande i webbläsaren; CDN:et levererar kod, inte dina dokument.
 
+### 4. Valutakurser
+
+När du uppdaterar valutakurser frågar den här webbläsaren Frankfurters offentliga API. Begäran kan dela standardmässiga nätverksmetadata (till exempel IP-adress, user agent, tid och begärd URL) med Frankfurter. Kurser kan komma från webbläsarens cache och vara inaktuella. De är endast dagliga referensdata och ingen garanti för handel, bokföring, skatt eller avveckling.
+
 ## Progressiv webbapp (PWA)
 
 Om du installerar Kit eller tillåter offlineanvändning kan en service worker cachelagra **programmets skal** (sidor, skript, stilmallar och ikoner). Kit är inte utformat för att lagra dina personliga filer i den cachen.

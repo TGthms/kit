@@ -39,6 +39,10 @@ O Kit normalmente é hospedado como arquivos estáticos (por exemplo, no GitHub 
 
 Alguns recursos avançados podem carregar bibliotecas de processamento (por exemplo, núcleos FFmpeg WebAssembly ou scripts worker de PDF) de redes de distribuição de conteúdo na primeira vez que você os usar. Essas solicitações podem expor metadados de rede padrão ao CDN. O conteúdo dos seus arquivos continua sendo processado no navegador; o CDN fornece código, não seus documentos.
 
+### 4. Cotações de moedas
+
+Ao atualizar cotações de moedas, este navegador consulta a API pública do Frankfurter. A solicitação pode compartilhar com o Frankfurter metadados de rede padrão, como endereço IP, user agent, horário e URL solicitada. As cotações podem vir do cache deste navegador e estar desatualizadas. São apenas dados de referência diários, não uma garantia para negociação, contabilidade, impostos ou liquidação.
+
 ## Aplicativo Web Progressivo (PWA)
 
 Se você instalar o Kit ou permitir o uso off-line, um service worker poderá armazenar em cache **a estrutura do aplicativo** (páginas, scripts, estilos e ícones). O Kit não foi projetado para armazenar seus arquivos pessoais nesse cache.

@@ -39,6 +39,10 @@ Kit wird in der Regel als statische Dateien gehostet (zum Beispiel auf GitHub Pa
 
 Einige fortgeschrittene Funktionen können bei der ersten Nutzung Verarbeitungsbibliotheken (zum Beispiel FFmpeg-WebAssembly-Kerne oder PDF-Worker-Skripte) von Content-Delivery-Netzwerken laden. Diese Anfragen können Standard-Netzwerkmetadaten an das CDN übermitteln. Ihre Dateiinhalte werden weiterhin im Browser verarbeitet; das CDN liefert Bibliothekscode, nicht Ihre Dokumente.
 
+### 4. Wechselkurse
+
+Wenn Sie Wechselkurse aktualisieren, fragt dieser Browser die öffentliche API von Frankfurter ab. Die Anfrage kann Standard-Netzwerkmetadaten (z. B. IP-Adresse, User-Agent, Zeitpunkt und angeforderte URL) an Frankfurter übermitteln. Kurse können aus dem Cache dieses Browsers stammen und veraltet sein. Sie sind ausschließlich tägliche Referenzdaten und keine Garantie für Handels-, Bilanzierungs-, Steuer- oder Abwicklungszwecke.
+
 ## Progressive Web App (PWA)
 
 Wenn Sie Kit installieren oder die Offline-Nutzung erlauben, kann ein Service Worker **die Anwendungshülle** (Seiten, Skripte, Styles und Symbole) zwischenspeichern. Kit ist nicht dafür ausgelegt, Ihre persönlichen Dateien in diesem Cache zu speichern.

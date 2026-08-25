@@ -14,7 +14,6 @@ import {
 import {
   PdfNumbers,
   PdfToImages,
-  ImagesToPdf,
   PdfFlatten,
   PdfMetadata,
   PdfProtect,
@@ -68,6 +67,16 @@ import {
   PasswordGenerator,
   JsonTypes,
 } from "./work-tools";
+import {
+  EverydayConverter,
+  TextCounter,
+  TimezoneConverter,
+  DateCalculator,
+  TipSplitCalculator,
+  StopwatchTimer,
+  RandomGenerator,
+  EverydayImagesToPdf,
+} from "./everyday-tools";
 
 const TOOL_COMPONENTS: Record<ToolId, ComponentType> = {
   "pdf-merge": PdfMerge,
@@ -79,7 +88,7 @@ const TOOL_COMPONENTS: Record<ToolId, ComponentType> = {
   "pdf-extract": PdfExtract,
   "pdf-numbers": PdfNumbers,
   "pdf-to-images": PdfToImages,
-  "images-to-pdf": ImagesToPdf,
+  "images-to-pdf": EverydayImagesToPdf,
   "pdf-flatten": PdfFlatten,
   "pdf-metadata": PdfMetadata,
   "pdf-protect": PdfProtect,
@@ -127,6 +136,13 @@ const TOOL_COMPONENTS: Record<ToolId, ComponentType> = {
   "number-base": NumberBase,
   "html-entities": HtmlEntities,
   "json-types": JsonTypes,
+  "everyday-converter": EverydayConverter,
+  "text-counter": TextCounter,
+  "timezone-converter": TimezoneConverter,
+  "date-calculator": DateCalculator,
+  "tip-split-calculator": TipSplitCalculator,
+  "stopwatch-timer": StopwatchTimer,
+  "random-generator": RandomGenerator,
 };
 
 export function ToolView({ toolId }: { toolId: ToolId }) {

@@ -39,6 +39,10 @@ Kit è generalmente ospitato come file statici (ad esempio su GitHub Pages). Qua
 
 Alcune funzioni avanzate possono caricare librerie di elaborazione (ad esempio core FFmpeg WebAssembly o script worker per PDF) da reti di distribuzione dei contenuti la prima volta che le utilizzi. Queste richieste possono esporre metadati di rete standard al CDN. Il contenuto dei tuoi file viene comunque elaborato nel browser; il CDN fornisce codice, non i tuoi documenti.
 
+### 4. Tassi di cambio
+
+Quando aggiorni i tassi di cambio, questo browser interroga l'API pubblica di Frankfurter. La richiesta può condividere con Frankfurter metadati di rete standard, come indirizzo IP, user agent, ora e URL richiesto. I tassi possono provenire dalla cache di questo browser ed essere obsoleti. Sono solo dati di riferimento giornalieri e non costituiscono una garanzia per trading, contabilità, imposte o regolamento.
+
 ## Progressive Web App (PWA)
 
 Se installi Kit o consenti l'uso offline, un service worker può memorizzare nella cache **il guscio dell'applicazione** (pagine, script, stili, icone). Kit non è progettato per conservare i tuoi file personali in quella cache.

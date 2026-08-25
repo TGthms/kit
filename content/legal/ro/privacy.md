@@ -39,6 +39,10 @@ Kit este găzduit de obicei ca fișiere statice (de exemplu, pe GitHub Pages). C
 
 Unele funcții avansate pot încărca biblioteci de procesare (de exemplu, nuclee FFmpeg WebAssembly sau scripturi worker pentru PDF) din rețele de distribuție a conținutului la prima utilizare. Aceste solicitări pot expune metadate de rețea standard către CDN. Conținutul fișierelor este procesat în continuare în browser; CDN-ul furnizează cod, nu documentele dumneavoastră.
 
+### 4. Cursuri valutare
+
+Când reîmprospătezi cursurile valutare, acest browser interoghează API-ul public Frankfurter. Cererea poate partaja cu Frankfurter metadate standard de rețea, precum adresa IP, user agent, ora și URL-ul solicitat. Cursurile pot proveni din cache-ul acestui browser și pot fi învechite. Sunt doar date de referință zilnice, nu o garanție pentru tranzacționare, contabilitate, taxe sau decontare.
+
 ## Aplicație web progresivă (PWA)
 
 Dacă instalați Kit sau permiteți utilizarea offline, un service worker poate stoca în cache **shell-ul aplicației** (pagini, scripturi, stiluri și pictograme). Kit nu este conceput pentru a stoca fișierele dumneavoastră personale în acel cache.
