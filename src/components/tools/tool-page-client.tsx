@@ -1,6 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
+import { Suspense } from "react";
 import type { ToolId } from "@/lib/tools/registry";
 
 const ToolView = dynamic(
@@ -9,5 +10,9 @@ const ToolView = dynamic(
 );
 
 export function ToolPageClient({ toolId }: { toolId: ToolId }) {
-  return <ToolView toolId={toolId} />;
+  return (
+    <Suspense fallback={null}>
+      <ToolView toolId={toolId} />
+    </Suspense>
+  );
 }
