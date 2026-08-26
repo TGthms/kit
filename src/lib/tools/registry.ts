@@ -162,6 +162,8 @@ export interface ToolDef {
   category: ToolCategory;
   group: ToolGroup;
   icon: LucideIcon;
+  /** Whether the tool accepts or processes local files. */
+  fileTool?: boolean;
 }
 
 export const tools: ToolDef[] = [
@@ -178,7 +180,7 @@ export const tools: ToolDef[] = [
   { id: "pdf-sign", category: "pdf", group: "markup", icon: PenLine },
   { id: "pdf-extract", category: "pdf", group: "export", icon: FileSearch },
   { id: "pdf-to-images", category: "pdf", group: "export", icon: Images },
-  { id: "images-to-pdf", category: "everyday", group: "quick", icon: FileImage },
+  { id: "images-to-pdf", category: "everyday", group: "quick", icon: FileImage, fileTool: true },
 
   { id: "image-compress", category: "image", group: "transform", icon: ImageDown },
   { id: "image-resize", category: "image", group: "transform", icon: Scaling },
@@ -208,7 +210,7 @@ export const tools: ToolDef[] = [
   { id: "xml-json", category: "data", group: "formats", icon: FileJson },
   { id: "sql-format", category: "data", group: "formats", icon: Database },
   { id: "json-types", category: "data", group: "formats", icon: Code2 },
-  { id: "convert-hub", category: "data", group: "formats", icon: ArrowLeftRight },
+  { id: "convert-hub", category: "data", group: "formats", icon: ArrowLeftRight, fileTool: true },
 
   { id: "markdown-html", category: "text", group: "write", icon: FileText },
   { id: "text-diff", category: "text", group: "write", icon: GitCompare },
@@ -291,6 +293,10 @@ export function getTool(id: string): ToolDef | undefined {
 export function resolveToolId(id: string): ToolId | null {
   const tool = getTool(id);
   return tool?.id ?? null;
+}
+
+export function isFileTool(tool: ToolDef): boolean {
+  return tool.fileTool === true || ["pdf", "image", "audio", "video"].includes(tool.category);
 }
 
 export function toolsInCategory(category: ToolCategory): ToolDef[] {

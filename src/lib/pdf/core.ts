@@ -250,18 +250,46 @@ export function detectImageMime(bytes: Uint8Array): EmbeddableImage["mime"] | nu
   return null;
 }
 
-export async function imagesToPdf(images: EmbeddableImage[]): Promise<Uint8Array> {
+export type ImagesToPdfOptions = {
+  pageSize?: "image" | "a4";
+  margin?: number;
+};
+
+const A4_PORTRAIT: [number, number] = [595.28, 841.89];
+
+export async function imagesToPdf(
+  images: EmbeddableImage[],
+  opts: ImagesToPdfOptions = {}
+): Promise<Uint8Array> {
   if (!images.length) throw new Error("No images");
   const doc = await PDFDocument.create();
+  const pageSize = opts.pageSize ?? "image";
+  const margin = Math.max(0, opts.margin ?? 24);
+
   for (const img of images) {
     const embedded =
       img.mime === "image/png" ? await doc.embedPng(img.bytes) : await doc.embedJpg(img.bytes);
-    const page = doc.addPage([embedded.width, embedded.height]);
+    if (pageSize === "image") {
+      const page = doc.addPage([embedded.width, embedded.height]);
+      page.drawImage(embedded, { x: 0, y: 0, width: embedded.width, height: embedded.height });
+      continue;
+    }
+
+    const [portraitWidth, portraitHeight] = A4_PORTRAIT;
+    const [pageWidth, pageHeight] = embedded.width > embedded.height
+      ? [portraitHeight, portraitWidth]
+      : [portraitWidth, portraitHeight];
+    const availableWidth = Math.max(1, pageWidth - margin * 2);
+    const availableHeight = Math.max(1, pageHeight - margin * 2);
+    const scale = Math.min(availableWidth / embedded.width, availableHeight / embedded.height, 1);
+    const width = embedded.width * scale;
+    const height = embedded.height * scale;
+    const page = doc.addPage([pageWidth, pageHeight]);
     page.drawImage(embedded, {
-      x: 0,
-      y: 0,
-      width: embedded.width,
-      height: embedded.height,
+      x: (pageWidth - width) / 2,
+      y: (pageHeight - height) / 2,
+      width,
+      height,
     });
   }
   return doc.save();

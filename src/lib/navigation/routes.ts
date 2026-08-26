@@ -15,7 +15,6 @@ export function toolBackHref(toolId: ToolId): string {
 
 export function parseCategoryParam(value: string | null | undefined): ToolCategory | null {
   if (!value) return null;
-  if (value === "convert") return "data";
   return (categories as readonly string[]).includes(value)
     ? (value as ToolCategory)
     : null;

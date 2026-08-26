@@ -6,6 +6,7 @@ import type { ToolId } from "@/lib/tools/registry";
 import { ToolHeader } from "@/components/shared/tool-header";
 import { Button } from "@/components/ui/button";
 import { useHistoryStore } from "@/stores/history-store";
+import { SHORTCUT_RUN_EVENT } from "@/components/layout/shortcuts-provider";
 
 export async function loadPdfjs() {
   return import("@/lib/pdf/pdfjs");
@@ -40,13 +41,20 @@ export function ActionBar({
   const t = useTranslations("common");
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
-      if ((e.metaKey || e.ctrlKey) && e.key === "Enter" && !loading && !disabled) {
+      if (e.key === "Enter" && (e.metaKey || e.ctrlKey) && !loading && !disabled) {
         e.preventDefault();
         onRun();
       }
     };
+    const onShortcutRun = () => {
+      if (!loading && !disabled) onRun();
+    };
     window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
+    window.addEventListener(SHORTCUT_RUN_EVENT, onShortcutRun);
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      window.removeEventListener(SHORTCUT_RUN_EVENT, onShortcutRun);
+    };
   }, [onRun, loading, disabled]);
   return (
     <div className="flex flex-wrap items-center gap-3">

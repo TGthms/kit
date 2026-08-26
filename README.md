@@ -50,7 +50,7 @@ Kit is a set of PDF, image, media, converter, and text tools that run on your de
 
 ## What you get
 
-A complete, polished toolkit: clear layout, light and dark appearance, a 30-language UI with a native picker, an installable PWA shell, and honest limits about what a browser can do.
+A complete, polished toolkit: 65 tools, clear layout, light and dark appearance, a 30-language UI with a native picker, an installable PWA shell, and honest limits about what a browser can do.
 
 ## Languages
 

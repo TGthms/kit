@@ -8,7 +8,7 @@ import { AppShell } from "@/components/layout/app-shell";
 import { ShortcutsProvider } from "@/components/layout/shortcuts-provider";
 import { ServiceWorkerRegister } from "@/components/pwa/sw-register";
 import { SiteJsonLd } from "@/lib/seo/json-ld";
-import { SITE_NAME } from "@/lib/seo/site";
+import { CONTENT_SECURITY_POLICY, SITE_NAME } from "@/lib/seo/site";
 
 export function generateStaticParams() {
   return pathLocales.map((locale) => ({ locale }));
@@ -32,6 +32,7 @@ export default async function LocaleLayout({
   return (
     <html lang={lang} dir={dir} suppressHydrationWarning>
       <head>
+        <meta httpEquiv="Content-Security-Policy" content={CONTENT_SECURITY_POLICY} />
         <script
           dangerouslySetInnerHTML={{
             __html: `(function(){try{var d=document.documentElement,s=localStorage.getItem("theme")||"system",t=s==="system"?(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"):s;if(t==="dark"){d.classList.add("dark");d.style.colorScheme="dark";}else{d.classList.remove("dark");d.style.colorScheme="light";}}catch(e){}})();`,

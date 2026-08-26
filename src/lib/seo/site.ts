@@ -3,6 +3,21 @@ export const SITE_NAME = "Kit";
 export const SITE_AUTHOR = "Tim G";
 export const SITE_AUTHOR_URL = "https://t-g.pages.dev";
 
+/** Static-host CSP for the client-only app and its explicitly documented CDNs. */
+export const CONTENT_SECURITY_POLICY = [
+  "default-src 'self'",
+  "base-uri 'self'",
+  "form-action 'self'",
+  "object-src 'none'",
+  "script-src 'self' 'unsafe-inline'",
+  "style-src 'self' 'unsafe-inline'",
+  "img-src 'self' data: blob:",
+  "font-src 'self' data:",
+  "media-src 'self' blob:",
+  "connect-src 'self' https://cdn.jsdelivr.net https://api.frankfurter.dev blob:",
+  "worker-src 'self' blob: https://cdn.jsdelivr.net",
+].join("; ");
+
 /** Default social card. Always on the canonical host (no GitHub Pages /kit prefix). */
 export const OG_IMAGE_PATH = "/og/kit.png";
 export const OG_IMAGE_WIDTH = 1200;

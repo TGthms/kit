@@ -4,20 +4,12 @@ import { useTranslations } from "next-intl";
 import { useSearchParams } from "next/navigation";
 import { Star } from "lucide-react";
 import type { ToolId } from "@/lib/tools/registry";
-import { getTool } from "@/lib/tools/registry";
+import { getTool, isFileTool } from "@/lib/tools/registry";
 import { toolBackHref } from "@/lib/navigation/routes";
 import { useFavoritesStore } from "@/stores/favorites-store";
 import { PageHeader } from "@/components/layout/page-header";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-
-const FILE_TOOL_IDS = new Set<ToolId>([
-  "pdf-merge", "pdf-split", "pdf-organize", "pdf-compress", "pdf-watermark", "pdf-redact", "pdf-extract",
-  "pdf-numbers", "pdf-to-images", "images-to-pdf", "pdf-flatten", "pdf-metadata", "pdf-protect", "pdf-sign",
-  "image-compress", "image-resize", "image-crop", "image-convert", "image-metadata", "image-adjust", "image-rotate",
-  "image-filters", "image-favicon", "image-watermark", "audio-convert", "audio-trim", "audio-speed", "video-convert",
-  "video-trim", "video-speed", "video-extract-audio", "video-gif", "convert-hub",
-]);
 
 function safeInternalHref(value: string | null): string | null {
   if (!value) return null;
@@ -40,11 +32,12 @@ export function ToolHeader({ toolId }: { toolId: ToolId }) {
   const fromHref = safeInternalHref(searchParams.get("from"));
   const backHref = fromHref ?? toolBackHref(toolId);
   const backLabel = fromHref ? tc("back") : tool ? tCat(tool.category) : tc("back");
-  const showClientSideNote = FILE_TOOL_IDS.has(toolId);
+  const showClientSideNote = tool ? isFileTool(tool) : false;
 
   return (
     <PageHeader
       sticky
+      compactOnScroll
       title={t("name")}
       subtitle={t("description")}
       backHref={backHref}

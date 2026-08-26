@@ -151,7 +151,7 @@ export function ImagesToPdf() {
         }
         images.push({ bytes, mime });
       }
-      const out = await imagesToPdf(images);
+      const out = await imagesToPdf(images, { pageSize: "a4", margin: 24 });
       downloadBlob(bytesToBlob(out, "application/pdf"), "images.pdf");
       toast.success(t("success", { count: files.length }));
       log(`${files.length}`, "success");

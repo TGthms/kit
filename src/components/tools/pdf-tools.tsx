@@ -28,14 +28,25 @@ export function PdfMerge() {
 
   const loadThumbs = async (items: FileItem[]) => {
     setFiles(items);
-    for (const item of items) {
-      try {
-        const { renderPdfThumbnail } = await loadPdfjs();
-        const url = await renderPdfThumbnail(await item.file.arrayBuffer());
-        setThumbs((s) => (s[item.id] ? s : { ...s, [item.id]: url }));
-      } catch {
-        /* thumbnail optional */
-      }
+    try {
+      const { renderPdfThumbnail } = await loadPdfjs();
+      const rendered = await Promise.all(
+        items.map(async (item) => {
+          try {
+            return { id: item.id, url: await renderPdfThumbnail(await item.file.arrayBuffer()) };
+          } catch {
+            return null;
+          }
+        })
+      );
+      const next = Object.fromEntries(
+        rendered
+          .filter((item): item is { id: string; url: string } => Boolean(item))
+          .map((item) => [item.id, item.url])
+      );
+      setThumbs((current) => ({ ...current, ...next }));
+    } catch {
+      /* thumbnails are optional */
     }
   };
 

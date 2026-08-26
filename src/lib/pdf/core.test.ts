@@ -128,6 +128,11 @@ describe("imagesToPdf", () => {
     const page = doc.getPages()[0];
     expect(page.getWidth()).toBe(1);
     expect(page.getHeight()).toBe(1);
+
+    const fitted = await imagesToPdf([{ bytes: TINY_PNG, mime: "image/png" }], { pageSize: "a4", margin: 24 });
+    const fittedDoc = await PDFDocument.load(fitted);
+    expect(fittedDoc.getPages()[0]?.getWidth()).toBeCloseTo(595.28, 1);
+    expect(fittedDoc.getPages()[0]?.getHeight()).toBeCloseTo(841.89, 1);
   });
 });
 

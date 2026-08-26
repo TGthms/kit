@@ -75,6 +75,7 @@ import {
   type StopwatchState,
   type TimerState,
 } from "@/lib/converter/timer";
+import { CITIES, cityTimeZones } from "@/lib/converter/cities";
 import {
   bytesToBlob,
   downloadBlob,
@@ -90,8 +91,6 @@ type TranslationFn = (key: string, values?: Record<string, string | number>) => 
 
 type ConverterCategory = UnitCategory | "currency";
 type UnitOption = { code: UnitCode; label: string };
-
-type City = { name: string; zone: string; emoji: string; key: string };
 
 function text(t: ReturnType<typeof useTranslations>, key: string, fallback: string, values?: Record<string, string | number>) {
   try {
@@ -399,17 +398,6 @@ const UNIT_MESSAGE_KEYS: Record<string, string> = {
   "m/s2": "unitM_s2", g0: "unitG0", "ft/s2": "unitFt_s2", Nm: "unitNm", kNm: "unitKnm", "lb-ft": "unitLbFt", "lb-in": "unitLbIn",
   mV: "unitMv", V: "unitV", kV: "unitKv", mA: "unitMa", A: "unitA", kA: "unitKa", mOhm: "unitMOhm", Ohm: "unitOhm", kOhm: "unitKOhm", MOhm: "unitMOhmBig", px: "unitPx", pt: "unitPt", pc: "unitPc", rem: "unitRem", em: "unitEm",
 };
-
-const CITIES: City[] = [
-  { name: "San Francisco", key: "citySanFrancisco", zone: "America/Los_Angeles", emoji: "SF" },
-  { name: "New York", key: "cityNewYork", zone: "America/New_York", emoji: "NY" },
-  { name: "London", key: "cityLondon", zone: "Europe/London", emoji: "LDN" },
-  { name: "Berlin", key: "cityBerlin", zone: "Europe/Berlin", emoji: "BER" },
-  { name: "Dubai", key: "cityDubai", zone: "Asia/Dubai", emoji: "DXB" },
-  { name: "Singapore", key: "citySingapore", zone: "Asia/Singapore", emoji: "SIN" },
-  { name: "Tokyo", key: "cityTokyo", zone: "Asia/Tokyo", emoji: "TYO" },
-  { name: "Sydney", key: "citySydney", zone: "Australia/Sydney", emoji: "SYD" },
-];
 
 function SearchableSelect({
   label,
@@ -883,7 +871,7 @@ export function TimezoneConverter() {
     return () => window.clearInterval(interval);
   }, []);
   const zoneOptions = useMemo(() => {
-    const values = Array.from(new Set([...CITIES.map((city) => city.zone), "UTC", "Asia/Kolkata", "America/Chicago"]));
+    const values = cityTimeZones();
     return values.map((value) => ({ value, label: value.replaceAll("_", " ") }));
   }, []);
   const partLabel = (part: { year: number; month: number; day: number; hour: number; minute: number; second: number }) =>
