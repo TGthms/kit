@@ -1,5 +1,6 @@
 // @vitest-environment jsdom
 
+import { createElement } from "react";
 import { fireEvent, render, screen } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 import "@testing-library/jest-dom/vitest";
@@ -14,9 +15,11 @@ describe("ShortcutsProvider", () => {
     const onRun = vi.fn();
     window.addEventListener(SHORTCUT_RUN_EVENT, onRun);
     render(
-      <ShortcutsProvider>
-        <input id="kit-search" aria-label="Search" />
-      </ShortcutsProvider>
+      createElement(
+        ShortcutsProvider,
+        null,
+        createElement("input", { id: "kit-search", "aria-label": "Search" })
+      )
     );
 
     fireEvent.keyDown(window, { key: "/" });

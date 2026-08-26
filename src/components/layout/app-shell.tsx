@@ -104,14 +104,14 @@ export function AppShell({ children }: { children: React.ReactNode }) {
               href={href}
               data-pressable
               className={cn(
-                "pressable-soft flex min-h-[3.25rem] min-w-0 flex-1 flex-col items-center justify-center gap-0.5 px-1 py-1",
-                "text-[10px] font-medium tracking-[-0.01em]",
+                "pressable-soft flex min-h-[3.75rem] min-w-0 flex-1 flex-col items-center justify-center gap-0.5 px-1 py-1.5",
+                "text-[11px] font-medium tracking-[-0.01em]",
                 active ? "text-primary" : "text-muted-foreground"
               )}
             >
               <span
                 className={cn(
-                  "flex h-7 w-12 items-center justify-center rounded-full transition-colors duration-200",
+                  "flex h-8 w-14 items-center justify-center rounded-full transition-colors duration-200",
                   active && "bg-primary/12"
                 )}
               >
@@ -166,7 +166,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
         <main className="anim-surface min-w-0 flex-1 pb-3 md:pb-8">{children}</main>
       </div>
 
-      <div className="pb-[calc(4.5rem+env(safe-area-inset-bottom))] md:pb-0">
+      <div className="pb-[calc(5rem+env(safe-area-inset-bottom))] md:pb-0">
         <SiteFooter />
       </div>
 
