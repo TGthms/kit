@@ -900,33 +900,8 @@ export function TimezoneConverter() {
   return (
     <ToolShell toolId={toolId("timezone-converter")}>
       <ToolLimits>
-        <p>{text(t, "limits", "Enter a wall-clock time in the source city. Conversion uses IANA time-zone rules, including daylight-saving changes.")}</p>
+        <p>{text(t, "limits", "Live times use the browser clock and IANA time-zone rules, including daylight-saving changes. Advanced conversion lets you compare a specific local date and time across zones.")}</p>
       </ToolLimits>
-      <Card>
-        <CardHeader className="pb-3">
-          <CardTitle className="flex items-center gap-2"><Globe2 className="h-5 w-5 text-primary" /> {text(t, "convert", "Convert a date and time")}</CardTitle>
-          <CardDescription>{text(t, "convertHint", "Choose a source zone and a destination zone.")}</CardDescription>
-        </CardHeader>
-        <CardContent className="space-y-4">
-          <div className="grid gap-4 md:grid-cols-3 md:items-end">
-            <div className="space-y-2">
-              <Label>{text(t, "localTime", "Local date and time")}</Label>
-              <Input type="datetime-local" value={localDateTime} onChange={(event) => setLocalDateTime(event.target.value)} />
-            </div>
-            <SearchableSelect label={text(t, "from", "From time zone")} value={fromZone} options={zoneOptions} onChange={setFromZone} />
-            <SearchableSelect label={text(t, "to", "To time zone")} value={toZone} options={zoneOptions} onChange={setToZone} />
-          </div>
-          {conversion ? (
-            <div className="grid gap-3 rounded-2xl border border-primary/20 bg-primary/5 p-4 sm:grid-cols-2">
-              <div><p className="text-xs text-muted-foreground">{fromZone}</p><p className="mt-1 font-mono text-lg">{partLabel(conversion.from)}</p></div>
-              <div><p className="text-xs text-muted-foreground">{toZone}</p><p className="mt-1 font-mono text-lg">{partLabel(conversion.to)}</p></div>
-            </div>
-          ) : <p className="text-sm text-destructive">{text(t, "invalid", "Enter a valid local date and time.")}</p>}
-          <Button variant="outline" disabled={!conversion} onClick={() => { if (conversion) { log(`${fromZone} → ${toZone}`, "success"); toast.success(text(t, "saved", "Conversion saved to history.")); } }}>
-            <Check /> {text(t, "record", "Record conversion")}
-          </Button>
-        </CardContent>
-      </Card>
       <div className="space-y-3">
         <div className="flex items-end justify-between gap-3">
           <div><h2 className="text-lg font-semibold">{text(t, "worldClock", "World clock")}</h2><p className="text-sm text-muted-foreground">{text(t, "worldClockHint", "A quick glance across common workday zones.")}</p></div>
@@ -951,6 +926,35 @@ export function TimezoneConverter() {
           })}
         </div>
       </div>
+      <details className="rounded-2xl border border-border/60 bg-card px-4 py-3">
+        <summary className="cursor-pointer select-none font-medium text-foreground">{text(t, "advancedConversion", "Advanced: time zone conversion")}</summary>
+        <p className="mt-2 text-sm text-muted-foreground">{text(t, "advancedConversionHint", "Compare a specific local date and time across two time zones.")}</p>
+        <Card className="mt-4">
+          <CardHeader className="pb-3">
+            <CardTitle className="flex items-center gap-2"><Globe2 className="h-5 w-5 text-primary" /> {text(t, "convert", "Convert a date and time")}</CardTitle>
+            <CardDescription>{text(t, "convertHint", "Choose a source zone and a destination zone.")}</CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="grid gap-4 md:grid-cols-3 md:items-end">
+              <div className="space-y-2">
+                <Label>{text(t, "localTime", "Local date and time")}</Label>
+                <Input type="datetime-local" value={localDateTime} onChange={(event) => setLocalDateTime(event.target.value)} />
+              </div>
+              <SearchableSelect label={text(t, "from", "From time zone")} value={fromZone} options={zoneOptions} onChange={setFromZone} />
+              <SearchableSelect label={text(t, "to", "To time zone")} value={toZone} options={zoneOptions} onChange={setToZone} />
+            </div>
+            {conversion ? (
+              <div className="grid gap-3 rounded-2xl border border-primary/20 bg-primary/5 p-4 sm:grid-cols-2">
+                <div><p className="text-xs text-muted-foreground">{fromZone}</p><p className="mt-1 font-mono text-lg">{partLabel(conversion.from)}</p></div>
+                <div><p className="text-xs text-muted-foreground">{toZone}</p><p className="mt-1 font-mono text-lg">{partLabel(conversion.to)}</p></div>
+              </div>
+            ) : <p className="text-sm text-destructive">{text(t, "invalid", "Enter a valid local date and time.")}</p>}
+            <Button variant="outline" disabled={!conversion} onClick={() => { if (conversion) { log(`${fromZone} → ${toZone}`, "success"); toast.success(text(t, "saved", "Conversion saved to history.")); } }}>
+              <Check /> {text(t, "record", "Record conversion")}
+            </Button>
+          </CardContent>
+        </Card>
+      </details>
     </ToolShell>
   );
 }

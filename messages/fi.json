@@ -1001,7 +1001,7 @@
       "noSpaces": "No spaces"
     },
     "timezone-converter": {
-      "name": "Aikavyöhykemuunnin",
+      "name": "Maailmankello",
       "description": "Muunna paikallinen päivämäärä ja aika aikavyöhykkeiden välillä ja tarkista maailmankello.",
       "keywords": "aikavyöhykemuunnin maailmankello kesäaika päivämäärä aika",
       "limits": "Anna lähdekaupungin kellonaika. Muunnos käyttää IANA-aikavyöhykesääntöjä, myös kesäajan muutoksia.",
@@ -1015,6 +1015,8 @@
       "record": "Kirjaa muunnos",
       "worldClock": "Maailmankello",
       "worldClockHint": "Nopea katsaus tavallisiin työaikavyöhykkeisiin.",
+      "advancedConversion": "Lisätoiminto: aikavyöhykemuunnos",
+      "advancedConversionHint": "Vertaa tiettyä paikallista päivämäärää ja aikaa kahden aikavyöhykkeen välillä.",
       "citySanFrancisco": "San Francisco",
       "cityNewYork": "New York",
       "cityLondon": "London",

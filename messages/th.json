@@ -1001,7 +1001,7 @@
       "noSpaces": "No spaces"
     },
     "timezone-converter": {
-      "name": "ตัวแปลงเขตเวลา",
+      "name": "นาฬิกาโลก",
       "description": "แปลงวันที่และเวลาท้องถิ่นระหว่างเขตเวลา และดูนาฬิกาโลก",
       "keywords": "ตัวแปลงเขตเวลา นาฬิกาโลก DST วันที่ เวลา",
       "limits": "ป้อนเวลาของเมืองต้นทาง การแปลงใช้กฎเขตเวลาของ IANA รวมถึงการเปลี่ยนเวลาออมแสง",
@@ -1015,6 +1015,8 @@
       "record": "บันทึกการแปลง",
       "worldClock": "นาฬิกาโลก",
       "worldClockHint": "ดูเขตเวลาทำงานทั่วไปอย่างรวดเร็ว",
+      "advancedConversion": "ขั้นสูง: การแปลงเขตเวลา",
+      "advancedConversionHint": "เปรียบเทียบวันที่และเวลาท้องถิ่นที่ระบุระหว่างสองเขตเวลา",
       "citySanFrancisco": "San Francisco",
       "cityNewYork": "New York",
       "cityLondon": "London",

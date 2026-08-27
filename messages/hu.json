@@ -1001,7 +1001,7 @@
       "noSpaces": "No spaces"
     },
     "timezone-converter": {
-      "name": "Időzóna-átváltó",
+      "name": "Világóra",
       "description": "Helyi dátum és idő átváltása időzónák között, világóra megtekintése.",
       "keywords": "időzóna átváltó világóra nyári időszámítás dátum idő",
       "limits": "Adja meg a forrásváros helyi idejét. Az átváltás az IANA időzóna-szabályait, a nyári időszámítás változásait is használja.",
@@ -1015,6 +1015,8 @@
       "record": "Átváltás rögzítése",
       "worldClock": "Világóra",
       "worldClockHint": "Gyors áttekintés a gyakori munkazónákról.",
+      "advancedConversion": "Speciális: időzóna-átváltás",
+      "advancedConversionHint": "Hasonlítson össze egy adott helyi dátumot és időt két időzóna között.",
       "citySanFrancisco": "San Francisco",
       "cityNewYork": "New York",
       "cityLondon": "London",

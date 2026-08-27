@@ -1001,7 +1001,7 @@
       "noSpaces": "No spaces"
     },
     "timezone-converter": {
-      "name": "टाइम ज़ोन कन्वर्टर",
+      "name": "विश्व घड़ी",
       "description": "स्थानीय तारीख और समय को टाइम ज़ोन के बीच बदलें और विश्व घड़ी देखें।",
       "keywords": "टाइम ज़ोन कन्वर्टर विश्व घड़ी DST तारीख समय",
       "limits": "स्रोत शहर का स्थानीय समय दर्ज करें। कन्वर्ज़न IANA टाइम-ज़ोन नियमों का उपयोग करता है, जिसमें daylight-saving बदलाव भी शामिल हैं।",
@@ -1015,6 +1015,8 @@
       "record": "कन्वर्ज़न दर्ज करें",
       "worldClock": "विश्व घड़ी",
       "worldClockHint": "सामान्य कार्य समय वाले ज़ोन पर एक नज़र।",
+      "advancedConversion": "उन्नत: टाइम ज़ोन रूपांतरण",
+      "advancedConversionHint": "दो टाइम ज़ोन के बीच किसी स्थानीय तारीख और समय की तुलना करें।",
       "citySanFrancisco": "San Francisco",
       "cityNewYork": "New York",
       "cityLondon": "London",

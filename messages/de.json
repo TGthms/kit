@@ -1001,7 +1001,7 @@
       "noSpaces": "Ohne Leerzeichen"
     },
     "timezone-converter": {
-      "name": "Zeitzonen-Umrechner",
+      "name": "Weltzeituhr",
       "description": "Lokales Datum und Uhrzeit zwischen Zeitzonen umrechnen und eine Weltzeituhr prüfen.",
       "keywords": "Zeitzonenrechner Weltzeituhr Sommerzeit Datum Zeit",
       "limits": "Geben Sie die Uhrzeit in der Ausgangsstadt ein. Die Umrechnung nutzt IANA-Zeitzonenregeln einschließlich Sommerzeitänderungen.",
@@ -1015,6 +1015,8 @@
       "record": "Umrechnung speichern",
       "worldClock": "Weltzeituhr",
       "worldClockHint": "Schneller Überblick über gängige Arbeitszeitzonen.",
+      "advancedConversion": "Erweitert: Zeitzonen-Umrechnung",
+      "advancedConversionHint": "Vergleiche ein bestimmtes lokales Datum und eine Uhrzeit in zwei Zeitzonen.",
       "citySanFrancisco": "San Francisco",
       "cityNewYork": "New York",
       "cityLondon": "London",

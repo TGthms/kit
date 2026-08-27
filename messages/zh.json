@@ -1001,7 +1001,7 @@
       "noSpaces": "No spaces"
     },
     "timezone-converter": {
-      "name": "时区转换器",
+      "name": "世界时钟",
       "description": "在不同时区之间转换本地日期和时间，并查看世界时钟。",
       "keywords": "时区转换 世界时钟 夏令时 日期 时间",
       "limits": "输入来源城市的当地时间。转换使用 IANA 时区规则，包括夏令时变化。",
@@ -1015,6 +1015,8 @@
       "record": "记录转换",
       "worldClock": "世界时钟",
       "worldClockHint": "快速查看常用工作时区。",
+      "advancedConversion": "高级：时区转换",
+      "advancedConversionHint": "比较两个时区中的特定本地日期和时间。",
       "citySanFrancisco": "San Francisco",
       "cityNewYork": "New York",
       "cityLondon": "London",

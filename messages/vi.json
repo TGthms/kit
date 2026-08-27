@@ -1001,7 +1001,7 @@
       "noSpaces": "No spaces"
     },
     "timezone-converter": {
-      "name": "Chuyển đổi múi giờ",
+      "name": "Đồng hồ thế giới",
       "description": "Chuyển đổi ngày giờ địa phương giữa các múi giờ và xem đồng hồ thế giới.",
       "keywords": "chuyển đổi múi giờ đồng hồ thế giới giờ mùa hè ngày giờ",
       "limits": "Nhập giờ tại thành phố nguồn. Việc chuyển đổi dùng quy tắc múi giờ IANA, bao gồm thay đổi giờ mùa hè.",
@@ -1015,6 +1015,8 @@
       "record": "Ghi lại chuyển đổi",
       "worldClock": "Đồng hồ thế giới",
       "worldClockHint": "Xem nhanh các múi giờ làm việc phổ biến.",
+      "advancedConversion": "Nâng cao: chuyển đổi múi giờ",
+      "advancedConversionHint": "So sánh ngày và giờ địa phương cụ thể giữa hai múi giờ.",
       "citySanFrancisco": "San Francisco",
       "cityNewYork": "New York",
       "cityLondon": "London",

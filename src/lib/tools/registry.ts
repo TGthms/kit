@@ -245,12 +245,12 @@ export const featuredToolIds: ToolId[] = [
   "everyday-converter",
   "timezone-converter",
   "currency-converter",
-  "qr-code",
+  "date-calculator",
+  "tip-split-calculator",
+  "stopwatch-timer",
   "password-generator",
+  "qr-code",
   "text-counter",
-  "random-generator",
-  "image-compress",
-  "images-to-pdf",
 ];
 
 export const toolMap = Object.fromEntries(tools.map((t) => [t.id, t])) as Record<ToolId, ToolDef>;

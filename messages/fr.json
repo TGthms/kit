@@ -1001,7 +1001,7 @@
       "noSpaces": "Sans espaces"
     },
     "timezone-converter": {
-      "name": "Convertisseur de fuseaux horaires",
+      "name": "Horloge mondiale",
       "description": "Convertissez une date et une heure locales entre fuseaux et consultez une horloge mondiale.",
       "keywords": "convertisseur fuseau horaire horloge mondiale heure été date heure",
       "limits": "Saisissez l’heure dans la ville source. La conversion utilise les règles de fuseaux IANA, y compris les changements d’heure d’été.",
@@ -1015,6 +1015,8 @@
       "record": "Enregistrer la conversion",
       "worldClock": "Horloge mondiale",
       "worldClockHint": "Un aperçu rapide des fuseaux de travail courants.",
+      "advancedConversion": "Avancé : conversion de fuseau horaire",
+      "advancedConversionHint": "Comparez une date et une heure locales précises entre deux fuseaux horaires.",
       "citySanFrancisco": "San Francisco",
       "cityNewYork": "New York",
       "cityLondon": "London",

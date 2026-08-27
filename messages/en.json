@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "Kit — Browser tools that stay private",
-    "description": "PDF, images, media, converters, and text tools that run on your device. Nothing is uploaded to our servers."
+    "description": "Private everyday browser tools—world clocks, converters, calculators, timers, and text helpers—plus PDF, image, media, and developer utilities. Nothing is uploaded."
   },
   "brand": {
     "name": "Kit",
@@ -115,7 +115,7 @@
   },
   "home": {
     "title": "What do you need to do?",
-    "subtitle": "Handy tools that run on this device—no account, no uploads.",
+    "subtitle": "World clocks, converters, calculators, timers, and text helpers for everyday work—private by design, with no account or uploads.",
     "categories": "Categories",
     "popular": "Tools",
     "noResults": "Nothing matches that search.",
@@ -1001,10 +1001,10 @@
       "noSpaces": "No spaces"
     },
     "timezone-converter": {
-      "name": "Time-zone converter",
-      "description": "Convert a local date and time across world time zones and check a live world clock.",
+      "name": "World clock",
+      "description": "See live times around the world, with advanced time zone conversion when you need it.",
       "keywords": "timezone converter time zone world clock DST date time",
-      "limits": "Enter a wall-clock time in the source city. Conversion uses IANA time-zone rules, including daylight-saving changes.",
+      "limits": "Live times use the browser clock and IANA time-zone rules, including daylight-saving changes. Advanced conversion lets you compare a specific local date and time across zones.",
       "convert": "Convert a date and time",
       "convertHint": "Choose a source zone and a destination zone.",
       "localTime": "Local date and time",
@@ -1015,6 +1015,8 @@
       "record": "Record conversion",
       "worldClock": "World clock",
       "worldClockHint": "A quick glance across common workday zones.",
+      "advancedConversion": "Advanced: time zone conversion",
+      "advancedConversionHint": "Compare a specific local date and time across two time zones.",
       "citySanFrancisco": "San Francisco",
       "cityNewYork": "New York",
       "cityLondon": "London",

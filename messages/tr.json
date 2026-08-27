@@ -1001,7 +1001,7 @@
       "noSpaces": "No spaces"
     },
     "timezone-converter": {
-      "name": "Saat dilimi dönüştürücü",
+      "name": "Dünya saati",
       "description": "Yerel tarih ve saati saat dilimleri arasında dönüştürün ve dünya saatini izleyin.",
       "keywords": "saat dilimi dönüştürücü dünya saati yaz saati tarih saat",
       "limits": "Kaynak şehirdeki saat bilgisini girin. Dönüştürme, yaz saati değişiklikleri dahil IANA saat dilimi kurallarını kullanır.",
@@ -1015,6 +1015,8 @@
       "record": "Dönüştürmeyi kaydet",
       "worldClock": "Dünya saati",
       "worldClockHint": "Yaygın çalışma bölgelerine hızlı bakış.",
+      "advancedConversion": "Gelişmiş: saat dilimi dönüştürme",
+      "advancedConversionHint": "Belirli bir yerel tarih ve saati iki saat dilimi arasında karşılaştırın.",
       "citySanFrancisco": "San Francisco",
       "cityNewYork": "New York",
       "cityLondon": "London",

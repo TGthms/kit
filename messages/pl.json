@@ -1001,7 +1001,7 @@
       "noSpaces": "No spaces"
     },
     "timezone-converter": {
-      "name": "Konwerter stref czasowych",
+      "name": "Zegar światowy",
       "description": "Przeliczaj lokalną datę i godzinę między strefami oraz sprawdzaj zegar światowy.",
       "keywords": "konwerter stref czasowych zegar światowy czas letni data godzina",
       "limits": "Wprowadź godzinę w mieście źródłowym. Konwersja korzysta z reguł stref IANA, w tym zmian czasu letniego.",
@@ -1015,6 +1015,8 @@
       "record": "Zapisz konwersję",
       "worldClock": "Zegar światowy",
       "worldClockHint": "Szybki podgląd popularnych stref pracy.",
+      "advancedConversion": "Zaawansowane: konwersja strefy czasowej",
+      "advancedConversionHint": "Porównaj konkretną lokalną datę i godzinę w dwóch strefach czasowych.",
       "citySanFrancisco": "San Francisco",
       "cityNewYork": "New York",
       "cityLondon": "London",

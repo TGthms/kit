@@ -1001,7 +1001,7 @@
       "noSpaces": "Sin espacios"
     },
     "timezone-converter": {
-      "name": "Conversor de zonas horarias",
+      "name": "Reloj mundial",
       "description": "Convierte una fecha y hora local entre zonas horarias y consulta un reloj mundial.",
       "keywords": "conversor de zonas horarias reloj mundial horario de verano fecha hora",
       "limits": "Introduce la hora del reloj en la ciudad de origen. La conversión usa las reglas de zonas horarias IANA, incluidos los cambios de horario de verano.",
@@ -1015,6 +1015,8 @@
       "record": "Registrar conversión",
       "worldClock": "Reloj mundial",
       "worldClockHint": "Una vista rápida de zonas habituales de trabajo.",
+      "advancedConversion": "Avanzado: conversión de zona horaria",
+      "advancedConversionHint": "Compara una fecha y hora local específicas entre dos zonas horarias.",
       "citySanFrancisco": "San Francisco",
       "cityNewYork": "New York",
       "cityLondon": "London",

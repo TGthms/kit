@@ -1001,7 +1001,7 @@
       "noSpaces": "Senza spazi"
     },
     "timezone-converter": {
-      "name": "Convertitore di fusi orari",
+      "name": "Orologio mondiale",
       "description": "Converti data e ora locali tra fusi orari e controlla un orologio mondiale.",
       "keywords": "convertitore fuso orario orologio mondiale ora legale data ora",
       "limits": "Inserisci l’ora nella città di origine. La conversione usa le regole dei fusi IANA, inclusi i cambi dell’ora legale.",
@@ -1015,6 +1015,8 @@
       "record": "Registra conversione",
       "worldClock": "Orologio mondiale",
       "worldClockHint": "Una rapida panoramica dei fusi di lavoro più comuni.",
+      "advancedConversion": "Avanzato: conversione del fuso orario",
+      "advancedConversionHint": "Confronta una data e un'ora locali specifiche tra due fusi orari.",
       "citySanFrancisco": "San Francisco",
       "cityNewYork": "New York",
       "cityLondon": "London",

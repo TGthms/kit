@@ -1001,7 +1001,7 @@
       "noSpaces": "No spaces"
     },
     "timezone-converter": {
-      "name": "ממיר אזורי זמן",
+      "name": "שעון עולמי",
       "description": "המרת תאריך ושעה מקומיים בין אזורי זמן ובדיקת שעון עולמי.",
       "keywords": "ממיר אזורי זמן שעון עולמי שעון קיץ תאריך שעה",
       "limits": "הזינו את השעה בעיר המקור. ההמרה משתמשת בכללי אזורי הזמן של IANA, כולל שינויים בשעון הקיץ.",
@@ -1015,6 +1015,8 @@
       "record": "תיעוד המרה",
       "worldClock": "שעון עולמי",
       "worldClockHint": "מבט מהיר על אזורי זמן נפוצים לעבודה.",
+      "advancedConversion": "מתקדם: המרת אזור זמן",
+      "advancedConversionHint": "השוו תאריך ושעה מקומיים מסוימים בין שני אזורי זמן.",
       "citySanFrancisco": "San Francisco",
       "cityNewYork": "New York",
       "cityLondon": "London",

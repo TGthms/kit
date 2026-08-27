@@ -1001,7 +1001,7 @@
       "noSpaces": "スペースなし"
     },
     "timezone-converter": {
-      "name": "タイムゾーン変換",
+      "name": "世界時計",
       "description": "現地の日付と時刻をタイムゾーン間で変換し、世界時計を確認します。",
       "keywords": "タイムゾーン変換 世界時計 夏時間 日付 時刻",
       "limits": "基準都市の時刻を入力してください。変換には夏時間の変更を含むIANAタイムゾーン規則を使います。",
@@ -1015,6 +1015,8 @@
       "record": "変換を記録",
       "worldClock": "世界時計",
       "worldClockHint": "一般的な勤務時間帯をすばやく確認できます。",
+      "advancedConversion": "詳細：タイムゾーン変換",
+      "advancedConversionHint": "2つのタイムゾーン間で特定の現地日時を比較します。",
       "citySanFrancisco": "San Francisco",
       "cityNewYork": "New York",
       "cityLondon": "London",

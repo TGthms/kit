@@ -1001,7 +1001,7 @@
       "noSpaces": "Zonder spaties"
     },
     "timezone-converter": {
-      "name": "Tijdzone-omzetter",
+      "name": "Wereldklok",
       "description": "Zet lokale datum en tijd om tussen tijdzones en bekijk een wereldklok.",
       "keywords": "tijdzone omzetter wereldklok zomertijd datum tijd",
       "limits": "Voer de kloktijd in de bronstad in. De conversie gebruikt IANA-tijdzoneregels, inclusief wijzigingen in zomertijd.",
@@ -1015,6 +1015,8 @@
       "record": "Conversie vastleggen",
       "worldClock": "Wereldklok",
       "worldClockHint": "Een snel overzicht van veelgebruikte werkzones.",
+      "advancedConversion": "Geavanceerd: tijdzoneconversie",
+      "advancedConversionHint": "Vergelijk een specifieke lokale datum en tijd tussen twee tijdzones.",
       "citySanFrancisco": "San Francisco",
       "cityNewYork": "New York",
       "cityLondon": "London",

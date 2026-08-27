@@ -1001,7 +1001,7 @@
       "noSpaces": "No spaces"
     },
     "timezone-converter": {
-      "name": "Convertor de fusuri orare",
+      "name": "Ceas mondial",
       "description": "Convertește data și ora locală între fusuri orare și verifică un ceas mondial.",
       "keywords": "convertor fus orar ceas mondial ora de vară dată oră",
       "limits": "Introdu ora din orașul sursă. Conversia folosește regulile IANA pentru fusuri orare, inclusiv schimbările orei de vară.",
@@ -1015,6 +1015,8 @@
       "record": "Înregistrează conversia",
       "worldClock": "Ceas mondial",
       "worldClockHint": "O privire rapidă asupra zonelor de lucru uzuale.",
+      "advancedConversion": "Avansat: conversia fusului orar",
+      "advancedConversionHint": "Compară o dată și o oră locală precisă între două fusuri orare.",
       "citySanFrancisco": "San Francisco",
       "cityNewYork": "New York",
       "cityLondon": "London",

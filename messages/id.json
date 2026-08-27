@@ -1001,7 +1001,7 @@
       "noSpaces": "No spaces"
     },
     "timezone-converter": {
-      "name": "Konverter zona waktu",
+      "name": "Jam dunia",
       "description": "Konversi tanggal dan waktu lokal antar-zona waktu serta lihat jam dunia.",
       "keywords": "konverter zona waktu jam dunia DST tanggal waktu",
       "limits": "Masukkan waktu lokal di kota sumber. Konversi menggunakan aturan zona waktu IANA, termasuk perubahan waktu musim panas.",
@@ -1015,6 +1015,8 @@
       "record": "Catat konversi",
       "worldClock": "Jam dunia",
       "worldClockHint": "Sekilas zona kerja yang umum.",
+      "advancedConversion": "Lanjutan: konversi zona waktu",
+      "advancedConversionHint": "Bandingkan tanggal dan waktu lokal tertentu di antara dua zona waktu.",
       "citySanFrancisco": "San Francisco",
       "cityNewYork": "New York",
       "cityLondon": "London",

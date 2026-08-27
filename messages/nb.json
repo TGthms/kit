@@ -1001,7 +1001,7 @@
       "noSpaces": "No spaces"
     },
     "timezone-converter": {
-      "name": "Tidssonekonvertering",
+      "name": "Verdensklokke",
       "description": "Konverter lokal dato og tid mellom tidssoner og se en verdensklokke.",
       "keywords": "tidssonekonverter verdensklokke sommertid dato tid",
       "limits": "Skriv inn klokkeslettet i kildebyen. Konverteringen bruker IANA-regler for tidssoner, inkludert sommertidsendringer.",
@@ -1015,6 +1015,8 @@
       "record": "Registrer konvertering",
       "worldClock": "Verdensklokke",
       "worldClockHint": "En rask oversikt over vanlige arbeidssoner.",
+      "advancedConversion": "Avansert: tidssonekonvertering",
+      "advancedConversionHint": "Sammenlign en bestemt lokal dato og tid mellom to tidssoner.",
       "citySanFrancisco": "San Francisco",
       "cityNewYork": "New York",
       "cityLondon": "London",

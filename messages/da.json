@@ -1001,7 +1001,7 @@
       "noSpaces": "No spaces"
     },
     "timezone-converter": {
-      "name": "Tidszonekonverter",
+      "name": "Verdensur",
       "description": "Konvertér lokal dato og tid på tværs af tidszoner, og se et verdensur.",
       "keywords": "tidszonekonverter verdensur sommertid dato tid",
       "limits": "Indtast klokkeslættet i kildebyen. Konverteringen bruger IANA-tidszoneregler, herunder ændringer til sommertid.",
@@ -1015,6 +1015,8 @@
       "record": "Registrer konvertering",
       "worldClock": "Verdensur",
       "worldClockHint": "Et hurtigt overblik over almindelige arbejdszoner.",
+      "advancedConversion": "Avanceret: tidszonekonvertering",
+      "advancedConversionHint": "Sammenlign en bestemt lokal dato og tid på tværs af to tidszoner.",
       "citySanFrancisco": "San Francisco",
       "cityNewYork": "New York",
       "cityLondon": "London",

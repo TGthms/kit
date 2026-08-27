@@ -1001,7 +1001,7 @@
       "noSpaces": "공백 제외"
     },
     "timezone-converter": {
-      "name": "시간대 변환기",
+      "name": "세계 시계",
       "description": "현지 날짜와 시간을 시간대 사이에서 변환하고 세계 시계를 확인합니다.",
       "keywords": "시간대 변환기 세계 시계 서머타임 날짜 시간",
       "limits": "출발 도시의 현지 시각을 입력하세요. 변환에는 서머타임 변경을 포함한 IANA 시간대 규칙이 사용됩니다.",
@@ -1015,6 +1015,8 @@
       "record": "변환 기록",
       "worldClock": "세계 시계",
       "worldClockHint": "일반적인 업무 시간대를 빠르게 확인합니다.",
+      "advancedConversion": "고급: 시간대 변환",
+      "advancedConversionHint": "두 시간대의 특정 현지 날짜와 시간을 비교합니다.",
       "citySanFrancisco": "San Francisco",
       "cityNewYork": "New York",
       "cityLondon": "London",

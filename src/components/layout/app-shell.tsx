@@ -29,17 +29,16 @@ function ScrollRestoration({ locationKey }: { locationKey: string }) {
   useEffect(() => {
     const previousRestoration = window.history.scrollRestoration;
     window.history.scrollRestoration = "manual";
+    const storageKey = `${SCROLL_STORAGE_PREFIX}${window.location.pathname}${window.location.search}`;
+    let lastScrollY = window.scrollY;
     let saved = 0;
     try {
-      saved = Number(
-        sessionStorage.getItem(
-          `${SCROLL_STORAGE_PREFIX}${window.location.pathname}${window.location.search}`
-        )
-      );
+      saved = Number(sessionStorage.getItem(storageKey));
     } catch {
       // sessionStorage may be unavailable in private browsing modes.
     }
     let frame = 0;
+    let restoreTimer = 0;
     let attempts = 0;
     const restore = () => {
       attempts += 1;
@@ -51,21 +50,26 @@ function ScrollRestoration({ locationKey }: { locationKey: string }) {
       }
       frame = window.requestAnimationFrame(restore);
     };
-    frame = window.requestAnimationFrame(restore);
+    restoreTimer = window.setTimeout(() => {
+      frame = window.requestAnimationFrame(restore);
+    }, 50);
     const save = () => {
       try {
-        sessionStorage.setItem(
-          `${SCROLL_STORAGE_PREFIX}${window.location.pathname}${window.location.search}`,
-          String(window.scrollY)
-        );
+        sessionStorage.setItem(storageKey, String(lastScrollY));
       } catch {
         // sessionStorage may be unavailable in private browsing modes.
       }
     };
+    const rememberScroll = () => {
+      lastScrollY = window.scrollY;
+    };
+    window.addEventListener("scroll", rememberScroll, { passive: true });
     window.addEventListener("pagehide", save);
     return () => {
       window.cancelAnimationFrame(frame);
+      window.clearTimeout(restoreTimer);
       save();
+      window.removeEventListener("scroll", rememberScroll);
       window.removeEventListener("pagehide", save);
       window.history.scrollRestoration = previousRestoration;
     };
@@ -73,11 +77,20 @@ function ScrollRestoration({ locationKey }: { locationKey: string }) {
 
   useEffect(() => {
     const rememberBeforeNavigation = (event: MouseEvent) => {
-      const target = event.target instanceof Element ? event.target.closest("a") : null;
-      if (!(target instanceof HTMLAnchorElement) || target.target === "_blank" || target.hasAttribute("download")) return;
-      if (target.origin !== window.location.origin) return;
-      const key = `${SCROLL_STORAGE_PREFIX}${window.location.pathname}${window.location.search}`;
-      sessionStorage.setItem(key, String(window.scrollY));
+      const target = event.target instanceof Element ? event.target.closest("a,button") : null;
+      if (!target) return;
+      if (target instanceof HTMLAnchorElement) {
+        if (target.target === "_blank" || target.hasAttribute("download")) return;
+        if (target.origin !== window.location.origin) return;
+      } else if (!(target instanceof HTMLButtonElement)) {
+        return;
+      }
+      try {
+        const key = `${SCROLL_STORAGE_PREFIX}${window.location.pathname}${window.location.search}`;
+        sessionStorage.setItem(key, String(window.scrollY));
+      } catch {
+        // sessionStorage may be unavailable in private browsing modes.
+      }
     };
     document.addEventListener("click", rememberBeforeNavigation, true);
     return () => document.removeEventListener("click", rememberBeforeNavigation, true);

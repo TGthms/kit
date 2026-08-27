@@ -1001,7 +1001,7 @@
       "noSpaces": "No spaces"
     },
     "timezone-converter": {
-      "name": "Převodník časových pásem",
+      "name": "Světové hodiny",
       "description": "Převádějte místní datum a čas mezi časovými pásmy a sledujte světové hodiny.",
       "keywords": "převodník časových pásem světové hodiny letní čas datum čas",
       "limits": "Zadejte čas na hodinách ve zdrojovém městě. Převod používá pravidla časových pásem IANA včetně letního času.",
@@ -1015,6 +1015,8 @@
       "record": "Zaznamenat převod",
       "worldClock": "Světové hodiny",
       "worldClockHint": "Rychlý přehled běžných pracovních pásem.",
+      "advancedConversion": "Pokročilé: převod časového pásma",
+      "advancedConversionHint": "Porovnejte konkrétní místní datum a čas mezi dvěma časovými pásmy.",
       "citySanFrancisco": "San Francisco",
       "cityNewYork": "New York",
       "cityLondon": "London",
