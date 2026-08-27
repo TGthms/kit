@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef } from "react";
 import { useTranslations } from "next-intl";
 import { useSearchParams } from "next/navigation";
 import { ChevronLeft, Star } from "lucide-react";
@@ -35,10 +35,24 @@ export function ToolHeader({ toolId }: { toolId: ToolId }) {
   const backHref = fromHref ?? toolBackHref(toolId);
   const backLabel = fromHref ? tc("back") : tool ? tCat(tool.category) : tc("back");
   const showClientSideNote = tool ? isFileTool(tool) : false;
-  const [showFloatingBack, setShowFloatingBack] = useState(false);
+  const headerRef = useRef<HTMLElement>(null);
+  const floatingBackRef = useRef<HTMLAnchorElement>(null);
 
   useEffect(() => {
-    const onScroll = () => setShowFloatingBack(window.scrollY > 72);
+    const header = headerRef.current;
+    const floatingBack = floatingBackRef.current;
+    if (!header || !floatingBack) return;
+
+    const onScroll = () => {
+      const scrolled = window.scrollY > 96;
+      header.classList.toggle("max-md:-translate-y-full", scrolled);
+      floatingBack.classList.toggle("translate-y-0", scrolled);
+      floatingBack.classList.toggle("opacity-100", scrolled);
+      floatingBack.classList.toggle("pointer-events-none", !scrolled);
+      floatingBack.classList.toggle("-translate-y-1", !scrolled);
+      floatingBack.classList.toggle("opacity-0", !scrolled);
+      floatingBack.tabIndex = scrolled ? 0 : -1;
+    };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -48,7 +62,8 @@ export function ToolHeader({ toolId }: { toolId: ToolId }) {
     <>
       <PageHeader
         sticky
-        className={showFloatingBack ? "max-md:hidden" : undefined}
+        headerRef={headerRef}
+        className="max-md:transition-transform max-md:duration-200 max-md:ease-out"
         title={t("name")}
         subtitle={t("description")}
         backHref={backHref}
@@ -72,16 +87,21 @@ export function ToolHeader({ toolId }: { toolId: ToolId }) {
           </Button>
         }
       />
-      {showFloatingBack ? (
-        <Link
-          href={backHref}
-          aria-label={backLabel}
-          data-pressable
-          className="fixed left-4 top-[calc(3rem+env(safe-area-inset-top)+0.5rem)] z-[45] inline-flex h-11 w-11 items-center justify-center rounded-full border border-border/60 bg-card/95 text-primary shadow-lg backdrop-blur-xl transition-[opacity,transform,box-shadow] duration-200 hover:shadow-xl active:scale-95 sm:left-6 sm:top-[calc(3.5rem+env(safe-area-inset-top)+0.5rem)] sm:h-12 sm:w-12 md:hidden"
-        >
-          <ChevronLeft className="h-5 w-5 stroke-[2.5] sm:h-6 sm:w-6" aria-hidden />
-        </Link>
-      ) : null}
+      <Link
+        ref={floatingBackRef}
+        href={backHref}
+        aria-label={backLabel}
+        data-pressable
+        tabIndex={-1}
+        data-floating-back
+        className={[
+          "fixed left-4 top-[calc(3rem+env(safe-area-inset-top)+0.5rem)] z-[45] inline-flex h-11 w-11 items-center justify-center rounded-full border border-border/60 bg-card/95 text-primary shadow-lg backdrop-blur-xl",
+          "transition-[opacity,transform,box-shadow] duration-200 hover:shadow-xl active:scale-95 sm:left-6 sm:top-[calc(3.5rem+env(safe-area-inset-top)+0.5rem)] sm:h-12 sm:w-12 md:hidden",
+          "pointer-events-none -translate-y-1 opacity-0",
+        ].join(" ")}
+      >
+        <ChevronLeft className="h-5 w-5 stroke-[2.5] sm:h-6 sm:w-6" aria-hidden />
+      </Link>
     </>
   );
 }

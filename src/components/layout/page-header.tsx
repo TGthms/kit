@@ -1,6 +1,6 @@
 "use client";
 
-import type { ReactNode } from "react";
+import type { ReactNode, Ref } from "react";
 import { ChevronLeft } from "lucide-react";
 import { Link } from "@/lib/i18n/navigation";
 import { cn } from "@/lib/utils";
@@ -15,6 +15,7 @@ type PageHeaderProps = {
   below?: ReactNode;
   className?: string;
   sticky?: boolean;
+  headerRef?: Ref<HTMLElement>;
 };
 
 /**
@@ -29,9 +30,11 @@ export function PageHeader({
   below,
   className,
   sticky = true,
+  headerRef,
 }: PageHeaderProps) {
   return (
     <header
+      ref={headerRef}
       className={cn(
         "mb-5 sm:mb-6",
         sticky &&
