@@ -4,18 +4,38 @@ import { useEffect, useMemo, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import {
   ArrowLeftRight,
+  Activity,
+  BatteryCharging,
+  Beaker,
+  Cable,
   CalendarDays,
   Check,
   Clock3,
   Copy,
+  Database,
   Dice5,
+  Dumbbell,
+  Fuel,
+  Gauge,
+  GlassWater,
   Globe2,
+  MoveUpRight,
+  Orbit,
+  Ruler,
   RefreshCw,
+  RotateCw,
   Search,
+  Scale,
+  Square,
+  Thermometer,
+  Timer,
   TimerReset,
+  Type,
   TrendingUp,
   WalletCards,
+  Zap,
 } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import { toast } from "sonner";
 import { FileDropzone, type FileItem } from "@/components/shared/file-dropzone";
 import { Button } from "@/components/ui/button";
@@ -293,26 +313,26 @@ const UNIT_CATALOG: Record<UnitCategory, UnitOption[]> = {
   ],
 };
 
-const UNIT_CATEGORY_INFO: Array<{ id: UnitCategory; key: string }> = [
-  { id: "length", key: "Length" },
-  { id: "mass", key: "Mass" },
-  { id: "temperature", key: "Temperature" },
-  { id: "speed", key: "Speed" },
-  { id: "duration", key: "Duration" },
-  { id: "volume", key: "Volume" },
-  { id: "power", key: "Power" },
-  { id: "energy", key: "Energy" },
-  { id: "pressure", key: "Pressure" },
-  { id: "area", key: "Area" },
-  { id: "data", key: "Data" },
-  { id: "angle", key: "Angle" },
-  { id: "frequency", key: "Frequency" },
-  { id: "force", key: "Force" },
-  { id: "fuelEconomy", key: "FuelEconomy" },
-  { id: "acceleration", key: "Acceleration" },
-  { id: "torque", key: "Torque" },
-  { id: "electrical", key: "Electrical" },
-  { id: "typography", key: "Typography" },
+const UNIT_CATEGORY_INFO: Array<{ id: UnitCategory; key: string; icon: LucideIcon }> = [
+  { id: "length", key: "Length", icon: Ruler },
+  { id: "mass", key: "Mass", icon: Scale },
+  { id: "temperature", key: "Temperature", icon: Thermometer },
+  { id: "speed", key: "Speed", icon: Gauge },
+  { id: "duration", key: "Duration", icon: Timer },
+  { id: "volume", key: "Volume", icon: GlassWater },
+  { id: "power", key: "Power", icon: Zap },
+  { id: "energy", key: "Energy", icon: BatteryCharging },
+  { id: "pressure", key: "Pressure", icon: Beaker },
+  { id: "area", key: "Area", icon: Square },
+  { id: "data", key: "Data", icon: Database },
+  { id: "angle", key: "Angle", icon: RotateCw },
+  { id: "frequency", key: "Frequency", icon: Activity },
+  { id: "force", key: "Force", icon: Dumbbell },
+  { id: "fuelEconomy", key: "FuelEconomy", icon: Fuel },
+  { id: "acceleration", key: "Acceleration", icon: MoveUpRight },
+  { id: "torque", key: "Torque", icon: Orbit },
+  { id: "electrical", key: "Electrical", icon: Cable },
+  { id: "typography", key: "Typography", icon: Type },
 ];
 
 const CURRENCIES = [
@@ -450,12 +470,13 @@ function SearchableSelect({
 
 function ConverterLanding({ onSelect }: { onSelect: (category: ConverterCategory) => void }) {
   const t = useTranslations("tools.everyday-converter");
-  const cards: Array<{ id: ConverterCategory; label: string; description: string }> = [
-    { id: "currency", label: text(t, "currency", "Currency"), description: text(t, "categoryCurrencyDescription", "Live exchange rates with a local cache") },
+  const cards: Array<{ id: ConverterCategory; label: string; description: string; icon: LucideIcon }> = [
+    { id: "currency", label: text(t, "currency", "Currency"), description: text(t, "categoryCurrencyDescription", "Live exchange rates with a local cache"), icon: TrendingUp },
     ...UNIT_CATEGORY_INFO.map((item) => ({
       id: item.id,
       label: text(t, `category${item.key}`, item.key === "FuelEconomy" ? "Fuel economy" : item.key),
       description: text(t, `category${item.key}Description`, "Local unit conversion"),
+      icon: item.icon,
     })),
   ];
   return (
@@ -470,7 +491,7 @@ function ConverterLanding({ onSelect }: { onSelect: (category: ConverterCategory
           >
             <div className="mb-4 flex items-center justify-between">
               <span className="rounded-xl bg-primary/10 p-2.5 text-primary">
-                {card.id === "currency" ? <TrendingUp className="h-5 w-5" /> : <ArrowLeftRight className="h-5 w-5" />}
+                <card.icon className="h-5 w-5" strokeWidth={1.8} aria-hidden />
               </span>
               <ArrowLeftRight className="h-4 w-4 text-muted-foreground transition group-hover:translate-x-0.5 group-hover:text-primary" />
             </div>
