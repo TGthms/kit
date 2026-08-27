@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { useTranslations } from "next-intl";
 import { useSearchParams } from "next/navigation";
 import { ChevronLeft, Star } from "lucide-react";
@@ -37,8 +38,12 @@ export function ToolHeader({ toolId }: { toolId: ToolId }) {
   const showClientSideNote = tool ? isFileTool(tool) : false;
   const headerRef = useRef<HTMLElement>(null);
   const floatingBackRef = useRef<HTMLAnchorElement>(null);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => setMounted(true), []);
 
   useEffect(() => {
+    if (!mounted) return;
     const header = headerRef.current;
     const floatingBack = floatingBackRef.current;
     if (!header || !floatingBack) return;
@@ -56,7 +61,7 @@ export function ToolHeader({ toolId }: { toolId: ToolId }) {
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  }, [mounted]);
 
   return (
     <>
@@ -87,21 +92,26 @@ export function ToolHeader({ toolId }: { toolId: ToolId }) {
           </Button>
         }
       />
-      <Link
-        ref={floatingBackRef}
-        href={backHref}
-        aria-label={backLabel}
-        data-pressable
-        tabIndex={-1}
-        data-floating-back
-        className={[
-          "fixed left-4 top-[calc(3rem+env(safe-area-inset-top)+0.75rem)] z-[60] inline-flex h-11 w-11 items-center justify-center rounded-full border border-border/60 bg-card/95 text-primary shadow-lg backdrop-blur-xl",
-          "transition-[opacity,transform,box-shadow] duration-200 hover:shadow-xl active:scale-95 sm:left-6 sm:top-[calc(3.5rem+env(safe-area-inset-top)+0.75rem)] sm:h-12 sm:w-12 md:hidden",
-          "pointer-events-none -translate-y-1 opacity-0",
-        ].join(" ")}
-      >
-        <ChevronLeft className="h-5 w-5 stroke-[2.5] sm:h-6 sm:w-6" aria-hidden />
-      </Link>
+      {mounted
+        ? createPortal(
+            <Link
+              ref={floatingBackRef}
+              href={backHref}
+              aria-label={backLabel}
+              data-pressable
+              tabIndex={-1}
+              data-floating-back
+              className={[
+                "fixed left-4 top-[calc(3rem+env(safe-area-inset-top)+0.75rem)] z-[60] inline-flex h-11 w-11 items-center justify-center rounded-full border border-border/60 bg-card/95 text-primary shadow-lg backdrop-blur-xl",
+                "transition-[opacity,transform,box-shadow] duration-200 hover:shadow-xl active:scale-95 sm:left-6 sm:top-[calc(3.5rem+env(safe-area-inset-top)+0.75rem)] sm:h-12 sm:w-12 md:hidden",
+                "pointer-events-none -translate-y-1 opacity-0",
+              ].join(" ")}
+            >
+              <ChevronLeft className="h-5 w-5 stroke-[2.5] sm:h-6 sm:w-6" aria-hidden />
+            </Link>,
+            document.body
+          )
+        : null}
     </>
   );
 }
