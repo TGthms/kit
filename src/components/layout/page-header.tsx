@@ -51,6 +51,7 @@ export function PageHeader({
         <Link
           href={backHref}
           data-pressable
+          data-restore-scroll
           aria-label={backLabel}
           className={cn(
             "pressable-soft mb-1 inline-flex min-h-11 max-w-full items-center gap-0.5",

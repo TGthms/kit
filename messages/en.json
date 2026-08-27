@@ -148,10 +148,10 @@
       "quick": "Quick"
     },
     "greeting": {
-      "morning": "Good morning — happy {day}.",
-      "afternoon": "Good afternoon — happy {day}.",
-      "evening": "Good evening — happy {day}.",
-      "night": "Good evening — enjoy the rest of {day}.",
+      "morning": "Good morning — hope your {day} is off to a good start.",
+      "afternoon": "Good afternoon — how is your {day} going?",
+      "evening": "Good evening — hope your {day} has been kind to you.",
+      "night": "Good evening — take a little time for yourself this {day}.",
       "extra1": "What can we make easier today?",
       "extra2": "Ready when you are.",
       "extra3": "Let’s get something useful done."

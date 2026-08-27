@@ -24,7 +24,8 @@ function isActive(pathname: string, href: string) {
 }
 
 const SCROLL_STORAGE_PREFIX = "kit-scroll:";
-let navigationStarted = false;
+let pendingNavigation = false;
+let restoreNextLocationKey: string | "*" | null = null;
 
 function scrollStorageKey(locationKey: string) {
   return `${SCROLL_STORAGE_PREFIX}${locationKey}`;
@@ -49,12 +50,14 @@ function writeScrollPosition(key: string, value: number) {
 
 function ScrollRestoration({ locationKey }: { locationKey: string }) {
   useEffect(() => {
-    navigationStarted = false;
+    pendingNavigation = false;
     const previousRestoration = window.history.scrollRestoration;
     window.history.scrollRestoration = "manual";
     const storageKey = scrollStorageKey(`${window.location.pathname}${window.location.search}`);
     let lastScrollY = window.scrollY;
-    const saved = readScrollPosition(storageKey);
+    const shouldRestore = restoreNextLocationKey === "*" || restoreNextLocationKey === storageKey;
+    if (shouldRestore) restoreNextLocationKey = null;
+    const saved = shouldRestore ? readScrollPosition(storageKey) : 0;
     let frame = 0;
     let restoreTimer = 0;
     let attempts = 0;
@@ -82,7 +85,7 @@ function ScrollRestoration({ locationKey }: { locationKey: string }) {
       });
     }, 0);
     const save = () => {
-      if (navigationStarted) return;
+      if (pendingNavigation) return;
       writeScrollPosition(storageKey, lastScrollY);
     };
     const rememberScroll = () => {
@@ -107,19 +110,30 @@ function ScrollRestoration({ locationKey }: { locationKey: string }) {
       if (target instanceof HTMLAnchorElement) {
         if (target.target === "_blank" || target.hasAttribute("download")) return;
         if (target.origin !== window.location.origin) return;
-      } else if (!(target instanceof HTMLButtonElement)) {
+      } else if (!(target instanceof HTMLButtonElement) || !target.hasAttribute("data-navigation-intent")) {
         return;
       }
-      try {
-        const key = scrollStorageKey(`${window.location.pathname}${window.location.search}`);
-        writeScrollPosition(key, window.scrollY);
-        navigationStarted = true;
-      } catch {
-        // URL inspection can fail only in unusual document environments.
+      const key = scrollStorageKey(`${window.location.pathname}${window.location.search}`);
+      writeScrollPosition(key, window.scrollY);
+      pendingNavigation = true;
+      if (target.hasAttribute("data-restore-scroll")) {
+        if (target instanceof HTMLAnchorElement) {
+          const destination = new URL(target.href, window.location.href);
+          restoreNextLocationKey = scrollStorageKey(`${destination.pathname}${destination.search}`);
+        } else {
+          restoreNextLocationKey = "*";
+        }
       }
     };
+    const rememberPopstate = () => {
+      restoreNextLocationKey = "*";
+    };
     document.addEventListener("click", rememberBeforeNavigation, true);
-    return () => document.removeEventListener("click", rememberBeforeNavigation, true);
+    window.addEventListener("popstate", rememberPopstate);
+    return () => {
+      document.removeEventListener("click", rememberBeforeNavigation, true);
+      window.removeEventListener("popstate", rememberPopstate);
+    };
   }, []);
 
   return null;

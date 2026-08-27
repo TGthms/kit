@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { getGreetingDay, getGreetingPeriod, getGreetingVariant } from "./greeting";
+import { getGreetingDay, getGreetingPeriod, getGreetingVariant, getHomeSubtitle } from "./greeting";
 
 describe("home greeting", () => {
   it("selects a friendly time-of-day period", () => {
@@ -22,5 +22,10 @@ describe("home greeting", () => {
     expect(afternoon).toBeGreaterThanOrEqual(0);
     expect(afternoon).toBeLessThan(4);
     expect(() => getGreetingVariant(new Date(), 0)).toThrow(RangeError);
+  });
+
+  it("provides a stable, varied home subtitle", () => {
+    expect(getHomeSubtitle(0)).not.toBe(getHomeSubtitle(1));
+    expect(getHomeSubtitle(8)).toBe(getHomeSubtitle(0));
   });
 });

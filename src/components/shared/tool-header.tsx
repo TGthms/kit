@@ -99,6 +99,7 @@ export function ToolHeader({ toolId }: { toolId: ToolId }) {
               href={backHref}
               aria-label={backLabel}
               data-pressable
+              data-restore-scroll
               tabIndex={-1}
               data-floating-back
               className={[

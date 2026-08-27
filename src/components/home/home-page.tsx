@@ -23,7 +23,7 @@ import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/ca
 import { PageHeader } from "@/components/layout/page-header";
 import { useFavoritesStore } from "@/stores/favorites-store";
 import { cn } from "@/lib/utils";
-import { getGreetingDay, getGreetingPeriod, getGreetingVariant, type GreetingPeriod } from "@/lib/home/greeting";
+import { getGreetingDay, getGreetingPeriod, getGreetingVariant, getHomeSubtitle, type GreetingPeriod } from "@/lib/home/greeting";
 
 const categoryMeta: Record<
   ToolCategory,
@@ -218,7 +218,9 @@ function HomePageInner() {
                 </>
               ) : t("title")}
             </h1>
-            <p className="type-body max-w-xl text-muted-foreground">{t("subtitle")}</p>
+            <p className="type-body max-w-xl text-muted-foreground">
+              {locale === "en" && greeting ? getHomeSubtitle(greeting.variant) : t("subtitle")}
+            </p>
           </div>
           <div className="relative max-w-xl">
             <Search className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
@@ -311,6 +313,7 @@ function HomePageInner() {
                 <button
                   key={c}
                   type="button"
+                  data-navigation-intent
                   data-pressable
                   onClick={() => openCategory(c)}
                   style={{ animationDelay: `${index * 40}ms` }}
