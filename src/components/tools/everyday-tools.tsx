@@ -902,30 +902,6 @@ export function TimezoneConverter() {
       <ToolLimits>
         <p>{text(t, "limits", "Live times use the browser clock and IANA time-zone rules, including daylight-saving changes. Advanced conversion lets you compare a specific local date and time across zones.")}</p>
       </ToolLimits>
-      <div className="space-y-3">
-        <div className="flex items-end justify-between gap-3">
-          <div><h2 className="text-lg font-semibold">{text(t, "worldClock", "World clock")}</h2><p className="text-sm text-muted-foreground">{text(t, "worldClockHint", "A quick glance across common workday zones.")}</p></div>
-          <Clock3 className="h-5 w-5 text-muted-foreground" />
-        </div>
-        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-          {CITIES.map((city) => {
-            const parts = getTimeZoneParts(now, city.zone, locale);
-            const offset = getTimeZoneOffsetMinutes(now, city.zone);
-            const sign = offset >= 0 ? "+" : "−";
-            const absOffset = Math.abs(offset);
-            return (
-              <Card key={city.zone}>
-                <CardContent className="p-4">
-                  <div className="flex items-center justify-between"><span className="rounded-lg bg-secondary px-2 py-1 text-xs font-semibold">{city.emoji}</span><span className="text-xs text-muted-foreground">UTC {sign}{Math.floor(absOffset / 60)}:{String(absOffset % 60).padStart(2, "0")}</span></div>
-                  <p className="mt-3 font-medium">{text(t, city.key, city.name)}</p>
-                  <p className="mt-1 font-mono text-xl font-semibold">{String(parts.hour).padStart(2, "0")}:{String(parts.minute).padStart(2, "0")}:{String(parts.second).padStart(2, "0")}</p>
-                  <p className="mt-1 text-xs text-muted-foreground">{formatTimeZone(now, city.zone, { dateStyle: "medium", locale })}</p>
-                </CardContent>
-              </Card>
-            );
-          })}
-        </div>
-      </div>
       <details className="rounded-2xl border border-border/60 bg-card px-4 py-3">
         <summary className="cursor-pointer select-none font-medium text-foreground">{text(t, "advancedConversion", "Advanced: time zone conversion")}</summary>
         <p className="mt-2 text-sm text-muted-foreground">{text(t, "advancedConversionHint", "Compare a specific local date and time across two time zones.")}</p>
@@ -955,6 +931,30 @@ export function TimezoneConverter() {
           </CardContent>
         </Card>
       </details>
+      <div className="space-y-3">
+        <div className="flex items-end justify-between gap-3">
+          <div><h2 className="text-lg font-semibold">{text(t, "worldClock", "World clock")}</h2><p className="text-sm text-muted-foreground">{text(t, "worldClockHint", "A quick glance across common workday zones.")}</p></div>
+          <Clock3 className="h-5 w-5 text-muted-foreground" />
+        </div>
+        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          {CITIES.map((city) => {
+            const parts = getTimeZoneParts(now, city.zone, locale);
+            const offset = getTimeZoneOffsetMinutes(now, city.zone);
+            const sign = offset >= 0 ? "+" : "−";
+            const absOffset = Math.abs(offset);
+            return (
+              <Card key={city.zone}>
+                <CardContent className="p-4">
+                  <div className="flex items-center justify-between"><span className="rounded-lg bg-secondary px-2 py-1 text-xs font-semibold">{city.emoji}</span><span className="text-xs text-muted-foreground">UTC {sign}{Math.floor(absOffset / 60)}:{String(absOffset % 60).padStart(2, "0")}</span></div>
+                  <p className="mt-3 font-medium">{text(t, city.key, city.name)}</p>
+                  <p className="mt-1 font-mono text-xl font-semibold">{String(parts.hour).padStart(2, "0")}:{String(parts.minute).padStart(2, "0")}:{String(parts.second).padStart(2, "0")}</p>
+                  <p className="mt-1 text-xs text-muted-foreground">{formatTimeZone(now, city.zone, { dateStyle: "medium", locale })}</p>
+                </CardContent>
+              </Card>
+            );
+          })}
+        </div>
+      </div>
     </ToolShell>
   );
 }
