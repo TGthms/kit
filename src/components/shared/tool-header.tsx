@@ -48,6 +48,7 @@ export function ToolHeader({ toolId }: { toolId: ToolId }) {
     <>
       <PageHeader
         sticky
+        className={showFloatingBack ? "max-md:hidden" : undefined}
         title={t("name")}
         subtitle={t("description")}
         backHref={backHref}
@@ -76,7 +77,7 @@ export function ToolHeader({ toolId }: { toolId: ToolId }) {
           href={backHref}
           aria-label={backLabel}
           data-pressable
-          className="fixed bottom-[calc(6rem+env(safe-area-inset-bottom))] right-4 z-[45] inline-flex h-11 w-11 items-center justify-center rounded-full border border-border/60 bg-card/95 text-primary shadow-lg backdrop-blur-xl transition-[opacity,transform,box-shadow] duration-200 hover:shadow-xl active:scale-95 sm:h-12 sm:w-12 md:hidden"
+          className="fixed left-4 top-[calc(3rem+env(safe-area-inset-top)+0.5rem)] z-[45] inline-flex h-11 w-11 items-center justify-center rounded-full border border-border/60 bg-card/95 text-primary shadow-lg backdrop-blur-xl transition-[opacity,transform,box-shadow] duration-200 hover:shadow-xl active:scale-95 sm:left-6 sm:top-[calc(3.5rem+env(safe-area-inset-top)+0.5rem)] sm:h-12 sm:w-12 md:hidden"
         >
           <ChevronLeft className="h-5 w-5 stroke-[2.5] sm:h-6 sm:w-6" aria-hidden />
         </Link>

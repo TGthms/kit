@@ -3,6 +3,7 @@
 import { useEffect } from "react";
 import { useTranslations } from "next-intl";
 import { Link, usePathname } from "@/lib/i18n/navigation";
+import { useSearchParams } from "next/navigation";
 import { Home, History, Star, Settings } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { withAsset } from "@/lib/base-path";
@@ -24,23 +25,51 @@ function isActive(pathname: string, href: string) {
 
 const SCROLL_STORAGE_PREFIX = "kit-scroll:";
 
-function ScrollRestoration({ pathname }: { pathname: string }) {
+function ScrollRestoration({ locationKey }: { locationKey: string }) {
   useEffect(() => {
     const previousRestoration = window.history.scrollRestoration;
     window.history.scrollRestoration = "manual";
-    const key = `${SCROLL_STORAGE_PREFIX}${window.location.pathname}${window.location.search}`;
-    const saved = sessionStorage.getItem(key);
-    const frame = window.requestAnimationFrame(() => {
-      window.requestAnimationFrame(() => {
-        if (saved !== null) window.scrollTo({ top: Number(saved), behavior: "auto" });
-      });
-    });
+    let saved = 0;
+    try {
+      saved = Number(
+        sessionStorage.getItem(
+          `${SCROLL_STORAGE_PREFIX}${window.location.pathname}${window.location.search}`
+        )
+      );
+    } catch {
+      // sessionStorage may be unavailable in private browsing modes.
+    }
+    let frame = 0;
+    let attempts = 0;
+    const restore = () => {
+      attempts += 1;
+      if (!Number.isFinite(saved) || saved <= 0) return;
+      const maxScroll = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
+      if (maxScroll >= saved || attempts >= 60) {
+        window.scrollTo({ top: Math.min(saved, maxScroll), behavior: "auto" });
+        return;
+      }
+      frame = window.requestAnimationFrame(restore);
+    };
+    frame = window.requestAnimationFrame(restore);
+    const save = () => {
+      try {
+        sessionStorage.setItem(
+          `${SCROLL_STORAGE_PREFIX}${window.location.pathname}${window.location.search}`,
+          String(window.scrollY)
+        );
+      } catch {
+        // sessionStorage may be unavailable in private browsing modes.
+      }
+    };
+    window.addEventListener("pagehide", save);
     return () => {
       window.cancelAnimationFrame(frame);
-      sessionStorage.setItem(key, String(window.scrollY));
+      save();
+      window.removeEventListener("pagehide", save);
       window.history.scrollRestoration = previousRestoration;
     };
-  }, [pathname]);
+  }, [locationKey]);
 
   useEffect(() => {
     const rememberBeforeNavigation = (event: MouseEvent) => {
@@ -65,6 +94,8 @@ export function AppShell({ children }: { children: React.ReactNode }) {
   const t = useTranslations("nav");
   const tb = useTranslations("brand");
   const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const locationKey = `${pathname}?${searchParams.toString()}`;
 
   const SideNav = () => (
     <nav className="flex flex-col gap-1" aria-label={t("home")}>
@@ -127,7 +158,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
 
   return (
     <div className="flex min-h-dvh flex-col overflow-x-clip bg-background">
-      <ScrollRestoration pathname={pathname} />
+      <ScrollRestoration locationKey={locationKey} />
       <header className="glass chrome-edge fixed inset-x-0 top-0 z-50 shrink-0 pt-[env(safe-area-inset-top)] md:sticky md:inset-auto">
         <div className="mx-auto flex h-12 max-w-6xl items-center justify-between gap-2 px-4 sm:h-14 sm:gap-3 sm:px-6 lg:px-8">
           <Link

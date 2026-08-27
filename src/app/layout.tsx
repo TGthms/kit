@@ -1,7 +1,14 @@
 import type { Metadata } from "next";
 import { withBasePath, withAsset } from "@/lib/base-path";
 import { socialImages } from "@/lib/seo/metadata";
-import { ogImageUrl, SITE_AUTHOR, SITE_AUTHOR_URL, SITE_NAME, SITE_URL } from "@/lib/seo/site";
+import {
+  CONTENT_SECURITY_POLICY,
+  ogImageUrl,
+  SITE_AUTHOR,
+  SITE_AUTHOR_URL,
+  SITE_NAME,
+  SITE_URL,
+} from "@/lib/seo/site";
 import "./globals.css";
 
 const defaultTitle = "Kit — Browser tools that stay private";
@@ -58,5 +65,27 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  return children;
+  return (
+    <html lang="en" dir="ltr" suppressHydrationWarning>
+      <head>
+        <meta
+          httpEquiv="Content-Security-Policy"
+          content={
+            process.env.NODE_ENV === "development"
+              ? CONTENT_SECURITY_POLICY.replace(
+                  "script-src 'self' 'unsafe-inline'",
+                  "script-src 'self' 'unsafe-inline' 'unsafe-eval'"
+                )
+              : CONTENT_SECURITY_POLICY
+          }
+        />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var d=document.documentElement,s=localStorage.getItem("theme")||"system",t=s==="system"?(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"):s;if(t==="dark"){d.classList.add("dark");d.style.colorScheme="dark";}else{d.classList.remove("dark");d.style.colorScheme="light";}}catch(e){}})();`,
+          }}
+        />
+      </head>
+      <body>{children}</body>
+    </html>
+  );
 }
