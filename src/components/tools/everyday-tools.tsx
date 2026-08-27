@@ -535,25 +535,25 @@ function UnitConverter({ category, onBack }: { category: UnitCategory; onBack: (
     }
   }, [amount, category, dpi, from, parentFontSizePx, rootFontSizePx, to]);
   const presets = ({
-    length: [["Metric ↔ imperial", "m", "ft"], ["Kilometers ↔ miles", "km", "mi"]],
-    mass: [["Kilograms ↔ pounds", "kg", "lb"]],
-    temperature: [["Celsius ↔ Fahrenheit", "C", "F"], ["Celsius ↔ Kelvin", "C", "K"]],
-    speed: [["km/h ↔ mph", "km/h", "mph"]],
-    duration: [["Hours ↔ minutes", "h", "min"]],
-    volume: [["Liters ↔ US gallons", "L", "us-gal"]],
-    power: [["Watts ↔ horsepower", "W", "hp"]],
-    energy: [["kWh ↔ joules", "kWh", "J"]],
-    pressure: [["Bar ↔ PSI", "bar", "psi"]],
-    area: [["Square meters ↔ square feet", "m2", "ft2"]],
-    data: [["GB ↔ GiB", "GB", "GiB"]],
-    angle: [["Degrees ↔ radians", "deg", "rad"]],
-    frequency: [["Hz ↔ RPM", "Hz", "rpm"]],
-    force: [["Newtons ↔ pound-force", "N", "lbf"]],
-    fuelEconomy: [["L/100km ↔ mpg", "L/100km", "mpg-us"]],
-    acceleration: [["m/s² ↔ g", "m/s2", "g0"]],
-    torque: [["Nm ↔ lb-ft", "Nm", "lb-ft"]],
-    electrical: [["Volts ↔ millivolts", "V", "mV"], ["Amps ↔ milliamps", "A", "mA"], ["Ohms ↔ kilohms", "Ohm", "kOhm"]],
-    typography: [["px ↔ rem", "px", "rem"], ["px ↔ pt", "px", "pt"]],
+    length: [["presetMetricImperial", "m", "ft"], ["presetKilometersMiles", "km", "mi"]],
+    mass: [["presetKilogramsPounds", "kg", "lb"]],
+    temperature: [["presetCelsiusFahrenheit", "C", "F"], ["presetCelsiusKelvin", "C", "K"]],
+    speed: [["presetKmhMph", "km/h", "mph"]],
+    duration: [["presetHoursMinutes", "h", "min"]],
+    volume: [["presetLitersGallons", "L", "us-gal"]],
+    power: [["presetWattsHorsepower", "W", "hp"]],
+    energy: [["presetKwhJoules", "kWh", "J"]],
+    pressure: [["presetBarPsi", "bar", "psi"]],
+    area: [["presetSquareMetersFeet", "m2", "ft2"]],
+    data: [["presetGbGib", "GB", "GiB"]],
+    angle: [["presetDegreesRadians", "deg", "rad"]],
+    frequency: [["presetHzRpm", "Hz", "rpm"]],
+    force: [["presetNewtonsPoundForce", "N", "lbf"]],
+    fuelEconomy: [["presetL100kmMpg", "L/100km", "mpg-us"]],
+    acceleration: [["presetMs2G", "m/s2", "g0"]],
+    torque: [["presetNmLbFt", "Nm", "lb-ft"]],
+    electrical: [["presetVoltsMillivolts", "V", "mV"], ["presetAmpsMilliamps", "A", "mA"], ["presetOhmsKilohms", "Ohm", "kOhm"]],
+    typography: [["presetPxRem", "px", "rem"], ["presetPxPt", "px", "pt"]],
   } as Record<UnitCategory, Array<[string, UnitCode, UnitCode]>>)[category] ?? [];
   const setPreset = (nextFrom: UnitCode, nextTo: UnitCode) => {
     setFrom(nextFrom);
@@ -622,9 +622,9 @@ function UnitConverter({ category, onBack }: { category: UnitCategory; onBack: (
         <div className="space-y-2">
           <Label>{text(t, "presets", "Presets")}</Label>
           <div className="flex flex-wrap gap-2">
-            {presets.map(([label, presetFrom, presetTo]) => (
-              <Button key={label} type="button" size="sm" variant="outline" onClick={() => setPreset(presetFrom, presetTo)}>
-                {label}
+            {presets.map(([labelKey, presetFrom, presetTo]) => (
+              <Button key={labelKey} type="button" size="sm" variant="outline" onClick={() => setPreset(presetFrom, presetTo)}>
+                {text(t, labelKey, labelKey)}
               </Button>
             ))}
           </div>
@@ -1015,7 +1015,7 @@ export function DateCalculator() {
       </div>
       {mode === "business" ? <div className="space-y-4 rounded-2xl border border-border/60 bg-card p-4"><div className="flex items-center gap-3"><Switch checked={inclusive} onCheckedChange={setInclusive} id="inclusive" /><Label htmlFor="inclusive">{text(t, "includeEndpoints", "Include endpoints")}</Label></div><div className="space-y-2"><Label>{text(t, "holidays", "Holidays (comma-separated YYYY-MM-DD)")}</Label><Input value={holidays} onChange={(event) => setHolidays(event.target.value)} placeholder={text(t, "holidaysPlaceholder", "2026-12-25, 2027-01-01")} /></div><Button variant="outline" onClick={addBusiness}><CalendarDays /> {text(t, "addBusinessDays", "Add business days to end")}</Button></div> : null}
       {result ? <Card><CardHeader className="pb-3"><CardTitle>{result.title}</CardTitle></CardHeader><CardContent className="space-y-2">{result.lines.map((line) => <p key={line} className="font-mono text-lg">{line}</p>)}</CardContent></Card> : <p className="text-sm text-destructive">{text(t, "invalid", "Check the date and amount.")}</p>}
-      <Button variant="outline" disabled={!result} onClick={() => { if (result) { log(result.lines[0], "success"); toast.success(text(t, "saved", "Calculation saved to history.")); } }}><Check /> Record calculation</Button>
+      <Button variant="outline" disabled={!result} onClick={() => { if (result) { log(result.lines[0], "success"); toast.success(text(t, "saved", "Calculation saved to history.")); } }}><Check /> {text(t, "recordCalculation", "Record calculation")}</Button>
     </ToolShell>
   );
 }
@@ -1044,7 +1044,7 @@ export function TipSplitCalculator() {
       <div className="flex items-center gap-3"><Switch checked={splitRemainder} onCheckedChange={setSplitRemainder} id="split-remainder" /><Label htmlFor="split-remainder">{text(t, "distributeRoundingRemainder", "Distribute rounding remainder")}</Label></div>
       {result ? <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4"><Card><CardContent className="p-4"><p className="text-xs text-muted-foreground">{text(t, "subtotal", "Subtotal")}</p><p className="mt-2 text-xl font-semibold">{formatMoney(result.subtotal)}</p></CardContent></Card><Card><CardContent className="p-4"><p className="text-xs text-muted-foreground">{text(t, "tax", "Tax")}</p><p className="mt-2 text-xl font-semibold">{formatMoney(result.tax)}</p></CardContent></Card><Card><CardContent className="p-4"><p className="text-xs text-muted-foreground">{text(t, "tip", "Tip")}</p><p className="mt-2 text-xl font-semibold">{formatMoney(result.tip)}</p></CardContent></Card><Card className="border-primary/40 bg-primary/5"><CardContent className="p-4"><p className="text-xs text-muted-foreground">{text(t, "total", "Total")}</p><p className="mt-2 text-xl font-semibold">{formatMoney(result.total)}</p><p className="mt-1 text-xs text-muted-foreground">{text(t, "perPerson", `${formatMoney(result.perPerson)} each`, { value: formatMoney(result.perPerson) })}</p></CardContent></Card></div> : <p className="text-sm text-destructive">{text(t, "invalid", "Enter non-negative amounts and at least one person.")}</p>}
       {result ? <div className="space-y-2"><h2 className="text-sm font-semibold">{text(t, "individualShares", "Individual shares")}</h2><div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-4">{result.shares.map((share, index) => <div key={`${index}-${share}`} className="rounded-xl border border-border/60 bg-card px-3 py-2 text-sm"><span className="text-muted-foreground">{text(t, "person", `Person ${index + 1}`, { number: index + 1 })}</span><span className="float-right font-mono font-semibold">{formatMoney(share)}</span></div>)}</div></div> : null}
-      <Button variant="outline" disabled={!result} onClick={() => { if (result) { log(`${people} people · ${formatMoney(result.total)}`, "success"); toast.success(text(t, "saved", "Split saved to history.")); } }}><WalletCards /> Record split</Button>
+      <Button variant="outline" disabled={!result} onClick={() => { if (result) { log(`${people} people · ${formatMoney(result.total)}`, "success"); toast.success(text(t, "saved", "Split saved to history.")); } }}><WalletCards /> {text(t, "recordSplit", "Record split")}</Button>
     </ToolShell>
   );
 }
