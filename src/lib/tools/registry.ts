@@ -68,6 +68,7 @@ export type ToolCategory =
   | "data"
   | "text"
   | "developer"
+  | "converter"
   | "everyday";
 
 export type ToolGroup =
@@ -219,8 +220,8 @@ export const tools: ToolDef[] = [
 
   { id: "hash-generator", category: "developer", group: "inspect", icon: Fingerprint },
 
-  { id: "everyday-converter", category: "everyday", group: "convert", icon: ArrowLeftRight },
-  { id: "currency-converter", category: "everyday", group: "convert", icon: Coins },
+  { id: "everyday-converter", category: "converter", group: "convert", icon: ArrowLeftRight },
+  { id: "currency-converter", category: "converter", group: "convert", icon: Coins },
   { id: "text-counter", category: "everyday", group: "everyday-text", icon: TextCursorInput },
   { id: "timezone-converter", category: "everyday", group: "time", icon: Globe2 },
   { id: "date-calculator", category: "everyday", group: "time", icon: CalendarDays },
@@ -247,7 +248,6 @@ export const featuredToolIds: ToolId[] = [
   "currency-converter",
   "date-calculator",
   "tip-split-calculator",
-  "stopwatch-timer",
   "password-generator",
   "qr-code",
   "text-counter",
@@ -256,6 +256,7 @@ export const featuredToolIds: ToolId[] = [
 export const toolMap = Object.fromEntries(tools.map((t) => [t.id, t])) as Record<ToolId, ToolDef>;
 
 export const categories: ToolCategory[] = [
+  "converter",
   "everyday",
   "pdf",
   "image",
@@ -274,6 +275,7 @@ export const categoryGroupOrder: Record<ToolCategory, ToolGroup[]> = {
   data: ["formats"],
   text: ["write"],
   developer: ["inspect", "encode", "generate"],
+  converter: ["convert"],
   everyday: ["convert", "time", "money", "everyday-text", "quick"],
 };
 

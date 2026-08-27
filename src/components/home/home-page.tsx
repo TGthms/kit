@@ -14,6 +14,7 @@ import {
   Type,
   Code2,
   Calculator,
+  ArrowLeftRight,
 } from "lucide-react";
 import { tools, categories, featuredToolIds, groupedTools, type ToolCategory, type ToolId } from "@/lib/tools/registry";
 import { homeHref, parseCategoryParam, toolHref } from "@/lib/navigation/routes";
@@ -23,7 +24,7 @@ import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/ca
 import { PageHeader } from "@/components/layout/page-header";
 import { useFavoritesStore } from "@/stores/favorites-store";
 import { cn } from "@/lib/utils";
-import { getGreetingDay, getGreetingPeriod, getGreetingVariant, getHomeSubtitle, type GreetingPeriod } from "@/lib/home/greeting";
+import { getGreetingDay, getGreetingPeriod, getGreetingVariant, getHomeGreeting, getHomeSubtitle, type GreetingPeriod } from "@/lib/home/greeting";
 
 const categoryMeta: Record<
   ToolCategory,
@@ -68,6 +69,11 @@ const categoryMeta: Record<
     icon: Calculator,
     tint: "bg-orange-500/12 text-orange-700 dark:text-orange-400",
     ring: "hover:ring-orange-500/25",
+  },
+  converter: {
+    icon: ArrowLeftRight,
+    tint: "bg-cyan-500/12 text-cyan-700 dark:text-cyan-400",
+    ring: "hover:ring-cyan-500/25",
   },
 };
 
@@ -211,10 +217,10 @@ function HomePageInner() {
         <section className="space-y-4 pt-0.5 sm:pt-1">
           <div className="max-w-2xl space-y-2">
             <h1 className="type-display text-foreground">
-              {greeting ? (
+              {locale === "en" && greeting ? getHomeGreeting(new Date(), greeting.variant) : greeting ? (
                 <>
                   {t(`greeting.${greeting.period}`, { day: greeting.day })}
-                  {greeting.variant > 0 ? ` ${t(`greeting.extra${greeting.variant}`, { day: greeting.day })}` : null}
+                  {greeting.variant % 3 > 0 ? ` ${t(`greeting.extra${greeting.variant % 3}`, { day: greeting.day })}` : null}
                 </>
               ) : t("title")}
             </h1>

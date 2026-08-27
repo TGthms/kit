@@ -9,6 +9,8 @@ import { PageHeader } from "@/components/layout/page-header";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useHistoryStore } from "@/stores/history-store";
+import { Switch } from "@/components/ui/switch";
+import { rememberThemeChoice } from "@/components/providers";
 
 export default function SettingsPage() {
   const t = useTranslations("settings");
@@ -17,6 +19,8 @@ export default function SettingsPage() {
   const tn = useTranslations("nav");
   const { theme, setTheme } = useTheme();
   const clear = useHistoryStore((s) => s.clear);
+  const historyEnabled = useHistoryStore((s) => s.enabled);
+  const setHistoryEnabled = useHistoryStore((s) => s.setEnabled);
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => setMounted(true), []);
@@ -46,7 +50,7 @@ export default function SettingsPage() {
               size="sm"
               variant={appearance === value ? "default" : "outline"}
               className="transition-[background-color,color,box-shadow,transform] duration-200 ease-out"
-              onClick={() => setTheme(value)}
+              onClick={() => rememberThemeChoice(value, setTheme)}
               disabled={!mounted}
             >
               {label}
@@ -70,6 +74,13 @@ export default function SettingsPage() {
         </CardHeader>
         <CardContent className="space-y-4">
           <p className="type-body text-muted-foreground">{t("privacyNote")}</p>
+          <div className="flex items-start justify-between gap-4 rounded-xl border border-border/50 p-4">
+            <div>
+              <p className="font-medium tracking-[-0.01em]">{th("recordingTitle")}</p>
+              <p className="mt-1 type-caption text-muted-foreground">{historyEnabled ? th("recordingOn") : th("recordingOff")}</p>
+            </div>
+            <Switch checked={historyEnabled} onCheckedChange={setHistoryEnabled} aria-label={th("recordingTitle")} />
+          </div>
           <div className="flex flex-wrap gap-2">
             <Button asChild variant="outline" size="sm">
               <Link href="/privacy">{t("viewPrivacy")}</Link>

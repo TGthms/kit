@@ -175,7 +175,9 @@
     "developer": "Pengembang",
     "developerDesc": "Token, hash, pengodean, kata sandi, dan alat bangku lainnya",
     "everyday": "Sehari-hari",
-    "everydayDesc": "Konverter, jam, kalkulator, dan alat bantu cepat yang praktis"
+    "everydayDesc": "Konverter, jam, kalkulator, dan alat bantu cepat yang praktis",
+    "converter": "Everyday converters",
+    "converterDesc": "Units, currencies, and more—organized for quick conversions"
   },
   "history": {
     "title": "Riwayat",
@@ -189,7 +191,10 @@
     "summary": "Ringkasan",
     "status": "Status",
     "success": "Berhasil",
-    "failed": "Gagal"
+    "failed": "Gagal",
+    "recordingTitle": "Record tool activity",
+    "recordingOn": "On — short summaries may be saved on this device.",
+    "recordingOff": "Off — Kit will not add new activity to History."
   },
   "favorites": {
     "title": "Favorit",

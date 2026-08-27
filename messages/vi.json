@@ -175,7 +175,9 @@
     "developer": "Nhà phát triển",
     "developerDesc": "Token, hash, mã hóa, mật khẩu và các công cụ bàn làm việc khác",
     "everyday": "Hằng ngày",
-    "everydayDesc": "Công cụ chuyển đổi, đồng hồ, máy tính và tiện ích nhanh thiết thực"
+    "everydayDesc": "Công cụ chuyển đổi, đồng hồ, máy tính và tiện ích nhanh thiết thực",
+    "converter": "Everyday converters",
+    "converterDesc": "Units, currencies, and more—organized for quick conversions"
   },
   "history": {
     "title": "Lịch sử",
@@ -189,7 +191,10 @@
     "summary": "Tóm tắt",
     "status": "Trạng thái",
     "success": "Thành công",
-    "failed": "Thất bại"
+    "failed": "Thất bại",
+    "recordingTitle": "Record tool activity",
+    "recordingOn": "On — short summaries may be saved on this device.",
+    "recordingOff": "Off — Kit will not add new activity to History."
   },
   "favorites": {
     "title": "Yêu thích",

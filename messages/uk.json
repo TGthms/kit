@@ -175,7 +175,9 @@
     "developer": "Розробка",
     "developerDesc": "Токени, хеші, кодування, паролі та інші інструменти верстака",
     "everyday": "Повсякденні",
-    "everydayDesc": "Практичні конвертери, годинники, калькулятори та швидкі інструменти"
+    "everydayDesc": "Практичні конвертери, годинники, калькулятори та швидкі інструменти",
+    "converter": "Everyday converters",
+    "converterDesc": "Units, currencies, and more—organized for quick conversions"
   },
   "history": {
     "title": "Історія",
@@ -189,7 +191,10 @@
     "summary": "Підсумок",
     "status": "Статус",
     "success": "Успішно",
-    "failed": "Помилка"
+    "failed": "Помилка",
+    "recordingTitle": "Record tool activity",
+    "recordingOn": "On — short summaries may be saved on this device.",
+    "recordingOff": "Off — Kit will not add new activity to History."
   },
   "favorites": {
     "title": "Обране",

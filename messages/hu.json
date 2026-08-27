@@ -175,7 +175,9 @@
     "developer": "Fejlesztői",
     "developerDesc": "Tokenek, hashek, kódolások, jelszavak és egyéb műhelyeszközök",
     "everyday": "Mindennapi",
-    "everydayDesc": "Praktikus átváltók, órák, kalkulátorok és gyors segédeszközök"
+    "everydayDesc": "Praktikus átváltók, órák, kalkulátorok és gyors segédeszközök",
+    "converter": "Everyday converters",
+    "converterDesc": "Units, currencies, and more—organized for quick conversions"
   },
   "history": {
     "title": "Előzmények",
@@ -189,7 +191,10 @@
     "summary": "Összefoglaló",
     "status": "Állapot",
     "success": "Sikeres",
-    "failed": "Sikertelen"
+    "failed": "Sikertelen",
+    "recordingTitle": "Record tool activity",
+    "recordingOn": "On — short summaries may be saved on this device.",
+    "recordingOff": "Off — Kit will not add new activity to History."
   },
   "favorites": {
     "title": "Kedvencek",

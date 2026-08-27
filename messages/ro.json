@@ -175,7 +175,9 @@
     "developer": "Dezvoltare",
     "developerDesc": "Tokenuri, hash-uri, codificări, parole și alte unelte de banc",
     "everyday": "De zi cu zi",
-    "everydayDesc": "Convertori, ceasuri, calculatoare și ajutoare rapide"
+    "everydayDesc": "Convertori, ceasuri, calculatoare și ajutoare rapide",
+    "converter": "Everyday converters",
+    "converterDesc": "Units, currencies, and more—organized for quick conversions"
   },
   "history": {
     "title": "Istoric",
@@ -189,7 +191,10 @@
     "summary": "Rezumat",
     "status": "Stare",
     "success": "Reușit",
-    "failed": "Eșuat"
+    "failed": "Eșuat",
+    "recordingTitle": "Record tool activity",
+    "recordingOn": "On — short summaries may be saved on this device.",
+    "recordingOff": "Off — Kit will not add new activity to History."
   },
   "favorites": {
     "title": "Favorite",

@@ -175,7 +175,9 @@
     "developer": "Разработка",
     "developerDesc": "Токены, хеши, кодировки, пароли и другие инструменты верстака",
     "everyday": "Повседневные",
-    "everydayDesc": "Практичные конвертеры, часы, калькуляторы и быстрые инструменты"
+    "everydayDesc": "Практичные конвертеры, часы, калькуляторы и быстрые инструменты",
+    "converter": "Everyday converters",
+    "converterDesc": "Units, currencies, and more—organized for quick conversions"
   },
   "history": {
     "title": "История",
@@ -189,7 +191,10 @@
     "summary": "Сводка",
     "status": "Статус",
     "success": "Успешно",
-    "failed": "Ошибка"
+    "failed": "Ошибка",
+    "recordingTitle": "Record tool activity",
+    "recordingOn": "On — short summaries may be saved on this device.",
+    "recordingOff": "Off — Kit will not add new activity to History."
   },
   "favorites": {
     "title": "Избранное",

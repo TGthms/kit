@@ -175,7 +175,9 @@
     "developer": "Udvikling",
     "developerDesc": "Tokens, hashes, kodninger, adgangskoder og andre arbejdsbænkværktøjer",
     "everyday": "Hverdag",
-    "everydayDesc": "Praktiske konvertere, ure, beregnere og hurtige hjælpemidler"
+    "everydayDesc": "Praktiske konvertere, ure, beregnere og hurtige hjælpemidler",
+    "converter": "Everyday converters",
+    "converterDesc": "Units, currencies, and more—organized for quick conversions"
   },
   "history": {
     "title": "Historik",
@@ -189,7 +191,10 @@
     "summary": "Resumé",
     "status": "Status",
     "success": "Lykkedes",
-    "failed": "Mislykkedes"
+    "failed": "Mislykkedes",
+    "recordingTitle": "Record tool activity",
+    "recordingOn": "On — short summaries may be saved on this device.",
+    "recordingOff": "Off — Kit will not add new activity to History."
   },
   "favorites": {
     "title": "Favoritter",

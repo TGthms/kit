@@ -175,7 +175,9 @@
     "developer": "Dla deweloperów",
     "developerDesc": "Tokeny, hashe, kodowania, hasła i inne narzędzia warsztatowe",
     "everyday": "Codzienne",
-    "everydayDesc": "Praktyczne konwertery, zegary, kalkulatory i szybkie narzędzia"
+    "everydayDesc": "Praktyczne konwertery, zegary, kalkulatory i szybkie narzędzia",
+    "converter": "Everyday converters",
+    "converterDesc": "Units, currencies, and more—organized for quick conversions"
   },
   "history": {
     "title": "Historia",
@@ -189,7 +191,10 @@
     "summary": "Podsumowanie",
     "status": "Status",
     "success": "Powodzenie",
-    "failed": "Niepowodzenie"
+    "failed": "Niepowodzenie",
+    "recordingTitle": "Record tool activity",
+    "recordingOn": "On — short summaries may be saved on this device.",
+    "recordingOff": "Off — Kit will not add new activity to History."
   },
   "favorites": {
     "title": "Ulubione",

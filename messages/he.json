@@ -175,7 +175,9 @@
     "developer": "מפתחים",
     "developerDesc": "אסימונים, גיבובים, קידודים, סיסמאות וכלי ספסל נוספים",
     "everyday": "יומיומי",
-    "everydayDesc": "ממירים, שעונים, מחשבונים וכלים מהירים שימושיים"
+    "everydayDesc": "ממירים, שעונים, מחשבונים וכלים מהירים שימושיים",
+    "converter": "Everyday converters",
+    "converterDesc": "Units, currencies, and more—organized for quick conversions"
   },
   "history": {
     "title": "היסטוריה",
@@ -189,7 +191,10 @@
     "summary": "תקציר",
     "status": "סטטוס",
     "success": "הצליח",
-    "failed": "נכשל"
+    "failed": "נכשל",
+    "recordingTitle": "Record tool activity",
+    "recordingOn": "On — short summaries may be saved on this device.",
+    "recordingOff": "Off — Kit will not add new activity to History."
   },
   "favorites": {
     "title": "מועדפים",

@@ -175,7 +175,9 @@
     "developer": "Ontwikkeling",
     "developerDesc": "Tokens, hashes, encodings, wachtwoorden en andere bankgereedschappen",
     "everyday": "Dagelijks",
-    "everydayDesc": "Praktische omzetters, klokken, calculators en snelle hulpmiddelen"
+    "everydayDesc": "Praktische omzetters, klokken, calculators en snelle hulpmiddelen",
+    "converter": "Everyday converters",
+    "converterDesc": "Units, currencies, and more—organized for quick conversions"
   },
   "history": {
     "title": "Geschiedenis",
@@ -189,7 +191,10 @@
     "summary": "Samenvatting",
     "status": "Status",
     "success": "Gelukt",
-    "failed": "Mislukt"
+    "failed": "Mislukt",
+    "recordingTitle": "Record tool activity",
+    "recordingOn": "On — short summaries may be saved on this device.",
+    "recordingOff": "Off — Kit will not add new activity to History."
   },
   "favorites": {
     "title": "Favorieten",

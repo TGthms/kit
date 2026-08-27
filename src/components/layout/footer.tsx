@@ -44,6 +44,11 @@ export function SiteFooter() {
               </a>
             </Button>
             <Button asChild variant="outline" size="sm" className="h-10 rounded-full px-4">
+              <a href="https://t-g.pages.dev" target="_blank" rel="noopener noreferrer">
+                {t("aboutMe")}
+              </a>
+            </Button>
+            <Button asChild variant="outline" size="sm" className="h-10 rounded-full px-4">
               <a
                 href="https://github.com/TGthms/kit"
                 target="_blank"

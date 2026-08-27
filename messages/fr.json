@@ -175,7 +175,9 @@
     "developer": "Développement",
     "developerDesc": "Jetons, empreintes, encodages, mots de passe et autres outils d’établi",
     "everyday": "Quotidien",
-    "everydayDesc": "Convertisseurs, horloges, calculateurs et outils rapides"
+    "everydayDesc": "Convertisseurs, horloges, calculateurs et outils rapides",
+    "converter": "Everyday converters",
+    "converterDesc": "Units, currencies, and more—organized for quick conversions"
   },
   "history": {
     "title": "Historique",
@@ -189,7 +191,10 @@
     "summary": "Résumé",
     "status": "Statut",
     "success": "Réussi",
-    "failed": "Échoué"
+    "failed": "Échoué",
+    "recordingTitle": "Record tool activity",
+    "recordingOn": "On — short summaries may be saved on this device.",
+    "recordingOff": "Off — Kit will not add new activity to History."
   },
   "favorites": {
     "title": "Favoris",

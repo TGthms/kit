@@ -8,6 +8,7 @@ import { useHistoryStore } from "@/stores/history-store";
 import { PageHeader } from "@/components/layout/page-header";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { Switch } from "@/components/ui/switch";
 
 export default function HistoryPage() {
   const t = useTranslations("history");
@@ -16,6 +17,8 @@ export default function HistoryPage() {
   const format = useFormatter();
   const entries = useHistoryStore((s) => s.entries);
   const clear = useHistoryStore((s) => s.clear);
+  const enabled = useHistoryStore((s) => s.enabled);
+  const setEnabled = useHistoryStore((s) => s.setEnabled);
 
   const visible = useMemo(
     () =>
@@ -49,6 +52,16 @@ export default function HistoryPage() {
           ) : null
         }
       />
+
+      <Card className="border-border/40">
+        <CardContent className="flex items-start justify-between gap-4 p-4">
+          <div>
+            <p className="font-medium tracking-[-0.01em]">{t("recordingTitle")}</p>
+            <p className="mt-1 type-caption text-muted-foreground">{enabled ? t("recordingOn") : t("recordingOff")}</p>
+          </div>
+          <Switch checked={enabled} onCheckedChange={setEnabled} aria-label={t("recordingTitle")} />
+        </CardContent>
+      </Card>
 
       {visible.length === 0 ? (
         <p className="type-body text-muted-foreground">{t("empty")}</p>

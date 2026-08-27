@@ -175,7 +175,9 @@
     "developer": "डेवलपर",
     "developerDesc": "टोकन, हैश, एनकोडिंग, पासवर्ड और अन्य बेंच टूल",
     "everyday": "दैनिक",
-    "everydayDesc": "उपयोगी कन्वर्टर, घड़ियाँ, कैलकुलेटर और त्वरित टूल"
+    "everydayDesc": "उपयोगी कन्वर्टर, घड़ियाँ, कैलकुलेटर और त्वरित टूल",
+    "converter": "Everyday converters",
+    "converterDesc": "Units, currencies, and more—organized for quick conversions"
   },
   "history": {
     "title": "इतिहास",
@@ -189,7 +191,10 @@
     "summary": "सारांश",
     "status": "स्थिति",
     "success": "सफल",
-    "failed": "विफल"
+    "failed": "विफल",
+    "recordingTitle": "Record tool activity",
+    "recordingOn": "On — short summaries may be saved on this device.",
+    "recordingOff": "Off — Kit will not add new activity to History."
   },
   "favorites": {
     "title": "पसंदीदा",

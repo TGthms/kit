@@ -26,6 +26,6 @@ describe("home greeting", () => {
 
   it("provides a stable, varied home subtitle", () => {
     expect(getHomeSubtitle(0)).not.toBe(getHomeSubtitle(1));
-    expect(getHomeSubtitle(8)).toBe(getHomeSubtitle(0));
+    expect(getHomeSubtitle(12)).toBe(getHomeSubtitle(0));
   });
 });

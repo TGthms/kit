@@ -175,7 +175,9 @@
     "developer": "開發",
     "developerDesc": "令牌、哈希、編碼、密碼和其他工作台工具",
     "everyday": "日常",
-    "everydayDesc": "實用的轉換器、時鐘、計算器與快速工具"
+    "everydayDesc": "實用的轉換器、時鐘、計算器與快速工具",
+    "converter": "Everyday converters",
+    "converterDesc": "Units, currencies, and more—organized for quick conversions"
   },
   "history": {
     "title": "歷史记錄",
@@ -189,7 +191,10 @@
     "summary": "摘要",
     "status": "狀态",
     "success": "成功",
-    "failed": "失败"
+    "failed": "失败",
+    "recordingTitle": "Record tool activity",
+    "recordingOn": "On — short summaries may be saved on this device.",
+    "recordingOff": "Off — Kit will not add new activity to History."
   },
   "favorites": {
     "title": "收藏",

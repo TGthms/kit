@@ -175,7 +175,9 @@
     "developer": "Sviluppo",
     "developerDesc": "Token, hash, encoding, password e altri strumenti da banco",
     "everyday": "Quotidiano",
-    "everydayDesc": "Convertitori, orologi, calcolatori e strumenti rapidi pratici"
+    "everydayDesc": "Convertitori, orologi, calcolatori e strumenti rapidi pratici",
+    "converter": "Everyday converters",
+    "converterDesc": "Units, currencies, and more—organized for quick conversions"
   },
   "history": {
     "title": "Cronologia",
@@ -189,7 +191,10 @@
     "summary": "Riepilogo",
     "status": "Stato",
     "success": "Riuscito",
-    "failed": "Non riuscito"
+    "failed": "Non riuscito",
+    "recordingTitle": "Record tool activity",
+    "recordingOn": "On — short summaries may be saved on this device.",
+    "recordingOff": "Off — Kit will not add new activity to History."
   },
   "favorites": {
     "title": "Preferiti",

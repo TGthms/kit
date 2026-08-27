@@ -24,12 +24,33 @@ export function getGreetingVariant(date: Date, count = 4): number {
   return (dayOfYear * 13 + slot * 7) % count;
 }
 
+export function getHomeGreeting(date: Date, variant: number): string {
+  const period = getGreetingPeriod(date);
+  const timeBased: Record<GreetingPeriod, string[]> = {
+    morning: ["Good morning", "Morning", "Fresh start", "New day, new ideas", "Coffee and Kit time?", "Time to get things done"],
+    afternoon: ["Good afternoon", "Afternoon", "Midday check-in", "Ready for the next task?", "Time to keep building", "Another productive session"],
+    evening: ["Good evening", "Evening", "Evening session?", "A quiet moment to create", "End-of-day ideas welcome", "Time to wrap things up or start something new"],
+    night: ["Good evening, night owl", "Hello, night owl", "Late night session?", "Quiet hours, creative hours", "One more idea before bed?", "Late night thoughts?"],
+  };
+  const shared = ["Welcome back", "Good to see you again", "Ready when you are", "Let’s get started", "What can we work on today?", "What are we solving today?", "Kit is ready", "Your toolkit is ready", "Tools at your fingertips", "Pick a tool and get started", "Simple tools, big results", "Ideas welcome", "Curiosity mode activated", "Private workspace ready", "Anonymous and ready", "No introduction needed"];
+  const options = [...timeBased[period], ...shared];
+  return options[Math.abs(Math.trunc(variant)) % options.length] ?? options[0];
+}
+
 export function getHomeSubtitle(variant: number): string {
   const subtitles = [
     "A calm little toolkit for the things you need to get done today.",
-    "Useful tools for everyday work, kept private and ready when you are.",
     "Convert, calculate, write, and make progress—right here in your browser.",
-    "A handful of thoughtful tools for making small tasks feel easier.",
+    "Small, thoughtful tools for making everyday work feel easier.",
+    "Your useful tools, ready when you are and private by design.",
+    "A simple place to solve the little tasks that keep work moving.",
+    "World clocks, converters, calculators, and more—without the clutter.",
+    "A focused toolkit for turning small jobs into finished work.",
+    "Everything runs right here, so your everyday work stays yours.",
+    "Find a useful tool, get it done, and keep moving.",
+    "A private workspace for the things you need to figure out.",
+    "Practical tools for curious people and busy days.",
+    "The right little tool can make a big task feel lighter.",
   ];
   return subtitles[Math.abs(Math.trunc(variant)) % subtitles.length];
 }

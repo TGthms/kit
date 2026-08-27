@@ -36,7 +36,6 @@ export function ToolHeader({ toolId }: { toolId: ToolId }) {
   const backHref = fromHref ?? toolBackHref(toolId);
   const backLabel = fromHref ? tc("back") : tool ? tCat(tool.category) : tc("back");
   const showClientSideNote = tool ? isFileTool(tool) : false;
-  const headerRef = useRef<HTMLElement>(null);
   const floatingBackRef = useRef<HTMLAnchorElement>(null);
   const [mounted, setMounted] = useState(false);
 
@@ -44,13 +43,11 @@ export function ToolHeader({ toolId }: { toolId: ToolId }) {
 
   useEffect(() => {
     if (!mounted) return;
-    const header = headerRef.current;
     const floatingBack = floatingBackRef.current;
-    if (!header || !floatingBack) return;
+    if (!floatingBack) return;
 
     const onScroll = () => {
       const scrolled = window.scrollY > 96;
-      header.classList.toggle("max-md:-translate-y-full", scrolled);
       floatingBack.classList.toggle("translate-y-0", scrolled);
       floatingBack.classList.toggle("opacity-100", scrolled);
       floatingBack.classList.toggle("pointer-events-none", !scrolled);
@@ -67,8 +64,7 @@ export function ToolHeader({ toolId }: { toolId: ToolId }) {
     <>
       <PageHeader
         sticky
-        headerRef={headerRef}
-        className="max-md:transition-transform max-md:duration-200 max-md:ease-out"
+        className=""
         title={t("name")}
         subtitle={t("description")}
         backHref={backHref}

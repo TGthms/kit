@@ -175,7 +175,9 @@
     "developer": "개발자",
     "developerDesc": "토큰, 해시, 인코딩, 비밀번호와 기타 작업대 도구",
     "everyday": "일상",
-    "everydayDesc": "실용적인 변환기, 시계, 계산기와 빠른 도구"
+    "everydayDesc": "실용적인 변환기, 시계, 계산기와 빠른 도구",
+    "converter": "Everyday converters",
+    "converterDesc": "Units, currencies, and more—organized for quick conversions"
   },
   "history": {
     "title": "기록",
@@ -189,7 +191,10 @@
     "summary": "요약",
     "status": "상태",
     "success": "성공",
-    "failed": "실패"
+    "failed": "실패",
+    "recordingTitle": "Record tool activity",
+    "recordingOn": "On — short summaries may be saved on this device.",
+    "recordingOff": "Off — Kit will not add new activity to History."
   },
   "favorites": {
     "title": "즐겨찾기",

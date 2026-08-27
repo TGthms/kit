@@ -16,6 +16,8 @@ export interface HistoryEntry {
 
 interface HistoryState {
   entries: HistoryEntry[];
+  enabled: boolean;
+  setEnabled: (enabled: boolean) => void;
   add: (entry: Omit<HistoryEntry, "id" | "timestamp"> & { timestamp?: number }) => void;
   clear: () => void;
 }
@@ -58,6 +60,8 @@ export const useHistoryStore = create<HistoryState>()(
   persist(
     (set) => ({
       entries: [],
+      enabled: false,
+      setEnabled: (enabled) => set({ enabled }),
       add: (entry) =>
         set((s) => ({
           entries: [
@@ -83,6 +87,7 @@ export const useHistoryStore = create<HistoryState>()(
           entries: Array.isArray(state.entries)
             ? state.entries.filter(Boolean).map((entry) => sanitizeEntry(entry as HistoryEntry)).slice(0, 100)
             : [],
+          enabled: state.enabled === true,
         };
       },
     }

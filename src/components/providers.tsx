@@ -7,6 +7,18 @@ import { Toaster } from "sonner";
 // Must match next-themes' default storageKey ("theme"), since we don't
 // override it below.
 const THEME_STORAGE_KEY = "theme";
+const THEME_CONTEXT_KEY = "kit-theme-context";
+type ThemeChoice = "system" | "light" | "dark";
+
+export function rememberThemeChoice(choice: ThemeChoice, setTheme: (theme: ThemeChoice) => void) {
+  try {
+    localStorage.setItem(THEME_CONTEXT_KEY, JSON.stringify({
+      choice,
+      system: matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light",
+    }));
+  } catch { /* localStorage may be unavailable. */ }
+  setTheme(choice);
+}
 
 export function Providers({ children }: { children: React.ReactNode }) {
   return (
@@ -14,40 +26,39 @@ export function Providers({ children }: { children: React.ReactNode }) {
       attribute="class"
       defaultTheme="system"
       enableSystem
-      // Manual light/dark choices apply immediately for the current visit,
-      // but ResetToSystem (below) always resets the persisted value back to
-      // "system" on load, so every fresh visit/reload starts from System
-      // again regardless of what was picked last time.
+      // System is the initial preference; manual choices persist unless the
+      // user selected light while the system was light and the system later
+      // changes to dark.
       disableTransitionOnChange
     >
-      <ResetToSystem />
+      <ThemePreferenceSync />
       {children}
       <Toaster richColors position="top-center" closeButton />
     </ThemeProvider>
   );
 }
 
-/**
- * Forces the theme back to "system" on every mount, overwriting whatever
- * was persisted from a previous manual light/dark pick. Manual switching
- * still works live during the current session (via ThemeToggle / Settings),
- * it just never survives a reload or new visit.
- */
-function ResetToSystem() {
+function ThemePreferenceSync() {
   const { setTheme } = useTheme();
 
   useEffect(() => {
-    // Clear out any previously-persisted manual choice before anything
-    // else can read it, then explicitly resync to system.
-    try {
-      window.localStorage.setItem(THEME_STORAGE_KEY, "system");
-    } catch {
-      // localStorage may be unavailable (e.g. private mode); ignore.
-    }
-    setTheme("system");
-    // Intentionally run once on mount only.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    const sync = () => {
+      try {
+        const choice = window.localStorage.getItem(THEME_STORAGE_KEY);
+        const context = JSON.parse(window.localStorage.getItem(THEME_CONTEXT_KEY) ?? "null") as { choice?: ThemeChoice; system?: "light" | "dark" } | null;
+        const system = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        if (choice === "light" && context?.choice === "light" && context.system !== system) {
+          rememberThemeChoice("system", setTheme);
+        }
+      } catch {
+        // localStorage or matchMedia may be unavailable; next-themes still handles the theme.
+      }
+    };
+    sync();
+    const media = window.matchMedia("(prefers-color-scheme: dark)");
+    media.addEventListener?.("change", sync);
+    return () => media.removeEventListener?.("change", sync);
+  }, [setTheme]);
 
   return null;
 }

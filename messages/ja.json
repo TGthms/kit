@@ -175,7 +175,9 @@
     "developer": "開発",
     "developerDesc": "トークン、ハッシュ、エンコード、パスワードなどの作業台",
     "everyday": "日常",
-    "everydayDesc": "便利な変換、時計、計算、クイックツール"
+    "everydayDesc": "便利な変換、時計、計算、クイックツール",
+    "converter": "Everyday converters",
+    "converterDesc": "Units, currencies, and more—organized for quick conversions"
   },
   "history": {
     "title": "履歴",
@@ -189,7 +191,10 @@
     "summary": "概要",
     "status": "状態",
     "success": "成功",
-    "failed": "失敗"
+    "failed": "失敗",
+    "recordingTitle": "Record tool activity",
+    "recordingOn": "On — short summaries may be saved on this device.",
+    "recordingOff": "Off — Kit will not add new activity to History."
   },
   "favorites": {
     "title": "お気に入り",

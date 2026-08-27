@@ -19,11 +19,12 @@ export async function loadFfmpeg() {
 
 export function useToolHistory(toolId: ToolId) {
   const add = useHistoryStore((s) => s.add);
+  const enabled = useHistoryStore((s) => s.enabled);
   return (
     summary: string,
     status: "success" | "failed",
     options?: Record<string, unknown>
-  ) => add({ toolId, summary, status, options });
+    ) => { if (enabled) add({ toolId, summary, status, options }); };
 }
 
 export function ActionBar({

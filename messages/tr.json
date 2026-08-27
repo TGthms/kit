@@ -175,7 +175,9 @@
     "developer": "Geliştirici",
     "developerDesc": "Belirteçler, özetler, kodlamalar, parolalar ve diğer tezgâh araçları",
     "everyday": "Günlük",
-    "everydayDesc": "Pratik dönüştürücüler, saatler, hesaplayıcılar ve hızlı yardımcılar"
+    "everydayDesc": "Pratik dönüştürücüler, saatler, hesaplayıcılar ve hızlı yardımcılar",
+    "converter": "Everyday converters",
+    "converterDesc": "Units, currencies, and more—organized for quick conversions"
   },
   "history": {
     "title": "Geçmiş",
@@ -189,7 +191,10 @@
     "summary": "Özet",
     "status": "Durum",
     "success": "Başarılı",
-    "failed": "Başarısız"
+    "failed": "Başarısız",
+    "recordingTitle": "Record tool activity",
+    "recordingOn": "On — short summaries may be saved on this device.",
+    "recordingOff": "Off — Kit will not add new activity to History."
   },
   "favorites": {
     "title": "Sık kullanılanlar",

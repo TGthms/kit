@@ -175,7 +175,9 @@
     "developer": "นักพัฒนา",
     "developerDesc": "โทเค็น แฮช การเข้ารหัส รหัสผ่าน และเครื่องมือโต๊ะทำงานอื่น ๆ",
     "everyday": "ประจำวัน",
-    "everydayDesc": "เครื่องมือแปลงค่า นาฬิกา เครื่องคำนวณ และเครื่องมือด่วนที่ใช้งานได้จริง"
+    "everydayDesc": "เครื่องมือแปลงค่า นาฬิกา เครื่องคำนวณ และเครื่องมือด่วนที่ใช้งานได้จริง",
+    "converter": "Everyday converters",
+    "converterDesc": "Units, currencies, and more—organized for quick conversions"
   },
   "history": {
     "title": "ประวัติ",
@@ -189,7 +191,10 @@
     "summary": "สรุป",
     "status": "สถานะ",
     "success": "สำเร็จ",
-    "failed": "ล้มเหลว"
+    "failed": "ล้มเหลว",
+    "recordingTitle": "Record tool activity",
+    "recordingOn": "On — short summaries may be saved on this device.",
+    "recordingOff": "Off — Kit will not add new activity to History."
   },
   "favorites": {
     "title": "รายการโปรด",

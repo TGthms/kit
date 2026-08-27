@@ -175,7 +175,9 @@
     "developer": "Προγραμματισμός",
     "developerDesc": "Διακριτικά, κατακερματισμοί, κωδικοποιήσεις, κωδικοί και άλλα εργαλεία πάγκου",
     "everyday": "Καθημερινά",
-    "everydayDesc": "Πρακτικοί μετατροπείς, ρολόγια, υπολογιστές και γρήγορα βοηθήματα"
+    "everydayDesc": "Πρακτικοί μετατροπείς, ρολόγια, υπολογιστές και γρήγορα βοηθήματα",
+    "converter": "Everyday converters",
+    "converterDesc": "Units, currencies, and more—organized for quick conversions"
   },
   "history": {
     "title": "Ιστορικό",
@@ -189,7 +191,10 @@
     "summary": "Περίληψη",
     "status": "Κατάσταση",
     "success": "Επιτυχία",
-    "failed": "Αποτυχία"
+    "failed": "Αποτυχία",
+    "recordingTitle": "Record tool activity",
+    "recordingOn": "On — short summaries may be saved on this device.",
+    "recordingOff": "Off — Kit will not add new activity to History."
   },
   "favorites": {
     "title": "Αγαπημένα",

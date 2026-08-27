@@ -175,7 +175,9 @@
     "developer": "Kehitys",
     "developerDesc": "Tunnisteet, tiivisteet, koodaukset, salasanat ja muut työpöytätyökalut",
     "everyday": "Arki",
-    "everydayDesc": "Käytännön muuntimet, kellot, laskurit ja pikatyökalut"
+    "everydayDesc": "Käytännön muuntimet, kellot, laskurit ja pikatyökalut",
+    "converter": "Everyday converters",
+    "converterDesc": "Units, currencies, and more—organized for quick conversions"
   },
   "history": {
     "title": "Historia",
@@ -189,7 +191,10 @@
     "summary": "Yhteenveto",
     "status": "Tila",
     "success": "Onnistui",
-    "failed": "Epäonnistui"
+    "failed": "Epäonnistui",
+    "recordingTitle": "Record tool activity",
+    "recordingOn": "On — short summaries may be saved on this device.",
+    "recordingOff": "Off — Kit will not add new activity to History."
   },
   "favorites": {
     "title": "Suosikit",

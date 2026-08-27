@@ -175,7 +175,9 @@
     "developer": "تطوير",
     "developerDesc": "الرموز والتجزئات والترميزات وكلمات المرور وأدوات المكتب الأخرى",
     "everyday": "يومي",
-    "everydayDesc": "محولات وساعات وحاسبات وأدوات سريعة عملية"
+    "everydayDesc": "محولات وساعات وحاسبات وأدوات سريعة عملية",
+    "converter": "Everyday converters",
+    "converterDesc": "Units, currencies, and more—organized for quick conversions"
   },
   "history": {
     "title": "السجل",
@@ -189,7 +191,10 @@
     "summary": "الملخص",
     "status": "الحالة",
     "success": "نجح",
-    "failed": "فشل"
+    "failed": "فشل",
+    "recordingTitle": "Record tool activity",
+    "recordingOn": "On — short summaries may be saved on this device.",
+    "recordingOff": "Off — Kit will not add new activity to History."
   },
   "favorites": {
     "title": "المفضلة",
