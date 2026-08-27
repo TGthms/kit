@@ -7,6 +7,15 @@ export function homeHref(category?: ToolCategory | null): string {
   return `/?c=${encodeURIComponent(category)}`;
 }
 
+/** Public URL segment for a tool. Legacy IDs remain valid route aliases. */
+export function toolPathSegment(toolId: ToolId): string {
+  return toolId === "timezone-converter" ? "world-clock" : toolId;
+}
+
+export function toolHref(toolId: ToolId, fromHref = "/"): string {
+  return `/tools/${toolPathSegment(toolId)}?from=${encodeURIComponent(fromHref)}`;
+}
+
 /** Where a tool should go back in the product stack. */
 export function toolBackHref(toolId: ToolId): string {
   const tool = getTool(toolId);

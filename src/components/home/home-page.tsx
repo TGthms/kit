@@ -15,8 +15,8 @@ import {
   Code2,
   Calculator,
 } from "lucide-react";
-import { tools, categories, featuredToolIds, groupedTools, type ToolCategory } from "@/lib/tools/registry";
-import { homeHref, parseCategoryParam } from "@/lib/navigation/routes";
+import { tools, categories, featuredToolIds, groupedTools, type ToolCategory, type ToolId } from "@/lib/tools/registry";
+import { homeHref, parseCategoryParam, toolHref } from "@/lib/navigation/routes";
 import { Link, useRouter } from "@/lib/i18n/navigation";
 import { Input } from "@/components/ui/input";
 import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -71,12 +71,6 @@ const categoryMeta: Record<
   },
 };
 
-let rememberedHomeScroll = 0;
-
-function toolHref(toolId: string, fromHref = "/") {
-  return `/tools/${toolId}?from=${encodeURIComponent(fromHref)}`;
-}
-
 function ToolCard({
   toolId,
   category,
@@ -89,7 +83,7 @@ function ToolCard({
   favoriteLabel,
   unfavoriteLabel,
 }: {
-  toolId: string;
+  toolId: ToolId;
   category: string;
   fromHref?: string;
   icon: typeof FileText;
@@ -152,7 +146,6 @@ function HomePageInner() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const selectedCat = parseCategoryParam(searchParams.get("c"));
-  const restoreScrollParam = Number(searchParams.get("restore"));
   const [q, setQ] = useState("");
   const [greeting, setGreeting] = useState<{ period: GreetingPeriod; day: string; variant: number } | null>(null);
 
@@ -171,16 +164,9 @@ function HomePageInner() {
 
   const openCategory = useCallback(
     (c: ToolCategory) => {
-      rememberedHomeScroll = window.scrollY;
-      try {
-        sessionStorage.setItem(`kit-home-scroll:${locale}`, String(rememberedHomeScroll));
-      } catch {
-        // sessionStorage may be unavailable in private browsing modes.
-      }
-      const restore = Math.round(window.scrollY);
-      router.push(`${homeHref(c)}&restore=${restore}`);
+      router.push(homeHref(c));
     },
-    [locale, router]
+    [router]
   );
 
   const query = q.trim().toLowerCase();
@@ -218,41 +204,6 @@ function HomePageInner() {
   const showCategories = !isSearching && !selectedCat;
   const showCategoryTools = selectedCat !== null;
   const showGlobalSearch = isSearching && !selectedCat;
-
-  useEffect(() => {
-    if (selectedCat || isSearching) return;
-    const storageKey = `kit-home-scroll:${locale}`;
-    let restoreTimer = 0;
-    let saved = Number.isFinite(restoreScrollParam) && restoreScrollParam > 0 ? restoreScrollParam : rememberedHomeScroll;
-    try {
-      const stored = Number(sessionStorage.getItem(storageKey));
-      if (Number.isFinite(stored) && stored > saved) saved = stored;
-      if (Number.isFinite(saved) && saved > 0) {
-        restoreTimer = window.setTimeout(() => {
-          const maxScroll = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
-          window.scrollTo({ top: Math.min(saved, maxScroll), behavior: "auto" });
-          if (restoreScrollParam > 0) {
-            window.history.replaceState(window.history.state, "", window.location.pathname);
-          }
-        }, 500);
-      }
-    } catch {
-      // sessionStorage may be unavailable in private browsing modes.
-    }
-    const rememberHomeScroll = () => {
-      rememberedHomeScroll = window.scrollY;
-      try {
-        sessionStorage.setItem(storageKey, String(rememberedHomeScroll));
-      } catch {
-        // sessionStorage may be unavailable in private browsing modes.
-      }
-    };
-    window.addEventListener("scroll", rememberHomeScroll, { passive: true });
-    return () => {
-      window.clearTimeout(restoreTimer);
-      window.removeEventListener("scroll", rememberHomeScroll);
-    };
-  }, [isSearching, locale, restoreScrollParam, selectedCat]);
 
   return (
     <div className="space-y-7 sm:space-y-9">
@@ -397,7 +348,7 @@ function HomePageInner() {
           <PageHeader
             title={tc(selectedCat)}
             subtitle={tc(`${selectedCat}Desc`)}
-            backHref={restoreScrollParam > 0 ? `${homeHref()}?restore=${restoreScrollParam}` : homeHref()}
+            backHref={homeHref()}
             backLabel={t("backToCategories")}
           />
           <div className="relative max-w-xl">

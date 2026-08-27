@@ -24,41 +24,66 @@ function isActive(pathname: string, href: string) {
 }
 
 const SCROLL_STORAGE_PREFIX = "kit-scroll:";
+let navigationStarted = false;
+
+function scrollStorageKey(locationKey: string) {
+  return `${SCROLL_STORAGE_PREFIX}${locationKey}`;
+}
+
+function readScrollPosition(key: string): number {
+  try {
+    const value = Number(sessionStorage.getItem(key));
+    return Number.isFinite(value) && value > 0 ? value : 0;
+  } catch {
+    return 0;
+  }
+}
+
+function writeScrollPosition(key: string, value: number) {
+  try {
+    sessionStorage.setItem(key, String(Math.max(0, Math.round(value))));
+  } catch {
+    // sessionStorage may be unavailable in private browsing modes.
+  }
+}
 
 function ScrollRestoration({ locationKey }: { locationKey: string }) {
   useEffect(() => {
+    navigationStarted = false;
     const previousRestoration = window.history.scrollRestoration;
     window.history.scrollRestoration = "manual";
-    const storageKey = `${SCROLL_STORAGE_PREFIX}${window.location.pathname}${window.location.search}`;
+    const storageKey = scrollStorageKey(`${window.location.pathname}${window.location.search}`);
     let lastScrollY = window.scrollY;
-    let saved = 0;
-    try {
-      saved = Number(sessionStorage.getItem(storageKey));
-    } catch {
-      // sessionStorage may be unavailable in private browsing modes.
-    }
+    const saved = readScrollPosition(storageKey);
     let frame = 0;
     let restoreTimer = 0;
     let attempts = 0;
     const restore = () => {
       attempts += 1;
-      if (!Number.isFinite(saved) || saved <= 0) return;
+      if (saved <= 0) return;
       const maxScroll = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
       if (maxScroll >= saved || attempts >= 60) {
-        window.scrollTo({ top: Math.min(saved, maxScroll), behavior: "auto" });
+        // Temporarily disable smooth scrolling so restoration happens in one frame.
+        const html = document.documentElement;
+        const previousBehavior = html.style.scrollBehavior;
+        html.style.scrollBehavior = "auto";
+        window.scrollTo(0, Math.min(saved, maxScroll));
+        window.requestAnimationFrame(() => {
+          html.style.scrollBehavior = previousBehavior;
+        });
         return;
       }
       frame = window.requestAnimationFrame(restore);
     };
+    // Let the router finish its own route transition before taking control.
     restoreTimer = window.setTimeout(() => {
-      frame = window.requestAnimationFrame(restore);
-    }, 50);
+      frame = window.requestAnimationFrame(() => {
+        frame = window.requestAnimationFrame(restore);
+      });
+    }, 0);
     const save = () => {
-      try {
-        sessionStorage.setItem(storageKey, String(lastScrollY));
-      } catch {
-        // sessionStorage may be unavailable in private browsing modes.
-      }
+      if (navigationStarted) return;
+      writeScrollPosition(storageKey, lastScrollY);
     };
     const rememberScroll = () => {
       lastScrollY = window.scrollY;
@@ -86,10 +111,11 @@ function ScrollRestoration({ locationKey }: { locationKey: string }) {
         return;
       }
       try {
-        const key = `${SCROLL_STORAGE_PREFIX}${window.location.pathname}${window.location.search}`;
-        sessionStorage.setItem(key, String(window.scrollY));
+        const key = scrollStorageKey(`${window.location.pathname}${window.location.search}`);
+        writeScrollPosition(key, window.scrollY);
+        navigationStarted = true;
       } catch {
-        // sessionStorage may be unavailable in private browsing modes.
+        // URL inspection can fail only in unusual document environments.
       }
     };
     document.addEventListener("click", rememberBeforeNavigation, true);

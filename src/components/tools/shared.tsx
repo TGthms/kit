@@ -2,6 +2,7 @@
 
 import { useEffect, type ReactNode } from "react";
 import { useTranslations } from "next-intl";
+import { LoaderCircle } from "lucide-react";
 import type { ToolId } from "@/lib/tools/registry";
 import { ToolHeader } from "@/components/shared/tool-header";
 import { Button } from "@/components/ui/button";
@@ -31,12 +32,14 @@ export function ActionBar({
   label,
   disabled,
   onCancel,
+  status,
 }: {
   onRun: () => void;
   loading: boolean;
   label: string;
   disabled?: boolean;
   onCancel?: () => void;
+  status?: string;
 }) {
   const t = useTranslations("common");
   useEffect(() => {
@@ -57,19 +60,33 @@ export function ActionBar({
     };
   }, [onRun, loading, disabled]);
   return (
-    <div className="flex flex-wrap items-center gap-3">
+    <div className="flex flex-wrap items-center gap-3" aria-busy={loading || undefined}>
       <Button
         onClick={onRun}
         disabled={loading || disabled}
         className="min-w-32"
         type="button"
       >
-        {loading ? t("processing") : label}
+        {loading ? (
+          <>
+            <LoaderCircle className="h-4 w-4 animate-spin" aria-hidden />
+            {t("processing")}
+          </>
+        ) : label}
       </Button>
       {loading && onCancel ? (
-        <Button type="button" variant="outline" onClick={onCancel}>
+        <Button type="button" variant="outline" onClick={onCancel} aria-label={t("cancel")}>
           {t("cancel")}
         </Button>
+      ) : null}
+      {loading ? (
+        <span
+          className="anim-status inline-flex items-center text-sm text-muted-foreground"
+          role="status"
+          aria-live="polite"
+        >
+          {status ?? t("processing")}
+        </span>
       ) : null}
     </div>
   );
@@ -82,7 +99,7 @@ export function ToolLimits({ children }: { children: ReactNode }) {
       <summary className="cursor-pointer select-none font-medium text-foreground">
         {t("howItWorks")}
       </summary>
-      <div className="mt-2 space-y-2 text-muted-foreground">{children}</div>
+      <div className="anim-details-content mt-2 space-y-2 text-muted-foreground">{children}</div>
     </details>
   );
 }

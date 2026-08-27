@@ -22,6 +22,7 @@ import {
 } from "@/lib/pdf/core";
 import { lockPdf, unlockPdf } from "@/lib/pdf/protect";
 import { ActionBar, ToolLimits, ToolShell, useToolHistory, loadPdfjs } from "./shared";
+import { Progress } from "@/components/ui/progress";
 
 const selectClass =
   "flex h-10 w-full rounded-xl border border-input bg-background px-3 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring";
@@ -94,15 +95,22 @@ export function PdfToImages() {
   const log = useToolHistory("pdf-to-images");
   const [files, setFiles] = useState<FileItem[]>([]);
   const [loading, setLoading] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const [controller, setController] = useState<AbortController | null>(null);
 
   const run = async () => {
     if (!files[0]) return;
+    const ac = new AbortController();
+    setController(ac);
     setLoading(true);
+    setProgress(0);
     try {
       const { renderPdfPagesToBlobs } = await loadPdfjs();
       const blobs = await renderPdfPagesToBlobs(await files[0].file.arrayBuffer(), {
         mime: "image/jpeg",
         scale: 1.6,
+        signal: ac.signal,
+        onProgress: (ratio) => setProgress(Math.round(ratio * 100)),
       });
       const zip = new JSZip();
       blobs.forEach((blob, i) => zip.file(`page-${String(i + 1).padStart(3, "0")}.jpg`, blob));
@@ -110,10 +118,12 @@ export function PdfToImages() {
       toast.success(t("success", { count: blobs.length }));
       log(`${blobs.length} pages`, "success");
     } catch (e) {
-      toast.error(e instanceof Error ? e.message : tc("error"));
+      if (e instanceof DOMException && e.name === "AbortError") toast.error(tc("cancel"));
+      else toast.error(e instanceof Error ? e.message : tc("error"));
       log("failed", "failed");
     } finally {
       setLoading(false);
+      setController(null);
     }
   };
 
@@ -123,7 +133,14 @@ export function PdfToImages() {
         <p>{t("limits")}</p>
       </ToolLimits>
       <FileDropzone accept="application/pdf" multiple={false} files={files} onChange={setFiles} />
-      <ActionBar onRun={run} loading={loading} label={t("run")} disabled={!files[0]} />
+      {loading && <Progress value={progress} aria-label={t("run")} />}
+      <ActionBar
+        onRun={run}
+        loading={loading}
+        label={t("run")}
+        disabled={!files[0]}
+        onCancel={() => controller?.abort()}
+      />
     </ToolShell>
   );
 }

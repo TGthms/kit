@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { pathLocales } from "@/lib/i18n/config";
 import { tools } from "@/lib/tools/registry";
+import { toolPathSegment } from "@/lib/navigation/routes";
 import { absoluteUrl } from "@/lib/seo/site";
 
 export const dynamic = "force-static";
@@ -18,7 +19,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }
     for (const tool of tools) {
       entries.push({
-        url: absoluteUrl(`/${locale}/tools/${tool.id}/`),
+        url: absoluteUrl(`/${locale}/tools/${toolPathSegment(tool.id)}/`),
         changeFrequency: "monthly",
         priority: 0.8,
       });

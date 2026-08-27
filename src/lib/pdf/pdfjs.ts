@@ -37,30 +37,41 @@ export async function renderPdfThumbnail(
 
 export async function renderPdfPagesToBlobs(
   data: ArrayBuffer,
-  opts: { scale?: number; mime?: "image/jpeg" | "image/png"; quality?: number } = {}
+  opts: {
+    scale?: number;
+    mime?: "image/jpeg" | "image/png";
+    quality?: number;
+    signal?: AbortSignal;
+    onProgress?: (ratio: number) => void;
+  } = {}
 ): Promise<Blob[]> {
   ensurePdfWorker();
   const scale = opts.scale ?? 1.5;
   const mime = opts.mime ?? "image/jpeg";
   const quality = opts.quality ?? 0.85;
   const { doc, loadingTask } = await openPdfDocument(data);
-  const blobs: Blob[] = [];
-  for (let i = 1; i <= doc.numPages; i++) {
-    const page = await doc.getPage(i);
-    const viewport = page.getViewport({ scale });
-    const canvas = document.createElement("canvas");
-    canvas.width = viewport.width;
-    canvas.height = viewport.height;
-    const ctx = canvas.getContext("2d")!;
-    await page.render({ canvasContext: ctx, viewport, canvas }).promise;
-    const blob: Blob = await new Promise((resolve, reject) =>
-      canvas.toBlob((b) => (b ? resolve(b) : reject(new Error("toBlob failed"))), mime, quality)
-    );
-    blobs.push(blob);
+  try {
+    const blobs: Blob[] = [];
+    for (let i = 1; i <= doc.numPages; i++) {
+      if (opts.signal?.aborted) throw new DOMException("Aborted", "AbortError");
+      const page = await doc.getPage(i);
+      const viewport = page.getViewport({ scale });
+      const canvas = document.createElement("canvas");
+      canvas.width = viewport.width;
+      canvas.height = viewport.height;
+      const ctx = canvas.getContext("2d")!;
+      await page.render({ canvasContext: ctx, viewport, canvas }).promise;
+      const blob: Blob = await new Promise((resolve, reject) =>
+        canvas.toBlob((b) => (b ? resolve(b) : reject(new Error("toBlob failed"))), mime, quality)
+      );
+      blobs.push(blob);
+      opts.onProgress?.(i / doc.numPages);
+    }
+    return blobs;
+  } finally {
+    await doc.cleanup();
+    await loadingTask.destroy();
   }
-  await doc.cleanup();
-  await loadingTask.destroy();
-  return blobs;
 }
 
 export async function extractPdfText(data: ArrayBuffer): Promise<string> {

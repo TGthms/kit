@@ -111,7 +111,11 @@ export function buildSocialMetadata({
   };
 }
 
-export async function buildToolMetadata(locale: string, toolId: string): Promise<Metadata> {
+export async function buildToolMetadata(
+  locale: string,
+  toolId: string,
+  pathSegment = toolId === "timezone-converter" ? "world-clock" : toolId
+): Promise<Metadata> {
   const pathLoc = isPathLocale(locale) ? locale : defaultLocale;
   const messages = await loadMessages(pathLoc);
   const tool = getTool(toolId);
@@ -122,7 +126,7 @@ export async function buildToolMetadata(locale: string, toolId: string): Promise
     pathLoc,
     title,
     description,
-    pathAfterLocale: `/tools/${tool?.id ?? toolId}/`,
+    pathAfterLocale: `/tools/${pathSegment}/`,
   });
 }
 
