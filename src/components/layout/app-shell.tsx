@@ -212,7 +212,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
   return (
     <div className="flex min-h-dvh flex-col overflow-x-clip bg-background">
       <ScrollRestoration locationKey={locationKey} />
-      <header className="glass chrome-edge fixed inset-x-0 top-0 z-50 shrink-0 pt-[env(safe-area-inset-top)] md:sticky md:inset-auto">
+      <header className="glass chrome-edge fixed inset-x-0 top-0 z-50 shrink-0 pt-[env(safe-area-inset-top)]">
         <div className="mx-auto flex h-12 max-w-6xl items-center justify-between gap-2 px-4 sm:h-14 sm:gap-3 sm:px-6 lg:px-8">
           <Link
             href="/"
@@ -240,7 +240,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
         </div>
       </header>
 
-      <div className="mx-auto flex w-full max-w-6xl flex-1 gap-8 px-4 pb-5 pt-[calc(3rem+env(safe-area-inset-top)+1.25rem)] sm:px-6 sm:py-8 lg:px-8">
+      <div className="mx-auto flex w-full max-w-6xl flex-1 gap-8 px-4 pb-5 pt-[calc(3rem+env(safe-area-inset-top)+1.25rem)] sm:px-6 sm:pt-[calc(3.5rem+env(safe-area-inset-top)+2rem)] lg:px-8">
         <aside className="hidden w-[13.5rem] shrink-0 md:block">
           <div className="glass-heavy sticky top-[4.5rem] rounded-2xl border border-border/35 p-2.5 surface-float">
             <SideNav />

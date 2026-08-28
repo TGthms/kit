@@ -441,41 +441,100 @@ function SearchableSelect({
     const selected = options.find((option) => option.value === value);
     return selected && !matches.some((option) => option.value === selected.value) ? [selected, ...matches] : matches;
   }, [options, query, value]);
+  const selected = options.find((option) => option.value === value);
   return (
     <div className="space-y-2">
       <Label>{label}</Label>
       {searchable ? (
-        <div className="relative">
-          <Search className="pointer-events-none absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
-          <Input
-            value={query}
-            onChange={(event) => setQuery(event.target.value)}
-            placeholder={text(t, "search", "Search")}
-            className="pl-9"
-            aria-label={text(t, "searchAria", `${label} search`, { label })}
-            type="search"
-          />
+        <div className="space-y-2">
+          <div className="relative">
+            <Search className="pointer-events-none absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+            <Input
+              value={query}
+              onChange={(event) => setQuery(event.target.value)}
+              placeholder={selected ? `${selected.value} — ${selected.label}` : text(t, "search", "Search")}
+              className="pl-9"
+              aria-label={text(t, "searchAria", `${label} search`, { label })}
+              type="search"
+            />
+          </div>
+          <div role="listbox" aria-label={label} className="max-h-52 overflow-y-auto rounded-xl border border-input bg-background p-1 shadow-sm">
+            {filtered.length ? filtered.map((option) => (
+              <button
+                key={option.value}
+                type="button"
+                role="option"
+                aria-selected={option.value === value}
+                onClick={() => { onChange(option.value); setQuery(""); }}
+                className="flex min-h-10 w-full items-center rounded-lg px-3 py-2 text-left text-sm transition-colors hover:bg-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring aria-selected:bg-primary/10 aria-selected:font-medium"
+              >
+                <span className="truncate">{option.value} — {option.label}</span>
+              </button>
+            )) : <p className="px-3 py-3 text-sm text-muted-foreground">{text(t, "noMatches", "No matches")}</p>}
+          </div>
         </div>
-      ) : null}
-      <select className={selectClass} value={value} onChange={(event) => onChange(event.target.value)}>
-        {filtered.map((option) => (
-          <option key={option.value} value={option.value}>
-            {option.value} — {option.label}
-          </option>
-        ))}
-      </select>
+      ) : <select className={selectClass} value={value} onChange={(event) => onChange(event.target.value)}>
+        {options.map((option) => <option key={option.value} value={option.value}>{option.value} — {option.label}</option>)}
+      </select>}
     </div>
   );
 }
 
+const UNIT_FORMAT_KEYS: Partial<Record<UnitCode, string>> = {
+  mm: "millimeter", cm: "centimeter", m: "meter", km: "kilometer", in: "inch", ft: "foot", yd: "yard", mi: "mile", nmi: "nautical-mile",
+  mg: "milligram", g: "gram", kg: "kilogram", t: "tonne", oz: "ounce", lb: "pound", stone: "stone", C: "celsius", F: "fahrenheit", K: "kelvin",
+  ms: "millisecond", s: "second", min: "minute", h: "hour", day: "day", week: "week", mL: "milliliter", L: "liter", m3: "cubic-meter",
+  W: "watt", kW: "kilowatt", MW: "megawatt", hp: "horsepower", J: "joule", kJ: "kilojoule", MJ: "megajoule", Wh: "watt-hour", kWh: "kilowatt-hour", cal: "calorie", kcal: "kilocalorie",
+  Pa: "pascal", kPa: "kilopascal", MPa: "megapascal", bar: "bar", psi: "psi", atm: "atmosphere", mmHg: "millimeter-of-mercury", mm2: "square-millimeter", cm2: "square-centimeter", m2: "square-meter", km2: "square-kilometer", ft2: "square-foot", acre: "acre", hectare: "hectare",
+  bit: "bit", B: "byte", kB: "kilobyte", MB: "megabyte", GB: "gigabyte", TB: "terabyte", KiB: "kibibyte", MiB: "mebibyte", GiB: "gibibyte", deg: "degree", rad: "radian", grad: "gradian", turn: "revolution", Hz: "hertz", kHz: "kilohertz", MHz: "megahertz", GHz: "gigahertz", rpm: "revolutions-per-minute",
+  N: "newton", kN: "kilonewton", lbf: "pound-force", kgf: "kilogram-force", "m/s2": "meter-per-square-second", g0: "standard-gravity", "ft/s2": "foot-per-square-second", Nm: "newton-meter", kNm: "kilonewton-meter", "lb-ft": "pound-foot", "lb-in": "pound-inch",
+  mV: "millivolt", V: "volt", kV: "kilovolt", mA: "milliampere", A: "ampere", kA: "kiloampere", mOhm: "milliohm", Ohm: "ohm", kOhm: "kiloohm", MOhm: "megaohm", px: "pixel", pt: "point", pc: "pica", rem: "rem", em: "em",
+};
+
+function localizedUnitLabel(code: UnitCode, fallback: string, locale: string): string {
+  const unit = UNIT_FORMAT_KEYS[code];
+  if (!unit) return fallback;
+  try {
+    const parts = new Intl.NumberFormat(locale, { style: "unit", unit, unitDisplay: "long" }).formatToParts(1);
+    return parts.find((part) => part.type === "unit")?.value ?? fallback;
+  } catch {
+    return fallback;
+  }
+}
+
 function ConverterLanding({ onSelect }: { onSelect: (category: ConverterCategory) => void }) {
   const t = useTranslations("tools.everyday-converter");
+  const locale = useLocale();
+  const optionalDescription = (key: string, fallback: string) => {
+    const value = text(t, key, fallback);
+    return locale === "en" || value !== fallback ? value : "";
+  };
   const cards: Array<{ id: ConverterCategory; label: string; description: string; icon: LucideIcon }> = [
-    { id: "currency", label: text(t, "currency", "Currency"), description: text(t, "categoryCurrencyDescription", "Live exchange rates with a local cache"), icon: TrendingUp },
+    { id: "currency", label: text(t, "currency", "Currency"), description: optionalDescription("categoryCurrencyDescription", "Live exchange rates with a local cache"), icon: TrendingUp },
     ...UNIT_CATEGORY_INFO.map((item) => ({
       id: item.id,
       label: text(t, `category${item.key}`, item.key === "FuelEconomy" ? "Fuel economy" : item.key),
-      description: text(t, `category${item.key}Description`, "Local unit conversion"),
+      description: optionalDescription(`category${item.key}Description`, ({
+        Length: "Distances, dimensions, and travel",
+        Mass: "Weights from milligrams to tonnes",
+        Temperature: "Celsius, Fahrenheit, and Kelvin",
+        Speed: "Everyday and nautical speed",
+        Duration: "Milliseconds through weeks",
+        Volume: "Metric and kitchen measures",
+        Power: "Watts and horsepower",
+        Energy: "Joules, calories, and watt-hours",
+        Pressure: "Pa, bar, PSI, and more",
+        Area: "Surface and land area",
+        Data: "Decimal and binary storage",
+        Angle: "Degrees, radians, and turns",
+        Frequency: "Hz through RPM",
+        Force: "Newtons and force units",
+        FuelEconomy: "Consumption and mileage",
+        Acceleration: "Motion and gravity",
+        Torque: "Rotational force",
+        Electrical: "Voltage, current, and resistance",
+        Typography: "CSS and print sizes",
+      } as Record<string, string>)[item.key] ?? "Local unit conversion"),
       icon: item.icon,
     })),
   ];
@@ -496,7 +555,7 @@ function ConverterLanding({ onSelect }: { onSelect: (category: ConverterCategory
               <ArrowLeftRight className="h-4 w-4 text-muted-foreground transition group-hover:translate-x-0.5 group-hover:text-primary" />
             </div>
             <p className="font-semibold">{card.label}</p>
-            <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{card.description}</p>
+            {card.description ? <p className="mt-1 text-sm leading-relaxed text-muted-foreground">{card.description}</p> : null}
           </button>
         ))}
       </div>
@@ -509,11 +568,15 @@ function ConverterLanding({ onSelect }: { onSelect: (category: ConverterCategory
 
 function UnitConverter({ category, onBack }: { category: UnitCategory; onBack: () => void }) {
   const t = useTranslations("tools.everyday-converter");
+  const locale = useLocale();
   const log = useToolHistory(toolId("everyday-converter"));
   const options = UNIT_CATALOG[category];
   const localizedOptions = useMemo(
-    () => options.map((option) => ({ ...option, label: UNIT_MESSAGE_KEYS[option.code] ? text(t, UNIT_MESSAGE_KEYS[option.code], option.label) : option.label })),
-    [options, t]
+    () => options.map((option) => {
+      const translated = UNIT_MESSAGE_KEYS[option.code] ? text(t, UNIT_MESSAGE_KEYS[option.code], option.label) : option.label;
+      return { ...option, label: translated === option.label ? localizedUnitLabel(option.code, option.label, locale) : translated };
+    }),
+    [locale, options, t]
   );
   const [amount, setAmount] = useState("1");
   const [from, setFrom] = useState<UnitCode>(options[0].code);
@@ -558,6 +621,32 @@ function UnitConverter({ category, onBack }: { category: UnitCategory; onBack: (
   const setPreset = (nextFrom: UnitCode, nextTo: UnitCode) => {
     setFrom(nextFrom);
     setTo(nextTo);
+  };
+  const presetEnglishLabels: Record<string, string> = {
+    presetMetricImperial: "Metric ↔ imperial",
+    presetKilometersMiles: "Kilometers ↔ miles",
+    presetKilogramsPounds: "Kilograms ↔ pounds",
+    presetCelsiusFahrenheit: "Celsius ↔ Fahrenheit",
+    presetCelsiusKelvin: "Celsius ↔ Kelvin",
+    presetKmhMph: "Kilometers per hour ↔ miles per hour",
+    presetHoursMinutes: "Hours ↔ minutes",
+    presetLitersGallons: "Liters ↔ US gallons",
+    presetWattsHorsepower: "Watts ↔ horsepower",
+    presetKwhJoules: "Kilowatt-hours ↔ joules",
+    presetBarPsi: "Bar ↔ PSI",
+    presetSquareMetersFeet: "Square meters ↔ square feet",
+    presetGbGib: "Gigabytes ↔ gibibytes",
+    presetDegreesRadians: "Degrees ↔ radians",
+    presetHzRpm: "Hertz ↔ RPM",
+    presetNewtonsPoundForce: "Newtons ↔ pound-force",
+    presetL100kmMpg: "Liters per 100 km ↔ miles per US gallon",
+    presetMs2G: "Meters per second squared ↔ standard gravity",
+    presetNmLbFt: "Newton-meters ↔ pound-feet",
+    presetVoltsMillivolts: "Volts ↔ millivolts",
+    presetAmpsMilliamps: "Amps ↔ milliamps",
+    presetOhmsKilohms: "Ohms ↔ kilohms",
+    presetPxRem: "Pixels ↔ rem",
+    presetPxPt: "Pixels ↔ points",
   };
   return (
     <div className="space-y-5">
@@ -624,7 +713,12 @@ function UnitConverter({ category, onBack }: { category: UnitCategory; onBack: (
           <div className="flex flex-wrap gap-2">
             {presets.map(([labelKey, presetFrom, presetTo]) => (
               <Button key={labelKey} type="button" size="sm" variant="outline" onClick={() => setPreset(presetFrom, presetTo)}>
-                {text(t, labelKey, labelKey)}
+                {(() => {
+                  const english = presetEnglishLabels[labelKey] ?? labelKey;
+                  const translated = text(t, labelKey, english);
+                  if (locale === "en" || translated !== english) return translated;
+                  return `${localizedUnitLabel(presetFrom, presetFrom, locale)} ↔ ${localizedUnitLabel(presetTo, presetTo, locale)}`;
+                })()}
               </Button>
             ))}
           </div>

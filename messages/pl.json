@@ -987,7 +987,8 @@
       "unitTib": "Tebibytes",
       "unitPib": "Pebibytes",
       "unitArcmin": "Arcminutes",
-      "unitArcsec": "Arcseconds"
+      "unitArcsec": "Arcseconds",
+      "noMatches": "No matches found."
     },
     "text-counter": {
       "name": "Licznik tekstu",
