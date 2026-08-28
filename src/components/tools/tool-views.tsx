@@ -68,6 +68,15 @@ import {
   JsonTypes,
 } from "./work-tools";
 import {
+  TextCounter,
+  TimezoneConverter,
+  DateCalculator,
+  TipSplitCalculator,
+  StopwatchTimer,
+  RandomGenerator,
+  EverydayImagesToPdf,
+} from "./everyday-tools";
+import {
   CurrencyConverterTool,
   LengthConverter,
   MassConverter,
@@ -88,14 +97,7 @@ import {
   TorqueConverter,
   ElectricalConverter,
   TypographyConverter,
-  TextCounter,
-  TimezoneConverter,
-  DateCalculator,
-  TipSplitCalculator,
-  StopwatchTimer,
-  RandomGenerator,
-  EverydayImagesToPdf,
-} from "./everyday-tools";
+} from "./converter-tools";
 
 const TOOL_COMPONENTS: Record<ToolId, ComponentType> = {
   "pdf-merge": PdfMerge,
