@@ -1397,6 +1397,139 @@
       "unitPib": "Pebibytes",
       "unitArcmin": "Arcminutes",
       "unitArcsec": "Arcseconds"
+    },
+    "length-converter": {
+      "name": "Length",
+      "description": "Distances, dimensions, and travel",
+      "keywords": "Length length converter",
+      "run": "Record conversion",
+      "success": "Conversion saved to history."
+    },
+    "mass-converter": {
+      "name": "Mass",
+      "description": "Weights from milligrams to tonnes",
+      "keywords": "Mass mass converter",
+      "run": "Record conversion",
+      "success": "Conversion saved to history."
+    },
+    "temperature-converter": {
+      "name": "Temperature",
+      "description": "Celsius, Fahrenheit, and Kelvin",
+      "keywords": "Temperature temperature converter",
+      "run": "Record conversion",
+      "success": "Conversion saved to history."
+    },
+    "speed-converter": {
+      "name": "Speed",
+      "description": "Everyday and nautical speed",
+      "keywords": "Speed speed converter",
+      "run": "Record conversion",
+      "success": "Conversion saved to history."
+    },
+    "duration-converter": {
+      "name": "Duration",
+      "description": "Milliseconds through weeks",
+      "keywords": "Duration duration converter",
+      "run": "Record conversion",
+      "success": "Conversion saved to history."
+    },
+    "volume-converter": {
+      "name": "Volume",
+      "description": "Metric and kitchen measures",
+      "keywords": "Volume volume converter",
+      "run": "Record conversion",
+      "success": "Conversion saved to history."
+    },
+    "power-converter": {
+      "name": "Power",
+      "description": "Watts and horsepower",
+      "keywords": "Power power converter",
+      "run": "Record conversion",
+      "success": "Conversion saved to history."
+    },
+    "energy-converter": {
+      "name": "Energy",
+      "description": "Joules, calories, and watt-hours",
+      "keywords": "Energy energy converter",
+      "run": "Record conversion",
+      "success": "Conversion saved to history."
+    },
+    "pressure-converter": {
+      "name": "Pressure",
+      "description": "Pa, bar, PSI, and more",
+      "keywords": "Pressure pressure converter",
+      "run": "Record conversion",
+      "success": "Conversion saved to history."
+    },
+    "area-converter": {
+      "name": "Area",
+      "description": "Surface and land area",
+      "keywords": "Area area converter",
+      "run": "Record conversion",
+      "success": "Conversion saved to history."
+    },
+    "data-converter": {
+      "name": "Data",
+      "description": "Decimal and binary storage",
+      "keywords": "Data data converter",
+      "run": "Record conversion",
+      "success": "Conversion saved to history."
+    },
+    "angle-converter": {
+      "name": "Angle",
+      "description": "Degrees, radians, and turns",
+      "keywords": "Angle angle converter",
+      "run": "Record conversion",
+      "success": "Conversion saved to history."
+    },
+    "frequency-converter": {
+      "name": "Frequency",
+      "description": "Hz through RPM",
+      "keywords": "Frequency frequency converter",
+      "run": "Record conversion",
+      "success": "Conversion saved to history."
+    },
+    "force-converter": {
+      "name": "Force",
+      "description": "Newtons and force units",
+      "keywords": "Force force converter",
+      "run": "Record conversion",
+      "success": "Conversion saved to history."
+    },
+    "fuel-economy-converter": {
+      "name": "Fuel economy",
+      "description": "Consumption and mileage",
+      "keywords": "Fuel economy fuel economy converter",
+      "run": "Record conversion",
+      "success": "Conversion saved to history."
+    },
+    "acceleration-converter": {
+      "name": "Acceleration",
+      "description": "Motion and gravity",
+      "keywords": "Acceleration acceleration converter",
+      "run": "Record conversion",
+      "success": "Conversion saved to history."
+    },
+    "torque-converter": {
+      "name": "Torque",
+      "description": "Rotational force",
+      "keywords": "Torque torque converter",
+      "run": "Record conversion",
+      "success": "Conversion saved to history."
+    },
+    "electrical-converter": {
+      "name": "Electrical",
+      "description": "Voltage, current, and resistance",
+      "keywords": "Electrical electrical converter",
+      "run": "Record conversion",
+      "success": "Conversion saved to history."
+    },
+    "typography-converter": {
+      "name": "Typography",
+      "description": "CSS and print sizes",
+      "keywords": "Typography typography converter",
+      "run": "Record conversion",
+      "success": "Conversion saved to history."
     }
   },
   "legal": {

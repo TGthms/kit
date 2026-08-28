@@ -1398,6 +1398,139 @@
       "unitPib": "Pebibytes",
       "unitArcmin": "Arcminutes",
       "unitArcsec": "Arcseconds"
+    },
+    "length-converter": {
+      "name": "Hosszúság",
+      "description": "Távolságok, méretek és utazás",
+      "keywords": "Hosszúság length converter",
+      "run": "Átváltás rögzítése",
+      "success": "Az átváltás mentve az előzményekbe."
+    },
+    "mass-converter": {
+      "name": "Tömeg",
+      "description": "Tömegek milligrammtól tonnáig",
+      "keywords": "Tömeg mass converter",
+      "run": "Átváltás rögzítése",
+      "success": "Az átváltás mentve az előzményekbe."
+    },
+    "temperature-converter": {
+      "name": "Hőmérséklet",
+      "description": "Celsius, Fahrenheit és Kelvin",
+      "keywords": "Hőmérséklet temperature converter",
+      "run": "Átváltás rögzítése",
+      "success": "Az átváltás mentve az előzményekbe."
+    },
+    "speed-converter": {
+      "name": "Sebesség",
+      "description": "Mindennapi és tengeri sebesség",
+      "keywords": "Sebesség speed converter",
+      "run": "Átváltás rögzítése",
+      "success": "Az átváltás mentve az előzményekbe."
+    },
+    "duration-converter": {
+      "name": "Időtartam",
+      "description": "Milliszekundumtól hetekig",
+      "keywords": "Időtartam duration converter",
+      "run": "Átváltás rögzítése",
+      "success": "Az átváltás mentve az előzményekbe."
+    },
+    "volume-converter": {
+      "name": "Térfogat",
+      "description": "Metrikus és konyhai mértékek",
+      "keywords": "Térfogat volume converter",
+      "run": "Átváltás rögzítése",
+      "success": "Az átváltás mentve az előzményekbe."
+    },
+    "power-converter": {
+      "name": "Teljesítmény",
+      "description": "Watt és lóerő",
+      "keywords": "Teljesítmény power converter",
+      "run": "Átváltás rögzítése",
+      "success": "Az átváltás mentve az előzményekbe."
+    },
+    "energy-converter": {
+      "name": "Energia",
+      "description": "Joule, kalória és wattóra",
+      "keywords": "Energia energy converter",
+      "run": "Átváltás rögzítése",
+      "success": "Az átváltás mentve az előzményekbe."
+    },
+    "pressure-converter": {
+      "name": "Nyomás",
+      "description": "Pa, bar, PSI és mások",
+      "keywords": "Nyomás pressure converter",
+      "run": "Átváltás rögzítése",
+      "success": "Az átváltás mentve az előzményekbe."
+    },
+    "area-converter": {
+      "name": "Terület",
+      "description": "Felület és földterület",
+      "keywords": "Terület area converter",
+      "run": "Átváltás rögzítése",
+      "success": "Az átváltás mentve az előzményekbe."
+    },
+    "data-converter": {
+      "name": "Adatok",
+      "description": "Decimális és bináris tárhely",
+      "keywords": "Adatok data converter",
+      "run": "Átváltás rögzítése",
+      "success": "Az átváltás mentve az előzményekbe."
+    },
+    "angle-converter": {
+      "name": "Szög",
+      "description": "Fok, radián és fordulat",
+      "keywords": "Szög angle converter",
+      "run": "Átváltás rögzítése",
+      "success": "Az átváltás mentve az előzményekbe."
+    },
+    "frequency-converter": {
+      "name": "Frekvencia",
+      "description": "Hz-től RPM-ig",
+      "keywords": "Frekvencia frequency converter",
+      "run": "Átváltás rögzítése",
+      "success": "Az átváltás mentve az előzményekbe."
+    },
+    "force-converter": {
+      "name": "Erő",
+      "description": "Newton és erőegységek",
+      "keywords": "Erő force converter",
+      "run": "Átváltás rögzítése",
+      "success": "Az átváltás mentve az előzményekbe."
+    },
+    "fuel-economy-converter": {
+      "name": "Üzemanyag-fogyasztás",
+      "description": "Fogyasztás és kilométeróra",
+      "keywords": "Üzemanyag-fogyasztás fuel economy converter",
+      "run": "Átváltás rögzítése",
+      "success": "Az átváltás mentve az előzményekbe."
+    },
+    "acceleration-converter": {
+      "name": "Gyorsulás",
+      "description": "Mozgás és gravitáció",
+      "keywords": "Gyorsulás acceleration converter",
+      "run": "Átváltás rögzítése",
+      "success": "Az átváltás mentve az előzményekbe."
+    },
+    "torque-converter": {
+      "name": "Forgatónyomaték",
+      "description": "Forgatónyomaték",
+      "keywords": "Forgatónyomaték torque converter",
+      "run": "Átváltás rögzítése",
+      "success": "Az átváltás mentve az előzményekbe."
+    },
+    "electrical-converter": {
+      "name": "Elektromos",
+      "description": "Feszültség, áram és ellenállás",
+      "keywords": "Elektromos electrical converter",
+      "run": "Átváltás rögzítése",
+      "success": "Az átváltás mentve az előzményekbe."
+    },
+    "typography-converter": {
+      "name": "Tipográfia",
+      "description": "CSS- és nyomtatási méretek",
+      "keywords": "Tipográfia typography converter",
+      "run": "Átváltás rögzítése",
+      "success": "Az átváltás mentve az előzményekbe."
     }
   },
   "legal": {

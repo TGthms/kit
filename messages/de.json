@@ -1398,6 +1398,139 @@
       "unitPib": "Pebibytes",
       "unitArcmin": "Arcminutes",
       "unitArcsec": "Arcseconds"
+    },
+    "length-converter": {
+      "name": "Länge",
+      "description": "Entfernungen, Maße und Reisen",
+      "keywords": "Länge length converter",
+      "run": "Umrechnung speichern",
+      "success": "Umrechnung im Verlauf gespeichert."
+    },
+    "mass-converter": {
+      "name": "Masse",
+      "description": "Gewichte von Milligramm bis Tonnen",
+      "keywords": "Masse mass converter",
+      "run": "Umrechnung speichern",
+      "success": "Umrechnung im Verlauf gespeichert."
+    },
+    "temperature-converter": {
+      "name": "Temperatur",
+      "description": "Celsius, Fahrenheit und Kelvin",
+      "keywords": "Temperatur temperature converter",
+      "run": "Umrechnung speichern",
+      "success": "Umrechnung im Verlauf gespeichert."
+    },
+    "speed-converter": {
+      "name": "Geschwindigkeit",
+      "description": "Alltags- und nautische Geschwindigkeiten",
+      "keywords": "Geschwindigkeit speed converter",
+      "run": "Umrechnung speichern",
+      "success": "Umrechnung im Verlauf gespeichert."
+    },
+    "duration-converter": {
+      "name": "Dauer",
+      "description": "Millisekunden bis Wochen",
+      "keywords": "Dauer duration converter",
+      "run": "Umrechnung speichern",
+      "success": "Umrechnung im Verlauf gespeichert."
+    },
+    "volume-converter": {
+      "name": "Volumen",
+      "description": "Metrische und Küchenmaße",
+      "keywords": "Volumen volume converter",
+      "run": "Umrechnung speichern",
+      "success": "Umrechnung im Verlauf gespeichert."
+    },
+    "power-converter": {
+      "name": "Leistung",
+      "description": "Watt und Pferdestärken",
+      "keywords": "Leistung power converter",
+      "run": "Umrechnung speichern",
+      "success": "Umrechnung im Verlauf gespeichert."
+    },
+    "energy-converter": {
+      "name": "Energie",
+      "description": "Joule, Kalorien und Watttunden",
+      "keywords": "Energie energy converter",
+      "run": "Umrechnung speichern",
+      "success": "Umrechnung im Verlauf gespeichert."
+    },
+    "pressure-converter": {
+      "name": "Druck",
+      "description": "Pa, Bar, PSI und mehr",
+      "keywords": "Druck pressure converter",
+      "run": "Umrechnung speichern",
+      "success": "Umrechnung im Verlauf gespeichert."
+    },
+    "area-converter": {
+      "name": "Fläche",
+      "description": "Flächen- und Landmaße",
+      "keywords": "Fläche area converter",
+      "run": "Umrechnung speichern",
+      "success": "Umrechnung im Verlauf gespeichert."
+    },
+    "data-converter": {
+      "name": "Daten",
+      "description": "Dezimaler und binärer Speicher",
+      "keywords": "Daten data converter",
+      "run": "Umrechnung speichern",
+      "success": "Umrechnung im Verlauf gespeichert."
+    },
+    "angle-converter": {
+      "name": "Winkel",
+      "description": "Grad, Radiant und Umdrehungen",
+      "keywords": "Winkel angle converter",
+      "run": "Umrechnung speichern",
+      "success": "Umrechnung im Verlauf gespeichert."
+    },
+    "frequency-converter": {
+      "name": "Frequenz",
+      "description": "Hz bis U/min",
+      "keywords": "Frequenz frequency converter",
+      "run": "Umrechnung speichern",
+      "success": "Umrechnung im Verlauf gespeichert."
+    },
+    "force-converter": {
+      "name": "Kraft",
+      "description": "Newton und Krafteinheiten",
+      "keywords": "Kraft force converter",
+      "run": "Umrechnung speichern",
+      "success": "Umrechnung im Verlauf gespeichert."
+    },
+    "fuel-economy-converter": {
+      "name": "Kraftstoffverbrauch",
+      "description": "Verbrauch und Kilometerleistung",
+      "keywords": "Kraftstoffverbrauch fuel economy converter",
+      "run": "Umrechnung speichern",
+      "success": "Umrechnung im Verlauf gespeichert."
+    },
+    "acceleration-converter": {
+      "name": "Beschleunigung",
+      "description": "Bewegung und Schwerkraft",
+      "keywords": "Beschleunigung acceleration converter",
+      "run": "Umrechnung speichern",
+      "success": "Umrechnung im Verlauf gespeichert."
+    },
+    "torque-converter": {
+      "name": "Drehmoment",
+      "description": "Drehkraft",
+      "keywords": "Drehmoment torque converter",
+      "run": "Umrechnung speichern",
+      "success": "Umrechnung im Verlauf gespeichert."
+    },
+    "electrical-converter": {
+      "name": "Elektrik",
+      "description": "Spannung, Strom und Widerstand",
+      "keywords": "Elektrik electrical converter",
+      "run": "Umrechnung speichern",
+      "success": "Umrechnung im Verlauf gespeichert."
+    },
+    "typography-converter": {
+      "name": "Typografie",
+      "description": "CSS- und Druckgrößen",
+      "keywords": "Typografie typography converter",
+      "run": "Umrechnung speichern",
+      "success": "Umrechnung im Verlauf gespeichert."
     }
   },
   "legal": {

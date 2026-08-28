@@ -1398,6 +1398,139 @@
       "unitPib": "Pebibytes",
       "unitArcmin": "Arcminutes",
       "unitArcsec": "Arcseconds"
+    },
+    "length-converter": {
+      "name": "Uzunluk",
+      "description": "Mesafeler, boyutlar ve seyahat",
+      "keywords": "Uzunluk length converter",
+      "run": "Dönüştürmeyi kaydet",
+      "success": "Dönüştürme geçmişe kaydedildi."
+    },
+    "mass-converter": {
+      "name": "Kütle",
+      "description": "Miligramdan tona ağırlıklar",
+      "keywords": "Kütle mass converter",
+      "run": "Dönüştürmeyi kaydet",
+      "success": "Dönüştürme geçmişe kaydedildi."
+    },
+    "temperature-converter": {
+      "name": "Sıcaklık",
+      "description": "Santigrat, Fahrenheit ve Kelvin",
+      "keywords": "Sıcaklık temperature converter",
+      "run": "Dönüştürmeyi kaydet",
+      "success": "Dönüştürme geçmişe kaydedildi."
+    },
+    "speed-converter": {
+      "name": "Hız",
+      "description": "Günlük ve denizcilik hızı",
+      "keywords": "Hız speed converter",
+      "run": "Dönüştürmeyi kaydet",
+      "success": "Dönüştürme geçmişe kaydedildi."
+    },
+    "duration-converter": {
+      "name": "Süre",
+      "description": "Milisaniyeden haftalara",
+      "keywords": "Süre duration converter",
+      "run": "Dönüştürmeyi kaydet",
+      "success": "Dönüştürme geçmişe kaydedildi."
+    },
+    "volume-converter": {
+      "name": "Hacim",
+      "description": "Metrik ve mutfak ölçüleri",
+      "keywords": "Hacim volume converter",
+      "run": "Dönüştürmeyi kaydet",
+      "success": "Dönüştürme geçmişe kaydedildi."
+    },
+    "power-converter": {
+      "name": "Güç",
+      "description": "Watt ve beygir gücü",
+      "keywords": "Güç power converter",
+      "run": "Dönüştürmeyi kaydet",
+      "success": "Dönüştürme geçmişe kaydedildi."
+    },
+    "energy-converter": {
+      "name": "Enerji",
+      "description": "Joule, kalori ve watt-saat",
+      "keywords": "Enerji energy converter",
+      "run": "Dönüştürmeyi kaydet",
+      "success": "Dönüştürme geçmişe kaydedildi."
+    },
+    "pressure-converter": {
+      "name": "Basınç",
+      "description": "Pa, bar, PSI ve daha fazlası",
+      "keywords": "Basınç pressure converter",
+      "run": "Dönüştürmeyi kaydet",
+      "success": "Dönüştürme geçmişe kaydedildi."
+    },
+    "area-converter": {
+      "name": "Alan",
+      "description": "Yüzey ve arazi alanı",
+      "keywords": "Alan area converter",
+      "run": "Dönüştürmeyi kaydet",
+      "success": "Dönüştürme geçmişe kaydedildi."
+    },
+    "data-converter": {
+      "name": "Veri",
+      "description": "Ondalık ve ikili depolama",
+      "keywords": "Veri data converter",
+      "run": "Dönüştürmeyi kaydet",
+      "success": "Dönüştürme geçmişe kaydedildi."
+    },
+    "angle-converter": {
+      "name": "Açı",
+      "description": "Derece, radyan ve dönüş",
+      "keywords": "Açı angle converter",
+      "run": "Dönüştürmeyi kaydet",
+      "success": "Dönüştürme geçmişe kaydedildi."
+    },
+    "frequency-converter": {
+      "name": "Frekans",
+      "description": "Hz'den RPM'ye",
+      "keywords": "Frekans frequency converter",
+      "run": "Dönüştürmeyi kaydet",
+      "success": "Dönüştürme geçmişe kaydedildi."
+    },
+    "force-converter": {
+      "name": "Kuvvet",
+      "description": "Newton ve kuvvet birimleri",
+      "keywords": "Kuvvet force converter",
+      "run": "Dönüştürmeyi kaydet",
+      "success": "Dönüştürme geçmişe kaydedildi."
+    },
+    "fuel-economy-converter": {
+      "name": "Yakıt ekonomisi",
+      "description": "Tüketim ve kilometre",
+      "keywords": "Yakıt ekonomisi fuel economy converter",
+      "run": "Dönüştürmeyi kaydet",
+      "success": "Dönüştürme geçmişe kaydedildi."
+    },
+    "acceleration-converter": {
+      "name": "İvme",
+      "description": "Hareket ve yerçekimi",
+      "keywords": "İvme acceleration converter",
+      "run": "Dönüştürmeyi kaydet",
+      "success": "Dönüştürme geçmişe kaydedildi."
+    },
+    "torque-converter": {
+      "name": "Tork",
+      "description": "Dönme kuvveti",
+      "keywords": "Tork torque converter",
+      "run": "Dönüştürmeyi kaydet",
+      "success": "Dönüştürme geçmişe kaydedildi."
+    },
+    "electrical-converter": {
+      "name": "Elektrik",
+      "description": "Gerilim, akım ve direnç",
+      "keywords": "Elektrik electrical converter",
+      "run": "Dönüştürmeyi kaydet",
+      "success": "Dönüştürme geçmişe kaydedildi."
+    },
+    "typography-converter": {
+      "name": "Tipografi",
+      "description": "CSS ve baskı boyutları",
+      "keywords": "Tipografi typography converter",
+      "run": "Dönüştürmeyi kaydet",
+      "success": "Dönüştürme geçmişe kaydedildi."
     }
   },
   "legal": {

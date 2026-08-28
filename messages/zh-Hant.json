@@ -1398,6 +1398,139 @@
       "unitPib": "Pebibytes",
       "unitArcmin": "Arcminutes",
       "unitArcsec": "Arcseconds"
+    },
+    "length-converter": {
+      "name": "長度",
+      "description": "距離、尺寸與出行",
+      "keywords": "長度 length converter",
+      "run": "記錄轉換",
+      "success": "轉換已儲存至歷史記錄。"
+    },
+    "mass-converter": {
+      "name": "質量",
+      "description": "從毫克到公噸的重量",
+      "keywords": "質量 mass converter",
+      "run": "記錄轉換",
+      "success": "轉換已儲存至歷史記錄。"
+    },
+    "temperature-converter": {
+      "name": "溫度",
+      "description": "攝氏、華氏與開爾文",
+      "keywords": "溫度 temperature converter",
+      "run": "記錄轉換",
+      "success": "轉換已儲存至歷史記錄。"
+    },
+    "speed-converter": {
+      "name": "速度",
+      "description": "日常與航海速度",
+      "keywords": "速度 speed converter",
+      "run": "記錄轉換",
+      "success": "轉換已儲存至歷史記錄。"
+    },
+    "duration-converter": {
+      "name": "時長",
+      "description": "從毫秒到週的時長",
+      "keywords": "時長 duration converter",
+      "run": "記錄轉換",
+      "success": "轉換已儲存至歷史記錄。"
+    },
+    "volume-converter": {
+      "name": "體積",
+      "description": "公制與廚房計量",
+      "keywords": "體積 volume converter",
+      "run": "記錄轉換",
+      "success": "轉換已儲存至歷史記錄。"
+    },
+    "power-converter": {
+      "name": "功率",
+      "description": "瓦特與馬力",
+      "keywords": "功率 power converter",
+      "run": "記錄轉換",
+      "success": "轉換已儲存至歷史記錄。"
+    },
+    "energy-converter": {
+      "name": "能量",
+      "description": "焦耳、卡路里與瓦時",
+      "keywords": "能量 energy converter",
+      "run": "記錄轉換",
+      "success": "轉換已儲存至歷史記錄。"
+    },
+    "pressure-converter": {
+      "name": "壓力",
+      "description": "帕、巴、PSI 等",
+      "keywords": "壓力 pressure converter",
+      "run": "記錄轉換",
+      "success": "轉換已儲存至歷史記錄。"
+    },
+    "area-converter": {
+      "name": "面積",
+      "description": "面積與土地面積",
+      "keywords": "面積 area converter",
+      "run": "記錄轉換",
+      "success": "轉換已儲存至歷史記錄。"
+    },
+    "data-converter": {
+      "name": "資料",
+      "description": "十進位與二進位儲存容量",
+      "keywords": "資料 data converter",
+      "run": "記錄轉換",
+      "success": "轉換已儲存至歷史記錄。"
+    },
+    "angle-converter": {
+      "name": "角度",
+      "description": "度、弧度與圈數",
+      "keywords": "角度 angle converter",
+      "run": "記錄轉換",
+      "success": "轉換已儲存至歷史記錄。"
+    },
+    "frequency-converter": {
+      "name": "頻率",
+      "description": "從 Hz 到 RPM",
+      "keywords": "頻率 frequency converter",
+      "run": "記錄轉換",
+      "success": "轉換已儲存至歷史記錄。"
+    },
+    "force-converter": {
+      "name": "力",
+      "description": "牛頓與力的單位",
+      "keywords": "力 force converter",
+      "run": "記錄轉換",
+      "success": "轉換已儲存至歷史記錄。"
+    },
+    "fuel-economy-converter": {
+      "name": "燃油經濟性",
+      "description": "消耗量與里程",
+      "keywords": "燃油經濟性 fuel economy converter",
+      "run": "記錄轉換",
+      "success": "轉換已儲存至歷史記錄。"
+    },
+    "acceleration-converter": {
+      "name": "加速度",
+      "description": "運動與重力",
+      "keywords": "加速度 acceleration converter",
+      "run": "記錄轉換",
+      "success": "轉換已儲存至歷史記錄。"
+    },
+    "torque-converter": {
+      "name": "扭矩",
+      "description": "旋轉力",
+      "keywords": "扭矩 torque converter",
+      "run": "記錄轉換",
+      "success": "轉換已儲存至歷史記錄。"
+    },
+    "electrical-converter": {
+      "name": "電學",
+      "description": "電壓、電流與電阻",
+      "keywords": "電學 electrical converter",
+      "run": "記錄轉換",
+      "success": "轉換已儲存至歷史記錄。"
+    },
+    "typography-converter": {
+      "name": "排版",
+      "description": "CSS 與印刷尺寸",
+      "keywords": "排版 typography converter",
+      "run": "記錄轉換",
+      "success": "轉換已儲存至歷史記錄。"
     }
   },
   "legal": {

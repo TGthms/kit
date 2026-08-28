@@ -1398,6 +1398,139 @@
       "unitPib": "Pebibytes",
       "unitArcmin": "Arcminutes",
       "unitArcsec": "Arcseconds"
+    },
+    "length-converter": {
+      "name": "אורך",
+      "description": "מרחקים, ממדים ונסיעות",
+      "keywords": "אורך length converter",
+      "run": "תיעוד המרה",
+      "success": "ההמרה נשמרה בהיסטוריה."
+    },
+    "mass-converter": {
+      "name": "מסה",
+      "description": "משקלים ממיליגרמים ועד טונות",
+      "keywords": "מסה mass converter",
+      "run": "תיעוד המרה",
+      "success": "ההמרה נשמרה בהיסטוריה."
+    },
+    "temperature-converter": {
+      "name": "טמפרטורה",
+      "description": "צלזיוס, פרנהייט וקלווין",
+      "keywords": "טמפרטורה temperature converter",
+      "run": "תיעוד המרה",
+      "success": "ההמרה נשמרה בהיסטוריה."
+    },
+    "speed-converter": {
+      "name": "מהירות",
+      "description": "מהירות יומיומית וימית",
+      "keywords": "מהירות speed converter",
+      "run": "תיעוד המרה",
+      "success": "ההמרה נשמרה בהיסטוריה."
+    },
+    "duration-converter": {
+      "name": "משך",
+      "description": "ממילישניות ועד שבועות",
+      "keywords": "משך duration converter",
+      "run": "תיעוד המרה",
+      "success": "ההמרה נשמרה בהיסטוריה."
+    },
+    "volume-converter": {
+      "name": "נפח",
+      "description": "מידות מטריות ומידות מטבח",
+      "keywords": "נפח volume converter",
+      "run": "תיעוד המרה",
+      "success": "ההמרה נשמרה בהיסטוריה."
+    },
+    "power-converter": {
+      "name": "הספק",
+      "description": "וואט וכוח סוס",
+      "keywords": "הספק power converter",
+      "run": "תיעוד המרה",
+      "success": "ההמרה נשמרה בהיסטוריה."
+    },
+    "energy-converter": {
+      "name": "אנרגיה",
+      "description": "ג׳אול, קלוריות ווואט-שעה",
+      "keywords": "אנרגיה energy converter",
+      "run": "תיעוד המרה",
+      "success": "ההמרה נשמרה בהיסטוריה."
+    },
+    "pressure-converter": {
+      "name": "לחץ",
+      "description": "פסקל, בר, PSI ועוד",
+      "keywords": "לחץ pressure converter",
+      "run": "תיעוד המרה",
+      "success": "ההמרה נשמרה בהיסטוריה."
+    },
+    "area-converter": {
+      "name": "שטח",
+      "description": "שטח ושטחי קרקע",
+      "keywords": "שטח area converter",
+      "run": "תיעוד המרה",
+      "success": "ההמרה נשמרה בהיסטוריה."
+    },
+    "data-converter": {
+      "name": "נתונים",
+      "description": "אחסון עשרוני ובינארי",
+      "keywords": "נתונים data converter",
+      "run": "תיעוד המרה",
+      "success": "ההמרה נשמרה בהיסטוריה."
+    },
+    "angle-converter": {
+      "name": "זווית",
+      "description": "מעלות, רדיאנים וסיבובים",
+      "keywords": "זווית angle converter",
+      "run": "תיעוד המרה",
+      "success": "ההמרה נשמרה בהיסטוריה."
+    },
+    "frequency-converter": {
+      "name": "תדירות",
+      "description": "הרץ עד סל״ד",
+      "keywords": "תדירות frequency converter",
+      "run": "תיעוד המרה",
+      "success": "ההמרה נשמרה בהיסטוריה."
+    },
+    "force-converter": {
+      "name": "כוח",
+      "description": "ניוטון ויחידות כוח",
+      "keywords": "כוח force converter",
+      "run": "תיעוד המרה",
+      "success": "ההמרה נשמרה בהיסטוריה."
+    },
+    "fuel-economy-converter": {
+      "name": "צריכת דלק",
+      "description": "צריכה וקילומטראז׳",
+      "keywords": "צריכת דלק fuel economy converter",
+      "run": "תיעוד המרה",
+      "success": "ההמרה נשמרה בהיסטוריה."
+    },
+    "acceleration-converter": {
+      "name": "תאוצה",
+      "description": "תנועה וכבידה",
+      "keywords": "תאוצה acceleration converter",
+      "run": "תיעוד המרה",
+      "success": "ההמרה נשמרה בהיסטוריה."
+    },
+    "torque-converter": {
+      "name": "מומנט",
+      "description": "כוח סיבובי",
+      "keywords": "מומנט torque converter",
+      "run": "תיעוד המרה",
+      "success": "ההמרה נשמרה בהיסטוריה."
+    },
+    "electrical-converter": {
+      "name": "חשמל",
+      "description": "מתח, זרם והתנגדות",
+      "keywords": "חשמל electrical converter",
+      "run": "תיעוד המרה",
+      "success": "ההמרה נשמרה בהיסטוריה."
+    },
+    "typography-converter": {
+      "name": "טיפוגרפיה",
+      "description": "גדלי CSS והדפסה",
+      "keywords": "טיפוגרפיה typography converter",
+      "run": "תיעוד המרה",
+      "success": "ההמרה נשמרה בהיסטוריה."
     }
   },
   "legal": {

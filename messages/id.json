@@ -1398,6 +1398,139 @@
       "unitPib": "Pebibytes",
       "unitArcmin": "Arcminutes",
       "unitArcsec": "Arcseconds"
+    },
+    "length-converter": {
+      "name": "Panjang",
+      "description": "Jarak, dimensi, dan perjalanan",
+      "keywords": "Panjang length converter",
+      "run": "Catat konversi",
+      "success": "Konversi disimpan ke riwayat."
+    },
+    "mass-converter": {
+      "name": "Massa",
+      "description": "Berat dari miligram hingga ton",
+      "keywords": "Massa mass converter",
+      "run": "Catat konversi",
+      "success": "Konversi disimpan ke riwayat."
+    },
+    "temperature-converter": {
+      "name": "Suhu",
+      "description": "Celsius, Fahrenheit, dan Kelvin",
+      "keywords": "Suhu temperature converter",
+      "run": "Catat konversi",
+      "success": "Konversi disimpan ke riwayat."
+    },
+    "speed-converter": {
+      "name": "Kecepatan",
+      "description": "Kecepatan sehari-hari dan nautika",
+      "keywords": "Kecepatan speed converter",
+      "run": "Catat konversi",
+      "success": "Konversi disimpan ke riwayat."
+    },
+    "duration-converter": {
+      "name": "Durasi",
+      "description": "Milidetik hingga minggu",
+      "keywords": "Durasi duration converter",
+      "run": "Catat konversi",
+      "success": "Konversi disimpan ke riwayat."
+    },
+    "volume-converter": {
+      "name": "Volume",
+      "description": "Ukuran metrik dan dapur",
+      "keywords": "Volume volume converter",
+      "run": "Catat konversi",
+      "success": "Konversi disimpan ke riwayat."
+    },
+    "power-converter": {
+      "name": "Daya",
+      "description": "Watt dan tenaga kuda",
+      "keywords": "Daya power converter",
+      "run": "Catat konversi",
+      "success": "Konversi disimpan ke riwayat."
+    },
+    "energy-converter": {
+      "name": "Energi",
+      "description": "Joule, kalori, dan watt-jam",
+      "keywords": "Energi energy converter",
+      "run": "Catat konversi",
+      "success": "Konversi disimpan ke riwayat."
+    },
+    "pressure-converter": {
+      "name": "Tekanan",
+      "description": "Pa, bar, PSI, dan lainnya",
+      "keywords": "Tekanan pressure converter",
+      "run": "Catat konversi",
+      "success": "Konversi disimpan ke riwayat."
+    },
+    "area-converter": {
+      "name": "Luas",
+      "description": "Luas permukaan dan lahan",
+      "keywords": "Luas area converter",
+      "run": "Catat konversi",
+      "success": "Konversi disimpan ke riwayat."
+    },
+    "data-converter": {
+      "name": "Data",
+      "description": "Penyimpanan desimal dan biner",
+      "keywords": "Data data converter",
+      "run": "Catat konversi",
+      "success": "Konversi disimpan ke riwayat."
+    },
+    "angle-converter": {
+      "name": "Sudut",
+      "description": "Derajat, radian, dan putaran",
+      "keywords": "Sudut angle converter",
+      "run": "Catat konversi",
+      "success": "Konversi disimpan ke riwayat."
+    },
+    "frequency-converter": {
+      "name": "Frekuensi",
+      "description": "Hz hingga RPM",
+      "keywords": "Frekuensi frequency converter",
+      "run": "Catat konversi",
+      "success": "Konversi disimpan ke riwayat."
+    },
+    "force-converter": {
+      "name": "Gaya",
+      "description": "Newton dan satuan gaya",
+      "keywords": "Gaya force converter",
+      "run": "Catat konversi",
+      "success": "Konversi disimpan ke riwayat."
+    },
+    "fuel-economy-converter": {
+      "name": "Efisiensi bahan bakar",
+      "description": "Konsumsi dan jarak tempuh",
+      "keywords": "Efisiensi bahan bakar fuel economy converter",
+      "run": "Catat konversi",
+      "success": "Konversi disimpan ke riwayat."
+    },
+    "acceleration-converter": {
+      "name": "Percepatan",
+      "description": "Gerak dan gravitasi",
+      "keywords": "Percepatan acceleration converter",
+      "run": "Catat konversi",
+      "success": "Konversi disimpan ke riwayat."
+    },
+    "torque-converter": {
+      "name": "Torsi",
+      "description": "Gaya rotasi",
+      "keywords": "Torsi torque converter",
+      "run": "Catat konversi",
+      "success": "Konversi disimpan ke riwayat."
+    },
+    "electrical-converter": {
+      "name": "Kelistrikan",
+      "description": "Tegangan, arus, dan hambatan",
+      "keywords": "Kelistrikan electrical converter",
+      "run": "Catat konversi",
+      "success": "Konversi disimpan ke riwayat."
+    },
+    "typography-converter": {
+      "name": "Tipografi",
+      "description": "Ukuran CSS dan cetak",
+      "keywords": "Tipografi typography converter",
+      "run": "Catat konversi",
+      "success": "Konversi disimpan ke riwayat."
     }
   },
   "legal": {

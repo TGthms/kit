@@ -1398,6 +1398,139 @@
       "unitPib": "Pebibytes",
       "unitArcmin": "Arcminutes",
       "unitArcsec": "Arcseconds"
+    },
+    "length-converter": {
+      "name": "ความยาว",
+      "description": "ระยะทาง ขนาด และการเดินทาง",
+      "keywords": "ความยาว length converter",
+      "run": "บันทึกการแปลง",
+      "success": "บันทึกการแปลงไว้ในประวัติแล้ว"
+    },
+    "mass-converter": {
+      "name": "มวล",
+      "description": "น้ำหนักตั้งแต่มิลลิกรัมถึงตัน",
+      "keywords": "มวล mass converter",
+      "run": "บันทึกการแปลง",
+      "success": "บันทึกการแปลงไว้ในประวัติแล้ว"
+    },
+    "temperature-converter": {
+      "name": "อุณหภูมิ",
+      "description": "เซลเซียส ฟาเรนไฮต์ และเคลวิน",
+      "keywords": "อุณหภูมิ temperature converter",
+      "run": "บันทึกการแปลง",
+      "success": "บันทึกการแปลงไว้ในประวัติแล้ว"
+    },
+    "speed-converter": {
+      "name": "ความเร็ว",
+      "description": "ความเร็วทั่วไปและความเร็วทางทะเล",
+      "keywords": "ความเร็ว speed converter",
+      "run": "บันทึกการแปลง",
+      "success": "บันทึกการแปลงไว้ในประวัติแล้ว"
+    },
+    "duration-converter": {
+      "name": "ระยะเวลา",
+      "description": "ตั้งแต่มิลลิวินาทีถึงสัปดาห์",
+      "keywords": "ระยะเวลา duration converter",
+      "run": "บันทึกการแปลง",
+      "success": "บันทึกการแปลงไว้ในประวัติแล้ว"
+    },
+    "volume-converter": {
+      "name": "ปริมาตร",
+      "description": "หน่วยเมตริกและหน่วยทำอาหาร",
+      "keywords": "ปริมาตร volume converter",
+      "run": "บันทึกการแปลง",
+      "success": "บันทึกการแปลงไว้ในประวัติแล้ว"
+    },
+    "power-converter": {
+      "name": "กำลัง",
+      "description": "วัตต์และแรงม้า",
+      "keywords": "กำลัง power converter",
+      "run": "บันทึกการแปลง",
+      "success": "บันทึกการแปลงไว้ในประวัติแล้ว"
+    },
+    "energy-converter": {
+      "name": "พลังงาน",
+      "description": "จูล แคลอรี และวัตต์-ชั่วโมง",
+      "keywords": "พลังงาน energy converter",
+      "run": "บันทึกการแปลง",
+      "success": "บันทึกการแปลงไว้ในประวัติแล้ว"
+    },
+    "pressure-converter": {
+      "name": "ความดัน",
+      "description": "Pa, bar, PSI และอื่น ๆ",
+      "keywords": "ความดัน pressure converter",
+      "run": "บันทึกการแปลง",
+      "success": "บันทึกการแปลงไว้ในประวัติแล้ว"
+    },
+    "area-converter": {
+      "name": "พื้นที่",
+      "description": "พื้นที่และพื้นที่ดิน",
+      "keywords": "พื้นที่ area converter",
+      "run": "บันทึกการแปลง",
+      "success": "บันทึกการแปลงไว้ในประวัติแล้ว"
+    },
+    "data-converter": {
+      "name": "ข้อมูล",
+      "description": "พื้นที่จัดเก็บแบบฐานสิบและฐานสอง",
+      "keywords": "ข้อมูล data converter",
+      "run": "บันทึกการแปลง",
+      "success": "บันทึกการแปลงไว้ในประวัติแล้ว"
+    },
+    "angle-converter": {
+      "name": "มุม",
+      "description": "องศา เรเดียน และรอบ",
+      "keywords": "มุม angle converter",
+      "run": "บันทึกการแปลง",
+      "success": "บันทึกการแปลงไว้ในประวัติแล้ว"
+    },
+    "frequency-converter": {
+      "name": "ความถี่",
+      "description": "Hz ถึง RPM",
+      "keywords": "ความถี่ frequency converter",
+      "run": "บันทึกการแปลง",
+      "success": "บันทึกการแปลงไว้ในประวัติแล้ว"
+    },
+    "force-converter": {
+      "name": "แรง",
+      "description": "นิวตันและหน่วยแรง",
+      "keywords": "แรง force converter",
+      "run": "บันทึกการแปลง",
+      "success": "บันทึกการแปลงไว้ในประวัติแล้ว"
+    },
+    "fuel-economy-converter": {
+      "name": "อัตราสิ้นเปลืองเชื้อเพลิง",
+      "description": "อัตราสิ้นเปลืองและระยะทาง",
+      "keywords": "อัตราสิ้นเปลืองเชื้อเพลิง fuel economy converter",
+      "run": "บันทึกการแปลง",
+      "success": "บันทึกการแปลงไว้ในประวัติแล้ว"
+    },
+    "acceleration-converter": {
+      "name": "ความเร่ง",
+      "description": "การเคลื่อนที่และแรงโน้มถ่วง",
+      "keywords": "ความเร่ง acceleration converter",
+      "run": "บันทึกการแปลง",
+      "success": "บันทึกการแปลงไว้ในประวัติแล้ว"
+    },
+    "torque-converter": {
+      "name": "แรงบิด",
+      "description": "แรงบิด",
+      "keywords": "แรงบิด torque converter",
+      "run": "บันทึกการแปลง",
+      "success": "บันทึกการแปลงไว้ในประวัติแล้ว"
+    },
+    "electrical-converter": {
+      "name": "ไฟฟ้า",
+      "description": "แรงดันไฟฟ้า กระแส และความต้านทาน",
+      "keywords": "ไฟฟ้า electrical converter",
+      "run": "บันทึกการแปลง",
+      "success": "บันทึกการแปลงไว้ในประวัติแล้ว"
+    },
+    "typography-converter": {
+      "name": "ตัวอักษร",
+      "description": "ขนาด CSS และงานพิมพ์",
+      "keywords": "ตัวอักษร typography converter",
+      "run": "บันทึกการแปลง",
+      "success": "บันทึกการแปลงไว้ในประวัติแล้ว"
     }
   },
   "legal": {

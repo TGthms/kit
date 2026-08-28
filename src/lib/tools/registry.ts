@@ -57,6 +57,19 @@ import {
   Dice5,
   TimerReset,
   WalletCards,
+  Ruler,
+  Scale,
+  Thermometer,
+  GlassWater,
+  Zap,
+  BatteryCharging,
+  Square,
+  Orbit,
+  Activity,
+  Dumbbell,
+  Fuel,
+  MoveUpRight,
+  Cable,
 } from "lucide-react";
 
 /** Precise product categories (one job family each). */
@@ -149,7 +162,25 @@ export type ToolId =
   | "number-base"
   | "html-entities"
   | "json-types"
-  | "everyday-converter"
+  | "length-converter"
+  | "mass-converter"
+  | "temperature-converter"
+  | "speed-converter"
+  | "duration-converter"
+  | "volume-converter"
+  | "power-converter"
+  | "energy-converter"
+  | "pressure-converter"
+  | "area-converter"
+  | "data-converter"
+  | "angle-converter"
+  | "frequency-converter"
+  | "force-converter"
+  | "fuel-economy-converter"
+  | "acceleration-converter"
+  | "torque-converter"
+  | "electrical-converter"
+  | "typography-converter"
   | "currency-converter"
   | "text-counter"
   | "timezone-converter"
@@ -220,8 +251,26 @@ export const tools: ToolDef[] = [
 
   { id: "hash-generator", category: "developer", group: "inspect", icon: Fingerprint },
 
-  { id: "everyday-converter", category: "converter", group: "convert", icon: ArrowLeftRight },
-  { id: "currency-converter", category: "everyday", group: "convert", icon: Coins },
+  { id: "currency-converter", category: "converter", group: "convert", icon: Coins },
+  { id: "length-converter", category: "converter", group: "convert", icon: Ruler },
+  { id: "mass-converter", category: "converter", group: "convert", icon: Scale },
+  { id: "temperature-converter", category: "converter", group: "convert", icon: Thermometer },
+  { id: "speed-converter", category: "converter", group: "convert", icon: Gauge },
+  { id: "duration-converter", category: "converter", group: "convert", icon: Clock },
+  { id: "volume-converter", category: "converter", group: "convert", icon: GlassWater },
+  { id: "power-converter", category: "converter", group: "convert", icon: Zap },
+  { id: "energy-converter", category: "converter", group: "convert", icon: BatteryCharging },
+  { id: "pressure-converter", category: "converter", group: "convert", icon: Gauge },
+  { id: "area-converter", category: "converter", group: "convert", icon: Square },
+  { id: "data-converter", category: "converter", group: "convert", icon: Database },
+  { id: "angle-converter", category: "converter", group: "convert", icon: Orbit },
+  { id: "frequency-converter", category: "converter", group: "convert", icon: Activity },
+  { id: "force-converter", category: "converter", group: "convert", icon: Dumbbell },
+  { id: "fuel-economy-converter", category: "converter", group: "convert", icon: Fuel },
+  { id: "acceleration-converter", category: "converter", group: "convert", icon: MoveUpRight },
+  { id: "torque-converter", category: "converter", group: "convert", icon: RotateCw },
+  { id: "electrical-converter", category: "converter", group: "convert", icon: Cable },
+  { id: "typography-converter", category: "converter", group: "convert", icon: Type },
   { id: "text-counter", category: "everyday", group: "everyday-text", icon: TextCursorInput },
   { id: "timezone-converter", category: "everyday", group: "time", icon: Globe2 },
   { id: "date-calculator", category: "everyday", group: "time", icon: CalendarDays },
@@ -249,6 +298,7 @@ export const featuredToolIds: ToolId[] = [
   "password-generator",
   "qr-code",
   "text-counter",
+  "video-gif",
 ];
 
 export const featuredCategoryIds: ToolCategory[] = ["converter", "everyday"];
@@ -285,6 +335,7 @@ export const legacyToolIdMap: Record<string, ToolId> = {
   "media-trim": "video-trim",
   "media-speed": "video-speed",
   "media-extract-audio": "video-extract-audio",
+  "everyday-converter": "length-converter",
 };
 
 export function getTool(id: string): ToolDef | undefined {

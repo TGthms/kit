@@ -1398,6 +1398,139 @@
       "unitPib": "Pebibytes",
       "unitArcmin": "Arcminutes",
       "unitArcsec": "Arcseconds"
+    },
+    "length-converter": {
+      "name": "Długość",
+      "description": "Odległości, wymiary i podróże",
+      "keywords": "Długość length converter",
+      "run": "Zapisz konwersję",
+      "success": "Konwersja zapisana w historii."
+    },
+    "mass-converter": {
+      "name": "Masa",
+      "description": "Masy od miligramów do ton",
+      "keywords": "Masa mass converter",
+      "run": "Zapisz konwersję",
+      "success": "Konwersja zapisana w historii."
+    },
+    "temperature-converter": {
+      "name": "Temperatura",
+      "description": "Celsjusz, Fahrenheit i kelwiny",
+      "keywords": "Temperatura temperature converter",
+      "run": "Zapisz konwersję",
+      "success": "Konwersja zapisana w historii."
+    },
+    "speed-converter": {
+      "name": "Prędkość",
+      "description": "Prędkość codzienna i morska",
+      "keywords": "Prędkość speed converter",
+      "run": "Zapisz konwersję",
+      "success": "Konwersja zapisana w historii."
+    },
+    "duration-converter": {
+      "name": "Czas trwania",
+      "description": "Od milisekund do tygodni",
+      "keywords": "Czas trwania duration converter",
+      "run": "Zapisz konwersję",
+      "success": "Konwersja zapisana w historii."
+    },
+    "volume-converter": {
+      "name": "Objętość",
+      "description": "Miary metryczne i kuchenne",
+      "keywords": "Objętość volume converter",
+      "run": "Zapisz konwersję",
+      "success": "Konwersja zapisana w historii."
+    },
+    "power-converter": {
+      "name": "Moc",
+      "description": "Waty i konie mechaniczne",
+      "keywords": "Moc power converter",
+      "run": "Zapisz konwersję",
+      "success": "Konwersja zapisana w historii."
+    },
+    "energy-converter": {
+      "name": "Energia",
+      "description": "Dżule, kalorie i watogodziny",
+      "keywords": "Energia energy converter",
+      "run": "Zapisz konwersję",
+      "success": "Konwersja zapisana w historii."
+    },
+    "pressure-converter": {
+      "name": "Ciśnienie",
+      "description": "Pa, bar, PSI i więcej",
+      "keywords": "Ciśnienie pressure converter",
+      "run": "Zapisz konwersję",
+      "success": "Konwersja zapisana w historii."
+    },
+    "area-converter": {
+      "name": "Powierzchnia",
+      "description": "Powierzchnia i grunty",
+      "keywords": "Powierzchnia area converter",
+      "run": "Zapisz konwersję",
+      "success": "Konwersja zapisana w historii."
+    },
+    "data-converter": {
+      "name": "Dane",
+      "description": "Pamięć dziesiętna i binarna",
+      "keywords": "Dane data converter",
+      "run": "Zapisz konwersję",
+      "success": "Konwersja zapisana w historii."
+    },
+    "angle-converter": {
+      "name": "Kąt",
+      "description": "Stopnie, radiany i obroty",
+      "keywords": "Kąt angle converter",
+      "run": "Zapisz konwersję",
+      "success": "Konwersja zapisana w historii."
+    },
+    "frequency-converter": {
+      "name": "Częstotliwość",
+      "description": "Od Hz do RPM",
+      "keywords": "Częstotliwość frequency converter",
+      "run": "Zapisz konwersję",
+      "success": "Konwersja zapisana w historii."
+    },
+    "force-converter": {
+      "name": "Siła",
+      "description": "Niutony i jednostki siły",
+      "keywords": "Siła force converter",
+      "run": "Zapisz konwersję",
+      "success": "Konwersja zapisana w historii."
+    },
+    "fuel-economy-converter": {
+      "name": "Spalanie",
+      "description": "Zużycie i przebieg",
+      "keywords": "Spalanie fuel economy converter",
+      "run": "Zapisz konwersję",
+      "success": "Konwersja zapisana w historii."
+    },
+    "acceleration-converter": {
+      "name": "Przyspieszenie",
+      "description": "Ruch i grawitacja",
+      "keywords": "Przyspieszenie acceleration converter",
+      "run": "Zapisz konwersję",
+      "success": "Konwersja zapisana w historii."
+    },
+    "torque-converter": {
+      "name": "Moment obrotowy",
+      "description": "Moment obrotowy",
+      "keywords": "Moment obrotowy torque converter",
+      "run": "Zapisz konwersję",
+      "success": "Konwersja zapisana w historii."
+    },
+    "electrical-converter": {
+      "name": "Elektryczność",
+      "description": "Napięcie, prąd i opór",
+      "keywords": "Elektryczność electrical converter",
+      "run": "Zapisz konwersję",
+      "success": "Konwersja zapisana w historii."
+    },
+    "typography-converter": {
+      "name": "Typografia",
+      "description": "Rozmiary CSS i druku",
+      "keywords": "Typografia typography converter",
+      "run": "Zapisz konwersję",
+      "success": "Konwersja zapisana w historii."
     }
   },
   "legal": {

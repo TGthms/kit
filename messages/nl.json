@@ -1398,6 +1398,139 @@
       "unitPib": "Pebibytes",
       "unitArcmin": "Arcminutes",
       "unitArcsec": "Arcseconds"
+    },
+    "length-converter": {
+      "name": "Lengte",
+      "description": "Afstanden, afmetingen en reizen",
+      "keywords": "Lengte length converter",
+      "run": "Conversie vastleggen",
+      "success": "Conversie opgeslagen in geschiedenis."
+    },
+    "mass-converter": {
+      "name": "Massa",
+      "description": "Gewichten van milligrammen tot tonnen",
+      "keywords": "Massa mass converter",
+      "run": "Conversie vastleggen",
+      "success": "Conversie opgeslagen in geschiedenis."
+    },
+    "temperature-converter": {
+      "name": "Temperatuur",
+      "description": "Celsius, Fahrenheit en Kelvin",
+      "keywords": "Temperatuur temperature converter",
+      "run": "Conversie vastleggen",
+      "success": "Conversie opgeslagen in geschiedenis."
+    },
+    "speed-converter": {
+      "name": "Snelheid",
+      "description": "Dagelijkse en nautische snelheid",
+      "keywords": "Snelheid speed converter",
+      "run": "Conversie vastleggen",
+      "success": "Conversie opgeslagen in geschiedenis."
+    },
+    "duration-converter": {
+      "name": "Duur",
+      "description": "Van milliseconden tot weken",
+      "keywords": "Duur duration converter",
+      "run": "Conversie vastleggen",
+      "success": "Conversie opgeslagen in geschiedenis."
+    },
+    "volume-converter": {
+      "name": "Volume",
+      "description": "Metrische en keukeneenheden",
+      "keywords": "Volume volume converter",
+      "run": "Conversie vastleggen",
+      "success": "Conversie opgeslagen in geschiedenis."
+    },
+    "power-converter": {
+      "name": "Vermogen",
+      "description": "Watt en paardenkracht",
+      "keywords": "Vermogen power converter",
+      "run": "Conversie vastleggen",
+      "success": "Conversie opgeslagen in geschiedenis."
+    },
+    "energy-converter": {
+      "name": "Energie",
+      "description": "Joules, calorieën en wattuur",
+      "keywords": "Energie energy converter",
+      "run": "Conversie vastleggen",
+      "success": "Conversie opgeslagen in geschiedenis."
+    },
+    "pressure-converter": {
+      "name": "Druk",
+      "description": "Pa, bar, PSI en meer",
+      "keywords": "Druk pressure converter",
+      "run": "Conversie vastleggen",
+      "success": "Conversie opgeslagen in geschiedenis."
+    },
+    "area-converter": {
+      "name": "Oppervlakte",
+      "description": "Oppervlakte en land",
+      "keywords": "Oppervlakte area converter",
+      "run": "Conversie vastleggen",
+      "success": "Conversie opgeslagen in geschiedenis."
+    },
+    "data-converter": {
+      "name": "Gegevens",
+      "description": "Decimale en binaire opslag",
+      "keywords": "Gegevens data converter",
+      "run": "Conversie vastleggen",
+      "success": "Conversie opgeslagen in geschiedenis."
+    },
+    "angle-converter": {
+      "name": "Hoek",
+      "description": "Graden, radialen en omwentelingen",
+      "keywords": "Hoek angle converter",
+      "run": "Conversie vastleggen",
+      "success": "Conversie opgeslagen in geschiedenis."
+    },
+    "frequency-converter": {
+      "name": "Frequentie",
+      "description": "Hz tot RPM",
+      "keywords": "Frequentie frequency converter",
+      "run": "Conversie vastleggen",
+      "success": "Conversie opgeslagen in geschiedenis."
+    },
+    "force-converter": {
+      "name": "Kracht",
+      "description": "Newton en krachteenheden",
+      "keywords": "Kracht force converter",
+      "run": "Conversie vastleggen",
+      "success": "Conversie opgeslagen in geschiedenis."
+    },
+    "fuel-economy-converter": {
+      "name": "Brandstofverbruik",
+      "description": "Verbruik en kilometrage",
+      "keywords": "Brandstofverbruik fuel economy converter",
+      "run": "Conversie vastleggen",
+      "success": "Conversie opgeslagen in geschiedenis."
+    },
+    "acceleration-converter": {
+      "name": "Versnelling",
+      "description": "Beweging en zwaartekracht",
+      "keywords": "Versnelling acceleration converter",
+      "run": "Conversie vastleggen",
+      "success": "Conversie opgeslagen in geschiedenis."
+    },
+    "torque-converter": {
+      "name": "Koppel",
+      "description": "Draaimoment",
+      "keywords": "Koppel torque converter",
+      "run": "Conversie vastleggen",
+      "success": "Conversie opgeslagen in geschiedenis."
+    },
+    "electrical-converter": {
+      "name": "Elektrisch",
+      "description": "Spanning, stroom en weerstand",
+      "keywords": "Elektrisch electrical converter",
+      "run": "Conversie vastleggen",
+      "success": "Conversie opgeslagen in geschiedenis."
+    },
+    "typography-converter": {
+      "name": "Typografie",
+      "description": "CSS- en drukwerkformaten",
+      "keywords": "Typografie typography converter",
+      "run": "Conversie vastleggen",
+      "success": "Conversie opgeslagen in geschiedenis."
     }
   },
   "legal": {

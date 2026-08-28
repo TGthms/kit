@@ -1398,6 +1398,139 @@
       "unitPib": "Pebibytes",
       "unitArcmin": "Arcminutes",
       "unitArcsec": "Arcseconds"
+    },
+    "length-converter": {
+      "name": "الطول",
+      "description": "المسافات والأبعاد والسفر",
+      "keywords": "الطول length converter",
+      "run": "تسجيل التحويل",
+      "success": "تم حفظ التحويل في السجل."
+    },
+    "mass-converter": {
+      "name": "الكتلة",
+      "description": "الأوزان من المليغرام إلى الطن",
+      "keywords": "الكتلة mass converter",
+      "run": "تسجيل التحويل",
+      "success": "تم حفظ التحويل في السجل."
+    },
+    "temperature-converter": {
+      "name": "درجة الحرارة",
+      "description": "مئوية وفهرنهايت وكلفن",
+      "keywords": "درجة الحرارة temperature converter",
+      "run": "تسجيل التحويل",
+      "success": "تم حفظ التحويل في السجل."
+    },
+    "speed-converter": {
+      "name": "السرعة",
+      "description": "السرعة اليومية والبحرية",
+      "keywords": "السرعة speed converter",
+      "run": "تسجيل التحويل",
+      "success": "تم حفظ التحويل في السجل."
+    },
+    "duration-converter": {
+      "name": "المدة",
+      "description": "من المللي ثانية إلى الأسابيع",
+      "keywords": "المدة duration converter",
+      "run": "تسجيل التحويل",
+      "success": "تم حفظ التحويل في السجل."
+    },
+    "volume-converter": {
+      "name": "الحجم",
+      "description": "المقاييس المترية ومقاييس المطبخ",
+      "keywords": "الحجم volume converter",
+      "run": "تسجيل التحويل",
+      "success": "تم حفظ التحويل في السجل."
+    },
+    "power-converter": {
+      "name": "القدرة",
+      "description": "واط وقوة حصان",
+      "keywords": "القدرة power converter",
+      "run": "تسجيل التحويل",
+      "success": "تم حفظ التحويل في السجل."
+    },
+    "energy-converter": {
+      "name": "الطاقة",
+      "description": "جول وسعرات وواط-ساعة",
+      "keywords": "الطاقة energy converter",
+      "run": "تسجيل التحويل",
+      "success": "تم حفظ التحويل في السجل."
+    },
+    "pressure-converter": {
+      "name": "الضغط",
+      "description": "باسكال وبار وPSI وغير ذلك",
+      "keywords": "الضغط pressure converter",
+      "run": "تسجيل التحويل",
+      "success": "تم حفظ التحويل في السجل."
+    },
+    "area-converter": {
+      "name": "المساحة",
+      "description": "المساحة ومساحة الأراضي",
+      "keywords": "المساحة area converter",
+      "run": "تسجيل التحويل",
+      "success": "تم حفظ التحويل في السجل."
+    },
+    "data-converter": {
+      "name": "البيانات",
+      "description": "تخزين عشري وثنائي",
+      "keywords": "البيانات data converter",
+      "run": "تسجيل التحويل",
+      "success": "تم حفظ التحويل في السجل."
+    },
+    "angle-converter": {
+      "name": "الزاوية",
+      "description": "الدرجات والراديان والدورات",
+      "keywords": "الزاوية angle converter",
+      "run": "تسجيل التحويل",
+      "success": "تم حفظ التحويل في السجل."
+    },
+    "frequency-converter": {
+      "name": "التردد",
+      "description": "من هرتز إلى دورة في الدقيقة",
+      "keywords": "التردد frequency converter",
+      "run": "تسجيل التحويل",
+      "success": "تم حفظ التحويل في السجل."
+    },
+    "force-converter": {
+      "name": "القوة",
+      "description": "نيوتن ووحدات القوة",
+      "keywords": "القوة force converter",
+      "run": "تسجيل التحويل",
+      "success": "تم حفظ التحويل في السجل."
+    },
+    "fuel-economy-converter": {
+      "name": "استهلاك الوقود",
+      "description": "الاستهلاك والمسافة المقطوعة",
+      "keywords": "استهلاك الوقود fuel economy converter",
+      "run": "تسجيل التحويل",
+      "success": "تم حفظ التحويل في السجل."
+    },
+    "acceleration-converter": {
+      "name": "التسارع",
+      "description": "الحركة والجاذبية",
+      "keywords": "التسارع acceleration converter",
+      "run": "تسجيل التحويل",
+      "success": "تم حفظ التحويل في السجل."
+    },
+    "torque-converter": {
+      "name": "عزم الدوران",
+      "description": "القوة الدورانية",
+      "keywords": "عزم الدوران torque converter",
+      "run": "تسجيل التحويل",
+      "success": "تم حفظ التحويل في السجل."
+    },
+    "electrical-converter": {
+      "name": "الكهرباء",
+      "description": "الجهد والتيار والمقاومة",
+      "keywords": "الكهرباء electrical converter",
+      "run": "تسجيل التحويل",
+      "success": "تم حفظ التحويل في السجل."
+    },
+    "typography-converter": {
+      "name": "الطباعة",
+      "description": "أحجام CSS والطباعة",
+      "keywords": "الطباعة typography converter",
+      "run": "تسجيل التحويل",
+      "success": "تم حفظ التحويل في السجل."
     }
   },
   "legal": {

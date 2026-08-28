@@ -1398,6 +1398,139 @@
       "unitPib": "Pebibytes",
       "unitArcmin": "Arcminutes",
       "unitArcsec": "Arcseconds"
+    },
+    "length-converter": {
+      "name": "Lengde",
+      "description": "Avstander, dimensjoner og reiser",
+      "keywords": "Lengde length converter",
+      "run": "Registrer konvertering",
+      "success": "Konverteringen er lagret i historikken."
+    },
+    "mass-converter": {
+      "name": "Masse",
+      "description": "Vekter fra milligram til tonn",
+      "keywords": "Masse mass converter",
+      "run": "Registrer konvertering",
+      "success": "Konverteringen er lagret i historikken."
+    },
+    "temperature-converter": {
+      "name": "Temperatur",
+      "description": "Celsius, Fahrenheit og Kelvin",
+      "keywords": "Temperatur temperature converter",
+      "run": "Registrer konvertering",
+      "success": "Konverteringen er lagret i historikken."
+    },
+    "speed-converter": {
+      "name": "Hastighet",
+      "description": "Vanlig og nautisk hastighet",
+      "keywords": "Hastighet speed converter",
+      "run": "Registrer konvertering",
+      "success": "Konverteringen er lagret i historikken."
+    },
+    "duration-converter": {
+      "name": "Varighet",
+      "description": "Fra millisekunder til uker",
+      "keywords": "Varighet duration converter",
+      "run": "Registrer konvertering",
+      "success": "Konverteringen er lagret i historikken."
+    },
+    "volume-converter": {
+      "name": "Volum",
+      "description": "Metriske og kjøkkenmål",
+      "keywords": "Volum volume converter",
+      "run": "Registrer konvertering",
+      "success": "Konverteringen er lagret i historikken."
+    },
+    "power-converter": {
+      "name": "Effekt",
+      "description": "Watt og hestekrefter",
+      "keywords": "Effekt power converter",
+      "run": "Registrer konvertering",
+      "success": "Konverteringen er lagret i historikken."
+    },
+    "energy-converter": {
+      "name": "Energi",
+      "description": "Joule, kalorier og wattimer",
+      "keywords": "Energi energy converter",
+      "run": "Registrer konvertering",
+      "success": "Konverteringen er lagret i historikken."
+    },
+    "pressure-converter": {
+      "name": "Trykk",
+      "description": "Pa, bar, PSI og mer",
+      "keywords": "Trykk pressure converter",
+      "run": "Registrer konvertering",
+      "success": "Konverteringen er lagret i historikken."
+    },
+    "area-converter": {
+      "name": "Areal",
+      "description": "Flate og landareal",
+      "keywords": "Areal area converter",
+      "run": "Registrer konvertering",
+      "success": "Konverteringen er lagret i historikken."
+    },
+    "data-converter": {
+      "name": "Data",
+      "description": "Desimal og binær lagring",
+      "keywords": "Data data converter",
+      "run": "Registrer konvertering",
+      "success": "Konverteringen er lagret i historikken."
+    },
+    "angle-converter": {
+      "name": "Vinkel",
+      "description": "Grader, radianer og omdreininger",
+      "keywords": "Vinkel angle converter",
+      "run": "Registrer konvertering",
+      "success": "Konverteringen er lagret i historikken."
+    },
+    "frequency-converter": {
+      "name": "Frekvens",
+      "description": "Hz til RPM",
+      "keywords": "Frekvens frequency converter",
+      "run": "Registrer konvertering",
+      "success": "Konverteringen er lagret i historikken."
+    },
+    "force-converter": {
+      "name": "Kraft",
+      "description": "Newton og kraftenheter",
+      "keywords": "Kraft force converter",
+      "run": "Registrer konvertering",
+      "success": "Konverteringen er lagret i historikken."
+    },
+    "fuel-economy-converter": {
+      "name": "Drivstofforbruk",
+      "description": "Forbruk og kjørelengde",
+      "keywords": "Drivstofforbruk fuel economy converter",
+      "run": "Registrer konvertering",
+      "success": "Konverteringen er lagret i historikken."
+    },
+    "acceleration-converter": {
+      "name": "Akselerasjon",
+      "description": "Bevegelse og tyngdekraft",
+      "keywords": "Akselerasjon acceleration converter",
+      "run": "Registrer konvertering",
+      "success": "Konverteringen er lagret i historikken."
+    },
+    "torque-converter": {
+      "name": "Dreiemoment",
+      "description": "Dreiemoment",
+      "keywords": "Dreiemoment torque converter",
+      "run": "Registrer konvertering",
+      "success": "Konverteringen er lagret i historikken."
+    },
+    "electrical-converter": {
+      "name": "Elektrisk",
+      "description": "Spenning, strøm og motstand",
+      "keywords": "Elektrisk electrical converter",
+      "run": "Registrer konvertering",
+      "success": "Konverteringen er lagret i historikken."
+    },
+    "typography-converter": {
+      "name": "Typografi",
+      "description": "CSS- og trykkstørrelser",
+      "keywords": "Typografi typography converter",
+      "run": "Registrer konvertering",
+      "success": "Konverteringen er lagret i historikken."
     }
   },
   "legal": {

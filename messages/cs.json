@@ -1398,6 +1398,139 @@
       "unitPib": "Pebibytes",
       "unitArcmin": "Arcminutes",
       "unitArcsec": "Arcseconds"
+    },
+    "length-converter": {
+      "name": "Délka",
+      "description": "Vzdálenosti, rozměry a cestování",
+      "keywords": "Délka length converter",
+      "run": "Zaznamenat převod",
+      "success": "Převod uložen do historie."
+    },
+    "mass-converter": {
+      "name": "Hmotnost",
+      "description": "Hmotnosti od miligramů po tuny",
+      "keywords": "Hmotnost mass converter",
+      "run": "Zaznamenat převod",
+      "success": "Převod uložen do historie."
+    },
+    "temperature-converter": {
+      "name": "Teplota",
+      "description": "Celsius, Fahrenheit a Kelvin",
+      "keywords": "Teplota temperature converter",
+      "run": "Zaznamenat převod",
+      "success": "Převod uložen do historie."
+    },
+    "speed-converter": {
+      "name": "Rychlost",
+      "description": "Běžná a námořní rychlost",
+      "keywords": "Rychlost speed converter",
+      "run": "Zaznamenat převod",
+      "success": "Převod uložen do historie."
+    },
+    "duration-converter": {
+      "name": "Doba",
+      "description": "Od milisekund po týdny",
+      "keywords": "Doba duration converter",
+      "run": "Zaznamenat převod",
+      "success": "Převod uložen do historie."
+    },
+    "volume-converter": {
+      "name": "Objem",
+      "description": "Metrické a kuchyňské míry",
+      "keywords": "Objem volume converter",
+      "run": "Zaznamenat převod",
+      "success": "Převod uložen do historie."
+    },
+    "power-converter": {
+      "name": "Výkon",
+      "description": "Watty a koňské síly",
+      "keywords": "Výkon power converter",
+      "run": "Zaznamenat převod",
+      "success": "Převod uložen do historie."
+    },
+    "energy-converter": {
+      "name": "Energie",
+      "description": "Jouly, kalorie a watthodiny",
+      "keywords": "Energie energy converter",
+      "run": "Zaznamenat převod",
+      "success": "Převod uložen do historie."
+    },
+    "pressure-converter": {
+      "name": "Tlak",
+      "description": "Pa, bar, PSI a další",
+      "keywords": "Tlak pressure converter",
+      "run": "Zaznamenat převod",
+      "success": "Převod uložen do historie."
+    },
+    "area-converter": {
+      "name": "Plocha",
+      "description": "Plocha a rozloha pozemků",
+      "keywords": "Plocha area converter",
+      "run": "Zaznamenat převod",
+      "success": "Převod uložen do historie."
+    },
+    "data-converter": {
+      "name": "Data",
+      "description": "Desítkové a binární úložiště",
+      "keywords": "Data data converter",
+      "run": "Zaznamenat převod",
+      "success": "Převod uložen do historie."
+    },
+    "angle-converter": {
+      "name": "Úhel",
+      "description": "Stupně, radiány a otáčky",
+      "keywords": "Úhel angle converter",
+      "run": "Zaznamenat převod",
+      "success": "Převod uložen do historie."
+    },
+    "frequency-converter": {
+      "name": "Frekvence",
+      "description": "Hz až otáčky za minutu",
+      "keywords": "Frekvence frequency converter",
+      "run": "Zaznamenat převod",
+      "success": "Převod uložen do historie."
+    },
+    "force-converter": {
+      "name": "Síla",
+      "description": "Newtony a jednotky síly",
+      "keywords": "Síla force converter",
+      "run": "Zaznamenat převod",
+      "success": "Převod uložen do historie."
+    },
+    "fuel-economy-converter": {
+      "name": "Spotřeba paliva",
+      "description": "Spotřeba a dojezd",
+      "keywords": "Spotřeba paliva fuel economy converter",
+      "run": "Zaznamenat převod",
+      "success": "Převod uložen do historie."
+    },
+    "acceleration-converter": {
+      "name": "Zrychlení",
+      "description": "Pohyb a gravitace",
+      "keywords": "Zrychlení acceleration converter",
+      "run": "Zaznamenat převod",
+      "success": "Převod uložen do historie."
+    },
+    "torque-converter": {
+      "name": "Točivý moment",
+      "description": "Točivý moment",
+      "keywords": "Točivý moment torque converter",
+      "run": "Zaznamenat převod",
+      "success": "Převod uložen do historie."
+    },
+    "electrical-converter": {
+      "name": "Elektřina",
+      "description": "Napětí, proud a odpor",
+      "keywords": "Elektřina electrical converter",
+      "run": "Zaznamenat převod",
+      "success": "Převod uložen do historie."
+    },
+    "typography-converter": {
+      "name": "Typografie",
+      "description": "Velikosti CSS a tisku",
+      "keywords": "Typografie typography converter",
+      "run": "Zaznamenat převod",
+      "success": "Převod uložen do historie."
     }
   },
   "legal": {

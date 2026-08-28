@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
-import { tools, getTool, type ToolId } from "@/lib/tools/registry";
+import { tools, getTool, legacyToolIdMap, type ToolId } from "@/lib/tools/registry";
 import { pathLocales } from "@/lib/i18n/config";
 import { ToolPageClient } from "@/components/tools/tool-page-client";
 import { buildToolMetadata } from "@/lib/seo/metadata";
@@ -16,10 +16,11 @@ export async function generateMetadata({
 }
 
 export function generateStaticParams() {
+  const toolIds = [...tools.map((tool) => tool.id), ...Object.keys(legacyToolIdMap)];
   return pathLocales.flatMap((locale) =>
-    tools.map((tool) => ({
+    toolIds.map((toolId) => ({
       locale,
-      toolId: tool.id,
+      toolId,
     }))
   );
 }

@@ -15,7 +15,6 @@ import {
   Code2,
   Calculator,
   ArrowLeftRight,
-  Coins,
 } from "lucide-react";
 import { tools, categories, featuredCategoryIds, featuredToolIds, groupedTools, type ToolCategory, type ToolId } from "@/lib/tools/registry";
 import { homeHref, parseCategoryParam, toolHref } from "@/lib/navigation/routes";
@@ -218,29 +217,6 @@ function HomePageInner() {
   const showCategories = !isSearching && !selectedCat;
   const showCategoryTools = selectedCat !== null;
   const showGlobalSearch = isSearching && !selectedCat;
-  const converterQuickLinks = [
-    { id: "currency", toolId: "currency-converter" as ToolId, labelKey: "currency", descriptionKey: "categoryCurrencyDescription", icon: Coins },
-    { id: "length", toolId: "everyday-converter" as ToolId, labelKey: "categoryLength", descriptionKey: "categoryLengthDescription", icon: ArrowLeftRight },
-    { id: "mass", toolId: "everyday-converter" as ToolId, labelKey: "categoryMass", descriptionKey: "categoryMassDescription", icon: ArrowLeftRight },
-    { id: "temperature", toolId: "everyday-converter" as ToolId, labelKey: "categoryTemperature", descriptionKey: "categoryTemperatureDescription", icon: ArrowLeftRight },
-    { id: "speed", toolId: "everyday-converter" as ToolId, labelKey: "categorySpeed", descriptionKey: "categorySpeedDescription", icon: ArrowLeftRight },
-    { id: "duration", toolId: "everyday-converter" as ToolId, labelKey: "categoryDuration", descriptionKey: "categoryDurationDescription", icon: ArrowLeftRight },
-    { id: "volume", toolId: "everyday-converter" as ToolId, labelKey: "categoryVolume", descriptionKey: "categoryVolumeDescription", icon: ArrowLeftRight },
-    { id: "power", toolId: "everyday-converter" as ToolId, labelKey: "categoryPower", descriptionKey: "categoryPowerDescription", icon: ArrowLeftRight },
-    { id: "energy", toolId: "everyday-converter" as ToolId, labelKey: "categoryEnergy", descriptionKey: "categoryEnergyDescription", icon: ArrowLeftRight },
-    { id: "pressure", toolId: "everyday-converter" as ToolId, labelKey: "categoryPressure", descriptionKey: "categoryPressureDescription", icon: ArrowLeftRight },
-    { id: "area", toolId: "everyday-converter" as ToolId, labelKey: "categoryArea", descriptionKey: "categoryAreaDescription", icon: ArrowLeftRight },
-    { id: "data", toolId: "everyday-converter" as ToolId, labelKey: "categoryData", descriptionKey: "categoryDataDescription", icon: ArrowLeftRight },
-    { id: "angle", toolId: "everyday-converter" as ToolId, labelKey: "categoryAngle", descriptionKey: "categoryAngleDescription", icon: ArrowLeftRight },
-    { id: "frequency", toolId: "everyday-converter" as ToolId, labelKey: "categoryFrequency", descriptionKey: "categoryFrequencyDescription", icon: ArrowLeftRight },
-    { id: "force", toolId: "everyday-converter" as ToolId, labelKey: "categoryForce", descriptionKey: "categoryForceDescription", icon: ArrowLeftRight },
-    { id: "fuelEconomy", toolId: "everyday-converter" as ToolId, labelKey: "categoryFuelEconomy", descriptionKey: "categoryFuelEconomyDescription", icon: ArrowLeftRight },
-    { id: "acceleration", toolId: "everyday-converter" as ToolId, labelKey: "categoryAcceleration", descriptionKey: "categoryAccelerationDescription", icon: ArrowLeftRight },
-    { id: "torque", toolId: "everyday-converter" as ToolId, labelKey: "categoryTorque", descriptionKey: "categoryTorqueDescription", icon: ArrowLeftRight },
-    { id: "electrical", toolId: "everyday-converter" as ToolId, labelKey: "categoryElectrical", descriptionKey: "categoryElectricalDescription", icon: ArrowLeftRight },
-    { id: "typography", toolId: "everyday-converter" as ToolId, labelKey: "categoryTypography", descriptionKey: "categoryTypographyDescription", icon: ArrowLeftRight },
-  ] as const;
-
   return (
     <div className="space-y-7 sm:space-y-9">
       {(showCategories || showGlobalSearch) && (
@@ -419,28 +395,7 @@ function HomePageInner() {
               enterKeyHint="search"
             />
           </div>
-          {selectedCat === "converter" ? (
-            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 xl:grid-cols-3">
-              {converterQuickLinks.map((item, index) => (
-                <div key={item.id} className="anim-list-item" style={{ animationDelay: `${index * 25}ms` }}>
-                  <ToolCard
-                    toolId={item.toolId}
-                    category={tc("converter")}
-                    fromHref={homeHref("converter")}
-                    icon={item.icon}
-                    name={tt(`everyday-converter.${item.labelKey}`)}
-                    description={tt(`everyday-converter.${item.descriptionKey}`)}
-                    fav={false}
-                    onToggleFav={() => undefined}
-                    favoriteLabel={tcommon("favorite")}
-                    unfavoriteLabel={tcommon("unfavorite")}
-                    showFavorite={false}
-                    href={`${toolHref(item.toolId, homeHref("converter"))}&category=${encodeURIComponent(item.id)}`}
-                  />
-                </div>
-              ))}
-            </div>
-          ) : categoryTools.length === 0 ? (
+          {categoryTools.length === 0 ? (
             <p className="type-body text-muted-foreground">{t("noResults")}</p>
           ) : (
             <div className="space-y-8">

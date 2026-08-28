@@ -1398,6 +1398,139 @@
       "unitPib": "Pebibytes",
       "unitArcmin": "Arcminutes",
       "unitArcsec": "Arcseconds"
+    },
+    "length-converter": {
+      "name": "Длина",
+      "description": "Расстояния, размеры и поездки",
+      "keywords": "Длина length converter",
+      "run": "Записать конвертацию",
+      "success": "Конвертация сохранена в историю."
+    },
+    "mass-converter": {
+      "name": "Масса",
+      "description": "Вес от миллиграммов до тонн",
+      "keywords": "Масса mass converter",
+      "run": "Записать конвертацию",
+      "success": "Конвертация сохранена в историю."
+    },
+    "temperature-converter": {
+      "name": "Температура",
+      "description": "Цельсий, Фаренгейт и Кельвин",
+      "keywords": "Температура temperature converter",
+      "run": "Записать конвертацию",
+      "success": "Конвертация сохранена в историю."
+    },
+    "speed-converter": {
+      "name": "Скорость",
+      "description": "Обычная и морская скорость",
+      "keywords": "Скорость speed converter",
+      "run": "Записать конвертацию",
+      "success": "Конвертация сохранена в историю."
+    },
+    "duration-converter": {
+      "name": "Длительность",
+      "description": "От миллисекунд до недель",
+      "keywords": "Длительность duration converter",
+      "run": "Записать конвертацию",
+      "success": "Конвертация сохранена в историю."
+    },
+    "volume-converter": {
+      "name": "Объём",
+      "description": "Метрические и кухонные меры",
+      "keywords": "Объём volume converter",
+      "run": "Записать конвертацию",
+      "success": "Конвертация сохранена в историю."
+    },
+    "power-converter": {
+      "name": "Мощность",
+      "description": "Ватты и лошадиные силы",
+      "keywords": "Мощность power converter",
+      "run": "Записать конвертацию",
+      "success": "Конвертация сохранена в историю."
+    },
+    "energy-converter": {
+      "name": "Энергия",
+      "description": "Джоули, калории и ватт-часы",
+      "keywords": "Энергия energy converter",
+      "run": "Записать конвертацию",
+      "success": "Конвертация сохранена в историю."
+    },
+    "pressure-converter": {
+      "name": "Давление",
+      "description": "Па, бар, PSI и другие единицы",
+      "keywords": "Давление pressure converter",
+      "run": "Записать конвертацию",
+      "success": "Конвертация сохранена в историю."
+    },
+    "area-converter": {
+      "name": "Площадь",
+      "description": "Площадь и земельные участки",
+      "keywords": "Площадь area converter",
+      "run": "Записать конвертацию",
+      "success": "Конвертация сохранена в историю."
+    },
+    "data-converter": {
+      "name": "Данные",
+      "description": "Десятичные и двоичные объёмы данных",
+      "keywords": "Данные data converter",
+      "run": "Записать конвертацию",
+      "success": "Конвертация сохранена в историю."
+    },
+    "angle-converter": {
+      "name": "Угол",
+      "description": "Градусы, радианы и обороты",
+      "keywords": "Угол angle converter",
+      "run": "Записать конвертацию",
+      "success": "Конвертация сохранена в историю."
+    },
+    "frequency-converter": {
+      "name": "Частота",
+      "description": "От Гц до об/мин",
+      "keywords": "Частота frequency converter",
+      "run": "Записать конвертацию",
+      "success": "Конвертация сохранена в историю."
+    },
+    "force-converter": {
+      "name": "Сила",
+      "description": "Ньютоны и единицы силы",
+      "keywords": "Сила force converter",
+      "run": "Записать конвертацию",
+      "success": "Конвертация сохранена в историю."
+    },
+    "fuel-economy-converter": {
+      "name": "Расход топлива",
+      "description": "Расход и пробег",
+      "keywords": "Расход топлива fuel economy converter",
+      "run": "Записать конвертацию",
+      "success": "Конвертация сохранена в историю."
+    },
+    "acceleration-converter": {
+      "name": "Ускорение",
+      "description": "Движение и гравитация",
+      "keywords": "Ускорение acceleration converter",
+      "run": "Записать конвертацию",
+      "success": "Конвертация сохранена в историю."
+    },
+    "torque-converter": {
+      "name": "Крутящий момент",
+      "description": "Крутящий момент",
+      "keywords": "Крутящий момент torque converter",
+      "run": "Записать конвертацию",
+      "success": "Конвертация сохранена в историю."
+    },
+    "electrical-converter": {
+      "name": "Электрика",
+      "description": "Напряжение, ток и сопротивление",
+      "keywords": "Электрика electrical converter",
+      "run": "Записать конвертацию",
+      "success": "Конвертация сохранена в историю."
+    },
+    "typography-converter": {
+      "name": "Типографика",
+      "description": "Размеры CSS и печати",
+      "keywords": "Типографика typography converter",
+      "run": "Записать конвертацию",
+      "success": "Конвертация сохранена в историю."
     }
   },
   "legal": {

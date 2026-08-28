@@ -1398,6 +1398,139 @@
       "unitPib": "Pebibytes",
       "unitArcmin": "Arcminutes",
       "unitArcsec": "Arcseconds"
+    },
+    "length-converter": {
+      "name": "길이",
+      "description": "거리, 치수 및 여행",
+      "keywords": "길이 length converter",
+      "run": "변환 기록",
+      "success": "변환을 기록에 저장했습니다."
+    },
+    "mass-converter": {
+      "name": "질량",
+      "description": "밀리그램부터 톤까지의 무게",
+      "keywords": "질량 mass converter",
+      "run": "변환 기록",
+      "success": "변환을 기록에 저장했습니다."
+    },
+    "temperature-converter": {
+      "name": "온도",
+      "description": "섭씨, 화씨 및 켈빈",
+      "keywords": "온도 temperature converter",
+      "run": "변환 기록",
+      "success": "변환을 기록에 저장했습니다."
+    },
+    "speed-converter": {
+      "name": "속도",
+      "description": "일상 및 항해 속도",
+      "keywords": "속도 speed converter",
+      "run": "변환 기록",
+      "success": "변환을 기록에 저장했습니다."
+    },
+    "duration-converter": {
+      "name": "기간",
+      "description": "밀리초부터 주까지",
+      "keywords": "기간 duration converter",
+      "run": "변환 기록",
+      "success": "변환을 기록에 저장했습니다."
+    },
+    "volume-converter": {
+      "name": "부피",
+      "description": "미터법 및 요리 단위",
+      "keywords": "부피 volume converter",
+      "run": "변환 기록",
+      "success": "변환을 기록에 저장했습니다."
+    },
+    "power-converter": {
+      "name": "전력",
+      "description": "와트 및 마력",
+      "keywords": "전력 power converter",
+      "run": "변환 기록",
+      "success": "변환을 기록에 저장했습니다."
+    },
+    "energy-converter": {
+      "name": "에너지",
+      "description": "줄, 칼로리 및 와트시",
+      "keywords": "에너지 energy converter",
+      "run": "변환 기록",
+      "success": "변환을 기록에 저장했습니다."
+    },
+    "pressure-converter": {
+      "name": "압력",
+      "description": "Pa, bar, PSI 등",
+      "keywords": "압력 pressure converter",
+      "run": "변환 기록",
+      "success": "변환을 기록에 저장했습니다."
+    },
+    "area-converter": {
+      "name": "면적",
+      "description": "면적 및 토지 면적",
+      "keywords": "면적 area converter",
+      "run": "변환 기록",
+      "success": "변환을 기록에 저장했습니다."
+    },
+    "data-converter": {
+      "name": "데이터",
+      "description": "10진수 및 2진수 저장 용량",
+      "keywords": "데이터 data converter",
+      "run": "변환 기록",
+      "success": "변환을 기록에 저장했습니다."
+    },
+    "angle-converter": {
+      "name": "각도",
+      "description": "도, 라디안 및 회전",
+      "keywords": "각도 angle converter",
+      "run": "변환 기록",
+      "success": "변환을 기록에 저장했습니다."
+    },
+    "frequency-converter": {
+      "name": "주파수",
+      "description": "Hz부터 RPM까지",
+      "keywords": "주파수 frequency converter",
+      "run": "변환 기록",
+      "success": "변환을 기록에 저장했습니다."
+    },
+    "force-converter": {
+      "name": "힘",
+      "description": "뉴턴 및 힘의 단위",
+      "keywords": "힘 force converter",
+      "run": "변환 기록",
+      "success": "변환을 기록에 저장했습니다."
+    },
+    "fuel-economy-converter": {
+      "name": "연비",
+      "description": "소비량 및 주행 거리",
+      "keywords": "연비 fuel economy converter",
+      "run": "변환 기록",
+      "success": "변환을 기록에 저장했습니다."
+    },
+    "acceleration-converter": {
+      "name": "가속도",
+      "description": "운동 및 중력",
+      "keywords": "가속도 acceleration converter",
+      "run": "변환 기록",
+      "success": "변환을 기록에 저장했습니다."
+    },
+    "torque-converter": {
+      "name": "토크",
+      "description": "회전력",
+      "keywords": "토크 torque converter",
+      "run": "변환 기록",
+      "success": "변환을 기록에 저장했습니다."
+    },
+    "electrical-converter": {
+      "name": "전기",
+      "description": "전압, 전류 및 저항",
+      "keywords": "전기 electrical converter",
+      "run": "변환 기록",
+      "success": "변환을 기록에 저장했습니다."
+    },
+    "typography-converter": {
+      "name": "타이포그래피",
+      "description": "CSS 및 인쇄 크기",
+      "keywords": "타이포그래피 typography converter",
+      "run": "변환 기록",
+      "success": "변환을 기록에 저장했습니다."
     }
   },
   "legal": {

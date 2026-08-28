@@ -1398,6 +1398,139 @@
       "unitPib": "Pebibytes",
       "unitArcmin": "Arcminutes",
       "unitArcsec": "Arcseconds"
+    },
+    "length-converter": {
+      "name": "लंबाई",
+      "description": "दूरी, आयाम और यात्रा",
+      "keywords": "लंबाई length converter",
+      "run": "कन्वर्ज़न दर्ज करें",
+      "success": "कन्वर्ज़न इतिहास में सहेजा गया।"
+    },
+    "mass-converter": {
+      "name": "द्रव्यमान",
+      "description": "मिलीग्राम से टन तक भार",
+      "keywords": "द्रव्यमान mass converter",
+      "run": "कन्वर्ज़न दर्ज करें",
+      "success": "कन्वर्ज़न इतिहास में सहेजा गया।"
+    },
+    "temperature-converter": {
+      "name": "तापमान",
+      "description": "सेल्सियस, फ़ारेनहाइट और केल्विन",
+      "keywords": "तापमान temperature converter",
+      "run": "कन्वर्ज़न दर्ज करें",
+      "success": "कन्वर्ज़न इतिहास में सहेजा गया।"
+    },
+    "speed-converter": {
+      "name": "गति",
+      "description": "दैनिक और समुद्री गति",
+      "keywords": "गति speed converter",
+      "run": "कन्वर्ज़न दर्ज करें",
+      "success": "कन्वर्ज़न इतिहास में सहेजा गया।"
+    },
+    "duration-converter": {
+      "name": "अवधि",
+      "description": "मिलीसेकंड से सप्ताह तक",
+      "keywords": "अवधि duration converter",
+      "run": "कन्वर्ज़न दर्ज करें",
+      "success": "कन्वर्ज़न इतिहास में सहेजा गया।"
+    },
+    "volume-converter": {
+      "name": "आयतन",
+      "description": "मीट्रिक और रसोई माप",
+      "keywords": "आयतन volume converter",
+      "run": "कन्वर्ज़न दर्ज करें",
+      "success": "कन्वर्ज़न इतिहास में सहेजा गया।"
+    },
+    "power-converter": {
+      "name": "शक्ति",
+      "description": "वाट और हॉर्सपावर",
+      "keywords": "शक्ति power converter",
+      "run": "कन्वर्ज़न दर्ज करें",
+      "success": "कन्वर्ज़न इतिहास में सहेजा गया।"
+    },
+    "energy-converter": {
+      "name": "ऊर्जा",
+      "description": "जूल, कैलोरी और वाट-घंटे",
+      "keywords": "ऊर्जा energy converter",
+      "run": "कन्वर्ज़न दर्ज करें",
+      "success": "कन्वर्ज़न इतिहास में सहेजा गया।"
+    },
+    "pressure-converter": {
+      "name": "दाब",
+      "description": "Pa, bar, PSI और अन्य",
+      "keywords": "दाब pressure converter",
+      "run": "कन्वर्ज़न दर्ज करें",
+      "success": "कन्वर्ज़न इतिहास में सहेजा गया।"
+    },
+    "area-converter": {
+      "name": "क्षेत्रफल",
+      "description": "क्षेत्रफल और भूमि क्षेत्र",
+      "keywords": "क्षेत्रफल area converter",
+      "run": "कन्वर्ज़न दर्ज करें",
+      "success": "कन्वर्ज़न इतिहास में सहेजा गया।"
+    },
+    "data-converter": {
+      "name": "डेटा",
+      "description": "दशमलव और बाइनरी स्टोरेज",
+      "keywords": "डेटा data converter",
+      "run": "कन्वर्ज़न दर्ज करें",
+      "success": "कन्वर्ज़न इतिहास में सहेजा गया।"
+    },
+    "angle-converter": {
+      "name": "कोण",
+      "description": "डिग्री, रेडियन और चक्कर",
+      "keywords": "कोण angle converter",
+      "run": "कन्वर्ज़न दर्ज करें",
+      "success": "कन्वर्ज़न इतिहास में सहेजा गया।"
+    },
+    "frequency-converter": {
+      "name": "आवृत्ति",
+      "description": "Hz से RPM तक",
+      "keywords": "आवृत्ति frequency converter",
+      "run": "कन्वर्ज़न दर्ज करें",
+      "success": "कन्वर्ज़न इतिहास में सहेजा गया।"
+    },
+    "force-converter": {
+      "name": "बल",
+      "description": "न्यूटन और बल की इकाइयाँ",
+      "keywords": "बल force converter",
+      "run": "कन्वर्ज़न दर्ज करें",
+      "success": "कन्वर्ज़न इतिहास में सहेजा गया।"
+    },
+    "fuel-economy-converter": {
+      "name": "ईंधन दक्षता",
+      "description": "खपत और माइलेज",
+      "keywords": "ईंधन दक्षता fuel economy converter",
+      "run": "कन्वर्ज़न दर्ज करें",
+      "success": "कन्वर्ज़न इतिहास में सहेजा गया।"
+    },
+    "acceleration-converter": {
+      "name": "त्वरण",
+      "description": "गति और गुरुत्वाकर्षण",
+      "keywords": "त्वरण acceleration converter",
+      "run": "कन्वर्ज़न दर्ज करें",
+      "success": "कन्वर्ज़न इतिहास में सहेजा गया।"
+    },
+    "torque-converter": {
+      "name": "बलाघूर्ण",
+      "description": "घूर्णी बल",
+      "keywords": "बलाघूर्ण torque converter",
+      "run": "कन्वर्ज़न दर्ज करें",
+      "success": "कन्वर्ज़न इतिहास में सहेजा गया।"
+    },
+    "electrical-converter": {
+      "name": "विद्युत",
+      "description": "वोल्टेज, करंट और प्रतिरोध",
+      "keywords": "विद्युत electrical converter",
+      "run": "कन्वर्ज़न दर्ज करें",
+      "success": "कन्वर्ज़न इतिहास में सहेजा गया।"
+    },
+    "typography-converter": {
+      "name": "टाइपोग्राफी",
+      "description": "CSS और प्रिंट आकार",
+      "keywords": "टाइपोग्राफी typography converter",
+      "run": "कन्वर्ज़न दर्ज करें",
+      "success": "कन्वर्ज़न इतिहास में सहेजा गया।"
     }
   },
   "legal": {

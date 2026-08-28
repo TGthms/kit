@@ -576,7 +576,7 @@ function ConverterLanding({ onSelect }: { onSelect: (category: ConverterCategory
   );
 }
 
-function UnitConverter({ category, onBack }: { category: UnitCategory; onBack: () => void }) {
+function UnitConverter({ category, onBack }: { category: UnitCategory; onBack?: () => void }) {
   const t = useTranslations("tools.everyday-converter");
   const locale = useLocale();
   const log = useToolHistory(toolId("everyday-converter"));
@@ -926,6 +926,34 @@ export function EverydayConverter() {
     </ToolShell>
   );
 }
+
+function UnitConverterTool({ toolId: id, category }: { toolId: ToolId; category: UnitCategory }) {
+  return (
+    <ToolShell toolId={id}>
+      <UnitConverter category={category} />
+    </ToolShell>
+  );
+}
+
+export function LengthConverter() { return <UnitConverterTool toolId="length-converter" category="length" />; }
+export function MassConverter() { return <UnitConverterTool toolId="mass-converter" category="mass" />; }
+export function TemperatureConverter() { return <UnitConverterTool toolId="temperature-converter" category="temperature" />; }
+export function SpeedConverter() { return <UnitConverterTool toolId="speed-converter" category="speed" />; }
+export function DurationConverter() { return <UnitConverterTool toolId="duration-converter" category="duration" />; }
+export function VolumeConverter() { return <UnitConverterTool toolId="volume-converter" category="volume" />; }
+export function PowerConverter() { return <UnitConverterTool toolId="power-converter" category="power" />; }
+export function EnergyConverter() { return <UnitConverterTool toolId="energy-converter" category="energy" />; }
+export function PressureConverter() { return <UnitConverterTool toolId="pressure-converter" category="pressure" />; }
+export function AreaConverter() { return <UnitConverterTool toolId="area-converter" category="area" />; }
+export function DataConverter() { return <UnitConverterTool toolId="data-converter" category="data" />; }
+export function AngleConverter() { return <UnitConverterTool toolId="angle-converter" category="angle" />; }
+export function FrequencyConverter() { return <UnitConverterTool toolId="frequency-converter" category="frequency" />; }
+export function ForceConverter() { return <UnitConverterTool toolId="force-converter" category="force" />; }
+export function FuelEconomyConverter() { return <UnitConverterTool toolId="fuel-economy-converter" category="fuelEconomy" />; }
+export function AccelerationConverter() { return <UnitConverterTool toolId="acceleration-converter" category="acceleration" />; }
+export function TorqueConverter() { return <UnitConverterTool toolId="torque-converter" category="torque" />; }
+export function ElectricalConverter() { return <UnitConverterTool toolId="electrical-converter" category="electrical" />; }
+export function TypographyConverter() { return <UnitConverterTool toolId="typography-converter" category="typography" />; }
 
 export function TextCounter() {
   const t = useTranslations("tools.text-counter");

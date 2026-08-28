@@ -1398,6 +1398,139 @@
       "unitPib": "Pebibytes",
       "unitArcmin": "Arcminutes",
       "unitArcsec": "Arcseconds"
+    },
+    "length-converter": {
+      "name": "Longueur",
+      "description": "Distances, dimensions et déplacements",
+      "keywords": "Longueur length converter",
+      "run": "Enregistrer la conversion",
+      "success": "Conversion enregistrée dans l’historique."
+    },
+    "mass-converter": {
+      "name": "Masse",
+      "description": "Poids de milligrammes à tonnes",
+      "keywords": "Masse mass converter",
+      "run": "Enregistrer la conversion",
+      "success": "Conversion enregistrée dans l’historique."
+    },
+    "temperature-converter": {
+      "name": "Température",
+      "description": "Celsius, Fahrenheit et Kelvin",
+      "keywords": "Température temperature converter",
+      "run": "Enregistrer la conversion",
+      "success": "Conversion enregistrée dans l’historique."
+    },
+    "speed-converter": {
+      "name": "Vitesse",
+      "description": "Vitesses courantes et nautiques",
+      "keywords": "Vitesse speed converter",
+      "run": "Enregistrer la conversion",
+      "success": "Conversion enregistrée dans l’historique."
+    },
+    "duration-converter": {
+      "name": "Durée",
+      "description": "Des millisecondes aux semaines",
+      "keywords": "Durée duration converter",
+      "run": "Enregistrer la conversion",
+      "success": "Conversion enregistrée dans l’historique."
+    },
+    "volume-converter": {
+      "name": "Volume",
+      "description": "Mesures métriques et de cuisine",
+      "keywords": "Volume volume converter",
+      "run": "Enregistrer la conversion",
+      "success": "Conversion enregistrée dans l’historique."
+    },
+    "power-converter": {
+      "name": "Puissance",
+      "description": "Watts et chevaux",
+      "keywords": "Puissance power converter",
+      "run": "Enregistrer la conversion",
+      "success": "Conversion enregistrée dans l’historique."
+    },
+    "energy-converter": {
+      "name": "Énergie",
+      "description": "Joules, calories et watt-heures",
+      "keywords": "Énergie energy converter",
+      "run": "Enregistrer la conversion",
+      "success": "Conversion enregistrée dans l’historique."
+    },
+    "pressure-converter": {
+      "name": "Pression",
+      "description": "Pa, bar, PSI et plus",
+      "keywords": "Pression pressure converter",
+      "run": "Enregistrer la conversion",
+      "success": "Conversion enregistrée dans l’historique."
+    },
+    "area-converter": {
+      "name": "Surface",
+      "description": "Surfaces et terrains",
+      "keywords": "Surface area converter",
+      "run": "Enregistrer la conversion",
+      "success": "Conversion enregistrée dans l’historique."
+    },
+    "data-converter": {
+      "name": "Données",
+      "description": "Stockage décimal et binaire",
+      "keywords": "Données data converter",
+      "run": "Enregistrer la conversion",
+      "success": "Conversion enregistrée dans l’historique."
+    },
+    "angle-converter": {
+      "name": "Angle",
+      "description": "Degrés, radians et tours",
+      "keywords": "Angle angle converter",
+      "run": "Enregistrer la conversion",
+      "success": "Conversion enregistrée dans l’historique."
+    },
+    "frequency-converter": {
+      "name": "Fréquence",
+      "description": "De Hz à tr/min",
+      "keywords": "Fréquence frequency converter",
+      "run": "Enregistrer la conversion",
+      "success": "Conversion enregistrée dans l’historique."
+    },
+    "force-converter": {
+      "name": "Force",
+      "description": "Newtons et unités de force",
+      "keywords": "Force force converter",
+      "run": "Enregistrer la conversion",
+      "success": "Conversion enregistrée dans l’historique."
+    },
+    "fuel-economy-converter": {
+      "name": "Consommation",
+      "description": "Consommation et kilométrage",
+      "keywords": "Consommation fuel economy converter",
+      "run": "Enregistrer la conversion",
+      "success": "Conversion enregistrée dans l’historique."
+    },
+    "acceleration-converter": {
+      "name": "Accélération",
+      "description": "Mouvement et gravité",
+      "keywords": "Accélération acceleration converter",
+      "run": "Enregistrer la conversion",
+      "success": "Conversion enregistrée dans l’historique."
+    },
+    "torque-converter": {
+      "name": "Couple",
+      "description": "Force de rotation",
+      "keywords": "Couple torque converter",
+      "run": "Enregistrer la conversion",
+      "success": "Conversion enregistrée dans l’historique."
+    },
+    "electrical-converter": {
+      "name": "Électricité",
+      "description": "Tension, courant et résistance",
+      "keywords": "Électricité electrical converter",
+      "run": "Enregistrer la conversion",
+      "success": "Conversion enregistrée dans l’historique."
+    },
+    "typography-converter": {
+      "name": "Typographie",
+      "description": "Tailles CSS et impression",
+      "keywords": "Typographie typography converter",
+      "run": "Enregistrer la conversion",
+      "success": "Conversion enregistrée dans l’historique."
     }
   },
   "legal": {

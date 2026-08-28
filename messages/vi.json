@@ -1398,6 +1398,139 @@
       "unitPib": "Pebibytes",
       "unitArcmin": "Arcminutes",
       "unitArcsec": "Arcseconds"
+    },
+    "length-converter": {
+      "name": "Độ dài",
+      "description": "Khoảng cách, kích thước và du lịch",
+      "keywords": "Độ dài length converter",
+      "run": "Ghi lại chuyển đổi",
+      "success": "Đã lưu chuyển đổi vào lịch sử."
+    },
+    "mass-converter": {
+      "name": "Khối lượng",
+      "description": "Khối lượng từ miligam đến tấn",
+      "keywords": "Khối lượng mass converter",
+      "run": "Ghi lại chuyển đổi",
+      "success": "Đã lưu chuyển đổi vào lịch sử."
+    },
+    "temperature-converter": {
+      "name": "Nhiệt độ",
+      "description": "Độ C, độ F và Kelvin",
+      "keywords": "Nhiệt độ temperature converter",
+      "run": "Ghi lại chuyển đổi",
+      "success": "Đã lưu chuyển đổi vào lịch sử."
+    },
+    "speed-converter": {
+      "name": "Tốc độ",
+      "description": "Tốc độ thông dụng và hàng hải",
+      "keywords": "Tốc độ speed converter",
+      "run": "Ghi lại chuyển đổi",
+      "success": "Đã lưu chuyển đổi vào lịch sử."
+    },
+    "duration-converter": {
+      "name": "Thời lượng",
+      "description": "Từ mili giây đến tuần",
+      "keywords": "Thời lượng duration converter",
+      "run": "Ghi lại chuyển đổi",
+      "success": "Đã lưu chuyển đổi vào lịch sử."
+    },
+    "volume-converter": {
+      "name": "Thể tích",
+      "description": "Đơn vị mét và đo lường nhà bếp",
+      "keywords": "Thể tích volume converter",
+      "run": "Ghi lại chuyển đổi",
+      "success": "Đã lưu chuyển đổi vào lịch sử."
+    },
+    "power-converter": {
+      "name": "Công suất",
+      "description": "Oát và mã lực",
+      "keywords": "Công suất power converter",
+      "run": "Ghi lại chuyển đổi",
+      "success": "Đã lưu chuyển đổi vào lịch sử."
+    },
+    "energy-converter": {
+      "name": "Năng lượng",
+      "description": "Jun, calo và oát-giờ",
+      "keywords": "Năng lượng energy converter",
+      "run": "Ghi lại chuyển đổi",
+      "success": "Đã lưu chuyển đổi vào lịch sử."
+    },
+    "pressure-converter": {
+      "name": "Áp suất",
+      "description": "Pa, bar, PSI và hơn thế nữa",
+      "keywords": "Áp suất pressure converter",
+      "run": "Ghi lại chuyển đổi",
+      "success": "Đã lưu chuyển đổi vào lịch sử."
+    },
+    "area-converter": {
+      "name": "Diện tích",
+      "description": "Diện tích bề mặt và đất",
+      "keywords": "Diện tích area converter",
+      "run": "Ghi lại chuyển đổi",
+      "success": "Đã lưu chuyển đổi vào lịch sử."
+    },
+    "data-converter": {
+      "name": "Dữ liệu",
+      "description": "Lưu trữ thập phân và nhị phân",
+      "keywords": "Dữ liệu data converter",
+      "run": "Ghi lại chuyển đổi",
+      "success": "Đã lưu chuyển đổi vào lịch sử."
+    },
+    "angle-converter": {
+      "name": "Góc",
+      "description": "Độ, radian và vòng quay",
+      "keywords": "Góc angle converter",
+      "run": "Ghi lại chuyển đổi",
+      "success": "Đã lưu chuyển đổi vào lịch sử."
+    },
+    "frequency-converter": {
+      "name": "Tần số",
+      "description": "Hz đến RPM",
+      "keywords": "Tần số frequency converter",
+      "run": "Ghi lại chuyển đổi",
+      "success": "Đã lưu chuyển đổi vào lịch sử."
+    },
+    "force-converter": {
+      "name": "Lực",
+      "description": "Newton và đơn vị lực",
+      "keywords": "Lực force converter",
+      "run": "Ghi lại chuyển đổi",
+      "success": "Đã lưu chuyển đổi vào lịch sử."
+    },
+    "fuel-economy-converter": {
+      "name": "Mức tiêu thụ nhiên liệu",
+      "description": "Mức tiêu thụ và quãng đường",
+      "keywords": "Mức tiêu thụ nhiên liệu fuel economy converter",
+      "run": "Ghi lại chuyển đổi",
+      "success": "Đã lưu chuyển đổi vào lịch sử."
+    },
+    "acceleration-converter": {
+      "name": "Gia tốc",
+      "description": "Chuyển động và trọng lực",
+      "keywords": "Gia tốc acceleration converter",
+      "run": "Ghi lại chuyển đổi",
+      "success": "Đã lưu chuyển đổi vào lịch sử."
+    },
+    "torque-converter": {
+      "name": "Mô-men xoắn",
+      "description": "Mô-men xoắn",
+      "keywords": "Mô-men xoắn torque converter",
+      "run": "Ghi lại chuyển đổi",
+      "success": "Đã lưu chuyển đổi vào lịch sử."
+    },
+    "electrical-converter": {
+      "name": "Điện",
+      "description": "Điện áp, dòng điện và điện trở",
+      "keywords": "Điện electrical converter",
+      "run": "Ghi lại chuyển đổi",
+      "success": "Đã lưu chuyển đổi vào lịch sử."
+    },
+    "typography-converter": {
+      "name": "Kiểu chữ",
+      "description": "Kích thước CSS và in ấn",
+      "keywords": "Kiểu chữ typography converter",
+      "run": "Ghi lại chuyển đổi",
+      "success": "Đã lưu chuyển đổi vào lịch sử."
     }
   },
   "legal": {

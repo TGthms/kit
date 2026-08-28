@@ -1398,6 +1398,139 @@
       "unitPib": "Pebibytes",
       "unitArcmin": "Arcminutes",
       "unitArcsec": "Arcseconds"
+    },
+    "length-converter": {
+      "name": "Μήκος",
+      "description": "Αποστάσεις, διαστάσεις και ταξίδια",
+      "keywords": "Μήκος length converter",
+      "run": "Καταγραφή μετατροπής",
+      "success": "Η μετατροπή αποθηκεύτηκε στο ιστορικό."
+    },
+    "mass-converter": {
+      "name": "Μάζα",
+      "description": "Βάρη από milligram έως τόνους",
+      "keywords": "Μάζα mass converter",
+      "run": "Καταγραφή μετατροπής",
+      "success": "Η μετατροπή αποθηκεύτηκε στο ιστορικό."
+    },
+    "temperature-converter": {
+      "name": "Θερμοκρασία",
+      "description": "Κελσίου, Φαρενάιτ και Κέλβιν",
+      "keywords": "Θερμοκρασία temperature converter",
+      "run": "Καταγραφή μετατροπής",
+      "success": "Η μετατροπή αποθηκεύτηκε στο ιστορικό."
+    },
+    "speed-converter": {
+      "name": "Ταχύτητα",
+      "description": "Καθημερινή και ναυτική ταχύτητα",
+      "keywords": "Ταχύτητα speed converter",
+      "run": "Καταγραφή μετατροπής",
+      "success": "Η μετατροπή αποθηκεύτηκε στο ιστορικό."
+    },
+    "duration-converter": {
+      "name": "Διάρκεια",
+      "description": "Από millisecond έως εβδομάδες",
+      "keywords": "Διάρκεια duration converter",
+      "run": "Καταγραφή μετατροπής",
+      "success": "Η μετατροπή αποθηκεύτηκε στο ιστορικό."
+    },
+    "volume-converter": {
+      "name": "Όγκος",
+      "description": "Μετρικές και μαγειρικές μονάδες",
+      "keywords": "Όγκος volume converter",
+      "run": "Καταγραφή μετατροπής",
+      "success": "Η μετατροπή αποθηκεύτηκε στο ιστορικό."
+    },
+    "power-converter": {
+      "name": "Ισχύς",
+      "description": "Watt και ίπποι",
+      "keywords": "Ισχύς power converter",
+      "run": "Καταγραφή μετατροπής",
+      "success": "Η μετατροπή αποθηκεύτηκε στο ιστορικό."
+    },
+    "energy-converter": {
+      "name": "Ενέργεια",
+      "description": "Joule, θερμίδες και watt-ώρες",
+      "keywords": "Ενέργεια energy converter",
+      "run": "Καταγραφή μετατροπής",
+      "success": "Η μετατροπή αποθηκεύτηκε στο ιστορικό."
+    },
+    "pressure-converter": {
+      "name": "Πίεση",
+      "description": "Pa, bar, PSI και άλλα",
+      "keywords": "Πίεση pressure converter",
+      "run": "Καταγραφή μετατροπής",
+      "success": "Η μετατροπή αποθηκεύτηκε στο ιστορικό."
+    },
+    "area-converter": {
+      "name": "Εμβαδόν",
+      "description": "Επιφάνεια και έκταση γης",
+      "keywords": "Εμβαδόν area converter",
+      "run": "Καταγραφή μετατροπής",
+      "success": "Η μετατροπή αποθηκεύτηκε στο ιστορικό."
+    },
+    "data-converter": {
+      "name": "Δεδομένα",
+      "description": "Δεκαδική και δυαδική αποθήκευση",
+      "keywords": "Δεδομένα data converter",
+      "run": "Καταγραφή μετατροπής",
+      "success": "Η μετατροπή αποθηκεύτηκε στο ιστορικό."
+    },
+    "angle-converter": {
+      "name": "Γωνία",
+      "description": "Μοίρες, ακτίνια και περιστροφές",
+      "keywords": "Γωνία angle converter",
+      "run": "Καταγραφή μετατροπής",
+      "success": "Η μετατροπή αποθηκεύτηκε στο ιστορικό."
+    },
+    "frequency-converter": {
+      "name": "Συχνότητα",
+      "description": "Hz έως RPM",
+      "keywords": "Συχνότητα frequency converter",
+      "run": "Καταγραφή μετατροπής",
+      "success": "Η μετατροπή αποθηκεύτηκε στο ιστορικό."
+    },
+    "force-converter": {
+      "name": "Δύναμη",
+      "description": "Newton και μονάδες δύναμης",
+      "keywords": "Δύναμη force converter",
+      "run": "Καταγραφή μετατροπής",
+      "success": "Η μετατροπή αποθηκεύτηκε στο ιστορικό."
+    },
+    "fuel-economy-converter": {
+      "name": "Κατανάλωση καυσίμου",
+      "description": "Κατανάλωση και χιλιομετρική απόδοση",
+      "keywords": "Κατανάλωση καυσίμου fuel economy converter",
+      "run": "Καταγραφή μετατροπής",
+      "success": "Η μετατροπή αποθηκεύτηκε στο ιστορικό."
+    },
+    "acceleration-converter": {
+      "name": "Επιτάχυνση",
+      "description": "Κίνηση και βαρύτητα",
+      "keywords": "Επιτάχυνση acceleration converter",
+      "run": "Καταγραφή μετατροπής",
+      "success": "Η μετατροπή αποθηκεύτηκε στο ιστορικό."
+    },
+    "torque-converter": {
+      "name": "Ροπή",
+      "description": "Ροπή",
+      "keywords": "Ροπή torque converter",
+      "run": "Καταγραφή μετατροπής",
+      "success": "Η μετατροπή αποθηκεύτηκε στο ιστορικό."
+    },
+    "electrical-converter": {
+      "name": "Ηλεκτρικά",
+      "description": "Τάση, ρεύμα και αντίσταση",
+      "keywords": "Ηλεκτρικά electrical converter",
+      "run": "Καταγραφή μετατροπής",
+      "success": "Η μετατροπή αποθηκεύτηκε στο ιστορικό."
+    },
+    "typography-converter": {
+      "name": "Τυπογραφία",
+      "description": "Μεγέθη CSS και εκτύπωσης",
+      "keywords": "Τυπογραφία typography converter",
+      "run": "Καταγραφή μετατροπής",
+      "success": "Η μετατροπή αποθηκεύτηκε στο ιστορικό."
     }
   },
   "legal": {

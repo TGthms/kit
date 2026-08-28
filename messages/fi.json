@@ -1398,6 +1398,139 @@
       "unitPib": "Pebibytes",
       "unitArcmin": "Arcminutes",
       "unitArcsec": "Arcseconds"
+    },
+    "length-converter": {
+      "name": "Pituus",
+      "description": "Etäisyydet, mitat ja matkustaminen",
+      "keywords": "Pituus length converter",
+      "run": "Kirjaa muunnos",
+      "success": "Muunnos tallennettu historiaan."
+    },
+    "mass-converter": {
+      "name": "Massa",
+      "description": "Painot milligrammoista tonneihin",
+      "keywords": "Massa mass converter",
+      "run": "Kirjaa muunnos",
+      "success": "Muunnos tallennettu historiaan."
+    },
+    "temperature-converter": {
+      "name": "Lämpötila",
+      "description": "Celsius, Fahrenheit ja Kelvin",
+      "keywords": "Lämpötila temperature converter",
+      "run": "Kirjaa muunnos",
+      "success": "Muunnos tallennettu historiaan."
+    },
+    "speed-converter": {
+      "name": "Nopeus",
+      "description": "Arjen ja merenkulun nopeus",
+      "keywords": "Nopeus speed converter",
+      "run": "Kirjaa muunnos",
+      "success": "Muunnos tallennettu historiaan."
+    },
+    "duration-converter": {
+      "name": "Kesto",
+      "description": "Millisekunneista viikkoihin",
+      "keywords": "Kesto duration converter",
+      "run": "Kirjaa muunnos",
+      "success": "Muunnos tallennettu historiaan."
+    },
+    "volume-converter": {
+      "name": "Tilavuus",
+      "description": "Metriset ja keittiömitat",
+      "keywords": "Tilavuus volume converter",
+      "run": "Kirjaa muunnos",
+      "success": "Muunnos tallennettu historiaan."
+    },
+    "power-converter": {
+      "name": "Teho",
+      "description": "Watit ja hevosvoimat",
+      "keywords": "Teho power converter",
+      "run": "Kirjaa muunnos",
+      "success": "Muunnos tallennettu historiaan."
+    },
+    "energy-converter": {
+      "name": "Energia",
+      "description": "Joulet, kalorit ja wattitunnit",
+      "keywords": "Energia energy converter",
+      "run": "Kirjaa muunnos",
+      "success": "Muunnos tallennettu historiaan."
+    },
+    "pressure-converter": {
+      "name": "Paine",
+      "description": "Pa, bar, PSI ja muut",
+      "keywords": "Paine pressure converter",
+      "run": "Kirjaa muunnos",
+      "success": "Muunnos tallennettu historiaan."
+    },
+    "area-converter": {
+      "name": "Pinta-ala",
+      "description": "Pinta-ala ja maa-alueet",
+      "keywords": "Pinta-ala area converter",
+      "run": "Kirjaa muunnos",
+      "success": "Muunnos tallennettu historiaan."
+    },
+    "data-converter": {
+      "name": "Data",
+      "description": "Desimaali- ja binääritallennus",
+      "keywords": "Data data converter",
+      "run": "Kirjaa muunnos",
+      "success": "Muunnos tallennettu historiaan."
+    },
+    "angle-converter": {
+      "name": "Kulma",
+      "description": "Asteet, radiaanit ja kierrokset",
+      "keywords": "Kulma angle converter",
+      "run": "Kirjaa muunnos",
+      "success": "Muunnos tallennettu historiaan."
+    },
+    "frequency-converter": {
+      "name": "Taajuus",
+      "description": "Hz–RPM",
+      "keywords": "Taajuus frequency converter",
+      "run": "Kirjaa muunnos",
+      "success": "Muunnos tallennettu historiaan."
+    },
+    "force-converter": {
+      "name": "Voima",
+      "description": "Newtonit ja voiman yksiköt",
+      "keywords": "Voima force converter",
+      "run": "Kirjaa muunnos",
+      "success": "Muunnos tallennettu historiaan."
+    },
+    "fuel-economy-converter": {
+      "name": "Polttoainetalous",
+      "description": "Kulutus ja ajomatka",
+      "keywords": "Polttoainetalous fuel economy converter",
+      "run": "Kirjaa muunnos",
+      "success": "Muunnos tallennettu historiaan."
+    },
+    "acceleration-converter": {
+      "name": "Kiihtyvyys",
+      "description": "Liike ja painovoima",
+      "keywords": "Kiihtyvyys acceleration converter",
+      "run": "Kirjaa muunnos",
+      "success": "Muunnos tallennettu historiaan."
+    },
+    "torque-converter": {
+      "name": "Vääntömomentti",
+      "description": "Vääntömomentti",
+      "keywords": "Vääntömomentti torque converter",
+      "run": "Kirjaa muunnos",
+      "success": "Muunnos tallennettu historiaan."
+    },
+    "electrical-converter": {
+      "name": "Sähkö",
+      "description": "Jännite, virta ja resistanssi",
+      "keywords": "Sähkö electrical converter",
+      "run": "Kirjaa muunnos",
+      "success": "Muunnos tallennettu historiaan."
+    },
+    "typography-converter": {
+      "name": "Typografia",
+      "description": "CSS- ja painokoot",
+      "keywords": "Typografia typography converter",
+      "run": "Kirjaa muunnos",
+      "success": "Muunnos tallennettu historiaan."
     }
   },
   "legal": {

@@ -1398,6 +1398,139 @@
       "unitPib": "Pebibytes",
       "unitArcmin": "Arcminutes",
       "unitArcsec": "Arcseconds"
+    },
+    "length-converter": {
+      "name": "Lungime",
+      "description": "Distanțe, dimensiuni și călătorii",
+      "keywords": "Lungime length converter",
+      "run": "Înregistrează conversia",
+      "success": "Conversia a fost salvată în istoric."
+    },
+    "mass-converter": {
+      "name": "Masă",
+      "description": "Greutăți de la miligrame la tone",
+      "keywords": "Masă mass converter",
+      "run": "Înregistrează conversia",
+      "success": "Conversia a fost salvată în istoric."
+    },
+    "temperature-converter": {
+      "name": "Temperatură",
+      "description": "Celsius, Fahrenheit și Kelvin",
+      "keywords": "Temperatură temperature converter",
+      "run": "Înregistrează conversia",
+      "success": "Conversia a fost salvată în istoric."
+    },
+    "speed-converter": {
+      "name": "Viteză",
+      "description": "Viteză obișnuită și nautică",
+      "keywords": "Viteză speed converter",
+      "run": "Înregistrează conversia",
+      "success": "Conversia a fost salvată în istoric."
+    },
+    "duration-converter": {
+      "name": "Durată",
+      "description": "De la milisecunde la săptămâni",
+      "keywords": "Durată duration converter",
+      "run": "Înregistrează conversia",
+      "success": "Conversia a fost salvată în istoric."
+    },
+    "volume-converter": {
+      "name": "Volum",
+      "description": "Măsuri metrice și de bucătărie",
+      "keywords": "Volum volume converter",
+      "run": "Înregistrează conversia",
+      "success": "Conversia a fost salvată în istoric."
+    },
+    "power-converter": {
+      "name": "Putere",
+      "description": "Wați și cai putere",
+      "keywords": "Putere power converter",
+      "run": "Înregistrează conversia",
+      "success": "Conversia a fost salvată în istoric."
+    },
+    "energy-converter": {
+      "name": "Energie",
+      "description": "Jouli, calorii și wați-oră",
+      "keywords": "Energie energy converter",
+      "run": "Înregistrează conversia",
+      "success": "Conversia a fost salvată în istoric."
+    },
+    "pressure-converter": {
+      "name": "Presiune",
+      "description": "Pa, bar, PSI și altele",
+      "keywords": "Presiune pressure converter",
+      "run": "Înregistrează conversia",
+      "success": "Conversia a fost salvată în istoric."
+    },
+    "area-converter": {
+      "name": "Suprafață",
+      "description": "Suprafață și terenuri",
+      "keywords": "Suprafață area converter",
+      "run": "Înregistrează conversia",
+      "success": "Conversia a fost salvată în istoric."
+    },
+    "data-converter": {
+      "name": "Date",
+      "description": "Stocare zecimală și binară",
+      "keywords": "Date data converter",
+      "run": "Înregistrează conversia",
+      "success": "Conversia a fost salvată în istoric."
+    },
+    "angle-converter": {
+      "name": "Unghi",
+      "description": "Grade, radiani și rotații",
+      "keywords": "Unghi angle converter",
+      "run": "Înregistrează conversia",
+      "success": "Conversia a fost salvată în istoric."
+    },
+    "frequency-converter": {
+      "name": "Frecvență",
+      "description": "De la Hz la RPM",
+      "keywords": "Frecvență frequency converter",
+      "run": "Înregistrează conversia",
+      "success": "Conversia a fost salvată în istoric."
+    },
+    "force-converter": {
+      "name": "Forță",
+      "description": "Newtoni și unități de forță",
+      "keywords": "Forță force converter",
+      "run": "Înregistrează conversia",
+      "success": "Conversia a fost salvată în istoric."
+    },
+    "fuel-economy-converter": {
+      "name": "Consum de combustibil",
+      "description": "Consum și kilometraj",
+      "keywords": "Consum de combustibil fuel economy converter",
+      "run": "Înregistrează conversia",
+      "success": "Conversia a fost salvată în istoric."
+    },
+    "acceleration-converter": {
+      "name": "Accelerație",
+      "description": "Mișcare și gravitație",
+      "keywords": "Accelerație acceleration converter",
+      "run": "Înregistrează conversia",
+      "success": "Conversia a fost salvată în istoric."
+    },
+    "torque-converter": {
+      "name": "Cuplu",
+      "description": "Forță de rotație",
+      "keywords": "Cuplu torque converter",
+      "run": "Înregistrează conversia",
+      "success": "Conversia a fost salvată în istoric."
+    },
+    "electrical-converter": {
+      "name": "Electric",
+      "description": "Tensiune, curent și rezistență",
+      "keywords": "Electric electrical converter",
+      "run": "Înregistrează conversia",
+      "success": "Conversia a fost salvată în istoric."
+    },
+    "typography-converter": {
+      "name": "Tipografie",
+      "description": "Dimensiuni CSS și de tipar",
+      "keywords": "Tipografie typography converter",
+      "run": "Înregistrează conversia",
+      "success": "Conversia a fost salvată în istoric."
     }
   },
   "legal": {

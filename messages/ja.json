@@ -1398,6 +1398,139 @@
       "unitPib": "Pebibytes",
       "unitArcmin": "Arcminutes",
       "unitArcsec": "Arcseconds"
+    },
+    "length-converter": {
+      "name": "長さ",
+      "description": "距離・寸法・旅行",
+      "keywords": "長さ length converter",
+      "run": "変換を記録",
+      "success": "変換を履歴に保存しました。"
+    },
+    "mass-converter": {
+      "name": "質量",
+      "description": "ミリグラムからトンまでの重さ",
+      "keywords": "質量 mass converter",
+      "run": "変換を記録",
+      "success": "変換を履歴に保存しました。"
+    },
+    "temperature-converter": {
+      "name": "温度",
+      "description": "摂氏・華氏・ケルビン",
+      "keywords": "温度 temperature converter",
+      "run": "変換を記録",
+      "success": "変換を履歴に保存しました。"
+    },
+    "speed-converter": {
+      "name": "速度",
+      "description": "日常と航海の速度",
+      "keywords": "速度 speed converter",
+      "run": "変換を記録",
+      "success": "変換を履歴に保存しました。"
+    },
+    "duration-converter": {
+      "name": "期間",
+      "description": "ミリ秒から週まで",
+      "keywords": "期間 duration converter",
+      "run": "変換を記録",
+      "success": "変換を履歴に保存しました。"
+    },
+    "volume-converter": {
+      "name": "体積",
+      "description": "メートル法と料理の単位",
+      "keywords": "体積 volume converter",
+      "run": "変換を記録",
+      "success": "変換を履歴に保存しました。"
+    },
+    "power-converter": {
+      "name": "電力",
+      "description": "ワットと馬力",
+      "keywords": "電力 power converter",
+      "run": "変換を記録",
+      "success": "変換を履歴に保存しました。"
+    },
+    "energy-converter": {
+      "name": "エネルギー",
+      "description": "ジュール・カロリー・ワット時",
+      "keywords": "エネルギー energy converter",
+      "run": "変換を記録",
+      "success": "変換を履歴に保存しました。"
+    },
+    "pressure-converter": {
+      "name": "圧力",
+      "description": "Pa・bar・PSI など",
+      "keywords": "圧力 pressure converter",
+      "run": "変換を記録",
+      "success": "変換を履歴に保存しました。"
+    },
+    "area-converter": {
+      "name": "面積",
+      "description": "面積と土地の広さ",
+      "keywords": "面積 area converter",
+      "run": "変換を記録",
+      "success": "変換を履歴に保存しました。"
+    },
+    "data-converter": {
+      "name": "データ",
+      "description": "10進数と2進数の容量",
+      "keywords": "データ data converter",
+      "run": "変換を記録",
+      "success": "変換を履歴に保存しました。"
+    },
+    "angle-converter": {
+      "name": "角度",
+      "description": "度・ラジアン・回転",
+      "keywords": "角度 angle converter",
+      "run": "変換を記録",
+      "success": "変換を履歴に保存しました。"
+    },
+    "frequency-converter": {
+      "name": "周波数",
+      "description": "Hz から RPM まで",
+      "keywords": "周波数 frequency converter",
+      "run": "変換を記録",
+      "success": "変換を履歴に保存しました。"
+    },
+    "force-converter": {
+      "name": "力",
+      "description": "ニュートンと力の単位",
+      "keywords": "力 force converter",
+      "run": "変換を記録",
+      "success": "変換を履歴に保存しました。"
+    },
+    "fuel-economy-converter": {
+      "name": "燃費",
+      "description": "燃費と走行距離",
+      "keywords": "燃費 fuel economy converter",
+      "run": "変換を記録",
+      "success": "変換を履歴に保存しました。"
+    },
+    "acceleration-converter": {
+      "name": "加速度",
+      "description": "運動と重力",
+      "keywords": "加速度 acceleration converter",
+      "run": "変換を記録",
+      "success": "変換を履歴に保存しました。"
+    },
+    "torque-converter": {
+      "name": "トルク",
+      "description": "回転力",
+      "keywords": "トルク torque converter",
+      "run": "変換を記録",
+      "success": "変換を履歴に保存しました。"
+    },
+    "electrical-converter": {
+      "name": "電気",
+      "description": "電圧・電流・抵抗",
+      "keywords": "電気 electrical converter",
+      "run": "変換を記録",
+      "success": "変換を履歴に保存しました。"
+    },
+    "typography-converter": {
+      "name": "タイポグラフィ",
+      "description": "CSS と印刷のサイズ",
+      "keywords": "タイポグラフィ typography converter",
+      "run": "変換を記録",
+      "success": "変換を履歴に保存しました。"
     }
   },
   "legal": {
