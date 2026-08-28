@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
+import { useSearchParams } from "next/navigation";
 import {
   ArrowLeftRight,
   Activity,
@@ -442,11 +443,20 @@ function SearchableSelect({
     return selected && !matches.some((option) => option.value === selected.value) ? [selected, ...matches] : matches;
   }, [options, query, value]);
   const selected = options.find((option) => option.value === value);
+  const showResults = searchable && query.trim().length > 0;
   return (
     <div className="space-y-2">
       <Label>{label}</Label>
       {searchable ? (
         <div className="space-y-2">
+          <select
+            value={value}
+            onChange={(event) => onChange(event.target.value)}
+            className="flex h-10 w-full rounded-xl border border-input bg-background px-3 text-sm shadow-sm outline-none transition-colors focus-visible:ring-2 focus-visible:ring-ring"
+            aria-label={label}
+          >
+            {options.map((option) => <option key={option.value} value={option.value}>{option.value} — {option.label}</option>)}
+          </select>
           <div className="relative">
             <Search className="pointer-events-none absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
             <Input
@@ -458,7 +468,7 @@ function SearchableSelect({
               type="search"
             />
           </div>
-          <div role="listbox" aria-label={label} className="max-h-52 overflow-y-auto rounded-xl border border-input bg-background p-1 shadow-sm">
+          {showResults ? <div role="listbox" aria-label={`${label} search results`} className="max-h-52 overflow-y-auto rounded-xl border border-input bg-background p-1 shadow-sm">
             {filtered.length ? filtered.map((option) => (
               <button
                 key={option.value}
@@ -471,7 +481,7 @@ function SearchableSelect({
                 <span className="truncate">{option.value} — {option.label}</span>
               </button>
             )) : <p className="px-3 py-3 text-sm text-muted-foreground">{text(t, "noMatches", "No matches")}</p>}
-          </div>
+          </div> : null}
         </div>
       ) : <select className={selectClass} value={value} onChange={(event) => onChange(event.target.value)}>
         {options.map((option) => <option key={option.value} value={option.value}>{option.value} — {option.label}</option>)}
@@ -903,7 +913,13 @@ export function CurrencyConverterTool() {
 }
 
 export function EverydayConverter() {
-  const [category, setCategory] = useState<ConverterCategory | null>(null);
+  const searchParams = useSearchParams();
+  const requestedCategory = searchParams.get("category");
+  const validCategory = requestedCategory && (requestedCategory === "currency" || UNIT_CATEGORY_INFO.some((item) => item.id === requestedCategory))
+    ? requestedCategory as ConverterCategory
+    : null;
+  const [category, setCategory] = useState<ConverterCategory | null>(validCategory);
+  useEffect(() => setCategory(validCategory), [validCategory]);
   return (
     <ToolShell toolId={toolId("everyday-converter")}>
       {category === null ? <ConverterLanding onSelect={setCategory} /> : category === "currency" ? <CurrencyConverter onBack={() => setCategory(null)} /> : <UnitConverter category={category} onBack={() => setCategory(null)} />}

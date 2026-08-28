@@ -24,7 +24,6 @@ function isActive(pathname: string, href: string) {
 }
 
 const SCROLL_STORAGE_PREFIX = "kit-scroll:";
-let pendingNavigation = false;
 let restoreNextLocationKey: string | "*" | null = null;
 
 function scrollStorageKey(locationKey: string) {
@@ -50,7 +49,6 @@ function writeScrollPosition(key: string, value: number) {
 
 function ScrollRestoration({ locationKey }: { locationKey: string }) {
   useEffect(() => {
-    pendingNavigation = false;
     const previousRestoration = window.history.scrollRestoration;
     window.history.scrollRestoration = "manual";
     const storageKey = scrollStorageKey(`${window.location.pathname}${window.location.search}`);
@@ -85,7 +83,6 @@ function ScrollRestoration({ locationKey }: { locationKey: string }) {
       });
     }, 0);
     const save = () => {
-      if (pendingNavigation) return;
       writeScrollPosition(storageKey, lastScrollY);
     };
     const rememberScroll = () => {
@@ -115,7 +112,6 @@ function ScrollRestoration({ locationKey }: { locationKey: string }) {
       }
       const key = scrollStorageKey(`${window.location.pathname}${window.location.search}`);
       writeScrollPosition(key, window.scrollY);
-      pendingNavigation = true;
       if (target.hasAttribute("data-restore-scroll")) {
         if (target instanceof HTMLAnchorElement) {
           const destination = new URL(target.href, window.location.href);

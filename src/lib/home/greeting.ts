@@ -17,11 +17,11 @@ export function getGreetingDay(date: Date, locale: string): string {
  * render. The two-hour slot makes the greeting feel shuffled throughout the
  * day while keeping server and client hydration deterministic.
  */
-export function getGreetingVariant(date: Date, count = 4): number {
+export function getGreetingVariant(date: Date, count = 4, entropy = 0): number {
   if (!Number.isInteger(count) || count < 1) throw new RangeError("count must be a positive integer.");
   const dayOfYear = Math.floor((Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()) - Date.UTC(date.getFullYear(), 0, 0)) / 86_400_000);
   const slot = Math.floor(date.getHours() / 2);
-  return (dayOfYear * 13 + slot * 7) % count;
+  return (dayOfYear * 13 + slot * 7 + Math.trunc(entropy)) % count;
 }
 
 export function getHomeGreeting(date: Date, variant: number): string {
