@@ -154,8 +154,43 @@
       "night": "좋은 저녁이에요 — 남은 {day}도 편안하게 보내세요.",
       "extra1": "오늘 무엇을 더 쉽게 만들어 볼까요?",
       "extra2": "준비되면 시작해요.",
-      "extra3": "유용한 일을 하나 해볼까요."
-    }
+      "extra3": "유용한 일을 하나 해볼까요.",
+      "occasionLabel": {
+        "christmasEve": "크리스마스 이브",
+        "christmas": "크리스마스",
+        "goodFriday": "성금요일",
+        "palmSunday": "종려주일",
+        "easterMonday": "부활절 월요일",
+        "easterSunday": "부활절",
+        "newYear": "설날",
+        "saferInternetDay": "Safer Internet Day",
+        "womenAndGirlsInScience": "International Day of Women and Girls in Science",
+        "piDay": "Pi Day",
+        "backupDay": "World Backup Day",
+        "earthDay": "Earth Day",
+        "passwordDay": "World Password Day",
+        "webDay": "World Wide Web Day",
+        "adaLovelaceDay": "Ada Lovelace Day",
+        "computerSecurityDay": "Computer Security Day",
+        "programmersDay": "프로그래머의 날"
+      },
+      "morning2": "오늘 무엇을 더 쉽게 만들어 볼까요?",
+      "morning3": "준비되면 시작해요.",
+      "afternoon2": "오늘 무엇을 더 쉽게 만들어 볼까요?",
+      "afternoon3": "유용한 일을 하나 해볼까요.",
+      "evening2": "오늘 무엇을 더 쉽게 만들어 볼까요?",
+      "evening3": "준비되면 시작해요.",
+      "night2": "준비되면 시작해요.",
+      "night3": "유용한 일을 하나 해볼까요.",
+      "observance": "행복한 {occasion} 보내세요. 오늘이 빛과 좋은 활력으로 가득하길 바라요."
+    },
+    "subtitleFacts": {
+      "fact1": "작은 도구 하나가 번거로운 일을 2분 만의 성과로 바꿔 줄 수 있어요.",
+      "fact2": "웹은 정보를 연결하고, Kit은 작업을 가까이 둡니다.",
+      "fact3": "프로그래머가 256을 자주 쓰는 이유는 2⁸로 숫자와 바이트를 잇기 때문입니다.",
+      "fact4": "Kit 도구는 브라우저에서 실행되므로 파일을 기기에 보관할 수 있어요."
+    },
+    "subtitleObservance": "생각해 보는 {occasion}입니다. 유용한 아이디어와 따뜻한 연결을 위해."
   },
   "categories": {
     "pdf": "PDF",

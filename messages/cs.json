@@ -154,8 +154,43 @@
       "night": "Dobrý večer — užijte si zbytek {day}.",
       "extra1": "Co můžeme dnes zjednodušit?",
       "extra2": "Až budete připraveni, můžeme začít.",
-      "extra3": "Pusťme se do něčeho užitečného."
-    }
+      "extra3": "Pusťme se do něčeho užitečného.",
+      "occasionLabel": {
+        "christmasEve": "Štědrý večer",
+        "christmas": "Vánoce",
+        "goodFriday": "Velký pátek",
+        "palmSunday": "Květná neděle",
+        "easterMonday": "Velikonoční pondělí",
+        "easterSunday": "Velikonoční neděle",
+        "newYear": "Nový rok",
+        "saferInternetDay": "Safer Internet Day",
+        "womenAndGirlsInScience": "International Day of Women and Girls in Science",
+        "piDay": "Pi Day",
+        "backupDay": "World Backup Day",
+        "earthDay": "Earth Day",
+        "passwordDay": "World Password Day",
+        "webDay": "World Wide Web Day",
+        "adaLovelaceDay": "Ada Lovelace Day",
+        "computerSecurityDay": "Computer Security Day",
+        "programmersDay": "Den programátorů"
+      },
+      "morning2": "Co můžeme dnes zjednodušit?",
+      "morning3": "Až budete připraveni, můžeme začít.",
+      "afternoon2": "Co můžeme dnes zjednodušit?",
+      "afternoon3": "Pusťme se do něčeho užitečného.",
+      "evening2": "Co můžeme dnes zjednodušit?",
+      "evening3": "Až budete připraveni, můžeme začít.",
+      "night2": "Až budete připraveni, můžeme začít.",
+      "night3": "Pusťme se do něčeho užitečného.",
+      "observance": "Krásný {occasion} – ať dnešek přinese světlo a nový elán."
+    },
+    "subtitleFacts": {
+      "fact1": "Malý nástroj může změnit otravný úkol ve dvouminutové vítězství.",
+      "fact2": "Web propojuje informace – Kit drží vaši práci u vás.",
+      "fact3": "Programátoři často používají 256, protože jde o 2⁸ a spojení čísel s bajty.",
+      "fact4": "Nástroje Kitu běží v prohlížeči, takže soubory mohou zůstat v zařízení."
+    },
+    "subtitleObservance": "Zamyšlený {occasion}: na užitečné nápady a dobrá spojení."
   },
   "categories": {
     "pdf": "PDF",

@@ -154,8 +154,43 @@
       "night": "Godaften — nyd resten af {day}.",
       "extra1": "Hvad kan vi gøre lettere i dag?",
       "extra2": "Klar, når du er.",
-      "extra3": "Lad os få noget nyttigt fra hånden."
-    }
+      "extra3": "Lad os få noget nyttigt fra hånden.",
+      "occasionLabel": {
+        "christmasEve": "Juleaften",
+        "christmas": "Jul",
+        "goodFriday": "Langfredag",
+        "palmSunday": "Palmesøndag",
+        "easterMonday": "2. påskedag",
+        "easterSunday": "Påskedag",
+        "newYear": "Nytårsdag",
+        "saferInternetDay": "Safer Internet Day",
+        "womenAndGirlsInScience": "International Day of Women and Girls in Science",
+        "piDay": "Pi Day",
+        "backupDay": "World Backup Day",
+        "earthDay": "Earth Day",
+        "passwordDay": "World Password Day",
+        "webDay": "World Wide Web Day",
+        "adaLovelaceDay": "Ada Lovelace Day",
+        "computerSecurityDay": "Computer Security Day",
+        "programmersDay": "Programmørernes dag"
+      },
+      "morning2": "Hvad kan vi gøre lettere i dag?",
+      "morning3": "Klar, når du er.",
+      "afternoon2": "Hvad kan vi gøre lettere i dag?",
+      "afternoon3": "Lad os få noget nyttigt fra hånden.",
+      "evening2": "Hvad kan vi gøre lettere i dag?",
+      "evening3": "Klar, når du er.",
+      "night2": "Klar, når du er.",
+      "night3": "Lad os få noget nyttigt fra hånden.",
+      "observance": "Glædelig {occasion} – må dagen bringe lys og god fremdrift."
+    },
+    "subtitleFacts": {
+      "fact1": "Et lille værktøj kan gøre en besværlig opgave til en sejr på to minutter.",
+      "fact2": "Webbet forbinder information – Kit holder dit arbejde tæt på dig.",
+      "fact3": "Programmører bruger ofte 256, fordi det er 2⁸: en bro mellem tal og bytes.",
+      "fact4": "Kits værktøjer kører i browseren, så dine filer kan blive på enheden."
+    },
+    "subtitleObservance": "En eftertænksom {occasion}: for nyttige idéer og gode forbindelser."
   },
   "categories": {
     "pdf": "PDF",

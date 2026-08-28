@@ -154,8 +154,43 @@
       "night": "Bonsoir — profitez du reste de {day}.",
       "extra1": "Que pouvons-nous simplifier aujourd’hui ?",
       "extra2": "Prêt quand vous l’êtes.",
-      "extra3": "Faisons quelque chose d’utile."
-    }
+      "extra3": "Faisons quelque chose d’utile.",
+      "occasionLabel": {
+        "christmasEve": "réveillon de Noël",
+        "christmas": "Noël",
+        "goodFriday": "Vendredi saint",
+        "palmSunday": "Dimanche des Rameaux",
+        "easterMonday": "Lundi de Pâques",
+        "easterSunday": "Dimanche de Pâques",
+        "newYear": "Jour de l’An",
+        "saferInternetDay": "Journée pour un Internet plus sûr",
+        "womenAndGirlsInScience": "Journée internationale des femmes et des filles de science",
+        "piDay": "Journée de Pi",
+        "backupDay": "Journée mondiale de la sauvegarde",
+        "earthDay": "Jour de la Terre",
+        "passwordDay": "Journée mondiale du mot de passe",
+        "webDay": "Journée mondiale du Web",
+        "adaLovelaceDay": "Journée Ada Lovelace",
+        "computerSecurityDay": "Journée de la sécurité informatique",
+        "programmersDay": "Journée des programmeurs"
+      },
+      "morning2": "Que pouvons-nous simplifier aujourd’hui ?",
+      "morning3": "Prêt quand vous l’êtes.",
+      "afternoon2": "Que pouvons-nous simplifier aujourd’hui ?",
+      "afternoon3": "Faisons quelque chose d’utile.",
+      "evening2": "Que pouvons-nous simplifier aujourd’hui ?",
+      "evening3": "Prêt quand vous l’êtes.",
+      "night2": "Prêt quand vous l’êtes.",
+      "night3": "Faisons quelque chose d’utile.",
+      "observance": "Joyeux {occasion} — que cette journée apporte lumière et élan."
+    },
+    "subtitleFacts": {
+      "fact1": "Un petit outil peut transformer une tâche fastidieuse en réussite de deux minutes.",
+      "fact2": "Le Web relie les informations ; Kit garde votre travail près de vous.",
+      "fact3": "Les programmeurs utilisent souvent 256 : c’est 2⁸, un joli lien entre nombres et octets.",
+      "fact4": "Les outils de Kit fonctionnent dans le navigateur pour garder vos fichiers sur votre appareil."
+    },
+    "subtitleObservance": "Un {occasion} propice à la réflexion : aux idées utiles et aux liens précieux."
   },
   "categories": {
     "pdf": "PDF",

@@ -154,8 +154,43 @@
       "night": "God kväll — njut av resten av {day}.",
       "extra1": "Vad kan vi göra enklare i dag?",
       "extra2": "Redo när du är det.",
-      "extra3": "Låt oss få något användbart gjort."
-    }
+      "extra3": "Låt oss få något användbart gjort.",
+      "occasionLabel": {
+        "christmasEve": "Julafton",
+        "christmas": "Jul",
+        "goodFriday": "Långfredagen",
+        "palmSunday": "Palmsöndagen",
+        "easterMonday": "Annandag påsk",
+        "easterSunday": "Påskdagen",
+        "newYear": "Nyårsdagen",
+        "saferInternetDay": "Safer Internet Day",
+        "womenAndGirlsInScience": "International Day of Women and Girls in Science",
+        "piDay": "Pi Day",
+        "backupDay": "World Backup Day",
+        "earthDay": "Earth Day",
+        "passwordDay": "World Password Day",
+        "webDay": "World Wide Web Day",
+        "adaLovelaceDay": "Ada Lovelace Day",
+        "computerSecurityDay": "Computer Security Day",
+        "programmersDay": "Programmerarnas dag"
+      },
+      "morning2": "Vad kan vi göra enklare i dag?",
+      "morning3": "Redo när du är det.",
+      "afternoon2": "Vad kan vi göra enklare i dag?",
+      "afternoon3": "Låt oss få något användbart gjort.",
+      "evening2": "Vad kan vi göra enklare i dag?",
+      "evening3": "Redo när du är det.",
+      "night2": "Redo när du är det.",
+      "night3": "Låt oss få något användbart gjort.",
+      "observance": "Glad {occasion} – må dagen ge ljus och ny energi."
+    },
+    "subtitleFacts": {
+      "fact1": "Ett litet verktyg kan förvandla en seg uppgift till en tvåminutersvinst.",
+      "fact2": "Webben håller information samman – Kit håller ditt arbete nära dig.",
+      "fact3": "Programmerare använder ofta 256 eftersom det är 2⁸, en bro mellan tal och byte.",
+      "fact4": "Kits verktyg körs i webbläsaren så att dina filer kan stanna på enheten."
+    },
+    "subtitleObservance": "En eftertänksam {occasion}: för användbara idéer och fina kontakter."
   },
   "categories": {
     "pdf": "PDF",

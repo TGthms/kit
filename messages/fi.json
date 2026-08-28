@@ -154,8 +154,43 @@
       "night": "Hyvää iltaa — nauti {day} jäljellä olevasta ajasta.",
       "extra1": "Mitä voisimme helpottaa tänään?",
       "extra2": "Aloitetaan, kun olet valmis.",
-      "extra3": "Tehdään jotain hyödyllistä."
-    }
+      "extra3": "Tehdään jotain hyödyllistä.",
+      "occasionLabel": {
+        "christmasEve": "jouluaatto",
+        "christmas": "joulu",
+        "goodFriday": "pitkäperjantai",
+        "palmSunday": "palmusunnuntai",
+        "easterMonday": "2. pääsiäispäivä",
+        "easterSunday": "pääsiäispäivä",
+        "newYear": "uudenvuodenpäivä",
+        "saferInternetDay": "Safer Internet Day",
+        "womenAndGirlsInScience": "International Day of Women and Girls in Science",
+        "piDay": "Pi Day",
+        "backupDay": "World Backup Day",
+        "earthDay": "Earth Day",
+        "passwordDay": "World Password Day",
+        "webDay": "World Wide Web Day",
+        "adaLovelaceDay": "Ada Lovelace Day",
+        "computerSecurityDay": "Computer Security Day",
+        "programmersDay": "Ohjelmoijien päivä"
+      },
+      "morning2": "Mitä voisimme helpottaa tänään?",
+      "morning3": "Aloitetaan, kun olet valmis.",
+      "afternoon2": "Mitä voisimme helpottaa tänään?",
+      "afternoon3": "Tehdään jotain hyödyllistä.",
+      "evening2": "Mitä voisimme helpottaa tänään?",
+      "evening3": "Aloitetaan, kun olet valmis.",
+      "night2": "Aloitetaan, kun olet valmis.",
+      "night3": "Tehdään jotain hyödyllistä.",
+      "observance": "Hyvää {occasion} – tuokoon päivä valoa ja hyvää vauhtia."
+    },
+    "subtitleFacts": {
+      "fact1": "Pieni työkalu voi muuttaa tylsän tehtävän kahden minuutin voitoksi.",
+      "fact2": "Web yhdistää tietoa – Kit pitää työsi lähelläsi.",
+      "fact3": "Ohjelmoijat käyttävät usein lukua 256, koska se on 2⁸ ja yhdistää luvut tavuihin.",
+      "fact4": "Kitin työkalut toimivat selaimessa, joten tiedostot voivat pysyä laitteellasi."
+    },
+    "subtitleObservance": "Ajatuksia herättävä {occasion}: hyödyllisille ideoille ja hyville yhteyksille."
   },
   "categories": {
     "pdf": "PDF",

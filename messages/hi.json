@@ -154,8 +154,43 @@
       "night": "शुभ संध्या — {day} का बाकी समय अच्छा बीते।",
       "extra1": "आज हम क्या आसान बना सकते हैं?",
       "extra2": "तैयार हों तो शुरू करते हैं।",
-      "extra3": "आइए कुछ उपयोगी करते हैं।"
-    }
+      "extra3": "आइए कुछ उपयोगी करते हैं।",
+      "occasionLabel": {
+        "christmasEve": "क्रिसमस की पूर्व संध्या",
+        "christmas": "क्रिसमस",
+        "goodFriday": "गुड फ्राइडे",
+        "palmSunday": "पाम संडे",
+        "easterMonday": "ईस्टर सोमवार",
+        "easterSunday": "ईस्टर रविवार",
+        "newYear": "नव वर्ष दिवस",
+        "saferInternetDay": "Safer Internet Day",
+        "womenAndGirlsInScience": "International Day of Women and Girls in Science",
+        "piDay": "Pi Day",
+        "backupDay": "World Backup Day",
+        "earthDay": "Earth Day",
+        "passwordDay": "World Password Day",
+        "webDay": "World Wide Web Day",
+        "adaLovelaceDay": "Ada Lovelace Day",
+        "computerSecurityDay": "Computer Security Day",
+        "programmersDay": "प्रोग्रामर्स डे"
+      },
+      "morning2": "आज हम क्या आसान बना सकते हैं?",
+      "morning3": "तैयार हों तो शुरू करते हैं।",
+      "afternoon2": "आज हम क्या आसान बना सकते हैं?",
+      "afternoon3": "आइए कुछ उपयोगी करते हैं।",
+      "evening2": "आज हम क्या आसान बना सकते हैं?",
+      "evening3": "तैयार हों तो शुरू करते हैं।",
+      "night2": "तैयार हों तो शुरू करते हैं।",
+      "night3": "आइए कुछ उपयोगी करते हैं।",
+      "observance": "{occasion} की शुभकामनाएँ—आज का दिन रोशनी और अच्छी ऊर्जा लाए।"
+    },
+    "subtitleFacts": {
+      "fact1": "एक छोटा टूल उबाऊ काम को दो मिनट की जीत में बदल सकता है।",
+      "fact2": "वेब जानकारी को जोड़ता है—Kit आपके काम को आपके पास रखता है।",
+      "fact3": "प्रोग्रामर अक्सर 256 का उपयोग करते हैं क्योंकि यह 2⁸ है—संख्याओं और बाइट्स के बीच पुल।",
+      "fact4": "Kit के टूल ब्राउज़र में चलते हैं, इसलिए आपकी फ़ाइलें डिवाइस पर रह सकती हैं।"
+    },
+    "subtitleObservance": "{occasion} पर एक विचार: उपयोगी विचारों और अच्छे संबंधों के नाम।"
   },
   "categories": {
     "pdf": "PDF",

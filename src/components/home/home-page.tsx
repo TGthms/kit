@@ -24,7 +24,7 @@ import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/ca
 import { PageHeader } from "@/components/layout/page-header";
 import { useFavoritesStore } from "@/stores/favorites-store";
 import { cn } from "@/lib/utils";
-import { getGreetingDay, getGreetingPeriod, getGreetingVariant, getHomeGreeting, getHomeSubtitle, type GreetingPeriod } from "@/lib/home/greeting";
+import { getGreetingPeriod, getGreetingVariant, getHomeGreetingSelection, type GreetingPeriod } from "@/lib/home/greeting";
 
 const categoryMeta: Record<
   ToolCategory,
@@ -157,7 +157,7 @@ function HomePageInner() {
   const searchParams = useSearchParams();
   const selectedCat = parseCategoryParam(searchParams.get("c"));
   const [q, setQ] = useState("");
-  const [greeting, setGreeting] = useState<{ period: GreetingPeriod; day: string; variant: number } | null>(null);
+  const [greeting, setGreeting] = useState<{ period: GreetingPeriod; day: string; variant: number; greetingKey: string; subtitleKey: string; occasionKey?: string } | null>(null);
 
   useEffect(() => {
     const updateGreeting = () => {
@@ -165,7 +165,9 @@ function HomePageInner() {
       const entropy = typeof crypto !== "undefined" && "getRandomValues" in crypto
         ? crypto.getRandomValues(new Uint32Array(1))[0] ?? 0
         : Math.floor(Math.random() * 32);
-      setGreeting({ period: getGreetingPeriod(now), day: getGreetingDay(now, locale), variant: getGreetingVariant(now, 32, entropy) });
+      const variant = getGreetingVariant(now, 32, entropy);
+      const selection = getHomeGreetingSelection(now, locale, variant);
+      setGreeting({ period: getGreetingPeriod(now), day: selection.day, variant, greetingKey: selection.greetingKey, subtitleKey: selection.subtitleKey, occasionKey: selection.occasionKey });
     };
     updateGreeting();
     const interval = window.setInterval(updateGreeting, 60_000);
@@ -223,15 +225,10 @@ function HomePageInner() {
         <section className="space-y-4 pt-0.5 sm:pt-1">
           <div className="max-w-2xl space-y-2">
             <h1 className="type-display text-foreground">
-              {locale === "en" && greeting ? getHomeGreeting(new Date(), greeting.variant) : greeting ? (
-                <>
-                  {t(`greeting.${greeting.period}`, { day: greeting.day })}
-                  {greeting.variant % 3 > 0 ? ` ${t(`greeting.extra${greeting.variant % 3}`, { day: greeting.day })}` : null}
-                </>
-              ) : t("title")}
+              {greeting ? t(greeting.greetingKey, { day: greeting.day, occasion: greeting.occasionKey ? t(`occasionLabel.${greeting.occasionKey}`) : "" }) : t("title")}
             </h1>
             <p className="type-body max-w-xl text-muted-foreground">
-              {locale === "en" && greeting ? getHomeSubtitle(greeting.variant) : t("subtitle")}
+              {greeting ? t(greeting.subtitleKey, { day: greeting.day, occasion: greeting.occasionKey ? t(`occasionLabel.${greeting.occasionKey}`) : "" }) : t("subtitle")}
             </p>
           </div>
           <div className="relative max-w-xl">

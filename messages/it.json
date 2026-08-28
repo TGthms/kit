@@ -154,8 +154,43 @@
       "night": "Buonasera — goditi il resto di {day}.",
       "extra1": "Cosa possiamo semplificare oggi?",
       "extra2": "Quando vuoi, iniziamo.",
-      "extra3": "Facciamo qualcosa di utile."
-    }
+      "extra3": "Facciamo qualcosa di utile.",
+      "occasionLabel": {
+        "christmasEve": "Vigilia di Natale",
+        "christmas": "Natale",
+        "goodFriday": "Venerdì Santo",
+        "palmSunday": "Domenica delle Palme",
+        "easterMonday": "Lunedì dell’Angelo",
+        "easterSunday": "Pasqua",
+        "newYear": "Capodanno",
+        "saferInternetDay": "Giornata per un Internet più sicuro",
+        "womenAndGirlsInScience": "Giornata internazionale delle donne e delle ragazze nella scienza",
+        "piDay": "Giornata del Pi greco",
+        "backupDay": "Giornata mondiale del backup",
+        "earthDay": "Giornata della Terra",
+        "passwordDay": "Giornata mondiale della password",
+        "webDay": "Giornata mondiale del Web",
+        "adaLovelaceDay": "Giornata di Ada Lovelace",
+        "computerSecurityDay": "Giornata della sicurezza informatica",
+        "programmersDay": "Giornata dei programmatori"
+      },
+      "morning2": "Cosa possiamo semplificare oggi?",
+      "morning3": "Quando vuoi, iniziamo.",
+      "afternoon2": "Cosa possiamo semplificare oggi?",
+      "afternoon3": "Facciamo qualcosa di utile.",
+      "evening2": "Cosa possiamo semplificare oggi?",
+      "evening3": "Quando vuoi, iniziamo.",
+      "night2": "Quando vuoi, iniziamo.",
+      "night3": "Facciamo qualcosa di utile.",
+      "observance": "Buon {occasion} — che oggi porti luce e nuovo slancio."
+    },
+    "subtitleFacts": {
+      "fact1": "Un piccolo strumento può trasformare un compito noioso in un risultato di due minuti.",
+      "fact2": "Il Web collega le informazioni; Kit mantiene il tuo lavoro vicino a te.",
+      "fact3": "I programmatori usano spesso 256 perché è 2⁸, un ponte tra numeri e byte.",
+      "fact4": "Gli strumenti di Kit funzionano nel browser, così i file restano sul dispositivo."
+    },
+    "subtitleObservance": "Un {occasion} per riflettere: alle idee utili e ai legami sinceri."
   },
   "categories": {
     "pdf": "PDF",

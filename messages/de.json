@@ -154,8 +154,43 @@
       "night": "Guten Abend — genießen Sie den restlichen {day}.",
       "extra1": "Was können wir heute einfacher machen?",
       "extra2": "Bereit, wenn Sie es sind.",
-      "extra3": "Erledigen wir etwas Nützliches."
-    }
+      "extra3": "Erledigen wir etwas Nützliches.",
+      "occasionLabel": {
+        "christmasEve": "Heiligabend",
+        "christmas": "Weihnachten",
+        "goodFriday": "Karfreitag",
+        "palmSunday": "Palmsonntag",
+        "easterMonday": "Ostermontag",
+        "easterSunday": "Ostersonntag",
+        "newYear": "Neujahr",
+        "saferInternetDay": "Safer Internet Day",
+        "womenAndGirlsInScience": "Internationaler Tag der Frauen und Mädchen in der Wissenschaft",
+        "piDay": "Pi-Tag",
+        "backupDay": "World Backup Day",
+        "earthDay": "Tag der Erde",
+        "passwordDay": "Welt-Passwort-Tag",
+        "webDay": "Welttag des Internets",
+        "adaLovelaceDay": "Ada-Lovelace-Tag",
+        "computerSecurityDay": "Tag der Computersicherheit",
+        "programmersDay": "Tag der Programmierer"
+      },
+      "morning2": "Was können wir heute einfacher machen?",
+      "morning3": "Bereit, wenn Sie es sind.",
+      "afternoon2": "Was können wir heute einfacher machen?",
+      "afternoon3": "Erledigen wir etwas Nützliches.",
+      "evening2": "Was können wir heute einfacher machen?",
+      "evening3": "Bereit, wenn Sie es sind.",
+      "night2": "Bereit, wenn Sie es sind.",
+      "night3": "Erledigen wir etwas Nützliches.",
+      "observance": "Frohen {occasion} – möge der Tag Licht und guten Schwung bringen."
+    },
+    "subtitleFacts": {
+      "fact1": "Ein kleines Werkzeug kann eine lästige Aufgabe in einen Zwei-Minuten-Erfolg verwandeln.",
+      "fact2": "Das Web verbindet Informationen – Kit hält Ihre Arbeit dabei nah bei Ihnen.",
+      "fact3": "Programmierer verwenden oft 256, weil es 2⁸ und damit eine Brücke zu Bytes ist.",
+      "fact4": "Kits Werkzeuge laufen im Browser, damit Ihre Dateien auf Ihrem Gerät bleiben können."
+    },
+    "subtitleObservance": "Ein besinnlicher {occasion}: auf nützliche Ideen und gute Verbindungen."
   },
   "categories": {
     "pdf": "PDF",

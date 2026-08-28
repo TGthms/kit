@@ -154,8 +154,43 @@
       "night": "こんばんは。残りの{day}もお楽しみください。",
       "extra1": "今日は何をもっと簡単にしましょうか？",
       "extra2": "準備ができたら始めましょう。",
-      "extra3": "役立つことをひとつ片づけましょう。"
-    }
+      "extra3": "役立つことをひとつ片づけましょう。",
+      "occasionLabel": {
+        "christmasEve": "クリスマスイブ",
+        "christmas": "クリスマス",
+        "goodFriday": "聖金曜日",
+        "palmSunday": "枝の主日",
+        "easterMonday": "復活祭翌日の月曜日",
+        "easterSunday": "復活祭",
+        "newYear": "元日",
+        "saferInternetDay": "Safer Internet Day",
+        "womenAndGirlsInScience": "International Day of Women and Girls in Science",
+        "piDay": "Pi Day",
+        "backupDay": "World Backup Day",
+        "earthDay": "Earth Day",
+        "passwordDay": "World Password Day",
+        "webDay": "World Wide Web Day",
+        "adaLovelaceDay": "Ada Lovelace Day",
+        "computerSecurityDay": "Computer Security Day",
+        "programmersDay": "プログラマーの日"
+      },
+      "morning2": "今日は何をもっと簡単にしましょうか？",
+      "morning3": "準備ができたら始めましょう。",
+      "afternoon2": "今日は何をもっと簡単にしましょうか？",
+      "afternoon3": "役立つことをひとつ片づけましょう。",
+      "evening2": "今日は何をもっと簡単にしましょうか？",
+      "evening3": "準備ができたら始めましょう。",
+      "night2": "準備ができたら始めましょう。",
+      "night3": "役立つことをひとつ片づけましょう。",
+      "observance": "{occasion}をお祝いします。今日が光とよい勢いに満ちますように。"
+    },
+    "subtitleFacts": {
+      "fact1": "小さなツールが、面倒な作業を2分の成果に変えてくれることがあります。",
+      "fact2": "Web は情報をつなぎ、Kit は作業を手元に保ちます。",
+      "fact3": "プログラマーが256をよく使うのは、2⁸で数値とバイトをつなぐからです。",
+      "fact4": "Kit のツールはブラウザで動くため、ファイルを端末に置いたまま使えます。"
+    },
+    "subtitleObservance": "心に残る{occasion}。役立つアイデアと温かなつながりを。"
   },
   "categories": {
     "pdf": "PDF",

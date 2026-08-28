@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { getGreetingDay, getGreetingPeriod, getGreetingVariant, getHomeSubtitle } from "./greeting";
+import { getGreetingDay, getGreetingPeriod, getGreetingVariant, getHomeGreetingSelection } from "./greeting";
 
 describe("home greeting", () => {
   it("selects a friendly time-of-day period", () => {
@@ -24,8 +24,23 @@ describe("home greeting", () => {
     expect(() => getGreetingVariant(new Date(), 0)).toThrow(RangeError);
   });
 
-  it("provides a stable, varied home subtitle", () => {
-    expect(getHomeSubtitle(0)).not.toBe(getHomeSubtitle(1));
-    expect(getHomeSubtitle(12)).toBe(getHomeSubtitle(0));
+  it("selects Christian and technology observances by calendar date", () => {
+    expect(getHomeGreetingSelection(new Date(2026, 11, 25, 10), "en-US", 1)).toMatchObject({
+      greetingKey: "greeting.observance",
+      subtitleKey: "subtitleObservance",
+      occasionKey: "christmas",
+    });
+    expect(getHomeGreetingSelection(new Date(2026, 2, 14, 10), "en-US", 1).occasionKey).toBe("piDay");
+    expect(getHomeGreetingSelection(new Date(2026, 1, 10, 10), "en-US", 1).occasionKey).toBe("saferInternetDay");
+    expect(getHomeGreetingSelection(new Date(2026, 4, 7, 10), "en-US", 1).occasionKey).toBe("passwordDay");
+    expect(getHomeGreetingSelection(new Date(2026, 9, 13, 10), "en-US", 1).occasionKey).toBe("adaLovelaceDay");
+    expect(getHomeGreetingSelection(new Date(2026, 8, 13, 10), "en-US", 1).occasionKey).toBe("programmersDay");
+  });
+
+  it("keeps ordinary selections localized by key and includes the weekday", () => {
+    const selection = getHomeGreetingSelection(new Date(2026, 7, 25, 10), "fr-FR", 2);
+    expect(selection.greetingKey).toMatch(/^greeting\.(morning|morning2|morning3)$/);
+    expect(selection.subtitleKey).toMatch(/^subtitle(Facts\.fact[1-4])?$/);
+    expect(selection.day).toBe("mardi");
   });
 });

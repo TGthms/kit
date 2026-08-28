@@ -154,8 +154,43 @@
       "night": "Καλησπέρα — απολαύστε το υπόλοιπο της {day}.",
       "extra1": "Τι μπορούμε να κάνουμε πιο εύκολο σήμερα;",
       "extra2": "Ξεκινάμε όταν είσαι έτοιμος.",
-      "extra3": "Ας ολοκληρώσουμε κάτι χρήσιμο."
-    }
+      "extra3": "Ας ολοκληρώσουμε κάτι χρήσιμο.",
+      "occasionLabel": {
+        "christmasEve": "Παραμονή Χριστουγέννων",
+        "christmas": "Χριστούγεννα",
+        "goodFriday": "Μεγάλη Παρασκευή",
+        "palmSunday": "Κυριακή των Βαΐων",
+        "easterMonday": "Δευτέρα του Πάσχα",
+        "easterSunday": "Κυριακή του Πάσχα",
+        "newYear": "Πρωτοχρονιά",
+        "saferInternetDay": "Safer Internet Day",
+        "womenAndGirlsInScience": "International Day of Women and Girls in Science",
+        "piDay": "Pi Day",
+        "backupDay": "World Backup Day",
+        "earthDay": "Earth Day",
+        "passwordDay": "World Password Day",
+        "webDay": "World Wide Web Day",
+        "adaLovelaceDay": "Ada Lovelace Day",
+        "computerSecurityDay": "Computer Security Day",
+        "programmersDay": "Ημέρα Προγραμματιστών"
+      },
+      "morning2": "Τι μπορούμε να κάνουμε πιο εύκολο σήμερα;",
+      "morning3": "Ξεκινάμε όταν είσαι έτοιμος.",
+      "afternoon2": "Τι μπορούμε να κάνουμε πιο εύκολο σήμερα;",
+      "afternoon3": "Ας ολοκληρώσουμε κάτι χρήσιμο.",
+      "evening2": "Τι μπορούμε να κάνουμε πιο εύκολο σήμερα;",
+      "evening3": "Ξεκινάμε όταν είσαι έτοιμος.",
+      "night2": "Ξεκινάμε όταν είσαι έτοιμος.",
+      "night3": "Ας ολοκληρώσουμε κάτι χρήσιμο.",
+      "observance": "Καλό {occasion} — ας φέρει η μέρα φως και καλή διάθεση."
+    },
+    "subtitleFacts": {
+      "fact1": "Ένα μικρό εργαλείο μπορεί να μετατρέψει μια κουραστική εργασία σε νίκη δύο λεπτών.",
+      "fact2": "Ο ιστός συνδέει πληροφορίες· το Kit κρατά τη δουλειά σας κοντά σας.",
+      "fact3": "Οι προγραμματιστές χρησιμοποιούν συχνά το 256 επειδή είναι 2⁸, μια γέφυρα προς τα byte.",
+      "fact4": "Τα εργαλεία του Kit εκτελούνται στον browser, ώστε τα αρχεία να μένουν στη συσκευή σας."
+    },
+    "subtitleObservance": "Ένας {occasion} για σκέψη: στις χρήσιμες ιδέες και τις όμορφες συνδέσεις."
   },
   "categories": {
     "pdf": "PDF",

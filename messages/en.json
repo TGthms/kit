@@ -154,8 +154,43 @@
       "night": "Good evening — take a little time for yourself this {day}.",
       "extra1": "What can we make easier today?",
       "extra2": "Ready when you are.",
-      "extra3": "Let’s get something useful done."
-    }
+      "extra3": "Let’s get something useful done.",
+      "occasionLabel": {
+        "christmasEve": "Christmas Eve",
+        "christmas": "Christmas",
+        "goodFriday": "Good Friday",
+        "palmSunday": "Palm Sunday",
+        "easterMonday": "Easter Monday",
+        "easterSunday": "Easter Sunday",
+        "newYear": "New Year’s Day",
+        "saferInternetDay": "Safer Internet Day",
+        "womenAndGirlsInScience": "International Day of Women and Girls in Science",
+        "piDay": "Pi Day",
+        "backupDay": "World Backup Day",
+        "earthDay": "Earth Day",
+        "passwordDay": "World Password Day",
+        "webDay": "World Wide Web Day",
+        "adaLovelaceDay": "Ada Lovelace Day",
+        "computerSecurityDay": "Computer Security Day",
+        "programmersDay": "Programmer’s Day"
+      },
+      "morning2": "What can we make easier today?",
+      "morning3": "Ready when you are.",
+      "afternoon2": "What can we make easier today?",
+      "afternoon3": "Let’s get something useful done.",
+      "evening2": "What can we make easier today?",
+      "evening3": "Ready when you are.",
+      "night2": "Ready when you are.",
+      "night3": "Let’s get something useful done.",
+      "observance": "Happy {occasion} — may today bring a little light and good momentum."
+    },
+    "subtitleFacts": {
+      "fact1": "A tiny tool can turn a tedious task into a two-minute win.",
+      "fact2": "The web was designed to keep information connected—and Kit keeps your work close to home.",
+      "fact3": "Programmers often use 256 because it is 2⁸: a neat bridge between numbers and bytes.",
+      "fact4": "Kit’s tools run in your browser, so your files can stay on your device."
+    },
+    "subtitleObservance": "A thoughtful {occasion}: here’s to useful ideas and kind connections."
   },
   "categories": {
     "pdf": "PDF",

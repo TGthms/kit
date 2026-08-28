@@ -154,8 +154,43 @@
       "night": "Jó estét — élvezd a {day} hátralévő részét.",
       "extra1": "Mit tehetünk ma egyszerűbbé?",
       "extra2": "Kezdjük, amikor készen állsz.",
-      "extra3": "Végezzünk el valami hasznosat."
-    }
+      "extra3": "Végezzünk el valami hasznosat.",
+      "occasionLabel": {
+        "christmasEve": "Szenteste",
+        "christmas": "Karácsony",
+        "goodFriday": "Nagypéntek",
+        "palmSunday": "Virágvasárnap",
+        "easterMonday": "Húsvéthétfő",
+        "easterSunday": "Húsvétvasárnap",
+        "newYear": "Újév",
+        "saferInternetDay": "Safer Internet Day",
+        "womenAndGirlsInScience": "International Day of Women and Girls in Science",
+        "piDay": "Pi Day",
+        "backupDay": "World Backup Day",
+        "earthDay": "Earth Day",
+        "passwordDay": "World Password Day",
+        "webDay": "World Wide Web Day",
+        "adaLovelaceDay": "Ada Lovelace Day",
+        "computerSecurityDay": "Computer Security Day",
+        "programmersDay": "A programozók napja"
+      },
+      "morning2": "Mit tehetünk ma egyszerűbbé?",
+      "morning3": "Kezdjük, amikor készen állsz.",
+      "afternoon2": "Mit tehetünk ma egyszerűbbé?",
+      "afternoon3": "Végezzünk el valami hasznosat.",
+      "evening2": "Mit tehetünk ma egyszerűbbé?",
+      "evening3": "Kezdjük, amikor készen állsz.",
+      "night2": "Kezdjük, amikor készen állsz.",
+      "night3": "Végezzünk el valami hasznosat.",
+      "observance": "Boldog {occasion} – hozzon ez a nap fényt és lendületet."
+    },
+    "subtitleFacts": {
+      "fact1": "Egy kis eszköz a fárasztó feladatból kétperces sikert varázsolhat.",
+      "fact2": "A web összeköti az információkat, a Kit pedig közel tartja a munkádat.",
+      "fact3": "A programozók gyakran használják a 256-ot, mert 2⁸: híd a számok és a bájtok között.",
+      "fact4": "A Kit eszközei a böngészőben futnak, így a fájlok az eszközödön maradhatnak."
+    },
+    "subtitleObservance": "Elgondolkodtató {occasion}: a hasznos ötletekre és jó kapcsolatokra."
   },
   "categories": {
     "pdf": "PDF",

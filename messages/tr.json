@@ -154,8 +154,43 @@
       "night": "İyi akşamlar — {day} gününün kalanının tadını çıkarın.",
       "extra1": "Bugün neyi kolaylaştırabiliriz?",
       "extra2": "Hazır olduğunda başlayalım.",
-      "extra3": "Faydalı bir iş yapalım."
-    }
+      "extra3": "Faydalı bir iş yapalım.",
+      "occasionLabel": {
+        "christmasEve": "Noel Arifesi",
+        "christmas": "Noel",
+        "goodFriday": "Kutsal Cuma",
+        "palmSunday": "Palm Pazar",
+        "easterMonday": "Paskalya Pazartesisi",
+        "easterSunday": "Paskalya Pazarı",
+        "newYear": "Yılbaşı Günü",
+        "saferInternetDay": "Safer Internet Day",
+        "womenAndGirlsInScience": "International Day of Women and Girls in Science",
+        "piDay": "Pi Day",
+        "backupDay": "World Backup Day",
+        "earthDay": "Earth Day",
+        "passwordDay": "World Password Day",
+        "webDay": "World Wide Web Day",
+        "adaLovelaceDay": "Ada Lovelace Day",
+        "computerSecurityDay": "Computer Security Day",
+        "programmersDay": "Programcılar Günü"
+      },
+      "morning2": "Bugün neyi kolaylaştırabiliriz?",
+      "morning3": "Hazır olduğunda başlayalım.",
+      "afternoon2": "Bugün neyi kolaylaştırabiliriz?",
+      "afternoon3": "Faydalı bir iş yapalım.",
+      "evening2": "Bugün neyi kolaylaştırabiliriz?",
+      "evening3": "Hazır olduğunda başlayalım.",
+      "night2": "Hazır olduğunda başlayalım.",
+      "night3": "Faydalı bir iş yapalım.",
+      "observance": "Mutlu {occasion} — bugün ışık ve güzel bir ivme getirsin."
+    },
+    "subtitleFacts": {
+      "fact1": "Küçük bir araç, sıkıcı bir işi iki dakikalık bir başarıya dönüştürebilir.",
+      "fact2": "Web bilgileri birbirine bağlar; Kit çalışmanızı yanınızda tutar.",
+      "fact3": "Programcılar 256'yı sık kullanır; çünkü 2⁸, sayılarla baytlar arasında bir köprüdür.",
+      "fact4": "Kit araçları tarayıcınızda çalışır; dosyalarınız cihazınızda kalabilir."
+    },
+    "subtitleObservance": "Düşünceli bir {occasion}: faydalı fikirlere ve güzel bağlantılara."
   },
   "categories": {
     "pdf": "PDF",

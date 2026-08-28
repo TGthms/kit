@@ -154,8 +154,43 @@
       "night": "Bună seara — bucură-te de restul zilei de {day}.",
       "extra1": "Ce putem face mai ușor astăzi?",
       "extra2": "Începem când ești gata.",
-      "extra3": "Să facem ceva util."
-    }
+      "extra3": "Să facem ceva util.",
+      "occasionLabel": {
+        "christmasEve": "Ajunul Crăciunului",
+        "christmas": "Crăciun",
+        "goodFriday": "Vinerea Mare",
+        "palmSunday": "Duminica Floriilor",
+        "easterMonday": "Lunea Paștelui",
+        "easterSunday": "Duminica Paștelui",
+        "newYear": "Anul Nou",
+        "saferInternetDay": "Safer Internet Day",
+        "womenAndGirlsInScience": "International Day of Women and Girls in Science",
+        "piDay": "Pi Day",
+        "backupDay": "World Backup Day",
+        "earthDay": "Earth Day",
+        "passwordDay": "World Password Day",
+        "webDay": "World Wide Web Day",
+        "adaLovelaceDay": "Ada Lovelace Day",
+        "computerSecurityDay": "Computer Security Day",
+        "programmersDay": "Ziua programatorilor"
+      },
+      "morning2": "Ce putem face mai ușor astăzi?",
+      "morning3": "Începem când ești gata.",
+      "afternoon2": "Ce putem face mai ușor astăzi?",
+      "afternoon3": "Să facem ceva util.",
+      "evening2": "Ce putem face mai ușor astăzi?",
+      "evening3": "Începem când ești gata.",
+      "night2": "Începem când ești gata.",
+      "night3": "Să facem ceva util.",
+      "observance": "Un {occasion} fericit — să aducă lumină și energie bună."
+    },
+    "subtitleFacts": {
+      "fact1": "Un instrument mic poate transforma o sarcină dificilă într-o reușită de două minute.",
+      "fact2": "Webul conectează informații; Kit îți păstrează munca aproape.",
+      "fact3": "Programatorii folosesc des 256 deoarece este 2⁸, o punte între numere și octeți.",
+      "fact4": "Instrumentele Kit rulează în browser, astfel încât fișierele pot rămâne pe dispozitiv."
+    },
+    "subtitleObservance": "Un {occasion} pentru reflecție: idei utile și legături frumoase."
   },
   "categories": {
     "pdf": "PDF",

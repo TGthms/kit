@@ -154,8 +154,43 @@
       "night": "Selamat malam — nikmati sisa {day} Anda.",
       "extra1": "Apa yang bisa kita buat lebih mudah hari ini?",
       "extra2": "Kita mulai saat Anda siap.",
-      "extra3": "Mari selesaikan sesuatu yang berguna."
-    }
+      "extra3": "Mari selesaikan sesuatu yang berguna.",
+      "occasionLabel": {
+        "christmasEve": "Malam Natal",
+        "christmas": "Natal",
+        "goodFriday": "Jumat Agung",
+        "palmSunday": "Minggu Palma",
+        "easterMonday": "Senin Paskah",
+        "easterSunday": "Minggu Paskah",
+        "newYear": "Hari Tahun Baru",
+        "saferInternetDay": "Safer Internet Day",
+        "womenAndGirlsInScience": "International Day of Women and Girls in Science",
+        "piDay": "Pi Day",
+        "backupDay": "World Backup Day",
+        "earthDay": "Earth Day",
+        "passwordDay": "World Password Day",
+        "webDay": "World Wide Web Day",
+        "adaLovelaceDay": "Ada Lovelace Day",
+        "computerSecurityDay": "Computer Security Day",
+        "programmersDay": "Hari Programmer"
+      },
+      "morning2": "Apa yang bisa kita buat lebih mudah hari ini?",
+      "morning3": "Kita mulai saat Anda siap.",
+      "afternoon2": "Apa yang bisa kita buat lebih mudah hari ini?",
+      "afternoon3": "Mari selesaikan sesuatu yang berguna.",
+      "evening2": "Apa yang bisa kita buat lebih mudah hari ini?",
+      "evening3": "Kita mulai saat Anda siap.",
+      "night2": "Kita mulai saat Anda siap.",
+      "night3": "Mari selesaikan sesuatu yang berguna.",
+      "observance": "Selamat {occasion} — semoga hari ini membawa cahaya dan semangat baik."
+    },
+    "subtitleFacts": {
+      "fact1": "Alat kecil dapat mengubah tugas membosankan menjadi keberhasilan dua menit.",
+      "fact2": "Web menghubungkan informasi; Kit menjaga pekerjaan Anda tetap dekat.",
+      "fact3": "Programmer sering memakai 256 karena itu 2⁸, jembatan antara angka dan byte.",
+      "fact4": "Alat Kit berjalan di browser, sehingga file dapat tetap di perangkat Anda."
+    },
+    "subtitleObservance": "{occasion} yang bermakna: untuk ide berguna dan hubungan yang baik."
   },
   "categories": {
     "pdf": "PDF",

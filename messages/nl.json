@@ -154,8 +154,43 @@
       "night": "Goedenavond — geniet van de rest van {day}.",
       "extra1": "Wat kunnen we vandaag eenvoudiger maken?",
       "extra2": "Klaar wanneer jij dat bent.",
-      "extra3": "Laten we iets nuttigs doen."
-    }
+      "extra3": "Laten we iets nuttigs doen.",
+      "occasionLabel": {
+        "christmasEve": "Kerstavond",
+        "christmas": "Kerstmis",
+        "goodFriday": "Goede Vrijdag",
+        "palmSunday": "Palmzondag",
+        "easterMonday": "Paasmaandag",
+        "easterSunday": "Paaszondag",
+        "newYear": "Nieuwjaarsdag",
+        "saferInternetDay": "Safer Internet Day",
+        "womenAndGirlsInScience": "International Day of Women and Girls in Science",
+        "piDay": "Pi Day",
+        "backupDay": "World Backup Day",
+        "earthDay": "Earth Day",
+        "passwordDay": "World Password Day",
+        "webDay": "World Wide Web Day",
+        "adaLovelaceDay": "Ada Lovelace Day",
+        "computerSecurityDay": "Computer Security Day",
+        "programmersDay": "Dag van de programmeur"
+      },
+      "morning2": "Wat kunnen we vandaag eenvoudiger maken?",
+      "morning3": "Klaar wanneer jij dat bent.",
+      "afternoon2": "Wat kunnen we vandaag eenvoudiger maken?",
+      "afternoon3": "Laten we iets nuttigs doen.",
+      "evening2": "Wat kunnen we vandaag eenvoudiger maken?",
+      "evening3": "Klaar wanneer jij dat bent.",
+      "night2": "Klaar wanneer jij dat bent.",
+      "night3": "Laten we iets nuttigs doen.",
+      "observance": "Fijne {occasion} — een dag vol licht en goede energie."
+    },
+    "subtitleFacts": {
+      "fact1": "Een klein hulpmiddel kan een vervelende taak in twee minuten afronden.",
+      "fact2": "Het web verbindt informatie; Kit houdt je werk dicht bij je.",
+      "fact3": "Programmeurs gebruiken vaak 256 omdat het 2⁸ is: een brug tussen getallen en bytes.",
+      "fact4": "De tools van Kit werken in je browser, zodat je bestanden op je apparaat blijven."
+    },
+    "subtitleObservance": "Een mooie {occasion}: op nuttige ideeën en goede verbindingen."
   },
   "categories": {
     "pdf": "PDF",

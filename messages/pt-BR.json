@@ -154,8 +154,43 @@
       "night": "Boa noite — aproveite o restante de {day}.",
       "extra1": "O que podemos tornar mais fácil hoje?",
       "extra2": "Quando você estiver pronto, começamos.",
-      "extra3": "Vamos fazer algo útil."
-    }
+      "extra3": "Vamos fazer algo útil.",
+      "occasionLabel": {
+        "christmasEve": "Véspera de Natal",
+        "christmas": "Natal",
+        "goodFriday": "Sexta-feira Santa",
+        "palmSunday": "Domingo de Ramos",
+        "easterMonday": "Segunda-feira de Páscoa",
+        "easterSunday": "Domingo de Páscoa",
+        "newYear": "Dia de Ano Novo",
+        "saferInternetDay": "Dia da Internet Mais Segura",
+        "womenAndGirlsInScience": "Dia Internacional das Mulheres e Meninas na Ciência",
+        "piDay": "Dia do Pi",
+        "backupDay": "Dia Mundial da Cópia de Segurança",
+        "earthDay": "Dia da Terra",
+        "passwordDay": "Dia Mundial da Palavra-passe",
+        "webDay": "Dia Mundial da Web",
+        "adaLovelaceDay": "Dia de Ada Lovelace",
+        "computerSecurityDay": "Dia da Segurança Informática",
+        "programmersDay": "Dia dos Programadores"
+      },
+      "morning2": "O que podemos tornar mais fácil hoje?",
+      "morning3": "Quando você estiver pronto, começamos.",
+      "afternoon2": "O que podemos tornar mais fácil hoje?",
+      "afternoon3": "Vamos fazer algo útil.",
+      "evening2": "O que podemos tornar mais fácil hoje?",
+      "evening3": "Quando você estiver pronto, começamos.",
+      "night2": "Quando você estiver pronto, começamos.",
+      "night3": "Vamos fazer algo útil.",
+      "observance": "Feliz {occasion} — que o dia traga luz e bom impulso."
+    },
+    "subtitleFacts": {
+      "fact1": "Uma ferramenta simples pode transformar uma tarefa cansativa numa vitória de dois minutos.",
+      "fact2": "A Web liga a informação; o Kit mantém o seu trabalho perto de si.",
+      "fact3": "Programadores usam muitas vezes 256 porque é 2⁸, uma ponte entre números e bytes.",
+      "fact4": "As ferramentas do Kit funcionam no navegador para manter os seus ficheiros no dispositivo."
+    },
+    "subtitleObservance": "Um {occasion} para refletir: às ideias úteis e às boas ligações."
   },
   "categories": {
     "pdf": "PDF",

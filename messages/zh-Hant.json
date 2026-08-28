@@ -154,8 +154,43 @@
       "night": "晚安，願你在{day}剩下的時間裡一切順利。",
       "extra1": "今天想讓什麼變得更簡單？",
       "extra2": "準備好就開始吧。",
-      "extra3": "一起完成一件有用的事。"
-    }
+      "extra3": "一起完成一件有用的事。",
+      "occasionLabel": {
+        "christmasEve": "平安夜",
+        "christmas": "聖誕節",
+        "goodFriday": "受難節",
+        "palmSunday": "棕枝主日",
+        "easterMonday": "復活節星期一",
+        "easterSunday": "復活節星期日",
+        "newYear": "元旦",
+        "saferInternetDay": "Safer Internet Day",
+        "womenAndGirlsInScience": "International Day of Women and Girls in Science",
+        "piDay": "Pi Day",
+        "backupDay": "World Backup Day",
+        "earthDay": "Earth Day",
+        "passwordDay": "World Password Day",
+        "webDay": "World Wide Web Day",
+        "adaLovelaceDay": "Ada Lovelace Day",
+        "computerSecurityDay": "Computer Security Day",
+        "programmersDay": "程式設計師日"
+      },
+      "morning2": "今天想讓什麼變得更簡單？",
+      "morning3": "準備好就開始吧。",
+      "afternoon2": "今天想讓什麼變得更簡單？",
+      "afternoon3": "一起完成一件有用的事。",
+      "evening2": "今天想讓什麼變得更簡單？",
+      "evening3": "準備好就開始吧。",
+      "night2": "準備好就開始吧。",
+      "night3": "一起完成一件有用的事。",
+      "observance": "祝你{occasion}愉快，願今天帶來光亮與好心情。"
+    },
+    "subtitleFacts": {
+      "fact1": "一個小工具，就能把繁瑣的工作變成兩分鐘的成果。",
+      "fact2": "網路連結資訊，Kit 讓你的工作始終在手邊。",
+      "fact3": "程式設計師常用 256，因為它是 2⁸，連結數字與位元組。",
+      "fact4": "Kit 的工具在瀏覽器中執行，檔案可以留在你的裝置上。"
+    },
+    "subtitleObservance": "在這個值得思考的{occasion}，願我們擁有有用的想法與真誠的連結。"
   },
   "categories": {
     "pdf": "PDF",

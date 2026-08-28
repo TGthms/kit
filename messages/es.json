@@ -154,8 +154,43 @@
       "night": "Buenas noches — disfruta lo que queda de {day}.",
       "extra1": "¿Qué podemos hacer más fácil hoy?",
       "extra2": "Cuando quieras, empezamos.",
-      "extra3": "Hagamos algo útil."
-    }
+      "extra3": "Hagamos algo útil.",
+      "occasionLabel": {
+        "christmasEve": "Nochebuena",
+        "christmas": "Navidad",
+        "goodFriday": "Viernes Santo",
+        "palmSunday": "Domingo de Ramos",
+        "easterMonday": "Lunes de Pascua",
+        "easterSunday": "Domingo de Pascua",
+        "newYear": "Año Nuevo",
+        "saferInternetDay": "Día de Internet Segura",
+        "womenAndGirlsInScience": "Día Internacional de la Mujer y la Niña en la Ciencia",
+        "piDay": "Día de Pi",
+        "backupDay": "Día Mundial de las Copias de Seguridad",
+        "earthDay": "Día de la Tierra",
+        "passwordDay": "Día Mundial de la Contraseña",
+        "webDay": "Día Mundial de la Web",
+        "adaLovelaceDay": "Día de Ada Lovelace",
+        "computerSecurityDay": "Día de la Seguridad Informática",
+        "programmersDay": "Día de los Programadores"
+      },
+      "morning2": "¿Qué podemos hacer más fácil hoy?",
+      "morning3": "Cuando quieras, empezamos.",
+      "afternoon2": "¿Qué podemos hacer más fácil hoy?",
+      "afternoon3": "Hagamos algo útil.",
+      "evening2": "¿Qué podemos hacer más fácil hoy?",
+      "evening3": "Cuando quieras, empezamos.",
+      "night2": "Cuando quieras, empezamos.",
+      "night3": "Hagamos algo útil.",
+      "observance": "Feliz {occasion}; que hoy traiga luz y un buen impulso."
+    },
+    "subtitleFacts": {
+      "fact1": "Una herramienta pequeña puede convertir una tarea tediosa en un logro de dos minutos.",
+      "fact2": "La web conecta la información; Kit mantiene tu trabajo cerca de ti.",
+      "fact3": "Los programadores usan a menudo 256 porque es 2⁸, un puente entre números y bytes.",
+      "fact4": "Las herramientas de Kit funcionan en el navegador para que tus archivos permanezcan en tu dispositivo."
+    },
+    "subtitleObservance": "Un {occasion} para pensar: por las ideas útiles y las buenas conexiones."
   },
   "categories": {
     "pdf": "PDF",

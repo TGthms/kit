@@ -154,8 +154,43 @@
       "night": "สวัสดีตอนเย็น — ขอให้ช่วงที่เหลือของ{day}เป็นไปด้วยดี",
       "extra1": "วันนี้เราจะทำอะไรให้ง่ายขึ้นได้บ้าง",
       "extra2": "พร้อมเมื่อไหร่ก็เริ่มได้เลย",
-      "extra3": "มาทำสิ่งที่มีประโยชน์กันเถอะ"
-    }
+      "extra3": "มาทำสิ่งที่มีประโยชน์กันเถอะ",
+      "occasionLabel": {
+        "christmasEve": "วันคริสต์มาสอีฟ",
+        "christmas": "วันคริสต์มาส",
+        "goodFriday": "วันศุกร์ประเสริฐ",
+        "palmSunday": "วันอาทิตย์ใบลาน",
+        "easterMonday": "วันจันทร์อีสเตอร์",
+        "easterSunday": "วันอาทิตย์อีสเตอร์",
+        "newYear": "วันขึ้นปีใหม่",
+        "saferInternetDay": "Safer Internet Day",
+        "womenAndGirlsInScience": "International Day of Women and Girls in Science",
+        "piDay": "Pi Day",
+        "backupDay": "World Backup Day",
+        "earthDay": "Earth Day",
+        "passwordDay": "World Password Day",
+        "webDay": "World Wide Web Day",
+        "adaLovelaceDay": "Ada Lovelace Day",
+        "computerSecurityDay": "Computer Security Day",
+        "programmersDay": "วันโปรแกรมเมอร์"
+      },
+      "morning2": "วันนี้เราจะทำอะไรให้ง่ายขึ้นได้บ้าง",
+      "morning3": "พร้อมเมื่อไหร่ก็เริ่มได้เลย",
+      "afternoon2": "วันนี้เราจะทำอะไรให้ง่ายขึ้นได้บ้าง",
+      "afternoon3": "มาทำสิ่งที่มีประโยชน์กันเถอะ",
+      "evening2": "วันนี้เราจะทำอะไรให้ง่ายขึ้นได้บ้าง",
+      "evening3": "พร้อมเมื่อไหร่ก็เริ่มได้เลย",
+      "night2": "พร้อมเมื่อไหร่ก็เริ่มได้เลย",
+      "night3": "มาทำสิ่งที่มีประโยชน์กันเถอะ",
+      "observance": "สุขสันต์วัน{occasion} ขอให้วันนี้มีแสงสว่างและพลังดี ๆ"
+    },
+    "subtitleFacts": {
+      "fact1": "เครื่องมือเล็ก ๆ อาจเปลี่ยนงานน่าเบื่อให้เป็นความสำเร็จในสองนาที",
+      "fact2": "เว็บเชื่อมโยงข้อมูล ส่วน Kit ช่วยให้งานของคุณอยู่ใกล้ตัว",
+      "fact3": "โปรแกรมเมอร์มักใช้ 256 เพราะเท่ากับ 2⁸ เป็นสะพานระหว่างตัวเลขกับไบต์",
+      "fact4": "เครื่องมือของ Kit ทำงานในเบราว์เซอร์ ไฟล์จึงอยู่ในอุปกรณ์ของคุณได้"
+    },
+    "subtitleObservance": "วัน{occasion} ชวนให้คิดถึงไอเดียที่มีประโยชน์และสายสัมพันธ์ที่ดี"
   },
   "categories": {
     "pdf": "PDF",

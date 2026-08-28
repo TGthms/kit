@@ -154,8 +154,43 @@
       "night": "Добрий вечір — приємного залишку {day}.",
       "extra1": "Що ми можемо спростити сьогодні?",
       "extra2": "Почнемо, коли будете готові.",
-      "extra3": "Зробімо щось корисне."
-    }
+      "extra3": "Зробімо щось корисне.",
+      "occasionLabel": {
+        "christmasEve": "Святвечір",
+        "christmas": "Різдво",
+        "goodFriday": "Страсна п’ятниця",
+        "palmSunday": "Вербна неділя",
+        "easterMonday": "Великодній понеділок",
+        "easterSunday": "Великдень",
+        "newYear": "Новий рік",
+        "saferInternetDay": "Safer Internet Day",
+        "womenAndGirlsInScience": "International Day of Women and Girls in Science",
+        "piDay": "Pi Day",
+        "backupDay": "World Backup Day",
+        "earthDay": "Earth Day",
+        "passwordDay": "World Password Day",
+        "webDay": "World Wide Web Day",
+        "adaLovelaceDay": "Ada Lovelace Day",
+        "computerSecurityDay": "Computer Security Day",
+        "programmersDay": "День програміста"
+      },
+      "morning2": "Що ми можемо спростити сьогодні?",
+      "morning3": "Почнемо, коли будете готові.",
+      "afternoon2": "Що ми можемо спростити сьогодні?",
+      "afternoon3": "Зробімо щось корисне.",
+      "evening2": "Що ми можемо спростити сьогодні?",
+      "evening3": "Почнемо, коли будете готові.",
+      "night2": "Почнемо, коли будете готові.",
+      "night3": "Зробімо щось корисне.",
+      "observance": "Щасливого {occasion} — нехай цей день принесе світло й натхнення."
+    },
+    "subtitleFacts": {
+      "fact1": "Невеликий інструмент може перетворити нудне завдання на результат за дві хвилини.",
+      "fact2": "Веб поєднує інформацію, а Kit зберігає вашу роботу поруч.",
+      "fact3": "Програмісти часто використовують 256: це 2⁸, міст між числами й байтами.",
+      "fact4": "Інструменти Kit працюють у браузері, тож файли можуть залишатися на пристрої."
+    },
+    "subtitleObservance": "Змістовного {occasion}: за корисні ідеї та добрі зв’язки."
   },
   "categories": {
     "pdf": "PDF",

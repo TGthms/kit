@@ -154,8 +154,43 @@
       "night": "God kveld — nyt resten av {day}.",
       "extra1": "Hva kan vi gjøre enklere i dag?",
       "extra2": "Klar når du er det.",
-      "extra3": "La oss få gjort noe nyttig."
-    }
+      "extra3": "La oss få gjort noe nyttig.",
+      "occasionLabel": {
+        "christmasEve": "julaften",
+        "christmas": "juledag",
+        "goodFriday": "langfredag",
+        "palmSunday": "palmesøndag",
+        "easterMonday": "andre påskedag",
+        "easterSunday": "første påskedag",
+        "newYear": "første nyttårsdag",
+        "saferInternetDay": "Safer Internet Day",
+        "womenAndGirlsInScience": "International Day of Women and Girls in Science",
+        "piDay": "Pi Day",
+        "backupDay": "World Backup Day",
+        "earthDay": "Earth Day",
+        "passwordDay": "World Password Day",
+        "webDay": "World Wide Web Day",
+        "adaLovelaceDay": "Ada Lovelace Day",
+        "computerSecurityDay": "Computer Security Day",
+        "programmersDay": "Programmerernes dag"
+      },
+      "morning2": "Hva kan vi gjøre enklere i dag?",
+      "morning3": "Klar når du er det.",
+      "afternoon2": "Hva kan vi gjøre enklere i dag?",
+      "afternoon3": "La oss få gjort noe nyttig.",
+      "evening2": "Hva kan vi gjøre enklere i dag?",
+      "evening3": "Klar når du er det.",
+      "night2": "Klar når du er det.",
+      "night3": "La oss få gjort noe nyttig.",
+      "observance": "God {occasion} – måtte dagen bringe lys og god fremdrift."
+    },
+    "subtitleFacts": {
+      "fact1": "Et lite verktøy kan gjøre en kjedelig oppgave til en seier på to minutter.",
+      "fact2": "Nettet kobler informasjon sammen – Kit holder arbeidet ditt nært.",
+      "fact3": "Programmerere bruker ofte 256 fordi det er 2⁸, en bro mellom tall og byte.",
+      "fact4": "Kits verktøy kjører i nettleseren, slik at filene dine kan bli på enheten."
+    },
+    "subtitleObservance": "En ettertenksom {occasion}: for nyttige ideer og gode forbindelser."
   },
   "categories": {
     "pdf": "PDF",

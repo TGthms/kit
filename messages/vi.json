@@ -154,8 +154,43 @@
       "night": "Chào buổi tối — chúc bạn tận hưởng phần còn lại của {day}.",
       "extra1": "Hôm nay chúng ta có thể làm gì dễ dàng hơn?",
       "extra2": "Bạn sẵn sàng lúc nào thì bắt đầu lúc đó.",
-      "extra3": "Cùng hoàn thành một việc hữu ích nhé."
-    }
+      "extra3": "Cùng hoàn thành một việc hữu ích nhé.",
+      "occasionLabel": {
+        "christmasEve": "Đêm Giáng sinh",
+        "christmas": "Giáng sinh",
+        "goodFriday": "Thứ Sáu Tuần Thánh",
+        "palmSunday": "Chủ nhật Lễ Lá",
+        "easterMonday": "Thứ Hai Phục sinh",
+        "easterSunday": "Chủ nhật Phục sinh",
+        "newYear": "Ngày đầu năm mới",
+        "saferInternetDay": "Safer Internet Day",
+        "womenAndGirlsInScience": "International Day of Women and Girls in Science",
+        "piDay": "Pi Day",
+        "backupDay": "World Backup Day",
+        "earthDay": "Earth Day",
+        "passwordDay": "World Password Day",
+        "webDay": "World Wide Web Day",
+        "adaLovelaceDay": "Ada Lovelace Day",
+        "computerSecurityDay": "Computer Security Day",
+        "programmersDay": "Ngày Lập trình viên"
+      },
+      "morning2": "Hôm nay chúng ta có thể làm gì dễ dàng hơn?",
+      "morning3": "Bạn sẵn sàng lúc nào thì bắt đầu lúc đó.",
+      "afternoon2": "Hôm nay chúng ta có thể làm gì dễ dàng hơn?",
+      "afternoon3": "Cùng hoàn thành một việc hữu ích nhé.",
+      "evening2": "Hôm nay chúng ta có thể làm gì dễ dàng hơn?",
+      "evening3": "Bạn sẵn sàng lúc nào thì bắt đầu lúc đó.",
+      "night2": "Bạn sẵn sàng lúc nào thì bắt đầu lúc đó.",
+      "night3": "Cùng hoàn thành một việc hữu ích nhé.",
+      "observance": "Chúc mừng {occasion} — mong hôm nay mang đến ánh sáng và động lực tốt."
+    },
+    "subtitleFacts": {
+      "fact1": "Một công cụ nhỏ có thể biến việc buồn tẻ thành thành quả trong hai phút.",
+      "fact2": "Web kết nối thông tin; Kit giữ công việc của bạn ở bên mình.",
+      "fact3": "Lập trình viên thường dùng 256 vì đó là 2⁸, cầu nối giữa số và byte.",
+      "fact4": "Công cụ Kit chạy trong trình duyệt, nên tệp có thể ở lại trên thiết bị."
+    },
+    "subtitleObservance": "Một {occasion} đáng suy ngẫm: vì những ý tưởng hữu ích và kết nối đẹp."
   },
   "categories": {
     "pdf": "PDF",

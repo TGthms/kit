@@ -154,8 +154,43 @@
       "night": "Dobry wieczór — ciesz się resztą {day}.",
       "extra1": "Co możemy dziś uprościć?",
       "extra2": "Zaczynamy, gdy tylko chcesz.",
-      "extra3": "Zróbmy coś pożytecznego."
-    }
+      "extra3": "Zróbmy coś pożytecznego.",
+      "occasionLabel": {
+        "christmasEve": "Wigilia",
+        "christmas": "Boże Narodzenie",
+        "goodFriday": "Wielki Piątek",
+        "palmSunday": "Niedziela Palmowa",
+        "easterMonday": "Poniedziałek Wielkanocny",
+        "easterSunday": "Niedziela Wielkanocna",
+        "newYear": "Nowy Rok",
+        "saferInternetDay": "Safer Internet Day",
+        "womenAndGirlsInScience": "International Day of Women and Girls in Science",
+        "piDay": "Pi Day",
+        "backupDay": "World Backup Day",
+        "earthDay": "Earth Day",
+        "passwordDay": "World Password Day",
+        "webDay": "World Wide Web Day",
+        "adaLovelaceDay": "Ada Lovelace Day",
+        "computerSecurityDay": "Computer Security Day",
+        "programmersDay": "Dzień Programisty"
+      },
+      "morning2": "Co możemy dziś uprościć?",
+      "morning3": "Zaczynamy, gdy tylko chcesz.",
+      "afternoon2": "Co możemy dziś uprościć?",
+      "afternoon3": "Zróbmy coś pożytecznego.",
+      "evening2": "Co możemy dziś uprościć?",
+      "evening3": "Zaczynamy, gdy tylko chcesz.",
+      "night2": "Zaczynamy, gdy tylko chcesz.",
+      "night3": "Zróbmy coś pożytecznego.",
+      "observance": "Radosnego {occasion} — niech ten dzień przyniesie światło i dobry rytm."
+    },
+    "subtitleFacts": {
+      "fact1": "Małe narzędzie może zamienić żmudne zadanie w dwuminutowy sukces.",
+      "fact2": "Sieć łączy informacje, a Kit trzyma Twoją pracę blisko Ciebie.",
+      "fact3": "Programiści często używają 256, bo to 2⁸ — elegancki most między liczbami i bajtami.",
+      "fact4": "Narzędzia Kit działają w przeglądarce, więc pliki mogą pozostać na urządzeniu."
+    },
+    "subtitleObservance": "Refleksyjny {occasion}: za pożyteczne pomysły i dobre więzi."
   },
   "categories": {
     "pdf": "PDF",

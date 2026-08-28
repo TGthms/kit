@@ -154,8 +154,43 @@
       "night": "Добрый вечер — приятного остатка {day}.",
       "extra1": "Что мы можем упростить сегодня?",
       "extra2": "Начнём, когда будете готовы.",
-      "extra3": "Давайте сделаем что-нибудь полезное."
-    }
+      "extra3": "Давайте сделаем что-нибудь полезное.",
+      "occasionLabel": {
+        "christmasEve": "Сочельник",
+        "christmas": "Рождество",
+        "goodFriday": "Страстная пятница",
+        "palmSunday": "Вербное воскресенье",
+        "easterMonday": "Пасхальный понедельник",
+        "easterSunday": "Пасха",
+        "newYear": "Новый год",
+        "saferInternetDay": "Safer Internet Day",
+        "womenAndGirlsInScience": "International Day of Women and Girls in Science",
+        "piDay": "Pi Day",
+        "backupDay": "World Backup Day",
+        "earthDay": "Earth Day",
+        "passwordDay": "World Password Day",
+        "webDay": "World Wide Web Day",
+        "adaLovelaceDay": "Ada Lovelace Day",
+        "computerSecurityDay": "Computer Security Day",
+        "programmersDay": "День программиста"
+      },
+      "morning2": "Что мы можем упростить сегодня?",
+      "morning3": "Начнём, когда будете готовы.",
+      "afternoon2": "Что мы можем упростить сегодня?",
+      "afternoon3": "Давайте сделаем что-нибудь полезное.",
+      "evening2": "Что мы можем упростить сегодня?",
+      "evening3": "Начнём, когда будете готовы.",
+      "night2": "Начнём, когда будете готовы.",
+      "night3": "Давайте сделаем что-нибудь полезное.",
+      "observance": "С {occasion} — пусть этот день принесёт свет и хороший настрой."
+    },
+    "subtitleFacts": {
+      "fact1": "Небольшой инструмент может превратить рутинную задачу в результат за две минуты.",
+      "fact2": "Сеть связывает информацию, а Kit хранит вашу работу рядом.",
+      "fact3": "Программисты часто используют 256: это 2⁸, мост между числами и байтами.",
+      "fact4": "Инструменты Kit работают в браузере, поэтому файлы могут остаться на устройстве."
+    },
+    "subtitleObservance": "Вдумчивый {occasion}: за полезные идеи и добрые связи."
   },
   "categories": {
     "pdf": "PDF",
