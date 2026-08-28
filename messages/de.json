@@ -176,8 +176,8 @@
     "developerDesc": "Tokens, Hashes, Kodierungen, Passwörter und andere Werkbank-Tools",
     "everyday": "Alltag",
     "everydayDesc": "Praktische Umrechner, Uhren, Rechner und schnelle Helfer",
-    "converter": "Everyday converters",
-    "converterDesc": "Units, currencies, and more—organized for quick conversions"
+    "converter": "Alltagsumrechner",
+    "converterDesc": "Einheiten, Währungen und mehr – übersichtlich und schnell umrechnen"
   },
   "history": {
     "title": "Verlauf",
@@ -192,9 +192,9 @@
     "status": "Status",
     "success": "Erfolgreich",
     "failed": "Fehlgeschlagen",
-    "recordingTitle": "Record tool activity",
-    "recordingOn": "On — short summaries may be saved on this device.",
-    "recordingOff": "Off — Kit will not add new activity to History."
+    "recordingTitle": "Werkzeugaktivität aufzeichnen",
+    "recordingOn": "Ein — kurze Zusammenfassungen können auf diesem Gerät gespeichert werden.",
+    "recordingOff": "Aus — Kit fügt dem Verlauf keine neuen Aktivitäten hinzu."
   },
   "favorites": {
     "title": "Favoriten",
