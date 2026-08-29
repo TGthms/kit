@@ -36,6 +36,7 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
+      { url: withAsset("/favicon.ico"), sizes: "32x32", type: "image/x-icon" },
       { url: withAsset("/icons/favicon.svg"), type: "image/svg+xml" },
       { url: withAsset("/icons/favicon-32.png"), sizes: "32x32", type: "image/png" },
       { url: withAsset("/icons/icon.svg"), type: "image/svg+xml" },

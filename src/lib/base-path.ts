@@ -2,7 +2,7 @@
 export const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
 
 /** Bump when public brand assets change so browsers/SW drop stale copies. */
-export const ASSET_VERSION = "3";
+export const ASSET_VERSION = "4";
 
 export function withBasePath(path: string): string {
   const normalized = path.startsWith("/") ? path : `/${path}`;
