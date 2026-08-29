@@ -12,6 +12,7 @@ function isTypingTarget(target: EventTarget | null): boolean {
     element &&
       (element.tagName === "INPUT" ||
         element.tagName === "TEXTAREA" ||
+        element.tagName === "SELECT" ||
         element.isContentEditable)
   );
 }
@@ -31,6 +32,11 @@ export function ShortcutsProvider({ children }: { children: React.ReactNode }) {
 
       // Use unmodified, app-local keys instead of Cmd/Ctrl combinations that
       // collide with macOS, Windows, browsers, and assistive technologies.
+      // Bail out whenever a modifier is held so we never shadow a native
+      // browser/OS shortcut (e.g. Ctrl/Cmd+R for reload) that happens to
+      // share a letter with one of ours.
+      if (e.ctrlKey || e.metaKey || e.altKey) return;
+
       if (e.key === "?") {
         e.preventDefault();
         setOpen((v) => !v);

@@ -3,7 +3,30 @@ export const SITE_NAME = "Kit";
 export const SITE_AUTHOR = "Tim G";
 export const SITE_AUTHOR_URL = "https://t-g.pages.dev";
 
-/** Static-host CSP for the client-only app and its explicitly documented CDNs. */
+/**
+ * Static-host CSP for the client-only app and its explicitly documented CDNs.
+ *
+ * NOTE: this is delivered via a `<meta http-equiv="Content-Security-Policy">`
+ * tag (see app/layout.tsx) because the app is a static export with no server
+ * to set a real HTTP response header. Meta-tag CSP cannot enforce
+ * `frame-ancestors`, `sandbox`, or `report-uri`; clickjacking protection and
+ * other response-header-only hardening (X-Content-Type-Options,
+ * Referrer-Policy, Permissions-Policy) is instead configured at the hosting
+ * layer — see public/_headers (Cloudflare Pages).
+ *
+ * `script-src` still allows 'unsafe-inline' for the two static inline
+ * scripts we render (the pre-hydration theme script and the JSON-LD block);
+ * both come from trusted, repo-controlled content (never end-user input),
+ * so this is a defense-in-depth gap rather than a live vulnerability. Moving
+ * to per-page hash-based allow-listing (dropping 'unsafe-inline' entirely)
+ * is worth doing but needs to be verified against real browser CSP
+ * enforcement across every locale before shipping, since a wrong hash would
+ * silently break the theme script or the structured-data block.
+ *
+ * The pdf.js worker is self-hosted (see lib/pdf/pdfjs.ts), so
+ * cdn.jsdelivr.net is only needed for the ffmpeg.wasm core, which is not
+ * (yet) vendored locally due to its size.
+ */
 export const CONTENT_SECURITY_POLICY = [
   "default-src 'self'",
   "base-uri 'self'",
@@ -15,7 +38,7 @@ export const CONTENT_SECURITY_POLICY = [
   "font-src 'self' data:",
   "media-src 'self' blob:",
   "connect-src 'self' https://cdn.jsdelivr.net https://api.frankfurter.dev blob:",
-  "worker-src 'self' blob: https://cdn.jsdelivr.net",
+  "worker-src 'self' blob:",
 ].join("; ");
 
 /** Default social card. Always on the canonical host (no GitHub Pages /kit prefix). */

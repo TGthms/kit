@@ -32,8 +32,9 @@ const GPS_TAGS: Record<number, string> = {
 
 function readAscii(view: DataView, offset: number, length: number): string {
   let s = "";
-  for (let i = 0; i < length; i++) {
-    const c = view.getUint8(offset + i);
+  const end = Math.min(offset + length, view.byteLength);
+  for (let i = offset; i < end; i++) {
+    const c = view.getUint8(i);
     if (c === 0) break;
     s += String.fromCharCode(c);
   }
@@ -50,7 +51,13 @@ function formatValue(
   const sizeOf: Record<number, number> = { 1: 1, 2: 1, 3: 2, 4: 4, 5: 8, 9: 4, 10: 8 };
   const unit = sizeOf[type] ?? 1;
   const byteLen = unit * count;
+  // Malformed/malicious EXIF can claim a pointer or count that runs past
+  // the buffer; every read below must be bounds-checked so a crafted image
+  // can only ever fail to produce metadata, never throw an uncaught
+  // RangeError out of a binary parser running on untrusted file bytes.
+  if (byteLen > 4 && valueOffset + 4 > view.byteLength) return "";
   const dataOffset = byteLen <= 4 ? valueOffset : view.getUint32(valueOffset, little);
+  if (dataOffset < 0 || dataOffset > view.byteLength) return "";
 
   if (type === 2) return readAscii(view, dataOffset, count);
 

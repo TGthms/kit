@@ -63,19 +63,26 @@ export const useHistoryStore = create<HistoryState>()(
       enabled: false,
       setEnabled: (enabled) => set({ enabled }),
       add: (entry) =>
-        set((s) => ({
-          entries: [
-            sanitizeEntry({
-              id: crypto.randomUUID(),
-              timestamp: entry.timestamp ?? Date.now(),
-              toolId: entry.toolId,
-              summary: entry.summary,
-              status: entry.status,
-              options: entry.options,
-            }),
-            ...s.entries,
-          ].slice(0, 100),
-        })),
+        set((s) => {
+          // Enforce the privacy opt-in here, not just in the `useToolHistory`
+          // wrapper hook that currently happens to be the only caller — a
+          // future direct `add()` call must not be able to silently bypass
+          // "recording is off".
+          if (!s.enabled) return s;
+          return {
+            entries: [
+              sanitizeEntry({
+                id: crypto.randomUUID(),
+                timestamp: entry.timestamp ?? Date.now(),
+                toolId: entry.toolId,
+                summary: entry.summary,
+                status: entry.status,
+                options: entry.options,
+              }),
+              ...s.entries,
+            ].slice(0, 100),
+          };
+        }),
       clear: () => set({ entries: [] }),
     }),
     {

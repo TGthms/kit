@@ -33,10 +33,14 @@ function isIconOrManifest(url) {
 }
 
 function isStaticAsset(url) {
-  return (
-    url.pathname.match(/\.(js|css|woff2?)$/) ||
-    url.pathname.endsWith("/")
-  );
+  // Only true content-hashed build output (Next's /_next/static/*.js|css and
+  // self-hosted webfonts) is safe to treat as cache-first/immutable. Do NOT
+  // match on a trailing "/" here: with `trailingSlash: true` every page
+  // route also ends in "/", so that used to make this branch cache-first
+  // (i.e. "cache forever, never revalidate") for non-navigate requests to
+  // page routes too — e.g. <Link> prefetches — silently locking in stale
+  // page content until the SW's CACHE version is bumped by a deploy.
+  return /\.(js|css|woff2?)$/.test(url.pathname);
 }
 
 self.addEventListener("fetch", (event) => {
@@ -53,7 +57,7 @@ self.addEventListener("fetch", (event) => {
       fetch(req)
         .then((res) => {
           const copy = res.clone();
-          caches.open(CACHE).then((c) => c.put(req, copy));
+          event.waitUntil(caches.open(CACHE).then((c) => c.put(req, copy)));
           return res;
         })
         .catch(() => caches.match(req).then((r) => r || caches.match("./")))
@@ -68,7 +72,7 @@ self.addEventListener("fetch", (event) => {
         .then((res) => {
           if (res.ok) {
             const copy = res.clone();
-            caches.open(CACHE).then((c) => c.put(req, copy));
+            event.waitUntil(caches.open(CACHE).then((c) => c.put(req, copy)));
           }
           return res;
         })
@@ -77,7 +81,7 @@ self.addEventListener("fetch", (event) => {
     return;
   }
 
-  // JS/CSS: cache-first (hashed filenames from Next are immutable)
+  // JS/CSS/fonts: cache-first (hashed filenames from Next are immutable)
   if (isStaticAsset(url)) {
     event.respondWith(
       caches.match(req).then(
@@ -86,7 +90,7 @@ self.addEventListener("fetch", (event) => {
           fetch(req).then((res) => {
             if (res.ok) {
               const copy = res.clone();
-              caches.open(CACHE).then((c) => c.put(req, copy));
+              event.waitUntil(caches.open(CACHE).then((c) => c.put(req, copy)));
             }
             return res;
           })

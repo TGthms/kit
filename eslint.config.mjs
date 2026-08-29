@@ -18,6 +18,10 @@ const eslintConfig = [
       "out/**",
       "build/**",
       "next-env.d.ts",
+      // Vendored, unmodified third-party build output (see
+      // scripts/sync-vendor.mjs) — not our code, and it's minified so
+      // linting it is both meaningless and extremely slow.
+      "public/vendor/**",
     ],
   },
 ];

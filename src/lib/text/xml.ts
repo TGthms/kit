@@ -54,7 +54,22 @@ function parseNode(input: string, start: number): { node: XmlNode; next: number 
     return parseNode(input, end + 2);
   }
   if (input[i] === "!") {
-    const end = input.indexOf(">", i);
+    // A DOCTYPE with an internal subset (`<!DOCTYPE foo [ ... ]>`) can
+    // contain ">" characters inside the "[...]" part (e.g. after an
+    // <!ENTITY ...> declaration); naively stopping at the first ">" cuts
+    // the declaration off in the middle and misaligns everything parsed
+    // after it. Walk past a bracketed internal subset, if present, before
+    // looking for the declaration's real closing ">".
+    let bracketDepth = 0;
+    let end = -1;
+    for (let k = i; k < input.length; k++) {
+      if (input[k] === "[") bracketDepth++;
+      else if (input[k] === "]") bracketDepth = Math.max(0, bracketDepth - 1);
+      else if (input[k] === ">" && bracketDepth === 0) {
+        end = k;
+        break;
+      }
+    }
     if (end < 0) throw new Error("Unterminated declaration");
     return parseNode(input, end + 1);
   }

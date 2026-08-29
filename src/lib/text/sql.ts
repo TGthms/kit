@@ -84,6 +84,14 @@ export function formatSql(input: string): { ok: true; text: string } | { ok: fal
     if (c === "'" || c === '"' || c === "`") {
       let j = i + 1;
       while (j < src.length) {
+        // Standard SQL escapes a quote by doubling it (`''`); MySQL-style
+        // dialects also allow a backslash escape (`\'`). Recognize both so
+        // a string like 'it\'s a test' isn't cut short at the escaped
+        // quote, which would corrupt everything tokenized after it.
+        if (src[j] === "\\" && j + 1 < src.length) {
+          j += 2;
+          continue;
+        }
         if (src[j] === c && src[j + 1] === c) {
           j += 2;
           continue;
@@ -162,8 +170,12 @@ export function formatSql(input: string): { ok: true; text: string } | { ok: fal
       continue;
     }
     if (BREAK_BEFORE.has(word) && line.trim()) {
+      // JOIN-family clauses get a blank separator line before them so
+      // multi-join queries are easier to scan; other clause keywords
+      // (SELECT, WHERE, GROUP BY, ...) just start a fresh line.
       if (word === "JOIN" || word === "INNER" || word === "LEFT" || word === "RIGHT" || word === "FULL") {
         pushLine();
+        out.push("");
       } else {
         pushLine();
       }

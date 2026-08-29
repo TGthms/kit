@@ -8,12 +8,14 @@
   "packageManager": "npm@10.9.8",
   "scripts": {
     "dev": "next dev",
+    "prebuild": "node scripts/sync-vendor.mjs",
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "postinstall": "node scripts/sync-vendor.mjs"
   },
   "dependencies": {
     "@cantoo/pdf-lib": "^2.8.2",
@@ -31,7 +33,7 @@
     "jszip": "^3.10.1",
     "lucide-react": "^1.24.0",
     "marked": "^18.0.6",
-    "next": "15.5.20",
+    "next": "15.5.24",
     "next-intl": "^4.13.2",
     "next-themes": "^0.4.6",
     "papaparse": "^5.5.4",

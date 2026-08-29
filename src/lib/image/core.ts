@@ -1,3 +1,9 @@
+function get2dContext(canvas: HTMLCanvasElement): CanvasRenderingContext2D {
+  const ctx = canvas.getContext("2d");
+  if (!ctx) throw new Error("Could not create a 2D canvas context");
+  return ctx;
+}
+
 export type ImageMime = "image/jpeg" | "image/png" | "image/webp";
 
 export async function loadImageBitmap(file: Blob): Promise<ImageBitmap> {
@@ -33,7 +39,7 @@ export async function compressImage(
   const canvas = document.createElement("canvas");
   canvas.width = width;
   canvas.height = height;
-  const ctx = canvas.getContext("2d")!;
+  const ctx = get2dContext(canvas);
   ctx.drawImage(bmp, 0, 0, width, height);
   bmp.close();
   const mime = opts.mime || (file.type as ImageMime) || "image/jpeg";
@@ -41,10 +47,26 @@ export async function compressImage(
   return canvasToBlob(canvas, outType, outType === "image/png" ? undefined : opts.quality);
 }
 
+/**
+ * `width`/`height` of 0 mean "not specified, derive from the other
+ * dimension / original size" (the UI defaults the height field to 0 so
+ * "lock aspect ratio" can drive it). Anything else non-positive or
+ * non-finite is an actual bad input — e.g. a stray "-" typed into the
+ * number field — and should be rejected with a clear error rather than
+ * silently clamped down to a 1x1 output image.
+ */
 export async function resizeImage(
   file: Blob,
   opts: { width: number; height: number; lockAspect: boolean; mime?: string }
 ): Promise<Blob> {
+  for (const [label, value] of [
+    ["Width", opts.width],
+    ["Height", opts.height],
+  ] as const) {
+    if (value !== 0 && (!Number.isFinite(value) || value < 0)) {
+      throw new Error(`${label} must be a positive number.`);
+    }
+  }
   const bmp = await loadImageBitmap(file);
   let w = opts.width || bmp.width;
   let h = opts.height || bmp.height;
@@ -61,7 +83,7 @@ export async function resizeImage(
   const canvas = document.createElement("canvas");
   canvas.width = Math.max(1, w);
   canvas.height = Math.max(1, h);
-  canvas.getContext("2d")!.drawImage(bmp, 0, 0, canvas.width, canvas.height);
+  get2dContext(canvas).drawImage(bmp, 0, 0, canvas.width, canvas.height);
   bmp.close();
   const type = opts.mime || file.type || "image/png";
   return canvasToBlob(canvas, type, 0.92);
@@ -72,13 +94,26 @@ export async function cropImage(
   region: { x: number; y: number; w: number; h: number },
   mime?: string
 ): Promise<Blob> {
+  if (!Number.isFinite(region.w) || !Number.isFinite(region.h) || region.w <= 0 || region.h <= 0) {
+    throw new Error("Crop width and height must be positive numbers.");
+  }
   const bmp = await loadImageBitmap(file);
+  // Clamp the source rectangle to the bitmap's bounds: an out-of-range
+  // region (e.g. from a crop handle dragged past the image edge) would
+  // otherwise silently draw a blank/transparent area instead of failing
+  // loudly or clipping sensibly.
+  const sx = Math.max(0, Math.min(region.x, bmp.width));
+  const sy = Math.max(0, Math.min(region.y, bmp.height));
+  const sw = Math.max(0, Math.min(region.w, bmp.width - sx));
+  const sh = Math.max(0, Math.min(region.h, bmp.height - sy));
+  if (sw <= 0 || sh <= 0) {
+    bmp.close();
+    throw new Error("Crop region is outside the image.");
+  }
   const canvas = document.createElement("canvas");
-  canvas.width = Math.max(1, Math.round(region.w));
-  canvas.height = Math.max(1, Math.round(region.h));
-  canvas
-    .getContext("2d")!
-    .drawImage(bmp, region.x, region.y, region.w, region.h, 0, 0, canvas.width, canvas.height);
+  canvas.width = Math.max(1, Math.round(sw));
+  canvas.height = Math.max(1, Math.round(sh));
+  get2dContext(canvas).drawImage(bmp, sx, sy, sw, sh, 0, 0, canvas.width, canvas.height);
   bmp.close();
   return canvasToBlob(canvas, mime || file.type || "image/png", 0.92);
 }
@@ -88,13 +123,27 @@ export async function convertImage(file: Blob, mime: ImageMime, quality = 0.9): 
   const canvas = document.createElement("canvas");
   canvas.width = bmp.width;
   canvas.height = bmp.height;
-  canvas.getContext("2d")!.drawImage(bmp, 0, 0);
+  get2dContext(canvas).drawImage(bmp, 0, 0);
   bmp.close();
   return canvasToBlob(canvas, mime, mime === "image/png" ? undefined : quality);
 }
 
+/**
+ * Re-encoding via canvas is what actually strips EXIF/XMP metadata (canvas
+ * never preserves it), but it necessarily re-compresses the pixels too —
+ * there's no lossless "just delete the metadata bytes" path available from
+ * the browser canvas API. We default to PNG (lossless) rather than JPEG
+ * when the source `file.type` is empty/unrecognized (which can happen for
+ * files from some clipboard/drag sources) specifically so we never silently
+ * convert an unknown-type image with transparency into a lossy JPEG and
+ * drop its alpha channel.
+ */
 export async function stripMetadata(file: Blob): Promise<Blob> {
-  return convertImage(file, (file.type as ImageMime) || "image/jpeg", 0.92);
+  const mime: ImageMime =
+    file.type === "image/jpeg" || file.type === "image/png" || file.type === "image/webp"
+      ? file.type
+      : "image/png";
+  return convertImage(file, mime, 0.92);
 }
 
 export async function adjustImage(
@@ -105,7 +154,7 @@ export async function adjustImage(
   const canvas = document.createElement("canvas");
   canvas.width = bmp.width;
   canvas.height = bmp.height;
-  const ctx = canvas.getContext("2d")!;
+  const ctx = get2dContext(canvas);
   ctx.filter = `brightness(${opts.brightness}%) contrast(${opts.contrast}%) saturate(${opts.saturation}%)`;
   ctx.drawImage(bmp, 0, 0);
   bmp.close();
@@ -117,7 +166,7 @@ async function bitmapToBuffer(file: Blob) {
   const canvas = document.createElement("canvas");
   canvas.width = bmp.width;
   canvas.height = bmp.height;
-  const ctx = canvas.getContext("2d")!;
+  const ctx = get2dContext(canvas);
   ctx.drawImage(bmp, 0, 0);
   bmp.close();
   const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
@@ -128,7 +177,7 @@ function bufferToCanvas(buf: { data: Uint8ClampedArray; width: number; height: n
   const canvas = document.createElement("canvas");
   canvas.width = buf.width;
   canvas.height = buf.height;
-  const ctx = canvas.getContext("2d")!;
+  const ctx = get2dContext(canvas);
   const copy = new Uint8ClampedArray(buf.data.length);
   copy.set(buf.data);
   ctx.putImageData(new ImageData(copy, buf.width, buf.height), 0, 0);
@@ -181,7 +230,7 @@ export async function watermarkImage(
   const canvas = document.createElement("canvas");
   canvas.width = bmp.width;
   canvas.height = bmp.height;
-  const ctx = canvas.getContext("2d")!;
+  const ctx = get2dContext(canvas);
   ctx.drawImage(bmp, 0, 0);
   bmp.close();
   const size = Math.max(14, Math.round(Math.min(canvas.width, canvas.height) * 0.045));
@@ -220,7 +269,7 @@ export async function exportFavicons(
     const canvas = document.createElement("canvas");
     canvas.width = size;
     canvas.height = size;
-    const ctx = canvas.getContext("2d")!;
+    const ctx = get2dContext(canvas);
     ctx.imageSmoothingEnabled = true;
     ctx.imageSmoothingQuality = "high";
     ctx.drawImage(bmp, 0, 0, size, size);

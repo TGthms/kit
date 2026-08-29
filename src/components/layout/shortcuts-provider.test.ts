@@ -32,6 +32,22 @@ describe("ShortcutsProvider", () => {
     fireEvent.keyDown(window, { key: "k", metaKey: true });
     expect(document.activeElement).not.toBe(document.getElementById("kit-search"));
 
+    // Ctrl/Cmd+R is the browser's reload shortcut; it must never be
+    // hijacked into firing the app's Run action.
+    fireEvent.keyDown(window, { key: "r", ctrlKey: true });
+    expect(onRun).toHaveBeenCalledTimes(1);
+    fireEvent.keyDown(window, { key: "r", metaKey: true });
+    expect(onRun).toHaveBeenCalledTimes(1);
+
+    // Native <select> elements handle their own "type to select" behavior
+    // and must not be treated as global shortcut targets.
+    const select = document.createElement("select");
+    document.body.appendChild(select);
+    select.focus();
+    fireEvent.keyDown(select, { key: "r" });
+    expect(onRun).toHaveBeenCalledTimes(1);
+    select.remove();
+
     fireEvent.keyDown(window, { key: "?" });
     expect(screen.getByRole("dialog")).toBeInTheDocument();
     fireEvent.keyDown(window, { key: "Escape" });

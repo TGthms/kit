@@ -84,4 +84,34 @@ describe("parseImageMetadata", () => {
   it("returns empty for unknown bytes", () => {
     expect(parseImageMetadata(new Uint8Array([1, 2, 3, 4]))).toEqual([]);
   });
+
+  it("does not throw on a malformed EXIF entry with an out-of-bounds pointer/count", () => {
+    // Same TIFF shell as above, but the DateTime entry claims a count of
+    // 0xFFFF (so it's treated as an indirect pointer) whose offset points
+    // far past the end of the buffer. A naive parser would call
+    // `DataView.getUint32`/`getUint8` out of bounds and throw a RangeError.
+    const tiff: number[] = [
+      0x49, 0x49,
+      ...u16(0x002a),
+      ...u32(8),
+      ...u16(1),
+      ...u16(0x0132), // DateTime
+      ...u16(2), // ASCII
+      ...u32(0xffff), // huge count -> byteLen > 4 -> treated as a pointer
+      ...u32(0x7fffffff), // offset wildly out of bounds
+      ...u32(0),
+    ];
+    const exifHeader = [0x45, 0x78, 0x69, 0x66, 0x00, 0x00];
+    const payload = [...exifHeader, ...tiff];
+    const app1Len = payload.length + 2;
+    const bytes = Uint8Array.from([
+      0xff, 0xd8,
+      0xff, 0xe1,
+      (app1Len >> 8) & 0xff,
+      app1Len & 0xff,
+      ...payload,
+      0xff, 0xd9,
+    ]);
+    expect(() => parseImageMetadata(bytes)).not.toThrow();
+  });
 });

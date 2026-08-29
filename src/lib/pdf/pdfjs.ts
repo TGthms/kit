@@ -1,12 +1,17 @@
 import * as pdfjs from "pdfjs-dist";
 import { forEachJobIndex } from "@/lib/jobs/batch";
+import { withBasePath } from "@/lib/base-path";
 
 let workerReady = false;
 
 export function ensurePdfWorker() {
   if (workerReady) return;
-  // Use CDN worker compatible with pdfjs-dist version for static export simplicity
-  pdfjs.GlobalWorkerOptions.workerSrc = `https://cdn.jsdelivr.net/npm/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
+  // Self-hosted, not loaded from a third-party CDN at runtime: this worker
+  // parses untrusted, user-supplied PDF files, so we don't want its code to
+  // depend on a live third-party origin we don't control. The file is kept
+  // in sync with the installed pdfjs-dist version by `scripts/sync-vendor.mjs`
+  // (wired into `postinstall`/`prebuild`) rather than fetched at request time.
+  pdfjs.GlobalWorkerOptions.workerSrc = withBasePath("/vendor/pdfjs/pdf.worker.min.mjs");
   workerReady = true;
 }
 
@@ -22,17 +27,20 @@ export async function renderPdfThumbnail(
 ): Promise<string> {
   ensurePdfWorker();
   const { doc, loadingTask } = await openPdfDocument(data);
-  const page = await doc.getPage(pageNum);
-  const viewport = page.getViewport({ scale });
-  const canvas = document.createElement("canvas");
-  canvas.width = viewport.width;
-  canvas.height = viewport.height;
-  const ctx = canvas.getContext("2d")!;
-  await page.render({ canvasContext: ctx, viewport, canvas }).promise;
-  const url = canvas.toDataURL("image/jpeg", 0.7);
-  await doc.cleanup();
-  await loadingTask.destroy();
-  return url;
+  try {
+    const page = await doc.getPage(pageNum);
+    const viewport = page.getViewport({ scale });
+    const canvas = document.createElement("canvas");
+    canvas.width = viewport.width;
+    canvas.height = viewport.height;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) throw new Error("Could not create a 2D canvas context");
+    await page.render({ canvasContext: ctx, viewport, canvas }).promise;
+    return canvas.toDataURL("image/jpeg", 0.7);
+  } finally {
+    await doc.cleanup();
+    await loadingTask.destroy();
+  }
 }
 
 export async function renderPdfPagesToBlobs(
@@ -59,7 +67,8 @@ export async function renderPdfPagesToBlobs(
       const canvas = document.createElement("canvas");
       canvas.width = viewport.width;
       canvas.height = viewport.height;
-      const ctx = canvas.getContext("2d")!;
+      const ctx = canvas.getContext("2d");
+      if (!ctx) throw new Error("Could not create a 2D canvas context");
       await page.render({ canvasContext: ctx, viewport, canvas }).promise;
       const blob: Blob = await new Promise((resolve, reject) =>
         canvas.toBlob((b) => (b ? resolve(b) : reject(new Error("toBlob failed"))), mime, quality)
@@ -77,18 +86,34 @@ export async function renderPdfPagesToBlobs(
 export async function extractPdfText(data: ArrayBuffer): Promise<string> {
   ensurePdfWorker();
   const { doc, loadingTask } = await openPdfDocument(data);
-  const parts: string[] = [];
-  for (let i = 1; i <= doc.numPages; i++) {
-    const page = await doc.getPage(i);
-    const content = await page.getTextContent();
-    const text = content.items
-      .map((it) => ("str" in it ? it.str : ""))
-      .join(" ");
-    parts.push(text);
+  try {
+    const parts: string[] = [];
+    for (let i = 1; i <= doc.numPages; i++) {
+      const page = await doc.getPage(i);
+      const content = await page.getTextContent();
+      // pdf.js reports each text run with its own transform matrix but does
+      // not group runs into visual lines, so we approximate line breaks by
+      // watching for a drop in the vertical (y) position between runs.
+      let text = "";
+      let lastY: number | null = null;
+      for (const it of content.items) {
+        if (!("str" in it)) continue;
+        const y = "transform" in it ? (it.transform?.[5] as number | undefined) ?? null : null;
+        if (lastY !== null && y !== null && Math.abs(y - lastY) > 1) {
+          text += "\n";
+        } else if (text) {
+          text += " ";
+        }
+        text += it.str;
+        lastY = y;
+      }
+      parts.push(text);
+    }
+    return parts.join("\n\n");
+  } finally {
+    await doc.cleanup();
+    await loadingTask.destroy();
   }
-  await doc.cleanup();
-  await loadingTask.destroy();
-  return parts.join("\n\n");
 }
 
 export async function compressPdfLossy(
@@ -100,29 +125,33 @@ export async function compressPdfLossy(
   ensurePdfWorker();
   const { PDFDocument } = await import("pdf-lib");
   const { doc: src, loadingTask } = await openPdfDocument(data);
-  const out = await PDFDocument.create();
+  try {
+    const out = await PDFDocument.create();
 
-  await forEachJobIndex(
-    src.numPages,
-    async (i) => {
-      const page = await src.getPage(i);
-      const viewport = page.getViewport({ scale });
-      const canvas = document.createElement("canvas");
-      canvas.width = viewport.width;
-      canvas.height = viewport.height;
-      const ctx = canvas.getContext("2d")!;
-      await page.render({ canvasContext: ctx, viewport, canvas }).promise;
-      const blob: Blob = await new Promise((resolve, reject) =>
-        canvas.toBlob((b) => (b ? resolve(b) : reject(new Error("blob failed"))), "image/jpeg", quality)
-      );
-      const bytes = new Uint8Array(await blob.arrayBuffer());
-      const img = await out.embedJpg(bytes);
-      const p = out.addPage([viewport.width, viewport.height]);
-      p.drawImage(img, { x: 0, y: 0, width: viewport.width, height: viewport.height });
-    },
-    { signal: opts?.signal, onProgress: opts?.onProgress }
-  );
-  await src.cleanup();
-  await loadingTask.destroy();
-  return out.save();
+    await forEachJobIndex(
+      src.numPages,
+      async (i) => {
+        const page = await src.getPage(i);
+        const viewport = page.getViewport({ scale });
+        const canvas = document.createElement("canvas");
+        canvas.width = viewport.width;
+        canvas.height = viewport.height;
+        const ctx = canvas.getContext("2d");
+        if (!ctx) throw new Error("Could not create a 2D canvas context");
+        await page.render({ canvasContext: ctx, viewport, canvas }).promise;
+        const blob: Blob = await new Promise((resolve, reject) =>
+          canvas.toBlob((b) => (b ? resolve(b) : reject(new Error("blob failed"))), "image/jpeg", quality)
+        );
+        const bytes = new Uint8Array(await blob.arrayBuffer());
+        const img = await out.embedJpg(bytes);
+        const p = out.addPage([viewport.width, viewport.height]);
+        p.drawImage(img, { x: 0, y: 0, width: viewport.width, height: viewport.height });
+      },
+      { signal: opts?.signal, onProgress: opts?.onProgress }
+    );
+    return await out.save();
+  } finally {
+    await src.cleanup();
+    await loadingTask.destroy();
+  }
 }

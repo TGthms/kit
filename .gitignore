@@ -43,3 +43,8 @@ next-env.d.ts
 # python (i18n emit scripts)
 __pycache__/
 *.py[cod]
+
+# vendored build output — regenerated from node_modules by
+# scripts/sync-vendor.mjs (runs via postinstall/prebuild), not hand-written
+# source, so it doesn't belong in version control.
+/public/vendor/

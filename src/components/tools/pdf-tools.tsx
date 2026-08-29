@@ -15,7 +15,7 @@ import JSZip from "jszip";
 import { Progress } from "@/components/ui/progress";
 import { runSequentialBatch, stemmedName } from "@/lib/jobs/batch";
 import { ActionBar, ToolLimits, ToolShell, useToolHistory, loadPdfjs } from "./shared";
-import { mergePdfs, splitPdf, organizePdf, watermarkPdf, redactPdf, getPdfPageCount } from "@/lib/pdf/core";
+import { mergePdfs, splitPdf, organizePdf, watermarkPdf, coverPdfContent, getPdfPageCount } from "@/lib/pdf/core";
 
 
 export function PdfMerge() {
@@ -404,8 +404,8 @@ export function PdfRedact() {
     if (!files[0]) return;
     setLoading(true);
     try {
-      // Default center band redaction box in PDF points (visual cover)
-      const out = await redactPdf(await files[0].file.arrayBuffer(), [
+      // Default center band cover box in PDF points (visual cover only)
+      const out = await coverPdfContent(await files[0].file.arrayBuffer(), [
         { page: Math.max(0, page - 1), x: 72, y: 400, w: 400, h: 40 },
       ]);
       downloadBlob(bytesToBlob(out, "application/pdf"), "redacted.pdf");

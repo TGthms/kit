@@ -1,0 +1,14 @@
+# Cloudflare Pages custom response headers.
+# https://developers.cloudflare.com/pages/configuration/headers/
+#
+# The app's Content-Security-Policy is set via a <meta> tag (see
+# src/app/layout.tsx and src/lib/seo/site.ts) because this is a static
+# export with no server. Meta-tag CSP can't express frame-ancestors,
+# sandbox, or report-uri, and can't set headers that aren't CSP at all
+# (X-Content-Type-Options, Referrer-Policy, Permissions-Policy). Those are
+# set here instead, at the hosting layer.
+/*
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), interest-cohort=()

@@ -35,7 +35,11 @@ export function SiteJsonLd({
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
+      // Escape "<" so a value containing "</script>" (or any other tag)
+      // can never break out of this script element. All current inputs are
+      // trusted, repo-controlled i18n strings, but this keeps the pattern
+      // safe by construction rather than by convention.
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(data).replace(/</g, "\\u003c") }}
     />
   );
 }

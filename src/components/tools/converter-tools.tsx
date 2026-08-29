@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { ArrowLeftRight, Check, RefreshCw, Search } from "lucide-react";
 import { toast } from "sonner";
@@ -595,12 +595,30 @@ export function CurrencyConverter({ onBack, namespace = "tools.everyday-converte
   }, [amount, base, match, quote, rates]);
   const effectiveRate = match ? (match.inverted ? 1 / match.rate : match.rate) : base === quote ? 1 : null;
 
+  const lastRefreshToken = useRef(refreshToken);
+
   useEffect(() => {
     let active = true;
     const cached = readCurrencyCache();
     setRates(cached);
     setError("");
     if (base === quote) {
+      setLoading(false);
+      return () => {
+        active = false;
+      };
+    }
+    // Skip the network round-trip when we already have a fresh cached rate
+    // for this exact pair: switching between previously-viewed currencies
+    // shouldn't re-hit the API every time. The explicit "Refresh rates"
+    // button bumps `refreshToken`, which always forces a re-fetch even if
+    // the cache looks fresh — but only on the render where it actually
+    // changed, not on every later base/quote switch.
+    const forced = refreshToken !== lastRefreshToken.current;
+    lastRefreshToken.current = refreshToken;
+    const existing = findCachedRate(cached, base, quote);
+    if (!forced && existing && !isCachedRateStale(existing.record)) {
+      setUpdatedAt(existing.record.fetchedAt);
       setLoading(false);
       return () => {
         active = false;

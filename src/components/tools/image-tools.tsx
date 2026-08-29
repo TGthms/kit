@@ -126,11 +126,11 @@ export function ImageResize() {
       <div className="grid gap-4 sm:grid-cols-3">
         <div className="space-y-2">
           <Label>{tc("width")}</Label>
-          <Input type="number" value={width} onChange={(e) => setWidth(Number(e.target.value) || 0)} />
+          <Input type="number" min={0} value={width} onChange={(e) => setWidth(Number(e.target.value) || 0)} />
         </div>
         <div className="space-y-2">
           <Label>{tc("height")}</Label>
-          <Input type="number" value={height} onChange={(e) => setHeight(Number(e.target.value) || 0)} />
+          <Input type="number" min={0} value={height} onChange={(e) => setHeight(Number(e.target.value) || 0)} />
         </div>
         <div className="flex items-end gap-2 pb-2">
           <Switch checked={lock} onCheckedChange={setLock} id="lock" />
@@ -178,6 +178,7 @@ export function ImageCrop() {
             <Label>{k.toUpperCase()}</Label>
             <Input
               type="number"
+              min={k === "w" || k === "h" ? 1 : 0}
               value={{ x, y, w, h }[k]}
               onChange={(e) => {
                 const n = Number(e.target.value) || 0;

@@ -30,6 +30,12 @@ describe("XML ↔ JSON", () => {
     expect(asXml.ok).toBe(true);
     if (asXml.ok) expect(asXml.text).toContain("<hello>kit</hello>");
   });
+
+  it("parses a DOCTYPE with an internal subset without corrupting the rest of the document", () => {
+    const xml = `<!DOCTYPE note [ <!ENTITY foo "bar"> ]><note><to>Tim</to></note>`;
+    const json = xmlToJson(xml) as { to: string };
+    expect(json.to).toBe("Tim");
+  });
 });
 
 describe("SQL format", () => {
@@ -48,6 +54,14 @@ describe("SQL format", () => {
     if (withComments.ok) {
       expect(withComments.text).toContain("-- keep this");
       expect(withComments.text).toContain("/* keep that */");
+    }
+
+    // MySQL-style backslash-escaped quote inside a string literal must not
+    // truncate the string early.
+    const withEscape = formatSql("select 'it\\'s a test' from users");
+    expect(withEscape.ok).toBe(true);
+    if (withEscape.ok) {
+      expect(withEscape.text).toContain("'it\\'s a test'");
     }
   });
 });

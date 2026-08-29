@@ -1,4 +1,5 @@
-import { PDFDocument, degrees, rgb, StandardFonts } from "pdf-lib";
+import { PDFDocument, PDFName, degrees, rgb, StandardFonts } from "pdf-lib";
+import { isPdfEncrypted } from "./protect";
 
 export type PdfInput = ArrayBuffer | Uint8Array;
 
@@ -6,9 +7,26 @@ export function asPdfBytes(buf: PdfInput): Uint8Array {
   return buf instanceof Uint8Array ? buf : new Uint8Array(buf);
 }
 
+/**
+ * Every function below loads PDFs with plain `pdf-lib` (via
+ * `{ ignoreEncryption: true }`), which — despite the option's name — cannot
+ * actually decrypt an encrypted document's content streams; it only skips
+ * the up-front password check. Feeding it a genuinely encrypted PDF
+ * produces confusing low-level parser errors or corrupted output instead of
+ * a clear message. Locking/unlocking uses `@cantoo/pdf-lib`
+ * (see protect.ts), which does support encryption, so we call this first to
+ * fail fast with an actionable error that points the user there.
+ */
+async function assertNotEncrypted(buf: PdfInput): Promise<void> {
+  if (await isPdfEncrypted(asPdfBytes(buf))) {
+    throw new Error("This PDF is password-protected. Unlock it first, then try again.");
+  }
+}
+
 export async function mergePdfs(files: ArrayBuffer[]): Promise<Uint8Array> {
   const out = await PDFDocument.create();
   for (const buf of files) {
+    await assertNotEncrypted(buf);
     const doc = await PDFDocument.load(buf, { ignoreEncryption: true });
     const pages = await out.copyPages(doc, doc.getPageIndices());
     pages.forEach((p) => out.addPage(p));
@@ -75,6 +93,7 @@ export function parsePageRange(range: string, pageCount: number): number[] {
 }
 
 export async function splitPdf(buf: PdfInput, range: string): Promise<Uint8Array> {
+  await assertNotEncrypted(buf);
   const src = await PDFDocument.load(asPdfBytes(buf), { ignoreEncryption: true });
   const indices = parsePageRange(range, src.getPageCount());
   if (!indices.length) throw new Error("No valid pages in range");
@@ -90,6 +109,7 @@ export async function organizePdf(
   rotations: Record<number, number>,
   deleted: Set<number>
 ): Promise<Uint8Array> {
+  await assertNotEncrypted(buf);
   const src = await PDFDocument.load(buf, { ignoreEncryption: true });
   const out = await PDFDocument.create();
   const kept = order.filter((i) => !deleted.has(i));
@@ -109,6 +129,7 @@ export async function watermarkPdf(
   position: "header" | "footer" | "center",
   opacity: number
 ): Promise<Uint8Array> {
+  await assertNotEncrypted(buf);
   const doc = await PDFDocument.load(asPdfBytes(buf), { ignoreEncryption: true });
   const font = needsBrowserUnicodeFont(text) ? null : await doc.embedFont(StandardFonts.Helvetica);
   const pages = doc.getPages();
@@ -150,10 +171,26 @@ export async function watermarkPdf(
   return doc.save();
 }
 
-export async function redactPdf(
+/**
+ * Draws opaque black boxes over the given regions. This is a VISUAL COVER
+ * ONLY — it does not remove, rewrite, or touch the underlying text/image
+ * objects in the page's content stream, which remain fully present and can
+ * still be recovered (e.g. by selecting/copying "through" the box, deleting
+ * the box in a PDF editor, or running text extraction). True redaction
+ * would require parsing and rewriting each page's content stream to delete
+ * the objects under the covered region, which pdf-lib does not support and
+ * which this function intentionally does not attempt.
+ *
+ * Named `coverPdfContent` (not `redactPdf`) specifically so this limitation
+ * is obvious from the call site, matching what the UI already discloses to
+ * users (see messages/*.json → tools.pdf-redact.note). Do not rename this
+ * back to "redact" without actually implementing content removal.
+ */
+export async function coverPdfContent(
   buf: ArrayBuffer,
   boxes: Array<{ page: number; x: number; y: number; w: number; h: number }>
 ): Promise<Uint8Array> {
+  await assertNotEncrypted(buf);
   const doc = await PDFDocument.load(buf, { ignoreEncryption: true });
   const pages = doc.getPages();
   for (const box of boxes) {
@@ -171,6 +208,7 @@ export async function redactPdf(
 }
 
 export async function getPdfPageCount(buf: PdfInput): Promise<number> {
+  await assertNotEncrypted(buf);
   const doc = await PDFDocument.load(asPdfBytes(buf), { ignoreEncryption: true });
   return doc.getPageCount();
 }
@@ -198,6 +236,7 @@ export async function numberPdfPages(
   const template = opts.template || "{page} / {pages}";
   const position = opts.position || "footer-center";
   const start = opts.start ?? 1;
+  await assertNotEncrypted(buf);
   const doc = await PDFDocument.load(asPdfBytes(buf), { ignoreEncryption: true });
   const font = needsBrowserUnicodeFont(template) ? null : await doc.embedFont(StandardFonts.Helvetica);
   const pages = doc.getPages();
@@ -298,6 +337,7 @@ export async function imagesToPdf(
 export async function flattenPdfForms(
   buf: PdfInput
 ): Promise<{ bytes: Uint8Array; fieldCount: number }> {
+  await assertNotEncrypted(buf);
   const doc = await PDFDocument.load(asPdfBytes(buf), { ignoreEncryption: true });
   const form = doc.getForm();
   const fieldCount = form.getFields().length;
@@ -315,6 +355,7 @@ export type PdfMeta = {
 };
 
 export async function getPdfMetadata(buf: PdfInput): Promise<PdfMeta> {
+  await assertNotEncrypted(buf);
   const doc = await PDFDocument.load(asPdfBytes(buf), {
     ignoreEncryption: true,
     updateMetadata: false,
@@ -330,6 +371,7 @@ export async function getPdfMetadata(buf: PdfInput): Promise<PdfMeta> {
 }
 
 export async function setPdfMetadata(buf: PdfInput, meta: Partial<PdfMeta>): Promise<Uint8Array> {
+  await assertNotEncrypted(buf);
   const doc = await PDFDocument.load(asPdfBytes(buf), { ignoreEncryption: true });
   if (meta.title !== undefined) doc.setTitle(meta.title);
   if (meta.author !== undefined) doc.setAuthor(meta.author);
@@ -353,6 +395,7 @@ export async function stampPdfSignature(
   where: "all" | number = "all"
 ): Promise<Uint8Array> {
   if (!text.trim()) throw new Error("Signature is empty");
+  await assertNotEncrypted(buf);
   const doc = await PDFDocument.load(asPdfBytes(buf), { ignoreEncryption: true });
   const font = needsBrowserUnicodeFont(text) ? null : await doc.embedFont(StandardFonts.HelveticaOblique);
   const pages = doc.getPages();
@@ -386,6 +429,7 @@ export async function stampPdfSignature(
 }
 
 export async function stripPdfMetadata(buf: PdfInput): Promise<Uint8Array> {
+  await assertNotEncrypted(buf);
   const doc = await PDFDocument.load(asPdfBytes(buf), { ignoreEncryption: true });
   doc.setTitle("");
   doc.setAuthor("");
@@ -393,5 +437,14 @@ export async function stripPdfMetadata(buf: PdfInput): Promise<Uint8Array> {
   doc.setKeywords([]);
   doc.setCreator("");
   doc.setProducer("Kit");
+  // The standard Info-dict fields above aren't the only place metadata can
+  // live: reset the dates (they otherwise keep leaking the original
+  // authoring time) and drop any XMP metadata stream, which can duplicate
+  // author/title/timestamps outside the Info dict and survive the calls
+  // above untouched.
+  const now = new Date();
+  doc.setCreationDate(now);
+  doc.setModificationDate(now);
+  doc.catalog.delete(PDFName.of("Metadata"));
   return doc.save();
 }
