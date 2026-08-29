@@ -24,7 +24,7 @@ import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/ca
 import { PageHeader } from "@/components/layout/page-header";
 import { useFavoritesStore } from "@/stores/favorites-store";
 import { cn } from "@/lib/utils";
-import { getGreetingPeriod, getGreetingVariant, getHomeGreetingSelection, type GreetingPeriod } from "@/lib/home/greeting";
+import { getGreetingPeriod, getGreetingSessionSeed, getGreetingVariant, getHomeGreetingSelection, type GreetingCategory, type GreetingPeriod } from "@/lib/home/greeting";
 
 const categoryMeta: Record<
   ToolCategory,
@@ -157,21 +157,27 @@ function HomePageInner() {
   const searchParams = useSearchParams();
   const selectedCat = parseCategoryParam(searchParams.get("c"));
   const [q, setQ] = useState("");
-  const [greeting, setGreeting] = useState<{ period: GreetingPeriod; day: string; variant: number; greetingKey: string; subtitleKey: string; occasionKey?: string } | null>(null);
+  const [greeting, setGreeting] = useState<{ period: GreetingPeriod; day: string; variant: number; greetingKey: string; subtitleKey: string; occasionKey?: string; category: GreetingCategory } | null>(null);
 
   useEffect(() => {
+    const sessionSeed = getGreetingSessionSeed();
+    let timeout: number;
     const updateGreeting = () => {
       const now = new Date();
-      const entropy = typeof crypto !== "undefined" && "getRandomValues" in crypto
-        ? crypto.getRandomValues(new Uint32Array(1))[0] ?? 0
-        : Math.floor(Math.random() * 32);
-      const variant = getGreetingVariant(now, 32, entropy);
+      const variant = getGreetingVariant(now, 32, sessionSeed);
       const selection = getHomeGreetingSelection(now, locale, variant);
-      setGreeting({ period: getGreetingPeriod(now), day: selection.day, variant, greetingKey: selection.greetingKey, subtitleKey: selection.subtitleKey, occasionKey: selection.occasionKey });
+      setGreeting({ period: getGreetingPeriod(now), day: selection.day, variant, greetingKey: selection.greetingKey, subtitleKey: selection.subtitleKey, occasionKey: selection.occasionKey, category: selection.category });
+      const next = new Date(now);
+      const hour = now.getHours();
+      if (hour < 5) next.setHours(5, 0, 0, 0);
+      else if (hour < 12) next.setHours(12, 0, 0, 0);
+      else if (hour < 17) next.setHours(17, 0, 0, 0);
+      else if (hour < 22) next.setHours(22, 0, 0, 0);
+      else { next.setDate(next.getDate() + 1); next.setHours(5, 0, 0, 0); }
+      timeout = window.setTimeout(updateGreeting, Math.max(1000, next.getTime() - now.getTime() + 100));
     };
     updateGreeting();
-    const interval = window.setInterval(updateGreeting, 60_000);
-    return () => window.clearInterval(interval);
+    return () => window.clearTimeout(timeout);
   }, [locale]);
 
   const favIds = useFavoritesStore((s) => s.ids);
