@@ -24,7 +24,7 @@ import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/ca
 import { PageHeader } from "@/components/layout/page-header";
 import { useFavoritesStore } from "@/stores/favorites-store";
 import { cn } from "@/lib/utils";
-import { getGreetingPeriod, getGreetingSessionSeed, getGreetingVariant, getHomeGreetingSelection, type GreetingCategory, type GreetingPeriod } from "@/lib/home/greeting";
+import { getGreetingPeriod, getGreetingVariant, getGreetingVisitSeed, getHomeGreetingSelection, type GreetingCategory, type GreetingPeriod } from "@/lib/home/greeting";
 
 const categoryMeta: Record<
   ToolCategory,
@@ -160,11 +160,11 @@ function HomePageInner() {
   const [greeting, setGreeting] = useState<{ period: GreetingPeriod; day: string; variant: number; greetingKey: string; subtitleKey: string; occasionKey?: string; category: GreetingCategory } | null>(null);
 
   useEffect(() => {
-    const sessionSeed = getGreetingSessionSeed();
+    const visitSeed = getGreetingVisitSeed();
     let timeout: number;
     const updateGreeting = () => {
       const now = new Date();
-      const variant = getGreetingVariant(now, 32, sessionSeed);
+      const variant = getGreetingVariant(now, 32, visitSeed);
       const selection = getHomeGreetingSelection(now, locale, variant);
       setGreeting({ period: getGreetingPeriod(now), day: selection.day, variant, greetingKey: selection.greetingKey, subtitleKey: selection.subtitleKey, occasionKey: selection.occasionKey, category: selection.category });
       const next = new Date(now);

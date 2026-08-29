@@ -9,8 +9,6 @@ export type HomeGreetingSelection = {
   category: GreetingCategory;
 };
 
-const SESSION_SEED_KEY = "kit:greeting-session-seed";
-
 export function getGreetingPeriod(date: Date): GreetingPeriod {
   const hour = date.getHours();
   if (hour >= 5 && hour < 12) return "morning";
@@ -23,17 +21,13 @@ export function getGreetingDay(date: Date, locale: string): string {
   return new Intl.DateTimeFormat(locale, { weekday: "long" }).format(date);
 }
 
-/** Returns a session-stable seed and gracefully handles private-mode storage restrictions. */
-export function getGreetingSessionSeed(): number {
+/** Returns a fresh visit seed and gracefully handles private-mode API restrictions. */
+export function getGreetingVisitSeed(): number {
   if (typeof window === "undefined") return 0;
   try {
-    const existing = Number(window.sessionStorage.getItem(SESSION_SEED_KEY));
-    if (Number.isSafeInteger(existing)) return Math.abs(existing);
     const values = new Uint32Array(1);
     window.crypto?.getRandomValues(values);
-    const seed = values[0] ?? 0;
-    window.sessionStorage.setItem(SESSION_SEED_KEY, String(seed));
-    return seed;
+    return values[0] ?? 0;
   } catch {
     return 0;
   }

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { getGreetingDay, getGreetingPeriod, getGreetingSessionSeed, getGreetingVariant, getHomeGreetingSelection } from "./greeting";
+import { getGreetingDay, getGreetingPeriod, getGreetingVariant, getGreetingVisitSeed, getHomeGreetingSelection } from "./greeting";
 
 describe("home greeting", () => {
   it("selects a friendly time-of-day period", () => {
@@ -50,7 +50,7 @@ describe("home greeting", () => {
     expect(getHomeGreetingSelection(saturday, "en-US", 0)).toMatchObject({ greetingKey: "greeting.weekend", category: "weekend" });
     expect(getGreetingVariant(new Date(2026, 7, 25, 10), 32, 42)).toBe(getGreetingVariant(new Date(2026, 7, 25, 11), 32, 42));
     expect(getGreetingVariant(new Date(2026, 7, 25, 10), 32, 42)).not.toBe(getGreetingVariant(new Date(2026, 7, 25, 10), 32, 43));
-    expect(getGreetingSessionSeed()).toBe(0);
+    expect(getGreetingVisitSeed()).toBe(0);
   });
 
   it("gives every Christian observance its own translation key", () => {
