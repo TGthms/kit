@@ -32,10 +32,35 @@ export function Providers({ children }: { children: React.ReactNode }) {
       disableTransitionOnChange
     >
       <ThemePreferenceSync />
+      <ThemeColorSync />
       {children}
       <Toaster richColors position="top-center" closeButton />
     </ThemeProvider>
   );
+}
+
+// Matches `--background` in globals.css (light/dark). Keep in sync with the
+// inline pre-hydration script in src/app/layout.tsx, which sets the same
+// values before first paint so the PWA/browser chrome color never flashes
+// the wrong mode.
+const THEME_COLOR = { light: "#f5f5f7", dark: "#000000" };
+
+/**
+ * Keeps <meta name="theme-color"> aligned with the actually-resolved theme
+ * (which can be a manual override, not just the OS preference) so the
+ * installed PWA's title/status bar always matches the app's own background
+ * instead of a mismatched static color.
+ */
+function ThemeColorSync() {
+  const { resolvedTheme } = useTheme();
+
+  useEffect(() => {
+    if (resolvedTheme !== "light" && resolvedTheme !== "dark") return;
+    const meta = document.querySelector('meta[name="theme-color"]');
+    meta?.setAttribute("content", THEME_COLOR[resolvedTheme]);
+  }, [resolvedTheme]);
+
+  return null;
 }
 
 function ThemePreferenceSync() {

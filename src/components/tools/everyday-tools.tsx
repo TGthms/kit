@@ -14,6 +14,8 @@ import {
   WalletCards,
 } from "lucide-react";
 import { toast } from "sonner";
+import NumberFlow from "@number-flow/react";
+import { AnimatedClock } from "@/components/shared/animated-clock";
 import { FileDropzone, type FileItem } from "@/components/shared/file-dropzone";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -105,7 +107,7 @@ function parseLocalDate(value: string) {
   return new Date(`${value}T12:00:00`);
 }
 
-function formatDuration(milliseconds: number, showHours = true) {
+function durationParts(milliseconds: number) {
   const totalCentiseconds = Math.floor(Math.max(0, milliseconds) / 10);
   const centiseconds = totalCentiseconds % 100;
   const totalSeconds = Math.floor(totalCentiseconds / 100);
@@ -113,14 +115,24 @@ function formatDuration(milliseconds: number, showHours = true) {
   const totalMinutes = Math.floor(totalSeconds / 60);
   const minutes = totalMinutes % 60;
   const hours = Math.floor(totalMinutes / 60);
+  return { hours, minutes, seconds, centiseconds };
+}
+
+function formatDuration(milliseconds: number, showHours = true) {
+  const { hours, minutes, seconds, centiseconds } = durationParts(milliseconds);
   return `${showHours ? `${String(hours).padStart(2, "0")}:` : ""}${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}.${String(centiseconds).padStart(2, "0")}`;
 }
 
-function formatClock(milliseconds: number) {
+function clockParts(milliseconds: number) {
   const totalSeconds = Math.max(0, Math.ceil(milliseconds / 1000));
   const seconds = totalSeconds % 60;
   const minutes = Math.floor(totalSeconds / 60) % 60;
   const hours = Math.floor(totalSeconds / 3600);
+  return { hours, minutes, seconds };
+}
+
+function formatClock(milliseconds: number) {
+  const { hours, minutes, seconds } = clockParts(milliseconds);
   return `${String(hours).padStart(2, "0")}:${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
 }
 
@@ -254,7 +266,13 @@ export function TimezoneConverter() {
                 <CardContent className="p-4">
                   <div className="flex items-center justify-between"><span className="rounded-lg bg-secondary px-2 py-1 text-xs font-semibold">{city.emoji}</span><span className="text-xs text-muted-foreground">UTC {sign}{Math.floor(absOffset / 60)}:{String(absOffset % 60).padStart(2, "0")}</span></div>
                   <p className="mt-3 font-medium">{text(t, city.key, city.name)}</p>
-                  <p className="mt-1 font-mono text-xl font-semibold">{String(parts.hour).padStart(2, "0")}:{String(parts.minute).padStart(2, "0")}:{String(parts.second).padStart(2, "0")}</p>
+                  <AnimatedClock
+                    hours={parts.hour}
+                    minutes={parts.minute}
+                    seconds={parts.second}
+                    label={`${String(parts.hour).padStart(2, "0")}:${String(parts.minute).padStart(2, "0")}:${String(parts.second).padStart(2, "0")}`}
+                    className="mt-1 justify-start font-mono text-xl font-semibold"
+                  />
                   <p className="mt-1 text-xs text-muted-foreground">{formatTimeZone(now, city.zone, { dateStyle: "medium", locale })}</p>
                 </CardContent>
               </Card>
@@ -377,6 +395,8 @@ export function StopwatchTimer() {
   }, [mode, running]);
   const elapsed = getStopwatchElapsed(stopwatch, now);
   const remaining = getTimerRemaining(timer, now);
+  const stopwatchParts = durationParts(elapsed);
+  const timerParts = clockParts(remaining);
   const duration = Math.max(0, Number(minutes) * 60 * 1000 + Number(seconds) * 1000);
   const toggle = () => {
     const current = Date.now();
@@ -391,7 +411,24 @@ export function StopwatchTimer() {
   return (
     <ToolShell toolId={toolId("stopwatch-timer")}>
       <div className="flex flex-wrap gap-2"><Button variant={mode === "stopwatch" ? "default" : "outline"} onClick={() => setMode("stopwatch")}><TimerReset /> {text(t, "stopwatch", "Stopwatch")}</Button><Button variant={mode === "timer" ? "default" : "outline"} onClick={() => setMode("timer")}><Clock3 /> {text(t, "countdown", "Countdown")}</Button></div>
-      <Card className="overflow-hidden"><CardContent className="flex flex-col items-center gap-6 p-6 sm:p-10"><div className={`font-mono text-5xl font-semibold tracking-tight sm:text-7xl ${mode === "timer" && timer.status === "finished" ? "text-destructive" : ""}`}>{mode === "stopwatch" ? formatDuration(elapsed) : formatClock(remaining)}</div>{mode === "timer" ? <div className="grid w-full max-w-sm grid-cols-2 gap-3"><div className="space-y-2"><Label>{text(t, "minutes", "Minutes")}</Label><Input type="number" min="0" value={minutes} onChange={(event) => setMinutes(event.target.value)} disabled={running} /></div><div className="space-y-2"><Label>{text(t, "seconds", "Seconds")}</Label><Input type="number" min="0" max="59" value={seconds} onChange={(event) => setSeconds(event.target.value)} disabled={running} /></div></div> : null}<div className="flex flex-wrap justify-center gap-2"><Button size="lg" onClick={toggle}>{running ? text(t, "pause", "Pause") : mode === "timer" && timer.status === "finished" ? text(t, "finished", "Finished") : text(t, "start", "Start")}</Button><Button size="lg" variant="outline" onClick={reset}><RefreshCw /> {text(t, "reset", "Reset")}</Button></div></CardContent></Card>
+      <Card className="overflow-hidden"><CardContent className="flex flex-col items-center gap-6 p-6 sm:p-10">{mode === "stopwatch" ? (
+        <AnimatedClock
+          hours={stopwatchParts.hours}
+          minutes={stopwatchParts.minutes}
+          seconds={stopwatchParts.seconds}
+          fraction={String(stopwatchParts.centiseconds).padStart(2, "0")}
+          label={formatDuration(elapsed)}
+          className="font-mono text-5xl font-semibold tracking-tight sm:text-7xl"
+        />
+      ) : (
+        <AnimatedClock
+          hours={timerParts.hours}
+          minutes={timerParts.minutes}
+          seconds={timerParts.seconds}
+          label={formatClock(remaining)}
+          className={`font-mono text-5xl font-semibold tracking-tight sm:text-7xl ${timer.status === "finished" ? "text-destructive" : ""}`}
+        />
+      )}{mode === "timer" ? <div className="grid w-full max-w-sm grid-cols-2 gap-3"><div className="space-y-2"><Label>{text(t, "minutes", "Minutes")}</Label><Input type="number" min="0" value={minutes} onChange={(event) => setMinutes(event.target.value)} disabled={running} /></div><div className="space-y-2"><Label>{text(t, "seconds", "Seconds")}</Label><Input type="number" min="0" max="59" value={seconds} onChange={(event) => setSeconds(event.target.value)} disabled={running} /></div></div> : null}<div className="flex flex-wrap justify-center gap-2"><Button size="lg" onClick={toggle}>{running ? text(t, "pause", "Pause") : mode === "timer" && timer.status === "finished" ? text(t, "finished", "Finished") : text(t, "start", "Start")}</Button><Button size="lg" variant="outline" onClick={reset}><RefreshCw /> {text(t, "reset", "Reset")}</Button></div></CardContent></Card>
       <Button variant="outline" onClick={() => { log(mode === "stopwatch" ? formatDuration(elapsed) : formatClock(remaining), "success"); toast.success(text(t, "saved", "Time saved to history.")); }}><Check /> {text(t, "recordTime", "Record time")}</Button>
     </ToolShell>
   );
@@ -406,9 +443,11 @@ export function RandomGenerator() {
   const [precision, setPrecision] = useState("2");
   const [items, setItems] = useState("red\nblue\ngreen\nyellow");
   const [length, setLength] = useState("16");
-  const [history, setHistory] = useState<string[]>([]);
+  const [history, setHistory] = useState<{ mode: typeof mode; value: string }[]>([]);
   const [error, setError] = useState("");
-  const output = history[0] ?? "";
+  const output = history[0]?.value ?? "";
+  const outputMode = history[0]?.mode;
+  const outputDecimals = output.includes(".") ? output.split(".")[1]?.length ?? 0 : 0;
   const generate = () => {
     try {
       let value: string;
@@ -419,7 +458,7 @@ export function RandomGenerator() {
         const choices = items.split(/\r?\n/).map((item) => item.trim()).filter(Boolean);
         value = choices[randomInteger(0, choices.length - 1)];
       } else value = randomPassword({ length: Number(length) });
-      setHistory((previous) => [value, ...previous].slice(0, 10));
+      setHistory((previous) => [{ mode, value }, ...previous].slice(0, 10));
       setError("");
       log(`${mode}: ${value}`, "success");
     } catch (reason) {
@@ -436,8 +475,8 @@ export function RandomGenerator() {
       {mode === "password" ? <div className="space-y-2"><Label>{text(t, "passwordLength", "Password length")}</Label><Input type="number" min="1" max="256" value={length} onChange={(event) => setLength(event.target.value)} /></div> : null}
       <ActionBar onRun={generate} loading={false} label={text(t, "run", "Generate")} />
       {error ? <p className="text-sm text-destructive">{error}</p> : null}
-      {output ? <Card className="border-primary/30 bg-primary/5"><CardContent className="flex items-center justify-between gap-4 p-5"><span className="break-all font-mono text-xl font-semibold">{output}</span><Button size="icon" variant="outline" aria-label={text(t, "copyResult", "Copy result")} onClick={() => { navigator.clipboard.writeText(output); toast.success(text(t, "copy", "Copied")); }}><Copy /></Button></CardContent></Card> : null}
-      {history.length > 1 ? <div className="space-y-2"><h2 className="text-sm font-semibold">{text(t, "recentResults", "Recent results")}</h2><div className="space-y-2">{history.slice(1).map((item, index) => <div key={`${item}-${index}`} className="flex items-center justify-between rounded-xl border border-border/60 bg-card px-3 py-2 font-mono text-sm"><span className="break-all">{item}</span><Button size="sm" variant="ghost" onClick={() => { navigator.clipboard.writeText(item); toast.success(text(t, "copy", "Copied")); }}>{text(t, "copy", "Copy")}</Button></div>)}</div></div> : null}
+      {output ? <Card className="border-primary/30 bg-primary/5"><CardContent className="flex items-center justify-between gap-4 p-5">{outputMode === "integer" || outputMode === "decimal" ? <NumberFlow value={Number(output)} format={outputMode === "decimal" ? { minimumFractionDigits: outputDecimals, maximumFractionDigits: outputDecimals } : undefined} className="break-all font-mono text-xl font-semibold" /> : <span className="break-all font-mono text-xl font-semibold">{output}</span>}<Button size="icon" variant="outline" aria-label={text(t, "copyResult", "Copy result")} onClick={() => { navigator.clipboard.writeText(output); toast.success(text(t, "copy", "Copied")); }}><Copy /></Button></CardContent></Card> : null}
+      {history.length > 1 ? <div className="space-y-2"><h2 className="text-sm font-semibold">{text(t, "recentResults", "Recent results")}</h2><div className="space-y-2">{history.slice(1).map((item, index) => <div key={`${item.value}-${index}`} className="flex items-center justify-between rounded-xl border border-border/60 bg-card px-3 py-2 font-mono text-sm"><span className="break-all">{item.value}</span><Button size="sm" variant="ghost" onClick={() => { navigator.clipboard.writeText(item.value); toast.success(text(t, "copy", "Copied")); }}>{text(t, "copy", "Copy")}</Button></div>)}</div></div> : null}
     </ToolShell>
   );
 }

@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { withBasePath, withAsset } from "@/lib/base-path";
 import { socialImages } from "@/lib/seo/metadata";
 import {
@@ -65,6 +65,24 @@ export const metadata: Metadata = {
   },
 };
 
+// The manifest's `theme_color` can't vary at all, so it holds a static
+// light-mode fallback (see public/manifest.webmanifest). This `viewport`
+// export renders the real <meta name="theme-color"> tag, which browsers
+// prefer over the manifest value. It starts at the light-mode default;
+// the inline script below corrects it before first paint if the resolved
+// theme is dark, and <ThemeColorSync> (in providers.tsx) keeps it in sync
+// afterwards. A plain light/dark media-query pair isn't enough here
+// because the theme can be manually overridden independent of the OS
+// preference (see ThemeToggle/next-themes). Both values match
+// `--background` in globals.css so the PWA title/status bar always
+// mirrors the app's own chrome instead of a mismatched accent color.
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  colorScheme: "light dark",
+  themeColor: "#f5f5f7",
+};
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" dir="ltr" suppressHydrationWarning>
@@ -82,7 +100,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
         <script
           dangerouslySetInnerHTML={{
-            __html: `(function(){try{var d=document.documentElement,s=localStorage.getItem("theme")||"system",t=s==="system"?(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"):s;if(t==="dark"){d.classList.add("dark");d.style.colorScheme="dark";}else{d.classList.remove("dark");d.style.colorScheme="light";}}catch(e){}})();`,
+            __html: `(function(){try{var d=document.documentElement,s=localStorage.getItem("theme")||"system",t=s==="system"?(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"):s;if(t==="dark"){d.classList.add("dark");d.style.colorScheme="dark";}else{d.classList.remove("dark");d.style.colorScheme="light";}var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute("content",t==="dark"?"#000000":"#f5f5f7");}catch(e){}})();`,
           }}
         />
       </head>
