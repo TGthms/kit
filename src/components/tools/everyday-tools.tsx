@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import {
   CalendarDays,
@@ -523,7 +523,9 @@ export function RandomGenerator() {
   const [items, setItems] = useState("red\nblue\ngreen\nyellow");
   const [length, setLength] = useState("16");
   const [values, setValues] = useState<string[]>([]);
+  const [shown, setShown] = useState<number[]>([]);
   const [error, setError] = useState("");
+  const roll = useRef(0);
   const batch = Math.min(MAX_RANDOM_BATCH, Math.max(1, Number(count) || 1));
   const generate = () => {
     try {
@@ -542,6 +544,23 @@ export function RandomGenerator() {
       }
       setValues(next);
       setError("");
+      const numericNext = mode === "integer" || mode === "decimal";
+      const id = ++roll.current;
+      if (numericNext) {
+        const nums = next.map(Number);
+        const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        if (reduce) setShown(nums);
+        else {
+          setShown(nums.map(() => 0));
+          window.requestAnimationFrame(() => {
+            window.requestAnimationFrame(() => {
+              if (roll.current === id) setShown(nums);
+            });
+          });
+        }
+      } else {
+        setShown([]);
+      }
       log(next.length === 1 && mode !== "pick" ? `${mode}: ${next[0]}` : `${mode} × ${next.length}`, "success");
     } catch (reason) {
       setError(reason instanceof Error ? reason.message : text(t, "invalid", "Check the settings."));
@@ -622,21 +641,21 @@ export function RandomGenerator() {
       {values.length ? (
         <Card className="border-primary/30 bg-primary/5">
           <CardContent className="space-y-4 p-5">
-            {numeric ? (
-              values.length === 1 ? (
+            {numeric && shown.length ? (
+              shown.length === 1 ? (
                 <AnimatedNumber
-                  value={Number(values[0])}
+                  value={shown[0]}
                   format={numberFormat}
                   className="break-all font-mono text-4xl font-semibold tracking-tight sm:text-5xl"
                 />
               ) : (
                 <div className="flex max-h-72 flex-wrap content-start gap-2 overflow-auto">
-                  {values.map((item, index) => (
+                  {shown.map((item, index) => (
                     <span
                       key={index}
-                      className="inline-flex min-h-12 min-w-[3.75rem] items-center justify-center rounded-xl border border-primary/20 bg-background px-3 py-2 font-mono text-xl font-semibold tabular-nums"
+                      className="inline-flex h-14 min-w-[4.25rem] items-center justify-center overflow-hidden rounded-xl border border-primary/20 bg-background px-3 font-mono text-xl font-semibold tabular-nums"
                     >
-                      <AnimatedNumber value={Number(item)} format={numberFormat} />
+                      <AnimatedNumber value={item} format={numberFormat} />
                     </span>
                   ))}
                 </div>
