@@ -67,6 +67,7 @@ import {
   Orbit,
   Activity,
   Dumbbell,
+  HeartPulse,
   Fuel,
   MoveUpRight,
   Cable,
@@ -101,6 +102,7 @@ export type ToolGroup =
   | "convert"
   | "time"
   | "money"
+  | "health"
   | "everyday-text"
   | "quick";
 
@@ -186,6 +188,7 @@ export type ToolId =
   | "timezone-converter"
   | "date-calculator"
   | "tip-split-calculator"
+  | "bmi-calorie-calculator"
   | "stopwatch-timer"
   | "random-generator";
 
@@ -275,6 +278,7 @@ export const tools: ToolDef[] = [
   { id: "timezone-converter", category: "everyday", group: "time", icon: Globe2 },
   { id: "date-calculator", category: "everyday", group: "time", icon: CalendarDays },
   { id: "tip-split-calculator", category: "everyday", group: "money", icon: WalletCards },
+  { id: "bmi-calorie-calculator", category: "everyday", group: "health", icon: HeartPulse },
   { id: "stopwatch-timer", category: "everyday", group: "time", icon: TimerReset },
   { id: "random-generator", category: "everyday", group: "quick", icon: Dice5 },
   { id: "jwt-decode", category: "developer", group: "inspect", icon: Shield },
@@ -326,7 +330,7 @@ export const categoryGroupOrder: Record<ToolCategory, ToolGroup[]> = {
   text: ["write"],
   developer: ["inspect", "encode", "generate"],
   converter: ["convert"],
-  everyday: ["convert", "time", "money", "everyday-text", "quick"],
+  everyday: ["convert", "time", "money", "health", "everyday-text", "quick"],
 };
 
 /** Map retired tool ids so old history/favorites still resolve. */

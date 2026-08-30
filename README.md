@@ -50,7 +50,7 @@ Kit is a set of PDF, image, media, converter, and text tools that run on your de
 
 ## What you get
 
-A complete, polished toolkit: 83 tools, clear layout, light and dark appearance, a 30-language UI with a native picker, an installable PWA shell, and honest limits about what a browser can do.
+A complete, polished toolkit: 84 tools, clear layout, light and dark appearance, a 30-language UI with a native picker, an installable PWA shell, and honest limits about what a browser can do.
 
 ## Languages
 
@@ -88,6 +88,10 @@ The home screen groups tools by job (PDF pages vs markup, developer inspect vs e
 - Hash (SHA/MD5), regex, color
 - Base64, URL, HTML entities
 - UUID, password generator, QR generate/read
+
+### Everyday
+- World clock, date calculator, tip & split, stopwatch & timer, text counter, random generator
+- BMI & calorie calculator
 
 ## Privacy
 

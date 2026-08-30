@@ -76,6 +76,7 @@ import {
   RandomGenerator,
   EverydayImagesToPdf,
 } from "./everyday-tools";
+import { BmiCalorieCalculator } from "./bmi-calorie-tools";
 import {
   CurrencyConverterTool,
   LengthConverter,
@@ -181,6 +182,7 @@ const TOOL_COMPONENTS: Record<ToolId, ComponentType> = {
   "timezone-converter": TimezoneConverter,
   "date-calculator": DateCalculator,
   "tip-split-calculator": TipSplitCalculator,
+  "bmi-calorie-calculator": BmiCalorieCalculator,
   "stopwatch-timer": StopwatchTimer,
   "random-generator": RandomGenerator,
 };

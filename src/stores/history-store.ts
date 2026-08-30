@@ -31,6 +31,7 @@ export function safeSummary(summary: string, status: HistoryEntry["status"]): st
   // filenames, watermark text, ranges, and pasted input become "completed".
   if (/^\d+(?:\.\d+)?(?: (?:files|images|pages|sizes))?$/i.test(normalized)) return normalized;
   if (/^\d+ words, \d+ characters$/i.test(normalized)) return normalized;
+  if (/^BMI \d+(?:\.\d+)? · \d+ kcal$/u.test(normalized)) return normalized;
   if (/^(?:q|speed|count|n)=\d+(?:\.\d+)?(?: (?:q|speed|count|n)=\d+(?:\.\d+)?)*$/i.test(normalized)) {
     return normalized;
   }

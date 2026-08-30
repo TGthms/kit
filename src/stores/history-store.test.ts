@@ -8,6 +8,7 @@ describe("history summaries", () => {
     expect(safeSummary("00:01:23.40", "success")).toBe("00:01:23.40");
     expect(safeSummary("integer × 5: 4, 8, 15", "success")).toBe("integer × 5: 4, 8, 15");
     expect(safeSummary("12 words, 70 characters", "success")).toBe("12 words, 70 characters");
+    expect(safeSummary("BMI 22.9 · 2136 kcal", "success")).toBe("BMI 22.9 · 2136 kcal");
   });
 
   it("still redacts free-form input", () => {
