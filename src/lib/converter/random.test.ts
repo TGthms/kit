@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { randomBoolean, randomDecimal, randomInteger, randomPassphrase, randomPassword, randomPick, randomUnique } from "./random";
+import { randomBoolean, randomDecimal, randomDecimals, randomInteger, randomIntegers, randomPassphrase, randomPassword, randomPick, randomUnique } from "./random";
 
 describe("random generation helpers", () => {
   it("supports injectable deterministic integer, decimal, boolean, and pick generation", () => {
@@ -25,5 +25,14 @@ describe("random generation helpers", () => {
     expect(new Set(randomPassphrase(["red", "blue", "green"], { count: 3, unique: true, rng: () => 0 }).split("-"))).toEqual(new Set(["red", "blue", "green"]));
     expect(() => randomPassword({ length: 0 })).toThrow(RangeError);
     expect(() => randomPick([])).toThrow(RangeError);
+  });
+
+  it("generates integer batches with step and uniqueness", () => {
+    expect(randomIntegers(1, 3, { count: 4, rng: () => 0 })).toEqual([1, 1, 1, 1]);
+    const stepped = randomIntegers(0, 10, { count: 5, step: 2, unique: true, rng: () => 0 });
+    expect(new Set(stepped).size).toBe(5);
+    expect(stepped.every((n) => n % 2 === 0 && n >= 0 && n <= 10)).toBe(true);
+    expect(() => randomIntegers(1, 3, { count: 4, unique: true })).toThrow(RangeError);
+    expect(randomDecimals(0, 1, { count: 2, precision: 1, rng: () => 0 })).toEqual([0, 0]);
   });
 });

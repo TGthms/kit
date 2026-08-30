@@ -35,6 +35,56 @@ export function randomInteger(min: number, max: number, rng: RandomSource = Math
   return min + Math.floor(nextRandom(rng) * (max - min + 1));
 }
 
+export const MAX_RANDOM_BATCH = 200;
+
+export function cryptoRandom(): number {
+  const buf = new Uint32Array(1);
+  crypto.getRandomValues(buf);
+  return buf[0]! / 2 ** 32;
+}
+
+export type RandomIntegerBatchOptions = {
+  count?: number;
+  unique?: boolean;
+  step?: number;
+  rng?: RandomSource;
+};
+
+/** Inclusive integer range, optional step, up to MAX_RANDOM_BATCH values. */
+export function randomIntegers(min: number, max: number, options: RandomIntegerBatchOptions = {}): number[] {
+  const count = options.count ?? 1;
+  const step = options.step ?? 1;
+  const rng = options.rng ?? Math.random;
+  assertInteger(count, "count");
+  assertInteger(step, "step");
+  if (count < 1 || count > MAX_RANDOM_BATCH) throw new RangeError(`count must be between 1 and ${MAX_RANDOM_BATCH}.`);
+  if (step < 1) throw new RangeError("step must be a positive integer.");
+  assertInteger(min, "min");
+  assertInteger(max, "max");
+  if (min > max) throw new RangeError("min must not exceed max.");
+  const span = Math.floor((max - min) / step) + 1;
+  if (span < 1) throw new RangeError("step is larger than the range.");
+  const pick = () => min + step * randomInteger(0, span - 1, rng);
+  if (!options.unique) return Array.from({ length: count }, pick);
+  if (count > span) throw new RangeError("count exceeds the number of unique values in the range.");
+  if (span <= 4096) {
+    const domain = Array.from({ length: span }, (_, i) => min + i * step);
+    return randomUnique(domain, count, rng);
+  }
+  const seen = new Set<number>();
+  while (seen.size < count) seen.add(pick());
+  return [...seen];
+}
+
+export function randomDecimals(min: number, max: number, options: RandomDecimalOptions & { count?: number } = {}): number[] {
+  const count = options.count ?? 1;
+  assertInteger(count, "count");
+  if (count < 1 || count > MAX_RANDOM_BATCH) throw new RangeError(`count must be between 1 and ${MAX_RANDOM_BATCH}.`);
+  const { count: ignoredCount, ...rest } = options;
+  void ignoredCount;
+  return Array.from({ length: count }, () => randomDecimal(min, max, rest));
+}
+
 export function randomDecimal(min: number, max: number, options: RandomDecimalOptions = {}): number {
   if (!Number.isFinite(min) || !Number.isFinite(max) || min > max) throw new RangeError("Decimal bounds must be finite and ordered.");
   if (min === max) return min;

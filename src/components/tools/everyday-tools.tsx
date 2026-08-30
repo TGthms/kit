@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 import { toast } from "sonner";
 import NumberFlow from "@number-flow/react";
+import { notifyCopied, notifyHistorySaved } from "@/lib/notify";
 import { AnimatedClock } from "@/components/shared/animated-clock";
 import { AnimatedNumber } from "@/components/shared/animated-number";
 import { FileDropzone, type FileItem } from "@/components/shared/file-dropzone";
@@ -41,10 +42,14 @@ import {
 } from "@/lib/converter/timezone";
 import { calculateTip } from "@/lib/converter/tip";
 import {
+  cryptoRandom,
+  MAX_RANDOM_BATCH,
   randomBoolean,
-  randomDecimal,
-  randomInteger,
+  randomDecimals,
+  randomIntegers,
   randomPassword,
+  randomPick,
+  randomUnique,
 } from "@/lib/converter/random";
 import {
   createStopwatch,
@@ -66,6 +71,7 @@ import { CITIES, cityTimeZones } from "@/lib/converter/cities";
 import {
   bytesToBlob,
   downloadBlob,
+  downloadText,
 } from "@/lib/utils";
 import { imagesToPdf } from "@/lib/pdf/core";
 import type { ToolId } from "@/lib/tools/registry";
@@ -182,7 +188,7 @@ export function TextCounter() {
           variant="outline"
           onClick={() => {
             navigator.clipboard.writeText(value);
-            toast.success(text(tc, "copied", "Copied to clipboard"));
+            notifyCopied(text(tc, "copied", "Copied to clipboard"));
           }}
         >
           <Copy /> {text(tc, "copy", "Copy")}
@@ -191,7 +197,7 @@ export function TextCounter() {
           variant="outline"
           onClick={() => {
             log(`${metrics.words} words, ${metrics.characters} characters`, "success");
-            toast.success(text(t, "saved", "Snapshot saved to history."));
+            notifyHistorySaved(text(t, "saved", "Snapshot saved to history."), text(t, "historyOff", "History is off, so this wasn’t saved."));
           }}
         >
           <Check /> {text(t, "record", "Record snapshot")}
@@ -254,7 +260,7 @@ export function TimezoneConverter() {
                 <div><p className="text-xs text-muted-foreground">{toZone}</p><p className="mt-1 font-mono text-lg">{partLabel(conversion.to)}</p></div>
               </div>
             ) : <p className="text-sm text-destructive">{text(t, "invalid", "Enter a valid local date and time.")}</p>}
-            <Button variant="outline" disabled={!conversion} onClick={() => { if (conversion) { log(`${fromZone} → ${toZone}`, "success"); toast.success(text(t, "saved", "Conversion saved to history.")); } }}>
+            <Button variant="outline" disabled={!conversion} onClick={() => { if (conversion) { log(`${fromZone} → ${toZone}`, "success"); notifyHistorySaved(text(t, "saved", "Conversion saved to history."), text(t, "historyOff", "History is off, so this wasn’t saved.")); } }}>
               <Check /> {text(t, "record", "Record conversion")}
             </Button>
           </CardContent>
@@ -350,7 +356,7 @@ export function DateCalculator() {
       </div>
       {mode === "business" ? <div className="space-y-4 rounded-2xl border border-border/60 bg-card p-4"><div className="flex items-center gap-3"><Switch checked={inclusive} onCheckedChange={setInclusive} id="inclusive" /><Label htmlFor="inclusive">{text(t, "includeEndpoints", "Include endpoints")}</Label></div><div className="space-y-2"><Label>{text(t, "holidays", "Holidays (comma-separated YYYY-MM-DD)")}</Label><Input value={holidays} onChange={(event) => setHolidays(event.target.value)} placeholder={text(t, "holidaysPlaceholder", "2026-12-25, 2027-01-01")} /></div><Button variant="outline" onClick={addBusiness}><CalendarDays /> {text(t, "addBusinessDays", "Add business days to end")}</Button></div> : null}
       {result ? <Card><CardHeader className="pb-3"><CardTitle>{result.title}</CardTitle></CardHeader><CardContent className="space-y-2">{result.lines.map((line) => <p key={line} className="font-mono text-lg">{line}</p>)}</CardContent></Card> : <p className="text-sm text-destructive">{text(t, "invalid", "Check the date and amount.")}</p>}
-      <Button variant="outline" disabled={!result} onClick={() => { if (result) { log(result.lines[0], "success"); toast.success(text(t, "saved", "Calculation saved to history.")); } }}><Check /> {text(t, "recordCalculation", "Record calculation")}</Button>
+      <Button variant="outline" disabled={!result} onClick={() => { if (result) { log(result.lines[0], "success"); notifyHistorySaved(text(t, "saved", "Calculation saved to history."), text(t, "historyOff", "History is off, so this wasn’t saved.")); } }}><Check /> {text(t, "recordCalculation", "Record calculation")}</Button>
     </ToolShell>
   );
 }
@@ -431,7 +437,7 @@ export function TipSplitCalculator() {
           </div>
         </div>
       ) : null}
-      <Button variant="outline" disabled={!result} onClick={() => { if (result) { log(`${people} people · ${formatMoney(result.total)}`, "success"); toast.success(text(t, "saved", "Split saved to history.")); } }}><WalletCards /> {text(t, "recordSplit", "Record split")}</Button>
+      <Button variant="outline" disabled={!result} onClick={() => { if (result) { log(`${people} people · ${formatMoney(result.total)}`, "success"); notifyHistorySaved(text(t, "saved", "Split saved to history."), text(t, "historyOff", "History is off, so this wasn’t saved.")); } }}><WalletCards /> {text(t, "recordSplit", "Record split")}</Button>
     </ToolShell>
   );
 }
@@ -494,11 +500,10 @@ export function StopwatchTimer() {
           minutes={timerParts.minutes}
           seconds={timerParts.seconds}
           label={formatClock(remaining)}
-          animate={timer.status !== "idle"}
           className={`font-mono text-5xl font-semibold tracking-tight sm:text-7xl ${timer.status === "finished" ? "text-destructive" : ""}`}
         />
       )}{mode === "timer" ? <div className="grid w-full max-w-md grid-cols-3 gap-3"><div className="space-y-2"><Label>{text(t, "hours", "Hours")}</Label><Input type="number" min="0" inputMode="numeric" value={hours} onChange={(event) => setHours(event.target.value)} disabled={fieldsLocked} /></div><div className="space-y-2"><Label>{text(t, "minutes", "Minutes")}</Label><Input type="number" min="0" max="59" inputMode="numeric" value={minutes} onChange={(event) => setMinutes(event.target.value)} disabled={fieldsLocked} /></div><div className="space-y-2"><Label>{text(t, "seconds", "Seconds")}</Label><Input type="number" min="0" max="59" inputMode="numeric" value={seconds} onChange={(event) => setSeconds(event.target.value)} disabled={fieldsLocked} /></div></div> : null}<div className="flex flex-wrap justify-center gap-2"><Button size="lg" onClick={toggle}>{running ? text(t, "pause", "Pause") : mode === "timer" && timer.status === "finished" ? text(t, "finished", "Finished") : text(t, "start", "Start")}</Button><Button size="lg" variant="outline" onClick={reset}><RefreshCw /> {text(t, "reset", "Reset")}</Button></div></CardContent></Card>
-      {mode === "stopwatch" ? <Button variant="outline" onClick={() => { log(formatDuration(elapsed), "success"); toast.success(text(t, "saved", "Time saved to history.")); }}><Check /> {text(t, "recordTime", "Record time")}</Button> : null}
+      {mode === "stopwatch" ? <Button variant="outline" onClick={() => { log(formatDuration(elapsed), "success"); notifyHistorySaved(text(t, "saved", "Time saved to history."), text(t, "historyOff", "History is off, so this wasn’t saved.")); }}><Check /> {text(t, "recordTime", "Record time")}</Button> : null}
     </ToolShell>
   );
 }
@@ -510,42 +515,134 @@ export function RandomGenerator() {
   const [min, setMin] = useState("1");
   const [max, setMax] = useState("100");
   const [precision, setPrecision] = useState("2");
+  const [step, setStep] = useState("1");
+  const [count, setCount] = useState("1");
+  const [unique, setUnique] = useState(false);
   const [items, setItems] = useState("red\nblue\ngreen\nyellow");
   const [length, setLength] = useState("16");
-  const [history, setHistory] = useState<{ mode: typeof mode; value: string }[]>([]);
+  const [values, setValues] = useState<string[]>([]);
   const [error, setError] = useState("");
-  const output = history[0]?.value ?? "";
-  const outputMode = history[0]?.mode;
-  const outputDecimals = output.includes(".") ? output.split(".")[1]?.length ?? 0 : 0;
+  const batch = Math.min(MAX_RANDOM_BATCH, Math.max(1, Number(count) || 1));
   const generate = () => {
     try {
-      let value: string;
-      if (mode === "integer") value = String(randomInteger(Number(min), Number(max)));
-      else if (mode === "decimal") value = String(randomDecimal(Number(min), Number(max), { precision: Number(precision) }));
-      else if (mode === "boolean") value = String(randomBoolean());
-      else if (mode === "pick") {
+      let next: string[] = [];
+      if (mode === "integer") {
+        next = randomIntegers(Number(min), Number(max), { count: batch, unique, step: Number(step) || 1 }).map(String);
+      } else if (mode === "decimal") {
+        next = randomDecimals(Number(min), Number(max), { count: batch, precision: Number(precision) }).map(String);
+      } else if (mode === "boolean") {
+        next = Array.from({ length: batch }, () => String(randomBoolean()));
+      } else if (mode === "pick") {
         const choices = items.split(/\r?\n/).map((item) => item.trim()).filter(Boolean);
-        value = choices[randomInteger(0, choices.length - 1)];
-      } else value = randomPassword({ length: Number(length) });
-      setHistory((previous) => [{ mode, value }, ...previous].slice(0, 10));
+        next = unique ? randomUnique(choices, batch) : Array.from({ length: batch }, () => randomPick(choices));
+      } else {
+        next = Array.from({ length: batch }, () => randomPassword({ length: Number(length), rng: cryptoRandom }));
+      }
+      setValues(next);
       setError("");
-      log(`${mode}: ${value}`, "success");
+      log(next.length === 1 && mode !== "pick" ? `${mode}: ${next[0]}` : `${mode} × ${next.length}`, "success");
     } catch (reason) {
       setError(reason instanceof Error ? reason.message : text(t, "invalid", "Check the settings."));
       log(`${mode}: failed`, "failed");
     }
   };
+  const joined = values.join("\n");
+  const singleNumber = values.length === 1 && (mode === "integer" || mode === "decimal") ? Number(values[0]) : null;
   return (
     <ToolShell toolId={toolId("random-generator")}>
-      <ToolLimits><p>{text(t, "limits", "Randomness uses the browser's Math.random source. Results are for everyday choices, not cryptographic secrets.")}</p></ToolLimits>
-      <div className="flex flex-wrap gap-2">{(["integer", "decimal", "boolean", "pick", "password"] as const).map((item) => <Button key={item} variant={mode === item ? "default" : "outline"} onClick={() => setMode(item)}><Dice5 /> {text(t, item, item[0].toUpperCase() + item.slice(1))}</Button>)}</div>
-      {mode === "integer" || mode === "decimal" ? <div className="grid gap-4 sm:grid-cols-2"><div className="space-y-2"><Label>{text(t, "minimum", "Minimum")}</Label><Input type="number" value={min} onChange={(event) => setMin(event.target.value)} /></div><div className="space-y-2"><Label>{text(t, "maximum", "Maximum")}</Label><Input type="number" value={max} onChange={(event) => setMax(event.target.value)} /></div>{mode === "decimal" ? <div className="space-y-2 sm:col-span-2"><Label>{text(t, "precision", "Precision")}</Label><Input type="number" min="0" max="15" value={precision} onChange={(event) => setPrecision(event.target.value)} /></div> : null}</div> : null}
-      {mode === "pick" ? <div className="space-y-2"><Label>{text(t, "choices", "Choices, one per line")}</Label><Textarea value={items} onChange={(event) => setItems(event.target.value)} /></div> : null}
-      {mode === "password" ? <div className="space-y-2"><Label>{text(t, "passwordLength", "Password length")}</Label><Input type="number" min="1" max="256" value={length} onChange={(event) => setLength(event.target.value)} /></div> : null}
+      <ToolLimits>
+        <p>{text(t, "limits", "Everyday picks use the browser random source. Passwords use a cryptographic generator on this device. Not a substitute for a password manager.")}</p>
+      </ToolLimits>
+      <div className="flex flex-wrap gap-2">
+        {(["integer", "decimal", "boolean", "pick", "password"] as const).map((item) => (
+          <Button key={item} variant={mode === item ? "default" : "outline"} onClick={() => setMode(item)}>
+            <Dice5 /> {text(t, item, item[0].toUpperCase() + item.slice(1))}
+          </Button>
+        ))}
+      </div>
+      {mode === "integer" || mode === "decimal" ? (
+        <div className="grid gap-4 sm:grid-cols-2">
+          <div className="space-y-2">
+            <Label>{text(t, "minimum", "Minimum")}</Label>
+            <Input type="number" value={min} onChange={(event) => setMin(event.target.value)} />
+          </div>
+          <div className="space-y-2">
+            <Label>{text(t, "maximum", "Maximum")}</Label>
+            <Input type="number" value={max} onChange={(event) => setMax(event.target.value)} />
+          </div>
+          {mode === "integer" ? (
+            <div className="space-y-2">
+              <Label>{text(t, "step", "Step")}</Label>
+              <Input type="number" min="1" value={step} onChange={(event) => setStep(event.target.value)} />
+            </div>
+          ) : (
+            <div className="space-y-2">
+              <Label>{text(t, "precision", "Precision")}</Label>
+              <Input type="number" min="0" max="15" value={precision} onChange={(event) => setPrecision(event.target.value)} />
+            </div>
+          )}
+        </div>
+      ) : null}
+      {mode === "pick" ? (
+        <div className="space-y-2">
+          <Label>{text(t, "choices", "Choices, one per line")}</Label>
+          <Textarea value={items} onChange={(event) => setItems(event.target.value)} />
+        </div>
+      ) : null}
+      {mode === "password" ? (
+        <div className="space-y-2">
+          <Label>{text(t, "passwordLength", "Password length")}</Label>
+          <Input type="number" min="1" max="256" value={length} onChange={(event) => setLength(event.target.value)} />
+        </div>
+      ) : null}
+      <div className="grid gap-4 sm:grid-cols-2">
+        <div className="space-y-2">
+          <Label>{text(t, "count", "How many")}</Label>
+          <Input type="number" min="1" max={MAX_RANDOM_BATCH} value={count} onChange={(event) => setCount(event.target.value)} />
+        </div>
+        {mode === "integer" || mode === "pick" ? (
+          <div className="flex items-end pb-1">
+            <label className="flex items-center gap-2 text-sm">
+              <Switch checked={unique} onCheckedChange={setUnique} />
+              {text(t, "unique", "No repeats")}
+            </label>
+          </div>
+        ) : null}
+      </div>
       <ActionBar onRun={generate} loading={false} label={text(t, "run", "Generate")} />
       {error ? <p className="text-sm text-destructive">{error}</p> : null}
-      {output ? <Card className="border-primary/30 bg-primary/5"><CardContent className="flex items-center justify-between gap-4 p-5">{outputMode === "integer" || outputMode === "decimal" ? <NumberFlow value={Number(output)} format={outputMode === "decimal" ? { minimumFractionDigits: outputDecimals, maximumFractionDigits: outputDecimals } : undefined} className="break-all font-mono text-xl font-semibold" /> : <span className="break-all font-mono text-xl font-semibold">{output}</span>}<Button size="icon" variant="outline" aria-label={text(t, "copyResult", "Copy result")} onClick={() => { navigator.clipboard.writeText(output); toast.success(text(t, "copy", "Copied")); }}><Copy /></Button></CardContent></Card> : null}
-      {history.length > 1 ? <div className="space-y-2"><h2 className="text-sm font-semibold">{text(t, "recentResults", "Recent results")}</h2><div className="space-y-2">{history.slice(1).map((item, index) => <div key={`${item.value}-${index}`} className="flex items-center justify-between rounded-xl border border-border/60 bg-card px-3 py-2 font-mono text-sm"><span className="break-all">{item.value}</span><Button size="sm" variant="ghost" onClick={() => { navigator.clipboard.writeText(item.value); toast.success(text(t, "copy", "Copied")); }}>{text(t, "copy", "Copy")}</Button></div>)}</div></div> : null}
+      {values.length ? (
+        <Card className="border-primary/30 bg-primary/5">
+          <CardContent className="space-y-3 p-5">
+            {singleNumber !== null && Number.isFinite(singleNumber) ? (
+              <NumberFlow
+                value={singleNumber}
+                format={mode === "decimal" ? { minimumFractionDigits: Number(precision) || 0, maximumFractionDigits: Number(precision) || 0 } : undefined}
+                className="break-all font-mono text-xl font-semibold"
+              />
+            ) : (
+              <pre className="max-h-56 overflow-auto whitespace-pre-wrap break-all font-mono text-sm leading-6">{joined}</pre>
+            )}
+            <div className="flex flex-wrap gap-2">
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => {
+                  navigator.clipboard.writeText(joined);
+                  notifyCopied(text(t, "copy", "Copied"));
+                }}
+              >
+                <Copy /> {text(t, "copy", "Copy")}
+              </Button>
+              {values.length > 1 ? (
+                <Button variant="outline" size="sm" onClick={() => downloadText(joined, "random.txt")}>
+                  {text(t, "download", "Download")}
+                </Button>
+              ) : null}
+            </div>
+          </CardContent>
+        </Card>
+      ) : null}
     </ToolShell>
   );
 }
