@@ -111,7 +111,11 @@
     "limitations": "Limitations",
     "clientSideOnly": "Runs in your browser only. Your files are never sent to a Kit server.",
     "aboutMeUrl": "https://t-g.pages.dev",
-    "howItWorks": "How it works"
+    "howItWorks": "How it works",
+    "search": "Search",
+    "noMatches": "No matches",
+    "searchAria": "{label} search",
+    "searchResults": "{label} search results"
   },
   "home": {
     "title": "What do you need to do?",
@@ -1222,6 +1226,7 @@
       "saved": "Saved to history.",
       "stopwatch": "Stopwatch",
       "countdown": "Countdown",
+      "hours": "Hours",
       "minutes": "Minutes",
       "seconds": "Seconds",
       "pause": "Pause",

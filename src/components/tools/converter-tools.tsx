@@ -284,7 +284,7 @@ export function SearchableSelect({
   onChange: (value: string) => void;
   searchable?: boolean;
 }) {
-  const t = useTranslations("tools.everyday-converter");
+  const t = useTranslations("common");
   const [query, setQuery] = useState("");
   const filtered = useMemo(() => {
     const normalized = query.trim().toLowerCase();
@@ -319,7 +319,7 @@ export function SearchableSelect({
               type="search"
             />
           </div>
-          {showResults ? <div role="listbox" aria-label={`${label} search results`} className="max-h-52 overflow-y-auto rounded-xl border border-input bg-background p-1 shadow-sm">
+          {showResults ? <div role="listbox" aria-label={text(t, "searchResults", `${label} search results`, { label })} className="max-h-52 overflow-y-auto rounded-xl border border-input bg-background p-1 shadow-sm">
             {filtered.length ? filtered.map((option) => (
               <button
                 key={option.value}
@@ -559,7 +559,7 @@ function readCurrencyCache(): CachedRateRecord[] {
   }
 }
 
-export function CurrencyConverter({ onBack, namespace = "tools.everyday-converter" }: { onBack?: () => void; namespace?: "tools.everyday-converter" | "tools.currency-converter" } = {}) {
+export function CurrencyConverter({ onBack, namespace = "tools.currency-converter" }: { onBack?: () => void; namespace?: "tools.everyday-converter" | "tools.currency-converter" } = {}) {
   const t = useTranslations(namespace);
   const locale = useLocale();
   const toolIdValue = namespace === "tools.currency-converter" ? "currency-converter" : "everyday-converter";

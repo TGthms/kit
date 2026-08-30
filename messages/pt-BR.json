@@ -111,7 +111,11 @@
     "limitations": "Limitações",
     "clientSideOnly": "Roda só no seu navegador. Seus arquivos nunca são enviados a um servidor Kit.",
     "aboutMeUrl": "https://t-g.pages.dev",
-    "howItWorks": "Como funciona"
+    "howItWorks": "Como funciona",
+    "search": "Buscar",
+    "noMatches": "Nenhuma correspondência",
+    "searchAria": "Buscar {label}",
+    "searchResults": "Resultados de {label}"
   },
   "home": {
     "title": "O que você precisa fazer?",
@@ -201,27 +205,27 @@
         "computerSecurityDay": "Feliz Dia da Segurança Informática — que o dia traga luz e bom impulso.",
         "programmersDay": "Feliz Dia dos Programadores — que o dia traga luz e bom impulso."
       },
-      "morning4": "O que podemos tornar mais fácil hoje?",
-      "morning5": "Quando você estiver pronto, começamos.",
-      "morning6": "Vamos fazer algo útil.",
-      "morning7": "Vamos fazer algo útil.",
-      "morning8": "O que podemos tornar mais fácil hoje?",
-      "afternoon4": "O que podemos tornar mais fácil hoje?",
-      "afternoon5": "Quando você estiver pronto, começamos.",
-      "afternoon6": "Vamos fazer algo útil.",
-      "afternoon7": "Vamos fazer algo útil.",
-      "afternoon8": "O que podemos tornar mais fácil hoje?",
-      "evening4": "O que podemos tornar mais fácil hoje?",
-      "evening5": "Quando você estiver pronto, começamos.",
-      "evening6": "Vamos fazer algo útil.",
-      "evening7": "Vamos fazer algo útil.",
-      "evening8": "O que podemos tornar mais fácil hoje?",
-      "night4": "O que podemos tornar mais fácil hoje?",
-      "night5": "Quando você estiver pronto, começamos.",
-      "night6": "Vamos fazer algo útil.",
-      "night7": "Vamos fazer algo útil.",
-      "night8": "O que podemos tornar mais fácil hoje?",
-      "weekend": "Vamos fazer algo útil.",
+      "morning4": "Café e Kit?",
+      "morning5": "Modo manhã ativado.",
+      "morning6": "Começo fresco — ideias novas são bem-vindas.",
+      "morning7": "Hora de colocar as coisas em movimento.",
+      "morning8": "Vamos fazer hoje valer.",
+      "afternoon4": "Pausa do meio-dia.",
+      "afternoon5": "Seguimos no ritmo?",
+      "afternoon6": "Pronto para a próxima tarefa?",
+      "afternoon7": "Das ideias à ação.",
+      "afternoon8": "Mais uma sessão produtiva.",
+      "evening4": "Um momento calmo para criar.",
+      "evening5": "Modo noite ativado.",
+      "evening6": "Ideias de fim de dia são bem-vindas.",
+      "evening7": "Encerrar o dia ou começar algo novo?",
+      "evening8": "Vamos avançar mais um pouco.",
+      "night4": "Horas quietas, horas criativas.",
+      "night5": "Olá, coruja noturna.",
+      "night6": "Mais uma ideia antes de dormir?",
+      "night7": "Modo madrugada ativado.",
+      "night8": "Pensamentos tardios são bem-vindos.",
+      "weekend": "Modo fim de semana ativado.",
       "productivity": "Vamos fazer algo útil.",
       "kit": "O que podemos tornar mais fácil hoje?",
       "privacy": "Quando você estiver pronto, começamos."
@@ -231,7 +235,7 @@
       "fact2": "A Web liga a informação; o Kit mantém o seu trabalho perto de si.",
       "fact3": "Programadores usam muitas vezes 256 porque é 2⁸, uma ponte entre números e bytes.",
       "fact4": "As ferramentas do Kit funcionam no navegador para manter os seus ficheiros no dispositivo.",
-      "fact5": "O que podemos tornar mais fácil hoje?",
+      "fact5": "Um bom fluxo deixa mais espaço para o que interessa.",
       "fact6": "Ferramentas práticas que rodam neste dispositivo — sem conta, sem envio."
     },
     "subtitleObservance": {
@@ -345,15 +349,15 @@
       "keywords": "pdf girar excluir reordenar organizar páginas",
       "run": "Salvar PDF",
       "success": "Seu PDF foi atualizado.",
-      "keepOne": "Keep at least one page."
+      "keepOne": "Mantenha pelo menos uma página."
     },
     "pdf-compress": {
-      "name": "Compactar PDF",
-      "description": "Reduza o tamanho recodificando as imagens das páginas (há troca de qualidade).",
+      "name": "Reduzir como imagens",
+      "description": "Rasteriza cada página em JPEG. Texto, links e vetores não são mantidos.",
       "keywords": "pdf compactar reduzir tamanho menor",
-      "run": "Compactar",
-      "note": "Caminho com perda — as páginas podem ser rasterizadas. Funciona melhor em PDFs cheios de imagens.",
-      "success": "O PDF compactado está pronto para baixar."
+      "run": "Reduzir",
+      "note": "Cada página vira uma imagem JPEG e um PDF novo. Texto pesquisável, links e vetores somem. O arquivo pode crescer. Para digitalizações de fotos, não para contratos a pesquisar.",
+      "success": "O PDF reduzido está pronto para baixar."
     },
     "pdf-watermark": {
       "name": "Marca d’água no PDF",
@@ -375,9 +379,9 @@
       "run": "Aplicar cobertura",
       "note": "É só uma cobertura visual. Não garante a remoção de todo o fluxo de texto por baixo — revise documentos sensíveis.",
       "success": "Coberturas aplicadas.",
-      "drawHint": "Drag on the page to cover a region. Add as many boxes as you need, then apply.",
-      "undoBox": "Undo last box",
-      "clearBoxes": "Clear boxes"
+      "drawHint": "Arraste na página para cobrir uma área. Adicione quantas caixas precisar e aplique.",
+      "undoBox": "Desfazer última caixa",
+      "clearBoxes": "Limpar caixas"
     },
     "pdf-extract": {
       "name": "Extrair do PDF",
@@ -597,8 +601,8 @@
       "run": "Criar PDF",
       "success": "PDF criado a partir de {count} imagens.",
       "limits": "As imagens são convertidas e montadas localmente neste navegador. Os arquivos não são enviados.",
-      "fitA4": "Fit to A4",
-      "fitImage": "Original size"
+      "fitA4": "Ajustar ao A4",
+      "fitImage": "Tamanho original"
     },
     "pdf-flatten": {
       "name": "Achatar formulários",
@@ -1229,7 +1233,8 @@
       "finished": "Concluído",
       "start": "Início",
       "reset": "Redefinir",
-      "recordTime": "Registrar tempo"
+      "recordTime": "Registrar tempo",
+      "hours": "Horas"
     },
     "random-generator": {
       "name": "Gerador aleatório",

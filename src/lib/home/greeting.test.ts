@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { getGreetingDay, getGreetingPeriod, getGreetingVariant, getGreetingVisitSeed, getHomeGreetingSelection } from "./greeting";
+import { GREETING_PERIOD_KEYS, getGreetingDay, getGreetingPeriod, getGreetingVariant, getGreetingVisitSeed, getHomeGreetingSelection } from "./greeting";
 
 describe("home greeting", () => {
   it("selects a friendly time-of-day period", () => {
@@ -40,7 +40,8 @@ describe("home greeting", () => {
 
   it("keeps ordinary selections localized by key and includes the weekday", () => {
     const selection = getHomeGreetingSelection(new Date(2026, 7, 25, 10), "fr-FR", 2);
-    expect(selection.greetingKey).toMatch(/^greeting\.(morning|morning2|morning3|morning4|morning5|morning6|morning7|morning8|productivity|kit|privacy)$/);
+    const morningKeys = new Set(["productivity", "kit", "privacy", ...GREETING_PERIOD_KEYS.morning].map((key) => `greeting.${key}`));
+    expect(morningKeys.has(selection.greetingKey)).toBe(true);
     expect(selection.subtitleKey).toMatch(/^subtitle(Facts\.fact[1-6])?$/);
     expect(selection.day).toBe("mardi");
   });

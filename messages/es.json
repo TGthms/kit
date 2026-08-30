@@ -111,7 +111,11 @@
     "limitations": "Limitaciones",
     "clientSideOnly": "Todo ocurre en tu navegador. Kit no sube tus archivos a un servidor propio.",
     "aboutMeUrl": "https://t-g.pages.dev",
-    "howItWorks": "Cómo funciona"
+    "howItWorks": "Cómo funciona",
+    "search": "Buscar",
+    "noMatches": "Sin coincidencias",
+    "searchAria": "Buscar {label}",
+    "searchResults": "Resultados de {label}"
   },
   "home": {
     "title": "¿Qué quieres hacer?",
@@ -201,27 +205,27 @@
         "computerSecurityDay": "Feliz Día de la Seguridad Informática; que hoy traiga luz y un buen impulso.",
         "programmersDay": "Feliz Día de los Programadores; que hoy traiga luz y un buen impulso."
       },
-      "morning4": "¿Qué podemos hacer más fácil hoy?",
-      "morning5": "Cuando quieras, empezamos.",
-      "morning6": "Hagamos algo útil.",
-      "morning7": "Hagamos algo útil.",
-      "morning8": "¿Qué podemos hacer más fácil hoy?",
-      "afternoon4": "¿Qué podemos hacer más fácil hoy?",
-      "afternoon5": "Cuando quieras, empezamos.",
-      "afternoon6": "Hagamos algo útil.",
-      "afternoon7": "Hagamos algo útil.",
-      "afternoon8": "¿Qué podemos hacer más fácil hoy?",
-      "evening4": "¿Qué podemos hacer más fácil hoy?",
-      "evening5": "Cuando quieras, empezamos.",
-      "evening6": "Hagamos algo útil.",
-      "evening7": "Hagamos algo útil.",
-      "evening8": "¿Qué podemos hacer más fácil hoy?",
-      "night4": "¿Qué podemos hacer más fácil hoy?",
-      "night5": "Cuando quieras, empezamos.",
-      "night6": "Hagamos algo útil.",
-      "night7": "Hagamos algo útil.",
-      "night8": "¿Qué podemos hacer más fácil hoy?",
-      "weekend": "Hagamos algo útil.",
+      "morning4": "¿Café y Kit?",
+      "morning5": "Modo mañana activado.",
+      "morning6": "Empezamos de cero — las ideas nuevas son bienvenidas.",
+      "morning7": "Hora de ponerse en marcha.",
+      "morning8": "Hagamos que hoy cuente.",
+      "afternoon4": "Pausa de mediodía.",
+      "afternoon5": "¿Seguimos con el ritmo?",
+      "afternoon6": "¿Listo para la siguiente tarea?",
+      "afternoon7": "Pasemos de las ideas a la acción.",
+      "afternoon8": "Otra sesión productiva.",
+      "evening4": "Un momento tranquilo para crear.",
+      "evening5": "Modo tarde activado.",
+      "evening6": "Ideas de final de día bienvenidas.",
+      "evening7": "¿Cerramos el día o empezamos algo nuevo?",
+      "evening8": "Avancemos un poco más.",
+      "night4": "Horas quietas, horas creativas.",
+      "night5": "Hola, noctámbulo.",
+      "night6": "¿Una idea más antes de dormir?",
+      "night7": "Modo noche activado.",
+      "night8": "Pensamientos de madrugada bienvenidos.",
+      "weekend": "Modo fin de semana activado.",
       "productivity": "Hagamos algo útil.",
       "kit": "¿Qué podemos hacer más fácil hoy?",
       "privacy": "Cuando quieras, empezamos."
@@ -231,7 +235,7 @@
       "fact2": "La web conecta la información; Kit mantiene tu trabajo cerca de ti.",
       "fact3": "Los programadores usan a menudo 256 porque es 2⁸, un puente entre números y bytes.",
       "fact4": "Las herramientas de Kit funcionan en el navegador para que tus archivos permanezcan en tu dispositivo.",
-      "fact5": "¿Qué podemos hacer más fácil hoy?",
+      "fact5": "Un buen flujo de trabajo deja más espacio para lo interesante.",
       "fact6": "Utilidades que funcionan en este dispositivo: sin cuenta y sin enviar archivos."
     },
     "subtitleObservance": {
@@ -345,15 +349,15 @@
       "keywords": "pdf girar rotar borrar reordenar organizar",
       "run": "Guardar PDF",
       "success": "El PDF se ha actualizado.",
-      "keepOne": "Keep at least one page."
+      "keepOne": "Conserva al menos una página."
     },
     "pdf-compress": {
-      "name": "Comprimir PDF",
-      "description": "Reduce el tamaño re-codificando las imágenes de cada página (puede perder calidad).",
+      "name": "Reducir como imágenes",
+      "description": "Rasteriza cada página a JPEG. No se conservan texto, enlaces ni vectores.",
       "keywords": "pdf comprimir reducir tamaño peso",
-      "run": "Comprimir",
-      "note": "Proceso con pérdida: las páginas pueden rasterizarse. Encaja mejor en PDF con muchas imágenes.",
-      "success": "El PDF comprimido está listo para descargar."
+      "run": "Reducir",
+      "note": "Cada página se convierte en una imagen JPEG y se reconstruye un PDF nuevo. Desaparecen el texto buscable, los enlaces y los vectores. El archivo puede crecer. Úsalo en escaneos, no en contratos que debas buscar.",
+      "success": "El PDF reducido está listo para descargar."
     },
     "pdf-watermark": {
       "name": "Marca de agua",
@@ -375,9 +379,9 @@
       "run": "Aplicar cubierta",
       "note": "Solo es una cubierta visual. No garantiza borrar todo el texto subyacente: revisa los documentos sensibles.",
       "success": "Cubiertas aplicadas.",
-      "drawHint": "Drag on the page to cover a region. Add as many boxes as you need, then apply.",
-      "undoBox": "Undo last box",
-      "clearBoxes": "Clear boxes"
+      "drawHint": "Arrastra sobre la página para cubrir una zona. Añade tantos recuadros como necesites y aplica.",
+      "undoBox": "Deshacer último recuadro",
+      "clearBoxes": "Borrar recuadros"
     },
     "pdf-extract": {
       "name": "Extraer del PDF",
@@ -597,8 +601,8 @@
       "run": "Crear PDF",
       "success": "PDF creado con {count} imagen(es).",
       "limits": "Las imágenes se convierten y ensamblan localmente en este navegador. Los archivos no se suben.",
-      "fitA4": "Fit to A4",
-      "fitImage": "Original size"
+      "fitA4": "Ajustar a A4",
+      "fitImage": "Tamaño original"
     },
     "pdf-flatten": {
       "name": "Aplanar formularios",
@@ -1229,7 +1233,8 @@
       "finished": "Finalizado",
       "start": "Inicio",
       "reset": "Restablecer",
-      "recordTime": "Registrar tiempo"
+      "recordTime": "Registrar tiempo",
+      "hours": "Horas"
     },
     "random-generator": {
       "name": "Generador aleatorio",

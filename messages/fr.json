@@ -111,7 +111,11 @@
     "limitations": "Limites",
     "clientSideOnly": "S’exécute uniquement dans votre navigateur. Vos fichiers ne sont jamais envoyés à un serveur Kit.",
     "aboutMeUrl": "https://t-g.pages.dev",
-    "howItWorks": "Fonctionnement"
+    "howItWorks": "Fonctionnement",
+    "search": "Rechercher",
+    "noMatches": "Aucun résultat",
+    "searchAria": "Rechercher {label}",
+    "searchResults": "Résultats pour {label}"
   },
   "home": {
     "title": "Que voulez-vous faire ?",
@@ -201,27 +205,27 @@
         "computerSecurityDay": "Joyeux Journée de la sécurité informatique — que cette journée apporte lumière et élan.",
         "programmersDay": "Joyeux Journée des programmeurs — que cette journée apporte lumière et élan."
       },
-      "morning4": "Que pouvons-nous simplifier aujourd’hui ?",
-      "morning5": "Prêt quand vous l’êtes.",
-      "morning6": "Faisons quelque chose d’utile.",
-      "morning7": "Faisons quelque chose d’utile.",
-      "morning8": "Que pouvons-nous simplifier aujourd’hui ?",
-      "afternoon4": "Que pouvons-nous simplifier aujourd’hui ?",
-      "afternoon5": "Prêt quand vous l’êtes.",
-      "afternoon6": "Faisons quelque chose d’utile.",
-      "afternoon7": "Faisons quelque chose d’utile.",
-      "afternoon8": "Que pouvons-nous simplifier aujourd’hui ?",
-      "evening4": "Que pouvons-nous simplifier aujourd’hui ?",
-      "evening5": "Prêt quand vous l’êtes.",
-      "evening6": "Faisons quelque chose d’utile.",
-      "evening7": "Faisons quelque chose d’utile.",
-      "evening8": "Que pouvons-nous simplifier aujourd’hui ?",
-      "night4": "Que pouvons-nous simplifier aujourd’hui ?",
-      "night5": "Prêt quand vous l’êtes.",
-      "night6": "Faisons quelque chose d’utile.",
-      "night7": "Faisons quelque chose d’utile.",
-      "night8": "Que pouvons-nous simplifier aujourd’hui ?",
-      "weekend": "Faisons quelque chose d’utile.",
+      "morning4": "Un café et Kit ?",
+      "morning5": "Mode matin activé.",
+      "morning6": "Nouveau départ — les idées sont les bienvenues.",
+      "morning7": "Place à l’action.",
+      "morning8": "Faisons de cette journée quelque chose.",
+      "afternoon4": "Point de mi-journée.",
+      "afternoon5": "On garde le rythme ?",
+      "afternoon6": "Prêt pour la suite ?",
+      "afternoon7": "Passons des idées à l’action.",
+      "afternoon8": "Encore une session utile.",
+      "evening4": "Un moment calme pour créer.",
+      "evening5": "Mode soir activé.",
+      "evening6": "Les idées de fin de journée sont les bienvenues.",
+      "evening7": "On clôture, ou on commence autre chose ?",
+      "evening8": "Avançons encore un peu.",
+      "night4": "Heures calmes, heures créatives.",
+      "night5": "Salut, oiseau de nuit.",
+      "night6": "Une dernière idée avant de dormir ?",
+      "night7": "Mode nuit activé.",
+      "night8": "Les pensées tardives sont les bienvenues.",
+      "weekend": "Mode week-end activé.",
       "productivity": "Faisons quelque chose d’utile.",
       "kit": "Que pouvons-nous simplifier aujourd’hui ?",
       "privacy": "Prêt quand vous l’êtes."
@@ -231,7 +235,7 @@
       "fact2": "Le Web relie les informations ; Kit garde votre travail près de vous.",
       "fact3": "Les programmeurs utilisent souvent 256 : c’est 2⁸, un joli lien entre nombres et octets.",
       "fact4": "Les outils de Kit fonctionnent dans le navigateur pour garder vos fichiers sur votre appareil.",
-      "fact5": "Que pouvons-nous simplifier aujourd’hui ?",
+      "fact5": "Un bon rythme de travail laisse plus de place à l’essentiel.",
       "fact6": "Des outils pratiques qui tournent sur cet appareil — pas de compte, pas d’envoi."
     },
     "subtitleObservance": {
@@ -345,15 +349,15 @@
       "keywords": "pdf pivoter supprimer réordonner organiser pages",
       "run": "Enregistrer le PDF",
       "success": "Votre PDF a été mis à jour.",
-      "keepOne": "Keep at least one page."
+      "keepOne": "Gardez au moins une page."
     },
     "pdf-compress": {
-      "name": "Compresser un PDF",
-      "description": "Réduisez la taille en réencodant les images des pages (compromis qualité).",
+      "name": "Réduire en images",
+      "description": "Rasterise chaque page en JPEG. Le texte, les liens et les vecteurs ne sont pas conservés.",
       "keywords": "pdf compresser réduire taille plus léger",
-      "run": "Compresser",
-      "note": "Parcours avec perte : les pages peuvent être rasterisées. Idéal pour les PDF surtout composés d’images.",
-      "success": "Le PDF compressé est prêt à télécharger."
+      "run": "Réduire",
+      "note": "Chaque page devient une image JPEG, puis un nouveau PDF. Le texte interrogeable, les liens et les vecteurs disparaissent. Le fichier peut grossir. Pour les scans photo, pas pour les contrats à rechercher.",
+      "success": "Le PDF réduit est prêt à être téléchargé."
     },
     "pdf-watermark": {
       "name": "Filigrane PDF",
@@ -375,9 +379,9 @@
       "run": "Appliquer le masque",
       "note": "Masquage visuel uniquement. Cela ne garantit pas la suppression de tout le flux de texte sous-jacent — vérifiez les documents sensibles.",
       "success": "Masques appliqués.",
-      "drawHint": "Drag on the page to cover a region. Add as many boxes as you need, then apply.",
-      "undoBox": "Undo last box",
-      "clearBoxes": "Clear boxes"
+      "drawHint": "Faites glisser sur la page pour couvrir une zone. Ajoutez autant de cadres que nécessaire, puis appliquez.",
+      "undoBox": "Annuler le dernier cadre",
+      "clearBoxes": "Effacer les cadres"
     },
     "pdf-extract": {
       "name": "Extraire d’un PDF",
@@ -597,8 +601,8 @@
       "run": "Créer le PDF",
       "success": "PDF créé à partir de {count} image(s).",
       "limits": "Les images sont converties et assemblées localement dans ce navigateur. Les fichiers ne sont pas téléversés.",
-      "fitA4": "Fit to A4",
-      "fitImage": "Original size"
+      "fitA4": "Ajuster au A4",
+      "fitImage": "Taille d’origine"
     },
     "pdf-flatten": {
       "name": "Aplatir les formulaires",
@@ -1229,7 +1233,8 @@
       "finished": "Terminé",
       "start": "Début",
       "reset": "Réinitialiser",
-      "recordTime": "Enregistrer le temps"
+      "recordTime": "Enregistrer le temps",
+      "hours": "Heures"
     },
     "random-generator": {
       "name": "Générateur aléatoire",

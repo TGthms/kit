@@ -1,3 +1,24 @@
+/**
+ * Home greeting catalog contract.
+ *
+ * Copy lives in `messages/*.json`:
+ *   home.greeting.{variant}
+ *   home.greeting.observance.{key}
+ *   home.greeting.occasionLabel.{key}
+ *   home.subtitleFacts.{factN}
+ *   home.subtitleObservance.{key}
+ *
+ * To add an observance later:
+ *   1. Append a rule to OBSERVANCE_RULES and the key to OBSERVANCE_KEYS
+ *   2. Add English occasionLabel, observance, and subtitleObservance strings
+ *   3. Add the same keys in every other catalog (greeting-catalog.test.ts fails if a locale is missing or still English)
+ *
+ * To add a time-of-day line:
+ *   1. Append the key to GREETING_PERIOD_KEYS
+ *   2. Add copy in every catalog
+ *
+ * Distinct later variants (morning4–night8, weekend) must not recycle extra1–3.
+ */
 export type GreetingPeriod = "morning" | "afternoon" | "evening" | "night";
 export type GreetingCategory = "timeOfDay" | "weekend" | "productivity" | "kit" | "privacy";
 
@@ -8,6 +29,83 @@ export type HomeGreetingSelection = {
   occasionKey?: string;
   category: GreetingCategory;
 };
+
+/** 1-based month. `weekday` matches Date.getDay() (0 Sunday … 6 Saturday). */
+export type ObservanceRule =
+  | { kind: "fixed"; month: number; day: number; key: string }
+  | { kind: "nthWeekday"; month: number; weekday: number; occurrence: number; key: string }
+  | { kind: "dayOfYear"; dayOfYear: number; key: string }
+  | { kind: "easterOffset"; offset: number; key: string };
+
+export const GREETING_PERIOD_KEYS: Record<GreetingPeriod, readonly string[]> = {
+  morning: ["morning", "morning2", "morning3", "morning4", "morning5", "morning6", "morning7", "morning8"],
+  afternoon: ["afternoon", "afternoon2", "afternoon3", "afternoon4", "afternoon5", "afternoon6", "afternoon7", "afternoon8"],
+  evening: ["evening", "evening2", "evening3", "evening4", "evening5", "evening6", "evening7", "evening8"],
+  night: ["night", "night2", "night3", "night4", "night5", "night6", "night7", "night8"],
+};
+
+export const GREETING_CONTEXT_KEYS = ["weekend", "productivity", "kit", "privacy"] as const;
+
+export const GREETING_VARIANT_KEYS = [
+  ...GREETING_PERIOD_KEYS.morning,
+  ...GREETING_PERIOD_KEYS.afternoon,
+  ...GREETING_PERIOD_KEYS.evening,
+  ...GREETING_PERIOD_KEYS.night,
+  ...GREETING_CONTEXT_KEYS,
+] as const;
+
+/** Lines that should stay unique per locale, not copies of extra1–3. */
+export const GREETING_DISTINCT_VARIANT_KEYS = [
+  "morning4", "morning5", "morning6", "morning7", "morning8",
+  "afternoon4", "afternoon5", "afternoon6", "afternoon7", "afternoon8",
+  "evening4", "evening5", "evening6", "evening7", "evening8",
+  "night4", "night5", "night6", "night7", "night8",
+  "weekend",
+] as const;
+
+export const SUBTITLE_FACT_KEYS = ["fact1", "fact2", "fact3", "fact4", "fact5", "fact6"] as const;
+
+export const OBSERVANCE_KEYS = [
+  "newYear",
+  "christmasEve",
+  "christmas",
+  "goodFriday",
+  "palmSunday",
+  "easterMonday",
+  "easterSunday",
+  "saferInternetDay",
+  "womenAndGirlsInScience",
+  "piDay",
+  "backupDay",
+  "earthDay",
+  "passwordDay",
+  "webDay",
+  "adaLovelaceDay",
+  "computerSecurityDay",
+  "programmersDay",
+] as const;
+
+export const OBSERVANCE_RULES: readonly ObservanceRule[] = [
+  { kind: "fixed", month: 1, day: 1, key: "newYear" },
+  { kind: "fixed", month: 2, day: 11, key: "womenAndGirlsInScience" },
+  { kind: "fixed", month: 3, day: 14, key: "piDay" },
+  { kind: "fixed", month: 3, day: 31, key: "backupDay" },
+  { kind: "fixed", month: 4, day: 22, key: "earthDay" },
+  { kind: "fixed", month: 8, day: 1, key: "webDay" },
+  { kind: "fixed", month: 11, day: 30, key: "computerSecurityDay" },
+  { kind: "fixed", month: 12, day: 24, key: "christmasEve" },
+  { kind: "fixed", month: 12, day: 25, key: "christmas" },
+  { kind: "nthWeekday", month: 2, weekday: 2, occurrence: 2, key: "saferInternetDay" },
+  { kind: "nthWeekday", month: 5, weekday: 4, occurrence: 1, key: "passwordDay" },
+  { kind: "nthWeekday", month: 10, weekday: 2, occurrence: 2, key: "adaLovelaceDay" },
+  { kind: "dayOfYear", dayOfYear: 256, key: "programmersDay" },
+  { kind: "easterOffset", offset: -7, key: "palmSunday" },
+  { kind: "easterOffset", offset: -2, key: "goodFriday" },
+  { kind: "easterOffset", offset: 0, key: "easterSunday" },
+  { kind: "easterOffset", offset: 1, key: "easterMonday" },
+];
+
+const subtitlePool = ["subtitle", ...SUBTITLE_FACT_KEYS.map((key) => `subtitleFacts.${key}`)];
 
 export function getGreetingPeriod(date: Date): GreetingPeriod {
   const hour = date.getHours();
@@ -47,27 +145,13 @@ function dateKey(date: Date): string {
 }
 
 function isNthWeekdayOfMonth(date: Date, month: number, weekday: number, occurrence: number): boolean {
-  if (date.getMonth() !== month || date.getDay() !== weekday) return false;
+  if (date.getMonth() !== month - 1 || date.getDay() !== weekday) return false;
   return Math.floor((date.getDate() - 1) / 7) + 1 === occurrence;
 }
 
 function isDayOfYear(date: Date, dayOfYear: number): boolean {
   const year = date.getFullYear();
   return Math.floor((Date.UTC(year, date.getMonth(), date.getDate()) - Date.UTC(year, 0, 1)) / 86_400_000) + 1 === dayOfYear;
-}
-
-function getObservanceKey(date: Date): string | null {
-  const fixed: Record<string, string> = {
-    "1-1": "newYear", "2-11": "womenAndGirlsInScience", "3-14": "piDay", "3-31": "backupDay",
-    "4-22": "earthDay", "8-1": "webDay", "11-30": "computerSecurityDay", "12-24": "christmasEve", "12-25": "christmas",
-  };
-  const key = dateKey(date);
-  if (fixed[key]) return fixed[key];
-  if (isNthWeekdayOfMonth(date, 1, 2, 2)) return "saferInternetDay";
-  if (isNthWeekdayOfMonth(date, 4, 4, 1)) return "passwordDay";
-  if (isNthWeekdayOfMonth(date, 9, 2, 2)) return "adaLovelaceDay";
-  if (isDayOfYear(date, 256)) return "programmersDay";
-  return null;
 }
 
 function easterSunday(year: number): Date {
@@ -82,33 +166,39 @@ function sameDate(left: Date, right: Date): boolean {
   return left.getFullYear() === right.getFullYear() && left.getMonth() === right.getMonth() && left.getDate() === right.getDate();
 }
 
-function getChristianObservanceKey(date: Date): string | null {
-  const easter = easterSunday(date.getFullYear());
-  for (const [offset, key] of [[-2, "goodFriday"], [-7, "palmSunday"], [1, "easterMonday"], [0, "easterSunday"]] as const) {
-    const day = new Date(easter);
-    day.setDate(day.getDate() + offset);
-    if (sameDate(date, day)) return key;
+function getObservanceKey(date: Date): string | null {
+  const key = dateKey(date);
+  for (const rule of OBSERVANCE_RULES) {
+    if (rule.kind === "fixed" && key === `${rule.month}-${rule.day}`) return rule.key;
+  }
+  for (const rule of OBSERVANCE_RULES) {
+    if (rule.kind === "nthWeekday" && isNthWeekdayOfMonth(date, rule.month, rule.weekday, rule.occurrence)) return rule.key;
+    if (rule.kind === "dayOfYear" && isDayOfYear(date, rule.dayOfYear)) return rule.key;
   }
   return null;
 }
 
-const periodKeys: Record<GreetingPeriod, string[]> = {
-  morning: ["morning", "morning2", "morning3", "morning4", "morning5", "morning6", "morning7", "morning8"],
-  afternoon: ["afternoon", "afternoon2", "afternoon3", "afternoon4", "afternoon5", "afternoon6", "afternoon7", "afternoon8"],
-  evening: ["evening", "evening2", "evening3", "evening4", "evening5", "evening6", "evening7", "evening8"],
-  night: ["night", "night2", "night3", "night4", "night5", "night6", "night7", "night8"],
-};
-const subtitlePool = ["subtitle", "subtitleFacts.fact1", "subtitleFacts.fact2", "subtitleFacts.fact3", "subtitleFacts.fact4", "subtitleFacts.fact5", "subtitleFacts.fact6"];
+function getChristianObservanceKey(date: Date): string | null {
+  const easter = easterSunday(date.getFullYear());
+  for (const rule of OBSERVANCE_RULES) {
+    if (rule.kind !== "easterOffset") continue;
+    const day = new Date(easter);
+    day.setDate(day.getDate() + rule.offset);
+    if (sameDate(date, day)) return rule.key;
+  }
+  return null;
+}
 
 export function getHomeGreetingSelection(date: Date, locale: string, variant: number): HomeGreetingSelection {
   const observance = getChristianObservanceKey(date) ?? getObservanceKey(date);
   const day = getGreetingDay(date, locale);
   if (observance) return { greetingKey: `greeting.observance.${observance}`, subtitleKey: `subtitleObservance.${observance}`, occasionKey: observance, category: "kit", day };
   const period = getGreetingPeriod(date);
+  const periodKeys = GREETING_PERIOD_KEYS[period];
   const isWeekend = date.getDay() === 0 || date.getDay() === 6;
-  const index = Math.abs(Math.trunc(variant)) % periodKeys[period].length;
+  const index = Math.abs(Math.trunc(variant)) % periodKeys.length;
   const category: GreetingCategory = isWeekend && index === 0 ? "weekend" : index === 1 ? "productivity" : index === 2 ? "kit" : index === 7 ? "privacy" : "timeOfDay";
-  const greetingKey = isWeekend && index === 0 ? "greeting.weekend" : index === 1 ? "greeting.productivity" : index === 2 ? "greeting.kit" : index === 7 ? "greeting.privacy" : `greeting.${periodKeys[period][index]}`;
+  const greetingKey = isWeekend && index === 0 ? "greeting.weekend" : index === 1 ? "greeting.productivity" : index === 2 ? "greeting.kit" : index === 7 ? "greeting.privacy" : `greeting.${periodKeys[index]}`;
   const subtitleIndex = Math.abs(Math.trunc(variant * 5 + date.getDate())) % subtitlePool.length;
   return { greetingKey, subtitleKey: subtitlePool[subtitleIndex], category, day };
 }
