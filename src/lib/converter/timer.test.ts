@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { createStopwatch, createTimer, getStopwatchElapsed, getTimerRemaining, pauseStopwatch, pauseTimer, resetStopwatch, startStopwatch, startTimer, tickTimer } from "./timer";
+import { createStopwatch, createTimer, durationFromHms, getStopwatchElapsed, getTimerRemaining, pauseStopwatch, pauseTimer, resetStopwatch, startStopwatch, startTimer, tickTimer } from "./timer";
 
 describe("stopwatch and timer state math", () => {
   it("tracks stopwatch time using immutable state transitions", () => {
@@ -28,5 +28,12 @@ describe("stopwatch and timer state math", () => {
     expect(startTimer(createTimer(0), 0).status).toBe("finished");
     expect(() => startStopwatch(createStopwatch(), Number.NaN)).toThrow(RangeError);
     expect(() => createTimer(-1)).toThrow(RangeError);
+  });
+
+  it("converts hours, minutes, and seconds into a duration", () => {
+    expect(durationFromHms(1, 2, 3)).toBe(3_723_000);
+    expect(durationFromHms(0, 5, 0)).toBe(300_000);
+    expect(durationFromHms(0, 0, 0)).toBe(0);
+    expect(durationFromHms(Number.NaN, -1, 1.8)).toBe(1_000);
   });
 });

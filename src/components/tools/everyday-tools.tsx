@@ -49,6 +49,7 @@ import {
 import {
   createStopwatch,
   createTimer,
+  durationFromHms,
   getStopwatchElapsed,
   getTimerRemaining,
   pauseStopwatch,
@@ -441,10 +442,13 @@ export function StopwatchTimer() {
   const [mode, setMode] = useState<"stopwatch" | "timer">("stopwatch");
   const [stopwatch, setStopwatch] = useState<StopwatchState>(() => createStopwatch());
   const [timer, setTimer] = useState<TimerState>(() => createTimer(5 * 60 * 1000));
+  const [hours, setHours] = useState("0");
   const [minutes, setMinutes] = useState("5");
   const [seconds, setSeconds] = useState("0");
   const [now, setNow] = useState(() => Date.now());
   const running = mode === "stopwatch" ? stopwatch.status === "running" : timer.status === "running";
+  const duration = durationFromHms(Number(hours), Number(minutes), Number(seconds));
+  const fieldsLocked = mode === "timer" && timer.status !== "idle";
   useEffect(() => {
     if (!running) return;
     const interval = window.setInterval(() => {
@@ -454,11 +458,14 @@ export function StopwatchTimer() {
     }, 50);
     return () => window.clearInterval(interval);
   }, [mode, running]);
+  useEffect(() => {
+    if (mode !== "timer") return;
+    setTimer((previous) => (previous.status === "idle" ? createTimer(duration) : previous));
+  }, [duration, mode]);
   const elapsed = getStopwatchElapsed(stopwatch, now);
   const remaining = getTimerRemaining(timer, now);
   const stopwatchParts = durationParts(elapsed);
   const timerParts = clockParts(remaining);
-  const duration = Math.max(0, Number(minutes) * 60 * 1000 + Number(seconds) * 1000);
   const toggle = () => {
     const current = Date.now();
     if (mode === "stopwatch") setStopwatch((previous) => previous.status === "running" ? pauseStopwatch(previous, current) : startStopwatch(previous, current));
@@ -489,7 +496,7 @@ export function StopwatchTimer() {
           label={formatClock(remaining)}
           className={`font-mono text-5xl font-semibold tracking-tight sm:text-7xl ${timer.status === "finished" ? "text-destructive" : ""}`}
         />
-      )}{mode === "timer" ? <div className="grid w-full max-w-sm grid-cols-2 gap-3"><div className="space-y-2"><Label>{text(t, "minutes", "Minutes")}</Label><Input type="number" min="0" value={minutes} onChange={(event) => setMinutes(event.target.value)} disabled={running} /></div><div className="space-y-2"><Label>{text(t, "seconds", "Seconds")}</Label><Input type="number" min="0" max="59" value={seconds} onChange={(event) => setSeconds(event.target.value)} disabled={running} /></div></div> : null}<div className="flex flex-wrap justify-center gap-2"><Button size="lg" onClick={toggle}>{running ? text(t, "pause", "Pause") : mode === "timer" && timer.status === "finished" ? text(t, "finished", "Finished") : text(t, "start", "Start")}</Button><Button size="lg" variant="outline" onClick={reset}><RefreshCw /> {text(t, "reset", "Reset")}</Button></div></CardContent></Card>
+      )}{mode === "timer" ? <div className="grid w-full max-w-md grid-cols-3 gap-3"><div className="space-y-2"><Label>{text(t, "hours", "Hours")}</Label><Input type="number" min="0" inputMode="numeric" value={hours} onChange={(event) => setHours(event.target.value)} disabled={fieldsLocked} /></div><div className="space-y-2"><Label>{text(t, "minutes", "Minutes")}</Label><Input type="number" min="0" max="59" inputMode="numeric" value={minutes} onChange={(event) => setMinutes(event.target.value)} disabled={fieldsLocked} /></div><div className="space-y-2"><Label>{text(t, "seconds", "Seconds")}</Label><Input type="number" min="0" max="59" inputMode="numeric" value={seconds} onChange={(event) => setSeconds(event.target.value)} disabled={fieldsLocked} /></div></div> : null}<div className="flex flex-wrap justify-center gap-2"><Button size="lg" onClick={toggle}>{running ? text(t, "pause", "Pause") : mode === "timer" && timer.status === "finished" ? text(t, "finished", "Finished") : text(t, "start", "Start")}</Button><Button size="lg" variant="outline" onClick={reset}><RefreshCw /> {text(t, "reset", "Reset")}</Button></div></CardContent></Card>
       <Button variant="outline" onClick={() => { log(mode === "stopwatch" ? formatDuration(elapsed) : formatClock(remaining), "success"); toast.success(text(t, "saved", "Time saved to history.")); }}><Check /> {text(t, "recordTime", "Record time")}</Button>
     </ToolShell>
   );

@@ -50,6 +50,14 @@ export function resetStopwatch(): StopwatchState {
   return createStopwatch();
 }
 
+/** Whole non-negative hours, minutes, and seconds → milliseconds. */
+export function durationFromHms(hours: number, minutes: number, seconds: number): number {
+  const h = Number.isFinite(hours) && hours > 0 ? Math.floor(hours) : 0;
+  const m = Number.isFinite(minutes) && minutes > 0 ? Math.floor(minutes) : 0;
+  const s = Number.isFinite(seconds) && seconds > 0 ? Math.floor(seconds) : 0;
+  return h * 3_600_000 + m * 60_000 + s * 1_000;
+}
+
 export function createTimer(durationMs: number): TimerState {
   assertNonNegative(durationMs, "durationMs");
   return { status: "idle", durationMs, elapsedMs: 0, remainingMs: durationMs };
