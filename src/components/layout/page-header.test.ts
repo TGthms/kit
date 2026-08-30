@@ -25,7 +25,7 @@ describe("PageHeader", () => {
     );
 
     expect(screen.getByRole("banner")).toBeInTheDocument();
-    expect(screen.getByText("PDF merge")).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "PDF merge" })).toBeInTheDocument();
     expect(screen.getByText("Combine files locally")).toBeInTheDocument();
     expect(screen.getByText("Client-side only")).toBeInTheDocument();
     expect(screen.getByRole("button", { name: "Favorite" })).toBeInTheDocument();
