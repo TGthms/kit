@@ -26,6 +26,12 @@ export function formatUnitSymbol(code: string): string {
   return code.replace(/(\d+)$/u, (digit) => SUPER_DIGITS[digit] ?? digit);
 }
 
+/** Compact number for a live converter field. Keeps enough digits to round-trip a swap. */
+export function formatConvertedInput(value: number): string {
+  if (!Number.isFinite(value)) return "";
+  return String(Number(value.toPrecision(12)));
+}
+
 export type UnitCode =
   | "mm" | "cm" | "m" | "km" | "in" | "ft" | "yd" | "mi" | "nmi"
   | "mg" | "g" | "kg" | "t" | "oz" | "lb" | "stone"

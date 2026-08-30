@@ -17,7 +17,7 @@ import {
   isCachedRateStale,
   type CachedRateRecord,
 } from "@/lib/converter/currency";
-import { convertUnit, formatUnitSymbol, type UnitCategory, type UnitCode } from "@/lib/converter/units";
+import { convertUnit, formatConvertedInput, formatUnitSymbol, type UnitCategory, type UnitCode } from "@/lib/converter/units";
 import type { ToolId } from "@/lib/tools/registry";
 import { AnimatedNumber } from "@/components/shared/animated-number";
 import { useHydrated } from "@/lib/react/hydrated";
@@ -28,6 +28,14 @@ const selectClass =
 const toolId = (value: string) => value as ToolId;
 type TranslationFn = (key: string, values?: Record<string, string | number>) => string;
 type UnitOption = { code: UnitCode; label: string };
+
+type EditedSide = "from" | "to";
+
+function parseLiveNumber(raw: string): number | null {
+  if (!raw.trim()) return null;
+  const value = Number(raw);
+  return Number.isFinite(value) ? value : null;
+}
 
 function text(t: ReturnType<typeof useTranslations>, key: string, fallback: string, values?: Record<string, string | number>) {
   try {
@@ -280,6 +288,7 @@ export function SearchableSelect(props: {
   options: Array<{ value: string; label: string }>;
   onChange: (value: string) => void;
   searchable?: boolean;
+  hideLabel?: boolean;
 }) {
   return <SearchableSelectField key={props.value} searchable={props.options.length > 4} {...props} />;
 }
@@ -290,12 +299,14 @@ function SearchableSelectField({
   options,
   onChange,
   searchable = options.length > 4,
+  hideLabel = false,
 }: {
   label: string;
   value: string;
   options: Array<{ value: string; label: string }>;
   onChange: (value: string) => void;
   searchable?: boolean;
+  hideLabel?: boolean;
 }) {
   const t = useTranslations("common");
   const listId = useId();
@@ -334,10 +345,12 @@ function SearchableSelectField({
     };
   }, [open]);
 
+  const labelNode = hideLabel ? <span className="sr-only">{label}</span> : <Label>{label}</Label>;
+
   if (!searchable) {
     return (
       <div className="space-y-2">
-        <Label>{label}</Label>
+        {labelNode}
         <select className={selectClass} value={value} onChange={(event) => onChange(event.target.value)} aria-label={label}>
           {options.map((option) => <option key={option.value} value={option.value}>{optionText(option)}</option>)}
         </select>
@@ -347,7 +360,7 @@ function SearchableSelectField({
 
   return (
     <div className="space-y-2" ref={rootRef}>
-      <Label>{label}</Label>
+      {labelNode}
       <div className="relative">
         <Input
           value={open ? query : selectedLabel}
@@ -442,25 +455,49 @@ function UnitConverter({
     }),
     [locale, options, t]
   );
-  const [amount, setAmount] = useState("1");
+  const [source, setSource] = useState("1");
+  const [edited, setEdited] = useState<EditedSide>("from");
   const [from, setFrom] = useState<UnitCode>(options[0].code);
   const [to, setTo] = useState<UnitCode>(options[1]?.code ?? options[0].code);
   const [rootFontSizePx, setRootFontSizePx] = useState("16");
   const [parentFontSizePx, setParentFontSizePx] = useState("16");
   const [dpi, setDpi] = useState("96");
-  const result = useMemo(() => {
-    const value = Number(amount);
-    if (!Number.isFinite(value)) return null;
+  const typographyOptions = useMemo(() => ({
+    rootFontSizePx: Number(rootFontSizePx),
+    parentFontSizePx: Number(parentFontSizePx),
+    dpi: Number(dpi),
+  }), [dpi, parentFontSizePx, rootFontSizePx]);
+  const other = useMemo(() => {
+    const value = parseLiveNumber(source);
+    if (value === null) return null;
     try {
-      return convertUnit(category, value, from, to, {
-        rootFontSizePx: Number(rootFontSizePx),
-        parentFontSizePx: Number(parentFontSizePx),
-        dpi: Number(dpi),
-      });
+      return edited === "from"
+        ? convertUnit(category, value, from, to, typographyOptions)
+        : convertUnit(category, value, to, from, typographyOptions);
     } catch {
       return null;
     }
-  }, [amount, category, dpi, from, parentFontSizePx, rootFontSizePx, to]);
+  }, [category, edited, from, source, to, typographyOptions]);
+  const fromNumber = edited === "from" ? parseLiveNumber(source) : other;
+  const toNumber = edited === "to" ? parseLiveNumber(source) : other;
+  const fromText = edited === "from" ? source : (other === null ? "" : formatConvertedInput(other));
+  const toText = edited === "to" ? source : (other === null ? "" : formatConvertedInput(other));
+  const editFrom = (raw: string) => {
+    setEdited("from");
+    setSource(raw);
+  };
+  const editTo = (raw: string) => {
+    setEdited("to");
+    setSource(raw);
+  };
+  const swapSides = () => {
+    const nextFrom = to;
+    const nextTo = from;
+    setSource(toText);
+    setEdited("from");
+    setFrom(nextFrom);
+    setTo(nextTo);
+  };
   const presets = ({
     length: [["presetMetricImperial", "m", "ft"], ["presetKilometersMiles", "km", "mi"]],
     mass: [["presetKilogramsPounds", "kg", "lb"]],
@@ -519,55 +556,58 @@ function UnitConverter({
           ← {text(t, "back", "All categories")}
         </Button>
       ) : null}
-      <div className="grid gap-4 lg:grid-cols-[1fr_auto_1fr] lg:items-end">
-        <div className="space-y-2">
-          <Label>{text(t, "amount", "Amount")}</Label>
-          <Input value={amount} onChange={(event) => setAmount(event.target.value)} inputMode="decimal" className="text-lg" />
+      <div className="grid gap-4 lg:grid-cols-[1fr_auto_1fr] lg:items-center">
+        <div className="space-y-3">
+          <Label htmlFor="unit-from-value">{text(t, "from", "From")}</Label>
+          <Input id="unit-from-value" value={fromText} onChange={(event) => editFrom(event.target.value)} inputMode="decimal" className="text-lg" />
+          <SearchableSelect
+            label={text(t, "from", "From")}
+            hideLabel
+            value={from}
+            options={localizedOptions.map((option) => ({ value: option.code, label: option.label }))}
+            onChange={(value) => setFrom(value as UnitCode)}
+          />
         </div>
         <Button
           type="button"
           variant="outline"
           size="icon"
           aria-label={text(t, "swapUnits", "Swap units")}
-          onClick={() => {
-            const nextFrom = to;
-            const nextTo = from;
-            if (result !== null) setAmount(String(Number(result.toPrecision(12))));
-            setFrom(nextFrom);
-            setTo(nextTo);
-          }}
+          onClick={swapSides}
           className="justify-self-center"
         >
           <ArrowLeftRight />
         </Button>
-        <div className="space-y-2">
-          <Label>{text(t, "result", "Result")}</Label>
-          <div className="flex h-10 items-center rounded-xl border border-primary/30 bg-primary/5 px-3 text-lg font-semibold">
-            {result === null ? (
-              "—"
-            ) : (
-              <span className="inline-flex items-baseline gap-1.5">
-                <AnimatedNumber value={result} format={{ maximumFractionDigits: 8 }} />
-                <span className="text-sm font-medium text-muted-foreground">{formatUnitSymbol(to)}</span>
-              </span>
-            )}
-          </div>
+        <div className="space-y-3">
+          <Label htmlFor="unit-to-value">{text(t, "to", "To")}</Label>
+          <Input id="unit-to-value" value={toText} onChange={(event) => editTo(event.target.value)} inputMode="decimal" className="text-lg" />
+          <SearchableSelect
+            label={text(t, "to", "To")}
+            hideLabel
+            value={to}
+            options={localizedOptions.map((option) => ({ value: option.code, label: option.label }))}
+            onChange={(value) => setTo(value as UnitCode)}
+          />
         </div>
       </div>
-      <div className="grid gap-4 md:grid-cols-2">
-        <SearchableSelect
-          label={text(t, "from", "From")}
-          value={from}
-          options={localizedOptions.map((option) => ({ value: option.code, label: option.label }))}
-          onChange={(value) => setFrom(value as UnitCode)}
-        />
-        <SearchableSelect
-          label={text(t, "to", "To")}
-          value={to}
-          options={localizedOptions.map((option) => ({ value: option.code, label: option.label }))}
-          onChange={(value) => setTo(value as UnitCode)}
-        />
-      </div>
+      <Card className="border-primary/40 bg-primary/5">
+        <CardContent className="p-4">
+          <p className="text-xs text-muted-foreground">{text(t, "result", "Result")}</p>
+          {fromNumber === null || toNumber === null ? (
+            <p className="mt-2 text-lg font-semibold">—</p>
+          ) : (
+            <p className="mt-2 text-lg font-semibold tabular-nums" dir="ltr">
+              <span className="inline-flex flex-wrap items-baseline gap-1.5">
+                <AnimatedNumber value={fromNumber} format={{ maximumFractionDigits: 8 }} />
+                <span className="text-sm font-medium text-muted-foreground">{formatUnitSymbol(from)}</span>
+                <span className="text-muted-foreground">=</span>
+                <AnimatedNumber value={toNumber} format={{ maximumFractionDigits: 8 }} />
+                <span className="text-sm font-medium text-muted-foreground">{formatUnitSymbol(to)}</span>
+              </span>
+            </p>
+          )}
+        </CardContent>
+      </Card>
       {category === "typography" ? (
         <Card>
           <CardHeader className="pb-3">
@@ -601,7 +641,7 @@ function UnitConverter({
       <Button
         variant="outline"
         onClick={() => {
-          log(result === null ? `${amount} ${from} → ${to}` : `${amount} ${from} → ${result} ${to}`, "success");
+          log(fromNumber === null || toNumber === null ? `${fromText} ${from} → ${to}` : `${fromText} ${from} → ${toNumber} ${to}`, "success");
           notifyHistorySaved(text(t, "saved", "Conversion saved to history."), text(t, "historyOff", "History is off, so this wasn’t saved."));
         }}
       >
@@ -641,7 +681,8 @@ export function CurrencyConverter({ onBack, namespace = "tools.currency-converte
   const locale = useLocale();
   const toolIdValue = namespace === "tools.currency-converter" ? "currency-converter" : "everyday-converter";
   const log = useToolHistory(toolId(toolIdValue));
-  const [amount, setAmount] = useState("100");
+  const [source, setSource] = useState("100");
+  const [edited, setEdited] = useState<EditedSide>("from");
   const [base, setBase] = useState("USD");
   const [quote, setQuote] = useState("EUR");
   const hydrated = useHydrated();
@@ -671,15 +712,39 @@ export function CurrencyConverter({ onBack, namespace = "tools.currency-converte
   );
   const match = useMemo(() => (base === quote ? null : findCachedRate(rates, base, quote)), [base, quote, rates]);
   const stale = match ? isCachedRateStale(match.record) : false;
-  const output = useMemo(() => {
-    const numericAmount = Number(amount);
-    if (!Number.isFinite(numericAmount) || !match) return base === quote && Number.isFinite(numericAmount) ? numericAmount : null;
+  const other = useMemo(() => {
+    const value = parseLiveNumber(source);
+    if (value === null) return null;
+    const from = edited === "from" ? base : quote;
+    const to = edited === "from" ? quote : base;
+    if (from === to) return value;
+    if (!match && from !== to) return null;
     try {
-      return convertCurrency(numericAmount, base, quote, rates);
+      return convertCurrency(value, from, to, rates);
     } catch {
       return null;
     }
-  }, [amount, base, match, quote, rates]);
+  }, [base, edited, match, quote, rates, source]);
+  const fromNumber = edited === "from" ? parseLiveNumber(source) : other;
+  const toNumber = edited === "to" ? parseLiveNumber(source) : other;
+  const fromText = edited === "from" ? source : (other === null ? "" : formatConvertedInput(other));
+  const toText = edited === "to" ? source : (other === null ? "" : formatConvertedInput(other));
+  const editFrom = (raw: string) => {
+    setEdited("from");
+    setSource(raw);
+  };
+  const editTo = (raw: string) => {
+    setEdited("to");
+    setSource(raw);
+  };
+  const swapSides = () => {
+    const nextBase = quote;
+    const nextQuote = base;
+    setSource(toText);
+    setEdited("from");
+    setBase(nextBase);
+    setQuote(nextQuote);
+  };
   const effectiveRate = match ? (match.inverted ? 1 / match.rate : match.rate) : base === quote ? 1 : null;
 
   const lastRefreshToken = useRef(refreshToken);
@@ -738,45 +803,46 @@ export function CurrencyConverter({ onBack, namespace = "tools.currency-converte
           ← {text(t, "back", "All categories")}
         </Button>
       ) : null}
-      <div className="grid gap-4 lg:grid-cols-[1fr_auto_1fr] lg:items-end">
-        <div className="space-y-2">
-          <Label>{text(t, "amount", "Amount")}</Label>
-          <Input value={amount} onChange={(event) => setAmount(event.target.value)} inputMode="decimal" className="text-lg" />
+      <div className="grid gap-4 lg:grid-cols-[1fr_auto_1fr] lg:items-center">
+        <div className="space-y-3">
+          <Label htmlFor="currency-from-value">{text(t, "from", "From")}</Label>
+          <Input id="currency-from-value" value={fromText} onChange={(event) => editFrom(event.target.value)} inputMode="decimal" className="text-lg" />
+          <SearchableSelect label={text(t, "from", "From")} hideLabel value={base} options={currencyOptions} onChange={setBase} />
         </div>
         <Button
           type="button"
           variant="outline"
           size="icon"
           aria-label={text(t, "swapCurrencies", "Swap currencies")}
-          onClick={() => {
-            const nextBase = quote;
-            const nextQuote = base;
-            if (output !== null) setAmount(String(Number(output.toPrecision(12))));
-            setBase(nextBase);
-            setQuote(nextQuote);
-          }}
+          onClick={swapSides}
           className="justify-self-center"
         >
           <ArrowLeftRight />
         </Button>
-        <div className="space-y-2">
-          <Label>{text(t, "result", "Result")}</Label>
-          <div className="flex h-10 items-center rounded-xl border border-primary/30 bg-primary/5 px-3 text-lg font-semibold">
-            {output === null ? (
-              "—"
-            ) : (
-              <span className="inline-flex items-baseline gap-1">
-                <AnimatedNumber value={output} format={{ maximumFractionDigits: 8 }} />
-                <span>{quote}</span>
-              </span>
-            )}
-          </div>
+        <div className="space-y-3">
+          <Label htmlFor="currency-to-value">{text(t, "to", "To")}</Label>
+          <Input id="currency-to-value" value={toText} onChange={(event) => editTo(event.target.value)} inputMode="decimal" className="text-lg" />
+          <SearchableSelect label={text(t, "to", "To")} hideLabel value={quote} options={currencyOptions} onChange={setQuote} />
         </div>
       </div>
-      <div className="grid gap-4 md:grid-cols-2">
-        <SearchableSelect label={text(t, "from", "From")} value={base} options={currencyOptions} onChange={setBase} />
-        <SearchableSelect label={text(t, "to", "To")} value={quote} options={currencyOptions} onChange={setQuote} />
-      </div>
+      <Card className="border-primary/40 bg-primary/5">
+        <CardContent className="p-4">
+          <p className="text-xs text-muted-foreground">{text(t, "result", "Result")}</p>
+          {fromNumber === null || toNumber === null ? (
+            <p className="mt-2 text-lg font-semibold">—</p>
+          ) : (
+            <p className="mt-2 text-lg font-semibold tabular-nums" dir="ltr">
+              <span className="inline-flex flex-wrap items-baseline gap-1.5">
+                <AnimatedNumber value={fromNumber} format={{ maximumFractionDigits: 8 }} />
+                <span className="text-sm font-medium text-muted-foreground">{base}</span>
+                <span className="text-muted-foreground">=</span>
+                <AnimatedNumber value={toNumber} format={{ maximumFractionDigits: 8 }} />
+                <span className="text-sm font-medium text-muted-foreground">{quote}</span>
+              </span>
+            </p>
+          )}
+        </CardContent>
+      </Card>
       <Card className="overflow-hidden">
         <CardContent className="grid gap-4 p-5 sm:grid-cols-[1fr_auto] sm:items-center">
           <div>
@@ -808,7 +874,7 @@ export function CurrencyConverter({ onBack, namespace = "tools.currency-converte
       <Button
         variant="outline"
         onClick={() => {
-          log(output === null ? `${amount} ${base} → ${quote}` : `${amount} ${base} → ${output} ${quote}`, "success", { stale, maxAgeMs: DEFAULT_RATE_MAX_AGE_MS });
+          log(fromNumber === null || toNumber === null ? `${fromText} ${base} → ${quote}` : `${fromText} ${base} → ${toNumber} ${quote}`, "success", { stale, maxAgeMs: DEFAULT_RATE_MAX_AGE_MS });
           notifyHistorySaved(text(t, "saved", "Conversion saved to history."), text(t, "historyOff", "History is off, so this wasn’t saved."));
         }}
       >

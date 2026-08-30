@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { convertElectrical, convertTypography, convertUnit, formatUnitSymbol } from "./units";
+import { convertElectrical, convertTypography, convertUnit, formatConvertedInput, formatUnitSymbol } from "./units";
 
 describe("unit conversions", () => {
   it("converts common linear, temperature, and duration units", () => {
@@ -43,6 +43,14 @@ describe("unit conversions", () => {
     expect(convertUnit("typography", 1, "rem", "px")).toBe(16);
     expect(() => convertUnit("fuelEconomy", 0, "L/100km", "km/L")).toThrow(RangeError);
     expect(() => convertUnit("length", Number.NaN, "m", "ft")).toThrow(RangeError);
+  });
+
+  it("formats live converter fields so a swap can round-trip", () => {
+    expect(formatConvertedInput(1)).toBe("1");
+    expect(formatConvertedInput(3.280839895013123)).toBe("3.28083989501");
+    expect(formatConvertedInput(Number.NaN)).toBe("");
+    const feet = convertUnit("length", 1, "m", "ft");
+    expect(convertUnit("length", Number(formatConvertedInput(feet)), "ft", "m")).toBeCloseTo(1, 10);
   });
 
   it("renders squared and cubed unit symbols", () => {
