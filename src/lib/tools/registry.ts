@@ -293,7 +293,7 @@ export const tools: ToolDef[] = [
 
 export const featuredToolIds: ToolId[] = [
   "timezone-converter",
-  "date-calculator",
+  "random-generator",
   "stopwatch-timer",
   "password-generator",
   "qr-code",
