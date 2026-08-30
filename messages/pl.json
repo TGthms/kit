@@ -1266,7 +1266,13 @@
       "choices": "Opcje, po jednej w wierszu",
       "passwordLength": "Długość hasła",
       "copyResult": "Kopiuj wynik",
-      "recentResults": "Ostatnie wyniki"
+      "recentResults": "Ostatnie wyniki",
+      "step": "Count by",
+      "count": "How many",
+      "unique": "No repeats",
+      "download": "Download list",
+      "batch": "Batch",
+      "countHint": "Up to {max} at once."
     },
     "currency-converter": {
       "name": "Waluta converter",

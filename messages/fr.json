@@ -1266,7 +1266,13 @@
       "passwordLength": "Longueur du mot de passe",
       "copyResult": "Copier le résultat",
       "recentResults": "Résultats récents",
-      "copy": "Copier"
+      "copy": "Copier",
+      "step": "Pas",
+      "count": "Combien",
+      "unique": "Sans doublon",
+      "download": "Télécharger la liste",
+      "batch": "Lot",
+      "countHint": "Jusqu’à {max} à la fois."
     },
     "currency-converter": {
       "name": "Devise converter",

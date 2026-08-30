@@ -1266,7 +1266,13 @@
       "choices": "Seçenekler, satır başına bir",
       "passwordLength": "Parola uzunluğu",
       "copyResult": "Sonucu kopyala",
-      "recentResults": "Son sonuçlar"
+      "recentResults": "Son sonuçlar",
+      "step": "Count by",
+      "count": "How many",
+      "unique": "No repeats",
+      "download": "Download list",
+      "batch": "Batch",
+      "countHint": "Up to {max} at once."
     },
     "currency-converter": {
       "name": "Para birimi converter",

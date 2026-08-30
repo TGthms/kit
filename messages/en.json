@@ -1260,12 +1260,18 @@
       "password": "Password",
       "minimum": "Minimum",
       "maximum": "Maximum",
-      "precision": "Precision",
+      "precision": "Decimal places",
       "choices": "Choices, one per line",
       "passwordLength": "Password length",
       "copyResult": "Copy result",
       "recentResults": "Recent results",
-      "copy": "Copy"
+      "copy": "Copy",
+      "step": "Count by",
+      "count": "How many",
+      "unique": "No repeats",
+      "download": "Download list",
+      "batch": "Batch",
+      "countHint": "Up to {max} at once."
     },
     "currency-converter": {
       "name": "Currency converter",

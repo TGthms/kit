@@ -1266,7 +1266,13 @@
       "passwordLength": "Wachtwoordlengte",
       "copyResult": "Resultaat kopiëren",
       "recentResults": "Recente resultaten",
-      "copy": "Kopiëren"
+      "copy": "Kopiëren",
+      "step": "Count by",
+      "count": "How many",
+      "unique": "No repeats",
+      "download": "Download list",
+      "batch": "Batch",
+      "countHint": "Up to {max} at once."
     },
     "currency-converter": {
       "name": "Valuta converter",

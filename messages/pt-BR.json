@@ -1266,7 +1266,13 @@
       "passwordLength": "Tamanho da senha",
       "copyResult": "Copiar resultado",
       "recentResults": "Resultados recentes",
-      "copy": "Copiar"
+      "copy": "Copiar",
+      "step": "Count by",
+      "count": "How many",
+      "unique": "No repeats",
+      "download": "Download list",
+      "batch": "Batch",
+      "countHint": "Up to {max} at once."
     },
     "currency-converter": {
       "name": "Moeda converter",

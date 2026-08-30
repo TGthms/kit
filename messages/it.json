@@ -1266,7 +1266,13 @@
       "passwordLength": "Lunghezza password",
       "copyResult": "Copia risultato",
       "recentResults": "Risultati recenti",
-      "copy": "Copia"
+      "copy": "Copia",
+      "step": "Count by",
+      "count": "How many",
+      "unique": "No repeats",
+      "download": "Download list",
+      "batch": "Batch",
+      "countHint": "Up to {max} at once."
     },
     "currency-converter": {
       "name": "Valuta converter",

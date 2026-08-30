@@ -1266,7 +1266,13 @@
       "passwordLength": "密碼長度",
       "copyResult": "複製結果",
       "recentResults": "最近結果",
-      "copy": "復製"
+      "copy": "復製",
+      "step": "步長",
+      "count": "數量",
+      "unique": "不重複",
+      "download": "下載列表",
+      "batch": "批次",
+      "countHint": "一次最多 {max} 個。"
     },
     "currency-converter": {
       "name": "貨幣 converter",

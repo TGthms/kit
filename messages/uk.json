@@ -1266,7 +1266,13 @@
       "choices": "Варіанти, по одному в рядку",
       "passwordLength": "Довжина пароля",
       "copyResult": "Копіювати результат",
-      "recentResults": "Недавні результати"
+      "recentResults": "Недавні результати",
+      "step": "Count by",
+      "count": "How many",
+      "unique": "No repeats",
+      "download": "Download list",
+      "batch": "Batch",
+      "countHint": "Up to {max} at once."
     },
     "currency-converter": {
       "name": "Валюта converter",

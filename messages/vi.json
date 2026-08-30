@@ -1266,7 +1266,13 @@
       "choices": "Lựa chọn, mỗi dòng một",
       "passwordLength": "Độ dài mật khẩu",
       "copyResult": "Sao chép kết quả",
-      "recentResults": "Kết quả gần đây"
+      "recentResults": "Kết quả gần đây",
+      "step": "Count by",
+      "count": "How many",
+      "unique": "No repeats",
+      "download": "Download list",
+      "batch": "Batch",
+      "countHint": "Up to {max} at once."
     },
     "currency-converter": {
       "name": "Tiền tệ converter",

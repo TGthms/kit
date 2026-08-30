@@ -1266,7 +1266,13 @@
       "choices": "विकल्प, एक प्रति पंक्ति",
       "passwordLength": "पासवर्ड लंबाई",
       "copyResult": "परिणाम कॉपी करें",
-      "recentResults": "हाल के परिणाम"
+      "recentResults": "हाल के परिणाम",
+      "step": "Count by",
+      "count": "How many",
+      "unique": "No repeats",
+      "download": "Download list",
+      "batch": "Batch",
+      "countHint": "Up to {max} at once."
     },
     "currency-converter": {
       "name": "मुद्रा converter",

@@ -1266,7 +1266,13 @@
       "passwordLength": "パスワードの長さ",
       "copyResult": "結果をコピー",
       "recentResults": "最近の結果",
-      "copy": "コピー"
+      "copy": "コピー",
+      "step": "間隔",
+      "count": "個数",
+      "unique": "重複なし",
+      "download": "リストをダウンロード",
+      "batch": "まとめて",
+      "countHint": "一度に最大 {max} 件。"
     },
     "currency-converter": {
       "name": "通貨 converter",

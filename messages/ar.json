@@ -1266,7 +1266,13 @@
       "choices": "خيارات، واحد في كل سطر",
       "passwordLength": "طول كلمة المرور",
       "copyResult": "نسخ النتيجة",
-      "recentResults": "نتائج أخيرة"
+      "recentResults": "نتائج أخيرة",
+      "step": "الخطوة",
+      "count": "العدد",
+      "unique": "بدون تكرار",
+      "download": "تنزيل القائمة",
+      "batch": "دفعة",
+      "countHint": "حتى {max} دفعة واحدة."
     },
     "currency-converter": {
       "name": "العملة converter",

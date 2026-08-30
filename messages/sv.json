@@ -1266,7 +1266,13 @@
       "choices": "Val, ett per rad",
       "passwordLength": "Lösenordslängd",
       "copyResult": "Kopiera resultat",
-      "recentResults": "Senaste resultat"
+      "recentResults": "Senaste resultat",
+      "step": "Count by",
+      "count": "How many",
+      "unique": "No repeats",
+      "download": "Download list",
+      "batch": "Batch",
+      "countHint": "Up to {max} at once."
     },
     "currency-converter": {
       "name": "Valuta converter",

@@ -1266,7 +1266,13 @@
       "choices": "ตัวเลือก บรรทัดละหนึ่ง",
       "passwordLength": "ความยาวรหัสผ่าน",
       "copyResult": "คัดลอกผลลัพธ์",
-      "recentResults": "ผลลัพธ์ล่าสุด"
+      "recentResults": "ผลลัพธ์ล่าสุด",
+      "step": "Count by",
+      "count": "How many",
+      "unique": "No repeats",
+      "download": "Download list",
+      "batch": "Batch",
+      "countHint": "Up to {max} at once."
     },
     "currency-converter": {
       "name": "สกุลเงิน converter",

@@ -86,7 +86,9 @@ type TranslationFn = (key: string, values?: Record<string, string | number>) => 
 function text(t: ReturnType<typeof useTranslations>, key: string, fallback: string, values?: Record<string, string | number>) {
   try {
     const translate = t as unknown as TranslationFn;
-    return translate(key, values) || fallback;
+    const result = translate(key, values);
+    if (!result || result === key || result.endsWith(`.${key}`)) return fallback;
+    return result;
   } catch {
     return fallback;
   }
@@ -572,12 +574,12 @@ export function RandomGenerator() {
           </div>
           {mode === "integer" ? (
             <div className="space-y-2">
-              <Label>{text(t, "step", "Step")}</Label>
+              <Label>{text(t, "step", "Count by")}</Label>
               <Input type="number" min="1" value={step} onChange={(event) => setStep(event.target.value)} />
             </div>
           ) : (
             <div className="space-y-2">
-              <Label>{text(t, "precision", "Precision")}</Label>
+              <Label>{text(t, "precision", "Decimal places")}</Label>
               <Input type="number" min="0" max="15" value={precision} onChange={(event) => setPrecision(event.target.value)} />
             </div>
           )}
@@ -595,31 +597,45 @@ export function RandomGenerator() {
           <Input type="number" min="1" max="256" value={length} onChange={(event) => setLength(event.target.value)} />
         </div>
       ) : null}
-      <div className="grid gap-4 sm:grid-cols-2">
-        <div className="space-y-2">
-          <Label>{text(t, "count", "How many")}</Label>
-          <Input type="number" min="1" max={MAX_RANDOM_BATCH} value={count} onChange={(event) => setCount(event.target.value)} />
-        </div>
-        {mode === "integer" || mode === "pick" ? (
-          <div className="flex items-end pb-1">
-            <label className="flex items-center gap-2 text-sm">
-              <Switch checked={unique} onCheckedChange={setUnique} />
-              {text(t, "unique", "No repeats")}
-            </label>
+      <div className="rounded-2xl border border-border/60 bg-card p-4">
+        <p className="mb-3 text-sm font-medium">{text(t, "batch", "Batch")}</p>
+        <div className="grid gap-4 sm:grid-cols-2">
+          <div className="space-y-2">
+            <Label>{text(t, "count", "How many")}</Label>
+            <Input type="number" min="1" max={MAX_RANDOM_BATCH} value={count} onChange={(event) => setCount(event.target.value)} />
           </div>
-        ) : null}
+          {mode === "integer" || mode === "pick" ? (
+            <div className="flex items-end pb-1">
+              <label className="flex items-center gap-2 text-sm">
+                <Switch checked={unique} onCheckedChange={setUnique} />
+                {text(t, "unique", "No repeats")}
+              </label>
+            </div>
+          ) : <p className="self-end text-xs text-muted-foreground">{text(t, "countHint", `Up to ${MAX_RANDOM_BATCH} at once.`, { max: MAX_RANDOM_BATCH })}</p>}
+        </div>
       </div>
-      <ActionBar onRun={generate} loading={false} label={text(t, "run", "Generate")} />
+      <ActionBar onRun={generate} loading={false} label={batch > 1 ? `${text(t, "run", "Generate")} · ${batch}` : text(t, "run", "Generate")} />
       {error ? <p className="text-sm text-destructive">{error}</p> : null}
       {values.length ? (
         <Card className="border-primary/30 bg-primary/5">
-          <CardContent className="space-y-3 p-5">
+          <CardContent className="space-y-4 p-5">
             {singleNumber !== null && Number.isFinite(singleNumber) ? (
               <NumberFlow
                 value={singleNumber}
                 format={mode === "decimal" ? { minimumFractionDigits: Number(precision) || 0, maximumFractionDigits: Number(precision) || 0 } : undefined}
-                className="break-all font-mono text-xl font-semibold"
+                className="break-all font-mono text-4xl font-semibold tracking-tight sm:text-5xl"
               />
+            ) : values.length <= 24 && (mode === "integer" || mode === "decimal") ? (
+              <div className="flex flex-wrap gap-2">
+                {values.map((item, index) => (
+                  <span key={`${item}-${index}`} className="inline-flex min-w-[3.5rem] items-center justify-center rounded-xl border border-primary/20 bg-background px-3 py-2 font-mono text-lg font-semibold tabular-nums">
+                    <NumberFlow
+                      value={Number(item)}
+                      format={mode === "decimal" ? { minimumFractionDigits: Number(precision) || 0, maximumFractionDigits: Number(precision) || 0 } : undefined}
+                    />
+                  </span>
+                ))}
+              </div>
             ) : (
               <pre className="max-h-56 overflow-auto whitespace-pre-wrap break-all font-mono text-sm leading-6">{joined}</pre>
             )}
@@ -636,7 +652,7 @@ export function RandomGenerator() {
               </Button>
               {values.length > 1 ? (
                 <Button variant="outline" size="sm" onClick={() => downloadText(joined, "random.txt")}>
-                  {text(t, "download", "Download")}
+                  {text(t, "download", "Download list")}
                 </Button>
               ) : null}
             </div>

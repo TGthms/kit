@@ -1266,7 +1266,13 @@
       "choices": "Vaihtoehdot, yksi per rivi",
       "passwordLength": "Salasanan pituus",
       "copyResult": "Kopioi tulos",
-      "recentResults": "Viimeisimmät tulokset"
+      "recentResults": "Viimeisimmät tulokset",
+      "step": "Count by",
+      "count": "How many",
+      "unique": "No repeats",
+      "download": "Download list",
+      "batch": "Batch",
+      "countHint": "Up to {max} at once."
     },
     "currency-converter": {
       "name": "Valuutta converter",

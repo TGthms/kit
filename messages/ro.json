@@ -1266,7 +1266,13 @@
       "choices": "Opțiuni, una pe linie",
       "passwordLength": "Lungimea parolei",
       "copyResult": "Copiază rezultatul",
-      "recentResults": "Rezultate recente"
+      "recentResults": "Rezultate recente",
+      "step": "Count by",
+      "count": "How many",
+      "unique": "No repeats",
+      "download": "Download list",
+      "batch": "Batch",
+      "countHint": "Up to {max} at once."
     },
     "currency-converter": {
       "name": "Monedă converter",
