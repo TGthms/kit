@@ -1,22 +1,17 @@
-/* Kit service worker — app shell only; never cache user files or RSC payloads */
-const CACHE = "kit-shell-v5";
+/* Kit service worker — app shell only; never cache user files or RSC payloads.
+   A new worker must wait for existing tabs to close. Taking over mid-navigation
+   (skipWaiting + clients.claim) can orphan a navigate fetch and wedge the page. */
+const CACHE = "kit-shell-v6";
 const PRECACHE = ["./", "./manifest.webmanifest"];
+const NAV_FETCH_MS = 8000;
 
 self.addEventListener("install", (event) => {
-  event.waitUntil(
-    caches
-      .open(CACHE)
-      .then((cache) => cache.addAll(PRECACHE))
-      .then(() => self.skipWaiting())
-  );
+  event.waitUntil(caches.open(CACHE).then((cache) => cache.addAll(PRECACHE)));
 });
 
 self.addEventListener("activate", (event) => {
   event.waitUntil(
-    caches
-      .keys()
-      .then((keys) => Promise.all(keys.filter((k) => k !== CACHE).map((k) => caches.delete(k))))
-      .then(() => self.clients.claim())
+    caches.keys().then((keys) => Promise.all(keys.filter((k) => k !== CACHE).map((k) => caches.delete(k))))
   );
 });
 
@@ -47,6 +42,35 @@ function htmlPathFromTxt(pathname) {
   return pathname.replace(/\/index\.txt$/i, "/").replace(/\.txt$/i, "/");
 }
 
+function deadlineFetch(resource, init) {
+  const ctrl = new AbortController();
+  const extra = init ? { ...init, signal: ctrl.signal } : { signal: ctrl.signal };
+  return new Promise((resolve, reject) => {
+    const timer = setTimeout(() => {
+      ctrl.abort();
+      reject(new DOMException("Timeout", "AbortError"));
+    }, NAV_FETCH_MS);
+    fetch(resource, extra).then(
+      (res) => {
+        clearTimeout(timer);
+        resolve(res);
+      },
+      (err) => {
+        clearTimeout(timer);
+        reject(err);
+      }
+    );
+  });
+}
+
+async function cachedNavigation(req) {
+  const cached = await caches.match(req);
+  if (cached && isHtmlResponse(cached)) return cached;
+  const shell = await caches.match("./");
+  if (shell && isHtmlResponse(shell)) return shell;
+  return cached || Response.error();
+}
+
 self.addEventListener("fetch", (event) => {
   const req = event.request;
   if (req.method !== "GET") return;
@@ -67,23 +91,19 @@ self.addEventListener("fetch", (event) => {
     event.respondWith(
       (async () => {
         try {
-          const res = await fetch(req);
+          const res = await deadlineFetch(req);
           if (res.ok && isHtmlResponse(res)) {
             const copy = res.clone();
             event.waitUntil(caches.open(CACHE).then((c) => c.put(req, copy)));
             return res;
           }
           if (!isHtmlResponse(res)) {
-            const retry = await fetch(req.url, { headers: { Accept: "text/html" }, cache: "no-store" });
+            const retry = await deadlineFetch(req.url, { headers: { Accept: "text/html" }, cache: "no-store" });
             if (retry.ok && isHtmlResponse(retry)) return retry;
           }
           return res;
         } catch {
-          const cached = await caches.match(req);
-          if (cached && isHtmlResponse(cached)) return cached;
-          const shell = await caches.match("./");
-          if (shell && isHtmlResponse(shell)) return shell;
-          return cached || Response.error();
+          return cachedNavigation(req);
         }
       })()
     );
