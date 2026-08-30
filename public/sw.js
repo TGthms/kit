@@ -1,5 +1,5 @@
 /* Kit service worker — app shell only; never cache user files or RSC payloads */
-const CACHE = "kit-shell-v4";
+const CACHE = "kit-shell-v5";
 const PRECACHE = ["./", "./manifest.webmanifest"];
 
 self.addEventListener("install", (event) => {
@@ -43,6 +43,10 @@ function isHtmlResponse(res) {
   return type.includes("text/html");
 }
 
+function htmlPathFromTxt(pathname) {
+  return pathname.replace(/\/index\.txt$/i, "/").replace(/\.txt$/i, "/");
+}
+
 self.addEventListener("fetch", (event) => {
   const req = event.request;
   if (req.method !== "GET") return;
@@ -55,6 +59,11 @@ self.addEventListener("fetch", (event) => {
   if (isRscRequest(req)) return;
 
   if (req.mode === "navigate" || req.destination === "document") {
+    if (/\.txt$/i.test(url.pathname)) {
+      const dest = htmlPathFromTxt(url.pathname) + url.search;
+      event.respondWith(Response.redirect(new URL(dest, url.origin), 303));
+      return;
+    }
     event.respondWith(
       (async () => {
         try {
