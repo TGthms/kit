@@ -303,7 +303,7 @@ function HomePageInner() {
                       <span className={cn("flex h-10 w-10 shrink-0 items-center justify-center rounded-xl", meta.tint)}><Icon className="h-5 w-5" /></span>
                       <div className="min-w-0">
                         <CardTitle className="truncate text-sm font-medium tracking-[-0.01em]">{tc(id)}</CardTitle>
-                        {locale === "en" || id !== "converter" ? <CardDescription className="mt-0.5 line-clamp-2 text-xs">{tc(`${id}Desc`)}</CardDescription> : null}
+                        <CardDescription className="mt-0.5 line-clamp-2 text-xs">{tc(`${id}Desc`)}</CardDescription>
                       </div>
                     </CardHeader>
                   </Card>
