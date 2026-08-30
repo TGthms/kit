@@ -32,7 +32,7 @@ export default async function LocaleLayout({
   return (
     <div lang={lang} dir={dir} className="min-h-dvh antialiased">
       <NextIntlClientProvider messages={messages}>
-        <Providers>
+        <Providers lang={lang} dir={dir}>
           <ShortcutsProvider>
             <Suspense fallback={null}>
               <AppShell>{children}</AppShell>

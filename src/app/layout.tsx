@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
-import { withBasePath, withAsset } from "@/lib/base-path";
+import { withBasePath, withAsset, basePath } from "@/lib/base-path";
+import { locales } from "@/lib/i18n/config";
 import { socialImages } from "@/lib/seo/metadata";
 import {
   CONTENT_SECURITY_POLICY,
@@ -101,6 +102,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <script
           dangerouslySetInnerHTML={{
             __html: `(function(){try{var d=document.documentElement,s=localStorage.getItem("theme")||"system",t=s==="system"?(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"):s;if(t==="dark"){d.classList.add("dark");d.style.colorScheme="dark";}else{d.classList.remove("dark");d.style.colorScheme="light";}var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute("content",t==="dark"?"#000000":"#f5f5f7");}catch(e){}})();`,
+          }}
+        />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var d=document.documentElement,p=location.pathname,b=${JSON.stringify(basePath)};if(b&&p.indexOf(b)===0)p=p.slice(b.length);var loc=(p.split("/").filter(Boolean)[0]||"");if(loc==="zh")loc="zh-Hans";var known=${JSON.stringify(locales)};if(known.indexOf(loc)<0)return;d.lang=loc;d.dir=(loc==="ar"||loc==="he")?"rtl":"ltr";}catch(e){}})();`,
           }}
         />
       </head>

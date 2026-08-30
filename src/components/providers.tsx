@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useLayoutEffect } from "react";
 import { ThemeProvider, useTheme } from "next-themes";
 import { Toaster } from "sonner";
 
@@ -20,23 +20,42 @@ export function rememberThemeChoice(choice: ThemeChoice, setTheme: (theme: Theme
   setTheme(choice);
 }
 
-export function Providers({ children }: { children: React.ReactNode }) {
+export function Providers({
+  children,
+  lang,
+  dir,
+}: {
+  children: React.ReactNode;
+  lang?: string;
+  dir?: "ltr" | "rtl";
+}) {
   return (
-    <ThemeProvider
-      attribute="class"
-      defaultTheme="system"
-      enableSystem
-      // System is the initial preference; manual choices persist unless the
-      // user selected light while the system was light and the system later
-      // changes to dark.
-      disableTransitionOnChange
-    >
-      <ThemePreferenceSync />
-      <ThemeColorSync />
-      {children}
-      <Toaster richColors position="top-center" closeButton />
-    </ThemeProvider>
+    <>
+      <HtmlLang lang={lang} dir={dir} />
+      <ThemeProvider
+        attribute="class"
+        defaultTheme="system"
+        enableSystem
+        // System is the initial preference; manual choices persist unless the
+        // user selected light while the system was light and the system later
+        // changes to dark.
+        disableTransitionOnChange
+      >
+        <ThemePreferenceSync />
+        <ThemeColorSync />
+        {children}
+        <Toaster richColors position="bottom-center" closeButton />
+      </ThemeProvider>
+    </>
   );
+}
+
+function HtmlLang({ lang, dir }: { lang?: string; dir?: "ltr" | "rtl" }) {
+  useLayoutEffect(() => {
+    if (lang) document.documentElement.lang = lang;
+    if (dir) document.documentElement.dir = dir;
+  }, [dir, lang]);
+  return null;
 }
 
 // Matches `--background` in globals.css (light/dark). Keep in sync with the
