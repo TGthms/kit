@@ -622,6 +622,14 @@ function readCurrencyCache(): CachedRateRecord[] {
   }
 }
 
+function writeCurrencyCache(records: CachedRateRecord[]) {
+  try {
+    window.localStorage.setItem(CURRENCY_CACHE_KEY, JSON.stringify(records));
+  } catch {
+    // Quota / private mode. In-memory rates still apply for this session.
+  }
+}
+
 export function CurrencyConverter({ onBack, namespace = "tools.currency-converter" }: { onBack?: () => void; namespace?: "tools.everyday-converter" | "tools.currency-converter" } = {}) {
   const t = useTranslations(namespace);
   const locale = useLocale();
@@ -700,7 +708,7 @@ export function CurrencyConverter({ onBack, namespace = "tools.currency-converte
         const next = [...cached.filter((record) => !created.some((item) => item.base === record.base && item.quote === record.quote)), ...created];
         setRates(next);
         setUpdatedAt(Date.now());
-        window.localStorage.setItem(CURRENCY_CACHE_KEY, JSON.stringify(next));
+        writeCurrencyCache(next);
       })
       .catch((reason: unknown) => {
         if (active) setError(reason instanceof Error ? reason.message : "Rate service unavailable");
