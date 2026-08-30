@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect } from "react";
 import { useTranslations } from "next-intl";
 import { Link, usePathname } from "@/lib/i18n/navigation";
 import { useSearchParams } from "next/navigation";
@@ -10,6 +9,7 @@ import { withAsset } from "@/lib/base-path";
 import { ThemeToggle } from "./theme-toggle";
 import { SiteFooter } from "./footer";
 import { LocaleSwitcher } from "./locale-switcher";
+import { ScrollRestoration } from "./scroll-restoration";
 
 const nav = [
   { href: "/", key: "home", icon: Home },
@@ -21,118 +21,6 @@ const nav = [
 function isActive(pathname: string, href: string) {
   if (href === "/") return pathname === "/" || pathname === "";
   return pathname === href || pathname.startsWith(`${href}/`);
-}
-
-const SCROLL_STORAGE_PREFIX = "kit-scroll:";
-let restoreNextLocationKey: string | "*" | null = null;
-
-function scrollStorageKey(locationKey: string) {
-  return `${SCROLL_STORAGE_PREFIX}${locationKey}`;
-}
-
-function readScrollPosition(key: string): number {
-  try {
-    const value = Number(sessionStorage.getItem(key));
-    return Number.isFinite(value) && value > 0 ? value : 0;
-  } catch {
-    return 0;
-  }
-}
-
-function writeScrollPosition(key: string, value: number) {
-  try {
-    sessionStorage.setItem(key, String(Math.max(0, Math.round(value))));
-  } catch {
-    // sessionStorage may be unavailable in private browsing modes.
-  }
-}
-
-function ScrollRestoration({ locationKey }: { locationKey: string }) {
-  useEffect(() => {
-    const previousRestoration = window.history.scrollRestoration;
-    window.history.scrollRestoration = "manual";
-    const storageKey = scrollStorageKey(`${window.location.pathname}${window.location.search}`);
-    let lastScrollY = window.scrollY;
-    const shouldRestore = restoreNextLocationKey === "*" || restoreNextLocationKey === storageKey;
-    if (shouldRestore) restoreNextLocationKey = null;
-    const saved = shouldRestore ? readScrollPosition(storageKey) : 0;
-    let frame = 0;
-    let restoreTimer = 0;
-    let attempts = 0;
-    const restore = () => {
-      attempts += 1;
-      if (saved <= 0) return;
-      const maxScroll = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
-      if (maxScroll >= saved || attempts >= 60) {
-        // Temporarily disable smooth scrolling so restoration happens in one frame.
-        const html = document.documentElement;
-        const previousBehavior = html.style.scrollBehavior;
-        html.style.scrollBehavior = "auto";
-        window.scrollTo(0, Math.min(saved, maxScroll));
-        window.requestAnimationFrame(() => {
-          html.style.scrollBehavior = previousBehavior;
-        });
-        return;
-      }
-      frame = window.requestAnimationFrame(restore);
-    };
-    // Let the router finish its own route transition before taking control.
-    restoreTimer = window.setTimeout(() => {
-      frame = window.requestAnimationFrame(() => {
-        frame = window.requestAnimationFrame(restore);
-      });
-    }, 0);
-    const save = () => {
-      writeScrollPosition(storageKey, lastScrollY);
-    };
-    const rememberScroll = () => {
-      lastScrollY = window.scrollY;
-    };
-    window.addEventListener("scroll", rememberScroll, { passive: true });
-    window.addEventListener("pagehide", save);
-    return () => {
-      window.cancelAnimationFrame(frame);
-      window.clearTimeout(restoreTimer);
-      save();
-      window.removeEventListener("scroll", rememberScroll);
-      window.removeEventListener("pagehide", save);
-      window.history.scrollRestoration = previousRestoration;
-    };
-  }, [locationKey]);
-
-  useEffect(() => {
-    const rememberBeforeNavigation = (event: MouseEvent) => {
-      const target = event.target instanceof Element ? event.target.closest("a,button") : null;
-      if (!target) return;
-      if (target instanceof HTMLAnchorElement) {
-        if (target.target === "_blank" || target.hasAttribute("download")) return;
-        if (target.origin !== window.location.origin) return;
-      } else if (!(target instanceof HTMLButtonElement) || !target.hasAttribute("data-navigation-intent")) {
-        return;
-      }
-      const key = scrollStorageKey(`${window.location.pathname}${window.location.search}`);
-      writeScrollPosition(key, window.scrollY);
-      if (target.hasAttribute("data-restore-scroll")) {
-        if (target instanceof HTMLAnchorElement) {
-          const destination = new URL(target.href, window.location.href);
-          restoreNextLocationKey = scrollStorageKey(`${destination.pathname}${destination.search}`);
-        } else {
-          restoreNextLocationKey = "*";
-        }
-      }
-    };
-    const rememberPopstate = () => {
-      restoreNextLocationKey = "*";
-    };
-    document.addEventListener("click", rememberBeforeNavigation, true);
-    window.addEventListener("popstate", rememberPopstate);
-    return () => {
-      document.removeEventListener("click", rememberBeforeNavigation, true);
-      window.removeEventListener("popstate", rememberPopstate);
-    };
-  }, []);
-
-  return null;
 }
 
 /**
@@ -155,6 +43,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
             key={href}
             href={href}
             data-pressable
+            data-restore-scroll
             className={cn(
               "nav-item flex items-center gap-3 rounded-xl px-3 py-2.5 text-[15px] font-medium pressable-soft",
               active
@@ -183,6 +72,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
               key={href}
               href={href}
               data-pressable
+              data-restore-scroll
               className={cn(
                 "pressable-soft flex min-h-[3.75rem] min-w-0 flex-1 flex-col items-center justify-center gap-0.5 px-1 py-1.5",
                 "text-[11px] font-medium tracking-[-0.01em]",
@@ -213,6 +103,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
           <Link
             href="/"
             data-pressable
+            data-restore-scroll
             className="pressable-soft flex min-w-0 items-center gap-2 font-semibold tracking-[-0.02em]"
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
