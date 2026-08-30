@@ -48,3 +48,7 @@ __pycache__/
 # scripts/sync-vendor.mjs (runs via postinstall/prebuild), not hand-written
 # source, so it doesn't belong in version control.
 /public/vendor/
+
+# local agent scratch (not product source)
+.planning/
+CODEBASE_NOTES.md
