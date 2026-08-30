@@ -276,7 +276,7 @@
     "video": "Vidéo",
     "convert": "Conversion",
     "text": "Écriture",
-    "pdfDesc": "Fusionner, découper, compresser et annoter des PDF",
+    "pdfDesc": "Fusionnez, découpez, réduisez et annotez des PDF",
     "imageDesc": "Compresser, redimensionner, convertir et retoucher des photos",
     "audioDesc": "Convertir, rogner et changer la vitesse de l’audio uniquement",
     "videoDesc": "Convertir, rogner, accélérer et extraire l’audio d’une vidéo",
@@ -610,7 +610,7 @@
       "description": "Empilez des photos dans un PDF, une image par page.",
       "keywords": "images pdf jpg png combiner",
       "run": "Créer le PDF",
-      "success": "PDF créé à partir de {count} image(s).",
+      "success": "{count, plural, one {PDF créé à partir de # image.} other {PDF créé à partir de # images.}}",
       "limits": "Les images sont converties et assemblées localement dans ce navigateur. Les fichiers ne sont pas téléversés.",
       "fitA4": "Ajuster au A4",
       "fitImage": "Taille d’origine"

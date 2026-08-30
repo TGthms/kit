@@ -276,7 +276,7 @@
     "video": "Vídeo",
     "convert": "Conversión de archivos",
     "text": "Escritura",
-    "pdfDesc": "Unir, dividir, comprimir y marcar documentos PDF",
+    "pdfDesc": "Combina, divide, reduce y marca documentos PDF",
     "imageDesc": "Comprimir, redimensionar, convertir y retocar fotos",
     "audioDesc": "Convertir, recortar y cambiar la velocidad solo de audio",
     "videoDesc": "Convertir, recortar, acelerar y extraer audio de vídeo",
@@ -610,7 +610,7 @@
       "description": "Junta fotos en un PDF, una imagen por página.",
       "keywords": "imágenes pdf jpg png",
       "run": "Crear PDF",
-      "success": "PDF creado con {count} imagen(es).",
+      "success": "{count, plural, one {PDF creado a partir de # imagen.} other {PDF creado a partir de # imágenes.}}",
       "limits": "Las imágenes se convierten y ensamblan localmente en este navegador. Los archivos no se suben.",
       "fitA4": "Ajustar a A4",
       "fitImage": "Tamaño original"

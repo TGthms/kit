@@ -276,7 +276,7 @@
     "video": "Video",
     "convert": "File convert",
     "text": "Writing",
-    "pdfDesc": "Merge, split, compress, and mark up PDF documents",
+    "pdfDesc": "Merge, split, shrink, and mark up PDF documents",
     "imageDesc": "Compress, resize, convert, and retouch photos",
     "audioDesc": "Convert, trim, and change speed of audio only",
     "videoDesc": "Convert, trim, speed up, and pull audio from video",
@@ -610,7 +610,7 @@
       "description": "Stack photos into a PDF, one image per page. A4 is the default.",
       "keywords": "images to pdf jpg png combine a4",
       "run": "Create PDF",
-      "success": "Built a PDF from {count} image(s).",
+      "success": "{count, plural, one {Built a PDF from # image.} other {Built a PDF from # images.}}",
       "limits": "Images are converted and assembled locally in this browser. Files are not uploaded. A4 fit is the default; original size keeps each page as large as the photo.",
       "fitA4": "Fit to A4",
       "fitImage": "Original size"

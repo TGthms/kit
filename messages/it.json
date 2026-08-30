@@ -276,7 +276,7 @@
     "video": "Video",
     "convert": "Conversione file",
     "text": "Scrittura",
-    "pdfDesc": "Unisci, dividi, comprimi e annota documenti PDF",
+    "pdfDesc": "Unisci, dividi, riduci e annota PDF",
     "imageDesc": "Comprimi, ridimensiona, converti e ritocca foto",
     "audioDesc": "Converti, taglia e cambia la velocità solo dell’audio",
     "videoDesc": "Converti, taglia, accelera ed estrai l’audio dai video",
@@ -610,7 +610,7 @@
       "description": "Impila le foto in un PDF, un’immagine per pagina.",
       "keywords": "immagini pdf jpg png unire",
       "run": "Crea PDF",
-      "success": "Creato un PDF da {count} immagini.",
+      "success": "{count, plural, one {PDF creato da # immagine.} other {PDF creato da # immagini.}}",
       "limits": "Le immagini vengono convertite e assemblate localmente in questo browser. I file non vengono caricati.",
       "fitA4": "Adatta ad A4",
       "fitImage": "Dimensione originale"
