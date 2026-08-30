@@ -233,6 +233,16 @@ number-flow-react {
   color: var(--destructive) !important;
 }
 
+[data-sonner-toast].kit-toast [data-close-button] {
+  background: var(--card) !important;
+  border: 1px solid var(--border) !important;
+  color: var(--muted-foreground) !important;
+  left: auto !important;
+  right: 0.35rem !important;
+  top: 0.35rem !important;
+  transform: none !important;
+}
+
 .greeting-typewriter {
   position: relative;
   display: block;

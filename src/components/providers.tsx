@@ -51,8 +51,11 @@ export function Providers({
           duration={2800}
           gap={10}
           expand={false}
+          closeButton
+          swipeDirections={["top"]}
           toastOptions={{
             className: "kit-toast",
+            closeButtonAriaLabel: "Close",
           }}
         />
       </ThemeProvider>
