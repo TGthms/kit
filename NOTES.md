@@ -2,10 +2,10 @@
 
 This file is the active implementation record. Current source is under `src/`, `messages/`, `content/`, `public/`, and `scripts/`. Do not use the disposable `out/` directory as source evidence.
 
-## Current baseline (2026-08-25)
+## Current baseline (2026-08-29)
 
-- **65 tools** in `src/lib/tools/registry.ts`.
-- Next.js 15 App Router with static export, PWA shell, and GitHub Pages CI.
+- **83 tools** in `src/lib/tools/registry.ts`.
+- Next.js 15 App Router with static export, PWA shell, Cloudflare Pages (canonical) and GitHub Pages CI. Both deploys run typecheck, lint, and tests before publishing.
 - 30 first-class locales plus the legacy `/zh/` path alias; localized tool metadata, sitemap, robots, and 62 legal documents.
 - Pure engines and tests under `src/lib/`; client tool views under `src/components/tools/`; favorites and metadata-only history in Zustand stores.
 - Canonical production site: `https://trykit.pages.dev`; GitHub Pages backup: `https://TGthms.github.io/kit/`.
@@ -25,12 +25,16 @@ This file is the active implementation record. Current source is under `src/`, `
 - Everyday category includes unit conversion, currency, text counting, time zones, dates, tips/splits, stopwatch/timer, random generation, and local image-to-PDF assembly.
 - PDF page numbers, PDF-to-images ZIP, images-to-PDF, form flattening, PDF metadata, PDF lock/unlock, image EXIF inspection, rotate/flip, filters, favicon export, XML/JSON, SQL, regex, hashing, UUID, color, Lorem ipsum, QR, and password tools are registered and implemented.
 - PDF merge thumbnails are rendered concurrently, while PDF-to-image processing still cleans up PDF.js documents.
-- Images-to-PDF now supports an A4 fit-to-page layout with margins; the tool uses it by default while the pure engine retains an explicit natural-size mode.
+- Images-to-PDF defaults to A4 fit-to-page with margins; the tool can switch to original image size. The engine keeps both modes.
 - The everyday world-clock city list is maintained in `src/lib/converter/cities.ts` and uses IANA time zones through `Intl`.
 - The static app includes an explicit CSP meta policy for same-origin assets plus the documented jsDelivr and Frankfurter origins. SRI is not used for dynamically loaded WASM/blob URLs.
 - Mobile tool headers collapse after scrolling to a compact iOS-like back affordance; tool title, description, client-side note, and favorite action are hidden while scrolled.
 - Keyboard shortcuts avoid Cmd/Ctrl bindings that collide with macOS, Windows, and browser commands: `/` focuses search, `R` runs the active tool, `?` opens help, and `Esc` closes help. Cmd/Ctrl+Enter remains available as an optional form-style run gesture.
-- Theme behavior intentionally resets to System on every fresh mount/reload. Manual light/dark choices apply for the current visit only.
+- Theme persists in localStorage (`theme`). System is the default. A manual Light choice snaps back to System if the OS appearance later changes.
+- Cover content is a drawable visual overlay (not true redaction). Shrink-as-images rasterizes pages to JPEG and says so in the tool name and limits.
+- World clock public URL is `/tools/world-clock/`; `/tools/timezone-converter/` still loads the same tool and rewrites the path.
+- Images → PDF defaults to A4 fit with an original-size option. JPEG EXIF orientation is applied via canvas decode.
+- pdf.js CMaps, standard fonts, WASM, and ICC profiles are vendored next to the worker (`scripts/sync-vendor.mjs`).
 
 ## Validation baseline
 
@@ -49,11 +53,10 @@ Component tests use the browser-like Vitest environment where needed; pure libra
 
 ### Product / UX
 
-- True content-stream redaction; current redaction is a visual cover and is disclosed as such.
+- True content-stream redaction; current cover is visual-only and is disclosed as such.
 - OCR for scanned PDFs; deferred because a client-side OCR engine would add a large download.
-- Visual crop handles and draw-to-redact interactions.
+- Visual crop handles on the image crop tool.
 - More file-tool batch defaults and consistent progress/cancel messaging.
-- Optional user-selectable PDF page sizes beyond the current A4 fit-to-page default.
 - More codec-specific validation and clearer unsupported-format errors for FFmpeg WASM.
 
 ### Engineering
