@@ -1,6 +1,5 @@
-/* Kit service worker — app shell only; never cache user files */
-const CACHE = "kit-shell-v3";
-// Do not precache icons — they change and must not stick forever
+/* Kit service worker — app shell only; never cache user files or RSC payloads */
+const CACHE = "kit-shell-v4";
 const PRECACHE = ["./", "./manifest.webmanifest"];
 
 self.addEventListener("install", (event) => {
@@ -16,31 +15,32 @@ self.addEventListener("activate", (event) => {
   event.waitUntil(
     caches
       .keys()
-      .then((keys) =>
-        Promise.all(keys.filter((k) => k !== CACHE).map((k) => caches.delete(k)))
-      )
+      .then((keys) => Promise.all(keys.filter((k) => k !== CACHE).map((k) => caches.delete(k))))
       .then(() => self.clients.claim())
   );
 });
 
 function isIconOrManifest(url) {
   const p = url.pathname;
-  return (
-    p.includes("/icons/") ||
-    p.endsWith("manifest.webmanifest") ||
-    p.endsWith("/sw.js")
-  );
+  return p.includes("/icons/") || p.endsWith("manifest.webmanifest") || p.endsWith("/sw.js");
 }
 
 function isStaticAsset(url) {
-  // Only true content-hashed build output (Next's /_next/static/*.js|css and
-  // self-hosted webfonts) is safe to treat as cache-first/immutable. Do NOT
-  // match on a trailing "/" here: with `trailingSlash: true` every page
-  // route also ends in "/", so that used to make this branch cache-first
-  // (i.e. "cache forever, never revalidate") for non-navigate requests to
-  // page routes too — e.g. <Link> prefetches — silently locking in stale
-  // page content until the SW's CACHE version is bumped by a deploy.
-  return /\.(js|css|woff2?)$/.test(url.pathname);
+  return /\.(js|css|woff2?)$/u.test(url.pathname);
+}
+
+function isRscRequest(req) {
+  if (req.headers.get("RSC") === "1") return true;
+  if (req.headers.has("Next-Router-Prefetch")) return true;
+  if (req.headers.has("Next-Router-State-Tree")) return true;
+  if (req.headers.has("Next-Url")) return true;
+  const accept = req.headers.get("accept") || "";
+  return accept.includes("text/x-component");
+}
+
+function isHtmlResponse(res) {
+  const type = res.headers.get("content-type") || "";
+  return type.includes("text/html");
 }
 
 self.addEventListener("fetch", (event) => {
@@ -50,22 +50,37 @@ self.addEventListener("fetch", (event) => {
   const url = new URL(req.url);
   if (!url.protocol.startsWith("http")) return;
   if (url.origin !== self.location.origin) return;
+  // Next client navigations/prefetches must hit the network as-is. Caching or
+  // replaying them as documents is how a Flight payload can paint as the page.
+  if (isRscRequest(req)) return;
 
-  // Navigations: network-first
-  if (req.mode === "navigate") {
+  if (req.mode === "navigate" || req.destination === "document") {
     event.respondWith(
-      fetch(req)
-        .then((res) => {
-          const copy = res.clone();
-          event.waitUntil(caches.open(CACHE).then((c) => c.put(req, copy)));
+      (async () => {
+        try {
+          const res = await fetch(req);
+          if (res.ok && isHtmlResponse(res)) {
+            const copy = res.clone();
+            event.waitUntil(caches.open(CACHE).then((c) => c.put(req, copy)));
+            return res;
+          }
+          if (!isHtmlResponse(res)) {
+            const retry = await fetch(req.url, { headers: { Accept: "text/html" }, cache: "no-store" });
+            if (retry.ok && isHtmlResponse(retry)) return retry;
+          }
           return res;
-        })
-        .catch(() => caches.match(req).then((r) => r || caches.match("./")))
+        } catch {
+          const cached = await caches.match(req);
+          if (cached && isHtmlResponse(cached)) return cached;
+          const shell = await caches.match("./");
+          if (shell && isHtmlResponse(shell)) return shell;
+          return cached || Response.error();
+        }
+      })()
     );
     return;
   }
 
-  // Icons / manifest / SW: always try network first so branding updates stick
   if (isIconOrManifest(url)) {
     event.respondWith(
       fetch(req)
@@ -81,7 +96,6 @@ self.addEventListener("fetch", (event) => {
     return;
   }
 
-  // JS/CSS/fonts: cache-first (hashed filenames from Next are immutable)
   if (isStaticAsset(url)) {
     event.respondWith(
       caches.match(req).then(
