@@ -204,6 +204,35 @@ number-flow-react {
   line-height: 1;
 }
 
+[data-sonner-toaster] {
+  --width: min(22.5rem, calc(100vw - 1.5rem));
+}
+
+[data-sonner-toast].kit-toast {
+  border: 1px solid var(--border) !important;
+  border-radius: 1rem !important;
+  background: var(--card) !important;
+  color: var(--foreground) !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08) !important;
+  padding: 0.7rem 0.9rem !important;
+  font-size: 0.875rem !important;
+  font-weight: 500 !important;
+  letter-spacing: -0.012em;
+}
+
+.dark [data-sonner-toast].kit-toast {
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45) !important;
+}
+
+[data-sonner-toast][data-type="success"].kit-toast {
+  border-color: color-mix(in srgb, var(--primary) 35%, var(--border)) !important;
+}
+
+[data-sonner-toast][data-type="error"].kit-toast {
+  border-color: color-mix(in srgb, var(--destructive) 45%, var(--border)) !important;
+  color: var(--destructive) !important;
+}
+
 .greeting-typewriter {
   position: relative;
   display: block;

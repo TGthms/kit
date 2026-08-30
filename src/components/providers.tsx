@@ -44,7 +44,17 @@ export function Providers({
         <ThemePreferenceSync />
         <ThemeColorSync />
         {children}
-        <Toaster richColors position="bottom-center" closeButton />
+        <Toaster
+          position="top-center"
+          offset="calc(3.75rem + env(safe-area-inset-top))"
+          visibleToasts={3}
+          duration={2800}
+          gap={10}
+          expand={false}
+          toastOptions={{
+            className: "kit-toast",
+          }}
+        />
       </ThemeProvider>
     </>
   );
