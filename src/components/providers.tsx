@@ -4,6 +4,7 @@ import { useEffect, useLayoutEffect } from "react";
 import { ThemeProvider, useTheme } from "next-themes";
 import { useTranslations } from "next-intl";
 import { Toaster } from "sonner";
+import { PressFeedback } from "@/components/layout/press-feedback";
 
 // Must match next-themes' default storageKey ("theme"), since we don't
 // override it below.
@@ -44,6 +45,7 @@ export function Providers({
       >
         <ThemePreferenceSync />
         <ThemeColorSync />
+        <PressFeedback />
         {children}
         <KitToaster />
       </ThemeProvider>

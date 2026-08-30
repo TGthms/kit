@@ -415,6 +415,75 @@ details[open] > .anim-details-content {
   transform: scale(0.985);
 }
 
+button[data-pressed]:not(:disabled),
+[data-pressable][data-pressed],
+.pressable[data-pressed] {
+  transform: scale(0.97);
+}
+
+.pressable-soft[data-pressed] {
+  transform: scale(0.985);
+}
+
+.kit-spinner {
+  width: 2.25rem;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background:
+    radial-gradient(farthest-side, var(--primary) 94%, transparent) top / 0.28rem 0.28rem no-repeat,
+    conic-gradient(transparent 22%, var(--primary));
+  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 0.28rem), #000 0);
+  mask: radial-gradient(farthest-side, transparent calc(100% - 0.28rem), #000 0);
+  animation: kit-spin 0.85s linear infinite;
+}
+
+@keyframes kit-spin {
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+.kit-route-progress {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  height: 2px;
+  overflow: hidden;
+  pointer-events: none;
+  background: color-mix(in srgb, var(--primary) 16%, transparent);
+  opacity: 0;
+  transition: opacity 160ms var(--ease-out-soft);
+}
+
+.kit-route-progress[data-active="true"] {
+  opacity: 1;
+}
+
+.kit-route-progress::after {
+  content: "";
+  position: absolute;
+  inset-block: 0;
+  width: 38%;
+  border-radius: 999px;
+  background: var(--primary);
+  animation: kit-route-slide 1.05s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@keyframes kit-route-slide {
+  0% {
+    transform: translateX(-110%);
+  }
+  100% {
+    transform: translateX(280%);
+  }
+}
+
+.chrome-touch {
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+}
+
 /* Nav active pill settle (critically damped feel) */
 .nav-item {
   transition: background-color 0.22s var(--ease-out-soft), color 0.22s var(--ease-out-soft),
@@ -456,8 +525,33 @@ details[open] > .anim-details-content {
     transition: none !important;
   }
   .pressable:active,
-  .pressable-soft:active {
+  .pressable-soft:active,
+  button[data-pressed],
+  [data-pressable][data-pressed],
+  .pressable[data-pressed],
+  .pressable-soft[data-pressed] {
     transform: none !important;
+  }
+  .kit-spinner {
+    animation: none;
+    background:
+      radial-gradient(farthest-side, transparent 62%, color-mix(in srgb, var(--primary) 35%, transparent) 63% 86%, transparent 87%),
+      conic-gradient(from 200deg, transparent 40%, var(--primary));
+    -webkit-mask: none;
+    mask: none;
+    opacity: 0.85;
+  }
+  .kit-route-progress::after {
+    animation: none;
+    inset-inline-start: 0;
+    width: 42%;
+  }
+}
+
+@media (display-mode: standalone), (display-mode: fullscreen) {
+  html,
+  body {
+    overscroll-behavior: none;
   }
 }
 

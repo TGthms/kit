@@ -1,5 +1,6 @@
 "use client";
 
+import { Suspense } from "react";
 import { useTranslations } from "next-intl";
 import { Link, usePathname } from "@/lib/i18n/navigation";
 import { useSearchParams } from "next/navigation";
@@ -9,6 +10,7 @@ import { withAsset } from "@/lib/base-path";
 import { ThemeToggle } from "./theme-toggle";
 import { SiteFooter } from "./footer";
 import { LocaleSwitcher } from "./locale-switcher";
+import { RouteProgress } from "./route-progress";
 import { ScrollRestoration } from "./scroll-restoration";
 
 const nav = [
@@ -56,7 +58,7 @@ function TabBar({ pathname }: { pathname: string }) {
   const tb = useTranslations("brand");
   return (
     <nav
-      className="glass chrome-edge fixed inset-x-0 bottom-0 z-40 md:hidden safe-pb"
+      className="glass chrome-edge chrome-touch fixed inset-x-0 bottom-0 z-40 md:hidden safe-pb"
       aria-label={tb("name")}
     >
       <div className="mx-auto flex max-w-lg items-stretch justify-around px-1 pt-1">
@@ -95,16 +97,21 @@ function TabBar({ pathname }: { pathname: string }) {
  * Desktop: side rail + top chrome.
  * Mobile: top chrome + bottom tab bar only (no redundant drawer/sidebar).
  */
+function ScrollRestorationBound({ pathname }: { pathname: string }) {
+  const searchParams = useSearchParams();
+  return <ScrollRestoration locationKey={`${pathname}?${searchParams.toString()}`} />;
+}
+
 export function AppShell({ children }: { children: React.ReactNode }) {
   const tb = useTranslations("brand");
   const pathname = usePathname();
-  const searchParams = useSearchParams();
-  const locationKey = `${pathname}?${searchParams.toString()}`;
 
   return (
     <div className="flex min-h-dvh flex-col overflow-x-clip bg-background">
-      <ScrollRestoration locationKey={locationKey} />
-      <header className="glass chrome-edge fixed inset-x-0 top-0 z-50 shrink-0 pt-[env(safe-area-inset-top)]">
+      <Suspense fallback={null}>
+        <ScrollRestorationBound pathname={pathname} />
+      </Suspense>
+      <header className="glass chrome-edge chrome-touch fixed inset-x-0 top-0 z-50 shrink-0 pt-[env(safe-area-inset-top)]">
         <div className="mx-auto flex h-12 max-w-6xl items-center justify-between gap-2 px-4 sm:h-14 sm:gap-3 sm:px-6 lg:px-8">
           <Link
             href="/"
@@ -129,6 +136,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
             <ThemeToggle />
           </div>
         </div>
+        <RouteProgress />
       </header>
 
       <div className="mx-auto flex w-full max-w-6xl flex-1 gap-8 px-4 pb-5 pt-[calc(3rem+env(safe-area-inset-top)+1.25rem)] sm:px-6 sm:pt-[calc(3.5rem+env(safe-area-inset-top)+2rem)] lg:px-8">

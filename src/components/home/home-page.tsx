@@ -25,6 +25,7 @@ import { PageHeader } from "@/components/layout/page-header";
 import { useFavoritesStore } from "@/stores/favorites-store";
 import { cn } from "@/lib/utils";
 import { GreetingHeadline } from "@/components/home/greeting-headline";
+import { PageLoader } from "@/components/shared/page-loader";
 import { getGreetingPeriod, getGreetingPoolKeys, getGreetingVariant, getGreetingVisitSeed, getHomeGreetingSelection, type GreetingCategory, type GreetingPeriod } from "@/lib/home/greeting";
 
 const categoryMeta: Record<
@@ -491,12 +492,9 @@ function HomePageInner() {
 }
 
 export function HomePage() {
+  const tcommon = useTranslations("common");
   return (
-    <Suspense
-      fallback={
-        <div className="type-body text-muted-foreground py-8">…</div>
-      }
-    >
+    <Suspense fallback={<PageLoader label={tcommon("loading")} />}>
       <HomePageInner />
     </Suspense>
   );

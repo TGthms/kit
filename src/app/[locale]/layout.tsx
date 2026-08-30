@@ -1,5 +1,4 @@
 import { NextIntlClientProvider } from "next-intl";
-import { Suspense } from "react";
 import { getMessages, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { pathLocales, isPathLocale, localeDir, localeHtmlLang } from "@/lib/i18n/config";
@@ -35,9 +34,7 @@ export default async function LocaleLayout({
       <NextIntlClientProvider messages={messages}>
         <Providers lang={lang} dir={dir}>
           <ShortcutsProvider>
-            <Suspense fallback={null}>
-              <AppShell>{children}</AppShell>
-            </Suspense>
+            <AppShell>{children}</AppShell>
           </ShortcutsProvider>
           <NavigationGuard />
           <ServiceWorkerRegister />
