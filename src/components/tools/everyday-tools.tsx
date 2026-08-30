@@ -14,7 +14,6 @@ import {
   WalletCards,
 } from "lucide-react";
 import { toast } from "sonner";
-import NumberFlow from "@number-flow/react";
 import { notifyCopied, notifyHistorySaved } from "@/lib/notify";
 import { AnimatedClock } from "@/components/shared/animated-clock";
 import { AnimatedNumber } from "@/components/shared/animated-number";
@@ -190,7 +189,7 @@ export function TextCounter() {
           variant="outline"
           onClick={() => {
             navigator.clipboard.writeText(value);
-            notifyCopied(text(tc, "copied", "Copied to clipboard"));
+            notifyCopied(tc("copied"));
           }}
         >
           <Copy /> {text(tc, "copy", "Copy")}
@@ -270,7 +269,7 @@ export function TimezoneConverter() {
       </details>
       <div className="space-y-3">
         <div className="flex items-end justify-between gap-3">
-          <div><h2 className="text-lg font-semibold">{text(t, "worldClock", "World clock")}</h2><p className="text-sm text-muted-foreground">{text(t, "worldClockHint", "A quick glance across common workday zones.")}</p></div>
+          <p className="text-sm text-muted-foreground">{text(t, "worldClockHint", "A quick glance across common workday zones.")}</p>
           <Clock3 className="h-5 w-5 text-muted-foreground" />
         </div>
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
@@ -512,6 +511,7 @@ export function StopwatchTimer() {
 
 export function RandomGenerator() {
   const t = useTranslations("tools.random-generator");
+  const tc = useTranslations("common");
   const log = useToolHistory(toolId("random-generator"));
   const [mode, setMode] = useState<"integer" | "decimal" | "boolean" | "pick" | "password">("integer");
   const [min, setMin] = useState("1");
@@ -549,7 +549,10 @@ export function RandomGenerator() {
     }
   };
   const joined = values.join("\n");
-  const singleNumber = values.length === 1 && (mode === "integer" || mode === "decimal") ? Number(values[0]) : null;
+  const numeric = mode === "integer" || mode === "decimal";
+  const numberFormat = mode === "decimal"
+    ? { minimumFractionDigits: Number(precision) || 0, maximumFractionDigits: Number(precision) || 0 }
+    : undefined;
   return (
     <ToolShell toolId={toolId("random-generator")}>
       <ToolLimits>
@@ -606,8 +609,8 @@ export function RandomGenerator() {
           </div>
           {mode === "integer" || mode === "pick" ? (
             <div className="flex items-end pb-1">
-              <label className="flex items-center gap-2 text-sm">
-                <Switch checked={unique} onCheckedChange={setUnique} />
+              <label htmlFor="random-unique" className="flex items-center gap-2 text-sm">
+                <Switch id="random-unique" checked={unique} onCheckedChange={setUnique} />
                 {text(t, "unique", "No repeats")}
               </label>
             </div>
@@ -619,23 +622,25 @@ export function RandomGenerator() {
       {values.length ? (
         <Card className="border-primary/30 bg-primary/5">
           <CardContent className="space-y-4 p-5">
-            {singleNumber !== null && Number.isFinite(singleNumber) ? (
-              <NumberFlow
-                value={singleNumber}
-                format={mode === "decimal" ? { minimumFractionDigits: Number(precision) || 0, maximumFractionDigits: Number(precision) || 0 } : undefined}
-                className="break-all font-mono text-4xl font-semibold tracking-tight sm:text-5xl"
-              />
-            ) : values.length <= 24 && (mode === "integer" || mode === "decimal") ? (
-              <div className="flex flex-wrap gap-2">
-                {values.map((item, index) => (
-                  <span key={`${item}-${index}`} className="inline-flex min-w-[3.5rem] items-center justify-center rounded-xl border border-primary/20 bg-background px-3 py-2 font-mono text-lg font-semibold tabular-nums">
-                    <NumberFlow
-                      value={Number(item)}
-                      format={mode === "decimal" ? { minimumFractionDigits: Number(precision) || 0, maximumFractionDigits: Number(precision) || 0 } : undefined}
-                    />
-                  </span>
-                ))}
-              </div>
+            {numeric ? (
+              values.length === 1 ? (
+                <AnimatedNumber
+                  value={Number(values[0])}
+                  format={numberFormat}
+                  className="break-all font-mono text-4xl font-semibold tracking-tight sm:text-5xl"
+                />
+              ) : (
+                <div className="flex max-h-72 flex-wrap content-start gap-2 overflow-auto">
+                  {values.map((item, index) => (
+                    <span
+                      key={index}
+                      className="inline-flex min-h-12 min-w-[3.75rem] items-center justify-center rounded-xl border border-primary/20 bg-background px-3 py-2 font-mono text-xl font-semibold tabular-nums"
+                    >
+                      <AnimatedNumber value={Number(item)} format={numberFormat} />
+                    </span>
+                  ))}
+                </div>
+              )
             ) : (
               <pre className="max-h-56 overflow-auto whitespace-pre-wrap break-all font-mono text-sm leading-6">{joined}</pre>
             )}
@@ -645,10 +650,10 @@ export function RandomGenerator() {
                 size="sm"
                 onClick={() => {
                   navigator.clipboard.writeText(joined);
-                  notifyCopied(text(t, "copy", "Copied"));
+                  notifyCopied(tc("copied"));
                 }}
               >
-                <Copy /> {text(t, "copy", "Copy")}
+                <Copy /> {tc("copy")}
               </Button>
               {values.length > 1 ? (
                 <Button variant="outline" size="sm" onClick={() => downloadText(joined, "random.txt")}>

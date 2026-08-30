@@ -26,15 +26,16 @@ export function NavigationGuard() {
       if (link.target === "_blank" || link.hasAttribute("download")) return;
       if (link.origin !== window.location.origin) return;
       const next = htmlHref(link.href, window.location.origin);
-      const from = `${window.location.pathname}${window.location.search}`;
+      const from = htmlHref(window.location.href, window.location.origin);
+      if (next.split("#")[0] === from.split("#")[0]) return;
       window.clearTimeout(hangTimer);
       hangTimer = window.setTimeout(() => {
-        const now = `${window.location.pathname}${window.location.search}`;
         if (isRscDocumentPath(window.location.pathname)) {
           window.location.replace(htmlHref(window.location.href, window.location.origin));
           return;
         }
-        if (now === from) window.location.assign(next);
+        const now = htmlHref(window.location.href, window.location.origin);
+        if (now.split("#")[0] === from.split("#")[0]) window.location.assign(next);
       }, HANG_MS);
     };
 
