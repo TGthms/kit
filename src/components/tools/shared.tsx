@@ -8,6 +8,7 @@ import { ToolHeader } from "@/components/shared/tool-header";
 import { Button } from "@/components/ui/button";
 import { useHistoryStore } from "@/stores/history-store";
 import { SHORTCUT_RUN_EVENT } from "@/components/layout/shortcuts-provider";
+import { downloadBlob } from "@/lib/utils";
 
 export async function loadPdfjs() {
   return import("@/lib/pdf/pdfjs");
@@ -89,6 +90,19 @@ export function ActionBar({
           {status ?? t("processing")}
         </span>
       ) : null}
+    </div>
+  );
+}
+
+export function DownloadResult({ file }: { file: { blob: Blob; name: string } | null }) {
+  const t = useTranslations("common");
+  if (!file) return null;
+  return (
+    <div className="flex flex-wrap items-center justify-between gap-2 rounded-xl border border-primary/30 bg-primary/5 px-3 py-2.5">
+      <p className="min-w-0 truncate text-sm">{file.name}</p>
+      <Button type="button" size="sm" onClick={() => downloadBlob(file.blob, file.name)}>
+        {t("download")}
+      </Button>
     </div>
   );
 }

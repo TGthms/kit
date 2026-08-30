@@ -285,10 +285,8 @@ export function PasswordGenerator() {
   return (
     <ToolShell toolId="password-generator">
       <div className="space-y-2">
-        <Label>
-          {t("length")}: {length}
-        </Label>
-        <Input type="number" min={4} max={128} value={length} onChange={(e) => setLength(Number(e.target.value) || 16)} />
+        <Label htmlFor="password-length">{t("length")}</Label>
+        <Input id="password-length" type="number" min={4} max={128} value={length} onChange={(e) => setLength(Number(e.target.value) || 16)} />
       </div>
       {(
         [

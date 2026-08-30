@@ -14,7 +14,7 @@ import { downloadBlob, downloadText, downloadMany, bytesToBlob } from "@/lib/uti
 import JSZip from "jszip";
 import { Progress } from "@/components/ui/progress";
 import { runSequentialBatch, stemmedName } from "@/lib/jobs/batch";
-import { ActionBar, ToolLimits, ToolShell, useToolHistory, loadPdfjs } from "./shared";
+import { ActionBar, DownloadResult, ToolLimits, ToolShell, useToolHistory, loadPdfjs } from "./shared";
 import { mergePdfs, splitPdf, organizePdf, watermarkPdf, coverPdfContent, getPdfPageCount } from "@/lib/pdf/core";
 import { PdfCoverEditor, type CoverBox } from "./pdf-cover-editor";
 
@@ -26,6 +26,7 @@ export function PdfMerge() {
   const [files, setFiles] = useState<FileItem[]>([]);
   const [thumbs, setThumbs] = useState<Record<string, string>>({});
   const [loading, setLoading] = useState(false);
+  const [result, setResult] = useState<{ blob: Blob; name: string } | null>(null);
 
   const loadThumbs = async (items: FileItem[]) => {
     setFiles(items);
@@ -60,7 +61,9 @@ export function PdfMerge() {
     try {
       const buffers = await Promise.all(files.map((f) => f.file.arrayBuffer()));
       const out = await mergePdfs(buffers);
-      downloadBlob(bytesToBlob(out, "application/pdf"), "merged.pdf");
+      const blob = bytesToBlob(out, "application/pdf");
+      downloadBlob(blob, "merged.pdf");
+      setResult({ blob, name: "merged.pdf" });
       toast.success(t("success", { count: files.length }));
       log(`${files.length} files`, "success");
     } catch (e) {
@@ -89,8 +92,9 @@ export function PdfMerge() {
           ))}
         </div>
       )}
-      <p className="text-xs text-muted-foreground">{tc("reorder")}</p>
+      {files.length > 1 ? <p className="text-xs text-muted-foreground">{tc("reorder")}</p> : null}
       <ActionBar onRun={run} loading={loading} label={t("run")} disabled={files.length < 2} />
+      <DownloadResult file={result} />
     </ToolShell>
   );
 }
@@ -300,6 +304,7 @@ export function PdfCompress() {
   const [loading, setLoading] = useState(false);
   const [progress, setProgress] = useState(0);
   const [controller, setController] = useState<AbortController | null>(null);
+  const [result, setResult] = useState<{ blob: Blob; name: string } | null>(null);
 
   const run = async () => {
     if (!files.length) return;
@@ -325,6 +330,7 @@ export function PdfCompress() {
         { signal: ac.signal }
       );
       await downloadMany(items, "compressed-pdfs.zip");
+      if (items[0]) setResult(items[0]);
       toast.success(t("success"));
       log(`q=${quality} n=${files.length}`, "success", { quality, count: files.length });
     } catch (e) {
@@ -357,6 +363,7 @@ export function PdfCompress() {
         disabled={!files.length}
         onCancel={() => controller?.abort()}
       />
+      <DownloadResult file={result} />
     </ToolShell>
   );
 }

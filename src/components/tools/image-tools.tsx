@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 import JSZip from "jszip";
@@ -21,7 +21,7 @@ import {
   adjustImage,
   type ImageMime,
 } from "@/lib/image/core";
-import { ActionBar, ToolShell, useToolHistory } from "./shared";
+import { ActionBar, DownloadResult, ToolShell, useToolHistory } from "./shared";
 
 export function ImageCompress() {
   const t = useTranslations("tools.image-compress");
@@ -151,14 +151,25 @@ export function ImageCrop() {
   const [y, setY] = useState(0);
   const [w, setW] = useState(400);
   const [h, setH] = useState(300);
+  const [natural, setNatural] = useState({ width: 400, height: 300 });
   const [loading, setLoading] = useState(false);
+  const [result, setResult] = useState<{ blob: Blob; name: string } | null>(null);
+  const previewUrl = useMemo(() => (files[0] ? URL.createObjectURL(files[0].file) : null), [files]);
+
+  useEffect(() => {
+    return () => {
+      if (previewUrl) URL.revokeObjectURL(previewUrl);
+    };
+  }, [previewUrl]);
 
   const run = async () => {
     if (!files[0]) return;
     setLoading(true);
     try {
       const blob = await cropImage(files[0].file, { x, y, w, h });
-      downloadBlob(blob, `cropped.${extensionForMime(blob.type, "png")}`);
+      const name = `cropped.${extensionForMime(blob.type, "png")}`;
+      downloadBlob(blob, name);
+      setResult({ blob, name });
       toast.success(t("success"));
       log(`${w}x${h}`, "success");
     } catch (e) {
@@ -172,6 +183,31 @@ export function ImageCrop() {
   return (
     <ToolShell toolId="image-crop">
       <FileDropzone accept="image/*" multiple={false} files={files} onChange={setFiles} />
+      {previewUrl ? (
+        <div className="overflow-auto rounded-2xl border bg-card">
+          <div className="relative inline-block max-w-full">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={previewUrl}
+              alt=""
+              className="block max-h-[min(28rem,70vh)] w-auto max-w-full"
+              onLoad={(event) => {
+                const image = event.currentTarget;
+                setNatural({ width: image.naturalWidth, height: image.naturalHeight });
+              }}
+            />
+            <div
+              className="pointer-events-none absolute border-2 border-primary/90 bg-primary/15"
+              style={{
+                left: `${(x / Math.max(natural.width, 1)) * 100}%`,
+                top: `${(y / Math.max(natural.height, 1)) * 100}%`,
+                width: `${(w / Math.max(natural.width, 1)) * 100}%`,
+                height: `${(h / Math.max(natural.height, 1)) * 100}%`,
+              }}
+            />
+          </div>
+        </div>
+      ) : null}
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
         {(["x", "y", "w", "h"] as const).map((k) => (
           <div key={k} className="space-y-2">
@@ -192,6 +228,7 @@ export function ImageCrop() {
         ))}
       </div>
       <ActionBar onRun={run} loading={loading} label={t("run")} disabled={!files[0]} />
+      <DownloadResult file={result} />
     </ToolShell>
   );
 }

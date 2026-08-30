@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 import { FileDropzone, type FileItem } from "@/components/shared/file-dropzone";
@@ -31,17 +31,17 @@ export function JsonFormat() {
   const tc = useTranslations("common");
   const log = useToolHistory("json-format");
   const [input, setInput] = useState('{\n  "hello": "kit"\n}');
-  const [error, setError] = useState("");
+  const liveError = useMemo(() => {
+    const r = formatJson(input, false);
+    return r.ok ? "" : r.error;
+  }, [input]);
 
   const run = (minify = false) => {
     const r = formatJson(input, minify);
     if (!r.ok) {
-      setError(r.error);
-      toast.error(r.error);
       log("invalid", "failed");
       return;
     }
-    setError("");
     setInput(r.text);
     toast.success(t("success"));
     log(minify ? "minify" : "format", "success");
@@ -49,8 +49,12 @@ export function JsonFormat() {
 
   return (
     <ToolShell toolId="json-format">
-      <Textarea value={input} onChange={(e) => setInput(e.target.value)} className="min-h-64" />
-      {error && <p className="text-sm text-destructive">{error}</p>}
+      <Textarea
+        value={input}
+        onChange={(e) => setInput(e.target.value)}
+        className="min-h-64"
+      />
+      {liveError ? <p className="text-sm text-destructive">{liveError}</p> : null}
       <div className="flex flex-wrap gap-2">
         <Button onClick={() => run(false)}>{tc("beautify")}</Button>
         <Button variant="secondary" onClick={() => run(true)}>
