@@ -1662,8 +1662,8 @@
       "name": "Máy tính BMI và calo",
       "description": "Xem BMI, khoảng cân nặng khỏe mạnh và nhu cầu calo hàng ngày từ chiều cao, cân nặng, tuổi và hoạt động.",
       "keywords": "bmi calo tdee bmr cân nặng sức khỏe",
-      "limits": "BMI là số sàng lọc cho người lớn, không phải chẩn đoán. Calo dùng phương trình Mifflin-St Jeor. Phép tính ở lại trên thiết bị này và không phải lời khuyên y tế.",
-      "invalid": "Nhập chiều cao, cân nặng và tuổi người lớn hợp lý.",
+      "limits": "BMI dùng ngưỡng WHO cho người lớn. Dưới 18 được tính nhưng đánh dấu, vì BMI trẻ em thường đọc theo biểu đồ tăng trưởng. Calo dùng Mifflin-St Jeor, công thức người lớn. Phép tính ở lại trên thiết bị này và không phải lời khuyên y tế.",
+      "invalid": "Nhập chiều cao, cân nặng và tuổi hợp lý.",
       "saved": "Đã lưu vào lịch sử.",
       "metric": "Mét",
       "imperial": "Mỹ / imperial",
@@ -1711,7 +1711,9 @@
       "bmi": "BMI",
       "bmr": "BMR",
       "kcal": "kcal",
-      "healthyWeightValue": "{min}–{max} {unit}"
+      "healthyWeightValue": "{min}–{max} {unit}",
+      "minorBadge": "Dưới 18",
+      "minorNote": "Ngưỡng BMI người lớn và công thức calo Mifflin-St Jeor. BMI trẻ em thường đọc theo biểu đồ tăng trưởng."
     }
   },
   "legal": {

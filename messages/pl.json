@@ -1662,8 +1662,8 @@
       "name": "Kalkulator BMI i kalorii",
       "description": "Sprawdź BMI, zdrowy zakres wagi i dzienne zapotrzebowanie kaloryczne na podstawie wzrostu, wagi, wieku i aktywności.",
       "keywords": "bmi kalorie tdee bmr mifflin waga zdrowie",
-      "limits": "BMI to wartość przesiewowa dla dorosłych, nie diagnoza. Kalorie liczy równanie Mifflin-St Jeor. Wynik zostaje na tym urządzeniu i nie jest poradą medyczną.",
-      "invalid": "Podaj realistyczny wzrost, wagę i wiek osoby dorosłej.",
+      "limits": "BMI używa progów WHO dla dorosłych. Poniżej 18 lat jest dozwolone, ale oznaczone, bo dziecięce BMI czyta się zwykle z siatek centylowych. Kalorie liczy Mifflin-St Jeor, wzór dla dorosłych. Wynik zostaje na tym urządzeniu i nie jest poradą medyczną.",
+      "invalid": "Podaj realistyczny wzrost, wagę i wiek.",
       "saved": "Zapisano w historii.",
       "metric": "Metryczny",
       "imperial": "US / imperialny",
@@ -1711,7 +1711,9 @@
       "bmi": "BMI",
       "bmr": "BMR",
       "kcal": "kcal",
-      "healthyWeightValue": "{min}–{max} {unit}"
+      "healthyWeightValue": "{min}–{max} {unit}",
+      "minorBadge": "Poniżej 18",
+      "minorNote": "Progi BMI dla dorosłych i wzór kaloryczny Mifflin-St Jeor. Dziecięce BMI czyta się zwykle z siatek centylowych."
     }
   },
   "legal": {

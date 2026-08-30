@@ -28,8 +28,8 @@ describe("body measurements", () => {
   it("rejects impossible measurements", () => {
     expect(() => imperialHeightToMeters(-1, 0)).toThrow(RangeError);
     expect(() => lbToKg(Number.NaN)).toThrow(RangeError);
-    expect(() => calculateBodyStats({ heightM: 1.7, weightKg: 10, ageYears: 30, sex: "female", activity: "moderate" })).toThrow(RangeError);
-    expect(() => calculateBodyStats({ heightM: 1.7, weightKg: 70, ageYears: 12, sex: "female", activity: "moderate" })).toThrow(RangeError);
+    expect(() => calculateBodyStats({ heightM: 1.7, weightKg: 8, ageYears: 30, sex: "female", activity: "moderate" })).toThrow(RangeError);
+    expect(() => calculateBodyStats({ heightM: 1.7, weightKg: 70, ageYears: 1, sex: "female", activity: "moderate" })).toThrow(RangeError);
   });
 });
 
@@ -68,6 +68,7 @@ describe("Mifflin-St Jeor calories", () => {
     });
     expect(result.bmi).toBe(24.7);
     expect(result.category).toBe("normal");
+    expect(result.minor).toBe(false);
     expect(result.bmr).toBe(1780);
     expect(result.tdee).toBe(2136);
     expect(result.calories).toEqual({
@@ -101,5 +102,26 @@ describe("Mifflin-St Jeor calories", () => {
     expect(alreadyLow.tdee).toBeLessThan(CALORIE_FLOOR);
     expect(alreadyLow.calories.lose).toBe(alreadyLow.tdee);
     expect(alreadyLow.calories.loseFloored).toBe(false);
+  });
+
+  it("computes a marked result for ages under 18", () => {
+    const child = calculateBodyStats({
+      heightM: 1.4,
+      weightKg: 35,
+      ageYears: 12,
+      sex: "female",
+      activity: "moderate",
+    });
+    expect(child.minor).toBe(true);
+    expect(child.bmi).toBe(17.9);
+    expect(child.category).toBe("underweight");
+    expect(child.bmr).toBeGreaterThan(0);
+    expect(calculateBodyStats({
+      heightM: 1.8,
+      weightKg: 80,
+      ageYears: 18,
+      sex: "male",
+      activity: "sedentary",
+    }).minor).toBe(false);
   });
 });

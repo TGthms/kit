@@ -1662,8 +1662,8 @@
       "name": "Kalkulator IMT dan kalori",
       "description": "Lihat IMT, rentang berat sehat, dan kebutuhan kalori harian dari tinggi, berat, usia, dan aktivitas.",
       "keywords": "imt kalori tdee bmr berat kesehatan",
-      "limits": "IMT adalah angka skrining dewasa, bukan diagnosis. Kalori memakai persamaan Mifflin-St Jeor. Perhitungan tetap di perangkat ini dan bukan nasihat medis.",
-      "invalid": "Masukkan tinggi, berat, dan usia dewasa yang wajar.",
+      "limits": "IMT memakai ambang WHO dewasa. Di bawah 18 diizinkan, tetapi ditandai, karena IMT anak biasanya dibaca lewat kurva pertumbuhan. Kalori memakai Mifflin-St Jeor, rumus dewasa. Perhitungan tetap di perangkat ini dan bukan nasihat medis.",
+      "invalid": "Masukkan tinggi, berat, dan usia yang wajar.",
       "saved": "Disimpan ke riwayat.",
       "metric": "Metrik",
       "imperial": "AS / imperial",
@@ -1711,7 +1711,9 @@
       "bmi": "IMT",
       "bmr": "BMR",
       "kcal": "kcal",
-      "healthyWeightValue": "{min}–{max} {unit}"
+      "healthyWeightValue": "{min}–{max} {unit}",
+      "minorBadge": "Di bawah 18",
+      "minorNote": "Ambang IMT dewasa dan rumus kalori Mifflin-St Jeor. IMT anak biasanya dibaca lewat kurva pertumbuhan."
     }
   },
   "legal": {

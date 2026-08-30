@@ -1662,8 +1662,8 @@
       "name": "BMI- en calorieteller",
       "description": "Bekijk BMI, een gezond gewichtsbereik en de dagelijkse caloriebehoefte uit lengte, gewicht, leeftijd en activiteit.",
       "keywords": "bmi calorieën tdee bmr mifflin gewicht gezond",
-      "limits": "BMI is een screeningsgetal voor volwassenen, geen diagnose. Calorieën gebruiken de Mifflin-St Jeor-vergelijking. De berekening blijft op dit apparaat en is geen medisch advies.",
-      "invalid": "Voer een realistische volwassen lengte, gewicht en leeftijd in.",
+      "limits": "BMI gebruikt WHO-grenzen voor volwassenen. Onder 18 mag, maar wordt gemarkeerd, omdat kinder-BMI meestal via groeicurves wordt gelezen. Calorieën gebruiken Mifflin-St Jeor, een formule voor volwassenen. De berekening blijft op dit apparaat en is geen medisch advies.",
+      "invalid": "Voer een realistische lengte, gewicht en leeftijd in.",
       "saved": "Opgeslagen in de geschiedenis.",
       "metric": "Metrisch",
       "imperial": "VS / imperial",
@@ -1711,7 +1711,9 @@
       "bmi": "BMI",
       "bmr": "BMR",
       "kcal": "kcal",
-      "healthyWeightValue": "{min}–{max} {unit}"
+      "healthyWeightValue": "{min}–{max} {unit}",
+      "minorBadge": "Onder 18",
+      "minorNote": "BMI-grenzen voor volwassenen en de Mifflin-St Jeor-calorieformule. Kinder-BMI wordt meestal via groeicurves gelezen."
     }
   },
   "legal": {

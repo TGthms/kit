@@ -1662,8 +1662,8 @@
       "name": "Calcolatore IMC e calorie",
       "description": "Calcola IMC, un peso sano e il fabbisogno calorico giornaliero da altezza, peso, età e attività.",
       "keywords": "imc calorie tdee bmr mifflin peso salute",
-      "limits": "L’IMC è un valore di screening per adulti, non una diagnosi. Le calorie usano l’equazione di Mifflin-St Jeor. Il calcolo resta su questo dispositivo e non è un parere medico.",
-      "invalid": "Inserisci altezza, peso ed età da adulto realistici.",
+      "limits": "L’IMC usa le soglie OMS per adulti. Sotto i 18 è consentito ma segnalato, perché l’IMC pediatrico si legge di solito sulle curve di crescita. Le calorie usano Mifflin-St Jeor, una formula per adulti. Il calcolo resta su questo dispositivo e non è un parere medico.",
+      "invalid": "Inserisci altezza, peso ed età realistici.",
       "saved": "Salvato nella cronologia.",
       "metric": "Metrico",
       "imperial": "US / imperiale",
@@ -1711,7 +1711,9 @@
       "bmi": "IMC",
       "bmr": "BMR",
       "kcal": "kcal",
-      "healthyWeightValue": "{min}–{max} {unit}"
+      "healthyWeightValue": "{min}–{max} {unit}",
+      "minorBadge": "Under 18",
+      "minorNote": "Soglie IMC da adulti e formula calorica Mifflin-St Jeor. L’IMC pediatrico si legge di solito sulle curve di crescita."
     }
   },
   "legal": {

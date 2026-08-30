@@ -1662,8 +1662,8 @@
       "name": "BMI- ja kalorilaskuri",
       "description": "Tarkista BMI, terve painoväli ja päivittäinen kaloritarve pituuden, painon, iän ja aktiivisuuden perusteella.",
       "keywords": "bmi kalorit tdee bmr mifflin paino terveys",
-      "limits": "BMI on aikuisten seulontaluku, ei diagnoosi. Kalorit käyttävät Mifflin-St Jeor -yhtälöä. Laskenta pysyy tällä laitteella eikä ole lääkärin ohje.",
-      "invalid": "Anna realistinen aikuisen pituus, paino ja ikä.",
+      "limits": "BMI käyttää WHO:n aikuisrajoja. Alle 18 on sallittu mutta merkitään, koska lasten BMI luetaan yleensä kasvukäyristä. Kalorit käyttävät Mifflin-St Jeor -yhtälöä, joka on aikuisten kaava. Laskenta pysyy tällä laitteella eikä ole lääkärin ohje.",
+      "invalid": "Anna realistinen pituus, paino ja ikä.",
       "saved": "Tallennettu historiaan.",
       "metric": "Metrinen",
       "imperial": "US / imperial",
@@ -1711,7 +1711,9 @@
       "bmi": "BMI",
       "bmr": "BMR",
       "kcal": "kcal",
-      "healthyWeightValue": "{min}–{max} {unit}"
+      "healthyWeightValue": "{min}–{max} {unit}",
+      "minorBadge": "Alle 18",
+      "minorNote": "Aikuisten BMI-rajat ja Mifflin-St Jeor -kalorikaava. Lasten BMI luetaan yleensä kasvukäyristä."
     }
   },
   "legal": {

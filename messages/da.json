@@ -1662,8 +1662,8 @@
       "name": "BMI- og kalorieberegner",
       "description": "Se BMI, et sundt vægtinterval og det daglige kaloriebehov ud fra højde, vægt, alder og aktivitet.",
       "keywords": "bmi kalorier tdee bmr mifflin vægt sund",
-      "limits": "BMI er et screeningstal for voksne, ikke en diagnose. Kalorier bruger Mifflin-St Jeor-ligningen. Beregningen bliver på denne enhed og er ikke lægelig rådgivning.",
-      "invalid": "Angiv en realistisk voksenhøjde, vægt og alder.",
+      "limits": "BMI bruger WHO-grænser for voksne. Under 18 er tilladt, men markeres, fordi børne-BMI som regel læses på vækstkurver. Kalorier bruger Mifflin-St Jeor, en voksenformel. Beregningen bliver på denne enhed og er ikke lægelig rådgivning.",
+      "invalid": "Angiv en realistisk højde, vægt og alder.",
       "saved": "Gemt i historikken.",
       "metric": "Metrisk",
       "imperial": "US / imperial",
@@ -1711,7 +1711,9 @@
       "bmi": "BMI",
       "bmr": "BMR",
       "kcal": "kcal",
-      "healthyWeightValue": "{min}–{max} {unit}"
+      "healthyWeightValue": "{min}–{max} {unit}",
+      "minorBadge": "Under 18",
+      "minorNote": "Voksne BMI-grænser og Mifflin-St Jeor-kalorieformlen. Børne-BMI læses som regel på vækstkurver."
     }
   },
   "legal": {

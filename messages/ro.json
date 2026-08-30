@@ -1662,8 +1662,8 @@
       "name": "Calculator IMC și calorii",
       "description": "Află IMC-ul, un interval de greutate sănătos și necesarul zilnic de calorii din înălțime, greutate, vârstă și activitate.",
       "keywords": "imc calorii tdee bmr mifflin greutate sănătate",
-      "limits": "IMC-ul este un număr de screening pentru adulți, nu un diagnostic. Caloriile folosesc ecuația Mifflin-St Jeor. Calculul rămâne pe acest dispozitiv și nu este sfat medical.",
-      "invalid": "Introdu o înălțime, o greutate și o vârstă de adult realiste.",
+      "limits": "IMC-ul folosește pragurile OMS pentru adulți. Sub 18 este permis, dar marcat, pentru că IMC-ul copiilor se citește de obicei pe curbe de creștere. Caloriile folosesc Mifflin-St Jeor, o formulă pentru adulți. Calculul rămâne pe acest dispozitiv și nu este sfat medical.",
+      "invalid": "Introdu o înălțime, o greutate și o vârstă realiste.",
       "saved": "Salvat în istoric.",
       "metric": "Metric",
       "imperial": "SUA / imperial",
@@ -1711,7 +1711,9 @@
       "bmi": "IMC",
       "bmr": "BMR",
       "kcal": "kcal",
-      "healthyWeightValue": "{min}–{max} {unit}"
+      "healthyWeightValue": "{min}–{max} {unit}",
+      "minorBadge": "Sub 18",
+      "minorNote": "Praguri IMC de adult și formula de calorii Mifflin-St Jeor. IMC-ul copiilor se citește de obicei pe curbe de creștere."
     }
   },
   "legal": {

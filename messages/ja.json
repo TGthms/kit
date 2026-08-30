@@ -1662,8 +1662,8 @@
       "name": "BMI・カロリー計算機",
       "description": "身長・体重・年齢・活動量からBMI、適正体重の目安、1日の必要カロリーを確認します。",
       "keywords": "bmi カロリー tdee bmr 体重 健康",
-      "limits": "BMIは成人向けのスクリーニング値であり、診断ではありません。カロリーはMifflin-St Jeor式です。計算はこの端末内で完結し、医学的助言ではありません。",
-      "invalid": "現実的な成人の身長・体重・年齢を入力してください。",
+      "limits": "BMIは成人向けのWHO基準です。18歳未満も計算できますが印を付けます。子どものBMIは通常、成長曲線で読みます。カロリーは成人向けのMifflin-St Jeor式です。計算はこの端末内で完結し、医学的助言ではありません。",
+      "invalid": "現実的な身長・体重・年齢を入力してください。",
       "saved": "履歴に保存しました。",
       "metric": "メートル法",
       "imperial": "米国 / ヤード・ポンド",
@@ -1711,7 +1711,9 @@
       "bmi": "BMI",
       "bmr": "BMR",
       "kcal": "kcal",
-      "healthyWeightValue": "{min}–{max} {unit}"
+      "healthyWeightValue": "{min}–{max} {unit}",
+      "minorBadge": "18歳未満",
+      "minorNote": "成人のBMI基準とMifflin-St Jeorのカロリー式です。子どものBMIは通常、成長曲線で読みます。"
     }
   },
   "legal": {

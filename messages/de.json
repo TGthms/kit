@@ -1662,8 +1662,8 @@
       "name": "BMI- und Kalorienrechner",
       "description": "BMI, gesundes Gewicht und täglicher Kalorienbedarf aus Größe, Gewicht, Alter und Aktivität.",
       "keywords": "bmi kalorien tdee bmr mifflin gewicht gesund",
-      "limits": "Der BMI ist ein Screening-Wert für Erwachsene, keine Diagnose. Kalorien folgen der Mifflin-St-Jeor-Formel. Die Berechnung bleibt auf diesem Gerät und ist keine medizinische Beratung.",
-      "invalid": "Gib eine realistische Erwachsenengröße, ein Gewicht und ein Alter ein.",
+      "limits": "Der BMI nutzt WHO-Grenzwerte für Erwachsene. Unter 18 ist erlaubt, wird aber markiert, weil der BMI bei Kindern über Wachstumskurven gelesen wird. Kalorien folgen Mifflin-St Jeor, einer Erwachsenenformel. Die Berechnung bleibt auf diesem Gerät und ist keine medizinische Beratung.",
+      "invalid": "Gib eine realistische Größe, ein Gewicht und ein Alter ein.",
       "saved": "In der Chronik gespeichert.",
       "metric": "Metrisch",
       "imperial": "US / imperial",
@@ -1711,7 +1711,9 @@
       "bmi": "BMI",
       "bmr": "BMR",
       "kcal": "kcal",
-      "healthyWeightValue": "{min}–{max} {unit}"
+      "healthyWeightValue": "{min}–{max} {unit}",
+      "minorBadge": "Unter 18",
+      "minorNote": "BMI-Grenzwerte für Erwachsene und die Mifflin-St-Jeor-Kalorienformel. Kinder-BMI wird üblicherweise über Wachstumskurven gelesen."
     }
   },
   "legal": {

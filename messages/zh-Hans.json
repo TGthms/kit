@@ -1662,8 +1662,8 @@
       "name": "BMI 与热量计算器",
       "description": "根据身高、体重、年龄和活动量查看 BMI、健康体重范围和每日热量需求。",
       "keywords": "bmi 热量 tdee bmr 体重 健康",
-      "limits": "BMI 是成人筛查数值，不是诊断。热量使用 Mifflin-St Jeor 公式。计算留在本设备上，不构成医疗建议。",
-      "invalid": "请输入合理的成人身高、体重和年龄。",
+      "limits": "BMI 使用成人 WHO 界值。未满 18 岁可以计算，但会标明，因为儿童 BMI 通常对照生长曲线。热量使用成人 Mifflin-St Jeor 公式。计算留在本设备上，不构成医疗建议。",
+      "invalid": "请输入合理的身高、体重和年龄。",
       "saved": "已保存到历史记录。",
       "metric": "公制",
       "imperial": "美制 / 英制",
@@ -1711,7 +1711,9 @@
       "bmi": "BMI",
       "bmr": "BMR",
       "kcal": "kcal",
-      "healthyWeightValue": "{min}–{max} {unit}"
+      "healthyWeightValue": "{min}–{max} {unit}",
+      "minorBadge": "未满 18 岁",
+      "minorNote": "成人 BMI 界值和 Mifflin-St Jeor 热量公式。儿童 BMI 通常对照生长曲线。"
     }
   },
   "legal": {

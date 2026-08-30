@@ -1662,8 +1662,8 @@
       "name": "BKİ ve kalori hesaplayıcı",
       "description": "Boy, kilo, yaş ve aktiviteden BKİ, sağlıklı kilo aralığı ve günlük kalori ihtiyacını görün.",
       "keywords": "bki kalori tdee bmr mifflin kilo sağlık",
-      "limits": "BKİ yetişkinler için tarama sayısıdır, tanı değildir. Kaloriler Mifflin-St Jeor denklemini kullanır. Hesap bu cihazda kalır ve tıbbi tavsiye değildir.",
-      "invalid": "Gerçekçi bir yetişkin boyu, kilosu ve yaşı girin.",
+      "limits": "BKİ yetişkin DSÖ eşiklerini kullanır. 18 yaş altı hesaplanır ama işaretlenir; çocuk BKİ’si genellikle büyüme eğrilerine göre okunur. Kaloriler yetişkin Mifflin-St Jeor formülüdür. Hesap bu cihazda kalır ve tıbbi tavsiye değildir.",
+      "invalid": "Gerçekçi bir boy, kilo ve yaş girin.",
       "saved": "Geçmişe kaydedildi.",
       "metric": "Metrik",
       "imperial": "ABD / emperyal",
@@ -1711,7 +1711,9 @@
       "bmi": "BKİ",
       "bmr": "BMR",
       "kcal": "kcal",
-      "healthyWeightValue": "{min}–{max} {unit}"
+      "healthyWeightValue": "{min}–{max} {unit}",
+      "minorBadge": "18 yaş altı",
+      "minorNote": "Yetişkin BKİ eşikleri ve Mifflin-St Jeor kalori formülü. Çocuk BKİ’si genellikle büyüme eğrilerine göre okunur."
     }
   },
   "legal": {

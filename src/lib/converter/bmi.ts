@@ -20,12 +20,14 @@ export const WHO_BMI_MIN = 18.5;
 export const WHO_BMI_MAX = 24.9;
 export const CALORIE_FLOOR = 1200;
 export const WEEKLY_KCAL = 500;
+/** WHO adult BMI bands and Mifflin-St Jeor are for 18+. Younger ages still compute, and are marked. */
+export const ADULT_AGE = 18;
 
-const AGE_MIN = 18;
+const AGE_MIN = 2;
 const AGE_MAX = 120;
 const HEIGHT_M_MIN = 0.5;
 const HEIGHT_M_MAX = 2.5;
-const WEIGHT_KG_MIN = 20;
+const WEIGHT_KG_MIN = 10;
 const WEIGHT_KG_MAX = 400;
 
 export type BodyStatsInput = {
@@ -39,6 +41,7 @@ export type BodyStatsInput = {
 export type BodyStats = {
   bmi: number;
   category: BmiCategory;
+  minor: boolean;
   healthyWeightKg: { min: number; max: number };
   bmr: number;
   tdee: number;
@@ -154,6 +157,7 @@ export function calculateBodyStats(input: BodyStatsInput): BodyStats {
   return {
     bmi,
     category: bmiCategory(bmi),
+    minor: ageYears < ADULT_AGE,
     healthyWeightKg: healthyWeightKg(heightM),
     bmr,
     tdee,

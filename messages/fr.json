@@ -1662,8 +1662,8 @@
       "name": "Calculateur IMC et calories",
       "description": "Calculez l’IMC, une fourchette de poids sain et les besoins caloriques quotidiens selon la taille, le poids, l’âge et l’activité.",
       "keywords": "imc calories tdee bmr mifflin poids santé",
-      "limits": "L’IMC est un indicateur de dépistage chez l’adulte, pas un diagnostic. Les calories utilisent l’équation de Mifflin-St Jeor. Le calcul reste sur cet appareil et n’est pas un avis médical.",
-      "invalid": "Saisissez une taille, un poids et un âge d’adulte réalistes.",
+      "limits": "L’IMC utilise les seuils OMS adultes. Moins de 18 ans est autorisé mais signalé, car l’IMC de l’enfant se lit d’habitude sur des courbes de croissance. Les calories utilisent Mifflin-St Jeor, une formule adulte. Le calcul reste sur cet appareil et n’est pas un avis médical.",
+      "invalid": "Saisissez une taille, un poids et un âge réalistes.",
       "saved": "Enregistré dans l’historique.",
       "metric": "Métrique",
       "imperial": "US / impérial",
@@ -1711,7 +1711,9 @@
       "bmi": "IMC",
       "bmr": "BMR",
       "kcal": "kcal",
-      "healthyWeightValue": "{min}–{max} {unit}"
+      "healthyWeightValue": "{min}–{max} {unit}",
+      "minorBadge": "Moins de 18 ans",
+      "minorNote": "Seuils IMC adultes et formule calorique Mifflin-St Jeor. L’IMC de l’enfant se lit d’habitude sur des courbes de croissance."
     }
   },
   "legal": {

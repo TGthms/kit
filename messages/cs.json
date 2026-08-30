@@ -1662,8 +1662,8 @@
       "name": "Kalkulačka BMI a kalorií",
       "description": "Spočítejte BMI, zdravé rozmezí hmotnosti a denní kalorickou potřebu z výšky, hmotnosti, věku a aktivity.",
       "keywords": "bmi kalorie tdee bmr mifflin hmotnost zdraví",
-      "limits": "BMI je screeningové číslo pro dospělé, ne diagnóza. Kalorie používají Mifflin-St Jeorovu rovnici. Výpočet zůstane na tomto zařízení a není lékařskou radou.",
-      "invalid": "Zadejte reálnou dospělou výšku, hmotnost a věk.",
+      "limits": "BMI používá prahy WHO pro dospělé. Pod 18 je povoleno, ale označené, protože dětské BMI se obvykle čte z růstových křivek. Kalorie používají Mifflin-St Jeor, vzorec pro dospělé. Výpočet zůstane na tomto zařízení a není lékařskou radou.",
+      "invalid": "Zadejte reálnou výšku, hmotnost a věk.",
       "saved": "Uloženo do historie.",
       "metric": "Metrické",
       "imperial": "US / imperiální",
@@ -1711,7 +1711,9 @@
       "bmi": "BMI",
       "bmr": "BMR",
       "kcal": "kcal",
-      "healthyWeightValue": "{min}–{max} {unit}"
+      "healthyWeightValue": "{min}–{max} {unit}",
+      "minorBadge": "Pod 18",
+      "minorNote": "Dospělé prahy BMI a kalorický vzorec Mifflin-St Jeor. Dětské BMI se obvykle čte z růstových křivek."
     }
   },
   "legal": {

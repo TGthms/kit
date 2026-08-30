@@ -1662,8 +1662,8 @@
       "name": "BMI 및 칼로리 계산기",
       "description": "키, 몸무게, 나이, 활동량으로 BMI, 건강한 체중 범위, 하루 필요 칼로리를 확인합니다.",
       "keywords": "bmi 칼로리 tdee bmr 체중 건강",
-      "limits": "BMI는 성인 선별 수치이지 진단이 아닙니다. 칼로리는 Mifflin-St Jeor 식을 씁니다. 계산은 이 기기에 남으며 의학적 조언이 아닙니다.",
-      "invalid": "현실적인 성인 키, 몸무게, 나이를 입력하세요.",
+      "limits": "BMI는 성인 WHO 기준입니다. 18세 미만도 계산되지만 표시됩니다. 소아 BMI는 보통 성장 곡선으로 읽습니다. 칼로리는 성인용 Mifflin-St Jeor 식입니다. 계산은 이 기기에 남으며 의학적 조언이 아닙니다.",
+      "invalid": "현실적인 키, 몸무게, 나이를 입력하세요.",
       "saved": "기록에 저장했습니다.",
       "metric": "미터법",
       "imperial": "미국 / 야드파운드",
@@ -1711,7 +1711,9 @@
       "bmi": "BMI",
       "bmr": "BMR",
       "kcal": "kcal",
-      "healthyWeightValue": "{min}–{max} {unit}"
+      "healthyWeightValue": "{min}–{max} {unit}",
+      "minorBadge": "18세 미만",
+      "minorNote": "성인 BMI 기준과 Mifflin-St Jeor 칼로리 식입니다. 소아 BMI는 보통 성장 곡선으로 읽습니다."
     }
   },
   "legal": {

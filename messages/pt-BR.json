@@ -1662,8 +1662,8 @@
       "name": "Calculadora de IMC e calorias",
       "description": "Veja o IMC, uma faixa de peso saudável e as calorias diárias a partir da altura, peso, idade e atividade.",
       "keywords": "imc calorias tdee bmr mifflin peso saudável",
-      "limits": "O IMC é um número de triagem para adultos, não um diagnóstico. As calorias usam a equação de Mifflin-St Jeor. O cálculo fica neste dispositivo e não é conselho médico.",
-      "invalid": "Informe altura, peso e idade adultos realistas.",
+      "limits": "O IMC usa cortes da OMS para adultos. Menores de 18 são permitidos, mas marcados, porque o IMC infantil costuma ser lido em curvas de crescimento. As calorias usam Mifflin-St Jeor, uma fórmula de adultos. O cálculo fica neste dispositivo e não é conselho médico.",
+      "invalid": "Informe altura, peso e idade realistas.",
       "saved": "Salvo no histórico.",
       "metric": "Métrico",
       "imperial": "EUA / imperial",
@@ -1711,7 +1711,9 @@
       "bmi": "IMC",
       "bmr": "BMR",
       "kcal": "kcal",
-      "healthyWeightValue": "{min}–{max} {unit}"
+      "healthyWeightValue": "{min}–{max} {unit}",
+      "minorBadge": "Menor de 18",
+      "minorNote": "Cortes de IMC de adulto e a fórmula de calorias Mifflin-St Jeor. O IMC infantil costuma ser lido em curvas de crescimento."
     }
   },
   "legal": {

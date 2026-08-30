@@ -1662,8 +1662,8 @@
       "name": "BMI- och kalorikalkylator",
       "description": "Se BMI, ett hälsosamt viktsintervall och det dagliga kaloribehovet utifrån längd, vikt, ålder och aktivitet.",
       "keywords": "bmi kalorier tdee bmr mifflin vikt hälsa",
-      "limits": "BMI är ett screeningvärde för vuxna, inte en diagnos. Kalorier använder Mifflin-St Jeor-ekvationen. Beräkningen stannar på den här enheten och är inte medicinsk rådgivning.",
-      "invalid": "Ange en realistisk vuxenlängd, vikt och ålder.",
+      "limits": "BMI använder WHO-gränser för vuxna. Under 18 är tillåtet men markeras, eftersom barns BMI vanligen läses mot tillväxtkurvor. Kalorier använder Mifflin-St Jeor, en vuxenformel. Beräkningen stannar på den här enheten och är inte medicinsk rådgivning.",
+      "invalid": "Ange en realistisk längd, vikt och ålder.",
       "saved": "Sparad i historiken.",
       "metric": "Metrisk",
       "imperial": "US / imperial",
@@ -1711,7 +1711,9 @@
       "bmi": "BMI",
       "bmr": "BMR",
       "kcal": "kcal",
-      "healthyWeightValue": "{min}–{max} {unit}"
+      "healthyWeightValue": "{min}–{max} {unit}",
+      "minorBadge": "Under 18",
+      "minorNote": "Vuxna BMI-gränser och Mifflin-St Jeor-kaloriformeln. Barns BMI läses vanligen mot tillväxtkurvor."
     }
   },
   "legal": {

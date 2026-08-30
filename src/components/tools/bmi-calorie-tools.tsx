@@ -6,6 +6,7 @@ import { HeartPulse } from "lucide-react";
 import { notifyHistorySaved } from "@/lib/notify";
 import { AnimatedNumber } from "@/components/shared/animated-number";
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -146,7 +147,7 @@ export function BmiCalorieCalculator() {
   return (
     <ToolShell toolId={toolId("bmi-calorie-calculator")}>
       <ToolLimits>
-        <p>{text(t, "limits", "BMI is an adult screening number, not a diagnosis. Calories use the Mifflin-St Jeor equation. Results stay on this device and are not medical advice.")}</p>
+        <p>{text(t, "limits", "BMI uses adult WHO cutoffs. Under 18 is allowed but marked, because child BMI is usually read against growth charts. Calories use the Mifflin-St Jeor equation, which is an adult formula. Results stay on this device and are not medical advice.")}</p>
       </ToolLimits>
       <div className="flex flex-wrap gap-2">
         <Button variant={system === "metric" ? "default" : "outline"} onClick={() => switchSystem("metric")}>
@@ -165,7 +166,7 @@ export function BmiCalorieCalculator() {
             </div>
             <div className="space-y-2">
               <Label htmlFor="bmi-kg">{text(t, "weight", "Weight")} ({text(t, "kg", "kg")})</Label>
-              <Input id="bmi-kg" type="number" min="20" max="400" step="0.1" inputMode="decimal" value={kg} onChange={(event) => setKg(event.target.value)} />
+              <Input id="bmi-kg" type="number" min="10" max="400" step="0.1" inputMode="decimal" value={kg} onChange={(event) => setKg(event.target.value)} />
             </div>
           </>
         ) : (
@@ -182,13 +183,13 @@ export function BmiCalorieCalculator() {
             </div>
             <div className="space-y-2">
               <Label htmlFor="bmi-lb">{text(t, "weight", "Weight")} ({text(t, "lb", "lb")})</Label>
-              <Input id="bmi-lb" type="number" min="44" max="880" step="0.1" inputMode="decimal" value={lb} onChange={(event) => setLb(event.target.value)} />
+              <Input id="bmi-lb" type="number" min="22" max="880" step="0.1" inputMode="decimal" value={lb} onChange={(event) => setLb(event.target.value)} />
             </div>
           </>
         )}
         <div className="space-y-2">
           <Label htmlFor="bmi-age">{text(t, "age", "Age")} ({text(t, "years", "years")})</Label>
-          <Input id="bmi-age" type="number" min="18" max="120" step="1" inputMode="numeric" value={age} onChange={(event) => setAge(event.target.value)} />
+          <Input id="bmi-age" type="number" min="2" max="120" step="1" inputMode="numeric" value={age} onChange={(event) => setAge(event.target.value)} />
         </div>
         <div className="space-y-2">
           <Label>{text(t, "sex", "Sex")}</Label>
@@ -219,8 +220,14 @@ export function BmiCalorieCalculator() {
               <div className="flex flex-wrap items-baseline gap-3">
                 <AnimatedNumber value={result.bmi} format={{ minimumFractionDigits: 1, maximumFractionDigits: 1 }} className="text-4xl font-semibold tracking-tight sm:text-5xl" />
                 <p className="text-sm font-medium">{categoryLabel}</p>
+                {result.minor ? <Badge variant="outline">{text(t, "minorBadge", "Under 18")}</Badge> : null}
               </div>
-              <BmiScale bmi={result.bmi} label={`${text(t, "bmi", "BMI")} ${result.bmi}, ${categoryLabel}`} />
+              <BmiScale bmi={result.bmi} label={`${text(t, "bmi", "BMI")} ${result.bmi}, ${categoryLabel}${result.minor ? `, ${text(t, "minorBadge", "Under 18")}` : ""}`} />
+              {result.minor ? (
+                <p className="text-xs text-muted-foreground">
+                  {text(t, "minorNote", "Adult BMI cutoffs and the Mifflin-St Jeor calorie formula. Child BMI is usually read against growth charts.")}
+                </p>
+              ) : null}
             </CardContent>
           </Card>
           <div className="grid gap-3 sm:grid-cols-3">
@@ -279,7 +286,7 @@ export function BmiCalorieCalculator() {
           </div>
         </div>
       ) : (
-        <p className="text-sm text-destructive">{text(t, "invalid", "Enter a realistic adult height, weight, and age.")}</p>
+        <p className="text-sm text-destructive">{text(t, "invalid", "Enter a realistic height, weight, and age.")}</p>
       )}
       <Button
         variant="outline"
