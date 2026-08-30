@@ -1,7 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { createPortal } from "react-dom";
+import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import { useSearchParams } from "next/navigation";
 import { ChevronLeft, Star } from "lucide-react";
@@ -13,6 +12,7 @@ import { useFavoritesStore } from "@/stores/favorites-store";
 import { PageHeader } from "@/components/layout/page-header";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { cn } from "@/lib/utils";
 
 function safeInternalHref(value: string | null): string | null {
   if (!value) return null;
@@ -36,32 +36,35 @@ export function ToolHeader({ toolId }: { toolId: ToolId }) {
   const backHref = fromHref ?? toolBackHref(toolId);
   const backLabel = fromHref ? tc("back") : tool ? tCat(tool.category) : tc("back");
   const showClientSideNote = tool ? isFileTool(tool) : false;
-  const floatingBackRef = useRef<HTMLAnchorElement>(null);
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => setMounted(true), []);
+  const [compact, setCompact] = useState(false);
 
   useEffect(() => {
-    if (!mounted) return;
-    const floatingBack = floatingBackRef.current;
-    if (!floatingBack) return;
-
-    const onScroll = () => {
-      const scrolled = window.scrollY > 96;
-      floatingBack.classList.toggle("translate-y-0", scrolled);
-      floatingBack.classList.toggle("opacity-100", scrolled);
-      floatingBack.classList.toggle("pointer-events-none", !scrolled);
-      floatingBack.classList.toggle("-translate-y-1", !scrolled);
-      floatingBack.classList.toggle("opacity-0", !scrolled);
-      floatingBack.tabIndex = scrolled ? 0 : -1;
-    };
+    const onScroll = () => setCompact(window.scrollY > 72);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
-  }, [mounted]);
+  }, []);
 
   return (
     <>
+      <div
+        className={cn(
+          "sticky z-40 -mx-4 mb-3 flex h-12 items-center gap-1 border-b border-border/40 bg-background px-3",
+          "top-[calc(3rem+env(safe-area-inset-top))] sm:hidden",
+          compact ? "flex" : "hidden"
+        )}
+      >
+        <Link
+          href={backHref}
+          data-pressable
+          data-restore-scroll
+          aria-label={backLabel}
+          className="pressable-soft inline-flex h-11 w-11 items-center justify-center rounded-full text-primary"
+        >
+          <ChevronLeft className="h-5 w-5 stroke-[2.5]" aria-hidden />
+        </Link>
+        <p className="min-w-0 truncate text-[15px] font-semibold tracking-[-0.015em]">{t("name")}</p>
+      </div>
       <PageHeader
         sticky={false}
         title={t("name")}
@@ -87,27 +90,6 @@ export function ToolHeader({ toolId }: { toolId: ToolId }) {
           </Button>
         }
       />
-      {mounted
-        ? createPortal(
-            <Link
-              ref={floatingBackRef}
-              href={backHref}
-              aria-label={backLabel}
-              data-pressable
-              data-restore-scroll
-              tabIndex={-1}
-              data-floating-back
-              className={[
-                "fixed left-4 top-[calc(3rem+env(safe-area-inset-top)+0.75rem)] z-[60] inline-flex h-11 w-11 items-center justify-center rounded-full border border-border/60 bg-card/95 text-primary shadow-lg backdrop-blur-xl",
-                "transition-[opacity,transform,box-shadow] duration-200 hover:shadow-xl active:scale-95 sm:left-6 sm:top-[calc(3.5rem+env(safe-area-inset-top)+0.75rem)] sm:h-12 sm:w-12",
-                "pointer-events-none -translate-y-1 opacity-0",
-              ].join(" ")}
-            >
-              <ChevronLeft className="h-5 w-5 stroke-[2.5] sm:h-6 sm:w-6" aria-hidden />
-            </Link>,
-            document.body
-          )
-        : null}
     </>
   );
 }

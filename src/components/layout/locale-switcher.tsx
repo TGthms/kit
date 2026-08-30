@@ -42,7 +42,7 @@ export function LocaleSwitcher({
         "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
         variant === "settings"
           ? "h-11 w-full max-w-md px-3"
-          : "h-9 max-w-[11rem] px-2 text-xs sm:text-sm",
+          : "h-9 max-w-[9.5rem] px-2 text-xs sm:max-w-[11rem] sm:text-sm",
         className
       )}
       value={locale}

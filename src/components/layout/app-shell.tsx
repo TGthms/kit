@@ -228,9 +228,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
           </Link>
           <div className="flex shrink-0 items-center gap-1">
             {/* Language lives in header + Settings — not a second mobile nav */}
-            <div className="hidden sm:block">
-              <LocaleSwitcher />
-            </div>
+            <LocaleSwitcher />
             <ThemeToggle />
           </div>
         </div>
