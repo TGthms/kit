@@ -37,7 +37,7 @@ export function GreetingHeadline({ text, className }: { text: string; className?
   const visible = done ? text : graphemes.slice(0, shownCount).join("");
 
   return (
-    <h1 className={cn("min-h-[2.16em]", className)} aria-label={text}>
+    <h1 className={cn(className)} aria-label={text}>
       <span className="greeting-typewriter" aria-hidden="true">
         <span className="greeting-typewriter-sizer">{text}</span>
         <span className="greeting-typewriter-live">

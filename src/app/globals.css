@@ -199,6 +199,11 @@ canvas {
   font-weight: 600;
 }
 
+number-flow-react {
+  --number-flow-mask-height: 0.35em;
+  line-height: 1;
+}
+
 .greeting-typewriter {
   position: relative;
   display: block;
@@ -206,7 +211,9 @@ canvas {
 
 .greeting-typewriter-sizer {
   display: block;
-  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  user-select: none;
 }
 
 .greeting-typewriter-live {

@@ -1,6 +1,6 @@
 "use client";
 
-import { Suspense, useCallback, useEffect, useMemo, useState } from "react";
+import { Suspense, useCallback, useLayoutEffect, useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
 import {
@@ -160,9 +160,9 @@ function HomePageInner() {
   const [q, setQ] = useState("");
   const [greeting, setGreeting] = useState<{ period: GreetingPeriod; day: string; variant: number; greetingKey: string; subtitleKey: string; occasionKey?: string; category: GreetingCategory } | null>(null);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const visitSeed = getGreetingVisitSeed();
-    let timeout: number;
+    let timeout = 0;
     const updateGreeting = () => {
       const now = new Date();
       const pool = getGreetingPoolKeys(now);
@@ -239,22 +239,20 @@ function HomePageInner() {
                 text={t(greeting.greetingKey, { day: greeting.day, occasion: greeting.occasionKey ? t(`occasionLabel.${greeting.occasionKey}`) : "" })}
               />
             ) : (
-              <h1 className="type-display min-h-[2.16em] text-foreground">
-                <span className="invisible">{t("title")}</span>
-              </h1>
+              <h1 className="type-display text-foreground">{t("title")}</h1>
             )}
             <p className="type-body max-w-xl text-muted-foreground">
               {greeting ? t(greeting.subtitleKey, { day: greeting.day, occasion: greeting.occasionKey ? t(`occasionLabel.${greeting.occasionKey}`) : "" }) : t("subtitle")}
             </p>
           </div>
           <div className="relative max-w-xl">
-            <Search className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+            <Search className="pointer-events-none absolute start-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
             <Input
               id="kit-search"
               value={q}
               onChange={(e) => setQ(e.target.value)}
               placeholder={tn("searchPlaceholder")}
-              className="h-11 rounded-[14px] border-border/40 bg-card/95 pl-11 pr-4 surface-float sm:h-12 sm:rounded-2xl"
+              className="h-11 rounded-[14px] border-border/40 bg-card/95 ps-11 pe-4 surface-float sm:h-12 sm:rounded-2xl"
               autoComplete="off"
               enterKeyHint="search"
             />
@@ -278,7 +276,7 @@ function HomePageInner() {
                       <span className={cn("flex h-10 w-10 shrink-0 items-center justify-center rounded-xl", meta.tint)}><Icon className="h-5 w-5" /></span>
                       <div className="min-w-0">
                         <CardTitle className="truncate text-sm font-medium tracking-[-0.01em]">{tc(id)}</CardTitle>
-                        {locale === "en" || id !== "converter" ? <CardDescription className="mt-0.5 line-clamp-1 text-xs">{tc(`${id}Desc`)}</CardDescription> : null}
+                        {locale === "en" || id !== "converter" ? <CardDescription className="mt-0.5 line-clamp-2 text-xs">{tc(`${id}Desc`)}</CardDescription> : null}
                       </div>
                     </CardHeader>
                   </Card>
@@ -300,7 +298,7 @@ function HomePageInner() {
                         <CardTitle className="truncate text-sm font-medium tracking-[-0.01em]">
                           {tt(`${id}.name`)}
                         </CardTitle>
-                        <CardDescription className="mt-0.5 line-clamp-1 text-xs">
+                        <CardDescription className="mt-0.5 line-clamp-2 text-xs">
                           {tt(`${id}.description`)}
                         </CardDescription>
                       </div>
@@ -397,13 +395,13 @@ function HomePageInner() {
             backLabel={t("backToCategories")}
           />
           <div className="relative max-w-xl">
-            <Search className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+            <Search className="pointer-events-none absolute start-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
             <Input
               id="kit-search"
               value={q}
               onChange={(e) => setQ(e.target.value)}
               placeholder={tn("searchPlaceholder")}
-              className="h-11 rounded-[14px] border-border/40 bg-card/95 pl-11 pr-4 surface-float"
+              className="h-11 rounded-[14px] border-border/40 bg-card/95 ps-11 pe-4 surface-float"
               autoComplete="off"
               enterKeyHint="search"
             />
