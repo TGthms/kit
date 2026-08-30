@@ -465,10 +465,9 @@ export function StopwatchTimer() {
     }, 50);
     return () => window.clearInterval(interval);
   }, [mode, running]);
-  useEffect(() => {
-    if (mode !== "timer") return;
-    setTimer((previous) => (previous.status === "idle" ? createTimer(duration) : previous));
-  }, [duration, mode]);
+  if (mode === "timer" && timer.status === "idle" && timer.durationMs !== duration) {
+    setTimer(createTimer(duration));
+  }
   const elapsed = getStopwatchElapsed(stopwatch, now);
   const remaining = getTimerRemaining(timer, now);
   const stopwatchParts = durationParts(elapsed);

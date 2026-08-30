@@ -23,18 +23,9 @@ function isActive(pathname: string, href: string) {
   return pathname === href || pathname.startsWith(`${href}/`);
 }
 
-/**
- * Desktop: side rail + top chrome.
- * Mobile: top chrome + bottom tab bar only (no redundant drawer/sidebar).
- */
-export function AppShell({ children }: { children: React.ReactNode }) {
+function SideNav({ pathname }: { pathname: string }) {
   const t = useTranslations("nav");
-  const tb = useTranslations("brand");
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
-  const locationKey = `${pathname}?${searchParams.toString()}`;
-
-  const SideNav = () => (
+  return (
     <nav className="flex flex-col gap-1" aria-label={t("home")}>
       {nav.map(({ href, key, icon: Icon }) => {
         const active = isActive(pathname, href);
@@ -58,8 +49,12 @@ export function AppShell({ children }: { children: React.ReactNode }) {
       })}
     </nav>
   );
+}
 
-  const TabBar = () => (
+function TabBar({ pathname }: { pathname: string }) {
+  const t = useTranslations("nav");
+  const tb = useTranslations("brand");
+  return (
     <nav
       className="glass chrome-edge fixed inset-x-0 bottom-0 z-40 md:hidden safe-pb"
       aria-label={tb("name")}
@@ -94,6 +89,17 @@ export function AppShell({ children }: { children: React.ReactNode }) {
       </div>
     </nav>
   );
+}
+
+/**
+ * Desktop: side rail + top chrome.
+ * Mobile: top chrome + bottom tab bar only (no redundant drawer/sidebar).
+ */
+export function AppShell({ children }: { children: React.ReactNode }) {
+  const tb = useTranslations("brand");
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const locationKey = `${pathname}?${searchParams.toString()}`;
 
   return (
     <div className="flex min-h-dvh flex-col overflow-x-clip bg-background">
@@ -128,7 +134,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
       <div className="mx-auto flex w-full max-w-6xl flex-1 gap-8 px-4 pb-5 pt-[calc(3rem+env(safe-area-inset-top)+1.25rem)] sm:px-6 sm:pt-[calc(3.5rem+env(safe-area-inset-top)+2rem)] lg:px-8">
         <aside className="hidden w-[13.5rem] shrink-0 md:block">
           <div className="glass-heavy sticky top-[4.5rem] rounded-2xl border border-border/35 p-2.5 surface-float">
-            <SideNav />
+            <SideNav pathname={pathname} />
           </div>
         </aside>
 
@@ -139,7 +145,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
         <SiteFooter />
       </div>
 
-      <TabBar />
+      <TabBar pathname={pathname} />
     </div>
   );
 }

@@ -12,13 +12,14 @@ const nextConfig: NextConfig = {
   basePath: basePath || undefined,
   assetPrefix: basePath || undefined,
   outputFileTracingRoot: __dirname,
-  // Avoid turbopack issues with static export + workers in CI
-  webpack: (config) => {
-    config.resolve.alias = {
-      ...config.resolve.alias,
-      canvas: false,
-    };
-    return config;
+  // pdf.js optionally imports node-canvas. Next 16 builds with Turbopack
+  // by default and refuses a webpack() hook, so alias it here instead.
+  turbopack: {
+    resolveAlias: {
+      canvas: {
+        browser: "./src/lib/empty-module.ts",
+      },
+    },
   },
 };
 

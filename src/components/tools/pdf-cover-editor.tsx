@@ -18,7 +18,15 @@ type Preview = {
   pageCount: number;
 };
 
-export function PdfCoverEditor({
+export function PdfCoverEditor(props: {
+  file: FileItem | undefined;
+  boxes: CoverBox[];
+  onChange: (boxes: CoverBox[]) => void;
+}) {
+  return <PdfCoverEditorBody key={props.file?.id ?? "none"} {...props} />;
+}
+
+function PdfCoverEditorBody({
   file,
   boxes,
   onChange,
@@ -37,18 +45,13 @@ export function PdfCoverEditor({
   const [error, setError] = useState("");
 
   useEffect(() => {
-    setPage(1);
     onChange([]);
     // Reset boxes when the source file changes; parent owns the list.
-    // eslint-disable-next-line react-hooks/exhaustive-deps -- only when file identity changes
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- remounted per file id
   }, [file?.id]);
 
   useEffect(() => {
-    if (!file) {
-      setPreview(null);
-      setError("");
-      return;
-    }
+    if (!file) return;
     let cancelled = false;
     (async () => {
       try {

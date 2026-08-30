@@ -1,11 +1,11 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
 import { useTranslations } from "next-intl";
 import { Moon, Sun } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { rememberThemeChoice } from "@/components/providers";
+import { useHydrated } from "@/lib/react/hydrated";
 
 /**
  * Header control: toggles between light and dark only.
@@ -13,11 +13,9 @@ import { rememberThemeChoice } from "@/components/providers";
 export function ThemeToggle() {
   const { resolvedTheme, setTheme } = useTheme();
   const t = useTranslations("common");
-  const [mounted, setMounted] = useState(false);
+  const hydrated = useHydrated();
 
-  useEffect(() => setMounted(true), []);
-
-  if (!mounted) {
+  if (!hydrated) {
     return <div className="h-10 w-10 shrink-0" aria-hidden />;
   }
 

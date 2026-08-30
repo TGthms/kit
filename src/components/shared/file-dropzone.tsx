@@ -31,8 +31,6 @@ export function FileDropzone({
   const inputRef = useRef<HTMLInputElement>(null);
   const [drag, setDrag] = useState(false);
   const dragId = useRef<string | null>(null);
-  const filesRef = useRef(files);
-  filesRef.current = files;
 
   const addFiles = useCallback(
     (list: FileList | File[]) => {
@@ -42,10 +40,9 @@ export function FileDropzone({
         id: crypto.randomUUID(),
         file,
       }));
-      const current = filesRef.current;
-      onChange(multiple ? [...current, ...arr] : arr.slice(0, 1));
+      onChange(multiple ? [...files, ...arr] : arr.slice(0, 1));
     },
-    [accept, multiple, onChange]
+    [accept, files, multiple, onChange]
   );
 
   const onPaste = useCallback(

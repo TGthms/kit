@@ -20,6 +20,7 @@ import {
 import { convertUnit, formatUnitSymbol, type UnitCategory, type UnitCode } from "@/lib/converter/units";
 import type { ToolId } from "@/lib/tools/registry";
 import { AnimatedNumber } from "@/components/shared/animated-number";
+import { useHydrated } from "@/lib/react/hydrated";
 import { ToolShell, useToolHistory } from "./shared";
 
 const selectClass =
@@ -273,7 +274,17 @@ const UNIT_MESSAGE_KEYS: Record<string, string> = {
   mV: "unitMv", V: "unitV", kV: "unitKv", mA: "unitMa", A: "unitA", kA: "unitKa", mOhm: "unitMOhm", Ohm: "unitOhm", kOhm: "unitKOhm", MOhm: "unitMOhmBig", px: "unitPx", pt: "unitPt", pc: "unitPc", rem: "unitRem", em: "unitEm",
 };
 
-export function SearchableSelect({
+export function SearchableSelect(props: {
+  label: string;
+  value: string;
+  options: Array<{ value: string; label: string }>;
+  onChange: (value: string) => void;
+  searchable?: boolean;
+}) {
+  return <SearchableSelectField key={props.value} searchable={props.options.length > 4} {...props} />;
+}
+
+function SearchableSelectField({
   label,
   value,
   options,
@@ -300,11 +311,6 @@ export function SearchableSelect({
     if (!normalized) return options;
     return options.filter((option) => `${option.value} ${formatUnitSymbol(option.value)} ${option.label}`.toLowerCase().includes(normalized));
   }, [options, query]);
-
-  useEffect(() => {
-    setQuery("");
-    setOpen(false);
-  }, [value]);
 
   useEffect(() => {
     if (!open) return;
@@ -638,10 +644,15 @@ export function CurrencyConverter({ onBack, namespace = "tools.currency-converte
   const [amount, setAmount] = useState("100");
   const [base, setBase] = useState("USD");
   const [quote, setQuote] = useState("EUR");
-  const [rates, setRates] = useState<CachedRateRecord[]>([]);
+  const hydrated = useHydrated();
+  const storedRates = hydrated ? readCurrencyCache() : [];
+  const [liveRates, setLiveRates] = useState<CachedRateRecord[] | null>(null);
+  const rates = liveRates ?? storedRates;
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const [updatedAt, setUpdatedAt] = useState<number | null>(null);
+  const [errorFor, setErrorFor] = useState("");
+  const pairKey = `${base}:${quote}`;
+  const displayError = errorFor === pairKey ? error : "";
   const [refreshToken, setRefreshToken] = useState(0);
   const currencyOptions = useMemo(
     () => CURRENCIES.map(([value, fallback]) => {
@@ -676,10 +687,7 @@ export function CurrencyConverter({ onBack, namespace = "tools.currency-converte
   useEffect(() => {
     let active = true;
     const cached = readCurrencyCache();
-    setRates(cached);
-    setError("");
     if (base === quote) {
-      setLoading(false);
       return () => {
         active = false;
       };
@@ -694,24 +702,26 @@ export function CurrencyConverter({ onBack, namespace = "tools.currency-converte
     lastRefreshToken.current = refreshToken;
     const existing = findCachedRate(cached, base, quote);
     if (!forced && existing && !isCachedRateStale(existing.record)) {
-      setUpdatedAt(existing.record.fetchedAt);
-      setLoading(false);
       return () => {
         active = false;
       };
     }
-    setLoading(true);
+    void Promise.resolve().then(() => {
+      if (active) setLoading(true);
+    });
     fetchFrankfurterRates({ base, symbols: [quote] })
       .then((fetched) => {
         if (!active) return;
         const created = createCachedRateRecords(fetched);
         const next = [...cached.filter((record) => !created.some((item) => item.base === record.base && item.quote === record.quote)), ...created];
-        setRates(next);
-        setUpdatedAt(Date.now());
+        setLiveRates(next);
         writeCurrencyCache(next);
       })
       .catch((reason: unknown) => {
-        if (active) setError(reason instanceof Error ? reason.message : "Rate service unavailable");
+        if (active) {
+          setError(reason instanceof Error ? reason.message : "Rate service unavailable");
+          setErrorFor(`${base}:${quote}`);
+        }
       })
       .finally(() => {
         if (active) setLoading(false);
@@ -787,8 +797,8 @@ export function CurrencyConverter({ onBack, namespace = "tools.currency-converte
                 {stale ? text(t, "stale", "Cached rate is older than six hours; refresh may be needed.") : `${text(t, "asOf", "Rate date")} ${match.record.date}`}
               </p>
             ) : null}
-            {error ? <p className="mt-2 text-xs text-destructive">{error}{match ? ` ${text(t, "usingCache", "Using the last cached rate.")}` : ""}</p> : null}
-            {updatedAt ? <p className="mt-1 text-xs text-muted-foreground">{text(t, "updated", "Updated just now")}</p> : null}
+            {displayError ? <p className="mt-2 text-xs text-destructive">{displayError}{match ? ` ${text(t, "usingCache", "Using the last cached rate.")}` : ""}</p> : null}
+            {match ? <p className="mt-1 text-xs text-muted-foreground">{text(t, "updated", "Updated just now")}</p> : null}
           </div>
           <Button variant="outline" onClick={() => setRefreshToken((value) => value + 1)} disabled={loading} className="sm:self-start">
             <RefreshCw className={loading ? "animate-spin" : ""} /> {text(t, "refresh", "Refresh")}

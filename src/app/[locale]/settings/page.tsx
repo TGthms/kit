@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import { useTheme } from "next-themes";
 import { Link } from "@/lib/i18n/navigation";
@@ -11,6 +10,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useHistoryStore } from "@/stores/history-store";
 import { Switch } from "@/components/ui/switch";
 import { rememberThemeChoice } from "@/components/providers";
+import { useHydrated } from "@/lib/react/hydrated";
 
 export default function SettingsPage() {
   const t = useTranslations("settings");
@@ -21,11 +21,8 @@ export default function SettingsPage() {
   const clear = useHistoryStore((s) => s.clear);
   const historyEnabled = useHistoryStore((s) => s.enabled);
   const setHistoryEnabled = useHistoryStore((s) => s.setEnabled);
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => setMounted(true), []);
-
-  const appearance = mounted && resolvedTheme === "dark" ? "dark" : "light";
+  const hydrated = useHydrated();
+  const appearance = hydrated && resolvedTheme === "dark" ? "dark" : "light";
 
   return (
     <div className="mx-auto max-w-2xl space-y-6">
@@ -48,7 +45,7 @@ export default function SettingsPage() {
               variant={appearance === value ? "default" : "outline"}
               className="transition-[background-color,color,box-shadow,transform] duration-200 ease-out"
               onClick={() => rememberThemeChoice(value, setTheme)}
-              disabled={!mounted}
+              disabled={!hydrated}
             >
               {label}
             </Button>

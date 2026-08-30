@@ -12,14 +12,15 @@ function prefersReducedMotion(): boolean {
 export function GreetingHeadline({ text, className }: { text: string; className?: string }) {
   const graphemes = useMemo(() => segmentGraphemes(text), [text]);
   const [reducedMotion] = useState(prefersReducedMotion);
-  const [shownCount, setShownCount] = useState(() => (prefersReducedMotion() ? graphemes.length : 0));
+  const [typedFor, setTypedFor] = useState(text);
+  const [shownCount, setShownCount] = useState(0);
+  if (typedFor !== text) {
+    setTypedFor(text);
+    setShownCount(0);
+  }
 
   useEffect(() => {
-    if (reducedMotion) {
-      setShownCount(graphemes.length);
-      return;
-    }
-    setShownCount(0);
+    if (reducedMotion) return;
     if (graphemes.length === 0) return;
     const interval = typewriterIntervalMs(graphemes.length);
     let count = 0;
@@ -31,7 +32,7 @@ export function GreetingHeadline({ text, className }: { text: string; className?
     };
     timer = window.setTimeout(tick, interval);
     return () => window.clearTimeout(timer);
-  }, [graphemes, reducedMotion]);
+  }, [graphemes, reducedMotion, text]);
 
   const done = reducedMotion || shownCount >= graphemes.length;
   const visible = done ? text : graphemes.slice(0, shownCount).join("");

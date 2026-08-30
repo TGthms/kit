@@ -17,22 +17,25 @@ type Props = {
 
 export function MediaTimeline({ file, start, end, onChange, startLabel, endLabel }: Props) {
   const trackRef = useRef<HTMLDivElement>(null);
-  const [duration, setDuration] = useState(0);
-  const [peaks, setPeaks] = useState<number[]>([]);
+  const [loaded, setLoaded] = useState<{ file: File; duration: number; peaks: number[] } | null>(null);
   const drag = useRef<"start" | "end" | null>(null);
+  const duration = file && loaded?.file === file ? loaded.duration : 0;
+  const peaks = file && loaded?.file === file ? loaded.peaks : [];
 
   useEffect(() => {
-    if (!file) {
-      setDuration(0);
-      setPeaks([]);
-      return;
-    }
+    if (!file) return;
     const url = URL.createObjectURL(file);
     const el = document.createElement(file.type.startsWith("audio/") ? "audio" : "video");
     el.preload = "metadata";
     el.src = url;
     const onMeta = () => {
-      if (Number.isFinite(el.duration)) setDuration(el.duration);
+      if (Number.isFinite(el.duration)) {
+        setLoaded((current) => ({
+          file,
+          duration: el.duration,
+          peaks: current?.file === file ? current.peaks : [],
+        }));
+      }
     };
     el.addEventListener("loadedmetadata", onMeta);
 
@@ -50,15 +53,26 @@ export function MediaTimeline({ file, start, end, onChange, startLabel, endLabel
           ctx = new Ctx();
           const decoded = await ctx.decodeAudioData(buf.slice(0));
           const ch = decoded.getChannelData(0);
-          if (!cancelled) setPeaks(peaksFromChannel(ch, 80));
+          if (!cancelled) {
+            const nextPeaks = peaksFromChannel(ch, 80);
+            setLoaded((current) => ({
+              file,
+              duration: current?.file === file ? current.duration : 0,
+              peaks: nextPeaks,
+            }));
+          }
         } catch {
-          if (!cancelled) setPeaks([]);
+          if (!cancelled) {
+            setLoaded((current) => ({
+              file,
+              duration: current?.file === file ? current.duration : 0,
+              peaks: [],
+            }));
+          }
         } finally {
           await ctx?.close().catch(() => undefined);
         }
       });
-    } else {
-      setPeaks([]);
     }
 
     return () => {
