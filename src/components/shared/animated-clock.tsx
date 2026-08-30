@@ -18,6 +18,10 @@ const twoDigitFormat: Format = { minimumIntegerDigits: 2 };
  * - The animated digits are hidden from assistive tech; `label` supplies a
  *   single, clean accessible value for the whole clock instead.
  */
+function pad2(value: number): string {
+  return String(Math.max(0, Math.trunc(value))).padStart(2, "0");
+}
+
 export function AnimatedClock({
   hours,
   minutes,
@@ -26,6 +30,7 @@ export function AnimatedClock({
   label,
   className,
   digitClassName,
+  animate = true,
 }: {
   hours?: number;
   minutes: number;
@@ -34,21 +39,36 @@ export function AnimatedClock({
   label: string;
   className?: string;
   digitClassName?: string;
+  animate?: boolean;
 }) {
   return (
     <div className={cn("flex items-baseline justify-center tabular-nums", className)} aria-label={label}>
-      <span className="flex items-baseline" aria-hidden="true">
-        <NumberFlowGroup>
-          {hours !== undefined ? (
-            <>
-              <NumberFlow value={hours} format={twoDigitFormat} trend={0} className={digitClassName} />
-              <span>:</span>
-            </>
-          ) : null}
-          <NumberFlow value={minutes} format={twoDigitFormat} trend={0} className={digitClassName} />
-          <span>:</span>
-          <NumberFlow value={seconds} format={twoDigitFormat} trend={0} className={digitClassName} />
-        </NumberFlowGroup>
+      <span className="flex items-baseline overflow-hidden" aria-hidden="true">
+        {animate ? (
+          <NumberFlowGroup>
+            {hours !== undefined ? (
+              <>
+                <NumberFlow value={hours} format={twoDigitFormat} trend={0} className={digitClassName} />
+                <span>:</span>
+              </>
+            ) : null}
+            <NumberFlow value={minutes} format={twoDigitFormat} trend={0} className={digitClassName} />
+            <span>:</span>
+            <NumberFlow value={seconds} format={twoDigitFormat} trend={0} className={digitClassName} />
+          </NumberFlowGroup>
+        ) : (
+          <>
+            {hours !== undefined ? (
+              <>
+                <span className={digitClassName}>{pad2(hours)}</span>
+                <span>:</span>
+              </>
+            ) : null}
+            <span className={digitClassName}>{pad2(minutes)}</span>
+            <span>:</span>
+            <span className={digitClassName}>{pad2(seconds)}</span>
+          </>
+        )}
         {fraction ? <span className="opacity-70">.{fraction}</span> : null}
       </span>
     </div>

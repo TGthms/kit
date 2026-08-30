@@ -69,7 +69,7 @@ import {
 } from "@/lib/utils";
 import { imagesToPdf } from "@/lib/pdf/core";
 import type { ToolId } from "@/lib/tools/registry";
-import { ActionBar, ToolLimits, ToolShell, useToolHistory } from "./shared";
+import { ActionBar, DownloadResult, ToolLimits, ToolShell, useToolHistory } from "./shared";
 import { SearchableSelect } from "./converter-tools";
 
 const selectClass =
@@ -494,10 +494,11 @@ export function StopwatchTimer() {
           minutes={timerParts.minutes}
           seconds={timerParts.seconds}
           label={formatClock(remaining)}
+          animate={timer.status !== "idle"}
           className={`font-mono text-5xl font-semibold tracking-tight sm:text-7xl ${timer.status === "finished" ? "text-destructive" : ""}`}
         />
       )}{mode === "timer" ? <div className="grid w-full max-w-md grid-cols-3 gap-3"><div className="space-y-2"><Label>{text(t, "hours", "Hours")}</Label><Input type="number" min="0" inputMode="numeric" value={hours} onChange={(event) => setHours(event.target.value)} disabled={fieldsLocked} /></div><div className="space-y-2"><Label>{text(t, "minutes", "Minutes")}</Label><Input type="number" min="0" max="59" inputMode="numeric" value={minutes} onChange={(event) => setMinutes(event.target.value)} disabled={fieldsLocked} /></div><div className="space-y-2"><Label>{text(t, "seconds", "Seconds")}</Label><Input type="number" min="0" max="59" inputMode="numeric" value={seconds} onChange={(event) => setSeconds(event.target.value)} disabled={fieldsLocked} /></div></div> : null}<div className="flex flex-wrap justify-center gap-2"><Button size="lg" onClick={toggle}>{running ? text(t, "pause", "Pause") : mode === "timer" && timer.status === "finished" ? text(t, "finished", "Finished") : text(t, "start", "Start")}</Button><Button size="lg" variant="outline" onClick={reset}><RefreshCw /> {text(t, "reset", "Reset")}</Button></div></CardContent></Card>
-      <Button variant="outline" onClick={() => { log(mode === "stopwatch" ? formatDuration(elapsed) : formatClock(remaining), "success"); toast.success(text(t, "saved", "Time saved to history.")); }}><Check /> {text(t, "recordTime", "Record time")}</Button>
+      {mode === "stopwatch" ? <Button variant="outline" onClick={() => { log(formatDuration(elapsed), "success"); toast.success(text(t, "saved", "Time saved to history.")); }}><Check /> {text(t, "recordTime", "Record time")}</Button> : null}
     </ToolShell>
   );
 }
@@ -556,6 +557,7 @@ export function EverydayImagesToPdf() {
   const [files, setFiles] = useState<FileItem[]>([]);
   const [pageSize, setPageSize] = useState<"a4" | "image">("a4");
   const [loading, setLoading] = useState(false);
+  const [result, setResult] = useState<{ blob: Blob; name: string } | null>(null);
   const run = async () => {
     if (!files.length) return;
     setLoading(true);
@@ -569,8 +571,10 @@ export function EverydayImagesToPdf() {
         images.push({ bytes: new Uint8Array(await png.arrayBuffer()), mime: "image/png" as const });
       }
       const output = await imagesToPdf(images, { pageSize, margin: 24 });
-      downloadBlob(bytesToBlob(output, "application/pdf"), "images.pdf");
-      toast.success(text(t, "success", `Built a PDF from ${files.length} image(s).`, { count: files.length }));
+      const blob = bytesToBlob(output, "application/pdf");
+      downloadBlob(blob, "images.pdf");
+      setResult({ blob, name: "images.pdf" });
+      toast.success(text(t, "success", `Built a PDF from ${files.length} images.`, { count: files.length }));
       log(`${files.length} images`, "success");
     } catch (reason) {
       toast.error(reason instanceof Error ? reason.message : text(tc, "error", "Something went wrong"));
@@ -592,6 +596,7 @@ export function EverydayImagesToPdf() {
         </Button>
       </div>
       <ActionBar onRun={run} loading={loading} label={text(t, "run", "Create PDF")} disabled={!files.length} />
+      <DownloadResult file={result} />
     </ToolShell>
   );
 }
