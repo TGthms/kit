@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import { useTranslations } from "next-intl";
 import { toast } from "sonner";
+import { notifyCopied } from "@/lib/notify";
 import { FileDropzone, type FileItem } from "@/components/shared/file-dropzone";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -198,7 +199,7 @@ export function HashGenerator() {
             variant="outline"
             onClick={() => {
               navigator.clipboard.writeText(digest);
-              toast.success(tc("copied"));
+              notifyCopied(tc("copied"));
             }}
           >
             {tc("copy")}
@@ -249,7 +250,7 @@ export function UuidGenerator() {
           variant="outline"
           onClick={() => {
             navigator.clipboard.writeText(out);
-            toast.success(tc("copied"));
+            notifyCopied(tc("copied"));
           }}
           disabled={!out}
         >
@@ -301,7 +302,7 @@ export function ColorConvert() {
             variant="outline"
             onClick={() => {
               navigator.clipboard.writeText(parsed.hex);
-              toast.success(tc("copied"));
+              notifyCopied(tc("copied"));
             }}
           >
             {tc("copy")} {parsed.hex}
@@ -354,7 +355,7 @@ export function LoremIpsum() {
           variant="outline"
           onClick={() => {
             navigator.clipboard.writeText(out);
-            toast.success(tc("copied"));
+            notifyCopied(tc("copied"));
           }}
           disabled={!out}
         >

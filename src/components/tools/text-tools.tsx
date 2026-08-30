@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import { useTranslations } from "next-intl";
 import { toast } from "sonner";
+import { notifyCopied } from "@/lib/notify";
 import { FileDropzone, type FileItem } from "@/components/shared/file-dropzone";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
@@ -64,7 +65,7 @@ export function JsonFormat() {
           variant="outline"
           onClick={() => {
             navigator.clipboard.writeText(input);
-            toast.success(tc("copied"));
+            notifyCopied(tc("copied"));
           }}
         >
           {tc("copy")}

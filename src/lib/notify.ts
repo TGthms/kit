@@ -12,7 +12,7 @@ export function notifyError(message: string) {
   toast.error(message, { id: ERROR_ID });
 }
 
-export function notifyCopied(message: string) {
+export function notifyCopied(message = "Copied") {
   toast.success(message, { id: NOTICE_ID });
 }
 

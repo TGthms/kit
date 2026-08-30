@@ -2,6 +2,7 @@
 
 import { useEffect, useLayoutEffect } from "react";
 import { ThemeProvider, useTheme } from "next-themes";
+import { useTranslations } from "next-intl";
 import { Toaster } from "sonner";
 
 // Must match next-themes' default storageKey ("theme"), since we don't
@@ -44,22 +45,29 @@ export function Providers({
         <ThemePreferenceSync />
         <ThemeColorSync />
         {children}
-        <Toaster
-          position="top-center"
-          offset="calc(3.75rem + env(safe-area-inset-top))"
-          visibleToasts={3}
-          duration={2800}
-          gap={10}
-          expand={false}
-          closeButton
-          swipeDirections={["top"]}
-          toastOptions={{
-            className: "kit-toast",
-            closeButtonAriaLabel: "Close",
-          }}
-        />
+        <KitToaster />
       </ThemeProvider>
     </>
+  );
+}
+
+function KitToaster() {
+  const t = useTranslations("common");
+  return (
+    <Toaster
+      position="top-center"
+      offset="calc(3.75rem + env(safe-area-inset-top))"
+      visibleToasts={3}
+      duration={2800}
+      gap={10}
+      expand={false}
+      closeButton
+      swipeDirections={["top"]}
+      toastOptions={{
+        className: "kit-toast",
+        closeButtonAriaLabel: t("close"),
+      }}
+    />
   );
 }
 

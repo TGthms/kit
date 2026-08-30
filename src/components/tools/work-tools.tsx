@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import { useTranslations } from "next-intl";
 import { toast } from "sonner";
+import { notifyCopied } from "@/lib/notify";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -106,7 +107,7 @@ export function UnixTimestamp() {
             variant="outline"
             onClick={() => {
               navigator.clipboard.writeText(parsed.iso);
-              toast.success(tc("copied"));
+              notifyCopied(tc("copied"));
             }}
           >
             {tc("copy")} ISO
@@ -249,7 +250,7 @@ export function CaseConvert() {
           variant="outline"
           onClick={() => {
             navigator.clipboard.writeText(text);
-            toast.success(tc("copied"));
+            notifyCopied(tc("copied"));
           }}
         >
           {tc("copy")}
@@ -308,7 +309,7 @@ export function PasswordGenerator() {
           disabled={!out}
           onClick={() => {
             navigator.clipboard.writeText(out);
-            toast.success(tc("copied"));
+            notifyCopied(tc("copied"));
           }}
         >
           {tc("copy")}
@@ -346,7 +347,7 @@ export function JsonTypes() {
           variant="outline"
           onClick={() => {
             navigator.clipboard.writeText(input);
-            toast.success(tc("copied"));
+            notifyCopied(tc("copied"));
           }}
         >
           {tc("copy")}
