@@ -17,7 +17,7 @@ import {
   isCachedRateStale,
   type CachedRateRecord,
 } from "@/lib/converter/currency";
-import { convertUnit, type UnitCategory, type UnitCode } from "@/lib/converter/units";
+import { convertUnit, formatUnitSymbol, type UnitCategory, type UnitCode } from "@/lib/converter/units";
 import type { ToolId } from "@/lib/tools/registry";
 import { AnimatedNumber } from "@/components/shared/animated-number";
 import { ToolShell, useToolHistory } from "./shared";
@@ -31,7 +31,9 @@ type UnitOption = { code: UnitCode; label: string };
 function text(t: ReturnType<typeof useTranslations>, key: string, fallback: string, values?: Record<string, string | number>) {
   try {
     const translate = t as unknown as TranslationFn;
-    return translate(key, values) || fallback;
+    const result = translate(key, values);
+    if (!result || result === key || result.endsWith(`.${key}`)) return fallback;
+    return result;
   } catch {
     return fallback;
   }
@@ -290,12 +292,19 @@ export function SearchableSelect({
   const [query, setQuery] = useState("");
   const [open, setOpen] = useState(false);
   const selected = options.find((option) => option.value === value);
-  const selectedLabel = selected ? `${selected.value} — ${selected.label}` : "";
+  const optionText = (option: { value: string; label: string }) =>
+    `${formatUnitSymbol(option.value)} — ${option.label}`;
+  const selectedLabel = selected ? optionText(selected) : "";
   const filtered = useMemo(() => {
     const normalized = query.trim().toLowerCase();
     if (!normalized) return options;
-    return options.filter((option) => `${option.value} ${option.label}`.toLowerCase().includes(normalized));
+    return options.filter((option) => `${option.value} ${formatUnitSymbol(option.value)} ${option.label}`.toLowerCase().includes(normalized));
   }, [options, query]);
+
+  useEffect(() => {
+    setQuery("");
+    setOpen(false);
+  }, [value]);
 
   useEffect(() => {
     if (!open) return;
@@ -324,7 +333,7 @@ export function SearchableSelect({
       <div className="space-y-2">
         <Label>{label}</Label>
         <select className={selectClass} value={value} onChange={(event) => onChange(event.target.value)} aria-label={label}>
-          {options.map((option) => <option key={option.value} value={option.value}>{option.value} — {option.label}</option>)}
+          {options.map((option) => <option key={option.value} value={option.value}>{optionText(option)}</option>)}
         </select>
       </div>
     );
@@ -376,7 +385,7 @@ export function SearchableSelect({
               }}
               className="flex min-h-10 w-full items-center rounded-lg px-3 py-2 text-left text-sm transition-colors hover:bg-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring aria-selected:bg-primary/10 aria-selected:font-medium"
             >
-              <span className="truncate">{option.value} — {option.label}</span>
+              <span className="truncate">{optionText(option)}</span>
             </button>
           )) : <p className="px-3 py-3 text-sm text-muted-foreground">{text(t, "noMatches", "No matches")}</p>}
         </div>
@@ -515,8 +524,11 @@ function UnitConverter({
           size="icon"
           aria-label={text(t, "swapUnits", "Swap units")}
           onClick={() => {
-            setFrom(to);
-            setTo(from);
+            const nextFrom = to;
+            const nextTo = from;
+            if (result !== null) setAmount(String(Number(result.toPrecision(12))));
+            setFrom(nextFrom);
+            setTo(nextTo);
           }}
           className="justify-self-center"
         >
@@ -525,7 +537,14 @@ function UnitConverter({
         <div className="space-y-2">
           <Label>{text(t, "result", "Result")}</Label>
           <div className="flex h-10 items-center rounded-xl border border-primary/30 bg-primary/5 px-3 text-lg font-semibold">
-            {result === null ? "—" : <AnimatedNumber value={result} format={{ maximumFractionDigits: 8 }} />}
+            {result === null ? (
+              "—"
+            ) : (
+              <span className="inline-flex items-baseline gap-1.5">
+                <AnimatedNumber value={result} format={{ maximumFractionDigits: 8 }} />
+                <span className="text-sm font-medium text-muted-foreground">{formatUnitSymbol(to)}</span>
+              </span>
+            )}
           </div>
         </div>
       </div>
@@ -712,8 +731,11 @@ export function CurrencyConverter({ onBack, namespace = "tools.currency-converte
           size="icon"
           aria-label={text(t, "swapCurrencies", "Swap currencies")}
           onClick={() => {
-            setBase(quote);
-            setQuote(base);
+            const nextBase = quote;
+            const nextQuote = base;
+            if (output !== null) setAmount(String(Number(output.toPrecision(12))));
+            setBase(nextBase);
+            setQuote(nextQuote);
           }}
           className="justify-self-center"
         >

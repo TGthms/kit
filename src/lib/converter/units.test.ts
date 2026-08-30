@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { convertElectrical, convertTypography, convertUnit } from "./units";
+import { convertElectrical, convertTypography, convertUnit, formatUnitSymbol } from "./units";
 
 describe("unit conversions", () => {
   it("converts common linear, temperature, and duration units", () => {
@@ -43,5 +43,13 @@ describe("unit conversions", () => {
     expect(convertUnit("typography", 1, "rem", "px")).toBe(16);
     expect(() => convertUnit("fuelEconomy", 0, "L/100km", "km/L")).toThrow(RangeError);
     expect(() => convertUnit("length", Number.NaN, "m", "ft")).toThrow(RangeError);
+  });
+
+  it("renders squared and cubed unit symbols", () => {
+    expect(formatUnitSymbol("m2")).toBe("m²");
+    expect(formatUnitSymbol("km2")).toBe("km²");
+    expect(formatUnitSymbol("m3")).toBe("m³");
+    expect(formatUnitSymbol("m/s2")).toBe("m/s²");
+    expect(formatUnitSymbol("kg")).toBe("kg");
   });
 });

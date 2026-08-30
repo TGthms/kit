@@ -19,6 +19,13 @@ export type UnitCategory =
   | "electrical"
   | "typography";
 
+const SUPER_DIGITS: Record<string, string> = { "2": "²", "3": "³", "4": "⁴" };
+
+/** Display `m2` as `m²`, `m/s2` as `m/s²`. Currency-style codes are unchanged. */
+export function formatUnitSymbol(code: string): string {
+  return code.replace(/(\d+)$/u, (digit) => SUPER_DIGITS[digit] ?? digit);
+}
+
 export type UnitCode =
   | "mm" | "cm" | "m" | "km" | "in" | "ft" | "yd" | "mi" | "nmi"
   | "mg" | "g" | "kg" | "t" | "oz" | "lb" | "stone"
