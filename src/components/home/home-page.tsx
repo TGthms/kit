@@ -260,6 +260,33 @@ function HomePageInner() {
         </section>
       )}
 
+      {showCategories && pinned.length > 0 && (
+        <section className="space-y-3">
+          <h2 className="text-xs font-semibold uppercase tracking-[0.06em] text-muted-foreground">
+            {t("pinned")}
+          </h2>
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {pinned.map((tool) => {
+              const Icon = tool.icon;
+              return (
+                <Link key={tool.id} href={toolHref(tool.id)} className="block" data-pressable>
+                  <Card className="h-full border-border/40 pressable-soft transition-shadow hover:surface-float-lg">
+                    <CardHeader className="flex-row items-center gap-3 space-y-0 p-4">
+                      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                        <Icon className="h-5 w-5" />
+                      </span>
+                      <CardTitle className="truncate text-sm font-medium tracking-[-0.01em]">
+                        {tt(`${tool.id}.name`)}
+                      </CardTitle>
+                    </CardHeader>
+                  </Card>
+                </Link>
+              );
+            })}
+          </div>
+        </section>
+      )}
+
       {showCategories && (
         <section className="space-y-3">
           <h2 className="text-xs font-semibold uppercase tracking-[0.06em] text-muted-foreground">
@@ -302,33 +329,6 @@ function HomePageInner() {
                           {tt(`${id}.description`)}
                         </CardDescription>
                       </div>
-                    </CardHeader>
-                  </Card>
-                </Link>
-              );
-            })}
-          </div>
-        </section>
-      )}
-
-      {showCategories && pinned.length > 0 && (
-        <section className="space-y-3">
-          <h2 className="text-xs font-semibold uppercase tracking-[0.06em] text-muted-foreground">
-            {t("pinned")}
-          </h2>
-          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            {pinned.map((tool) => {
-              const Icon = tool.icon;
-              return (
-                <Link key={tool.id} href={toolHref(tool.id)} className="block" data-pressable>
-                  <Card className="h-full border-border/40 pressable-soft transition-shadow hover:surface-float-lg">
-                    <CardHeader className="flex-row items-center gap-3 space-y-0 p-4">
-                      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
-                        <Icon className="h-5 w-5" />
-                      </span>
-                      <CardTitle className="truncate text-sm font-medium tracking-[-0.01em]">
-                        {tt(`${tool.id}.name`)}
-                      </CardTitle>
                     </CardHeader>
                   </Card>
                 </Link>
