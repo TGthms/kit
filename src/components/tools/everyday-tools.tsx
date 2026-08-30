@@ -548,7 +548,7 @@ export function RandomGenerator() {
       const id = ++roll.current;
       if (numericNext) {
         const nums = next.map(Number);
-        const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        const reduce = nums.length > 10 || window.matchMedia("(prefers-reduced-motion: reduce)").matches;
         if (reduce) setShown(nums);
         else {
           setShown(nums.map(() => 0));
@@ -655,7 +655,9 @@ export function RandomGenerator() {
                       key={index}
                       className="inline-flex h-14 min-w-[4.25rem] items-center justify-center overflow-hidden rounded-xl border border-primary/20 bg-background px-3 font-mono text-xl font-semibold tabular-nums"
                     >
-                      <AnimatedNumber value={item} format={numberFormat} />
+                      {shown.length > 10
+                        ? (numberFormat ? item.toFixed(numberFormat.minimumFractionDigits ?? 0) : item)
+                        : <AnimatedNumber value={item} format={numberFormat} />}
                     </span>
                   ))}
                 </div>
