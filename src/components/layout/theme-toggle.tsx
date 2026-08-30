@@ -9,7 +9,6 @@ import { rememberThemeChoice } from "@/components/providers";
 
 /**
  * Header control: toggles between light and dark only.
- * (Settings can still document both modes; no "system" third state here.)
  */
 export function ThemeToggle() {
   const { resolvedTheme, setTheme } = useTheme();
