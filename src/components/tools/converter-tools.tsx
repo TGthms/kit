@@ -19,6 +19,7 @@ import {
 } from "@/lib/converter/currency";
 import { convertUnit, type UnitCategory, type UnitCode } from "@/lib/converter/units";
 import type { ToolId } from "@/lib/tools/registry";
+import { AnimatedNumber } from "@/components/shared/animated-number";
 import { ToolShell, useToolHistory } from "./shared";
 
 const selectClass =
@@ -34,10 +35,6 @@ function text(t: ReturnType<typeof useTranslations>, key: string, fallback: stri
   } catch {
     return fallback;
   }
-}
-
-function formatNumber(value: number, maximumFractionDigits = 8) {
-  return new Intl.NumberFormat(undefined, { maximumFractionDigits }).format(value);
 }
 
 const UNIT_CATALOG: Record<UnitCategory, UnitOption[]> = {
@@ -366,10 +363,18 @@ function localizedUnitLabel(code: UnitCode, fallback: string, locale: string): s
   }
 }
 
-function UnitConverter({ category, onBack }: { category: UnitCategory; onBack?: () => void }) {
+function UnitConverter({
+  category,
+  historyToolId,
+  onBack,
+}: {
+  category: UnitCategory;
+  historyToolId: ToolId;
+  onBack?: () => void;
+}) {
   const t = useTranslations("tools.everyday-converter");
   const locale = useLocale();
-  const log = useToolHistory(toolId("everyday-converter"));
+  const log = useToolHistory(historyToolId);
   const options = UNIT_CATALOG[category];
   const localizedOptions = useMemo(
     () => options.map((option) => {
@@ -476,7 +481,7 @@ function UnitConverter({ category, onBack }: { category: UnitCategory; onBack?: 
         <div className="space-y-2">
           <Label>{text(t, "result", "Result")}</Label>
           <div className="flex h-10 items-center rounded-xl border border-primary/30 bg-primary/5 px-3 text-lg font-semibold">
-            {result === null ? "—" : formatNumber(result)}
+            {result === null ? "—" : <AnimatedNumber value={result} format={{ maximumFractionDigits: 8 }} />}
           </div>
         </div>
       </div>
@@ -673,7 +678,14 @@ export function CurrencyConverter({ onBack, namespace = "tools.everyday-converte
         <div className="space-y-2">
           <Label>{text(t, "result", "Result")}</Label>
           <div className="flex h-10 items-center rounded-xl border border-primary/30 bg-primary/5 px-3 text-lg font-semibold">
-            {output === null ? "—" : `${formatNumber(output)} ${quote}`}
+            {output === null ? (
+              "—"
+            ) : (
+              <span className="inline-flex items-baseline gap-1">
+                <AnimatedNumber value={output} format={{ maximumFractionDigits: 8 }} />
+                <span>{quote}</span>
+              </span>
+            )}
           </div>
         </div>
       </div>
@@ -685,7 +697,17 @@ export function CurrencyConverter({ onBack, namespace = "tools.everyday-converte
         <CardContent className="grid gap-4 p-5 sm:grid-cols-[1fr_auto] sm:items-center">
           <div>
             <p className="text-sm text-muted-foreground">{loading ? text(t, "loadingRate", "Loading live rate…") : text(t, "rate", "Exchange rate")}</p>
-            <p className="mt-1 text-2xl font-semibold">{effectiveRate === null ? "—" : `1 ${base} = ${formatNumber(effectiveRate, 6)} ${quote}`}</p>
+            <p className="mt-1 text-2xl font-semibold">
+              {effectiveRate === null ? (
+                "—"
+              ) : (
+                <span className="inline-flex flex-wrap items-baseline gap-1">
+                  <span>1 {base} =</span>
+                  <AnimatedNumber value={effectiveRate} format={{ maximumFractionDigits: 6 }} />
+                  <span>{quote}</span>
+                </span>
+              )}
+            </p>
             {match ? (
               <p className={`mt-2 text-xs ${stale ? "text-amber-700 dark:text-amber-300" : "text-muted-foreground"}`}>
                 {stale ? text(t, "stale", "Cached rate is older than six hours; refresh may be needed.") : `${text(t, "asOf", "Rate date")} ${match.record.date}`}
@@ -723,7 +745,7 @@ export function CurrencyConverterTool() {
 function UnitConverterTool({ toolId: id, category }: { toolId: ToolId; category: UnitCategory }) {
   return (
     <ToolShell toolId={id}>
-      <UnitConverter category={category} />
+      <UnitConverter category={category} historyToolId={id} />
     </ToolShell>
   );
 }

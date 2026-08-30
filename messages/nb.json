@@ -344,7 +344,8 @@
       "description": "Roter sider, fjern dem du ikke trenger, og sett en ny rekkefølge.",
       "keywords": "pdf rotere slette omorganisere organisere sider",
       "run": "Lagre PDF",
-      "success": "PDF-en din er oppdatert."
+      "success": "PDF-en din er oppdatert.",
+      "keepOne": "Keep at least one page."
     },
     "pdf-compress": {
       "name": "Komprimer PDF",
@@ -373,7 +374,10 @@
       "keywords": "pdf sverte dekke skjule sensitivt",
       "run": "Bruk dekning",
       "note": "Bare visuell dekning. Det garanterer ikke fjerning av hver underliggende tekststrøm — dobbeltsjekk sensitive dokumenter.",
-      "success": "Dekninger brukt."
+      "success": "Dekninger brukt.",
+      "drawHint": "Drag on the page to cover a region. Add as many boxes as you need, then apply.",
+      "undoBox": "Undo last box",
+      "clearBoxes": "Clear boxes"
     },
     "pdf-extract": {
       "name": "Trekk ut fra PDF",
@@ -592,7 +596,9 @@
       "keywords": "bilder pdf jpg png kombinere",
       "run": "Opprett PDF",
       "success": "Bygget en PDF av {count} bilde(r).",
-      "limits": "Bilder konverteres og settes sammen lokalt i denne nettleseren. Filer lastes ikke opp."
+      "limits": "Bilder konverteres og settes sammen lokalt i denne nettleseren. Filer lastes ikke opp.",
+      "fitA4": "Fit to A4",
+      "fitImage": "Original size"
     },
     "pdf-flatten": {
       "name": "Flat ut skjemaer",

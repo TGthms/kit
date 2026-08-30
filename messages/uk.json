@@ -344,7 +344,8 @@
       "description": "Повертайте сторінки, вилучайте непотрібні й задайте новий порядок.",
       "keywords": "pdf повернути видалити порядок упорядкувати сторінки",
       "run": "Зберегти PDF",
-      "success": "PDF оновлено."
+      "success": "PDF оновлено.",
+      "keepOne": "Keep at least one page."
     },
     "pdf-compress": {
       "name": "Стиснути PDF",
@@ -373,7 +374,10 @@
       "keywords": "pdf замазати приховати чутливе",
       "run": "Застосувати прикриття",
       "note": "Лише візуальне прикриття. Не гарантує вилучення всього вихідного тексту — перевіряйте важливі документи.",
-      "success": "Прямокутники накладено."
+      "success": "Прямокутники накладено.",
+      "drawHint": "Drag on the page to cover a region. Add as many boxes as you need, then apply.",
+      "undoBox": "Undo last box",
+      "clearBoxes": "Clear boxes"
     },
     "pdf-extract": {
       "name": "Витягти з PDF",
@@ -592,7 +596,9 @@
       "keywords": "зображення pdf jpg png об’єднати",
       "run": "Створити PDF",
       "success": "Зібрано PDF із зображень: {count}.",
-      "limits": "Зображення конвертуються та збираються локально в цьому браузері. Файли не завантажуються."
+      "limits": "Зображення конвертуються та збираються локально в цьому браузері. Файли не завантажуються.",
+      "fitA4": "Fit to A4",
+      "fitImage": "Original size"
     },
     "pdf-flatten": {
       "name": "Звести форми",

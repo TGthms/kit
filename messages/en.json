@@ -344,15 +344,16 @@
       "description": "Rotate pages, remove the ones you don’t need, and set a new order.",
       "keywords": "pdf rotate delete reorder organize pages",
       "run": "Save PDF",
-      "success": "Your PDF has been updated."
+      "success": "Your PDF has been updated.",
+      "keepOne": "Keep at least one page."
     },
     "pdf-compress": {
-      "name": "Compress PDF",
-      "description": "Shrink file size by re-encoding page images (quality trade-off).",
-      "keywords": "pdf compress reduce size smaller",
-      "run": "Compress",
-      "note": "This is a lossy path—pages may be rasterized. Works best on image-heavy PDFs.",
-      "success": "Compressed PDF is ready to download."
+      "name": "Shrink as images",
+      "description": "Rasterize each page to JPEG. Text, links, and vectors are not kept.",
+      "keywords": "pdf compress reduce size smaller rasterize jpeg",
+      "run": "Shrink",
+      "note": "Every page is turned into a JPEG picture and rebuilt as a new PDF. Searchable text, links, and vector drawings are removed. Files can get larger. Use this for photo-heavy scans, not contracts you still need to search.",
+      "success": "Shrunk PDF is ready to download."
     },
     "pdf-watermark": {
       "name": "Watermark PDF",
@@ -369,11 +370,14 @@
     },
     "pdf-redact": {
       "name": "Cover content",
-      "description": "Place solid black boxes over sensitive areas (visual cover).",
-      "keywords": "pdf redact blackout hide sensitive",
+      "description": "Draw black boxes over a page preview. This is a visual cover, not true redaction.",
+      "keywords": "pdf redact blackout hide sensitive cover",
       "run": "Apply cover",
-      "note": "This is a visual cover only. It does not guarantee removal of every underlying text stream—double-check sensitive documents.",
-      "success": "Cover boxes applied."
+      "note": "This is a visual cover only. Underlying text can still be selected, copied, or recovered. Do not use it for secrets that must be destroyed.",
+      "success": "Cover boxes applied.",
+      "drawHint": "Drag on the page to cover a region. Add as many boxes as you need, then apply.",
+      "undoBox": "Undo last box",
+      "clearBoxes": "Clear boxes"
     },
     "pdf-extract": {
       "name": "Extract from PDF",
@@ -588,11 +592,13 @@
     },
     "images-to-pdf": {
       "name": "Images → PDF",
-      "description": "Stack photos into a PDF, one image per page.",
-      "keywords": "images to pdf jpg png combine",
+      "description": "Stack photos into a PDF, one image per page. A4 is the default.",
+      "keywords": "images to pdf jpg png combine a4",
       "run": "Create PDF",
       "success": "Built a PDF from {count} image(s).",
-      "limits": "Images are converted and assembled locally in this browser. Files are not uploaded."
+      "limits": "Images are converted and assembled locally in this browser. Files are not uploaded. A4 fit is the default; original size keeps each page as large as the photo.",
+      "fitA4": "Fit to A4",
+      "fitImage": "Original size"
     },
     "pdf-flatten": {
       "name": "Flatten forms",

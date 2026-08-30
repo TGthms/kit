@@ -4,6 +4,7 @@ import { useMemo } from "react";
 import { useTranslations } from "next-intl";
 import { Link } from "@/lib/i18n/navigation";
 import { tools, resolveToolId } from "@/lib/tools/registry";
+import { toolHref } from "@/lib/navigation/routes";
 import { useFavoritesStore } from "@/stores/favorites-store";
 import { PageHeader } from "@/components/layout/page-header";
 import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -32,7 +33,7 @@ export default function FavoritesPage() {
           {list.map((tool) => {
             const Icon = tool.icon;
             return (
-              <Link key={tool.id} href={`/tools/${tool.id}`} data-pressable>
+              <Link key={tool.id} href={toolHref(tool.id, "/favorites")} data-pressable>
                 <Card className="h-full border-border/40 pressable-soft transition-shadow hover:surface-float-lg">
                   <CardHeader className="space-y-3">
                     <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary">

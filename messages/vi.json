@@ -344,7 +344,8 @@
       "description": "Xoay trang, xóa những trang không cần và đặt thứ tự mới.",
       "keywords": "pdf xoay xóa sắp xếp tổ chức trang",
       "run": "Lưu PDF",
-      "success": "PDF của bạn đã được cập nhật."
+      "success": "PDF của bạn đã được cập nhật.",
+      "keepOne": "Keep at least one page."
     },
     "pdf-compress": {
       "name": "Nén PDF",
@@ -373,7 +374,10 @@
       "keywords": "pdf che đen ẩn nhạy cảm",
       "run": "Áp dụng lớp che",
       "note": "Chỉ là lớp che bằng mắt. Không bảo đảm xóa mọi luồng văn bản bên dưới — hãy kiểm tra lại tài liệu nhạy cảm.",
-      "success": "Đã áp dụng hộp che."
+      "success": "Đã áp dụng hộp che.",
+      "drawHint": "Drag on the page to cover a region. Add as many boxes as you need, then apply.",
+      "undoBox": "Undo last box",
+      "clearBoxes": "Clear boxes"
     },
     "pdf-extract": {
       "name": "Trích từ PDF",
@@ -592,7 +596,9 @@
       "keywords": "ảnh pdf jpg png gộp",
       "run": "Tạo PDF",
       "success": "Đã tạo PDF từ {count} ảnh.",
-      "limits": "Ảnh được chuyển đổi và ghép cục bộ trong trình duyệt này. Tệp không được tải lên."
+      "limits": "Ảnh được chuyển đổi và ghép cục bộ trong trình duyệt này. Tệp không được tải lên.",
+      "fitA4": "Fit to A4",
+      "fitImage": "Original size"
     },
     "pdf-flatten": {
       "name": "Làm phẳng biểu mẫu",

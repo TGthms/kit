@@ -15,9 +15,64 @@ export function ensurePdfWorker() {
   workerReady = true;
 }
 
+function pdfjsAssetUrl(path: string): string {
+  const prefix = withBasePath("/vendor/pdfjs/");
+  return `${prefix}${path}`;
+}
+
 async function openPdfDocument(data: ArrayBuffer) {
-  const loadingTask = pdfjs.getDocument({ data: data.slice(0) });
-  return { loadingTask, doc: await loadingTask.promise };
+  const loadingTask = pdfjs.getDocument({
+    data: data.slice(0),
+    cMapUrl: pdfjsAssetUrl("cmaps/"),
+    cMapPacked: true,
+    standardFontDataUrl: pdfjsAssetUrl("standard_fonts/"),
+    wasmUrl: pdfjsAssetUrl("wasm/"),
+    iccUrl: pdfjsAssetUrl("iccs/"),
+  });
+  try {
+    return { loadingTask, doc: await loadingTask.promise };
+  } catch (error) {
+    await loadingTask.destroy().catch(() => undefined);
+    const name = error && typeof error === "object" && "name" in error ? String(error.name) : "";
+    if (name === "PasswordException") {
+      throw new Error("This PDF is password-protected. Unlock it first, then try again.");
+    }
+    throw error;
+  }
+}
+
+export async function renderPdfPagePreview(
+  data: ArrayBuffer,
+  pageNum = 1,
+  scale = 1.35
+): Promise<{ url: string; scale: number; width: number; height: number; pageCount: number }> {
+  ensurePdfWorker();
+  const { doc, loadingTask } = await openPdfDocument(data);
+  try {
+    const pageCount = doc.numPages;
+    const index = Math.min(pageCount, Math.max(1, pageNum));
+    const page = await doc.getPage(index);
+    const viewport = page.getViewport({ scale });
+    const canvas = document.createElement("canvas");
+    canvas.width = viewport.width;
+    canvas.height = viewport.height;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) throw new Error("Could not create a 2D canvas context");
+    await page.render({ canvasContext: ctx, viewport, canvas }).promise;
+    const blob: Blob = await new Promise((resolve, reject) =>
+      canvas.toBlob((value) => (value ? resolve(value) : reject(new Error("toBlob failed"))), "image/jpeg", 0.85)
+    );
+    return {
+      url: URL.createObjectURL(blob),
+      scale,
+      width: viewport.width,
+      height: viewport.height,
+      pageCount,
+    };
+  } finally {
+    await doc.cleanup();
+    await loadingTask.destroy();
+  }
 }
 
 export async function renderPdfThumbnail(

@@ -344,7 +344,8 @@
       "description": "Faites pivoter, supprimez celles dont vous n’avez pas besoin et définissez un nouvel ordre.",
       "keywords": "pdf pivoter supprimer réordonner organiser pages",
       "run": "Enregistrer le PDF",
-      "success": "Votre PDF a été mis à jour."
+      "success": "Votre PDF a été mis à jour.",
+      "keepOne": "Keep at least one page."
     },
     "pdf-compress": {
       "name": "Compresser un PDF",
@@ -373,7 +374,10 @@
       "keywords": "pdf masquer caviarder cacher sensible",
       "run": "Appliquer le masque",
       "note": "Masquage visuel uniquement. Cela ne garantit pas la suppression de tout le flux de texte sous-jacent — vérifiez les documents sensibles.",
-      "success": "Masques appliqués."
+      "success": "Masques appliqués.",
+      "drawHint": "Drag on the page to cover a region. Add as many boxes as you need, then apply.",
+      "undoBox": "Undo last box",
+      "clearBoxes": "Clear boxes"
     },
     "pdf-extract": {
       "name": "Extraire d’un PDF",
@@ -592,7 +596,9 @@
       "keywords": "images pdf jpg png combiner",
       "run": "Créer le PDF",
       "success": "PDF créé à partir de {count} image(s).",
-      "limits": "Les images sont converties et assemblées localement dans ce navigateur. Les fichiers ne sont pas téléversés."
+      "limits": "Les images sont converties et assemblées localement dans ce navigateur. Les fichiers ne sont pas téléversés.",
+      "fitA4": "Fit to A4",
+      "fitImage": "Original size"
     },
     "pdf-flatten": {
       "name": "Aplatir les formulaires",

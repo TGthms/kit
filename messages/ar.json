@@ -344,7 +344,8 @@
       "description": "دوّر الصفحات واحذف ما لا تحتاجه وعيّن ترتيباً جديداً.",
       "keywords": "pdf تدوير حذف إعادة ترتيب تنظيم صفحات",
       "run": "حفظ PDF",
-      "success": "تم تحديث ملف PDF."
+      "success": "تم تحديث ملف PDF.",
+      "keepOne": "Keep at least one page."
     },
     "pdf-compress": {
       "name": "ضغط PDF",
@@ -373,7 +374,10 @@
       "keywords": "pdf تغطية إخفاء حساس",
       "run": "تطبيق التغطية",
       "note": "تغطية بصرية فقط. لا تضمن إزالة كل تدفق النص تحتها — راجع المستندات الحساسة.",
-      "success": "طُبقت التغطيات."
+      "success": "طُبقت التغطيات.",
+      "drawHint": "Drag on the page to cover a region. Add as many boxes as you need, then apply.",
+      "undoBox": "Undo last box",
+      "clearBoxes": "Clear boxes"
     },
     "pdf-extract": {
       "name": "استخراج من PDF",
@@ -592,7 +596,9 @@
       "keywords": "صور pdf jpg png جمع",
       "run": "إنشاء PDF",
       "success": "أُنشئ PDF من {count} صورة.",
-      "limits": "تُحوّل الصور وتُجمع محلياً في هذا المتصفح. لا يتم رفع الملفات."
+      "limits": "تُحوّل الصور وتُجمع محلياً في هذا المتصفح. لا يتم رفع الملفات.",
+      "fitA4": "Fit to A4",
+      "fitImage": "Original size"
     },
     "pdf-flatten": {
       "name": "تسطيح النماذج",

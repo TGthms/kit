@@ -344,7 +344,8 @@
       "description": "Sayfaları döndürün, gerekmeyenleri silin ve yeni bir sıra verin.",
       "keywords": "pdf döndür sil yeniden sırala düzenle sayfalar",
       "run": "PDF’yi kaydet",
-      "success": "PDF güncellendi."
+      "success": "PDF güncellendi.",
+      "keepOne": "Keep at least one page."
     },
     "pdf-compress": {
       "name": "PDF sıkıştır",
@@ -373,7 +374,10 @@
       "keywords": "pdf karart ört gizle hassas",
       "run": "Örtüyü uygula",
       "note": "Yalnızca görsel örtü. Altta kalan her metin akışının silindiğini garanti etmez — hassas belgeleri iki kez kontrol edin.",
-      "success": "Örtü kutuları uygulandı."
+      "success": "Örtü kutuları uygulandı.",
+      "drawHint": "Drag on the page to cover a region. Add as many boxes as you need, then apply.",
+      "undoBox": "Undo last box",
+      "clearBoxes": "Clear boxes"
     },
     "pdf-extract": {
       "name": "PDF’den ayıkla",
@@ -592,7 +596,9 @@
       "keywords": "görüntüler pdf jpg png birleştir",
       "run": "PDF oluştur",
       "success": "{count} görüntüden bir PDF oluşturuldu.",
-      "limits": "Görseller bu tarayıcıda yerel olarak dönüştürülür ve birleştirilir. Dosyalar yüklenmez."
+      "limits": "Görseller bu tarayıcıda yerel olarak dönüştürülür ve birleştirilir. Dosyalar yüklenmez.",
+      "fitA4": "Fit to A4",
+      "fitImage": "Original size"
     },
     "pdf-flatten": {
       "name": "Formları düzleştir",

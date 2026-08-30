@@ -344,7 +344,8 @@
       "description": "回転や不要ページの削除、並び順の変更ができます。",
       "keywords": "pdf 回転 削除 並べ替え 整理",
       "run": "PDF を保存",
-      "success": "PDF を更新しました。"
+      "success": "PDF を更新しました。",
+      "keepOne": "Keep at least one page."
     },
     "pdf-compress": {
       "name": "PDF を圧縮",
@@ -373,7 +374,10 @@
       "keywords": "pdf 墨消し 隠す 機密 黒塗り",
       "run": "覆いを適用",
       "note": "あくまで見た目の覆いです。下層のテキストが完全に消えるとは限りません。機密文書は必ずご自身で確認してください。",
-      "success": "覆いを適用しました。"
+      "success": "覆いを適用しました。",
+      "drawHint": "Drag on the page to cover a region. Add as many boxes as you need, then apply.",
+      "undoBox": "Undo last box",
+      "clearBoxes": "Clear boxes"
     },
     "pdf-extract": {
       "name": "PDF から取り出す",
@@ -592,7 +596,9 @@
       "keywords": "画像 pdf jpg png",
       "run": "PDF を作る",
       "success": "{count} 枚の画像から PDF を作りました。",
-      "limits": "画像はこのブラウザー内で変換・結合されます。ファイルはアップロードされません。"
+      "limits": "画像はこのブラウザー内で変換・結合されます。ファイルはアップロードされません。",
+      "fitA4": "Fit to A4",
+      "fitImage": "Original size"
     },
     "pdf-flatten": {
       "name": "フォームを固定",

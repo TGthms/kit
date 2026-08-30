@@ -39,6 +39,10 @@ describe("social metadata builders", () => {
     expect(tool.description).toBeTruthy();
     expect(String(tool.alternates?.canonical)).toContain("/en/tools/pdf-merge/");
 
+    const clock = await buildToolMetadata("en", "timezone-converter");
+    expect(String(clock.alternates?.canonical)).toContain("/en/tools/world-clock/");
+    expect(String(clock.alternates?.canonical)).not.toContain("timezone-converter");
+
     const settings = await buildSectionMetadata("de", "settings");
     expect(settings.title).toEqual(expect.stringContaining("Kit"));
     expect(String(settings.alternates?.canonical)).toBe(`${SITE_URL}/de/settings/`);

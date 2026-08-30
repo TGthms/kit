@@ -4,6 +4,7 @@ import { useCallback, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 import { Upload } from "lucide-react";
 import { cn, formatBytes, isLargeFile } from "@/lib/utils";
+import { fileMatchesAccept } from "@/lib/files/accept";
 import { Button } from "@/components/ui/button";
 
 export interface FileItem {
@@ -30,16 +31,21 @@ export function FileDropzone({
   const inputRef = useRef<HTMLInputElement>(null);
   const [drag, setDrag] = useState(false);
   const dragId = useRef<string | null>(null);
+  const filesRef = useRef(files);
+  filesRef.current = files;
 
   const addFiles = useCallback(
     (list: FileList | File[]) => {
-      const arr = Array.from(list).map((file) => ({
+      const matched = Array.from(list).filter((file) => fileMatchesAccept(file, accept));
+      if (!matched.length) return;
+      const arr = matched.map((file) => ({
         id: crypto.randomUUID(),
         file,
       }));
-      onChange(multiple ? [...files, ...arr] : arr.slice(0, 1));
+      const current = filesRef.current;
+      onChange(multiple ? [...current, ...arr] : arr.slice(0, 1));
     },
-    [files, multiple, onChange]
+    [accept, multiple, onChange]
   );
 
   const onPaste = useCallback(

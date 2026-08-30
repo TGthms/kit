@@ -4,6 +4,7 @@ import { useMemo } from "react";
 import { useTranslations, useFormatter } from "next-intl";
 import { Link } from "@/lib/i18n/navigation";
 import { getTool, resolveToolId } from "@/lib/tools/registry";
+import { toolHref } from "@/lib/navigation/routes";
 import { useHistoryStore } from "@/stores/history-store";
 import { PageHeader } from "@/components/layout/page-header";
 import { Button } from "@/components/ui/button";
@@ -86,7 +87,7 @@ export default function HistoryPage() {
                   </div>
                   {tool && (
                     <Button asChild variant="secondary" size="sm" className="shrink-0">
-                      <Link href={`/tools/${tool.id}`}>{t("openTool")}</Link>
+                      <Link href={toolHref(tool.id, "/history")}>{t("openTool")}</Link>
                     </Button>
                   )}
                 </CardContent>

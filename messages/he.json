@@ -344,7 +344,8 @@
       "description": "סובבו עמודים, הסירו מיותרים וקבעו סדר חדש.",
       "keywords": "pdf סיבוב מחיקה סידור ארגון עמודים",
       "run": "שמירת PDF",
-      "success": "קובץ ה-PDF עודכן."
+      "success": "קובץ ה-PDF עודכן.",
+      "keepOne": "Keep at least one page."
     },
     "pdf-compress": {
       "name": "כיווץ PDF",
@@ -373,7 +374,10 @@
       "keywords": "pdf השחרה כיסוי הסתרה רגיש",
       "run": "החלת כיסוי",
       "note": "זה כיסוי חזותי בלבד. אין הבטחה להסרת כל זרם הטקסט שמתחת—בדקו מסמכים רגישים בעצמכם.",
-      "success": "קופסאות הכיסוי הוחלו."
+      "success": "קופסאות הכיסוי הוחלו.",
+      "drawHint": "Drag on the page to cover a region. Add as many boxes as you need, then apply.",
+      "undoBox": "Undo last box",
+      "clearBoxes": "Clear boxes"
     },
     "pdf-extract": {
       "name": "חילוץ מ-PDF",
@@ -592,7 +596,9 @@
       "keywords": "תמונות ל-pdf jpg png איחוד",
       "run": "יצירת PDF",
       "success": "נבנה PDF מ-{count} תמונות.",
-      "limits": "התמונות מומרות ומורכבות מקומית בדפדפן הזה. הקבצים אינם מועלים."
+      "limits": "התמונות מומרות ומורכבות מקומית בדפדפן הזה. הקבצים אינם מועלים.",
+      "fitA4": "Fit to A4",
+      "fitImage": "Original size"
     },
     "pdf-flatten": {
       "name": "שיטוח טפסים",

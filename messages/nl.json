@@ -344,7 +344,8 @@
       "description": "Draai pagina’s, verwijder wat je niet nodig hebt en stel een nieuwe volgorde in.",
       "keywords": "pdf draaien verwijderen herschikken ordenen pagina’s",
       "run": "PDF opslaan",
-      "success": "Je PDF is bijgewerkt."
+      "success": "Je PDF is bijgewerkt.",
+      "keepOne": "Keep at least one page."
     },
     "pdf-compress": {
       "name": "PDF comprimeren",
@@ -373,7 +374,10 @@
       "keywords": "pdf zwarten afdekken verbergen gevoelig",
       "run": "Afdekking toepassen",
       "note": "Alleen een visuele afdekking. Het garandeert niet dat elke onderliggende tekststroom verdwijnt — controleer gevoelige documenten.",
-      "success": "Afdekkingen toegepast."
+      "success": "Afdekkingen toegepast.",
+      "drawHint": "Drag on the page to cover a region. Add as many boxes as you need, then apply.",
+      "undoBox": "Undo last box",
+      "clearBoxes": "Clear boxes"
     },
     "pdf-extract": {
       "name": "Uit PDF extraheren",
@@ -592,7 +596,9 @@
       "keywords": "afbeeldingen pdf jpg png combineren",
       "run": "PDF maken",
       "success": "PDF gemaakt van {count} afbeelding(en).",
-      "limits": "Afbeeldingen worden lokaal in deze browser geconverteerd en samengevoegd. Bestanden worden niet geüpload."
+      "limits": "Afbeeldingen worden lokaal in deze browser geconverteerd en samengevoegd. Bestanden worden niet geüpload.",
+      "fitA4": "Fit to A4",
+      "fitImage": "Original size"
     },
     "pdf-flatten": {
       "name": "Formulieren platleggen",

@@ -344,7 +344,8 @@
       "description": "Поворачивайте страницы, удаляйте ненужные и задайте новый порядок.",
       "keywords": "pdf повернуть удалить порядок организовать страницы",
       "run": "Сохранить PDF",
-      "success": "PDF обновлён."
+      "success": "PDF обновлён.",
+      "keepOne": "Keep at least one page."
     },
     "pdf-compress": {
       "name": "Сжать PDF",
@@ -373,7 +374,10 @@
       "keywords": "pdf замазать скрыть чувствительное",
       "run": "Применить закрытие",
       "note": "Только визуальное закрытие. Не гарантирует удаление всего исходного текста — проверяйте важные документы.",
-      "success": "Прямоугольники наложены."
+      "success": "Прямоугольники наложены.",
+      "drawHint": "Drag on the page to cover a region. Add as many boxes as you need, then apply.",
+      "undoBox": "Undo last box",
+      "clearBoxes": "Clear boxes"
     },
     "pdf-extract": {
       "name": "Извлечь из PDF",
@@ -592,7 +596,9 @@
       "keywords": "изображения pdf jpg png объединить",
       "run": "Создать PDF",
       "success": "Собран PDF из изображений: {count}.",
-      "limits": "Изображения конвертируются и собираются локально в этом браузере. Файлы не загружаются."
+      "limits": "Изображения конвертируются и собираются локально в этом браузере. Файлы не загружаются.",
+      "fitA4": "Fit to A4",
+      "fitImage": "Original size"
     },
     "pdf-flatten": {
       "name": "Свести формы",

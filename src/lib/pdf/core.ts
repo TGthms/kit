@@ -1,5 +1,5 @@
 import { PDFDocument, PDFName, degrees, rgb, StandardFonts } from "pdf-lib";
-import { isPdfEncrypted } from "./protect";
+import { inspectPdfReadability } from "./protect";
 
 export type PdfInput = ArrayBuffer | Uint8Array;
 
@@ -18,8 +18,12 @@ export function asPdfBytes(buf: PdfInput): Uint8Array {
  * fail fast with an actionable error that points the user there.
  */
 async function assertNotEncrypted(buf: PdfInput): Promise<void> {
-  if (await isPdfEncrypted(asPdfBytes(buf))) {
+  const state = await inspectPdfReadability(asPdfBytes(buf));
+  if (state === "encrypted") {
     throw new Error("This PDF is password-protected. Unlock it first, then try again.");
+  }
+  if (state === "unreadable") {
+    throw new Error("This file could not be read as a PDF.");
   }
 }
 
@@ -113,11 +117,16 @@ export async function organizePdf(
   const src = await PDFDocument.load(buf, { ignoreEncryption: true });
   const out = await PDFDocument.create();
   const kept = order.filter((i) => !deleted.has(i));
+  if (!kept.length) throw new Error("Keep at least one page.");
+  const srcPages = src.getPages();
   const pages = await out.copyPages(src, kept);
   pages.forEach((p, idx) => {
     const srcIndex = kept[idx];
-    const rot = rotations[srcIndex] || 0;
-    if (rot) p.setRotation(degrees(rot));
+    const extra = rotations[srcIndex] || 0;
+    if (extra) {
+      const existing = srcPages[srcIndex]?.getRotation().angle ?? 0;
+      p.setRotation(degrees(((existing + extra) % 360 + 360) % 360));
+    }
     out.addPage(p);
   });
   return out.save();
@@ -187,15 +196,17 @@ export async function watermarkPdf(
  * back to "redact" without actually implementing content removal.
  */
 export async function coverPdfContent(
-  buf: ArrayBuffer,
+  buf: PdfInput,
   boxes: Array<{ page: number; x: number; y: number; w: number; h: number }>
 ): Promise<Uint8Array> {
   await assertNotEncrypted(buf);
-  const doc = await PDFDocument.load(buf, { ignoreEncryption: true });
+  const doc = await PDFDocument.load(asPdfBytes(buf), { ignoreEncryption: true });
   const pages = doc.getPages();
+  let applied = 0;
   for (const box of boxes) {
     const page = pages[box.page];
     if (!page) continue;
+    if (!(box.w > 0 && box.h > 0)) continue;
     page.drawRectangle({
       x: box.x,
       y: box.y,
@@ -203,7 +214,9 @@ export async function coverPdfContent(
       height: box.h,
       color: rgb(0, 0, 0),
     });
+    applied += 1;
   }
+  if (!applied) throw new Error("Draw at least one cover box on a valid page.");
   return doc.save();
 }
 

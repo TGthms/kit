@@ -28,3 +28,15 @@ export function parseCategoryParam(value: string | null | undefined): ToolCatego
     ? (value as ToolCategory)
     : null;
 }
+
+/**
+ * Keep `/tools/timezone-converter/` working, but show the canonical
+ * `/tools/world-clock/` path in the address bar (static export cannot 301).
+ */
+export function rewriteLegacyToolPath(toolId: ToolId): void {
+  if (toolId !== "timezone-converter" || typeof window === "undefined") return;
+  const url = new URL(window.location.href);
+  if (!/\/tools\/timezone-converter\/?$/.test(url.pathname)) return;
+  url.pathname = url.pathname.replace(/timezone-converter\/?$/, "world-clock/");
+  window.history.replaceState(window.history.state, "", `${url.pathname}${url.search}${url.hash}`);
+}

@@ -344,7 +344,8 @@
       "description": "Περιστροφή σελίδων, αφαίρεση όσων δεν χρειάζεστε και νέα σειρά.",
       "keywords": "pdf περιστροφή διαγραφή αναδιάταξη οργάνωση σελίδες",
       "run": "Αποθήκευση PDF",
-      "success": "Το PDF ενημερώθηκε."
+      "success": "Το PDF ενημερώθηκε.",
+      "keepOne": "Keep at least one page."
     },
     "pdf-compress": {
       "name": "Συμπίεση PDF",
@@ -373,7 +374,10 @@
       "keywords": "pdf συγκάλυψη μαύρο απόκρυψη ευαίσθητο",
       "run": "Εφαρμογή κάλυψης",
       "note": "Μόνο οπτική κάλυψη. Δεν εγγυάται αφαίρεση κάθε υποκείμενου κειμένου — ελέγξτε ευαίσθητα έγγραφα.",
-      "success": "Τα πλαίσια κάλυψης εφαρμόστηκαν."
+      "success": "Τα πλαίσια κάλυψης εφαρμόστηκαν.",
+      "drawHint": "Drag on the page to cover a region. Add as many boxes as you need, then apply.",
+      "undoBox": "Undo last box",
+      "clearBoxes": "Clear boxes"
     },
     "pdf-extract": {
       "name": "Εξαγωγή από PDF",
@@ -592,7 +596,9 @@
       "keywords": "εικόνες pdf jpg png συνδυασμός",
       "run": "Δημιουργία PDF",
       "success": "Δημιουργήθηκε PDF από {count} εικόνες.",
-      "limits": "Οι εικόνες μετατρέπονται και συναρμολογούνται τοπικά σε αυτόν τον browser. Τα αρχεία δεν ανεβαίνουν."
+      "limits": "Οι εικόνες μετατρέπονται και συναρμολογούνται τοπικά σε αυτόν τον browser. Τα αρχεία δεν ανεβαίνουν.",
+      "fitA4": "Fit to A4",
+      "fitImage": "Original size"
     },
     "pdf-flatten": {
       "name": "Ισοπέδωση φορμών",

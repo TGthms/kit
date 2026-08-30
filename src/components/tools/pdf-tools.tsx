@@ -16,6 +16,7 @@ import { Progress } from "@/components/ui/progress";
 import { runSequentialBatch, stemmedName } from "@/lib/jobs/batch";
 import { ActionBar, ToolLimits, ToolShell, useToolHistory, loadPdfjs } from "./shared";
 import { mergePdfs, splitPdf, organizePdf, watermarkPdf, coverPdfContent, getPdfPageCount } from "@/lib/pdf/core";
+import { PdfCoverEditor, type CoverBox } from "./pdf-cover-editor";
 
 
 export function PdfMerge() {
@@ -142,18 +143,57 @@ export function PdfOrganize() {
   const [deleted, setDeleted] = useState<Set<number>>(new Set());
   const [loading, setLoading] = useState(false);
 
-  const onFiles = async (items: FileItem[]) => {
-    setFiles(items);
-    if (!items[0]) return;
-    const n = await getPdfPageCount(await items[0].file.arrayBuffer());
-    setPageCount(n);
-    setOrder(Array.from({ length: n }, (_, i) => i));
+  const [thumbs, setThumbs] = useState<Record<number, string>>({});
+
+  const resetPages = () => {
+    setPageCount(0);
+    setOrder([]);
     setRotations({});
     setDeleted(new Set());
+    setThumbs({});
+  };
+
+  const onFiles = async (items: FileItem[]) => {
+    setFiles(items);
+    if (!items[0]) {
+      resetPages();
+      return;
+    }
+    try {
+      const buffer = await items[0].file.arrayBuffer();
+      const n = await getPdfPageCount(buffer);
+      setPageCount(n);
+      setOrder(Array.from({ length: n }, (_, i) => i));
+      setRotations({});
+      setDeleted(new Set());
+      if (n <= 24) {
+        const { renderPdfThumbnail } = await loadPdfjs();
+        const entries = await Promise.all(
+          Array.from({ length: n }, async (_, i) => {
+            try {
+              const url = await renderPdfThumbnail(buffer.slice(0), i + 1, 0.28);
+              return [i, url] as const;
+            } catch {
+              return null;
+            }
+          })
+        );
+        setThumbs(Object.fromEntries(entries.filter(Boolean) as Array<readonly [number, string]>));
+      } else {
+        setThumbs({});
+      }
+    } catch (e) {
+      resetPages();
+      toast.error(e instanceof Error ? e.message : tc("error"));
+    }
   };
 
   const run = async () => {
     if (!files[0]) return;
+    if (deleted.size >= pageCount) {
+      toast.error(t("keepOne"));
+      return;
+    }
     setLoading(true);
     try {
       const out = await organizePdf(await files[0].file.arrayBuffer(), order, rotations, deleted);
@@ -201,9 +241,15 @@ export function PdfOrganize() {
               className={deleted.has(idx) ? "cursor-grab opacity-40" : "cursor-grab"}
             >
               <CardContent className="flex items-center justify-between gap-2 p-3 text-sm">
-                <span>
-                  {tc("page")} {idx + 1}
-                  {rotations[idx] ? ` · ${rotations[idx]}°` : ""}
+                <span className="flex min-w-0 items-center gap-2">
+                  {thumbs[idx] ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img src={thumbs[idx]} alt="" className="h-12 w-9 shrink-0 rounded object-cover" />
+                  ) : null}
+                  <span>
+                    {tc("page")} {idx + 1}
+                    {rotations[idx] ? ` · ${rotations[idx]}°` : ""}
+                  </span>
                 </span>
                 <div className="flex gap-1">
                   <Button
@@ -235,7 +281,12 @@ export function PdfOrganize() {
           ))}
         </div>
       )}
-      <ActionBar onRun={run} loading={loading} label={t("run")} disabled={!files[0]} />
+      <ActionBar
+        onRun={run}
+        loading={loading}
+        label={t("run")}
+        disabled={!files[0] || pageCount === 0 || deleted.size >= pageCount}
+      />
     </ToolShell>
   );
 }
@@ -397,20 +448,17 @@ export function PdfRedact() {
   const tc = useTranslations("common");
   const log = useToolHistory("pdf-redact");
   const [files, setFiles] = useState<FileItem[]>([]);
-  const [page, setPage] = useState(1);
+  const [boxes, setBoxes] = useState<CoverBox[]>([]);
   const [loading, setLoading] = useState(false);
 
   const run = async () => {
-    if (!files[0]) return;
+    if (!files[0] || !boxes.length) return;
     setLoading(true);
     try {
-      // Default center band cover box in PDF points (visual cover only)
-      const out = await coverPdfContent(await files[0].file.arrayBuffer(), [
-        { page: Math.max(0, page - 1), x: 72, y: 400, w: 400, h: 40 },
-      ]);
-      downloadBlob(bytesToBlob(out, "application/pdf"), "redacted.pdf");
+      const out = await coverPdfContent(await files[0].file.arrayBuffer(), boxes);
+      downloadBlob(bytesToBlob(out, "application/pdf"), "covered.pdf");
       toast.success(t("success"));
-      log(`page ${page}`, "success");
+      log(`${boxes.length} boxes`, "success");
     } catch (e) {
       toast.error(e instanceof Error ? e.message : tc("error"));
       log("failed", "failed");
@@ -424,14 +472,17 @@ export function PdfRedact() {
       <ToolLimits>
         <p className="text-amber-700 dark:text-amber-300">{t("note")}</p>
       </ToolLimits>
-      <FileDropzone accept="application/pdf" multiple={false} files={files} onChange={setFiles} />
-      <div className="space-y-2">
-        <Label>
-          {tc("page")} (1-based)
-        </Label>
-        <Input type="number" min={1} value={page} onChange={(e) => setPage(Number(e.target.value) || 1)} />
-      </div>
-      <ActionBar onRun={run} loading={loading} label={t("run")} disabled={!files[0]} />
+      <FileDropzone
+        accept="application/pdf"
+        multiple={false}
+        files={files}
+        onChange={(items) => {
+          setFiles(items);
+          setBoxes([]);
+        }}
+      />
+      <PdfCoverEditor file={files[0]} boxes={boxes} onChange={setBoxes} />
+      <ActionBar onRun={run} loading={loading} label={t("run")} disabled={!files[0] || !boxes.length} />
     </ToolShell>
   );
 }

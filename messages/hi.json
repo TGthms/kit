@@ -344,7 +344,8 @@
       "description": "पृष्ठ घुमाएँ, अनावश्यक हटाएँ और नया क्रम तय करें।",
       "keywords": "pdf घुमाएँ मिटाएँ क्रम व्यवस्थित पृष्ठ",
       "run": "PDF सहेजें",
-      "success": "आपका PDF अपडेट हो गया है।"
+      "success": "आपका PDF अपडेट हो गया है।",
+      "keepOne": "Keep at least one page."
     },
     "pdf-compress": {
       "name": "PDF संपीड़ित करें",
@@ -373,7 +374,10 @@
       "keywords": "pdf काला छिपाएँ संवेदनशील ढकें",
       "run": "आवरण लागू करें",
       "note": "यह केवल दृश्य आवरण है। नीचे की हर टेक्स्ट स्ट्रीम हटने की गारंटी नहीं—संवेदनशील दस्तावेज़ दोबारा जाँचें।",
-      "success": "आवरण बॉक्स लागू हो गए।"
+      "success": "आवरण बॉक्स लागू हो गए।",
+      "drawHint": "Drag on the page to cover a region. Add as many boxes as you need, then apply.",
+      "undoBox": "Undo last box",
+      "clearBoxes": "Clear boxes"
     },
     "pdf-extract": {
       "name": "PDF से निकालें",
@@ -592,7 +596,9 @@
       "keywords": "छवियाँ pdf jpg png जोड़ें",
       "run": "PDF बनाएँ",
       "success": "{count} छवियों से PDF बना।",
-      "limits": "छवियाँ इसी ब्राउज़र में स्थानीय रूप से बदली और जोड़ी जाती हैं। फ़ाइलें अपलोड नहीं होतीं।"
+      "limits": "छवियाँ इसी ब्राउज़र में स्थानीय रूप से बदली और जोड़ी जाती हैं। फ़ाइलें अपलोड नहीं होतीं।",
+      "fitA4": "Fit to A4",
+      "fitImage": "Original size"
     },
     "pdf-flatten": {
       "name": "फ़ॉर्म समतल करें",

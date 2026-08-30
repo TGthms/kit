@@ -344,7 +344,8 @@
       "description": "Rotér sider, fjern dem du ikke har brug for, og sæt en ny rækkefølge.",
       "keywords": "pdf rotere slette omsortere organisere sider",
       "run": "Gem PDF",
-      "success": "Din PDF er opdateret."
+      "success": "Din PDF er opdateret.",
+      "keepOne": "Keep at least one page."
     },
     "pdf-compress": {
       "name": "Komprimér PDF",
@@ -373,7 +374,10 @@
       "keywords": "pdf sløre dække skjule følsomt",
       "run": "Anvend dækning",
       "note": "Kun visuel dækning. Det garanterer ikke fjernelse af hver underliggende tekststrøm — dobbelttjek følsomme dokumenter.",
-      "success": "Dækninger anvendt."
+      "success": "Dækninger anvendt.",
+      "drawHint": "Drag on the page to cover a region. Add as many boxes as you need, then apply.",
+      "undoBox": "Undo last box",
+      "clearBoxes": "Clear boxes"
     },
     "pdf-extract": {
       "name": "Udtræk fra PDF",
@@ -592,7 +596,9 @@
       "keywords": "billeder pdf jpg png kombinere",
       "run": "Opret PDF",
       "success": "Byggede en PDF af {count} billede(r).",
-      "limits": "Billeder konverteres og samles lokalt i denne browser. Filer uploades ikke."
+      "limits": "Billeder konverteres og samles lokalt i denne browser. Filer uploades ikke.",
+      "fitA4": "Fit to A4",
+      "fitImage": "Original size"
     },
     "pdf-flatten": {
       "name": "Fladgør formularer",

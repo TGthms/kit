@@ -344,7 +344,8 @@
       "description": "페이지를 회전하고, 필요 없는 것을 지우고, 새 순서를 정합니다.",
       "keywords": "pdf 회전 삭제 재정렬 정리 페이지",
       "run": "PDF 저장",
-      "success": "PDF가 업데이트되었습니다."
+      "success": "PDF가 업데이트되었습니다.",
+      "keepOne": "Keep at least one page."
     },
     "pdf-compress": {
       "name": "PDF 압축",
@@ -373,7 +374,10 @@
       "keywords": "pdf 가리기 검정 숨기기 민감",
       "run": "가림 적용",
       "note": "시각적 가림일 뿐입니다. 아래 텍스트 스트림이 모두 제거된다고 보장하지 않습니다. 민감한 문서는 다시 확인하세요.",
-      "success": "가림 상자를 적용했습니다."
+      "success": "가림 상자를 적용했습니다.",
+      "drawHint": "Drag on the page to cover a region. Add as many boxes as you need, then apply.",
+      "undoBox": "Undo last box",
+      "clearBoxes": "Clear boxes"
     },
     "pdf-extract": {
       "name": "PDF에서 추출",
@@ -592,7 +596,9 @@
       "keywords": "이미지 pdf jpg png 결합",
       "run": "PDF 만들기",
       "success": "이미지 {count}개로 PDF를 만들었습니다.",
-      "limits": "이미지는 이 브라우저에서 로컬로 변환하고 합칩니다. 파일은 업로드되지 않습니다."
+      "limits": "이미지는 이 브라우저에서 로컬로 변환하고 합칩니다. 파일은 업로드되지 않습니다.",
+      "fitA4": "Fit to A4",
+      "fitImage": "Original size"
     },
     "pdf-flatten": {
       "name": "양식 병합",

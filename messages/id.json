@@ -344,7 +344,8 @@
       "description": "Putar halaman, hapus yang tidak perlu, dan tetapkan urutan baru.",
       "keywords": "pdf putar hapus urut atur halaman",
       "run": "Simpan PDF",
-      "success": "PDF Anda telah diperbarui."
+      "success": "PDF Anda telah diperbarui.",
+      "keepOne": "Keep at least one page."
     },
     "pdf-compress": {
       "name": "Kompres PDF",
@@ -373,7 +374,10 @@
       "keywords": "pdf redaksi hitam sembunyi sensitif",
       "run": "Terapkan penutup",
       "note": "Hanya penutup visual. Tidak menjamin penghapusan setiap aliran teks di bawahnya — periksa ulang dokumen sensitif.",
-      "success": "Kotak penutup diterapkan."
+      "success": "Kotak penutup diterapkan.",
+      "drawHint": "Drag on the page to cover a region. Add as many boxes as you need, then apply.",
+      "undoBox": "Undo last box",
+      "clearBoxes": "Clear boxes"
     },
     "pdf-extract": {
       "name": "Ekstrak dari PDF",
@@ -592,7 +596,9 @@
       "keywords": "gambar pdf jpg png gabung",
       "run": "Buat PDF",
       "success": "Membangun PDF dari {count} gambar.",
-      "limits": "Gambar dikonversi dan dirangkai secara lokal di browser ini. File tidak diunggah."
+      "limits": "Gambar dikonversi dan dirangkai secara lokal di browser ini. File tidak diunggah.",
+      "fitA4": "Fit to A4",
+      "fitImage": "Original size"
     },
     "pdf-flatten": {
       "name": "Ratakan formulir",

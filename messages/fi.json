@@ -344,7 +344,8 @@
       "description": "Kierrä sivuja, poista turhat ja aseta uusi järjestys.",
       "keywords": "pdf kierrä poista järjestä sivut",
       "run": "Tallenna PDF",
-      "success": "PDF on päivitetty."
+      "success": "PDF on päivitetty.",
+      "keepOne": "Keep at least one page."
     },
     "pdf-compress": {
       "name": "Pakkaa PDF",
@@ -373,7 +374,10 @@
       "keywords": "pdf peitä mustaa piilota arkaluontoinen",
       "run": "Käytä peittoa",
       "note": "Vain visuaalinen peitto. Se ei takaa kaikkien tekstivirtojen poistoa — tarkista arkaluontoiset asiakirjat.",
-      "success": "Peittolaatikot lisätty."
+      "success": "Peittolaatikot lisätty.",
+      "drawHint": "Drag on the page to cover a region. Add as many boxes as you need, then apply.",
+      "undoBox": "Undo last box",
+      "clearBoxes": "Clear boxes"
     },
     "pdf-extract": {
       "name": "Pura PDF:stä",
@@ -592,7 +596,9 @@
       "keywords": "kuvat pdf jpg png yhdistä",
       "run": "Luo PDF",
       "success": "Luotiin PDF {count} kuvasta.",
-      "limits": "Kuvat muunnetaan ja kootaan paikallisesti tässä selaimessa. Tiedostoja ei lähetetä."
+      "limits": "Kuvat muunnetaan ja kootaan paikallisesti tässä selaimessa. Tiedostoja ei lähetetä.",
+      "fitA4": "Fit to A4",
+      "fitImage": "Original size"
     },
     "pdf-flatten": {
       "name": "Litistä lomakkeet",

@@ -344,7 +344,8 @@
       "description": "Oldalak forgatása, a feleslegesek törlése és új sorrend beállítása.",
       "keywords": "pdf forgatás törlés átrendezés rendezés oldalak",
       "run": "PDF mentése",
-      "success": "A PDF frissült."
+      "success": "A PDF frissült.",
+      "keepOne": "Keep at least one page."
     },
     "pdf-compress": {
       "name": "PDF tömörítése",
@@ -373,7 +374,10 @@
       "keywords": "pdf kitakarás feketítés elrejtés érzékeny",
       "run": "Takarás alkalmazása",
       "note": "Ez csak vizuális takarás. Nem garantálja minden mögöttes szövegfolyam eltávolítását — ellenőrizd az érzékeny dokumentumokat.",
-      "success": "Takarómezők alkalmazva."
+      "success": "Takarómezők alkalmazva.",
+      "drawHint": "Drag on the page to cover a region. Add as many boxes as you need, then apply.",
+      "undoBox": "Undo last box",
+      "clearBoxes": "Clear boxes"
     },
     "pdf-extract": {
       "name": "Kinyerés PDF-ből",
@@ -592,7 +596,9 @@
       "keywords": "képek pdf jpg png egyesítés",
       "run": "PDF létrehozása",
       "success": "PDF készült {count} képből.",
-      "limits": "A képek helyben, ebben a böngészőben alakulnak át és állnak össze. A fájlok nem kerülnek feltöltésre."
+      "limits": "A képek helyben, ebben a böngészőben alakulnak át és állnak össze. A fájlok nem kerülnek feltöltésre.",
+      "fitA4": "Fit to A4",
+      "fitImage": "Original size"
     },
     "pdf-flatten": {
       "name": "Űrlapok lapítása",

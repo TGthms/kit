@@ -7,7 +7,11 @@ function get2dContext(canvas: HTMLCanvasElement): CanvasRenderingContext2D {
 export type ImageMime = "image/jpeg" | "image/png" | "image/webp";
 
 export async function loadImageBitmap(file: Blob): Promise<ImageBitmap> {
-  return createImageBitmap(file);
+  try {
+    return await createImageBitmap(file, { imageOrientation: "from-image" });
+  } catch {
+    return createImageBitmap(file);
+  }
 }
 
 export async function canvasToBlob(

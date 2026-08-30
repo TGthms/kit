@@ -344,7 +344,8 @@
       "description": "Otočte stránky, odstraňte nepotřebné a nastavte nové pořadí.",
       "keywords": "pdf otočit smazat přerovnat uspořádat stránky",
       "run": "Uložit PDF",
-      "success": "Vaše PDF bylo aktualizováno."
+      "success": "Vaše PDF bylo aktualizováno.",
+      "keepOne": "Keep at least one page."
     },
     "pdf-compress": {
       "name": "Komprimovat PDF",
@@ -373,7 +374,10 @@
       "keywords": "pdf začernit zakrýt skrýt citlivé",
       "run": "Použít zakrytí",
       "note": "Jde jen o vizuální zakrytí. Nezaručuje odstranění každého textového proudu — citlivé dokumenty zkontrolujte.",
-      "success": "Zakrytí použito."
+      "success": "Zakrytí použito.",
+      "drawHint": "Drag on the page to cover a region. Add as many boxes as you need, then apply.",
+      "undoBox": "Undo last box",
+      "clearBoxes": "Clear boxes"
     },
     "pdf-extract": {
       "name": "Extrahovat z PDF",
@@ -592,7 +596,9 @@
       "keywords": "obrázky pdf jpg png spojit",
       "run": "Vytvořit PDF",
       "success": "Vytvořeno PDF z {count} obrázků.",
-      "limits": "Obrázky se převádějí a skládají lokálně v tomto prohlížeči. Soubory se nenahrávají."
+      "limits": "Obrázky se převádějí a skládají lokálně v tomto prohlížeči. Soubory se nenahrávají.",
+      "fitA4": "Fit to A4",
+      "fitImage": "Original size"
     },
     "pdf-flatten": {
       "name": "Zploštit formuláře",

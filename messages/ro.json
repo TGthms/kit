@@ -344,7 +344,8 @@
       "description": "Rotește pagini, elimină-le pe cele de prisos și setează o ordine nouă.",
       "keywords": "pdf rotește șterge reordonează organizează pagini",
       "run": "Salvează PDF",
-      "success": "PDF-ul tău a fost actualizat."
+      "success": "PDF-ul tău a fost actualizat.",
+      "keepOne": "Keep at least one page."
     },
     "pdf-compress": {
       "name": "Comprimă PDF",
@@ -373,7 +374,10 @@
       "keywords": "pdf redactare înnegrire ascunde sensibil",
       "run": "Aplică acoperirea",
       "note": "Este doar o acoperire vizuală. Nu garantează eliminarea fiecărui flux de text de dedesubt — verifică documentele sensibile.",
-      "success": "Cutiile de acoperire au fost aplicate."
+      "success": "Cutiile de acoperire au fost aplicate.",
+      "drawHint": "Drag on the page to cover a region. Add as many boxes as you need, then apply.",
+      "undoBox": "Undo last box",
+      "clearBoxes": "Clear boxes"
     },
     "pdf-extract": {
       "name": "Extrage din PDF",
@@ -592,7 +596,9 @@
       "keywords": "imagini pdf jpg png combină",
       "run": "Creează PDF",
       "success": "S-a construit un PDF din {count} imagini.",
-      "limits": "Imaginile sunt convertite și asamblate local în acest browser. Fișierele nu sunt încărcate."
+      "limits": "Imaginile sunt convertite și asamblate local în acest browser. Fișierele nu sunt încărcate.",
+      "fitA4": "Fit to A4",
+      "fitImage": "Original size"
     },
     "pdf-flatten": {
       "name": "Aplatizează formulare",

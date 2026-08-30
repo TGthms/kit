@@ -344,7 +344,8 @@
       "description": "Obracaj strony, usuwaj niepotrzebne i ustaw nową kolejność.",
       "keywords": "pdf obróć usuń zmień kolejność organizuj strony",
       "run": "Zapisz PDF",
-      "success": "Twój PDF został zaktualizowany."
+      "success": "Twój PDF został zaktualizowany.",
+      "keepOne": "Keep at least one page."
     },
     "pdf-compress": {
       "name": "Kompresuj PDF",
@@ -373,7 +374,10 @@
       "keywords": "pdf redaguj zaczernij ukryj wrażliwe",
       "run": "Zastosuj osłonę",
       "note": "To tylko osłona wizualna. Nie gwarantuje usunięcia każdego strumienia tekstu — sprawdź wrażliwe dokumenty.",
-      "success": "Zastosowano osłony."
+      "success": "Zastosowano osłony.",
+      "drawHint": "Drag on the page to cover a region. Add as many boxes as you need, then apply.",
+      "undoBox": "Undo last box",
+      "clearBoxes": "Clear boxes"
     },
     "pdf-extract": {
       "name": "Wyodrębnij z PDF",
@@ -592,7 +596,9 @@
       "keywords": "obrazy pdf jpg png łącz",
       "run": "Utwórz PDF",
       "success": "Utworzono PDF z {count} obraz(ów).",
-      "limits": "Obrazy są konwertowane i składane lokalnie w tej przeglądarce. Pliki nie są przesyłane."
+      "limits": "Obrazy są konwertowane i składane lokalnie w tej przeglądarce. Pliki nie są przesyłane.",
+      "fitA4": "Fit to A4",
+      "fitImage": "Original size"
     },
     "pdf-flatten": {
       "name": "Spłaszcz formularze",

@@ -344,7 +344,8 @@
       "description": "Gira páginas, elimina las que no necesites y define un orden nuevo.",
       "keywords": "pdf girar rotar borrar reordenar organizar",
       "run": "Guardar PDF",
-      "success": "El PDF se ha actualizado."
+      "success": "El PDF se ha actualizado.",
+      "keepOne": "Keep at least one page."
     },
     "pdf-compress": {
       "name": "Comprimir PDF",
@@ -373,7 +374,10 @@
       "keywords": "pdf ocultar tapar redactar sensible",
       "run": "Aplicar cubierta",
       "note": "Solo es una cubierta visual. No garantiza borrar todo el texto subyacente: revisa los documentos sensibles.",
-      "success": "Cubiertas aplicadas."
+      "success": "Cubiertas aplicadas.",
+      "drawHint": "Drag on the page to cover a region. Add as many boxes as you need, then apply.",
+      "undoBox": "Undo last box",
+      "clearBoxes": "Clear boxes"
     },
     "pdf-extract": {
       "name": "Extraer del PDF",
@@ -592,7 +596,9 @@
       "keywords": "imágenes pdf jpg png",
       "run": "Crear PDF",
       "success": "PDF creado con {count} imagen(es).",
-      "limits": "Las imágenes se convierten y ensamblan localmente en este navegador. Los archivos no se suben."
+      "limits": "Las imágenes se convierten y ensamblan localmente en este navegador. Los archivos no se suben.",
+      "fitA4": "Fit to A4",
+      "fitImage": "Original size"
     },
     "pdf-flatten": {
       "name": "Aplanar formularios",

@@ -11,12 +11,10 @@ import { Label } from "@/components/ui/label";
 import { downloadBlob, downloadMany, bytesToBlob } from "@/lib/utils";
 import {
   numberPdfPages,
-  imagesToPdf,
   flattenPdfForms,
   getPdfMetadata,
   setPdfMetadata,
   stripPdfMetadata,
-  detectImageMime,
   type PageNumberPosition,
   type PdfMeta,
 } from "@/lib/pdf/core";
@@ -141,49 +139,6 @@ export function PdfToImages() {
         disabled={!files[0]}
         onCancel={() => controller?.abort()}
       />
-    </ToolShell>
-  );
-}
-
-export function ImagesToPdf() {
-  const t = useTranslations("tools.images-to-pdf");
-  const tc = useTranslations("common");
-  const log = useToolHistory("images-to-pdf");
-  const [files, setFiles] = useState<FileItem[]>([]);
-  const [loading, setLoading] = useState(false);
-
-  const run = async () => {
-    if (!files.length) return;
-    setLoading(true);
-    try {
-      const images = [];
-      for (const f of files) {
-        let bytes = new Uint8Array(await f.file.arrayBuffer());
-        let mime = detectImageMime(bytes);
-        if (!mime) {
-          const { convertImage } = await import("@/lib/image/core");
-          const png = await convertImage(f.file, "image/png");
-          bytes = new Uint8Array(await png.arrayBuffer());
-          mime = "image/png";
-        }
-        images.push({ bytes, mime });
-      }
-      const out = await imagesToPdf(images, { pageSize: "a4", margin: 24 });
-      downloadBlob(bytesToBlob(out, "application/pdf"), "images.pdf");
-      toast.success(t("success", { count: files.length }));
-      log(`${files.length}`, "success");
-    } catch (e) {
-      toast.error(e instanceof Error ? e.message : tc("error"));
-      log("failed", "failed");
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  return (
-    <ToolShell toolId="images-to-pdf">
-      <FileDropzone accept="image/*" files={files} onChange={setFiles} reorder />
-      <ActionBar onRun={run} loading={loading} label={t("run")} disabled={!files.length} />
     </ToolShell>
   );
 }

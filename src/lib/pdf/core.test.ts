@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { PDFDocument } from "pdf-lib";
+import { PDFDocument, degrees } from "pdf-lib";
 import {
   parsePageRange,
   formatPageLabel,
@@ -14,8 +14,9 @@ import {
   organizePdf,
   watermarkPdf,
   stampPdfSignature,
+  coverPdfContent,
 } from "./core";
-import { lockPdf, unlockPdf, isPdfEncrypted } from "./protect";
+import { lockPdf, unlockPdf, isPdfEncrypted, inspectPdfReadability } from "./protect";
 import { runSequentialBatch, stemmedName } from "@/lib/jobs/batch";
 
 const TINY_PNG = Uint8Array.from(
@@ -70,6 +71,21 @@ describe("organizePdf", () => {
     const out = await organizePdf(src, [3, 1, 0, 2], {}, new Set([1]));
     const doc = await PDFDocument.load(out);
     expect(doc.getPageCount()).toBe(3);
+  });
+
+  it("adds extra rotation onto the page's existing /Rotate", async () => {
+    const doc = await PDFDocument.create();
+    const page = doc.addPage([200, 200]);
+    page.setRotation(degrees(90));
+    const src = await doc.save();
+    const out = await organizePdf(src, [0], { 0: 90 }, new Set());
+    const next = await PDFDocument.load(out);
+    expect(next.getPages()[0]?.getRotation().angle).toBe(180);
+  });
+
+  it("refuses to save a PDF with every page deleted", async () => {
+    const src = await blankPdf(2);
+    await expect(organizePdf(src, [0, 1], {}, new Set([0, 1]))).rejects.toThrow(/at least one page/i);
   });
 });
 
@@ -162,6 +178,17 @@ describe("stampPdfSignature", () => {
   });
 });
 
+describe("coverPdfContent", () => {
+  it("draws a box and rejects an empty cover list", async () => {
+    const src = await blankPdf(1);
+    await expect(coverPdfContent(src, [])).rejects.toThrow(/cover box/i);
+    const covered = await coverPdfContent(src, [{ page: 0, x: 10, y: 10, w: 40, h: 20 }]);
+    const doc = await PDFDocument.load(covered);
+    expect(doc.getPageCount()).toBe(1);
+    expect(covered.byteLength).toBeGreaterThan(src.byteLength);
+  });
+});
+
 describe("lock / unlock", () => {
   it("encrypts and decrypts with the user password", async () => {
     const src = await blankPdf(1);
@@ -173,5 +200,11 @@ describe("lock / unlock", () => {
     const doc = await PDFDocument.load(unlocked);
     expect(doc.getPageCount()).toBe(1);
     expect(await isPdfEncrypted(unlocked)).toBe(false);
+  });
+
+  it("does not treat garbage bytes as an encrypted PDF", async () => {
+    const junk = new Uint8Array([0, 1, 2, 3, 4, 5, 6, 7]);
+    expect(await inspectPdfReadability(junk)).toBe("unreadable");
+    expect(await isPdfEncrypted(junk)).toBe(false);
   });
 });

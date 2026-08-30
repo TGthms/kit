@@ -1,14 +1,25 @@
 import { PDFDocument } from "@cantoo/pdf-lib";
 import { PDFDocument as PdfLibDocument } from "pdf-lib";
 
-export async function isPdfEncrypted(buf: ArrayBuffer | Uint8Array): Promise<boolean> {
+export type PdfReadability = "open" | "encrypted" | "unreadable";
+
+export async function inspectPdfReadability(buf: ArrayBuffer | Uint8Array): Promise<PdfReadability> {
   const bytes = buf instanceof Uint8Array ? buf : new Uint8Array(buf);
   try {
     await PdfLibDocument.load(bytes);
-    return false;
+    return "open";
   } catch {
-    return true;
+    try {
+      const doc = await PDFDocument.load(bytes, { ignoreEncryption: true });
+      return doc.isEncrypted ? "encrypted" : "unreadable";
+    } catch {
+      return "unreadable";
+    }
   }
+}
+
+export async function isPdfEncrypted(buf: ArrayBuffer | Uint8Array): Promise<boolean> {
+  return (await inspectPdfReadability(buf)) === "encrypted";
 }
 
 export async function lockPdf(

@@ -344,7 +344,8 @@
       "description": "Drehen, überflüssige entfernen und eine neue Reihenfolge setzen.",
       "keywords": "pdf drehen löschen umsortieren organisieren seiten",
       "run": "PDF speichern",
-      "success": "Ihr PDF wurde aktualisiert."
+      "success": "Ihr PDF wurde aktualisiert.",
+      "keepOne": "Keep at least one page."
     },
     "pdf-compress": {
       "name": "PDF komprimieren",
@@ -373,7 +374,10 @@
       "keywords": "pdf schwärzen abdecken verbergen sensibel",
       "run": "Abdeckung anwenden",
       "note": "Nur visuelle Abdeckung. Darunterliegender Text wird nicht zuverlässig entfernt — prüfen Sie sensible Dokumente.",
-      "success": "Abdeckungen angewendet."
+      "success": "Abdeckungen angewendet.",
+      "drawHint": "Drag on the page to cover a region. Add as many boxes as you need, then apply.",
+      "undoBox": "Undo last box",
+      "clearBoxes": "Clear boxes"
     },
     "pdf-extract": {
       "name": "Aus PDF extrahieren",
@@ -592,7 +596,9 @@
       "keywords": "bilder pdf jpg png kombinieren",
       "run": "PDF erstellen",
       "success": "PDF aus {count} Bild(ern) erstellt.",
-      "limits": "Bilder werden lokal in diesem Browser konvertiert und zu einer PDF zusammengestellt. Dateien werden nicht hochgeladen."
+      "limits": "Bilder werden lokal in diesem Browser konvertiert und zu einer PDF zusammengestellt. Dateien werden nicht hochgeladen.",
+      "fitA4": "Fit to A4",
+      "fitImage": "Original size"
     },
     "pdf-flatten": {
       "name": "Formulare flachlegen",

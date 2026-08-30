@@ -344,7 +344,8 @@
       "description": "หมุนหน้า ลบหน้าที่ไม่ต้องการ และกำหนดลำดับใหม่",
       "keywords": "pdf หมุน ลบ เรียง จัดระเบียบ หน้า",
       "run": "บันทึก PDF",
-      "success": "อัปเดต PDF แล้ว"
+      "success": "อัปเดต PDF แล้ว",
+      "keepOne": "Keep at least one page."
     },
     "pdf-compress": {
       "name": "บีบอัด PDF",
@@ -373,7 +374,10 @@
       "keywords": "pdf ปิดบัง ดำ ทับ ละเอียดอ่อน",
       "run": "ใช้การปิดบัง",
       "note": "เป็นการปิดบังทางสายตาเท่านั้น ไม่รับประกันว่าจะลบสตรีมข้อความด้านล่างทั้งหมด โปรดตรวจเอกสารที่ละเอียดอ่อนอีกครั้ง",
-      "success": "ใส่กล่องปิดบังแล้ว"
+      "success": "ใส่กล่องปิดบังแล้ว",
+      "drawHint": "Drag on the page to cover a region. Add as many boxes as you need, then apply.",
+      "undoBox": "Undo last box",
+      "clearBoxes": "Clear boxes"
     },
     "pdf-extract": {
       "name": "แยกจาก PDF",
@@ -592,7 +596,9 @@
       "keywords": "รูป pdf jpg png รวม",
       "run": "สร้าง PDF",
       "success": "สร้าง PDF จาก {count} รูป",
-      "limits": "รูปภาพจะถูกแปลงและประกอบในเบราว์เซอร์นี้ ไฟล์จะไม่ถูกอัปโหลด"
+      "limits": "รูปภาพจะถูกแปลงและประกอบในเบราว์เซอร์นี้ ไฟล์จะไม่ถูกอัปโหลด",
+      "fitA4": "Fit to A4",
+      "fitImage": "Original size"
     },
     "pdf-flatten": {
       "name": "แบนฟอร์ม",

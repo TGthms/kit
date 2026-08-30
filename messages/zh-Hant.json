@@ -344,7 +344,8 @@
       "description": "旋轉頁面、刪除不需要的頁，並重新設定順序。",
       "keywords": "pdf 旋轉 刪除 排序 整理",
       "run": "保存 PDF",
-      "success": "PDF 已更新。"
+      "success": "PDF 已更新。",
+      "keepOne": "Keep at least one page."
     },
     "pdf-compress": {
       "name": "壓縮 PDF",
@@ -373,7 +374,10 @@
       "keywords": "pdf 遮蓋 涂黑 隱私 敏感",
       "run": "應用遮蓋",
       "note": "僅為視覺遮蓋，不保證清除底层全部文本。處理敏感檔案時請務必自行核對。",
-      "success": "遮蓋已應用。"
+      "success": "遮蓋已應用。",
+      "drawHint": "Drag on the page to cover a region. Add as many boxes as you need, then apply.",
+      "undoBox": "Undo last box",
+      "clearBoxes": "Clear boxes"
     },
     "pdf-extract": {
       "name": "從 PDF 提取",
@@ -592,7 +596,9 @@
       "keywords": "圖片 pdf jpg png",
       "run": "生成 PDF",
       "success": "已用 {count} 张圖片生成 PDF。",
-      "limits": "圖片會在此瀏覽器中本機轉換並合成 PDF，不會上傳檔案。"
+      "limits": "圖片會在此瀏覽器中本機轉換並合成 PDF，不會上傳檔案。",
+      "fitA4": "Fit to A4",
+      "fitImage": "Original size"
     },
     "pdf-flatten": {
       "name": "壓平表單",

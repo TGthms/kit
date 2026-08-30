@@ -16,6 +16,7 @@ import {
 import { toast } from "sonner";
 import NumberFlow from "@number-flow/react";
 import { AnimatedClock } from "@/components/shared/animated-clock";
+import { AnimatedNumber } from "@/components/shared/animated-number";
 import { FileDropzone, type FileItem } from "@/components/shared/file-dropzone";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -65,7 +66,7 @@ import {
   bytesToBlob,
   downloadBlob,
 } from "@/lib/utils";
-import { detectImageMime, imagesToPdf } from "@/lib/pdf/core";
+import { imagesToPdf } from "@/lib/pdf/core";
 import type { ToolId } from "@/lib/tools/registry";
 import { ActionBar, ToolLimits, ToolShell, useToolHistory } from "./shared";
 import { SearchableSelect } from "./converter-tools";
@@ -143,14 +144,18 @@ export function TextCounter() {
   const log = useToolHistory(toolId("text-counter"));
   const [value, setValue] = useState("");
   const metrics = useMemo(() => measureText(value, { locale }), [locale, value]);
-  const metricCards = [
-    [text(t, "words", "Words"), metrics.words],
-    [text(t, "characters", "Characters with spaces"), metrics.characters],
-    [text(t, "noSpaces", "Characters without spaces"), metrics.charactersNoSpaces],
-    [text(t, "sentences", "Sentences"), metrics.sentences],
-    [text(t, "paragraphs", "Paragraphs"), metrics.paragraphs],
-    [text(t, "readTime", "Reading time"), metrics.readingTimeSeconds < 60 ? `${metrics.readingTimeSeconds}s` : `${Math.ceil(metrics.readingTimeSeconds / 60)}m`],
-  ] as const;
+  const metricCards: Array<{ label: string; value: number; suffix?: string }> = [
+    { label: text(t, "words", "Words"), value: metrics.words },
+    { label: text(t, "characters", "Characters with spaces"), value: metrics.characters },
+    { label: text(t, "noSpaces", "Characters without spaces"), value: metrics.charactersNoSpaces },
+    { label: text(t, "sentences", "Sentences"), value: metrics.sentences },
+    { label: text(t, "paragraphs", "Paragraphs"), value: metrics.paragraphs },
+    {
+      label: text(t, "readTime", "Reading time"),
+      value: metrics.readingTimeSeconds < 60 ? metrics.readingTimeSeconds : Math.ceil(metrics.readingTimeSeconds / 60),
+      suffix: metrics.readingTimeSeconds < 60 ? "s" : "m",
+    },
+  ];
   return (
     <ToolShell toolId={toolId("text-counter")}>
       <ToolLimits>
@@ -158,11 +163,15 @@ export function TextCounter() {
       </ToolLimits>
       <Textarea value={value} onChange={(event) => setValue(event.target.value)} placeholder={text(t, "placeholder", "Paste or type text here to see a live reading profile.")} className="min-h-64 text-base" aria-label={text(t, "input", "Text to count")} />
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
-        {metricCards.map(([label, metric]) => (
-          <Card key={label}>
+        {metricCards.map((card) => (
+          <Card key={card.label}>
             <CardContent className="p-4">
-              <p className="text-xs text-muted-foreground">{label}</p>
-              <p className="mt-2 text-2xl font-semibold tracking-tight">{metric}</p>
+              <p className="text-xs text-muted-foreground">{card.label}</p>
+              <AnimatedNumber
+                value={card.value}
+                suffix={card.suffix}
+                className="mt-2 text-2xl font-semibold tracking-tight"
+              />
             </CardContent>
           </Card>
         ))}
@@ -266,13 +275,13 @@ export function TimezoneConverter() {
                 <CardContent className="p-4">
                   <div className="flex items-center justify-between"><span className="rounded-lg bg-secondary px-2 py-1 text-xs font-semibold">{city.emoji}</span><span className="text-xs text-muted-foreground">UTC {sign}{Math.floor(absOffset / 60)}:{String(absOffset % 60).padStart(2, "0")}</span></div>
                   <p className="mt-3 font-medium">{text(t, city.key, city.name)}</p>
-                  <AnimatedClock
-                    hours={parts.hour}
-                    minutes={parts.minute}
-                    seconds={parts.second}
-                    label={`${String(parts.hour).padStart(2, "0")}:${String(parts.minute).padStart(2, "0")}:${String(parts.second).padStart(2, "0")}`}
-                    className="mt-1 justify-start font-mono text-xl font-semibold"
-                  />
+                  <p
+                    className="mt-1 font-mono text-xl font-semibold tabular-nums"
+                    aria-label={`${String(parts.hour).padStart(2, "0")}:${String(parts.minute).padStart(2, "0")}:${String(parts.second).padStart(2, "0")}`}
+                  >
+                    {String(parts.hour).padStart(2, "0")}:{String(parts.minute).padStart(2, "0")}:
+                    {String(parts.second).padStart(2, "0")}
+                  </p>
                   <p className="mt-1 text-xs text-muted-foreground">{formatTimeZone(now, city.zone, { dateStyle: "medium", locale })}</p>
                 </CardContent>
               </Card>
@@ -367,8 +376,60 @@ export function TipSplitCalculator() {
         {[ [text(t, "subtotal", "Subtotal"), subtotal, setSubtotal], [text(t, "tipPercent", "Tip %"), tipPercent, setTipPercent], [text(t, "taxPercent", "Tax %"), taxPercent, setTaxPercent], [text(t, "people", "People"), people, setPeople] ].map(([label, value, setValue]) => <div key={label as string} className="space-y-2"><Label>{label as string}</Label><Input type="number" min="0" step="any" value={value as string} onChange={(event) => (setValue as (value: string) => void)(event.target.value)} /></div>)}
       </div>
       <div className="flex items-center gap-3"><Switch checked={splitRemainder} onCheckedChange={setSplitRemainder} id="split-remainder" /><Label htmlFor="split-remainder">{text(t, "distributeRoundingRemainder", "Distribute rounding remainder")}</Label></div>
-      {result ? <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4"><Card><CardContent className="p-4"><p className="text-xs text-muted-foreground">{text(t, "subtotal", "Subtotal")}</p><p className="mt-2 text-xl font-semibold">{formatMoney(result.subtotal)}</p></CardContent></Card><Card><CardContent className="p-4"><p className="text-xs text-muted-foreground">{text(t, "tax", "Tax")}</p><p className="mt-2 text-xl font-semibold">{formatMoney(result.tax)}</p></CardContent></Card><Card><CardContent className="p-4"><p className="text-xs text-muted-foreground">{text(t, "tip", "Tip")}</p><p className="mt-2 text-xl font-semibold">{formatMoney(result.tip)}</p></CardContent></Card><Card className="border-primary/40 bg-primary/5"><CardContent className="p-4"><p className="text-xs text-muted-foreground">{text(t, "total", "Total")}</p><p className="mt-2 text-xl font-semibold">{formatMoney(result.total)}</p><p className="mt-1 text-xs text-muted-foreground">{text(t, "perPerson", `${formatMoney(result.perPerson)} each`, { value: formatMoney(result.perPerson) })}</p></CardContent></Card></div> : <p className="text-sm text-destructive">{text(t, "invalid", "Enter non-negative amounts and at least one person.")}</p>}
-      {result ? <div className="space-y-2"><h2 className="text-sm font-semibold">{text(t, "individualShares", "Individual shares")}</h2><div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-4">{result.shares.map((share, index) => <div key={`${index}-${share}`} className="rounded-xl border border-border/60 bg-card px-3 py-2 text-sm"><span className="text-muted-foreground">{text(t, "person", `Person ${index + 1}`, { number: index + 1 })}</span><span className="float-right font-mono font-semibold">{formatMoney(share)}</span></div>)}</div></div> : null}
+      {result ? (
+        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          {(
+            [
+              [text(t, "subtotal", "Subtotal"), result.subtotal],
+              [text(t, "tax", "Tax"), result.tax],
+              [text(t, "tip", "Tip"), result.tip],
+            ] as const
+          ).map(([label, value]) => (
+            <Card key={label}>
+              <CardContent className="p-4">
+                <p className="text-xs text-muted-foreground">{label}</p>
+                <AnimatedNumber
+                  value={value}
+                  format={{ minimumFractionDigits: 2, maximumFractionDigits: 2 }}
+                  className="mt-2 text-xl font-semibold"
+                />
+              </CardContent>
+            </Card>
+          ))}
+          <Card className="border-primary/40 bg-primary/5">
+            <CardContent className="p-4">
+              <p className="text-xs text-muted-foreground">{text(t, "total", "Total")}</p>
+              <AnimatedNumber
+                value={result.total}
+                format={{ minimumFractionDigits: 2, maximumFractionDigits: 2 }}
+                className="mt-2 text-xl font-semibold"
+              />
+              <p className="mt-1 text-xs text-muted-foreground">
+                {text(t, "perPerson", `${formatMoney(result.perPerson)} each`, { value: formatMoney(result.perPerson) })}
+              </p>
+            </CardContent>
+          </Card>
+        </div>
+      ) : (
+        <p className="text-sm text-destructive">{text(t, "invalid", "Enter non-negative amounts and at least one person.")}</p>
+      )}
+      {result ? (
+        <div className="space-y-2">
+          <h2 className="text-sm font-semibold">{text(t, "individualShares", "Individual shares")}</h2>
+          <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
+            {result.shares.map((share, index) => (
+              <div key={`${index}-${share}`} className="rounded-xl border border-border/60 bg-card px-3 py-2 text-sm">
+                <span className="text-muted-foreground">{text(t, "person", `Person ${index + 1}`, { number: index + 1 })}</span>
+                <AnimatedNumber
+                  value={share}
+                  format={{ minimumFractionDigits: 2, maximumFractionDigits: 2 }}
+                  className="float-right font-mono font-semibold"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      ) : null}
       <Button variant="outline" disabled={!result} onClick={() => { if (result) { log(`${people} people · ${formatMoney(result.total)}`, "success"); toast.success(text(t, "saved", "Split saved to history.")); } }}><WalletCards /> {text(t, "recordSplit", "Record split")}</Button>
     </ToolShell>
   );
@@ -486,24 +547,21 @@ export function EverydayImagesToPdf() {
   const tc = useTranslations("common");
   const log = useToolHistory(toolId("images-to-pdf"));
   const [files, setFiles] = useState<FileItem[]>([]);
+  const [pageSize, setPageSize] = useState<"a4" | "image">("a4");
   const [loading, setLoading] = useState(false);
   const run = async () => {
     if (!files.length) return;
     setLoading(true);
     try {
+      const { convertImage } = await import("@/lib/image/core");
       const images = [];
       for (const item of files) {
-        let bytes = new Uint8Array(await item.file.arrayBuffer());
-        let mime = detectImageMime(bytes);
-        if (!mime) {
-          const { convertImage } = await import("@/lib/image/core");
-          const png = await convertImage(item.file, "image/png");
-          bytes = new Uint8Array(await png.arrayBuffer());
-          mime = "image/png";
-        }
-        images.push({ bytes, mime });
+        // Decode through canvas so EXIF orientation is applied (raw JPEG
+        // bytes would otherwise land sideways from many phones).
+        const png = await convertImage(item.file, "image/png");
+        images.push({ bytes: new Uint8Array(await png.arrayBuffer()), mime: "image/png" as const });
       }
-      const output = await imagesToPdf(images);
+      const output = await imagesToPdf(images, { pageSize, margin: 24 });
       downloadBlob(bytesToBlob(output, "application/pdf"), "images.pdf");
       toast.success(text(t, "success", `Built a PDF from ${files.length} image(s).`, { count: files.length }));
       log(`${files.length} images`, "success");
@@ -516,8 +574,16 @@ export function EverydayImagesToPdf() {
   };
   return (
     <ToolShell toolId={toolId("images-to-pdf")}>
-      <ToolLimits><p>{text(t, "limits", "Images are converted and assembled locally in this browser. Files are not uploaded.")}</p></ToolLimits>
+      <ToolLimits><p>{text(t, "limits", "Images are converted and assembled locally in this browser. Files are not uploaded. A4 fit is the default; original size keeps each page as large as the photo.")}</p></ToolLimits>
       <FileDropzone accept="image/*" files={files} onChange={setFiles} reorder />
+      <div className="flex flex-wrap gap-2">
+        <Button type="button" variant={pageSize === "a4" ? "default" : "outline"} onClick={() => setPageSize("a4")}>
+          {text(t, "fitA4", "Fit to A4")}
+        </Button>
+        <Button type="button" variant={pageSize === "image" ? "default" : "outline"} onClick={() => setPageSize("image")}>
+          {text(t, "fitImage", "Original size")}
+        </Button>
+      </div>
       <ActionBar onRun={run} loading={loading} label={text(t, "run", "Create PDF")} disabled={!files.length} />
     </ToolShell>
   );

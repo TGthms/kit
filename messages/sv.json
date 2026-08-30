@@ -344,7 +344,8 @@
       "description": "Rotera sidor, ta bort dem du inte behöver och sätt en ny ordning.",
       "keywords": "pdf rotera ta bort ordna om organisera sidor",
       "run": "Spara PDF",
-      "success": "Din PDF har uppdaterats."
+      "success": "Din PDF har uppdaterats.",
+      "keepOne": "Keep at least one page."
     },
     "pdf-compress": {
       "name": "Komprimera PDF",
@@ -373,7 +374,10 @@
       "keywords": "pdf svärta täcka dölja känsligt",
       "run": "Tillämpa täckning",
       "note": "Endast visuell täckning. Det garanterar inte att varje underliggande textström tas bort — dubbelkolla känsliga dokument.",
-      "success": "Täckningar tillämpade."
+      "success": "Täckningar tillämpade.",
+      "drawHint": "Drag on the page to cover a region. Add as many boxes as you need, then apply.",
+      "undoBox": "Undo last box",
+      "clearBoxes": "Clear boxes"
     },
     "pdf-extract": {
       "name": "Extrahera från PDF",
@@ -592,7 +596,9 @@
       "keywords": "bilder pdf jpg png kombinera",
       "run": "Skapa PDF",
       "success": "Byggde en PDF av {count} bild(er).",
-      "limits": "Bilder konverteras och sätts ihop lokalt i den här webbläsaren. Filer laddas inte upp."
+      "limits": "Bilder konverteras och sätts ihop lokalt i den här webbläsaren. Filer laddas inte upp.",
+      "fitA4": "Fit to A4",
+      "fitImage": "Original size"
     },
     "pdf-flatten": {
       "name": "Platta ut formulär",

@@ -344,7 +344,8 @@
       "description": "Rode páginas, remova as de que não precisa e defina uma nova ordem.",
       "keywords": "pdf rodar eliminar reordenar organizar páginas",
       "run": "Guardar PDF",
-      "success": "O PDF foi atualizado."
+      "success": "O PDF foi atualizado.",
+      "keepOne": "Keep at least one page."
     },
     "pdf-compress": {
       "name": "Comprimir PDF",
@@ -373,7 +374,10 @@
       "keywords": "pdf ocultar tapar cobrir sensível",
       "run": "Aplicar cobertura",
       "note": "É apenas uma cobertura visual. Não garante a remoção de todo o fluxo de texto por baixo — reveja documentos sensíveis.",
-      "success": "Coberturas aplicadas."
+      "success": "Coberturas aplicadas.",
+      "drawHint": "Drag on the page to cover a region. Add as many boxes as you need, then apply.",
+      "undoBox": "Undo last box",
+      "clearBoxes": "Clear boxes"
     },
     "pdf-extract": {
       "name": "Extrair do PDF",
@@ -592,7 +596,9 @@
       "keywords": "imagens pdf jpg png combinar",
       "run": "Criar PDF",
       "success": "PDF criado a partir de {count} imagens.",
-      "limits": "As imagens são convertidas e reunidas localmente neste navegador. Os ficheiros não são enviados."
+      "limits": "As imagens são convertidas e reunidas localmente neste navegador. Os ficheiros não são enviados.",
+      "fitA4": "Fit to A4",
+      "fitImage": "Original size"
     },
     "pdf-flatten": {
       "name": "Achatar formulários",

@@ -344,7 +344,8 @@
       "description": "Ruota le pagine, rimuovi quelle che non servono e imposta un nuovo ordine.",
       "keywords": "pdf ruotare eliminare riordinare organizzare pagine",
       "run": "Salva PDF",
-      "success": "Il PDF è stato aggiornato."
+      "success": "Il PDF è stato aggiornato.",
+      "keepOne": "Keep at least one page."
     },
     "pdf-compress": {
       "name": "Comprimi PDF",
@@ -373,7 +374,10 @@
       "keywords": "pdf oscurare coprire nascondere sensibile",
       "run": "Applica copertura",
       "note": "È solo una copertura visiva. Non garantisce la rimozione di ogni flusso di testo sottostante: ricontrolla i documenti sensibili.",
-      "success": "Coperture applicate."
+      "success": "Coperture applicate.",
+      "drawHint": "Drag on the page to cover a region. Add as many boxes as you need, then apply.",
+      "undoBox": "Undo last box",
+      "clearBoxes": "Clear boxes"
     },
     "pdf-extract": {
       "name": "Estrai dal PDF",
@@ -592,7 +596,9 @@
       "keywords": "immagini pdf jpg png unire",
       "run": "Crea PDF",
       "success": "Creato un PDF da {count} immagini.",
-      "limits": "Le immagini vengono convertite e assemblate localmente in questo browser. I file non vengono caricati."
+      "limits": "Le immagini vengono convertite e assemblate localmente in questo browser. I file non vengono caricati.",
+      "fitA4": "Fit to A4",
+      "fitImage": "Original size"
     },
     "pdf-flatten": {
       "name": "Appiattisci moduli",
