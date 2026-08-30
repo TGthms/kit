@@ -1,5 +1,14 @@
 import { describe, expect, it } from "vitest";
-import { GREETING_PERIOD_KEYS, getGreetingDay, getGreetingPeriod, getGreetingVariant, getGreetingVisitSeed, getHomeGreetingSelection } from "./greeting";
+import {
+  GREETING_PERIOD_KEYS,
+  getGreetingDay,
+  getGreetingPeriod,
+  getGreetingPoolKeys,
+  getGreetingVariant,
+  getGreetingVisitSeed,
+  getHomeGreetingSelection,
+  localeAllowsChristianGreeting,
+} from "./greeting";
 
 describe("home greeting", () => {
   it("selects a friendly time-of-day period", () => {
@@ -7,6 +16,7 @@ describe("home greeting", () => {
     expect(getGreetingPeriod(new Date(2026, 7, 25, 13))).toBe("afternoon");
     expect(getGreetingPeriod(new Date(2026, 7, 25, 19))).toBe("evening");
     expect(getGreetingPeriod(new Date(2026, 7, 25, 23))).toBe("night");
+    expect(getGreetingPeriod(new Date(2026, 7, 25, 3))).toBe("night");
   });
 
   it("formats the weekday with the active locale", () => {
@@ -24,6 +34,27 @@ describe("home greeting", () => {
     expect(() => getGreetingVariant(new Date(), 0)).toThrow(RangeError);
   });
 
+  it("keeps later period lines in the live pool instead of replacing them", () => {
+    const tuesdayMorning = new Date(2026, 7, 25, 10);
+    const pool = getGreetingPoolKeys(tuesdayMorning);
+    expect(pool).toEqual([...GREETING_PERIOD_KEYS.morning, "kit", "productivity", "privacy"]);
+    expect(pool).toContain("morning8");
+    expect(pool).toContain("morning2");
+    expect(pool).not.toContain("weekend");
+  });
+
+  it("adds weekend lines to the pool on Saturday and Sunday", () => {
+    const saturday = new Date(2026, 7, 29, 10);
+    const pool = getGreetingPoolKeys(saturday);
+    expect(pool).toContain("weekend");
+    expect(pool).toContain("weekend2");
+    const weekendIndex = pool.indexOf("weekend");
+    expect(getHomeGreetingSelection(saturday, "en-US", weekendIndex)).toMatchObject({
+      greetingKey: "greeting.weekend",
+      category: "weekend",
+    });
+  });
+
   it("selects Christian and technology observances by calendar date", () => {
     expect(getHomeGreetingSelection(new Date(2026, 11, 25, 10), "en-US", 1)).toMatchObject({
       greetingKey: "greeting.observance.christmas",
@@ -38,17 +69,36 @@ describe("home greeting", () => {
     expect(getHomeGreetingSelection(new Date(2026, 8, 13, 10), "en-US", 1).occasionKey).toBe("programmersDay");
   });
 
+  it("shows Christian holidays in Chinese and skips them for ar, he, and hi", () => {
+    const christmas = new Date(2026, 11, 25, 10);
+    const easter = new Date(2026, 3, 5, 10);
+    expect(localeAllowsChristianGreeting("zh-Hans")).toBe(true);
+    expect(localeAllowsChristianGreeting("zh-Hant")).toBe(true);
+    expect(localeAllowsChristianGreeting("zh")).toBe(true);
+    expect(localeAllowsChristianGreeting("en")).toBe(true);
+    expect(localeAllowsChristianGreeting("ar")).toBe(false);
+    expect(localeAllowsChristianGreeting("he")).toBe(false);
+    expect(localeAllowsChristianGreeting("hi")).toBe(false);
+    expect(getHomeGreetingSelection(christmas, "zh-Hans", 1).occasionKey).toBe("christmas");
+    expect(getHomeGreetingSelection(christmas, "zh-Hant", 1).occasionKey).toBe("christmas");
+    expect(getHomeGreetingSelection(christmas, "zh", 1).occasionKey).toBe("christmas");
+    expect(getHomeGreetingSelection(christmas, "ar", 1).occasionKey).toBeUndefined();
+    expect(getHomeGreetingSelection(christmas, "he", 1).occasionKey).toBeUndefined();
+    expect(getHomeGreetingSelection(christmas, "hi", 1).occasionKey).toBeUndefined();
+    expect(getHomeGreetingSelection(easter, "en", 0).occasionKey).toBe("easterSunday");
+    expect(getHomeGreetingSelection(easter, "he", 0).occasionKey).toBeUndefined();
+    expect(getHomeGreetingSelection(new Date(2026, 2, 14, 10), "ar", 1).occasionKey).toBe("piDay");
+  });
+
   it("keeps ordinary selections localized by key and includes the weekday", () => {
     const selection = getHomeGreetingSelection(new Date(2026, 7, 25, 10), "fr-FR", 2);
     const morningKeys = new Set(["productivity", "kit", "privacy", ...GREETING_PERIOD_KEYS.morning].map((key) => `greeting.${key}`));
     expect(morningKeys.has(selection.greetingKey)).toBe(true);
-    expect(selection.subtitleKey).toMatch(/^subtitle(Facts\.fact[1-6])?$/);
+    expect(selection.subtitleKey).toMatch(/^subtitle(Facts\.fact[1-8])?$/);
     expect(selection.day).toBe("mardi");
   });
 
-  it("uses weekend context and stays stable inside a six-hour slot", () => {
-    const saturday = new Date(2026, 7, 29, 10);
-    expect(getHomeGreetingSelection(saturday, "en-US", 0)).toMatchObject({ greetingKey: "greeting.weekend", category: "weekend" });
+  it("stays stable inside a six-hour slot", () => {
     expect(getGreetingVariant(new Date(2026, 7, 25, 10), 32, 42)).toBe(getGreetingVariant(new Date(2026, 7, 25, 11), 32, 42));
     expect(getGreetingVariant(new Date(2026, 7, 25, 10), 32, 42)).not.toBe(getGreetingVariant(new Date(2026, 7, 25, 10), 32, 43));
     expect(getGreetingVisitSeed()).toBe(0);

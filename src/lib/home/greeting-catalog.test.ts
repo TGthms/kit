@@ -96,4 +96,16 @@ describe("greeting localization catalogs", () => {
       expect(extras.includes(String(data.home.subtitleFacts.fact5)), `${locale}: subtitleFacts.fact5 recycled extra copy`).toBe(false);
     }
   });
+
+  it("keeps observance subtitles different from the heading", () => {
+    for (const file of files) {
+      const locale = file.slice(0, -5);
+      const data = read(locale);
+      for (const key of OBSERVANCE_KEYS) {
+        expect(String(data.home.subtitleObservance[key]), `${locale}: subtitleObservance.${key}`).not.toBe(
+          String(data.home.greeting.observance[key]),
+        );
+      }
+    }
+  });
 });

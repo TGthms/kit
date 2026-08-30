@@ -24,7 +24,8 @@ import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/ca
 import { PageHeader } from "@/components/layout/page-header";
 import { useFavoritesStore } from "@/stores/favorites-store";
 import { cn } from "@/lib/utils";
-import { getGreetingPeriod, getGreetingVariant, getGreetingVisitSeed, getHomeGreetingSelection, type GreetingCategory, type GreetingPeriod } from "@/lib/home/greeting";
+import { GreetingHeadline } from "@/components/home/greeting-headline";
+import { getGreetingPeriod, getGreetingPoolKeys, getGreetingVariant, getGreetingVisitSeed, getHomeGreetingSelection, type GreetingCategory, type GreetingPeriod } from "@/lib/home/greeting";
 
 const categoryMeta: Record<
   ToolCategory,
@@ -164,7 +165,8 @@ function HomePageInner() {
     let timeout: number;
     const updateGreeting = () => {
       const now = new Date();
-      const variant = getGreetingVariant(now, 32, visitSeed);
+      const pool = getGreetingPoolKeys(now);
+      const variant = getGreetingVariant(now, pool.length, visitSeed);
       const selection = getHomeGreetingSelection(now, locale, variant);
       setGreeting({ period: getGreetingPeriod(now), day: selection.day, variant, greetingKey: selection.greetingKey, subtitleKey: selection.subtitleKey, occasionKey: selection.occasionKey, category: selection.category });
       const next = new Date(now);
@@ -230,9 +232,17 @@ function HomePageInner() {
       {(showCategories || showGlobalSearch) && (
         <section className="space-y-4 pt-0.5 sm:pt-1">
           <div className="max-w-2xl space-y-2">
-            <h1 className="type-display text-foreground">
-              {greeting ? t(greeting.greetingKey, { day: greeting.day, occasion: greeting.occasionKey ? t(`occasionLabel.${greeting.occasionKey}`) : "" }) : t("title")}
-            </h1>
+            {greeting ? (
+              <GreetingHeadline
+                key={`${greeting.greetingKey}:${greeting.day}`}
+                className="type-display text-foreground"
+                text={t(greeting.greetingKey, { day: greeting.day, occasion: greeting.occasionKey ? t(`occasionLabel.${greeting.occasionKey}`) : "" })}
+              />
+            ) : (
+              <h1 className="type-display min-h-[2.16em] text-foreground">
+                <span className="invisible">{t("title")}</span>
+              </h1>
+            )}
             <p className="type-body max-w-xl text-muted-foreground">
               {greeting ? t(greeting.subtitleKey, { day: greeting.day, occasion: greeting.occasionKey ? t(`occasionLabel.${greeting.occasionKey}`) : "" }) : t("subtitle")}
             </p>

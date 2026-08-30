@@ -17,7 +17,10 @@
  *   1. Append the key to GREETING_PERIOD_KEYS
  *   2. Add copy in every catalog
  *
- * Distinct later variants (morning4–night8, weekend) must not recycle extra1–3.
+ * Christian observances (Christmas, Holy Week, Easter) are skipped for
+ * `ar` / `he` / `hi`. Chinese (`zh`, `zh-Hans`, `zh-Hant`) is included.
+ *
+ * Distinct later variants must not recycle extra1–3.
  */
 export type GreetingPeriod = "morning" | "afternoon" | "evening" | "night";
 export type GreetingCategory = "timeOfDay" | "weekend" | "productivity" | "kit" | "privacy";
@@ -38,13 +41,13 @@ export type ObservanceRule =
   | { kind: "easterOffset"; offset: number; key: string };
 
 export const GREETING_PERIOD_KEYS: Record<GreetingPeriod, readonly string[]> = {
-  morning: ["morning", "morning2", "morning3", "morning4", "morning5", "morning6", "morning7", "morning8"],
-  afternoon: ["afternoon", "afternoon2", "afternoon3", "afternoon4", "afternoon5", "afternoon6", "afternoon7", "afternoon8"],
-  evening: ["evening", "evening2", "evening3", "evening4", "evening5", "evening6", "evening7", "evening8"],
-  night: ["night", "night2", "night3", "night4", "night5", "night6", "night7", "night8"],
+  morning: ["morning", "morning2", "morning3", "morning4", "morning5", "morning6", "morning7", "morning8", "morning9", "morning10"],
+  afternoon: ["afternoon", "afternoon2", "afternoon3", "afternoon4", "afternoon5", "afternoon6", "afternoon7", "afternoon8", "afternoon9", "afternoon10"],
+  evening: ["evening", "evening2", "evening3", "evening4", "evening5", "evening6", "evening7", "evening8", "evening9", "evening10"],
+  night: ["night", "night2", "night3", "night4", "night5", "night6", "night7", "night8", "night9", "night10"],
 };
 
-export const GREETING_CONTEXT_KEYS = ["weekend", "productivity", "kit", "privacy"] as const;
+export const GREETING_CONTEXT_KEYS = ["weekend", "weekend2", "productivity", "kit", "privacy"] as const;
 
 export const GREETING_VARIANT_KEYS = [
   ...GREETING_PERIOD_KEYS.morning,
@@ -56,14 +59,31 @@ export const GREETING_VARIANT_KEYS = [
 
 /** Lines that should stay unique per locale, not copies of extra1–3. */
 export const GREETING_DISTINCT_VARIANT_KEYS = [
-  "morning4", "morning5", "morning6", "morning7", "morning8",
-  "afternoon4", "afternoon5", "afternoon6", "afternoon7", "afternoon8",
-  "evening4", "evening5", "evening6", "evening7", "evening8",
-  "night4", "night5", "night6", "night7", "night8",
-  "weekend",
+  "morning2", "morning3", "morning4", "morning5", "morning6", "morning7", "morning8", "morning9", "morning10",
+  "afternoon2", "afternoon3", "afternoon4", "afternoon5", "afternoon6", "afternoon7", "afternoon8", "afternoon9", "afternoon10",
+  "evening2", "evening3", "evening4", "evening5", "evening6", "evening7", "evening8", "evening9", "evening10",
+  "night2", "night3", "night4", "night5", "night6", "night7", "night8", "night9", "night10",
+  "weekend", "weekend2",
 ] as const;
 
-export const SUBTITLE_FACT_KEYS = ["fact1", "fact2", "fact3", "fact4", "fact5", "fact6"] as const;
+export const SUBTITLE_FACT_KEYS = ["fact1", "fact2", "fact3", "fact4", "fact5", "fact6", "fact7", "fact8"] as const;
+
+export const CHRISTIAN_OBSERVANCE_KEYS = [
+  "christmasEve",
+  "christmas",
+  "goodFriday",
+  "palmSunday",
+  "easterMonday",
+  "easterSunday",
+] as const;
+
+const CHRISTIAN_GREETING_EXCLUDED_LANGUAGES = new Set(["ar", "he", "hi"]);
+
+/** Chinese locales are included; Arabic, Hebrew, and Hindi are not. */
+export function localeAllowsChristianGreeting(locale: string): boolean {
+  const language = locale.toLowerCase().replace(/_/g, "-").split("-")[0] ?? locale;
+  return !CHRISTIAN_GREETING_EXCLUDED_LANGUAGES.has(language);
+}
 
 export const OBSERVANCE_KEYS = [
   "newYear",
@@ -189,16 +209,39 @@ function getChristianObservanceKey(date: Date): string | null {
   return null;
 }
 
-export function getHomeGreetingSelection(date: Date, locale: string, variant: number): HomeGreetingSelection {
-  const observance = getChristianObservanceKey(date) ?? getObservanceKey(date);
-  const day = getGreetingDay(date, locale);
-  if (observance) return { greetingKey: `greeting.observance.${observance}`, subtitleKey: `subtitleObservance.${observance}`, occasionKey: observance, category: "kit", day };
-  const period = getGreetingPeriod(date);
-  const periodKeys = GREETING_PERIOD_KEYS[period];
+function isChristianObservanceKey(key: string): boolean {
+  return (CHRISTIAN_OBSERVANCE_KEYS as readonly string[]).includes(key);
+}
+
+function pickObservanceKey(date: Date, locale: string): string | null {
+  const candidate = getChristianObservanceKey(date) ?? getObservanceKey(date);
+  if (!candidate) return null;
+  if (isChristianObservanceKey(candidate) && !localeAllowsChristianGreeting(locale)) return null;
+  return candidate;
+}
+
+function categoryForKey(key: string): GreetingCategory {
+  if (key === "weekend" || key === "weekend2") return "weekend";
+  if (key === "productivity") return "productivity";
+  if (key === "kit") return "kit";
+  if (key === "privacy") return "privacy";
+  return "timeOfDay";
+}
+
+/** Time-of-day lines plus signature extras; weekend lines join the pool on Sat/Sun. */
+export function getGreetingPoolKeys(date: Date): readonly string[] {
+  const periodKeys = GREETING_PERIOD_KEYS[getGreetingPeriod(date)];
+  const extras = ["kit", "productivity", "privacy"] as const;
   const isWeekend = date.getDay() === 0 || date.getDay() === 6;
-  const index = Math.abs(Math.trunc(variant)) % periodKeys.length;
-  const category: GreetingCategory = isWeekend && index === 0 ? "weekend" : index === 1 ? "productivity" : index === 2 ? "kit" : index === 7 ? "privacy" : "timeOfDay";
-  const greetingKey = isWeekend && index === 0 ? "greeting.weekend" : index === 1 ? "greeting.productivity" : index === 2 ? "greeting.kit" : index === 7 ? "greeting.privacy" : `greeting.${periodKeys[index]}`;
+  return isWeekend ? [...periodKeys, ...extras, "weekend", "weekend2"] : [...periodKeys, ...extras];
+}
+
+export function getHomeGreetingSelection(date: Date, locale: string, variant: number): HomeGreetingSelection {
+  const day = getGreetingDay(date, locale);
+  const observance = pickObservanceKey(date, locale);
+  if (observance) return { greetingKey: `greeting.observance.${observance}`, subtitleKey: `subtitleObservance.${observance}`, occasionKey: observance, category: "kit", day };
+  const pool = getGreetingPoolKeys(date);
+  const key = pool[Math.abs(Math.trunc(variant)) % pool.length];
   const subtitleIndex = Math.abs(Math.trunc(variant * 5 + date.getDate())) % subtitlePool.length;
-  return { greetingKey, subtitleKey: subtitlePool[subtitleIndex], category, day };
+  return { greetingKey: `greeting.${key}`, subtitleKey: subtitlePool[subtitleIndex], category: categoryForKey(key), day };
 }
