@@ -22,16 +22,21 @@ interface HistoryState {
   clear: () => void;
 }
 
-function safeSummary(summary: string, status: HistoryEntry["status"]): string {
+export function safeSummary(summary: string, status: HistoryEntry["status"]): string {
   if (status === "failed" || /fail|error|cancel/i.test(summary)) return "failed";
-  const normalized = summary.trim();
+  const normalized = summary.trim().replace(/\s+/gu, " ");
+  if (/^(?:completed|success)$/i.test(normalized)) return "completed";
+  if (normalized.length > 96) return "completed";
   // Keep only compact, non-user-controlled operation metadata. Free-form
   // filenames, watermark text, ranges, and pasted input become "completed".
-  if (/^(?:completed|success)$/i.test(normalized)) return "completed";
-  if (/^\d+(?:\.\d+)?(?: (?:files|images|pages|sizes))?$/i.test(normalized)) return normalized.slice(0, 32);
+  if (/^\d+(?:\.\d+)?(?: (?:files|images|pages|sizes))?$/i.test(normalized)) return normalized;
+  if (/^\d+ words, \d+ characters$/i.test(normalized)) return normalized;
   if (/^(?:q|speed|count|n)=\d+(?:\.\d+)?(?: (?:q|speed|count|n)=\d+(?:\.\d+)?)*$/i.test(normalized)) {
-    return normalized.slice(0, 48);
+    return normalized;
   }
+  if (/→/u.test(normalized)) return normalized;
+  if (/^\d+:\d{2}:\d{2}(?:\.\d+)?$/u.test(normalized)) return normalized;
+  if (/^(?:integer|decimal|boolean|password)(?::| × )/iu.test(normalized)) return normalized;
   return "completed";
 }
 

@@ -3,7 +3,7 @@
 import { useEffect, useId, useMemo, useRef, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { ArrowLeftRight, Check, ChevronsUpDown, RefreshCw } from "lucide-react";
-import { toast } from "sonner";
+import { notifyHistorySaved } from "@/lib/notify";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -576,8 +576,8 @@ function UnitConverter({
       <Button
         variant="outline"
         onClick={() => {
-          log(`${amount} ${from} → ${to}`, "success");
-          toast.success(text(t, "saved", "Conversion saved to history."));
+          log(result === null ? `${amount} ${from} → ${to}` : `${amount} ${from} → ${result} ${to}`, "success");
+          notifyHistorySaved(text(t, "saved", "Conversion saved to history."), text(t, "historyOff", "History is off, so this wasn’t saved."));
         }}
       >
         <Check /> {text(t, "record", "Record conversion")}
@@ -768,8 +768,8 @@ export function CurrencyConverter({ onBack, namespace = "tools.currency-converte
       <Button
         variant="outline"
         onClick={() => {
-          log(`${amount} ${base} → ${quote}`, "success", { stale, maxAgeMs: DEFAULT_RATE_MAX_AGE_MS });
-          toast.success(text(t, "saved", "Conversion saved to history."));
+          log(output === null ? `${amount} ${base} → ${quote}` : `${amount} ${base} → ${output} ${quote}`, "success", { stale, maxAgeMs: DEFAULT_RATE_MAX_AGE_MS });
+          notifyHistorySaved(text(t, "saved", "Conversion saved to history."), text(t, "historyOff", "History is off, so this wasn’t saved."));
         }}
       >
         <Check /> {text(t, "record", "Record conversion")}

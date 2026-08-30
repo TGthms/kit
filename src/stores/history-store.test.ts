@@ -1,0 +1,18 @@
+import { describe, expect, it } from "vitest";
+import { safeSummary } from "./history-store";
+
+describe("history summaries", () => {
+  it("keeps conversion and clock values", () => {
+    expect(safeSummary("1.5 km → 0.932 mi", "success")).toBe("1.5 km → 0.932 mi");
+    expect(safeSummary("100 USD → 92.1 EUR", "success")).toBe("100 USD → 92.1 EUR");
+    expect(safeSummary("00:01:23.40", "success")).toBe("00:01:23.40");
+    expect(safeSummary("integer × 5: 4, 8, 15", "success")).toBe("integer × 5: 4, 8, 15");
+    expect(safeSummary("12 words, 70 characters", "success")).toBe("12 words, 70 characters");
+  });
+
+  it("still redacts free-form input", () => {
+    expect(safeSummary("Merged family-taxes.pdf", "success")).toBe("completed");
+    expect(safeSummary("pick: secret passphrase", "success")).toBe("completed");
+    expect(safeSummary("boom", "failed")).toBe("failed");
+  });
+});
