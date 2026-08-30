@@ -75,6 +75,7 @@ export async function renderPdfPagePreview(
   }
 }
 
+/** Blob object URL. Callers must revoke it. */
 export async function renderPdfThumbnail(
   data: ArrayBuffer,
   pageNum = 1,
@@ -91,7 +92,10 @@ export async function renderPdfThumbnail(
     const ctx = canvas.getContext("2d");
     if (!ctx) throw new Error("Could not create a 2D canvas context");
     await page.render({ canvasContext: ctx, viewport, canvas }).promise;
-    return canvas.toDataURL("image/jpeg", 0.7);
+    const blob: Blob = await new Promise((resolve, reject) =>
+      canvas.toBlob((value) => (value ? resolve(value) : reject(new Error("toBlob failed"))), "image/jpeg", 0.7)
+    );
+    return URL.createObjectURL(blob);
   } finally {
     await doc.cleanup();
     await loadingTask.destroy();
@@ -178,7 +182,7 @@ export async function compressPdfLossy(
   opts?: { onProgress?: (ratio: number) => void; signal?: AbortSignal }
 ): Promise<Uint8Array> {
   ensurePdfWorker();
-  const { PDFDocument } = await import("pdf-lib");
+  const { PDFDocument } = await import("@cantoo/pdf-lib");
   const { doc: src, loadingTask } = await openPdfDocument(data);
   try {
     const out = await PDFDocument.create();

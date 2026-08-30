@@ -135,6 +135,31 @@ export async function getFFmpeg(onProgress?: (ratio: number) => void): Promise<F
   }
 }
 
+export type FFmpegFileHost = {
+  writeFile(name: string, data: Uint8Array): Promise<unknown>;
+  exec(args: string[]): Promise<unknown>;
+  readFile(name: string): Promise<Uint8Array | string>;
+  deleteFile(name: string): Promise<unknown>;
+};
+
+export async function transcodeOnFFmpeg(
+  ff: FFmpegFileHost,
+  inputName: string,
+  inputData: Uint8Array,
+  outputName: string,
+  args: string[]
+): Promise<Uint8Array> {
+  try {
+    await ff.writeFile(inputName, inputData);
+    await ff.exec(args);
+    const data = await ff.readFile(outputName);
+    return typeof data === "string" ? new TextEncoder().encode(data) : data;
+  } finally {
+    await ff.deleteFile(inputName).catch(() => undefined);
+    await ff.deleteFile(outputName).catch(() => undefined);
+  }
+}
+
 export async function runFFmpeg(
   inputName: string,
   inputData: Uint8Array,
@@ -149,15 +174,7 @@ export async function runFFmpeg(
   try {
     const ff = await getFFmpeg(onProgress);
     if (signal?.aborted) throw new DOMException("Aborted", "AbortError");
-    await ff.writeFile(inputName, inputData);
-    await ff.exec(args);
-    const data = await ff.readFile(outputName);
-    await ff.deleteFile(inputName).catch(() => undefined);
-    await ff.deleteFile(outputName).catch(() => undefined);
-    if (typeof data === "string") {
-      return new TextEncoder().encode(data);
-    }
-    return data as Uint8Array;
+    return await transcodeOnFFmpeg(ff, inputName, inputData, outputName, args);
   } finally {
     signal?.removeEventListener("abort", onAbort);
   }

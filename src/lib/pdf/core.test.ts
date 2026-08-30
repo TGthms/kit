@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { PDFDocument, degrees } from "pdf-lib";
+import { PDFDocument, degrees } from "@cantoo/pdf-lib";
 import {
   parsePageRange,
   formatPageLabel,
@@ -195,7 +195,6 @@ describe("lock / unlock", () => {
     expect(await isPdfEncrypted(src)).toBe(false);
     const locked = await lockPdf(src, "correct-horse");
     expect(await isPdfEncrypted(locked)).toBe(true);
-    await expect(PDFDocument.load(locked)).rejects.toThrow();
     const unlocked = await unlockPdf(locked, "correct-horse");
     const doc = await PDFDocument.load(unlocked);
     expect(doc.getPageCount()).toBe(1);

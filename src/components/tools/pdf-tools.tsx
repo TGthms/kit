@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 import { FileDropzone, type FileItem } from "@/components/shared/file-dropzone";
@@ -16,6 +16,7 @@ import { Progress } from "@/components/ui/progress";
 import { runSequentialBatch, stemmedName } from "@/lib/jobs/batch";
 import { ActionBar, DownloadResult, ToolLimits, ToolShell, useToolHistory, loadPdfjs } from "./shared";
 import { mergePdfs, splitPdf, organizePdf, watermarkPdf, coverPdfContent, getPdfPageCount } from "@/lib/pdf/core";
+import { replaceObjectUrlRecord, revokeObjectUrls } from "@/lib/files/object-url";
 import { PdfCoverEditor, type CoverBox } from "./pdf-cover-editor";
 
 
@@ -27,9 +28,27 @@ export function PdfMerge() {
   const [thumbs, setThumbs] = useState<Record<string, string>>({});
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState<{ blob: Blob; name: string } | null>(null);
+  const thumbsGen = useRef(0);
+  const thumbsRef = useRef(thumbs);
+
+  useEffect(() => {
+    thumbsRef.current = thumbs;
+  }, [thumbs]);
+
+  useEffect(
+    () => () => {
+      revokeObjectUrls(Object.values(thumbsRef.current));
+    },
+    []
+  );
 
   const loadThumbs = async (items: FileItem[]) => {
+    const gen = ++thumbsGen.current;
     setFiles(items);
+    if (items.length === 0) {
+      setThumbs((current) => replaceObjectUrlRecord(current, {}));
+      return;
+    }
     try {
       const { renderPdfThumbnail } = await loadPdfjs();
       const rendered = await Promise.all(
@@ -46,7 +65,11 @@ export function PdfMerge() {
           .filter((item): item is { id: string; url: string } => Boolean(item))
           .map((item) => [item.id, item.url])
       );
-      setThumbs((current) => ({ ...current, ...next }));
+      if (gen !== thumbsGen.current) {
+        revokeObjectUrls(Object.values(next));
+        return;
+      }
+      setThumbs((current) => replaceObjectUrlRecord(current, next));
     } catch {
       /* thumbnails are optional */
     }
@@ -148,16 +171,30 @@ export function PdfOrganize() {
   const [loading, setLoading] = useState(false);
 
   const [thumbs, setThumbs] = useState<Record<number, string>>({});
+  const thumbsGen = useRef(0);
+  const thumbsRef = useRef(thumbs);
+
+  useEffect(() => {
+    thumbsRef.current = thumbs;
+  }, [thumbs]);
+
+  useEffect(
+    () => () => {
+      revokeObjectUrls(Object.values(thumbsRef.current));
+    },
+    []
+  );
 
   const resetPages = () => {
     setPageCount(0);
     setOrder([]);
     setRotations({});
     setDeleted(new Set());
-    setThumbs({});
+    setThumbs((current) => replaceObjectUrlRecord(current, {}));
   };
 
   const onFiles = async (items: FileItem[]) => {
+    const gen = ++thumbsGen.current;
     setFiles(items);
     if (!items[0]) {
       resetPages();
@@ -182,12 +219,17 @@ export function PdfOrganize() {
             }
           })
         );
-        setThumbs(Object.fromEntries(entries.filter(Boolean) as Array<readonly [number, string]>));
-      } else {
-        setThumbs({});
+        const next = Object.fromEntries(entries.filter(Boolean) as Array<readonly [number, string]>);
+        if (gen !== thumbsGen.current) {
+          revokeObjectUrls(Object.values(next));
+          return;
+        }
+        setThumbs((current) => replaceObjectUrlRecord(current, next));
+      } else if (gen === thumbsGen.current) {
+        setThumbs((current) => replaceObjectUrlRecord(current, {}));
       }
     } catch (e) {
-      resetPages();
+      if (gen === thumbsGen.current) resetPages();
       toast.error(e instanceof Error ? e.message : tc("error"));
     }
   };

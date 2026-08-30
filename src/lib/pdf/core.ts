@@ -1,4 +1,4 @@
-import { PDFDocument, PDFName, degrees, rgb, StandardFonts } from "pdf-lib";
+import { PDFDocument, PDFName, degrees, rgb, StandardFonts } from "@cantoo/pdf-lib";
 import { inspectPdfReadability } from "./protect";
 
 export type PdfInput = ArrayBuffer | Uint8Array;
@@ -8,14 +8,11 @@ export function asPdfBytes(buf: PdfInput): Uint8Array {
 }
 
 /**
- * Every function below loads PDFs with plain `pdf-lib` (via
- * `{ ignoreEncryption: true }`), which — despite the option's name — cannot
- * actually decrypt an encrypted document's content streams; it only skips
- * the up-front password check. Feeding it a genuinely encrypted PDF
- * produces confusing low-level parser errors or corrupted output instead of
- * a clear message. Locking/unlocking uses `@cantoo/pdf-lib`
- * (see protect.ts), which does support encryption, so we call this first to
- * fail fast with an actionable error that points the user there.
+ * Structure tools use `@cantoo/pdf-lib` with `{ ignoreEncryption: true }`.
+ * That option only skips the password check; it does not decrypt content
+ * streams. Encrypted input still yields parser errors or garbage, so we
+ * fail fast via inspectPdfReadability (protect.ts) and send the user to
+ * Unlock first.
  */
 async function assertNotEncrypted(buf: PdfInput): Promise<void> {
   const state = await inspectPdfReadability(asPdfBytes(buf));

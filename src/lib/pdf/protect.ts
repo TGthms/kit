@@ -1,20 +1,17 @@
 import { PDFDocument } from "@cantoo/pdf-lib";
-import { PDFDocument as PdfLibDocument } from "pdf-lib";
 
 export type PdfReadability = "open" | "encrypted" | "unreadable";
 
 export async function inspectPdfReadability(buf: ArrayBuffer | Uint8Array): Promise<PdfReadability> {
   const bytes = buf instanceof Uint8Array ? buf : new Uint8Array(buf);
   try {
-    await PdfLibDocument.load(bytes);
-    return "open";
+    // ignoreEncryption skips the password prompt; isEncrypted still reports
+    // the Encrypt dict. Loading without it throws EncryptedPDFError for locked
+    // files, which Vitest treats as an unhandled rejection.
+    const doc = await PDFDocument.load(bytes, { ignoreEncryption: true });
+    return doc.isEncrypted ? "encrypted" : "open";
   } catch {
-    try {
-      const doc = await PDFDocument.load(bytes, { ignoreEncryption: true });
-      return doc.isEncrypted ? "encrypted" : "unreadable";
-    } catch {
-      return "unreadable";
-    }
+    return "unreadable";
   }
 }
 
@@ -33,9 +30,11 @@ export async function lockPdf(
   if (doc.isEncrypted) {
     throw new Error("PDF is already encrypted. Unlock it first.");
   }
+  // AES-256 / ISO 32000-2 rev 6. RC4 is refused unless allowWeakCryptography.
   doc.encrypt({
     userPassword,
     ownerPassword: ownerPassword || userPassword,
+    algorithm: "AES-256",
   });
   return doc.save();
 }
@@ -46,6 +45,9 @@ export async function unlockPdf(
   password: string
 ): Promise<Uint8Array> {
   const bytes = buf instanceof Uint8Array ? buf : new Uint8Array(buf);
-  const doc = await PDFDocument.load(bytes, { password });
-  return doc.save();
+  const locked = await PDFDocument.load(bytes, { password });
+  const open = await PDFDocument.create();
+  const pages = await open.copyPages(locked, locked.getPageIndices());
+  pages.forEach((page) => open.addPage(page));
+  return open.save();
 }

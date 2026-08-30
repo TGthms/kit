@@ -148,7 +148,7 @@ Canonical live site: `https://trykit.pages.dev`
 
 ## Tech stack
 
-Next.js 15 (App Router, static export) · TypeScript · Tailwind CSS · shadcn-style UI · Zustand · next-intl · pdf-lib / PDF.js · Canvas · FFmpeg WASM · PWA service worker
+Next.js 16 (App Router, static export) · TypeScript · Tailwind CSS · shadcn-style UI · Zustand · next-intl · @cantoo/pdf-lib / PDF.js · Canvas · FFmpeg WASM · PWA service worker
 
 ## License
 
