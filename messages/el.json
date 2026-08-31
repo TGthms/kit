@@ -1273,7 +1273,9 @@
       "unique": "No repeats",
       "download": "Download list",
       "batch": "Batch",
-      "countHint": "Up to {max} at once."
+      "countHint": "Up to {max} at once.",
+      "record": "Καταγραφή αποτελέσματος",
+      "saved": "Αποθηκεύτηκε στο ιστορικό."
     },
     "currency-converter": {
       "name": "Νόμισμα converter",
@@ -1713,7 +1715,8 @@
       "kcal": "kcal",
       "healthyWeightValue": "{min}–{max} {unit}",
       "minorBadge": "Κάτω των 18",
-      "minorNote": "Όρια ΔΜΣ ενηλίκων και ο τύπος θερμίδων Mifflin-St Jeor. Ο παιδικός ΔΜΣ διαβάζεται συνήθως σε καμπύλες ανάπτυξης."
+      "minorNote": "Όρια ΔΜΣ ενηλίκων και ο τύπος θερμίδων Mifflin-St Jeor. Ο παιδικός ΔΜΣ διαβάζεται συνήθως σε καμπύλες ανάπτυξης.",
+      "disclaimer": "Δεν είναι ιατρική συμβουλή. Όρια ΔΜΣ και τύπος θερμίδων ενηλίκων."
     }
   },
   "legal": {

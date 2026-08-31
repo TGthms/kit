@@ -1,5 +1,15 @@
 @import "tailwindcss";
 
+/* iOS treats the first tap as :hover. Limit hover styles to devices that
+   can actually hover so cards and back links activate on the first tap. */
+@custom-variant hover {
+  @media (hover: hover) {
+    &:hover {
+      @slot;
+    }
+  }
+}
+
 /*
   Design system: fluid, physical UI foundations
   (response, materials, type, reduced motion) —
@@ -401,28 +411,21 @@ details[open] > .anim-details-content {
   animation: details-in 0.18s var(--ease-out-soft) both;
 }
 
-/* Interactive press scale — use on cards/buttons */
-.pressable {
-  transition: transform var(--duration-press) ease-out, box-shadow var(--duration-ui) var(--ease-out-soft),
-    background-color var(--duration-ui) var(--ease-out-soft);
+/* Press feedback must not scale the hit target: iOS drops the click when
+   pointerup lands outside the shrunken box (first tap no-ops, second works). */
+.pressable,
+.pressable-soft {
+  transition: opacity var(--duration-press) ease-out, box-shadow var(--duration-ui) var(--ease-out-soft),
+    background-color var(--duration-ui) var(--ease-out-soft), filter var(--duration-press) ease-out;
 }
 
-.pressable:active {
-  transform: scale(0.97);
-}
-
-.pressable-soft:active {
-  transform: scale(0.985);
-}
-
+.pressable:active,
+.pressable-soft:active,
 button[data-pressed]:not(:disabled),
 [data-pressable][data-pressed],
-.pressable[data-pressed] {
-  transform: scale(0.97);
-}
-
+.pressable[data-pressed],
 .pressable-soft[data-pressed] {
-  transform: scale(0.985);
+  opacity: 0.72;
 }
 
 .kit-spinner {
@@ -530,7 +533,7 @@ button[data-pressed]:not(:disabled),
   [data-pressable][data-pressed],
   .pressable[data-pressed],
   .pressable-soft[data-pressed] {
-    transform: none !important;
+    opacity: 1 !important;
   }
   .kit-spinner {
     animation: none;

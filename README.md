@@ -102,7 +102,7 @@ The home screen groups tools by job (PDF pages vs markup, developer inspect vs e
 
 ## Local development
 
-Requirements: **Node.js 22.13+** (see `.nvmrc`).
+Requirements: **Node.js 24+** (see `.nvmrc`).
 
 ```bash
 git clone https://github.com/TGthms/kit.git

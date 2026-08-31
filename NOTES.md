@@ -5,7 +5,7 @@ This file is the active implementation record. Current source is under `src/`, `
 ## Current baseline (2026-08-29)
 
 - **84 tools** in `src/lib/tools/registry.ts`.
-- Next.js 15 App Router with static export, PWA shell, Cloudflare Pages (canonical) and GitHub Pages CI. Both deploys run typecheck, lint, and tests before publishing.
+- Next.js 16 App Router with static export, PWA shell, Cloudflare Pages (canonical) and GitHub Pages CI. GitHub Actions runs typecheck, lint, and tests before the Pages backup publish.
 - 30 first-class locales plus the legacy `/zh/` path alias; localized tool metadata, sitemap, robots, and 62 legal documents.
 - Pure engines and tests under `src/lib/`; client tool views under `src/components/tools/`; favorites and metadata-only history in Zustand stores.
 - Canonical production site: `https://trykit.pages.dev`; GitHub Pages backup: `https://TGthms.github.io/kit/`.

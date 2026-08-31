@@ -1273,7 +1273,9 @@
       "unique": "بدون تكرار",
       "download": "تنزيل القائمة",
       "batch": "دفعة",
-      "countHint": "حتى {max} دفعة واحدة."
+      "countHint": "حتى {max} دفعة واحدة.",
+      "record": "حفظ النتيجة",
+      "saved": "حُفظ في السجل."
     },
     "currency-converter": {
       "name": "العملة converter",
@@ -1713,7 +1715,8 @@
       "kcal": "kcal",
       "healthyWeightValue": "{min}–{max} {unit}",
       "minorBadge": "دون 18",
-      "minorNote": "عتبات مؤشر البالغين ومعادلة السعرات Mifflin-St Jeor. مؤشر الأطفال يُقرأ عادة مقابل منحنيات النمو."
+      "minorNote": "عتبات مؤشر البالغين ومعادلة السعرات Mifflin-St Jeor. مؤشر الأطفال يُقرأ عادة مقابل منحنيات النمو.",
+      "disclaimer": "ليست نصيحة طبية. عتبات مؤشر البالغين ومعادلة سعرات للبالغين."
     }
   },
   "legal": {

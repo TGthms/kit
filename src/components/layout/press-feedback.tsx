@@ -14,8 +14,9 @@ function pressElement(node: EventTarget | null): HTMLElement | null {
 }
 
 /**
- * iOS often skips `:active` on taps. Mark press on pointer-down so scale
- * feedback is instant inside the installed PWA.
+ * iOS often skips `:active` on taps. Mark press on pointer-down so opacity
+ * feedback is instant inside the installed PWA. Do not scale the target —
+ * shrinking the hit box makes iOS drop the click on the first tap.
  */
 export function PressFeedback() {
   useEffect(() => {

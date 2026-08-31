@@ -1273,7 +1273,9 @@
       "unique": "No repeats",
       "download": "Download list",
       "batch": "Batch",
-      "countHint": "Up to {max} at once."
+      "countHint": "Up to {max} at once.",
+      "record": "Zapisz wynik",
+      "saved": "Zapisano w historii."
     },
     "currency-converter": {
       "name": "Waluta converter",
@@ -1713,7 +1715,8 @@
       "kcal": "kcal",
       "healthyWeightValue": "{min}–{max} {unit}",
       "minorBadge": "Poniżej 18",
-      "minorNote": "Progi BMI dla dorosłych i wzór kaloryczny Mifflin-St Jeor. Dziecięce BMI czyta się zwykle z siatek centylowych."
+      "minorNote": "Progi BMI dla dorosłych i wzór kaloryczny Mifflin-St Jeor. Dziecięce BMI czyta się zwykle z siatek centylowych.",
+      "disclaimer": "To nie jest porada medyczna. Progi BMI i wzór kaloryczny dla dorosłych."
     }
   },
   "legal": {

@@ -74,7 +74,7 @@ export function PageHeader({
             className={cn(
               "pressable-soft mb-1 inline-flex min-h-11 max-w-full items-center gap-0.5",
               "-ml-1.5 rounded-lg px-1.5 text-[17px] font-normal text-primary",
-              "hover:opacity-80 active:opacity-60"
+              "hover:opacity-80"
             )}
           >
             <ChevronLeft className="h-5 w-5 shrink-0 stroke-[2.5]" aria-hidden />

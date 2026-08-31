@@ -1273,7 +1273,9 @@
       "unique": "No repeats",
       "download": "Download list",
       "batch": "Batch",
-      "countHint": "Up to {max} at once."
+      "countHint": "Up to {max} at once.",
+      "record": "Registar resultado",
+      "saved": "Guardado no histórico."
     },
     "currency-converter": {
       "name": "Moeda converter",
@@ -1713,7 +1715,8 @@
       "kcal": "kcal",
       "healthyWeightValue": "{min}–{max} {unit}",
       "minorBadge": "Menor de 18",
-      "minorNote": "Limiares de IMC de adulto e a fórmula de calorias Mifflin-St Jeor. O IMC infantil costuma ler-se em curvas de crescimento."
+      "minorNote": "Limiares de IMC de adulto e a fórmula de calorias Mifflin-St Jeor. O IMC infantil costuma ler-se em curvas de crescimento.",
+      "disclaimer": "Não é aconselhamento médico. Limiares de IMC e fórmula de calorias para adultos."
     }
   },
   "legal": {

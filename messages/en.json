@@ -1286,7 +1286,8 @@
       "gain": "Gain",
       "gainHint": "About 0.5 kg (1 lb) a week",
       "floorNote": "The loss target is floored at {value} kcal so the number stays in a commonly used adult range.",
-      "record": "Record calculation"
+      "record": "Record calculation",
+      "disclaimer": "Not medical advice. Adult BMI cutoffs and an adult calorie formula."
     },
     "stopwatch-timer": {
       "name": "Stopwatch & timer",
@@ -1329,7 +1330,9 @@
       "unique": "No repeats",
       "download": "Download list",
       "batch": "Batch",
-      "countHint": "Up to {max} at once."
+      "countHint": "Up to {max} at once.",
+      "record": "Record result",
+      "saved": "Saved to history."
     },
     "currency-converter": {
       "name": "Currency converter",

@@ -1273,7 +1273,9 @@
       "unique": "重複なし",
       "download": "リストをダウンロード",
       "batch": "まとめて",
-      "countHint": "一度に最大 {max} 件。"
+      "countHint": "一度に最大 {max} 件。",
+      "record": "結果を記録",
+      "saved": "履歴に保存しました。"
     },
     "currency-converter": {
       "name": "通貨 converter",
@@ -1713,7 +1715,8 @@
       "kcal": "kcal",
       "healthyWeightValue": "{min}–{max} {unit}",
       "minorBadge": "18歳未満",
-      "minorNote": "成人のBMI基準とMifflin-St Jeorのカロリー式です。子どものBMIは通常、成長曲線で読みます。"
+      "minorNote": "成人のBMI基準とMifflin-St Jeorのカロリー式です。子どものBMIは通常、成長曲線で読みます。",
+      "disclaimer": "医学的助言ではありません。成人のBMI基準とカロリー式です。"
     }
   },
   "legal": {

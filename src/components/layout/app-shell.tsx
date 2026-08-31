@@ -37,6 +37,7 @@ function SideNav({ pathname }: { pathname: string }) {
             href={href}
             data-pressable
             data-restore-scroll
+            aria-current={active ? "page" : undefined}
             className={cn(
               "nav-item flex items-center gap-3 rounded-xl px-3 py-2.5 text-[15px] font-medium pressable-soft",
               active
@@ -70,6 +71,7 @@ function TabBar({ pathname }: { pathname: string }) {
               href={href}
               data-pressable
               data-restore-scroll
+              aria-current={active ? "page" : undefined}
               className={cn(
                 "pressable-soft flex min-h-[3.75rem] min-w-0 flex-1 flex-col items-center justify-center gap-0.5 px-1 py-1.5",
                 "text-[11px] font-medium tracking-[-0.01em]",

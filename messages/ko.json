@@ -1273,7 +1273,9 @@
       "unique": "중복 없이",
       "download": "목록 다운로드",
       "batch": "일괄",
-      "countHint": "한 번에 최대 {max}개."
+      "countHint": "한 번에 최대 {max}개.",
+      "record": "결과 저장",
+      "saved": "기록에 저장했습니다."
     },
     "currency-converter": {
       "name": "통화 converter",
@@ -1713,7 +1715,8 @@
       "kcal": "kcal",
       "healthyWeightValue": "{min}–{max} {unit}",
       "minorBadge": "18세 미만",
-      "minorNote": "성인 BMI 기준과 Mifflin-St Jeor 칼로리 식입니다. 소아 BMI는 보통 성장 곡선으로 읽습니다."
+      "minorNote": "성인 BMI 기준과 Mifflin-St Jeor 칼로리 식입니다. 소아 BMI는 보통 성장 곡선으로 읽습니다.",
+      "disclaimer": "의학적 조언이 아닙니다. 성인 BMI 기준과 칼로리 식입니다."
     }
   },
   "legal": {

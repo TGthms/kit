@@ -1273,7 +1273,9 @@
       "unique": "No repeats",
       "download": "Download list",
       "batch": "Batch",
-      "countHint": "Up to {max} at once."
+      "countHint": "Up to {max} at once.",
+      "record": "Resultaat vastleggen",
+      "saved": "Opgeslagen in de geschiedenis."
     },
     "currency-converter": {
       "name": "Valuta converter",
@@ -1713,7 +1715,8 @@
       "kcal": "kcal",
       "healthyWeightValue": "{min}–{max} {unit}",
       "minorBadge": "Onder 18",
-      "minorNote": "BMI-grenzen voor volwassenen en de Mifflin-St Jeor-calorieformule. Kinder-BMI wordt meestal via groeicurves gelezen."
+      "minorNote": "BMI-grenzen voor volwassenen en de Mifflin-St Jeor-calorieformule. Kinder-BMI wordt meestal via groeicurves gelezen.",
+      "disclaimer": "Geen medisch advies. BMI-grenzen en calorieformule voor volwassenen."
     }
   },
   "legal": {

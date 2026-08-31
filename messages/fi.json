@@ -1273,7 +1273,9 @@
       "unique": "No repeats",
       "download": "Download list",
       "batch": "Batch",
-      "countHint": "Up to {max} at once."
+      "countHint": "Up to {max} at once.",
+      "record": "Tallenna tulos",
+      "saved": "Tallennettu historiaan."
     },
     "currency-converter": {
       "name": "Valuutta converter",
@@ -1713,7 +1715,8 @@
       "kcal": "kcal",
       "healthyWeightValue": "{min}–{max} {unit}",
       "minorBadge": "Alle 18",
-      "minorNote": "Aikuisten BMI-rajat ja Mifflin-St Jeor -kalorikaava. Lasten BMI luetaan yleensä kasvukäyristä."
+      "minorNote": "Aikuisten BMI-rajat ja Mifflin-St Jeor -kalorikaava. Lasten BMI luetaan yleensä kasvukäyristä.",
+      "disclaimer": "Ei lääkärin ohje. Aikuisten BMI-rajat ja kalorikaava."
     }
   },
   "legal": {

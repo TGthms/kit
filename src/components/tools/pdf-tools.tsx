@@ -518,8 +518,9 @@ export function PdfRedact() {
 
   return (
     <ToolShell toolId="pdf-redact">
+      <p className="text-sm text-amber-800 dark:text-amber-300">{t("note")}</p>
       <ToolLimits>
-        <p className="text-amber-700 dark:text-amber-300">{t("note")}</p>
+        <p>{t("note")}</p>
       </ToolLimits>
       <FileDropzone
         accept="application/pdf"

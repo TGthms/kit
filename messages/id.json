@@ -1273,7 +1273,9 @@
       "unique": "No repeats",
       "download": "Download list",
       "batch": "Batch",
-      "countHint": "Up to {max} at once."
+      "countHint": "Up to {max} at once.",
+      "record": "Simpan hasil",
+      "saved": "Disimpan ke riwayat."
     },
     "currency-converter": {
       "name": "Mata uang converter",
@@ -1713,7 +1715,8 @@
       "kcal": "kcal",
       "healthyWeightValue": "{min}–{max} {unit}",
       "minorBadge": "Di bawah 18",
-      "minorNote": "Ambang IMT dewasa dan rumus kalori Mifflin-St Jeor. IMT anak biasanya dibaca lewat kurva pertumbuhan."
+      "minorNote": "Ambang IMT dewasa dan rumus kalori Mifflin-St Jeor. IMT anak biasanya dibaca lewat kurva pertumbuhan.",
+      "disclaimer": "Bukan nasihat medis. Ambang IMT dan rumus kalori dewasa."
     }
   },
   "legal": {

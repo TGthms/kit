@@ -146,6 +146,9 @@ export function BmiCalorieCalculator() {
 
   return (
     <ToolShell toolId={toolId("bmi-calorie-calculator")}>
+      <p className="text-sm text-muted-foreground">
+        {text(t, "disclaimer", "Not medical advice. Adult BMI cutoffs and an adult calorie formula.")}
+      </p>
       <ToolLimits>
         <p>{text(t, "limits", "BMI uses adult WHO cutoffs. Under 18 is allowed but marked, because child BMI is usually read against growth charts. Calories use the Mifflin-St Jeor equation, which is an adult formula. Results stay on this device and are not medical advice.")}</p>
       </ToolLimits>

@@ -1273,7 +1273,9 @@
       "unique": "No repeats",
       "download": "Download list",
       "batch": "Batch",
-      "countHint": "Up to {max} at once."
+      "countHint": "Up to {max} at once.",
+      "record": "परिणाम सहेजें",
+      "saved": "इतिहास में सहेजा गया."
     },
     "currency-converter": {
       "name": "मुद्रा converter",
@@ -1713,7 +1715,8 @@
       "kcal": "kcal",
       "healthyWeightValue": "{min}–{max} {unit}",
       "minorBadge": "18 से कम",
-      "minorNote": "वयस्क बीएमआई कटऑफ और मिफ्लिन-सेंट जियर कैलोरी सूत्र. बच्चों का बीएमआई आमतौर पर ग्रोथ चार्ट से पढ़ा जाता है."
+      "minorNote": "वयस्क बीएमआई कटऑफ और मिफ्लिन-सेंट जियर कैलोरी सूत्र. बच्चों का बीएमआई आमतौर पर ग्रोथ चार्ट से पढ़ा जाता है.",
+      "disclaimer": "यह चिकित्सा सलाह नहीं है. वयस्क बीएमआई कटऑफ और कैलोरी सूत्र."
     }
   },
   "legal": {

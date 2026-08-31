@@ -1273,7 +1273,9 @@
       "unique": "No repeats",
       "download": "Download list",
       "batch": "Batch",
-      "countHint": "Up to {max} at once."
+      "countHint": "Up to {max} at once.",
+      "record": "บันทึกผล",
+      "saved": "บันทึกลงประวัติแล้ว"
     },
     "currency-converter": {
       "name": "สกุลเงิน converter",
@@ -1713,7 +1715,8 @@
       "kcal": "kcal",
       "healthyWeightValue": "{min}–{max} {unit}",
       "minorBadge": "ต่ำกว่า 18",
-      "minorNote": "เกณฑ์ BMI ผู้ใหญ่และสูตรแคลอรี Mifflin-St Jeor BMI ของเด็กมักเทียบกับกราฟการเจริญเติบโต"
+      "minorNote": "เกณฑ์ BMI ผู้ใหญ่และสูตรแคลอรี Mifflin-St Jeor BMI ของเด็กมักเทียบกับกราฟการเจริญเติบโต",
+      "disclaimer": "ไม่ใช่คำแนะนำทางการแพทย์ เกณฑ์ BMI และสูตรแคลอรีสำหรับผู้ใหญ่"
     }
   },
   "legal": {

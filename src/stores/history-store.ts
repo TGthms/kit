@@ -37,7 +37,8 @@ export function safeSummary(summary: string, status: HistoryEntry["status"]): st
   }
   if (/→/u.test(normalized)) return normalized;
   if (/^\d+:\d{2}:\d{2}(?:\.\d+)?$/u.test(normalized)) return normalized;
-  if (/^(?:integer|decimal|boolean|password)(?::| × )/iu.test(normalized)) return normalized;
+  if (/^(?:integer|decimal|boolean|pick)(?::| × )/iu.test(normalized)) return normalized;
+  if (/^password(?: × \d+)?$/iu.test(normalized)) return normalized;
   return "completed";
 }
 
@@ -93,7 +94,7 @@ export const useHistoryStore = create<HistoryState>()(
     }),
     {
       name: "kit-history",
-      version: 1,
+      version: 2,
       migrate: (persisted) => {
         const state = persisted as Partial<HistoryState>;
         return {

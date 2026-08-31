@@ -1273,7 +1273,9 @@
       "unique": "No repeats",
       "download": "Download list",
       "batch": "Batch",
-      "countHint": "Up to {max} at once."
+      "countHint": "Up to {max} at once.",
+      "record": "Lưu kết quả",
+      "saved": "Đã lưu vào lịch sử."
     },
     "currency-converter": {
       "name": "Tiền tệ converter",
@@ -1713,7 +1715,8 @@
       "kcal": "kcal",
       "healthyWeightValue": "{min}–{max} {unit}",
       "minorBadge": "Dưới 18",
-      "minorNote": "Ngưỡng BMI người lớn và công thức calo Mifflin-St Jeor. BMI trẻ em thường đọc theo biểu đồ tăng trưởng."
+      "minorNote": "Ngưỡng BMI người lớn và công thức calo Mifflin-St Jeor. BMI trẻ em thường đọc theo biểu đồ tăng trưởng.",
+      "disclaimer": "Không phải lời khuyên y tế. Ngưỡng BMI và công thức calo cho người lớn."
     }
   },
   "legal": {

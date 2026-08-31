@@ -1273,7 +1273,9 @@
       "unique": "No repeats",
       "download": "Download list",
       "batch": "Batch",
-      "countHint": "Up to {max} at once."
+      "countHint": "Up to {max} at once.",
+      "record": "Salvează rezultatul",
+      "saved": "Salvat în istoric."
     },
     "currency-converter": {
       "name": "Monedă converter",
@@ -1713,7 +1715,8 @@
       "kcal": "kcal",
       "healthyWeightValue": "{min}–{max} {unit}",
       "minorBadge": "Sub 18",
-      "minorNote": "Praguri IMC de adult și formula de calorii Mifflin-St Jeor. IMC-ul copiilor se citește de obicei pe curbe de creștere."
+      "minorNote": "Praguri IMC de adult și formula de calorii Mifflin-St Jeor. IMC-ul copiilor se citește de obicei pe curbe de creștere.",
+      "disclaimer": "Nu este sfat medical. Praguri IMC și formulă de calorii pentru adulți."
     }
   },
   "legal": {

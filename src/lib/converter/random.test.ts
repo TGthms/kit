@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { randomBoolean, randomDecimal, randomDecimals, randomInteger, randomIntegers, randomPassphrase, randomPassword, randomPick, randomUnique } from "./random";
+import { RANDOM_HISTORY_SUMMARY_MAX, randomBoolean, randomDecimal, randomDecimals, randomInteger, randomIntegers, randomPassphrase, randomPassword, randomPick, randomResultSummary, randomUnique } from "./random";
 
 describe("random generation helpers", () => {
   it("supports injectable deterministic integer, decimal, boolean, and pick generation", () => {
@@ -34,5 +34,15 @@ describe("random generation helpers", () => {
     expect(stepped.every((n) => n % 2 === 0 && n >= 0 && n <= 10)).toBe(true);
     expect(() => randomIntegers(1, 3, { count: 4, unique: true })).toThrow(RangeError);
     expect(randomDecimals(0, 1, { count: 2, precision: 1, rng: () => 0 })).toEqual([0, 0]);
+  });
+
+  it("formats non-password rolls for history without overflowing the summary cap", () => {
+    expect(randomResultSummary("integer", ["42"])).toBe("integer: 42");
+    expect(randomResultSummary("integer", ["4", "8", "15"])).toBe("integer × 3: 4, 8, 15");
+    expect(randomResultSummary("pick", ["red", "blue"])).toBe("pick × 2: red, blue");
+    const long = randomResultSummary("pick", Array.from({ length: 40 }, (_, index) => `choice-${index}`));
+    expect(long.length).toBeLessThanOrEqual(RANDOM_HISTORY_SUMMARY_MAX);
+    expect(long.startsWith("pick × 40: ")).toBe(true);
+    expect(long.endsWith("…")).toBe(true);
   });
 });

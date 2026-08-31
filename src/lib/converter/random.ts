@@ -124,6 +124,22 @@ export function randomUnique<T>(items: readonly T[], count: number, rng: RandomS
 
 export const DEFAULT_PASSWORD_ALPHABET = "ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz23456789!@#$%^&*";
 
+export const RANDOM_HISTORY_SUMMARY_MAX = 96;
+export type RecordableRandomMode = "integer" | "decimal" | "boolean" | "pick";
+
+/** Compact history line for non-password rolls. Passwords are never included. */
+export function randomResultSummary(mode: RecordableRandomMode, values: readonly string[]): string {
+  const compact = values.map((value) => value.trim().replace(/\s+/gu, " ")).filter(Boolean);
+  if (!compact.length) return `${mode} × 0`;
+  const label = compact.length === 1 ? `${mode}: ` : `${mode} × ${compact.length}: `;
+  const body = compact.join(", ");
+  const full = `${label}${body}`;
+  if (full.length <= RANDOM_HISTORY_SUMMARY_MAX) return full;
+  const room = RANDOM_HISTORY_SUMMARY_MAX - label.length - 1;
+  if (room < 1) return `${mode} × ${compact.length}`.slice(0, RANDOM_HISTORY_SUMMARY_MAX);
+  return `${label}${body.slice(0, room)}…`;
+}
+
 export function randomPassword(options: PasswordOptions = {}): string {
   const length = options.length ?? 16;
   assertInteger(length, "length");

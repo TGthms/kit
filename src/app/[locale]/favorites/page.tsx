@@ -8,12 +8,15 @@ import { toolHref } from "@/lib/navigation/routes";
 import { useFavoritesStore } from "@/stores/favorites-store";
 import { PageHeader } from "@/components/layout/page-header";
 import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { PageLoader } from "@/components/shared/page-loader";
+import { useHydrated } from "@/lib/react/hydrated";
 
 export default function FavoritesPage() {
   const t = useTranslations("favorites");
   const tt = useTranslations("tools");
   const tn = useTranslations("nav");
   const ids = useFavoritesStore((s) => s.ids);
+  const hydrated = useHydrated();
 
   const list = useMemo(() => {
     const resolved = new Set(
@@ -26,7 +29,9 @@ export default function FavoritesPage() {
     <div className="space-y-6">
       <PageHeader title={t("title")} subtitle={t("subtitle")} backHref="/" backLabel={tn("home")} />
 
-      {list.length === 0 ? (
+      {!hydrated ? (
+        <PageLoader />
+      ) : list.length === 0 ? (
         <p className="type-body text-muted-foreground">{t("empty")}</p>
       ) : (
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">

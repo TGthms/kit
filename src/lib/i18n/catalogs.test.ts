@@ -59,4 +59,20 @@ describe("message catalogs", () => {
       }
     }
   });
+
+  it("keeps Chinese converter chrome keys from sliding one slot", async () => {
+    for (const loc of ["zh-Hans", "zh-Hant"] as const) {
+      const catalog = (await import(`../../../messages/${loc}.json`)).default as {
+        tools: Record<string, Record<string, string>>;
+      };
+      for (const ns of ["everyday-converter", "currency-converter"]) {
+        const t = catalog.tools[ns];
+        expect(t.swapUnits, `${loc} ${ns} swapUnits`).not.toMatch(/货币|貨幣/u);
+        expect(t.swapCurrencies, `${loc} ${ns} swapCurrencies`).toMatch(/货币|貨幣/u);
+        expect(t.dpi, `${loc} ${ns} dpi`).toMatch(/DPI/i);
+        expect(t.searchAria, `${loc} ${ns} searchAria`).toMatch(/\{label\}/u);
+        expect(t.rateUnavailable, `${loc} ${ns} rateUnavailable`).not.toMatch(/\{label\}/u);
+      }
+    }
+  });
 });

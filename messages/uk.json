@@ -1273,7 +1273,9 @@
       "unique": "No repeats",
       "download": "Download list",
       "batch": "Batch",
-      "countHint": "Up to {max} at once."
+      "countHint": "Up to {max} at once.",
+      "record": "Зберегти результат",
+      "saved": "Збережено в історії."
     },
     "currency-converter": {
       "name": "Валюта converter",
@@ -1713,7 +1715,8 @@
       "kcal": "kcal",
       "healthyWeightValue": "{min}–{max} {unit}",
       "minorBadge": "До 18 років",
-      "minorNote": "Дорослі пороги ІМТ і калорійна формула Mifflin-St Jeor. Дитячий ІМТ зазвичай читають за кривими росту."
+      "minorNote": "Дорослі пороги ІМТ і калорійна формула Mifflin-St Jeor. Дитячий ІМТ зазвичай читають за кривими росту.",
+      "disclaimer": "Це не медична порада. Дорослі пороги ІМТ і формула калорій."
     }
   },
   "legal": {

@@ -48,7 +48,9 @@ import {
   randomIntegers,
   randomPassword,
   randomPick,
+  randomResultSummary,
   randomUnique,
+  type RecordableRandomMode,
 } from "@/lib/converter/random";
 import {
   createStopwatch,
@@ -560,7 +562,6 @@ export function RandomGenerator() {
       } else {
         setShown([]);
       }
-      log(next.length === 1 && mode !== "pick" ? `${mode}: ${next[0]}` : `${mode} × ${next.length}`, "success");
     } catch (reason) {
       setError(reason instanceof Error ? reason.message : text(t, "invalid", "Check the settings."));
       log(`${mode}: failed`, "failed");
@@ -678,6 +679,18 @@ export function RandomGenerator() {
               {values.length > 1 ? (
                 <Button variant="outline" size="sm" onClick={() => downloadText(joined, "random.txt")}>
                   {text(t, "download", "Download list")}
+                </Button>
+              ) : null}
+              {mode !== "password" ? (
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => {
+                    log(randomResultSummary(mode as RecordableRandomMode, values), "success");
+                    notifyHistorySaved(text(t, "saved", "Saved to history."), text(t, "historyOff", "History is off, so this wasn’t saved."));
+                  }}
+                >
+                  <Check /> {text(t, "record", "Record result")}
                 </Button>
               ) : null}
             </div>

@@ -1273,7 +1273,9 @@
       "unique": "No repeats",
       "download": "Download list",
       "batch": "Batch",
-      "countHint": "Up to {max} at once."
+      "countHint": "Up to {max} at once.",
+      "record": "Registra risultato",
+      "saved": "Salvato nella cronologia."
     },
     "currency-converter": {
       "name": "Valuta converter",
@@ -1713,7 +1715,8 @@
       "kcal": "kcal",
       "healthyWeightValue": "{min}–{max} {unit}",
       "minorBadge": "Under 18",
-      "minorNote": "Soglie IMC da adulti e formula calorica Mifflin-St Jeor. L’IMC pediatrico si legge di solito sulle curve di crescita."
+      "minorNote": "Soglie IMC da adulti e formula calorica Mifflin-St Jeor. L’IMC pediatrico si legge di solito sulle curve di crescita.",
+      "disclaimer": "Non è un parere medico. Soglie IMC e formula calorica per adulti."
     }
   },
   "legal": {

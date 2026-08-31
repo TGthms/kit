@@ -1273,7 +1273,9 @@
       "unique": "No repeats",
       "download": "Download list",
       "batch": "Batch",
-      "countHint": "Up to {max} at once."
+      "countHint": "Up to {max} at once.",
+      "record": "Uložit výsledek",
+      "saved": "Uloženo do historie."
     },
     "currency-converter": {
       "name": "Měna converter",
@@ -1713,7 +1715,8 @@
       "kcal": "kcal",
       "healthyWeightValue": "{min}–{max} {unit}",
       "minorBadge": "Pod 18",
-      "minorNote": "Dospělé prahy BMI a kalorický vzorec Mifflin-St Jeor. Dětské BMI se obvykle čte z růstových křivek."
+      "minorNote": "Dospělé prahy BMI a kalorický vzorec Mifflin-St Jeor. Dětské BMI se obvykle čte z růstových křivek.",
+      "disclaimer": "Nejde o lékařskou radu. Prahy BMI a kalorický vzorec pro dospělé."
     }
   },
   "legal": {

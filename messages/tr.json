@@ -1273,7 +1273,9 @@
       "unique": "No repeats",
       "download": "Download list",
       "batch": "Batch",
-      "countHint": "Up to {max} at once."
+      "countHint": "Up to {max} at once.",
+      "record": "Sonucu kaydet",
+      "saved": "Geçmişe kaydedildi."
     },
     "currency-converter": {
       "name": "Para birimi converter",
@@ -1713,7 +1715,8 @@
       "kcal": "kcal",
       "healthyWeightValue": "{min}–{max} {unit}",
       "minorBadge": "18 yaş altı",
-      "minorNote": "Yetişkin BKİ eşikleri ve Mifflin-St Jeor kalori formülü. Çocuk BKİ’si genellikle büyüme eğrilerine göre okunur."
+      "minorNote": "Yetişkin BKİ eşikleri ve Mifflin-St Jeor kalori formülü. Çocuk BKİ’si genellikle büyüme eğrilerine göre okunur.",
+      "disclaimer": "Tıbbi tavsiye değildir. Yetişkin BKİ eşikleri ve kalori formülü."
     }
   },
   "legal": {

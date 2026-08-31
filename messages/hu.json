@@ -1273,7 +1273,9 @@
       "unique": "No repeats",
       "download": "Download list",
       "batch": "Batch",
-      "countHint": "Up to {max} at once."
+      "countHint": "Up to {max} at once.",
+      "record": "Eredmény mentése",
+      "saved": "Mentve az előzményekbe."
     },
     "currency-converter": {
       "name": "Pénznem converter",
@@ -1713,7 +1715,8 @@
       "kcal": "kcal",
       "healthyWeightValue": "{min}–{max} {unit}",
       "minorBadge": "18 alatt",
-      "minorNote": "Felnőtt BMI-határok és a Mifflin-St Jeor kalóriaformula. A gyerek-BMI-t általában növekedési görbéhez viszonyítják."
+      "minorNote": "Felnőtt BMI-határok és a Mifflin-St Jeor kalóriaformula. A gyerek-BMI-t általában növekedési görbéhez viszonyítják.",
+      "disclaimer": "Nem orvosi tanács. Felnőtt BMI-határok és kalóriaformula."
     }
   },
   "legal": {

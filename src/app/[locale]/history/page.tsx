@@ -10,6 +10,8 @@ import { PageHeader } from "@/components/layout/page-header";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Switch } from "@/components/ui/switch";
+import { PageLoader } from "@/components/shared/page-loader";
+import { useHydrated } from "@/lib/react/hydrated";
 
 export default function HistoryPage() {
   const t = useTranslations("history");
@@ -20,6 +22,7 @@ export default function HistoryPage() {
   const clear = useHistoryStore((s) => s.clear);
   const enabled = useHistoryStore((s) => s.enabled);
   const setEnabled = useHistoryStore((s) => s.setEnabled);
+  const hydrated = useHydrated();
 
   const visible = useMemo(
     () =>
@@ -64,7 +67,9 @@ export default function HistoryPage() {
         </CardContent>
       </Card>
 
-      {visible.length === 0 ? (
+      {!hydrated ? (
+        <PageLoader />
+      ) : visible.length === 0 ? (
         <p className="type-body text-muted-foreground">{t("empty")}</p>
       ) : (
         <ul className="space-y-2">

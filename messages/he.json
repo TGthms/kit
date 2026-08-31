@@ -1273,7 +1273,9 @@
       "unique": "No repeats",
       "download": "Download list",
       "batch": "Batch",
-      "countHint": "Up to {max} at once."
+      "countHint": "Up to {max} at once.",
+      "record": "שמירת התוצאה",
+      "saved": "נשמר בהיסטוריה."
     },
     "currency-converter": {
       "name": "מטבע converter",
@@ -1713,7 +1715,8 @@
       "kcal": "kcal",
       "healthyWeightValue": "{min}–{max} {unit}",
       "minorBadge": "מתחת ל־18",
-      "minorNote": "ספי BMI למבוגרים ונוסחת הקלוריות Mifflin-St Jeor. BMI של ילדים נקרא בדרך כלל מול עקומות גדילה."
+      "minorNote": "ספי BMI למבוגרים ונוסחת הקלוריות Mifflin-St Jeor. BMI של ילדים נקרא בדרך כלל מול עקומות גדילה.",
+      "disclaimer": "אין זה ייעוץ רפואי. ספי BMI ונוסחת קלוריות למבוגרים."
     }
   },
   "legal": {

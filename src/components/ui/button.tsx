@@ -10,9 +10,8 @@ const buttonVariants = cva(
     "disabled:pointer-events-none disabled:opacity-50",
     "[&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
     /* Instant press response (pointer-down), not wait-for-click */
-    "transition-[transform,background-color,box-shadow,color,opacity] duration-100 ease-out",
-    "active:scale-[0.97]",
-    "motion-reduce:active:scale-100 motion-reduce:transition-none",
+    "transition-[background-color,box-shadow,color,opacity] duration-100 ease-out",
+    "motion-reduce:transition-none",
   ].join(" "),
   {
     variants: {
@@ -26,7 +25,7 @@ const buttonVariants = cva(
         ghost: "hover:bg-accent hover:text-accent-foreground active:bg-accent/70",
         destructive:
           "bg-destructive text-destructive-foreground hover:bg-destructive/90 active:bg-destructive/85",
-        link: "text-primary underline-offset-4 hover:underline active:scale-100",
+        link: "text-primary underline-offset-4 hover:underline",
       },
       size: {
         default: "h-10 px-4 py-2",

@@ -18,7 +18,7 @@ import {
 } from "lucide-react";
 import { tools, categories, featuredCategoryIds, featuredToolIds, groupedTools, type ToolCategory, type ToolId } from "@/lib/tools/registry";
 import { homeHref, parseCategoryParam, toolHref } from "@/lib/navigation/routes";
-import { Link, useRouter } from "@/lib/i18n/navigation";
+import { Link } from "@/lib/i18n/navigation";
 import { Input } from "@/components/ui/input";
 import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { PageHeader } from "@/components/layout/page-header";
@@ -155,7 +155,6 @@ function HomePageInner() {
   const tcommon = useTranslations("common");
   const tt = useTranslations("tools");
   const tn = useTranslations("nav");
-  const router = useRouter();
   const searchParams = useSearchParams();
   const selectedCat = parseCategoryParam(searchParams.get("c"));
   const [q, setQ] = useState("");
@@ -185,13 +184,6 @@ function HomePageInner() {
 
   const favIds = useFavoritesStore((s) => s.ids);
   const toggle = useFavoritesStore((s) => s.toggle);
-
-  const openCategory = useCallback(
-    (c: ToolCategory) => {
-      router.push(homeHref(c));
-    },
-    [router]
-  );
 
   const query = q.trim().toLowerCase();
   const isSearching = query.length > 0;
@@ -253,6 +245,7 @@ function HomePageInner() {
               value={q}
               onChange={(e) => setQ(e.target.value)}
               placeholder={tn("searchPlaceholder")}
+              aria-label={tn("searchPlaceholder")}
               className="h-11 rounded-[14px] border-border/40 bg-card/95 ps-11 pe-4 surface-float sm:h-12 sm:rounded-2xl"
               autoComplete="off"
               enterKeyHint="search"
@@ -351,16 +344,14 @@ function HomePageInner() {
               const Icon = meta.icon;
               const count = tools.filter((x) => x.category === c).length;
               return (
-                <button
+                <Link
                   key={c}
-                  type="button"
-                  data-navigation-intent
+                  href={homeHref(c)}
                   data-pressable
-                  onClick={() => openCategory(c)}
                   style={{ animationDelay: `${index * 40}ms` }}
                   className={cn(
-                    "anim-list-item group rounded-[1.25rem] border border-border/40 bg-card p-5 text-left surface-float",
-                    "pressable transition-[transform,box-shadow,ring] duration-200",
+                    "anim-list-item group block rounded-[1.25rem] border border-border/40 bg-card p-5 text-left surface-float",
+                    "pressable transition-[box-shadow,ring] duration-200",
                     "hover:surface-float-lg hover:ring-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
                     meta.ring
                   )}
@@ -380,7 +371,7 @@ function HomePageInner() {
                   <p className="mt-3 text-xs font-medium tracking-[-0.01em] text-muted-foreground/90">
                     {t("toolsInCategory", { count })}
                   </p>
-                </button>
+                </Link>
               );
             })}
           </div>
@@ -402,6 +393,7 @@ function HomePageInner() {
               value={q}
               onChange={(e) => setQ(e.target.value)}
               placeholder={tn("searchPlaceholder")}
+              aria-label={tn("searchPlaceholder")}
               className="h-11 rounded-[14px] border-border/40 bg-card/95 ps-11 pe-4 surface-float"
               autoComplete="off"
               enterKeyHint="search"

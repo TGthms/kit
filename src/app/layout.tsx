@@ -46,7 +46,7 @@ export const metadata: Metadata = {
   },
   appleWebApp: {
     capable: true,
-    statusBarStyle: "black-translucent",
+    statusBarStyle: "default",
     title: SITE_NAME,
   },
   openGraph: {
@@ -108,6 +108,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <script
           dangerouslySetInnerHTML={{
             __html: `(function(){try{var d=document.documentElement,p=location.pathname,b=${JSON.stringify(basePath)};if(b&&p.indexOf(b)===0)p=p.slice(b.length);var loc=(p.split("/").filter(Boolean)[0]||"");if(loc==="zh")loc="zh-Hans";var known=${JSON.stringify(locales)};if(known.indexOf(loc)<0)return;d.lang=loc;d.dir=(loc==="ar"||loc==="he")?"rtl":"ltr";}catch(e){}})();`,
+          }}
+        />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var b=${JSON.stringify(basePath)},p=location.pathname;if(b&&p.indexOf(b)===0)p=p.slice(b.length);if(p!=="/"&&p!=="")return;var known=${JSON.stringify(locales)},stored=null;try{stored=localStorage.getItem("kit-locale")}catch(e){}var loc=stored||"";if(loc==="zh")loc="zh-Hans";if(known.indexOf(loc)<0){var nav=(navigator.language||"").toLowerCase().replace(/_/g,"-");if(known.indexOf(nav)>=0)loc=nav;else if(nav==="zh"||nav.indexOf("zh-")===0)loc=/hant|-tw|-hk|-mo/.test(nav)?"zh-Hant":"zh-Hans";else if(nav==="pt"||nav.indexOf("pt-")===0)loc=nav.indexOf("br")>=0?"pt-BR":"pt-PT";else if(nav==="no"||nav.indexOf("no-")===0||nav.indexOf("nb")===0||nav.indexOf("nn")===0)loc="nb";else{var pre=nav.split("-")[0]||"";loc=known.indexOf(pre)>=0?pre:"en"}}location.replace((b||"")+"/"+loc+"/")}catch(e){}})();`,
           }}
         />
       </head>

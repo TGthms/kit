@@ -1273,7 +1273,9 @@
       "unique": "Keine Wiederholung",
       "download": "Liste laden",
       "batch": "Stapel",
-      "countHint": "Bis zu {max} auf einmal."
+      "countHint": "Bis zu {max} auf einmal.",
+      "record": "Ergebnis speichern",
+      "saved": "In der Chronik gespeichert."
     },
     "currency-converter": {
       "name": "Währung converter",
@@ -1713,7 +1715,8 @@
       "kcal": "kcal",
       "healthyWeightValue": "{min}–{max} {unit}",
       "minorBadge": "Unter 18",
-      "minorNote": "BMI-Grenzwerte für Erwachsene und die Mifflin-St-Jeor-Kalorienformel. Kinder-BMI wird üblicherweise über Wachstumskurven gelesen."
+      "minorNote": "BMI-Grenzwerte für Erwachsene und die Mifflin-St-Jeor-Kalorienformel. Kinder-BMI wird üblicherweise über Wachstumskurven gelesen.",
+      "disclaimer": "Keine medizinische Beratung. BMI-Grenzwerte und Kalorienformel für Erwachsene."
     }
   },
   "legal": {

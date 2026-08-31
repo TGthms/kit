@@ -1273,7 +1273,9 @@
       "unique": "No repeats",
       "download": "Download list",
       "batch": "Batch",
-      "countHint": "Up to {max} at once."
+      "countHint": "Up to {max} at once.",
+      "record": "Gem resultat",
+      "saved": "Gemt i historikken."
     },
     "currency-converter": {
       "name": "Valuta converter",
@@ -1713,7 +1715,8 @@
       "kcal": "kcal",
       "healthyWeightValue": "{min}–{max} {unit}",
       "minorBadge": "Under 18",
-      "minorNote": "Voksne BMI-grænser og Mifflin-St Jeor-kalorieformlen. Børne-BMI læses som regel på vækstkurver."
+      "minorNote": "Voksne BMI-grænser og Mifflin-St Jeor-kalorieformlen. Børne-BMI læses som regel på vækstkurver.",
+      "disclaimer": "Ikke lægelig rådgivning. BMI-grænser og kalorieformel for voksne."
     }
   },
   "legal": {

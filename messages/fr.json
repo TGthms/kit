@@ -1273,7 +1273,9 @@
       "unique": "Sans doublon",
       "download": "Télécharger la liste",
       "batch": "Lot",
-      "countHint": "Jusqu’à {max} à la fois."
+      "countHint": "Jusqu’à {max} à la fois.",
+      "record": "Enregistrer le résultat",
+      "saved": "Enregistré dans l’historique."
     },
     "currency-converter": {
       "name": "Devise converter",
@@ -1713,7 +1715,8 @@
       "kcal": "kcal",
       "healthyWeightValue": "{min}–{max} {unit}",
       "minorBadge": "Moins de 18 ans",
-      "minorNote": "Seuils IMC adultes et formule calorique Mifflin-St Jeor. L’IMC de l’enfant se lit d’habitude sur des courbes de croissance."
+      "minorNote": "Seuils IMC adultes et formule calorique Mifflin-St Jeor. L’IMC de l’enfant se lit d’habitude sur des courbes de croissance.",
+      "disclaimer": "Ceci n’est pas un avis médical. Seuils IMC et formule calorique pour adultes."
     }
   },
   "legal": {
