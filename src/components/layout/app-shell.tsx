@@ -65,7 +65,11 @@ function TabBar({ pathname }: { pathname: string }) {
 
   return (
     <FloatingNav aria-label={tb("name")} contentRef={setContainer}>
-      <GlidingPill rect={rect} ready={ready} className="rounded-[1.35rem] bg-primary/12" />
+      <GlidingPill
+        rect={rect}
+        ready={ready}
+        className="gliding-pill-fast rounded-[1.35rem] bg-primary/12"
+      />
       {nav.map(({ href, key, icon: Icon }) => {
         const active = isActive(pathname, href);
         return (

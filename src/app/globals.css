@@ -260,6 +260,11 @@ scritto-flow.kit-scritto-inline {
     height 0.4s var(--ease-glide);
 }
 
+.gliding-pill-fast {
+  transition-duration: 200ms;
+  transition-timing-function: var(--ease-spring);
+}
+
 .gliding-pill:not([data-ready]) {
   opacity: 0;
   transition: none;
