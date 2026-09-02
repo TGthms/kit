@@ -4,7 +4,7 @@ import { useTheme } from "next-themes";
 import { useTranslations } from "next-intl";
 import { Moon, Sun } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { rememberThemeChoice } from "@/components/providers";
+import { rememberThemeChoice, resolveKitTheme } from "@/lib/theme/resolve";
 import { useHydrated } from "@/lib/react/hydrated";
 import { runCircularThemeTransition } from "@/lib/theme/circular-transition";
 
@@ -12,7 +12,7 @@ import { runCircularThemeTransition } from "@/lib/theme/circular-transition";
  * Header control: toggles between light and dark only.
  */
 export function ThemeToggle() {
-  const { resolvedTheme, setTheme } = useTheme();
+  const { resolvedTheme, setTheme, systemTheme } = useTheme();
   const t = useTranslations("common");
   const hydrated = useHydrated();
 
@@ -30,7 +30,15 @@ export function ThemeToggle() {
       className="shrink-0"
       onClick={(event) => {
         const next = isDark ? "light" : "dark";
-        runCircularThemeTransition(next, (theme) => rememberThemeChoice(theme, setTheme), event);
+        const system = systemTheme === "dark" ? "dark" : "light";
+        const resolved = resolveKitTheme(next, system, new Date());
+        // Night / OS-dark force: persist Light without wiping to a light
+        // snapshot that would immediately be forced back to dark.
+        if (resolved === (isDark ? "dark" : "light")) {
+          rememberThemeChoice(next, setTheme);
+          return;
+        }
+        runCircularThemeTransition(resolved, () => rememberThemeChoice(next, setTheme), event);
       }}
       aria-label={isDark ? t("themeLight") : t("themeDark")}
       title={isDark ? t("themeLight") : t("themeDark")}

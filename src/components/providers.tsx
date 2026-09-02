@@ -6,12 +6,9 @@ import { useTranslations } from "next-intl";
 import { Toaster } from "sonner";
 import { PressFeedback } from "@/components/layout/press-feedback";
 import { THEME_COLOR } from "@/lib/theme/circular-transition";
+import { currentSystemTheme, msUntilNextNightBoundary, syncAppliedTheme } from "@/lib/theme/resolve";
 
-type ThemeChoice = "system" | "light" | "dark";
-
-export function rememberThemeChoice(choice: ThemeChoice, setTheme: (theme: ThemeChoice) => void) {
-  setTheme(choice);
-}
+export { rememberThemeChoice } from "@/lib/theme/resolve";
 
 export function Providers({
   children,
@@ -31,6 +28,7 @@ export function Providers({
         enableSystem
         disableTransitionOnChange
       >
+        <ThemePreferenceSync />
         <ThemeColorSync />
         <PressFeedback />
         {children}
@@ -69,6 +67,47 @@ function HtmlLang({ lang, dir }: { lang?: string; dir?: "ltr" | "rtl" }) {
 }
 
 /**
+ * Re-applies the Kit theme policy when the OS appearance changes or the
+ * local clock crosses 22:00 / 05:00. User intent stays in kit-theme-context;
+ * next-themes only stores the value that should actually paint.
+ */
+function ThemePreferenceSync() {
+  const { setTheme } = useTheme();
+
+  useLayoutEffect(() => {
+    const run = () => syncAppliedTheme(setTheme, new Date(), currentSystemTheme());
+    run();
+
+    const media = window.matchMedia("(prefers-color-scheme: dark)");
+    const onSystem = () => run();
+    let unsubscribeMedia = () => {};
+    if (typeof media.addEventListener === "function") {
+      media.addEventListener("change", onSystem);
+      unsubscribeMedia = () => media.removeEventListener("change", onSystem);
+    } else {
+      media.addListener(onSystem);
+      unsubscribeMedia = () => media.removeListener(onSystem);
+    }
+
+    let timer = 0;
+    const arm = () => {
+      timer = window.setTimeout(() => {
+        run();
+        arm();
+      }, msUntilNextNightBoundary(new Date()));
+    };
+    arm();
+
+    return () => {
+      unsubscribeMedia();
+      window.clearTimeout(timer);
+    };
+  }, [setTheme]);
+
+  return null;
+}
+
+/**
  * Keeps <meta name="theme-color"> aligned with the actually-resolved theme
  * (which can be a manual override, not just the OS preference) so the
  * installed PWA's title/status bar always matches the app's own background
@@ -85,5 +124,3 @@ function ThemeColorSync() {
 
   return null;
 }
-
-

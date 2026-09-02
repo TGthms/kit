@@ -10,7 +10,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { SegmentedControl } from "@/components/ui/segmented-control";
 import { useHistoryStore } from "@/stores/history-store";
 import { Switch } from "@/components/ui/switch";
-import { rememberThemeChoice } from "@/components/providers";
+import { rememberThemeChoice, resolveKitTheme } from "@/lib/theme/resolve";
 import { useHydrated } from "@/lib/react/hydrated";
 import { runCircularThemeTransition } from "@/lib/theme/circular-transition";
 
@@ -19,7 +19,7 @@ export default function SettingsPage() {
   const tc = useTranslations("common");
   const th = useTranslations("history");
   const tn = useTranslations("nav");
-  const { resolvedTheme, setTheme } = useTheme();
+  const { resolvedTheme, setTheme, systemTheme } = useTheme();
   const clear = useHistoryStore((s) => s.clear);
   const historyEnabled = useHistoryStore((s) => s.enabled);
   const setHistoryEnabled = useHistoryStore((s) => s.setEnabled);
@@ -40,7 +40,13 @@ export default function SettingsPage() {
               value={appearance}
               aria-label={t("appearance")}
               onChange={(value, event) => {
-                runCircularThemeTransition(value, (theme) => rememberThemeChoice(theme, setTheme), event);
+                const system = systemTheme === "dark" ? "dark" : "light";
+                const resolved = resolveKitTheme(value, system, new Date());
+                if (resolved === appearance) {
+                  rememberThemeChoice(value, setTheme);
+                  return;
+                }
+                runCircularThemeTransition(resolved, () => rememberThemeChoice(value, setTheme), event);
               }}
               options={[
                 { value: "light", label: tc("themeLight") },
