@@ -125,14 +125,26 @@ describe("theme context persistence", () => {
     expect(seedThemeContextIfMissing("dark")).toBe("light");
   });
 
-  it("keeps a light intent while applying dark at night, then restores light in the morning", () => {
+  it("applies an explicit light pick immediately, even when auto policy would force dark", () => {
     const applied: string[] = [];
     const setTheme = (theme: string) => {
       applied.push(theme);
       window.localStorage.setItem(THEME_STORAGE_KEY, theme);
     };
 
-    rememberThemeChoice("light", setTheme, day, "light");
+    rememberThemeChoice("light", setTheme, "dark");
+    expect(applied.at(-1)).toBe("light");
+    expect(JSON.parse(window.localStorage.getItem(THEME_CONTEXT_KEY) ?? "null").choice).toBe("light");
+  });
+
+  it("keeps a light intent while auto-sync forces dark at night, then restores light in the morning", () => {
+    const applied: string[] = [];
+    const setTheme = (theme: string) => {
+      applied.push(theme);
+      window.localStorage.setItem(THEME_STORAGE_KEY, theme);
+    };
+
+    rememberThemeChoice("light", setTheme, "light");
     expect(applied.at(-1)).toBe("light");
     expect(JSON.parse(window.localStorage.getItem(THEME_CONTEXT_KEY) ?? "null").choice).toBe("light");
 

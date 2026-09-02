@@ -10,7 +10,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { SegmentedControl } from "@/components/ui/segmented-control";
 import { useHistoryStore } from "@/stores/history-store";
 import { Switch } from "@/components/ui/switch";
-import { rememberThemeChoice, resolveKitTheme } from "@/lib/theme/resolve";
+import { rememberThemeChoice } from "@/lib/theme/resolve";
 import { useHydrated } from "@/lib/react/hydrated";
 import { runCircularThemeTransition } from "@/lib/theme/circular-transition";
 
@@ -41,12 +41,11 @@ export default function SettingsPage() {
               aria-label={t("appearance")}
               onChange={(value, event) => {
                 const system = systemTheme === "dark" ? "dark" : "light";
-                const resolved = resolveKitTheme(value, system, new Date());
-                if (resolved === appearance) {
-                  rememberThemeChoice(value, setTheme);
+                if (value === appearance) {
+                  rememberThemeChoice(value, setTheme, system);
                   return;
                 }
-                runCircularThemeTransition(resolved, () => rememberThemeChoice(value, setTheme), event);
+                runCircularThemeTransition(value, () => rememberThemeChoice(value, setTheme, system), event);
               }}
               options={[
                 { value: "light", label: tc("themeLight") },

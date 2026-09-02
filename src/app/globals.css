@@ -45,9 +45,9 @@
   --shadow-soft: 0 1px 2px rgba(0, 0, 0, 0.04), 0 8px 24px rgba(0, 0, 0, 0.06);
   --shadow-float: 0 4px 24px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.06);
 
-  /* Mobile tab bar floats above the home indicator; keep clearance in sync. */
-  --floating-tabbar-offset: calc(0.75rem + env(safe-area-inset-bottom, 0px));
-  --floating-tabbar-clearance: calc(5.75rem + env(safe-area-inset-bottom, 0px));
+  /* Mobile tab bar floats just above the home indicator; keep clearance in sync. */
+  --floating-tabbar-offset: calc(0.35rem + env(safe-area-inset-bottom, 0px));
+  --floating-tabbar-clearance: calc(6.25rem + env(safe-area-inset-bottom, 0px));
 
   /* Motion (spring-like ease approximations; critically damped feel) */
   --ease-out-soft: cubic-bezier(0.25, 0.1, 0.25, 1);
@@ -142,7 +142,7 @@ body {
   min-height: 100dvh;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 /* Instant press response (pointer-down feedback) */
@@ -645,13 +645,6 @@ button[data-pressed]:not(:disabled),
     animation: none;
     inset-inline-start: 0;
     width: 42%;
-  }
-}
-
-@media (display-mode: standalone), (display-mode: fullscreen) {
-  html,
-  body {
-    overscroll-behavior: none;
   }
 }
 

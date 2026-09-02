@@ -67,9 +67,10 @@ function HtmlLang({ lang, dir }: { lang?: string; dir?: "ltr" | "rtl" }) {
 }
 
 /**
- * Re-applies the Kit theme policy when the OS appearance changes or the
- * local clock crosses 22:00 / 05:00. User intent stays in kit-theme-context;
- * next-themes only stores the value that should actually paint.
+ * Re-applies the Kit auto theme policy when the OS appearance changes or the
+ * local clock crosses 22:00 / 05:00. A live Light/Dark tap is not blocked;
+ * this only runs on those automatic events. User intent stays in
+ * kit-theme-context; next-themes stores the value that should actually paint.
  */
 function ThemePreferenceSync() {
   const { setTheme } = useTheme();

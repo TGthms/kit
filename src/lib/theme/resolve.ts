@@ -4,8 +4,10 @@
  * - Default is System.
  * - OS light + daytime: a manual Light or Dark choice is honored.
  * - OS dark, or local night (22:00–04:59, same window as the home greeting):
- *   follow System (dark when the OS is dark); keep a Dark choice; force Dark
- *   even if the user picked Light.
+ *   follow System by default (dark when the OS is dark); keep a Dark choice;
+ *   auto-apply Dark even if the stored intent is Light.
+ * - A Light/Dark tap always paints that appearance immediately. Auto policy
+ *   re-applies on boot, OS appearance change, and the 22:00 / 05:00 boundary.
  *
  * User intent is stored in `kit-theme-context`. next-themes' `theme` key holds
  * the value that should actually be applied, so its blocking script cannot
@@ -133,14 +135,17 @@ export function readThemeChoice(): ThemeChoice {
   return readThemeContext()?.choice ?? readStoredTheme();
 }
 
+/**
+ * Apply a user pick immediately (Light or Dark always paints as chosen).
+ * Intent is still stored so boot / night / OS-dark sync can force Dark later.
+ */
 export function rememberThemeChoice(
   choice: ThemeChoice,
   setTheme: (theme: string) => void,
-  date = new Date(),
   system = currentSystemTheme(),
 ) {
   writeThemeContext({ choice, system });
-  setTheme(nextThemesValue(choice, system, date));
+  setTheme(choice);
 }
 
 export function syncAppliedTheme(

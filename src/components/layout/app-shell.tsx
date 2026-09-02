@@ -65,7 +65,7 @@ function TabBar({ pathname }: { pathname: string }) {
 
   return (
     <FloatingNav aria-label={tb("name")} contentRef={setContainer}>
-      <GlidingPill rect={rect} ready={ready} className="rounded-full bg-primary/12" />
+      <GlidingPill rect={rect} ready={ready} className="rounded-[1.35rem] bg-primary/12" />
       {nav.map(({ href, key, icon: Icon }) => {
         const active = isActive(pathname, href);
         return (
@@ -76,7 +76,7 @@ function TabBar({ pathname }: { pathname: string }) {
             data-restore-scroll
             aria-current={active ? "page" : undefined}
             className={cn(
-              "pressable-soft relative z-10 flex min-h-[3.25rem] min-w-0 flex-1 flex-col items-center justify-center gap-0.5 px-1 py-1",
+              "pressable-soft relative z-10 flex min-h-[3.6rem] min-w-0 flex-1 flex-col items-center justify-center gap-0.5 px-1 py-1",
               "text-[11px] font-medium tracking-[-0.01em]",
               active ? "text-primary" : "text-muted-foreground"
             )}
@@ -86,9 +86,9 @@ function TabBar({ pathname }: { pathname: string }) {
                 if (active && el) setTarget(el);
               }}
               aria-hidden
-              className="pointer-events-none absolute inset-x-0.5 inset-y-0.5 rounded-full"
+              className="pointer-events-none absolute inset-x-1 inset-y-1 rounded-[1.35rem]"
             />
-            <Icon className={cn("relative h-5 w-5", active && "stroke-[2.25]")} />
+            <Icon className={cn("relative h-[22px] w-[22px]", active && "stroke-[2.25]")} />
             <span className="relative max-w-full truncate">{t(key)}</span>
           </Link>
         );

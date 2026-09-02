@@ -35,7 +35,7 @@ export function FloatingNav({
             ref={contentRef}
             className={cn(
               "glass-heavy chrome-touch floating-nav-face relative flex items-stretch justify-around",
-              "overflow-hidden rounded-full border px-1 py-1",
+              "overflow-hidden rounded-full border px-1.5 py-1.5",
               contentClassName
             )}
           >
