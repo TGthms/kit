@@ -50,7 +50,7 @@ Kit 是一套在本地运行的实用工具：PDF、图片、音视频、格式�
 
 ## 产品定位
 
-一套完整、好用的工具站：布局清晰，支持浅色/深色，界面 30 种语言（原生选择器），可安装的 PWA，并对浏览器能力限制进行说明。
+一套完整、好用的工具站：布局清晰，支持浅色/深色，界面 30 种语言（原生选择器），可安装的 PWA，并对浏览器能力给出诚实说明。
 
 ## 界面语言
 
@@ -98,7 +98,7 @@ Kit 是一套在本地运行的实用工具：PDF、图片、音视频、格式�
 
 ## 本地开发
 
-需要 **Node.js 22.13+**（见 `.nvmrc`）。
+需要 **Node.js 24+**（见 `.nvmrc`）。
 
 ```bash
 git clone https://github.com/TGthms/kit.git
@@ -145,7 +145,7 @@ Pages 地址：`https://TGthms.github.io/kit/`
 
 ## 技术栈
 
-Next.js 15（App Router，静态导出）· TypeScript · Tailwind CSS · shadcn 风格 UI · Zustand · next-intl · pdf-lib / PDF.js · Canvas · FFmpeg WASM · PWA Service Worker
+Next.js 16（App Router，静态导出）· TypeScript · Tailwind CSS · shadcn 风格 UI · Zustand · next-intl · @cantoo/pdf-lib / PDF.js · Canvas · FFmpeg WASM · PWA Service Worker
 
 ## 许可证
 

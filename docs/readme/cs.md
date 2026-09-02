@@ -98,7 +98,7 @@ Domovská obrazovka seskupuje nástroje podle úlohy (stránky PDF, data, vývoj
 
 ## Místní vývoj
 
-Požadavky: **Node.js 22.13+** (viz `.nvmrc`).
+Požadavky: **Node.js 24+** (viz `.nvmrc`).
 
 ```bash
 git clone https://github.com/TGthms/kit.git
@@ -145,7 +145,7 @@ Kanonický web: `https://trykit.pages.dev`
 
 ## Technologie
 
-Next.js 15 (App Router, statický export) · TypeScript · Tailwind CSS · UI ve stylu shadcn · Zustand · next-intl · pdf-lib / PDF.js · Canvas · FFmpeg WASM · PWA service worker
+Next.js 16 (App Router, statický export) · TypeScript · Tailwind CSS · UI ve stylu shadcn · Zustand · next-intl · @cantoo/pdf-lib / PDF.js · Canvas · FFmpeg WASM · PWA service worker
 
 ## Licence
 

@@ -98,7 +98,7 @@ Kit — набір інструментів для PDF, зображень, ме
 
 ## Локальна розробка
 
-Вимоги: **Node.js 22.13+** (див. `.nvmrc`).
+Вимоги: **Node.js 24+** (див. `.nvmrc`).
 
 ```bash
 git clone https://github.com/TGthms/kit.git
@@ -145,7 +145,7 @@ NEXT_PUBLIC_BASE_PATH=/kit npm run build
 
 ## Стек
 
-Next.js 15 (App Router, статичне вивантаження) · TypeScript · Tailwind CSS · UI в стилі shadcn · Zustand · next-intl · pdf-lib / PDF.js · Canvas · FFmpeg WASM · service worker PWA
+Next.js 16 (App Router, статичне вивантаження) · TypeScript · Tailwind CSS · UI в стилі shadcn · Zustand · next-intl · @cantoo/pdf-lib / PDF.js · Canvas · FFmpeg WASM · service worker PWA
 
 ## Ліцензія
 

@@ -17,4 +17,10 @@ describe("fileMatchesAccept", () => {
     expect(fileMatchesAccept(file("a.webp", ""), "image/*")).toBe(true);
     expect(fileMatchesAccept(file("a.pdf", "application/pdf"), "image/*")).toBe(false);
   });
+
+  it("accepts audio and video by extension when MIME is empty", () => {
+    expect(fileMatchesAccept(file("clip.mp4", ""), "video/*")).toBe(true);
+    expect(fileMatchesAccept(file("song.m4a", ""), "audio/*")).toBe(true);
+    expect(fileMatchesAccept(file("song.m4a", ""), "video/*")).toBe(false);
+  });
 });

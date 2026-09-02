@@ -10,6 +10,12 @@ export function fileMatchesAccept(file: File, accept?: string): boolean {
       if (part === "image/*") {
         return /\.(png|jpe?g|gif|webp|bmp|heic|tiff?)$/.test(name);
       }
+      if (part === "audio/*") {
+        return /\.(mp3|wav|wave|ogg|oga|flac|aac|m4a|opus|weba|aiff?)$/.test(name);
+      }
+      if (part === "video/*") {
+        return /\.(mp4|webm|mov|mkv|avi|m4v|ogv|gif)$/.test(name);
+      }
       return false;
     }
     if (part.startsWith(".")) return name.endsWith(part);

@@ -14,7 +14,7 @@ import { downloadBlob, downloadText, downloadMany, bytesToBlob } from "@/lib/uti
 import JSZip from "jszip";
 import { Progress } from "@/components/ui/progress";
 import { runSequentialBatch, stemmedName } from "@/lib/jobs/batch";
-import { ActionBar, DownloadResult, ToolLimits, ToolShell, useToolHistory, loadPdfjs } from "./shared";
+import { ActionBar, DownloadResult, ToolLimits, ToolShell, useToolHistory, useToolJob, loadPdfjs } from "./shared";
 import { mergePdfs, splitPdf, organizePdf, watermarkPdf, coverPdfContent, getPdfPageCount } from "@/lib/pdf/core";
 import { replaceObjectUrlRecord, revokeObjectUrls } from "@/lib/files/object-url";
 import { PdfCoverEditor, type CoverBox } from "./pdf-cover-editor";
@@ -51,15 +51,14 @@ export function PdfMerge() {
     }
     try {
       const { renderPdfThumbnail } = await loadPdfjs();
-      const rendered = await Promise.all(
-        items.map(async (item) => {
-          try {
-            return { id: item.id, url: await renderPdfThumbnail(await item.file.arrayBuffer()) };
-          } catch {
-            return null;
-          }
-        })
-      );
+      const { runPooled } = await import("@/lib/jobs/batch");
+      const rendered = await runPooled(items, 3, async (item) => {
+        try {
+          return { id: item.id, url: await renderPdfThumbnail(await item.file.arrayBuffer()) };
+        } catch {
+          return null;
+        }
+      });
       const next = Object.fromEntries(
         rendered
           .filter((item): item is { id: string; url: string } => Boolean(item))
@@ -209,16 +208,16 @@ export function PdfOrganize() {
       setDeleted(new Set());
       if (n <= 24) {
         const { renderPdfThumbnail } = await loadPdfjs();
-        const entries = await Promise.all(
-          Array.from({ length: n }, async (_, i) => {
-            try {
-              const url = await renderPdfThumbnail(buffer.slice(0), i + 1, 0.28);
-              return [i, url] as const;
-            } catch {
-              return null;
-            }
-          })
-        );
+        const { runPooled } = await import("@/lib/jobs/batch");
+        const pages = Array.from({ length: n }, (_, i) => i);
+        const entries = await runPooled(pages, 3, async (i) => {
+          try {
+            const url = await renderPdfThumbnail(buffer.slice(0), i + 1, 0.28);
+            return [i, url] as const;
+          } catch {
+            return null;
+          }
+        });
         const next = Object.fromEntries(entries.filter(Boolean) as Array<readonly [number, string]>);
         if (gen !== thumbsGen.current) {
           revokeObjectUrls(Object.values(next));
@@ -343,17 +342,12 @@ export function PdfCompress() {
   const log = useToolHistory("pdf-compress");
   const [files, setFiles] = useState<FileItem[]>([]);
   const [quality, setQuality] = useState(0.65);
-  const [loading, setLoading] = useState(false);
-  const [progress, setProgress] = useState(0);
-  const [controller, setController] = useState<AbortController | null>(null);
+  const job = useToolJob();
   const [result, setResult] = useState<{ blob: Blob; name: string } | null>(null);
 
   const run = async () => {
     if (!files.length) return;
-    const ac = new AbortController();
-    setController(ac);
-    setLoading(true);
-    setProgress(0);
+    const ac = job.start();
     try {
       const { compressPdfLossy } = await loadPdfjs();
       const items = await runSequentialBatch(
@@ -362,7 +356,7 @@ export function PdfCompress() {
           const out = await compressPdfLossy(await f.file.arrayBuffer(), quality, 1.2, {
             signal: ac.signal,
             onProgress: (pageRatio) =>
-              setProgress(Math.round(((index + pageRatio) / files.length) * 100)),
+              job.setProgress(Math.round(((index + pageRatio) / files.length) * 100)),
           });
           return {
             blob: bytesToBlob(out, "application/pdf"),
@@ -380,8 +374,7 @@ export function PdfCompress() {
       else toast.error(e instanceof Error ? e.message : tc("error"));
       log("failed", "failed");
     } finally {
-      setLoading(false);
-      setController(null);
+      job.stop();
     }
   };
 
@@ -397,13 +390,13 @@ export function PdfCompress() {
         </Label>
         <Slider value={[quality]} min={0.3} max={0.95} step={0.05} onValueChange={(v) => setQuality(v[0])} />
       </div>
-      {loading && <Progress value={progress} />}
+      {job.loading && <Progress value={job.progress} />}
       <ActionBar
         onRun={run}
-        loading={loading}
+        loading={job.loading}
         label={t("run")}
         disabled={!files.length}
-        onCancel={() => controller?.abort()}
+        onCancel={job.cancel}
       />
       <DownloadResult file={result} />
     </ToolShell>
@@ -418,16 +411,11 @@ export function PdfWatermark() {
   const [text, setText] = useState("CONFIDENTIAL");
   const [position, setPosition] = useState<"header" | "footer" | "center">("center");
   const [opacity, setOpacity] = useState(0.25);
-  const [loading, setLoading] = useState(false);
-  const [progress, setProgress] = useState(0);
-  const [controller, setController] = useState<AbortController | null>(null);
+  const job = useToolJob();
 
   const run = async () => {
     if (!files.length) return;
-    const ac = new AbortController();
-    setController(ac);
-    setLoading(true);
-    setProgress(0);
+    const ac = job.start();
     try {
       const items = await runSequentialBatch(
         files,
@@ -438,7 +426,7 @@ export function PdfWatermark() {
             name: stemmedName(f.file.name, "-watermarked", "pdf"),
           };
         },
-        { signal: ac.signal, onProgress: (r) => setProgress(Math.round(r * 100)) }
+        { signal: ac.signal, onProgress: (r) => job.setProgress(Math.round(r * 100)) }
       );
       await downloadMany(items, "watermarked-pdfs.zip");
       toast.success(t("success"));
@@ -448,8 +436,7 @@ export function PdfWatermark() {
       else toast.error(e instanceof Error ? e.message : tc("error"));
       log("failed", "failed");
     } finally {
-      setLoading(false);
-      setController(null);
+      job.stop();
     }
   };
 
@@ -480,13 +467,13 @@ export function PdfWatermark() {
         </Label>
         <Slider value={[opacity]} min={0.05} max={0.8} step={0.05} onValueChange={(v) => setOpacity(v[0])} />
       </div>
-      {loading && <Progress value={progress} />}
+      {job.loading && <Progress value={job.progress} />}
       <ActionBar
         onRun={run}
-        loading={loading}
+        loading={job.loading}
         label={t("run")}
         disabled={!files.length || !text}
-        onCancel={() => controller?.abort()}
+        onCancel={job.cancel}
       />
     </ToolShell>
   );

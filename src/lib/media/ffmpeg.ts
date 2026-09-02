@@ -1,9 +1,12 @@
 import { FFmpeg } from "@ffmpeg/ffmpeg";
 import { toBlobURL } from "@ffmpeg/util";
+import { withBasePath } from "@/lib/base-path";
 
 let ffmpeg: FFmpeg | null = null;
 let loading: Promise<FFmpeg> | null = null;
+let inFlight: FFmpeg | null = null;
 let progressHandler: ((event: { progress: number }) => void) | null = null;
+const coreBlobUrls: string[] = [];
 
 export const AUDIO_FORMATS = ["mp3", "wav", "ogg", "aac", "flac", "m4a"] as const;
 export const VIDEO_FORMATS = ["mp4", "webm", "gif", "mov", "mkv"] as const;
@@ -89,17 +92,33 @@ export function gifClipArgs(input: string, output: string, start: string, end: s
   ];
 }
 
-export function cancelFFmpeg() {
-  if (ffmpeg) {
+function revokeCoreBlobs() {
+  for (const url of coreBlobUrls) {
     try {
-      ffmpeg.terminate();
+      URL.revokeObjectURL(url);
     } catch {
-      /* already dead */
+      /* already revoked */
     }
   }
+  coreBlobUrls.length = 0;
+}
+
+function terminateInstance(instance: FFmpeg | null) {
+  if (!instance) return;
+  try {
+    instance.terminate();
+  } catch {
+    /* already dead */
+  }
+}
+
+export function cancelFFmpeg() {
+  terminateInstance(ffmpeg ?? inFlight);
   ffmpeg = null;
+  inFlight = null;
   loading = null;
   progressHandler = null;
+  revokeCoreBlobs();
 }
 
 export async function getFFmpeg(onProgress?: (ratio: number) => void): Promise<FFmpeg> {
@@ -108,6 +127,9 @@ export async function getFFmpeg(onProgress?: (ratio: number) => void): Promise<F
       if (progressHandler) ffmpeg.off("progress", progressHandler);
       progressHandler = ({ progress }) => onProgress(progress);
       ffmpeg.on("progress", progressHandler);
+    } else if (progressHandler) {
+      ffmpeg.off("progress", progressHandler);
+      progressHandler = null;
     }
     return ffmpeg;
   }
@@ -115,21 +137,29 @@ export async function getFFmpeg(onProgress?: (ratio: number) => void): Promise<F
 
   loading = (async () => {
     const instance = new FFmpeg();
+    inFlight = instance;
     if (onProgress) {
       progressHandler = ({ progress }) => onProgress(progress);
       instance.on("progress", progressHandler);
     }
-    const base = "https://cdn.jsdelivr.net/npm/@ffmpeg/core@0.12.10/dist/umd";
-    await instance.load({
-      coreURL: await toBlobURL(`${base}/ffmpeg-core.js`, "text/javascript"),
-      wasmURL: await toBlobURL(`${base}/ffmpeg-core.wasm`, "application/wasm"),
-    });
+    const base = `${window.location.origin}${withBasePath("/vendor/ffmpeg")}`;
+    const coreURL = await toBlobURL(`${base}/ffmpeg-core.js`, "text/javascript");
+    const wasmURL = await toBlobURL(`${base}/ffmpeg-core.wasm`, "application/wasm");
+    coreBlobUrls.push(coreURL, wasmURL);
+    await instance.load({ coreURL, wasmURL });
     ffmpeg = instance;
+    inFlight = null;
     return instance;
   })();
 
   try {
     return await loading;
+  } catch (error) {
+    terminateInstance(inFlight);
+    inFlight = null;
+    ffmpeg = null;
+    revokeCoreBlobs();
+    throw error;
   } finally {
     loading = null;
   }
@@ -151,7 +181,10 @@ export async function transcodeOnFFmpeg(
 ): Promise<Uint8Array> {
   try {
     await ff.writeFile(inputName, inputData);
-    await ff.exec(args);
+    const code = await ff.exec(args);
+    if (typeof code === "number" && code !== 0) {
+      throw new Error(`FFmpeg exited with code ${code}`);
+    }
     const data = await ff.readFile(outputName);
     return typeof data === "string" ? new TextEncoder().encode(data) : data;
   } finally {
@@ -173,7 +206,10 @@ export async function runFFmpeg(
   signal?.addEventListener("abort", onAbort);
   try {
     const ff = await getFFmpeg(onProgress);
-    if (signal?.aborted) throw new DOMException("Aborted", "AbortError");
+    if (signal?.aborted) {
+      cancelFFmpeg();
+      throw new DOMException("Aborted", "AbortError");
+    }
     return await transcodeOnFFmpeg(ff, inputName, inputData, outputName, args);
   } finally {
     signal?.removeEventListener("abort", onAbort);

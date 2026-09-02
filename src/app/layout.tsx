@@ -94,26 +94,26 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           content={
             process.env.NODE_ENV === "development"
               ? CONTENT_SECURITY_POLICY.replace(
-                  "script-src 'self' 'unsafe-inline'",
-                  "script-src 'self' 'unsafe-inline' 'unsafe-eval'"
+                  "script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval'",
+                  "script-src 'self' 'unsafe-inline' 'unsafe-eval' 'wasm-unsafe-eval'"
                 )
               : CONTENT_SECURITY_POLICY
           }
         />
+        {/* Sync on purpose: theme/lang/locale-gate must run before first paint. */}
+        {/* eslint-disable-next-line @next/next/no-sync-scripts */}
+        <script src={withBasePath("/boot/theme.js")} />
+        {/* eslint-disable-next-line @next/next/no-sync-scripts */}
         <script
-          dangerouslySetInnerHTML={{
-            __html: `(function(){try{var d=document.documentElement,s=localStorage.getItem("theme")||"system",t=s==="system"?(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"):s;if(t==="dark"){d.classList.add("dark");d.style.colorScheme="dark";}else{d.classList.remove("dark");d.style.colorScheme="light";}var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute("content",t==="dark"?"#000000":"#f5f5f7");}catch(e){}})();`,
-          }}
+          src={withBasePath("/boot/locale-lang.js")}
+          data-base-path={basePath}
+          data-locales={locales.join(",")}
         />
+        {/* eslint-disable-next-line @next/next/no-sync-scripts */}
         <script
-          dangerouslySetInnerHTML={{
-            __html: `(function(){try{var d=document.documentElement,p=location.pathname,b=${JSON.stringify(basePath)};if(b&&p.indexOf(b)===0)p=p.slice(b.length);var loc=(p.split("/").filter(Boolean)[0]||"");if(loc==="zh")loc="zh-Hans";var known=${JSON.stringify(locales)};if(known.indexOf(loc)<0)return;d.lang=loc;d.dir=(loc==="ar"||loc==="he")?"rtl":"ltr";}catch(e){}})();`,
-          }}
-        />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `(function(){try{var b=${JSON.stringify(basePath)},p=location.pathname;if(b&&p.indexOf(b)===0)p=p.slice(b.length);if(p!=="/"&&p!=="")return;var known=${JSON.stringify(locales)},stored=null;try{stored=localStorage.getItem("kit-locale")}catch(e){}var loc=stored||"";if(loc==="zh")loc="zh-Hans";if(known.indexOf(loc)<0){var nav=(navigator.language||"").toLowerCase().replace(/_/g,"-");if(known.indexOf(nav)>=0)loc=nav;else if(nav==="zh"||nav.indexOf("zh-")===0)loc=/hant|-tw|-hk|-mo/.test(nav)?"zh-Hant":"zh-Hans";else if(nav==="pt"||nav.indexOf("pt-")===0)loc=nav.indexOf("br")>=0?"pt-BR":"pt-PT";else if(nav==="no"||nav.indexOf("no-")===0||nav.indexOf("nb")===0||nav.indexOf("nn")===0)loc="nb";else{var pre=nav.split("-")[0]||"";loc=known.indexOf(pre)>=0?pre:"en"}}location.replace((b||"")+"/"+loc+"/")}catch(e){}})();`,
-          }}
+          src={withBasePath("/boot/locale-gate.js")}
+          data-base-path={basePath}
+          data-locales={locales.join(",")}
         />
       </head>
       <body>{children}</body>

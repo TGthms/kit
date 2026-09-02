@@ -33,11 +33,11 @@ Anda dapat menghapus riwayat di Pengaturan atau menghapus data situs ini di brow
 
 ### 2. Log jaringan dan hosting
 
-Kit biasanya di-host sebagai file statis (misalnya di GitHub Pages). Saat browser Anda meminta halaman dan aset, host dapat secara otomatis mencatat data teknis standar seperti alamat IP, user agent, stempel waktu, dan URL yang diminta. Pencatatan tersebut dikendalikan oleh infrastruktur dan kebijakan host — bukan oleh server Kit yang membuka dokumen Anda.
+Kit biasanya di-host sebagai file statis di **Cloudflare Pages** (situs kanonis: trykit.pages.dev), dengan cadangan GitHub Pages. Saat browser Anda meminta halaman dan aset, host dapat secara otomatis mencatat data teknis standar seperti alamat IP, user agent, stempel waktu, dan URL yang diminta. Pencatatan tersebut dikendalikan oleh infrastruktur dan kebijakan host — bukan oleh server Kit yang membuka dokumen Anda.
 
 ### 3. Sumber daya pihak ketiga opsional
 
-Beberapa fitur lanjutan dapat memuat pustaka pemrosesan (misalnya inti FFmpeg WebAssembly atau skrip PDF worker) dari jaringan pengiriman konten saat pertama kali Anda menggunakannya. Permintaan tersebut dapat mengekspos metadata jaringan standar kepada CDN. Isi file Anda tetap diproses di browser; CDN menyediakan kode, bukan dokumen Anda.
+Alat PDF memuat worker pdf.js, font, dan aset terkait **dari situs ini** (disertakan dengan aplikasi). Alat audio dan video memuat mesin FFmpeg WebAssembly **dari situs ini**. Isi file Anda tetap di browser; pustaka itu adalah kode aplikasi, bukan tempat kami mengirim dokumen Anda.
 
 ### 4. Kurs mata uang
 

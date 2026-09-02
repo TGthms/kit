@@ -1,6 +1,6 @@
 # Politique de confidentialité
 
-**Dernière mise à jour :** 15 juillet 2026
+**Dernière mise à jour :** September 1, 2026
 
 Cette politique décrit la manière dont les informations sont traitées lorsque vous utilisez **Kit**, un ensemble d'utilitaires publié sous la forme d'un site web statique et conçu pour fonctionner dans votre navigateur.
 
@@ -33,11 +33,11 @@ Vous pouvez effacer l'historique dans les paramètres ou supprimer les données 
 
 ### 2. Journaux réseau et d'hébergement
 
-Kit est généralement hébergé sous forme de fichiers statiques (par exemple sur GitHub Pages). Lorsque votre navigateur demande des pages et des ressources, l'hébergeur peut enregistrer des données techniques standard telles que l'adresse IP, l'agent utilisateur, les horodatages et les URL demandées. Ces journaux sont régis par l'infrastructure et les politiques de l'hébergeur, et non par un serveur Kit qui ouvre vos documents.
+Kit est généralement hébergé sous forme de fichiers statiques sur **Cloudflare Pages** (site canonique : trykit.pages.dev), avec une copie de secours sur GitHub Pages. Lorsque votre navigateur demande des pages et des ressources, l'hébergeur peut enregistrer des données techniques standard telles que l'adresse IP, l'agent utilisateur, les horodatages et les URL demandées. Ces journaux sont régis par l'infrastructure et les politiques de l'hébergeur, et non par un serveur Kit qui ouvre vos documents.
 
 ### 3. Ressources tierces facultatives
 
-Certaines fonctions avancées peuvent charger des bibliothèques de traitement (par exemple des cœurs FFmpeg WebAssembly ou des scripts worker pour PDF) depuis des réseaux de diffusion de contenu la première fois que vous les utilisez. Ces requêtes peuvent transmettre des métadonnées réseau standard au CDN. Le contenu de vos fichiers reste traité dans le navigateur ; le CDN fournit du code, pas vos documents.
+Les outils PDF chargent le worker pdf.js, les polices et les ressources associées **depuis ce même site** (fournis avec l’application). Les outils audio et vidéo chargent un moteur FFmpeg WebAssembly **depuis ce même site**. Le contenu de vos fichiers reste dans le navigateur ; ces bibliothèques sont du code applicatif, pas un endroit où nous envoyons vos documents.
 
 ### 4. Taux de change
 

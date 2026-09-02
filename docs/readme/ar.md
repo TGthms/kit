@@ -98,7 +98,7 @@ Kit مجموعة أدوات PDF وصور ووسائط وتحويل ونص تعم
 
 ## التطوير المحلي
 
-المتطلبات: **Node.js 22.13+** (انظر `.nvmrc`).
+المتطلبات: **Node.js 24+** (انظر `.nvmrc`).
 
 ```bash
 git clone https://github.com/TGthms/kit.git
@@ -145,7 +145,7 @@ NEXT_PUBLIC_BASE_PATH=/kit npm run build
 
 ## التقنية
 
-Next.js 15 (App Router، تصدير ثابت) · TypeScript · Tailwind CSS · واجهة بأسلوب shadcn · Zustand · next-intl · pdf-lib / PDF.js · Canvas · FFmpeg WASM · عامل خدمة PWA
+Next.js 16 (App Router، تصدير ثابت) · TypeScript · Tailwind CSS · واجهة بأسلوب shadcn · Zustand · next-intl · @cantoo/pdf-lib / PDF.js · Canvas · FFmpeg WASM · عامل خدمة PWA
 
 ## الرخصة
 

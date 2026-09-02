@@ -27,7 +27,7 @@ This file is the active implementation record. Current source is under `src/`, `
 - PDF merge thumbnails are rendered concurrently, while PDF-to-image processing still cleans up PDF.js documents.
 - Images-to-PDF defaults to A4 fit-to-page with margins; the tool can switch to original image size. The engine keeps both modes.
 - The everyday world-clock city list is maintained in `src/lib/converter/cities.ts` and uses IANA time zones through `Intl`.
-- The static app includes an explicit CSP meta policy for same-origin assets plus the documented jsDelivr and Frankfurter origins. SRI is not used for dynamically loaded WASM/blob URLs.
+- The static app includes an explicit CSP meta policy for same-origin assets plus Frankfurter. pdf.js and FFmpeg WASM are vendored under `public/vendor/` (synced on postinstall/prebuild). Kit-owned boot scripts live in `public/boot/`. `'unsafe-inline'` remains because Next.js static export emits inline Flight payloads. Cloudflare `_headers` also sends CSP with `frame-ancestors 'none'`.
 - Mobile tool headers collapse after scrolling to a compact iOS-like back affordance; tool title, description, client-side note, and favorite action are hidden while scrolled.
 - Keyboard shortcuts avoid Cmd/Ctrl bindings that collide with macOS, Windows, and browser commands: `/` focuses search, `R` runs the active tool, `?` opens help, and `Esc` closes help. Cmd/Ctrl+Enter remains available as an optional form-style run gesture.
 - Theme persists in localStorage (`theme`). System is the default. A manual Light choice snaps back to System if the OS appearance later changes.
@@ -64,12 +64,10 @@ Component tests use the browser-like Vitest environment where needed; pure libra
 - Add focused React tests for the remaining high-risk tool flows and accessibility behavior.
 - Consider moving the large everyday tool view into smaller feature modules as more functionality is added.
 - Replace hard-coded file-tool classification with an explicit registry property.
-- Add a CSP HTTP response header at the hosting layer where the deployment platform allows it; the static export currently supplies the policy through `<meta>`.
-- Continue auditing third-party CDN loading and pin versions whenever upstream artifacts change.
+- Hash-based `script-src` (dropping `'unsafe-inline'`) is blocked by Next.js Flight inline scripts on static export.
 
 ### Explicitly deferred
 
 - Client-side OCR.
 - True sanitizing redaction.
-- Replacing pdf.js / FFmpeg CDN engine loads with bundled workers.
 - Usage statistics, shareable presets, and onboarding tours.

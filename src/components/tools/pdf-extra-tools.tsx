@@ -19,7 +19,7 @@ import {
   type PdfMeta,
 } from "@/lib/pdf/core";
 import { lockPdf, unlockPdf } from "@/lib/pdf/protect";
-import { ActionBar, ToolLimits, ToolShell, useToolHistory, loadPdfjs } from "./shared";
+import { ActionBar, ToolLimits, ToolShell, useToolHistory, useToolJob, loadPdfjs } from "./shared";
 import { Progress } from "@/components/ui/progress";
 
 const selectClass =
@@ -92,23 +92,18 @@ export function PdfToImages() {
   const tc = useTranslations("common");
   const log = useToolHistory("pdf-to-images");
   const [files, setFiles] = useState<FileItem[]>([]);
-  const [loading, setLoading] = useState(false);
-  const [progress, setProgress] = useState(0);
-  const [controller, setController] = useState<AbortController | null>(null);
+  const job = useToolJob();
 
   const run = async () => {
     if (!files[0]) return;
-    const ac = new AbortController();
-    setController(ac);
-    setLoading(true);
-    setProgress(0);
+    const ac = job.start();
     try {
       const { renderPdfPagesToBlobs } = await loadPdfjs();
       const blobs = await renderPdfPagesToBlobs(await files[0].file.arrayBuffer(), {
         mime: "image/jpeg",
         scale: 1.6,
         signal: ac.signal,
-        onProgress: (ratio) => setProgress(Math.round(ratio * 100)),
+        onProgress: (ratio) => job.setProgress(Math.round(ratio * 100)),
       });
       const zip = new JSZip();
       blobs.forEach((blob, i) => zip.file(`page-${String(i + 1).padStart(3, "0")}.jpg`, blob));
@@ -120,8 +115,7 @@ export function PdfToImages() {
       else toast.error(e instanceof Error ? e.message : tc("error"));
       log("failed", "failed");
     } finally {
-      setLoading(false);
-      setController(null);
+      job.stop();
     }
   };
 
@@ -131,13 +125,13 @@ export function PdfToImages() {
         <p>{t("limits")}</p>
       </ToolLimits>
       <FileDropzone accept="application/pdf" multiple={false} files={files} onChange={setFiles} />
-      {loading && <Progress value={progress} aria-label={t("run")} />}
+      {job.loading && <Progress value={job.progress} aria-label={t("run")} />}
       <ActionBar
         onRun={run}
-        loading={loading}
+        loading={job.loading}
         label={t("run")}
         disabled={!files[0]}
-        onCancel={() => controller?.abort()}
+        onCancel={job.cancel}
       />
     </ToolShell>
   );

@@ -54,7 +54,7 @@ A complete, polished toolkit: 84 tools, clear layout, light and dark appearance,
 
 ## Languages
 
-The app interface and this GitHub README are available in **30 languages**. Switch in Settings (or the header) with a native picker, or use the links at the top of this file. Translations live in [`docs/readme/`](docs/readme/). Included: English, Español, Français, Deutsch, Italiano, Português (Brasil / Portugal), Nederlands, Dansk, Svenska, Norsk Bokmål, Suomi, Polski, Čeština, Magyar, Română, Ελληνικά, Türkçe, Русский, Українська, العربية, עברית, हिन्दी, ไทย, Tiếng Việt, Bahasa Indonesia, 日本語, 한국어, 简体中文, and 繁體中文. Arabic and Hebrew use right-to-left layout. Privacy and Terms exist for every first-class locale. Old `/zh/` app links still resolve to Simplified Chinese.
+The app interface and this GitHub README are available in **30 languages**. Switch in Settings (or the header) with a native picker, or use the links at the top of this file. Translations live in [`docs/readme/`](docs/readme/). Included: English, Español, Français, Deutsch, Italiano, Português (Brasil / Portugal), Nederlands, Dansk, Svenska, Norsk Bokmål, Suomi, Polski, Čeština, Magyar, Română, Ελληνικά, Türkçe, Русский, Українська, العربية, עברית, हिन्दी, ไทย, Tiếng Việt, Bahasa Indonesia, 日本語, 한국어, 简体中文, and 繁體中文. Arabic and Hebrew use right-to-left layout. Privacy and Terms are localized where we have native legal text; other locales fall back to English. Old `/zh/` app links still resolve to Simplified Chinese.
 
 ## Tools
 
@@ -89,10 +89,6 @@ The home screen groups tools by job (PDF pages vs markup, developer inspect vs e
 - Base64, URL, HTML entities
 - UUID, password generator, QR generate/read
 
-### Everyday
-- World clock, date calculator, tip & split, stopwatch & timer, text counter, random generator
-- BMI & calorie calculator
-
 ## Privacy
 
 - Tools process data **on your device**
@@ -114,13 +110,10 @@ npm run dev
 Open http://localhost:3000 — default locale redirects to `/en/`.
 
 ```bash
+npm run build      # static export → out/
 npm run typecheck
 npm run lint
-npm test
-npm run build      # static export → out/
 ```
-
-Cloudflare Pages (canonical `trykit.pages.dev`) and GitHub Actions (Pages backup) both run typecheck, lint, and tests before deploy.
 
 ### Base path
 

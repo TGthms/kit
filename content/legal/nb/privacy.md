@@ -33,11 +33,11 @@ Du kan tømme historikken i Innstillinger eller slette dataene til dette nettste
 
 ### 2. Nettverks- og hostinglogger
 
-Kit hostes vanligvis som statiske filer (for eksempel på GitHub Pages). Når nettleseren din ber om sider og ressurser, kan verten automatisk logge standard tekniske data som IP-adresse, brukeragent, tidsstempler og forespurte URL-er. Denne loggføringen styres av vertens infrastruktur og retningslinjer — ikke av en Kit-server som åpner dokumentene dine.
+Kit hostes vanligvis som statiske filer på **Cloudflare Pages** (kanonisk nettsted: trykit.pages.dev), med en GitHub Pages-sikkerhetskopi. Når nettleseren din ber om sider og ressurser, kan verten automatisk logge standard tekniske data som IP-adresse, brukeragent, tidsstempler og forespurte URL-er. Denne loggføringen styres av vertens infrastruktur og retningslinjer — ikke av en Kit-server som åpner dokumentene dine.
 
 ### 3. Valgfrie tredjepartsressurser
 
-Enkelte avanserte funksjoner kan laste inn behandlingsbiblioteker (for eksempel FFmpeg WebAssembly-kjerner eller PDF-worker-skript) fra innholdsleveringsnettverk første gang du bruker dem. Disse forespørslene kan eksponere standard nettverksmetadata for CDN-et. Filinnholdet behandles fortsatt i nettleseren; CDN-et leverer kode, ikke dokumentene dine.
+PDF-verktøy laster pdf.js-workeren, skrifter og relaterte filer **fra dette nettstedet** (levert med appen). Lyd- og videoverktøy laster en FFmpeg WebAssembly-motor **fra dette nettstedet**. Filinnholdet blir i nettleseren; bibliotekene er programkode, ikke et sted vi sender dokumentene dine.
 
 ### 4. Valutakurser
 

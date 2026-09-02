@@ -98,7 +98,7 @@ A kezdőlap feladatonként csoportosítja az eszközöket (PDF-oldalak, adatok, 
 
 ## Helyi fejlesztés
 
-Követelmény: **Node.js 22.13+** (lásd `.nvmrc`).
+Követelmény: **Node.js 24+** (lásd `.nvmrc`).
 
 ```bash
 git clone https://github.com/TGthms/kit.git
@@ -145,7 +145,7 @@ Kanonikus webhely: `https://trykit.pages.dev`
 
 ## Technológia
 
-Next.js 15 (App Router, statikus export) · TypeScript · Tailwind CSS · shadcn-stílusú UI · Zustand · next-intl · pdf-lib / PDF.js · Canvas · FFmpeg WASM · PWA service worker
+Next.js 16 (App Router, statikus export) · TypeScript · Tailwind CSS · shadcn-stílusú UI · Zustand · next-intl · @cantoo/pdf-lib / PDF.js · Canvas · FFmpeg WASM · PWA service worker
 
 ## Licenc
 

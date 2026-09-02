@@ -1,14 +1,12 @@
 # Cloudflare Pages custom response headers.
 # https://developers.cloudflare.com/pages/configuration/headers/
 #
-# The app's Content-Security-Policy is set via a <meta> tag (see
-# src/app/layout.tsx and src/lib/seo/site.ts) because this is a static
-# export with no server. Meta-tag CSP can't express frame-ancestors,
-# sandbox, or report-uri, and can't set headers that aren't CSP at all
-# (X-Content-Type-Options, Referrer-Policy, Permissions-Policy). Those are
-# set here instead, at the hosting layer.
+# Keep the CSP string in sync with src/lib/seo/site.ts (tested).
+# frame-ancestors is HTTP-only; the matching <meta> CSP cannot express it.
+# GitHub Pages ignores this file; the meta tag still applies there.
 /*
   X-Frame-Options: DENY
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
-  Permissions-Policy: camera=(), microphone=(), geolocation=(), interest-cohort=()
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), interest-cohort=(), usb=(), serial=(), bluetooth=(), payment=(), browsing-topics=()
+  Content-Security-Policy: default-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'; script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; media-src 'self' blob:; connect-src 'self' https://api.frankfurter.dev blob:; worker-src 'self' blob:; frame-ancestors 'none'

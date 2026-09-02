@@ -1,6 +1,6 @@
 # Conditions d'utilisation
 
-**Dernière mise à jour :** 15 juillet 2026
+**Dernière mise à jour :** September 1, 2026
 
 Les présentes conditions régissent votre accès au site web et aux outils de **Kit** (le « Service ») et leur utilisation. En utilisant Kit, vous acceptez ces conditions. Si vous ne les acceptez pas, n'utilisez pas le Service.
 

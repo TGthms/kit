@@ -98,7 +98,7 @@ Kit הוא אוסף כלי PDF, תמונות, מדיה, המרה וטקסט שר
 
 ## פיתוח מקומי
 
-דרישות: **Node.js 22.13+** (ראו `.nvmrc`).
+דרישות: **Node.js 24+** (ראו `.nvmrc`).
 
 ```bash
 git clone https://github.com/TGthms/kit.git
@@ -145,7 +145,7 @@ NEXT_PUBLIC_BASE_PATH=/kit npm run build
 
 ## טכנולוגיה
 
-Next.js 15 (App Router, ייצוא סטטי) · TypeScript · Tailwind CSS · ממשק בסגנון shadcn · Zustand · next-intl · pdf-lib / PDF.js · Canvas · FFmpeg WASM · service worker של PWA
+Next.js 16 (App Router, ייצוא סטטי) · TypeScript · Tailwind CSS · ממשק בסגנון shadcn · Zustand · next-intl · @cantoo/pdf-lib / PDF.js · Canvas · FFmpeg WASM · service worker של PWA
 
 ## רישיון
 

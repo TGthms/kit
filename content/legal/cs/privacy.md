@@ -33,11 +33,11 @@ Historii můžete vymazat v Nastavení nebo v prohlížeči odstranit data tohot
 
 ### 2. Síťové a hostingové protokoly
 
-Kit je obvykle hostován jako statické soubory (například na GitHub Pages). Když váš prohlížeč požaduje stránky a zdroje, může poskytovatel hostingu automaticky zaznamenávat standardní technické údaje, jako je IP adresa, user agent, časová razítka a požadované adresy URL. Toto zaznamenávání se řídí infrastrukturou a zásadami hostitele — nikoli serverem Kit, který by otevíral vaše dokumenty.
+Kit je obvykle hostován jako statické soubory na **Cloudflare Pages** (kanonický web: trykit.pages.dev) se zálohou na GitHub Pages. Když prohlížeč požaduje stránky a zdroje, může poskytovatel hostingu zaznamenávat standardní technické údaje, jako je IP adresa, user agent, časová razítka a požadované adresy URL. Toto zaznamenávání se řídí infrastrukturou a zásadami hostitele — nikoli serverem Kit, který by otevíral vaše dokumenty.
 
 ### 3. Volitelné zdroje třetích stran
 
-Některé pokročilé funkce mohou při prvním použití načíst z distribučních sítí obsahu knihovny pro zpracování (například jádra FFmpeg WebAssembly nebo skripty PDF worker). Tyto požadavky mohou síti CDN zpřístupnit standardní síťová metadata. Obsah vašich souborů je stále zpracováván v prohlížeči; CDN poskytuje kód, nikoli vaše dokumenty.
+Nástroje PDF načítají worker pdf.js, písma a související soubory **z tohoto webu** (jsou součástí aplikace). Nástroje pro audio a video načítají engine FFmpeg WebAssembly **z tohoto webu**. Obsah souborů zůstává v prohlížeči; tyto knihovny jsou kódem aplikace, nikoli místem, kam posíláme vaše dokumenty.
 
 ### 4. Měnové kurzy
 

@@ -98,7 +98,7 @@ Ecranul principal grupează uneltele pe sarcini (pagini PDF, date, dezvoltare…
 
 ## Dezvoltare locală
 
-Cerințe: **Node.js 22.13+** (vezi `.nvmrc`).
+Cerințe: **Node.js 24+** (vezi `.nvmrc`).
 
 ```bash
 git clone https://github.com/TGthms/kit.git
@@ -145,7 +145,7 @@ Site canonic: `https://trykit.pages.dev`
 
 ## Tehnologie
 
-Next.js 15 (App Router, export static) · TypeScript · Tailwind CSS · UI stil shadcn · Zustand · next-intl · pdf-lib / PDF.js · Canvas · FFmpeg WASM · service worker PWA
+Next.js 16 (App Router, export static) · TypeScript · Tailwind CSS · UI stil shadcn · Zustand · next-intl · @cantoo/pdf-lib / PDF.js · Canvas · FFmpeg WASM · service worker PWA
 
 ## Licență
 

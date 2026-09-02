@@ -98,7 +98,7 @@ Die Startseite gruppiert Werkzeuge nach Aufgabe (PDF-Seiten, Daten, Entwicklung 
 
 ## Lokale Entwicklung
 
-Voraussetzung: **Node.js 22.13+** (siehe `.nvmrc`).
+Voraussetzung: **Node.js 24+** (siehe `.nvmrc`).
 
 ```bash
 git clone https://github.com/TGthms/kit.git
@@ -145,7 +145,7 @@ Kanonische Website: `https://trykit.pages.dev`
 
 ## Technik
 
-Next.js 15 (App Router, statischer Export) · TypeScript · Tailwind CSS · UI im shadcn-Stil · Zustand · next-intl · pdf-lib / PDF.js · Canvas · FFmpeg WASM · PWA-Service-Worker
+Next.js 16 (App Router, statischer Export) · TypeScript · Tailwind CSS · UI im shadcn-Stil · Zustand · next-intl · @cantoo/pdf-lib / PDF.js · Canvas · FFmpeg WASM · PWA-Service-Worker
 
 ## Lizenz
 

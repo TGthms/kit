@@ -98,7 +98,7 @@
 
 ## Τοπική ανάπτυξη
 
-Απαιτήσεις: **Node.js 22.13+** (βλ. `.nvmrc`).
+Απαιτήσεις: **Node.js 24+** (βλ. `.nvmrc`).
 
 ```bash
 git clone https://github.com/TGthms/kit.git
@@ -145,7 +145,7 @@ URL Pages: `https://TGthms.github.io/kit/`
 
 ## Τεχνολογία
 
-Next.js 15 (App Router, στατική εξαγωγή) · TypeScript · Tailwind CSS · UI σε στιλ shadcn · Zustand · next-intl · pdf-lib / PDF.js · Canvas · FFmpeg WASM · service worker PWA
+Next.js 16 (App Router, στατική εξαγωγή) · TypeScript · Tailwind CSS · UI σε στιλ shadcn · Zustand · next-intl · @cantoo/pdf-lib / PDF.js · Canvas · FFmpeg WASM · service worker PWA
 
 ## Άδεια
 

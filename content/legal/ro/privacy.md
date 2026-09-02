@@ -33,11 +33,11 @@ Puteți șterge istoricul din Setări sau puteți șterge datele acestui site di
 
 ### 2. Jurnale de rețea și găzduire
 
-Kit este găzduit de obicei ca fișiere statice (de exemplu, pe GitHub Pages). Când browserul solicită pagini și resurse, gazda poate înregistra automat date tehnice standard, precum adresa IP, agentul utilizatorului, marcaje temporale și URL-urile solicitate. Înregistrarea este controlată de infrastructura și politicile gazdei, nu de un server Kit care deschide documentele dumneavoastră.
+Kit este găzduit de obicei ca fișiere statice pe **Cloudflare Pages** (site canonic: trykit.pages.dev), cu o copie pe GitHub Pages. Când browserul solicită pagini și resurse, gazda poate înregistra automat date tehnice standard, precum adresa IP, agentul utilizatorului, marcaje temporale și URL-urile solicitate. Înregistrarea este controlată de infrastructura și politicile gazdei, nu de un server Kit care deschide documentele dumneavoastră.
 
 ### 3. Resurse opționale ale terților
 
-Unele funcții avansate pot încărca biblioteci de procesare (de exemplu, nuclee FFmpeg WebAssembly sau scripturi worker pentru PDF) din rețele de distribuție a conținutului la prima utilizare. Aceste solicitări pot expune metadate de rețea standard către CDN. Conținutul fișierelor este procesat în continuare în browser; CDN-ul furnizează cod, nu documentele dumneavoastră.
+Instrumentele PDF încarcă worker-ul pdf.js, fonturile și resursele asociate **de pe acest site** (incluse în aplicație). Instrumentele audio și video încarcă un motor FFmpeg WebAssembly **de pe acest site**. Conținutul fișierelor rămâne în browser; aceste biblioteci sunt codul aplicației, nu un loc unde trimitem documentele dumneavoastră.
 
 ### 4. Cursuri valutare
 

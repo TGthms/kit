@@ -98,7 +98,7 @@ La portada agrupa las herramientas por trabajo (páginas PDF, datos, desarrollo�
 
 ## Desarrollo local
 
-Necesitas **Node.js 22.13+** (ver `.nvmrc`).
+Necesitas **Node.js 24+** (ver `.nvmrc`).
 
 ```bash
 git clone https://github.com/TGthms/kit.git
@@ -145,7 +145,7 @@ Sitio canónico: `https://trykit.pages.dev`
 
 ## Tecnología
 
-Next.js 15 (App Router, exportación estática) · TypeScript · Tailwind CSS · UI estilo shadcn · Zustand · next-intl · pdf-lib / PDF.js · Canvas · FFmpeg WASM · service worker PWA
+Next.js 16 (App Router, exportación estática) · TypeScript · Tailwind CSS · UI estilo shadcn · Zustand · next-intl · @cantoo/pdf-lib / PDF.js · Canvas · FFmpeg WASM · service worker PWA
 
 ## Licencia
 

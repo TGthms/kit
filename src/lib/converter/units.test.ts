@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { convertElectrical, convertTypography, convertUnit, formatConvertedInput, formatUnitSymbol } from "./units";
+import { convertElectrical, convertTypography, convertUnit, electricalDimension, formatConvertedInput, formatUnitSymbol } from "./units";
 
 describe("unit conversions", () => {
   it("converts common linear, temperature, and duration units", () => {
@@ -35,6 +35,9 @@ describe("unit conversions", () => {
     expect(convertElectrical(1000, "mV", "V")).toBe(1);
     expect(convertElectrical(1, "kOhm", "Ohm")).toBe(1000);
     expect(() => convertElectrical(1, "V", "A")).toThrow(RangeError);
+    expect(electricalDimension("V")).toBe("voltage");
+    expect(electricalDimension("A")).toBe("current");
+    expect(electricalDimension("Ohm")).toBe("resistance");
   });
 
   it("uses CSS typography assumptions and rejects invalid values", () => {

@@ -4,42 +4,36 @@ export const SITE_AUTHOR = "Tim G";
 export const SITE_AUTHOR_URL = "https://t-g.pages.dev";
 
 /**
- * Static-host CSP for the client-only app and its explicitly documented CDNs.
+ * Static-host CSP for the client-only app.
  *
- * NOTE: this is delivered via a `<meta http-equiv="Content-Security-Policy">`
- * tag (see app/layout.tsx) because the app is a static export with no server
- * to set a real HTTP response header. Meta-tag CSP cannot enforce
- * `frame-ancestors`, `sandbox`, or `report-uri`; clickjacking protection and
- * other response-header-only hardening (X-Content-Type-Options,
- * Referrer-Policy, Permissions-Policy) is instead configured at the hosting
- * layer — see public/_headers (Cloudflare Pages).
+ * Kit-owned boot scripts live in `public/boot/` (theme, lang/dir, locale gate).
+ * pdf.js and FFmpeg WASM are same-origin under `public/vendor/`.
  *
- * `script-src` still allows 'unsafe-inline' for the two static inline
- * scripts we render (the pre-hydration theme script and the JSON-LD block);
- * both come from trusted, repo-controlled content (never end-user input),
- * so this is a defense-in-depth gap rather than a live vulnerability. Moving
- * to per-page hash-based allow-listing (dropping 'unsafe-inline' entirely)
- * is worth doing but needs to be verified against real browser CSP
- * enforcement across every locale before shipping, since a wrong hash would
- * silently break the theme script or the structured-data block.
+ * `script-src` still allows `'unsafe-inline'` because Next.js static export
+ * emits inline Flight payloads (`self.__next_f`) and next-themes injects a
+ * blocking theme script. Dropping `'unsafe-inline'` would require hashing
+ * every page's Flight blob. `'wasm-unsafe-eval'` is required for pdf.js and
+ * FFmpeg WebAssembly.
  *
- * The pdf.js worker is self-hosted (see lib/pdf/pdfjs.ts), so
- * cdn.jsdelivr.net is only needed for the ffmpeg.wasm core, which is not
- * (yet) vendored locally due to its size.
+ * Meta-tag CSP cannot enforce `frame-ancestors`. Cloudflare Pages also sends
+ * this policy (plus `frame-ancestors 'none'`) from `public/_headers`.
  */
 export const CONTENT_SECURITY_POLICY = [
   "default-src 'self'",
   "base-uri 'self'",
   "form-action 'self'",
   "object-src 'none'",
-  "script-src 'self' 'unsafe-inline'",
+  "script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval'",
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data: blob:",
   "font-src 'self' data:",
   "media-src 'self' blob:",
-  "connect-src 'self' https://cdn.jsdelivr.net https://api.frankfurter.dev blob:",
+  "connect-src 'self' https://api.frankfurter.dev blob:",
   "worker-src 'self' blob:",
 ].join("; ");
+
+/** HTTP-only directives that a `<meta>` CSP cannot express. */
+export const CONTENT_SECURITY_POLICY_HEADER = `${CONTENT_SECURITY_POLICY}; frame-ancestors 'none'`;
 
 /** Default social card. Always on the canonical host (no GitHub Pages /kit prefix). */
 export const OG_IMAGE_PATH = "/og/kit.png";

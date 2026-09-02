@@ -1,6 +1,6 @@
 # Privacy Policy
 
-**Last updated:** July 15, 2026
+**Last updated:** September 1, 2026
 
 This policy describes how information is handled when you use **Kit**, a set of utilities published as a static website and built to run in your browser.
 
@@ -33,11 +33,11 @@ You can clear history in Settings or by deleting this site’s data in your brow
 
 ### 2. Network and hosting logs
 
-Kit is typically hosted as static files (for example on GitHub Pages). When your browser requests pages and assets, the host may automatically log standard technical data such as IP address, user agent, timestamps, and requested URLs. That logging is controlled by the host’s infrastructure and policies—not by a Kit server that opens your documents.
+Kit is typically hosted as static files on **Cloudflare Pages** (canonical site: trykit.pages.dev), with a GitHub Pages backup. When your browser requests pages and assets, the host may automatically log standard technical data such as IP address, user agent, timestamps, and requested URLs. That logging is controlled by the host’s infrastructure and policies—not by a Kit server that opens your documents.
 
-### 3. Optional third-party resources
+### 3. Processing libraries
 
-Some advanced features may load processing libraries (for example FFmpeg WebAssembly cores or PDF worker scripts) from content delivery networks the first time you use them. Those requests may expose standard network metadata to the CDN. Your file contents are still processed in the browser; the CDN serves library code, not your documents.
+PDF tools load the pdf.js worker, fonts, and related assets from **this same site** (vendored with the app). Audio and video tools load an FFmpeg WebAssembly engine from **this same site**. Your file contents stay in the browser; those libraries are application code, not a place we send your documents.
 
 ### 4. Currency rates
 

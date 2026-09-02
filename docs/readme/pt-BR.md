@@ -98,7 +98,7 @@ A capa agrupa as ferramentas por trabalho (páginas PDF, dados, desenvolvimento�
 
 ## Desenvolvimento local
 
-Requisitos: **Node.js 22.13+** (veja `.nvmrc`).
+Requisitos: **Node.js 24+** (veja `.nvmrc`).
 
 ```bash
 git clone https://github.com/TGthms/kit.git
@@ -145,7 +145,7 @@ Site canônico: `https://trykit.pages.dev`
 
 ## Stack
 
-Next.js 15 (App Router, exportação estática) · TypeScript · Tailwind CSS · UI estilo shadcn · Zustand · next-intl · pdf-lib / PDF.js · Canvas · FFmpeg WASM · service worker PWA
+Next.js 16 (App Router, exportação estática) · TypeScript · Tailwind CSS · UI estilo shadcn · Zustand · next-intl · @cantoo/pdf-lib / PDF.js · Canvas · FFmpeg WASM · service worker PWA
 
 ## Licença
 

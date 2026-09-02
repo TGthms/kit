@@ -33,11 +33,11 @@ Você pode limpar o histórico nas Configurações ou excluir os dados deste sit
 
 ### 2. Registros de rede e hospedagem
 
-O Kit normalmente é hospedado como arquivos estáticos (por exemplo, no GitHub Pages). Quando seu navegador solicita páginas e recursos, o provedor de hospedagem pode registrar dados técnicos padrão, como endereço IP, agente do usuário, carimbos de data e hora e URLs solicitadas. Esse registro é controlado pela infraestrutura e pelas políticas do provedor, não por um servidor do Kit que abre seus documentos.
+O Kit normalmente é hospedado como arquivos estáticos no **Cloudflare Pages** (site canônico: trykit.pages.dev), com uma cópia no GitHub Pages. Quando seu navegador solicita páginas e recursos, o provedor de hospedagem pode registrar dados técnicos padrão, como endereço IP, agente do usuário, carimbos de data e hora e URLs solicitadas. Esse registro é controlado pela infraestrutura e pelas políticas do provedor, não por um servidor do Kit que abre seus documentos.
 
 ### 3. Recursos opcionais de terceiros
 
-Alguns recursos avançados podem carregar bibliotecas de processamento (por exemplo, núcleos FFmpeg WebAssembly ou scripts worker de PDF) de redes de distribuição de conteúdo na primeira vez que você os usar. Essas solicitações podem expor metadados de rede padrão ao CDN. O conteúdo dos seus arquivos continua sendo processado no navegador; o CDN fornece código, não seus documentos.
+As ferramentas de PDF carregam o worker do pdf.js, as fontes e os recursos relacionados **deste mesmo site** (incluídos no app). As ferramentas de áudio e vídeo carregam um mecanismo FFmpeg WebAssembly **deste mesmo site**. O conteúdo dos seus arquivos permanece no navegador; essas bibliotecas são código do aplicativo, não um destino para o qual enviamos seus documentos.
 
 ### 4. Cotações de moedas
 

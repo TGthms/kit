@@ -90,7 +90,9 @@ const FACTORS: Record<Exclude<UnitCategory, "temperature" | "fuelEconomy" | "ele
   torque: { Nm: 1, kNm: 1000, "lb-ft": 1.3558179483314004, "lb-in": 0.1129848290276167 },
 };
 
-const ELECTRICAL_FACTORS: Record<string, { dimension: "voltage" | "current" | "resistance"; factor: number }> = {
+export type ElectricalDimension = "voltage" | "current" | "resistance";
+
+const ELECTRICAL_FACTORS: Record<string, { dimension: ElectricalDimension; factor: number }> = {
   mV: { dimension: "voltage", factor: 0.001 }, V: { dimension: "voltage", factor: 1 }, kV: { dimension: "voltage", factor: 1000 },
   mA: { dimension: "current", factor: 0.001 }, A: { dimension: "current", factor: 1 }, kA: { dimension: "current", factor: 1000 },
   mOhm: { dimension: "resistance", factor: 0.001 }, Ohm: { dimension: "resistance", factor: 1 }, kOhm: { dimension: "resistance", factor: 1000 }, MOhm: { dimension: "resistance", factor: 1000000 },
@@ -165,6 +167,32 @@ export function convertTypography(value: number, from: "px" | "pt" | "pc" | "rem
   if (to === "em") return px / parent;
   throw new RangeError("Unsupported typography unit.");
 }
+
+export function electricalDimension(code: string): ElectricalDimension | undefined {
+  return ELECTRICAL_FACTORS[code]?.dimension;
+}
+
+export const UNITS_BY_CATEGORY: Record<UnitCategory, readonly UnitCode[]> = {
+  length: ["mm", "cm", "m", "km", "in", "ft", "yd", "mi", "nmi"],
+  mass: ["mg", "g", "kg", "t", "oz", "lb", "stone"],
+  temperature: ["C", "F", "K"],
+  speed: ["m/s", "km/h", "mph", "knot"],
+  duration: ["ms", "s", "min", "h", "day", "week"],
+  volume: ["mL", "L", "m3", "us-tsp", "us-tbsp", "us-cup", "us-gal", "imp-gal"],
+  power: ["W", "kW", "MW", "hp"],
+  energy: ["J", "kJ", "Wh", "kWh", "cal", "kcal", "eV"],
+  pressure: ["Pa", "kPa", "bar", "psi", "atm", "mmHg"],
+  area: ["mm2", "cm2", "m2", "km2", "ft2", "acre", "hectare"],
+  data: ["bit", "B", "kB", "MB", "GB", "TB", "KiB", "MiB", "GiB"],
+  angle: ["deg", "rad", "grad", "turn"],
+  frequency: ["Hz", "kHz", "MHz", "GHz", "rpm"],
+  force: ["N", "kN", "lbf", "kgf"],
+  fuelEconomy: ["L/100km", "km/L", "mpg-us", "mpg-imperial"],
+  acceleration: ["m/s2", "g0", "ft/s2"],
+  torque: ["Nm", "kNm", "lb-ft", "lb-in"],
+  electrical: ["mV", "V", "kV", "mA", "A", "kA", "mOhm", "Ohm", "kOhm", "MOhm"],
+  typography: ["px", "pt", "pc", "rem", "em"],
+};
 
 export function convertElectrical(value: number, from: keyof typeof ELECTRICAL_FACTORS, to: keyof typeof ELECTRICAL_FACTORS): number {
   assertFinite(value);

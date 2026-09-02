@@ -98,7 +98,7 @@ Kit 是一套在本機執行的實用工具：PDF、圖片、影音、格式轉�
 
 ## 本機開發
 
-需要 **Node.js 22.13+**（見 `.nvmrc`）。
+需要 **Node.js 24+**（見 `.nvmrc`）。
 
 ```bash
 git clone https://github.com/TGthms/kit.git
@@ -145,7 +145,7 @@ Pages 位址：`https://TGthms.github.io/kit/`
 
 ## 技術棧
 
-Next.js 15（App Router，靜態匯出）· TypeScript · Tailwind CSS · shadcn 風格 UI · Zustand · next-intl · pdf-lib / PDF.js · Canvas · FFmpeg WASM · PWA Service Worker
+Next.js 16（App Router，靜態匯出）· TypeScript · Tailwind CSS · shadcn 風格 UI · Zustand · next-intl · @cantoo/pdf-lib / PDF.js · Canvas · FFmpeg WASM · PWA Service Worker
 
 ## 授權
 

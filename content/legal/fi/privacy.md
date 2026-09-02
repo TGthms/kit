@@ -33,11 +33,11 @@ Voit tyhjentää historian asetuksista tai poistamalla tämän sivuston tiedot s
 
 ### 2. Verkko- ja isännöintilokit
 
-Kit isännöidään yleensä staattisina tiedostoina (esimerkiksi GitHub Pages -palvelussa). Kun selaimesi pyytää sivuja ja resursseja, isännöintipalveluntarjoaja voi kirjata tavanomaisia teknisiä tietoja, kuten IP-osoitteen, käyttäjäagentin, aikaleimat ja pyydetyt URL-osoitteet. Kirjaamista hallitsevat isännän infrastruktuuri ja käytännöt — ei Kit-palvelin, joka avaisi asiakirjojasi.
+Kit isännöidään yleensä staattisina tiedostoina **Cloudflare Pages** -palvelussa (kanoninen sivusto: trykit.pages.dev), GitHub Pages -varmuuskopion kera. Kun selaimesi pyytää sivuja ja resursseja, isännöintipalveluntarjoaja voi kirjata tavanomaisia teknisiä tietoja, kuten IP-osoitteen, käyttäjäagentin, aikaleimat ja pyydetyt URL-osoitteet. Kirjaamista hallitsevat isännän infrastruktuuri ja käytännöt — ei Kit-palvelin, joka avaisi asiakirjojasi.
 
 ### 3. Valinnaiset kolmannen osapuolen resurssit
 
-Jotkin edistyneet ominaisuudet voivat ladata käsittelykirjastoja (esimerkiksi FFmpeg WebAssembly -ytimiä tai PDF-työntekijäskriptejä) sisältöjakeluverkoista, kun käytät niitä ensimmäisen kerran. Pyynnöt voivat paljastaa CDN:lle tavanomaisia verkkotietoja. Tiedostojesi sisältö käsitellään edelleen selaimessa; CDN toimittaa koodia, ei asiakirjojasi.
+PDF-työkalut lataavat pdf.js-työntekijän, fontit ja liittyvät tiedostot **tältä sivustolta** (toimitetaan sovelluksen mukana). Ääni- ja videotyökalut lataavat FFmpeg WebAssembly -moottorin **tältä sivustolta**. Tiedostojesi sisältö pysyy selaimessa; kirjastot ovat sovelluskoodia, eivät paikka johon lähetämme asiakirjasi.
 
 ### 4. Valuuttakurssit
 

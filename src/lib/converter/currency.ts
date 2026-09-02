@@ -56,15 +56,16 @@ export function validateFrankfurterRatesResponse(payload: unknown, expectedBase?
   if (!Array.isArray(payload)) throw new TypeError("Frankfurter v2 response must be an array of rates.");
   const base = expectedBase ? normalizeCurrency(expectedBase) : undefined;
   const quotes = expectedQuotes ? new Set(expectedQuotes.map(normalizeCurrency)) : undefined;
-  const rates = payload.map((item): FrankfurterRate => {
+  const rates = payload.flatMap((item): FrankfurterRate[] => {
     if (!item || typeof item !== "object") throw new TypeError("Invalid Frankfurter rate record.");
     const record = item as Record<string, unknown>;
     const recordBase = typeof record.base === "string" ? normalizeCurrency(record.base) : "";
     const quote = typeof record.quote === "string" ? normalizeCurrency(record.quote) : "";
     if (!isIsoDate(record.date) || !isRate(record.rate) || !recordBase || !quote) throw new TypeError("Invalid Frankfurter rate record.");
     if (base && recordBase !== base) throw new TypeError("Frankfurter response base currency does not match the request.");
+    if (recordBase === quote) return [];
     if (quotes && !quotes.has(quote)) throw new TypeError("Frankfurter response contains an unexpected quote currency.");
-    return { date: record.date, base: recordBase, quote, rate: record.rate };
+    return [{ date: record.date, base: recordBase, quote, rate: record.rate }];
   });
   if (rates.length === 0) throw new TypeError("Frankfurter response contains no rates.");
   return rates;

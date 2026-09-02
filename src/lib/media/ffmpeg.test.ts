@@ -1,3 +1,6 @@
+import { readFileSync } from "node:fs";
+import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
 import { describe, expect, it, vi } from "vitest";
 import {
   audioConvertArgs,
@@ -11,6 +14,14 @@ import {
   videoSpeedVideoOnlyArgs,
 } from "./ffmpeg";
 import { mixToMono, peaksFromChannel } from "./peaks";
+
+describe("ffmpeg core origin", () => {
+  it("loads the vendored same-origin UMD core, not jsDelivr", () => {
+    const src = readFileSync(join(dirname(fileURLToPath(import.meta.url)), "ffmpeg.ts"), "utf8");
+    expect(src).not.toMatch(/jsdelivr/i);
+    expect(src).toContain("/vendor/ffmpeg");
+  });
+});
 
 describe("ffmpeg args", () => {
   it("covers extra audio and video formats", () => {
@@ -109,6 +120,23 @@ describe("transcodeOnFFmpeg cleanup", () => {
     };
     await expect(transcodeOnFFmpeg(ff, "in.wav", new Uint8Array([0]), "out.mp3", ["-i", "in.wav", "out.mp3"])).rejects.toThrow(
       "bad codec"
+    );
+    expect(deleted).toEqual(["in.wav", "out.mp3"]);
+    expect(ff.readFile).not.toHaveBeenCalled();
+  });
+
+  it("treats a non-zero exec code as failure and still deletes files", async () => {
+    const deleted: string[] = [];
+    const ff = {
+      writeFile: vi.fn(async () => undefined),
+      exec: vi.fn(async () => 1),
+      readFile: vi.fn(async () => new Uint8Array([1])),
+      deleteFile: vi.fn(async (name: string) => {
+        deleted.push(name);
+      }),
+    };
+    await expect(transcodeOnFFmpeg(ff, "in.wav", new Uint8Array([0]), "out.mp3", ["-i", "in.wav", "out.mp3"])).rejects.toThrow(
+      /exited with code 1/
     );
     expect(deleted).toEqual(["in.wav", "out.mp3"]);
     expect(ff.readFile).not.toHaveBeenCalled();

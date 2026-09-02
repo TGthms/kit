@@ -33,11 +33,11 @@ Historię możesz wyczyścić w Ustawieniach albo usunąć dane tej witryny w pr
 
 ### 2. Dzienniki sieciowe i hostingowe
 
-Kit jest zwykle hostowany jako pliki statyczne (na przykład w GitHub Pages). Gdy przeglądarka żąda stron i zasobów, dostawca hostingu może automatycznie rejestrować standardowe dane techniczne, takie jak adres IP, agent użytkownika, znaczniki czasu i żądane adresy URL. Rejestrowanie jest kontrolowane przez infrastrukturę i zasady hosta, a nie przez serwer Kit otwierający Twoje dokumenty.
+Kit jest zwykle hostowany jako pliki statyczne na **Cloudflare Pages** (kanoniczna strona: trykit.pages.dev), z kopią na GitHub Pages. Gdy przeglądarka żąda stron i zasobów, dostawca hostingu może automatycznie rejestrować standardowe dane techniczne, takie jak adres IP, agent użytkownika, znaczniki czasu i żądane adresy URL. Rejestrowanie jest kontrolowane przez infrastrukturę i zasady hosta, a nie przez serwer Kit otwierający Twoje dokumenty.
 
 ### 3. Opcjonalne zasoby stron trzecich
 
-Niektóre zaawansowane funkcje mogą przy pierwszym użyciu ładować biblioteki przetwarzania (na przykład rdzenie FFmpeg WebAssembly lub skrypty worker PDF) z sieci dostarczania treści. Żądania te mogą ujawniać CDN-owi standardowe metadane sieciowe. Zawartość plików nadal jest przetwarzana w przeglądarce; CDN dostarcza kod, a nie Twoje dokumenty.
+Narzędzia PDF ładują worker pdf.js, czcionki i powiązane pliki **z tej witryny** (dołączone do aplikacji). Narzędzia audio i wideo ładują silnik FFmpeg WebAssembly **z tej witryny**. Zawartość plików zostaje w przeglądarce; te biblioteki to kod aplikacji, nie miejsce, do którego wysyłamy Twoje dokumenty.
 
 ### 4. Kursy walut
 

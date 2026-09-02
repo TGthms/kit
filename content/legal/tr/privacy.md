@@ -33,11 +33,11 @@ Geçmişi Ayarlar'dan temizleyebilir veya tarayıcınızda bu sitenin verilerini
 
 ### 2. Ağ ve barındırma günlükleri
 
-Kit genellikle statik dosyalar olarak barındırılır (örneğin GitHub Pages'te). Tarayıcınız sayfa ve varlık istediğinde barındırma hizmeti; IP adresi, kullanıcı aracısı, zaman damgaları ve istenen URL'ler gibi standart teknik verileri otomatik olarak günlüğe kaydedebilir. Bu günlükler Kit'in belgelerinizi açan bir sunucusu tarafından değil, barındırıcının altyapısı ve politikaları tarafından kontrol edilir.
+Kit genellikle **Cloudflare Pages** üzerinde statik dosyalar olarak barındırılır (kanonik site: trykit.pages.dev) ve GitHub Pages yedeği vardır. Tarayıcınız sayfa ve varlık istediğinde barındırma hizmeti; IP adresi, kullanıcı aracısı, zaman damgaları ve istenen URL'ler gibi standart teknik verileri otomatik olarak günlüğe kaydedebilir. Bu günlükler Kit'in belgelerinizi açan bir sunucusu tarafından değil, barındırıcının altyapısı ve politikaları tarafından kontrol edilir.
 
 ### 3. İsteğe bağlı üçüncü taraf kaynakları
 
-Bazı gelişmiş özellikler, onları ilk kez kullandığınızda içerik dağıtım ağlarından işleme kitaplıkları (örneğin FFmpeg WebAssembly çekirdekleri veya PDF worker komut dosyaları) yükleyebilir. Bu istekler CDN'ye standart ağ meta verilerini gösterebilir. Dosya içerikleriniz tarayıcıda işlenmeye devam eder; CDN belgelerinizi değil, kodu sunar.
+PDF araçları pdf.js worker'ını, yazı tiplerini ve ilgili dosyaları **bu siteden** yükler (uygulamayla birlikte gelir). Ses ve video araçları bir FFmpeg WebAssembly motorunu **bu siteden** yükler. Dosya içerikleriniz tarayıcıda kalır; bu kitaplıklar uygulama kodudur, belgelerinizi gönderdiğimiz bir yer değildir.
 
 ### 4. Para birimi kurları
 

@@ -12,7 +12,7 @@ import { downloadBlob, downloadMany, bytesToBlob } from "@/lib/utils";
 import { MediaTimeline } from "@/components/shared/media-timeline";
 import { AUDIO_FORMATS, audioConvertArgs, audioSpeedArgs, trimArgs } from "@/lib/media/ffmpeg";
 import { runSequentialBatch, stemmedName } from "@/lib/jobs/batch";
-import { ActionBar, ToolLimits, ToolShell, useToolHistory, loadFfmpeg } from "./shared";
+import { ActionBar, ToolLimits, ToolShell, useToolHistory, useToolJob, loadFfmpeg } from "./shared";
 
 const selectClass =
   "flex h-10 w-full rounded-xl border border-input bg-background px-3 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring";
@@ -23,16 +23,11 @@ export function AudioConvert() {
   const log = useToolHistory("audio-convert");
   const [files, setFiles] = useState<FileItem[]>([]);
   const [format, setFormat] = useState("mp3");
-  const [loading, setLoading] = useState(false);
-  const [progress, setProgress] = useState(0);
-  const [controller, setController] = useState<AbortController | null>(null);
+  const job = useToolJob();
 
   const run = async () => {
     if (!files.length) return;
-    const ac = new AbortController();
-    setController(ac);
-    setLoading(true);
-    setProgress(0);
+    const ac = job.start();
     try {
       const { runFFmpeg } = await loadFfmpeg();
       const items = await runSequentialBatch(
@@ -43,15 +38,9 @@ export function AudioConvert() {
           const input = `input-${index}.${ext}`;
           const output = `output-${index}.${format}`;
           const report = (p: number) =>
-            setProgress(Math.round(((index + p) / files.length) * 100));
+            job.setProgress(Math.round(((index + p) / files.length) * 100));
           const args = audioConvertArgs(input, output, format);
-          let out: Uint8Array;
-          try {
-            out = await runFFmpeg(input, data, output, args, report, ac.signal);
-          } catch (err) {
-            if (ac.signal.aborted) throw err;
-            out = await runFFmpeg(input, data, output, ["-i", input, "-vn", output], report, ac.signal);
-          }
+          const out = await runFFmpeg(input, data, output, args, report, ac.signal);
           return {
             blob: bytesToBlob(out, "application/octet-stream"),
             name: stemmedName(f.file.name, "-converted", format),
@@ -67,8 +56,7 @@ export function AudioConvert() {
       else toast.error(e instanceof Error ? e.message : tc("error"));
       log("failed", "failed");
     } finally {
-      setLoading(false);
-      setController(null);
+      job.stop();
     }
   };
 
@@ -88,13 +76,13 @@ export function AudioConvert() {
         </select>
       </div>
       <FileDropzone accept="audio/*" files={files} onChange={setFiles} />
-      {loading && <Progress value={progress} />}
+      {job.loading && <Progress value={job.progress} />}
       <ActionBar
         onRun={run}
-        loading={loading}
+        loading={job.loading}
         label={t("run")}
         disabled={!files.length}
-        onCancel={() => controller?.abort()}
+        onCancel={job.cancel}
       />
     </ToolShell>
   );
@@ -107,18 +95,14 @@ export function AudioTrim() {
   const [files, setFiles] = useState<FileItem[]>([]);
   const [start, setStart] = useState(0);
   const [end, setEnd] = useState(10);
-  const [loading, setLoading] = useState(false);
-  const [progress, setProgress] = useState(0);
-  const [controller, setController] = useState<AbortController | null>(null);
+  const job = useToolJob();
 
   const run = async () => {
     if (!files[0] || !Number.isFinite(start) || !Number.isFinite(end) || end <= start) {
       toast.error(tc("error"));
       return;
     }
-    const ac = new AbortController();
-    setController(ac);
-    setLoading(true);
+    const ac = job.start();
     try {
       const data = new Uint8Array(await files[0].file.arrayBuffer());
       const ext = files[0].file.name.split(".").pop() || "mp3";
@@ -130,7 +114,7 @@ export function AudioTrim() {
         data,
         output,
         trimArgs(input, output, start, end),
-        (p) => setProgress(Math.round(p * 100)),
+        (p) => job.setProgress(Math.round(p * 100)),
         ac.signal
       );
       downloadBlob(bytesToBlob(out, "application/octet-stream"), output);
@@ -141,8 +125,7 @@ export function AudioTrim() {
       else toast.error(e instanceof Error ? e.message : tc("error"));
       log("failed", "failed");
     } finally {
-      setLoading(false);
-      setController(null);
+      job.stop();
     }
   };
 
@@ -182,13 +165,13 @@ export function AudioTrim() {
           />
         </div>
       </div>
-      {loading && <Progress value={progress} />}
+      {job.loading && <Progress value={job.progress} />}
       <ActionBar
         onRun={run}
-        loading={loading}
+        loading={job.loading}
         label={t("run")}
         disabled={!files[0]}
-        onCancel={() => controller?.abort()}
+        onCancel={job.cancel}
       />
     </ToolShell>
   );
@@ -201,16 +184,11 @@ export function AudioSpeed() {
   const [files, setFiles] = useState<FileItem[]>([]);
   const [speed, setSpeed] = useState(1.25);
   const [volume, setVolume] = useState(1);
-  const [loading, setLoading] = useState(false);
-  const [progress, setProgress] = useState(0);
-  const [controller, setController] = useState<AbortController | null>(null);
+  const job = useToolJob();
 
   const run = async () => {
     if (!files[0]) return;
-    const ac = new AbortController();
-    setController(ac);
-    setLoading(true);
-    setProgress(0);
+    const ac = job.start();
     try {
       const data = new Uint8Array(await files[0].file.arrayBuffer());
       const ext = files[0].file.name.split(".").pop() || "mp3";
@@ -222,7 +200,7 @@ export function AudioSpeed() {
         data,
         output,
         audioSpeedArgs(input, output, speed, volume),
-        (p) => setProgress(Math.round(p * 100)),
+        (p) => job.setProgress(Math.round(p * 100)),
         ac.signal
       );
       downloadBlob(bytesToBlob(out, "application/octet-stream"), output);
@@ -233,8 +211,7 @@ export function AudioSpeed() {
       else toast.error(e instanceof Error ? e.message : tc("error"));
       log("failed", "failed");
     } finally {
-      setLoading(false);
-      setController(null);
+      job.stop();
     }
   };
 
@@ -253,13 +230,13 @@ export function AudioSpeed() {
         </Label>
         <Slider value={[volume]} min={0} max={2} step={0.05} onValueChange={(v) => setVolume(v[0])} />
       </div>
-      {loading && <Progress value={progress} />}
+      {job.loading && <Progress value={job.progress} />}
       <ActionBar
         onRun={run}
-        loading={loading}
+        loading={job.loading}
         label={t("run")}
         disabled={!files[0]}
-        onCancel={() => controller?.abort()}
+        onCancel={job.cancel}
       />
     </ToolShell>
   );

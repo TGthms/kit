@@ -33,11 +33,11 @@ Pode limpar o histórico nas Definições ou eliminar os dados deste site no nav
 
 ### 2. Registos de rede e alojamento
 
-O Kit é normalmente alojado como ficheiros estáticos (por exemplo, no GitHub Pages). Quando o seu navegador solicita páginas e recursos, o fornecedor de alojamento pode registar dados técnicos padrão, como endereço IP, agente do utilizador, carimbos de data e hora e URLs solicitados. Esse registo é controlado pela infraestrutura e pelas políticas do fornecedor, não por um servidor do Kit que abra os seus documentos.
+O Kit é normalmente alojado como ficheiros estáticos no **Cloudflare Pages** (sítio canónico: trykit.pages.dev), com uma cópia no GitHub Pages. Quando o seu navegador solicita páginas e recursos, o fornecedor de alojamento pode registar dados técnicos padrão, como endereço IP, agente do utilizador, carimbos de data e hora e URLs solicitados. Esse registo é controlado pela infraestrutura e pelas políticas do fornecedor, não por um servidor do Kit que abra os seus documentos.
 
 ### 3. Recursos opcionais de terceiros
 
-Algumas funcionalidades avançadas podem carregar bibliotecas de processamento (por exemplo, núcleos FFmpeg WebAssembly ou scripts worker de PDF) a partir de redes de distribuição de conteúdos na primeira vez que as utiliza. Esses pedidos podem expor metadados de rede padrão ao CDN. O conteúdo dos seus ficheiros continua a ser processado no navegador; o CDN fornece código, não os seus documentos.
+As ferramentas de PDF carregam o worker do pdf.js, os tipos de letra e os recursos relacionados **deste mesmo sítio** (incluídos na app). As ferramentas de áudio e vídeo carregam um motor FFmpeg WebAssembly **deste mesmo sítio**. O conteúdo dos seus ficheiros permanece no navegador; essas bibliotecas são código da aplicação, não um destino para o qual enviamos os seus documentos.
 
 ### 4. Taxas de câmbio
 

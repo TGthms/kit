@@ -35,10 +35,22 @@ export function safeSummary(summary: string, status: HistoryEntry["status"]): st
   if (/^(?:q|speed|count|n)=\d+(?:\.\d+)?(?: (?:q|speed|count|n)=\d+(?:\.\d+)?)*$/i.test(normalized)) {
     return normalized;
   }
-  if (/→/u.test(normalized)) return normalized;
   if (/^\d+:\d{2}:\d{2}(?:\.\d+)?$/u.test(normalized)) return normalized;
-  if (/^(?:integer|decimal|boolean|pick)(?::| × )/iu.test(normalized)) return normalized;
+  if (/^(?:integer|decimal|boolean)(?::| × )/iu.test(normalized)) return normalized;
+  if (/^pick × \d+$/iu.test(normalized)) return normalized;
   if (/^password(?: × \d+)?$/iu.test(normalized)) return normalized;
+  if (/^(?:md|html|csv|json)→(?:md|html|csv|json)$/iu.test(normalized)) return normalized;
+  if (/^[a-z0-9+\-]+→[a-z0-9+\-]+$/iu.test(normalized) && !/\./u.test(normalized)) return normalized;
+  if (
+    /^(?:[\d.]+(?:\s+[A-Za-z0-9µμ°/%²³²³+\-]+)?|[A-Z]{3})\s+→\s+(?:[\d.]+(?:\s+[A-Za-z0-9µμ°/%²³²³+\-]+)?|[A-Z]{3})$/u.test(
+      normalized
+    )
+  ) {
+    return normalized;
+  }
+  if (/^[A-Za-z0-9_+\-./]+ → [A-Za-z0-9_+\-./]+$/u.test(normalized) && !/\.(?:pdf|png|jpe?g|gif|zip|webm|mp4)\b/iu.test(normalized)) {
+    return normalized;
+  }
   return "completed";
 }
 
@@ -68,7 +80,7 @@ export const useHistoryStore = create<HistoryState>()(
     (set) => ({
       entries: [],
       enabled: false,
-      setEnabled: (enabled) => set({ enabled }),
+      setEnabled: (enabled) => set((s) => ({ enabled, entries: enabled ? s.entries : [] })),
       add: (entry) =>
         set((s) => {
           // Enforce the privacy opt-in here, not just in the `useToolHistory`

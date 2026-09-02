@@ -20,7 +20,7 @@ import {
   videoSpeedVideoOnlyArgs,
 } from "@/lib/media/ffmpeg";
 import { runSequentialBatch, stemmedName } from "@/lib/jobs/batch";
-import { ActionBar, ToolLimits, ToolShell, useToolHistory, loadFfmpeg } from "./shared";
+import { ActionBar, ToolLimits, ToolShell, useToolHistory, useToolJob, loadFfmpeg } from "./shared";
 
 const selectClass =
   "flex h-10 w-full rounded-xl border border-input bg-background px-3 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring";
@@ -31,16 +31,11 @@ export function VideoConvert() {
   const log = useToolHistory("video-convert");
   const [files, setFiles] = useState<FileItem[]>([]);
   const [format, setFormat] = useState("mp4");
-  const [loading, setLoading] = useState(false);
-  const [progress, setProgress] = useState(0);
-  const [controller, setController] = useState<AbortController | null>(null);
+  const job = useToolJob();
 
   const run = async () => {
     if (!files.length) return;
-    const ac = new AbortController();
-    setController(ac);
-    setLoading(true);
-    setProgress(0);
+    const ac = job.start();
     try {
       const { runFFmpeg } = await loadFfmpeg();
       const items = await runSequentialBatch(
@@ -51,15 +46,9 @@ export function VideoConvert() {
           const input = `input-${index}.${ext}`;
           const output = `output-${index}.${format}`;
           const report = (p: number) =>
-            setProgress(Math.round(((index + p) / files.length) * 100));
+            job.setProgress(Math.round(((index + p) / files.length) * 100));
           const args = videoConvertArgs(input, output, format);
-          let out: Uint8Array;
-          try {
-            out = await runFFmpeg(input, data, output, args, report, ac.signal);
-          } catch (err) {
-            if (ac.signal.aborted) throw err;
-            out = await runFFmpeg(input, data, output, ["-i", input, output], report, ac.signal);
-          }
+          const out = await runFFmpeg(input, data, output, args, report, ac.signal);
           return {
             blob: bytesToBlob(out, "application/octet-stream"),
             name: stemmedName(f.file.name, "-converted", format),
@@ -75,8 +64,7 @@ export function VideoConvert() {
       else toast.error(e instanceof Error ? e.message : tc("error"));
       log("failed", "failed");
     } finally {
-      setLoading(false);
-      setController(null);
+      job.stop();
     }
   };
 
@@ -96,13 +84,13 @@ export function VideoConvert() {
         </select>
       </div>
       <FileDropzone accept="video/*" files={files} onChange={setFiles} />
-      {loading && <Progress value={progress} />}
+      {job.loading && <Progress value={job.progress} />}
       <ActionBar
         onRun={run}
-        loading={loading}
+        loading={job.loading}
         label={t("run")}
         disabled={!files.length}
-        onCancel={() => controller?.abort()}
+        onCancel={job.cancel}
       />
     </ToolShell>
   );
@@ -115,18 +103,14 @@ export function VideoTrim() {
   const [files, setFiles] = useState<FileItem[]>([]);
   const [start, setStart] = useState(0);
   const [end, setEnd] = useState(10);
-  const [loading, setLoading] = useState(false);
-  const [progress, setProgress] = useState(0);
-  const [controller, setController] = useState<AbortController | null>(null);
+  const job = useToolJob();
 
   const run = async () => {
     if (!files[0] || !Number.isFinite(start) || !Number.isFinite(end) || end <= start) {
       toast.error(tc("error"));
       return;
     }
-    const ac = new AbortController();
-    setController(ac);
-    setLoading(true);
+    const ac = job.start();
     try {
       const data = new Uint8Array(await files[0].file.arrayBuffer());
       const ext = files[0].file.name.split(".").pop() || "mp4";
@@ -138,7 +122,7 @@ export function VideoTrim() {
         data,
         output,
         trimArgs(input, output, start, end),
-        (p) => setProgress(Math.round(p * 100)),
+        (p) => job.setProgress(Math.round(p * 100)),
         ac.signal
       );
       downloadBlob(bytesToBlob(out, "application/octet-stream"), output);
@@ -149,8 +133,7 @@ export function VideoTrim() {
       else toast.error(e instanceof Error ? e.message : tc("error"));
       log("failed", "failed");
     } finally {
-      setLoading(false);
-      setController(null);
+      job.stop();
     }
   };
 
@@ -182,13 +165,13 @@ export function VideoTrim() {
           <Input value={end} onChange={(e) => setEnd(Number(e.target.value) || 0)} inputMode="decimal" />
         </div>
       </div>
-      {loading && <Progress value={progress} />}
+      {job.loading && <Progress value={job.progress} />}
       <ActionBar
         onRun={run}
-        loading={loading}
+        loading={job.loading}
         label={t("run")}
         disabled={!files[0]}
-        onCancel={() => controller?.abort()}
+        onCancel={job.cancel}
       />
     </ToolShell>
   );
@@ -201,16 +184,11 @@ export function VideoSpeed() {
   const [files, setFiles] = useState<FileItem[]>([]);
   const [speed, setSpeed] = useState(1.25);
   const [volume, setVolume] = useState(1);
-  const [loading, setLoading] = useState(false);
-  const [progress, setProgress] = useState(0);
-  const [controller, setController] = useState<AbortController | null>(null);
+  const job = useToolJob();
 
   const run = async () => {
     if (!files[0]) return;
-    const ac = new AbortController();
-    setController(ac);
-    setLoading(true);
-    setProgress(0);
+    const ac = job.start();
     try {
       const data = new Uint8Array(await files[0].file.arrayBuffer());
       const ext = files[0].file.name.split(".").pop() || "mp4";
@@ -224,7 +202,7 @@ export function VideoSpeed() {
           data,
           output,
           videoSpeedArgs(input, output, speed, volume),
-          (p) => setProgress(Math.round(p * 100)),
+          (p) => job.setProgress(Math.round(p * 100)),
           ac.signal
         );
       } catch (err) {
@@ -235,7 +213,7 @@ export function VideoSpeed() {
           data,
           output,
           videoSpeedVideoOnlyArgs(input, output, speed),
-          (p) => setProgress(Math.round(p * 100)),
+          (p) => job.setProgress(Math.round(p * 100)),
           ac.signal
         );
       }
@@ -247,8 +225,7 @@ export function VideoSpeed() {
       else toast.error(e instanceof Error ? e.message : tc("error"));
       log("failed", "failed");
     } finally {
-      setLoading(false);
-      setController(null);
+      job.stop();
     }
   };
 
@@ -267,13 +244,13 @@ export function VideoSpeed() {
         </Label>
         <Slider value={[volume]} min={0} max={2} step={0.05} onValueChange={(v) => setVolume(v[0])} />
       </div>
-      {loading && <Progress value={progress} />}
+      {job.loading && <Progress value={job.progress} />}
       <ActionBar
         onRun={run}
-        loading={loading}
+        loading={job.loading}
         label={t("run")}
         disabled={!files[0]}
-        onCancel={() => controller?.abort()}
+        onCancel={job.cancel}
       />
     </ToolShell>
   );
@@ -284,16 +261,11 @@ export function VideoExtractAudio() {
   const tc = useTranslations("common");
   const log = useToolHistory("video-extract-audio");
   const [files, setFiles] = useState<FileItem[]>([]);
-  const [loading, setLoading] = useState(false);
-  const [progress, setProgress] = useState(0);
-  const [controller, setController] = useState<AbortController | null>(null);
+  const job = useToolJob();
 
   const run = async () => {
     if (!files[0]) return;
-    const ac = new AbortController();
-    setController(ac);
-    setLoading(true);
-    setProgress(0);
+    const ac = job.start();
     try {
       const data = new Uint8Array(await files[0].file.arrayBuffer());
       const ext = files[0].file.name.split(".").pop() || "mp4";
@@ -305,7 +277,7 @@ export function VideoExtractAudio() {
         data,
         output,
         videoExtractAudioArgs(input, output),
-        (p) => setProgress(Math.round(p * 100)),
+        (p) => job.setProgress(Math.round(p * 100)),
         ac.signal
       );
       downloadBlob(bytesToBlob(out, "audio/mpeg"), output);
@@ -316,21 +288,20 @@ export function VideoExtractAudio() {
       else toast.error(e instanceof Error ? e.message : tc("error"));
       log("failed", "failed");
     } finally {
-      setLoading(false);
-      setController(null);
+      job.stop();
     }
   };
 
   return (
     <ToolShell toolId="video-extract-audio">
       <FileDropzone accept="video/*" multiple={false} files={files} onChange={setFiles} />
-      {loading && <Progress value={progress} />}
+      {job.loading && <Progress value={job.progress} />}
       <ActionBar
         onRun={run}
-        loading={loading}
+        loading={job.loading}
         label={t("run")}
         disabled={!files[0]}
-        onCancel={() => controller?.abort()}
+        onCancel={job.cancel}
       />
     </ToolShell>
   );
@@ -343,19 +314,14 @@ export function VideoGif() {
   const [files, setFiles] = useState<FileItem[]>([]);
   const [start, setStart] = useState(0);
   const [end, setEnd] = useState(3);
-  const [loading, setLoading] = useState(false);
-  const [progress, setProgress] = useState(0);
-  const [controller, setController] = useState<AbortController | null>(null);
+  const job = useToolJob();
 
   const run = async () => {
     if (!files[0] || !Number.isFinite(start) || !Number.isFinite(end) || end <= start) {
       toast.error(tc("error"));
       return;
     }
-    const ac = new AbortController();
-    setController(ac);
-    setLoading(true);
-    setProgress(0);
+    const ac = job.start();
     try {
       const data = new Uint8Array(await files[0].file.arrayBuffer());
       const ext = files[0].file.name.split(".").pop() || "mp4";
@@ -367,7 +333,7 @@ export function VideoGif() {
         data,
         output,
         gifClipArgs(input, output, String(start), String(end)),
-        (p) => setProgress(Math.round(p * 100)),
+        (p) => job.setProgress(Math.round(p * 100)),
         ac.signal
       );
       downloadBlob(bytesToBlob(out, "image/gif"), output);
@@ -378,8 +344,7 @@ export function VideoGif() {
       else toast.error(e instanceof Error ? e.message : tc("error"));
       log("failed", "failed");
     } finally {
-      setLoading(false);
-      setController(null);
+      job.stop();
     }
   };
 
@@ -414,13 +379,13 @@ export function VideoGif() {
           <Input value={end} onChange={(e) => setEnd(Number(e.target.value) || 0)} inputMode="decimal" />
         </div>
       </div>
-      {loading && <Progress value={progress} />}
+      {job.loading && <Progress value={job.progress} />}
       <ActionBar
         onRun={run}
-        loading={loading}
+        loading={job.loading}
         label={t("run")}
         disabled={!files[0]}
-        onCancel={() => controller?.abort()}
+        onCancel={job.cancel}
       />
     </ToolShell>
   );

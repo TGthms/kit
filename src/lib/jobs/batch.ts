@@ -37,6 +37,27 @@ export async function forEachJobIndex(
   }
 }
 
+export async function runPooled<T, R>(
+  items: readonly T[],
+  limit: number,
+  worker: (item: T, index: number) => Promise<R>
+): Promise<R[]> {
+  if (!items.length) return [];
+  const concurrency = Math.max(1, Math.min(limit, items.length));
+  const out: R[] = new Array(items.length);
+  let next = 0;
+  await Promise.all(
+    Array.from({ length: concurrency }, async () => {
+      while (next < items.length) {
+        const index = next;
+        next += 1;
+        out[index] = await worker(items[index], index);
+      }
+    })
+  );
+  return out;
+}
+
 export function stemmedName(filename: string, suffix: string, ext: string): string {
   const base = filename.replace(/\.[^/.]+$/, "") || "file";
   const cleanExt = ext.replace(/^\./, "");

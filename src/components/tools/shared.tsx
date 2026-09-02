@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, type ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import { useTranslations } from "next-intl";
 import { LoaderCircle } from "lucide-react";
 import type { ToolId } from "@/lib/tools/registry";
@@ -16,6 +16,37 @@ export async function loadPdfjs() {
 
 export async function loadFfmpeg() {
   return import("@/lib/media/ffmpeg");
+}
+
+export function useToolJob() {
+  const controller = useRef<AbortController | null>(null);
+  const [loading, setLoading] = useState(false);
+  const [progress, setProgress] = useState(0);
+
+  useEffect(
+    () => () => {
+      controller.current?.abort();
+    },
+    []
+  );
+
+  const start = () => {
+    controller.current?.abort();
+    const ac = new AbortController();
+    controller.current = ac;
+    setLoading(true);
+    setProgress(0);
+    return ac;
+  };
+
+  const stop = () => {
+    setLoading(false);
+    controller.current = null;
+  };
+
+  const cancel = () => controller.current?.abort();
+
+  return { loading, progress, setProgress, start, stop, cancel };
 }
 
 export function useToolHistory(toolId: ToolId) {

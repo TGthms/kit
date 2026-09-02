@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { jobRatio, throwIfAborted } from "./abort";
-import { forEachJobIndex, runSequentialBatch, stemmedName } from "./batch";
+import { forEachJobIndex, runPooled, runSequentialBatch, stemmedName } from "./batch";
 
 describe("throwIfAborted", () => {
   it("throws AbortError only after the signal fires", () => {
@@ -14,6 +14,18 @@ describe("throwIfAborted", () => {
       expect(e).toBeInstanceOf(DOMException);
       expect((e as DOMException).name).toBe("AbortError");
     }
+  });
+});
+
+describe("runPooled", () => {
+  it("preserves order with a concurrency cap", async () => {
+    const seen: number[] = [];
+    const out = await runPooled([3, 1, 2], 2, async (n) => {
+      seen.push(n);
+      return n * 10;
+    });
+    expect(out).toEqual([30, 10, 20]);
+    expect(seen).toHaveLength(3);
   });
 });
 

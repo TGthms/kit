@@ -55,9 +55,15 @@ export function extensionForMime(mime: string, fallback = "bin"): string {
 }
 
 export const LARGE_FILE_BYTES = 80 * 1024 * 1024;
+/** Hard cap: refuse to queue files that will almost certainly OOM the tab. */
+export const MAX_FILE_BYTES = 200 * 1024 * 1024;
 
 export function isLargeFile(size: number): boolean {
   return size >= LARGE_FILE_BYTES;
+}
+
+export function isOversizedFile(size: number): boolean {
+  return size >= MAX_FILE_BYTES;
 }
 
 export async function downloadMany(

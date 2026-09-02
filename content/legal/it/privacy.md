@@ -33,11 +33,11 @@ Puoi cancellare la cronologia nelle Impostazioni oppure eliminare i dati di ques
 
 ### 2. Log di rete e hosting
 
-Kit è generalmente ospitato come file statici (ad esempio su GitHub Pages). Quando il browser richiede pagine e risorse, il provider di hosting può registrare dati tecnici standard come indirizzo IP, user agent, timestamp e URL richiesti. Questa registrazione è regolata dall'infrastruttura e dalle politiche del provider, non da un server Kit che apre i tuoi documenti.
+Kit è generalmente ospitato come file statici su **Cloudflare Pages** (sito canonico: trykit.pages.dev), con una copia di riserva su GitHub Pages. Quando il browser richiede pagine e risorse, il provider di hosting può registrare dati tecnici standard come indirizzo IP, user agent, timestamp e URL richiesti. Questa registrazione è regolata dall'infrastruttura e dalle politiche del provider, non da un server Kit che apre i tuoi documenti.
 
 ### 3. Risorse facoltative di terze parti
 
-Alcune funzioni avanzate possono caricare librerie di elaborazione (ad esempio core FFmpeg WebAssembly o script worker per PDF) da reti di distribuzione dei contenuti la prima volta che le utilizzi. Queste richieste possono esporre metadati di rete standard al CDN. Il contenuto dei tuoi file viene comunque elaborato nel browser; il CDN fornisce codice, non i tuoi documenti.
+Gli strumenti PDF caricano il worker pdf.js, i font e le risorse collegate **da questo stesso sito** (inclusi nell’app). Gli strumenti audio e video caricano un motore FFmpeg WebAssembly **da questo stesso sito**. Il contenuto dei file resta nel browser; queste librerie sono codice dell’applicazione, non un luogo a cui inviamo i tuoi documenti.
 
 ### 4. Tassi di cambio
 

@@ -127,8 +127,9 @@ export const DEFAULT_PASSWORD_ALPHABET = "ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmno
 export const RANDOM_HISTORY_SUMMARY_MAX = 96;
 export type RecordableRandomMode = "integer" | "decimal" | "boolean" | "pick";
 
-/** Compact history line for non-password rolls. Passwords are never included. */
+/** Compact history line for non-password rolls. Passwords and pick lists are never included. */
 export function randomResultSummary(mode: RecordableRandomMode, values: readonly string[]): string {
+  if (mode === "pick") return `pick × ${values.length}`;
   const compact = values.map((value) => value.trim().replace(/\s+/gu, " ")).filter(Boolean);
   if (!compact.length) return `${mode} × 0`;
   const label = compact.length === 1 ? `${mode}: ` : `${mode} × ${compact.length}: `;

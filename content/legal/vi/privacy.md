@@ -33,11 +33,11 @@ Bạn có thể xóa lịch sử trong phần Cài đặt hoặc xóa dữ liệ
 
 ### 2. Nhật ký mạng và lưu trữ
 
-Kit thường được lưu trữ dưới dạng các tệp tĩnh (ví dụ trên GitHub Pages). Khi trình duyệt yêu cầu các trang và tài nguyên, nhà cung cấp dịch vụ lưu trữ có thể tự động ghi lại dữ liệu kỹ thuật tiêu chuẩn như địa chỉ IP, user agent, dấu thời gian và URL được yêu cầu. Việc ghi nhật ký này do cơ sở hạ tầng và chính sách của nhà lưu trữ kiểm soát — không phải do máy chủ Kit mở tài liệu của bạn.
+Kit thường được lưu trữ dưới dạng các tệp tĩnh trên **Cloudflare Pages** (trang chuẩn: trykit.pages.dev), với bản sao trên GitHub Pages. Khi trình duyệt yêu cầu các trang và tài nguyên, nhà cung cấp dịch vụ lưu trữ có thể tự động ghi lại dữ liệu kỹ thuật tiêu chuẩn như địa chỉ IP, user agent, dấu thời gian và URL được yêu cầu. Việc ghi nhật ký này do cơ sở hạ tầng và chính sách của nhà lưu trữ kiểm soát — không phải do máy chủ Kit mở tài liệu của bạn.
 
 ### 3. Tài nguyên bên thứ ba tùy chọn
 
-Một số tính năng nâng cao có thể tải các thư viện xử lý (ví dụ lõi FFmpeg WebAssembly hoặc tập lệnh PDF worker) từ mạng phân phối nội dung trong lần đầu bạn sử dụng. Các yêu cầu này có thể làm lộ siêu dữ liệu mạng tiêu chuẩn cho CDN. Nội dung tệp của bạn vẫn được xử lý trong trình duyệt; CDN cung cấp mã, không cung cấp tài liệu của bạn.
+Công cụ PDF tải worker pdf.js, phông chữ và tài nguyên liên quan **từ chính trang này** (đi kèm ứng dụng). Công cụ âm thanh và video tải một engine FFmpeg WebAssembly **từ chính trang này**. Nội dung tệp của bạn ở lại trong trình duyệt; các thư viện đó là mã ứng dụng, không phải nơi chúng tôi gửi tài liệu của bạn.
 
 ### 4. Tỷ giá tiền tệ
 

@@ -1,13 +1,15 @@
 "use client";
 
-import { useEffect, useId, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
-import { ArrowLeftRight, Check, ChevronsUpDown, RefreshCw } from "lucide-react";
+import { ArrowLeftRight, Check, RefreshCw } from "lucide-react";
 import { notifyHistorySaved } from "@/lib/notify";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { SearchableSelect } from "@/components/ui/searchable-select";
+import { translateOr } from "@/lib/i18n/translate";
 import {
   convertCurrency,
   createCachedRateRecords,
@@ -17,16 +19,12 @@ import {
   isCachedRateStale,
   type CachedRateRecord,
 } from "@/lib/converter/currency";
-import { convertUnit, formatConvertedInput, formatUnitSymbol, type UnitCategory, type UnitCode } from "@/lib/converter/units";
+import { convertUnit, electricalDimension, formatConvertedInput, formatUnitSymbol, UNITS_BY_CATEGORY, type UnitCategory, type UnitCode } from "@/lib/converter/units";
 import type { ToolId } from "@/lib/tools/registry";
 import { AnimatedNumber } from "@/components/shared/animated-number";
 import { useHydrated } from "@/lib/react/hydrated";
 import { ToolShell, useToolHistory } from "./shared";
 
-const selectClass =
-  "flex h-10 w-full rounded-xl border border-input bg-background px-3 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring";
-const toolId = (value: string) => value as ToolId;
-type TranslationFn = (key: string, values?: Record<string, string | number>) => string;
 type UnitOption = { code: UnitCode; label: string };
 
 type EditedSide = "from" | "to";
@@ -37,16 +35,7 @@ function parseLiveNumber(raw: string): number | null {
   return Number.isFinite(value) ? value : null;
 }
 
-function text(t: ReturnType<typeof useTranslations>, key: string, fallback: string, values?: Record<string, string | number>) {
-  try {
-    const translate = t as unknown as TranslationFn;
-    const result = translate(key, values);
-    if (!result || result === key || result.endsWith(`.${key}`)) return fallback;
-    return result;
-  } catch {
-    return fallback;
-  }
-}
+const text = translateOr;
 
 const UNIT_CATALOG: Record<UnitCategory, UnitOption[]> = {
   length: [
@@ -282,137 +271,6 @@ const UNIT_MESSAGE_KEYS: Record<string, string> = {
   mV: "unitMv", V: "unitV", kV: "unitKv", mA: "unitMa", A: "unitA", kA: "unitKa", mOhm: "unitMOhm", Ohm: "unitOhm", kOhm: "unitKOhm", MOhm: "unitMOhmBig", px: "unitPx", pt: "unitPt", pc: "unitPc", rem: "unitRem", em: "unitEm",
 };
 
-export function SearchableSelect(props: {
-  label: string;
-  value: string;
-  options: Array<{ value: string; label: string }>;
-  onChange: (value: string) => void;
-  searchable?: boolean;
-  hideLabel?: boolean;
-}) {
-  return <SearchableSelectField key={props.value} searchable={props.options.length > 4} {...props} />;
-}
-
-function SearchableSelectField({
-  label,
-  value,
-  options,
-  onChange,
-  searchable = options.length > 4,
-  hideLabel = false,
-}: {
-  label: string;
-  value: string;
-  options: Array<{ value: string; label: string }>;
-  onChange: (value: string) => void;
-  searchable?: boolean;
-  hideLabel?: boolean;
-}) {
-  const t = useTranslations("common");
-  const listId = useId();
-  const rootRef = useRef<HTMLDivElement>(null);
-  const [query, setQuery] = useState("");
-  const [open, setOpen] = useState(false);
-  const selected = options.find((option) => option.value === value);
-  const optionText = (option: { value: string; label: string }) =>
-    `${formatUnitSymbol(option.value)} — ${option.label}`;
-  const selectedLabel = selected ? optionText(selected) : "";
-  const filtered = useMemo(() => {
-    const normalized = query.trim().toLowerCase();
-    if (!normalized) return options;
-    return options.filter((option) => `${option.value} ${formatUnitSymbol(option.value)} ${option.label}`.toLowerCase().includes(normalized));
-  }, [options, query]);
-
-  useEffect(() => {
-    if (!open) return;
-    const onPointer = (event: PointerEvent) => {
-      if (!rootRef.current?.contains(event.target as Node)) {
-        setOpen(false);
-        setQuery("");
-      }
-    };
-    const onKey = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        setOpen(false);
-        setQuery("");
-      }
-    };
-    document.addEventListener("pointerdown", onPointer);
-    document.addEventListener("keydown", onKey);
-    return () => {
-      document.removeEventListener("pointerdown", onPointer);
-      document.removeEventListener("keydown", onKey);
-    };
-  }, [open]);
-
-  const labelNode = hideLabel ? <span className="sr-only">{label}</span> : <Label>{label}</Label>;
-
-  if (!searchable) {
-    return (
-      <div className="space-y-2">
-        {labelNode}
-        <select className={selectClass} value={value} onChange={(event) => onChange(event.target.value)} aria-label={label}>
-          {options.map((option) => <option key={option.value} value={option.value}>{optionText(option)}</option>)}
-        </select>
-      </div>
-    );
-  }
-
-  return (
-    <div className="space-y-2" ref={rootRef}>
-      {labelNode}
-      <div className="relative">
-        <Input
-          value={open ? query : selectedLabel}
-          onChange={(event) => {
-            setQuery(event.target.value);
-            setOpen(true);
-          }}
-          onFocus={() => {
-            setOpen(true);
-            setQuery("");
-          }}
-          placeholder={selectedLabel || text(t, "search", "Search")}
-          className="pe-9"
-          role="combobox"
-          aria-expanded={open}
-          aria-controls={listId}
-          aria-autocomplete="list"
-          aria-label={label}
-          autoComplete="off"
-        />
-        <ChevronsUpDown className="pointer-events-none absolute end-3 top-3 h-4 w-4 text-muted-foreground" />
-      </div>
-      {open ? (
-        <div
-          id={listId}
-          role="listbox"
-          aria-label={text(t, "searchResults", `${label} search results`, { label })}
-          className="max-h-52 overflow-y-auto rounded-xl border border-input bg-background p-1 shadow-sm"
-        >
-          {filtered.length ? filtered.map((option) => (
-            <button
-              key={option.value}
-              type="button"
-              role="option"
-              aria-selected={option.value === value}
-              onMouseDown={(event) => event.preventDefault()}
-              onClick={() => {
-                onChange(option.value);
-                setOpen(false);
-                setQuery("");
-              }}
-              className="flex min-h-10 w-full items-center rounded-lg px-3 py-2 text-left text-sm transition-colors hover:bg-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring aria-selected:bg-primary/10 aria-selected:font-medium"
-            >
-              <span className="truncate">{optionText(option)}</span>
-            </button>
-          )) : <p className="px-3 py-3 text-sm text-muted-foreground">{text(t, "noMatches", "No matches")}</p>}
-        </div>
-      ) : null}
-    </div>
-  );
-}
-
 const UNIT_FORMAT_KEYS: Partial<Record<UnitCode, string>> = {
   mm: "millimeter", cm: "centimeter", m: "meter", km: "kilometer", in: "inch", ft: "foot", yd: "yard", mi: "mile", nmi: "nautical-mile",
   mg: "milligram", g: "gram", kg: "kilogram", t: "tonne", oz: "ounce", lb: "pound", stone: "stone", C: "celsius", F: "fahrenheit", K: "kelvin",
@@ -438,16 +296,21 @@ function localizedUnitLabel(code: UnitCode, fallback: string, locale: string): s
 function UnitConverter({
   category,
   historyToolId,
-  onBack,
 }: {
   category: UnitCategory;
   historyToolId: ToolId;
-  onBack?: () => void;
 }) {
   const t = useTranslations("tools.everyday-converter");
   const locale = useLocale();
   const log = useToolHistory(historyToolId);
-  const options = UNIT_CATALOG[category];
+  const options: UnitOption[] = useMemo(
+    () =>
+      UNITS_BY_CATEGORY[category].map((code) => ({
+        code,
+        label: UNIT_CATALOG[category].find((option) => option.code === code)?.label ?? code,
+      })),
+    [category]
+  );
   const localizedOptions = useMemo(
     () => options.map((option) => {
       const translated = UNIT_MESSAGE_KEYS[option.code] ? text(t, UNIT_MESSAGE_KEYS[option.code], option.label) : option.label;
@@ -459,6 +322,14 @@ function UnitConverter({
   const [edited, setEdited] = useState<EditedSide>("from");
   const [from, setFrom] = useState<UnitCode>(options[0].code);
   const [to, setTo] = useState<UnitCode>(options[1]?.code ?? options[0].code);
+  const compatibleTo = useMemo(() => {
+    if (category !== "electrical") return localizedOptions;
+    const dim = electricalDimension(from);
+    return localizedOptions.filter((option) => electricalDimension(option.code) === dim);
+  }, [category, from, localizedOptions]);
+  const toCode = compatibleTo.some((option) => option.code === to)
+    ? to
+    : (compatibleTo.find((option) => option.code !== from)?.code ?? to);
   const [rootFontSizePx, setRootFontSizePx] = useState("16");
   const [parentFontSizePx, setParentFontSizePx] = useState("16");
   const [dpi, setDpi] = useState("96");
@@ -472,12 +343,12 @@ function UnitConverter({
     if (value === null) return null;
     try {
       return edited === "from"
-        ? convertUnit(category, value, from, to, typographyOptions)
-        : convertUnit(category, value, to, from, typographyOptions);
+        ? convertUnit(category, value, from, toCode, typographyOptions)
+        : convertUnit(category, value, toCode, from, typographyOptions);
     } catch {
       return null;
     }
-  }, [category, edited, from, source, to, typographyOptions]);
+  }, [category, edited, from, source, toCode, typographyOptions]);
   const fromNumber = edited === "from" ? parseLiveNumber(source) : other;
   const toNumber = edited === "to" ? parseLiveNumber(source) : other;
   const fromText = edited === "from" ? source : (other === null ? "" : formatConvertedInput(other));
@@ -491,7 +362,7 @@ function UnitConverter({
     setSource(raw);
   };
   const swapSides = () => {
-    const nextFrom = to;
+    const nextFrom = toCode;
     const nextTo = from;
     setSource(toText);
     setEdited("from");
@@ -551,11 +422,6 @@ function UnitConverter({
   };
   return (
     <div className="space-y-5">
-      {onBack ? (
-        <Button variant="ghost" onClick={onBack} className="-ml-2">
-          ← {text(t, "back", "All categories")}
-        </Button>
-      ) : null}
       <div className="grid gap-4 lg:grid-cols-[1fr_auto_1fr] lg:items-center">
         <div className="space-y-3">
           <Label htmlFor="unit-from-value">{text(t, "from", "From")}</Label>
@@ -584,8 +450,8 @@ function UnitConverter({
           <SearchableSelect
             label={text(t, "to", "To")}
             hideLabel
-            value={to}
-            options={localizedOptions.map((option) => ({ value: option.code, label: option.label }))}
+            value={toCode}
+            options={compatibleTo.map((option) => ({ value: option.code, label: option.label }))}
             onChange={(value) => setTo(value as UnitCode)}
           />
         </div>
@@ -602,7 +468,7 @@ function UnitConverter({
                 <span className="text-sm font-medium text-muted-foreground">{formatUnitSymbol(from)}</span>
                 <span className="text-muted-foreground">=</span>
                 <AnimatedNumber value={toNumber} format={{ maximumFractionDigits: 8 }} />
-                <span className="text-sm font-medium text-muted-foreground">{formatUnitSymbol(to)}</span>
+                <span className="text-sm font-medium text-muted-foreground">{formatUnitSymbol(toCode)}</span>
               </span>
             </p>
           )}
@@ -641,7 +507,7 @@ function UnitConverter({
       <Button
         variant="outline"
         onClick={() => {
-          log(fromNumber === null || toNumber === null ? `${fromText} ${from} → ${to}` : `${fromText} ${from} → ${toNumber} ${to}`, "success");
+          log(fromNumber === null || toNumber === null ? `${fromText} ${from} → ${toCode}` : `${fromText} ${from} → ${toNumber} ${toCode}`, "success");
           notifyHistorySaved(text(t, "saved", "Conversion saved to history."), text(t, "historyOff", "History is off, so this wasn’t saved."));
         }}
       >
@@ -676,11 +542,10 @@ function writeCurrencyCache(records: CachedRateRecord[]) {
   }
 }
 
-export function CurrencyConverter({ onBack, namespace = "tools.currency-converter" }: { onBack?: () => void; namespace?: "tools.everyday-converter" | "tools.currency-converter" } = {}) {
+export function CurrencyConverter({ namespace = "tools.currency-converter" }: { namespace?: "tools.currency-converter" } = {}) {
   const t = useTranslations(namespace);
   const locale = useLocale();
-  const toolIdValue = namespace === "tools.currency-converter" ? "currency-converter" : "everyday-converter";
-  const log = useToolHistory(toolId(toolIdValue));
+  const log = useToolHistory("currency-converter");
   const [source, setSource] = useState("100");
   const [edited, setEdited] = useState<EditedSide>("from");
   const [base, setBase] = useState("USD");
@@ -798,11 +663,6 @@ export function CurrencyConverter({ onBack, namespace = "tools.currency-converte
 
   return (
     <div className="space-y-5">
-      {onBack ? (
-        <Button variant="ghost" onClick={onBack} className="-ml-2">
-          ← {text(t, "back", "All categories")}
-        </Button>
-      ) : null}
       <div className="grid gap-4 lg:grid-cols-[1fr_auto_1fr] lg:items-center">
         <div className="space-y-3">
           <Label htmlFor="currency-from-value">{text(t, "from", "From")}</Label>
@@ -864,7 +724,7 @@ export function CurrencyConverter({ onBack, namespace = "tools.currency-converte
               </p>
             ) : null}
             {displayError ? <p className="mt-2 text-xs text-destructive">{displayError}{match ? ` ${text(t, "usingCache", "Using the last cached rate.")}` : ""}</p> : null}
-            {match ? <p className="mt-1 text-xs text-muted-foreground">{text(t, "updated", "Updated just now")}</p> : null}
+            {match && liveRates && !stale ? <p className="mt-1 text-xs text-muted-foreground">{text(t, "updated", "Updated just now")}</p> : null}
           </div>
           <Button variant="outline" onClick={() => setRefreshToken((value) => value + 1)} disabled={loading} className="sm:self-start">
             <RefreshCw className={loading ? "animate-spin" : ""} /> {text(t, "refresh", "Refresh")}
@@ -886,7 +746,7 @@ export function CurrencyConverter({ onBack, namespace = "tools.currency-converte
 
 export function CurrencyConverterTool() {
   return (
-    <ToolShell toolId={toolId("currency-converter")}>
+    <ToolShell toolId="currency-converter">
       <CurrencyConverter namespace="tools.currency-converter" />
     </ToolShell>
   );

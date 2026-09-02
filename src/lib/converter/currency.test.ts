@@ -24,6 +24,13 @@ describe("currency helpers", () => {
     expect(validateFrankfurterRatesResponse(rates, "USD", ["EUR", "JPY"])).toEqual(rates);
     expect(() => validateFrankfurterRatesResponse([{ ...rates[0], rate: 0 }])).toThrow(TypeError);
     expect(() => validateFrankfurterRatesResponse({ rates })).toThrow(TypeError);
+    expect(
+      validateFrankfurterRatesResponse(
+        [...rates, { date: "2024-01-02", base: "USD", quote: "USD", rate: 1 }],
+        "USD",
+        ["EUR", "JPY"]
+      )
+    ).toEqual(rates);
   });
 
   it("creates cached records, detects stale data, and handles inverse rates", () => {

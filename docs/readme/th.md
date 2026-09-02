@@ -98,7 +98,7 @@ Kit คือชุดเครื่องมือ PDF รูปภาพ ส�
 
 ## การพัฒนาในเครื่อง
 
-ความต้องการ: **Node.js 22.13+** (ดู `.nvmrc`)
+ความต้องการ: **Node.js 24+** (ดู `.nvmrc`)
 
 ```bash
 git clone https://github.com/TGthms/kit.git
@@ -145,7 +145,7 @@ URL ของ Pages: `https://TGthms.github.io/kit/`
 
 ## เทคโนโลยี
 
-Next.js 15 (App Router ส่งออกแบบคงที่) · TypeScript · Tailwind CSS · UI สไตล์ shadcn · Zustand · next-intl · pdf-lib / PDF.js · Canvas · FFmpeg WASM · PWA service worker
+Next.js 16 (App Router ส่งออกแบบคงที่) · TypeScript · Tailwind CSS · UI สไตล์ shadcn · Zustand · next-intl · @cantoo/pdf-lib / PDF.js · Canvas · FFmpeg WASM · PWA service worker
 
 ## สัญญาอนุญาต
 

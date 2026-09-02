@@ -98,7 +98,7 @@ Layar beranda mengelompokkan alat menurut pekerjaan (halaman PDF, data, pengemba
 
 ## Pengembangan lokal
 
-Persyaratan: **Node.js 22.13+** (lihat `.nvmrc`).
+Persyaratan: **Node.js 24+** (lihat `.nvmrc`).
 
 ```bash
 git clone https://github.com/TGthms/kit.git
@@ -145,7 +145,7 @@ Situs kanonis: `https://trykit.pages.dev`
 
 ## Teknologi
 
-Next.js 15 (App Router, ekspor statis) · TypeScript · Tailwind CSS · UI bergaya shadcn · Zustand · next-intl · pdf-lib / PDF.js · Canvas · FFmpeg WASM · service worker PWA
+Next.js 16 (App Router, ekspor statis) · TypeScript · Tailwind CSS · UI bergaya shadcn · Zustand · next-intl · @cantoo/pdf-lib / PDF.js · Canvas · FFmpeg WASM · service worker PWA
 
 ## Lisensi
 

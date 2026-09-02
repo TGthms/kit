@@ -77,7 +77,7 @@ import {
 import { imagesToPdf } from "@/lib/pdf/core";
 import type { ToolId } from "@/lib/tools/registry";
 import { ActionBar, DownloadResult, ToolLimits, ToolShell, useToolHistory } from "./shared";
-import { SearchableSelect } from "./converter-tools";
+import { SearchableSelect } from "@/components/ui/searchable-select";
 
 const selectClass =
   "flex h-10 w-full rounded-xl border border-input bg-background px-3 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring";

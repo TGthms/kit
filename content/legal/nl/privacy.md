@@ -33,11 +33,11 @@ Je kunt de geschiedenis wissen in Instellingen of de gegevens van deze site in j
 
 ### 2. Netwerk- en hostinglogs
 
-Kit wordt doorgaans gehost als statische bestanden (bijvoorbeeld op GitHub Pages). Wanneer je browser pagina's en assets opvraagt, kan de hostingprovider standaard technische gegevens loggen, zoals IP-adres, user-agent, tijdstempels en opgevraagde URL's. Die logging wordt beheerd door de infrastructuur en het beleid van de host — niet door een Kit-server die je documenten opent.
+Kit wordt doorgaans gehost als statische bestanden op **Cloudflare Pages** (canonieke site: trykit.pages.dev), met een GitHub Pages-back-up. Wanneer je browser pagina's en assets opvraagt, kan de hostingprovider standaard technische gegevens loggen, zoals IP-adres, user-agent, tijdstempels en opgevraagde URL's. Die logging wordt beheerd door de infrastructuur en het beleid van de host — niet door een Kit-server die je documenten opent.
 
 ### 3. Optionele bronnen van derden
 
-Sommige geavanceerde functies kunnen verwerkingsbibliotheken (bijvoorbeeld FFmpeg WebAssembly-cores of PDF-workescripts) de eerste keer dat je ze gebruikt vanaf contentdelivery-netwerken laden. Deze verzoeken kunnen standaard netwerkmetagegevens aan het CDN blootstellen. Je bestanden worden nog steeds in de browser verwerkt; het CDN levert code, niet je documenten.
+PDF-tools laden de pdf.js-worker, lettertypen en bijbehorende bestanden **vanaf deze site** (meegeleverd met de app). Audio- en videotools laden een FFmpeg-WebAssembly-engine **vanaf deze site**. Je bestanden blijven in de browser; die bibliotheken zijn applicatiecode, geen plek waar we je documenten naartoe sturen.
 
 ### 4. Wisselkoersen
 

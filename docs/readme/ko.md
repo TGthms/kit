@@ -98,7 +98,7 @@ Kit는 PDF, 이미지, 미디어, 변환, 텍스트 도구가 기기에서 실�
 
 ## 로컬 개발
 
-**Node.js 22.13+** 가 필요합니다(`.nvmrc` 참고).
+**Node.js 24+** 가 필요합니다(`.nvmrc` 참고).
 
 ```bash
 git clone https://github.com/TGthms/kit.git
@@ -145,7 +145,7 @@ Pages URL: `https://TGthms.github.io/kit/`
 
 ## 기술 스택
 
-Next.js 15(App Router, 정적 내보내기) · TypeScript · Tailwind CSS · shadcn 스타일 UI · Zustand · next-intl · pdf-lib / PDF.js · Canvas · FFmpeg WASM · PWA 서비스 워커
+Next.js 16(App Router, 정적 내보내기) · TypeScript · Tailwind CSS · shadcn 스타일 UI · Zustand · next-intl · @cantoo/pdf-lib / PDF.js · Canvas · FFmpeg WASM · PWA 서비스 워커
 
 ## 라이선스
 

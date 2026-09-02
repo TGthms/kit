@@ -33,11 +33,11 @@ Sie können den Verlauf in den Einstellungen löschen oder die Daten dieser Webs
 
 ### 2. Netzwerk- und Hosting-Protokolle
 
-Kit wird in der Regel als statische Dateien gehostet (zum Beispiel auf GitHub Pages). Wenn Ihr Browser Seiten und Ressourcen anfordert, kann der Hoster standardmäßige technische Daten wie IP-Adresse, User-Agent, Zeitstempel und angeforderte URLs protokollieren. Diese Protokollierung wird durch die Infrastruktur und Richtlinien des Hosters gesteuert — nicht durch einen Kit-Server, der Ihre Dokumente öffnet.
+Kit wird in der Regel als statische Dateien auf **Cloudflare Pages** gehostet (kanonische Seite: trykit.pages.dev), mit einer GitHub-Pages-Sicherung. Wenn Ihr Browser Seiten und Ressourcen anfordert, kann der Hoster technische Standarddaten wie IP-Adresse, User-Agent, Zeitstempel und angeforderte URLs protokollieren. Diese Protokollierung wird durch die Infrastruktur und Richtlinien des Hosters gesteuert — nicht durch einen Kit-Server, der Ihre Dokumente öffnet.
 
 ### 3. Optionale Ressourcen von Drittanbietern
 
-Einige fortgeschrittene Funktionen können bei der ersten Nutzung Verarbeitungsbibliotheken (zum Beispiel FFmpeg-WebAssembly-Kerne oder PDF-Worker-Skripte) von Content-Delivery-Netzwerken laden. Diese Anfragen können Standard-Netzwerkmetadaten an das CDN übermitteln. Ihre Dateiinhalte werden weiterhin im Browser verarbeitet; das CDN liefert Bibliothekscode, nicht Ihre Dokumente.
+PDF-Werkzeuge laden den pdf.js-Worker, Schriften und zugehörige Dateien **von dieser Website** (mit der App ausgeliefert). Audio- und Videowerkzeuge laden eine FFmpeg-WebAssembly-Engine **von dieser Website**. Ihre Dateiinhalte bleiben im Browser; diese Bibliotheken sind Anwendungscode, kein Ort, an den wir Ihre Dokumente senden.
 
 ### 4. Wechselkurse
 

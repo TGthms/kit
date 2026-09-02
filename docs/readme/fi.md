@@ -98,7 +98,7 @@ Etusivu ryhmittelee työkalut tehtävän mukaan (PDF-sivut, data, kehitys…) yh
 
 ## Paikallinen kehitys
 
-Vaatimukset: **Node.js 22.13+** (katso `.nvmrc`).
+Vaatimukset: **Node.js 24+** (katso `.nvmrc`).
 
 ```bash
 git clone https://github.com/TGthms/kit.git
@@ -145,7 +145,7 @@ Kanoninen sivusto: `https://trykit.pages.dev`
 
 ## Tekniikka
 
-Next.js 15 (App Router, staattinen vienti) · TypeScript · Tailwind CSS · shadcn-tyylinen UI · Zustand · next-intl · pdf-lib / PDF.js · Canvas · FFmpeg WASM · PWA-palvelutyöntekijä
+Next.js 16 (App Router, staattinen vienti) · TypeScript · Tailwind CSS · shadcn-tyylinen UI · Zustand · next-intl · @cantoo/pdf-lib / PDF.js · Canvas · FFmpeg WASM · PWA-palvelutyöntekijä
 
 ## Lisenssi
 

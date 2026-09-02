@@ -98,7 +98,7 @@ L’accueil groupe les outils par tâche (pages PDF, données, développement…
 
 ## Développement local
 
-Prérequis : **Node.js 22.13+** (voir `.nvmrc`).
+Prérequis : **Node.js 24+** (voir `.nvmrc`).
 
 ```bash
 git clone https://github.com/TGthms/kit.git
@@ -145,7 +145,7 @@ Site canonique : `https://trykit.pages.dev`
 
 ## Pile technique
 
-Next.js 15 (App Router, export statique) · TypeScript · Tailwind CSS · UI style shadcn · Zustand · next-intl · pdf-lib / PDF.js · Canvas · FFmpeg WASM · service worker PWA
+Next.js 16 (App Router, export statique) · TypeScript · Tailwind CSS · UI style shadcn · Zustand · next-intl · @cantoo/pdf-lib / PDF.js · Canvas · FFmpeg WASM · service worker PWA
 
 ## Licence
 

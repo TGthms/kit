@@ -98,7 +98,7 @@ Màn hình chính nhóm công cụ theo việc (trang PDF, dữ liệu, phát tr
 
 ## Phát triển cục bộ
 
-Yêu cầu: **Node.js 22.13+** (xem `.nvmrc`).
+Yêu cầu: **Node.js 24+** (xem `.nvmrc`).
 
 ```bash
 git clone https://github.com/TGthms/kit.git
@@ -145,7 +145,7 @@ Trang chính: `https://trykit.pages.dev`
 
 ## Công nghệ
 
-Next.js 15 (App Router, xuất tĩnh) · TypeScript · Tailwind CSS · UI kiểu shadcn · Zustand · next-intl · pdf-lib / PDF.js · Canvas · FFmpeg WASM · service worker PWA
+Next.js 16 (App Router, xuất tĩnh) · TypeScript · Tailwind CSS · UI kiểu shadcn · Zustand · next-intl · @cantoo/pdf-lib / PDF.js · Canvas · FFmpeg WASM · service worker PWA
 
 ## Giấy phép
 

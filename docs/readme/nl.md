@@ -98,7 +98,7 @@ Het startscherm groepeert tools per taak (pdf-pagina’s, data, ontwikkeling…)
 
 ## Lokale ontwikkeling
 
-Vereisten: **Node.js 22.13+** (zie `.nvmrc`).
+Vereisten: **Node.js 24+** (zie `.nvmrc`).
 
 ```bash
 git clone https://github.com/TGthms/kit.git
@@ -145,7 +145,7 @@ Canonieke site: `https://trykit.pages.dev`
 
 ## Techniek
 
-Next.js 15 (App Router, statische export) · TypeScript · Tailwind CSS · UI in shadcn-stijl · Zustand · next-intl · pdf-lib / PDF.js · Canvas · FFmpeg WASM · PWA-serviceworker
+Next.js 16 (App Router, statische export) · TypeScript · Tailwind CSS · UI in shadcn-stijl · Zustand · next-intl · @cantoo/pdf-lib / PDF.js · Canvas · FFmpeg WASM · PWA-serviceworker
 
 ## Licentie
 

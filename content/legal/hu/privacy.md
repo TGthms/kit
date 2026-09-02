@@ -33,11 +33,11 @@ Az előzményeket a Beállításokban törölheti, vagy a böngészőben töröl
 
 ### 2. Hálózati és tárhelyszolgáltatói naplók
 
-A Kitet általában statikus fájlként tárolják (például a GitHub Pagesen). Amikor a böngészője oldalakat és erőforrásokat kér, a tárhelyszolgáltató automatikusan naplózhat szabványos technikai adatokat, például IP-címet, felhasználói ügynököt, időbélyegeket és a kért URL-eket. Ezt a naplózást a tárhelyszolgáltató infrastruktúrája és szabályzatai vezérlik, nem pedig egy, a dokumentumait megnyitó Kit-szerver.
+A Kitet általában statikus fájlként a **Cloudflare Pagesen** tárolják (hivatalos oldal: trykit.pages.dev), GitHub Pages-mentéssel. Amikor a böngészője oldalakat és erőforrásokat kér, a tárhelyszolgáltató automatikusan naplózhat szabványos technikai adatokat, például IP-címet, felhasználói ügynököt, időbélyegeket és a kért URL-eket. Ezt a naplózást a tárhelyszolgáltató infrastruktúrája és szabályzatai vezérlik, nem pedig egy, a dokumentumait megnyitó Kit-szerver.
 
 ### 3. Opcionális külső erőforrások
 
-Egyes speciális funkciók első használatkor feldolgozókönyvtárakat (például FFmpeg WebAssembly-magokat vagy PDF worker-szkripteket) tölthetnek be tartalomkézbesítési hálózatokról. Ezek a kérések szabványos hálózati metaadatokat tehetnek elérhetővé a CDN számára. A fájlok tartalmának feldolgozása továbbra is a böngészőben történik; a CDN kódot, nem pedig az Ön dokumentumait szolgáltatja.
+A PDF-eszközök a pdf.js workert, a betűkészleteket és a kapcsolódó fájlokat **erről a webhelyről** töltik be (az alkalmazással együtt járnak). A hang- és videóeszközök egy FFmpeg WebAssembly-motort töltenek be **erről a webhelyről**. A fájlok tartalma a böngészőben marad; ezek a könyvtárak alkalmazáskód, nem olyan hely, ahová a dokumentumait küldenénk.
 
 ### 4. Árfolyamok
 

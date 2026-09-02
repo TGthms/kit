@@ -98,7 +98,7 @@ Kit PDF, छवि, मीडिया, रूपांतरण और पा�
 
 ## स्थानीय विकास
 
-आवश्यकता: **Node.js 22.13+** (देखें `.nvmrc`)।
+आवश्यकता: **Node.js 24+** (देखें `.nvmrc`)।
 
 ```bash
 git clone https://github.com/TGthms/kit.git
@@ -145,7 +145,7 @@ Pages URL: `https://TGthms.github.io/kit/`
 
 ## तकनीक
 
-Next.js 15 (App Router, स्थैतिक निर्यात) · TypeScript · Tailwind CSS · shadcn-शैली UI · Zustand · next-intl · pdf-lib / PDF.js · Canvas · FFmpeg WASM · PWA सेवा वर्कर
+Next.js 16 (App Router, स्थैतिक निर्यात) · TypeScript · Tailwind CSS · shadcn-शैली UI · Zustand · next-intl · @cantoo/pdf-lib / PDF.js · Canvas · FFmpeg WASM · PWA सेवा वर्कर
 
 ## लाइसेंस
 

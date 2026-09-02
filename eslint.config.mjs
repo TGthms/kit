@@ -15,6 +15,7 @@ const eslintConfig = defineConfig([
     // scripts/sync-vendor.mjs) — not our code, and it's minified so
     // linting it is both meaningless and extremely slow.
     "public/vendor/**",
+    "coverage/**",
   ]),
 ]);
 

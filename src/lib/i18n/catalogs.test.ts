@@ -65,14 +65,42 @@ describe("message catalogs", () => {
       const catalog = (await import(`../../../messages/${loc}.json`)).default as {
         tools: Record<string, Record<string, string>>;
       };
-      for (const ns of ["everyday-converter", "currency-converter"]) {
-        const t = catalog.tools[ns];
-        expect(t.swapUnits, `${loc} ${ns} swapUnits`).not.toMatch(/货币|貨幣/u);
-        expect(t.swapCurrencies, `${loc} ${ns} swapCurrencies`).toMatch(/货币|貨幣/u);
-        expect(t.dpi, `${loc} ${ns} dpi`).toMatch(/DPI/i);
-        expect(t.searchAria, `${loc} ${ns} searchAria`).toMatch(/\{label\}/u);
-        expect(t.rateUnavailable, `${loc} ${ns} rateUnavailable`).not.toMatch(/\{label\}/u);
-      }
+      const t = catalog.tools["everyday-converter"];
+      expect(t.swapUnits, `${loc} swapUnits`).not.toMatch(/货币|貨幣/u);
+      expect(t.swapCurrencies, `${loc} swapCurrencies`).toMatch(/货币|貨幣/u);
+      expect(t.dpi, `${loc} dpi`).toMatch(/DPI/i);
+      expect(t.searchAria, `${loc} searchAria`).toMatch(/\{label\}/u);
+      expect(t.rateUnavailable, `${loc} rateUnavailable`).not.toMatch(/\{label\}/u);
     }
+  });
+
+  it("keeps Japanese and Korean converter chrome aligned", async () => {
+    const ja = (await import("../../../messages/ja.json")).default as { tools: Record<string, Record<string, string>> };
+    const ko = (await import("../../../messages/ko.json")).default as { tools: Record<string, Record<string, string>> };
+    expect(ja.tools["everyday-converter"].swapUnits).toMatch(/単位/);
+    expect(ja.tools["everyday-converter"].swapCurrencies).toMatch(/通貨/);
+    expect(ja.tools["everyday-converter"].dpi).toBe("DPI");
+    expect(ja.tools["everyday-converter"].searchAria).toMatch(/\{label\}/);
+    expect(ko.tools["everyday-converter"].swapUnits).toMatch(/단위/);
+    expect(ko.tools["everyday-converter"].swapCurrencies).toMatch(/통화/);
+    expect(ko.tools["everyday-converter"].dpi).toBe("DPI");
+    expect(ko.tools["everyday-converter"].searchAria).toMatch(/\{label\}/);
+  });
+
+  it("does not leave English unit labels in non-English catalogs", async () => {
+    const leftover: string[] = [];
+    for (const loc of locales) {
+      if (loc === "en") continue;
+      const file = messageFileFor(loc);
+      const catalog = (await import(`../../../messages/${file}.json`)).default as {
+        tools: Record<string, Record<string, string>>;
+      };
+      const everyday = catalog.tools["everyday-converter"] ?? {};
+      if (everyday.unitNmi === "Nautical miles (nmi)") leftover.push(`${loc}:unitNmi`);
+      if (everyday.unitUsTsp === "US teaspoons") leftover.push(`${loc}:unitUsTsp`);
+      if (everyday.unitStone === "Stone") leftover.push(`${loc}:unitStone`);
+      expect(catalog.tools["currency-converter"]?.unitMm, `${loc} currency unitMm`).toBeUndefined();
+    }
+    expect(leftover).toEqual([]);
   });
 });

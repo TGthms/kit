@@ -1,6 +1,24 @@
+import { readFileSync } from "node:fs";
+import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
 import { describe, expect, it } from "vitest";
-import { ogImageUrl, ogLocaleFor, SITE_URL } from "./site";
+import { CONTENT_SECURITY_POLICY, CONTENT_SECURITY_POLICY_HEADER, ogImageUrl, ogLocaleFor, SITE_URL } from "./site";
 import { buildLocaleMetadata, buildSectionMetadata, buildToolMetadata, socialImages } from "./metadata";
+
+describe("content security policy", () => {
+  it("does not allow jsDelivr and includes wasm-unsafe-eval", () => {
+    expect(CONTENT_SECURITY_POLICY).not.toMatch(/jsdelivr/i);
+    expect(CONTENT_SECURITY_POLICY).toContain("'wasm-unsafe-eval'");
+    expect(CONTENT_SECURITY_POLICY).toContain("https://api.frankfurter.dev");
+    expect(CONTENT_SECURITY_POLICY).not.toContain("frame-ancestors");
+    expect(CONTENT_SECURITY_POLICY_HEADER).toContain("frame-ancestors 'none'");
+  });
+
+  it("mirrors the Cloudflare _headers CSP plus frame-ancestors", () => {
+    const headers = readFileSync(join(dirname(fileURLToPath(import.meta.url)), "../../../public/_headers"), "utf8");
+    expect(headers).toContain(`Content-Security-Policy: ${CONTENT_SECURITY_POLICY_HEADER}`);
+  });
+});
 
 describe("og locale tags", () => {
   it("maps regional and Chinese variants for Open Graph", () => {

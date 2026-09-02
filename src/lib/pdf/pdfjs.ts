@@ -20,6 +20,17 @@ function pdfjsAssetUrl(path: string): string {
   return `${prefix}${path}`;
 }
 
+export const MAX_PDF_CANVAS_EDGE = 8192;
+export const MAX_PDF_CANVAS_PIXELS = 16_777_216;
+export const MAX_PDF_RASTER_PAGES = 200;
+
+export function clampPdfScale(width: number, height: number, scale: number): number {
+  if (!(width > 0) || !(height > 0) || !(scale > 0)) return 0.1;
+  const edgeLimit = MAX_PDF_CANVAS_EDGE / Math.max(width, height);
+  const pixelLimit = Math.sqrt(MAX_PDF_CANVAS_PIXELS / (width * height));
+  return Math.max(0.05, Math.min(scale, edgeLimit, pixelLimit));
+}
+
 async function openPdfDocument(data: ArrayBuffer) {
   const loadingTask = pdfjs.getDocument({
     data: data.slice(0),
@@ -28,6 +39,7 @@ async function openPdfDocument(data: ArrayBuffer) {
     standardFontDataUrl: pdfjsAssetUrl("standard_fonts/"),
     wasmUrl: pdfjsAssetUrl("wasm/"),
     iccUrl: pdfjsAssetUrl("iccs/"),
+    disableAutoFetch: true,
   });
   try {
     return { loadingTask, doc: await loadingTask.promise };
@@ -52,7 +64,8 @@ export async function renderPdfPagePreview(
     const pageCount = doc.numPages;
     const index = Math.min(pageCount, Math.max(1, pageNum));
     const page = await doc.getPage(index);
-    const viewport = page.getViewport({ scale });
+    const base = page.getViewport({ scale: 1 });
+    const viewport = page.getViewport({ scale: clampPdfScale(base.width, base.height, scale) });
     const canvas = document.createElement("canvas");
     canvas.width = viewport.width;
     canvas.height = viewport.height;
@@ -85,7 +98,8 @@ export async function renderPdfThumbnail(
   const { doc, loadingTask } = await openPdfDocument(data);
   try {
     const page = await doc.getPage(pageNum);
-    const viewport = page.getViewport({ scale });
+    const base = page.getViewport({ scale: 1 });
+    const viewport = page.getViewport({ scale: clampPdfScale(base.width, base.height, scale) });
     const canvas = document.createElement("canvas");
     canvas.width = viewport.width;
     canvas.height = viewport.height;
@@ -119,10 +133,12 @@ export async function renderPdfPagesToBlobs(
   const { doc, loadingTask } = await openPdfDocument(data);
   try {
     const blobs: Blob[] = [];
-    for (let i = 1; i <= doc.numPages; i++) {
+    const pageCount = Math.min(doc.numPages, MAX_PDF_RASTER_PAGES);
+    for (let i = 1; i <= pageCount; i++) {
       if (opts.signal?.aborted) throw new DOMException("Aborted", "AbortError");
       const page = await doc.getPage(i);
-      const viewport = page.getViewport({ scale });
+      const base = page.getViewport({ scale: 1 });
+      const viewport = page.getViewport({ scale: clampPdfScale(base.width, base.height, scale) });
       const canvas = document.createElement("canvas");
       canvas.width = viewport.width;
       canvas.height = viewport.height;
@@ -133,7 +149,7 @@ export async function renderPdfPagesToBlobs(
         canvas.toBlob((b) => (b ? resolve(b) : reject(new Error("toBlob failed"))), mime, quality)
       );
       blobs.push(blob);
-      opts.onProgress?.(i / doc.numPages);
+      opts.onProgress?.(i / pageCount);
     }
     return blobs;
   } finally {
@@ -188,10 +204,11 @@ export async function compressPdfLossy(
     const out = await PDFDocument.create();
 
     await forEachJobIndex(
-      src.numPages,
+      Math.min(src.numPages, MAX_PDF_RASTER_PAGES),
       async (i) => {
         const page = await src.getPage(i);
-        const viewport = page.getViewport({ scale });
+        const base = page.getViewport({ scale: 1 });
+        const viewport = page.getViewport({ scale: clampPdfScale(base.width, base.height, scale) });
         const canvas = document.createElement("canvas");
         canvas.width = viewport.width;
         canvas.height = viewport.height;

@@ -98,7 +98,7 @@ Kit は、PDF・画像・音声/動画・変換・テキスト処理を端末上
 
 ## ローカル開発
 
-**Node.js 22.13+** が必要です（`.nvmrc` 参照）。
+**Node.js 24+** が必要です（`.nvmrc` 参照）。
 
 ```bash
 git clone https://github.com/TGthms/kit.git
@@ -145,7 +145,7 @@ Pages URL: `https://TGthms.github.io/kit/`
 
 ## 技術スタック
 
-Next.js 15（App Router、静的エクスポート）· TypeScript · Tailwind CSS · shadcn 風 UI · Zustand · next-intl · pdf-lib / PDF.js · Canvas · FFmpeg WASM · PWA サービスワーカー
+Next.js 16（App Router、静的エクスポート）· TypeScript · Tailwind CSS · shadcn 風 UI · Zustand · next-intl · @cantoo/pdf-lib / PDF.js · Canvas · FFmpeg WASM · PWA サービスワーカー
 
 ## ライセンス
 

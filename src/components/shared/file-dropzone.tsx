@@ -3,7 +3,7 @@
 import { useCallback, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 import { Upload } from "lucide-react";
-import { cn, formatBytes, isLargeFile } from "@/lib/utils";
+import { cn, formatBytes, isLargeFile, isOversizedFile } from "@/lib/utils";
 import { fileMatchesAccept } from "@/lib/files/accept";
 import { Button } from "@/components/ui/button";
 
@@ -34,7 +34,7 @@ export function FileDropzone({
 
   const addFiles = useCallback(
     (list: FileList | File[]) => {
-      const matched = Array.from(list).filter((file) => fileMatchesAccept(file, accept));
+      const matched = Array.from(list).filter((file) => fileMatchesAccept(file, accept) && !isOversizedFile(file.size));
       if (!matched.length) return;
       const arr = matched.map((file) => ({
         id: crypto.randomUUID(),

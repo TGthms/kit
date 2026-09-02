@@ -98,7 +98,7 @@ Ana ekran araçları işe göre gruplar (PDF sayfaları, veri, geliştirme…) d
 
 ## Yerel geliştirme
 
-Gereksinimler: **Node.js 22.13+** (`.nvmrc` dosyasına bakın).
+Gereksinimler: **Node.js 24+** (`.nvmrc` dosyasına bakın).
 
 ```bash
 git clone https://github.com/TGthms/kit.git
@@ -145,7 +145,7 @@ Asıl site: `https://trykit.pages.dev`
 
 ## Teknoloji
 
-Next.js 15 (App Router, statik dışa aktarma) · TypeScript · Tailwind CSS · shadcn tarzı UI · Zustand · next-intl · pdf-lib / PDF.js · Canvas · FFmpeg WASM · PWA service worker
+Next.js 16 (App Router, statik dışa aktarma) · TypeScript · Tailwind CSS · shadcn tarzı UI · Zustand · next-intl · @cantoo/pdf-lib / PDF.js · Canvas · FFmpeg WASM · PWA service worker
 
 ## Lisans
 

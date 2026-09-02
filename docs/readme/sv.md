@@ -98,7 +98,7 @@ Startsidan grupperar verktyg efter uppgift (PDF-sidor, data, utveckling …) i s
 
 ## Lokal utveckling
 
-Krav: **Node.js 22.13+** (se `.nvmrc`).
+Krav: **Node.js 24+** (se `.nvmrc`).
 
 ```bash
 git clone https://github.com/TGthms/kit.git
@@ -145,7 +145,7 @@ Kanonisk sajt: `https://trykit.pages.dev`
 
 ## Teknik
 
-Next.js 15 (App Router, statisk export) · TypeScript · Tailwind CSS · UI i shadcn-stil · Zustand · next-intl · pdf-lib / PDF.js · Canvas · FFmpeg WASM · PWA-service worker
+Next.js 16 (App Router, statisk export) · TypeScript · Tailwind CSS · UI i shadcn-stil · Zustand · next-intl · @cantoo/pdf-lib / PDF.js · Canvas · FFmpeg WASM · PWA-service worker
 
 ## Licens
 

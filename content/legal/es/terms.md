@@ -1,6 +1,6 @@
 # Condiciones de uso
 
-**Última actualización:** 15 de julio de 2026
+**Última actualización:** September 1, 2026
 
 Estas condiciones regulan el acceso y el uso del sitio y las herramientas de **Kit** («el Servicio»). Al usar Kit aceptas estas condiciones. Si no estás de acuerdo, no utilices el Servicio.
 
