@@ -6,7 +6,7 @@ export const SITE_AUTHOR_URL = "https://t-g.pages.dev";
 /**
  * Static-host CSP for the client-only app.
  *
- * Kit-owned boot scripts live in `public/boot/` (theme, lang/dir, locale gate).
+ * Kit-owned boot scripts live in `public/boot/` (theme, lang/dir, locale gate, PWA viewport).
  * pdf.js and FFmpeg WASM are same-origin under `public/vendor/`.
  * FFmpeg’s core is stored gzipped (`ffmpeg-core.wasm.gz`) so the file stays
  * under Cloudflare Pages’ 25 MiB upload limit; the client gunzips it.

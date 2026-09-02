@@ -100,9 +100,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               : CONTENT_SECURITY_POLICY
           }
         />
-        {/* Sync on purpose: theme/lang/locale-gate must run before first paint. */}
+        {/* Sync on purpose: theme/lang/locale-gate/viewport must run before first paint. */}
         {/* eslint-disable-next-line @next/next/no-sync-scripts */}
         <script src={withBasePath("/boot/theme.js")} />
+        {/* eslint-disable-next-line @next/next/no-sync-scripts */}
+        <script src={withBasePath("/boot/viewport.js")} />
         {/* eslint-disable-next-line @next/next/no-sync-scripts */}
         <script
           src={withBasePath("/boot/locale-lang.js")}

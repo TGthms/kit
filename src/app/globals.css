@@ -122,10 +122,19 @@
 
 html {
   color-scheme: light;
+  /* Stop landscape auto-inflation. Dynamic Type is applied below via -apple-system-body. */
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
   scroll-behavior: smooth;
   font-optical-sizing: auto;
+}
+
+/* Follow Settings → Display & Text Size. Rem layout scales with it. */
+@supports (font: -apple-system-body) {
+  html {
+    font: -apple-system-body;
+    font-family: var(--font-sans);
+  }
 }
 
 html.dark {

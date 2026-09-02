@@ -35,7 +35,7 @@ This file is the active implementation record. Current source is under `src/`, `
 - Copy actions confirm on the button (icon + “Copied”); they no longer toast on success.
 - Home Start here lists tools only (Currency first, BMI & calorie last). Everyday converters and Everyday tools are category pages, not featured cards.
 - Text counter reading time is ~220 WPM for alphabetic text and ~400 characters/min for CJK, shown as `45s` / `1m 15s` rather than rounded-up minutes.
-- Form fields use 16px type so iOS PWA does not zoom into converter search inputs on focus.
+- Form fields use 16px type so iOS Safari does not zoom into converter search inputs on focus. The installed PWA also locks page pinch-zoom (`maximum-scale=1`) while still following iOS Dynamic Type via `-apple-system-body` (rem layout scales with Settings → Display & Text Size). Browser tabs stay pinch-zoomable.
 - Mobile PWA tab bar is a floating glass capsule just above the home indicator (content scrolls underneath). The active tab and 2-item segments (timer mode, appearance) use a gliding pill; switches use a short overshoot on the thumb. The document scroller keeps native rubber-band bounce at the top and bottom; overscroll is not locked in the installed PWA.
 - Cover content is a drawable visual overlay (not true redaction). Shrink-as-images rasterizes pages to JPEG and says so in the tool name and limits.
 - World clock public URL is `/tools/world-clock/`; `/tools/timezone-converter/` still loads the same tool and rewrites the path.
