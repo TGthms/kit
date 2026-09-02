@@ -3,9 +3,9 @@
 import { useMemo, useState } from "react";
 import { useTranslations } from "next-intl";
 import { toast } from "sonner";
-import { notifyCopied } from "@/lib/notify";
 import { FileDropzone, type FileItem } from "@/components/shared/file-dropzone";
 import { Button } from "@/components/ui/button";
+import { CopyButton } from "@/components/ui/copy-button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
@@ -195,15 +195,7 @@ export function HashGenerator() {
         <div className="space-y-2">
           <Label>{t("digest")}</Label>
           <Textarea value={digest} readOnly className="min-h-20 break-all font-mono" />
-          <Button
-            variant="outline"
-            onClick={() => {
-              navigator.clipboard.writeText(digest);
-              notifyCopied(tc("copied"));
-            }}
-          >
-            {tc("copy")}
-          </Button>
+          <CopyButton value={digest} />
         </div>
       ) : null}
     </ToolShell>
@@ -212,7 +204,6 @@ export function HashGenerator() {
 
 export function UuidGenerator() {
   const t = useTranslations("tools.uuid-generator");
-  const tc = useTranslations("common");
   const log = useToolHistory("uuid-generator");
   const [count, setCount] = useState(5);
   const [version, setVersion] = useState<4 | 7>(4);
@@ -246,16 +237,7 @@ export function UuidGenerator() {
       </div>
       <div className="flex gap-2">
         <Button onClick={run}>{t("run")}</Button>
-        <Button
-          variant="outline"
-          onClick={() => {
-            navigator.clipboard.writeText(out);
-            notifyCopied(tc("copied"));
-          }}
-          disabled={!out}
-        >
-          {tc("copy")}
-        </Button>
+        <CopyButton value={out} disabled={!out} />
       </div>
       {out ? <Textarea value={out} readOnly className="min-h-40 font-mono" /> : null}
     </ToolShell>
@@ -298,15 +280,7 @@ export function ColorConvert() {
           <p>
             <strong>HSV</strong> {Math.round(parsed.hsv.h)}°, {Math.round(parsed.hsv.s)}%, {Math.round(parsed.hsv.v)}%
           </p>
-          <Button
-            variant="outline"
-            onClick={() => {
-              navigator.clipboard.writeText(parsed.hex);
-              notifyCopied(tc("copied"));
-            }}
-          >
-            {tc("copy")} {parsed.hex}
-          </Button>
+          <CopyButton value={parsed.hex} label={`${tc("copy")} ${parsed.hex}`} />
         </div>
       ) : (
         <p className="text-sm text-destructive">{t("invalid")}</p>
@@ -320,7 +294,6 @@ export function ColorConvert() {
 
 export function LoremIpsum() {
   const t = useTranslations("tools.lorem-ipsum");
-  const tc = useTranslations("common");
   const log = useToolHistory("lorem-ipsum");
   const [count, setCount] = useState(2);
   const [mode, setMode] = useState<LoremMode>("paragraphs");
@@ -351,16 +324,7 @@ export function LoremIpsum() {
       </div>
       <div className="flex gap-2">
         <Button onClick={run}>{t("run")}</Button>
-        <Button
-          variant="outline"
-          onClick={() => {
-            navigator.clipboard.writeText(out);
-            notifyCopied(tc("copied"));
-          }}
-          disabled={!out}
-        >
-          {tc("copy")}
-        </Button>
+        <CopyButton value={out} disabled={!out} />
       </div>
       {out ? <Textarea value={out} readOnly className="min-h-48" /> : null}
     </ToolShell>

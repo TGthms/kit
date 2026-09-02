@@ -48,6 +48,8 @@
   /* Motion (spring-like ease approximations; critically damped feel) */
   --ease-out-soft: cubic-bezier(0.25, 0.1, 0.25, 1);
   --ease-spring: cubic-bezier(0.32, 0.72, 0, 1);
+  --ease-glide: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-pop: cubic-bezier(0.34, 1.56, 0.64, 1);
   --duration-press: 100ms;
   --duration-ui: 320ms;
   --duration-sheet: 380ms;
@@ -209,9 +211,91 @@ canvas {
   font-weight: 600;
 }
 
-number-flow-react {
-  --number-flow-mask-height: 0.35em;
-  line-height: 1;
+scritto-text {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Beat @scritto/core/ssr.css (`scritto-flow { display: block }`) for inline suffixes. */
+scritto-flow.kit-scritto-inline {
+  display: inline;
+}
+
+/* View Transition reset so the circular theme wipe can own the animation. */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+  display: block;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+::view-transition-image-pair(root) {
+  isolation: auto;
+}
+
+::view-transition-old(root) {
+  z-index: 1;
+}
+
+::view-transition-new(root) {
+  z-index: 9999;
+}
+
+.gliding-pill {
+  position: absolute;
+  transition:
+    left 0.4s var(--ease-glide),
+    width 0.4s var(--ease-glide),
+    top 0.4s var(--ease-glide),
+    height 0.4s var(--ease-glide);
+}
+
+.gliding-pill:not([data-ready]) {
+  opacity: 0;
+  transition: none;
+}
+
+.copy-icon {
+  position: relative;
+  display: inline-flex;
+  width: 1rem;
+  height: 1rem;
+}
+
+.copy-icon svg {
+  position: absolute;
+  inset: 0;
+  transition:
+    opacity 0.2s,
+    transform 0.3s var(--ease-pop);
+}
+
+.copy-icon .ic-check {
+  opacity: 0;
+  transform: scale(0.5);
+  color: #248a3d;
+}
+
+.dark .copy-icon .ic-check {
+  color: #30d158;
+}
+
+.copy-btn-copied .ic-copy {
+  opacity: 0;
+  transform: scale(0.5);
+}
+
+.copy-btn-copied .ic-check {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.switch-knob {
+  transition:
+    transform 0.4s var(--ease-pop),
+    background-color 0.3s;
 }
 
 [data-sonner-toaster] {
@@ -525,6 +609,11 @@ button[data-pressed]:not(:disabled),
   button,
   a,
   [role="button"] {
+    transition: none !important;
+  }
+  .gliding-pill,
+  .copy-icon svg,
+  .switch-knob {
     transition: none !important;
   }
   .pressable:active,

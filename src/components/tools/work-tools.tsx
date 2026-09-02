@@ -3,8 +3,8 @@
 import { useMemo, useState } from "react";
 import { useTranslations } from "next-intl";
 import { toast } from "sonner";
-import { notifyCopied } from "@/lib/notify";
 import { Button } from "@/components/ui/button";
+import { CopyButton } from "@/components/ui/copy-button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
@@ -103,15 +103,7 @@ export function UnixTimestamp() {
           <p>
             <strong>Local</strong> {parsed.local}
           </p>
-          <Button
-            variant="outline"
-            onClick={() => {
-              navigator.clipboard.writeText(parsed.iso);
-              notifyCopied(tc("copied"));
-            }}
-          >
-            {tc("copy")} ISO
-          </Button>
+          <CopyButton value={parsed.iso} label={`${tc("copy")} ISO`} />
         </div>
       ) : (
         <p className="text-sm text-destructive">{parsed.error}</p>
@@ -216,7 +208,6 @@ export function HtmlEntities() {
 
 export function CaseConvert() {
   const t = useTranslations("tools.case-convert");
-  const tc = useTranslations("common");
   const log = useToolHistory("case-convert");
   const [text, setText] = useState("Hello Kit World");
   const [style, setStyle] = useState<CaseStyle>("camel");
@@ -246,15 +237,7 @@ export function CaseConvert() {
       <Textarea value={text} onChange={(e) => setText(e.target.value)} />
       <div className="flex gap-2">
         <Button onClick={run}>{t("run")}</Button>
-        <Button
-          variant="outline"
-          onClick={() => {
-            navigator.clipboard.writeText(text);
-            notifyCopied(tc("copied"));
-          }}
-        >
-          {tc("copy")}
-        </Button>
+        <CopyButton value={text} />
       </div>
     </ToolShell>
   );
@@ -304,16 +287,7 @@ export function PasswordGenerator() {
       ))}
       <div className="flex gap-2">
         <Button onClick={run}>{t("run")}</Button>
-        <Button
-          variant="outline"
-          disabled={!out}
-          onClick={() => {
-            navigator.clipboard.writeText(out);
-            notifyCopied(tc("copied"));
-          }}
-        >
-          {tc("copy")}
-        </Button>
+        <CopyButton value={out} disabled={!out} />
       </div>
       {out ? <Input readOnly value={out} className="font-mono" /> : null}
     </ToolShell>
@@ -322,7 +296,6 @@ export function PasswordGenerator() {
 
 export function JsonTypes() {
   const t = useTranslations("tools.json-types");
-  const tc = useTranslations("common");
   const log = useToolHistory("json-types");
   const [input, setInput] = useState('{\n  "name": "Kit",\n  "ok": true\n}');
 
@@ -343,15 +316,7 @@ export function JsonTypes() {
       <Textarea value={input} onChange={(e) => setInput(e.target.value)} className="min-h-64 font-mono" />
       <div className="flex gap-2">
         <Button onClick={run}>{t("run")}</Button>
-        <Button
-          variant="outline"
-          onClick={() => {
-            navigator.clipboard.writeText(input);
-            notifyCopied(tc("copied"));
-          }}
-        >
-          {tc("copy")}
-        </Button>
+        <CopyButton value={input} />
       </div>
     </ToolShell>
   );

@@ -7,10 +7,12 @@ import { LocaleSwitcher } from "@/components/layout/locale-switcher";
 import { PageHeader } from "@/components/layout/page-header";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { SegmentedControl } from "@/components/ui/segmented-control";
 import { useHistoryStore } from "@/stores/history-store";
 import { Switch } from "@/components/ui/switch";
 import { rememberThemeChoice } from "@/components/providers";
 import { useHydrated } from "@/lib/react/hydrated";
+import { runCircularThemeTransition } from "@/lib/theme/circular-transition";
 
 export default function SettingsPage() {
   const t = useTranslations("settings");
@@ -32,24 +34,22 @@ export default function SettingsPage() {
         <CardHeader>
           <CardTitle>{t("appearance")}</CardTitle>
         </CardHeader>
-        <CardContent className="flex flex-wrap gap-2">
-          {(
-            [
-              ["light", tc("themeLight")],
-              ["dark", tc("themeDark")],
-            ] as const
-          ).map(([value, label]) => (
-            <Button
-              key={value}
-              size="sm"
-              variant={appearance === value ? "default" : "outline"}
-              className="transition-[background-color,color,box-shadow,transform] duration-200 ease-out"
-              onClick={() => rememberThemeChoice(value, setTheme)}
-              disabled={!hydrated}
-            >
-              {label}
-            </Button>
-          ))}
+        <CardContent>
+          {hydrated ? (
+            <SegmentedControl
+              value={appearance}
+              aria-label={t("appearance")}
+              onChange={(value, event) => {
+                runCircularThemeTransition(value, (theme) => rememberThemeChoice(theme, setTheme), event);
+              }}
+              options={[
+                { value: "light", label: tc("themeLight") },
+                { value: "dark", label: tc("themeDark") },
+              ]}
+            />
+          ) : (
+            <div className="h-11 w-52 rounded-2xl bg-secondary/80" aria-hidden />
+          )}
         </CardContent>
       </Card>
 

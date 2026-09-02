@@ -1,12 +1,13 @@
 "use client";
 
-import { Suspense } from "react";
+import { Suspense, useState } from "react";
 import { useTranslations } from "next-intl";
 import { Link, usePathname } from "@/lib/i18n/navigation";
 import { useSearchParams } from "next/navigation";
 import { Home, History, Star, Settings } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { withAsset } from "@/lib/base-path";
+import { GlidingPill, useGlidingPill } from "@/components/ui/gliding-pill";
 import { ThemeToggle } from "./theme-toggle";
 import { SiteFooter } from "./footer";
 import { LocaleSwitcher } from "./locale-switcher";
@@ -57,12 +58,20 @@ function SideNav({ pathname }: { pathname: string }) {
 function TabBar({ pathname }: { pathname: string }) {
   const t = useTranslations("nav");
   const tb = useTranslations("brand");
+  const [container, setContainer] = useState<HTMLDivElement | null>(null);
+  const [target, setTarget] = useState<HTMLElement | null>(null);
+  const { rect, ready } = useGlidingPill(container, target);
+
   return (
     <nav
       className="glass chrome-edge chrome-touch fixed inset-x-0 bottom-0 z-40 md:hidden safe-pb"
       aria-label={tb("name")}
     >
-      <div className="mx-auto flex max-w-lg items-stretch justify-around px-1 pt-1">
+      <div
+        ref={setContainer}
+        className="relative mx-auto flex max-w-lg items-stretch justify-around px-1 pt-1"
+      >
+        <GlidingPill rect={rect} ready={ready} className="rounded-full bg-primary/12" />
         {nav.map(({ href, key, icon: Icon }) => {
           const active = isActive(pathname, href);
           return (
@@ -73,16 +82,16 @@ function TabBar({ pathname }: { pathname: string }) {
               data-restore-scroll
               aria-current={active ? "page" : undefined}
               className={cn(
-                "pressable-soft flex min-h-[3.75rem] min-w-0 flex-1 flex-col items-center justify-center gap-0.5 px-1 py-1.5",
+                "pressable-soft relative z-10 flex min-h-[3.75rem] min-w-0 flex-1 flex-col items-center justify-center gap-0.5 px-1 py-1.5",
                 "text-[11px] font-medium tracking-[-0.01em]",
                 active ? "text-primary" : "text-muted-foreground"
               )}
             >
               <span
-                className={cn(
-                  "flex h-8 w-14 items-center justify-center rounded-full transition-colors duration-200",
-                  active && "bg-primary/12"
-                )}
+                ref={(el) => {
+                  if (active && el) setTarget(el);
+                }}
+                className="flex h-8 w-14 items-center justify-center rounded-full"
               >
                 <Icon className={cn("h-5 w-5", active && "stroke-[2.25]")} />
               </span>

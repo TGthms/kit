@@ -1,26 +1,23 @@
 "use client";
 
-import NumberFlow, { NumberFlowGroup, type Format } from "@number-flow/react";
+import Scritto, { type Trend } from "@scritto/react";
 import { cn } from "@/lib/utils";
-
-const twoDigitFormat: Format = { minimumIntegerDigits: 2 };
+import { clockFace } from "./clock-face";
 
 /**
  * Renders an animated H:MM:SS clock face.
  *
- * - Hours/minutes/seconds morph digit-by-digit via NumberFlow, grouped so
- *   their animations stay in sync.
- * - `trend={0}` keeps wraparound ticks (e.g. seconds 59 -> 00) from spinning
- *   the whole way around; digits just settle into place.
- * - An optional `fraction` (e.g. centiseconds) is rendered as plain, static
- *   text rather than animated, since sub-second digits change too fast for
- *   a flip/slide animation to read as anything but flicker.
+ * Scritto diffs the formatted string, so colons stay put and only glyphs that
+ * changed roll. Feed the padded face (`01:23:45`), never the raw numbers —
+ * grouping characters are what keep the columns stable.
+ *
+ * - `trend` should be `-1` while a countdown is running and `+1` while a
+ *   stopwatch is running. Idle/reset uses `0` so direction is read off the value.
+ * - An optional `fraction` (e.g. centiseconds) is static: sub-second ticks are
+ *   faster than a roll, and stacking ghosts is unreadable.
  * - The animated digits are hidden from assistive tech; `label` supplies a
- *   single, clean accessible value for the whole clock instead.
+ *   single accessible value for the whole clock.
  */
-function pad2(value: number): string {
-  return String(Math.max(0, Math.trunc(value))).padStart(2, "0");
-}
 
 export function AnimatedClock({
   hours,
@@ -31,6 +28,7 @@ export function AnimatedClock({
   className,
   digitClassName,
   animate = true,
+  trend = 0,
 }: {
   hours?: number;
   minutes: number;
@@ -40,35 +38,23 @@ export function AnimatedClock({
   className?: string;
   digitClassName?: string;
   animate?: boolean;
+  trend?: Trend;
 }) {
+  const face = clockFace(hours, minutes, seconds);
+
   return (
-    <div className={cn("flex items-baseline justify-center tabular-nums", className)} aria-label={label}>
-      <span className="flex items-baseline overflow-hidden" aria-hidden="true">
-        {animate ? (
-          <NumberFlowGroup>
-            {hours !== undefined ? (
-              <>
-                <NumberFlow value={hours} format={twoDigitFormat} trend={0} className={digitClassName} />
-                <span>:</span>
-              </>
-            ) : null}
-            <NumberFlow value={minutes} format={twoDigitFormat} trend={0} className={digitClassName} />
-            <span>:</span>
-            <NumberFlow value={seconds} format={twoDigitFormat} trend={0} className={digitClassName} />
-          </NumberFlowGroup>
-        ) : (
-          <>
-            {hours !== undefined ? (
-              <>
-                <span className={digitClassName}>{pad2(hours)}</span>
-                <span>:</span>
-              </>
-            ) : null}
-            <span className={digitClassName}>{pad2(minutes)}</span>
-            <span>:</span>
-            <span className={digitClassName}>{pad2(seconds)}</span>
-          </>
-        )}
+    <div
+      className={cn("flex items-baseline justify-center tabular-nums", className)}
+      style={{ fontVariantNumeric: "tabular-nums" }}
+      aria-label={label}
+    >
+      <span className="flex items-baseline" aria-hidden="true">
+        <Scritto
+          value={face}
+          trend={trend}
+          animated={animate}
+          className={digitClassName}
+        />
         {fraction ? <span className="opacity-70">.{fraction}</span> : null}
       </span>
     </div>

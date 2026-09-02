@@ -12,10 +12,6 @@ export function notifyError(message: string) {
   toast.error(message, { id: ERROR_ID });
 }
 
-export function notifyCopied(message = "Copied") {
-  toast.success(message, { id: NOTICE_ID });
-}
-
 /** Record-to-history actions: never claim a save when recording is off. */
 export function notifyHistorySaved(savedMessage: string, skippedMessage: string) {
   if (useHistoryStore.getState().enabled) toast.success(savedMessage, { id: NOTICE_ID });

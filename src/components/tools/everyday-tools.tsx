@@ -6,7 +6,6 @@ import {
   CalendarDays,
   Check,
   Clock3,
-  Copy,
   Dice5,
   Globe2,
   RefreshCw,
@@ -14,14 +13,17 @@ import {
   WalletCards,
 } from "lucide-react";
 import { toast } from "sonner";
-import { notifyCopied, notifyHistorySaved } from "@/lib/notify";
+import { notifyHistorySaved } from "@/lib/notify";
 import { AnimatedClock } from "@/components/shared/animated-clock";
+import { clockFace } from "@/components/shared/clock-face";
 import { AnimatedNumber } from "@/components/shared/animated-number";
 import { FileDropzone, type FileItem } from "@/components/shared/file-dropzone";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { CopyButton } from "@/components/ui/copy-button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { SegmentedControl } from "@/components/ui/segmented-control";
 import { Switch } from "@/components/ui/switch";
 import { Textarea } from "@/components/ui/textarea";
 import {
@@ -149,7 +151,6 @@ function formatClock(milliseconds: number) {
 
 export function TextCounter() {
   const t = useTranslations("tools.text-counter");
-  const tc = useTranslations("common");
   const locale = useLocale();
   const log = useToolHistory(toolId("text-counter"));
   const [value, setValue] = useState("");
@@ -187,15 +188,7 @@ export function TextCounter() {
         ))}
       </div>
       <div className="flex flex-wrap gap-2">
-        <Button
-          variant="outline"
-          onClick={() => {
-            navigator.clipboard.writeText(value);
-            notifyCopied(tc("copied"));
-          }}
-        >
-          <Copy /> {text(tc, "copy", "Copy")}
-        </Button>
+        <CopyButton value={value} />
         <Button
           variant="outline"
           onClick={() => {
@@ -285,13 +278,14 @@ export function TimezoneConverter() {
                 <CardContent className="p-4">
                   <div className="flex items-center justify-between"><span className="rounded-lg bg-secondary px-2 py-1 text-xs font-semibold">{city.emoji}</span><span className="text-xs text-muted-foreground">UTC {sign}{Math.floor(absOffset / 60)}:{String(absOffset % 60).padStart(2, "0")}</span></div>
                   <p className="mt-3 font-medium">{text(t, city.key, city.name)}</p>
-                  <p
-                    className="mt-1 font-mono text-xl font-semibold tabular-nums"
-                    aria-label={`${String(parts.hour).padStart(2, "0")}:${String(parts.minute).padStart(2, "0")}:${String(parts.second).padStart(2, "0")}`}
-                  >
-                    {String(parts.hour).padStart(2, "0")}:{String(parts.minute).padStart(2, "0")}:
-                    {String(parts.second).padStart(2, "0")}
-                  </p>
+                  <AnimatedClock
+                    hours={parts.hour}
+                    minutes={parts.minute}
+                    seconds={parts.second}
+                    trend={1}
+                    label={clockFace(parts.hour, parts.minute, parts.second)}
+                    className="mt-1 justify-start font-mono text-xl font-semibold tracking-tight"
+                  />
                   <p className="mt-1 text-xs text-muted-foreground">{formatTimeZone(now, city.zone, { dateStyle: "medium", locale })}</p>
                 </CardContent>
               </Card>
@@ -486,7 +480,15 @@ export function StopwatchTimer() {
   };
   return (
     <ToolShell toolId={toolId("stopwatch-timer")}>
-      <div className="flex flex-wrap gap-2"><Button variant={mode === "stopwatch" ? "default" : "outline"} onClick={() => setMode("stopwatch")}><TimerReset /> {text(t, "stopwatch", "Stopwatch")}</Button><Button variant={mode === "timer" ? "default" : "outline"} onClick={() => setMode("timer")}><Clock3 /> {text(t, "countdown", "Countdown")}</Button></div>
+      <SegmentedControl
+        value={mode}
+        aria-label={`${text(t, "stopwatch", "Stopwatch")} / ${text(t, "countdown", "Countdown")}`}
+        onChange={(next) => setMode(next)}
+        options={[
+          { value: "stopwatch", label: text(t, "stopwatch", "Stopwatch"), icon: TimerReset },
+          { value: "timer", label: text(t, "countdown", "Countdown"), icon: Clock3 },
+        ]}
+      />
       <Card className="overflow-hidden"><CardContent className="flex flex-col items-center gap-6 p-6 sm:p-10">{mode === "stopwatch" ? (
         <AnimatedClock
           hours={stopwatchParts.hours}
@@ -494,6 +496,7 @@ export function StopwatchTimer() {
           seconds={stopwatchParts.seconds}
           fraction={String(stopwatchParts.centiseconds).padStart(2, "0")}
           label={formatDuration(elapsed)}
+          trend={stopwatch.status === "running" ? 1 : 0}
           className="font-mono text-5xl font-semibold tracking-tight sm:text-7xl"
         />
       ) : (
@@ -502,6 +505,7 @@ export function StopwatchTimer() {
           minutes={timerParts.minutes}
           seconds={timerParts.seconds}
           label={formatClock(remaining)}
+          trend={timer.status === "running" ? -1 : 0}
           className={`font-mono text-5xl font-semibold tracking-tight sm:text-7xl ${timer.status === "finished" ? "text-destructive" : ""}`}
         />
       )}{mode === "timer" ? <div className="grid w-full max-w-md grid-cols-3 gap-3"><div className="space-y-2"><Label>{text(t, "hours", "Hours")}</Label><Input type="number" min="0" inputMode="numeric" value={hours} onChange={(event) => setHours(event.target.value)} disabled={fieldsLocked} /></div><div className="space-y-2"><Label>{text(t, "minutes", "Minutes")}</Label><Input type="number" min="0" max="59" inputMode="numeric" value={minutes} onChange={(event) => setMinutes(event.target.value)} disabled={fieldsLocked} /></div><div className="space-y-2"><Label>{text(t, "seconds", "Seconds")}</Label><Input type="number" min="0" max="59" inputMode="numeric" value={seconds} onChange={(event) => setSeconds(event.target.value)} disabled={fieldsLocked} /></div></div> : null}<div className="flex flex-wrap justify-center gap-2"><Button size="lg" onClick={toggle}>{running ? text(t, "pause", "Pause") : mode === "timer" && timer.status === "finished" ? text(t, "finished", "Finished") : text(t, "start", "Start")}</Button><Button size="lg" variant="outline" onClick={reset}><RefreshCw /> {text(t, "reset", "Reset")}</Button></div></CardContent></Card>
@@ -512,7 +516,6 @@ export function StopwatchTimer() {
 
 export function RandomGenerator() {
   const t = useTranslations("tools.random-generator");
-  const tc = useTranslations("common");
   const log = useToolHistory(toolId("random-generator"));
   const [mode, setMode] = useState<"integer" | "decimal" | "boolean" | "pick" | "password">("integer");
   const [min, setMin] = useState("1");
@@ -653,7 +656,7 @@ export function RandomGenerator() {
                   {shown.map((item, index) => (
                     <span
                       key={index}
-                      className="inline-flex h-14 min-w-[4.25rem] items-center justify-center overflow-hidden rounded-xl border border-primary/20 bg-background px-3 font-mono text-xl font-semibold tabular-nums"
+                      className="inline-flex h-14 min-w-[4.25rem] items-center justify-center rounded-xl border border-primary/20 bg-background px-3 font-mono text-xl font-semibold tabular-nums"
                     >
                       {shown.length > 10
                         ? (numberFormat ? item.toFixed(numberFormat.minimumFractionDigits ?? 0) : item)
@@ -666,16 +669,7 @@ export function RandomGenerator() {
               <pre className="max-h-56 overflow-auto whitespace-pre-wrap break-all font-mono text-sm leading-6">{joined}</pre>
             )}
             <div className="flex flex-wrap gap-2">
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => {
-                  navigator.clipboard.writeText(joined);
-                  notifyCopied(tc("copied"));
-                }}
-              >
-                <Copy /> {tc("copy")}
-              </Button>
+              <CopyButton value={joined} size="sm" />
               {values.length > 1 ? (
                 <Button variant="outline" size="sm" onClick={() => downloadText(joined, "random.txt")}>
                   {text(t, "download", "Download list")}

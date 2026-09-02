@@ -5,6 +5,7 @@ import { ThemeProvider, useTheme } from "next-themes";
 import { useTranslations } from "next-intl";
 import { Toaster } from "sonner";
 import { PressFeedback } from "@/components/layout/press-feedback";
+import { THEME_COLOR } from "@/lib/theme/circular-transition";
 
 type ThemeChoice = "system" | "light" | "dark";
 
@@ -66,12 +67,6 @@ function HtmlLang({ lang, dir }: { lang?: string; dir?: "ltr" | "rtl" }) {
   }, [dir, lang]);
   return null;
 }
-
-// Matches `--background` in globals.css (light/dark). Keep in sync with the
-// inline pre-hydration script in src/app/layout.tsx, which sets the same
-// values before first paint so the PWA/browser chrome color never flashes
-// the wrong mode.
-const THEME_COLOR = { light: "#f5f5f7", dark: "#000000" };
 
 /**
  * Keeps <meta name="theme-color"> aligned with the actually-resolved theme

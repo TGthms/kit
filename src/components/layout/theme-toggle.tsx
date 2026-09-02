@@ -6,6 +6,7 @@ import { Moon, Sun } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { rememberThemeChoice } from "@/components/providers";
 import { useHydrated } from "@/lib/react/hydrated";
+import { runCircularThemeTransition } from "@/lib/theme/circular-transition";
 
 /**
  * Header control: toggles between light and dark only.
@@ -27,7 +28,10 @@ export function ThemeToggle() {
       variant="ghost"
       size="icon"
       className="shrink-0"
-      onClick={() => rememberThemeChoice(isDark ? "light" : "dark", setTheme)}
+      onClick={(event) => {
+        const next = isDark ? "light" : "dark";
+        runCircularThemeTransition(next, (theme) => rememberThemeChoice(theme, setTheme), event);
+      }}
       aria-label={isDark ? t("themeLight") : t("themeDark")}
       title={isDark ? t("themeLight") : t("themeDark")}
     >

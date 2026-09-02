@@ -30,7 +30,10 @@ This file is the active implementation record. Current source is under `src/`, `
 - The static app includes an explicit CSP meta policy for same-origin assets plus Frankfurter. pdf.js and FFmpeg WASM are vendored under `public/vendor/` (synced on postinstall/prebuild). Kit-owned boot scripts live in `public/boot/`. `'unsafe-inline'` remains because Next.js static export emits inline Flight payloads. Cloudflare `_headers` also sends CSP with `frame-ancestors 'none'`.
 - Mobile tool headers collapse after scrolling to a compact iOS-like back affordance; tool title, description, client-side note, and favorite action are hidden while scrolled.
 - Keyboard shortcuts avoid Cmd/Ctrl bindings that collide with macOS, Windows, and browser commands: `/` focuses search, `R` runs the active tool, `?` opens help, and `Esc` closes help. Cmd/Ctrl+Enter remains available as an optional form-style run gesture.
-- Theme persists in localStorage (`theme`). System is the default. A manual Light choice snaps back to System if the OS appearance later changes.
+- Theme persists in localStorage (`theme`). System is the default. Light/dark switches use a circular View Transition wipe from the control (instant when View Transitions are missing or reduced motion is on).
+- Countdown, stopwatch, world-clock faces, and live numeric results use Scritto (`@scritto/react`). The clock is one formatted `HH:MM:SS` string (colons stay; only changed glyphs roll). Running countdown uses `trend={-1}`; running stopwatch and world-clock ticks use `trend={+1}`; idle reads direction from the value. Centiseconds stay static so sub-second ticks do not stack ghosts. World-clock cards update once a second, inside Scritto’s duration window.
+- Copy actions confirm on the button (icon + “Copied”); they no longer toast on success.
+- Mobile PWA tab bar and 2-item segments (timer mode, appearance) use a gliding pill; switches use a short overshoot on the thumb.
 - Cover content is a drawable visual overlay (not true redaction). Shrink-as-images rasterizes pages to JPEG and says so in the tool name and limits.
 - World clock public URL is `/tools/world-clock/`; `/tools/timezone-converter/` still loads the same tool and rewrites the path.
 - Images → PDF defaults to A4 fit with an original-size option. JPEG EXIF orientation is applied via canvas decode.

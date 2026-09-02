@@ -3,9 +3,9 @@
 import { useMemo, useState } from "react";
 import { useTranslations } from "next-intl";
 import { toast } from "sonner";
-import { notifyCopied } from "@/lib/notify";
 import { FileDropzone, type FileItem } from "@/components/shared/file-dropzone";
 import { Button } from "@/components/ui/button";
+import { CopyButton } from "@/components/ui/copy-button";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { downloadBlob, downloadText, formatBytes } from "@/lib/utils";
@@ -61,15 +61,7 @@ export function JsonFormat() {
         <Button variant="secondary" onClick={() => run(true)}>
           {tc("minify")}
         </Button>
-        <Button
-          variant="outline"
-          onClick={() => {
-            navigator.clipboard.writeText(input);
-            notifyCopied(tc("copied"));
-          }}
-        >
-          {tc("copy")}
-        </Button>
+        <CopyButton value={input} />
         <Button variant="outline" onClick={() => downloadText(input, "data.json", "application/json")}>
           {tc("download")}
         </Button>
