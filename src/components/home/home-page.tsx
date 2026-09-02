@@ -16,7 +16,7 @@ import {
   Calculator,
   ArrowLeftRight,
 } from "lucide-react";
-import { tools, categories, featuredCategoryIds, featuredToolIds, groupedTools, type ToolCategory, type ToolId } from "@/lib/tools/registry";
+import { tools, categories, featuredToolIds, groupedTools, type ToolCategory, type ToolId } from "@/lib/tools/registry";
 import { homeHref, parseCategoryParam, toolHref } from "@/lib/navigation/routes";
 import { Link } from "@/lib/i18n/navigation";
 import { Input } from "@/components/ui/input";
@@ -287,23 +287,6 @@ function HomePageInner() {
             {t("featured")}
           </h2>
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            {featuredCategoryIds.map((id) => {
-              const meta = categoryMeta[id];
-              const Icon = meta.icon;
-              return (
-                <Link key={id} href={homeHref(id)} className="block" data-pressable>
-                  <Card className="h-full border-border/40 pressable-soft transition-shadow hover:surface-float-lg">
-                    <CardHeader className="flex-row items-center gap-3 space-y-0 p-4">
-                      <span className={cn("flex h-10 w-10 shrink-0 items-center justify-center rounded-xl", meta.tint)}><Icon className="h-5 w-5" /></span>
-                      <div className="min-w-0">
-                        <CardTitle className="truncate text-sm font-medium tracking-[-0.01em]">{tc(id)}</CardTitle>
-                        <CardDescription className="mt-0.5 line-clamp-2 text-xs">{tc(`${id}Desc`)}</CardDescription>
-                      </div>
-                    </CardHeader>
-                  </Card>
-                </Link>
-              );
-            })}
             {featuredToolIds.map((id) => {
               const tool = tools.find((x) => x.id === id);
               if (!tool) return null;
