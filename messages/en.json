@@ -1112,7 +1112,7 @@
       "name": "Text counter",
       "description": "Count words, characters, sentences, paragraphs, and reading time.",
       "keywords": "word counter character counter text statistics reading time",
-      "limits": "Counts use browser-native Unicode segmentation when available, so emoji and combined characters are handled more naturally.",
+      "limits": "Counts use browser-native Unicode segmentation when available. Reading time is about 220 words/min for alphabetic text and 400 characters/min for Chinese, Japanese, and Korean.",
       "input": "Text to count",
       "saved": "Saved to history.",
       "record": "Record snapshot",

@@ -34,7 +34,7 @@ import {
   differenceInCalendarDays,
   type DateUnit,
 } from "@/lib/converter/date";
-import { measureText } from "@/lib/converter/text-counter";
+import { formatReadingTime, measureText } from "@/lib/converter/text-counter";
 import {
   convertLocalTimeZone,
   formatTimeZone,
@@ -155,7 +155,7 @@ export function TextCounter() {
   const log = useToolHistory(toolId("text-counter"));
   const [value, setValue] = useState("");
   const metrics = useMemo(() => measureText(value, { locale }), [locale, value]);
-  const metricCards: Array<{ label: string; value: number; suffix?: string }> = [
+  const metricCards: Array<{ label: string; value?: number; suffix?: string; display?: string }> = [
     { label: text(t, "words", "Words"), value: metrics.words },
     { label: text(t, "characters", "Characters with spaces"), value: metrics.characters },
     { label: text(t, "noSpaces", "Characters without spaces"), value: metrics.charactersNoSpaces },
@@ -163,14 +163,13 @@ export function TextCounter() {
     { label: text(t, "paragraphs", "Paragraphs"), value: metrics.paragraphs },
     {
       label: text(t, "readTime", "Reading time"),
-      value: metrics.readingTimeSeconds < 60 ? metrics.readingTimeSeconds : Math.ceil(metrics.readingTimeSeconds / 60),
-      suffix: metrics.readingTimeSeconds < 60 ? "s" : "m",
+      display: formatReadingTime(metrics.readingTimeSeconds),
     },
   ];
   return (
     <ToolShell toolId={toolId("text-counter")}>
       <ToolLimits>
-        <p>{text(t, "limits", "Counts use browser-native Unicode segmentation when available, so emoji and combined characters are handled more naturally.")}</p>
+        <p>{text(t, "limits", "Counts use browser-native Unicode segmentation when available. Reading time is about 220 words/min for alphabetic text and 400 characters/min for Chinese, Japanese, and Korean.")}</p>
       </ToolLimits>
       <Textarea value={value} onChange={(event) => setValue(event.target.value)} placeholder={text(t, "placeholder", "Paste or type text here to see a live reading profile.")} className="min-h-64 text-base" aria-label={text(t, "input", "Text to count")} />
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
@@ -178,11 +177,15 @@ export function TextCounter() {
           <Card key={card.label}>
             <CardContent className="p-4">
               <p className="text-xs text-muted-foreground">{card.label}</p>
-              <AnimatedNumber
-                value={card.value}
-                suffix={card.suffix}
-                className="mt-2 text-2xl font-semibold tracking-tight"
-              />
+              {card.display ? (
+                <p className="mt-2 text-2xl font-semibold tracking-tight tabular-nums">{card.display}</p>
+              ) : (
+                <AnimatedNumber
+                  value={card.value ?? 0}
+                  suffix={card.suffix}
+                  className="mt-2 text-2xl font-semibold tracking-tight"
+                />
+              )}
             </CardContent>
           </Card>
         ))}
