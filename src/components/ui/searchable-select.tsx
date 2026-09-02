@@ -9,7 +9,7 @@ import { formatUnitSymbol } from "@/lib/converter/units";
 import { translateOr } from "@/lib/i18n/translate";
 
 const selectClass =
-  "flex h-10 w-full rounded-xl border border-input bg-background px-3 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring";
+  "flex h-10 w-full rounded-xl border border-input bg-background px-3 text-base focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring";
 
 export function SearchableSelect(props: {
   label: string;
@@ -108,7 +108,7 @@ function SearchableSelectField({
             setQuery("");
           }}
           placeholder={selectedLabel || translateOr(t, "search", "Search")}
-          className="pe-9"
+          className="pe-9 text-base"
           role="combobox"
           aria-expanded={open}
           aria-controls={listId}
