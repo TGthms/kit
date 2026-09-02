@@ -45,6 +45,10 @@
   --shadow-soft: 0 1px 2px rgba(0, 0, 0, 0.04), 0 8px 24px rgba(0, 0, 0, 0.06);
   --shadow-float: 0 4px 24px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.06);
 
+  /* Mobile tab bar floats above the home indicator; keep clearance in sync. */
+  --floating-tabbar-offset: calc(0.75rem + env(safe-area-inset-bottom, 0px));
+  --floating-tabbar-clearance: calc(5.75rem + env(safe-area-inset-bottom, 0px));
+
   /* Motion (spring-like ease approximations; critically damped feel) */
   --ease-out-soft: cubic-bezier(0.25, 0.1, 0.25, 1);
   --ease-spring: cubic-bezier(0.32, 0.72, 0, 1);
@@ -199,8 +203,12 @@ canvas {
   box-shadow: var(--shadow-float);
 }
 
-.safe-pb {
-  padding-bottom: max(0.5rem, env(safe-area-inset-bottom));
+.floating-nav-shell {
+  box-shadow: var(--shadow-float);
+}
+
+.floating-nav-face {
+  box-shadow: inset 0 1px 0 var(--glass-border);
 }
 
 /* Typography scale helpers */
@@ -653,6 +661,9 @@ button[data-pressed]:not(:disabled),
     background: var(--card);
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
+  }
+  .floating-nav-face {
+    box-shadow: none;
   }
 }
 

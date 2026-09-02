@@ -7,6 +7,7 @@ import { useSearchParams } from "next/navigation";
 import { Home, History, Star, Settings } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { withAsset } from "@/lib/base-path";
+import { FloatingNav } from "@/components/ui/floating-nav";
 import { GlidingPill, useGlidingPill } from "@/components/ui/gliding-pill";
 import { ThemeToggle } from "./theme-toggle";
 import { SiteFooter } from "./footer";
@@ -63,50 +64,42 @@ function TabBar({ pathname }: { pathname: string }) {
   const { rect, ready } = useGlidingPill(container, target);
 
   return (
-    <nav
-      className="glass chrome-edge chrome-touch fixed inset-x-0 bottom-0 z-40 md:hidden safe-pb"
-      aria-label={tb("name")}
-    >
-      <div
-        ref={setContainer}
-        className="relative mx-auto flex max-w-lg items-stretch justify-around px-1 pt-1"
-      >
-        <GlidingPill rect={rect} ready={ready} className="rounded-full bg-primary/12" />
-        {nav.map(({ href, key, icon: Icon }) => {
-          const active = isActive(pathname, href);
-          return (
-            <Link
-              key={href}
-              href={href}
-              data-pressable
-              data-restore-scroll
-              aria-current={active ? "page" : undefined}
-              className={cn(
-                "pressable-soft relative z-10 flex min-h-[3.75rem] min-w-0 flex-1 flex-col items-center justify-center gap-0.5 px-1 py-1.5",
-                "text-[11px] font-medium tracking-[-0.01em]",
-                active ? "text-primary" : "text-muted-foreground"
-              )}
-            >
-              <span
-                ref={(el) => {
-                  if (active && el) setTarget(el);
-                }}
-                className="flex h-8 w-14 items-center justify-center rounded-full"
-              >
-                <Icon className={cn("h-5 w-5", active && "stroke-[2.25]")} />
-              </span>
-              <span className="max-w-full truncate">{t(key)}</span>
-            </Link>
-          );
-        })}
-      </div>
-    </nav>
+    <FloatingNav aria-label={tb("name")} contentRef={setContainer}>
+      <GlidingPill rect={rect} ready={ready} className="rounded-full bg-primary/12" />
+      {nav.map(({ href, key, icon: Icon }) => {
+        const active = isActive(pathname, href);
+        return (
+          <Link
+            key={href}
+            href={href}
+            data-pressable
+            data-restore-scroll
+            aria-current={active ? "page" : undefined}
+            className={cn(
+              "pressable-soft relative z-10 flex min-h-[3.25rem] min-w-0 flex-1 flex-col items-center justify-center gap-0.5 px-1 py-1",
+              "text-[11px] font-medium tracking-[-0.01em]",
+              active ? "text-primary" : "text-muted-foreground"
+            )}
+          >
+            <span
+              ref={(el) => {
+                if (active && el) setTarget(el);
+              }}
+              aria-hidden
+              className="pointer-events-none absolute inset-x-0.5 inset-y-0.5 rounded-full"
+            />
+            <Icon className={cn("relative h-5 w-5", active && "stroke-[2.25]")} />
+            <span className="relative max-w-full truncate">{t(key)}</span>
+          </Link>
+        );
+      })}
+    </FloatingNav>
   );
 }
 
 /**
  * Desktop: side rail + top chrome.
- * Mobile: top chrome + bottom tab bar only (no redundant drawer/sidebar).
+ * Mobile: top chrome + floating bottom tab bar (no redundant drawer/sidebar).
  */
 function ScrollRestorationBound({ pathname }: { pathname: string }) {
   const searchParams = useSearchParams();
@@ -160,7 +153,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
         <main className="anim-surface min-w-0 flex-1 pb-3 md:pb-8">{children}</main>
       </div>
 
-      <div className="pb-[calc(5rem+env(safe-area-inset-bottom))] md:pb-0">
+      <div className="pb-[var(--floating-tabbar-clearance)] md:pb-0">
         <SiteFooter />
       </div>
 
