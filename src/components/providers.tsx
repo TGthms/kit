@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useLayoutEffect } from "react";
+import { useEffect, useLayoutEffect, useRef } from "react";
 import { ThemeProvider, useTheme } from "next-themes";
 import { useTranslations } from "next-intl";
 import { Toaster } from "sonner";
@@ -68,15 +68,20 @@ function HtmlLang({ lang, dir }: { lang?: string; dir?: "ltr" | "rtl" }) {
 
 /**
  * Re-applies the Kit auto theme policy when the OS appearance changes or the
- * local clock crosses 22:00 / 05:00. A live Light/Dark tap is not blocked;
- * this only runs on those automatic events. User intent stays in
- * kit-theme-context; next-themes stores the value that should actually paint.
+ * local clock crosses 22:00 / 05:00. next-themes recreates `setTheme` every
+ * time the theme changes, so this effect must not depend on it — that loop
+ * was undoing a Light tap while Dark was enforced.
  */
 function ThemePreferenceSync() {
   const { setTheme } = useTheme();
+  const setThemeRef = useRef(setTheme);
 
   useLayoutEffect(() => {
-    const run = () => syncAppliedTheme(setTheme, new Date(), currentSystemTheme());
+    setThemeRef.current = setTheme;
+  }, [setTheme]);
+
+  useLayoutEffect(() => {
+    const run = () => syncAppliedTheme(setThemeRef.current, new Date(), currentSystemTheme());
     run();
 
     const media = window.matchMedia("(prefers-color-scheme: dark)");
@@ -103,7 +108,7 @@ function ThemePreferenceSync() {
       unsubscribeMedia();
       window.clearTimeout(timer);
     };
-  }, [setTheme]);
+  }, []);
 
   return null;
 }

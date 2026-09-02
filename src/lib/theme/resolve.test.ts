@@ -10,9 +10,11 @@ import {
   nextThemesValue,
   rememberThemeChoice,
   resolveKitTheme,
+  resetSessionThemeOverride,
   seedThemeContextIfMissing,
   shouldForceDark,
   syncAppliedTheme,
+  writeThemeContext,
 } from "./resolve";
 
 const day = new Date(2026, 8, 1, 10, 0, 0, 0);
@@ -112,6 +114,7 @@ describe("msUntilNextNightBoundary", () => {
 describe("theme context persistence", () => {
   afterEach(() => {
     window.localStorage.clear();
+    resetSessionThemeOverride();
   });
 
   it("seeds missing context from the stored next-themes value once", () => {
@@ -137,17 +140,29 @@ describe("theme context persistence", () => {
     expect(JSON.parse(window.localStorage.getItem(THEME_CONTEXT_KEY) ?? "null").choice).toBe("light");
   });
 
-  it("keeps a light intent while auto-sync forces dark at night, then restores light in the morning", () => {
+  it("does not let auto-sync undo an explicit light pick this visit", () => {
     const applied: string[] = [];
     const setTheme = (theme: string) => {
       applied.push(theme);
       window.localStorage.setItem(THEME_STORAGE_KEY, theme);
     };
 
-    rememberThemeChoice("light", setTheme, "light");
+    rememberThemeChoice("light", setTheme, "dark");
+    expect(applied.at(-1)).toBe("light");
+
+    syncAppliedTheme(setTheme, night, "dark");
     expect(applied.at(-1)).toBe("light");
     expect(JSON.parse(window.localStorage.getItem(THEME_CONTEXT_KEY) ?? "null").choice).toBe("light");
+  });
 
+  it("auto-sync still forces dark at night when the user has not tapped this visit", () => {
+    const applied: string[] = [];
+    const setTheme = (theme: string) => {
+      applied.push(theme);
+      window.localStorage.setItem(THEME_STORAGE_KEY, theme);
+    };
+
+    writeThemeContext({ choice: "light", system: "light" });
     syncAppliedTheme(setTheme, night, "light");
     expect(applied.at(-1)).toBe("dark");
     expect(JSON.parse(window.localStorage.getItem(THEME_CONTEXT_KEY) ?? "null").choice).toBe("light");

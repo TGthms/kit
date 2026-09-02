@@ -6,8 +6,9 @@
  * - OS dark, or local night (22:00–04:59, same window as the home greeting):
  *   follow System by default (dark when the OS is dark); keep a Dark choice;
  *   auto-apply Dark even if the stored intent is Light.
- * - A Light/Dark tap always paints that appearance immediately. Auto policy
- *   re-applies on boot, OS appearance change, and the 22:00 / 05:00 boundary.
+ * - A Light/Dark tap always paints that appearance immediately and sticks for
+ *   this page lifetime (auto policy does not slam it back). Boot still applies
+ *   the force, so a reload at night starts Dark again.
  *
  * User intent is stored in `kit-theme-context`. next-themes' `theme` key holds
  * the value that should actually be applied, so its blocking script cannot
@@ -135,15 +136,28 @@ export function readThemeChoice(): ThemeChoice {
   return readThemeContext()?.choice ?? readStoredTheme();
 }
 
+/** In-memory: a Light/Dark tap this visit. Cleared on full reload. */
+let sessionHonorChoice = false;
+
+export function isSessionThemeOverride(): boolean {
+  return sessionHonorChoice;
+}
+
+/** Test-only. */
+export function resetSessionThemeOverride() {
+  sessionHonorChoice = false;
+}
+
 /**
  * Apply a user pick immediately (Light or Dark always paints as chosen).
- * Intent is still stored so boot / night / OS-dark sync can force Dark later.
+ * Marks a session override so auto-sync cannot undo the tap.
  */
 export function rememberThemeChoice(
   choice: ThemeChoice,
   setTheme: (theme: string) => void,
   system = currentSystemTheme(),
 ) {
+  sessionHonorChoice = true;
   writeThemeContext({ choice, system });
   setTheme(choice);
 }
@@ -154,5 +168,10 @@ export function syncAppliedTheme(
   system = currentSystemTheme(),
 ) {
   seedThemeContextIfMissing(system);
-  setTheme(nextThemesValue(readThemeChoice(), system, date));
+  const choice = readThemeChoice();
+  if (sessionHonorChoice) {
+    setTheme(choice);
+    return;
+  }
+  setTheme(nextThemesValue(choice, system, date));
 }
