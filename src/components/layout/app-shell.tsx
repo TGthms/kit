@@ -68,7 +68,7 @@ function TabBar({ pathname }: { pathname: string }) {
       <GlidingPill
         rect={rect}
         ready={ready}
-        className="gliding-pill-fast rounded-[1.35rem] bg-primary/12"
+        className="gliding-pill-fast rounded-[1.5rem] bg-primary/12"
       />
       {nav.map(({ href, key, icon: Icon }) => {
         const active = isActive(pathname, href);
@@ -90,7 +90,7 @@ function TabBar({ pathname }: { pathname: string }) {
                 if (active && el) setTarget(el);
               }}
               aria-hidden
-              className="pointer-events-none absolute inset-x-1 inset-y-1 rounded-[1.35rem]"
+              className="pointer-events-none absolute inset-x-0.5 inset-y-0 rounded-[1.5rem]"
             />
             <Icon className={cn("relative h-[22px] w-[22px]", active && "stroke-[2.25]")} />
             <span className="relative max-w-full truncate">{t(key)}</span>

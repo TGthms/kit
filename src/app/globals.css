@@ -46,7 +46,7 @@
   --shadow-float: 0 4px 24px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.06);
 
   /* Sit in the home-indicator inset (App Store-style), not a full safe-area above it. */
-  --floating-tabbar-offset: max(0.5rem, calc(env(safe-area-inset-bottom, 0px) - 1.25rem));
+  --floating-tabbar-offset: max(0.625rem, calc(env(safe-area-inset-bottom, 0px) - 1.1rem));
   --floating-tabbar-clearance: calc(5.25rem + var(--floating-tabbar-offset));
 
   /* Motion (spring-like ease approximations; critically damped feel) */
