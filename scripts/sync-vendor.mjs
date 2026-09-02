@@ -2,10 +2,14 @@
 // public/vendor so they are served from our origin instead of a third-party CDN.
 // Keep paths in lockstep with the installed pdfjs-dist and @ffmpeg/core versions.
 //
+// FFmpeg's core WASM is ~31 MiB uncompressed. Cloudflare Pages rejects files
+// over 25 MiB, so we ship gzip (~10 MiB) and decompress in the browser.
+//
 // Run automatically via the "postinstall" and "prebuild" npm scripts.
-import { copyFileSync, cpSync, existsSync, mkdirSync } from "node:fs";
+import { copyFileSync, cpSync, existsSync, mkdirSync, readFileSync, unlinkSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
+import { gzipSync } from "node:zlib";
 
 const rootDir = dirname(dirname(fileURLToPath(import.meta.url)));
 
@@ -47,14 +51,35 @@ function syncFfmpeg() {
     return false;
   }
   mkdirSync(destRoot, { recursive: true });
-  for (const name of ["ffmpeg-core.js", "ffmpeg-core.wasm"]) {
-    const src = join(coreRoot, name);
-    if (!existsSync(src)) {
-      console.warn(`[sync-vendor] ${name} not found at ${src}; skipping.`);
-      continue;
+
+  const jsSrc = join(coreRoot, "ffmpeg-core.js");
+  if (existsSync(jsSrc)) {
+    copyFileSync(jsSrc, join(destRoot, "ffmpeg-core.js"));
+    console.log("[sync-vendor] Copied ffmpeg-core.js");
+  } else {
+    console.warn(`[sync-vendor] ffmpeg-core.js not found at ${jsSrc}; skipping.`);
+  }
+
+  const wasmSrc = join(coreRoot, "ffmpeg-core.wasm");
+  if (existsSync(wasmSrc)) {
+    const gzPath = join(destRoot, "ffmpeg-core.wasm.gz");
+    const gz = gzipSync(readFileSync(wasmSrc), { level: 9 });
+    const maxBytes = 24 * 1024 * 1024;
+    if (gz.byteLength > maxBytes) {
+      throw new Error(
+        `[sync-vendor] ffmpeg-core.wasm.gz is ${(gz.byteLength / (1024 * 1024)).toFixed(1)} MiB; Cloudflare Pages limit is 25 MiB.`
+      );
     }
-    copyFileSync(src, join(destRoot, name));
-    console.log(`[sync-vendor] Copied ${name}`);
+    writeFileSync(gzPath, gz);
+    console.log(`[sync-vendor] Wrote ffmpeg-core.wasm.gz (${(gz.byteLength / (1024 * 1024)).toFixed(1)} MiB)`);
+  } else {
+    console.warn(`[sync-vendor] ffmpeg-core.wasm not found at ${wasmSrc}; skipping.`);
+  }
+
+  const leftover = join(destRoot, "ffmpeg-core.wasm");
+  if (existsSync(leftover)) {
+    unlinkSync(leftover);
+    console.log("[sync-vendor] Removed uncompressed ffmpeg-core.wasm");
   }
   return true;
 }

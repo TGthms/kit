@@ -92,6 +92,21 @@ export function gifClipArgs(input: string, output: string, start: string, end: s
   ];
 }
 
+/** Decompress a gzip Response body (vendored FFmpeg WASM). */
+export async function gunzipResponse(source: Response): Promise<ArrayBuffer> {
+  if (!source.ok) throw new Error(`Failed to load FFmpeg core (${source.status})`);
+  if (!source.body) throw new Error("FFmpeg core was empty");
+  if (typeof DecompressionStream === "undefined") {
+    throw new Error("This browser cannot decompress the media engine.");
+  }
+  return new Response(source.body.pipeThrough(new DecompressionStream("gzip"))).arrayBuffer();
+}
+
+async function toGunzippedWasmBlobURL(url: string): Promise<string> {
+  const buffer = await gunzipResponse(await fetch(url));
+  return URL.createObjectURL(new Blob([buffer], { type: "application/wasm" }));
+}
+
 function revokeCoreBlobs() {
   for (const url of coreBlobUrls) {
     try {
@@ -144,7 +159,8 @@ export async function getFFmpeg(onProgress?: (ratio: number) => void): Promise<F
     }
     const base = `${window.location.origin}${withBasePath("/vendor/ffmpeg")}`;
     const coreURL = await toBlobURL(`${base}/ffmpeg-core.js`, "text/javascript");
-    const wasmURL = await toBlobURL(`${base}/ffmpeg-core.wasm`, "application/wasm");
+    // Cloudflare Pages rejects files over 25 MiB; the uncompressed core is ~31 MiB.
+    const wasmURL = await toGunzippedWasmBlobURL(`${base}/ffmpeg-core.wasm.gz`);
     coreBlobUrls.push(coreURL, wasmURL);
     await instance.load({ coreURL, wasmURL });
     ffmpeg = instance;

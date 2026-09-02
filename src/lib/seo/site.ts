@@ -8,6 +8,8 @@ export const SITE_AUTHOR_URL = "https://t-g.pages.dev";
  *
  * Kit-owned boot scripts live in `public/boot/` (theme, lang/dir, locale gate).
  * pdf.js and FFmpeg WASM are same-origin under `public/vendor/`.
+ * FFmpeg’s core is stored gzipped (`ffmpeg-core.wasm.gz`) so the file stays
+ * under Cloudflare Pages’ 25 MiB upload limit; the client gunzips it.
  *
  * `script-src` still allows `'unsafe-inline'` because Next.js static export
  * emits inline Flight payloads (`self.__next_f`) and next-themes injects a

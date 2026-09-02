@@ -1,11 +1,13 @@
 import { readFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
+import { gzipSync } from "node:zlib";
 import { describe, expect, it, vi } from "vitest";
 import {
   audioConvertArgs,
   audioSpeedArgs,
   gifClipArgs,
+  gunzipResponse,
   transcodeOnFFmpeg,
   trimArgs,
   videoConvertArgs,
@@ -16,10 +18,20 @@ import {
 import { mixToMono, peaksFromChannel } from "./peaks";
 
 describe("ffmpeg core origin", () => {
-  it("loads the vendored same-origin UMD core, not jsDelivr", () => {
+  it("loads the vendored same-origin gzipped UMD core, not jsDelivr", () => {
     const src = readFileSync(join(dirname(fileURLToPath(import.meta.url)), "ffmpeg.ts"), "utf8");
     expect(src).not.toMatch(/jsdelivr/i);
     expect(src).toContain("/vendor/ffmpeg");
+    expect(src).toContain("ffmpeg-core.wasm.gz");
+    expect(src).toContain("DecompressionStream");
+  });
+});
+
+describe("gunzipResponse", () => {
+  it("inflates a gzip body", async () => {
+    const raw = new Uint8Array([0, 97, 115, 109, 1, 2, 3]);
+    const buffer = await gunzipResponse(new Response(gzipSync(raw)));
+    expect(Array.from(new Uint8Array(buffer))).toEqual(Array.from(raw));
   });
 });
 
