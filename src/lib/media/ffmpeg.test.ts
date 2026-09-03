@@ -5,6 +5,8 @@ import { gzipSync } from "node:zlib";
 import { describe, expect, it, vi } from "vitest";
 import {
   audioConvertArgs,
+  audioNormalizeArgs,
+  audioSilenceSkipArgs,
   audioSpeedArgs,
   gifClipArgs,
   gunzipResponse,
@@ -114,6 +116,13 @@ describe("ffmpeg args", () => {
       "0",
       "out.gif",
     ]);
+    expect(audioNormalizeArgs("in.wav", "out.wav")[3]).toContain("loudnorm");
+    expect(audioSilenceSkipArgs("in.wav", "out.wav")[3]).toContain("silenceremove");
+  });
+
+  it("keeps FFmpeg arg builders off the WASM loader module", () => {
+    const argsSrc = readFileSync(join(dirname(fileURLToPath(import.meta.url)), "ffmpeg-args.ts"), "utf8");
+    expect(argsSrc).not.toMatch(/@ffmpeg\/ffmpeg/);
   });
 });
 

@@ -10,7 +10,7 @@ import { Slider } from "@/components/ui/slider";
 import { Progress } from "@/components/ui/progress";
 import { downloadBlob, downloadMany, bytesToBlob } from "@/lib/utils";
 import { MediaTimeline } from "@/components/shared/media-timeline";
-import { AUDIO_FORMATS, audioConvertArgs, audioSpeedArgs, trimArgs } from "@/lib/media/ffmpeg";
+import { AUDIO_FORMATS, audioConvertArgs, audioSpeedArgs, trimArgs } from "@/lib/media/ffmpeg-args";
 import { runSequentialBatch, stemmedName } from "@/lib/jobs/batch";
 import { ActionBar, ToolLimits, ToolShell, useToolHistory, useToolJob, loadFfmpeg } from "./shared";
 

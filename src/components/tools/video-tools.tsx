@@ -18,7 +18,7 @@ import {
   videoExtractAudioArgs,
   videoSpeedArgs,
   videoSpeedVideoOnlyArgs,
-} from "@/lib/media/ffmpeg";
+} from "@/lib/media/ffmpeg-args";
 import { runSequentialBatch, stemmedName } from "@/lib/jobs/batch";
 import { ActionBar, ToolLimits, ToolShell, useToolHistory, useToolJob, loadFfmpeg } from "./shared";
 
