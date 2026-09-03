@@ -116,6 +116,7 @@
     "noMatches": "Geen overeenkomsten",
     "searchAria": "{label} zoeken",
     "searchResults": "Zoekresultaten voor {label}",
+    "skipToContent": "Ga naar inhoud",
     "pdfPageCap": "Deze PDF heeft {total} pagina’s. Kit verwerkte de eerste {processed} in dit tabblad.",
     "fileRejectedSize": "Dat bestand is groter dan 200 MB, dus Kit zet het niet in de wachtrij in dit tabblad.",
     "fileRejectedType": "Dat bestandstype wordt hier niet geaccepteerd.",

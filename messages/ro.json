@@ -116,6 +116,7 @@
     "noMatches": "Nicio potrivire",
     "searchAria": "Caută {label}",
     "searchResults": "Rezultate pentru {label}",
+    "skipToContent": "Salt la conținut",
     "pdfPageCap": "Acest PDF are {total} pagini. Kit a procesat primele {processed} în această filă.",
     "fileRejectedSize": "Fișierul depășește 200 MB, deci Kit nu îl pune în coadă în această filă.",
     "fileRejectedType": "Acest tip de fișier nu este acceptat aici.",

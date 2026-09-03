@@ -116,6 +116,7 @@
     "noMatches": "Žádné shody",
     "searchAria": "Hledat {label}",
     "searchResults": "Výsledky hledání: {label}",
+    "skipToContent": "Přeskočit na obsah",
     "pdfPageCap": "Toto PDF má {total} stran. Kit zpracoval prvních {processed} na této kartě.",
     "fileRejectedSize": "Soubor je větší než 200 MB, proto ho Kit v tomto panelu nezařadí.",
     "fileRejectedType": "Tento typ souboru zde není přijímán.",

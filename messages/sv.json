@@ -116,6 +116,7 @@
     "noMatches": "Inga träffar",
     "searchAria": "Sök {label}",
     "searchResults": "Sökresultat för {label}",
+    "skipToContent": "Hoppa till innehållet",
     "pdfPageCap": "Den här PDF:en har {total} sidor. Kit bearbetade de första {processed} i den här fliken.",
     "fileRejectedSize": "Filen är över 200 MB, så Kit köar den inte i den här fliken.",
     "fileRejectedType": "Den filtypen accepteras inte här.",

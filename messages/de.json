@@ -116,6 +116,7 @@
     "noMatches": "Keine Treffer",
     "searchAria": "{label} durchsuchen",
     "searchResults": "Suchergebnisse für {label}",
+    "skipToContent": "Zum Inhalt springen",
     "pdfPageCap": "Dieses PDF hat {total} Seiten. Kit hat die ersten {processed} in diesem Tab verarbeitet.",
     "fileRejectedSize": "Diese Datei ist größer als 200 MB, daher reiht Kit sie in diesem Tab nicht ein.",
     "fileRejectedType": "Dieser Dateityp wird hier nicht akzeptiert.",

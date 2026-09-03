@@ -6,6 +6,7 @@ import { toast } from "sonner";
 import { FileDropzone, type FileItem } from "@/components/shared/file-dropzone";
 import { Button } from "@/components/ui/button";
 import { CopyButton } from "@/components/ui/copy-button";
+import { Field } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
@@ -219,12 +220,10 @@ export function UuidGenerator() {
   return (
     <ToolShell toolId="uuid-generator">
       <div className="grid gap-3 sm:grid-cols-2">
-        <div className="space-y-2">
-          <Label>{t("count")}</Label>
+        <Field label={t("count")}>
           <Input type="number" min={1} max={1000} value={count} onChange={(e) => setCount(Number(e.target.value) || 1)} />
-        </div>
-        <div className="space-y-2">
-          <Label>{t("version")}</Label>
+        </Field>
+        <Field label={t("version")}>
           <select
             className={selectClass}
             value={version}
@@ -233,7 +232,7 @@ export function UuidGenerator() {
             <option value={4}>UUID v4</option>
             <option value={7}>UUID v7</option>
           </select>
-        </div>
+        </Field>
       </div>
       <div className="flex gap-2">
         <Button onClick={run}>{t("run")}</Button>

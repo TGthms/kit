@@ -116,6 +116,7 @@
     "noMatches": "कोई मेल नहीं",
     "searchAria": "{label} खोजें",
     "searchResults": "{label} के परिणाम",
+    "skipToContent": "सामग्री पर जाएँ",
     "pdfPageCap": "इस PDF में {total} पृष्ठ हैं। Kit ने इस टैब में पहले {processed} संसाधित किए।",
     "fileRejectedSize": "फ़ाइल 200 MB से बड़ी है, इसलिए Kit इसे इस टैब में कतार में नहीं रखेगा।",
     "fileRejectedType": "यह फ़ाइल प्रकार यहाँ स्वीकार नहीं है।",

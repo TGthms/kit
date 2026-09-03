@@ -116,6 +116,7 @@
     "noMatches": "Không có kết quả",
     "searchAria": "Tìm {label}",
     "searchResults": "Kết quả {label}",
+    "skipToContent": "Bỏ qua đến nội dung",
     "pdfPageCap": "PDF này có {total} trang. Kit đã xử lý {processed} trang đầu trong thẻ này.",
     "fileRejectedSize": "Tệp đó hơn 200 MB nên Kit không xếp hàng trong thẻ này.",
     "fileRejectedType": "Loại tệp đó không được chấp nhận ở đây.",

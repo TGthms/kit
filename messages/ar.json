@@ -116,6 +116,7 @@
     "noMatches": "لا توجد نتائج",
     "searchAria": "بحث {label}",
     "searchResults": "نتائج بحث {label}",
+    "skipToContent": "تخطي إلى المحتوى",
     "pdfPageCap": "يحتوي ملف PDF هذا على {total} صفحة. عالج Kit أول {processed} في علامة التبويب هذه.",
     "fileRejectedSize": "هذا الملف أكبر من 200 ميغابايت، لذا لن يضعه Kit في قائمة هذه العلامة.",
     "fileRejectedType": "نوع الملف هذا غير مقبول هنا.",

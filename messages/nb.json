@@ -116,6 +116,7 @@
     "noMatches": "Ingen treff",
     "searchAria": "Søk i {label}",
     "searchResults": "Søkeresultater for {label}",
+    "skipToContent": "Hopp til innhold",
     "pdfPageCap": "Denne PDF-en har {total} sider. Kit behandlet de første {processed} i denne fanen.",
     "fileRejectedSize": "Filen er over 200 MB, så Kit køer den ikke i denne fanen.",
     "fileRejectedType": "Den filtypen godtas ikke her.",

@@ -116,6 +116,7 @@
     "noMatches": "Ei osumia",
     "searchAria": "Hae: {label}",
     "searchResults": "Hakutulokset: {label}",
+    "skipToContent": "Siirry sisältöön",
     "pdfPageCap": "Tässä PDF:ssä on {total} sivua. Kit käsitteli ensimmäiset {processed} tässä välilehdessä.",
     "fileRejectedSize": "Tiedosto on yli 200 Mt, joten Kit ei jonota sitä tässä välilehdessä.",
     "fileRejectedType": "Tätä tiedostotyyppiä ei hyväksytä täällä.",

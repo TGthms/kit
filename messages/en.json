@@ -119,6 +119,7 @@
     "noMatches": "No matches",
     "searchAria": "{label} search",
     "searchResults": "{label} search results",
+    "skipToContent": "Skip to content",
     "pdfPageCap": "This PDF has {total} pages. Kit processed the first {processed} in this tab."
   },
   "home": {

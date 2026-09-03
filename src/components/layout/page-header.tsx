@@ -56,7 +56,7 @@ export function PageHeader({
             aria-label={backLabel}
             className="pressable-soft inline-flex h-11 w-11 items-center justify-center rounded-full text-primary"
           >
-            <ChevronLeft className="h-5 w-5 stroke-[2.5]" aria-hidden />
+            <ChevronLeft className="h-5 w-5 stroke-[2.5] rtl:rotate-180" aria-hidden />
           </Link>
           <p className="min-w-0 truncate text-[15px] font-semibold tracking-[-0.015em]">{title}</p>
         </div>
@@ -73,11 +73,11 @@ export function PageHeader({
             aria-label={backLabel}
             className={cn(
               "pressable-soft mb-1 inline-flex min-h-11 max-w-full items-center gap-0.5",
-              "-ml-1.5 rounded-lg px-1.5 text-[17px] font-normal text-primary",
+              "-ms-1.5 rounded-lg px-1.5 text-[17px] font-normal text-primary",
               "hover:opacity-80"
             )}
           >
-            <ChevronLeft className="h-5 w-5 shrink-0 stroke-[2.5]" aria-hidden />
+            <ChevronLeft className="h-5 w-5 shrink-0 stroke-[2.5] rtl:rotate-180" aria-hidden />
             <span className="truncate">{backLabel}</span>
           </Link>
         ) : null}

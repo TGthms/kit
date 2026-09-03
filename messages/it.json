@@ -116,6 +116,7 @@
     "noMatches": "Nessun risultato",
     "searchAria": "Cerca {label}",
     "searchResults": "Risultati per {label}",
+    "skipToContent": "Vai al contenuto",
     "pdfPageCap": "Questo PDF ha {total} pagine. Kit ha elaborato le prime {processed} in questa scheda.",
     "fileRejectedSize": "Quel file supera 200 MB, quindi Kit non lo mette in coda in questa scheda.",
     "fileRejectedType": "Quel tipo di file non è accettato qui.",

@@ -116,6 +116,7 @@
     "noMatches": "Nenhuma correspondência",
     "searchAria": "Buscar {label}",
     "searchResults": "Resultados de {label}",
+    "skipToContent": "Pular para o conteúdo",
     "pdfPageCap": "Este PDF tem {total} páginas. O Kit processou as primeiras {processed} nesta aba.",
     "fileRejectedSize": "Esse arquivo tem mais de 200 MB, então o Kit não o enfileira nesta aba.",
     "fileRejectedType": "Esse tipo de arquivo não é aceito aqui.",

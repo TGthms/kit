@@ -30,7 +30,7 @@ function isActive(pathname: string, href: string) {
 function SideNav({ pathname }: { pathname: string }) {
   const t = useTranslations("nav");
   return (
-    <nav className="flex flex-col gap-1" aria-label={t("home")}>
+    <nav className="flex flex-col gap-1" aria-label={t("tools")}>
       {nav.map(({ href, key, icon: Icon }) => {
         const active = isActive(pathname, href);
         return (
@@ -112,10 +112,17 @@ function ScrollRestorationBound({ pathname }: { pathname: string }) {
 
 export function AppShell({ children }: { children: React.ReactNode }) {
   const tb = useTranslations("brand");
+  const tc = useTranslations("common");
   const pathname = usePathname();
 
   return (
     <div className="flex min-h-dvh flex-col overflow-x-clip bg-background">
+      <a
+        href="#kit-main"
+        className="sr-only focus:not-sr-only focus:absolute focus:z-[80] focus:m-3 focus:rounded-xl focus:bg-background focus:px-4 focus:py-2 focus:text-sm focus:shadow-lg focus:ring-2 focus:ring-ring"
+      >
+        {tc("skipToContent")}
+      </a>
       <Suspense fallback={null}>
         <ScrollRestorationBound pathname={pathname} />
       </Suspense>
@@ -154,7 +161,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
           </div>
         </aside>
 
-        <main className="anim-surface min-w-0 flex-1 pb-3 md:pb-8">{children}</main>
+        <main id="kit-main" className="anim-surface min-w-0 flex-1 pb-3 md:pb-8">{children}</main>
       </div>
 
       <div className="pb-[var(--floating-tabbar-clearance)] md:pb-0">

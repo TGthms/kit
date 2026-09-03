@@ -116,6 +116,7 @@
     "noMatches": "일치하는 항목 없음",
     "searchAria": "{label} 검색",
     "searchResults": "{label} 검색 결과",
+    "skipToContent": "본문으로 건너뛰기",
     "pdfPageCap": "이 PDF는 {total}쪽입니다. Kit이 이 탭에서 처음 {processed}쪽을 처리했습니다.",
     "fileRejectedSize": "파일이 200MB를 넘어 Kit이 이 탭에서 대기열에 넣지 않습니다.",
     "fileRejectedType": "이 파일 형식은 여기서 받을 수 없습니다.",

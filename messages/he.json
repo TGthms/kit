@@ -116,6 +116,7 @@
     "noMatches": "אין תוצאות",
     "searchAria": "חיפוש {label}",
     "searchResults": "תוצאות חיפוש {label}",
+    "skipToContent": "דלג לתוכן",
     "pdfPageCap": "ב־PDF הזה יש {total} עמודים. Kit עיבד את {processed} הראשונים בלשונית הזו.",
     "fileRejectedSize": "הקובץ גדול מ־200 MB, לכן Kit לא יכניס אותו לתור בלשונית הזו.",
     "fileRejectedType": "סוג הקובץ הזה אינו מתקבל כאן.",

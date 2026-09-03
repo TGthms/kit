@@ -357,6 +357,8 @@ scritto-flow.kit-scritto-inline {
   color: var(--muted-foreground) !important;
   left: auto !important;
   right: 0.45rem !important;
+  inset-inline-end: 0.45rem !important;
+  inset-inline-start: auto !important;
   top: 50% !important;
   transform: translateY(-50%) !important;
   width: 1.5rem !important;

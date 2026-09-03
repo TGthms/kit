@@ -116,6 +116,7 @@
     "noMatches": "没有匹配项",
     "searchAria": "搜索{label}",
     "searchResults": "{label}的搜索结果",
+    "skipToContent": "跳到正文",
     "pdfPageCap": "此 PDF 共 {total} 页。Kit 在此标签页处理了前 {processed} 页。",
     "fileRejectedSize": "该文件超过 200 MB，Kit 不会在此标签页排队处理。",
     "fileRejectedType": "此处不接受该文件类型。",

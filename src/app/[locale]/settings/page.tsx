@@ -10,7 +10,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { SegmentedControl } from "@/components/ui/segmented-control";
 import { useHistoryStore } from "@/stores/history-store";
 import { Switch } from "@/components/ui/switch";
-import { rememberThemeChoice } from "@/lib/theme/resolve";
+import { readThemeChoice, rememberThemeChoice } from "@/lib/theme/resolve";
 import { useHydrated } from "@/lib/react/hydrated";
 import { runCircularThemeTransition } from "@/lib/theme/circular-transition";
 
@@ -19,12 +19,12 @@ export default function SettingsPage() {
   const tc = useTranslations("common");
   const th = useTranslations("history");
   const tn = useTranslations("nav");
-  const { resolvedTheme, setTheme, systemTheme } = useTheme();
+  const { setTheme, systemTheme } = useTheme();
   const clear = useHistoryStore((s) => s.clear);
   const historyEnabled = useHistoryStore((s) => s.enabled);
   const setHistoryEnabled = useHistoryStore((s) => s.setEnabled);
   const hydrated = useHydrated();
-  const appearance = hydrated && resolvedTheme === "dark" ? "dark" : "light";
+  const appearance = hydrated ? readThemeChoice() : "system";
 
   return (
     <div className="mx-auto max-w-2xl space-y-6">
@@ -41,13 +41,22 @@ export default function SettingsPage() {
               aria-label={t("appearance")}
               onChange={(value, event) => {
                 const system = systemTheme === "dark" ? "dark" : "light";
-                if (value === appearance) {
+                const visual = value === "system" ? system : value;
+                const persist = () => {
                   rememberThemeChoice(value, setTheme, system);
+                };
+                if (value === appearance) {
+                  persist();
                   return;
                 }
-                runCircularThemeTransition(value, () => rememberThemeChoice(value, setTheme, system), event);
+                runCircularThemeTransition(
+                  visual,
+                  persist,
+                  event && "clientX" in event ? event : undefined
+                );
               }}
               options={[
+                { value: "system", label: tc("themeSystem") },
                 { value: "light", label: tc("themeLight") },
                 { value: "dark", label: tc("themeDark") },
               ]}

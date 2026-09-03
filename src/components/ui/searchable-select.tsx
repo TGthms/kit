@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useId, useMemo, useRef, useState } from "react";
+import { useEffect, useId, useMemo, useRef, useState, type KeyboardEvent } from "react";
 import { useTranslations } from "next-intl";
 import { ChevronsUpDown } from "lucide-react";
 import { Input } from "@/components/ui/input";
@@ -39,9 +39,11 @@ function SearchableSelectField({
 }) {
   const t = useTranslations("common");
   const listId = useId();
+  const controlId = useId();
   const rootRef = useRef<HTMLDivElement>(null);
   const [query, setQuery] = useState("");
   const [open, setOpen] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(0);
   const selected = options.find((option) => option.value === value);
   const optionText = (option: { value: string; label: string }) =>
     `${formatUnitSymbol(option.value)} — ${option.label}`;
@@ -62,7 +64,7 @@ function SearchableSelectField({
         setQuery("");
       }
     };
-    const onKey = (event: KeyboardEvent) => {
+    const onKey = (event: globalThis.KeyboardEvent) => {
       if (event.key === "Escape") {
         setOpen(false);
         setQuery("");
@@ -76,13 +78,23 @@ function SearchableSelectField({
     };
   }, [open]);
 
-  const labelNode = hideLabel ? <span className="sr-only">{label}</span> : <Label>{label}</Label>;
+  const labelNode = hideLabel ? (
+    <span className="sr-only">{label}</span>
+  ) : (
+    <Label htmlFor={controlId}>{label}</Label>
+  );
 
   if (!searchable) {
     return (
       <div className="space-y-2">
         {labelNode}
-        <select className={selectClass} value={value} onChange={(event) => onChange(event.target.value)} aria-label={label}>
+        <select
+          id={controlId}
+          className={selectClass}
+          value={value}
+          onChange={(event) => onChange(event.target.value)}
+          aria-label={label}
+        >
           {options.map((option) => (
             <option key={option.value} value={option.value}>
               {optionText(option)}
@@ -93,26 +105,79 @@ function SearchableSelectField({
     );
   }
 
+  const clampedIndex = filtered.length === 0 ? 0 : Math.min(activeIndex, filtered.length - 1);
+  const active = filtered[clampedIndex];
+  const activeId = active ? `${listId}-opt-${active.value}` : undefined;
+
+  function close() {
+    setOpen(false);
+    setQuery("");
+  }
+
+  function choose(index: number) {
+    const option = filtered[index];
+    if (!option) return;
+    onChange(option.value);
+    close();
+  }
+
+  function onInputKeyDown(event: KeyboardEvent<HTMLInputElement>) {
+    if (event.key === "ArrowDown") {
+      event.preventDefault();
+      if (!open) {
+        setOpen(true);
+        setQuery("");
+        return;
+      }
+      if (!filtered.length) return;
+      setActiveIndex((index) => (index + 1) % filtered.length);
+    } else if (event.key === "ArrowUp") {
+      event.preventDefault();
+      if (!open) {
+        setOpen(true);
+        setQuery("");
+        return;
+      }
+      if (!filtered.length) return;
+      setActiveIndex((index) => (index - 1 + filtered.length) % filtered.length);
+    } else if (event.key === "Home" && open) {
+      event.preventDefault();
+      setActiveIndex(0);
+    } else if (event.key === "End" && open) {
+      event.preventDefault();
+      if (filtered.length) setActiveIndex(filtered.length - 1);
+    } else if (event.key === "Enter" && open) {
+      event.preventDefault();
+      choose(clampedIndex);
+    }
+  }
+
   return (
     <div className="space-y-2" ref={rootRef}>
       {labelNode}
       <div className="relative">
         <Input
+          id={controlId}
           value={open ? query : selectedLabel}
           onChange={(event) => {
             setQuery(event.target.value);
             setOpen(true);
+            setActiveIndex(0);
           }}
           onFocus={() => {
+            const selectedIdx = options.findIndex((option) => option.value === value);
+            setActiveIndex(selectedIdx >= 0 ? selectedIdx : 0);
             setOpen(true);
             setQuery("");
           }}
+          onKeyDown={onInputKeyDown}
           placeholder={selectedLabel || translateOr(t, "search", "Search")}
           className="pe-9 text-base"
           role="combobox"
           aria-expanded={open}
           aria-controls={listId}
           aria-autocomplete="list"
+          aria-activedescendant={open ? activeId : undefined}
           aria-label={label}
           autoComplete="off"
         />
@@ -126,19 +191,19 @@ function SearchableSelectField({
           className="max-h-52 overflow-y-auto rounded-xl border border-input bg-background p-1 shadow-sm"
         >
           {filtered.length ? (
-            filtered.map((option) => (
+            filtered.map((option, index) => (
               <button
                 key={option.value}
+                id={`${listId}-opt-${option.value}`}
                 type="button"
                 role="option"
+                tabIndex={-1}
                 aria-selected={option.value === value}
+                data-active={index === clampedIndex ? "true" : undefined}
                 onMouseDown={(event) => event.preventDefault()}
-                onClick={() => {
-                  onChange(option.value);
-                  setOpen(false);
-                  setQuery("");
-                }}
-                className="flex min-h-10 w-full items-center rounded-lg px-3 py-2 text-left text-sm transition-colors hover:bg-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring aria-selected:bg-primary/10 aria-selected:font-medium"
+                onMouseEnter={() => setActiveIndex(index)}
+                onClick={() => choose(index)}
+                className="flex min-h-10 w-full items-center rounded-lg px-3 py-2 text-left text-sm transition-colors hover:bg-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring aria-selected:bg-primary/10 aria-selected:font-medium data-[active=true]:bg-secondary"
               >
                 <span className="truncate">{optionText(option)}</span>
               </button>

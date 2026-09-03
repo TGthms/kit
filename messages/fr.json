@@ -116,6 +116,7 @@
     "noMatches": "Aucun résultat",
     "searchAria": "Rechercher {label}",
     "searchResults": "Résultats pour {label}",
+    "skipToContent": "Aller au contenu",
     "pdfPageCap": "Ce PDF a {total} pages. Kit a traité les {processed} premières dans cet onglet.",
     "fileRejectedSize": "Ce fichier dépasse 200 Mo, Kit ne le mettra pas en file dans cet onglet.",
     "fileRejectedType": "Ce type de fichier n’est pas accepté ici.",
