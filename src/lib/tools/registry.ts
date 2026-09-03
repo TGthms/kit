@@ -71,6 +71,13 @@ import {
   Fuel,
   MoveUpRight,
   Cable,
+  Percent,
+  Landmark,
+  ListFilter,
+  Contrast,
+  RectangleHorizontal,
+  Users,
+  BadgeCheck,
 } from "lucide-react";
 
 /** Precise product categories (one job family each). */
@@ -188,9 +195,19 @@ export type ToolId =
   | "timezone-converter"
   | "date-calculator"
   | "tip-split-calculator"
+  | "percentage-calculator"
+  | "loan-calculator"
   | "bmi-calorie-calculator"
   | "stopwatch-timer"
-  | "random-generator";
+  | "meeting-planner"
+  | "random-generator"
+  | "text-lines"
+  | "slugify"
+  | "color-contrast"
+  | "image-palette"
+  | "aspect-ratio"
+  | "json-query"
+  | "check-digits";
 
 export interface ToolDef {
   id: ToolId;
@@ -225,6 +242,7 @@ export const tools: ToolDef[] = [
   { id: "image-adjust", category: "image", group: "look", icon: SlidersHorizontal },
   { id: "image-filters", category: "image", group: "look", icon: Sparkles },
   { id: "image-watermark", category: "image", group: "look", icon: Stamp },
+  { id: "image-palette", category: "image", group: "look", icon: Palette },
   { id: "image-convert", category: "image", group: "file", icon: RefreshCw },
   { id: "image-metadata", category: "image", group: "file", icon: Eraser },
 
@@ -245,11 +263,14 @@ export const tools: ToolDef[] = [
   { id: "xml-json", category: "data", group: "formats", icon: FileJson },
   { id: "sql-format", category: "data", group: "formats", icon: Database },
   { id: "json-types", category: "data", group: "formats", icon: Code2 },
+  { id: "json-query", category: "data", group: "formats", icon: Braces },
   { id: "convert-hub", category: "data", group: "formats", icon: ArrowLeftRight, fileTool: true },
 
   { id: "markdown-html", category: "text", group: "write", icon: FileText },
   { id: "text-diff", category: "text", group: "write", icon: GitCompare },
   { id: "case-convert", category: "text", group: "write", icon: CaseSensitive },
+  { id: "text-lines", category: "text", group: "write", icon: ListFilter },
+  { id: "slugify", category: "text", group: "write", icon: Link2 },
   { id: "lorem-ipsum", category: "text", group: "write", icon: Type },
 
   { id: "hash-generator", category: "developer", group: "inspect", icon: Fingerprint },
@@ -274,10 +295,14 @@ export const tools: ToolDef[] = [
   { id: "torque-converter", category: "converter", group: "convert", icon: RotateCw },
   { id: "electrical-converter", category: "converter", group: "convert", icon: Cable },
   { id: "typography-converter", category: "converter", group: "convert", icon: Type },
+  { id: "aspect-ratio", category: "converter", group: "convert", icon: RectangleHorizontal },
   { id: "text-counter", category: "everyday", group: "everyday-text", icon: TextCursorInput },
   { id: "timezone-converter", category: "everyday", group: "time", icon: Globe2 },
+  { id: "meeting-planner", category: "everyday", group: "time", icon: Users },
   { id: "date-calculator", category: "everyday", group: "time", icon: CalendarDays },
   { id: "tip-split-calculator", category: "everyday", group: "money", icon: WalletCards },
+  { id: "percentage-calculator", category: "everyday", group: "money", icon: Percent },
+  { id: "loan-calculator", category: "everyday", group: "money", icon: Landmark },
   { id: "bmi-calorie-calculator", category: "everyday", group: "health", icon: HeartPulse },
   { id: "stopwatch-timer", category: "everyday", group: "time", icon: TimerReset },
   { id: "random-generator", category: "everyday", group: "quick", icon: Dice5 },
@@ -287,6 +312,8 @@ export const tools: ToolDef[] = [
   { id: "cron-explain", category: "developer", group: "inspect", icon: CalendarClock },
   { id: "number-base", category: "developer", group: "inspect", icon: Hash },
   { id: "color-convert", category: "developer", group: "inspect", icon: Palette },
+  { id: "color-contrast", category: "developer", group: "inspect", icon: Contrast },
+  { id: "check-digits", category: "developer", group: "inspect", icon: BadgeCheck },
   { id: "base64", category: "developer", group: "encode", icon: Binary },
   { id: "url-encode", category: "developer", group: "encode", icon: Link2 },
   { id: "html-entities", category: "developer", group: "encode", icon: Code2 },
