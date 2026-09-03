@@ -15,11 +15,12 @@ import {
   getPdfMetadata,
   setPdfMetadata,
   stripPdfMetadata,
+  imagesToPdf,
   type PageNumberPosition,
   type PdfMeta,
 } from "@/lib/pdf/core";
 import { lockPdf, unlockPdf } from "@/lib/pdf/protect";
-import { ActionBar, ToolLimits, ToolShell, useToolHistory, useToolJob, loadPdfjs } from "./shared";
+import { ActionBar, DownloadResult, ToolLimits, ToolShell, useToolHistory, useToolJob, loadPdfjs } from "./shared";
 import { Progress } from "@/components/ui/progress";
 
 const selectClass =
@@ -362,6 +363,59 @@ export function PdfProtect() {
         <Input type="password" value={password} onChange={(e) => setPassword(e.target.value)} autoComplete="off" />
       </div>
       <ActionBar onRun={run} loading={loading} label={t("run")} disabled={!files[0] || !password} />
+    </ToolShell>
+  );
+}
+
+export function ImagesToPdf() {
+  const t = useTranslations("tools.images-to-pdf");
+  const tc = useTranslations("common");
+  const log = useToolHistory("images-to-pdf");
+  const [files, setFiles] = useState<FileItem[]>([]);
+  const [pageSize, setPageSize] = useState<"a4" | "image">("a4");
+  const [loading, setLoading] = useState(false);
+  const [result, setResult] = useState<{ blob: Blob; name: string } | null>(null);
+
+  const run = async () => {
+    if (!files.length) return;
+    setLoading(true);
+    try {
+      const { convertImage } = await import("@/lib/image/core");
+      const images = [];
+      for (const item of files) {
+        const png = await convertImage(item.file, "image/png");
+        images.push({ bytes: new Uint8Array(await png.arrayBuffer()), mime: "image/png" as const });
+      }
+      const output = await imagesToPdf(images, { pageSize, margin: 24 });
+      const blob = bytesToBlob(output, "application/pdf");
+      downloadBlob(blob, "images.pdf");
+      setResult({ blob, name: "images.pdf" });
+      toast.success(t("success", { count: files.length }));
+      log(`${files.length} images`, "success");
+    } catch (reason) {
+      toast.error(reason instanceof Error ? reason.message : tc("error"));
+      log("failed", "failed");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <ToolShell toolId="images-to-pdf">
+      <ToolLimits>
+        <p>{t("limits")}</p>
+      </ToolLimits>
+      <FileDropzone accept="image/*" files={files} onChange={setFiles} reorder />
+      <div className="flex flex-wrap gap-2">
+        <Button type="button" variant={pageSize === "a4" ? "default" : "outline"} onClick={() => setPageSize("a4")}>
+          {t("fitA4")}
+        </Button>
+        <Button type="button" variant={pageSize === "image" ? "default" : "outline"} onClick={() => setPageSize("image")}>
+          {t("fitImage")}
+        </Button>
+      </div>
+      <ActionBar onRun={run} loading={loading} label={t("run")} disabled={!files.length} />
+      <DownloadResult file={result} />
     </ToolShell>
   );
 }

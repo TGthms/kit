@@ -18,7 +18,7 @@ const TOOL_COMPONENTS: Record<ToolId, ComponentType> = {
   "pdf-extract": load(() => import("./pdf-tools").then((m) => m.PdfExtract)),
   "pdf-numbers": load(() => import("./pdf-extra-tools").then((m) => m.PdfNumbers)),
   "pdf-to-images": load(() => import("./pdf-extra-tools").then((m) => m.PdfToImages)),
-  "images-to-pdf": load(() => import("./everyday-tools").then((m) => m.EverydayImagesToPdf)),
+  "images-to-pdf": load(() => import("./pdf-extra-tools").then((m) => m.ImagesToPdf)),
   "pdf-flatten": load(() => import("./pdf-extra-tools").then((m) => m.PdfFlatten)),
   "pdf-metadata": load(() => import("./pdf-extra-tools").then((m) => m.PdfMetadata)),
   "pdf-protect": load(() => import("./pdf-extra-tools").then((m) => m.PdfProtect)),

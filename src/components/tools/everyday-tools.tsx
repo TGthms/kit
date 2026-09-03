@@ -17,7 +17,6 @@ import { notifyHistorySaved } from "@/lib/notify";
 import { AnimatedClock } from "@/components/shared/animated-clock";
 import { clockFace } from "@/components/shared/clock-face";
 import { AnimatedNumber } from "@/components/shared/animated-number";
-import { FileDropzone, type FileItem } from "@/components/shared/file-dropzone";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { CopyButton } from "@/components/ui/copy-button";
@@ -71,14 +70,9 @@ import {
   type TimerState,
 } from "@/lib/converter/timer";
 import { CITIES, cityTimeZones } from "@/lib/converter/cities";
-import {
-  bytesToBlob,
-  downloadBlob,
-  downloadText,
-} from "@/lib/utils";
-import { imagesToPdf } from "@/lib/pdf/core";
+import { downloadText } from "@/lib/utils";
 import type { ToolId } from "@/lib/tools/registry";
-import { ActionBar, DownloadResult, ToolLimits, ToolShell, useToolHistory } from "./shared";
+import { ActionBar, ToolLimits, ToolShell, useToolHistory } from "./shared";
 import { SearchableSelect } from "@/components/ui/searchable-select";
 
 const selectClass =
@@ -694,57 +688,6 @@ export function RandomGenerator() {
           </CardContent>
         </Card>
       ) : null}
-    </ToolShell>
-  );
-}
-
-export function EverydayImagesToPdf() {
-  const t = useTranslations("tools.images-to-pdf");
-  const tc = useTranslations("common");
-  const log = useToolHistory(toolId("images-to-pdf"));
-  const [files, setFiles] = useState<FileItem[]>([]);
-  const [pageSize, setPageSize] = useState<"a4" | "image">("a4");
-  const [loading, setLoading] = useState(false);
-  const [result, setResult] = useState<{ blob: Blob; name: string } | null>(null);
-  const run = async () => {
-    if (!files.length) return;
-    setLoading(true);
-    try {
-      const { convertImage } = await import("@/lib/image/core");
-      const images = [];
-      for (const item of files) {
-        // Decode through canvas so EXIF orientation is applied (raw JPEG
-        // bytes would otherwise land sideways from many phones).
-        const png = await convertImage(item.file, "image/png");
-        images.push({ bytes: new Uint8Array(await png.arrayBuffer()), mime: "image/png" as const });
-      }
-      const output = await imagesToPdf(images, { pageSize, margin: 24 });
-      const blob = bytesToBlob(output, "application/pdf");
-      downloadBlob(blob, "images.pdf");
-      setResult({ blob, name: "images.pdf" });
-      toast.success(text(t, "success", `Built a PDF from ${files.length} images.`, { count: files.length }));
-      log(`${files.length} images`, "success");
-    } catch (reason) {
-      toast.error(reason instanceof Error ? reason.message : text(tc, "error", "Something went wrong"));
-      log("failed", "failed");
-    } finally {
-      setLoading(false);
-    }
-  };
-  return (
-    <ToolShell toolId={toolId("images-to-pdf")}>
-      <ToolLimits><p>{text(t, "limits", "Images are converted and assembled locally in this browser. Files are not uploaded. A4 fit is the default; original size keeps each page as large as the photo.")}</p></ToolLimits>
-      <FileDropzone accept="image/*" files={files} onChange={setFiles} reorder />
-      <div className="flex flex-wrap gap-2">
-        <Button type="button" variant={pageSize === "a4" ? "default" : "outline"} onClick={() => setPageSize("a4")}>
-          {text(t, "fitA4", "Fit to A4")}
-        </Button>
-        <Button type="button" variant={pageSize === "image" ? "default" : "outline"} onClick={() => setPageSize("image")}>
-          {text(t, "fitImage", "Original size")}
-        </Button>
-      </div>
-      <ActionBar onRun={run} loading={loading} label={text(t, "run", "Create PDF")} disabled={!files.length} />
-      <DownloadResult file={result} />
     </ToolShell>
   );
 }

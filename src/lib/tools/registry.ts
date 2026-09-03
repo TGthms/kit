@@ -215,7 +215,7 @@ export const tools: ToolDef[] = [
   { id: "pdf-sign", category: "pdf", group: "markup", icon: PenLine },
   { id: "pdf-extract", category: "pdf", group: "export", icon: FileSearch },
   { id: "pdf-to-images", category: "pdf", group: "export", icon: Images },
-  { id: "images-to-pdf", category: "everyday", group: "quick", icon: FileImage, fileTool: true },
+  { id: "images-to-pdf", category: "pdf", group: "export", icon: FileImage, fileTool: true },
 
   { id: "image-compress", category: "image", group: "transform", icon: ImageDown },
   { id: "image-resize", category: "image", group: "transform", icon: Scaling },
