@@ -1,7 +1,7 @@
 import * as pdfjs from "pdfjs-dist";
 import { forEachJobIndex } from "@/lib/jobs/batch";
 import { withBasePath } from "@/lib/base-path";
-import { integerCanvasSize, pdfPageWindow } from "./limits";
+import { integerCanvasSize, pdfPageWindow, type PdfPageBatch } from "./limits";
 
 export { MAX_PDF_RASTER_PAGES, pdfPageWindow } from "./limits";
 export type { PdfPageBatch } from "./limits";

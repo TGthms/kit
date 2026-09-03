@@ -109,7 +109,7 @@ export function PdfToImages() {
         toast.warning(tc("pdfPageCap", { total: raster.totalPages, processed: raster.processedPages }));
       }
       const zip = new JSZip();
-      raster.blobs.forEach((blob, i) => zip.file(`page-${String(i + 1).padStart(3, "0")}.jpg`, blob));
+      raster.blobs.forEach((blob: Blob, i: number) => zip.file(`page-${String(i + 1).padStart(3, "0")}.jpg`, blob));
       downloadBlob(await zip.generateAsync({ type: "blob" }), "pdf-pages.zip");
       toast.success(t("success", { count: raster.blobs.length }));
       log(`${raster.blobs.length} pages`, "success");
