@@ -43,7 +43,7 @@ El motor FFmpeg (`@ffmpeg/core`) se licencia como **GPL-2.0-or-later** porque in
 
 ### 4. Tipos de cambio
 
-Cuando actualizas los tipos de cambio, este navegador consulta la API pública de Frankfurter. La solicitud puede compartir con Frankfurter metadatos de red estándar (como dirección IP, agente de usuario, hora y URL solicitada). Los tipos pueden proceder de la caché de este navegador y estar desactualizados. Son únicamente datos de referencia diarios, no una garantía para operaciones, contabilidad, impuestos o liquidaciones.
+Cuando actualizas los tipos de cambio, este navegador consulta la API pública de Frankfurter. La solicitud puede compartir con Frankfurter metadatos de red estándar (como dirección IP, agente de usuario, hora y URL solicitada). Los tipos pueden proceder de la caché de este navegador y estar desactualizados. Son únicamente datos de referencia diarios, no una garantía para operaciones, contabilidad, impuestos o liquidaciones. Abrir el conversor o cambiar monedas también puede pedir un tipo si no hay uno reciente en caché. Las cantidades que escribes no se envían.
 
 ## Aplicación web progresiva (PWA)
 

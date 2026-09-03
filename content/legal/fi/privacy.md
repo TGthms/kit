@@ -43,7 +43,7 @@ FFmpeg-moottori (`@ffmpeg/core`) on lisensoitu **GPL-2.0-or-later** -lisenssill�
 
 ### 4. Valuuttakurssit
 
-Kun päivität valuuttakursseja, tämä selain kysyy tietoja Frankfurterin julkisesta API:sta. Pyyntö voi jakaa Frankfurterin kanssa tavallisia verkkometatietoja, kuten IP-osoitteen, user agentin, ajan ja pyydetyn URL-osoitteen. Kurssit voivat tulla tämän selaimen välimuistista ja olla vanhentuneita. Ne ovat vain päivittäisiä viitetietoja eivätkä takaa kaupankäyntiä, kirjanpitoa, verotusta tai selvitystä.
+Kun päivität valuuttakursseja, tämä selain kysyy tietoja Frankfurterin julkisesta API:sta. Pyyntö voi jakaa Frankfurterin kanssa tavallisia verkkometatietoja, kuten IP-osoitteen, user agentin, ajan ja pyydetyn URL-osoitteen. Kurssit voivat tulla tämän selaimen välimuistista ja olla vanhentuneita. Ne ovat vain päivittäisiä viitetietoja eivätkä takaa kaupankäyntiä, kirjanpitoa, verotusta tai selvitystä. Muuntimen avaaminen tai valuutan vaihto voi myös pyytää kurssia, jos välimuistissa ei ole tuoretta arvoa. Syöttämäsi summat eivät lähde.
 
 ## Progressiivinen verkkosovellus (PWA)
 

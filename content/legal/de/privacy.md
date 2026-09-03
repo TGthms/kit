@@ -43,7 +43,7 @@ Die FFmpeg-Engine (`@ffmpeg/core`) steht unter **GPL-2.0-or-later**, weil sie Co
 
 ### 4. Wechselkurse
 
-Wenn Sie Wechselkurse aktualisieren, fragt dieser Browser die öffentliche API von Frankfurter ab. Die Anfrage kann Standard-Netzwerkmetadaten (z. B. IP-Adresse, User-Agent, Zeitpunkt und angeforderte URL) an Frankfurter übermitteln. Kurse können aus dem Cache dieses Browsers stammen und veraltet sein. Sie sind ausschließlich tägliche Referenzdaten und keine Garantie für Handels-, Bilanzierungs-, Steuer- oder Abwicklungszwecke.
+Wenn Sie Wechselkurse aktualisieren, fragt dieser Browser die öffentliche API von Frankfurter ab. Die Anfrage kann Standard-Netzwerkmetadaten (z. B. IP-Adresse, User-Agent, Zeitpunkt und angeforderte URL) an Frankfurter übermitteln. Kurse können aus dem Cache dieses Browsers stammen und veraltet sein. Sie sind ausschließlich tägliche Referenzdaten und keine Garantie für Handels-, Bilanzierungs-, Steuer- oder Abwicklungszwecke. Das Öffnen des Umrechners oder ein Währungswechsel kann ebenfalls einen Kurs anfordern, wenn kein frischer Cache existiert. Eingegebene Beträge werden nicht gesendet.
 
 ## Progressive Web App (PWA)
 

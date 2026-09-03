@@ -43,7 +43,7 @@ Az FFmpeg motor (`@ffmpeg/core`) **GPL-2.0-or-later** licencű, mert H.264 és L
 
 ### 4. Árfolyamok
 
-Az árfolyamok frissítésekor ez a böngésző lekérdezi a Frankfurter nyilvános API-ját. A kérés szabványos hálózati metaadatokat, például IP-címet, user agentet, időpontot és a kért URL-t is megoszthatja a Frankfurterrel. Az árfolyamok származhatnak a böngésző gyorsítótárából, ezért elavultak lehetnek. Ezek kizárólag napi referenciaadatok, és nem jelentenek garanciát kereskedési, könyvelési, adózási vagy elszámolási célokra.
+Az árfolyamok frissítésekor ez a böngésző lekérdezi a Frankfurter nyilvános API-ját. A kérés szabványos hálózati metaadatokat, például IP-címet, user agentet, időpontot és a kért URL-t is megoszthatja a Frankfurterrel. Az árfolyamok származhatnak a böngésző gyorsítótárából, ezért elavultak lehetnek. Ezek kizárólag napi referenciaadatok, és nem jelentenek garanciát kereskedési, könyvelési, adózási vagy elszámolási célokra. A váltó megnyitása vagy a pénznem váltása is kérhet árfolyamot, ha nincs friss gyorsítótár. A begépelt összegek nem mennek el.
 
 ## Progresszív webalkalmazás (PWA)
 

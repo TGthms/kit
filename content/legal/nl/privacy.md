@@ -43,7 +43,7 @@ De FFmpeg-engine (`@ffmpeg/core`) valt onder **GPL-2.0-or-later** omdat die code
 
 ### 4. Wisselkoersen
 
-Wanneer je wisselkoersen vernieuwt, vraagt deze browser de openbare API van Frankfurter op. Het verzoek kan standaardnetwerkmetadata (zoals IP-adres, user agent, tijdstip en de opgevraagde URL) met Frankfurter delen. Koersen kunnen uit de cache van deze browser komen en verouderd zijn. Het zijn uitsluitend dagelijkse referentiegegevens en geen garantie voor handel, boekhouding, belasting of afwikkeling.
+Wanneer je wisselkoersen vernieuwt, vraagt deze browser de openbare API van Frankfurter op. Het verzoek kan standaardnetwerkmetadata (zoals IP-adres, user agent, tijdstip en de opgevraagde URL) met Frankfurter delen. Koersen kunnen uit de cache van deze browser komen en verouderd zijn. Het zijn uitsluitend dagelijkse referentiegegevens en geen garantie voor handel, boekhouding, belasting of afwikkeling. De converter openen of valuta wisselen kan ook een koers opvragen als er geen verse cache is. Ingevoerde bedragen worden niet verzonden.
 
 ## Progressive Web App (PWA)
 

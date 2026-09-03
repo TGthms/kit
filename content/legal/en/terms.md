@@ -39,10 +39,9 @@ To the maximum extent permitted by law, Tim G / TGthms and contributors shall no
 
 ## Third-party services and links
 
-Kit may link to external sites (for example the author’s site). Processing engines (pdf.js, FFmpeg WASM) are served from this site. Currency rates, when you refresh them, come from Frankfurter’s public API. We are not responsible for third-party content, policies, or availability.
+Kit may link to external sites (for example the author’s site). Processing engines (pdf.js, FFmpeg WASM) are served from this site. Currency rates may be requested from Frankfurter’s public API when you open the currency converter, switch currencies, or tap Refresh. We are not responsible for third-party content, policies, or availability.
 
-
-When you refresh currency rates, this browser queries Frankfurter's public API. The request may share standard network metadata (such as IP address, user agent, time, and requested URL) with Frankfurter. Rates may come from this browser's cache and may be stale. They are daily reference data only, not a guarantee for trading, accounting, tax, or settlement purposes.
+When this browser queries Frankfurter, the request may share standard network metadata (such as IP address, user agent, time, and requested URL). Amounts you type are not sent. Rates may come from this browser's cache and may be stale. They are daily reference data only, not a guarantee for trading, accounting, tax, or settlement purposes.
 
 ## Changes to the Service and Terms
 

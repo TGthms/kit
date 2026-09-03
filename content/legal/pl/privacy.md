@@ -43,7 +43,7 @@ Silnik FFmpeg (`@ffmpeg/core`) jest na licencji **GPL-2.0-or-later**, ponieważ 
 
 ### 4. Kursy walut
 
-Po odświeżeniu kursów walut ta przeglądarka wysyła zapytanie do publicznego API Frankfurter. Żądanie może udostępniać Frankfurter standardowe metadane sieciowe, takie jak adres IP, user agent, czas i żądany URL. Kursy mogą pochodzić z pamięci podręcznej tej przeglądarki i być nieaktualne. Są wyłącznie dziennymi danymi referencyjnymi, a nie gwarancją do celów handlowych, księgowych, podatkowych ani rozliczeniowych.
+Po odświeżeniu kursów walut ta przeglądarka wysyła zapytanie do publicznego API Frankfurter. Żądanie może udostępniać Frankfurter standardowe metadane sieciowe, takie jak adres IP, user agent, czas i żądany URL. Kursy mogą pochodzić z pamięci podręcznej tej przeglądarki i być nieaktualne. Są wyłącznie dziennymi danymi referencyjnymi, a nie gwarancją do celów handlowych, księgowych, podatkowych ani rozliczeniowych. Otwarcie przelicznika lub zmiana walut też może pobrać kurs, jeśli nie ma świeżej pamięci podręcznej. Wpisane kwoty nie są wysyłane.
 
 ## Progresywna aplikacja internetowa (PWA)
 

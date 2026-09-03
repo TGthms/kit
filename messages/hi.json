@@ -1284,7 +1284,7 @@
       "description": "Live exchange rates with a local cache",
       "keywords": "currency converter exchange rates money Frankfurter",
       "currency": "मुद्रा",
-      "limits": "यूनिट कन्वर्ज़न स्थानीय रूप से होते हैं। मुद्रा दरें Frankfurter से आती हैं और छह घंटे तक इस ब्राउज़र के कैश में उपलब्ध रहती हैं।",
+      "limits": "Currency rates come from Frankfurter when this tool opens or you tap Refresh, then stay in this browser cache for six hours. Amounts are not sent. Rates are daily reference data, not for trading or tax.",
       "result": "परिणाम",
       "from": "से",
       "to": "तक",

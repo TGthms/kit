@@ -1284,7 +1284,7 @@
       "description": "ライブ為替レート（端末内キャッシュ）",
       "keywords": "currency converter exchange rates money Frankfurter",
       "currency": "通貨",
-      "limits": "単位変換はローカルで実行されます。為替レートはFrankfurterから取得し、このブラウザーのキャッシュで6時間利用できます。",
+      "limits": "Currency rates come from Frankfurter when this tool opens or you tap Refresh, then stay in this browser cache for six hours. Amounts are not sent. Rates are daily reference data, not for trading or tax.",
       "result": "結果",
       "from": "変換元",
       "to": "変換先",

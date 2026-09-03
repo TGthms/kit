@@ -1284,7 +1284,7 @@
       "description": "即時匯率，使用本機快取",
       "keywords": "currency converter exchange rates money Frankfurter",
       "currency": "貨幣",
-      "limits": "單位轉換在本機執行。匯率來自 Frankfurter，並會在此瀏覽器快取中保留六小時。",
+      "limits": "Currency rates come from Frankfurter when this tool opens or you tap Refresh, then stay in this browser cache for six hours. Amounts are not sent. Rates are daily reference data, not for trading or tax.",
       "result": "結果",
       "from": "從",
       "to": "到",

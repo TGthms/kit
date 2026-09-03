@@ -43,7 +43,7 @@ Il motore FFmpeg (`@ffmpeg/core`) è concesso in **GPL-2.0-or-later** perché in
 
 ### 4. Tassi di cambio
 
-Quando aggiorni i tassi di cambio, questo browser interroga l'API pubblica di Frankfurter. La richiesta può condividere con Frankfurter metadati di rete standard, come indirizzo IP, user agent, ora e URL richiesto. I tassi possono provenire dalla cache di questo browser ed essere obsoleti. Sono solo dati di riferimento giornalieri e non costituiscono una garanzia per trading, contabilità, imposte o regolamento.
+Quando aggiorni i tassi di cambio, questo browser interroga l'API pubblica di Frankfurter. La richiesta può condividere con Frankfurter metadati di rete standard, come indirizzo IP, user agent, ora e URL richiesto. I tassi possono provenire dalla cache di questo browser ed essere obsoleti. Sono solo dati di riferimento giornalieri e non costituiscono una garanzia per trading, contabilità, imposte o regolamento. Aprire il convertitore o cambiare valute può richiedere un tasso se non c’è una cache recente. Gli importi digitati non vengono inviati.
 
 ## Progressive Web App (PWA)
 

@@ -43,7 +43,7 @@ Mesin FFmpeg (`@ffmpeg/core`) dilisensikan **GPL-2.0-or-later** karena menyertak
 
 ### 4. Kurs mata uang
 
-Saat Anda menyegarkan kurs mata uang, browser ini meminta data dari API publik Frankfurter. Permintaan tersebut dapat membagikan metadata jaringan standar (seperti alamat IP, user agent, waktu, dan URL yang diminta) kepada Frankfurter. Kurs dapat berasal dari cache browser ini dan mungkin sudah kedaluwarsa. Kurs tersebut hanya data referensi harian, bukan jaminan untuk perdagangan, akuntansi, pajak, atau penyelesaian transaksi.
+Saat Anda menyegarkan kurs mata uang, browser ini meminta data dari API publik Frankfurter. Permintaan tersebut dapat membagikan metadata jaringan standar (seperti alamat IP, user agent, waktu, dan URL yang diminta) kepada Frankfurter. Kurs dapat berasal dari cache browser ini dan mungkin sudah kedaluwarsa. Kurs tersebut hanya data referensi harian, bukan jaminan untuk perdagangan, akuntansi, pajak, atau penyelesaian transaksi. Membuka konverter atau mengganti mata uang juga dapat meminta kurs jika tidak ada cache segar. Jumlah yang Anda ketik tidak dikirim.
 
 ## Progressive Web App (PWA)
 

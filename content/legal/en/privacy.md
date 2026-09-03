@@ -43,7 +43,7 @@ The FFmpeg engine (`@ffmpeg/core`) is licensed **GPL-2.0-or-later** because it i
 
 ### 4. Currency rates
 
-When you refresh currency rates, this browser queries Frankfurter's public API. The request may share standard network metadata (such as IP address, user agent, time, and requested URL) with Frankfurter. Rates may come from this browser's cache and may be stale. They are daily reference data only, not a guarantee for trading, accounting, tax, or settlement purposes.
+When you open the currency converter, switch currencies, or tap Refresh, this browser may query Frankfurter's public API if no fresh cached rate exists for that pair. The request may share standard network metadata (such as IP address, user agent, time, and requested URL) with Frankfurter. Amounts you type are not sent. Rates may come from this browser's cache and may be stale. They are daily reference data only, not a guarantee for trading, accounting, tax, or settlement purposes.
 
 ## Progressive Web App (PWA)
 

@@ -1284,7 +1284,7 @@
       "description": "Live exchange rates with a local cache",
       "keywords": "currency converter exchange rates money Frankfurter",
       "currency": "Monedă",
-      "limits": "Conversiile de unități rulează local. Cursurile valutare provin de la Frankfurter și rămân disponibile în cache-ul acestui browser timp de șase ore.",
+      "limits": "Currency rates come from Frankfurter when this tool opens or you tap Refresh, then stay in this browser cache for six hours. Amounts are not sent. Rates are daily reference data, not for trading or tax.",
       "result": "Rezultat",
       "from": "De la",
       "to": "La",

@@ -43,7 +43,7 @@ O motor FFmpeg (`@ffmpeg/core`) é licenciado como **GPL-2.0-or-later** porque i
 
 ### 4. Cotações de moedas
 
-Ao atualizar cotações de moedas, este navegador consulta a API pública do Frankfurter. A solicitação pode compartilhar com o Frankfurter metadados de rede padrão, como endereço IP, user agent, horário e URL solicitada. As cotações podem vir do cache deste navegador e estar desatualizadas. São apenas dados de referência diários, não uma garantia para negociação, contabilidade, impostos ou liquidação.
+Ao atualizar cotações de moedas, este navegador consulta a API pública do Frankfurter. A solicitação pode compartilhar com o Frankfurter metadados de rede padrão, como endereço IP, user agent, horário e URL solicitada. As cotações podem vir do cache deste navegador e estar desatualizadas. São apenas dados de referência diários, não uma garantia para negociação, contabilidade, impostos ou liquidação. Abrir o conversor ou trocar moedas também pode pedir uma taxa se não houver cache recente. Os valores digitados não são enviados.
 
 ## Aplicativo Web Progressivo (PWA)
 

@@ -1284,7 +1284,7 @@
       "description": "Live exchange rates with a local cache",
       "keywords": "currency converter exchange rates money Frankfurter",
       "currency": "Νόμισμα",
-      "limits": "Οι μετατροπές μονάδων εκτελούνται τοπικά. Οι ισοτιμίες προέρχονται από το Frankfurter και παραμένουν στην προσωρινή μνήμη του browser για έξι ώρες.",
+      "limits": "Currency rates come from Frankfurter when this tool opens or you tap Refresh, then stay in this browser cache for six hours. Amounts are not sent. Rates are daily reference data, not for trading or tax.",
       "result": "Αποτέλεσμα",
       "from": "Από",
       "to": "Προς",

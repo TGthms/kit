@@ -43,7 +43,7 @@ Engine FFmpeg (`@ffmpeg/core`) được cấp phép **GPL-2.0-or-later** vì g�
 
 ### 4. Tỷ giá tiền tệ
 
-Khi bạn làm mới tỷ giá, trình duyệt này truy vấn API công khai của Frankfurter. Yêu cầu có thể chia sẻ với Frankfurter siêu dữ liệu mạng tiêu chuẩn như địa chỉ IP, user agent, thời gian và URL được yêu cầu. Tỷ giá có thể lấy từ bộ nhớ đệm của trình duyệt này và có thể đã cũ. Đây chỉ là dữ liệu tham khảo hằng ngày, không phải bảo đảm cho giao dịch, kế toán, thuế hoặc quyết toán.
+Khi bạn làm mới tỷ giá, trình duyệt này truy vấn API công khai của Frankfurter. Yêu cầu có thể chia sẻ với Frankfurter siêu dữ liệu mạng tiêu chuẩn như địa chỉ IP, user agent, thời gian và URL được yêu cầu. Tỷ giá có thể lấy từ bộ nhớ đệm của trình duyệt này và có thể đã cũ. Đây chỉ là dữ liệu tham khảo hằng ngày, không phải bảo đảm cho giao dịch, kế toán, thuế hoặc quyết toán. Mở bộ chuyển hoặc đổi tiền tệ cũng có thể hỏi tỷ giá nếu chưa có bộ nhớ đệm mới. Số tiền bạn gõ không được gửi.
 
 ## Ứng dụng web lũy tiến (PWA)
 

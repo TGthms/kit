@@ -1284,7 +1284,7 @@
       "description": "Câmbio ao vivo com cache local",
       "keywords": "currency converter exchange rates money Frankfurter",
       "currency": "Moeda",
-      "limits": "As conversões de unidades rodam localmente. As cotações vêm do Frankfurter e ficam disponíveis no cache deste navegador por seis horas.",
+      "limits": "Currency rates come from Frankfurter when this tool opens or you tap Refresh, then stay in this browser cache for six hours. Amounts are not sent. Rates are daily reference data, not for trading or tax.",
       "result": "Resultado",
       "from": "De",
       "to": "Para",

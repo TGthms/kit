@@ -1284,7 +1284,7 @@
       "description": "Live exchange rates with a local cache",
       "keywords": "currency converter exchange rates money Frankfurter",
       "currency": "สกุลเงิน",
-      "limits": "การแปลงหน่วยทำงานในเครื่อง อัตราแลกเปลี่ยนมาจาก Frankfurter และเก็บไว้ในแคชของเบราว์เซอร์นี้หกชั่วโมง",
+      "limits": "Currency rates come from Frankfurter when this tool opens or you tap Refresh, then stay in this browser cache for six hours. Amounts are not sent. Rates are daily reference data, not for trading or tax.",
       "result": "ผลลัพธ์",
       "from": "จาก",
       "to": "ถึง",

@@ -43,7 +43,7 @@ O motor FFmpeg (`@ffmpeg/core`) está licenciado como **GPL-2.0-or-later** porqu
 
 ### 4. Taxas de câmbio
 
-Ao atualizar taxas de câmbio, este navegador consulta a API pública do Frankfurter. O pedido pode partilhar com o Frankfurter metadados de rede padrão, como endereço IP, user agent, hora e URL pedida. As taxas podem vir da cache deste navegador e estar desatualizadas. São apenas dados de referência diários, não uma garantia para negociação, contabilidade, impostos ou liquidação.
+Ao atualizar taxas de câmbio, este navegador consulta a API pública do Frankfurter. O pedido pode partilhar com o Frankfurter metadados de rede padrão, como endereço IP, user agent, hora e URL pedida. As taxas podem vir da cache deste navegador e estar desatualizadas. São apenas dados de referência diários, não uma garantia para negociação, contabilidade, impostos ou liquidação. Abrir o conversor ou mudar de moedas também pode pedir uma taxa se não houver cache recente. Os valores introduzidos não são enviados.
 
 ## Aplicação Web Progressiva (PWA)
 

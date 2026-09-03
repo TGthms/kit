@@ -23,7 +23,7 @@ import { convertUnit, electricalDimension, formatConvertedInput, formatUnitSymbo
 import type { ToolId } from "@/lib/tools/registry";
 import { AnimatedNumber } from "@/components/shared/animated-number";
 import { useHydrated } from "@/lib/react/hydrated";
-import { ToolShell, useToolHistory } from "./shared";
+import { ToolLimits, ToolShell, useToolHistory } from "./shared";
 
 type UnitOption = { code: UnitCode; label: string };
 
@@ -745,8 +745,12 @@ export function CurrencyConverter({ namespace = "tools.currency-converter" }: { 
 }
 
 export function CurrencyConverterTool() {
+  const t = useTranslations("tools.currency-converter");
   return (
     <ToolShell toolId="currency-converter">
+      <ToolLimits>
+        <p>{text(t, "limits", "Currency rates come from Frankfurter when this tool opens or you tap Refresh, then stay in this browser cache for six hours. Amounts are not sent. Rates are daily reference data, not for trading or tax.")}</p>
+      </ToolLimits>
       <CurrencyConverter namespace="tools.currency-converter" />
     </ToolShell>
   );

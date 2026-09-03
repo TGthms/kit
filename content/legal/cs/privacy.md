@@ -43,7 +43,7 @@ Engine FFmpeg (`@ffmpeg/core`) je licencován jako **GPL-2.0-or-later**, protož
 
 ### 4. Měnové kurzy
 
-Při obnovení měnových kurzů se tento prohlížeč dotazuje veřejného API Frankfurter. Požadavek může s Frankfurter sdílet standardní síťová metadata, například IP adresu, user-agent, čas a požadovanou URL. Kurzy mohou pocházet z mezipaměti tohoto prohlížeče a mohou být zastaralé. Jde pouze o denní referenční data, nikoli o záruku pro obchodování, účetnictví, daně nebo vypořádání.
+Při obnovení měnových kurzů se tento prohlížeč dotazuje veřejného API Frankfurter. Požadavek může s Frankfurter sdílet standardní síťová metadata, například IP adresu, user-agent, čas a požadovanou URL. Kurzy mohou pocházet z mezipaměti tohoto prohlížeče a mohou být zastaralé. Jde pouze o denní referenční data, nikoli o záruku pro obchodování, účetnictví, daně nebo vypořádání. Otevření převodníku nebo změna měn může také vyžádat kurz, pokud není čerstvá mezipaměť. Zadané částky se neodesílají.
 
 ## Progresivní webová aplikace (PWA)
 

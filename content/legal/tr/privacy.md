@@ -43,7 +43,7 @@ FFmpeg motoru (`@ffmpeg/core`) H.264 ve LAME MP3 gibi kodlayıcılar içerdiği 
 
 ### 4. Para birimi kurları
 
-Para birimi kurlarını yenilediğinizde bu tarayıcı Frankfurter’ın herkese açık API’sine sorgu gönderir. İstek, IP adresi, user agent, zaman ve istenen URL gibi standart ağ meta verilerini Frankfurter ile paylaşabilir. Kurlar bu tarayıcının önbelleğinden gelebilir ve güncelliğini yitirmiş olabilir. Bunlar yalnızca günlük referans verileridir; alım satım, muhasebe, vergi veya takas için garanti değildir.
+Para birimi kurlarını yenilediğinizde bu tarayıcı Frankfurter’ın herkese açık API’sine sorgu gönderir. İstek, IP adresi, user agent, zaman ve istenen URL gibi standart ağ meta verilerini Frankfurter ile paylaşabilir. Kurlar bu tarayıcının önbelleğinden gelebilir ve güncelliğini yitirmiş olabilir. Bunlar yalnızca günlük referans verileridir; alım satım, muhasebe, vergi veya takas için garanti değildir. Dönüştürücüyü açmak veya para birimi değiştirmek, taze önbellek yoksa kur da isteyebilir. Yazdığınız tutarlar gönderilmez.
 
 ## Aşamalı Web Uygulaması (PWA)
 

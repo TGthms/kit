@@ -1284,7 +1284,7 @@
       "description": "Live exchange rates with a local cache",
       "keywords": "currency converter exchange rates money Frankfurter",
       "currency": "Měna",
-      "limits": "Převody jednotek probíhají lokálně. Kurzy měn pocházejí z Frankfurter a v mezipaměti tohoto prohlížeče zůstávají šest hodin.",
+      "limits": "Currency rates come from Frankfurter when this tool opens or you tap Refresh, then stay in this browser cache for six hours. Amounts are not sent. Rates are daily reference data, not for trading or tax.",
       "result": "Výsledek",
       "from": "Od",
       "to": "Do",

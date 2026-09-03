@@ -43,7 +43,7 @@ Le moteur FFmpeg (`@ffmpeg/core`) est sous licence **GPL-2.0-or-later**, car il 
 
 ### 4. Taux de change
 
-Lorsque vous actualisez les taux de change, ce navigateur interroge l'API publique de Frankfurter. La requête peut partager avec Frankfurter des métadonnées réseau standard (adresse IP, agent utilisateur, heure et URL demandée, par exemple). Les taux peuvent provenir du cache de ce navigateur et être obsolètes. Il s'agit uniquement de données de référence quotidiennes, sans garantie pour le trading, la comptabilité, la fiscalité ou le règlement.
+Lorsque vous actualisez les taux de change, ce navigateur interroge l'API publique de Frankfurter. La requête peut partager avec Frankfurter des métadonnées réseau standard (adresse IP, agent utilisateur, heure et URL demandée, par exemple). Les taux peuvent provenir du cache de ce navigateur et être obsolètes. Il s'agit uniquement de données de référence quotidiennes, sans garantie pour le trading, la comptabilité, la fiscalité ou le règlement. Ouvrir le convertisseur ou changer de devises peut aussi interroger l’API s’il n’y a pas de taux frais en cache. Les montants saisis ne sont pas envoyés.
 
 ## Application web progressive (PWA)
 

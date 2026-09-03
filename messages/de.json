@@ -1284,7 +1284,7 @@
       "description": "Live-Wechselkurse mit lokalem Cache",
       "keywords": "currency converter exchange rates money Frankfurter",
       "currency": "Währung",
-      "limits": "Einheitenumrechnungen laufen lokal. Wechselkurse kommen von Frankfurter und bleiben sechs Stunden im Cache dieses Browsers verfügbar.",
+      "limits": "Currency rates come from Frankfurter when this tool opens or you tap Refresh, then stay in this browser cache for six hours. Amounts are not sent. Rates are daily reference data, not for trading or tax.",
       "result": "Ergebnis",
       "from": "Von",
       "to": "Nach",

@@ -1293,7 +1293,7 @@
       "description": "Live valutakurser med lokal hurtigbuffer",
       "keywords": "currency converter exchange rates money Frankfurter",
       "currency": "Valuta",
-      "limits": "Enhetskonverteringer kjøres lokalt. Valutakurser hentes fra Frankfurter og blir tilgjengelige i nettleserens hurtigbuffer i seks timer.",
+      "limits": "Currency rates come from Frankfurter when this tool opens or you tap Refresh, then stay in this browser cache for six hours. Amounts are not sent. Rates are daily reference data, not for trading or tax.",
       "result": "Resultat",
       "from": "Fra",
       "to": "Til",

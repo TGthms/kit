@@ -1284,7 +1284,7 @@
       "description": "Live exchange rates with a local cache",
       "keywords": "currency converter exchange rates money Frankfurter",
       "currency": "Pénznem",
-      "limits": "Az egységátváltás helyben fut. Az árfolyamok a Frankfurterből érkeznek, majd hat órán át a böngésző gyorsítótárában maradnak.",
+      "limits": "Currency rates come from Frankfurter when this tool opens or you tap Refresh, then stay in this browser cache for six hours. Amounts are not sent. Rates are daily reference data, not for trading or tax.",
       "result": "Eredmény",
       "from": "Innen",
       "to": "Ide",

@@ -43,7 +43,7 @@ Motorul FFmpeg (`@ffmpeg/core`) este licențiat **GPL-2.0-or-later** deoarece in
 
 ### 4. Cursuri valutare
 
-Când reîmprospătezi cursurile valutare, acest browser interoghează API-ul public Frankfurter. Cererea poate partaja cu Frankfurter metadate standard de rețea, precum adresa IP, user agent, ora și URL-ul solicitat. Cursurile pot proveni din cache-ul acestui browser și pot fi învechite. Sunt doar date de referință zilnice, nu o garanție pentru tranzacționare, contabilitate, taxe sau decontare.
+Când reîmprospătezi cursurile valutare, acest browser interoghează API-ul public Frankfurter. Cererea poate partaja cu Frankfurter metadate standard de rețea, precum adresa IP, user agent, ora și URL-ul solicitat. Cursurile pot proveni din cache-ul acestui browser și pot fi învechite. Sunt doar date de referință zilnice, nu o garanție pentru tranzacționare, contabilitate, taxe sau decontare. Deschiderea convertorului sau schimbarea valutelor poate cere un curs dacă nu există cache proaspăt. Sumele tastate nu sunt trimise.
 
 ## Aplicație web progresivă (PWA)
 

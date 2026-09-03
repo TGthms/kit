@@ -43,7 +43,7 @@ FFmpeg-motoren (`@ffmpeg/core`) er licenseret som **GPL-2.0-or-later**, fordi de
 
 ### 4. Valutakurser
 
-Når du opdaterer valutakurser, forespørger denne browser Frankfurters offentlige API. Anmodningen kan dele standardnetværksmetadata (for eksempel IP-adresse, user agent, tidspunkt og den anmodede URL) med Frankfurter. Kurser kan komme fra denne browsers cache og kan være forældede. De er kun daglige referencedata og er ikke en garanti til handels-, regnskabs-, skatte- eller afviklingsformål.
+Når du opdaterer valutakurser, forespørger denne browser Frankfurters offentlige API. Anmodningen kan dele standardnetværksmetadata (for eksempel IP-adresse, user agent, tidspunkt og den anmodede URL) med Frankfurter. Kurser kan komme fra denne browsers cache og kan være forældede. De er kun daglige referencedata og er ikke en garanti til handels-, regnskabs-, skatte- eller afviklingsformål. At åbne omregneren eller skifte valuta kan også hente en kurs, hvis der ikke er et friskt cache. Beløb, du indtaster, sendes ikke.
 
 ## Progressiv webapp (PWA)
 
