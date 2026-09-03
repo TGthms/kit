@@ -126,6 +126,7 @@ COPY: dict[str, dict[str, str]] = {
         "auto_3": "The workflow [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml) builds with `NEXT_PUBLIC_BASE_PATH=/kit` and deploys the `out/` folder",
         "manual_h": "Manual",
         "pages": f"GitHub Pages URL: `{PAGES}`  \nCanonical live site: `{SITE}`",
+        "cf_note": "Cloudflare Pages clones this repo and runs `npm run build` (the gitignored local `out/` is not uploaded). After the export, `postbuild` removes Next.js `__next.*.txt` segment files so the deploy stays under the Free 20,000-file cap; HTML and `index.txt` stay for first load and in-app navigation.",
         "stack_h": "Tech stack",
         "stack": "Next.js 16 (App Router, static export) · TypeScript · Tailwind CSS · shadcn-style UI · Zustand · next-intl · @cantoo/pdf-lib / PDF.js · Canvas · FFmpeg WASM · PWA service worker",
         "license_h": "License",
@@ -1778,7 +1779,7 @@ NEXT_PUBLIC_BASE_PATH=/kit npm run build
 ```
 
 {c["pages"]}
-
+{(chr(10) + c["cf_note"] + chr(10)) if c.get("cf_note") else ""}
 ## {c["stack_h"]}
 
 {c["stack"]}

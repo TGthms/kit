@@ -6,6 +6,7 @@ This file is the active implementation record. Current source is under `src/`, `
 
 - **94 tools** in `src/lib/tools/registry.ts`.
 - Next.js 16 App Router with static export, PWA shell, Cloudflare Pages (canonical) and GitHub Pages CI. GitHub Actions runs typecheck, lint, and tests before the Pages backup publish.
+- Cloudflare Pages Free allows 20,000 files per deploy. Next 16 writes extra `__next.*.txt` segment-prefetch files per route (~23k files for 31 locale URLs). `scripts/prune-export.mjs` runs as `postbuild` and deletes those extras, keeping `index.html` and `index.txt` so client navigations still work. Cloudflare clones GitHub and runs `npm run build`; it does not upload the gitignored local `out/` folder.
 - 30 first-class locales plus the legacy `/zh/` path alias; localized tool metadata, sitemap, robots, and 62 legal documents.
 - Pure engines and tests under `src/lib/`; client tool views under `src/components/tools/`; favorites and metadata-only history in Zustand stores.
 - Canonical production site: `https://trykit.pages.dev`; GitHub Pages backup: `https://TGthms.github.io/kit/`.

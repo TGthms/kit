@@ -143,6 +143,8 @@ NEXT_PUBLIC_BASE_PATH=/kit npm run build
 GitHub Pages URL: `https://TGthms.github.io/kit/`  
 Canonical live site: `https://trykit.pages.dev`
 
+Cloudflare Pages clones this repo and runs `npm run build` (the gitignored local `out/` is not uploaded). After the export, `postbuild` removes Next.js `__next.*.txt` segment files so the deploy stays under the Free 20,000-file cap; HTML and `index.txt` stay for first load and in-app navigation.
+
 ## Tech stack
 
 Next.js 16 (App Router, static export) · TypeScript · Tailwind CSS · shadcn-style UI · Zustand · next-intl · @cantoo/pdf-lib / PDF.js · Canvas · FFmpeg WASM · PWA service worker
