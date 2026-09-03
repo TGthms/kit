@@ -24,19 +24,39 @@ beforeEach(() => {
 });
 
 describe("GreetingSubtitle", () => {
-  it("keeps the text in the document before the typewriter finishes", () => {
-    render(<GreetingSubtitle motion="fade" play={false}>Kit keeps files on this device.</GreetingSubtitle>);
+  it("applies the context motion class as soon as it mounts", () => {
+    render(<GreetingSubtitle motion="fade">Kit keeps files on this device.</GreetingSubtitle>);
     expect(screen.getByText("Kit keeps files on this device.")).toBeInTheDocument();
-    expect(screen.getByText("Kit keeps files on this device.").className).toContain("greeting-sub");
-    expect(screen.getByText("Kit keeps files on this device.").className).not.toContain("greeting-sub--fade");
+    expect(screen.getByText("Kit keeps files on this device.").className).toContain("greeting-sub--fade");
   });
 
-  it("applies the context motion class when it is time to play", () => {
+  it("maps rise motion without a play gate", () => {
     render(
-      <GreetingSubtitle motion="rise" play>
+      <GreetingSubtitle motion="rise">
         A tiny tool can turn a tedious task into a two-minute win.
       </GreetingSubtitle>,
     );
     expect(screen.getByText(/tiny tool/).className).toContain("greeting-sub--rise");
+  });
+
+  it("skips motion when reduced motion is preferred", () => {
+    Object.defineProperty(window, "matchMedia", {
+      writable: true,
+      configurable: true,
+      value: (query: string) => ({
+        matches: query.includes("prefers-reduced-motion"),
+        media: query,
+        addEventListener() {},
+        removeEventListener() {},
+        addListener() {},
+        removeListener() {},
+        dispatchEvent() {
+          return false;
+        },
+      }),
+    });
+    render(<GreetingSubtitle motion="scaleSoft">Quiet work still counts.</GreetingSubtitle>);
+    expect(screen.getByText("Quiet work still counts.").className).toContain("greeting-sub--instant");
+    expect(screen.getByText("Quiet work still counts.").className).not.toContain("greeting-sub--scaleSoft");
   });
 });

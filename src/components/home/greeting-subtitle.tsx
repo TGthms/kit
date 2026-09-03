@@ -11,25 +11,21 @@ function prefersReducedMotion(): boolean {
 
 export function GreetingSubtitle({
   motion,
-  play,
   className,
   children,
 }: {
   motion: SubtitleMotion;
-  play: boolean;
   className?: string;
   children: ReactNode;
 }) {
   const [reducedMotion] = useState(prefersReducedMotion);
-  const ready = reducedMotion || play;
 
   return (
     <p
       className={cn(
         className,
         "greeting-sub",
-        reducedMotion && "greeting-sub--instant",
-        ready && !reducedMotion && `greeting-sub--${motion}`,
+        reducedMotion ? "greeting-sub--instant" : `greeting-sub--${motion}`,
       )}
     >
       {children}

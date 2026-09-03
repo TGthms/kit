@@ -161,8 +161,6 @@ function HomePageInner() {
   const searchParams = useSearchParams();
   const selectedCat = parseCategoryParam(searchParams.get("c"));
   const [q, setQ] = useState("");
-  const [subReady, setSubReady] = useState(false);
-  const onHeadlineComplete = useCallback(() => setSubReady(true), []);
   const [greeting, setGreeting] = useState<{
     period: GreetingPeriod;
     day: string;
@@ -182,7 +180,6 @@ function HomePageInner() {
       const pool = getGreetingPoolKeys(now);
       const variant = getGreetingVariant(now, pool.length, visitSeed);
       const selection = getHomeGreetingSelection(now, locale, variant);
-      setSubReady(false);
       setGreeting({
         period: getGreetingPeriod(now),
         day: selection.day,
@@ -254,16 +251,15 @@ function HomePageInner() {
                 key={`${greeting.greetingKey}:${greeting.day}`}
                 className="type-display text-foreground"
                 text={t(greeting.greetingKey, { day: greeting.day, occasion: greeting.occasionKey ? t(`occasionLabel.${greeting.occasionKey}`) : "" })}
-                onComplete={onHeadlineComplete}
               />
             ) : (
               <h1 className="type-display text-foreground">{t("title")}</h1>
             )}
             {greeting ? (
               <GreetingSubtitle
+                key={`${greeting.greetingKey}:${greeting.day}:sub`}
                 className="type-body max-w-xl text-muted-foreground"
                 motion={greeting.motion}
-                play={subReady}
               >
                 {greeting.subtitle.kind === "verse" ? (
                   <>
