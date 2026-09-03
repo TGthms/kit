@@ -116,7 +116,10 @@
     "noMatches": "Sin coincidencias",
     "searchAria": "Buscar {label}",
     "searchResults": "Resultados de {label}",
-    "pdfPageCap": "Este PDF tiene {total} páginas. Kit procesó las primeras {processed} en esta pestaña."
+    "pdfPageCap": "Este PDF tiene {total} páginas. Kit procesó las primeras {processed} en esta pestaña.",
+    "fileRejectedSize": "Ese archivo supera 200 MB, así que Kit no lo pondrá en cola en esta pestaña.",
+    "fileRejectedType": "Ese tipo de archivo no se acepta aquí.",
+    "fileRejectedEmpty": "No se añadieron archivos utilizables."
   },
   "home": {
     "title": "¿Qué quieres hacer?",

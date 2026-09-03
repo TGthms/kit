@@ -1,3 +1,5 @@
+import { isOversizedFile } from "@/lib/utils";
+
 export function fileMatchesAccept(file: File, accept?: string): boolean {
   if (!accept) return true;
   const name = file.name.toLowerCase();
@@ -24,4 +26,22 @@ export function fileMatchesAccept(file: File, accept?: string): boolean {
     }
     return file.type.toLowerCase() === part;
   });
+}
+
+export type DroppedFileSort = {
+  matched: File[];
+  oversized: File[];
+  wrongType: File[];
+};
+
+export function classifyDroppedFiles(files: File[], accept?: string): DroppedFileSort {
+  const oversized: File[] = [];
+  const wrongType: File[] = [];
+  const matched: File[] = [];
+  for (const file of files) {
+    if (isOversizedFile(file.size)) oversized.push(file);
+    else if (!fileMatchesAccept(file, accept)) wrongType.push(file);
+    else matched.push(file);
+  }
+  return { matched, oversized, wrongType };
 }

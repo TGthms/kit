@@ -116,7 +116,10 @@
     "noMatches": "Nenhuma correspondência",
     "searchAria": "Buscar {label}",
     "searchResults": "Resultados de {label}",
-    "pdfPageCap": "Este PDF tem {total} páginas. O Kit processou as primeiras {processed} nesta aba."
+    "pdfPageCap": "Este PDF tem {total} páginas. O Kit processou as primeiras {processed} nesta aba.",
+    "fileRejectedSize": "Esse arquivo tem mais de 200 MB, então o Kit não o enfileira nesta aba.",
+    "fileRejectedType": "Esse tipo de arquivo não é aceito aqui.",
+    "fileRejectedEmpty": "Nenhum arquivo utilizável foi adicionado."
   },
   "home": {
     "title": "O que você precisa fazer?",

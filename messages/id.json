@@ -116,7 +116,10 @@
     "noMatches": "Tidak ada hasil",
     "searchAria": "Cari {label}",
     "searchResults": "Hasil pencarian {label}",
-    "pdfPageCap": "PDF ini punya {total} halaman. Kit memproses {processed} halaman pertama di tab ini."
+    "pdfPageCap": "PDF ini punya {total} halaman. Kit memproses {processed} halaman pertama di tab ini.",
+    "fileRejectedSize": "Berkas itu lebih dari 200 MB, jadi Kit tidak mengantrikannya di tab ini.",
+    "fileRejectedType": "Jenis berkas itu tidak diterima di sini.",
+    "fileRejectedEmpty": "Tidak ada berkas yang dapat digunakan."
   },
   "home": {
     "title": "Apa yang ingin Anda lakukan?",

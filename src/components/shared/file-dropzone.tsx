@@ -3,8 +3,8 @@
 import { useCallback, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 import { Upload } from "lucide-react";
-import { cn, formatBytes, isLargeFile, isOversizedFile } from "@/lib/utils";
-import { fileMatchesAccept } from "@/lib/files/accept";
+import { cn, formatBytes, isLargeFile } from "@/lib/utils";
+import { classifyDroppedFiles } from "@/lib/files/accept";
 import { Button } from "@/components/ui/button";
 
 export interface FileItem {
@@ -30,11 +30,17 @@ export function FileDropzone({
   const t = useTranslations("common");
   const inputRef = useRef<HTMLInputElement>(null);
   const [drag, setDrag] = useState(false);
+  const [rejectMessage, setRejectMessage] = useState<string | null>(null);
   const dragId = useRef<string | null>(null);
 
   const addFiles = useCallback(
     (list: FileList | File[]) => {
-      const matched = Array.from(list).filter((file) => fileMatchesAccept(file, accept) && !isOversizedFile(file.size));
+      const incoming = Array.from(list);
+      const { matched, oversized, wrongType } = classifyDroppedFiles(incoming, accept);
+      if (oversized.length) setRejectMessage(t("fileRejectedSize"));
+      else if (wrongType.length) setRejectMessage(t("fileRejectedType"));
+      else if (!matched.length) setRejectMessage(t("fileRejectedEmpty"));
+      else setRejectMessage(null);
       if (!matched.length) return;
       const arr = matched.map((file) => ({
         id: crypto.randomUUID(),
@@ -42,7 +48,7 @@ export function FileDropzone({
       }));
       onChange(multiple ? [...files, ...arr] : arr.slice(0, 1));
     },
-    [accept, files, multiple, onChange]
+    [accept, files, multiple, onChange, t]
   );
 
   const onPaste = useCallback(
@@ -104,6 +110,11 @@ export function FileDropzone({
         />
       </div>
 
+      {rejectMessage ? (
+        <p className="text-xs text-destructive" role="alert">
+          {rejectMessage}
+        </p>
+      ) : null}
       {files.some((f) => isLargeFile(f.file.size)) ? (
         <p className="text-xs text-amber-700 dark:text-amber-300">{t("fileTooLarge")}</p>
       ) : null}

@@ -116,7 +116,10 @@
     "noMatches": "Brak wyników",
     "searchAria": "Szukaj: {label}",
     "searchResults": "Wyniki dla {label}",
-    "pdfPageCap": "Ten PDF ma {total} stron. Kit przetworzył pierwsze {processed} w tej karcie."
+    "pdfPageCap": "Ten PDF ma {total} stron. Kit przetworzył pierwsze {processed} w tej karcie.",
+    "fileRejectedSize": "Ten plik ma ponad 200 MB, więc Kit nie doda go do kolejki w tej karcie.",
+    "fileRejectedType": "Ten typ pliku nie jest tu akceptowany.",
+    "fileRejectedEmpty": "Nie dodano użytecznych plików."
   },
   "home": {
     "title": "Co chcesz zrobić?",

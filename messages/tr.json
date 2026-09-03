@@ -116,7 +116,10 @@
     "noMatches": "Eşleşme yok",
     "searchAria": "{label} ara",
     "searchResults": "{label} arama sonuçları",
-    "pdfPageCap": "Bu PDF {total} sayfa. Kit bu sekmede ilk {processed} sayfayı işledi."
+    "pdfPageCap": "Bu PDF {total} sayfa. Kit bu sekmede ilk {processed} sayfayı işledi.",
+    "fileRejectedSize": "Bu dosya 200 MB’ı aşıyor, Kit bu sekmede kuyruğa almaz.",
+    "fileRejectedType": "Bu dosya türü burada kabul edilmiyor.",
+    "fileRejectedEmpty": "Kullanılabilir dosya eklenmedi."
   },
   "home": {
     "title": "Ne yapmak istiyorsunuz?",

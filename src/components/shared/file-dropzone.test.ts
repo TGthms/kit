@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { fileMatchesAccept } from "@/lib/files/accept";
+import { classifyDroppedFiles, fileMatchesAccept } from "@/lib/files/accept";
+import { MAX_FILE_BYTES } from "@/lib/utils";
 
 function file(name: string, type: string): File {
   return new File(["x"], name, { type });
@@ -22,5 +23,18 @@ describe("fileMatchesAccept", () => {
     expect(fileMatchesAccept(file("clip.mp4", ""), "video/*")).toBe(true);
     expect(fileMatchesAccept(file("song.m4a", ""), "audio/*")).toBe(true);
     expect(fileMatchesAccept(file("song.m4a", ""), "video/*")).toBe(false);
+  });
+});
+
+describe("classifyDroppedFiles", () => {
+  it("separates oversized and wrong-type files from matches", () => {
+    const pdf = file("notes.pdf", "application/pdf");
+    const png = file("photo.png", "image/png");
+    const huge = new File([new Uint8Array(1)], "huge.pdf", { type: "application/pdf" });
+    Object.defineProperty(huge, "size", { value: MAX_FILE_BYTES });
+    const sorted = classifyDroppedFiles([pdf, png, huge], "application/pdf");
+    expect(sorted.matched.map((f) => f.name)).toEqual(["notes.pdf"]);
+    expect(sorted.wrongType.map((f) => f.name)).toEqual(["photo.png"]);
+    expect(sorted.oversized.map((f) => f.name)).toEqual(["huge.pdf"]);
   });
 });

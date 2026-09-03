@@ -116,7 +116,10 @@
     "noMatches": "一致するものがありません",
     "searchAria": "{label}を検索",
     "searchResults": "{label}の検索結果",
-    "pdfPageCap": "この PDF は {total} ページです。Kit はこのタブで先頭 {processed} ページを処理しました。"
+    "pdfPageCap": "この PDF は {total} ページです。Kit はこのタブで先頭 {processed} ページを処理しました。",
+    "fileRejectedSize": "そのファイルは 200 MB を超えるため、このタブではキューに入れません。",
+    "fileRejectedType": "この種類のファイルはここでは受け付けません。",
+    "fileRejectedEmpty": "使えるファイルは追加されませんでした。"
   },
   "home": {
     "title": "何をしますか？",

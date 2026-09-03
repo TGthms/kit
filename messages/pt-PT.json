@@ -116,7 +116,10 @@
     "noMatches": "Sem resultados",
     "searchAria": "Pesquisar {label}",
     "searchResults": "Resultados de {label}",
-    "pdfPageCap": "Este PDF tem {total} páginas. O Kit processou as primeiras {processed} neste separador."
+    "pdfPageCap": "Este PDF tem {total} páginas. O Kit processou as primeiras {processed} neste separador.",
+    "fileRejectedSize": "Esse ficheiro tem mais de 200 MB, pelo que o Kit não o coloca em fila neste separador.",
+    "fileRejectedType": "Esse tipo de ficheiro não é aceite aqui.",
+    "fileRejectedEmpty": "Não foram adicionados ficheiros utilizáveis."
   },
   "home": {
     "title": "O que precisa de fazer?",

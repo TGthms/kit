@@ -116,7 +116,10 @@
     "noMatches": "Немає збігів",
     "searchAria": "Пошук: {label}",
     "searchResults": "Результати: {label}",
-    "pdfPageCap": "У цьому PDF {total} сторінок. Kit опрацював перші {processed} у цій вкладці."
+    "pdfPageCap": "У цьому PDF {total} сторінок. Kit опрацював перші {processed} у цій вкладці.",
+    "fileRejectedSize": "Файл більший за 200 МБ, тож Kit не ставить його в чергу в цій вкладці.",
+    "fileRejectedType": "Цей тип файлу тут не приймається.",
+    "fileRejectedEmpty": "Придатних файлів не додано."
   },
   "home": {
     "title": "Що потрібно зробити?",

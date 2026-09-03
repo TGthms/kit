@@ -116,7 +116,10 @@
     "noMatches": "ไม่พบรายการ",
     "searchAria": "ค้นหา {label}",
     "searchResults": "ผลการค้นหา {label}",
-    "pdfPageCap": "PDF นี้มี {total} หน้า Kit ประมวลผล {processed} หน้าแรกในแท็บนี้"
+    "pdfPageCap": "PDF นี้มี {total} หน้า Kit ประมวลผล {processed} หน้าแรกในแท็บนี้",
+    "fileRejectedSize": "ไฟล์นี้เกิน 200 MB ดังนั้น Kit จะไม่ใส่คิวในแท็บนี้",
+    "fileRejectedType": "ไม่รับชนิดไฟล์นี้ที่นี่",
+    "fileRejectedEmpty": "ไม่ได้เพิ่มไฟล์ที่ใช้ได้"
   },
   "home": {
     "title": "คุณต้องการทำอะไร",

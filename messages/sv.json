@@ -116,7 +116,10 @@
     "noMatches": "Inga träffar",
     "searchAria": "Sök {label}",
     "searchResults": "Sökresultat för {label}",
-    "pdfPageCap": "Den här PDF:en har {total} sidor. Kit bearbetade de första {processed} i den här fliken."
+    "pdfPageCap": "Den här PDF:en har {total} sidor. Kit bearbetade de första {processed} i den här fliken.",
+    "fileRejectedSize": "Filen är över 200 MB, så Kit köar den inte i den här fliken.",
+    "fileRejectedType": "Den filtypen accepteras inte här.",
+    "fileRejectedEmpty": "Inga användbara filer lades till."
   },
   "home": {
     "title": "Vad behöver du göra?",

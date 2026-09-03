@@ -116,7 +116,10 @@
     "noMatches": "Nincs találat",
     "searchAria": "{label} keresése",
     "searchResults": "{label} találatai",
-    "pdfPageCap": "Ez a PDF {total} oldalas. A Kit az első {processed} oldalt dolgozta fel ebben a lapon."
+    "pdfPageCap": "Ez a PDF {total} oldalas. A Kit az első {processed} oldalt dolgozta fel ebben a lapon.",
+    "fileRejectedSize": "A fájl 200 MB feletti, ezért a Kit nem sorolja be ezen a lapon.",
+    "fileRejectedType": "Ez a fájltípus itt nem fogadható el.",
+    "fileRejectedEmpty": "Nem került hozzá használható fájl."
   },
   "home": {
     "title": "Mit szeretnél csinálni?",

@@ -116,7 +116,10 @@
     "noMatches": "Nessun risultato",
     "searchAria": "Cerca {label}",
     "searchResults": "Risultati per {label}",
-    "pdfPageCap": "Questo PDF ha {total} pagine. Kit ha elaborato le prime {processed} in questa scheda."
+    "pdfPageCap": "Questo PDF ha {total} pagine. Kit ha elaborato le prime {processed} in questa scheda.",
+    "fileRejectedSize": "Quel file supera 200 MB, quindi Kit non lo mette in coda in questa scheda.",
+    "fileRejectedType": "Quel tipo di file non è accettato qui.",
+    "fileRejectedEmpty": "Nessun file utilizzabile è stato aggiunto."
   },
   "home": {
     "title": "Cosa ti serve fare?",

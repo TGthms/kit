@@ -116,7 +116,10 @@
     "noMatches": "沒有符合項目",
     "searchAria": "搜尋{label}",
     "searchResults": "{label}的搜尋結果",
-    "pdfPageCap": "此 PDF 共 {total} 頁。Kit 在此分頁處理了前 {processed} 頁。"
+    "pdfPageCap": "此 PDF 共 {total} 頁。Kit 在此分頁處理了前 {processed} 頁。",
+    "fileRejectedSize": "該檔案超過 200 MB，Kit 不會在此分頁排隊處理。",
+    "fileRejectedType": "此處不接受該檔案類型。",
+    "fileRejectedEmpty": "沒有加入可用檔案。"
   },
   "home": {
     "title": "今天有什麼要做的？",

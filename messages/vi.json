@@ -116,7 +116,10 @@
     "noMatches": "Không có kết quả",
     "searchAria": "Tìm {label}",
     "searchResults": "Kết quả {label}",
-    "pdfPageCap": "PDF này có {total} trang. Kit đã xử lý {processed} trang đầu trong thẻ này."
+    "pdfPageCap": "PDF này có {total} trang. Kit đã xử lý {processed} trang đầu trong thẻ này.",
+    "fileRejectedSize": "Tệp đó hơn 200 MB nên Kit không xếp hàng trong thẻ này.",
+    "fileRejectedType": "Loại tệp đó không được chấp nhận ở đây.",
+    "fileRejectedEmpty": "Không có tệp dùng được nào được thêm."
   },
   "home": {
     "title": "Bạn cần làm gì?",
