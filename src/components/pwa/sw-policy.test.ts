@@ -15,7 +15,18 @@ describe("service worker update policy", () => {
 
   it("times out hung navigations instead of waiting forever", () => {
     expect(sw).toMatch(/NAV_FETCH_MS\s*=\s*8000/);
+    expect(sw).toMatch(/NAV_CACHE_MS\s*=\s*2500/);
     expect(sw).toMatch(/cachedNavigation\s*\(/);
+  });
+
+  it("never returns a redirected response for navigations", () => {
+    expect(sw).not.toMatch(/Response\.redirect\s*\(/);
+    expect(sw).toMatch(/function asDirectResponse\s*\(/);
+    expect(sw).toMatch(/res\.redirected\s*!==\s*true/);
+  });
+
+  it("busts the shell cache when navigation policy changes", () => {
+    expect(sw).toMatch(/kit-shell-v8/);
   });
 
   it("does not reload the tab when the controller changes", () => {

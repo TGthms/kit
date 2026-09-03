@@ -1,13 +1,31 @@
 /* Kit service worker — app shell only; never cache user files or RSC payloads.
    A new worker must wait for existing tabs to close. Taking over mid-navigation
-   (skipWaiting + clients.claim) can orphan a navigate fetch and wedge the page. */
-const CACHE = "kit-shell-v7";
-const PRECACHE = ["./", "./manifest.webmanifest"];
+   (skipWaiting + clients.claim) can orphan a navigate fetch and wedge the page.
+   Safari rejects a document response from a worker if it followed HTTP redirects
+   ("Response served by service worker has redirections"). Never return a
+   redirect Response or a fetch() result with redirected === true. */
+const CACHE = "kit-shell-v8";
 const LAST_HOME = "./last-home";
 const NAV_FETCH_MS = 8000;
+const NAV_CACHE_MS = 2500;
 
 self.addEventListener("install", (event) => {
-  event.waitUntil(caches.open(CACHE).then((cache) => cache.addAll(PRECACHE)));
+  event.waitUntil(
+    (async () => {
+      const cache = await caches.open(CACHE);
+      try {
+        await cache.add("./manifest.webmanifest");
+      } catch {
+        /* offline install */
+      }
+      try {
+        const res = asDirectResponse(await fetch("./", { headers: { Accept: "text/html" } }));
+        if (isUsableHtml(res)) await cache.put("./", res);
+      } catch {
+        /* ignore */
+      }
+    })()
+  );
 });
 
 self.addEventListener("activate", (event) => {
@@ -39,6 +57,23 @@ function isHtmlResponse(res) {
   return type.includes("text/html");
 }
 
+function isUsableHtml(res) {
+  return Boolean(res) && res.ok && res.type !== "error" && isHtmlResponse(res);
+}
+
+/** Safari cannot consume a SW navigation response that followed redirects. */
+function asDirectResponse(res) {
+  if (!res || res.redirected !== true) return res;
+  const headers = new Headers(res.headers);
+  headers.delete("content-encoding");
+  headers.delete("content-length");
+  return new Response(res.body, {
+    status: res.status,
+    statusText: res.statusText,
+    headers,
+  });
+}
+
 function htmlPathFromTxt(pathname) {
   return pathname.replace(/\/index\.txt$/i, "/").replace(/\.txt$/i, "/");
 }
@@ -65,13 +100,76 @@ function deadlineFetch(resource, init) {
 }
 
 async function cachedNavigation(req) {
-  const cached = await caches.match(req);
-  if (cached && isHtmlResponse(cached)) return cached;
-  const lastHome = await caches.match(LAST_HOME);
-  if (lastHome && isHtmlResponse(lastHome)) return lastHome;
-  const shell = await caches.match("./");
-  if (shell && isHtmlResponse(shell)) return shell;
-  return cached || Response.error();
+  const cache = await caches.open(CACHE);
+  const exact = await cache.match(req);
+  if (isUsableHtml(exact)) return asDirectResponse(exact);
+  try {
+    const url = new URL(typeof req === "string" ? req : req.url);
+    if (url.search) {
+      url.search = "";
+      const noSearch = await cache.match(url.href);
+      if (isUsableHtml(noSearch)) return asDirectResponse(noSearch);
+    }
+  } catch {
+    /* ignore */
+  }
+  const lastHome = await cache.match(LAST_HOME);
+  if (isUsableHtml(lastHome)) return asDirectResponse(lastHome);
+  const shell = await cache.match("./");
+  if (isUsableHtml(shell)) return asDirectResponse(shell);
+  return Response.error();
+}
+
+async function networkHtml(resource) {
+  const res = asDirectResponse(await deadlineFetch(resource));
+  if (isUsableHtml(res)) {
+    const cache = await caches.open(CACHE);
+    await cache.put(resource, res.clone());
+    return res;
+  }
+  if (res && !isHtmlResponse(res)) {
+    const url = typeof resource === "string" ? resource : resource.url;
+    const retry = asDirectResponse(await deadlineFetch(url, { headers: { Accept: "text/html" }, cache: "no-store" }));
+    if (isUsableHtml(retry)) return retry;
+  }
+  return res;
+}
+
+/** Network first, but if the socket hangs after idle, serve cached HTML at 2.5s. */
+async function navigateDocument(req, dest) {
+  const target = dest || req;
+  const cachedP = cachedNavigation(req);
+
+  return await new Promise((resolve) => {
+    let settled = false;
+    const settle = (res) => {
+      if (settled || !res) return;
+      settled = true;
+      resolve(asDirectResponse(res));
+    };
+
+    networkHtml(target).then(
+      (res) => {
+        if (isUsableHtml(res)) settle(res);
+        else {
+          cachedP.then((cached) => settle(isUsableHtml(cached) ? cached : res || Response.error()));
+        }
+      },
+      () => {
+        cachedP.then((cached) => settle(isUsableHtml(cached) ? cached : Response.error()));
+      }
+    );
+
+    setTimeout(() => {
+      cachedP.then((cached) => {
+        if (isUsableHtml(cached)) settle(cached);
+      });
+    }, NAV_CACHE_MS);
+
+    setTimeout(() => {
+      cachedP.then((cached) => settle(isUsableHtml(cached) ? cached : Response.error()));
+    }, NAV_FETCH_MS);
+  });
 }
 
 self.addEventListener("message", (event) => {
@@ -87,8 +185,8 @@ self.addEventListener("message", (event) => {
   if (!url.pathname.endsWith("/")) return;
   event.waitUntil(
     (async () => {
-      const res = await fetch(url.href, { headers: { Accept: "text/html" }, cache: "no-store" });
-      if (!res.ok || !isHtmlResponse(res)) return;
+      const res = asDirectResponse(await fetch(url.href, { headers: { Accept: "text/html" }, cache: "no-store" }));
+      if (!isUsableHtml(res)) return;
       const cache = await caches.open(CACHE);
       await cache.put(url.href, res.clone());
       await cache.put(LAST_HOME, res);
@@ -109,29 +207,11 @@ self.addEventListener("fetch", (event) => {
 
   if (req.mode === "navigate" || req.destination === "document") {
     if (/\.txt$/i.test(url.pathname)) {
-      const dest = htmlPathFromTxt(url.pathname) + url.search;
-      event.respondWith(Response.redirect(new URL(dest, url.origin), 303));
+      const dest = new URL(htmlPathFromTxt(url.pathname) + url.search, url.origin).href;
+      event.respondWith(navigateDocument(req, dest));
       return;
     }
-    event.respondWith(
-      (async () => {
-        try {
-          const res = await deadlineFetch(req);
-          if (res.ok && isHtmlResponse(res)) {
-            const copy = res.clone();
-            event.waitUntil(caches.open(CACHE).then((c) => c.put(req, copy)));
-            return res;
-          }
-          if (!isHtmlResponse(res)) {
-            const retry = await deadlineFetch(req.url, { headers: { Accept: "text/html" }, cache: "no-store" });
-            if (retry.ok && isHtmlResponse(retry)) return retry;
-          }
-          return res;
-        } catch {
-          return cachedNavigation(req);
-        }
-      })()
-    );
+    event.respondWith(navigateDocument(req));
     return;
   }
 
@@ -139,11 +219,12 @@ self.addEventListener("fetch", (event) => {
     event.respondWith(
       fetch(req)
         .then((res) => {
-          if (res.ok) {
-            const copy = res.clone();
+          const direct = asDirectResponse(res);
+          if (direct.ok) {
+            const copy = direct.clone();
             event.waitUntil(caches.open(CACHE).then((c) => c.put(req, copy)));
           }
-          return res;
+          return direct;
         })
         .catch(() => caches.match(req))
     );
@@ -156,11 +237,12 @@ self.addEventListener("fetch", (event) => {
         (cached) =>
           cached ||
           fetch(req).then((res) => {
-            if (res.ok) {
-              const copy = res.clone();
+            const direct = asDirectResponse(res);
+            if (direct.ok) {
+              const copy = direct.clone();
               event.waitUntil(caches.open(CACHE).then((c) => c.put(req, copy)));
             }
-            return res;
+            return direct;
           })
       )
     );
