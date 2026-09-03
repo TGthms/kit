@@ -1,8 +1,9 @@
 /* Kit service worker — app shell only; never cache user files or RSC payloads.
    A new worker must wait for existing tabs to close. Taking over mid-navigation
    (skipWaiting + clients.claim) can orphan a navigate fetch and wedge the page. */
-const CACHE = "kit-shell-v6";
+const CACHE = "kit-shell-v7";
 const PRECACHE = ["./", "./manifest.webmanifest"];
+const LAST_HOME = "./last-home";
 const NAV_FETCH_MS = 8000;
 
 self.addEventListener("install", (event) => {
@@ -66,10 +67,34 @@ function deadlineFetch(resource, init) {
 async function cachedNavigation(req) {
   const cached = await caches.match(req);
   if (cached && isHtmlResponse(cached)) return cached;
+  const lastHome = await caches.match(LAST_HOME);
+  if (lastHome && isHtmlResponse(lastHome)) return lastHome;
   const shell = await caches.match("./");
   if (shell && isHtmlResponse(shell)) return shell;
   return cached || Response.error();
 }
+
+self.addEventListener("message", (event) => {
+  const data = event.data;
+  if (!data || data.type !== "PRECACHE_HOME" || typeof data.url !== "string") return;
+  let url;
+  try {
+    url = new URL(data.url, self.location.origin);
+  } catch {
+    return;
+  }
+  if (url.origin !== self.location.origin) return;
+  if (!url.pathname.endsWith("/")) return;
+  event.waitUntil(
+    (async () => {
+      const res = await fetch(url.href, { headers: { Accept: "text/html" }, cache: "no-store" });
+      if (!res.ok || !isHtmlResponse(res)) return;
+      const cache = await caches.open(CACHE);
+      await cache.put(url.href, res.clone());
+      await cache.put(LAST_HOME, res);
+    })()
+  );
+});
 
 self.addEventListener("fetch", (event) => {
   const req = event.request;

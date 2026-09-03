@@ -1,16 +1,24 @@
 "use client";
 
 import { useEffect } from "react";
+import { useLocale } from "next-intl";
+import { withBasePath } from "@/lib/base-path";
 
 const UPDATE_EVERY_MS = 5 * 60 * 1000;
 const UPDATE_AFTER_VISIBLE_MS = 4000;
 
 export function ServiceWorkerRegister() {
+  const locale = useLocale();
+
   useEffect(() => {
     if (typeof window === "undefined" || !("serviceWorker" in navigator)) return;
 
     const base = process.env.NEXT_PUBLIC_BASE_PATH || "";
     const swUrl = `${base}/sw.js`;
+    const homeUrl = `${window.location.origin}${withBasePath(`/${locale}/`)}`;
+    const precacheHome = (worker: ServiceWorker | null) => {
+      worker?.postMessage({ type: "PRECACHE_HOME", url: homeUrl });
+    };
     let registration: ServiceWorkerRegistration | null = null;
     let lastUpdateAt = 0;
     let visibleTimer = 0;
@@ -50,6 +58,8 @@ export function ServiceWorkerRegister() {
       .then((reg) => {
         registration = reg;
         lastUpdateAt = Date.now();
+        precacheHome(reg.active);
+        navigator.serviceWorker.ready.then((ready) => precacheHome(ready.active));
         return reg.update();
       })
       .catch(() => {
@@ -61,7 +71,7 @@ export function ServiceWorkerRegister() {
       document.removeEventListener("visibilitychange", onVisible);
       document.removeEventListener("click", onClick, true);
     };
-  }, []);
+  }, [locale]);
 
   return null;
 }
