@@ -12,6 +12,8 @@ Kit cung cấp các tiện ích trên trình duyệt cho những tác vụ hằn
 
 Mã nguồn Kit được cung cấp theo **Giấy phép MIT**. Giấy phép đó điều chỉnh việc phân phối lại và sử dụng mã. Các Điều khoản này điều chỉnh việc sử dụng trang web được lưu trữ và Dịch vụ trực tuyến.
 
+Công cụ âm thanh và video tải engine FFmpeg WebAssembly (`@ffmpeg/core`) theo **GPL-2.0-or-later** (codec H.264 và LAME MP3). Engine được phục vụ từ trang này và chạy trong trình duyệt. Kit không gửi phương tiện của bạn lên máy chủ. pdf.js và thư viện khác vẫn Apache, BSD hoặc MIT. Nếu phân phối lại Kit kèm engine FFmpeg, hãy tuân GPL của engine đó.
+
 ## Sử dụng được chấp nhận
 
 Bạn đồng ý không sử dụng Kit để:

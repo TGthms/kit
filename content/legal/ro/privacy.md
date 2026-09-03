@@ -39,6 +39,8 @@ Kit este găzduit de obicei ca fișiere statice pe **Cloudflare Pages** (site ca
 
 Instrumentele PDF încarcă worker-ul pdf.js, fonturile și resursele asociate **de pe acest site** (incluse în aplicație). Instrumentele audio și video încarcă un motor FFmpeg WebAssembly **de pe acest site**. Conținutul fișierelor rămâne în browser; aceste biblioteci sunt codul aplicației, nu un loc unde trimitem documentele dumneavoastră.
 
+Motorul FFmpeg (`@ffmpeg/core`) este licențiat **GPL-2.0-or-later** deoarece include codecuri precum H.264 și LAME MP3. Codul sursă al Kit rămâne MIT. pdf.js și celelalte biblioteci își păstrează licențele Apache, BSD sau MIT.
+
 ### 4. Cursuri valutare
 
 Când reîmprospătezi cursurile valutare, acest browser interoghează API-ul public Frankfurter. Cererea poate partaja cu Frankfurter metadate standard de rețea, precum adresa IP, user agent, ora și URL-ul solicitat. Cursurile pot proveni din cache-ul acestui browser și pot fi învechite. Sunt doar date de referință zilnice, nu o garanție pentru tranzacționare, contabilitate, taxe sau decontare.

@@ -12,6 +12,8 @@ Kit biedt browsergebaseerde hulpprogramma's voor alledaagse taken met bestanden 
 
 De broncode van Kit is beschikbaar onder de **MIT-licentie**. Die licentie regelt het herdistribueren en gebruiken van de code. Deze voorwaarden regelen het gebruik van de gehoste website en de online Dienst.
 
+Audio- en videotools laden een FFmpeg-WebAssembly-engine (`@ffmpeg/core`) onder **GPL-2.0-or-later** (codecs zoals H.264 en LAME MP3). Die engine komt van deze site en draait in de browser. Kit stuurt je media niet naar een server. pdf.js en andere bibliotheken blijven Apache, BSD of MIT. Wie Kit mét de FFmpeg-engine herdistribueert, moet de GPL van die engine volgen.
+
 ## Aanvaardbaar gebruik
 
 Je gaat ermee akkoord Kit niet te gebruiken om:

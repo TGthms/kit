@@ -39,6 +39,8 @@ Kit genellikle **Cloudflare Pages** üzerinde statik dosyalar olarak barındır�
 
 PDF araçları pdf.js worker'ını, yazı tiplerini ve ilgili dosyaları **bu siteden** yükler (uygulamayla birlikte gelir). Ses ve video araçları bir FFmpeg WebAssembly motorunu **bu siteden** yükler. Dosya içerikleriniz tarayıcıda kalır; bu kitaplıklar uygulama kodudur, belgelerinizi gönderdiğimiz bir yer değildir.
 
+FFmpeg motoru (`@ffmpeg/core`) H.264 ve LAME MP3 gibi kodlayıcılar içerdiği için **GPL-2.0-or-later** lisanslıdır. Kit’in kendi kaynağı MIT kalır. pdf.js ve diğer kitaplıklar Apache, BSD veya MIT lisanslarını korur.
+
 ### 4. Para birimi kurları
 
 Para birimi kurlarını yenilediğinizde bu tarayıcı Frankfurter’ın herkese açık API’sine sorgu gönderir. İstek, IP adresi, user agent, zaman ve istenen URL gibi standart ağ meta verilerini Frankfurter ile paylaşabilir. Kurlar bu tarayıcının önbelleğinden gelebilir ve güncelliğini yitirmiş olabilir. Bunlar yalnızca günlük referans verileridir; alım satım, muhasebe, vergi veya takas için garanti değildir.

@@ -1,6 +1,6 @@
 # Terms of Use
 
-**Last updated:** September 1, 2026
+**Last updated:** September 2, 2026
 
 These Terms govern your access to and use of the **Kit** website and tools (the “Service”). By using Kit, you agree to these Terms. If you do not agree, do not use the Service.
 
@@ -10,7 +10,9 @@ Kit provides browser-based utilities for everyday file and text tasks. Processin
 
 ## Software license
 
-Kit source code is available under the **MIT License**. That license governs redistribution and use of the code. These Terms govern use of the hosted site and the Service online.
+Kit source code is available under the **MIT License**. That license governs redistribution and use of the Kit-authored code. These Terms govern use of the hosted site and the Service online.
+
+Audio and video tools load an FFmpeg WebAssembly engine (`@ffmpeg/core`) that is licensed **GPL-2.0-or-later** (it includes codecs such as H.264 and LAME MP3). That engine is served from this site and runs in your browser. Kit does not send your media to a server for processing. pdf.js and other libraries keep their own Apache, BSD, or MIT licenses. If you redistribute Kit with the FFmpeg engine, you must follow GPL terms for that engine.
 
 ## Acceptable use
 

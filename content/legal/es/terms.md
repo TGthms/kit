@@ -12,6 +12,8 @@ Kit ofrece utilidades en el navegador para tareas cotidianas con archivos y text
 
 El código fuente de Kit se distribuye bajo la **licencia MIT**. Esa licencia rige la redistribución y el uso del software. Estas condiciones se refieren al uso del sitio alojado y del Servicio en línea.
 
+Las herramientas de audio y vídeo cargan un motor FFmpeg WebAssembly (`@ffmpeg/core`) con licencia **GPL-2.0-or-later** (incluye códecs como H.264 y LAME MP3). Ese motor se sirve desde este sitio y se ejecuta en el navegador. Kit no envía tus archivos de medios a un servidor. pdf.js y el resto conservan Apache, BSD o MIT. Si redistribuyes Kit con el motor FFmpeg, debes cumplir la GPL de ese motor.
+
 ## Uso adecuado
 
 Te comprometes a no emplear Kit para:

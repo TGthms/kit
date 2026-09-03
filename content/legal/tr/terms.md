@@ -12,6 +12,8 @@ Kit, günlük dosya ve metin görevleri için tarayıcı tabanlı yardımcı ara
 
 Kit kaynak kodu **MIT Lisansı** kapsamında sunulmaktadır. Bu lisans, kodun yeniden dağıtımını ve kullanımını düzenler. Bu Koşullar, barındırılan sitenin ve çevrimiçi Hizmetin kullanımını düzenler.
 
+Ses ve video araçları **GPL-2.0-or-later** lisanslı bir FFmpeg WebAssembly motoru (`@ffmpeg/core`) yükler (H.264 ve LAME MP3). Motor bu siteden sunulur ve tarayıcıda çalışır. Kit medyanızı bir sunucuya göndermez. pdf.js ve diğer kitaplıklar Apache, BSD veya MIT kalır. Kit’i FFmpeg motoruyla yeniden dağıtırsanız o motorun GPL koşullarına uymalısınız.
+
 ## Kabul edilebilir kullanım
 
 Kit'i şu amaçlarla kullanmamayı kabul edersiniz:

@@ -39,6 +39,8 @@ Kit thường được lưu trữ dưới dạng các tệp tĩnh trên **Cloudf
 
 Công cụ PDF tải worker pdf.js, phông chữ và tài nguyên liên quan **từ chính trang này** (đi kèm ứng dụng). Công cụ âm thanh và video tải một engine FFmpeg WebAssembly **từ chính trang này**. Nội dung tệp của bạn ở lại trong trình duyệt; các thư viện đó là mã ứng dụng, không phải nơi chúng tôi gửi tài liệu của bạn.
 
+Engine FFmpeg (`@ffmpeg/core`) được cấp phép **GPL-2.0-or-later** vì gồm các codec như H.264 và LAME MP3. Mã nguồn của Kit vẫn là MIT. pdf.js và các thư viện khác giữ giấy phép Apache, BSD hoặc MIT.
+
 ### 4. Tỷ giá tiền tệ
 
 Khi bạn làm mới tỷ giá, trình duyệt này truy vấn API công khai của Frankfurter. Yêu cầu có thể chia sẻ với Frankfurter siêu dữ liệu mạng tiêu chuẩn như địa chỉ IP, user agent, thời gian và URL được yêu cầu. Tỷ giá có thể lấy từ bộ nhớ đệm của trình duyệt này và có thể đã cũ. Đây chỉ là dữ liệu tham khảo hằng ngày, không phải bảo đảm cho giao dịch, kế toán, thuế hoặc quyết toán.

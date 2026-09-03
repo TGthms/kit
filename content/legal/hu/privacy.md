@@ -39,6 +39,8 @@ A Kitet általában statikus fájlként a **Cloudflare Pagesen** tárolják (hiv
 
 A PDF-eszközök a pdf.js workert, a betűkészleteket és a kapcsolódó fájlokat **erről a webhelyről** töltik be (az alkalmazással együtt járnak). A hang- és videóeszközök egy FFmpeg WebAssembly-motort töltenek be **erről a webhelyről**. A fájlok tartalma a böngészőben marad; ezek a könyvtárak alkalmazáskód, nem olyan hely, ahová a dokumentumait küldenénk.
 
+Az FFmpeg motor (`@ffmpeg/core`) **GPL-2.0-or-later** licencű, mert H.264 és LAME MP3 kodekeket tartalmaz. A Kit saját forráskódja MIT marad. A pdf.js és a többi könyvtár Apache, BSD vagy MIT licencet tart.
+
 ### 4. Árfolyamok
 
 Az árfolyamok frissítésekor ez a böngésző lekérdezi a Frankfurter nyilvános API-ját. A kérés szabványos hálózati metaadatokat, például IP-címet, user agentet, időpontot és a kért URL-t is megoszthatja a Frankfurterrel. Az árfolyamok származhatnak a böngésző gyorsítótárából, ezért elavultak lehetnek. Ezek kizárólag napi referenciaadatok, és nem jelentenek garanciát kereskedési, könyvelési, adózási vagy elszámolási célokra.

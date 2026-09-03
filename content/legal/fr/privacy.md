@@ -39,6 +39,8 @@ Kit est généralement hébergé sous forme de fichiers statiques sur **Cloudfla
 
 Les outils PDF chargent le worker pdf.js, les polices et les ressources associées **depuis ce même site** (fournis avec l’application). Les outils audio et vidéo chargent un moteur FFmpeg WebAssembly **depuis ce même site**. Le contenu de vos fichiers reste dans le navigateur ; ces bibliothèques sont du code applicatif, pas un endroit où nous envoyons vos documents.
 
+Le moteur FFmpeg (`@ffmpeg/core`) est sous licence **GPL-2.0-or-later**, car il inclut des codecs tels que H.264 et LAME MP3. Le code source de Kit reste MIT. pdf.js et les autres bibliothèques conservent leurs licences Apache, BSD ou MIT.
+
 ### 4. Taux de change
 
 Lorsque vous actualisez les taux de change, ce navigateur interroge l'API publique de Frankfurter. La requête peut partager avec Frankfurter des métadonnées réseau standard (adresse IP, agent utilisateur, heure et URL demandée, par exemple). Les taux peuvent provenir du cache de ce navigateur et être obsolètes. Il s'agit uniquement de données de référence quotidiennes, sans garantie pour le trading, la comptabilité, la fiscalité ou le règlement.

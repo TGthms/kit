@@ -130,6 +130,7 @@ COPY: dict[str, dict[str, str]] = {
         "stack": "Next.js 16 (App Router, static export) · TypeScript · Tailwind CSS · shadcn-style UI · Zustand · next-intl · @cantoo/pdf-lib / PDF.js · Canvas · FFmpeg WASM · PWA service worker",
         "license_h": "License",
         "license": "[MIT](LICENSE) © Tim G (GitHub: [TGthms](https://github.com/TGthms))",
+        "license_note": "Kit’s own source is MIT. Audio and video tools also load an FFmpeg WebAssembly engine (`@ffmpeg/core`) licensed **GPL-2.0-or-later** (H.264 / LAME and related codecs). That engine is served from this site and runs in your browser; media is not uploaded to a Kit server. pdf.js and other libraries keep their own Apache, BSD, or MIT licenses.",
         "h_pdf": "PDF",
         "h_images": "Images",
         "h_av": "Audio & Video",
@@ -1785,6 +1786,8 @@ NEXT_PUBLIC_BASE_PATH=/kit npm run build
 ## {c["license_h"]}
 
 {c["license"]}
+
+{c.get("license_note") or COPY["en"]["license_note"]}
 """
     if code != "en":
         text = text.replace("](LICENSE)", "](../../LICENSE)")

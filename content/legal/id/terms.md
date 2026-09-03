@@ -12,6 +12,8 @@ Kit menyediakan utilitas berbasis browser untuk tugas sehari-hari terkait file d
 
 Kode sumber Kit tersedia berdasarkan **Lisensi MIT**. Lisensi tersebut mengatur redistribusi dan penggunaan kode. Ketentuan ini mengatur penggunaan situs yang di-host dan Layanan online.
 
+Alat audio dan video memuat mesin FFmpeg WebAssembly (`@ffmpeg/core`) berlisensi **GPL-2.0-or-later** (codec H.264 dan LAME MP3). Mesin disajikan dari situs ini dan berjalan di peramban. Kit tidak mengirim media Anda ke server. pdf.js dan pustaka lain tetap Apache, BSD, atau MIT. Jika Anda mendistribusikan ulang Kit bersama mesin FFmpeg, patuhi GPL mesin itu.
+
 ## Penggunaan yang dapat diterima
 
 Anda setuju untuk tidak menggunakan Kit untuk:

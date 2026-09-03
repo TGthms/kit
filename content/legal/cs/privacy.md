@@ -39,6 +39,8 @@ Kit je obvykle hostován jako statické soubory na **Cloudflare Pages** (kanonic
 
 Nástroje PDF načítají worker pdf.js, písma a související soubory **z tohoto webu** (jsou součástí aplikace). Nástroje pro audio a video načítají engine FFmpeg WebAssembly **z tohoto webu**. Obsah souborů zůstává v prohlížeči; tyto knihovny jsou kódem aplikace, nikoli místem, kam posíláme vaše dokumenty.
 
+Engine FFmpeg (`@ffmpeg/core`) je licencován jako **GPL-2.0-or-later**, protože obsahuje kodeky jako H.264 a LAME MP3. Vlastní zdrojový kód Kit zůstává MIT. pdf.js a další knihovny si ponechávají licence Apache, BSD nebo MIT.
+
 ### 4. Měnové kurzy
 
 Při obnovení měnových kurzů se tento prohlížeč dotazuje veřejného API Frankfurter. Požadavek může s Frankfurter sdílet standardní síťová metadata, například IP adresu, user-agent, čas a požadovanou URL. Kurzy mohou pocházet z mezipaměti tohoto prohlížeče a mohou být zastaralé. Jde pouze o denní referenční data, nikoli o záruku pro obchodování, účetnictví, daně nebo vypořádání.

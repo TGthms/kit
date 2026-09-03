@@ -39,6 +39,8 @@ O Kit normalmente é hospedado como arquivos estáticos no **Cloudflare Pages** 
 
 As ferramentas de PDF carregam o worker do pdf.js, as fontes e os recursos relacionados **deste mesmo site** (incluídos no app). As ferramentas de áudio e vídeo carregam um mecanismo FFmpeg WebAssembly **deste mesmo site**. O conteúdo dos seus arquivos permanece no navegador; essas bibliotecas são código do aplicativo, não um destino para o qual enviamos seus documentos.
 
+O motor FFmpeg (`@ffmpeg/core`) é licenciado como **GPL-2.0-or-later** porque inclui codecs como H.264 e LAME MP3. O código-fonte do Kit permanece MIT. pdf.js e as demais bibliotecas mantêm suas licenças Apache, BSD ou MIT.
+
 ### 4. Cotações de moedas
 
 Ao atualizar cotações de moedas, este navegador consulta a API pública do Frankfurter. A solicitação pode compartilhar com o Frankfurter metadados de rede padrão, como endereço IP, user agent, horário e URL solicitada. As cotações podem vir do cache deste navegador e estar desatualizadas. São apenas dados de referência diários, não uma garantia para negociação, contabilidade, impostos ou liquidação.

@@ -12,6 +12,8 @@ Kit oferă utilitare în browser pentru sarcini uzuale legate de fișiere și te
 
 Codul sursă Kit este disponibil sub **Licența MIT**. Această licență reglementează redistribuirea și utilizarea codului. Prezentele Condiții reglementează utilizarea site-ului găzduit și a Serviciului online.
 
+Uneltele audio și video încarcă un motor FFmpeg WebAssembly (`@ffmpeg/core`) sub **GPL-2.0-or-later** (codecuri H.264 și LAME MP3). Motorul este servit de pe acest site și rulează în browser. Kit nu trimite fișierele media la un server. pdf.js și celelalte biblioteci rămân Apache, BSD sau MIT. Dacă redistribui Kit cu motorul FFmpeg, respectă GPL-ul acelui motor.
+
 ## Utilizare acceptabilă
 
 Sunteți de acord să nu utilizați Kit pentru:

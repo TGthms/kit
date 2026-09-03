@@ -12,6 +12,8 @@ Kit poskytuje nástroje v prohlížeči pro běžné úkoly se soubory a textem.
 
 Zdrojový kód Kitu je dostupný pod **licencí MIT**. Tato licence upravuje redistribuci a používání kódu. Tyto Podmínky upravují používání hostovaného webu a Služby online.
 
+Nástroje pro audio a video načítají FFmpeg WebAssembly engine (`@ffmpeg/core`) pod **GPL-2.0-or-later** (kodeky H.264 a LAME MP3). Engine se podává z tohoto webu a běží v prohlížeči. Kit neodesílá vaše média na server. pdf.js a další knihovny zůstávají Apache, BSD nebo MIT. Při další distribuci Kitu s tímto enginem musíte dodržet GPL tohoto enginu.
+
 ## Přijatelné použití
 
 Souhlasíte, že Kit nebudete používat k:

@@ -12,6 +12,8 @@ A Kit böngészőalapú segédprogramokat biztosít mindennapi fájl- és szöve
 
 A Kit forráskódja a **MIT-licenc** feltételei szerint érhető el. Ez a licenc szabályozza a kód újraterjesztését és használatát. Ezek a Feltételek a hosztolt webhely és az online Szolgáltatás használatát szabályozzák.
 
+A hang- és videóeszközök egy FFmpeg WebAssembly motort (`@ffmpeg/core`) töltenek **GPL-2.0-or-later** alatt (H.264, LAME MP3). A motor erről a webhelyről érkezik, és a böngészőben fut. A Kit nem küldi a médiát szerverre. A pdf.js és a többi könyvtár Apache, BSD vagy MIT marad. Ha a Kitet a FFmpeg motorral terjeszted, tartsd be annak GPL feltételeit.
+
 ## Elfogadható használat
 
 Ön vállalja, hogy a Kitet nem használja:

@@ -13,6 +13,8 @@ describe("loadLegal", () => {
       expect(terms, `${locale} terms`).toMatch(/^# .{2,}/);
       expect(terms.length, `${locale} terms length`).toBeGreaterThan(900);
       expect(terms).toContain("[contact.timg@icloud.com](mailto:contact.timg@icloud.com)");
+      expect(privacy, `${locale} privacy GPL`).toContain("GPL-2.0-or-later");
+      expect(terms, `${locale} terms GPL`).toContain("GPL-2.0-or-later");
     }
   });
 

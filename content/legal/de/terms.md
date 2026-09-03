@@ -12,6 +12,8 @@ Kit bietet browserbasierte Dienstprogramme für alltägliche Aufgaben mit Dateie
 
 Der Quellcode von Kit ist unter der **MIT-Lizenz** verfügbar. Diese Lizenz regelt die Weitergabe und Nutzung des Codes. Diese Bedingungen regeln die Nutzung der gehosteten Website und des Onlinedienstes.
 
+Audio- und Videowerkzeuge laden eine FFmpeg-WebAssembly-Engine (`@ffmpeg/core`) unter **GPL-2.0-or-later** (u. a. H.264 und LAME-MP3). Die Engine kommt von dieser Website und läuft im Browser. Kit sendet Ihre Medien nicht an einen Server. pdf.js und andere Bibliotheken bleiben Apache, BSD oder MIT. Wer Kit mit der FFmpeg-Engine weitergibt, muss deren GPL-Bedingungen einhalten.
+
 ## Zulässige Nutzung
 
 Sie verpflichten sich, Kit nicht zu verwenden, um:

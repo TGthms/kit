@@ -150,3 +150,5 @@ Next.js 16（App Router，靜態匯出）· TypeScript · Tailwind CSS · shadcn
 ## 授權
 
 [MIT](../../LICENSE) © Tim G（GitHub: [TGthms](https://github.com/TGthms)）
+
+Kit’s own source is MIT. Audio and video tools also load an FFmpeg WebAssembly engine (`@ffmpeg/core`) licensed **GPL-2.0-or-later** (H.264 / LAME and related codecs). That engine is served from this site and runs in your browser; media is not uploaded to a Kit server. pdf.js and other libraries keep their own Apache, BSD, or MIT licenses.

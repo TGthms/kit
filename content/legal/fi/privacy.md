@@ -39,6 +39,8 @@ Kit isännöidään yleensä staattisina tiedostoina **Cloudflare Pages** -palve
 
 PDF-työkalut lataavat pdf.js-työntekijän, fontit ja liittyvät tiedostot **tältä sivustolta** (toimitetaan sovelluksen mukana). Ääni- ja videotyökalut lataavat FFmpeg WebAssembly -moottorin **tältä sivustolta**. Tiedostojesi sisältö pysyy selaimessa; kirjastot ovat sovelluskoodia, eivät paikka johon lähetämme asiakirjasi.
 
+FFmpeg-moottori (`@ffmpeg/core`) on lisensoitu **GPL-2.0-or-later** -lisenssillä, koska se sisältää koodekkeja kuten H.264 ja LAME MP3. Kitin oma lähdekoodi pysyy MIT:nä. pdf.js ja muut kirjastot säilyttävät Apache-, BSD- tai MIT-lisenssinsä.
+
 ### 4. Valuuttakurssit
 
 Kun päivität valuuttakursseja, tämä selain kysyy tietoja Frankfurterin julkisesta API:sta. Pyyntö voi jakaa Frankfurterin kanssa tavallisia verkkometatietoja, kuten IP-osoitteen, user agentin, ajan ja pyydetyn URL-osoitteen. Kurssit voivat tulla tämän selaimen välimuistista ja olla vanhentuneita. Ne ovat vain päivittäisiä viitetietoja eivätkä takaa kaupankäyntiä, kirjanpitoa, verotusta tai selvitystä.

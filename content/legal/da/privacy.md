@@ -39,6 +39,8 @@ Kit hostes typisk som statiske filer på **Cloudflare Pages** (kanonisk site: tr
 
 PDF-værktøjer indlæser pdf.js-workeren, fonte og relaterede filer **fra dette site** (følger med appen). Lyd- og videoværktøjer indlæser en FFmpeg WebAssembly-motor **fra dette site**. Dine filer bliver i browseren; bibliotekerne er programkode, ikke et sted vi sender dine dokumenter hen.
 
+FFmpeg-motoren (`@ffmpeg/core`) er licenseret som **GPL-2.0-or-later**, fordi den indeholder codecs som H.264 og LAME MP3. Kits egen kildekode forbliver MIT. pdf.js og øvrige biblioteker beholder deres Apache-, BSD- eller MIT-licenser.
+
 ### 4. Valutakurser
 
 Når du opdaterer valutakurser, forespørger denne browser Frankfurters offentlige API. Anmodningen kan dele standardnetværksmetadata (for eksempel IP-adresse, user agent, tidspunkt og den anmodede URL) med Frankfurter. Kurser kan komme fra denne browsers cache og kan være forældede. De er kun daglige referencedata og er ikke en garanti til handels-, regnskabs-, skatte- eller afviklingsformål.

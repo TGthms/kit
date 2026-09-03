@@ -1,6 +1,6 @@
 # Privacy Policy
 
-**Last updated:** September 1, 2026
+**Last updated:** September 2, 2026
 
 This policy describes how information is handled when you use **Kit**, a set of utilities published as a static website and built to run in your browser.
 
@@ -38,6 +38,8 @@ Kit is typically hosted as static files on **Cloudflare Pages** (canonical site:
 ### 3. Processing libraries
 
 PDF tools load the pdf.js worker, fonts, and related assets from **this same site** (vendored with the app). Audio and video tools load an FFmpeg WebAssembly engine from **this same site**. Your file contents stay in the browser; those libraries are application code, not a place we send your documents.
+
+The FFmpeg engine (`@ffmpeg/core`) is licensed **GPL-2.0-or-later** because it includes codecs such as H.264 and LAME MP3. Kit’s own source remains MIT. pdf.js and other bundled libraries keep their own Apache, BSD, or MIT licenses.
 
 ### 4. Currency rates
 

@@ -39,6 +39,8 @@ Kit biasanya di-host sebagai file statis di **Cloudflare Pages** (situs kanonis:
 
 Alat PDF memuat worker pdf.js, font, dan aset terkait **dari situs ini** (disertakan dengan aplikasi). Alat audio dan video memuat mesin FFmpeg WebAssembly **dari situs ini**. Isi file Anda tetap di browser; pustaka itu adalah kode aplikasi, bukan tempat kami mengirim dokumen Anda.
 
+Mesin FFmpeg (`@ffmpeg/core`) dilisensikan **GPL-2.0-or-later** karena menyertakan codec seperti H.264 dan LAME MP3. Kode sumber Kit tetap MIT. pdf.js dan pustaka lain mempertahankan lisensi Apache, BSD, atau MIT.
+
 ### 4. Kurs mata uang
 
 Saat Anda menyegarkan kurs mata uang, browser ini meminta data dari API publik Frankfurter. Permintaan tersebut dapat membagikan metadata jaringan standar (seperti alamat IP, user agent, waktu, dan URL yang diminta) kepada Frankfurter. Kurs dapat berasal dari cache browser ini dan mungkin sudah kedaluwarsa. Kurs tersebut hanya data referensi harian, bukan jaminan untuk perdagangan, akuntansi, pajak, atau penyelesaian transaksi.

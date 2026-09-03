@@ -39,6 +39,8 @@ Kit 通常以靜態檔案形式託管於 **Cloudflare Pages**（正式網站：t
 
 PDF 工具從**本站**載入 pdf.js worker、字型與相關資源（隨應用一併提供）。音訊與視訊工具從**本站**載入 FFmpeg WebAssembly 引擎。你的檔案內容留在瀏覽器中；這些函式庫是應用程式碼，不是我們接收文件的地方。
 
+FFmpeg 引擎（`@ffmpeg/core`）因包含 H.264、LAME MP3 等編解碼器，採用 **GPL-2.0-or-later**。Kit 自身原始碼仍為 MIT。pdf.js 及其他函式庫保留各自的 Apache、BSD 或 MIT 授權。
+
 ### 4. 匯率
 
 重新整理匯率時，此瀏覽器會查詢 Frankfurter 的公開 API。請求可能會與 Frankfurter 分享標準網路中繼資料，例如 IP 位址、使用者代理程式、時間與請求的 URL。匯率可能來自此瀏覽器的快取，也可能已經過時。匯率僅是每日參考資料，並不保證適用於交易、會計、稅務或結算。

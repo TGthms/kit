@@ -39,6 +39,8 @@ Kit wordt doorgaans gehost als statische bestanden op **Cloudflare Pages** (cano
 
 PDF-tools laden de pdf.js-worker, lettertypen en bijbehorende bestanden **vanaf deze site** (meegeleverd met de app). Audio- en videotools laden een FFmpeg-WebAssembly-engine **vanaf deze site**. Je bestanden blijven in de browser; die bibliotheken zijn applicatiecode, geen plek waar we je documenten naartoe sturen.
 
+De FFmpeg-engine (`@ffmpeg/core`) valt onder **GPL-2.0-or-later** omdat die codecs bevat zoals H.264 en LAME MP3. Kits eigen broncode blijft MIT. pdf.js en andere bibliotheken houden hun Apache-, BSD- of MIT-licenties.
+
 ### 4. Wisselkoersen
 
 Wanneer je wisselkoersen vernieuwt, vraagt deze browser de openbare API van Frankfurter op. Het verzoek kan standaardnetwerkmetadata (zoals IP-adres, user agent, tijdstip en de opgevraagde URL) met Frankfurter delen. Koersen kunnen uit de cache van deze browser komen en verouderd zijn. Het zijn uitsluitend dagelijkse referentiegegevens en geen garantie voor handel, boekhouding, belasting of afwikkeling.

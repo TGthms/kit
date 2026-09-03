@@ -12,6 +12,8 @@ O Kit fornece utilitários baseados no navegador para tarefas quotidianas com fi
 
 O código-fonte do Kit está disponível ao abrigo da **Licença MIT**. Essa licença rege a redistribuição e a utilização do código. Estes Termos regem a utilização do site alojado e do Serviço online.
 
+As ferramentas de áudio e vídeo carregam um motor FFmpeg WebAssembly (`@ffmpeg/core`) sob **GPL-2.0-or-later** (codecs como H.264 e LAME MP3). Esse motor é servido neste sítio e corre no navegador. O Kit não envia os seus média para um servidor. pdf.js e as restantes bibliotecas permanecem Apache, BSD ou MIT. Se redistribuir o Kit com o motor FFmpeg, cumpra a GPL desse motor.
+
 ## Utilização aceitável
 
 Concorda em não utilizar o Kit para:

@@ -12,6 +12,8 @@ Kit tarjoaa selainpohjaisia työkaluja jokapäiväisiin tiedosto- ja tekstiteht�
 
 Kitin lähdekoodi on saatavilla **MIT-lisenssillä**. Lisenssi koskee koodin uudelleenjakelua ja käyttöä. Nämä ehdot koskevat isännöidyn sivuston ja verkkopalvelun käyttöä.
 
+Ääni- ja videotyökalut lataavat FFmpeg WebAssembly -moottorin (`@ffmpeg/core`), lisenssi **GPL-2.0-or-later** (koodekit kuten H.264 ja LAME MP3). Moottori tarjotaan tältä sivustolta ja se suoritetaan selaimessa. Kit ei lähetä mediaasi palvelimelle. pdf.js ja muut kirjastot pysyvät Apache-, BSD- tai MIT-lisenssillä. Jos jaat Kitin FFmpeg-moottorin kanssa, noudata sen GPL-ehtoja.
+
 ## Hyväksyttävä käyttö
 
 Sitoudut olemaan käyttämättä Kitiä seuraaviin tarkoituksiin:

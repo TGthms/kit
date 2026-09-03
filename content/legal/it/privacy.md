@@ -39,6 +39,8 @@ Kit è generalmente ospitato come file statici su **Cloudflare Pages** (sito can
 
 Gli strumenti PDF caricano il worker pdf.js, i font e le risorse collegate **da questo stesso sito** (inclusi nell’app). Gli strumenti audio e video caricano un motore FFmpeg WebAssembly **da questo stesso sito**. Il contenuto dei file resta nel browser; queste librerie sono codice dell’applicazione, non un luogo a cui inviamo i tuoi documenti.
 
+Il motore FFmpeg (`@ffmpeg/core`) è concesso in **GPL-2.0-or-later** perché include codec come H.264 e LAME MP3. Il codice sorgente di Kit resta MIT. pdf.js e le altre librerie mantengono le proprie licenze Apache, BSD o MIT.
+
 ### 4. Tassi di cambio
 
 Quando aggiorni i tassi di cambio, questo browser interroga l'API pubblica di Frankfurter. La richiesta può condividere con Frankfurter metadati di rete standard, come indirizzo IP, user agent, ora e URL richiesto. I tassi possono provenire dalla cache di questo browser ed essere obsoleti. Sono solo dati di riferimento giornalieri e non costituiscono una garanzia per trading, contabilità, imposte o regolamento.

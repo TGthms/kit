@@ -12,6 +12,8 @@ Kit udostępnia narzędzia działające w przeglądarce do codziennych zadań zw
 
 Kod źródłowy Kit jest dostępny na **licencji MIT**. Licencja ta reguluje redystrybucję i korzystanie z kodu. Niniejsze Warunki regulują korzystanie z hostowanej witryny i Usługi online.
 
+Narzędzia audio i wideo ładują silnik FFmpeg WebAssembly (`@ffmpeg/core`) na licencji **GPL-2.0-or-later** (kodeki H.264 i LAME MP3). Silnik pochodzi z tej witryny i działa w przeglądarce. Kit nie wysyła Twoich mediów na serwer. pdf.js i pozostałe biblioteki pozostają na Apache, BSD lub MIT. Redistribuując Kit z silnikiem FFmpeg, musisz przestrzegać GPL tego silnika.
+
 ## Dozwolone korzystanie
 
 Zgadzasz się nie używać Kit do:

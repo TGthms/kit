@@ -39,6 +39,8 @@ Kit wird in der Regel als statische Dateien auf **Cloudflare Pages** gehostet (k
 
 PDF-Werkzeuge laden den pdf.js-Worker, Schriften und zugehörige Dateien **von dieser Website** (mit der App ausgeliefert). Audio- und Videowerkzeuge laden eine FFmpeg-WebAssembly-Engine **von dieser Website**. Ihre Dateiinhalte bleiben im Browser; diese Bibliotheken sind Anwendungscode, kein Ort, an den wir Ihre Dokumente senden.
 
+Die FFmpeg-Engine (`@ffmpeg/core`) steht unter **GPL-2.0-or-later**, weil sie Codecs wie H.264 und LAME-MP3 enthält. Kits eigener Quellcode bleibt MIT. pdf.js und andere Bundles behalten ihre Apache-, BSD- oder MIT-Lizenzen.
+
 ### 4. Wechselkurse
 
 Wenn Sie Wechselkurse aktualisieren, fragt dieser Browser die öffentliche API von Frankfurter ab. Die Anfrage kann Standard-Netzwerkmetadaten (z. B. IP-Adresse, User-Agent, Zeitpunkt und angeforderte URL) an Frankfurter übermitteln. Kurse können aus dem Cache dieses Browsers stammen und veraltet sein. Sie sind ausschließlich tägliche Referenzdaten und keine Garantie für Handels-, Bilanzierungs-, Steuer- oder Abwicklungszwecke.

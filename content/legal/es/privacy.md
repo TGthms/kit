@@ -39,6 +39,8 @@ Kit suele servirse como archivos estáticos en **Cloudflare Pages** (sitio canó
 
 Las herramientas PDF cargan el worker de pdf.js, las fuentes y los recursos relacionados **desde este mismo sitio** (van incluidos en la app). Las herramientas de audio y vídeo cargan un motor FFmpeg WebAssembly **desde este mismo sitio**. El contenido de tus archivos permanece en el navegador; esas bibliotecas son código de la aplicación, no un destino al que enviemos tus documentos.
 
+El motor FFmpeg (`@ffmpeg/core`) se licencia como **GPL-2.0-or-later** porque incluye códecs como H.264 y LAME MP3. El código fuente de Kit sigue siendo MIT. pdf.js y el resto de bibliotecas conservan sus propias licencias Apache, BSD o MIT.
+
 ### 4. Tipos de cambio
 
 Cuando actualizas los tipos de cambio, este navegador consulta la API pública de Frankfurter. La solicitud puede compartir con Frankfurter metadatos de red estándar (como dirección IP, agente de usuario, hora y URL solicitada). Los tipos pueden proceder de la caché de este navegador y estar desactualizados. Son únicamente datos de referencia diarios, no una garantía para operaciones, contabilidad, impuestos o liquidaciones.

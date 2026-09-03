@@ -12,6 +12,8 @@ Kit tillhandahåller webbläsarbaserade verktyg för vardagliga uppgifter med fi
 
 Källkoden till Kit finns tillgänglig under **MIT-licensen**. Den licensen reglerar vidare distribution och användning av koden. Dessa villkor reglerar användningen av den hostade webbplatsen och Tjänsten online.
 
+Ljud- och videoverktyg laddar en FFmpeg WebAssembly-motor (`@ffmpeg/core`) under **GPL-2.0-or-later** (codecs som H.264 och LAME MP3). Motorn serveras från den här sajten och körs i webbläsaren. Kit skickar inte din media till en server. pdf.js och övriga bibliotek förblir Apache, BSD eller MIT. Om du vidareförmedlar Kit med FFmpeg-motorn måste du följa GPL för den motorn.
+
 ## Godtagbar användning
 
 Du samtycker till att inte använda Kit för att:

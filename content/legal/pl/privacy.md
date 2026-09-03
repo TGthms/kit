@@ -39,6 +39,8 @@ Kit jest zwykle hostowany jako pliki statyczne na **Cloudflare Pages** (kanonicz
 
 Narzędzia PDF ładują worker pdf.js, czcionki i powiązane pliki **z tej witryny** (dołączone do aplikacji). Narzędzia audio i wideo ładują silnik FFmpeg WebAssembly **z tej witryny**. Zawartość plików zostaje w przeglądarce; te biblioteki to kod aplikacji, nie miejsce, do którego wysyłamy Twoje dokumenty.
 
+Silnik FFmpeg (`@ffmpeg/core`) jest na licencji **GPL-2.0-or-later**, ponieważ zawiera kodeki takie jak H.264 i LAME MP3. Własny kod Kit pozostaje na MIT. pdf.js i pozostałe biblioteki zachowują licencje Apache, BSD lub MIT.
+
 ### 4. Kursy walut
 
 Po odświeżeniu kursów walut ta przeglądarka wysyła zapytanie do publicznego API Frankfurter. Żądanie może udostępniać Frankfurter standardowe metadane sieciowe, takie jak adres IP, user agent, czas i żądany URL. Kursy mogą pochodzić z pamięci podręcznej tej przeglądarki i być nieaktualne. Są wyłącznie dziennymi danymi referencyjnymi, a nie gwarancją do celów handlowych, księgowych, podatkowych ani rozliczeniowych.
