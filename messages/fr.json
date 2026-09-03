@@ -1288,7 +1288,7 @@
       "description": "Taux de change en direct avec cache local",
       "keywords": "currency converter exchange rates money Frankfurter",
       "currency": "Devise",
-      "limits": "Currency rates come from Frankfurter when this tool opens or you tap Refresh, then stay in this browser cache for six hours. Amounts are not sent. Rates are daily reference data, not for trading or tax.",
+      "limits": "Les taux viennent de Frankfurter à l’ouverture de l’outil ou quand vous touchez Actualiser, puis restent six heures dans le cache de ce navigateur. Les montants ne sont pas envoyés. Ce sont des données de référence quotidiennes, pas pour le trading ni les impôts.",
       "result": "Résultat",
       "from": "De",
       "to": "Vers",

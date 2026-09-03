@@ -1288,7 +1288,7 @@
       "description": "实时汇率，使用本地缓存",
       "keywords": "currency converter exchange rates money Frankfurter",
       "currency": "货币",
-      "limits": "Currency rates come from Frankfurter when this tool opens or you tap Refresh, then stay in this browser cache for six hours. Amounts are not sent. Rates are daily reference data, not for trading or tax.",
+      "limits": "汇率在打开此工具或点按刷新时从 Frankfurter 获取，并在本浏览器缓存中保留六小时。不会发送金额。汇率为每日参考数据，不用于交易或报税。",
       "result": "结果",
       "from": "从",
       "to": "到",

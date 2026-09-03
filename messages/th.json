@@ -1284,11 +1284,11 @@
       "saved": "บันทึกลงประวัติแล้ว"
     },
     "currency-converter": {
-      "name": "สกุลเงิน converter",
-      "description": "Live exchange rates with a local cache",
+      "name": "ตัวแปลงสกุลเงิน",
+      "description": "อัตราแลกเปลี่ยนสดพร้อมแคชในเครื่อง",
       "keywords": "currency converter exchange rates money Frankfurter",
       "currency": "สกุลเงิน",
-      "limits": "Currency rates come from Frankfurter when this tool opens or you tap Refresh, then stay in this browser cache for six hours. Amounts are not sent. Rates are daily reference data, not for trading or tax.",
+      "limits": "อัตราแลกเปลี่ยนมาจาก Frankfurter เมื่อเปิดเครื่องมือนี้หรือเมื่อแตะรีเฟรช แล้วเก็บในแคชของเบราว์เซอร์นี้หกชั่วโมง ไม่ส่งจำนวนเงิน อัตราเป็นข้อมูลอ้างอิงรายวัน ไม่ใช่สำหรับซื้อขายหรือภาษี",
       "result": "ผลลัพธ์",
       "from": "จาก",
       "to": "ถึง",

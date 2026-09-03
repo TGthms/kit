@@ -1284,11 +1284,11 @@
       "saved": "Tallennettu historiaan."
     },
     "currency-converter": {
-      "name": "Valuutta converter",
-      "description": "Live exchange rates with a local cache",
+      "name": "Valuuttamuunnin",
+      "description": "Live-valuuttakurssit paikallisella välimuistilla",
       "keywords": "currency converter exchange rates money Frankfurter",
       "currency": "Valuutta",
-      "limits": "Currency rates come from Frankfurter when this tool opens or you tap Refresh, then stay in this browser cache for six hours. Amounts are not sent. Rates are daily reference data, not for trading or tax.",
+      "limits": "Kurssit tulevat Frankfurterista, kun työkalu avataan tai napautat Päivitä, ja ne pysyvät tämän selaimen välimuistissa kuusi tuntia. Summia ei lähetetä. Kurssit ovat päivittäistä viiteaineistoa, ei kaupankäyntiin tai verotukseen.",
       "result": "Tulos",
       "from": "Mistä",
       "to": "Mihin",

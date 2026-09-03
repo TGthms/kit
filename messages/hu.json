@@ -1284,11 +1284,11 @@
       "saved": "Mentve az előzményekbe."
     },
     "currency-converter": {
-      "name": "Pénznem converter",
-      "description": "Live exchange rates with a local cache",
+      "name": "Pénznemváltó",
+      "description": "Élő árfolyamok helyi gyorsítótárral",
       "keywords": "currency converter exchange rates money Frankfurter",
       "currency": "Pénznem",
-      "limits": "Currency rates come from Frankfurter when this tool opens or you tap Refresh, then stay in this browser cache for six hours. Amounts are not sent. Rates are daily reference data, not for trading or tax.",
+      "limits": "Az árfolyamok a Frankfurtertől érkeznek az eszköz megnyitásakor vagy a Frissítés koppintásakor, és hat óráig maradnak a böngésző gyorsítótárában. Az összegek nem kerülnek elküldésre. Napi referenciaadatok, nem kereskedésre vagy adózásra.",
       "result": "Eredmény",
       "from": "Innen",
       "to": "Ide",

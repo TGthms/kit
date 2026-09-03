@@ -1284,11 +1284,11 @@
       "saved": "Đã lưu vào lịch sử."
     },
     "currency-converter": {
-      "name": "Tiền tệ converter",
-      "description": "Live exchange rates with a local cache",
+      "name": "Đổi tiền tệ",
+      "description": "Tỷ giá trực tiếp với bộ nhớ đệm cục bộ",
       "keywords": "currency converter exchange rates money Frankfurter",
       "currency": "Tiền tệ",
-      "limits": "Currency rates come from Frankfurter when this tool opens or you tap Refresh, then stay in this browser cache for six hours. Amounts are not sent. Rates are daily reference data, not for trading or tax.",
+      "limits": "Tỷ giá đến từ Frankfurter khi mở công cụ hoặc khi bạn nhấn Làm mới, rồi lưu trong bộ nhớ đệm trình duyệt này sáu giờ. Số tiền không được gửi. Đây là dữ liệu tham chiếu hàng ngày, không dùng để giao dịch hay thuế.",
       "result": "Kết quả",
       "from": "Từ",
       "to": "Đến",

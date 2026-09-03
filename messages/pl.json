@@ -1284,11 +1284,11 @@
       "saved": "Zapisano w historii."
     },
     "currency-converter": {
-      "name": "Waluta converter",
-      "description": "Live exchange rates with a local cache",
+      "name": "Przelicznik walut",
+      "description": "Kursy na żywo z lokalną pamięcią podręczną",
       "keywords": "currency converter exchange rates money Frankfurter",
       "currency": "Waluta",
-      "limits": "Currency rates come from Frankfurter when this tool opens or you tap Refresh, then stay in this browser cache for six hours. Amounts are not sent. Rates are daily reference data, not for trading or tax.",
+      "limits": "Kursy pochodzą z Frankfurter po otwarciu narzędzia lub po stuknięciu Odśwież i zostają w pamięci podręcznej tej przeglądarki przez sześć godzin. Kwoty nie są wysyłane. To dzienne dane referencyjne, nie do handlu ani podatków.",
       "result": "Wynik",
       "from": "Z",
       "to": "Do",

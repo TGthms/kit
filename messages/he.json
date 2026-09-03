@@ -1288,7 +1288,7 @@
       "description": "שערי חליפין חיים עם מטמון מקומי",
       "keywords": "currency converter exchange rates money Frankfurter",
       "currency": "מטבע",
-      "limits": "Currency rates come from Frankfurter when this tool opens or you tap Refresh, then stay in this browser cache for six hours. Amounts are not sent. Rates are daily reference data, not for trading or tax.",
+      "limits": "שערי המטבע מגיעים מ-Frankfurter בפתיחת הכלי או בלחיצה על רענון, ונשארים במטמון של הדפדפן הזה לשש שעות. הסכומים לא נשלחים. אלה נתוני ייחוס יומיים, לא למסחר ולא למיסים.",
       "result": "תוצאה",
       "from": "מ",
       "to": "אל",

@@ -1284,11 +1284,11 @@
       "saved": "इतिहास में सहेजा गया."
     },
     "currency-converter": {
-      "name": "मुद्रा converter",
-      "description": "Live exchange rates with a local cache",
+      "name": "मुद्रा परिवर्तक",
+      "description": "लाइव विनिमय दरें, स्थानीय कैश के साथ",
       "keywords": "currency converter exchange rates money Frankfurter",
       "currency": "मुद्रा",
-      "limits": "Currency rates come from Frankfurter when this tool opens or you tap Refresh, then stay in this browser cache for six hours. Amounts are not sent. Rates are daily reference data, not for trading or tax.",
+      "limits": "दरें इस टूल के खुलने या रीफ़्रेश दबाने पर Frankfurter से आती हैं, फिर छह घंटे इस ब्राउज़र कैश में रहती हैं। राशियाँ नहीं भेजी जातीं। ये दैनिक संदर्भ डेटा हैं, ट्रेडिंग या कर के लिए नहीं।",
       "result": "परिणाम",
       "from": "से",
       "to": "तक",

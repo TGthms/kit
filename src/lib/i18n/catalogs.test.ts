@@ -87,6 +87,25 @@ describe("message catalogs", () => {
     expect(ko.tools["everyday-converter"].searchAria).toMatch(/\{label\}/);
   });
 
+  it("does not leave English currency name, description, or limits", async () => {
+    const leftover: string[] = [];
+    const enCurrency = (en as { tools: Record<string, Record<string, string>> }).tools["currency-converter"];
+    for (const loc of locales) {
+      if (loc === "en") continue;
+      const file = messageFileFor(loc);
+      const catalog = (await import(`../../../messages/${file}.json`)).default as {
+        tools: Record<string, Record<string, string>>;
+      };
+      const currency = catalog.tools["currency-converter"] ?? {};
+      if (/\bconverter\b/i.test(currency.name ?? "") && !/valutaconverter/i.test(currency.name ?? "")) {
+        leftover.push(`${loc}:name`);
+      }
+      if (currency.description === enCurrency.description) leftover.push(`${loc}:description`);
+      if (currency.limits === enCurrency.limits) leftover.push(`${loc}:limits`);
+    }
+    expect(leftover).toEqual([]);
+  });
+
   it("does not leave English unit labels in non-English catalogs", async () => {
     const leftover: string[] = [];
     for (const loc of locales) {

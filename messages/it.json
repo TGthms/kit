@@ -1288,7 +1288,7 @@
       "description": "Tassi di cambio in tempo reale con cache locale",
       "keywords": "currency converter exchange rates money Frankfurter",
       "currency": "Valuta",
-      "limits": "Currency rates come from Frankfurter when this tool opens or you tap Refresh, then stay in this browser cache for six hours. Amounts are not sent. Rates are daily reference data, not for trading or tax.",
+      "limits": "I tassi arrivano da Frankfurter all’apertura dello strumento o quando tocchi Aggiorna, e restano sei ore nella cache di questo browser. Gli importi non vengono inviati. Sono dati di riferimento giornalieri, non per il trading né per le tasse.",
       "result": "Risultato",
       "from": "Da",
       "to": "A",

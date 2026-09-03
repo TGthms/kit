@@ -1284,11 +1284,11 @@
       "saved": "Sparad i historiken."
     },
     "currency-converter": {
-      "name": "Valuta converter",
-      "description": "Live exchange rates with a local cache",
+      "name": "Valutaomvandlare",
+      "description": "Live-valutakurser med lokal cache",
       "keywords": "currency converter exchange rates money Frankfurter",
       "currency": "Valuta",
-      "limits": "Currency rates come from Frankfurter when this tool opens or you tap Refresh, then stay in this browser cache for six hours. Amounts are not sent. Rates are daily reference data, not for trading or tax.",
+      "limits": "Valutakurser hämtas från Frankfurter när verktyget öppnas eller när du trycker Uppdatera, och stannar i den här webbläsarens cache i sex timmar. Belopp skickas inte. Kurserna är dagliga referensdata, inte för handel eller skatt.",
       "result": "Resultat",
       "from": "Från",
       "to": "Till",

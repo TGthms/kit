@@ -1284,11 +1284,11 @@
       "saved": "Geçmişe kaydedildi."
     },
     "currency-converter": {
-      "name": "Para birimi converter",
-      "description": "Live exchange rates with a local cache",
+      "name": "Döviz çevirici",
+      "description": "Yerel önbellekli canlı kurlar",
       "keywords": "currency converter exchange rates money Frankfurter",
       "currency": "Para birimi",
-      "limits": "Currency rates come from Frankfurter when this tool opens or you tap Refresh, then stay in this browser cache for six hours. Amounts are not sent. Rates are daily reference data, not for trading or tax.",
+      "limits": "Kurlar bu araç açıldığında veya Yenile’ye dokunduğunuzda Frankfurter’dan gelir ve bu tarayıcının önbelleğinde altı saat kalır. Tutarlar gönderilmez. Günlük referans verileridir; alım satım veya vergi için değildir.",
       "result": "Sonuç",
       "from": "Başlangıç",
       "to": "Hedef",

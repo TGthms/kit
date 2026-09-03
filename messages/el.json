@@ -1284,11 +1284,11 @@
       "saved": "Αποθηκεύτηκε στο ιστορικό."
     },
     "currency-converter": {
-      "name": "Νόμισμα converter",
-      "description": "Live exchange rates with a local cache",
+      "name": "Μετατροπέας νομισμάτων",
+      "description": "Ζωντανές ισοτιμίες με τοπική μνήμη",
       "keywords": "currency converter exchange rates money Frankfurter",
       "currency": "Νόμισμα",
-      "limits": "Currency rates come from Frankfurter when this tool opens or you tap Refresh, then stay in this browser cache for six hours. Amounts are not sent. Rates are daily reference data, not for trading or tax.",
+      "limits": "Οι ισοτιμίες έρχονται από το Frankfurter όταν ανοίγει το εργαλείο ή πατάτε Ανανέωση και μένουν στην κρυφή μνήμη αυτού του προγράμματος περιήγησης για έξι ώρες. Τα ποσά δεν αποστέλλονται. Είναι ημερήσια δεδομένα αναφοράς, όχι για συναλλαγές ή φόρους.",
       "result": "Αποτέλεσμα",
       "from": "Από",
       "to": "Προς",

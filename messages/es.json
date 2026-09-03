@@ -1288,7 +1288,7 @@
       "description": "Tipos de cambio en vivo con caché local",
       "keywords": "currency converter exchange rates money Frankfurter",
       "currency": "Divisa",
-      "limits": "Currency rates come from Frankfurter when this tool opens or you tap Refresh, then stay in this browser cache for six hours. Amounts are not sent. Rates are daily reference data, not for trading or tax.",
+      "limits": "Los tipos llegan de Frankfurter al abrir la herramienta o al pulsar Actualizar y se quedan seis horas en la caché de este navegador. No se envían importes. Son datos de referencia diarios, no para operar ni para impuestos.",
       "result": "Resultado",
       "from": "De",
       "to": "A",

@@ -1288,7 +1288,7 @@
       "description": "실시간 환율과 로컬 캐시",
       "keywords": "currency converter exchange rates money Frankfurter",
       "currency": "통화",
-      "limits": "Currency rates come from Frankfurter when this tool opens or you tap Refresh, then stay in this browser cache for six hours. Amounts are not sent. Rates are daily reference data, not for trading or tax.",
+      "limits": "환율은 이 도구를 열거나 새로고침을 탭할 때 Frankfurter에서 가져오며, 이 브라우저 캐시에 6시간 동안 남습니다. 금액은 전송되지 않습니다. 매매나 세금용이 아닌 일일 참고 시세입니다.",
       "result": "결과",
       "from": "변환 전",
       "to": "변환 후",

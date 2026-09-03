@@ -1284,11 +1284,11 @@
       "saved": "Disimpan ke riwayat."
     },
     "currency-converter": {
-      "name": "Mata uang converter",
-      "description": "Live exchange rates with a local cache",
+      "name": "Konverter mata uang",
+      "description": "Kurs live dengan cache lokal",
       "keywords": "currency converter exchange rates money Frankfurter",
       "currency": "Mata uang",
-      "limits": "Currency rates come from Frankfurter when this tool opens or you tap Refresh, then stay in this browser cache for six hours. Amounts are not sent. Rates are daily reference data, not for trading or tax.",
+      "limits": "Kurs diambil dari Frankfurter saat alat ini dibuka atau saat Anda mengetuk Segarkan, lalu disimpan di cache browser ini selama enam jam. Jumlah tidak dikirim. Ini data referensi harian, bukan untuk trading atau pajak.",
       "result": "Hasil",
       "from": "Dari",
       "to": "Ke",

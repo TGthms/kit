@@ -1284,11 +1284,11 @@
       "saved": "Salvat în istoric."
     },
     "currency-converter": {
-      "name": "Monedă converter",
-      "description": "Live exchange rates with a local cache",
+      "name": "Convertor valutar",
+      "description": "Cursuri live cu cache local",
       "keywords": "currency converter exchange rates money Frankfurter",
       "currency": "Monedă",
-      "limits": "Currency rates come from Frankfurter when this tool opens or you tap Refresh, then stay in this browser cache for six hours. Amounts are not sent. Rates are daily reference data, not for trading or tax.",
+      "limits": "Cursurile vin de la Frankfurter la deschiderea instrumentului sau când atingeți Reîmprospătare și rămân șase ore în cache-ul acestui browser. Sumele nu sunt trimise. Sunt date de referință zilnice, nu pentru tranzacționare sau taxe.",
       "result": "Rezultat",
       "from": "De la",
       "to": "La",

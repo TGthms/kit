@@ -1284,11 +1284,11 @@
       "saved": "Збережено в історії."
     },
     "currency-converter": {
-      "name": "Валюта converter",
-      "description": "Live exchange rates with a local cache",
+      "name": "Конвертер валют",
+      "description": "Живі курси з локальним кешем",
       "keywords": "currency converter exchange rates money Frankfurter",
       "currency": "Валюта",
-      "limits": "Currency rates come from Frankfurter when this tool opens or you tap Refresh, then stay in this browser cache for six hours. Amounts are not sent. Rates are daily reference data, not for trading or tax.",
+      "limits": "Курси надходять з Frankfurter, коли інструмент відкривається або ви натискаєте Оновити, і лишаються шість годин у кеші цього браузера. Суми не надсилаються. Це денні довідкові дані, не для торгівлі й не для податків.",
       "result": "Результат",
       "from": "З",
       "to": "До",

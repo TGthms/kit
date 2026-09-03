@@ -1288,7 +1288,7 @@
       "description": "أسعار صرف مباشرة مع ذاكرة محلية",
       "keywords": "currency converter exchange rates money Frankfurter",
       "currency": "العملة",
-      "limits": "Currency rates come from Frankfurter when this tool opens or you tap Refresh, then stay in this browser cache for six hours. Amounts are not sent. Rates are daily reference data, not for trading or tax.",
+      "limits": "تأتي أسعار العملات من Frankfurter عند فتح هذه الأداة أو عند الضغط على تحديث، ثم تبقى في ذاكرة هذا المتصفح لست ساعات. لا تُرسل المبالغ. الأسعار بيانات مرجعية يومية، وليست للتداول أو الضرائب.",
       "result": "النتيجة",
       "from": "من",
       "to": "إلى",

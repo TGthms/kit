@@ -1284,11 +1284,11 @@
       "saved": "Uloženo do historie."
     },
     "currency-converter": {
-      "name": "Měna converter",
-      "description": "Live exchange rates with a local cache",
+      "name": "Převodník měn",
+      "description": "Živé kurzy s místní mezipamětí",
       "keywords": "currency converter exchange rates money Frankfurter",
       "currency": "Měna",
-      "limits": "Currency rates come from Frankfurter when this tool opens or you tap Refresh, then stay in this browser cache for six hours. Amounts are not sent. Rates are daily reference data, not for trading or tax.",
+      "limits": "Kurzy bere Kit z Frankfurter při otevření nástroje nebo po klepnutí na Obnovit a drží je šest hodin v mezipaměti tohoto prohlížeče. Částky se neodesílají. Jde o denní referenční data, ne pro obchodování ani daně.",
       "result": "Výsledek",
       "from": "Od",
       "to": "Do",
