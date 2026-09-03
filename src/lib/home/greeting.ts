@@ -8,6 +8,8 @@
  *   home.subtitleFacts.{factN}
  *   home.subtitleObservance.{key}
  *
+ * Good Friday’s verse is NOT in catalogs. See `verses.ts` (WEB, untranslated).
+ *
  * To add an observance later:
  *   1. Append a rule to OBSERVANCE_RULES and the key to OBSERVANCE_KEYS
  *   2. Add English occasionLabel, observance, and subtitleObservance strings
@@ -22,12 +24,20 @@
  *
  * Distinct later variants must not recycle extra1–3.
  */
+import { subtitleMotionFor, type SubtitleMotion } from "@/lib/home/subtitle-motion";
+import { GOOD_FRIDAY_VERSE_ID, type WebVerseId } from "@/lib/home/verses";
+
 export type GreetingPeriod = "morning" | "afternoon" | "evening" | "night";
 export type GreetingCategory = "timeOfDay" | "weekend" | "productivity" | "kit" | "privacy";
 
+export type GreetingSubtitle =
+  | { kind: "i18n"; key: string }
+  | { kind: "verse"; id: WebVerseId };
+
 export type HomeGreetingSelection = {
   greetingKey: string;
-  subtitleKey: string;
+  subtitle: GreetingSubtitle;
+  motion: SubtitleMotion;
   day: string;
   occasionKey?: string;
   category: GreetingCategory;
@@ -67,6 +77,33 @@ export const GREETING_DISTINCT_VARIANT_KEYS = [
 ] as const;
 
 export const SUBTITLE_FACT_KEYS = ["fact1", "fact2", "fact3", "fact4", "fact5", "fact6", "fact7", "fact8"] as const;
+
+/** Kit-knowledge subs (privacy, browser-only, files stay). */
+export const KIT_SUBTITLE_KEYS = [
+  "subtitleFacts.fact2",
+  "subtitleFacts.fact4",
+  "subtitleFacts.fact6",
+  "subtitleFacts.fact7",
+] as const;
+
+/** Workflow / two-minute-win subs. */
+export const PRODUCTIVITY_SUBTITLE_KEYS = [
+  "subtitleFacts.fact1",
+  "subtitleFacts.fact5",
+  "subtitleFacts.fact8",
+] as const;
+
+export const GENERAL_SUBTITLE_KEYS = [
+  "subtitle",
+  ...SUBTITLE_FACT_KEYS.map((key) => `subtitleFacts.${key}`),
+] as const;
+
+export const WEEKEND_SUBTITLE_KEYS = [
+  ...KIT_SUBTITLE_KEYS,
+  "subtitle",
+  "subtitleFacts.fact1",
+  "subtitleFacts.fact5",
+] as const;
 
 export const CHRISTIAN_OBSERVANCE_KEYS = [
   "christmasEve",
@@ -124,8 +161,6 @@ export const OBSERVANCE_RULES: readonly ObservanceRule[] = [
   { kind: "easterOffset", offset: 0, key: "easterSunday" },
   { kind: "easterOffset", offset: 1, key: "easterMonday" },
 ];
-
-const subtitlePool = ["subtitle", ...SUBTITLE_FACT_KEYS.map((key) => `subtitleFacts.${key}`)];
 
 export function getGreetingPeriod(date: Date): GreetingPeriod {
   const hour = date.getHours();
@@ -221,11 +256,29 @@ function pickObservanceKey(date: Date, locale: string): string | null {
 }
 
 function categoryForKey(key: string): GreetingCategory {
-  if (key === "weekend" || key === "weekend2") return "weekend";
-  if (key === "productivity") return "productivity";
-  if (key === "kit") return "kit";
-  if (key === "privacy") return "privacy";
+  if (key === "weekend" || key === "weekend2" || key === "weekend3") return "weekend";
+  if (key.startsWith("productivity")) return "productivity";
+  if (key.startsWith("kit")) return "kit";
+  if (key.startsWith("privacy")) return "privacy";
   return "timeOfDay";
+}
+
+function pickKey(keys: readonly string[], entropy: number): string {
+  const count = keys.length;
+  if (count < 1) throw new RangeError("subtitle pool is empty.");
+  return keys[((entropy % count) + count) % count];
+}
+
+export function subtitlePoolFor(category: GreetingCategory): readonly string[] {
+  if (category === "kit" || category === "privacy") return KIT_SUBTITLE_KEYS;
+  if (category === "productivity") return PRODUCTIVITY_SUBTITLE_KEYS;
+  if (category === "weekend") return WEEKEND_SUBTITLE_KEYS;
+  return GENERAL_SUBTITLE_KEYS;
+}
+
+/** Observance subtitles. Extra `{key}2` / `{key}3` slots join this list once catalogs ship them. */
+export function observanceSubtitleKeys(occasionKey: string): readonly string[] {
+  return [`subtitleObservance.${occasionKey}`];
 }
 
 /** Time-of-day lines plus signature extras; weekend lines join the pool on Sat/Sun. */
@@ -238,10 +291,44 @@ export function getGreetingPoolKeys(date: Date): readonly string[] {
 
 export function getHomeGreetingSelection(date: Date, locale: string, variant: number): HomeGreetingSelection {
   const day = getGreetingDay(date, locale);
+  const period = getGreetingPeriod(date);
+  const entropy = Math.abs(Math.trunc(variant));
+  const subtitleEntropy = Math.abs(Math.trunc(variant * 5 + date.getDate()));
   const observance = pickObservanceKey(date, locale);
-  if (observance) return { greetingKey: `greeting.observance.${observance}`, subtitleKey: `subtitleObservance.${observance}`, occasionKey: observance, category: "kit", day };
+
+  if (observance === "goodFriday") {
+    const greetingKey = "greeting.observance.goodFriday";
+    return {
+      greetingKey,
+      subtitle: { kind: "verse", id: GOOD_FRIDAY_VERSE_ID },
+      motion: subtitleMotionFor({ occasionKey: observance, category: "kit", period, greetingKey }),
+      occasionKey: observance,
+      category: "kit",
+      day,
+    };
+  }
+
+  if (observance) {
+    const greetingKey = `greeting.observance.${observance}`;
+    return {
+      greetingKey,
+      subtitle: { kind: "i18n", key: pickKey(observanceSubtitleKeys(observance), subtitleEntropy) },
+      motion: subtitleMotionFor({ occasionKey: observance, category: "kit", period, greetingKey }),
+      occasionKey: observance,
+      category: "kit",
+      day,
+    };
+  }
+
   const pool = getGreetingPoolKeys(date);
-  const key = pool[Math.abs(Math.trunc(variant)) % pool.length];
-  const subtitleIndex = Math.abs(Math.trunc(variant * 5 + date.getDate())) % subtitlePool.length;
-  return { greetingKey: `greeting.${key}`, subtitleKey: subtitlePool[subtitleIndex], category: categoryForKey(key), day };
+  const key = pool[entropy % pool.length];
+  const category = categoryForKey(key);
+  const greetingKey = `greeting.${key}`;
+  return {
+    greetingKey,
+    subtitle: { kind: "i18n", key: pickKey(subtitlePoolFor(category), subtitleEntropy) },
+    motion: subtitleMotionFor({ category, period, greetingKey }),
+    category,
+    day,
+  };
 }

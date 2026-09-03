@@ -1,6 +1,8 @@
 import { describe, expect, it } from "vitest";
 import {
   GREETING_PERIOD_KEYS,
+  KIT_SUBTITLE_KEYS,
+  PRODUCTIVITY_SUBTITLE_KEYS,
   getGreetingDay,
   getGreetingPeriod,
   getGreetingPoolKeys,
@@ -9,6 +11,7 @@ import {
   getHomeGreetingSelection,
   localeAllowsChristianGreeting,
 } from "./greeting";
+import { GOOD_FRIDAY_VERSE_ID } from "./verses";
 
 describe("home greeting", () => {
   it("selects a friendly time-of-day period", () => {
@@ -58,9 +61,10 @@ describe("home greeting", () => {
   it("selects Christian and technology observances by calendar date", () => {
     expect(getHomeGreetingSelection(new Date(2026, 11, 25, 10), "en-US", 1)).toMatchObject({
       greetingKey: "greeting.observance.christmas",
-      subtitleKey: "subtitleObservance.christmas",
+      subtitle: { kind: "i18n", key: "subtitleObservance.christmas" },
       occasionKey: "christmas",
       category: "kit",
+      motion: "scaleSoft",
     });
     expect(getHomeGreetingSelection(new Date(2026, 2, 14, 10), "en-US", 1).occasionKey).toBe("piDay");
     expect(getHomeGreetingSelection(new Date(2026, 1, 10, 10), "en-US", 1).occasionKey).toBe("saferInternetDay");
@@ -94,7 +98,7 @@ describe("home greeting", () => {
     const selection = getHomeGreetingSelection(new Date(2026, 7, 25, 10), "fr-FR", 2);
     const morningKeys = new Set(["productivity", "kit", "privacy", ...GREETING_PERIOD_KEYS.morning].map((key) => `greeting.${key}`));
     expect(morningKeys.has(selection.greetingKey)).toBe(true);
-    expect(selection.subtitleKey).toMatch(/^subtitle(Facts\.fact[1-8])?$/);
+    expect(selection.subtitle).toEqual({ kind: "i18n", key: expect.stringMatching(/^subtitle(Facts\.fact[1-8])?$/) });
     expect(selection.day).toBe("mardi");
   });
 
@@ -106,11 +110,51 @@ describe("home greeting", () => {
 
   it("gives every Christian observance its own translation key", () => {
     const dates = [
-      [2026, 4, 3, "goodFriday"], [2026, 3, 29, "palmSunday"], [2026, 4, 5, "easterSunday"], [2026, 4, 6, "easterMonday"],
+      [2026, 3, 29, "palmSunday"], [2026, 4, 5, "easterSunday"], [2026, 4, 6, "easterMonday"],
     ] as const;
     for (const [year, month, day, key] of dates) {
       const selection = getHomeGreetingSelection(new Date(year, month - 1, day), "en-US", 0);
-      expect(selection).toMatchObject({ greetingKey: `greeting.observance.${key}`, subtitleKey: `subtitleObservance.${key}`, occasionKey: key });
+      expect(selection).toMatchObject({
+        greetingKey: `greeting.observance.${key}`,
+        subtitle: { kind: "i18n", key: `subtitleObservance.${key}` },
+        occasionKey: key,
+      });
     }
+  });
+
+  it("always uses the WEB verse as the Good Friday subtitle", () => {
+    const goodFriday = new Date(2026, 3, 3, 10);
+    expect(getHomeGreetingSelection(goodFriday, "en-US", 0)).toMatchObject({
+      greetingKey: "greeting.observance.goodFriday",
+      subtitle: { kind: "verse", id: GOOD_FRIDAY_VERSE_ID },
+      motion: "fade",
+      occasionKey: "goodFriday",
+    });
+    expect(getHomeGreetingSelection(goodFriday, "zh-Hans", 2).subtitle).toEqual({ kind: "verse", id: "john1930" });
+    expect(getHomeGreetingSelection(goodFriday, "ar", 0).occasionKey).toBeUndefined();
+    expect(getHomeGreetingSelection(goodFriday, "he", 0).subtitle.kind).not.toBe("verse");
+  });
+
+  it("pairs kit, privacy, and productivity greetings with connected subtitle pools", () => {
+    const tuesdayMorning = new Date(2026, 7, 25, 10);
+    const pool = getGreetingPoolKeys(tuesdayMorning);
+    const kit = getHomeGreetingSelection(tuesdayMorning, "en", pool.indexOf("kit"));
+    const privacy = getHomeGreetingSelection(tuesdayMorning, "en", pool.indexOf("privacy"));
+    const productivity = getHomeGreetingSelection(tuesdayMorning, "en", pool.indexOf("productivity"));
+    expect(kit.greetingKey).toBe("greeting.kit");
+    expect(kit.subtitle.kind).toBe("i18n");
+    expect(KIT_SUBTITLE_KEYS).toContain(kit.subtitle.kind === "i18n" ? kit.subtitle.key : "");
+    expect(privacy.motion).toBe("fade");
+    expect(KIT_SUBTITLE_KEYS).toContain(privacy.subtitle.kind === "i18n" ? privacy.subtitle.key : "");
+    expect(productivity.greetingKey).toBe("greeting.productivity");
+    expect(productivity.motion).toBe("rise");
+    expect(PRODUCTIVITY_SUBTITLE_KEYS).toContain(productivity.subtitle.kind === "i18n" ? productivity.subtitle.key : "");
+  });
+
+  it("picks calm motion from time of day and festive observances", () => {
+    expect(getHomeGreetingSelection(new Date(2026, 7, 25, 10), "en", 0).motion).toBe("rise");
+    expect(getHomeGreetingSelection(new Date(2026, 7, 25, 20), "en", 0).motion).toBe("fadeSlow");
+    expect(getHomeGreetingSelection(new Date(2026, 2, 14, 10), "en", 0).motion).toBe("scaleSoft");
+    expect(getHomeGreetingSelection(new Date(2026, 2, 29, 10), "en", 0).motion).toBe("fade");
   });
 });

@@ -403,6 +403,62 @@ scritto-flow.kit-scritto-inline {
   }
 }
 
+.greeting-sub {
+  opacity: 0;
+}
+
+.greeting-sub--instant {
+  opacity: 1;
+  transform: none;
+}
+
+.greeting-sub--fade {
+  animation: greeting-sub-fade 520ms var(--ease-out-soft) both;
+}
+
+.greeting-sub--fadeSlow {
+  animation: greeting-sub-fade 780ms var(--ease-out-soft) both;
+}
+
+.greeting-sub--rise {
+  animation: greeting-sub-rise 560ms var(--ease-out-soft) both;
+}
+
+.greeting-sub--scaleSoft {
+  animation: greeting-sub-scale 600ms var(--ease-out-soft) both;
+}
+
+@keyframes greeting-sub-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes greeting-sub-rise {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes greeting-sub-scale {
+  from {
+    opacity: 0;
+    transform: scale(1.02);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
 .type-title {
   font-size: clamp(1.25rem, 2.4vw, 1.5rem);
   line-height: 1.2;
@@ -624,6 +680,15 @@ button[data-pressed]:not(:disabled),
   .greeting-caret {
     animation: none !important;
     display: none;
+  }
+  .greeting-sub,
+  .greeting-sub--fade,
+  .greeting-sub--fadeSlow,
+  .greeting-sub--rise,
+  .greeting-sub--scaleSoft {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
   }
   details[open] > .anim-details-content {
     animation: none !important;

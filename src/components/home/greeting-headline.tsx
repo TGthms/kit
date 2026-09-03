@@ -1,19 +1,28 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { segmentGraphemes, typewriterIntervalMs } from "@/lib/home/typewriter";
 import { cn } from "@/lib/utils";
 
 function prefersReducedMotion(): boolean {
-  if (typeof window === "undefined") return true;
+  if (typeof window === "undefined" || typeof window.matchMedia !== "function") return true;
   return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 }
 
-export function GreetingHeadline({ text, className }: { text: string; className?: string }) {
+export function GreetingHeadline({
+  text,
+  className,
+  onComplete,
+}: {
+  text: string;
+  className?: string;
+  onComplete?: () => void;
+}) {
   const graphemes = useMemo(() => segmentGraphemes(text), [text]);
   const [reducedMotion] = useState(prefersReducedMotion);
   const [typedFor, setTypedFor] = useState(text);
   const [shownCount, setShownCount] = useState(0);
+  const completedFor = useRef<string | null>(null);
   if (typedFor !== text) {
     setTypedFor(text);
     setShownCount(0);
@@ -34,7 +43,14 @@ export function GreetingHeadline({ text, className }: { text: string; className?
     return () => window.clearTimeout(timer);
   }, [graphemes, reducedMotion, text]);
 
-  const done = reducedMotion || shownCount >= graphemes.length;
+  const done = reducedMotion || graphemes.length === 0 || shownCount >= graphemes.length;
+
+  useEffect(() => {
+    if (!done) return;
+    if (completedFor.current === text) return;
+    completedFor.current = text;
+    onComplete?.();
+  }, [done, onComplete, text]);
   const visible = done ? text : graphemes.slice(0, shownCount).join("");
 
   return (

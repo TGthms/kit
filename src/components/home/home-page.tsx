@@ -25,8 +25,11 @@ import { PageHeader } from "@/components/layout/page-header";
 import { useFavoritesStore } from "@/stores/favorites-store";
 import { cn } from "@/lib/utils";
 import { GreetingHeadline } from "@/components/home/greeting-headline";
+import { GreetingSubtitle } from "@/components/home/greeting-subtitle";
 import { PageLoader } from "@/components/shared/page-loader";
-import { getGreetingPeriod, getGreetingPoolKeys, getGreetingVariant, getGreetingVisitSeed, getHomeGreetingSelection, type GreetingCategory, type GreetingPeriod } from "@/lib/home/greeting";
+import { getGreetingPeriod, getGreetingPoolKeys, getGreetingVariant, getGreetingVisitSeed, getHomeGreetingSelection, type GreetingCategory, type GreetingPeriod, type GreetingSubtitle as GreetingSubtitlePick } from "@/lib/home/greeting";
+import type { SubtitleMotion } from "@/lib/home/subtitle-motion";
+import { WEB_VERSES } from "@/lib/home/verses";
 
 const categoryMeta: Record<
   ToolCategory,
@@ -158,7 +161,18 @@ function HomePageInner() {
   const searchParams = useSearchParams();
   const selectedCat = parseCategoryParam(searchParams.get("c"));
   const [q, setQ] = useState("");
-  const [greeting, setGreeting] = useState<{ period: GreetingPeriod; day: string; variant: number; greetingKey: string; subtitleKey: string; occasionKey?: string; category: GreetingCategory } | null>(null);
+  const [subReady, setSubReady] = useState(false);
+  const onHeadlineComplete = useCallback(() => setSubReady(true), []);
+  const [greeting, setGreeting] = useState<{
+    period: GreetingPeriod;
+    day: string;
+    variant: number;
+    greetingKey: string;
+    subtitle: GreetingSubtitlePick;
+    motion: SubtitleMotion;
+    occasionKey?: string;
+    category: GreetingCategory;
+  } | null>(null);
 
   useLayoutEffect(() => {
     const visitSeed = getGreetingVisitSeed();
@@ -168,7 +182,17 @@ function HomePageInner() {
       const pool = getGreetingPoolKeys(now);
       const variant = getGreetingVariant(now, pool.length, visitSeed);
       const selection = getHomeGreetingSelection(now, locale, variant);
-      setGreeting({ period: getGreetingPeriod(now), day: selection.day, variant, greetingKey: selection.greetingKey, subtitleKey: selection.subtitleKey, occasionKey: selection.occasionKey, category: selection.category });
+      setSubReady(false);
+      setGreeting({
+        period: getGreetingPeriod(now),
+        day: selection.day,
+        variant,
+        greetingKey: selection.greetingKey,
+        subtitle: selection.subtitle,
+        motion: selection.motion,
+        occasionKey: selection.occasionKey,
+        category: selection.category,
+      });
       const next = new Date(now);
       const hour = now.getHours();
       if (hour < 5) next.setHours(5, 0, 0, 0);
@@ -230,13 +254,29 @@ function HomePageInner() {
                 key={`${greeting.greetingKey}:${greeting.day}`}
                 className="type-display text-foreground"
                 text={t(greeting.greetingKey, { day: greeting.day, occasion: greeting.occasionKey ? t(`occasionLabel.${greeting.occasionKey}`) : "" })}
+                onComplete={onHeadlineComplete}
               />
             ) : (
               <h1 className="type-display text-foreground">{t("title")}</h1>
             )}
-            <p className="type-body max-w-xl text-muted-foreground">
-              {greeting ? t(greeting.subtitleKey, { day: greeting.day, occasion: greeting.occasionKey ? t(`occasionLabel.${greeting.occasionKey}`) : "" }) : t("subtitle")}
-            </p>
+            {greeting ? (
+              <GreetingSubtitle
+                className="type-body max-w-xl text-muted-foreground"
+                motion={greeting.motion}
+                play={subReady}
+              >
+                {greeting.subtitle.kind === "verse" ? (
+                  <>
+                    <span>{WEB_VERSES[greeting.subtitle.id].text}</span>{" "}
+                    <cite className="not-italic text-muted-foreground/80">{WEB_VERSES[greeting.subtitle.id].citation}</cite>
+                  </>
+                ) : (
+                  t(greeting.subtitle.key, { day: greeting.day, occasion: greeting.occasionKey ? t(`occasionLabel.${greeting.occasionKey}`) : "" })
+                )}
+              </GreetingSubtitle>
+            ) : (
+              <p className="type-body max-w-xl text-muted-foreground">{t("subtitle")}</p>
+            )}
           </div>
           <div className="relative max-w-xl">
             <Search className="pointer-events-none absolute start-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
