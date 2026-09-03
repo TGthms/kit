@@ -115,7 +115,8 @@
     "search": "Поиск",
     "noMatches": "Нет совпадений",
     "searchAria": "Поиск: {label}",
-    "searchResults": "Результаты: {label}"
+    "searchResults": "Результаты: {label}",
+    "pdfPageCap": "В этом PDF {total} страниц. Kit обработал первые {processed} в этой вкладке."
   },
   "home": {
     "title": "Что нужно сделать?",
@@ -403,7 +404,8 @@
       "modeText": "Текст",
       "modeImages": "Изображения",
       "success": "Извлечение завершено.",
-      "imagesReady": "Экспортировано изображений страниц в ZIP: {count}."
+      "imagesReady": "Экспортировано изображений страниц в ZIP: {count}.",
+      "limits": "Text and page images are produced in this tab. Only the first 200 pages are processed. Image export is a visual raster, not embedded image objects."
     },
     "image-compress": {
       "name": "Сжать изображения",

@@ -115,7 +115,8 @@
     "search": "Suchen",
     "noMatches": "Keine Treffer",
     "searchAria": "{label} durchsuchen",
-    "searchResults": "Suchergebnisse für {label}"
+    "searchResults": "Suchergebnisse für {label}",
+    "pdfPageCap": "Dieses PDF hat {total} Seiten. Kit hat die ersten {processed} in diesem Tab verarbeitet."
   },
   "home": {
     "title": "Was möchten Sie tun?",
@@ -403,7 +404,8 @@
       "modeText": "Text",
       "modeImages": "Bilder",
       "success": "Extraktion abgeschlossen.",
-      "imagesReady": "{count} Seitenbild(er) als ZIP exportiert."
+      "imagesReady": "{count} Seitenbild(er) als ZIP exportiert.",
+      "limits": "Text and page images are produced in this tab. Only the first 200 pages are processed. Image export is a visual raster, not embedded image objects."
     },
     "image-compress": {
       "name": "Bilder komprimieren",

@@ -115,7 +115,8 @@
     "search": "Hae",
     "noMatches": "Ei osumia",
     "searchAria": "Hae: {label}",
-    "searchResults": "Hakutulokset: {label}"
+    "searchResults": "Hakutulokset: {label}",
+    "pdfPageCap": "Tässä PDF:ssä on {total} sivua. Kit käsitteli ensimmäiset {processed} tässä välilehdessä."
   },
   "home": {
     "title": "Mitä haluat tehdä?",
@@ -403,7 +404,8 @@
       "modeText": "Teksti",
       "modeImages": "Kuvat",
       "success": "Purku valmis.",
-      "imagesReady": "Vietiin {count} sivukuvaa ZIP-tiedostona."
+      "imagesReady": "Vietiin {count} sivukuvaa ZIP-tiedostona.",
+      "limits": "Text and page images are produced in this tab. Only the first 200 pages are processed. Image export is a visual raster, not embedded image objects."
     },
     "image-compress": {
       "name": "Pakkaa kuvat",

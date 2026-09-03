@@ -115,7 +115,8 @@
     "search": "Αναζήτηση",
     "noMatches": "Κανένα αποτέλεσμα",
     "searchAria": "Αναζήτηση {label}",
-    "searchResults": "Αποτελέσματα αναζήτησης {label}"
+    "searchResults": "Αποτελέσματα αναζήτησης {label}",
+    "pdfPageCap": "Αυτό το PDF έχει {total} σελίδες. Το Kit επεξεργάστηκε τις πρώτες {processed} σε αυτή την καρτέλα."
   },
   "home": {
     "title": "Τι θέλετε να κάνετε;",
@@ -403,7 +404,8 @@
       "modeText": "Κείμενο",
       "modeImages": "Εικόνες",
       "success": "Η εξαγωγή ολοκληρώθηκε.",
-      "imagesReady": "Εξήχθησαν {count} εικόνες σελίδων ως ZIP."
+      "imagesReady": "Εξήχθησαν {count} εικόνες σελίδων ως ZIP.",
+      "limits": "Text and page images are produced in this tab. Only the first 200 pages are processed. Image export is a visual raster, not embedded image objects."
     },
     "image-compress": {
       "name": "Συμπίεση εικόνων",

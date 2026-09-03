@@ -115,7 +115,8 @@
     "search": "Søk",
     "noMatches": "Ingen treff",
     "searchAria": "Søk i {label}",
-    "searchResults": "Søkeresultater for {label}"
+    "searchResults": "Søkeresultater for {label}",
+    "pdfPageCap": "Denne PDF-en har {total} sider. Kit behandlet de første {processed} i denne fanen."
   },
   "home": {
     "title": "Hva trenger du å gjøre?",
@@ -403,7 +404,8 @@
       "modeText": "Tekst",
       "modeImages": "Bilder",
       "success": "Uttrekk ferdig.",
-      "imagesReady": "Eksporterte {count} sidebilde(r) som ZIP."
+      "imagesReady": "Eksporterte {count} sidebilde(r) som ZIP.",
+      "limits": "Text and page images are produced in this tab. Only the first 200 pages are processed. Image export is a visual raster, not embedded image objects."
     },
     "image-compress": {
       "name": "Komprimer bilder",

@@ -19,7 +19,7 @@ This file is the active implementation record. Current source is under `src/`, `
 - Media waveform decoding skips files over 100 MB to avoid freezing the tab.
 - Image download extensions are derived from the resulting Blob MIME type.
 - PDF organize supports drag-and-drop page reordering.
-- PDF.js documents are explicitly destroyed after normal processing.
+- PDF.js documents are explicitly destroyed after normal processing. Raster and text extract cap at the first 200 pages and warn when a file is longer.
 - Privacy Policy and Terms exist for all 31 path locales; legal-loading tests cover every first-class locale.
 - SQL comments and non-identifier JSON keys are preserved; invalid HTML entity code points no longer crash decoding.
 - Everyday category includes unit conversion, currency, text counting, time zones, dates, tips/splits, BMI and calorie estimates, stopwatch/timer, random generation, and local image-to-PDF assembly.

@@ -115,7 +115,8 @@
     "search": "Caută",
     "noMatches": "Nicio potrivire",
     "searchAria": "Caută {label}",
-    "searchResults": "Rezultate pentru {label}"
+    "searchResults": "Rezultate pentru {label}",
+    "pdfPageCap": "Acest PDF are {total} pagini. Kit a procesat primele {processed} în această filă."
   },
   "home": {
     "title": "Ce ai de făcut?",
@@ -403,7 +404,8 @@
       "modeText": "Text",
       "modeImages": "Imagini",
       "success": "Extracția s-a încheiat.",
-      "imagesReady": "S-au exportat {count} imagini de pagină ca ZIP."
+      "imagesReady": "S-au exportat {count} imagini de pagină ca ZIP.",
+      "limits": "Text and page images are produced in this tab. Only the first 200 pages are processed. Image export is a visual raster, not embedded image objects."
     },
     "image-compress": {
       "name": "Comprimă imagini",

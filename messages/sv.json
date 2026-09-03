@@ -115,7 +115,8 @@
     "search": "Sök",
     "noMatches": "Inga träffar",
     "searchAria": "Sök {label}",
-    "searchResults": "Sökresultat för {label}"
+    "searchResults": "Sökresultat för {label}",
+    "pdfPageCap": "Den här PDF:en har {total} sidor. Kit bearbetade de första {processed} i den här fliken."
   },
   "home": {
     "title": "Vad behöver du göra?",
@@ -403,7 +404,8 @@
       "modeText": "Text",
       "modeImages": "Bilder",
       "success": "Extrahering klar.",
-      "imagesReady": "Exporterade {count} sidbild(er) som ZIP."
+      "imagesReady": "Exporterade {count} sidbild(er) som ZIP.",
+      "limits": "Text and page images are produced in this tab. Only the first 200 pages are processed. Image export is a visual raster, not embedded image objects."
     },
     "image-compress": {
       "name": "Komprimera bilder",

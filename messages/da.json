@@ -115,7 +115,8 @@
     "search": "Søg",
     "noMatches": "Ingen resultater",
     "searchAria": "Søg i {label}",
-    "searchResults": "Søgeresultater for {label}"
+    "searchResults": "Søgeresultater for {label}",
+    "pdfPageCap": "Denne PDF har {total} sider. Kit behandlede de første {processed} i denne fane."
   },
   "home": {
     "title": "Hvad skal du have gjort?",
@@ -403,7 +404,8 @@
       "modeText": "Tekst",
       "modeImages": "Billeder",
       "success": "Udtræk afsluttet.",
-      "imagesReady": "Eksporterede {count} sidebillede(r) som ZIP."
+      "imagesReady": "Eksporterede {count} sidebillede(r) som ZIP.",
+      "limits": "Text and page images are produced in this tab. Only the first 200 pages are processed. Image export is a visual raster, not embedded image objects."
     },
     "image-compress": {
       "name": "Komprimér billeder",

@@ -115,7 +115,8 @@
     "search": "Пошук",
     "noMatches": "Немає збігів",
     "searchAria": "Пошук: {label}",
-    "searchResults": "Результати: {label}"
+    "searchResults": "Результати: {label}",
+    "pdfPageCap": "У цьому PDF {total} сторінок. Kit опрацював перші {processed} у цій вкладці."
   },
   "home": {
     "title": "Що потрібно зробити?",
@@ -403,7 +404,8 @@
       "modeText": "Текст",
       "modeImages": "Зображення",
       "success": "Витягання завершено.",
-      "imagesReady": "Експортовано зображень сторінок у ZIP: {count}."
+      "imagesReady": "Експортовано зображень сторінок у ZIP: {count}.",
+      "limits": "Text and page images are produced in this tab. Only the first 200 pages are processed. Image export is a visual raster, not embedded image objects."
     },
     "image-compress": {
       "name": "Стиснути зображення",

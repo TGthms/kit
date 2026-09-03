@@ -115,7 +115,8 @@
     "search": "Cari",
     "noMatches": "Tidak ada hasil",
     "searchAria": "Cari {label}",
-    "searchResults": "Hasil pencarian {label}"
+    "searchResults": "Hasil pencarian {label}",
+    "pdfPageCap": "PDF ini punya {total} halaman. Kit memproses {processed} halaman pertama di tab ini."
   },
   "home": {
     "title": "Apa yang ingin Anda lakukan?",
@@ -403,7 +404,8 @@
       "modeText": "Teks",
       "modeImages": "Gambar",
       "success": "Ekstraksi selesai.",
-      "imagesReady": "Mengekspor {count} gambar halaman sebagai ZIP."
+      "imagesReady": "Mengekspor {count} gambar halaman sebagai ZIP.",
+      "limits": "Text and page images are produced in this tab. Only the first 200 pages are processed. Image export is a visual raster, not embedded image objects."
     },
     "image-compress": {
       "name": "Kompres gambar",

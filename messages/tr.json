@@ -115,7 +115,8 @@
     "search": "Ara",
     "noMatches": "Eşleşme yok",
     "searchAria": "{label} ara",
-    "searchResults": "{label} arama sonuçları"
+    "searchResults": "{label} arama sonuçları",
+    "pdfPageCap": "Bu PDF {total} sayfa. Kit bu sekmede ilk {processed} sayfayı işledi."
   },
   "home": {
     "title": "Ne yapmak istiyorsunuz?",
@@ -403,7 +404,8 @@
       "modeText": "Metin",
       "modeImages": "Görüntüler",
       "success": "Ayıklama bitti.",
-      "imagesReady": "{count} sayfa görüntüsü ZIP olarak dışa aktarıldı."
+      "imagesReady": "{count} sayfa görüntüsü ZIP olarak dışa aktarıldı.",
+      "limits": "Text and page images are produced in this tab. Only the first 200 pages are processed. Image export is a visual raster, not embedded image objects."
     },
     "image-compress": {
       "name": "Görüntüleri sıkıştır",

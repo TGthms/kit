@@ -115,7 +115,8 @@
     "search": "検索",
     "noMatches": "一致するものがありません",
     "searchAria": "{label}を検索",
-    "searchResults": "{label}の検索結果"
+    "searchResults": "{label}の検索結果",
+    "pdfPageCap": "この PDF は {total} ページです。Kit はこのタブで先頭 {processed} ページを処理しました。"
   },
   "home": {
     "title": "何をしますか？",
@@ -403,7 +404,8 @@
       "modeText": "テキスト",
       "modeImages": "画像",
       "success": "取り出しが完了しました。",
-      "imagesReady": "{count} ページ分の画像を ZIP に書き出しました。"
+      "imagesReady": "{count} ページ分の画像を ZIP に書き出しました。",
+      "limits": "Text and page images are produced in this tab. Only the first 200 pages are processed. Image export is a visual raster, not embedded image objects."
     },
     "image-compress": {
       "name": "画像を圧縮",

@@ -99,17 +99,20 @@ export function PdfToImages() {
     const ac = job.start();
     try {
       const { renderPdfPagesToBlobs } = await loadPdfjs();
-      const blobs = await renderPdfPagesToBlobs(await files[0].file.arrayBuffer(), {
+      const raster = await renderPdfPagesToBlobs(await files[0].file.arrayBuffer(), {
         mime: "image/jpeg",
         scale: 1.6,
         signal: ac.signal,
         onProgress: (ratio) => job.setProgress(Math.round(ratio * 100)),
       });
+      if (raster.truncated) {
+        toast.warning(tc("pdfPageCap", { total: raster.totalPages, processed: raster.processedPages }));
+      }
       const zip = new JSZip();
-      blobs.forEach((blob, i) => zip.file(`page-${String(i + 1).padStart(3, "0")}.jpg`, blob));
+      raster.blobs.forEach((blob, i) => zip.file(`page-${String(i + 1).padStart(3, "0")}.jpg`, blob));
       downloadBlob(await zip.generateAsync({ type: "blob" }), "pdf-pages.zip");
-      toast.success(t("success", { count: blobs.length }));
-      log(`${blobs.length} pages`, "success");
+      toast.success(t("success", { count: raster.blobs.length }));
+      log(`${raster.blobs.length} pages`, "success");
     } catch (e) {
       if (e instanceof DOMException && e.name === "AbortError") toast.error(tc("cancel"));
       else toast.error(e instanceof Error ? e.message : tc("error"));

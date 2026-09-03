@@ -115,7 +115,8 @@
     "search": "Cerca",
     "noMatches": "Nessun risultato",
     "searchAria": "Cerca {label}",
-    "searchResults": "Risultati per {label}"
+    "searchResults": "Risultati per {label}",
+    "pdfPageCap": "Questo PDF ha {total} pagine. Kit ha elaborato le prime {processed} in questa scheda."
   },
   "home": {
     "title": "Cosa ti serve fare?",
@@ -403,7 +404,8 @@
       "modeText": "Testo",
       "modeImages": "Immagini",
       "success": "Estrazione completata.",
-      "imagesReady": "Esportate {count} immagini di pagina in uno ZIP."
+      "imagesReady": "Esportate {count} immagini di pagina in uno ZIP.",
+      "limits": "Text and page images are produced in this tab. Only the first 200 pages are processed. Image export is a visual raster, not embedded image objects."
     },
     "image-compress": {
       "name": "Comprimi immagini",

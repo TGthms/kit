@@ -115,7 +115,8 @@
     "search": "Hledat",
     "noMatches": "Žádné shody",
     "searchAria": "Hledat {label}",
-    "searchResults": "Výsledky hledání: {label}"
+    "searchResults": "Výsledky hledání: {label}",
+    "pdfPageCap": "Toto PDF má {total} stran. Kit zpracoval prvních {processed} na této kartě."
   },
   "home": {
     "title": "Co potřebujete udělat?",
@@ -403,7 +404,8 @@
       "modeText": "Text",
       "modeImages": "Obrázky",
       "success": "Extrakce dokončena.",
-      "imagesReady": "Exportováno {count} obrázků stránek jako ZIP."
+      "imagesReady": "Exportováno {count} obrázků stránek jako ZIP.",
+      "limits": "Text and page images are produced in this tab. Only the first 200 pages are processed. Image export is a visual raster, not embedded image objects."
     },
     "image-compress": {
       "name": "Komprimovat obrázky",

@@ -115,7 +115,8 @@
     "search": "Search",
     "noMatches": "No matches",
     "searchAria": "{label} search",
-    "searchResults": "{label} search results"
+    "searchResults": "{label} search results",
+    "pdfPageCap": "This PDF has {total} pages. Kit processed the first {processed} in this tab."
   },
   "home": {
     "title": "What do you need to do?",
@@ -368,7 +369,7 @@
       "description": "Rasterize each page to JPEG. Text, links, and vectors are not kept.",
       "keywords": "pdf compress reduce size smaller rasterize jpeg",
       "run": "Shrink",
-      "note": "Every page is turned into a JPEG picture and rebuilt as a new PDF. Searchable text, links, and vector drawings are removed. Files can get larger. Use this for photo-heavy scans, not contracts you still need to search.",
+      "note": "Every page is turned into a JPEG picture and rebuilt as a new PDF. Searchable text, links, and vector drawings are removed. Files can get larger. Use this for photo-heavy scans, not contracts you still need to search. Only the first 200 pages are processed.",
       "success": "Shrunk PDF is ready to download."
     },
     "pdf-watermark": {
@@ -397,13 +398,14 @@
     },
     "pdf-extract": {
       "name": "Extract from PDF",
-      "description": "Pull readable text or export a page as an image.",
+      "description": "Pull readable text or export pages as JPEG images (ZIP).",
       "keywords": "pdf extract text images ocr-free",
       "run": "Extract",
       "modeText": "Text",
       "modeImages": "Images",
       "success": "Extraction finished.",
-      "imagesReady": "Exported {count} page image(s) as a ZIP."
+      "imagesReady": "Exported {count} page image(s) as a ZIP.",
+      "limits": "Text and page images are produced in this tab. Only the first 200 pages are processed. Image export is a visual raster, not embedded image objects."
     },
     "image-compress": {
       "name": "Compress images",
@@ -603,7 +605,7 @@
       "description": "Rasterize every page to JPEG and download them as a ZIP.",
       "keywords": "pdf to image jpg jpeg zip pages export",
       "run": "Export pages",
-      "limits": "Pages are drawn with PDF.js in this tab. Very large documents can be slow and use a lot of memory. This is a visual raster, not an extract of embedded image objects.",
+      "limits": "Pages are drawn with PDF.js in this tab. Only the first 200 pages are processed. Very large documents can be slow and use a lot of memory. This is a visual raster, not an extract of embedded image objects.",
       "success": "Exported {count} page(s)."
     },
     "images-to-pdf": {

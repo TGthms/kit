@@ -115,7 +115,8 @@
     "search": "Szukaj",
     "noMatches": "Brak wyników",
     "searchAria": "Szukaj: {label}",
-    "searchResults": "Wyniki dla {label}"
+    "searchResults": "Wyniki dla {label}",
+    "pdfPageCap": "Ten PDF ma {total} stron. Kit przetworzył pierwsze {processed} w tej karcie."
   },
   "home": {
     "title": "Co chcesz zrobić?",
@@ -403,7 +404,8 @@
       "modeText": "Tekst",
       "modeImages": "Obrazy",
       "success": "Wyodrębnianie zakończone.",
-      "imagesReady": "Wyeksportowano {count} obraz(ów) stron jako ZIP."
+      "imagesReady": "Wyeksportowano {count} obraz(ów) stron jako ZIP.",
+      "limits": "Text and page images are produced in this tab. Only the first 200 pages are processed. Image export is a visual raster, not embedded image objects."
     },
     "image-compress": {
       "name": "Kompresuj obrazy",

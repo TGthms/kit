@@ -115,7 +115,8 @@
     "search": "खोजें",
     "noMatches": "कोई मेल नहीं",
     "searchAria": "{label} खोजें",
-    "searchResults": "{label} के परिणाम"
+    "searchResults": "{label} के परिणाम",
+    "pdfPageCap": "इस PDF में {total} पृष्ठ हैं। Kit ने इस टैब में पहले {processed} संसाधित किए।"
   },
   "home": {
     "title": "आपको क्या करना है?",
@@ -403,7 +404,8 @@
       "modeText": "टेक्स्ट",
       "modeImages": "छवियाँ",
       "success": "निकासी पूरी हुई।",
-      "imagesReady": "{count} पृष्ठ छवियाँ ZIP के रूप में निर्यात हुईं।"
+      "imagesReady": "{count} पृष्ठ छवियाँ ZIP के रूप में निर्यात हुईं।",
+      "limits": "Text and page images are produced in this tab. Only the first 200 pages are processed. Image export is a visual raster, not embedded image objects."
     },
     "image-compress": {
       "name": "छवियाँ संपीड़ित करें",

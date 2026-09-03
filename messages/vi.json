@@ -115,7 +115,8 @@
     "search": "Tìm",
     "noMatches": "Không có kết quả",
     "searchAria": "Tìm {label}",
-    "searchResults": "Kết quả {label}"
+    "searchResults": "Kết quả {label}",
+    "pdfPageCap": "PDF này có {total} trang. Kit đã xử lý {processed} trang đầu trong thẻ này."
   },
   "home": {
     "title": "Bạn cần làm gì?",
@@ -403,7 +404,8 @@
       "modeText": "Văn bản",
       "modeImages": "Ảnh",
       "success": "Trích xuất xong.",
-      "imagesReady": "Đã xuất {count} ảnh trang dưới dạng ZIP."
+      "imagesReady": "Đã xuất {count} ảnh trang dưới dạng ZIP.",
+      "limits": "Text and page images are produced in this tab. Only the first 200 pages are processed. Image export is a visual raster, not embedded image objects."
     },
     "image-compress": {
       "name": "Nén ảnh",

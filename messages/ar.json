@@ -115,7 +115,8 @@
     "search": "بحث",
     "noMatches": "لا توجد نتائج",
     "searchAria": "بحث {label}",
-    "searchResults": "نتائج بحث {label}"
+    "searchResults": "نتائج بحث {label}",
+    "pdfPageCap": "يحتوي ملف PDF هذا على {total} صفحة. عالج Kit أول {processed} في علامة التبويب هذه."
   },
   "home": {
     "title": "ماذا تريد أن تفعل؟",
@@ -403,7 +404,8 @@
       "modeText": "نص",
       "modeImages": "صور",
       "success": "انتهى الاستخراج.",
-      "imagesReady": "صُدّرت {count} صورة صفحة في ZIP."
+      "imagesReady": "صُدّرت {count} صورة صفحة في ZIP.",
+      "limits": "Text and page images are produced in this tab. Only the first 200 pages are processed. Image export is a visual raster, not embedded image objects."
     },
     "image-compress": {
       "name": "ضغط الصور",

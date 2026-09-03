@@ -358,8 +358,11 @@ export function PdfCompress() {
             onProgress: (pageRatio) =>
               job.setProgress(Math.round(((index + pageRatio) / files.length) * 100)),
           });
+          if (out.truncated) {
+            toast.warning(tc("pdfPageCap", { total: out.totalPages, processed: out.processedPages }));
+          }
           return {
-            blob: bytesToBlob(out, "application/pdf"),
+            blob: bytesToBlob(out.bytes, "application/pdf"),
             name: stemmedName(f.file.name, "-compressed", "pdf"),
           };
         },
@@ -531,39 +534,51 @@ export function PdfExtract() {
   const [files, setFiles] = useState<FileItem[]>([]);
   const [mode, setMode] = useState<"text" | "images">("text");
   const [result, setResult] = useState("");
-  const [loading, setLoading] = useState(false);
+  const job = useToolJob();
 
   const run = async () => {
     if (!files[0]) return;
-    setLoading(true);
+    const ac = job.start();
     try {
       const { extractPdfText, renderPdfPagesToBlobs } = await loadPdfjs();
       if (mode === "text") {
-        const text = await extractPdfText(await files[0].file.arrayBuffer());
-        setResult(text);
-        downloadText(text, "extract.txt");
+        const extracted = await extractPdfText(await files[0].file.arrayBuffer(), { signal: ac.signal });
+        if (extracted.truncated) {
+          toast.warning(tc("pdfPageCap", { total: extracted.totalPages, processed: extracted.processedPages }));
+        }
+        setResult(extracted.text);
+        downloadText(extracted.text, "extract.txt");
       } else {
-        const blobs = await renderPdfPagesToBlobs(await files[0].file.arrayBuffer(), {
+        const raster = await renderPdfPagesToBlobs(await files[0].file.arrayBuffer(), {
           mime: "image/jpeg",
           scale: 1.5,
+          signal: ac.signal,
+          onProgress: (ratio) => job.setProgress(Math.round(ratio * 100)),
         });
+        if (raster.truncated) {
+          toast.warning(tc("pdfPageCap", { total: raster.totalPages, processed: raster.processedPages }));
+        }
         const zip = new JSZip();
-        blobs.forEach((blob, i) => zip.file(`page-${String(i + 1).padStart(3, "0")}.jpg`, blob));
+        raster.blobs.forEach((blob, i) => zip.file(`page-${String(i + 1).padStart(3, "0")}.jpg`, blob));
         downloadBlob(await zip.generateAsync({ type: "blob" }), "pdf-pages.zip");
-        setResult(t("imagesReady", { count: blobs.length }));
+        setResult(t("imagesReady", { count: raster.blobs.length }));
       }
       toast.success(t("success"));
       log(mode, "success");
     } catch (e) {
-      toast.error(e instanceof Error ? e.message : tc("error"));
+      if (e instanceof DOMException && e.name === "AbortError") toast.error(tc("cancel"));
+      else toast.error(e instanceof Error ? e.message : tc("error"));
       log("failed", "failed");
     } finally {
-      setLoading(false);
+      job.stop();
     }
   };
 
   return (
     <ToolShell toolId="pdf-extract">
+      <ToolLimits>
+        <p>{t("limits")}</p>
+      </ToolLimits>
       <FileDropzone accept="application/pdf" multiple={false} files={files} onChange={setFiles} />
       <div className="flex gap-2">
         <Button variant={mode === "text" ? "default" : "outline"} onClick={() => setMode("text")}>
@@ -573,8 +588,15 @@ export function PdfExtract() {
           {t("modeImages")}
         </Button>
       </div>
+      {job.loading && <Progress value={job.progress} aria-label={t("run")} />}
       {result && <Textarea value={result} readOnly className="min-h-48" />}
-      <ActionBar onRun={run} loading={loading} label={t("run")} disabled={!files[0]} />
+      <ActionBar
+        onRun={run}
+        loading={job.loading}
+        label={t("run")}
+        disabled={!files[0]}
+        onCancel={job.cancel}
+      />
     </ToolShell>
   );
 }

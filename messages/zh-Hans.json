@@ -115,7 +115,8 @@
     "search": "搜索",
     "noMatches": "没有匹配项",
     "searchAria": "搜索{label}",
-    "searchResults": "{label}的搜索结果"
+    "searchResults": "{label}的搜索结果",
+    "pdfPageCap": "此 PDF 共 {total} 页。Kit 在此标签页处理了前 {processed} 页。"
   },
   "home": {
     "title": "今天有什么要做的？",
@@ -403,7 +404,8 @@
       "modeText": "文本",
       "modeImages": "图片",
       "success": "提取完成。",
-      "imagesReady": "已将 {count} 页导出为 ZIP。"
+      "imagesReady": "已将 {count} 页导出为 ZIP。",
+      "limits": "Text and page images are produced in this tab. Only the first 200 pages are processed. Image export is a visual raster, not embedded image objects."
     },
     "image-compress": {
       "name": "压缩图片",

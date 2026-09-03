@@ -115,7 +115,8 @@
     "search": "搜尋",
     "noMatches": "沒有符合項目",
     "searchAria": "搜尋{label}",
-    "searchResults": "{label}的搜尋結果"
+    "searchResults": "{label}的搜尋結果",
+    "pdfPageCap": "此 PDF 共 {total} 頁。Kit 在此分頁處理了前 {processed} 頁。"
   },
   "home": {
     "title": "今天有什麼要做的？",
@@ -403,7 +404,8 @@
       "modeText": "文本",
       "modeImages": "圖片",
       "success": "提取完成。",
-      "imagesReady": "已将 {count} 頁导出為 ZIP。"
+      "imagesReady": "已将 {count} 頁导出為 ZIP。",
+      "limits": "Text and page images are produced in this tab. Only the first 200 pages are processed. Image export is a visual raster, not embedded image objects."
     },
     "image-compress": {
       "name": "壓縮圖片",

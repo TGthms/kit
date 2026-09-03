@@ -115,7 +115,8 @@
     "search": "חיפוש",
     "noMatches": "אין תוצאות",
     "searchAria": "חיפוש {label}",
-    "searchResults": "תוצאות חיפוש {label}"
+    "searchResults": "תוצאות חיפוש {label}",
+    "pdfPageCap": "ב־PDF הזה יש {total} עמודים. Kit עיבד את {processed} הראשונים בלשונית הזו."
   },
   "home": {
     "title": "מה תרצו לעשות?",
@@ -403,7 +404,8 @@
       "modeText": "טקסט",
       "modeImages": "תמונות",
       "success": "החילוץ הסתיים.",
-      "imagesReady": "יוצאו {count} תמונות עמוד כקובץ ZIP."
+      "imagesReady": "יוצאו {count} תמונות עמוד כקובץ ZIP.",
+      "limits": "Text and page images are produced in this tab. Only the first 200 pages are processed. Image export is a visual raster, not embedded image objects."
     },
     "image-compress": {
       "name": "כיווץ תמונות",

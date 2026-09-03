@@ -115,7 +115,8 @@
     "search": "ค้นหา",
     "noMatches": "ไม่พบรายการ",
     "searchAria": "ค้นหา {label}",
-    "searchResults": "ผลการค้นหา {label}"
+    "searchResults": "ผลการค้นหา {label}",
+    "pdfPageCap": "PDF นี้มี {total} หน้า Kit ประมวลผล {processed} หน้าแรกในแท็บนี้"
   },
   "home": {
     "title": "คุณต้องการทำอะไร",
@@ -403,7 +404,8 @@
       "modeText": "ข้อความ",
       "modeImages": "รูปภาพ",
       "success": "แยกเสร็จแล้ว",
-      "imagesReady": "ส่งออกรูปหน้า {count} ไฟล์เป็น ZIP"
+      "imagesReady": "ส่งออกรูปหน้า {count} ไฟล์เป็น ZIP",
+      "limits": "Text and page images are produced in this tab. Only the first 200 pages are processed. Image export is a visual raster, not embedded image objects."
     },
     "image-compress": {
       "name": "บีบอัดรูปภาพ",

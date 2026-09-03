@@ -115,7 +115,8 @@
     "search": "Zoeken",
     "noMatches": "Geen overeenkomsten",
     "searchAria": "{label} zoeken",
-    "searchResults": "Zoekresultaten voor {label}"
+    "searchResults": "Zoekresultaten voor {label}",
+    "pdfPageCap": "Deze PDF heeft {total} pagina’s. Kit verwerkte de eerste {processed} in dit tabblad."
   },
   "home": {
     "title": "Wat wil je doen?",
@@ -403,7 +404,8 @@
       "modeText": "Tekst",
       "modeImages": "Afbeeldingen",
       "success": "Extractie voltooid.",
-      "imagesReady": "{count} paginabeeld(en) als ZIP geëxporteerd."
+      "imagesReady": "{count} paginabeeld(en) als ZIP geëxporteerd.",
+      "limits": "Text and page images are produced in this tab. Only the first 200 pages are processed. Image export is a visual raster, not embedded image objects."
     },
     "image-compress": {
       "name": "Afbeeldingen comprimeren",

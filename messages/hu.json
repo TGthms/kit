@@ -115,7 +115,8 @@
     "search": "Keresés",
     "noMatches": "Nincs találat",
     "searchAria": "{label} keresése",
-    "searchResults": "{label} találatai"
+    "searchResults": "{label} találatai",
+    "pdfPageCap": "Ez a PDF {total} oldalas. A Kit az első {processed} oldalt dolgozta fel ebben a lapon."
   },
   "home": {
     "title": "Mit szeretnél csinálni?",
@@ -403,7 +404,8 @@
       "modeText": "Szöveg",
       "modeImages": "Képek",
       "success": "A kinyerés kész.",
-      "imagesReady": "{count} oldal kép exportálva ZIP-ként."
+      "imagesReady": "{count} oldal kép exportálva ZIP-ként.",
+      "limits": "Text and page images are produced in this tab. Only the first 200 pages are processed. Image export is a visual raster, not embedded image objects."
     },
     "image-compress": {
       "name": "Képek tömörítése",

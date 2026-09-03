@@ -115,7 +115,8 @@
     "search": "검색",
     "noMatches": "일치하는 항목 없음",
     "searchAria": "{label} 검색",
-    "searchResults": "{label} 검색 결과"
+    "searchResults": "{label} 검색 결과",
+    "pdfPageCap": "이 PDF는 {total}쪽입니다. Kit이 이 탭에서 처음 {processed}쪽을 처리했습니다."
   },
   "home": {
     "title": "무엇을 하시겠어요?",
@@ -403,7 +404,8 @@
       "modeText": "텍스트",
       "modeImages": "이미지",
       "success": "추출이 끝났습니다.",
-      "imagesReady": "페이지 이미지 {count}개를 ZIP으로 내보냈습니다."
+      "imagesReady": "페이지 이미지 {count}개를 ZIP으로 내보냈습니다.",
+      "limits": "Text and page images are produced in this tab. Only the first 200 pages are processed. Image export is a visual raster, not embedded image objects."
     },
     "image-compress": {
       "name": "이미지 압축",
