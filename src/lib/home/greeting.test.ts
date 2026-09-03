@@ -40,10 +40,11 @@ describe("home greeting", () => {
   it("keeps later period lines in the live pool instead of replacing them", () => {
     const tuesdayMorning = new Date(2026, 7, 25, 10);
     const pool = getGreetingPoolKeys(tuesdayMorning);
-    expect(pool).toEqual([...GREETING_PERIOD_KEYS.morning, "kit", "productivity", "privacy"]);
+    expect(pool).toEqual([...GREETING_PERIOD_KEYS.morning, "kit", "kit2", "kit3", "productivity", "productivity2", "productivity3", "privacy", "privacy2", "privacy3"]);
     expect(pool).toContain("morning8");
-    expect(pool).toContain("morning2");
+    expect(pool).toContain("morning15");
     expect(pool).not.toContain("weekend");
+    expect(pool).not.toContain("monday");
   });
 
   it("adds weekend lines to the pool on Saturday and Sunday", () => {
@@ -51,6 +52,7 @@ describe("home greeting", () => {
     const pool = getGreetingPoolKeys(saturday);
     expect(pool).toContain("weekend");
     expect(pool).toContain("weekend2");
+    expect(pool).toContain("weekend3");
     const weekendIndex = pool.indexOf("weekend");
     expect(getHomeGreetingSelection(saturday, "en-US", weekendIndex)).toMatchObject({
       greetingKey: "greeting.weekend",
@@ -59,18 +61,26 @@ describe("home greeting", () => {
   });
 
   it("selects Christian and technology observances by calendar date", () => {
-    expect(getHomeGreetingSelection(new Date(2026, 11, 25, 10), "en-US", 1)).toMatchObject({
+    const christmas = getHomeGreetingSelection(new Date(2026, 11, 25, 10), "en-US", 1);
+    expect(christmas).toMatchObject({
       greetingKey: "greeting.observance.christmas",
-      subtitle: { kind: "i18n", key: "subtitleObservance.christmas" },
       occasionKey: "christmas",
       category: "kit",
       motion: "scaleSoft",
     });
+    expect(christmas.subtitle.kind).toBe("i18n");
+    expect(christmas.subtitle.kind === "i18n" && christmas.subtitle.key).toMatch(/^subtitleObservance\.christmas[23]?$/);
     expect(getHomeGreetingSelection(new Date(2026, 2, 14, 10), "en-US", 1).occasionKey).toBe("piDay");
     expect(getHomeGreetingSelection(new Date(2026, 1, 10, 10), "en-US", 1).occasionKey).toBe("saferInternetDay");
     expect(getHomeGreetingSelection(new Date(2026, 4, 7, 10), "en-US", 1).occasionKey).toBe("passwordDay");
     expect(getHomeGreetingSelection(new Date(2026, 9, 13, 10), "en-US", 1).occasionKey).toBe("adaLovelaceDay");
     expect(getHomeGreetingSelection(new Date(2026, 8, 13, 10), "en-US", 1).occasionKey).toBe("programmersDay");
+    expect(getHomeGreetingSelection(new Date(2026, 0, 28, 10), "en-US", 1).occasionKey).toBe("dataPrivacyDay");
+    expect(getHomeGreetingSelection(new Date(2026, 6, 17, 10), "en-US", 1).occasionKey).toBe("emojiDay");
+    expect(getHomeGreetingSelection(new Date(2026, 8, 19, 10), "en-US", 1).occasionKey).toBe("softwareFreedomDay");
+    expect(getHomeGreetingSelection(new Date(2026, 9, 21, 10), "en-US", 1).occasionKey).toBe("encryptionDay");
+    expect(getHomeGreetingSelection(new Date(2026, 9, 29, 10), "en-US", 1).occasionKey).toBe("internetDay");
+    expect(getHomeGreetingSelection(new Date(2026, 10, 5, 10), "en-US", 1).occasionKey).toBe("digitalPreservationDay");
   });
 
   it("shows Christian holidays in Chinese and skips them for ar, he, and hi", () => {
@@ -96,9 +106,12 @@ describe("home greeting", () => {
 
   it("keeps ordinary selections localized by key and includes the weekday", () => {
     const selection = getHomeGreetingSelection(new Date(2026, 7, 25, 10), "fr-FR", 2);
-    const morningKeys = new Set(["productivity", "kit", "privacy", ...GREETING_PERIOD_KEYS.morning].map((key) => `greeting.${key}`));
+    const morningKeys = new Set(["productivity", "productivity2", "productivity3", "kit", "kit2", "kit3", "privacy", "privacy2", "privacy3", ...GREETING_PERIOD_KEYS.morning].map((key) => `greeting.${key}`));
     expect(morningKeys.has(selection.greetingKey)).toBe(true);
-    expect(selection.subtitle).toEqual({ kind: "i18n", key: expect.stringMatching(/^subtitle(Facts\.fact[1-8])?$/) });
+    expect(selection.subtitle.kind).toBe("i18n");
+    expect(selection.subtitle.kind === "i18n" && selection.subtitle.key).toMatch(
+      /^subtitle(?:Facts\.(?:fact[1-8]|kit[1-8]|prod[1-6]|morning[1-3]|afternoon[1-3]|evening[1-3]|night[1-3]))?$/,
+    );
     expect(selection.day).toBe("mardi");
   });
 
@@ -114,11 +127,10 @@ describe("home greeting", () => {
     ] as const;
     for (const [year, month, day, key] of dates) {
       const selection = getHomeGreetingSelection(new Date(year, month - 1, day), "en-US", 0);
-      expect(selection).toMatchObject({
-        greetingKey: `greeting.observance.${key}`,
-        subtitle: { kind: "i18n", key: `subtitleObservance.${key}` },
-        occasionKey: key,
-      });
+      expect(selection.greetingKey).toBe(`greeting.observance.${key}`);
+      expect(selection.occasionKey).toBe(key);
+      expect(selection.subtitle.kind).toBe("i18n");
+      expect(selection.subtitle.kind === "i18n" && selection.subtitle.key).toMatch(new RegExp(`^subtitleObservance\\.${key}[23]?$`));
     }
   });
 
@@ -149,6 +161,16 @@ describe("home greeting", () => {
     expect(productivity.greetingKey).toBe("greeting.productivity");
     expect(productivity.motion).toBe("rise");
     expect(PRODUCTIVITY_SUBTITLE_KEYS).toContain(productivity.subtitle.kind === "i18n" ? productivity.subtitle.key : "");
+  });
+
+  it("adds Monday morning and Friday afternoon flavor lines", () => {
+    const mondayMorning = new Date(2026, 7, 24, 10);
+    const fridayAfternoon = new Date(2026, 7, 28, 15);
+    expect(mondayMorning.getDay()).toBe(1);
+    expect(fridayAfternoon.getDay()).toBe(5);
+    expect(getGreetingPoolKeys(mondayMorning)).toContain("monday");
+    expect(getGreetingPoolKeys(fridayAfternoon)).toContain("friday");
+    expect(getGreetingPoolKeys(new Date(2026, 7, 24, 20))).not.toContain("monday");
   });
 
   it("picks calm motion from time of day and festive observances", () => {

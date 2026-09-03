@@ -43,6 +43,8 @@ describe("greeting localization catalogs", () => {
         expect(data.home.greeting.occasionLabel[key], `${locale}: occasionLabel.${key}`).toEqual(expect.any(String));
         expect(data.home.greeting.observance[key], `${locale}: observance.${key}`).toEqual(expect.any(String));
         expect(data.home.subtitleObservance[key], `${locale}: subtitleObservance.${key}`).toEqual(expect.any(String));
+        expect(data.home.subtitleObservance[`${key}2`], `${locale}: subtitleObservance.${key}2`).toEqual(expect.any(String));
+        expect(data.home.subtitleObservance[`${key}3`], `${locale}: subtitleObservance.${key}3`).toEqual(expect.any(String));
       }
     }
   });
@@ -51,7 +53,12 @@ describe("greeting localization catalogs", () => {
     const english = read("en");
     const paths = [
       ...GREETING_VARIANT_KEYS.map((key) => ["home", "greeting", key] as const),
-      ...OBSERVANCE_KEYS.flatMap((key) => [["home", "greeting", "observance", key] as const, ["home", "subtitleObservance", key] as const]),
+      ...OBSERVANCE_KEYS.flatMap((key) => [
+        ["home", "greeting", "observance", key] as const,
+        ["home", "subtitleObservance", key] as const,
+        ["home", "subtitleObservance", `${key}2`] as const,
+        ["home", "subtitleObservance", `${key}3`] as const,
+      ]),
     ];
     for (const file of files) {
       const locale = file.slice(0, -5);
@@ -72,6 +79,8 @@ describe("greeting localization catalogs", () => {
         ["home", "greeting", "observance", key] as const,
         ["home", "greeting", "occasionLabel", key] as const,
         ["home", "subtitleObservance", key] as const,
+        ["home", "subtitleObservance", `${key}2`] as const,
+        ["home", "subtitleObservance", `${key}3`] as const,
       ]),
     ];
     for (const file of files.filter((name) => name !== "en.json")) {
@@ -102,9 +111,17 @@ describe("greeting localization catalogs", () => {
       const locale = file.slice(0, -5);
       const data = read(locale);
       for (const key of OBSERVANCE_KEYS) {
-        expect(String(data.home.subtitleObservance[key]), `${locale}: subtitleObservance.${key}`).not.toBe(
-          String(data.home.greeting.observance[key]),
-        );
+        const heading = String(data.home.greeting.observance[key]);
+        const slots = [
+          String(data.home.subtitleObservance[key]),
+          String(data.home.subtitleObservance[`${key}2`]),
+          String(data.home.subtitleObservance[`${key}3`]),
+        ];
+        for (const [index, slot] of slots.entries()) {
+          const label = index === 0 ? key : `${key}${index + 1}`;
+          expect(slot, `${locale}: subtitleObservance.${label}`).not.toBe(heading);
+        }
+        expect(new Set(slots).size, `${locale}: subtitleObservance.${key} slots must be unique`).toBe(3);
       }
     }
   });

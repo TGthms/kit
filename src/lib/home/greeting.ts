@@ -5,8 +5,8 @@
  *   home.greeting.{variant}
  *   home.greeting.observance.{key}
  *   home.greeting.occasionLabel.{key}
- *   home.subtitleFacts.{factN}
- *   home.subtitleObservance.{key}
+ *   home.subtitleFacts.{factN|kitN|prodN|periodN}
+ *   home.subtitleObservance.{key} plus `{key}2` / `{key}3`
  *
  * Good Friday’s verse is NOT in catalogs. See `verses.ts` (WEB, untranslated).
  *
@@ -51,13 +51,19 @@ export type ObservanceRule =
   | { kind: "easterOffset"; offset: number; key: string };
 
 export const GREETING_PERIOD_KEYS: Record<GreetingPeriod, readonly string[]> = {
-  morning: ["morning", "morning2", "morning3", "morning4", "morning5", "morning6", "morning7", "morning8", "morning9", "morning10"],
-  afternoon: ["afternoon", "afternoon2", "afternoon3", "afternoon4", "afternoon5", "afternoon6", "afternoon7", "afternoon8", "afternoon9", "afternoon10"],
-  evening: ["evening", "evening2", "evening3", "evening4", "evening5", "evening6", "evening7", "evening8", "evening9", "evening10"],
-  night: ["night", "night2", "night3", "night4", "night5", "night6", "night7", "night8", "night9", "night10"],
+  morning: ["morning", "morning2", "morning3", "morning4", "morning5", "morning6", "morning7", "morning8", "morning9", "morning10", "morning11", "morning12", "morning13", "morning14", "morning15"],
+  afternoon: ["afternoon", "afternoon2", "afternoon3", "afternoon4", "afternoon5", "afternoon6", "afternoon7", "afternoon8", "afternoon9", "afternoon10", "afternoon11", "afternoon12", "afternoon13", "afternoon14", "afternoon15"],
+  evening: ["evening", "evening2", "evening3", "evening4", "evening5", "evening6", "evening7", "evening8", "evening9", "evening10", "evening11", "evening12", "evening13", "evening14", "evening15"],
+  night: ["night", "night2", "night3", "night4", "night5", "night6", "night7", "night8", "night9", "night10", "night11", "night12", "night13", "night14", "night15"],
 };
 
-export const GREETING_CONTEXT_KEYS = ["weekend", "weekend2", "productivity", "kit", "privacy"] as const;
+export const GREETING_CONTEXT_KEYS = [
+  "weekend", "weekend2", "weekend3",
+  "productivity", "productivity2", "productivity3",
+  "kit", "kit2", "kit3",
+  "privacy", "privacy2", "privacy3",
+  "monday", "friday",
+] as const;
 
 export const GREETING_VARIANT_KEYS = [
   ...GREETING_PERIOD_KEYS.morning,
@@ -70,16 +76,38 @@ export const GREETING_VARIANT_KEYS = [
 /** Lines that should stay unique per locale, not copies of extra1–3. */
 export const GREETING_DISTINCT_VARIANT_KEYS = [
   "morning2", "morning3", "morning4", "morning5", "morning6", "morning7", "morning8", "morning9", "morning10",
+  "morning11", "morning12", "morning13", "morning14", "morning15",
   "afternoon2", "afternoon3", "afternoon4", "afternoon5", "afternoon6", "afternoon7", "afternoon8", "afternoon9", "afternoon10",
+  "afternoon11", "afternoon12", "afternoon13", "afternoon14", "afternoon15",
   "evening2", "evening3", "evening4", "evening5", "evening6", "evening7", "evening8", "evening9", "evening10",
+  "evening11", "evening12", "evening13", "evening14", "evening15",
   "night2", "night3", "night4", "night5", "night6", "night7", "night8", "night9", "night10",
-  "weekend", "weekend2",
+  "night11", "night12", "night13", "night14", "night15",
+  "weekend", "weekend2", "weekend3",
+  "monday", "friday",
+  "kit2", "kit3", "privacy2", "privacy3", "productivity2", "productivity3",
 ] as const;
 
-export const SUBTITLE_FACT_KEYS = ["fact1", "fact2", "fact3", "fact4", "fact5", "fact6", "fact7", "fact8"] as const;
+export const SUBTITLE_FACT_KEYS = [
+  "fact1", "fact2", "fact3", "fact4", "fact5", "fact6", "fact7", "fact8",
+  "kit1", "kit2", "kit3", "kit4", "kit5", "kit6", "kit7", "kit8",
+  "prod1", "prod2", "prod3", "prod4", "prod5", "prod6",
+  "morning1", "morning2", "morning3",
+  "afternoon1", "afternoon2", "afternoon3",
+  "evening1", "evening2", "evening3",
+  "night1", "night2", "night3",
+] as const;
 
 /** Kit-knowledge subs (privacy, browser-only, files stay). */
 export const KIT_SUBTITLE_KEYS = [
+  "subtitleFacts.kit1",
+  "subtitleFacts.kit2",
+  "subtitleFacts.kit3",
+  "subtitleFacts.kit4",
+  "subtitleFacts.kit5",
+  "subtitleFacts.kit6",
+  "subtitleFacts.kit7",
+  "subtitleFacts.kit8",
   "subtitleFacts.fact2",
   "subtitleFacts.fact4",
   "subtitleFacts.fact6",
@@ -88,6 +116,12 @@ export const KIT_SUBTITLE_KEYS = [
 
 /** Workflow / two-minute-win subs. */
 export const PRODUCTIVITY_SUBTITLE_KEYS = [
+  "subtitleFacts.prod1",
+  "subtitleFacts.prod2",
+  "subtitleFacts.prod3",
+  "subtitleFacts.prod4",
+  "subtitleFacts.prod5",
+  "subtitleFacts.prod6",
   "subtitleFacts.fact1",
   "subtitleFacts.fact5",
   "subtitleFacts.fact8",
@@ -95,8 +129,22 @@ export const PRODUCTIVITY_SUBTITLE_KEYS = [
 
 export const GENERAL_SUBTITLE_KEYS = [
   "subtitle",
-  ...SUBTITLE_FACT_KEYS.map((key) => `subtitleFacts.${key}`),
+  "subtitleFacts.fact1",
+  "subtitleFacts.fact2",
+  "subtitleFacts.fact3",
+  "subtitleFacts.fact4",
+  "subtitleFacts.fact5",
+  "subtitleFacts.fact6",
+  "subtitleFacts.fact7",
+  "subtitleFacts.fact8",
 ] as const;
+
+export const PERIOD_SUBTITLE_KEYS: Record<GreetingPeriod, readonly string[]> = {
+  morning: ["subtitleFacts.morning1", "subtitleFacts.morning2", "subtitleFacts.morning3"],
+  afternoon: ["subtitleFacts.afternoon1", "subtitleFacts.afternoon2", "subtitleFacts.afternoon3"],
+  evening: ["subtitleFacts.evening1", "subtitleFacts.evening2", "subtitleFacts.evening3"],
+  night: ["subtitleFacts.night1", "subtitleFacts.night2", "subtitleFacts.night3"],
+};
 
 export const WEEKEND_SUBTITLE_KEYS = [
   ...KIT_SUBTITLE_KEYS,
@@ -140,21 +188,33 @@ export const OBSERVANCE_KEYS = [
   "adaLovelaceDay",
   "computerSecurityDay",
   "programmersDay",
+  "dataPrivacyDay",
+  "emojiDay",
+  "softwareFreedomDay",
+  "encryptionDay",
+  "internetDay",
+  "digitalPreservationDay",
 ] as const;
 
 export const OBSERVANCE_RULES: readonly ObservanceRule[] = [
   { kind: "fixed", month: 1, day: 1, key: "newYear" },
+  { kind: "fixed", month: 1, day: 28, key: "dataPrivacyDay" },
   { kind: "fixed", month: 2, day: 11, key: "womenAndGirlsInScience" },
   { kind: "fixed", month: 3, day: 14, key: "piDay" },
   { kind: "fixed", month: 3, day: 31, key: "backupDay" },
   { kind: "fixed", month: 4, day: 22, key: "earthDay" },
+  { kind: "fixed", month: 7, day: 17, key: "emojiDay" },
   { kind: "fixed", month: 8, day: 1, key: "webDay" },
+  { kind: "fixed", month: 10, day: 21, key: "encryptionDay" },
+  { kind: "fixed", month: 10, day: 29, key: "internetDay" },
   { kind: "fixed", month: 11, day: 30, key: "computerSecurityDay" },
   { kind: "fixed", month: 12, day: 24, key: "christmasEve" },
   { kind: "fixed", month: 12, day: 25, key: "christmas" },
   { kind: "nthWeekday", month: 2, weekday: 2, occurrence: 2, key: "saferInternetDay" },
   { kind: "nthWeekday", month: 5, weekday: 4, occurrence: 1, key: "passwordDay" },
+  { kind: "nthWeekday", month: 9, weekday: 6, occurrence: 3, key: "softwareFreedomDay" },
   { kind: "nthWeekday", month: 10, weekday: 2, occurrence: 2, key: "adaLovelaceDay" },
+  { kind: "nthWeekday", month: 11, weekday: 4, occurrence: 1, key: "digitalPreservationDay" },
   { kind: "dayOfYear", dayOfYear: 256, key: "programmersDay" },
   { kind: "easterOffset", offset: -7, key: "palmSunday" },
   { kind: "easterOffset", offset: -2, key: "goodFriday" },
@@ -269,24 +329,29 @@ function pickKey(keys: readonly string[], entropy: number): string {
   return keys[((entropy % count) + count) % count];
 }
 
-export function subtitlePoolFor(category: GreetingCategory): readonly string[] {
+export function subtitlePoolFor(category: GreetingCategory, period: GreetingPeriod): readonly string[] {
   if (category === "kit" || category === "privacy") return KIT_SUBTITLE_KEYS;
   if (category === "productivity") return PRODUCTIVITY_SUBTITLE_KEYS;
   if (category === "weekend") return WEEKEND_SUBTITLE_KEYS;
-  return GENERAL_SUBTITLE_KEYS;
+  return [...GENERAL_SUBTITLE_KEYS, ...PERIOD_SUBTITLE_KEYS[period]];
 }
 
-/** Observance subtitles. Extra `{key}2` / `{key}3` slots join this list once catalogs ship them. */
+/** Observance subtitles. Good Friday selection uses the WEB verse; catalogs still keep three slots. */
 export function observanceSubtitleKeys(occasionKey: string): readonly string[] {
-  return [`subtitleObservance.${occasionKey}`];
+  return [`subtitleObservance.${occasionKey}`, `subtitleObservance.${occasionKey}2`, `subtitleObservance.${occasionKey}3`];
 }
 
-/** Time-of-day lines plus signature extras; weekend lines join the pool on Sat/Sun. */
+/** Time-of-day lines plus signature extras; weekend / Monday / Friday flavor joins the pool. */
 export function getGreetingPoolKeys(date: Date): readonly string[] {
-  const periodKeys = GREETING_PERIOD_KEYS[getGreetingPeriod(date)];
-  const extras = ["kit", "productivity", "privacy"] as const;
-  const isWeekend = date.getDay() === 0 || date.getDay() === 6;
-  return isWeekend ? [...periodKeys, ...extras, "weekend", "weekend2"] : [...periodKeys, ...extras];
+  const period = getGreetingPeriod(date);
+  const periodKeys = GREETING_PERIOD_KEYS[period];
+  const extras = ["kit", "kit2", "kit3", "productivity", "productivity2", "productivity3", "privacy", "privacy2", "privacy3"] as const;
+  const weekday = date.getDay();
+  const flavor: string[] = [];
+  if (weekday === 1 && period === "morning") flavor.push("monday");
+  if (weekday === 5 && (period === "afternoon" || period === "evening")) flavor.push("friday");
+  const isWeekend = weekday === 0 || weekday === 6;
+  return isWeekend ? [...periodKeys, ...extras, "weekend", "weekend2", "weekend3"] : [...periodKeys, ...extras, ...flavor];
 }
 
 export function getHomeGreetingSelection(date: Date, locale: string, variant: number): HomeGreetingSelection {
@@ -326,7 +391,7 @@ export function getHomeGreetingSelection(date: Date, locale: string, variant: nu
   const greetingKey = `greeting.${key}`;
   return {
     greetingKey,
-    subtitle: { kind: "i18n", key: pickKey(subtitlePoolFor(category), subtitleEntropy) },
+    subtitle: { kind: "i18n", key: pickKey(subtitlePoolFor(category, period), subtitleEntropy) },
     motion: subtitleMotionFor({ category, period, greetingKey }),
     category,
     day,
