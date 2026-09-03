@@ -57,12 +57,40 @@ describe("social metadata builders", () => {
     expect(tool.description).toBeTruthy();
     expect(String(tool.alternates?.canonical)).toContain("/en/tools/pdf-merge/");
 
-    const clock = await buildToolMetadata("en", "timezone-converter");
+    const clock = await buildToolMetadata("en", "timezone-converter", "world-clock");
     expect(String(clock.alternates?.canonical)).toContain("/en/tools/world-clock/");
     expect(String(clock.alternates?.canonical)).not.toContain("timezone-converter");
+    expect(clock.robots).toBeUndefined();
+
+    const alias = await buildToolMetadata("en", "timezone-converter");
+    expect(alias.robots).toMatchObject({ index: false, follow: true });
+
+    const legacy = await buildToolMetadata("en", "media-convert");
+    expect(String(legacy.alternates?.canonical)).toContain("/en/tools/video-convert/");
+    expect(legacy.robots).toMatchObject({ index: false, follow: true });
 
     const settings = await buildSectionMetadata("de", "settings");
     expect(settings.title).toEqual(expect.stringContaining("Kit"));
     expect(String(settings.alternates?.canonical)).toBe(`${SITE_URL}/de/settings/`);
+    expect(settings.robots).toMatchObject({ index: false, follow: true });
+
+    const zh = await buildLocaleMetadata("zh");
+    expect(zh.alternates?.canonical).toBe(`${SITE_URL}/zh-Hans/`);
+    expect(zh.robots).toMatchObject({ index: false, follow: true });
+    expect(zh.alternates?.languages).not.toHaveProperty("zh");
+  });
+});
+
+describe("sitemap", () => {
+  it("indexes first-class locales and omits chrome and /zh/", async () => {
+    const { default: sitemap } = await import("@/app/sitemap");
+    const urls = sitemap().map((entry) => entry.url);
+    expect(urls.some((url) => url.endsWith("/en/"))).toBe(true);
+    expect(urls.some((url) => url.includes("/zh-Hans/tools/world-clock/"))).toBe(true);
+    expect(urls.some((url) => url.includes("/zh/"))).toBe(false);
+    expect(urls.some((url) => url.includes("/history/"))).toBe(false);
+    expect(urls.some((url) => url.includes("/settings/"))).toBe(false);
+    expect(urls.some((url) => url.includes("/favorites/"))).toBe(false);
+    expect(urls.some((url) => url.includes("timezone-converter"))).toBe(false);
   });
 });

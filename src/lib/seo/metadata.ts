@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
-import { defaultLocale, isPathLocale, messageFileFor, pathLocales } from "@/lib/i18n/config";
-import { getTool } from "@/lib/tools/registry";
+import { defaultLocale, isPathLocale, locales, messageFileFor } from "@/lib/i18n/config";
+import { getTool, legacyToolIdMap, resolveToolId } from "@/lib/tools/registry";
+import { toolPathSegment } from "@/lib/navigation/routes";
 import {
   absoluteUrl,
   ogImageUrl,
@@ -45,7 +46,7 @@ function languageAlternates(pathAfterLocale: string): Record<string, string> {
   const map: Record<string, string> = {
     "x-default": absoluteUrl(`/en${pathAfterLocale}`),
   };
-  for (const loc of pathLocales) {
+  for (const loc of locales) {
     map[loc] = absoluteUrl(`/${loc}${pathAfterLocale}`);
   }
   return map;
@@ -55,7 +56,7 @@ function alternateOgLocales(pathLoc: string): string[] {
   const seen = new Set<string>();
   const out: string[] = [];
   const current = ogLocaleFor(pathLoc);
-  for (const loc of pathLocales) {
+  for (const loc of locales) {
     const tag = ogLocaleFor(loc);
     if (tag === current || seen.has(tag)) continue;
     seen.add(tag);
@@ -63,6 +64,12 @@ function alternateOgLocales(pathLoc: string): string[] {
   }
   return out;
 }
+
+function canonicalLocale(pathLoc: string): string {
+  return pathLoc === "zh" ? "zh-Hans" : pathLoc;
+}
+
+const NOINDEX_SECTIONS = new Set(["/settings/", "/history/", "/favorites/"]);
 
 export function pageTitle(name: string): string {
   return `${name} — ${SITE_NAME}`;
@@ -73,14 +80,18 @@ export function buildSocialMetadata({
   title,
   description,
   pathAfterLocale,
+  noindex = false,
 }: {
   pathLoc: string;
   title: string;
   description: string;
   pathAfterLocale: string;
+  noindex?: boolean;
 }): Metadata {
-  const url = absoluteUrl(`/${pathLoc}${pathAfterLocale}`);
+  const canonicalLoc = canonicalLocale(pathLoc);
+  const url = absoluteUrl(`/${canonicalLoc}${pathAfterLocale}`);
   const images = socialImages();
+  const hide = noindex || pathLoc === "zh" || NOINDEX_SECTIONS.has(pathAfterLocale);
   return {
     title,
     description,
@@ -88,6 +99,7 @@ export function buildSocialMetadata({
     authors: [{ name: SITE_AUTHOR, url: SITE_AUTHOR_URL }],
     creator: SITE_AUTHOR,
     metadataBase: new URL(SITE_URL),
+    robots: hide ? { index: false, follow: true } : undefined,
     alternates: {
       canonical: url,
       languages: languageAlternates(pathAfterLocale),
@@ -97,8 +109,8 @@ export function buildSocialMetadata({
       description,
       url,
       siteName: SITE_NAME,
-      locale: ogLocaleFor(pathLoc),
-      alternateLocale: alternateOgLocales(pathLoc),
+      locale: ogLocaleFor(canonicalLoc),
+      alternateLocale: alternateOgLocales(canonicalLoc),
       type: "website",
       images,
     },
@@ -114,19 +126,23 @@ export function buildSocialMetadata({
 export async function buildToolMetadata(
   locale: string,
   toolId: string,
-  pathSegment = toolId === "timezone-converter" ? "world-clock" : toolId
+  pathSegment?: string
 ): Promise<Metadata> {
   const pathLoc = isPathLocale(locale) ? locale : defaultLocale;
   const messages = await loadMessages(pathLoc);
-  const tool = getTool(toolId);
-  const entry = messages.tools[tool?.id ?? toolId];
+  const resolved = resolveToolId(toolId) ?? getTool(toolId)?.id ?? toolId;
+  const publicSegment = pathSegment ?? toolPathSegment(resolved as Parameters<typeof toolPathSegment>[0]);
+  const entry = messages.tools[resolved] ?? messages.tools[toolId];
   const title = entry?.name ? pageTitle(entry.name) : messages.meta.title;
   const description = entry?.description || messages.meta.description;
+  const noindex =
+    toolId in legacyToolIdMap || (toolId === "timezone-converter" && pathSegment !== "world-clock");
   return buildSocialMetadata({
     pathLoc,
     title,
     description,
-    pathAfterLocale: `/tools/${pathSegment}/`,
+    pathAfterLocale: `/tools/${publicSegment}/`,
+    noindex,
   });
 }
 

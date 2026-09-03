@@ -14,7 +14,7 @@ import "./globals.css";
 
 const defaultTitle = "Kit — Browser tools that stay private";
 const defaultDescription =
-  "PDF, images, media, converters, and text tools that run on your device. Nothing is uploaded to our servers.";
+  "Private everyday browser tools—world clocks, converters, calculators, timers, and text helpers—plus PDF, image, media, and developer utilities. Nothing is uploaded.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
