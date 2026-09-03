@@ -50,7 +50,7 @@ Kit is a set of PDF, image, media, converter, and text tools that run on your de
 
 ## What you get
 
-A complete, polished toolkit: 84 tools, clear layout, light and dark appearance, a 30-language UI with a native picker, an installable PWA shell, and honest limits about what a browser can do.
+A complete, polished toolkit: 94 tools, clear layout, light and dark appearance, a 30-language UI with a native picker, an installable PWA shell, and honest limits about what a browser can do.
 
 ## Languages
 
@@ -58,7 +58,7 @@ The app interface and this GitHub README are available in **30 languages**. Swit
 
 ## Tools
 
-The home screen groups tools by job (PDF pages vs markup, developer inspect vs encode) instead of one flat dump.
+The home screen groups tools by job (PDF pages vs markup, developer inspect vs encode) instead of one flat dump. Converters cover units, currency, and aspect ratio. Everyday covers clocks, meeting overlap, percentages, loans, BMI, and a pomodoro timer.
 
 ### PDF
 - Merge, split, organize, page numbers
@@ -67,27 +67,27 @@ The home screen groups tools by job (PDF pages vs markup, developer inspect vs e
 - Extract text, PDF → images ZIP, images → PDF
 
 ### Images
-- Compress, resize, crop, rotate/flip, favicon pack
-- Adjust, filters, image watermark
+- Compress, resize, crop (drag handles), rotate/flip, favicon pack
+- Adjust, filters, image watermark, palette
 - Convert JPEG/PNG/WEBP, view/strip EXIF
 
 ### Audio & Video
-- Convert, trim with waveform, speed/volume, extract audio, clip → GIF  
+- Convert, trim with waveform, speed/volume, extract audio, clip → GIF, normalize loudness, skip silence  
   *(FFmpeg WASM; large files may be slow; limited codecs)*
 
 ### Data
 - JSON / YAML / TOML / SQL, CSV ↔ JSON, XML ↔ JSON
-- JSON → TypeScript interfaces
+- JSON → TypeScript interfaces, JSON path / flatten
 - Smart convert hub
 
 ### Writing
-- Markdown ↔ HTML, text diff, case convert, Lorem ipsum
+- Markdown ↔ HTML, text diff, case convert, line sort/unique, slugify, Lorem ipsum
 
 ### Developer
 - JWT decode, Unix timestamp, cron explainer, number base
-- Hash (SHA/MD5), regex, color
+- Hash (SHA/MD5), regex, color, contrast
 - Base64, URL, HTML entities
-- UUID, password generator, QR generate/read
+- UUID, IBAN/ISBN/EAN check, password generator, QR generate/read
 
 ## Privacy
 

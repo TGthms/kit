@@ -4,7 +4,7 @@ This file is the active implementation record. Current source is under `src/`, `
 
 ## Current baseline (2026-08-29)
 
-- **84 tools** in `src/lib/tools/registry.ts`.
+- **94 tools** in `src/lib/tools/registry.ts`.
 - Next.js 16 App Router with static export, PWA shell, Cloudflare Pages (canonical) and GitHub Pages CI. GitHub Actions runs typecheck, lint, and tests before the Pages backup publish.
 - 30 first-class locales plus the legacy `/zh/` path alias; localized tool metadata, sitemap, robots, and 62 legal documents.
 - Pure engines and tests under `src/lib/`; client tool views under `src/components/tools/`; favorites and metadata-only history in Zustand stores.
@@ -22,7 +22,7 @@ This file is the active implementation record. Current source is under `src/`, `
 - PDF.js documents are explicitly destroyed after normal processing. Raster and text extract cap at the first 200 pages and warn when a file is longer.
 - Privacy Policy and Terms exist for all 31 path locales; legal-loading tests cover every first-class locale.
 - SQL comments and non-identifier JSON keys are preserved; invalid HTML entity code points no longer crash decoding.
-- Everyday category includes unit conversion, currency, text counting, time zones, dates, tips/splits, BMI and calorie estimates, stopwatch/timer, random generation, and local image-to-PDF assembly.
+- Everyday category includes unit conversion, currency, text counting, time zones, meeting overlap, dates, tips/splits, percentage, loan/compound interest, BMI and calorie estimates, stopwatch/timer/pomodoro, and random generation. Images-to-PDF lives under PDF export.
 - PDF page numbers, PDF-to-images ZIP, images-to-PDF, form flattening, PDF metadata, PDF lock/unlock, image EXIF inspection, rotate/flip, filters, favicon export, XML/JSON, SQL, regex, hashing, UUID, color, Lorem ipsum, QR, and password tools are registered and implemented.
 - PDF merge thumbnails are rendered concurrently, while PDF-to-image processing still cleans up PDF.js documents.
 - Images-to-PDF defaults to A4 fit-to-page with margins; the tool can switch to original image size. The engine keeps both modes.
@@ -61,14 +61,11 @@ Component tests use the browser-like Vitest environment where needed; pure libra
 
 - True content-stream redaction; current cover is visual-only and is disclosed as such.
 - OCR for scanned PDFs; deferred because a client-side OCR engine would add a large download.
-- Visual crop handles on the image crop tool.
-- More file-tool batch defaults and consistent progress/cancel messaging.
 - More codec-specific validation and clearer unsupported-format errors for FFmpeg WASM.
 
 ### Engineering
 
 - Add focused React tests for the remaining high-risk tool flows and accessibility behavior.
-- Consider moving the large everyday tool view into smaller feature modules as more functionality is added.
 - Replace hard-coded file-tool classification with an explicit registry property.
 - Hash-based `script-src` (dropping `'unsafe-inline'`) is blocked by Next.js Flight inline scripts on static export.
 
