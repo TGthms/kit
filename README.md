@@ -58,7 +58,7 @@ The app interface and this GitHub README are available in **30 languages**. Swit
 
 ## Tools
 
-The home screen groups tools by job (PDF pages vs markup, developer inspect vs encode) instead of one flat dump. Converters cover units, currency, and aspect ratio. Everyday covers clocks, meeting overlap, percentages, loans, BMI, and a pomodoro timer.
+The home screen groups tools by job (PDF pages vs markup, developer inspect vs encode) instead of one flat dump. Converters cover units, currency, and aspect ratio. Everyday covers clocks, meeting overlap, percentages, loans, BMI, and a stopwatch & countdown.
 
 ### PDF
 - Merge, split, organize, page numbers

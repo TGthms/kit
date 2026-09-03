@@ -1,11 +1,6 @@
 export type StopwatchStatus = "idle" | "running" | "paused";
 export type TimerStatus = "idle" | "running" | "paused" | "finished";
 
-/** Classic pomodoro focus interval (25 minutes). */
-export const POMODORO_FOCUS_MS = 25 * 60 * 1000;
-/** Classic pomodoro short break (5 minutes). */
-export const POMODORO_BREAK_MS = 5 * 60 * 1000;
-
 export type StopwatchState = {
   status: StopwatchStatus;
   elapsedMs: number;

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { createStopwatch, createTimer, durationFromHms, getStopwatchElapsed, getTimerRemaining, pauseStopwatch, pauseTimer, POMODORO_BREAK_MS, POMODORO_FOCUS_MS, resetStopwatch, startStopwatch, startTimer, tickTimer } from "./timer";
+import { createStopwatch, createTimer, durationFromHms, getStopwatchElapsed, getTimerRemaining, pauseStopwatch, pauseTimer, resetStopwatch, startStopwatch, startTimer, tickTimer } from "./timer";
 
 describe("stopwatch and timer state math", () => {
   it("tracks stopwatch time using immutable state transitions", () => {
@@ -35,11 +35,5 @@ describe("stopwatch and timer state math", () => {
     expect(durationFromHms(0, 5, 0)).toBe(300_000);
     expect(durationFromHms(0, 0, 0)).toBe(0);
     expect(durationFromHms(Number.NaN, -1, 1.8)).toBe(1_000);
-  });
-
-  it("exports classic pomodoro durations", () => {
-    expect(POMODORO_FOCUS_MS).toBe(25 * 60 * 1000);
-    expect(POMODORO_BREAK_MS).toBe(5 * 60 * 1000);
-    expect(createTimer(POMODORO_FOCUS_MS).durationMs).toBe(1_500_000);
   });
 });
