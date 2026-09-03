@@ -54,6 +54,8 @@ import {
   type RecordableRandomMode,
 } from "@/lib/converter/random";
 import {
+  POMODORO_BREAK_MS,
+  POMODORO_FOCUS_MS,
   createStopwatch,
   createTimer,
   durationFromHms,
@@ -439,7 +441,8 @@ export function TipSplitCalculator() {
 export function StopwatchTimer() {
   const t = useTranslations("tools.stopwatch-timer");
   const log = useToolHistory(toolId("stopwatch-timer"));
-  const [mode, setMode] = useState<"stopwatch" | "timer">("stopwatch");
+  const [mode, setMode] = useState<"stopwatch" | "timer" | "pomodoro">("stopwatch");
+  const [pomodoroPhase, setPomodoroPhase] = useState<"focus" | "break">("focus");
   const [stopwatch, setStopwatch] = useState<StopwatchState>(() => createStopwatch());
   const [timer, setTimer] = useState<TimerState>(() => createTimer(5 * 60 * 1000));
   const [hours, setHours] = useState("0");
@@ -447,18 +450,19 @@ export function StopwatchTimer() {
   const [seconds, setSeconds] = useState("0");
   const [now, setNow] = useState(() => Date.now());
   const running = mode === "stopwatch" ? stopwatch.status === "running" : timer.status === "running";
-  const duration = durationFromHms(Number(hours), Number(minutes), Number(seconds));
-  const fieldsLocked = mode === "timer" && timer.status !== "idle";
+  const pomodoroMs = pomodoroPhase === "focus" ? POMODORO_FOCUS_MS : POMODORO_BREAK_MS;
+  const duration = mode === "pomodoro" ? pomodoroMs : durationFromHms(Number(hours), Number(minutes), Number(seconds));
+  const fieldsLocked = (mode === "timer" || mode === "pomodoro") && timer.status !== "idle";
   useEffect(() => {
     if (!running) return;
     const interval = window.setInterval(() => {
       const current = Date.now();
       setNow(current);
-      if (mode === "timer") setTimer((previous) => tickTimer(previous, current));
+      if (mode === "timer" || mode === "pomodoro") setTimer((previous) => tickTimer(previous, current));
     }, 50);
     return () => window.clearInterval(interval);
-  }, [mode, running]);
-  if (mode === "timer" && timer.status === "idle" && timer.durationMs !== duration) {
+  }, [mode, pomodoroPhase, running]);
+  if ((mode === "timer" || mode === "pomodoro") && timer.status === "idle" && timer.durationMs !== duration) {
     setTimer(createTimer(duration));
   }
   const elapsed = getStopwatchElapsed(stopwatch, now);
@@ -468,24 +472,43 @@ export function StopwatchTimer() {
   const toggle = () => {
     const current = Date.now();
     if (mode === "stopwatch") setStopwatch((previous) => previous.status === "running" ? pauseStopwatch(previous, current) : startStopwatch(previous, current));
-    else setTimer((previous) => previous.status === "idle" ? startTimer(createTimer(duration), current) : previous.status === "running" ? pauseTimer(previous, current) : startTimer(previous, current));
+    else if (mode === "pomodoro" && timer.status === "finished") {
+      const nextPhase = pomodoroPhase === "focus" ? "break" : "focus";
+      setPomodoroPhase(nextPhase);
+      setTimer(startTimer(createTimer(nextPhase === "focus" ? POMODORO_FOCUS_MS : POMODORO_BREAK_MS), current));
+    } else setTimer((previous) => previous.status === "idle" ? startTimer(createTimer(duration), current) : previous.status === "running" ? pauseTimer(previous, current) : startTimer(previous, current));
   };
   const reset = () => {
     if (mode === "stopwatch") setStopwatch(resetStopwatch());
-    else setTimer(resetTimer(duration));
+    else {
+      if (mode === "pomodoro") setPomodoroPhase("focus");
+      setTimer(resetTimer(mode === "pomodoro" ? POMODORO_FOCUS_MS : duration));
+    }
     setNow(Date.now());
   };
   return (
     <ToolShell toolId={toolId("stopwatch-timer")}>
       <SegmentedControl
         value={mode}
-        aria-label={`${text(t, "stopwatch", "Stopwatch")} / ${text(t, "countdown", "Countdown")}`}
-        onChange={(next) => setMode(next)}
+        aria-label={`${text(t, "stopwatch", "Stopwatch")} / ${text(t, "countdown", "Countdown")} / ${text(t, "pomodoro", "Pomodoro")}`}
+        onChange={(next) => {
+          setMode(next);
+          if (next === "pomodoro") {
+            setPomodoroPhase("focus");
+            setTimer(createTimer(POMODORO_FOCUS_MS));
+          }
+        }}
         options={[
           { value: "stopwatch", label: text(t, "stopwatch", "Stopwatch"), icon: TimerReset },
           { value: "timer", label: text(t, "countdown", "Countdown"), icon: Clock3 },
+          { value: "pomodoro", label: text(t, "pomodoro", "Pomodoro"), icon: TimerReset },
         ]}
       />
+      {mode === "pomodoro" ? (
+        <p className="text-sm font-medium text-muted-foreground">
+          {pomodoroPhase === "focus" ? text(t, "focus", "Focus · 25 min") : text(t, "shortBreak", "Break · 5 min")}
+        </p>
+      ) : null}
       <Card className="overflow-hidden"><CardContent className="flex flex-col items-center gap-6 p-6 sm:p-10">{mode === "stopwatch" ? (
         <AnimatedClock
           hours={stopwatchParts.hours}

@@ -330,6 +330,29 @@ function UnitConverter({
   const toCode = compatibleTo.some((option) => option.code === to)
     ? to
     : (compatibleTo.find((option) => option.code !== from)?.code ?? to);
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const qFrom = params.get("from");
+    const qTo = params.get("to");
+    const qV = params.get("v");
+    const nextFrom = qFrom && options.some((option) => option.code === qFrom) ? (qFrom as UnitCode) : null;
+    const nextTo = qTo && options.some((option) => option.code === qTo) ? (qTo as UnitCode) : null;
+    queueMicrotask(() => {
+      if (nextFrom) setFrom(nextFrom);
+      if (nextTo) setTo(nextTo);
+      if (qV !== null && qV !== "") {
+        setEdited("from");
+        setSource(qV);
+      }
+    });
+  }, [category, options]);
+  useEffect(() => {
+    const url = new URL(window.location.href);
+    url.searchParams.set("from", from);
+    url.searchParams.set("to", toCode);
+    url.searchParams.set("v", source);
+    window.history.replaceState(null, "", `${url.pathname}${url.search}${url.hash}`);
+  }, [from, source, toCode]);
   const [rootFontSizePx, setRootFontSizePx] = useState("16");
   const [parentFontSizePx, setParentFontSizePx] = useState("16");
   const [dpi, setDpi] = useState("96");

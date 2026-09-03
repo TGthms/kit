@@ -26,7 +26,7 @@ export function PdfMerge() {
   const log = useToolHistory("pdf-merge");
   const [files, setFiles] = useState<FileItem[]>([]);
   const [thumbs, setThumbs] = useState<Record<string, string>>({});
-  const [loading, setLoading] = useState(false);
+  const job = useToolJob();
   const [result, setResult] = useState<{ blob: Blob; name: string } | null>(null);
   const thumbsGen = useRef(0);
   const thumbsRef = useRef(thumbs);
@@ -79,20 +79,28 @@ export function PdfMerge() {
       toast.error(t("empty"));
       return;
     }
-    setLoading(true);
+    const ac = job.start();
     try {
-      const buffers = await Promise.all(files.map((f) => f.file.arrayBuffer()));
+      const buffers = [];
+      for (let i = 0; i < files.length; i += 1) {
+        if (ac.signal.aborted) throw new DOMException("Aborted", "AbortError");
+        buffers.push(await files[i].file.arrayBuffer());
+        job.setProgress(Math.round(((i + 1) / (files.length + 1)) * 100));
+      }
       const out = await mergePdfs(buffers);
+      if (ac.signal.aborted) throw new DOMException("Aborted", "AbortError");
+      job.setProgress(100);
       const blob = bytesToBlob(out, "application/pdf");
       downloadBlob(blob, "merged.pdf");
       setResult({ blob, name: "merged.pdf" });
       toast.success(t("success", { count: files.length }));
       log(`${files.length} files`, "success");
     } catch (e) {
-      toast.error(e instanceof Error ? e.message : tc("error"));
+      if (e instanceof DOMException && e.name === "AbortError") toast.error(tc("cancel"));
+      else toast.error(e instanceof Error ? e.message : tc("error"));
       log("merge failed", "failed");
     } finally {
-      setLoading(false);
+      job.stop();
     }
   };
 
@@ -115,7 +123,8 @@ export function PdfMerge() {
         </div>
       )}
       {files.length > 1 ? <p className="text-xs text-muted-foreground">{tc("reorder")}</p> : null}
-      <ActionBar onRun={run} loading={loading} label={t("run")} disabled={files.length < 2} />
+      {job.loading ? <Progress value={job.progress} /> : null}
+      <ActionBar onRun={run} loading={job.loading} label={t("run")} disabled={files.length < 2} onCancel={job.cancel} />
       <DownloadResult file={result} />
     </ToolShell>
   );

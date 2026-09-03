@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState, type PointerEvent as ReactPointerEvent } from "react";
 import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 import JSZip from "jszip";
@@ -142,6 +142,105 @@ export function ImageResize() {
   );
 }
 
+type CropHandle = "move" | "n" | "s" | "e" | "w" | "ne" | "nw" | "se" | "sw";
+
+function CropBox({
+  x,
+  y,
+  w,
+  h,
+  natural,
+  onChange,
+}: {
+  x: number;
+  y: number;
+  w: number;
+  h: number;
+  natural: { width: number; height: number };
+  onChange: (next: { x: number; y: number; w: number; h: number }) => void;
+}) {
+  const boxRef = useRef<HTMLDivElement>(null);
+  const drag = useRef<{ handle: CropHandle; startX: number; startY: number; orig: { x: number; y: number; w: number; h: number } } | null>(null);
+
+  const onPointerMove = (event: ReactPointerEvent<HTMLDivElement>) => {
+    const parent = boxRef.current?.parentElement;
+    if (!drag.current || !parent) return;
+    const rect = parent.getBoundingClientRect();
+    const scaleX = natural.width / Math.max(rect.width, 1);
+    const scaleY = natural.height / Math.max(rect.height, 1);
+    const dx = (event.clientX - drag.current.startX) * scaleX;
+    const dy = (event.clientY - drag.current.startY) * scaleY;
+    const orig = drag.current.orig;
+    let nextX = orig.x;
+    let nextY = orig.y;
+    let nextW = orig.w;
+    let nextH = orig.h;
+    const handle = drag.current.handle;
+    if (handle === "move") {
+      nextX = orig.x + dx;
+      nextY = orig.y + dy;
+    } else {
+      if (handle.includes("e")) nextW = orig.w + dx;
+      if (handle.includes("s")) nextH = orig.h + dy;
+      if (handle.includes("w")) {
+        nextX = orig.x + dx;
+        nextW = orig.w - dx;
+      }
+      if (handle.includes("n")) {
+        nextY = orig.y + dy;
+        nextH = orig.h - dy;
+      }
+    }
+    nextW = Math.max(1, nextW);
+    nextH = Math.max(1, nextH);
+    nextX = Math.min(Math.max(0, nextX), Math.max(0, natural.width - nextW));
+    nextY = Math.min(Math.max(0, nextY), Math.max(0, natural.height - nextH));
+    if (nextX + nextW > natural.width) nextW = natural.width - nextX;
+    if (nextY + nextH > natural.height) nextH = natural.height - nextY;
+    onChange({ x: Math.round(nextX), y: Math.round(nextY), w: Math.round(nextW), h: Math.round(nextH) });
+  };
+
+  const beginDrag = (event: ReactPointerEvent<HTMLDivElement>, handle: CropHandle) => {
+    event.preventDefault();
+    event.stopPropagation();
+    event.currentTarget.setPointerCapture(event.pointerId);
+    drag.current = { handle, startX: event.clientX, startY: event.clientY, orig: { x, y, w, h } };
+  };
+
+  const endDrag = () => {
+    drag.current = null;
+  };
+
+  const handleClass = "absolute z-10 h-3 w-3 rounded-sm border border-white bg-primary shadow";
+
+  return (
+    <div
+      ref={boxRef}
+      className="absolute border-2 border-primary/90 bg-primary/15"
+      style={{
+        left: `${(x / Math.max(natural.width, 1)) * 100}%`,
+        top: `${(y / Math.max(natural.height, 1)) * 100}%`,
+        width: `${(w / Math.max(natural.width, 1)) * 100}%`,
+        height: `${(h / Math.max(natural.height, 1)) * 100}%`,
+        touchAction: "none",
+      }}
+      onPointerDown={(event) => beginDrag(event, "move")}
+      onPointerMove={onPointerMove}
+      onPointerUp={endDrag}
+      onPointerCancel={endDrag}
+    >
+      <div className={`${handleClass} -left-1.5 -top-1.5 cursor-nwse-resize`} onPointerDown={(event) => beginDrag(event, "nw")} />
+      <div className={`${handleClass} -right-1.5 -top-1.5 cursor-nesw-resize`} onPointerDown={(event) => beginDrag(event, "ne")} />
+      <div className={`${handleClass} -bottom-1.5 -left-1.5 cursor-nesw-resize`} onPointerDown={(event) => beginDrag(event, "sw")} />
+      <div className={`${handleClass} -bottom-1.5 -right-1.5 cursor-nwse-resize`} onPointerDown={(event) => beginDrag(event, "se")} />
+      <div className={`${handleClass} -top-1.5 left-1/2 -translate-x-1/2 cursor-ns-resize`} onPointerDown={(event) => beginDrag(event, "n")} />
+      <div className={`${handleClass} -bottom-1.5 left-1/2 -translate-x-1/2 cursor-ns-resize`} onPointerDown={(event) => beginDrag(event, "s")} />
+      <div className={`${handleClass} -left-1.5 top-1/2 -translate-y-1/2 cursor-ew-resize`} onPointerDown={(event) => beginDrag(event, "w")} />
+      <div className={`${handleClass} -right-1.5 top-1/2 -translate-y-1/2 cursor-ew-resize`} onPointerDown={(event) => beginDrag(event, "e")} />
+    </div>
+  );
+}
+
 export function ImageCrop() {
   const t = useTranslations("tools.image-crop");
   const tc = useTranslations("common");
@@ -196,13 +295,17 @@ export function ImageCrop() {
                 setNatural({ width: image.naturalWidth, height: image.naturalHeight });
               }}
             />
-            <div
-              className="pointer-events-none absolute border-2 border-primary/90 bg-primary/15"
-              style={{
-                left: `${(x / Math.max(natural.width, 1)) * 100}%`,
-                top: `${(y / Math.max(natural.height, 1)) * 100}%`,
-                width: `${(w / Math.max(natural.width, 1)) * 100}%`,
-                height: `${(h / Math.max(natural.height, 1)) * 100}%`,
+            <CropBox
+              x={x}
+              y={y}
+              w={w}
+              h={h}
+              natural={natural}
+              onChange={({ x: nx, y: ny, w: nw, h: nh }) => {
+                setX(nx);
+                setY(ny);
+                setW(nw);
+                setH(nh);
               }}
             />
           </div>

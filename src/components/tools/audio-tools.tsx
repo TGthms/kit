@@ -10,7 +10,7 @@ import { Slider } from "@/components/ui/slider";
 import { Progress } from "@/components/ui/progress";
 import { downloadBlob, downloadMany, bytesToBlob } from "@/lib/utils";
 import { MediaTimeline } from "@/components/shared/media-timeline";
-import { AUDIO_FORMATS, audioConvertArgs, audioSpeedArgs, trimArgs } from "@/lib/media/ffmpeg-args";
+import { AUDIO_FORMATS, audioConvertArgs, audioNormalizeArgs, audioSilenceSkipArgs, audioSpeedArgs, trimArgs } from "@/lib/media/ffmpeg-args";
 import { runSequentialBatch, stemmedName } from "@/lib/jobs/batch";
 import { ActionBar, ToolLimits, ToolShell, useToolHistory, useToolJob, loadFfmpeg } from "./shared";
 
@@ -23,6 +23,7 @@ export function AudioConvert() {
   const log = useToolHistory("audio-convert");
   const [files, setFiles] = useState<FileItem[]>([]);
   const [format, setFormat] = useState("mp3");
+  const [operation, setOperation] = useState<"convert" | "normalize" | "silence">("convert");
   const job = useToolJob();
 
   const run = async () => {
@@ -39,7 +40,12 @@ export function AudioConvert() {
           const output = `output-${index}.${format}`;
           const report = (p: number) =>
             job.setProgress(Math.round(((index + p) / files.length) * 100));
-          const args = audioConvertArgs(input, output, format);
+          const args =
+            operation === "normalize"
+              ? audioNormalizeArgs(input, output)
+              : operation === "silence"
+                ? audioSilenceSkipArgs(input, output)
+                : audioConvertArgs(input, output, format);
           const out = await runFFmpeg(input, data, output, args, report, ac.signal);
           return {
             blob: bytesToBlob(out, "application/octet-stream"),
@@ -66,8 +72,16 @@ export function AudioConvert() {
         <p>{t("note")}</p>
       </ToolLimits>
       <div className="space-y-2">
+        <Label>{t("operation")}</Label>
+        <select className={selectClass} value={operation} onChange={(e) => setOperation(e.target.value as typeof operation)}>
+          <option value="convert">{t("convert")}</option>
+          <option value="normalize">{t("normalize")}</option>
+          <option value="silence">{t("skipSilence")}</option>
+        </select>
+      </div>
+      <div className="space-y-2">
         <Label>{tc("format")}</Label>
-        <select className={selectClass} value={format} onChange={(e) => setFormat(e.target.value)}>
+        <select className={selectClass} value={format} onChange={(e) => setFormat(e.target.value)} disabled={operation !== "convert"}>
           {AUDIO_FORMATS.map((f) => (
             <option key={f} value={f}>
               {f.toUpperCase()}
