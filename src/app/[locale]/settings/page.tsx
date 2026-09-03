@@ -10,7 +10,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { SegmentedControl } from "@/components/ui/segmented-control";
 import { useHistoryStore } from "@/stores/history-store";
 import { Switch } from "@/components/ui/switch";
-import { readThemeChoice, rememberThemeChoice } from "@/lib/theme/resolve";
+import { rememberThemeChoice } from "@/lib/theme/resolve";
 import { useHydrated } from "@/lib/react/hydrated";
 import { runCircularThemeTransition } from "@/lib/theme/circular-transition";
 
@@ -19,12 +19,13 @@ export default function SettingsPage() {
   const tc = useTranslations("common");
   const th = useTranslations("history");
   const tn = useTranslations("nav");
-  const { setTheme, systemTheme } = useTheme();
+  const { resolvedTheme, setTheme, systemTheme } = useTheme();
   const clear = useHistoryStore((s) => s.clear);
   const historyEnabled = useHistoryStore((s) => s.enabled);
   const setHistoryEnabled = useHistoryStore((s) => s.setEnabled);
   const hydrated = useHydrated();
-  const appearance = hydrated ? readThemeChoice() : "system";
+  // Painted Light/Dark. Stored intent may still be System until the user taps.
+  const appearance = hydrated && resolvedTheme === "dark" ? "dark" : "light";
 
   return (
     <div className="mx-auto max-w-2xl space-y-6">
@@ -40,29 +41,28 @@ export default function SettingsPage() {
               value={appearance}
               aria-label={t("appearance")}
               onChange={(value, event) => {
+                const next = value === "dark" ? "dark" : "light";
                 const system = systemTheme === "dark" ? "dark" : "light";
-                const visual = value === "system" ? system : value;
                 const persist = () => {
-                  rememberThemeChoice(value, setTheme, system);
+                  rememberThemeChoice(next, setTheme, system);
                 };
-                if (value === appearance) {
+                if (next === appearance) {
                   persist();
                   return;
                 }
                 runCircularThemeTransition(
-                  visual,
+                  next,
                   persist,
                   event && "clientX" in event ? event : undefined
                 );
               }}
               options={[
-                { value: "system", label: tc("themeSystem") },
                 { value: "light", label: tc("themeLight") },
                 { value: "dark", label: tc("themeDark") },
               ]}
             />
           ) : (
-            <div className="h-11 w-52 rounded-2xl bg-secondary/80" aria-hidden />
+            <div className="h-11 w-40 rounded-2xl bg-secondary/80" aria-hidden />
           )}
         </CardContent>
       </Card>
