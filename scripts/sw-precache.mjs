@@ -85,7 +85,7 @@ export function writePrecacheManifest(outDir, basePath = "") {
 }
 
 const thisFile = fileURLToPath(import.meta.url);
-const invoked = process.argv[1] && pathToFileURL(process.argv[1]).href === thisFile;
+const invoked = process.argv[1] && pathToFileURL(process.argv[1]).href === import.meta.url;
 
 if (invoked) {
   const rootDir = dirname(dirname(thisFile));
