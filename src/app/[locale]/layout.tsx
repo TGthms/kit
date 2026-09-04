@@ -8,6 +8,7 @@ import { AppShell } from "@/components/layout/app-shell";
 import { ShortcutsProvider } from "@/components/layout/shortcuts-provider";
 import { ServiceWorkerRegister } from "@/components/pwa/sw-register";
 import { NavigationGuard } from "@/components/layout/navigation-guard";
+import { ChunkLoadRecovery } from "@/components/pwa/chunk-load-recovery";
 import { SiteJsonLd } from "@/lib/seo/json-ld";
 import { SITE_NAME } from "@/lib/seo/site";
 
@@ -38,6 +39,7 @@ export default async function LocaleLayout({
             <AppShell>{children}</AppShell>
           </ShortcutsProvider>
           <NavigationGuard />
+          <ChunkLoadRecovery />
           <ServiceWorkerRegister />
         </Providers>
       </NextIntlClientProvider>
