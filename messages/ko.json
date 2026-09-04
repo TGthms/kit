@@ -158,10 +158,10 @@
       "health": "건강"
     },
     "greeting": {
-      "morning": "좋은 아침이에요 — 즐거운 {day} 보내세요.",
-      "afternoon": "좋은 오후예요 — 즐거운 {day} 보내세요.",
-      "evening": "좋은 저녁이에요 — 즐거운 {day} 보내세요.",
-      "night": "아직 안 주무셨어요? 이 {day}은 천천히 가세요.",
+      "morning": "좋은 아침이에요. 오늘은 천천히 시작해도 돼요.",
+      "afternoon": "좋은 오후예요. 하루는 어떤가요?",
+      "evening": "좋은 저녁이에요. 오늘이 괜찮았기를 바라요.",
+      "night": "아직 안 주무셨어요? 밤은 서두르지 않아도 돼요.",
       "extra1": "오늘 무엇을 더 쉽게 만들어 볼까요?",
       "extra2": "준비되면 시작해요.",
       "extra3": "유용한 일을 하나 해볼까요.",
@@ -199,7 +199,7 @@
       "night2": "아직 여기 있나요? Kit도 있어요.",
       "night3": "조용한 시간이에요. 단순하게 가요.",
       "observance": {
-        "newYear": "새해 복 많이 받으세요 — 빈 페이지, 계정은 필요 없어요.",
+        "newYear": "새해 복 많이 받으세요. 고요한 시작, 깨끗한 페이지.",
         "christmasEve": "크리스마스 이브 — 따뜻함과 성찰, 좋은 사람들과 함께하는 조용한 시간이에요.",
         "christmas": "메리 크리스마스 — 평온한 하루와 새로운 빛나는 아이디어를 바라요.",
         "goodFriday": "성금요일 — 성찰과 친절, 희망을 위한 고요한 날이에요.",
@@ -392,6 +392,13 @@
       "digitalPreservationDay": "Kit는 보관소가 아니지만, 여분을 남기라는 알림이에요.",
       "digitalPreservationDay2": "형식은 바뀌어요. 기기의 사본은 그래도 도움이 돼요.",
       "digitalPreservationDay3": "파일은 보존하세요. 도구에 부치지 마세요."
+    },
+    "newYearCard": {
+      "countdownTitle": "{year}년이 곧 시작돼요.",
+      "countdownSubtitle": "고요한 10분. 그다음엔 새 페이지.",
+      "celebrateTitle": "새해 복 많이 받으세요.",
+      "celebrateSubtitle": "{year}년은 여기서 시작해요.",
+      "countdownLabel": "{year}년까지 {minutes}분 {seconds}초"
     }
   },
   "categories": {

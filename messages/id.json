@@ -158,10 +158,10 @@
       "health": "Kesehatan"
     },
     "greeting": {
-      "morning": "Selamat pagi — semoga {day} Anda menyenangkan.",
-      "afternoon": "Selamat siang — semoga {day} Anda menyenangkan.",
-      "evening": "Selamat malam — semoga {day} Anda menyenangkan.",
-      "night": "Masih terjaga? Jalani {day} ini dengan santai.",
+      "morning": "Selamat pagi — hari boleh dimulai pelan.",
+      "afternoon": "Selamat siang — bagaimana harinya?",
+      "evening": "Selamat malam — semoga harinya ramah.",
+      "night": "Masih terjaga? Malam ini jangan buru-buru.",
       "extra1": "Apa yang bisa kita buat lebih mudah hari ini?",
       "extra2": "Kita mulai saat Anda siap.",
       "extra3": "Mari selesaikan sesuatu yang berguna.",
@@ -199,7 +199,7 @@
       "night2": "Masih di sini? Kit juga.",
       "night3": "Jam-jam sepi. Mari tetap sederhana.",
       "observance": {
-        "newYear": "Selamat Tahun Baru — halaman kosong, tanpa akun.",
+        "newYear": "Selamat Tahun Baru — awal yang tenang, halaman yang bersih.",
         "christmasEve": "Malam Natal — momen tenang untuk kehangatan, renungan, dan kebersamaan.",
         "christmas": "Selamat Natal — semoga hari Anda damai dan dipenuhi ide-ide baru yang cerah.",
         "goodFriday": "Jumat Agung — hari yang tenang untuk renungan, kebaikan, dan harapan.",
@@ -392,6 +392,13 @@
       "digitalPreservationDay": "Kit bukan arsip, tetapi pengingat untuk menyimpan cadangan.",
       "digitalPreservationDay2": "Bentuk berkas berubah. Salinan di perangkat tetap membantu.",
       "digitalPreservationDay3": "Lestarikan berkasnya; jangan kirim ke sebuah alat."
+    },
+    "newYearCard": {
+      "countdownTitle": "{year} hampir tiba.",
+      "countdownSubtitle": "Sepuluh menit yang tenang. Lalu halaman baru.",
+      "celebrateTitle": "Selamat Tahun Baru.",
+      "celebrateSubtitle": "{year} dimulai di sini.",
+      "countdownLabel": "{minutes} menit {seconds} detik menuju {year}."
     }
   },
   "categories": {

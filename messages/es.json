@@ -158,10 +158,10 @@
       "health": "Salud"
     },
     "greeting": {
-      "morning": "Buenos días — feliz {day}.",
-      "afternoon": "Buenas tardes — feliz {day}.",
-      "evening": "Buenas noches — feliz {day}.",
-      "night": "¿Sigues despierto? Tómate el {day} con calma.",
+      "morning": "Buenos días — que el día empiece con calma.",
+      "afternoon": "Buenas tardes — ¿qué tal va el día?",
+      "evening": "Buenas tardes — ojalá el día te haya tratado bien.",
+      "night": "¿Sigues despierto? Esta noche, sin prisa.",
       "extra1": "¿Qué podemos hacer más fácil hoy?",
       "extra2": "Cuando quieras, empezamos.",
       "extra3": "Hagamos algo útil.",
@@ -199,7 +199,7 @@
       "night2": "¿Sigues aquí? Kit también.",
       "night3": "Horas tranquilas. Vamos a hacerlo simple.",
       "observance": {
-        "newYear": "Feliz Año Nuevo — una página en blanco, sin cuenta.",
+        "newYear": "Feliz Año Nuevo — un comienzo sereno, una hoja en blanco.",
         "christmasEve": "Nochebuena — un momento tranquilo para la calidez, la reflexión y la buena compañía.",
         "christmas": "Feliz Navidad — te deseamos un día en paz y nuevas ideas luminosas.",
         "goodFriday": "Viernes Santo — un día sereno para la reflexión, la bondad y la esperanza.",
@@ -245,7 +245,7 @@
       "night8": "Pensamientos de madrugada bienvenidos.",
       "weekend": "Buen fin de semana. El ritmo de entre semana puede esperar.",
       "productivity": "Hagamos algo útil.",
-      "kit": "¿Qué podemos hacer más fácil hoy?",
+      "kit": "¿Qué te quitamos de encima hoy?",
       "privacy": "Cuando quieras, empezamos.",
       "morning9": "Herramientas pequeñas, gran arranque.",
       "morning10": "Cuando quieras — incluso antes del café.",
@@ -276,7 +276,7 @@
       "night13": "Herramientas tranquilas para horas tranquilas.",
       "night14": "Si llega el sueño, Kit se queda.",
       "night15": "Una última tarea ordenada, y a descansar.",
-      "weekend3": "Energía de sábado, o calma de domingo: tú eliges.",
+      "weekend3": "Sábado con brío, o domingo en voz baja. Tú eliges.",
       "monday": "El lunes también puede empezar en pequeño.",
       "friday": "La tarde del viernes es un buen momento para terminar algo.",
       "kit2": "Privado por diseño: eso es todo el producto.",
@@ -392,6 +392,13 @@
       "digitalPreservationDay": "Kit no es un archivo de conservación, pero sí un recordatorio de guardar una copia de más.",
       "digitalPreservationDay2": "Los formatos cambian. Una copia local sigue ayudando.",
       "digitalPreservationDay3": "Conserva el archivo; no se lo envíes a una herramienta."
+    },
+    "newYearCard": {
+      "countdownTitle": "{year} está a punto de llegar.",
+      "countdownSubtitle": "Diez minutos serenos. Después, una página nueva.",
+      "celebrateTitle": "Feliz Año Nuevo.",
+      "celebrateSubtitle": "{year} empieza aquí.",
+      "countdownLabel": "{minutes} minutos y {seconds} segundos para {year}."
     }
   },
   "categories": {

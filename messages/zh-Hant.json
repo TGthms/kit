@@ -158,10 +158,10 @@
       "health": "健康"
     },
     "greeting": {
-      "morning": "早安，願你這個{day}從容開始。",
-      "afternoon": "午安，今天這個{day}還順利嗎？",
-      "evening": "晚上好，這個{day}過得還好吧。",
-      "night": "還沒睡？這個{day}就慢慢來。",
+      "morning": "早安，今天可以從容開始。",
+      "afternoon": "午安，今天還順利嗎？",
+      "evening": "傍晚好，願這一天對你溫柔一點。",
+      "night": "還沒睡？今晚不必趕。",
       "extra1": "今天想先讓哪件事變輕鬆？",
       "extra2": "你準備好了，Kit 也就位了。",
       "extra3": "做一件有用的小事就很好。",
@@ -199,7 +199,7 @@
       "night2": "還在？那 Kit 也在。",
       "night3": "夜深了，把事情做簡單就好。",
       "observance": {
-        "newYear": "新年快樂。新的一頁，不必註冊帳號。",
+        "newYear": "新年快樂。安靜的開始，乾淨的一頁。",
         "christmasEve": "平安夜到了。留一點溫暖和安靜給自己。",
         "christmas": "聖誕快樂。願這一天平靜，也願你有新點子。",
         "goodFriday": "受難日。適合安靜想想，也適合善待自己。",
@@ -392,6 +392,13 @@
       "digitalPreservationDay": "Kit 不是檔案館，但它會提醒你留一份備份。",
       "digitalPreservationDay2": "格式會變。本機的一份仍然有用。",
       "digitalPreservationDay3": "保存檔案；不必把它寄給一個工具。"
+    },
+    "newYearCard": {
+      "countdownTitle": "{year} 快到了。",
+      "countdownSubtitle": "安靜的十分鐘。然後翻開新的一頁。",
+      "celebrateTitle": "新年快樂。",
+      "celebrateSubtitle": "{year}，從這裡開始。",
+      "countdownLabel": "距 {year} 還有 {minutes} 分 {seconds} 秒。"
     }
   },
   "categories": {

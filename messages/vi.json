@@ -158,10 +158,10 @@
       "health": "Sức khỏe"
     },
     "greeting": {
-      "morning": "Chào buổi sáng — chúc bạn một {day} vui vẻ.",
-      "afternoon": "Chào buổi chiều — chúc bạn một {day} vui vẻ.",
-      "evening": "Chào buổi tối — chúc bạn một {day} vui vẻ.",
-      "night": "Vẫn thức à? Hãy nhẹ nhàng với {day} này.",
+      "morning": "Chào buổi sáng — ngày mới được bắt đầu chậm.",
+      "afternoon": "Chào buổi chiều — ngày hôm nay thế nào?",
+      "evening": "Chào buổi tối — mong ngày vừa rồi đủ dịu.",
+      "night": "Vẫn thức à? Đêm nay không cần vội.",
       "extra1": "Hôm nay chúng ta có thể làm gì dễ dàng hơn?",
       "extra2": "Bạn sẵn sàng lúc nào thì bắt đầu lúc đó.",
       "extra3": "Cùng hoàn thành một việc hữu ích nhé.",
@@ -199,7 +199,7 @@
       "night2": "Vẫn ở đây? Kit cũng vậy.",
       "night3": "Giờ yên tĩnh. Hãy giữ cho đơn giản.",
       "observance": {
-        "newYear": "Chúc mừng năm mới — trang giấy trống, không cần tài khoản.",
+        "newYear": "Chúc mừng năm mới — khởi đầu êm, trang giấy sạch.",
         "christmasEve": "Đêm Giáng sinh — một khoảng lặng cho sự ấm áp, suy ngẫm và những người thân yêu.",
         "christmas": "Chúc mừng Giáng sinh — chúc bạn một ngày bình an và những ý tưởng mới tươi sáng.",
         "goodFriday": "Thứ Sáu Tuần Thánh — một ngày lắng lại cho suy ngẫm, lòng tốt và hy vọng.",
@@ -392,6 +392,13 @@
       "digitalPreservationDay": "Kit không phải kho lưu, nhưng nhắc bạn giữ một bản dự phòng.",
       "digitalPreservationDay2": "Định dạng đổi. Bản trên máy vẫn giúp.",
       "digitalPreservationDay3": "Giữ tệp; đừng gửi nó cho một công cụ."
+    },
+    "newYearCard": {
+      "countdownTitle": "{year} sắp đến.",
+      "countdownSubtitle": "Mười phút yên. Rồi một trang mới.",
+      "celebrateTitle": "Chúc mừng năm mới.",
+      "celebrateSubtitle": "{year} bắt đầu từ đây.",
+      "countdownLabel": "Còn {minutes} phút {seconds} giây nữa đến {year}."
     }
   },
   "categories": {

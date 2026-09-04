@@ -158,10 +158,10 @@
       "health": "Sănătate"
     },
     "greeting": {
-      "morning": "Bună dimineața — o zi de {day} plăcută!",
-      "afternoon": "Bună ziua — o zi de {day} plăcută!",
-      "evening": "Bună seara — o seară de {day} plăcută!",
-      "night": "Încă treaz? Ia-o ușor în această {day}.",
+      "morning": "Bună dimineața — ziua poate începe în tihnă.",
+      "afternoon": "Bună ziua — cum merge ziua?",
+      "evening": "Bună seara — sperăm că ziua a fost blândă.",
+      "night": "Încă treaz? Noaptea asta, fără grabă.",
       "extra1": "Ce putem face mai ușor astăzi?",
       "extra2": "Începem când ești gata.",
       "extra3": "Să facem ceva util.",
@@ -199,7 +199,7 @@
       "night2": "Tot aici? Și Kit.",
       "night3": "Ore liniștite. Hai să o ținem simplu.",
       "observance": {
-        "newYear": "An Nou fericit — o pagină goală, fără cont.",
+        "newYear": "An Nou fericit — un început liniștit, o pagină curată.",
         "christmasEve": "Ajunul Crăciunului — un moment liniștit pentru căldură, reflecție și companie plăcută.",
         "christmas": "Crăciun fericit — îți dorim o zi liniștită și idei noi, luminoase.",
         "goodFriday": "Vinerea Mare — o zi liniștită pentru reflecție, bunătate și speranță.",
@@ -392,6 +392,13 @@
       "digitalPreservationDay": "Kit nu e o arhivă, dar e un memento să ții o copie de rezervă.",
       "digitalPreservationDay2": "Formatele se schimbă. O copie locală tot ajută.",
       "digitalPreservationDay3": "Păstrează fișierul; nu-l trimite unei unelte."
+    },
+    "newYearCard": {
+      "countdownTitle": "{year} e aproape.",
+      "countdownSubtitle": "Zece minute line. Apoi o pagină nouă.",
+      "celebrateTitle": "An Nou fericit.",
+      "celebrateSubtitle": "{year} începe aici.",
+      "countdownLabel": "{minutes} minute și {seconds} secunde până în {year}."
     }
   },
   "categories": {

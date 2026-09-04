@@ -158,10 +158,10 @@
       "health": "Sağlık"
     },
     "greeting": {
-      "morning": "Günaydın — güzel bir {day} olsun.",
-      "afternoon": "Tünaydın — güzel bir {day} olsun.",
-      "evening": "İyi akşamlar — güzel bir {day} olsun.",
-      "night": "Hâlâ uyanık mısın? Bu {day} gününü sakince geçir.",
+      "morning": "Günaydın — gün yavaş başlayabilir.",
+      "afternoon": "Tünaydın — gün nasıl gidiyor?",
+      "evening": "İyi akşamlar — umarız gün nazikti.",
+      "night": "Hâlâ uyanık mısın? Bu gece acele yok.",
       "extra1": "Bugün neyi kolaylaştırabiliriz?",
       "extra2": "Hazır olduğunda başlayalım.",
       "extra3": "Faydalı bir iş yapalım.",
@@ -199,7 +199,7 @@
       "night2": "Hâlâ buradasın? Kit de öyle.",
       "night3": "Sakin saatler. Basit tutalım.",
       "observance": {
-        "newYear": "Mutlu yıllar — boş bir sayfa, hesapsız.",
+        "newYear": "Yeni yılın kutlu olsun — sakin bir başlangıç, temiz bir sayfa.",
         "christmasEve": "Noel Arifesi — sıcaklık, düşünce ve güzel sohbet için sakin bir an.",
         "christmas": "Mutlu Noeller — huzurlu bir gün ve aydınlık yeni fikirler dileriz.",
         "goodFriday": "Kutsal Cuma — düşünmek, iyilik ve umut için sakin bir gün.",
@@ -392,6 +392,13 @@
       "digitalPreservationDay": "Kit bir arşiv değil, ama yedek tutmayı hatırlatır.",
       "digitalPreservationDay2": "Biçimler değişir. Yerel bir kopya yine işe yarar.",
       "digitalPreservationDay3": "Dosyayı koru; bir araca postalama."
+    },
+    "newYearCard": {
+      "countdownTitle": "{year} kapıda.",
+      "countdownSubtitle": "On sakin dakika. Sonra yeni bir sayfa.",
+      "celebrateTitle": "Yeni yılın kutlu olsun.",
+      "celebrateSubtitle": "{year} burada başlıyor.",
+      "countdownLabel": "{year} yılına {minutes} dakika {seconds} saniye."
     }
   },
   "categories": {

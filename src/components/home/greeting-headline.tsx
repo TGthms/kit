@@ -12,9 +12,11 @@ function prefersReducedMotion(): boolean {
 export function GreetingHeadline({
   text,
   className,
+  as: Tag = "h1",
 }: {
   text: string;
   className?: string;
+  as?: "h1" | "h2" | "h3" | "p";
 }) {
   const graphemes = useMemo(() => segmentGraphemes(text), [text]);
   const [reducedMotion] = useState(prefersReducedMotion);
@@ -44,7 +46,7 @@ export function GreetingHeadline({
   const visible = done ? text : graphemes.slice(0, shownCount).join("");
 
   return (
-    <h1 className={cn(className)} aria-label={text}>
+    <Tag className={cn(className)} aria-label={text}>
       <span className="greeting-typewriter" aria-hidden="true">
         <span className="greeting-typewriter-sizer">{text}</span>
         <span className="greeting-typewriter-live">
@@ -52,6 +54,6 @@ export function GreetingHeadline({
           {done ? null : <span className="greeting-caret" />}
         </span>
       </span>
-    </h1>
+    </Tag>
   );
 }

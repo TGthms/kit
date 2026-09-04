@@ -88,6 +88,14 @@ export const GREETING_DISTINCT_VARIANT_KEYS = [
   "kit2", "kit3", "privacy2", "privacy3", "productivity2", "productivity3",
 ] as const;
 
+export const NEW_YEAR_CARD_KEYS = [
+  "countdownTitle",
+  "countdownSubtitle",
+  "celebrateTitle",
+  "celebrateSubtitle",
+  "countdownLabel",
+] as const;
+
 export const SUBTITLE_FACT_KEYS = [
   "fact1", "fact2", "fact3", "fact4", "fact5", "fact6", "fact7", "fact8",
   "kit1", "kit2", "kit3", "kit4", "kit5", "kit6", "kit7", "kit8",
@@ -246,12 +254,21 @@ export function getGreetingVisitSeed(): number {
   }
 }
 
-/** Produces a stable selection for a calendar/time slot without minute-by-minute churn. */
+/** Slot aligned with greeting periods (night / morning / afternoon / evening / late night). */
+export function getGreetingPeriodSlot(date: Date): number {
+  const hour = date.getHours();
+  if (hour < 5) return 0;
+  if (hour < 12) return 1;
+  if (hour < 17) return 2;
+  if (hour < 22) return 3;
+  return 4;
+}
+
+/** Produces a stable selection for a greeting period without minute-by-minute churn. */
 export function getGreetingVariant(date: Date, count = 4, entropy = 0): number {
   if (!Number.isInteger(count) || count < 1) throw new RangeError("count must be a positive integer.");
   const dayOfYear = Math.floor((Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()) - Date.UTC(date.getFullYear(), 0, 0)) / 86_400_000);
-  const periodSlot = Math.floor(date.getHours() / 6);
-  const raw = dayOfYear * 13 + periodSlot * 7 + Math.trunc(entropy);
+  const raw = dayOfYear * 13 + getGreetingPeriodSlot(date) * 7 + Math.trunc(entropy);
   return ((raw % count) + count) % count;
 }
 
@@ -308,9 +325,10 @@ function isChristianObservanceKey(key: string): boolean {
   return (CHRISTIAN_OBSERVANCE_KEYS as readonly string[]).includes(key);
 }
 
-function pickObservanceKey(date: Date, locale: string): string | null {
+function pickObservanceKey(date: Date, locale: string, skipOccasionKeys: readonly string[] = []): string | null {
   const candidate = getChristianObservanceKey(date) ?? getObservanceKey(date);
   if (!candidate) return null;
+  if (skipOccasionKeys.includes(candidate)) return null;
   if (isChristianObservanceKey(candidate) && !localeAllowsChristianGreeting(locale)) return null;
   return candidate;
 }
@@ -349,17 +367,22 @@ export function getGreetingPoolKeys(date: Date): readonly string[] {
   const weekday = date.getDay();
   const flavor: string[] = [];
   if (weekday === 1 && period === "morning") flavor.push("monday");
-  if (weekday === 5 && (period === "afternoon" || period === "evening")) flavor.push("friday");
+  if (weekday === 5 && (period === "afternoon" || period === "evening" || period === "night")) flavor.push("friday");
   const isWeekend = weekday === 0 || weekday === 6;
   return isWeekend ? [...periodKeys, ...extras, "weekend", "weekend2", "weekend3"] : [...periodKeys, ...extras, ...flavor];
 }
 
-export function getHomeGreetingSelection(date: Date, locale: string, variant: number): HomeGreetingSelection {
+export function getHomeGreetingSelection(
+  date: Date,
+  locale: string,
+  variant: number,
+  options?: { skipOccasionKeys?: readonly string[] },
+): HomeGreetingSelection {
   const day = getGreetingDay(date, locale);
   const period = getGreetingPeriod(date);
   const entropy = Math.abs(Math.trunc(variant));
   const subtitleEntropy = Math.abs(Math.trunc(variant * 5 + date.getDate()));
-  const observance = pickObservanceKey(date, locale);
+  const observance = pickObservanceKey(date, locale, options?.skipOccasionKeys);
 
   if (observance === "goodFriday") {
     const greetingKey = "greeting.observance.goodFriday";

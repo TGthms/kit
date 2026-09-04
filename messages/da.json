@@ -158,10 +158,10 @@
       "health": "Sundhed"
     },
     "greeting": {
-      "morning": "Godmorgen — god {day}.",
-      "afternoon": "God eftermiddag — god {day}.",
-      "evening": "Godaften — god {day}.",
-      "night": "Stadig vågen? Tag {day} med ro.",
+      "morning": "Godmorgen — dagen må gerne starte stille.",
+      "afternoon": "God eftermiddag — hvordan går dagen?",
+      "evening": "Godaften — håber dagen har været venlig.",
+      "night": "Stadig vågen? Tag den med ro i nat.",
       "extra1": "Hvad kan vi gøre lettere i dag?",
       "extra2": "Klar, når du er.",
       "extra3": "Lad os få noget nyttigt fra hånden.",
@@ -199,7 +199,7 @@
       "night2": "Stadig her? Det er Kit også.",
       "night3": "Stille timer. Lad os holde det enkelt.",
       "observance": {
-        "newYear": "Godt nytår — en frisk side, uden konto.",
+        "newYear": "Godt nytår — en stille start, et rent blad.",
         "christmasEve": "Juleaften – et roligt øjeblik med varme, eftertanke og godt selskab.",
         "christmas": "Glædelig jul – vi ønsker dig en fredfyldt dag og nye, lyse idéer.",
         "goodFriday": "Langfredag – en stille dag til eftertanke, venlighed og håb.",
@@ -392,6 +392,13 @@
       "digitalPreservationDay": "Kit er ikke et arkiv, men en påmindelse om at gemme en ekstra kopi.",
       "digitalPreservationDay2": "Formater skifter. En lokal kopi hjælper alligevel.",
       "digitalPreservationDay3": "Bevar filen; send den ikke til et værktøj."
+    },
+    "newYearCard": {
+      "countdownTitle": "{year} er lige om hjørnet.",
+      "countdownSubtitle": "Ti rolige minutter. Så et nyt blad.",
+      "celebrateTitle": "Godt nytår.",
+      "celebrateSubtitle": "{year} begynder her.",
+      "countdownLabel": "{minutes} minutter og {seconds} sekunder til {year}."
     }
   },
   "categories": {

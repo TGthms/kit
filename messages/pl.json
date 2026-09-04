@@ -158,10 +158,10 @@
       "health": "Zdrowie"
     },
     "greeting": {
-      "morning": "Dzień dobry — miłego {day}.",
-      "afternoon": "Dzień dobry — miłego {day}.",
-      "evening": "Dobry wieczór — miłego {day}.",
-      "night": "Jeszcze nie śpisz? Weź ten {day} na spokojnie.",
+      "morning": "Dzień dobry — dzień może zacząć się spokojnie.",
+      "afternoon": "Dzień dobry — jak mija dzień?",
+      "evening": "Dobry wieczór — oby dzień był łagodny.",
+      "night": "Jeszcze nie śpisz? Dziś w nocy bez pośpiechu.",
       "extra1": "Co możemy dziś uprościć?",
       "extra2": "Zaczynamy, gdy tylko chcesz.",
       "extra3": "Zróbmy coś pożytecznego.",
@@ -199,7 +199,7 @@
       "night2": "Nadal tu? Kit też.",
       "night3": "Ciche godziny. Zostańmy przy prostocie.",
       "observance": {
-        "newYear": "Szczęśliwego Nowego Roku — czysta karta, bez konta.",
+        "newYear": "Szczęśliwego Nowego Roku — cichy początek, czysta karta.",
         "christmasEve": "Wigilia – spokojna chwila na ciepło, refleksję i dobre towarzystwo.",
         "christmas": "Wesołych Świąt – życzymy Ci spokojnego dnia i nowych, jasnych pomysłów.",
         "goodFriday": "Wielki Piątek – cichy dzień refleksji, życzliwości i nadziei.",
@@ -392,6 +392,13 @@
       "digitalPreservationDay": "Kit nie jest archiwum, ale przypomnieniem, by mieć zapas.",
       "digitalPreservationDay2": "Formaty się zmieniają. Lokalna kopia i tak pomaga.",
       "digitalPreservationDay3": "Zachowaj plik; nie wysyłaj go do narzędzia."
+    },
+    "newYearCard": {
+      "countdownTitle": "{year} jest już blisko.",
+      "countdownSubtitle": "Dziesięć spokojnych minut. Potem nowa strona.",
+      "celebrateTitle": "Szczęśliwego Nowego Roku.",
+      "celebrateSubtitle": "{year} zaczyna się tutaj.",
+      "countdownLabel": "{minutes} minut i {seconds} sekund do {year}."
     }
   },
   "categories": {

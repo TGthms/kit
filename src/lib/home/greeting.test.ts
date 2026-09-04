@@ -115,10 +115,17 @@ describe("home greeting", () => {
     expect(selection.day).toBe("mardi");
   });
 
-  it("stays stable inside a six-hour slot", () => {
+  it("stays stable inside a greeting period and changes at the period boundary", () => {
     expect(getGreetingVariant(new Date(2026, 7, 25, 10), 32, 42)).toBe(getGreetingVariant(new Date(2026, 7, 25, 11), 32, 42));
+    expect(getGreetingVariant(new Date(2026, 7, 25, 16), 32, 42)).not.toBe(getGreetingVariant(new Date(2026, 7, 25, 17), 32, 42));
     expect(getGreetingVariant(new Date(2026, 7, 25, 10), 32, 42)).not.toBe(getGreetingVariant(new Date(2026, 7, 25, 10), 32, 43));
     expect(getGreetingVisitSeed()).toBe(0);
+  });
+
+  it("can skip an observance so the New Year card owns that moment", () => {
+    const newYears = new Date(2027, 0, 1, 10);
+    expect(getHomeGreetingSelection(newYears, "en", 1).occasionKey).toBe("newYear");
+    expect(getHomeGreetingSelection(newYears, "en", 1, { skipOccasionKeys: ["newYear"] }).occasionKey).toBeUndefined();
   });
 
   it("gives every Christian observance its own translation key", () => {
@@ -170,6 +177,7 @@ describe("home greeting", () => {
     expect(fridayAfternoon.getDay()).toBe(5);
     expect(getGreetingPoolKeys(mondayMorning)).toContain("monday");
     expect(getGreetingPoolKeys(fridayAfternoon)).toContain("friday");
+    expect(getGreetingPoolKeys(new Date(2026, 7, 28, 23))).toContain("friday");
     expect(getGreetingPoolKeys(new Date(2026, 7, 24, 20))).not.toContain("monday");
   });
 

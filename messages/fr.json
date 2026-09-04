@@ -158,10 +158,10 @@
       "health": "Santé"
     },
     "greeting": {
-      "morning": "Bonjour — bon {day}.",
-      "afternoon": "Bon après-midi — bon {day}.",
-      "evening": "Bonsoir — bon {day}.",
-      "night": "Encore debout ? Prenez {day} tout en douceur.",
+      "morning": "Bonjour — que la journée commence doucement.",
+      "afternoon": "Bon après-midi — comment avance la journée ?",
+      "evening": "Bonsoir — espérons que la journée a été douce.",
+      "night": "Encore debout ? Doucement, ce soir.",
       "extra1": "Que pouvons-nous simplifier aujourd’hui ?",
       "extra2": "Prêt quand vous l’êtes.",
       "extra3": "Faisons quelque chose d’utile.",
@@ -199,7 +199,7 @@
       "night2": "Toujours là ? Kit aussi.",
       "night3": "Heures calmes. Restons simples.",
       "observance": {
-        "newYear": "Bonne année — une page blanche, sans compte.",
+        "newYear": "Bonne année — un départ calme, une page nette.",
         "christmasEve": "La veille de Noël — un moment calme, chaleureux, propice à la réflexion et aux retrouvailles.",
         "christmas": "Joyeux Noël — nous vous souhaitons une journée paisible et de belles idées.",
         "goodFriday": "Vendredi saint — une journée calme pour la réflexion, la bonté et l’espoir.",
@@ -245,7 +245,7 @@
       "night8": "Les pensées tardives sont les bienvenues.",
       "weekend": "Bon week-end. L’énergie de la semaine n’est pas requise.",
       "productivity": "Faisons quelque chose d’utile.",
-      "kit": "Que pouvons-nous simplifier aujourd’hui ?",
+      "kit": "Que peut-on rendre plus simple, aujourd’hui ?",
       "privacy": "Prêt quand vous l’êtes.",
       "morning9": "Petits outils, belle avance.",
       "morning10": "Quand vous voulez — même avant le café.",
@@ -276,7 +276,7 @@
       "night13": "Des outils discrets pour les heures calmes.",
       "night14": "Si le sommeil arrive, Kit restera.",
       "night15": "Une dernière petite tâche, puis le repos.",
-      "weekend3": "Énergie du samedi, ou calme du dimanche — à vous de voir.",
+      "weekend3": "Samedi vif, ou dimanche calme — à vous.",
       "monday": "Le lundi peut quand même commencer petit.",
       "friday": "Le vendredi après-midi est un bon moment pour terminer quelque chose.",
       "kit2": "Privé par conception — voilà tout le produit.",
@@ -392,6 +392,13 @@
       "digitalPreservationDay": "Kit n’est pas une archive, mais un rappel de garder une copie de rechange.",
       "digitalPreservationDay2": "Les formats changent. Une copie locale aide encore.",
       "digitalPreservationDay3": "Préservez le fichier ; ne l’envoyez pas à un outil."
+    },
+    "newYearCard": {
+      "countdownTitle": "{year} est tout proche.",
+      "countdownSubtitle": "Dix minutes calmes. Puis une page blanche.",
+      "celebrateTitle": "Bonne année.",
+      "celebrateSubtitle": "{year} commence ici.",
+      "countdownLabel": "{minutes} minutes et {seconds} secondes avant {year}."
     }
   },
   "categories": {

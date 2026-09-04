@@ -158,10 +158,10 @@
       "health": "Terveys"
     },
     "greeting": {
-      "morning": "Hyvää huomenta — hyvää {day}.",
-      "afternoon": "Hyvää iltapäivää — hyvää {day}.",
-      "evening": "Hyvää iltaa — hyvää {day}.",
-      "night": "Vielä hereillä? Ota {day} rennosti.",
+      "morning": "Hyvää huomenta — päivä saa alkaa rauhassa.",
+      "afternoon": "Hyvää päivää — miten päivä sujuu?",
+      "evening": "Hyvää iltaa — toivottavasti päivä on ollut lempeä.",
+      "night": "Vieläkö hereillä? Yö saa olla hidas.",
       "extra1": "Mitä voisimme helpottaa tänään?",
       "extra2": "Aloitetaan, kun olet valmis.",
       "extra3": "Tehdään jotain hyödyllistä.",
@@ -199,7 +199,7 @@
       "night2": "Vielä täällä? Niin on Kitkin.",
       "night3": "Hiljaiset tunnit. Pidetään tämä yksinkertaisena.",
       "observance": {
-        "newYear": "Hyvää uutta vuotta — tyhjä sivu, ilman tiliä.",
+        "newYear": "Hyvää uutta vuotta — rauhallinen alku, tyhjä sivu.",
         "christmasEve": "Jouluaatto – rauhallinen hetki lämmölle, pohdiskelulle ja hyvälle seuralle.",
         "christmas": "Hyvää joulua – toivotamme rauhallista päivää ja uusia, valoisia ajatuksia.",
         "goodFriday": "Pitkäperjantai – hiljainen päivä pohdiskelulle, ystävällisyydelle ja toivolle.",
@@ -392,6 +392,13 @@
       "digitalPreservationDay": "Kit ei ole arkisto, mutta se muistuttaa pitämään varakopion.",
       "digitalPreservationDay2": "Formaatit vaihtuvat. Paikallinen kopio auttaa silti.",
       "digitalPreservationDay3": "Säilytä tiedosto; älä postita sitä työkalulle."
+    },
+    "newYearCard": {
+      "countdownTitle": "{year} on ihan kohta.",
+      "countdownSubtitle": "Kymmenen hiljaista minuuttia. Sitten uusi sivu.",
+      "celebrateTitle": "Hyvää uutta vuotta.",
+      "celebrateSubtitle": "{year} alkaa tästä.",
+      "countdownLabel": "{minutes} minuuttia ja {seconds} sekuntia vuoteen {year}."
     }
   },
   "categories": {

@@ -4,6 +4,7 @@ import { describe, expect, it } from "vitest";
 import {
   GREETING_DISTINCT_VARIANT_KEYS,
   GREETING_VARIANT_KEYS,
+  NEW_YEAR_CARD_KEYS,
   OBSERVANCE_KEYS,
   OBSERVANCE_RULES,
   SUBTITLE_FACT_KEYS,
@@ -14,6 +15,7 @@ type Catalog = {
     greeting: Record<string, unknown> & { occasionLabel: Record<string, unknown>; observance: Record<string, unknown>; extra1?: string; extra2?: string; extra3?: string };
     subtitleFacts: Record<string, unknown>;
     subtitleObservance: Record<string, unknown>;
+    newYearCard: Record<string, unknown>;
   };
 };
 
@@ -39,6 +41,7 @@ describe("greeting localization catalogs", () => {
       const data = read(locale);
       for (const key of GREETING_VARIANT_KEYS) expect(data.home.greeting[key], `${locale}: greeting.${key}`).toEqual(expect.any(String));
       for (const key of SUBTITLE_FACT_KEYS) expect(data.home.subtitleFacts[key], `${locale}: subtitleFacts.${key}`).toEqual(expect.any(String));
+      for (const key of NEW_YEAR_CARD_KEYS) expect(data.home.newYearCard[key], `${locale}: newYearCard.${key}`).toEqual(expect.any(String));
       for (const key of OBSERVANCE_KEYS) {
         expect(data.home.greeting.occasionLabel[key], `${locale}: occasionLabel.${key}`).toEqual(expect.any(String));
         expect(data.home.greeting.observance[key], `${locale}: observance.${key}`).toEqual(expect.any(String));
@@ -53,6 +56,7 @@ describe("greeting localization catalogs", () => {
     const english = read("en");
     const paths = [
       ...GREETING_VARIANT_KEYS.map((key) => ["home", "greeting", key] as const),
+      ...NEW_YEAR_CARD_KEYS.map((key) => ["home", "newYearCard", key] as const),
       ...OBSERVANCE_KEYS.flatMap((key) => [
         ["home", "greeting", "observance", key] as const,
         ["home", "subtitleObservance", key] as const,
@@ -74,6 +78,7 @@ describe("greeting localization catalogs", () => {
     const english = read("en");
     const paths = [
       ...GREETING_VARIANT_KEYS.map((key) => ["home", "greeting", key] as const),
+      ...NEW_YEAR_CARD_KEYS.map((key) => ["home", "newYearCard", key] as const),
       ...SUBTITLE_FACT_KEYS.map((key) => ["home", "subtitleFacts", key] as const),
       ...OBSERVANCE_KEYS.flatMap((key) => [
         ["home", "greeting", "observance", key] as const,

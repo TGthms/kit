@@ -25,7 +25,7 @@ export function slimMessagesForShell(messages: AbstractIntlMessages): AbstractIn
   return { ...messages, tools: slimTools };
 }
 
-const GREETING_HOME_KEYS = new Set(["greeting", "subtitleFacts", "subtitleObservance"]);
+const GREETING_HOME_KEYS = new Set(["greeting", "subtitleFacts", "subtitleObservance", "newYearCard"]);
 
 /** Tool routes do not render home greetings; drop those trees from the client catalog. */
 export function omitHomeGreetingMessages(messages: AbstractIntlMessages): AbstractIntlMessages {

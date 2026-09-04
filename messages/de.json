@@ -158,10 +158,10 @@
       "health": "Gesundheit"
     },
     "greeting": {
-      "morning": "Guten Morgen — einen schönen {day}.",
-      "afternoon": "Guten Tag — einen schönen {day}.",
-      "evening": "Guten Abend — einen schönen {day}.",
-      "night": "Noch wach? Nimm dir den {day} ruhig.",
+      "morning": "Guten Morgen — der Tag darf klein anfangen.",
+      "afternoon": "Guten Tag — wie läuft’s bisher?",
+      "evening": "Guten Abend — hoffentlich war der Tag freundlich.",
+      "night": "Noch wach? Heute Nacht gerne langsamer.",
       "extra1": "Was können wir heute einfacher machen?",
       "extra2": "Bereit, wenn Sie es sind.",
       "extra3": "Erledigen wir etwas Nützliches.",
@@ -199,7 +199,7 @@
       "night2": "Immer noch da? Kit auch.",
       "night3": "Ruhige Stunden. Lass uns einfach bleiben.",
       "observance": {
-        "newYear": "Frohes neues Jahr — eine leere Seite, ohne Konto.",
+        "newYear": "Frohes neues Jahr — ein stiller Anfang, ein leeres Blatt.",
         "christmasEve": "Heiligabend ist da – ein ruhiger Moment für Wärme, Besinnung und gute Gesellschaft.",
         "christmas": "Frohe Weihnachten – wir wünschen Ihnen einen friedlichen Tag und neue Ideen.",
         "goodFriday": "Karfreitag – ein stiller Tag für Besinnung, Güte und Hoffnung.",
@@ -245,7 +245,7 @@
       "night8": "Gedanken in der Nacht willkommen.",
       "weekend": "Schönes Wochenende. Der Werktags-Ehrgeiz kann warten.",
       "productivity": "Erledigen wir etwas Nützliches.",
-      "kit": "Was können wir heute einfacher machen?",
+      "kit": "Was darf heute leichter werden?",
       "privacy": "Bereit, wenn Sie es sind.",
       "morning9": "Kleine Tools, großer Vorsprung.",
       "morning10": "Wann immer du soweit bist — auch vor dem Kaffee.",
@@ -276,7 +276,7 @@
       "night13": "Ruhige Tools für ruhige Stunden.",
       "night14": "Wenn der Schlaf kommt, bleibt Kit.",
       "night15": "Eine letzte aufgeräumte Aufgabe, dann Ruhe.",
-      "weekend3": "Samstagsenergie oder sonntägliche Ruhe — deine Wahl.",
+      "weekend3": "Samstagsdrang oder Sonntagsruhe — wie du willst.",
       "monday": "Der Montag darf trotzdem klein anfangen.",
       "friday": "Der Freitagnachmittag ist eine gute Zeit, etwas fertigzumachen.",
       "kit2": "Von vornherein privat — das ist das ganze Produkt.",
@@ -392,6 +392,13 @@
       "digitalPreservationDay": "Kit ist kein Archiv, aber eine Erinnerung, eine Reserve zu behalten.",
       "digitalPreservationDay2": "Formate ändern sich. Eine lokale Kopie hilft trotzdem.",
       "digitalPreservationDay3": "Bewahre die Datei; schick sie nicht an ein Tool."
+    },
+    "newYearCard": {
+      "countdownTitle": "{year} ist ganz nah.",
+      "countdownSubtitle": "Zehn ruhige Minuten. Dann eine neue Seite.",
+      "celebrateTitle": "Frohes neues Jahr.",
+      "celebrateSubtitle": "{year} beginnt hier.",
+      "countdownLabel": "{minutes} Minuten und {seconds} Sekunden bis {year}."
     }
   },
   "categories": {

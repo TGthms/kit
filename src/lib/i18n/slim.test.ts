@@ -30,6 +30,7 @@ describe("omitHomeGreetingMessages", () => {
     expect(slim.home.greeting).toBeUndefined();
     expect(slim.home.subtitleFacts).toBeUndefined();
     expect(slim.home.subtitleObservance).toBeUndefined();
+    expect(slim.home.newYearCard).toBeUndefined();
     expect(slim.tools["pdf-merge"].run).toBe(en.tools["pdf-merge"].run);
   });
 });

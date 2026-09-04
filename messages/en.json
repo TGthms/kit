@@ -158,10 +158,10 @@
       "quick": "Quick"
     },
     "greeting": {
-      "morning": "Good morning — hope your {day} is off to a good start.",
-      "afternoon": "Good afternoon — how is your {day} going?",
-      "evening": "Good evening — hope your {day} has been kind to you.",
-      "night": "Still up? Take it easy this {day}.",
+      "morning": "Good morning — hope the day is off to a good start.",
+      "afternoon": "Good afternoon — how’s the day going?",
+      "evening": "Good evening — hope today has been kind to you.",
+      "night": "Still up? Take it easy tonight.",
       "extra1": "What can we make easier today?",
       "extra2": "Ready when you are.",
       "extra3": "Let’s get something useful done.",
@@ -199,7 +199,7 @@
       "night2": "Still here? So is Kit.",
       "night3": "Quiet hours. Let’s keep it simple.",
       "observance": {
-        "newYear": "Happy New Year — a fresh page, no account required.",
+        "newYear": "Happy New Year — a quiet start, a clean slate.",
         "christmasEve": "Christmas Eve is here — a quiet moment for warmth, reflection, and good company.",
         "christmas": "Merry Christmas — wishing you a peaceful day and bright new ideas.",
         "goodFriday": "Good Friday — a quiet day for reflection, kindness, and hope.",
@@ -392,6 +392,13 @@
       "digitalPreservationDay": "Kit isn’t an archive, but it is a reminder to keep a spare.",
       "digitalPreservationDay2": "Formats change. A local copy still helps.",
       "digitalPreservationDay3": "Preserve the file; don’t mail it to a tool."
+    },
+    "newYearCard": {
+      "countdownTitle": "{year} is almost here.",
+      "countdownSubtitle": "Ten quiet minutes. Then a new page.",
+      "celebrateTitle": "Happy New Year.",
+      "celebrateSubtitle": "{year} starts here.",
+      "countdownLabel": "{minutes} minutes and {seconds} seconds until {year}."
     }
   },
   "categories": {

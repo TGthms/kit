@@ -1,6 +1,6 @@
 "use client";
 
-import { Suspense, useCallback, useLayoutEffect, useMemo, useState } from "react";
+import { Suspense, useCallback, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
 import {
@@ -26,9 +26,12 @@ import { useFavoritesStore } from "@/stores/favorites-store";
 import { cn } from "@/lib/utils";
 import { GreetingHeadline } from "@/components/home/greeting-headline";
 import { GreetingSubtitle } from "@/components/home/greeting-subtitle";
+import { NewYearCard } from "@/components/home/new-year-card";
+import { NewYearFireworks } from "@/components/home/new-year-fireworks";
 import { PageLoader } from "@/components/shared/page-loader";
 import { getGreetingPeriod, getGreetingPoolKeys, getGreetingVariant, getGreetingVisitSeed, getHomeGreetingSelection, type GreetingCategory, type GreetingPeriod, type GreetingSubtitle as GreetingSubtitlePick } from "@/lib/home/greeting";
-import { overlayGreetingDate, parseGreetingDate, parseGreetingSeed } from "@/lib/home/greeting-qa";
+import { overlayGreetingDate, parseGreetingDate, parseGreetingSeed, parseGreetingTime, virtualGreetingNow } from "@/lib/home/greeting-qa";
+import { getNewYearCardState, nextNewYearTickMs, NEW_YEAR_FIREWORKS_MS, shouldPlayNewYearFireworks, type NewYearCardState } from "@/lib/home/new-year";
 import type { SubtitleMotion } from "@/lib/home/subtitle-motion";
 import { WEB_VERSES } from "@/lib/home/verses";
 
@@ -163,7 +166,13 @@ function HomePageInner() {
   const selectedCat = parseCategoryParam(searchParams.get("c"));
   const greetingDateParam = searchParams.get("greetingDate");
   const greetingSeedParam = searchParams.get("greetingSeed");
+  const greetingTimeParam = searchParams.get("time") ?? searchParams.get("greetingTime");
   const [q, setQ] = useState("");
+  const [newYear, setNewYear] = useState<NewYearCardState | null>(null);
+  const [fireworksOn, setFireworksOn] = useState(false);
+  const [fireworksDuration, setFireworksDuration] = useState(NEW_YEAR_FIREWORKS_MS);
+  const fireworksArmed = useRef(false);
+  const clockOrigin = useRef<{ wall: Date; wallMs: number } | null>(null);
   const [greeting, setGreeting] = useState<{
     period: GreetingPeriod;
     day: string;
@@ -177,14 +186,34 @@ function HomePageInner() {
 
   useLayoutEffect(() => {
     const dateOverride = parseGreetingDate(greetingDateParam);
+    const timeOverride = parseGreetingTime(greetingTimeParam);
     const seedOverride = parseGreetingSeed(greetingSeedParam);
     const visitSeed = seedOverride ?? getGreetingVisitSeed();
+    clockOrigin.current = timeOverride ? { wall: new Date(), wallMs: Date.now() } : null;
     let timeout = 0;
+    const readNow = () => {
+      const wall = new Date();
+      if (!timeOverride || !clockOrigin.current) return overlayGreetingDate(wall, dateOverride, null);
+      return virtualGreetingNow(clockOrigin.current.wall, dateOverride, timeOverride, {
+        wallMs: clockOrigin.current.wallMs,
+        nowMs: Date.now(),
+      });
+    };
     const updateGreeting = () => {
-      const now = overlayGreetingDate(new Date(), dateOverride);
+      const now = readNow();
+      const card = getNewYearCardState(now);
+      setNewYear(card.phase === "hidden" ? null : card);
+      const playFireworks = shouldPlayNewYearFireworks(card);
+      if (playFireworks && !fireworksArmed.current) {
+        fireworksArmed.current = true;
+        setFireworksDuration(Math.max(0, NEW_YEAR_FIREWORKS_MS - card.msSinceStart));
+      }
+      if (!playFireworks) fireworksArmed.current = false;
+      setFireworksOn(playFireworks);
+      const skip = card.phase === "hidden" ? [] : ["newYear"];
       const pool = getGreetingPoolKeys(now);
       const variant = getGreetingVariant(now, pool.length, visitSeed);
-      const selection = getHomeGreetingSelection(now, locale, variant);
+      const selection = getHomeGreetingSelection(now, locale, variant, { skipOccasionKeys: skip });
       setGreeting({
         period: getGreetingPeriod(now),
         day: selection.day,
@@ -195,6 +224,7 @@ function HomePageInner() {
         occasionKey: selection.occasionKey,
         category: selection.category,
       });
+      const cardWait = nextNewYearTickMs(card, now);
       const next = new Date(now);
       const hour = now.getHours();
       if (hour < 5) next.setHours(5, 0, 0, 0);
@@ -202,11 +232,14 @@ function HomePageInner() {
       else if (hour < 17) next.setHours(17, 0, 0, 0);
       else if (hour < 22) next.setHours(22, 0, 0, 0);
       else { next.setDate(next.getDate() + 1); next.setHours(5, 0, 0, 0); }
-      timeout = window.setTimeout(updateGreeting, Math.max(1000, next.getTime() - now.getTime() + 100));
+      const periodWait = Math.max(1000, next.getTime() - now.getTime() + 100);
+      // Card ticks (countdown, fireworks, 23:50 reveal, 2 Jan hide) must not
+      // replace period-boundary greeting updates on 31 Dec / 1 Jan.
+      timeout = window.setTimeout(updateGreeting, cardWait > 0 ? Math.min(cardWait, periodWait) : periodWait);
     };
     updateGreeting();
     return () => window.clearTimeout(timeout);
-  }, [greetingDateParam, greetingSeedParam, locale]);
+  }, [greetingDateParam, greetingSeedParam, greetingTimeParam, locale]);
 
   const favIds = useFavoritesStore((s) => s.ids);
   const toggle = useFavoritesStore((s) => s.toggle);
@@ -248,8 +281,10 @@ function HomePageInner() {
   const showGlobalSearch = isSearching && !selectedCat;
   return (
     <div className="space-y-7 sm:space-y-9">
+      <NewYearFireworks active={fireworksOn} durationMs={fireworksDuration} />
       {(showCategories || showGlobalSearch) && (
         <section className="space-y-4 pt-0.5 sm:pt-1">
+          {newYear ? <NewYearCard state={newYear} /> : null}
           <div className="max-w-2xl space-y-2">
             {greeting ? (
               <GreetingHeadline

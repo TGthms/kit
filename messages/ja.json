@@ -158,10 +158,10 @@
       "health": "健康"
     },
     "greeting": {
-      "morning": "おはようございます。よい{day}を。",
-      "afternoon": "こんにちは。よい{day}を。",
-      "evening": "こんばんは。よい{day}を。",
-      "night": "まだ起きていますか。この{day}は、のんびりいきましょう。",
+      "morning": "おはようございます。今日は、ゆっくりで大丈夫です。",
+      "afternoon": "こんにちは。今日の調子は、いかがですか。",
+      "evening": "こんばんは。今日が、やさしい一日でありますように。",
+      "night": "まだ起きていますか。今夜は、急がなくていいですよ。",
       "extra1": "今日は何をもっと簡単にしましょうか？",
       "extra2": "準備ができたら始めましょう。",
       "extra3": "役立つことをひとつ片づけましょう。",
@@ -199,7 +199,7 @@
       "night2": "まだいますか。Kit もいます。",
       "night3": "静かな時間です。シンプルにいきましょう。",
       "observance": {
-        "newYear": "明けましておめでとうございます。新しいページ、アカウントは不要です。",
+        "newYear": "明けましておめでとうございます。静かな始まり、まっさらなページ。",
         "christmasEve": "クリスマスイブ — 温かさとふり返り、そしてよいひとときを過ごす静かな時間です。",
         "christmas": "メリークリスマス — 穏やかな一日と、新しい明るいアイデアを願っています。",
         "goodFriday": "聖金曜日 — ふり返りと優しさ、希望のための静かな一日です。",
@@ -392,6 +392,13 @@
       "digitalPreservationDay": "Kit は書庫ではありませんが、予備を残すきっかけにはなります。",
       "digitalPreservationDay2": "形式は変わります。手元のコピーは、それでも役に立ちます。",
       "digitalPreservationDay3": "ファイルは保存を。ツールに送る必要はありません。"
+    },
+    "newYearCard": {
+      "countdownTitle": "{year}が、もうすぐ。",
+      "countdownSubtitle": "静かな10分。そのあと、新しいページ。",
+      "celebrateTitle": "明けましておめでとうございます。",
+      "celebrateSubtitle": "{year}は、ここから。",
+      "countdownLabel": "{year}まであと{minutes}分{seconds}秒"
     }
   },
   "categories": {

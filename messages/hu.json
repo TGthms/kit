@@ -158,10 +158,10 @@
       "health": "Egészség"
     },
     "greeting": {
-      "morning": "Jó reggelt — szép {day}ot!",
-      "afternoon": "Jó napot — szép {day}ot!",
-      "evening": "Jó estét — szép {day}ot!",
-      "night": "Még fenn vagy? Ezt a {day} napot vedd lassan.",
+      "morning": "Jó reggelt — a nap kezdődhet csendesen.",
+      "afternoon": "Jó napot — hogy telik a nap?",
+      "evening": "Jó estét — reméljük, szelíd volt a nap.",
+      "night": "Még fenn vagy? Ma éjjel ráérünk.",
       "extra1": "Mit tehetünk ma egyszerűbbé?",
       "extra2": "Kezdjük, amikor készen állsz.",
       "extra3": "Végezzünk el valami hasznosat.",
@@ -199,7 +199,7 @@
       "night2": "Még itt vagy? A Kit is.",
       "night3": "Csendes órák. Maradjunk egyszerűek.",
       "observance": {
-        "newYear": "Boldog új évet — üres lap, fiók nélkül.",
+        "newYear": "Boldog új évet — csendes kezdet, tiszta lap.",
         "christmasEve": "Szenteste – csendes pillanat a meghittségre, elmélkedésre és jó társaságra.",
         "christmas": "Boldog karácsonyt – békés napot és új, fényes ötleteket kívánunk.",
         "goodFriday": "Nagypéntek – csendes nap az elmélkedésre, a jóságra és a reményre.",
@@ -392,6 +392,13 @@
       "digitalPreservationDay": "A Kit nem archívum, de emlékeztető, hogy legyen tartalék.",
       "digitalPreservationDay2": "A formátumok változnak. Egy helyi másolat ettől még segít.",
       "digitalPreservationDay3": "Őrizd meg a fájlt; ne küldd el egy eszköznek."
+    },
+    "newYearCard": {
+      "countdownTitle": "{year} már a küszöbön.",
+      "countdownSubtitle": "Tíz csendes perc. Aztán egy üres lap.",
+      "celebrateTitle": "Boldog új évet.",
+      "celebrateSubtitle": "{year} itt kezdődik.",
+      "countdownLabel": "{minutes} perc és {seconds} másodperc {year}-ig."
     }
   },
   "categories": {

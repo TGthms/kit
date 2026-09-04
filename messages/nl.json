@@ -158,10 +158,10 @@
       "health": "Gezondheid"
     },
     "greeting": {
-      "morning": "Goedemorgen — een fijne {day}.",
-      "afternoon": "Goedemiddag — een fijne {day}.",
-      "evening": "Goedenavond — een fijne {day}.",
-      "night": "Nog wakker? Neem {day} rustig.",
+      "morning": "Goedemorgen — de dag mag rustig beginnen.",
+      "afternoon": "Goedemiddag — hoe gaat de dag?",
+      "evening": "Goedenavond — hopelijk was de dag vriendelijk.",
+      "night": "Nog wakker? Vanavond maar rustig aan.",
       "extra1": "Wat kunnen we vandaag eenvoudiger maken?",
       "extra2": "Klaar wanneer jij dat bent.",
       "extra3": "Laten we iets nuttigs doen.",
@@ -199,7 +199,7 @@
       "night2": "Nog hier? Kit ook.",
       "night3": "Stille uren. Laten we het simpel houden.",
       "observance": {
-        "newYear": "Gelukkig nieuwjaar — een lege pagina, zonder account.",
+        "newYear": "Gelukkig nieuwjaar — een stille start, een schone lei.",
         "christmasEve": "Kerstavond — een rustig moment voor warmte, bezinning en goed gezelschap.",
         "christmas": "Fijne Kerst — een vredige dag en mooie nieuwe ideeën gewenst.",
         "goodFriday": "Goede Vrijdag — een rustige dag voor bezinning, vriendelijkheid en hoop.",
@@ -392,6 +392,13 @@
       "digitalPreservationDay": "Kit is geen archief, maar wel een herinnering om een reserve te houden.",
       "digitalPreservationDay2": "Formaten veranderen. Een lokale kopie helpt nog steeds.",
       "digitalPreservationDay3": "Bewaar het bestand; stuur het niet naar een tool."
+    },
+    "newYearCard": {
+      "countdownTitle": "{year} is bijna daar.",
+      "countdownSubtitle": "Tien stille minuten. Daarna een nieuwe bladzijde.",
+      "celebrateTitle": "Gelukkig nieuwjaar.",
+      "celebrateSubtitle": "{year} begint hier.",
+      "countdownLabel": "{minutes} minuten en {seconds} seconden tot {year}."
     }
   },
   "categories": {

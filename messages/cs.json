@@ -158,10 +158,10 @@
       "health": "Zdraví"
     },
     "greeting": {
-      "morning": "Dobré ráno — krásný {day}.",
-      "afternoon": "Dobré odpoledne — krásný {day}.",
-      "evening": "Dobrý večer — krásný {day}.",
-      "night": "Ještě vzhůru? Vem tenhle {day} v klidu.",
+      "morning": "Dobré ráno — den může začít v klidu.",
+      "afternoon": "Dobré odpoledne — jak jde den?",
+      "evening": "Dobrý večer — snad byl den vlídný.",
+      "night": "Ještě vzhůru? Dnes v noci bez spěchu.",
       "extra1": "Co můžeme dnes zjednodušit?",
       "extra2": "Až budete připraveni, můžeme začít.",
       "extra3": "Pusťme se do něčeho užitečného.",
@@ -199,7 +199,7 @@
       "night2": "Pořád tady? Kit taky.",
       "night3": "Tiché hodiny. Zůstaňme u jednoduchosti.",
       "observance": {
-        "newYear": "Šťastný nový rok — čistá stránka, bez účtu.",
+        "newYear": "Šťastný nový rok — tichý začátek, čistý list.",
         "christmasEve": "Štědrý večer – klidná chvíle pro teplo, zamyšlení a dobrou společnost.",
         "christmas": "Veselé Vánoce – přejeme vám pokojný den a nové, světlé nápady.",
         "goodFriday": "Velký pátek – tichý den pro zamyšlení, laskavost a naději.",
@@ -392,6 +392,13 @@
       "digitalPreservationDay": "Kit není archiv, ale připomínka mít náhradní kopii.",
       "digitalPreservationDay2": "Formáty se mění. Místní kopie pořád pomůže.",
       "digitalPreservationDay3": "Uchovej soubor; neposílej ho nástroji."
+    },
+    "newYearCard": {
+      "countdownTitle": "{year} je skoro tady.",
+      "countdownSubtitle": "Deset tichých minut. Pak nová stránka.",
+      "celebrateTitle": "Šťastný nový rok.",
+      "celebrateSubtitle": "{year} začíná tady.",
+      "countdownLabel": "{minutes} minut a {seconds} sekund do roku {year}."
     }
   },
   "categories": {

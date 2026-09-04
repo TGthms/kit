@@ -158,10 +158,10 @@
       "health": "Saúde"
     },
     "greeting": {
-      "morning": "Bom dia — bom {day}.",
-      "afternoon": "Boa tarde — bom {day}.",
-      "evening": "Boa noite — bom {day}.",
-      "night": "Ainda acordado? Leve este {day} com calma.",
+      "morning": "Bom dia — que o dia comece com calma.",
+      "afternoon": "Boa tarde — como vai o dia?",
+      "evening": "Boa noite — que o dia tenha sido amável.",
+      "night": "Ainda acordado? Esta noite, sem pressa.",
       "extra1": "O que podemos tornar mais simples hoje?",
       "extra2": "Quando estiver pronto, começamos.",
       "extra3": "Vamos fazer algo útil.",
@@ -199,7 +199,7 @@
       "night2": "Ainda aqui? O Kit também.",
       "night3": "Horas sossegadas. Vamos manter simples.",
       "observance": {
-        "newYear": "Feliz Ano Novo — uma página em branco, sem conta.",
+        "newYear": "Feliz Ano Novo — um começo sereno, uma folha limpa.",
         "christmasEve": "Véspera de Natal — um momento tranquilo de calor, reflexão e boa companhia.",
         "christmas": "Feliz Natal — desejamos um dia sereno e novas ideias luminosas.",
         "goodFriday": "Sexta-feira Santa — um dia tranquilo de reflexão, bondade e esperança.",
@@ -392,6 +392,13 @@
       "digitalPreservationDay": "O Kit não é um arquivo, mas é um lembrete para guardar uma cópia extra.",
       "digitalPreservationDay2": "Os formatos mudam. Uma cópia local ainda ajuda.",
       "digitalPreservationDay3": "Preserve o ficheiro; não o envie a uma ferramenta."
+    },
+    "newYearCard": {
+      "countdownTitle": "{year} está quase a chegar.",
+      "countdownSubtitle": "Dez minutos serenos. Depois, uma página nova.",
+      "celebrateTitle": "Feliz Ano Novo.",
+      "celebrateSubtitle": "{year} começa aqui.",
+      "countdownLabel": "{minutes} minutos e {seconds} segundos para {year}."
     }
   },
   "categories": {
