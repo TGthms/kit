@@ -117,4 +117,15 @@ describe("direction and html lang", () => {
     expect(localeHtmlLang("zh")).toBe("zh-Hans");
     expect(localeHtmlLang("pt-BR")).toBe("pt-BR");
   });
+
+  it("bakes lang and dir onto the locale document html", async () => {
+    const { readFileSync } = await import("node:fs");
+    const { join } = await import("node:path");
+    const localeLayout = readFileSync(join(process.cwd(), "src/app/[locale]/layout.tsx"), "utf8");
+    const rootLayout = readFileSync(join(process.cwd(), "src/app/layout.tsx"), "utf8");
+    const gateLayout = readFileSync(join(process.cwd(), "src/app/(root)/layout.tsx"), "utf8");
+    expect(rootLayout).not.toMatch(/<html/);
+    expect(gateLayout).toMatch(/<html lang="en" dir="ltr"/);
+    expect(localeLayout).toMatch(/<html lang=\{lang\} dir=\{dir\}/);
+  });
 });

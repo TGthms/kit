@@ -1,9 +1,7 @@
 import type { Metadata, Viewport } from "next";
-import { withBasePath, withAsset, basePath } from "@/lib/base-path";
-import { locales } from "@/lib/i18n/config";
+import { withBasePath, withAsset } from "@/lib/base-path";
 import { socialImages } from "@/lib/seo/metadata";
 import {
-  CONTENT_SECURITY_POLICY,
   ogImageUrl,
   SITE_AUTHOR,
   SITE_AUTHOR_URL,
@@ -86,39 +84,5 @@ export const viewport: Viewport = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  return (
-    <html lang="en" dir="ltr" suppressHydrationWarning>
-      <head>
-        <meta
-          httpEquiv="Content-Security-Policy"
-          content={
-            process.env.NODE_ENV === "development"
-              ? CONTENT_SECURITY_POLICY.replace(
-                  "script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval'",
-                  "script-src 'self' 'unsafe-inline' 'unsafe-eval' 'wasm-unsafe-eval'"
-                )
-              : CONTENT_SECURITY_POLICY
-          }
-        />
-        {/* Sync on purpose: theme/lang/locale-gate/viewport must run before first paint. */}
-        {/* eslint-disable-next-line @next/next/no-sync-scripts */}
-        <script src={withBasePath("/boot/theme.js")} />
-        {/* eslint-disable-next-line @next/next/no-sync-scripts */}
-        <script src={withBasePath("/boot/viewport.js")} />
-        {/* eslint-disable-next-line @next/next/no-sync-scripts */}
-        <script
-          src={withBasePath("/boot/locale-lang.js")}
-          data-base-path={basePath}
-          data-locales={locales.join(",")}
-        />
-        {/* eslint-disable-next-line @next/next/no-sync-scripts */}
-        <script
-          src={withBasePath("/boot/locale-gate.js")}
-          data-base-path={basePath}
-          data-locales={locales.join(",")}
-        />
-      </head>
-      <body>{children}</body>
-    </html>
-  );
+  return children;
 }

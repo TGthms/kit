@@ -9,6 +9,7 @@ import { ShortcutsProvider } from "@/components/layout/shortcuts-provider";
 import { ServiceWorkerRegister } from "@/components/pwa/sw-register";
 import { NavigationGuard } from "@/components/layout/navigation-guard";
 import { ChunkLoadRecovery } from "@/components/pwa/chunk-load-recovery";
+import { DocumentHead } from "@/components/layout/document-head";
 import { SiteJsonLd } from "@/lib/seo/json-ld";
 import { SITE_NAME } from "@/lib/seo/site";
 
@@ -32,18 +33,25 @@ export default async function LocaleLayout({
   const meta = messages.meta as { title?: string; description?: string };
 
   return (
-    <div lang={lang} dir={dir} className="min-h-dvh antialiased">
-      <NextIntlClientProvider messages={messages}>
-        <Providers lang={lang} dir={dir}>
-          <ShortcutsProvider>
-            <AppShell>{children}</AppShell>
-          </ShortcutsProvider>
-          <NavigationGuard />
-          <ChunkLoadRecovery />
-          <ServiceWorkerRegister />
-        </Providers>
-      </NextIntlClientProvider>
-      <SiteJsonLd name={SITE_NAME} description={meta.description ?? ""} locale={lang} />
-    </div>
+    <html lang={lang} dir={dir} suppressHydrationWarning>
+      <head>
+        <DocumentHead />
+      </head>
+      <body>
+        <div lang={lang} dir={dir} className="min-h-dvh antialiased">
+          <NextIntlClientProvider messages={messages}>
+            <Providers lang={lang} dir={dir}>
+              <ShortcutsProvider>
+                <AppShell>{children}</AppShell>
+              </ShortcutsProvider>
+              <NavigationGuard />
+              <ChunkLoadRecovery />
+              <ServiceWorkerRegister />
+            </Providers>
+          </NextIntlClientProvider>
+          <SiteJsonLd name={SITE_NAME} description={meta.description ?? ""} locale={lang} />
+        </div>
+      </body>
+    </html>
   );
 }
