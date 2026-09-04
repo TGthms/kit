@@ -28,6 +28,7 @@ import { GreetingHeadline } from "@/components/home/greeting-headline";
 import { GreetingSubtitle } from "@/components/home/greeting-subtitle";
 import { PageLoader } from "@/components/shared/page-loader";
 import { getGreetingPeriod, getGreetingPoolKeys, getGreetingVariant, getGreetingVisitSeed, getHomeGreetingSelection, type GreetingCategory, type GreetingPeriod, type GreetingSubtitle as GreetingSubtitlePick } from "@/lib/home/greeting";
+import { overlayGreetingDate, parseGreetingDate, parseGreetingSeed } from "@/lib/home/greeting-qa";
 import type { SubtitleMotion } from "@/lib/home/subtitle-motion";
 import { WEB_VERSES } from "@/lib/home/verses";
 
@@ -160,6 +161,8 @@ function HomePageInner() {
   const tn = useTranslations("nav");
   const searchParams = useSearchParams();
   const selectedCat = parseCategoryParam(searchParams.get("c"));
+  const greetingDateParam = searchParams.get("greetingDate");
+  const greetingSeedParam = searchParams.get("greetingSeed");
   const [q, setQ] = useState("");
   const [greeting, setGreeting] = useState<{
     period: GreetingPeriod;
@@ -173,10 +176,12 @@ function HomePageInner() {
   } | null>(null);
 
   useLayoutEffect(() => {
-    const visitSeed = getGreetingVisitSeed();
+    const dateOverride = parseGreetingDate(greetingDateParam);
+    const seedOverride = parseGreetingSeed(greetingSeedParam);
+    const visitSeed = seedOverride ?? getGreetingVisitSeed();
     let timeout = 0;
     const updateGreeting = () => {
-      const now = new Date();
+      const now = overlayGreetingDate(new Date(), dateOverride);
       const pool = getGreetingPoolKeys(now);
       const variant = getGreetingVariant(now, pool.length, visitSeed);
       const selection = getHomeGreetingSelection(now, locale, variant);
@@ -201,7 +206,7 @@ function HomePageInner() {
     };
     updateGreeting();
     return () => window.clearTimeout(timeout);
-  }, [locale]);
+  }, [greetingDateParam, greetingSeedParam, locale]);
 
   const favIds = useFavoritesStore((s) => s.ids);
   const toggle = useFavoritesStore((s) => s.toggle);
