@@ -1,6 +1,7 @@
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, setRequestLocale } from "next-intl/server";
 import { isPathLocale } from "@/lib/i18n/config";
+import { omitHomeGreetingMessages } from "@/lib/i18n/slim";
 import { notFound } from "next/navigation";
 
 export default async function ToolsLayout({
@@ -13,6 +14,6 @@ export default async function ToolsLayout({
   const { locale } = await params;
   if (!isPathLocale(locale)) notFound();
   setRequestLocale(locale);
-  const messages = await getMessages();
+  const messages = omitHomeGreetingMessages(await getMessages());
   return <NextIntlClientProvider messages={messages}>{children}</NextIntlClientProvider>;
 }

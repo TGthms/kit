@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { slimMessagesForShell } from "./slim";
+import { omitHomeGreetingMessages, slimMessagesForShell } from "./slim";
 import en from "../../../messages/en.json";
 
 describe("slimMessagesForShell", () => {
@@ -16,5 +16,20 @@ describe("slimMessagesForShell", () => {
     expect(slim.tools["currency-converter"].from).toBeUndefined();
     expect(slim.tools["everyday-converter"]).toBeUndefined();
     expect(Object.keys(slim.tools["pdf-merge"] ?? {})).toEqual(["name", "description", "keywords"]);
+  });
+});
+
+describe("omitHomeGreetingMessages", () => {
+  it("drops greeting trees and keeps home chrome plus full tool UI", () => {
+    const slim = omitHomeGreetingMessages(en) as {
+      home: Record<string, unknown>;
+      tools: { "pdf-merge": { run?: string } };
+    };
+    expect(slim.home.subtitle).toBe(en.home.subtitle);
+    expect(slim.home.featured).toBe(en.home.featured);
+    expect(slim.home.greeting).toBeUndefined();
+    expect(slim.home.subtitleFacts).toBeUndefined();
+    expect(slim.home.subtitleObservance).toBeUndefined();
+    expect(slim.tools["pdf-merge"].run).toBe(en.tools["pdf-merge"].run);
   });
 });

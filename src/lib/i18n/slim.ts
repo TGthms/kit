@@ -24,3 +24,16 @@ export function slimMessagesForShell(messages: AbstractIntlMessages): AbstractIn
   }
   return { ...messages, tools: slimTools };
 }
+
+const GREETING_HOME_KEYS = new Set(["greeting", "subtitleFacts", "subtitleObservance"]);
+
+/** Tool routes do not render home greetings; drop those trees from the client catalog. */
+export function omitHomeGreetingMessages(messages: AbstractIntlMessages): AbstractIntlMessages {
+  const home = (messages as { home?: Record<string, unknown> }).home;
+  if (!home || typeof home !== "object") return messages;
+  const nextHome: Record<string, unknown> = {};
+  for (const [key, value] of Object.entries(home)) {
+    if (!GREETING_HOME_KEYS.has(key)) nextHome[key] = value;
+  }
+  return { ...messages, home: nextHome };
+}
