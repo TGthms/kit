@@ -26,7 +26,11 @@ describe("service worker update policy", () => {
   });
 
   it("busts the shell cache when navigation policy changes", () => {
-    expect(sw).toMatch(/kit-shell-v8/);
+    expect(sw).toMatch(/kit-shell-v9/);
+    expect(sw).toMatch(/PRECACHE_LOCALE/);
+    expect(sw).toMatch(/PRECACHE_PAUSE/);
+    expect(sw).toMatch(/priority:\s*["']low["']/);
+    expect(sw).toMatch(/js\|mjs\|css\|woff2\?\|wasm\|gz/);
   });
 
   it("does not reload the tab when the controller changes", () => {
@@ -37,5 +41,12 @@ describe("service worker update policy", () => {
   it("throttles update checks after the tab becomes visible", () => {
     expect(register).toMatch(/UPDATE_EVERY_MS\s*=\s*5\s*\*\s*60\s*\*\s*1000/);
     expect(register).toMatch(/UPDATE_AFTER_VISIBLE_MS/);
+  });
+
+  it("starts the idle fill only after first paint and pauses on interaction", () => {
+    expect(register).toMatch(/FILL_AFTER_IDLE_MS/);
+    expect(register).toMatch(/PRECACHE_PAUSE/);
+    expect(register).toMatch(/PRECACHE_RESUME/);
+    expect(register).not.toMatch(/skipWaiting/);
   });
 });

@@ -4,10 +4,11 @@
    Safari rejects a document response from a worker if it followed HTTP redirects
    ("Response served by service worker has redirections"). Never return a
    redirect Response or a fetch() result with redirected === true. */
-const CACHE = "kit-shell-v8";
+const CACHE = "kit-shell-v9";
 const LAST_HOME = "./last-home";
 const NAV_FETCH_MS = 8000;
 const NAV_CACHE_MS = 2500;
+const FILL_PRECACHE = "./sw-precache.json";
 
 self.addEventListener("install", (event) => {
   event.waitUntil(
@@ -40,7 +41,7 @@ function isIconOrManifest(url) {
 }
 
 function isStaticAsset(url) {
-  return /\.(js|css|woff2?)$/u.test(url.pathname);
+  return /\.(js|mjs|css|woff2?|wasm|gz)$/u.test(url.pathname);
 }
 
 function isRscRequest(req) {
@@ -172,9 +173,100 @@ async function navigateDocument(req, dest) {
   });
 }
 
+let fillPaused = false;
+let fillBusy = false;
+const fillQueue = [];
+const fillSeen = new Set();
+
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+function enqueueFill(urls) {
+  for (const raw of urls) {
+    if (typeof raw !== "string" || !raw) continue;
+    let href;
+    try {
+      href = new URL(raw, self.location.origin).href;
+    } catch {
+      continue;
+    }
+    if (!href.startsWith(self.location.origin)) continue;
+    if (fillSeen.has(href)) continue;
+    fillSeen.add(href);
+    fillQueue.push(href);
+  }
+}
+
+async function cacheFillUrl(href) {
+  const cache = await caches.open(CACHE);
+  if (await cache.match(href)) return;
+  const init = { cache: "no-store", priority: "low" };
+  if (href.endsWith("/") || href.endsWith(".html")) init.headers = { Accept: "text/html" };
+  const res = asDirectResponse(await fetch(href, init));
+  if (!res || !res.ok || res.type === "error") return;
+  await cache.put(href, res);
+}
+
+async function pumpFill() {
+  if (fillBusy) return;
+  fillBusy = true;
+  try {
+    while (fillQueue.length) {
+      while (fillPaused) await sleep(400);
+      const href = fillQueue.shift();
+      if (!href) continue;
+      try {
+        await cacheFillUrl(href);
+      } catch {
+        /* quota / network — skip */
+      }
+    }
+  } finally {
+    fillBusy = false;
+  }
+}
+
+async function startLocaleFill(locale, skipHeavy) {
+  if (typeof locale !== "string" || !/^[A-Za-z0-9-]+$/.test(locale)) return;
+  let manifest;
+  try {
+    manifest = await (await fetch(FILL_PRECACHE, { cache: "no-store" })).json();
+  } catch {
+    return;
+  }
+  enqueueFill(manifest.core || []);
+  const chrome = manifest.chromeByLocale || {};
+  enqueueFill(chrome[locale] || []);
+  for (const [other, urls] of Object.entries(chrome)) {
+    if (other === locale) continue;
+    enqueueFill(urls);
+  }
+  enqueueFill((manifest.toolsByLocale && manifest.toolsByLocale[locale]) || []);
+  if (!skipHeavy) enqueueFill(manifest.engines || []);
+  await pumpFill();
+}
+
 self.addEventListener("message", (event) => {
   const data = event.data;
-  if (!data || data.type !== "PRECACHE_HOME" || typeof data.url !== "string") return;
+  if (!data || typeof data !== "object") return;
+
+  if (data.type === "PRECACHE_PAUSE") {
+    fillPaused = true;
+    return;
+  }
+  if (data.type === "PRECACHE_RESUME") {
+    fillPaused = false;
+    event.waitUntil(pumpFill());
+    return;
+  }
+
+  if (data.type === "PRECACHE_LOCALE" && typeof data.locale === "string") {
+    event.waitUntil(startLocaleFill(data.locale, Boolean(data.skipHeavy)));
+    return;
+  }
+
+  if (data.type !== "PRECACHE_HOME" || typeof data.url !== "string") return;
   let url;
   try {
     url = new URL(data.url, self.location.origin);

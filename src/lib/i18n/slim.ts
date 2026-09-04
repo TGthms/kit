@@ -35,5 +35,5 @@ export function omitHomeGreetingMessages(messages: AbstractIntlMessages): Abstra
   for (const [key, value] of Object.entries(home)) {
     if (!GREETING_HOME_KEYS.has(key)) nextHome[key] = value;
   }
-  return { ...messages, home: nextHome };
+  return { ...messages, home: nextHome as AbstractIntlMessages };
 }

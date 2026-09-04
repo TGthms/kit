@@ -28,6 +28,11 @@ export function NavigationGuard() {
       const next = htmlHref(link.href, window.location.origin);
       const from = htmlHref(window.location.href, window.location.origin);
       if (next.split("#")[0] === from.split("#")[0]) return;
+      if (!navigator.onLine) {
+        event.preventDefault();
+        window.location.assign(next);
+        return;
+      }
       window.clearTimeout(hangTimer);
       hangTimer = window.setTimeout(() => {
         if (isRscDocumentPath(window.location.pathname)) {

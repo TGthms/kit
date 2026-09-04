@@ -10,7 +10,7 @@
     "dev": "next dev",
     "prebuild": "node scripts/sync-vendor.mjs",
     "build": "next build",
-    "postbuild": "node scripts/prune-export.mjs",
+    "postbuild": "node scripts/prune-export.mjs && node scripts/sw-precache.mjs",
     "start": "next start",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
