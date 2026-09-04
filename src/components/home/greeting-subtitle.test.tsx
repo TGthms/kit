@@ -30,13 +30,13 @@ describe("GreetingSubtitle", () => {
     expect(screen.getByText("Kit keeps files on this device.").className).toContain("greeting-sub--fade");
   });
 
-  it("maps rise motion without a play gate", () => {
+  it("maps a slow fade without a play gate", () => {
     render(
-      <GreetingSubtitle motion="rise">
+      <GreetingSubtitle motion="fadeSlow">
         A tiny tool can turn a tedious task into a two-minute win.
       </GreetingSubtitle>,
     );
-    expect(screen.getByText(/tiny tool/).className).toContain("greeting-sub--rise");
+    expect(screen.getByText(/tiny tool/).className).toContain("greeting-sub--fadeSlow");
   });
 
   it("skips motion when reduced motion is preferred", () => {
@@ -55,8 +55,8 @@ describe("GreetingSubtitle", () => {
         },
       }),
     });
-    render(<GreetingSubtitle motion="scaleSoft">Quiet work still counts.</GreetingSubtitle>);
+    render(<GreetingSubtitle motion="fadeSlow">Quiet work still counts.</GreetingSubtitle>);
     expect(screen.getByText("Quiet work still counts.").className).toContain("greeting-sub--instant");
-    expect(screen.getByText("Quiet work still counts.").className).not.toContain("greeting-sub--scaleSoft");
+    expect(screen.getByText("Quiet work still counts.").className).not.toContain("greeting-sub--fadeSlow");
   });
 });

@@ -366,7 +366,7 @@ export function getHomeGreetingSelection(date: Date, locale: string, variant: nu
     return {
       greetingKey,
       subtitle: { kind: "verse", id: GOOD_FRIDAY_VERSE_ID },
-      motion: subtitleMotionFor({ occasionKey: observance, category: "kit", period, greetingKey }),
+      motion: subtitleMotionFor({ occasionKey: observance, period }),
       occasionKey: observance,
       category: "kit",
       day,
@@ -378,7 +378,7 @@ export function getHomeGreetingSelection(date: Date, locale: string, variant: nu
     return {
       greetingKey,
       subtitle: { kind: "i18n", key: pickKey(observanceSubtitleKeys(observance), subtitleEntropy) },
-      motion: subtitleMotionFor({ occasionKey: observance, category: "kit", period, greetingKey }),
+      motion: subtitleMotionFor({ occasionKey: observance, period }),
       occasionKey: observance,
       category: "kit",
       day,
@@ -392,7 +392,7 @@ export function getHomeGreetingSelection(date: Date, locale: string, variant: nu
   return {
     greetingKey,
     subtitle: { kind: "i18n", key: pickKey(subtitlePoolFor(category, period), subtitleEntropy) },
-    motion: subtitleMotionFor({ category, period, greetingKey }),
+    motion: subtitleMotionFor({ period }),
     category,
     day,
   };

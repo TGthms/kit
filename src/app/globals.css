@@ -420,42 +420,12 @@ scritto-flow.kit-scritto-inline {
   animation: greeting-sub-fade 780ms var(--ease-out-soft) both;
 }
 
-.greeting-sub--rise {
-  animation: greeting-sub-rise 560ms var(--ease-out-soft) both;
-}
-
-.greeting-sub--scaleSoft {
-  animation: greeting-sub-scale 600ms var(--ease-out-soft) both;
-}
-
 @keyframes greeting-sub-fade {
   from {
     opacity: 0;
   }
   to {
     opacity: 1;
-  }
-}
-
-@keyframes greeting-sub-rise {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes greeting-sub-scale {
-  from {
-    opacity: 0;
-    transform: scale(1.02);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
   }
 }
 
@@ -683,9 +653,7 @@ button[data-pressed]:not(:disabled),
   }
   .greeting-sub,
   .greeting-sub--fade,
-  .greeting-sub--fadeSlow,
-  .greeting-sub--rise,
-  .greeting-sub--scaleSoft {
+  .greeting-sub--fadeSlow {
     animation: none !important;
     opacity: 1 !important;
     transform: none !important;

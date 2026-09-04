@@ -66,7 +66,7 @@ describe("home greeting", () => {
       greetingKey: "greeting.observance.christmas",
       occasionKey: "christmas",
       category: "kit",
-      motion: "scaleSoft",
+      motion: "fade",
     });
     expect(christmas.subtitle.kind).toBe("i18n");
     expect(christmas.subtitle.kind === "i18n" && christmas.subtitle.key).toMatch(/^subtitleObservance\.christmas[23]?$/);
@@ -139,7 +139,7 @@ describe("home greeting", () => {
     expect(getHomeGreetingSelection(goodFriday, "en-US", 0)).toMatchObject({
       greetingKey: "greeting.observance.goodFriday",
       subtitle: { kind: "verse", id: GOOD_FRIDAY_VERSE_ID },
-      motion: "fade",
+      motion: "fadeSlow",
       occasionKey: "goodFriday",
     });
     expect(getHomeGreetingSelection(goodFriday, "zh-Hans", 2).subtitle).toEqual({ kind: "verse", id: "john1930" });
@@ -159,7 +159,7 @@ describe("home greeting", () => {
     expect(privacy.motion).toBe("fade");
     expect(KIT_SUBTITLE_KEYS).toContain(privacy.subtitle.kind === "i18n" ? privacy.subtitle.key : "");
     expect(productivity.greetingKey).toBe("greeting.productivity");
-    expect(productivity.motion).toBe("rise");
+    expect(productivity.motion).toBe("fade");
     expect(PRODUCTIVITY_SUBTITLE_KEYS).toContain(productivity.subtitle.kind === "i18n" ? productivity.subtitle.key : "");
   });
 
@@ -173,10 +173,10 @@ describe("home greeting", () => {
     expect(getGreetingPoolKeys(new Date(2026, 7, 24, 20))).not.toContain("monday");
   });
 
-  it("picks calm motion from time of day and festive observances", () => {
-    expect(getHomeGreetingSelection(new Date(2026, 7, 25, 10), "en", 0).motion).toBe("rise");
+  it("picks opacity-only motion from time of day and solemn observances", () => {
+    expect(getHomeGreetingSelection(new Date(2026, 7, 25, 10), "en", 0).motion).toBe("fade");
     expect(getHomeGreetingSelection(new Date(2026, 7, 25, 20), "en", 0).motion).toBe("fadeSlow");
-    expect(getHomeGreetingSelection(new Date(2026, 2, 14, 10), "en", 0).motion).toBe("scaleSoft");
-    expect(getHomeGreetingSelection(new Date(2026, 2, 29, 10), "en", 0).motion).toBe("fade");
+    expect(getHomeGreetingSelection(new Date(2026, 2, 14, 10), "en", 0).motion).toBe("fade");
+    expect(getHomeGreetingSelection(new Date(2026, 2, 29, 10), "en", 0).motion).toBe("fadeSlow");
   });
 });
