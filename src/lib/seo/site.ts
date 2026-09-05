@@ -3,8 +3,12 @@ export const SITE_HOST = new URL(SITE_URL).host;
 export const SITE_NAME = "Kit";
 export const SITE_AUTHOR = "Tim G";
 export const SITE_AUTHOR_URL = "https://t-g.pages.dev";
+export const SITE_GITHUB = "https://github.com/TGthms/kit";
+export const SITE_GITHUB_PROFILE = "https://github.com/TGthms";
 /** Stable `@id` for the WebSite node (sitename + isPartOf). */
 export const WEBSITE_ID = `${SITE_URL}/#website`;
+export const PERSON_ID = `${SITE_AUTHOR_URL}/#person`;
+export const APP_ID = `${SITE_URL}/#app`;
 
 /**
  * Static-host CSP for the client-only app.

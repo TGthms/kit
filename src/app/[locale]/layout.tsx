@@ -10,8 +10,6 @@ import { ServiceWorkerRegister } from "@/components/pwa/sw-register";
 import { NavigationGuard } from "@/components/layout/navigation-guard";
 import { ChunkLoadRecovery } from "@/components/pwa/chunk-load-recovery";
 import { DocumentHead } from "@/components/layout/document-head";
-import { SiteJsonLd } from "@/lib/seo/json-ld";
-import { SITE_NAME } from "@/lib/seo/site";
 
 export function generateStaticParams() {
   return pathLocales.map((locale) => ({ locale }));
@@ -30,7 +28,6 @@ export default async function LocaleLayout({
   const messages = omitHomeGreetingMessages(slimMessagesForShell(await getMessages()));
   const lang = localeHtmlLang(locale);
   const dir = localeDir(locale);
-  const meta = messages.meta as { title?: string; description?: string };
 
   return (
     <html lang={lang} dir={dir} suppressHydrationWarning>
@@ -49,7 +46,6 @@ export default async function LocaleLayout({
               <ServiceWorkerRegister />
             </Providers>
           </NextIntlClientProvider>
-          <SiteJsonLd name={SITE_NAME} description={meta.description ?? ""} locale={lang} />
         </div>
       </body>
     </html>

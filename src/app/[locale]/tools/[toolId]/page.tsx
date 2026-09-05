@@ -4,7 +4,8 @@ import { notFound } from "next/navigation";
 import { tools, getTool, legacyToolIdMap, type ToolId } from "@/lib/tools/registry";
 import { pathLocales } from "@/lib/i18n/config";
 import { ToolPageClient } from "@/components/tools/tool-page-client";
-import { buildToolMetadata } from "@/lib/seo/metadata";
+import { ToolJsonLd } from "@/lib/seo/json-ld";
+import { buildToolMetadata, toolJsonLdInput } from "@/lib/seo/metadata";
 
 export async function generateMetadata({
   params,
@@ -34,5 +35,11 @@ export default async function ToolPage({
   setRequestLocale(locale);
   const tool = getTool(toolId);
   if (!tool) notFound();
-  return <ToolPageClient toolId={tool.id as ToolId} />;
+  const jsonLd = await toolJsonLdInput(locale, toolId);
+  return (
+    <>
+      <ToolPageClient toolId={tool.id as ToolId} />
+      {jsonLd ? <ToolJsonLd {...jsonLd} /> : null}
+    </>
+  );
 }

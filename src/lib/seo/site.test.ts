@@ -3,8 +3,8 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { describe, expect, it } from "vitest";
 import { CONTENT_SECURITY_POLICY, CONTENT_SECURITY_POLICY_HEADER, ogImageUrl, ogLocaleFor, SITE_HOST, SITE_NAME, SITE_URL, WEBSITE_ID } from "./site";
-import { websiteJsonLd, serializeJsonLd } from "./json-ld";
-import { buildLocaleMetadata, buildSectionMetadata, buildToolMetadata, languageAlternates, socialImages } from "./metadata";
+import { websiteJsonLd, serializeJsonLd, homeJsonLd, toolJsonLd, legalJsonLd } from "./json-ld";
+import { buildLocaleMetadata, buildSectionMetadata, buildToolMetadata, languageAlternates, legalJsonLdInput, socialImages, toolJsonLdInput } from "./metadata";
 
 describe("content security policy", () => {
   it("does not allow jsDelivr and includes wasm-unsafe-eval", () => {
@@ -60,6 +60,42 @@ describe("WebSite JSON-LD", () => {
     expect(data.alternateName[0]).toBe(data.alternateName[0].toLowerCase());
     expect(serializeJsonLd({ html: "</script>" })).toContain("\\u003c/script>");
     expect(serializeJsonLd({ html: "</script>" })).not.toContain("</script>");
+  });
+});
+
+describe("home and tool JSON-LD", () => {
+  it("puts WebSite and WebApplication on the home graph only", () => {
+    const data = homeJsonLd({
+      description: "Private everyday browser tools.",
+      locale: "en",
+      url: `${SITE_URL}/en/`,
+    });
+    const types = data["@graph"].map((node) => node["@type"]);
+    expect(types).toEqual(["WebSite", "Person", "WebApplication"]);
+    const serialized = serializeJsonLd(data);
+    expect(serialized).not.toContain("aggregateRating");
+    expect(serialized).not.toContain("SearchAction");
+    expect(serialized).not.toContain("FAQPage");
+  });
+
+  it("describes a tool as a WebPage with breadcrumbs that match the UI", async () => {
+    const input = await toolJsonLdInput("en", "pdf-merge");
+    expect(input?.url).toBe(`${SITE_URL}/en/tools/pdf-merge/`);
+    expect(input?.breadcrumbs.map((crumb) => crumb.name)).toEqual(["Kit", "PDF", expect.any(String)]);
+    const data = toolJsonLd(input!);
+    expect(data["@graph"].map((node) => node["@type"])).toEqual(["WebPage", "BreadcrumbList"]);
+
+    expect(await toolJsonLdInput("en", "timezone-converter")).toBeNull();
+    expect(await toolJsonLdInput("en", "timezone-converter", "world-clock")).not.toBeNull();
+    expect(await toolJsonLdInput("en", "media-convert")).toBeNull();
+    expect(await toolJsonLdInput("zh", "pdf-merge")).toBeNull();
+  });
+
+  it("describes legal pages as WebPage plus breadcrumbs", async () => {
+    const input = await legalJsonLdInput("en", "privacy");
+    expect(input?.url).toBe(`${SITE_URL}/en/privacy/`);
+    const data = legalJsonLd(input!);
+    expect(data["@graph"].map((node) => node["@type"])).toEqual(["WebPage", "BreadcrumbList"]);
   });
 });
 

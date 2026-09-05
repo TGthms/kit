@@ -4,7 +4,8 @@ import { isPathLocale } from "@/lib/i18n/config";
 import { notFound } from "next/navigation";
 import { loadLegal, renderSimpleMarkdown } from "@/lib/legal/load";
 import { LegalPageShell } from "@/components/layout/legal-page-shell";
-import { buildSectionMetadata } from "@/lib/seo/metadata";
+import { LegalJsonLd } from "@/lib/seo/json-ld";
+import { buildSectionMetadata, legalJsonLdInput } from "@/lib/seo/metadata";
 
 export async function generateMetadata({
   params,
@@ -28,6 +29,7 @@ export default async function PrivacyPage({
   // Drop the H1 from markdown — PageHeader already shows the title
   const body = md.replace(/^#\s+.+\n+/, "");
   const html = renderSimpleMarkdown(body);
+  const jsonLd = await legalJsonLdInput(locale, "privacy");
 
   return (
     <LegalPageShell title={t("privacyTitle")}>
@@ -35,6 +37,7 @@ export default async function PrivacyPage({
         className="prose-kit text-muted-foreground"
         dangerouslySetInnerHTML={{ __html: html }}
       />
+      {jsonLd ? <LegalJsonLd {...jsonLd} /> : null}
     </LegalPageShell>
   );
 }

@@ -4,7 +4,8 @@ import { isPathLocale } from "@/lib/i18n/config";
 import { notFound } from "next/navigation";
 import { loadLegal, renderSimpleMarkdown } from "@/lib/legal/load";
 import { LegalPageShell } from "@/components/layout/legal-page-shell";
-import { buildSectionMetadata } from "@/lib/seo/metadata";
+import { LegalJsonLd } from "@/lib/seo/json-ld";
+import { buildSectionMetadata, legalJsonLdInput } from "@/lib/seo/metadata";
 
 export async function generateMetadata({
   params,
@@ -27,6 +28,7 @@ export default async function TermsPage({
   const md = loadLegal(locale, "terms");
   const body = md.replace(/^#\s+.+\n+/, "");
   const html = renderSimpleMarkdown(body);
+  const jsonLd = await legalJsonLdInput(locale, "terms");
 
   return (
     <LegalPageShell title={t("termsTitle")}>
@@ -34,6 +36,7 @@ export default async function TermsPage({
         className="prose-kit text-muted-foreground"
         dangerouslySetInnerHTML={{ __html: html }}
       />
+      {jsonLd ? <LegalJsonLd {...jsonLd} /> : null}
     </LegalPageShell>
   );
 }

@@ -22,6 +22,7 @@ type Messages = {
   history: { title: string; subtitle: string };
   favorites: { title: string; subtitle: string };
   legal: { privacyTitle: string; termsTitle: string };
+  categories: Record<string, string>;
 };
 
 export async function loadMessages(locale: string): Promise<Messages> {
@@ -65,8 +66,12 @@ function alternateOgLocales(pathLoc: string): string[] {
   return out;
 }
 
-function canonicalLocale(pathLoc: string): string {
+export function canonicalLocale(pathLoc: string): string {
   return pathLoc === "zh" ? "zh-Hans" : pathLoc;
+}
+
+export function isIndexablePathLocale(pathLoc: string): boolean {
+  return pathLoc !== "zh";
 }
 
 const NOINDEX_SECTIONS = new Set(["/settings/", "/history/", "/favorites/"]);
@@ -196,4 +201,71 @@ export async function buildSectionMetadata(locale: string, section: SectionId): 
     description: entry.description,
     pathAfterLocale: entry.path,
   });
+}
+
+export async function toolJsonLdInput(
+  locale: string,
+  toolId: string,
+  pathSegment?: string
+): Promise<{
+  name: string;
+  description: string;
+  url: string;
+  breadcrumbs: { name: string; url: string }[];
+} | null> {
+  const pathLoc = isPathLocale(locale) ? locale : defaultLocale;
+  if (!isIndexablePathLocale(pathLoc)) return null;
+  const noindex =
+    toolId in legacyToolIdMap || (toolId === "timezone-converter" && pathSegment !== "world-clock");
+  if (noindex) return null;
+  const resolved = resolveToolId(toolId) ?? getTool(toolId)?.id ?? toolId;
+  const tool = getTool(resolved);
+  if (!tool) return null;
+  const messages = await loadMessages(pathLoc);
+  const loc = canonicalLocale(pathLoc);
+  const publicSegment = pathSegment ?? toolPathSegment(resolved as Parameters<typeof toolPathSegment>[0]);
+  const entry = messages.tools[resolved] ?? messages.tools[toolId];
+  const name = entry?.name || resolved;
+  const description = entry?.description || messages.meta.description;
+  const homeUrl = absoluteUrl(`/${loc}/`);
+  const categoryUrl = absoluteUrl(`/${loc}/?c=${encodeURIComponent(tool.category)}`);
+  const url = absoluteUrl(`/${loc}/tools/${publicSegment}/`);
+  const categoryName = messages.categories[tool.category] || tool.category;
+  return {
+    name,
+    description,
+    url,
+    breadcrumbs: [
+      { name: SITE_NAME, url: homeUrl },
+      { name: categoryName, url: categoryUrl },
+      { name, url },
+    ],
+  };
+}
+
+export async function legalJsonLdInput(
+  locale: string,
+  section: "privacy" | "terms"
+): Promise<{
+  name: string;
+  description: string;
+  url: string;
+  breadcrumbs: { name: string; url: string }[];
+} | null> {
+  const pathLoc = isPathLocale(locale) ? locale : defaultLocale;
+  if (!isIndexablePathLocale(pathLoc)) return null;
+  const messages = await loadMessages(pathLoc);
+  const loc = canonicalLocale(pathLoc);
+  const homeUrl = absoluteUrl(`/${loc}/`);
+  const name = section === "privacy" ? messages.legal.privacyTitle : messages.legal.termsTitle;
+  const url = absoluteUrl(`/${loc}/${section}/`);
+  return {
+    name,
+    description: messages.meta.description,
+    url,
+    breadcrumbs: [
+      { name: SITE_NAME, url: homeUrl },
+      { name, url },
+    ],
+  };
 }
