@@ -1453,7 +1453,7 @@
       "description": "Generate numbers, booleans, choices, or passwords for everyday use.",
       "keywords": "random number generator choice picker password generator",
       "invalid": "Check the inputs.",
-      "limits": "Randomness uses the browser's Math.random source. Results are for everyday choices, not cryptographic secrets.",
+      "limits": "Everyday picks use the browser random source. Passwords use a cryptographic generator on this device. Not a substitute for a password manager.",
       "run": "Generate",
       "integer": "Integer",
       "decimal": "Decimal",
