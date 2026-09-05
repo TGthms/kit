@@ -1,4 +1,5 @@
 import { DocumentHead } from "@/components/layout/document-head";
+import { WebSiteJsonLd } from "@/lib/seo/json-ld";
 
 /** `/` LocaleGate lives outside `[locale]` and still needs a document shell. */
 export default function RootGateLayout({ children }: { children: React.ReactNode }) {
@@ -7,7 +8,10 @@ export default function RootGateLayout({ children }: { children: React.ReactNode
       <head>
         <DocumentHead />
       </head>
-      <body>{children}</body>
+      <body>
+        {children}
+        <WebSiteJsonLd />
+      </body>
     </html>
   );
 }

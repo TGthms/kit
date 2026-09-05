@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { withBasePath, withAsset } from "@/lib/base-path";
-import { socialImages } from "@/lib/seo/metadata";
+import { languageAlternates, socialImages } from "@/lib/seo/metadata";
 import {
   ogImageUrl,
   SITE_AUTHOR,
@@ -46,6 +46,10 @@ export const metadata: Metadata = {
     capable: true,
     statusBarStyle: "default",
     title: SITE_NAME,
+  },
+  alternates: {
+    canonical: `${SITE_URL}/`,
+    languages: languageAlternates("/"),
   },
   openGraph: {
     type: "website",

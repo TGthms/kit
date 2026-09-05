@@ -1,7 +1,10 @@
 export const SITE_URL = "https://trykit.pages.dev";
+export const SITE_HOST = new URL(SITE_URL).host;
 export const SITE_NAME = "Kit";
 export const SITE_AUTHOR = "Tim G";
 export const SITE_AUTHOR_URL = "https://t-g.pages.dev";
+/** Stable `@id` for the WebSite node (sitename + isPartOf). */
+export const WEBSITE_ID = `${SITE_URL}/#website`;
 
 /**
  * Static-host CSP for the client-only app.

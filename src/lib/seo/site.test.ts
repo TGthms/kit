@@ -2,8 +2,9 @@ import { readFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { describe, expect, it } from "vitest";
-import { CONTENT_SECURITY_POLICY, CONTENT_SECURITY_POLICY_HEADER, ogImageUrl, ogLocaleFor, SITE_URL } from "./site";
-import { buildLocaleMetadata, buildSectionMetadata, buildToolMetadata, socialImages } from "./metadata";
+import { CONTENT_SECURITY_POLICY, CONTENT_SECURITY_POLICY_HEADER, ogImageUrl, ogLocaleFor, SITE_HOST, SITE_NAME, SITE_URL, WEBSITE_ID } from "./site";
+import { websiteJsonLd, serializeJsonLd } from "./json-ld";
+import { buildLocaleMetadata, buildSectionMetadata, buildToolMetadata, languageAlternates, socialImages } from "./metadata";
 
 describe("content security policy", () => {
   it("does not allow jsDelivr and includes wasm-unsafe-eval", () => {
@@ -41,6 +42,34 @@ describe("og image URL", () => {
     expect(image.width).toBe(1200);
     expect(image.height).toBe(630);
     expect(image.type).toBe("image/png");
+  });
+});
+
+describe("WebSite JSON-LD", () => {
+  it("names Kit on the subdomain root with a lowercase host fallback", () => {
+    const data = websiteJsonLd();
+    expect(data).toMatchObject({
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "@id": WEBSITE_ID,
+      name: SITE_NAME,
+      alternateName: [SITE_HOST],
+      url: `${SITE_URL}/`,
+    });
+    expect(SITE_HOST).toBe("trykit.pages.dev");
+    expect(data.alternateName[0]).toBe(data.alternateName[0].toLowerCase());
+    expect(serializeJsonLd({ html: "</script>" })).toContain("\\u003c/script>");
+    expect(serializeJsonLd({ html: "</script>" })).not.toContain("</script>");
+  });
+});
+
+describe("root language alternates", () => {
+  it("points x-default and each locale home at the canonical host", () => {
+    const languages = languageAlternates("/");
+    expect(languages["x-default"]).toBe(`${SITE_URL}/en/`);
+    expect(languages.en).toBe(`${SITE_URL}/en/`);
+    expect(languages["zh-Hans"]).toBe(`${SITE_URL}/zh-Hans/`);
+    expect(languages).not.toHaveProperty("zh");
   });
 });
 

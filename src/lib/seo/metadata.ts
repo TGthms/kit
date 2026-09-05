@@ -42,7 +42,7 @@ export function socialImages() {
   ];
 }
 
-function languageAlternates(pathAfterLocale: string): Record<string, string> {
+export function languageAlternates(pathAfterLocale: string): Record<string, string> {
   const map: Record<string, string> = {
     "x-default": absoluteUrl(`/en${pathAfterLocale}`),
   };
