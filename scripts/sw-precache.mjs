@@ -57,8 +57,10 @@ export function buildPrecacheManifest(outDir, basePath = "") {
     if (existsSync(join(full, "index.html"))) locales.add(name);
   }
 
+  const rscPath = (htmlPath) => `${htmlPath}index.txt`;
   const chromeByLocale = {};
   const toolsByLocale = {};
+  const rscByLocale = {};
   for (const locale of [...locales].sort()) {
     chromeByLocale[locale] = CHROME_SEGMENTS.map((seg) => withBase(`/${locale}/${seg}`));
     const toolsRoot = join(outDir, locale, "tools");
@@ -79,12 +81,13 @@ export function buildPrecacheManifest(outDir, basePath = "") {
         }
       }
     }
+    rscByLocale[locale] = [...chromeByLocale[locale], ...toolsByLocale[locale]].map(rscPath);
   }
 
   core.sort();
   pdfjs.sort();
   ffmpeg.sort();
-  return { core, engines: [...pdfjs, ...ffmpeg], chromeByLocale, toolsByLocale };
+  return { core, engines: [...pdfjs, ...ffmpeg], chromeByLocale, toolsByLocale, rscByLocale };
 }
 
 export function writePrecacheManifest(outDir, basePath = "") {

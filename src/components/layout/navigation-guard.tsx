@@ -3,12 +3,13 @@
 import { useEffect } from "react";
 import { htmlHref, isRscDocumentPath } from "@/lib/navigation/html-path";
 
-const HANG_MS = 1800;
+const HANG_MS = 8000;
 
 /**
  * After idle, Next's client router can push the static RSC file (`index.txt`)
- * as if it were a page. Recover immediately, and if an in-app link hangs,
- * fall through to a real HTML navigation.
+ * as if it were a page. Recover that URL. Offline in-app clicks load cached
+ * HTML. Do not turn a slow client navigation into a full document load — that
+ * is the tab spinner after the tab has been sitting idle.
  */
 export function NavigationGuard() {
   useEffect(() => {
@@ -37,10 +38,7 @@ export function NavigationGuard() {
       hangTimer = window.setTimeout(() => {
         if (isRscDocumentPath(window.location.pathname)) {
           window.location.replace(htmlHref(window.location.href, window.location.origin));
-          return;
         }
-        const now = htmlHref(window.location.href, window.location.origin);
-        if (now.split("#")[0] === from.split("#")[0]) window.location.assign(next);
       }, HANG_MS);
     };
 

@@ -1,13 +1,16 @@
-/* Kit service worker — app shell only; never cache user files or RSC payloads.
+/* Kit service worker — app shell only; never cache user files.
+   RSC payloads live in a separate cache from HTML so a Flight body can
+   never paint as the document.
    A new worker must wait for existing tabs to close. Taking over mid-navigation
    (skipWaiting + clients.claim) can orphan a navigate fetch and wedge the page.
    Safari rejects a document response from a worker if it followed HTTP redirects
    ("Response served by service worker has redirections"). Never return a
    redirect Response or a fetch() result with redirected === true. */
-const CACHE = "kit-shell-v10";
+const CACHE = "kit-shell-v11";
+const RSC_CACHE = "kit-rsc-v11";
 const LAST_HOME = "./last-home";
 const NAV_FETCH_MS = 8000;
-const NAV_CACHE_MS = 2500;
+const NAV_CACHE_MS = 400;
 const FILL_PRECACHE = "./sw-precache.json";
 
 self.addEventListener("install", (event) => {
@@ -31,7 +34,7 @@ self.addEventListener("install", (event) => {
 
 self.addEventListener("activate", (event) => {
   event.waitUntil(
-    caches.keys().then((keys) => Promise.all(keys.filter((k) => k !== CACHE).map((k) => caches.delete(k))))
+    caches.keys().then((keys) => Promise.all(keys.filter((k) => k !== CACHE && k !== RSC_CACHE).map((k) => caches.delete(k))))
   );
 });
 
@@ -60,6 +63,12 @@ function isHtmlResponse(res) {
 
 function isUsableHtml(res) {
   return Boolean(res) && res.ok && res.type !== "error" && isHtmlResponse(res);
+}
+
+function isUsableRsc(res) {
+  if (!res || !res.ok || res.type === "error") return false;
+  if (isHtmlResponse(res)) return false;
+  return true;
 }
 
 /** Safari cannot consume a SW navigation response that followed redirects. */
@@ -141,9 +150,19 @@ async function networkHtml(resource) {
   return res;
 }
 
-/** Network first, but if the socket hangs after idle, serve cached HTML at 2.5s. */
+/**
+ * Prefer the exact cached HTML immediately so an idle tab does not wait on a
+ * cold socket. Revalidate in the background. Network-first only when this
+ * URL has never been cached.
+ */
 async function navigateDocument(req, dest) {
   const target = dest || req;
+  const exact = await cachedExactNavigation(target);
+  if (isUsableHtml(exact)) {
+    networkHtml(target).catch(() => {});
+    return exact;
+  }
+
   const exactP = cachedExactNavigation(req);
   const cachedP = cachedNavigation(req);
 
@@ -179,6 +198,29 @@ async function navigateDocument(req, dest) {
   });
 }
 
+/** Cache-first Flight payloads. Never stored in the HTML shell cache. */
+async function respondRsc(event, req) {
+  const cache = await caches.open(RSC_CACHE);
+  const cached = await cache.match(req.url);
+  const revalidate = fetch(req).then(async (res) => {
+    const direct = await asDirectResponse(res);
+    if (isUsableRsc(direct)) await cache.put(req.url, direct.clone());
+    return direct;
+  });
+  if (isUsableRsc(cached)) {
+    event.waitUntil(revalidate.catch(() => {}));
+    return cached;
+  }
+  try {
+    const fresh = await revalidate;
+    if (isUsableRsc(fresh)) return fresh;
+  } catch {
+    /* network idle / offline */
+  }
+  if (isUsableRsc(cached)) return cached;
+  return Response.error();
+}
+
 let fillPaused = false;
 let fillBusy = false;
 let fillAbort = null;
@@ -205,8 +247,12 @@ function enqueueFill(urls) {
   }
 }
 
+function cacheNameFor(href) {
+  return /\.txt$/i.test(href) ? RSC_CACHE : CACHE;
+}
+
 async function cacheFillUrl(href) {
-  const cache = await caches.open(CACHE);
+  const cache = await caches.open(cacheNameFor(href));
   if (await cache.match(href)) {
     fillSeen.add(href);
     return;
@@ -218,7 +264,16 @@ async function cacheFillUrl(href) {
     if (href.endsWith("/") || href.endsWith(".html")) init.headers = { Accept: "text/html" };
     const res = await asDirectResponse(await fetch(href, init));
     if (!res || !res.ok || res.type === "error") return;
-    await cache.put(href, res);
+    if (fillPaused) return;
+    if (/\.txt$/i.test(href)) {
+      if (isHtmlResponse(res)) return;
+      await cache.put(href, res);
+    } else if (href.endsWith("/") || href.endsWith(".html")) {
+      if (!isHtmlResponse(res)) return;
+      await cache.put(href, res);
+    } else {
+      await cache.put(href, res);
+    }
     fillSeen.add(href);
   } finally {
     if (fillAbort === ctrl) fillAbort = null;
@@ -238,6 +293,7 @@ async function pumpFill() {
       } catch (err) {
         if (err && err.name === "AbortError") fillQueue.unshift(href);
       }
+      await sleep(0);
     }
   } finally {
     fillBusy = false;
@@ -255,11 +311,17 @@ async function startLocaleFill(locale, skipHeavy) {
   enqueueFill(manifest.core || []);
   const chrome = manifest.chromeByLocale || {};
   enqueueFill(chrome[locale] || []);
+  const rsc = manifest.rscByLocale || {};
+  enqueueFill(rsc[locale] || []);
   for (const [other, urls] of Object.entries(chrome)) {
     if (other === locale) continue;
     enqueueFill(urls);
   }
   enqueueFill((manifest.toolsByLocale && manifest.toolsByLocale[locale]) || []);
+  for (const [other, urls] of Object.entries(rsc)) {
+    if (other === locale) continue;
+    enqueueFill(urls);
+  }
   if (!skipHeavy) enqueueFill(manifest.engines || []);
   await pumpFill();
 }
@@ -267,6 +329,10 @@ async function startLocaleFill(locale, skipHeavy) {
 self.addEventListener("message", (event) => {
   const data = event.data;
   if (!data || typeof data !== "object") return;
+
+  if (data.type === "PING") {
+    return;
+  }
 
   if (data.type === "PRECACHE_PAUSE") {
     fillPaused = true;
@@ -311,9 +377,11 @@ self.addEventListener("fetch", (event) => {
   const url = new URL(req.url);
   if (!url.protocol.startsWith("http")) return;
   if (url.origin !== self.location.origin) return;
-  // Next client navigations/prefetches must hit the network as-is. Caching or
-  // replaying them as documents is how a Flight payload can paint as the page.
-  if (isRscRequest(req)) return;
+
+  if (isRscRequest(req)) {
+    event.respondWith(respondRsc(event, req));
+    return;
+  }
 
   if (req.mode === "navigate" || req.destination === "document") {
     if (/\.txt$/i.test(url.pathname)) {

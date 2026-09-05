@@ -33,6 +33,7 @@ describe("sw-precache manifest", () => {
       engines: string[];
       chromeByLocale: Record<string, string[]>;
       toolsByLocale: Record<string, string[]>;
+      rscByLocale: Record<string, string[]>;
     };
     expect(manifest.core).toContain("/_next/static/chunks/app.js");
     expect(manifest.core).toContain("/boot/theme.js");
@@ -43,6 +44,9 @@ describe("sw-precache manifest", () => {
     expect(manifest.chromeByLocale.en).toContain("/en/c/pdf/");
     expect(manifest.chromeByLocale.ar).toContain("/ar/settings/");
     expect(manifest.toolsByLocale.en).toContain("/en/tools/pdf-merge/");
+    expect(manifest.rscByLocale.en).toContain("/en/index.txt");
+    expect(manifest.rscByLocale.en).toContain("/en/how/index.txt");
+    expect(manifest.rscByLocale.en).toContain("/en/tools/pdf-merge/index.txt");
     expect(manifest.toolsByLocale.ar ?? []).toEqual([]);
     expect(manifest.chromeByLocale["404"]).toBeUndefined();
     expect(manifest.chromeByLocale["_not-found"]).toBeUndefined();

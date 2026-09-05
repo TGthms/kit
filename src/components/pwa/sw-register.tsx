@@ -53,6 +53,15 @@ export function ServiceWorkerRegister() {
       window.clearTimeout(visibleTimer);
       visibleTimer = 0;
       if (document.visibilityState !== "visible") return;
+      window.clearTimeout(resumeTimer);
+      post(activeWorker(), { type: "PRECACHE_PAUSE" });
+      post(activeWorker(), { type: "PING" });
+      try {
+        const path = window.location.pathname.endsWith("/") ? window.location.pathname : `${window.location.pathname}/`;
+        fetch(`${window.location.origin}${path}index.txt`, { headers: { RSC: "1" }, cache: "reload" }).catch(() => undefined);
+      } catch {
+        /* ignore */
+      }
       // Wait out the first click after resume so update() does not race it.
       scheduleUpdate();
     };
