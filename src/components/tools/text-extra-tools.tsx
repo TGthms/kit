@@ -10,7 +10,7 @@ import { Field } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { downloadBlob } from "@/lib/utils";
+import { blobFromDataUrl, downloadBlob } from "@/lib/utils";
 import { xmlToJsonText, jsonToXmlText } from "@/lib/text/xml";
 import { formatSql } from "@/lib/text/sql";
 import { runRegex, replaceRegex } from "@/lib/text/regex";
@@ -387,9 +387,11 @@ export function QrCodeTool() {
           <Button
             variant="outline"
             onClick={() => {
-              fetch(dataUrl)
-                .then((r) => r.blob())
-                .then((b) => downloadBlob(b, "qr.png"));
+              try {
+                downloadBlob(blobFromDataUrl(dataUrl), "qr.png");
+              } catch (e) {
+                toast.error(e instanceof Error ? e.message : tc("error"));
+              }
             }}
           >
             {tc("download")}

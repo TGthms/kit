@@ -17,6 +17,22 @@ export function formatBytes(bytes: number, locale = "en"): string {
   return `${new Intl.NumberFormat(locale, { maximumFractionDigits: i === 0 ? 0 : 1 }).format(n)} ${units[i]}`;
 }
 
+/** Decode a data: URL without fetch() — CSP connect-src does not allow data:. */
+export function blobFromDataUrl(dataUrl: string): Blob {
+  const comma = dataUrl.indexOf(",");
+  if (!dataUrl.startsWith("data:") || comma < 5) throw new Error("Invalid data URL");
+  const header = dataUrl.slice(5, comma);
+  const body = dataUrl.slice(comma + 1);
+  const mime = header.split(";")[0] || "application/octet-stream";
+  if (/;base64/i.test(header)) {
+    const binary = atob(body);
+    const bytes = new Uint8Array(binary.length);
+    for (let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
+    return new Blob([bytes], { type: mime });
+  }
+  return new Blob([decodeURIComponent(body)], { type: mime });
+}
+
 export function downloadBlob(blob: Blob, filename: string) {
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");
