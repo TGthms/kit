@@ -194,6 +194,9 @@ describe("backup host robots", () => {
     try {
       const home = await buildLocaleMetadata("en");
       expect(home.robots).toMatchObject({ index: false, follow: true });
+      const { default: robots } = await import("@/app/robots");
+      expect(robots()).toMatchObject({ rules: { userAgent: "*", disallow: "/" } });
+      expect(robots().sitemap).toBeUndefined();
     } finally {
       if (previous === undefined) delete process.env.NEXT_PUBLIC_BASE_PATH;
       else process.env.NEXT_PUBLIC_BASE_PATH = previous;
