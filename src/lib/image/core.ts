@@ -28,6 +28,16 @@ export function compressOutputMime(type: string): ImageMime {
   return "image/jpeg";
 }
 
+/**
+ * Canvas can encode JPEG, PNG, and WebP. GIF stills become PNG. Unknown
+ * types (BMP, empty clipboard MIME) stay PNG so alpha is not dropped.
+ */
+export function canvasOutputMime(type: string): ImageMime {
+  const normalized = type.toLowerCase().split(";", 1)[0];
+  if (normalized === "image/jpeg" || normalized === "image/png" || normalized === "image/webp") return normalized;
+  return "image/png";
+}
+
 export async function loadImageBitmap(file: Blob): Promise<ImageBitmap> {
   try {
     return await createImageBitmap(file, { imageOrientation: "from-image" });
@@ -112,8 +122,8 @@ export async function resizeImage(
   canvas.height = size.height;
   get2dContext(canvas).drawImage(bmp, 0, 0, canvas.width, canvas.height);
   bmp.close();
-  const type = opts.mime || file.type || "image/png";
-  return canvasToBlob(canvas, type, 0.92);
+  const type = canvasOutputMime(opts.mime || file.type || "image/png");
+  return canvasToBlob(canvas, type, type === "image/png" ? undefined : 0.92);
 }
 
 export async function cropImage(
@@ -143,7 +153,8 @@ export async function cropImage(
   canvas.height = size.height;
   get2dContext(canvas).drawImage(bmp, sx, sy, sw, sh, 0, 0, canvas.width, canvas.height);
   bmp.close();
-  return canvasToBlob(canvas, mime || file.type || "image/png", 0.92);
+  const type = canvasOutputMime(mime || file.type || "image/png");
+  return canvasToBlob(canvas, type, type === "image/png" ? undefined : 0.92);
 }
 
 export async function convertImage(file: Blob, mime: ImageMime, quality = 0.9): Promise<Blob> {
@@ -188,7 +199,8 @@ export async function adjustImage(
   ctx.filter = `brightness(${opts.brightness}%) contrast(${opts.contrast}%) saturate(${opts.saturation}%)`;
   ctx.drawImage(bmp, 0, 0, size.width, size.height);
   bmp.close();
-  return canvasToBlob(canvas, file.type || "image/png", 0.92);
+  const type = canvasOutputMime(file.type || "image/png");
+  return canvasToBlob(canvas, type, type === "image/png" ? undefined : 0.92);
 }
 
 async function bitmapToBuffer(file: Blob) {
@@ -222,7 +234,8 @@ export async function rotateImage(file: Blob, degrees: 90 | 180 | 270, mime?: st
     { data: imageData.data, width: imageData.width, height: imageData.height },
     degrees
   );
-  return canvasToBlob(bufferToCanvas(next), mime || file.type || "image/png", 0.92);
+  const type = canvasOutputMime(mime || file.type || "image/png");
+  return canvasToBlob(bufferToCanvas(next), type, type === "image/png" ? undefined : 0.92);
 }
 
 export async function flipImage(file: Blob, axis: "h" | "v", mime?: string): Promise<Blob> {
@@ -232,7 +245,8 @@ export async function flipImage(file: Blob, axis: "h" | "v", mime?: string): Pro
     { data: imageData.data, width: imageData.width, height: imageData.height },
     axis
   );
-  return canvasToBlob(bufferToCanvas(next), mime || file.type || "image/png", 0.92);
+  const type = canvasOutputMime(mime || file.type || "image/png");
+  return canvasToBlob(bufferToCanvas(next), type, type === "image/png" ? undefined : 0.92);
 }
 
 export async function filterImage(
@@ -246,7 +260,8 @@ export async function filterImage(
     { data: imageData.data, width: imageData.width, height: imageData.height },
     filter
   );
-  return canvasToBlob(bufferToCanvas(next), mime || file.type || "image/png", 0.92);
+  const type = canvasOutputMime(mime || file.type || "image/png");
+  return canvasToBlob(bufferToCanvas(next), type, type === "image/png" ? undefined : 0.92);
 }
 
 export async function watermarkImage(
@@ -259,10 +274,11 @@ export async function watermarkImage(
 ): Promise<Blob> {
   const bmp = await loadImageBitmap(file);
   const canvas = document.createElement("canvas");
-  canvas.width = bmp.width;
-  canvas.height = bmp.height;
+  const sizeBox = clampImageSize(bmp.width, bmp.height);
+  canvas.width = sizeBox.width;
+  canvas.height = sizeBox.height;
   const ctx = get2dContext(canvas);
-  ctx.drawImage(bmp, 0, 0);
+  ctx.drawImage(bmp, 0, 0, sizeBox.width, sizeBox.height);
   bmp.close();
   const size = Math.max(14, Math.round(Math.min(canvas.width, canvas.height) * 0.045));
   ctx.font = `600 ${size}px system-ui, sans-serif`;
@@ -287,7 +303,8 @@ export async function watermarkImage(
   }
   ctx.strokeText(text, x, y);
   ctx.fillText(text, x, y);
-  return canvasToBlob(canvas, file.type || "image/png", 0.92);
+  const type = canvasOutputMime(file.type || "image/png");
+  return canvasToBlob(canvas, type, type === "image/png" ? undefined : 0.92);
 }
 
 export async function exportFavicons(
