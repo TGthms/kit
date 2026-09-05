@@ -173,6 +173,8 @@ function HomePageInner() {
   const [fireworksDuration, setFireworksDuration] = useState(NEW_YEAR_FIREWORKS_MS);
   const fireworksArmed = useRef(false);
   const clockOrigin = useRef<{ wall: Date; wallMs: number } | null>(null);
+  const getNowRef = useRef<() => Date>(() => new Date());
+  const getNow = useCallback(() => getNowRef.current(), []);
   const [greeting, setGreeting] = useState<{
     period: GreetingPeriod;
     day: string;
@@ -199,6 +201,7 @@ function HomePageInner() {
         nowMs: Date.now(),
       });
     };
+    getNowRef.current = readNow;
     const updateGreeting = () => {
       const now = readNow();
       const card = getNewYearCardState(now);
@@ -233,8 +236,8 @@ function HomePageInner() {
       else if (hour < 22) next.setHours(22, 0, 0, 0);
       else { next.setDate(next.getDate() + 1); next.setHours(5, 0, 0, 0); }
       const periodWait = Math.max(1000, next.getTime() - now.getTime() + 100);
-      // Card ticks (countdown, fireworks, 23:50 reveal, 2 Jan hide) must not
-      // replace period-boundary greeting updates on 31 Dec / 1 Jan.
+      // Phase changes only (23:50, midnight, fireworks end, 2 Jan). The card
+      // owns the countdown clock so home does not re-render 4×/s.
       timeout = window.setTimeout(updateGreeting, cardWait > 0 ? Math.min(cardWait, periodWait) : periodWait);
     };
     updateGreeting();
@@ -282,16 +285,19 @@ function HomePageInner() {
   return (
     <div className="space-y-7 sm:space-y-9">
       <NewYearFireworks active={fireworksOn} durationMs={fireworksDuration} />
+      {newYear ? <NewYearCard state={newYear} getNow={getNow} /> : null}
       {(showCategories || showGlobalSearch) && (
         <section className="space-y-4 pt-0.5 sm:pt-1">
-          {newYear ? <NewYearCard state={newYear} /> : null}
           <div className="max-w-2xl space-y-2">
             {greeting ? (
               <GreetingHeadline
                 key={`${greeting.greetingKey}:${greeting.day}`}
+                as={newYear ? "h2" : "h1"}
                 className="type-display text-foreground"
                 text={t(greeting.greetingKey, { day: greeting.day, occasion: greeting.occasionKey ? t(`occasionLabel.${greeting.occasionKey}`) : "" })}
               />
+            ) : newYear ? (
+              <h2 className="type-display text-foreground">{t("title")}</h2>
             ) : (
               <h1 className="type-display text-foreground">{t("title")}</h1>
             )}

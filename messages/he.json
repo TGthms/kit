@@ -395,7 +395,9 @@
     },
     "newYearCard": {
       "countdownTitle": "{year} כמעט כאן.",
-      "countdownSubtitle": "עשר דקות שקטות. אחר כך דף חדש.",
+      "countdownSubtitle": "{minutes} דקות שקטות. אחר כך דף חדש.",
+      "countdownSubtitleMinute": "דקה שקטה אחת. אחר כך דף חדש.",
+      "countdownSubtitleSeconds": "כמה שניות שקטות. אחר כך דף חדש.",
       "celebrateTitle": "שנה אזרחית טובה.",
       "celebrateSubtitle": "{year} מתחיל כאן.",
       "countdownLabel": "{minutes} דקות ו-{seconds} שניות עד {year}."

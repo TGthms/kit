@@ -395,7 +395,9 @@
     },
     "newYearCard": {
       "countdownTitle": "{year} sắp đến.",
-      "countdownSubtitle": "Mười phút yên. Rồi một trang mới.",
+      "countdownSubtitle": "{minutes} phút yên. Rồi một trang mới.",
+      "countdownSubtitleMinute": "Một phút yên. Rồi một trang mới.",
+      "countdownSubtitleSeconds": "Vài giây yên. Rồi một trang mới.",
       "celebrateTitle": "Chúc mừng năm mới.",
       "celebrateSubtitle": "{year} bắt đầu từ đây.",
       "countdownLabel": "Còn {minutes} phút {seconds} giây nữa đến {year}."

@@ -395,7 +395,9 @@
     },
     "newYearCard": {
       "countdownTitle": "{year} ใกล้เข้ามาแล้ว",
-      "countdownSubtitle": "อีกสิบนาทีเงียบ ๆ แล้วจะพลิกหน้าใหม่",
+      "countdownSubtitle": "อีก {minutes} นาทีเงียบ ๆ แล้วจะพลิกหน้าใหม่",
+      "countdownSubtitleMinute": "อีกหนึ่งนาทีเงียบ ๆ แล้วจะพลิกหน้าใหม่",
+      "countdownSubtitleSeconds": "อีกไม่กี่วินาที แล้วจะพลิกหน้าใหม่",
       "celebrateTitle": "สวัสดีปีใหม่",
       "celebrateSubtitle": "{year} เริ่มตรงนี้",
       "countdownLabel": "อีก {minutes} นาที {seconds} วินาทีสู่ปี {year}"

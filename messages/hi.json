@@ -395,7 +395,9 @@
     },
     "newYearCard": {
       "countdownTitle": "{year} बस आने ही वाला है.",
-      "countdownSubtitle": "दस शांत मिनट. फिर एक नया पन्ना.",
+      "countdownSubtitle": "{minutes} शांत मिनट. फिर एक नया पन्ना.",
+      "countdownSubtitleMinute": "एक शांत मिनट. फिर एक नया पन्ना.",
+      "countdownSubtitleSeconds": "कुछ शांत सेकंड. फिर एक नया पन्ना.",
       "celebrateTitle": "नव वर्ष मंगलमय हो.",
       "celebrateSubtitle": "{year} यहीं से शुरू होता है.",
       "countdownLabel": "{year} तक {minutes} मिनट और {seconds} सेकंड."

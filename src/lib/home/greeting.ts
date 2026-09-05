@@ -91,6 +91,8 @@ export const GREETING_DISTINCT_VARIANT_KEYS = [
 export const NEW_YEAR_CARD_KEYS = [
   "countdownTitle",
   "countdownSubtitle",
+  "countdownSubtitleMinute",
+  "countdownSubtitleSeconds",
   "celebrateTitle",
   "celebrateSubtitle",
   "countdownLabel",

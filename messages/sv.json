@@ -395,7 +395,9 @@
     },
     "newYearCard": {
       "countdownTitle": "{year} är nästan här.",
-      "countdownSubtitle": "Tio stilla minuter. Sedan ett nytt blad.",
+      "countdownSubtitle": "{minutes} stilla minuter. Sedan ett nytt blad.",
+      "countdownSubtitleMinute": "En stilla minut. Sedan ett nytt blad.",
+      "countdownSubtitleSeconds": "Några stilla sekunder. Sedan ett nytt blad.",
       "celebrateTitle": "Gott nytt år.",
       "celebrateSubtitle": "{year} börjar här.",
       "countdownLabel": "{minutes} minuter och {seconds} sekunder till {year}."

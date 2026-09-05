@@ -395,7 +395,9 @@
     },
     "newYearCard": {
       "countdownTitle": "Το {year} είναι σχεδόν εδώ.",
-      "countdownSubtitle": "Δέκα ήσυχα λεπτά. Μετά μια καθαρή σελίδα.",
+      "countdownSubtitle": "{minutes} ήσυχα λεπτά. Μετά μια καθαρή σελίδα.",
+      "countdownSubtitleMinute": "Ένα ήσυχο λεπτό. Μετά μια καθαρή σελίδα.",
+      "countdownSubtitleSeconds": "Λίγα ήσυχα δευτερόλεπτα. Μετά μια καθαρή σελίδα.",
       "celebrateTitle": "Καλή Χρονιά.",
       "celebrateSubtitle": "Το {year} αρχίζει εδώ.",
       "countdownLabel": "{minutes} λεπτά και {seconds} δευτερόλεπτα μέχρι το {year}."

@@ -395,7 +395,9 @@
     },
     "newYearCard": {
       "countdownTitle": "{year} 快到了。",
-      "countdownSubtitle": "安静的十分钟。然后翻开新的一页。",
+      "countdownSubtitle": "安静的 {minutes} 分钟。然后翻开新的一页。",
+      "countdownSubtitleMinute": "还剩一分钟。然后翻开新的一页。",
+      "countdownSubtitleSeconds": "只剩几秒。然后翻开新的一页。",
       "celebrateTitle": "新年快乐。",
       "celebrateSubtitle": "{year}，从这里开始。",
       "countdownLabel": "距 {year} 还有 {minutes} 分 {seconds} 秒。"

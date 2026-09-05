@@ -1,7 +1,9 @@
 import { describe, expect, it } from "vitest";
 import {
   NEW_YEAR_COUNTDOWN_MS,
+  NEW_YEAR_FIREWORKS_MS,
   countdownParts,
+  countdownSubtitleKind,
   getNewYearCardState,
   nextNewYearTickMs,
   newYearStart,
@@ -31,7 +33,7 @@ describe("new year card window", () => {
     expect(state.msLeft).toBe(57_000);
     expect(countdownParts(state.msLeft)).toEqual({ minutes: 0, seconds: 57 });
     expect(shouldPlayNewYearFireworks(state)).toBe(false);
-    expect(nextNewYearTickMs(state, new Date(2026, 11, 31, 23, 59, 3, 0))).toBe(250);
+    expect(nextNewYearTickMs(state, new Date(2026, 11, 31, 23, 59, 3, 0))).toBe(57_000);
   });
 
   it("celebrates for the rest of 1 January and then hides", () => {
@@ -47,9 +49,16 @@ describe("new year card window", () => {
     const nextDay = getNewYearCardState(new Date(2027, 0, 2, 0, 0, 0, 0));
     expect(nextDay.phase).toBe("hidden");
     const opening = getNewYearCardState(new Date(2027, 0, 1, 0, 0, 3, 0));
-    expect(nextNewYearTickMs(opening, new Date(2027, 0, 1, 0, 0, 3, 0))).toBe(250);
+    expect(nextNewYearTickMs(opening, new Date(2027, 0, 1, 0, 0, 3, 0))).toBe(NEW_YEAR_FIREWORKS_MS - 3_000);
     const afterShow = getNewYearCardState(new Date(2027, 0, 1, 0, 0, 11, 0));
     expect(nextNewYearTickMs(afterShow, new Date(2027, 0, 1, 0, 0, 11, 0))).toBeGreaterThan(1000);
+  });
+
+  it("picks countdown subtitle copy from remaining minutes, not a fixed 'ten'", () => {
+    expect(countdownSubtitleKind(10)).toBe("minutes");
+    expect(countdownSubtitleKind(2)).toBe("minutes");
+    expect(countdownSubtitleKind(1)).toBe("minute");
+    expect(countdownSubtitleKind(0)).toBe("seconds");
   });
 
   it("wakes a hidden December tab at the ten-minute countdown, not the next greeting period", () => {

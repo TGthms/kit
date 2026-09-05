@@ -395,7 +395,9 @@
     },
     "newYearCard": {
       "countdownTitle": "{year} hampir tiba.",
-      "countdownSubtitle": "Sepuluh menit yang tenang. Lalu halaman baru.",
+      "countdownSubtitle": "{minutes} menit yang tenang. Lalu halaman baru.",
+      "countdownSubtitleMinute": "Satu menit yang tenang. Lalu halaman baru.",
+      "countdownSubtitleSeconds": "Beberapa detik yang tenang. Lalu halaman baru.",
       "celebrateTitle": "Selamat Tahun Baru.",
       "celebrateSubtitle": "{year} dimulai di sini.",
       "countdownLabel": "{minutes} menit {seconds} detik menuju {year}."

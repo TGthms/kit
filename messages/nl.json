@@ -395,7 +395,9 @@
     },
     "newYearCard": {
       "countdownTitle": "{year} is bijna daar.",
-      "countdownSubtitle": "Tien stille minuten. Daarna een nieuwe bladzijde.",
+      "countdownSubtitle": "{minutes} stille minuten. Daarna een nieuwe bladzijde.",
+      "countdownSubtitleMinute": "Eén stille minuut. Daarna een nieuwe bladzijde.",
+      "countdownSubtitleSeconds": "Nog een paar stille seconden. Daarna een nieuwe bladzijde.",
       "celebrateTitle": "Gelukkig nieuwjaar.",
       "celebrateSubtitle": "{year} begint hier.",
       "countdownLabel": "{minutes} minuten en {seconds} seconden tot {year}."

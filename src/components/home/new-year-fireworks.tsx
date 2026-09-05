@@ -8,16 +8,24 @@ function prefersReducedMotion(): boolean {
   return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 }
 
+type FireworksHandle = {
+  start: () => void;
+  stop: (dispose?: boolean) => void;
+  waitStop: (dispose?: boolean) => Promise<void>;
+  updateSize: () => void;
+};
+
 /**
  * Full-viewport fireworks for the New Year flip.
- * Runs at most NEW_YEAR_FIREWORKS_MS, ignores pointer, sits under chrome.
+ * `start()` keeps launching for durationMs; do not call `launch()` — that one-shots
+ * then waitStop, so initTrace never spawns again.
  */
 export function NewYearFireworks({
   active,
   durationMs = NEW_YEAR_FIREWORKS_MS,
 }: {
   active: boolean;
-  /** How long to run after this activation; parent freezes this when `active` turns on. */
+  /** How long to keep launching after this activation; parent freezes this when `active` turns on. */
   durationMs?: number;
 }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -29,7 +37,7 @@ export function NewYearFireworks({
 
     let cancelled = false;
     let stopTimer = 0;
-    let fireworks: { start: () => void; stop: (dispose?: boolean) => void; launch: (count: number) => void } | null = null;
+    let fireworks: FireworksHandle | null = null;
 
     const onVisibility = () => {
       if (!fireworks) return;
@@ -41,29 +49,31 @@ export function NewYearFireworks({
       if (cancelled || !root) return;
       fireworks = new Fireworks(root, {
         autoresize: true,
-        opacity: 0.88,
-        acceleration: 1.02,
+        opacity: 0.5,
+        acceleration: 1.05,
         friction: 0.97,
-        gravity: 1.4,
-        particles: 55,
-        explosion: 4,
-        intensity: 28,
-        flickering: 55,
+        gravity: 1.5,
+        particles: 50,
+        explosion: 5,
+        intensity: 30,
+        flickering: 50,
         lineStyle: "round",
-        hue: { min: 10, max: 48 },
-        rocketsPoint: { min: 20, max: 80 },
-        lineWidth: { explosion: { min: 1, max: 3 }, trace: { min: 0.8, max: 1.8 } },
-        brightness: { min: 58, max: 88 },
-        decay: { min: 0.012, max: 0.028 },
+        hue: { min: 0, max: 360 },
+        delay: { min: 15, max: 30 },
+        rocketsPoint: { min: 10, max: 90 },
+        lineWidth: { explosion: { min: 1, max: 3 }, trace: { min: 1, max: 2 } },
+        brightness: { min: 50, max: 80 },
+        decay: { min: 0.015, max: 0.03 },
         mouse: { click: false, move: false, max: 1 },
         sound: { enabled: false, files: [], volume: { min: 0, max: 0 } },
-        traceSpeed: 8,
-      });
+        traceLength: 3,
+        traceSpeed: 10,
+      }) as FireworksHandle;
       fireworks.start();
-      fireworks.launch(10);
+      fireworks.updateSize();
       document.addEventListener("visibilitychange", onVisibility);
       stopTimer = window.setTimeout(() => {
-        fireworks?.stop(true);
+        void fireworks?.waitStop(true);
       }, durationMs);
     });
 

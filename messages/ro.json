@@ -395,7 +395,9 @@
     },
     "newYearCard": {
       "countdownTitle": "{year} e aproape.",
-      "countdownSubtitle": "Zece minute line. Apoi o pagină nouă.",
+      "countdownSubtitle": "{minutes} minute line. Apoi o pagină nouă.",
+      "countdownSubtitleMinute": "Un minut lin. Apoi o pagină nouă.",
+      "countdownSubtitleSeconds": "Câteva secunde line. Apoi o pagină nouă.",
       "celebrateTitle": "An Nou fericit.",
       "celebrateSubtitle": "{year} începe aici.",
       "countdownLabel": "{minutes} minute și {seconds} secunde până în {year}."

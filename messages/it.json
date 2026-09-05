@@ -395,7 +395,9 @@
     },
     "newYearCard": {
       "countdownTitle": "{year} sta per arrivare.",
-      "countdownSubtitle": "Dieci minuti quieti. Poi una pagina nuova.",
+      "countdownSubtitle": "{minutes} minuti quieti. Poi una pagina nuova.",
+      "countdownSubtitleMinute": "Un minuto quieto. Poi una pagina nuova.",
+      "countdownSubtitleSeconds": "Pochi secondi quieti. Poi una pagina nuova.",
       "celebrateTitle": "Buon anno.",
       "celebrateSubtitle": "{year} inizia qui.",
       "countdownLabel": "{minutes} minuti e {seconds} secondi a {year}."

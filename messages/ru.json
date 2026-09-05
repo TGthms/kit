@@ -395,7 +395,9 @@
     },
     "newYearCard": {
       "countdownTitle": "{year} уже близко.",
-      "countdownSubtitle": "Десять тихих минут. Потом чистая страница.",
+      "countdownSubtitle": "{minutes} тихих минут. Потом чистая страница.",
+      "countdownSubtitleMinute": "Одна тихая минута. Потом чистая страница.",
+      "countdownSubtitleSeconds": "Несколько тихих секунд. Потом чистая страница.",
       "celebrateTitle": "С Новым годом.",
       "celebrateSubtitle": "{year} начинается здесь.",
       "countdownLabel": "{minutes} минут и {seconds} секунд до {year}."

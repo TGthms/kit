@@ -395,7 +395,9 @@
     },
     "newYearCard": {
       "countdownTitle": "{year} kapıda.",
-      "countdownSubtitle": "On sakin dakika. Sonra yeni bir sayfa.",
+      "countdownSubtitle": "{minutes} sakin dakika. Sonra yeni bir sayfa.",
+      "countdownSubtitleMinute": "Bir sakin dakika. Sonra yeni bir sayfa.",
+      "countdownSubtitleSeconds": "Birkaç sakin saniye. Sonra yeni bir sayfa.",
       "celebrateTitle": "Yeni yılın kutlu olsun.",
       "celebrateSubtitle": "{year} burada başlıyor.",
       "countdownLabel": "{year} yılına {minutes} dakika {seconds} saniye."

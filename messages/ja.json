@@ -395,7 +395,9 @@
     },
     "newYearCard": {
       "countdownTitle": "{year}が、もうすぐ。",
-      "countdownSubtitle": "静かな10分。そのあと、新しいページ。",
+      "countdownSubtitle": "静かな{minutes}分。そのあと、新しいページ。",
+      "countdownSubtitleMinute": "静かな1分。そのあと、新しいページ。",
+      "countdownSubtitleSeconds": "あと数秒。そのあと、新しいページ。",
       "celebrateTitle": "明けましておめでとうございます。",
       "celebrateSubtitle": "{year}は、ここから。",
       "countdownLabel": "{year}まであと{minutes}分{seconds}秒"

@@ -395,7 +395,9 @@
     },
     "newYearCard": {
       "countdownTitle": "{year} on ihan kohta.",
-      "countdownSubtitle": "Kymmenen hiljaista minuuttia. Sitten uusi sivu.",
+      "countdownSubtitle": "{minutes} hiljaista minuuttia. Sitten uusi sivu.",
+      "countdownSubtitleMinute": "Yksi hiljainen minuutti. Sitten uusi sivu.",
+      "countdownSubtitleSeconds": "Muutama hiljainen sekunti. Sitten uusi sivu.",
       "celebrateTitle": "Hyvää uutta vuotta.",
       "celebrateSubtitle": "{year} alkaa tästä.",
       "countdownLabel": "{minutes} minuuttia ja {seconds} sekuntia vuoteen {year}."

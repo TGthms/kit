@@ -395,7 +395,9 @@
     },
     "newYearCard": {
       "countdownTitle": "{year} je skoro tady.",
-      "countdownSubtitle": "Deset tichých minut. Pak nová stránka.",
+      "countdownSubtitle": "{minutes} tichých minut. Pak nová stránka.",
+      "countdownSubtitleMinute": "Jedna tichá minuta. Pak nová stránka.",
+      "countdownSubtitleSeconds": "Pár tichých sekund. Pak nová stránka.",
       "celebrateTitle": "Šťastný nový rok.",
       "celebrateSubtitle": "{year} začíná tady.",
       "countdownLabel": "{minutes} minut a {seconds} sekund do roku {year}."

@@ -48,23 +48,35 @@ export function countdownParts(msLeft: number): { minutes: number; seconds: numb
   };
 }
 
+export type CountdownSubtitleKind = "minutes" | "minute" | "seconds";
+
+/** Copy that still says “ten minutes” at 00:10 is wrong; pick by remaining minutes. */
+export function countdownSubtitleKind(minutes: number): CountdownSubtitleKind {
+  if (minutes >= 2) return "minutes";
+  if (minutes === 1) return "minute";
+  return "seconds";
+}
+
 /** Fireworks only when the year has just turned, not all of 1 Jan. */
 export function shouldPlayNewYearFireworks(state: NewYearCardState): boolean {
   return state.phase === "celebrate" && state.msSinceStart < NEW_YEAR_FIREWORKS_MS;
 }
 
 /**
- * Time until the next New Year card phase change.
- * 0 means the card does not need its own wake-up; the greeting period timer can run.
+ * Time until the next New Year *phase* change on the home page.
+ * 0 means the greeting period timer can run. The countdown clock ticks inside
+ * the card — this must not be a 250ms home-wide wake.
  *
- * Hidden-before-countdown must wake at 23:50 on 31 Dec so a tab left open
- * still reveals the card. Celebrate-after-fireworks waits until 2 Jan only
- * as an upper bound — callers should still take the sooner greeting-period tick.
+ * Hidden-before-countdown wakes at 23:50 on 31 Dec. Countdown wakes at midnight.
+ * Celebrate wakes when fireworks should stop, then 2 Jan as an upper bound
+ * (callers still take the sooner greeting-period tick).
  */
 export function nextNewYearTickMs(state: NewYearCardState, now: Date): number {
-  if (state.phase === "countdown") return 250;
+  if (state.phase === "countdown") return Math.max(50, state.msLeft);
   if (state.phase === "celebrate") {
-    if (state.msSinceStart < NEW_YEAR_FIREWORKS_MS) return 250;
+    if (state.msSinceStart < NEW_YEAR_FIREWORKS_MS) {
+      return Math.max(50, NEW_YEAR_FIREWORKS_MS - state.msSinceStart);
+    }
     const end = new Date(now.getFullYear(), 0, 2, 0, 0, 0, 0);
     return Math.max(1000, end.getTime() - now.getTime() + 100);
   }

@@ -395,7 +395,9 @@
     },
     "newYearCard": {
       "countdownTitle": "{year}년이 곧 시작돼요.",
-      "countdownSubtitle": "고요한 10분. 그다음엔 새 페이지.",
+      "countdownSubtitle": "고요한 {minutes}분. 그다음엔 새 페이지.",
+      "countdownSubtitleMinute": "고요한 1분. 그다음엔 새 페이지.",
+      "countdownSubtitleSeconds": "몇 초만 더. 그다음엔 새 페이지.",
       "celebrateTitle": "새해 복 많이 받으세요.",
       "celebrateSubtitle": "{year}년은 여기서 시작해요.",
       "countdownLabel": "{year}년까지 {minutes}분 {seconds}초"
