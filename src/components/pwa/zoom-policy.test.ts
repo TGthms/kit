@@ -25,6 +25,14 @@ describe("PWA zoom policy", () => {
   });
 
   it("follows iOS Dynamic Type instead of pinch-zoom", () => {
+    expect(css).toMatch(
+      /@supports \(font: -apple-system-body\) and \(-webkit-touch-callout:\s*none\)/,
+    );
     expect(css).toMatch(/font:\s*-apple-system-body/);
+  });
+
+  it("does not apply -apple-system-body on desktop Safari", () => {
+    const ungated = /@supports \(font: -apple-system-body\)\s*\{/;
+    expect(css).not.toMatch(ungated);
   });
 });

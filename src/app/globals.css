@@ -129,8 +129,10 @@ html {
   font-optical-sizing: auto;
 }
 
-/* Follow Settings → Display & Text Size. Rem layout scales with it. */
-@supports (font: -apple-system-body) {
+/* Follow Settings → Display & Text Size on iOS. Rem layout scales with it.
+   Desktop Safari also accepts -apple-system-body, but it maps to macOS body
+   (13px) and shrinks every rem. -webkit-touch-callout is iOS-only. */
+@supports (font: -apple-system-body) and (-webkit-touch-callout: none) {
   html {
     font: -apple-system-body;
     font-family: var(--font-sans);
