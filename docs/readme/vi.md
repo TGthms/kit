@@ -94,7 +94,7 @@ Màn hình chính nhóm công cụ theo việc (trang PDF, dữ liệu, phát tr
 - Công cụ xử lý dữ liệu **trên thiết bị của bạn**
 - Lịch sử chỉ giữ **tóm tắt** (không phải nội dung tệp)
 - Tùy chọn ở lại bộ nhớ cục bộ
-- [Chính sách quyền riêng tư](https://trykit.pages.dev/vi/privacy/) · [Điều khoản sử dụng](https://trykit.pages.dev/vi/terms/)
+- [Kit hoạt động thế nào](https://trykit.pages.dev/vi/how/) · [Chính sách quyền riêng tư](https://trykit.pages.dev/vi/privacy/) · [Điều khoản sử dụng](https://trykit.pages.dev/vi/terms/)
 
 ## Phát triển cục bộ
 

@@ -94,7 +94,7 @@ Startsiden grupperer verktøy etter oppgave (PDF-sider, data, utvikling …) i s
 - Verktøy behandler data **på enheten din**
 - Historikken lagrer bare **sammendrag** (ikke filinnhold)
 - Innstillinger blir i lokal lagring
-- [Personvernerklæring](https://trykit.pages.dev/nb/privacy/) · [Bruksvilkår](https://trykit.pages.dev/nb/terms/)
+- [Slik virker Kit](https://trykit.pages.dev/nb/how/) · [Personvernerklæring](https://trykit.pages.dev/nb/privacy/) · [Bruksvilkår](https://trykit.pages.dev/nb/terms/)
 
 ## Lokal utvikling
 

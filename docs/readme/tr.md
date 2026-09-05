@@ -94,7 +94,7 @@ Ana ekran araçları işe göre gruplar (PDF sayfaları, veri, geliştirme…) d
 - Araçlar verileri **cihazınızda** işler
 - Geçmiş yalnızca **özet** tutar (dosya içeriğini değil)
 - Tercihler yerel depoda kalır
-- [Gizlilik Politikası](https://trykit.pages.dev/tr/privacy/) · [Kullanım Koşulları](https://trykit.pages.dev/tr/terms/)
+- [Kit nasıl çalışır](https://trykit.pages.dev/tr/how/) · [Gizlilik Politikası](https://trykit.pages.dev/tr/privacy/) · [Kullanım Koşulları](https://trykit.pages.dev/tr/terms/)
 
 ## Yerel geliştirme
 

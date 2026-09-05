@@ -94,7 +94,7 @@ Domovská obrazovka seskupuje nástroje podle úlohy (stránky PDF, data, vývoj
 - Nástroje zpracovávají data **na vašem zařízení**
 - Historie ukládá jen **souhrny** (ne obsah souborů)
 - Předvolby zůstávají v místním úložišti
-- [Zásady ochrany soukromí](https://trykit.pages.dev/cs/privacy/) · [Podmínky použití](https://trykit.pages.dev/cs/terms/)
+- [Jak Kit funguje](https://trykit.pages.dev/cs/how/) · [Zásady ochrany soukromí](https://trykit.pages.dev/cs/privacy/) · [Podmínky použití](https://trykit.pages.dev/cs/terms/)
 
 ## Místní vývoj
 

@@ -94,7 +94,7 @@ Die Startseite gruppiert Werkzeuge nach Aufgabe (PDF-Seiten, Daten, Entwicklung 
 - Werkzeuge verarbeiten Daten **auf Ihrem Gerät**
 - Der Verlauf speichert nur **Kurzfassungen** (keine Dateiinhalte)
 - Einstellungen bleiben im lokalen Speicher
-- [Datenschutzerklärung](https://trykit.pages.dev/de/privacy/) · [Nutzungsbedingungen](https://trykit.pages.dev/de/terms/)
+- [So funktioniert Kit](https://trykit.pages.dev/de/how/) · [Datenschutzerklärung](https://trykit.pages.dev/de/privacy/) · [Nutzungsbedingungen](https://trykit.pages.dev/de/terms/)
 
 ## Lokale Entwicklung
 

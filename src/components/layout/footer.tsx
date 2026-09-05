@@ -22,6 +22,13 @@ export function SiteFooter() {
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex flex-wrap items-center gap-x-4 gap-y-2 type-caption text-muted-foreground">
             <Link
+              href="/how"
+              data-pressable
+              className="pressable-soft inline-flex min-h-11 items-center hover:text-foreground"
+            >
+              {t("how")}
+            </Link>
+            <Link
               href="/privacy"
               data-pressable
               className="pressable-soft inline-flex min-h-11 items-center hover:text-foreground"

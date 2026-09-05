@@ -94,7 +94,7 @@ Kit は、PDF・画像・音声/動画・変換・テキスト処理を端末上
 - データは **端末上** で処理します
 - 履歴は **要約のみ**（ファイル本体は保存しません）
 - 設定はブラウザのローカルストレージに残ります
-- [プライバシーポリシー](https://trykit.pages.dev/ja/privacy/) · [利用規約](https://trykit.pages.dev/ja/terms/)
+- [Kit のしくみ](https://trykit.pages.dev/ja/how/) · [プライバシーポリシー](https://trykit.pages.dev/ja/privacy/) · [利用規約](https://trykit.pages.dev/ja/terms/)
 
 ## ローカル開発
 

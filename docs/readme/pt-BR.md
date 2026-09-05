@@ -94,7 +94,7 @@ A capa agrupa as ferramentas por trabalho (páginas PDF, dados, desenvolvimento�
 - As ferramentas processam dados **no seu dispositivo**
 - O histórico guarda só **resumos** (não o conteúdo dos arquivos)
 - As preferências ficam no armazenamento local
-- [Política de privacidade](https://trykit.pages.dev/pt-BR/privacy/) · [Termos de uso](https://trykit.pages.dev/pt-BR/terms/)
+- [Como o Kit funciona](https://trykit.pages.dev/pt-BR/how/) · [Política de privacidade](https://trykit.pages.dev/pt-BR/privacy/) · [Termos de uso](https://trykit.pages.dev/pt-BR/terms/)
 
 ## Desenvolvimento local
 

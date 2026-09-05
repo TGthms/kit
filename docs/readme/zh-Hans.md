@@ -94,7 +94,7 @@ Kit 是一套在本地运行的实用工具：PDF、图片、音视频、格式�
 - 在**本机浏览器**中处理
 - 历史只保存**摘要**，不保存文件内容
 - 偏好设置保存在浏览器本地存储
-- [隐私政策](https://trykit.pages.dev/zh/privacy/) · [使用条款](https://trykit.pages.dev/zh/terms/)
+- [Kit 如何运作](https://trykit.pages.dev/zh-Hans/how/) · [隐私政策](https://trykit.pages.dev/zh/privacy/) · [使用条款](https://trykit.pages.dev/zh/terms/)
 
 ## 本地开发
 

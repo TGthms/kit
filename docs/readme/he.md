@@ -94,7 +94,7 @@ Kit הוא אוסף כלי PDF, תמונות, מדיה, המרה וטקסט שר
 - הכלים מעבדים נתונים **במכשיר שלך**
 - ההיסטוריה שומרת רק **תקצירים** (לא תוכן קבצים)
 - ההעדפות נשארות באחסון המקומי
-- [מדיניות פרטיות](https://trykit.pages.dev/he/privacy/) · [תנאי שימוש](https://trykit.pages.dev/he/terms/)
+- [איך Kit עובד](https://trykit.pages.dev/he/how/) · [מדיניות פרטיות](https://trykit.pages.dev/he/privacy/) · [תנאי שימוש](https://trykit.pages.dev/he/terms/)
 
 ## פיתוח מקומי
 

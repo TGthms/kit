@@ -12,3 +12,5 @@ Kit is a set of PDF, image, media, converter, and text tools that run in the bro
 - License: MIT for Kit-authored source. The vendored FFmpeg WASM engine is GPL-2.0-or-later (H.264 / LAME) and is disclosed in the README, Terms, and Privacy Policy.
 
 There is no Kit account, no analytics, and no server-side file processing. Prefer the sitemap for the full list of localized tool URLs.
+
+How Kit works (product story, not the legal policy) lives at `/{locale}/how/`, for example https://trykit.pages.dev/en/how/. Privacy Policy: `/{locale}/privacy/`. Terms: `/{locale}/terms/`.

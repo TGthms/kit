@@ -124,6 +124,18 @@ describe("home and tool JSON-LD", () => {
     const data = legalJsonLd(input!);
     expect(data["@graph"].map((node) => node["@type"])).toEqual(["WebPage", "BreadcrumbList"]);
   });
+
+  it("describes How Kit works as a locale WebPage, not a hardcoded English path", async () => {
+    const en = await legalJsonLdInput("en", "how");
+    expect(en?.url).toBe(`${SITE_URL}/en/how/`);
+    expect(en?.name).toBe("How Kit works");
+    expect(en?.breadcrumbs.map((crumb) => crumb.url)).toEqual([`${SITE_URL}/en/`, `${SITE_URL}/en/how/`]);
+
+    const fr = await legalJsonLdInput("fr", "how");
+    expect(fr?.url).toBe(`${SITE_URL}/fr/how/`);
+    expect(fr?.url).not.toContain("/en/how");
+    expect(await legalJsonLdInput("zh", "how")).toBeNull();
+  });
 });
 
 describe("root language alternates", () => {
@@ -202,6 +214,8 @@ describe("sitemap", () => {
     expect(urls.some((url) => url.includes("/history/"))).toBe(false);
     expect(urls.some((url) => url.includes("/settings/"))).toBe(false);
     expect(urls.some((url) => url.includes("/favorites/"))).toBe(false);
+    expect(urls.some((url) => url.includes("/en/how/"))).toBe(true);
+    expect(urls.some((url) => url.includes("/zh-Hans/how/"))).toBe(true);
     expect(urls.some((url) => url.includes("timezone-converter"))).toBe(false);
   });
 });

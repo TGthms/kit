@@ -88,6 +88,9 @@ export default function SettingsPage() {
           </div>
           <div className="flex flex-wrap gap-2">
             <Button asChild variant="outline" size="sm">
+              <Link href="/how">{t("viewHow")}</Link>
+            </Button>
+            <Button asChild variant="outline" size="sm">
               <Link href="/privacy">{t("viewPrivacy")}</Link>
             </Button>
             <Button asChild variant="outline" size="sm">

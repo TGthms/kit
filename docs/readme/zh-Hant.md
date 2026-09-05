@@ -94,7 +94,7 @@ Kit 是一套在本機執行的實用工具：PDF、圖片、影音、格式轉�
 - 在**本機瀏覽器**中處理
 - 歷程只保存**摘要**，不保存檔案內容
 - 偏好設定保存在瀏覽器本機儲存
-- [隱私權政策](https://trykit.pages.dev/zh-Hant/privacy/) · [使用條款](https://trykit.pages.dev/zh-Hant/terms/)
+- [Kit 如何運作](https://trykit.pages.dev/zh-Hant/how/) · [隱私權政策](https://trykit.pages.dev/zh-Hant/privacy/) · [使用條款](https://trykit.pages.dev/zh-Hant/terms/)
 
 ## 本機開發
 

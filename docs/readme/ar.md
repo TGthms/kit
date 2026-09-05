@@ -94,7 +94,7 @@ Kit مجموعة أدوات PDF وصور ووسائط وتحويل ونص تعم
 - تعالج الأدوات البيانات **على جهازك**
 - يحفظ السجل **ملخصات فقط** (وليس محتوى الملفات)
 - تبقى التفضيلات في التخزين المحلي
-- [سياسة الخصوصية](https://trykit.pages.dev/ar/privacy/) · [شروط الاستخدام](https://trykit.pages.dev/ar/terms/)
+- [كيف يعمل Kit](https://trykit.pages.dev/ar/how/) · [سياسة الخصوصية](https://trykit.pages.dev/ar/privacy/) · [شروط الاستخدام](https://trykit.pages.dev/ar/terms/)
 
 ## التطوير المحلي
 

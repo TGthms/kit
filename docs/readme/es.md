@@ -94,7 +94,7 @@ La portada agrupa las herramientas por trabajo (páginas PDF, datos, desarrollo�
 - El trabajo se hace **en tu dispositivo**
 - El historial guarda solo **resúmenes**, no el contenido de los archivos
 - Las preferencias viven en el almacenamiento local del navegador
-- [Política de privacidad](https://trykit.pages.dev/es/privacy/) · [Condiciones de uso](https://trykit.pages.dev/es/terms/)
+- [Cómo funciona Kit](https://trykit.pages.dev/es/how/) · [Política de privacidad](https://trykit.pages.dev/es/privacy/) · [Condiciones de uso](https://trykit.pages.dev/es/terms/)
 
 ## Desarrollo local
 

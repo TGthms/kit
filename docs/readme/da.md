@@ -94,7 +94,7 @@ Startsiden grupperer værktøjer efter opgave (PDF-sider, data, udvikling …) i
 - Værktøjer behandler data **på din enhed**
 - Historik gemmer kun **resuméer** (ikke filindhold)
 - Indstillinger bliver i lokal lagring
-- [Privatlivspolitik](https://trykit.pages.dev/da/privacy/) · [Brugsvilkår](https://trykit.pages.dev/da/terms/)
+- [Sådan virker Kit](https://trykit.pages.dev/da/how/) · [Privatlivspolitik](https://trykit.pages.dev/da/privacy/) · [Brugsvilkår](https://trykit.pages.dev/da/terms/)
 
 ## Lokal udvikling
 

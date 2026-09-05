@@ -94,7 +94,7 @@ L’accueil groupe les outils par tâche (pages PDF, données, développement…
 - Les outils traitent les données **sur votre appareil**
 - L’historique ne conserve que des **résumés** (pas le contenu des fichiers)
 - Les préférences restent dans le stockage local
-- [Politique de confidentialité](https://trykit.pages.dev/fr/privacy/) · [Conditions d’utilisation](https://trykit.pages.dev/fr/terms/)
+- [Comment Kit fonctionne](https://trykit.pages.dev/fr/how/) · [Politique de confidentialité](https://trykit.pages.dev/fr/privacy/) · [Conditions d’utilisation](https://trykit.pages.dev/fr/terms/)
 
 ## Développement local
 

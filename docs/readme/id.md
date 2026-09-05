@@ -94,7 +94,7 @@ Layar beranda mengelompokkan alat menurut pekerjaan (halaman PDF, data, pengemba
 - Alat memproses data **di perangkat Anda**
 - Riwayat hanya menyimpan **ringkasan** (bukan isi berkas)
 - Preferensi tetap di penyimpanan lokal
-- [Kebijakan Privasi](https://trykit.pages.dev/id/privacy/) · [Ketentuan Penggunaan](https://trykit.pages.dev/id/terms/)
+- [Cara Kit bekerja](https://trykit.pages.dev/id/how/) · [Kebijakan Privasi](https://trykit.pages.dev/id/privacy/) · [Ketentuan Penggunaan](https://trykit.pages.dev/id/terms/)
 
 ## Pengembangan lokal
 

@@ -94,7 +94,7 @@ Kit는 PDF, 이미지, 미디어, 변환, 텍스트 도구가 기기에서 실�
 - 도구는 데이터를 **기기에서** 처리합니다
 - 기록은 **요약만** 남깁니다(파일 내용은 저장하지 않음)
 - 설정은 로컬 저장소에 남습니다
-- [개인정보 처리방침](https://trykit.pages.dev/ko/privacy/) · [이용약관](https://trykit.pages.dev/ko/terms/)
+- [Kit이 작동하는 방식](https://trykit.pages.dev/ko/how/) · [개인정보 처리방침](https://trykit.pages.dev/ko/privacy/) · [이용약관](https://trykit.pages.dev/ko/terms/)
 
 ## 로컬 개발
 

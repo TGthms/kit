@@ -94,7 +94,7 @@ A página inicial agrupa as ferramentas por trabalho (páginas PDF, dados, desen
 - As ferramentas processam dados **no seu dispositivo**
 - O histórico guarda apenas **resumos** (não o conteúdo dos ficheiros)
 - As preferências ficam no armazenamento local
-- [Política de privacidade](https://trykit.pages.dev/pt-PT/privacy/) · [Termos de utilização](https://trykit.pages.dev/pt-PT/terms/)
+- [Como o Kit funciona](https://trykit.pages.dev/pt-PT/how/) · [Política de privacidade](https://trykit.pages.dev/pt-PT/privacy/) · [Termos de utilização](https://trykit.pages.dev/pt-PT/terms/)
 
 ## Desenvolvimento local
 

@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+import json
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -1671,6 +1672,8 @@ def render(code: str) -> str:
     loc = privacy_path(code)
     privacy_url = f"{SITE}/{loc}/privacy/"
     terms_url = f"{SITE}/{loc}/terms/"
+    how_url = f"{SITE}/{code}/how/"
+    how_label = json.loads((ROOT / "messages" / f"{code}.json").read_text(encoding="utf-8"))["footer"]["how"]
     extra_en = ""
     if code == "en":
         extra_en = """
@@ -1738,7 +1741,7 @@ npm run lint
 - {c["privacy_1"]}
 - {c["privacy_2"]}
 - {c["privacy_3"]}
-- [{c["privacy_link"]}]({privacy_url}) · [{c["terms_link"]}]({terms_url})
+- [{how_label}]({how_url}) · [{c["privacy_link"]}]({privacy_url}) · [{c["terms_link"]}]({terms_url})
 
 ## {c["dev_h"]}
 

@@ -94,7 +94,7 @@ Etusivu ryhmittelee työkalut tehtävän mukaan (PDF-sivut, data, kehitys…) yh
 - Työkalut käsittelevät tiedot **laitteellasi**
 - Historia tallentaa vain **yhteenvedot** (ei tiedostosisältöä)
 - Asetukset pysyvät paikallisessa tallennuksessa
-- [Tietosuojakäytäntö](https://trykit.pages.dev/fi/privacy/) · [Käyttöehdot](https://trykit.pages.dev/fi/terms/)
+- [Miten Kit toimii](https://trykit.pages.dev/fi/how/) · [Tietosuojakäytäntö](https://trykit.pages.dev/fi/privacy/) · [Käyttöehdot](https://trykit.pages.dev/fi/terms/)
 
 ## Paikallinen kehitys
 

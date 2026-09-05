@@ -94,7 +94,7 @@ Het startscherm groepeert tools per taak (pdf-pagina’s, data, ontwikkeling…)
 - Tools verwerken gegevens **op uw apparaat**
 - Geschiedenis bewaart alleen **samenvattingen** (geen bestandsinhoud)
 - Voorkeuren blijven in lokale opslag
-- [Privacybeleid](https://trykit.pages.dev/nl/privacy/) · [Gebruiksvoorwaarden](https://trykit.pages.dev/nl/terms/)
+- [Hoe Kit werkt](https://trykit.pages.dev/nl/how/) · [Privacybeleid](https://trykit.pages.dev/nl/privacy/) · [Gebruiksvoorwaarden](https://trykit.pages.dev/nl/terms/)
 
 ## Lokale ontwikkeling
 

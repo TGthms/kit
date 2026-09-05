@@ -94,7 +94,7 @@ Ecranul principal grupează uneltele pe sarcini (pagini PDF, date, dezvoltare…
 - Uneltele prelucrează datele **pe dispozitivul tău**
 - Istoricul păstrează doar **rezumate** (nu conținutul fișierelor)
 - Preferințele rămân în stocarea locală
-- [Politica de confidențialitate](https://trykit.pages.dev/ro/privacy/) · [Termeni de utilizare](https://trykit.pages.dev/ro/terms/)
+- [Cum funcționează Kit](https://trykit.pages.dev/ro/how/) · [Politica de confidențialitate](https://trykit.pages.dev/ro/privacy/) · [Termeni de utilizare](https://trykit.pages.dev/ro/terms/)
 
 ## Dezvoltare locală
 

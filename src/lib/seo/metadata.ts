@@ -27,6 +27,7 @@ type Messages = {
   history: { title: string; subtitle: string };
   favorites: { title: string; subtitle: string };
   legal: { privacyTitle: string; termsTitle: string };
+  how: { title: string; description: string };
   categories: Record<string, string>;
 };
 
@@ -201,7 +202,7 @@ export async function buildLocaleMetadata(locale: string): Promise<Metadata> {
   });
 }
 
-export type SectionId = "settings" | "history" | "favorites" | "privacy" | "terms";
+export type SectionId = "settings" | "history" | "favorites" | "privacy" | "terms" | "how";
 
 export async function buildSectionMetadata(locale: string, section: SectionId): Promise<Metadata> {
   const pathLoc = isPathLocale(locale) ? locale : defaultLocale;
@@ -231,6 +232,11 @@ export async function buildSectionMetadata(locale: string, section: SectionId): 
       title: pageTitle(messages.legal.termsTitle),
       description: messages.meta.description,
       path: "/terms/",
+    },
+    how: {
+      title: pageTitle(messages.how.title),
+      description: messages.how.description,
+      path: "/how/",
     },
   };
   const entry = bySection[section];
@@ -312,7 +318,7 @@ export async function categoryJsonLdInput(
 
 export async function legalJsonLdInput(
   locale: string,
-  section: "privacy" | "terms"
+  section: "privacy" | "terms" | "how"
 ): Promise<{
   name: string;
   description: string;
@@ -324,11 +330,17 @@ export async function legalJsonLdInput(
   const messages = await loadMessages(pathLoc);
   const loc = canonicalLocale(pathLoc);
   const homeUrl = absoluteUrl(`/${loc}/`);
-  const name = section === "privacy" ? messages.legal.privacyTitle : messages.legal.termsTitle;
+  const name =
+    section === "privacy"
+      ? messages.legal.privacyTitle
+      : section === "terms"
+        ? messages.legal.termsTitle
+        : messages.how.title;
+  const description = section === "how" ? messages.how.description : messages.meta.description;
   const url = absoluteUrl(`/${loc}/${section}/`);
   return {
     name,
-    description: messages.meta.description,
+    description,
     url,
     breadcrumbs: [
       { name: SITE_NAME, url: homeUrl },

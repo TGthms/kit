@@ -94,7 +94,7 @@ La home raggruppa gli strumenti per lavoro (pagine PDF, dati, sviluppo…) invec
 - Gli strumenti elaborano i dati **sul tuo dispositivo**
 - La cronologia conserva solo **riassunti** (non i contenuti dei file)
 - Le preferenze restano nell’archivio locale
-- [Informativa sulla privacy](https://trykit.pages.dev/it/privacy/) · [Termini di utilizzo](https://trykit.pages.dev/it/terms/)
+- [Come funziona Kit](https://trykit.pages.dev/it/how/) · [Informativa sulla privacy](https://trykit.pages.dev/it/privacy/) · [Termini di utilizzo](https://trykit.pages.dev/it/terms/)
 
 ## Sviluppo locale
 

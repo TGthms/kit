@@ -94,7 +94,7 @@ Ekran główny grupuje narzędzia według zadania (strony PDF, dane, rozwój…)
 - Narzędzia przetwarzają dane **na Twoim urządzeniu**
 - Historia przechowuje tylko **skróty** (nie treść plików)
 - Preferencje zostają w pamięci lokalnej
-- [Polityka prywatności](https://trykit.pages.dev/pl/privacy/) · [Warunki użytkowania](https://trykit.pages.dev/pl/terms/)
+- [Jak działa Kit](https://trykit.pages.dev/pl/how/) · [Polityka prywatności](https://trykit.pages.dev/pl/privacy/) · [Warunki użytkowania](https://trykit.pages.dev/pl/terms/)
 
 ## Rozwój lokalny
 

@@ -8,7 +8,7 @@ export const dynamic = "force-static";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date();
-  const pages = ["", "/privacy", "/terms"];
+  const pages = ["", "/privacy", "/terms", "/how"];
   const entries: MetadataRoute.Sitemap = [
     {
       url: `${absoluteUrl("/")}`,

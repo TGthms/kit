@@ -94,7 +94,7 @@ A kezdőlap feladatonként csoportosítja az eszközöket (PDF-oldalak, adatok, 
 - Az eszközök az adatokat **az Ön készülékén** dolgozzák fel
 - Az előzmények csak **összefoglalókat** tárolnak (nem a fájltartalmat)
 - A beállítások a helyi tárolóban maradnak
-- [Adatvédelmi irányelvek](https://trykit.pages.dev/hu/privacy/) · [Felhasználási feltételek](https://trykit.pages.dev/hu/terms/)
+- [Hogyan működik a Kit](https://trykit.pages.dev/hu/how/) · [Adatvédelmi irányelvek](https://trykit.pages.dev/hu/privacy/) · [Felhasználási feltételek](https://trykit.pages.dev/hu/terms/)
 
 ## Helyi fejlesztés
 

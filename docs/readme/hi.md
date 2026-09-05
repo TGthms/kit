@@ -94,7 +94,7 @@ Kit PDF, छवि, मीडिया, रूपांतरण और पा�
 - उपकरण डेटा **आपके उपकरण पर** संसाधित करते हैं
 - इतिहास केवल **सारांश** रखता है (फ़ाइल सामग्री नहीं)
 - वरीयताएँ स्थानीय संग्रहण में रहती हैं
-- [गोपनीयता नीति](https://trykit.pages.dev/hi/privacy/) · [उपयोग की शर्तें](https://trykit.pages.dev/hi/terms/)
+- [Kit कैसे काम करता है](https://trykit.pages.dev/hi/how/) · [गोपनीयता नीति](https://trykit.pages.dev/hi/privacy/) · [उपयोग की शर्तें](https://trykit.pages.dev/hi/terms/)
 
 ## स्थानीय विकास
 

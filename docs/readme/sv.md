@@ -94,7 +94,7 @@ Startsidan grupperar verktyg efter uppgift (PDF-sidor, data, utveckling …) i s
 - Verktyg behandlar data **på din enhet**
 - Historiken sparar bara **sammanfattningar** (inte filinnehåll)
 - Inställningar stannar i lokal lagring
-- [Integritetspolicy](https://trykit.pages.dev/sv/privacy/) · [Användarvillkor](https://trykit.pages.dev/sv/terms/)
+- [Så fungerar Kit](https://trykit.pages.dev/sv/how/) · [Integritetspolicy](https://trykit.pages.dev/sv/privacy/) · [Användarvillkor](https://trykit.pages.dev/sv/terms/)
 
 ## Lokal utveckling
 

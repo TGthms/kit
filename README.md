@@ -48,8 +48,6 @@ Kit is a set of PDF, image, media, converter, and text tools that run on your de
 
 **About the author:** https://t-g.pages.dev
 
-**For crawlers:** https://trykit.pages.dev/llms.txt · https://trykit.pages.dev/sitemap.xml
-
 ## What you get
 
 A complete, polished toolkit: 94 tools, clear layout, light and dark appearance, a 30-language UI with a native picker, an installable PWA shell, and honest limits about what a browser can do.
@@ -96,7 +94,7 @@ The home screen groups tools by job (PDF pages vs markup, developer inspect vs e
 - Tools process data **on your device**
 - History stores **metadata only** (not file contents)
 - Preferences stay in local storage
-- [Privacy Policy](https://trykit.pages.dev/en/privacy/) · [Terms of Use](https://trykit.pages.dev/en/terms/)
+- [How Kit works](https://trykit.pages.dev/en/how/) · [Privacy Policy](https://trykit.pages.dev/en/privacy/) · [Terms of Use](https://trykit.pages.dev/en/terms/)
 
 ## Local development
 
@@ -149,10 +147,10 @@ Cloudflare Pages clones this repo and runs `npm run build` (the gitignored local
 
 ## Tech stack
 
-Next.js 16 (App Router, static export) · TypeScript · Tailwind CSS · shadcn-style UI · Zustand · next-intl · @cantoo/pdf-lib / PDF.js · Canvas · FFmpeg WASM · fireworks-js · PWA service worker
+Next.js 16 (App Router, static export) · TypeScript · Tailwind CSS · shadcn-style UI · Zustand · next-intl · @cantoo/pdf-lib / PDF.js · Canvas · FFmpeg WASM · PWA service worker
 
 ## License
 
 [MIT](LICENSE) © Tim G (GitHub: [TGthms](https://github.com/TGthms))
 
-Kit’s own source is MIT. The New Year easter egg uses `fireworks-js` (MIT). Audio and video tools also load an FFmpeg WebAssembly engine (`@ffmpeg/core`) licensed **GPL-2.0-or-later** (H.264 / LAME and related codecs). That engine is served from this site and runs in your browser; media is not uploaded to a Kit server. pdf.js and other libraries keep their own Apache, BSD, or MIT licenses.
+Kit’s own source is MIT. Audio and video tools also load an FFmpeg WebAssembly engine (`@ffmpeg/core`) licensed **GPL-2.0-or-later** (H.264 / LAME and related codecs). That engine is served from this site and runs in your browser; media is not uploaded to a Kit server. pdf.js and other libraries keep their own Apache, BSD, or MIT licenses.
