@@ -46,7 +46,7 @@ export function NewYearFireworks({
     };
 
     void import("fireworks-js").then(({ Fireworks }) => {
-      if (cancelled || !root) return;
+      if (cancelled || !root.isConnected) return;
       fireworks = new Fireworks(root, {
         autoresize: true,
         opacity: 0.5,
@@ -85,7 +85,12 @@ export function NewYearFireworks({
     };
   }, [active, durationMs]);
 
-  if (!active) return null;
-
-  return <div ref={ref} className="kit-new-year-fireworks" aria-hidden="true" />;
+  return (
+    <div
+      ref={ref}
+      className="kit-new-year-fireworks"
+      data-active={active ? "true" : "false"}
+      aria-hidden="true"
+    />
+  );
 }

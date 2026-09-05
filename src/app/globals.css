@@ -437,6 +437,10 @@ scritto-flow.kit-scritto-inline {
   overflow: hidden;
 }
 
+.kit-new-year-fireworks[data-active="false"] {
+  visibility: hidden;
+}
+
 .kit-new-year-fireworks canvas {
   display: block;
   width: 100%;

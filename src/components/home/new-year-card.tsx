@@ -1,17 +1,13 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { AnimatedClock } from "@/components/shared/animated-clock";
 import { Card, CardContent } from "@/components/ui/card";
 import { GreetingHeadline } from "@/components/home/greeting-headline";
 import { GreetingSubtitle } from "@/components/home/greeting-subtitle";
-import {
-  countdownParts,
-  countdownSubtitleKind,
-  getNewYearCardState,
-  type NewYearCardState,
-} from "@/lib/home/new-year";
+import { useLiveNewYearState } from "@/components/home/use-live-new-year";
+import { countdownParts, countdownSubtitleKind, type NewYearCardState } from "@/lib/home/new-year";
 
 function prefersReducedMotion(): boolean {
   if (typeof window === "undefined" || typeof window.matchMedia !== "function") return true;
@@ -27,20 +23,7 @@ export function NewYearCard({
 }) {
   const t = useTranslations("home.newYearCard");
   const [reducedMotion] = useState(prefersReducedMotion);
-  const [, setPulse] = useState(0);
-
-  useEffect(() => {
-    if (state.phase !== "countdown") return;
-    let timeout = 0;
-    const tick = () => {
-      setPulse((n) => n + 1);
-      if (getNewYearCardState(getNow()).phase === "countdown") timeout = window.setTimeout(tick, 250);
-    };
-    timeout = window.setTimeout(tick, 250);
-    return () => window.clearTimeout(timeout);
-  }, [getNow, state.phase]);
-
-  const live = getNewYearCardState(getNow());
+  const live = useLiveNewYearState(state, getNow);
   const parts = countdownParts(live.msLeft);
   const countdown = live.phase === "countdown";
   const subtitleKind = countdownSubtitleKind(parts.minutes);
