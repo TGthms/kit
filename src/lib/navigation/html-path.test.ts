@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { htmlHref, htmlPathname, isRscDocumentPath } from "./html-path";
+import { htmlHref, htmlPathname, isRscDocumentPath, withSearchAndHash } from "./html-path";
 
 describe("RSC document paths", () => {
   it("detects Next static payload URLs", () => {
@@ -12,5 +12,13 @@ describe("RSC document paths", () => {
     expect(htmlHref("https://trykit.pages.dev/en/tools/video-gif/index.txt?from=%2F")).toBe(
       "/en/tools/video-gif/?from=%2F"
     );
+  });
+
+  it("keeps search and hash when hopping onto a locale home", () => {
+    expect(withSearchAndHash("/en/")).toBe("/en/");
+    expect(withSearchAndHash("/en/", "", "")).toBe("/en/");
+    expect(withSearchAndHash("/en/", "?date=2026-12-25", "")).toBe("/en/?date=2026-12-25");
+    expect(withSearchAndHash("/en/", "?date=2026-12-25", "#top")).toBe("/en/?date=2026-12-25#top");
+    expect(withSearchAndHash("/en/", undefined, undefined)).toBe("/en/");
   });
 });

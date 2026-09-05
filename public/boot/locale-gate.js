@@ -25,7 +25,8 @@
         locale = known.indexOf(prefix) >= 0 ? prefix : "en";
       }
     }
-    location.replace((base || "") + "/" + locale + "/");
+    // Keep query/hash so /?date=2026-12-25 survives the locale hop. Same as withSearchAndHash.
+    location.replace((base || "") + "/" + locale + "/" + (location.search || "") + (location.hash || ""));
   } catch {
     /* ignore */
   }

@@ -3,6 +3,7 @@
 import { useEffect } from "react";
 import { detectLocale, isLocale, localeNames, locales, resolveLocale } from "@/lib/i18n/config";
 import { withAsset, withBasePath } from "@/lib/base-path";
+import { withSearchAndHash } from "@/lib/navigation/html-path";
 import { SITE_NAME } from "@/lib/seo/site";
 
 const TAGLINE = "Everyday tools in your browser. Private by design.";
@@ -20,7 +21,11 @@ export function LocaleGate() {
       stored && (isLocale(stored) || stored === "zh")
         ? resolveLocale(stored)
         : detectLocale(navigator.language || navigator.languages?.[0]);
-    const dest = withBasePath(`/${locale}/`);
+    const dest = withSearchAndHash(
+      withBasePath(`/${locale}/`),
+      window.location.search,
+      window.location.hash,
+    );
     window.location.replace(dest);
   }, []);
 

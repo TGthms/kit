@@ -19,3 +19,12 @@ export function htmlHref(href: string, base = "https://kit.invalid"): string {
     return href;
   }
 }
+
+/** Keep `location.search` / `location.hash` when replacing onto another path. */
+export function withSearchAndHash(
+  path: string,
+  search?: string | null,
+  hash?: string | null,
+): string {
+  return `${path}${search ?? ""}${hash ?? ""}`;
+}

@@ -4,8 +4,10 @@
  *   /en/?date=2026-12-25
  *   /zh-Hans/?date=2026-03-14&greetingSeed=3
  *   /en/?date=2026-12-31&time=23:59:03
+ *   /en/?date=2026-12-25T23:59:03
  *
  * date=YYYY-MM-DD (alias: greetingDate) — that calendar day.
+ *   A trailing `T`/` ` clock is accepted when `time=` is omitted.
  * time=HH:MM or HH:MM:SS (alias: greetingTime) — optional clock on that day.
  *   If omitted, the real wall-clock hour/minute/second is kept.
  *   If set, preview time starts there and advances with the real clock
@@ -16,11 +18,18 @@
  * Pi Day → 2026-03-14. Data Privacy Day → 2026-01-28.
  */
 
-const DATE = /^(\d{4})-(\d{2})-(\d{2})$/;
+const DATE = /^(\d{4})-(\d{2})-(\d{2})(?:[T\s].*)?$/;
 const TIME = /^(\d{1,2}):(\d{2})(?::(\d{2}))?$/;
+const EMBEDDED_TIME = /^\d{4}-\d{2}-\d{2}[T\s](\d{1,2}):(\d{2})(?::(\d{2}))?/;
 
 export type GreetingDateOverride = { year: number; month: number; day: number };
 export type GreetingTimeOverride = { hours: number; minutes: number; seconds: number };
+
+export type GreetingPreview = {
+  date: GreetingDateOverride | null;
+  time: GreetingTimeOverride | null;
+  seed: number | null;
+};
 
 export function parseGreetingDate(value: string | null | undefined): GreetingDateOverride | null {
   if (!value) return null;
@@ -44,6 +53,35 @@ export function parseGreetingTime(value: string | null | undefined): GreetingTim
   const seconds = match[3] == null || match[3] === "" ? 0 : Number(match[3]);
   if (hours > 23 || minutes > 59 || seconds > 59) return null;
   return { hours, minutes, seconds };
+}
+
+/** `date=2026-12-25T23:59:03` pins the clock when `time=` is omitted. */
+export function parseEmbeddedGreetingTime(value: string | null | undefined): GreetingTimeOverride | null {
+  if (!value) return null;
+  const match = EMBEDDED_TIME.exec(value.trim());
+  if (!match) return null;
+  return parseGreetingTime(`${match[1]}:${match[2]}${match[3] != null ? `:${match[3]}` : ""}`);
+}
+
+/**
+ * Prefer `window.location.search` so a static export / replaceState still sees
+ * `date` / `time` even if Next's `useSearchParams` snapshot is empty.
+ */
+export function greetingSearchFromLocation(searchParams: { toString(): string }): URLSearchParams {
+  const fromWindow = typeof window !== "undefined" ? window.location.search.replace(/^\?/, "") : "";
+  return new URLSearchParams(fromWindow || searchParams.toString());
+}
+
+export function readGreetingPreview(search: { get(name: string): string | null }): GreetingPreview {
+  return {
+    date: parseGreetingDate(search.get("date")) ?? parseGreetingDate(search.get("greetingDate")),
+    time:
+      parseGreetingTime(search.get("time")) ??
+      parseGreetingTime(search.get("greetingTime")) ??
+      parseEmbeddedGreetingTime(search.get("date")) ??
+      parseEmbeddedGreetingTime(search.get("greetingDate")),
+    seed: parseGreetingSeed(search.get("greetingSeed")),
+  };
 }
 
 export function parseGreetingSeed(value: string | null | undefined): number | null {

@@ -30,7 +30,7 @@ import { NewYearCard } from "@/components/home/new-year-card";
 import { NewYearFireworks } from "@/components/home/new-year-fireworks";
 import { PageLoader } from "@/components/shared/page-loader";
 import { getGreetingPeriod, getGreetingPoolKeys, getGreetingVariant, getGreetingVisitSeed, getHomeGreetingSelection, type GreetingCategory, type GreetingPeriod, type GreetingSubtitle as GreetingSubtitlePick } from "@/lib/home/greeting";
-import { overlayGreetingDate, parseGreetingDate, parseGreetingSeed, parseGreetingTime, virtualGreetingNow } from "@/lib/home/greeting-qa";
+import { greetingSearchFromLocation, overlayGreetingDate, readGreetingPreview, virtualGreetingNow } from "@/lib/home/greeting-qa";
 import { getNewYearCardState, nextNewYearTickMs, NEW_YEAR_FIREWORKS_MS, shouldBurstNewYearFireworks, shouldPlayNewYearFireworks, type NewYearCardState } from "@/lib/home/new-year";
 import type { SubtitleMotion } from "@/lib/home/subtitle-motion";
 import { WEB_VERSES } from "@/lib/home/verses";
@@ -166,9 +166,13 @@ function HomePageInner() {
   const pathname = usePathname();
   const selectedCat =
     parseCategoryPath(pathname) ?? parseCategoryParam(searchParams.get("c"));
-  const greetingDateParam = searchParams.get("date") ?? searchParams.get("greetingDate");
-  const greetingSeedParam = searchParams.get("greetingSeed");
-  const greetingTimeParam = searchParams.get("time") ?? searchParams.get("greetingTime");
+  const greetingSearch = greetingSearchFromLocation(searchParams);
+  const greetingPreview = readGreetingPreview(greetingSearch);
+  const greetingDateParam = greetingSearch.get("date") ?? greetingSearch.get("greetingDate");
+  const greetingSeedParam = greetingSearch.get("greetingSeed");
+  const greetingTimeParam = greetingSearch.get("time") ?? greetingSearch.get("greetingTime");
+  const showPreviewGreeting =
+    greetingPreview.date !== null || greetingPreview.time !== null || greetingPreview.seed !== null;
   const [q, setQ] = useState("");
   const [newYear, setNewYear] = useState<NewYearCardState | null>(null);
   const [fireworksOn, setFireworksOn] = useState(false);
@@ -195,9 +199,7 @@ function HomePageInner() {
   } | null>(null);
 
   useLayoutEffect(() => {
-    const dateOverride = parseGreetingDate(greetingDateParam);
-    const timeOverride = parseGreetingTime(greetingTimeParam);
-    const seedOverride = parseGreetingSeed(greetingSeedParam);
+    const { date: dateOverride, time: timeOverride, seed: seedOverride } = greetingPreview;
     const visitSeed = seedOverride ?? getGreetingVisitSeed();
     clockOrigin.current = timeOverride ? { wall: new Date(), wallMs: Date.now() } : null;
     let timeout = 0;
@@ -256,6 +258,7 @@ function HomePageInner() {
     };
     updateGreeting();
     return () => window.clearTimeout(timeout);
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- query strings are the identity; preview objects are new each render
   }, [greetingDateParam, greetingSeedParam, greetingTimeParam, locale]);
 
   const favIds = useFavoritesStore((s) => s.ids);
@@ -296,6 +299,7 @@ function HomePageInner() {
   const showCategories = !isSearching && !selectedCat;
   const showCategoryTools = selectedCat !== null;
   const showGlobalSearch = isSearching && !selectedCat;
+  const showGreetingBlock = showCategories || showGlobalSearch || showPreviewGreeting;
   return (
     <div className="space-y-7 sm:space-y-9">
       <NewYearFireworks continuous={fireworksOn} burst={fireworksBurst} durationMs={fireworksDuration} />
@@ -307,18 +311,20 @@ function HomePageInner() {
           heading={showCategoryTools ? "p" : "h1"}
         />
       ) : null}
-      {(showCategories || showGlobalSearch) && (
+      {showGreetingBlock && (
         <section className="space-y-4 pt-0.5 sm:pt-1">
           <div className="max-w-2xl space-y-2">
             {greeting ? (
               <GreetingHeadline
                 key={`${greeting.greetingKey}:${greeting.day}`}
-                as={newYear ? "h2" : "h1"}
+                as={newYear || showCategoryTools ? "h2" : "h1"}
                 className="type-display text-foreground"
                 text={t(greeting.greetingKey, { day: greeting.day, occasion: greeting.occasionKey ? t(`occasionLabel.${greeting.occasionKey}`) : "" })}
               />
             ) : newYear ? (
               <h2 className="type-display text-foreground">{t("title")}</h2>
+            ) : showCategoryTools ? (
+              <p className="type-display text-foreground">{t("title")}</p>
             ) : (
               <h1 className="type-display text-foreground">{t("title")}</h1>
             )}
@@ -341,19 +347,21 @@ function HomePageInner() {
               <p className="type-body max-w-xl text-muted-foreground">{t("subtitle")}</p>
             )}
           </div>
-          <div className="relative max-w-xl">
-            <Search className="pointer-events-none absolute start-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-            <Input
-              id="kit-search"
-              value={q}
-              onChange={(e) => setQ(e.target.value)}
-              placeholder={tn("searchPlaceholder")}
-              aria-label={tn("searchPlaceholder")}
-              className="h-11 rounded-[14px] border-border/40 bg-card/95 ps-11 pe-4 surface-float sm:h-12 sm:rounded-2xl"
-              autoComplete="off"
-              enterKeyHint="search"
-            />
-          </div>
+          {(showCategories || showGlobalSearch) && (
+            <div className="relative max-w-xl">
+              <Search className="pointer-events-none absolute start-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+              <Input
+                id="kit-search"
+                value={q}
+                onChange={(e) => setQ(e.target.value)}
+                placeholder={tn("searchPlaceholder")}
+                aria-label={tn("searchPlaceholder")}
+                className="h-11 rounded-[14px] border-border/40 bg-card/95 ps-11 pe-4 surface-float sm:h-12 sm:rounded-2xl"
+                autoComplete="off"
+                enterKeyHint="search"
+              />
+            </div>
+          )}
         </section>
       )}
 
