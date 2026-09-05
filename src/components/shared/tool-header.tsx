@@ -1,15 +1,17 @@
 "use client";
 
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { useSearchParams } from "next/navigation";
 import { Star } from "lucide-react";
 import type { ToolId } from "@/lib/tools/registry";
 import { getTool, isFileTool } from "@/lib/tools/registry";
 import { toolBackHref } from "@/lib/navigation/routes";
+import { toolShareUrl } from "@/lib/seo/share";
 import { useFavoritesStore } from "@/stores/favorites-store";
 import { PageHeader } from "@/components/layout/page-header";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { ShareButton } from "@/components/ui/share-button";
 
 function safeInternalHref(value: string | null): string | null {
   if (!value) return null;
@@ -25,6 +27,7 @@ export function ToolHeader({ toolId }: { toolId: ToolId }) {
   const t = useTranslations(`tools.${toolId}`);
   const tc = useTranslations("common");
   const tCat = useTranslations("categories");
+  const locale = useLocale();
   const searchParams = useSearchParams();
   const { ids, toggle } = useFavoritesStore();
   const fav = ids.includes(toolId);
@@ -48,15 +51,18 @@ export function ToolHeader({ toolId }: { toolId: ToolId }) {
         ) : undefined
       }
       trailing={
-        <Button
-          variant={fav ? "default" : "outline"}
-          size="sm"
-          className="h-10 w-full rounded-full sm:w-fit"
-          onClick={() => toggle(toolId)}
-        >
-          <Star className={fav ? "fill-current" : ""} />
-          {fav ? tc("unfavorite") : tc("favorite")}
-        </Button>
+        <div className="flex w-full flex-col gap-2 sm:w-fit sm:flex-row">
+          <ShareButton title={t("name")} text={t("description")} url={toolShareUrl(locale, toolId)} />
+          <Button
+            variant={fav ? "default" : "outline"}
+            size="sm"
+            className="h-10 w-full rounded-full sm:w-fit"
+            onClick={() => toggle(toolId)}
+          >
+            <Star className={fav ? "fill-current" : ""} />
+            {fav ? tc("unfavorite") : tc("favorite")}
+          </Button>
+        </div>
       }
     />
   );
