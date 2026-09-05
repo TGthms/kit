@@ -1,3 +1,5 @@
+import { existsSync } from "node:fs";
+import { join } from "node:path";
 import type { Metadata } from "next";
 import { defaultLocale, isPathLocale, locales, messageFileFor } from "@/lib/i18n/config";
 import { getTool, legacyToolIdMap, resolveToolId, type ToolCategory } from "@/lib/tools/registry";
@@ -13,7 +15,9 @@ import {
   SITE_AUTHOR_URL,
   SITE_NAME,
   SITE_URL,
+  canonicalAssetUrl,
   isBackupHost,
+  OG_IMAGE_PATH,
 } from "./site";
 
 type Messages = {
@@ -31,17 +35,24 @@ export async function loadMessages(locale: string): Promise<Messages> {
   return (await import(`../../../messages/${file}.json`)).default as Messages;
 }
 
-export function socialImages() {
+export function socialImages(imagePath?: string) {
+  const path = imagePath ?? OG_IMAGE_PATH;
+  const url = canonicalAssetUrl(path);
   return [
     {
-      url: ogImageUrl(),
-      secureUrl: ogImageUrl(),
+      url,
+      secureUrl: url,
       width: OG_IMAGE_WIDTH,
       height: OG_IMAGE_HEIGHT,
       alt: OG_IMAGE_ALT,
       type: "image/png",
     },
   ];
+}
+
+export function toolOgImagePath(segment: string): string {
+  const file = join(process.cwd(), "public", "og", "tools", `${segment}.png`);
+  return existsSync(file) ? `/og/tools/${segment}.png` : OG_IMAGE_PATH;
 }
 
 export function languageAlternates(pathAfterLocale: string): Record<string, string> {
@@ -87,16 +98,19 @@ export function buildSocialMetadata({
   description,
   pathAfterLocale,
   noindex = false,
+  imagePath,
 }: {
   pathLoc: string;
   title: string;
   description: string;
   pathAfterLocale: string;
   noindex?: boolean;
+  imagePath?: string;
 }): Metadata {
   const canonicalLoc = canonicalLocale(pathLoc);
   const url = absoluteUrl(`/${canonicalLoc}${pathAfterLocale}`);
-  const images = socialImages();
+  const images = socialImages(imagePath);
+  const twitterImage = imagePath ? canonicalAssetUrl(imagePath) : ogImageUrl();
   const hide = noindex || pathLoc === "zh" || NOINDEX_SECTIONS.has(pathAfterLocale) || isBackupHost();
   return {
     title,
@@ -124,7 +138,7 @@ export function buildSocialMetadata({
       card: "summary_large_image",
       title,
       description,
-      images: [ogImageUrl()],
+      images: [twitterImage],
     },
   };
 }
@@ -149,6 +163,7 @@ export async function buildToolMetadata(
     description,
     pathAfterLocale: `/tools/${publicSegment}/`,
     noindex,
+    imagePath: toolOgImagePath(publicSegment),
   });
 }
 

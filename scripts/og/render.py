@@ -140,5 +140,92 @@ def render() -> None:
     print(f"wrote {OUT.relative_to(ROOT)} ({final.size[0]}×{final.size[1]})")
 
 
+def wrap_text(draw: ImageDraw.ImageDraw, text: str, fnt: ImageFont.FreeTypeFont, max_width: int) -> list[str]:
+    words = text.split()
+    if not words:
+        return [text]
+    lines: list[str] = []
+    current = words[0]
+    for word in words[1:]:
+        trial = f"{current} {word}"
+        bbox = draw.textbbox((0, 0), trial, font=fnt)
+        if bbox[2] - bbox[0] <= max_width:
+            current = trial
+        else:
+            lines.append(current)
+            current = word
+    lines.append(current)
+    return lines[:3]
+
+
+def render_tool(tool_id: str, name: str, category: str) -> None:
+    img = Image.new("RGBA", (W, H), BG)
+    img = Image.alpha_composite(img, radial_glow((W, H), (520, 620), 720, GLOW, 110))
+    img = Image.alpha_composite(img, radial_glow((W, H), (1900, -80), 680, (88, 86, 214), 40))
+    draw = ImageDraw.Draw(img)
+    inset = 3
+    draw.rounded_rectangle((inset, inset, W - inset - 1, H - inset - 1), radius=0, outline=LINE, width=2)
+
+    icon = rounded_icon(ICON, 280, 68)
+    icon = drop_shadow(icon, offset=(0, 22), blur=28, alpha=100)
+    img.alpha_composite(icon, (160, 470))
+
+    kit_font = font("display_medium", 52)
+    name_font = font("display_bold", 96)
+    cat_font = font("text_medium", 36)
+    url_font = font("text_regular", 30)
+
+    text_x = 520
+    draw.text((text_x, 300), "Kit", font=kit_font, fill=ACCENT)
+    lines = wrap_text(draw, name, name_font, W - text_x - 160)
+    y = 380
+    for line in lines:
+        draw.text((text_x, y), line, font=name_font, fill=TITLE)
+        y += 110
+    draw.text((text_x, y + 12), category, font=cat_font, fill=SUB)
+
+    draw.line((160, 1088, W - 160, 1088), fill=LINE, width=2)
+    draw.text((160, 1124), "trykit.pages.dev", font=url_font, fill=MUTED)
+    draw.text((W - 160, 1124), "Runs on your device", font=url_font, fill=MUTED, anchor="ra")
+
+    out = ROOT / "public" / "og" / "tools" / f"{tool_id}.png"
+    out.parent.mkdir(parents=True, exist_ok=True)
+    final = img.convert("RGB").resize(FINAL, Image.Resampling.LANCZOS)
+    final.save(out, "PNG", optimize=True)
+
+
+def tool_categories() -> dict[str, str]:
+    import re
+
+    src = (ROOT / "src" / "lib" / "tools" / "registry.ts").read_text()
+    return dict(re.findall(r'id:\s*"([a-z0-9-]+)"\s*,\s*category:\s*"([a-z]+)"', src))
+
+
+def render_tools() -> None:
+    import json
+
+    messages = json.loads((ROOT / "messages" / "en.json").read_text())
+    tools = messages["tools"]
+    categories = messages["categories"]
+    cats = tool_categories()
+    count = 0
+    for tool_id, entry in tools.items():
+        name = entry.get("name")
+        if not isinstance(name, str) or not name.strip():
+            continue
+        public_id = "world-clock" if tool_id == "timezone-converter" else tool_id
+        family = cats.get(tool_id, "")
+        category = str(categories.get(family, "Kit"))
+        render_tool(public_id, name.strip(), category)
+        count += 1
+    print(f"wrote {count} tool OG images")
+
+
 if __name__ == "__main__":
-    render()
+    import sys
+
+    if "--tools" in sys.argv:
+        render_tools()
+    else:
+        render()
+

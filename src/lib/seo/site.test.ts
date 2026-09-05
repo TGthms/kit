@@ -148,6 +148,8 @@ describe("social metadata builders", () => {
     expect(tool.title).toEqual(expect.stringContaining("Kit"));
     expect(tool.description).toBeTruthy();
     expect(String(tool.alternates?.canonical)).toContain("/en/tools/pdf-merge/");
+    const toolImage = Array.isArray(tool.openGraph?.images) ? tool.openGraph.images[0] : tool.openGraph?.images;
+    expect(String((toolImage as { url?: string })?.url ?? toolImage)).toContain("/og/tools/pdf-merge.png");
 
     const clock = await buildToolMetadata("en", "timezone-converter", "world-clock");
     expect(String(clock.alternates?.canonical)).toContain("/en/tools/world-clock/");
