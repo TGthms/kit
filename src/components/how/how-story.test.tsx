@@ -26,15 +26,20 @@ function renderHow() {
 }
 
 describe("HowStory", () => {
-  it("explains privacy with a comparison table and a leave-the-device chart", () => {
+  it("explains privacy with honest tables, not fake percentages", () => {
     renderHow();
     expect(screen.getByRole("heading", { name: "Typical upload site vs Kit" })).toBeInTheDocument();
     expect(screen.getByRole("table", { name: "Typical upload site vs Kit" })).toBeInTheDocument();
     expect(screen.getByText("Stays in this tab")).toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: "How much of the document leaves this device" })).toBeInTheDocument();
-    expect(screen.getByRole("img", { name: "Typical upload tool: 100%" })).toBeInTheDocument();
-    expect(screen.getByRole("img", { name: "Kit: 0%" })).toBeInTheDocument();
+    expect(screen.queryByText("0%")).not.toBeInTheDocument();
+    expect(screen.queryByText("100%")).not.toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "When you run a tool, what crosses the network" })).toBeInTheDocument();
+    expect(screen.getByRole("table", { name: "When you run a tool, what crosses the network" })).toBeInTheDocument();
+    expect(screen.getByText("Stays in this tab. It does not show up as an upload.")).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "The line on the home page" })).toBeInTheDocument();
+    expect(screen.getByText(/Kit reads this device’s clock and calendar/)).toBeInTheDocument();
     expect(screen.getByText("FFmpeg WebAssembly (GPL-2.0-or-later)")).toBeInTheDocument();
+    expect(screen.getByText(/about 10 MB gzipped/)).toBeInTheDocument();
   });
 
   it("uses in-app locale paths instead of a hardcoded /en/ URL", () => {

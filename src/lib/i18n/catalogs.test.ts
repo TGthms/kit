@@ -106,6 +106,21 @@ describe("message catalogs", () => {
     expect(leftover).toEqual([]);
   });
 
+  it("does not leave English How Kit works story copy", async () => {
+    const leftover: string[] = [];
+    const enHow = (en as { how: Record<string, string> }).how;
+    const keys = ["lanesTitle", "leavesTitle", "greetTitle", "greetLede", "offlineTitle", "sizeTitle"] as const;
+    for (const loc of locales) {
+      if (loc === "en") continue;
+      const file = messageFileFor(loc);
+      const catalog = (await import(`../../../messages/${file}.json`)).default as { how: Record<string, string> };
+      for (const key of keys) {
+        if (catalog.how[key] === enHow[key]) leftover.push(`${loc}:${key}`);
+      }
+    }
+    expect(leftover).toEqual([]);
+  });
+
   it("does not leave English unit labels in non-English catalogs", async () => {
     const leftover: string[] = [];
     for (const loc of locales) {

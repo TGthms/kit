@@ -13,6 +13,30 @@ const COMPARE_ROWS = [
   ["rowAfter", "typicalAfter", "kitAfter"],
 ] as const;
 
+const LEAVES_ROWS = [
+  ["leavesFile", "leavesFileTypical", "leavesFileKit"],
+  ["leavesResult", "leavesResultTypical", "leavesResultKit"],
+  ["leavesAccount", "leavesAccountTypical", "leavesAccountKit"],
+  ["leavesTrack", "leavesTrackTypical", "leavesTrackKit"],
+  ["leavesApp", "leavesAppTypical", "leavesAppKit"],
+  ["leavesRates", "leavesRatesTypical", "leavesRatesKit"],
+] as const;
+
+const SIZE_ROWS = [
+  ["sizeUi", "sizeUiBody"],
+  ["sizePdf", "sizePdfBody"],
+  ["sizeMedia", "sizeMediaBody"],
+  ["sizeRates", "sizeRatesBody"],
+] as const;
+
+const GREET_ITEMS = [
+  ["greetClock", "greetClockBody"],
+  ["greetWeek", "greetWeekBody"],
+  ["greetDays", "greetDaysBody"],
+  ["greetSub", "greetSubBody"],
+  ["greetNewYear", "greetNewYearBody"],
+] as const;
+
 const TECH_ROWS = [
   ["techPdfJob", "techPdfRuns", "techPdfWhere"],
   ["techMediaJob", "techMediaRuns", "techMediaWhere"],
@@ -28,11 +52,14 @@ const PATH_STEPS = [
   { key: "pathSave", icon: HardDrive },
 ] as const;
 
+const DEVICE_LANES = ["lanesDeviceFile", "lanesDeviceAmount", "lanesDevicePrefs"] as const;
+const NETWORK_LANES = ["lanesNetworkApp", "lanesNetworkRates", "lanesNetworkHost"] as const;
+
 export function HowStory() {
   const t = useTranslations("how");
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-10">
       <p className="type-body max-w-2xl text-muted-foreground">{t("lede")}</p>
 
       <section className="space-y-3" aria-labelledby="how-compare-heading">
@@ -98,42 +125,119 @@ export function HowStory() {
         <p className="type-caption text-muted-foreground">{t("pathNote")}</p>
       </section>
 
-      <section className="space-y-3" aria-labelledby="how-chart-heading">
-        <h2 id="how-chart-heading" className="text-xl font-semibold tracking-[-0.02em] text-foreground">
-          {t("chartTitle")}
+      <section className="space-y-3" aria-labelledby="how-lanes-heading">
+        <h2 id="how-lanes-heading" className="text-xl font-semibold tracking-[-0.02em] text-foreground">
+          {t("lanesTitle")}
         </h2>
-        <Card className="border-border/50">
-          <CardContent className="space-y-5 p-5">
-            <div className="space-y-2">
-              <div className="flex items-baseline justify-between gap-3">
-                <p className="text-sm font-medium text-foreground">{t("chartTypical")}</p>
-                <p className="text-sm tabular-nums text-muted-foreground">{t("chartTypicalValue")}</p>
-              </div>
-              <div
-                className="h-3 overflow-hidden rounded-full bg-secondary"
-                role="img"
-                aria-label={`${t("chartTypical")}: ${t("chartTypicalValue")}`}
-              >
-                <div className="h-full w-full rounded-full bg-muted-foreground/55" />
-              </div>
-              <p className="type-caption text-muted-foreground">{t("chartTypicalCaption")}</p>
+        <div className="grid gap-3 sm:grid-cols-2">
+          <Card className="border-border/50">
+            <CardHeader>
+              <CardTitle>{t("lanesDevice")}</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <ul className="list-disc space-y-2 ps-5 text-sm leading-relaxed text-muted-foreground">
+                {DEVICE_LANES.map((key) => (
+                  <li key={key}>{t(key)}</li>
+                ))}
+              </ul>
+            </CardContent>
+          </Card>
+          <Card className="border-border/50">
+            <CardHeader>
+              <CardTitle>{t("lanesNetwork")}</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <ul className="list-disc space-y-2 ps-5 text-sm leading-relaxed text-muted-foreground">
+                {NETWORK_LANES.map((key) => (
+                  <li key={key}>{t(key)}</li>
+                ))}
+              </ul>
+            </CardContent>
+          </Card>
+        </div>
+        <p className="type-caption text-muted-foreground">{t("lanesNote")}</p>
+      </section>
+
+      <section className="space-y-3" aria-labelledby="how-leaves-heading">
+        <h2 id="how-leaves-heading" className="text-xl font-semibold tracking-[-0.02em] text-foreground">
+          {t("leavesTitle")}
+        </h2>
+        <div className="overflow-x-auto rounded-2xl border border-border/50 bg-card surface-float">
+          <table className="w-full min-w-[36rem] text-start text-sm">
+            <caption className="sr-only">{t("leavesTitle")}</caption>
+            <thead>
+              <tr className="border-b border-border/50 text-muted-foreground">
+                <th scope="col" className="px-4 py-3 font-medium">
+                  {t("leavesWhat")}
+                </th>
+                <th scope="col" className="px-4 py-3 font-medium">
+                  {t("compareTypical")}
+                </th>
+                <th scope="col" className="px-4 py-3 font-medium text-foreground">
+                  {t("compareKit")}
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {LEAVES_ROWS.map(([label, typical, kit]) => (
+                <tr key={label} className="border-b border-border/40 last:border-0">
+                  <th scope="row" className="px-4 py-3 font-medium text-foreground">
+                    {t(label)}
+                  </th>
+                  <td className="px-4 py-3 text-muted-foreground">{t(typical)}</td>
+                  <td className="px-4 py-3 text-foreground">{t(kit)}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section className="space-y-3" aria-labelledby="how-size-heading">
+        <h2 id="how-size-heading" className="text-xl font-semibold tracking-[-0.02em] text-foreground">
+          {t("sizeTitle")}
+        </h2>
+        <div className="overflow-x-auto rounded-2xl border border-border/50 bg-card surface-float">
+          <table className="w-full min-w-[28rem] text-start text-sm">
+            <caption className="sr-only">{t("sizeTitle")}</caption>
+            <thead>
+              <tr className="border-b border-border/50 text-muted-foreground">
+                <th scope="col" className="px-4 py-3 font-medium">
+                  {t("sizeWhat")}
+                </th>
+                <th scope="col" className="px-4 py-3 font-medium">
+                  {t("sizeDetail")}
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {SIZE_ROWS.map(([label, body]) => (
+                <tr key={label} className="border-b border-border/40 last:border-0">
+                  <th scope="row" className="px-4 py-3 font-medium text-foreground">
+                    {t(label)}
+                  </th>
+                  <td className="px-4 py-3 text-muted-foreground">{t(body)}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p className="type-caption text-muted-foreground">{t("sizeNote")}</p>
+      </section>
+
+      <section className="space-y-3" aria-labelledby="how-greet-heading">
+        <h2 id="how-greet-heading" className="text-xl font-semibold tracking-[-0.02em] text-foreground">
+          {t("greetTitle")}
+        </h2>
+        <p className="type-body max-w-2xl text-muted-foreground">{t("greetLede")}</p>
+        <dl className="space-y-4 rounded-2xl border border-border/50 bg-card p-5 surface-float">
+          {GREET_ITEMS.map(([term, body]) => (
+            <div key={term} className="space-y-1">
+              <dt className="text-sm font-medium text-foreground">{t(term)}</dt>
+              <dd className="text-sm leading-relaxed text-muted-foreground">{t(body)}</dd>
             </div>
-            <div className="space-y-2">
-              <div className="flex items-baseline justify-between gap-3">
-                <p className="text-sm font-medium text-foreground">{t("chartKit")}</p>
-                <p className="text-sm tabular-nums text-muted-foreground">{t("chartKitValue")}</p>
-              </div>
-              <div
-                className="h-3 overflow-hidden rounded-full bg-secondary"
-                role="img"
-                aria-label={`${t("chartKit")}: ${t("chartKitValue")}`}
-              >
-                <div className="h-full w-[3%] rounded-full bg-primary" />
-              </div>
-              <p className="type-caption text-muted-foreground">{t("chartKitCaption")}</p>
-            </div>
-          </CardContent>
-        </Card>
+          ))}
+        </dl>
       </section>
 
       <section className="space-y-3" aria-labelledby="how-tech-heading">
@@ -181,6 +285,13 @@ export function HowStory() {
           <li>{t("staysPrefs")}</li>
           <li>{t("staysClear")}</li>
         </ul>
+      </section>
+
+      <section className="space-y-3" aria-labelledby="how-offline-heading">
+        <h2 id="how-offline-heading" className="text-xl font-semibold tracking-[-0.02em] text-foreground">
+          {t("offlineTitle")}
+        </h2>
+        <p className="type-body max-w-2xl text-muted-foreground">{t("offlineBody")}</p>
       </section>
 
       <Card className="border-border/50">
