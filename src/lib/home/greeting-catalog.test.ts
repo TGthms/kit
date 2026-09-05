@@ -9,6 +9,7 @@ import {
   OBSERVANCE_RULES,
   SUBTITLE_FACT_KEYS,
 } from "./greeting";
+import { GREETING_SUBTITLE_LINKS, richTagsIn } from "./greeting-links";
 
 type Catalog = {
   home: {
@@ -94,6 +95,22 @@ describe("greeting localization catalogs", () => {
       for (const parts of paths) {
         const get = (source: Catalog) => parts.reduce<unknown>((value, part) => typeof value === "object" && value !== null ? (value as Record<string, unknown>)[part] : undefined, source);
         expect(String(get(data)), `${locale}: ${parts.join(".")}`).not.toBe(String(get(english)));
+      }
+    }
+  });
+
+  it("keeps rich link tags aligned with English on linked subtitles", () => {
+    const english = read("en");
+    for (const file of files) {
+      const locale = file.slice(0, -5);
+      const data = read(locale);
+      for (const key of Object.keys(GREETING_SUBTITLE_LINKS)) {
+        const [group, name] = key.split(".");
+        const get = (source: Catalog) => {
+          const home = source.home as unknown as Record<string, Record<string, string>>;
+          return String(home[group]?.[name] ?? "");
+        };
+        expect(richTagsIn(get(data)), `${locale}: ${key}`).toEqual(richTagsIn(get(english)));
       }
     }
   });

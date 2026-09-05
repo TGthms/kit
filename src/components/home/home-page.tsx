@@ -26,6 +26,7 @@ import { useFavoritesStore } from "@/stores/favorites-store";
 import { cn } from "@/lib/utils";
 import { GreetingHeadline } from "@/components/home/greeting-headline";
 import { GreetingSubtitle } from "@/components/home/greeting-subtitle";
+import { GreetingSubtitleText } from "@/components/home/greeting-subtitle-text";
 import { NewYearCard } from "@/components/home/new-year-card";
 import { NewYearFireworks } from "@/components/home/new-year-fireworks";
 import { PageLoader } from "@/components/shared/page-loader";
@@ -340,7 +341,11 @@ function HomePageInner() {
                     <cite className="not-italic text-muted-foreground/80">{WEB_VERSES[greeting.subtitle.id].citation}</cite>
                   </>
                 ) : (
-                  t(greeting.subtitle.key, { day: greeting.day, occasion: greeting.occasionKey ? t(`occasionLabel.${greeting.occasionKey}`) : "" })
+                  <GreetingSubtitleText
+                    subtitleKey={greeting.subtitle.key}
+                    day={greeting.day}
+                    occasion={greeting.occasionKey ? t(`occasionLabel.${greeting.occasionKey}`) : ""}
+                  />
                 )}
               </GreetingSubtitle>
             ) : (
