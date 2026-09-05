@@ -1,6 +1,6 @@
 "use client";
 
-import { Suspense, useState } from "react";
+import { Suspense, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 import { Link, usePathname } from "@/lib/i18n/navigation";
 import { useSearchParams } from "next/navigation";
@@ -9,6 +9,11 @@ import { cn } from "@/lib/utils";
 import { withAsset } from "@/lib/base-path";
 import { FloatingNav } from "@/components/ui/floating-nav";
 import { GlidingPill, useGlidingPill } from "@/components/ui/gliding-pill";
+import {
+  keyboardCoverPx,
+  scrollActiveTabToTop,
+  shouldHideFloatingTabBar,
+} from "@/lib/pwa/tab-bar";
 import { ThemeToggle } from "./theme-toggle";
 import { SiteFooter } from "./footer";
 import { LocaleSwitcher } from "./locale-switcher";
@@ -56,15 +61,51 @@ function SideNav({ pathname }: { pathname: string }) {
   );
 }
 
+function useKeyboardHidesTabBar() {
+  const [hidden, setHidden] = useState(false);
+
+  useEffect(() => {
+    const visual = window.visualViewport;
+    if (!visual) return;
+    const update = () => {
+      setHidden(shouldHideFloatingTabBar(keyboardCoverPx(window.innerHeight, visual)));
+    };
+    update();
+    visual.addEventListener("resize", update);
+    visual.addEventListener("scroll", update);
+    return () => {
+      visual.removeEventListener("resize", update);
+      visual.removeEventListener("scroll", update);
+    };
+  }, []);
+
+  return hidden;
+}
+
 function TabBar({ pathname }: { pathname: string }) {
   const t = useTranslations("nav");
   const tb = useTranslations("brand");
   const [container, setContainer] = useState<HTMLDivElement | null>(null);
   const [target, setTarget] = useState<HTMLElement | null>(null);
   const { rect, ready } = useGlidingPill(container, target);
+  const keyboardHidden = useKeyboardHidesTabBar();
+  const previousActive = useRef<string | null>(null);
+  const [popHref, setPopHref] = useState<string | null>(null);
+
+  useLayoutEffect(() => {
+    const current = nav.find((item) => isActive(pathname, item.href))?.href ?? null;
+    if (previousActive.current !== null && previousActive.current !== current && current) {
+      setPopHref(current);
+    }
+    previousActive.current = current;
+  }, [pathname]);
 
   return (
-    <FloatingNav aria-label={tb("name")} contentRef={setContainer}>
+    <FloatingNav
+      aria-label={tb("name")}
+      contentRef={setContainer}
+      keyboardHidden={keyboardHidden}
+    >
       <GlidingPill
         rect={rect}
         ready={ready}
@@ -84,6 +125,13 @@ function TabBar({ pathname }: { pathname: string }) {
               "text-[11px] font-medium tracking-[-0.01em]",
               active ? "text-primary" : "text-muted-foreground"
             )}
+            onClick={(event) => {
+              if (!active) return;
+              scrollActiveTabToTop(event, {
+                reduceMotion: window.matchMedia("(prefers-reduced-motion: reduce)").matches,
+                scrollTo: (opts) => window.scrollTo(opts),
+              });
+            }}
           >
             <span
               ref={(el) => {
@@ -92,7 +140,12 @@ function TabBar({ pathname }: { pathname: string }) {
               aria-hidden
               className="pointer-events-none absolute inset-x-0.5 inset-y-0 rounded-[1.5rem]"
             />
-            <Icon className={cn("relative h-[22px] w-[22px]", active && "stroke-[2.25]")} />
+            <span
+              className="tab-icon relative"
+              data-pop={active && popHref === href ? "" : undefined}
+            >
+              <Icon className={cn("h-[22px] w-[22px]", active && "stroke-[2.25]")} />
+            </span>
             <span className="relative max-w-full truncate">{t(key)}</span>
           </Link>
         );

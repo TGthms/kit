@@ -41,6 +41,9 @@
   --glass-bg-heavy: rgba(255, 255, 255, 0.78);
   --glass-border: rgba(255, 255, 255, 0.55);
   --glass-blur: 20px;
+  /* Floating tab bar: thinner fill so the stronger blur can read as iOS material. */
+  --tabbar-bg: rgba(255, 255, 255, 0.48);
+  --tabbar-blur: 52px;
   --scrim: rgba(0, 0, 0, 0.36);
   --shadow-soft: 0 1px 2px rgba(0, 0, 0, 0.04), 0 8px 24px rgba(0, 0, 0, 0.06);
   --shadow-float: 0 4px 24px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.06);
@@ -54,6 +57,8 @@
   --ease-spring: cubic-bezier(0.32, 0.72, 0, 1);
   --ease-glide: cubic-bezier(0.65, 0, 0.35, 1);
   --ease-pop: cubic-bezier(0.34, 1.56, 0.64, 1);
+  /* Slight overshoot for the tab-bar pill (damping ~0.85). */
+  --ease-tab-spring: cubic-bezier(0.22, 1.18, 0.36, 1);
   --duration-press: 100ms;
   --duration-ui: 320ms;
   --duration-sheet: 380ms;
@@ -80,6 +85,7 @@
 
   --glass-bg: rgba(28, 28, 30, 0.72);
   --glass-bg-heavy: rgba(28, 28, 30, 0.88);
+  --tabbar-bg: rgba(18, 18, 20, 0.52);
   --glass-border: rgba(255, 255, 255, 0.12);
   --scrim: rgba(0, 0, 0, 0.55);
   --shadow-soft: 0 1px 2px rgba(0, 0, 0, 0.35), 0 8px 28px rgba(0, 0, 0, 0.4);
@@ -216,10 +222,24 @@ canvas {
 
 .floating-nav-shell {
   box-shadow: var(--shadow-float);
+  transition:
+    opacity 220ms var(--ease-out-soft),
+    transform 280ms var(--ease-spring);
+}
+
+.floating-nav[data-keyboard] .floating-nav-shell {
+  opacity: 0;
+  transform: translate3d(0, 110%, 0);
+  pointer-events: none;
 }
 
 .floating-nav-face {
+  background: var(--tabbar-bg);
+  backdrop-filter: blur(var(--tabbar-blur)) saturate(190%);
+  -webkit-backdrop-filter: blur(var(--tabbar-blur)) saturate(190%);
+  border-color: color-mix(in srgb, var(--glass-border) 80%, transparent);
   box-shadow: inset 0 1px 0 var(--glass-border);
+  transform: translateZ(0);
 }
 
 /* Typography scale helpers */
@@ -272,8 +292,29 @@ scritto-flow.kit-scritto-inline {
 }
 
 .gliding-pill-fast {
-  transition-duration: 200ms;
-  transition-timing-function: var(--ease-spring);
+  transition-duration: 420ms;
+  transition-timing-function: var(--ease-tab-spring);
+}
+
+@keyframes tab-icon-spring {
+  0% {
+    transform: scale(0.88);
+  }
+  55% {
+    transform: scale(1.12);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.tab-icon {
+  display: inline-flex;
+  transform-origin: 50% 50%;
+}
+
+.tab-icon[data-pop] {
+  animation: tab-icon-spring 420ms var(--ease-spring) both;
 }
 
 .gliding-pill:not([data-ready]) {
@@ -691,8 +732,12 @@ button[data-pressed]:not(:disabled),
   }
   .gliding-pill,
   .copy-icon svg,
-  .switch-knob {
+  .switch-knob,
+  .floating-nav-shell {
     transition: none !important;
+  }
+  .tab-icon[data-pop] {
+    animation: none !important;
   }
   .pressable:active,
   .pressable-soft:active,
@@ -720,7 +765,8 @@ button[data-pressed]:not(:disabled),
 
 @media (prefers-reduced-transparency: reduce) {
   .glass,
-  .glass-heavy {
+  .glass-heavy,
+  .floating-nav-face {
     background: var(--card);
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
@@ -734,10 +780,12 @@ button[data-pressed]:not(:disabled),
   :root {
     --border: rgba(0, 0, 0, 0.35);
     --glass-bg: #ffffff;
+    --tabbar-bg: #ffffff;
   }
   .dark {
     --border: rgba(255, 255, 255, 0.45);
     --glass-bg: #1c1c1e;
+    --tabbar-bg: #1c1c1e;
   }
   .glass,
   .glass-heavy {

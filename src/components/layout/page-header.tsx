@@ -47,7 +47,7 @@ export function PageHeader({
     <>
       {sticky && backHref && compact ? (
         <div
-          className="sticky z-40 -mx-4 mb-3 flex h-12 items-center gap-1 border-b border-border/40 bg-background px-3 top-[calc(3rem+env(safe-area-inset-top))] sm:hidden"
+          className="sticky z-40 -mx-4 mb-3 flex h-12 items-center gap-1 glass chrome-edge px-3 top-[calc(3rem+env(safe-area-inset-top))] sm:hidden"
         >
           <Link
             href={backHref}
