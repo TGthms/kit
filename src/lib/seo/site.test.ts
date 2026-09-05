@@ -4,7 +4,7 @@ import { fileURLToPath } from "node:url";
 import { describe, expect, it } from "vitest";
 import { CONTENT_SECURITY_POLICY, CONTENT_SECURITY_POLICY_HEADER, ogImageUrl, ogLocaleFor, SITE_HOST, SITE_NAME, SITE_URL, WEBSITE_ID } from "./site";
 import { websiteJsonLd, serializeJsonLd, homeJsonLd, toolJsonLd, legalJsonLd } from "./json-ld";
-import { buildLocaleMetadata, buildSectionMetadata, buildToolMetadata, languageAlternates, legalJsonLdInput, socialImages, toolJsonLdInput } from "./metadata";
+import { buildCategoryMetadata, buildLocaleMetadata, buildSectionMetadata, buildToolMetadata, categoryJsonLdInput, languageAlternates, legalJsonLdInput, socialImages, toolJsonLdInput } from "./metadata";
 
 describe("content security policy", () => {
   it("does not allow jsDelivr and includes wasm-unsafe-eval", () => {
@@ -100,6 +100,7 @@ describe("home and tool JSON-LD", () => {
     const input = await toolJsonLdInput("en", "pdf-merge");
     expect(input?.url).toBe(`${SITE_URL}/en/tools/pdf-merge/`);
     expect(input?.breadcrumbs.map((crumb) => crumb.name)).toEqual(["Kit", "PDF", expect.any(String)]);
+    expect(input?.breadcrumbs[1]?.url).toBe(`${SITE_URL}/en/c/pdf/`);
     const data = toolJsonLd(input!);
     expect(data["@graph"].map((node) => node["@type"])).toEqual(["WebPage", "BreadcrumbList"]);
 
@@ -107,6 +108,14 @@ describe("home and tool JSON-LD", () => {
     expect(await toolJsonLdInput("en", "timezone-converter", "world-clock")).not.toBeNull();
     expect(await toolJsonLdInput("en", "media-convert")).toBeNull();
     expect(await toolJsonLdInput("zh", "pdf-merge")).toBeNull();
+  });
+
+  it("describes category pages with a unique title", async () => {
+    const meta = await buildCategoryMetadata("en", "pdf");
+    expect(meta.title).toEqual(expect.stringContaining("PDF"));
+    expect(String(meta.alternates?.canonical)).toBe(`${SITE_URL}/en/c/pdf/`);
+    const jsonLd = await categoryJsonLdInput("en", "pdf");
+    expect(jsonLd?.url).toBe(`${SITE_URL}/en/c/pdf/`);
   });
 
   it("describes legal pages as WebPage plus breadcrumbs", async () => {
@@ -185,6 +194,7 @@ describe("sitemap", () => {
     expect(urls[0]).toBe(`${SITE_URL}/`);
     expect(sitemap()[0].lastModified).toBeInstanceOf(Date);
     expect(urls.some((url) => url.endsWith("/en/"))).toBe(true);
+    expect(urls.some((url) => url.includes("/en/c/pdf/"))).toBe(true);
     expect(urls.some((url) => url.includes("/zh-Hans/tools/world-clock/"))).toBe(true);
     expect(urls.some((url) => url.includes("/zh/"))).toBe(false);
     expect(urls.some((url) => url.includes("/history/"))).toBe(false);

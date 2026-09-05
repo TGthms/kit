@@ -1,15 +1,27 @@
-import { describe, expect, it } from "vitest";
-import { toolHref, toolPathSegment } from "./routes";
+/**
+ * @vitest-environment jsdom
+ */
+import { afterEach, describe, expect, it } from "vitest";
+import { homeHref, parseCategoryParam, parseCategoryPath, rewriteCategoryQuery } from "./routes";
 
-describe("tool paths", () => {
-  it("uses world-clock as the public segment for timezone-converter", () => {
-    expect(toolPathSegment("timezone-converter")).toBe("world-clock");
-    expect(toolHref("timezone-converter", "/favorites")).toBe(
-      "/tools/world-clock?from=%2Ffavorites"
-    );
+describe("category routes", () => {
+  afterEach(() => {
+    window.history.replaceState(null, "", "/");
   });
 
-  it("keeps other tool ids as the URL segment", () => {
-    expect(toolPathSegment("pdf-merge")).toBe("pdf-merge");
+  it("uses /c/{category}/ as the public category URL", () => {
+    expect(homeHref()).toBe("/");
+    expect(homeHref("pdf")).toBe("/c/pdf/");
+    expect(parseCategoryParam("pdf")).toBe("pdf");
+    expect(parseCategoryParam("nope")).toBeNull();
+    expect(parseCategoryPath("/c/pdf/")).toBe("pdf");
+    expect(parseCategoryPath("/c/pdf")).toBe("pdf");
+    expect(parseCategoryPath("/")).toBeNull();
+  });
+
+  it("rewrites ?c= onto /c/{category}/ and keeps other query", () => {
+    window.history.replaceState(null, "", "/en/?c=pdf&date=2026-12-25");
+    rewriteCategoryQuery();
+    expect(`${window.location.pathname}${window.location.search}`).toBe("/en/c/pdf/?date=2026-12-25");
   });
 });

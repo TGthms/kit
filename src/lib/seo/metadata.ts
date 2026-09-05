@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { defaultLocale, isPathLocale, locales, messageFileFor } from "@/lib/i18n/config";
-import { getTool, legacyToolIdMap, resolveToolId } from "@/lib/tools/registry";
-import { toolPathSegment } from "@/lib/navigation/routes";
+import { getTool, legacyToolIdMap, resolveToolId, type ToolCategory } from "@/lib/tools/registry";
+import { parseCategoryParam, toolPathSegment } from "@/lib/navigation/routes";
 import {
   absoluteUrl,
   ogImageUrl,
@@ -152,6 +152,29 @@ export async function buildToolMetadata(
   });
 }
 
+export async function buildCategoryMetadata(locale: string, category: string): Promise<Metadata> {
+  const pathLoc = isPathLocale(locale) ? locale : defaultLocale;
+  const parsed = parseCategoryParam(category);
+  const messages = await loadMessages(pathLoc);
+  if (!parsed) {
+    return buildSocialMetadata({
+      pathLoc,
+      title: messages.meta.title,
+      description: messages.meta.description,
+      pathAfterLocale: "/",
+      noindex: true,
+    });
+  }
+  const name = messages.categories[parsed] || parsed;
+  const description = messages.categories[`${parsed}Desc`] || messages.meta.description;
+  return buildSocialMetadata({
+    pathLoc,
+    title: pageTitle(name),
+    description,
+    pathAfterLocale: `/c/${parsed}/`,
+  });
+}
+
 export async function buildLocaleMetadata(locale: string): Promise<Metadata> {
   const pathLoc = isPathLocale(locale) ? locale : defaultLocale;
   const messages = await loadMessages(pathLoc);
@@ -229,7 +252,7 @@ export async function toolJsonLdInput(
   const name = entry?.name || resolved;
   const description = entry?.description || messages.meta.description;
   const homeUrl = absoluteUrl(`/${loc}/`);
-  const categoryUrl = absoluteUrl(`/${loc}/?c=${encodeURIComponent(tool.category)}`);
+  const categoryUrl = absoluteUrl(`/${loc}/c/${tool.category}/`);
   const url = absoluteUrl(`/${loc}/tools/${publicSegment}/`);
   const categoryName = messages.categories[tool.category] || tool.category;
   return {
@@ -239,6 +262,34 @@ export async function toolJsonLdInput(
     breadcrumbs: [
       { name: SITE_NAME, url: homeUrl },
       { name: categoryName, url: categoryUrl },
+      { name, url },
+    ],
+  };
+}
+
+export async function categoryJsonLdInput(
+  locale: string,
+  category: ToolCategory
+): Promise<{
+  name: string;
+  description: string;
+  url: string;
+  breadcrumbs: { name: string; url: string }[];
+} | null> {
+  const pathLoc = isPathLocale(locale) ? locale : defaultLocale;
+  if (!isIndexablePathLocale(pathLoc)) return null;
+  const messages = await loadMessages(pathLoc);
+  const loc = canonicalLocale(pathLoc);
+  const name = messages.categories[category] || category;
+  const description = messages.categories[`${category}Desc`] || messages.meta.description;
+  const homeUrl = absoluteUrl(`/${loc}/`);
+  const url = absoluteUrl(`/${loc}/c/${category}/`);
+  return {
+    name,
+    description,
+    url,
+    breadcrumbs: [
+      { name: SITE_NAME, url: homeUrl },
       { name, url },
     ],
   };

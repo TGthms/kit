@@ -70,6 +70,15 @@ export function buildPrecacheManifest(outDir, basePath = "") {
       }
     }
     toolsByLocale[locale] = tools.sort();
+    const catRoot = join(outDir, locale, "c");
+    if (existsSync(catRoot)) {
+      for (const entry of readdirSync(catRoot, { withFileTypes: true })) {
+        if (!entry.isDirectory()) continue;
+        if (existsSync(join(catRoot, entry.name, "index.html"))) {
+          chromeByLocale[locale].push(withBase(`/${locale}/c/${entry.name}/`));
+        }
+      }
+    }
   }
 
   core.sort();

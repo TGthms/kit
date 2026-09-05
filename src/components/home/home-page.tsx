@@ -1,6 +1,6 @@
 "use client";
 
-import { Suspense, useCallback, useLayoutEffect, useMemo, useRef, useState } from "react";
+import { Suspense, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
 import {
@@ -17,8 +17,8 @@ import {
   ArrowLeftRight,
 } from "lucide-react";
 import { tools, categories, featuredToolIds, groupedTools, type ToolCategory, type ToolId } from "@/lib/tools/registry";
-import { homeHref, parseCategoryParam, toolHref } from "@/lib/navigation/routes";
-import { Link } from "@/lib/i18n/navigation";
+import { homeHref, parseCategoryParam, parseCategoryPath, rewriteCategoryQuery, toolHref } from "@/lib/navigation/routes";
+import { Link, usePathname } from "@/lib/i18n/navigation";
 import { Input } from "@/components/ui/input";
 import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { PageHeader } from "@/components/layout/page-header";
@@ -163,7 +163,9 @@ function HomePageInner() {
   const tt = useTranslations("tools");
   const tn = useTranslations("nav");
   const searchParams = useSearchParams();
-  const selectedCat = parseCategoryParam(searchParams.get("c"));
+  const pathname = usePathname();
+  const selectedCat =
+    parseCategoryPath(pathname) ?? parseCategoryParam(searchParams.get("c"));
   const greetingDateParam = searchParams.get("date") ?? searchParams.get("greetingDate");
   const greetingSeedParam = searchParams.get("greetingSeed");
   const greetingTimeParam = searchParams.get("time") ?? searchParams.get("greetingTime");
@@ -172,6 +174,10 @@ function HomePageInner() {
   const [fireworksOn, setFireworksOn] = useState(false);
   const [fireworksBurst, setFireworksBurst] = useState(false);
   const [fireworksDuration, setFireworksDuration] = useState(NEW_YEAR_FIREWORKS_MS);
+  useEffect(() => {
+    rewriteCategoryQuery();
+  }, []);
+
   const fireworksArmed = useRef(false);
   const fireworksVisit = useRef(false);
   const clockOrigin = useRef<{ wall: Date; wallMs: number } | null>(null);

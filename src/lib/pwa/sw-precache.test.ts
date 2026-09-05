@@ -17,8 +17,10 @@ describe("sw-precache manifest", () => {
     mkdirSync(join(root, "vendor/pdfjs"), { recursive: true });
     writeFileSync(join(root, "vendor/pdfjs/pdf.worker.min.mjs"), "mjs");
     mkdirSync(join(root, "en/tools/pdf-merge"), { recursive: true });
+    mkdirSync(join(root, "en/c/pdf"), { recursive: true });
     writeFileSync(join(root, "en/index.html"), "<html>");
     writeFileSync(join(root, "en/tools/pdf-merge/index.html"), "<html>");
+    writeFileSync(join(root, "en/c/pdf/index.html"), "<html>");
     mkdirSync(join(root, "ar"), { recursive: true });
     writeFileSync(join(root, "ar/index.html"), "<html>");
     mkdirSync(join(root, "404"), { recursive: true });
@@ -37,6 +39,7 @@ describe("sw-precache manifest", () => {
     expect(manifest.engines.some((url) => url.includes("ffmpeg-core.wasm.gz"))).toBe(true);
     expect(manifest.engines.some((url) => url.includes("pdf.worker.min.mjs"))).toBe(true);
     expect(manifest.chromeByLocale.en).toContain("/en/");
+    expect(manifest.chromeByLocale.en).toContain("/en/c/pdf/");
     expect(manifest.chromeByLocale.ar).toContain("/ar/settings/");
     expect(manifest.toolsByLocale.en).toContain("/en/tools/pdf-merge/");
     expect(manifest.toolsByLocale.ar ?? []).toEqual([]);

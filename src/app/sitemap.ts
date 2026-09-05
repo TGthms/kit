@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 import { locales } from "@/lib/i18n/config";
-import { tools } from "@/lib/tools/registry";
+import { categories, tools } from "@/lib/tools/registry";
 import { toolPathSegment } from "@/lib/navigation/routes";
 import { absoluteUrl } from "@/lib/seo/site";
 
@@ -23,6 +23,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
         url: absoluteUrl(`/${locale}${page}/`),
         changeFrequency: page === "" ? "weekly" : "monthly",
         priority: page === "" ? 1 : 0.5,
+        lastModified,
+      });
+    }
+    for (const category of categories) {
+      entries.push({
+        url: absoluteUrl(`/${locale}/c/${category}/`),
+        changeFrequency: "weekly",
+        priority: 0.9,
         lastModified,
       });
     }
