@@ -45,20 +45,32 @@ export function PageHeader({
 
   return (
     <>
-      {sticky && backHref && compact ? (
+      {sticky && backHref ? (
         <div
-          className="sticky z-40 -mx-4 mb-3 flex h-12 items-center gap-1 glass chrome-edge px-3 top-[calc(3rem+env(safe-area-inset-top))] sm:hidden"
+          className={cn(
+            "kit-compact-header pointer-events-none fixed inset-x-0 z-40 sm:hidden",
+            "top-[calc(3rem+env(safe-area-inset-top))] h-12",
+            compact ? "opacity-100" : "opacity-0"
+          )}
+          aria-hidden={!compact}
+          inert={!compact ? true : undefined}
         >
-          <Link
-            href={backHref}
-            data-pressable
-            data-restore-scroll
-            aria-label={backLabel}
-            className="pressable-soft inline-flex h-11 w-11 items-center justify-center rounded-full text-primary"
-          >
-            <ChevronLeft className="h-5 w-5 stroke-[2.5] rtl:rotate-180" aria-hidden />
-          </Link>
-          <p className="min-w-0 truncate text-[15px] font-semibold tracking-[-0.015em]">{title}</p>
+          <div className="glass chrome-edge flex h-full items-center gap-1 px-3">
+            <Link
+              href={backHref}
+              data-pressable
+              data-restore-scroll
+              aria-label={backLabel}
+              tabIndex={compact ? undefined : -1}
+              className={cn(
+                "pressable-soft inline-flex h-11 w-11 items-center justify-center rounded-full text-primary",
+                compact && "pointer-events-auto"
+              )}
+            >
+              <ChevronLeft className="h-5 w-5 stroke-[2.5] rtl:rotate-180" aria-hidden />
+            </Link>
+            <p className="min-w-0 truncate text-[15px] font-semibold tracking-[-0.015em]">{title}</p>
+          </div>
         </div>
       ) : null}
       <header

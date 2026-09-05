@@ -48,8 +48,9 @@
   --shadow-soft: 0 1px 2px rgba(0, 0, 0, 0.04), 0 8px 24px rgba(0, 0, 0, 0.06);
   --shadow-float: 0 4px 24px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.06);
 
-  /* Sit in the home-indicator inset (App Store-style), not a full safe-area above it. */
-  --floating-tabbar-offset: max(0.625rem, calc(env(safe-area-inset-bottom, 0px) - 1.1rem));
+  /* Sit in the home-indicator inset (App Store-style), not a full safe-area above it.
+     +2px lifts it a hair off the indicator without parking it in the content. */
+  --floating-tabbar-offset: calc(max(0.625rem, env(safe-area-inset-bottom, 0px) - 1.1rem) + 2px);
   --floating-tabbar-clearance: calc(5.25rem + var(--floating-tabbar-offset));
 
   /* Motion (spring-like ease approximations; critically damped feel) */
@@ -683,6 +684,12 @@ button[data-pressed]:not(:disabled),
   -webkit-touch-callout: none;
 }
 
+/* Compact tool title: compositor overlay. Touches pass through except the back control. */
+.kit-compact-header {
+  transform: translateZ(0);
+  transition: opacity 160ms var(--ease-out-soft);
+}
+
 /* Nav active pill settle (critically damped feel) */
 .nav-item {
   transition: background-color 0.22s var(--ease-out-soft), color 0.22s var(--ease-out-soft),
@@ -733,7 +740,8 @@ button[data-pressed]:not(:disabled),
   .gliding-pill,
   .copy-icon svg,
   .switch-knob,
-  .floating-nav-shell {
+  .floating-nav-shell,
+  .kit-compact-header {
     transition: none !important;
   }
   .tab-icon[data-pop] {

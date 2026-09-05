@@ -37,4 +37,14 @@ describe("mobile PWA tab bar material", () => {
     expect(css).toMatch(/prefers-reduced-transparency: reduce[\s\S]*\.floating-nav-face/);
     expect(css).toMatch(/\.tab-icon\[data-pop\]\s*\{[\s\S]*animation:\s*none/);
   });
+
+  it("sits 2px above the previous home-indicator inset", () => {
+    expect(css).toMatch(/--floating-tabbar-offset:[^;]*\+ 2px/);
+  });
+
+  it("uses a stadium highlight that matches the bar ends", () => {
+    expect(shell).toMatch(/gliding-pill-fast rounded-full/);
+    expect(shell).toMatch(/absolute inset-0 rounded-full/);
+    expect(shell).not.toMatch(/rounded-\[1\.5rem\]/);
+  });
 });

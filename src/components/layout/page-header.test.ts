@@ -31,4 +31,21 @@ describe("PageHeader", () => {
     expect(screen.getByRole("button", { name: "Favorite" })).toBeInTheDocument();
     expect(screen.getByRole("link", { name: "Home" })).toBeInTheDocument();
   });
+
+  it("keeps the compact chrome as a hidden overlay at rest", () => {
+    render(
+      createElement(PageHeader, {
+        title: "PDF merge",
+        backHref: "/",
+        backLabel: "Home",
+      })
+    );
+
+    const overlay = document.querySelector(".kit-compact-header");
+    expect(overlay).toBeInTheDocument();
+    expect(overlay).toHaveAttribute("aria-hidden", "true");
+    expect(overlay).toHaveClass("fixed");
+    expect(overlay).toHaveClass("pointer-events-none");
+    expect(overlay).not.toHaveClass("sticky");
+  });
 });
