@@ -566,7 +566,7 @@
     "image-convert": {
       "name": "Bildformat konvertieren",
       "description": "Zwischen JPEG, PNG, WEBP und ähnlichen Webformaten wechseln.",
-      "keywords": "bild konvertieren format webp avif png jpg jpeg",
+      "keywords": "bild konvertieren format webp png jpg jpeg",
       "run": "Konvertieren",
       "success": "{count} Bild(er) konvertiert."
     },
@@ -769,14 +769,14 @@
       "description": "Titel, Autor und andere Info-Felder ansehen, bearbeiten oder entfernen.",
       "keywords": "Schlüsselwörter",
       "run": "Metadaten speichern",
-      "strip": "Alle Felder entfernen",
+      "strip": "Info-Felder und XMP leeren",
       "title": "Titel",
       "author": "Autor",
       "subject": "Betreff",
       "creator": "Ersteller",
       "producer": "Produzent",
       "saved": "Metadaten gespeichert.",
-      "stripped": "Metadaten entfernt."
+      "stripped": "Info-Felder und XMP geleert."
     },
     "pdf-protect": {
       "name": "PDF sperren oder entsperren",
@@ -1386,10 +1386,7 @@
       "start": "Starten",
       "reset": "Zurücksetzen",
       "recordTime": "Zeit speichern",
-      "hours": "Stunden",
-      "pomodoro": "Pomodoro",
-      "focus": "Focus · 25 min",
-      "shortBreak": "Break · 5 min"
+      "hours": "Stunden"
     },
     "random-generator": {
       "name": "Zufallsgenerator",

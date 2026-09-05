@@ -12,7 +12,7 @@ import type { FilterName } from "@/lib/image/transform";
 import { ActionBar, ToolShell, useToolHistory } from "./shared";
 
 const selectClass =
-  "flex h-10 w-full rounded-xl border border-input bg-background px-3 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring";
+  "flex h-10 w-full rounded-xl border border-input bg-background px-3 text-base focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring";
 
 export function ImageRotate() {
   const t = useTranslations("tools.image-rotate");

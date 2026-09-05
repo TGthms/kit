@@ -34,6 +34,24 @@ describe("meeting overlap windows", () => {
     ).toEqual([]);
   });
 
+  it("keeps date-line overlaps when only one zone is on the picked date", () => {
+    const overlaps = overlapWindows({
+      zones: ["America/Los_Angeles", "Asia/Tokyo"],
+      date: "2024-01-15",
+      startHour: 0,
+      endHour: 23,
+      workStart: 8,
+      workEnd: 20,
+    });
+    expect(overlaps.length).toBeGreaterThan(0);
+    for (const slot of overlaps) {
+      expect(slot.localHours["America/Los_Angeles"]).toBeGreaterThanOrEqual(8);
+      expect(slot.localHours["America/Los_Angeles"]).toBeLessThan(20);
+      expect(slot.localHours["Asia/Tokyo"]).toBeGreaterThanOrEqual(8);
+      expect(slot.localHours["Asia/Tokyo"]).toBeLessThan(20);
+    }
+  });
+
   it("validates inputs", () => {
     expect(() => overlapWindows({ zones: ["UTC"], date: "15-06-2024", startHour: 0, endHour: 1 })).toThrow(RangeError);
     expect(() => overlapWindows({ zones: ["Not/AZone"], date: "2024-01-01", startHour: 0, endHour: 1 })).toThrow(RangeError);

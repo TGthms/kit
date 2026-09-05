@@ -21,12 +21,28 @@ describe("service worker update policy", () => {
 
   it("never returns a redirected response for navigations", () => {
     expect(sw).not.toMatch(/Response\.redirect\s*\(/);
-    expect(sw).toMatch(/function asDirectResponse\s*\(/);
+    expect(sw).toMatch(/async function asDirectResponse\s*\(/);
     expect(sw).toMatch(/res\.redirected\s*!==\s*true/);
+    expect(sw).toMatch(/await res\.arrayBuffer\s*\(/);
+  });
+
+  it("does not serve last-home at the hung-nav cache timeout", () => {
+    const navStart = sw.indexOf("async function navigateDocument");
+    const navEnd = sw.indexOf("\nlet fillPaused");
+    expect(navStart).toBeGreaterThan(-1);
+    expect(navEnd).toBeGreaterThan(navStart);
+    const navFn = sw.slice(navStart, navEnd);
+    const cacheMsAt = navFn.indexOf(", NAV_CACHE_MS)");
+    const cacheMsStart = navFn.lastIndexOf("setTimeout", cacheMsAt);
+    const navCache = navFn.slice(cacheMsStart, cacheMsAt);
+    expect(navCache).toMatch(/exactP/);
+    expect(navCache).not.toMatch(/LAST_HOME/);
+    expect(navCache).not.toMatch(/cachedNavigation\s*\(/);
+    expect(navFn).toMatch(/cachedExactNavigation\s*\(/);
   });
 
   it("busts the shell cache when navigation policy changes", () => {
-    expect(sw).toMatch(/kit-shell-v9/);
+    expect(sw).toMatch(/kit-shell-v10/);
     expect(sw).toMatch(/PRECACHE_LOCALE/);
     expect(sw).toMatch(/PRECACHE_PAUSE/);
     expect(sw).toMatch(/priority:\s*["']low["']/);

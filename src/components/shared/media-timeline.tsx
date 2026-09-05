@@ -13,17 +13,25 @@ type Props = {
   onChange: (start: number, end: number) => void;
   startLabel: string;
   endLabel: string;
+  onDuration?: (seconds: number) => void;
 };
 
-export function MediaTimeline({ file, start, end, onChange, startLabel, endLabel }: Props) {
+export function MediaTimeline({ file, start, end, onChange, startLabel, endLabel, onDuration }: Props) {
   const trackRef = useRef<HTMLDivElement>(null);
   const [loaded, setLoaded] = useState<{ file: File; duration: number; peaks: number[] } | null>(null);
   const drag = useRef<"start" | "end" | null>(null);
+  const onDurationRef = useRef(onDuration);
+  useEffect(() => {
+    onDurationRef.current = onDuration;
+  }, [onDuration]);
   const duration = file && loaded?.file === file ? loaded.duration : 0;
   const peaks = file && loaded?.file === file ? loaded.peaks : [];
 
   useEffect(() => {
-    if (!file) return;
+    if (!file) {
+      onDurationRef.current?.(0);
+      return;
+    }
     const url = URL.createObjectURL(file);
     const el = document.createElement(file.type.startsWith("audio/") ? "audio" : "video");
     el.preload = "metadata";
@@ -35,6 +43,7 @@ export function MediaTimeline({ file, start, end, onChange, startLabel, endLabel
           duration: el.duration,
           peaks: current?.file === file ? current.peaks : [],
         }));
+        onDurationRef.current?.(el.duration);
       }
     };
     el.addEventListener("loadedmetadata", onMeta);

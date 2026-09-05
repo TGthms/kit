@@ -463,7 +463,7 @@ export function PdfWatermark() {
         <div className="space-y-2">
           <Label>{t("position")}</Label>
           <select
-            className="h-10 w-full rounded-xl border border-input bg-background px-3 text-sm"
+            className="h-10 w-full rounded-xl border border-input bg-background px-3 text-base"
             value={position}
             onChange={(e) => setPosition(e.target.value as typeof position)}
           >

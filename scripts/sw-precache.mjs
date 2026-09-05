@@ -7,6 +7,7 @@ import { dirname, join, relative } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 
 const SKIP_DIRS = new Set(["node_modules"]);
+const SKIP_LOCALE_DIRS = new Set(["_next", "vendor", "boot", "icons", "404", "_not-found"]);
 const CHROME_SEGMENTS = ["", "settings/", "favorites/", "history/", "privacy/", "terms/"];
 
 export function toSitePath(outDir, file) {
@@ -52,7 +53,7 @@ export function buildPrecacheManifest(outDir, basePath = "") {
   for (const name of readdirSync(outDir)) {
     const full = join(outDir, name);
     if (!statSync(full).isDirectory()) continue;
-    if (name === "_next" || name === "vendor" || name === "boot" || name === "icons") continue;
+    if (SKIP_LOCALE_DIRS.has(name)) continue;
     if (existsSync(join(full, "index.html"))) locales.add(name);
   }
 

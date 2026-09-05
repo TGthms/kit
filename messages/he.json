@@ -566,7 +566,7 @@
     "image-convert": {
       "name": "המרת פורמט תמונה",
       "description": "החליפו בין JPEG, PNG, WEBP ופורמטי ווב דומים.",
-      "keywords": "תמונה המרה פורמט webp avif png jpg jpeg",
+      "keywords": "תמונה המרה פורמט webp png jpg jpeg",
       "run": "המרה",
       "success": "הומרו {count} תמונות."
     },
@@ -769,14 +769,14 @@
       "description": "צפו, ערכו או הסירו כותרת, מחבר ושדות Info אחרים.",
       "keywords": "מילות מפתח",
       "run": "שמירת מטא-נתונים",
-      "strip": "הסרת כל השדות",
+      "strip": "ניקוי שדות Info ו-XMP",
       "title": "כותרת",
       "author": "מחבר",
       "subject": "נושא",
       "creator": "יוצר",
       "producer": "מפיק",
       "saved": "המטא-נתונים נשמרו.",
-      "stripped": "המטא-נתונים הוסרו."
+      "stripped": "שדות Info ו-XMP נוקו."
     },
     "pdf-protect": {
       "name": "נעילה או שחרור PDF",
@@ -1386,10 +1386,7 @@
       "start": "התחלה",
       "reset": "איפוס",
       "recordTime": "שמירת זמן",
-      "hours": "שעות",
-      "pomodoro": "Pomodoro",
-      "focus": "Focus · 25 min",
-      "shortBreak": "Break · 5 min"
+      "hours": "שעות"
     },
     "random-generator": {
       "name": "מחולל אקראי",

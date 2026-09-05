@@ -20,6 +20,17 @@ describe("slimMessagesForShell", () => {
 });
 
 describe("omitHomeGreetingMessages", () => {
+  it("chrome catalog drops greetings after shell slim", () => {
+    const chrome = omitHomeGreetingMessages(slimMessagesForShell(en)) as {
+      home: Record<string, unknown>;
+      tools: Record<string, Record<string, string>>;
+    };
+    expect(chrome.home.greeting).toBeUndefined();
+    expect(chrome.home.newYearCard).toBeUndefined();
+    expect(chrome.tools["pdf-merge"]?.run).toBeUndefined();
+    expect((slimMessagesForShell(en) as { home: unknown }).home).toEqual(en.home);
+  });
+
   it("drops greeting trees and keeps home chrome plus full tool UI", () => {
     const slim = omitHomeGreetingMessages(en) as {
       home: Record<string, unknown>;

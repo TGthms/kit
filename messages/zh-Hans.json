@@ -769,14 +769,14 @@
       "description": "查看、编辑或清除标题、作者等信息字段。",
       "keywords": "关键词",
       "run": "保存元数据",
-      "strip": "清除全部字段",
+      "strip": "清除 Info 字段和 XMP",
       "title": "标题",
       "author": "作者",
       "subject": "主题",
       "creator": "创建者",
       "producer": "生成器",
       "saved": "元数据已保存。",
-      "stripped": "元数据已清除。"
+      "stripped": "已清除 Info 字段和 XMP。"
     },
     "pdf-protect": {
       "name": "锁定或解锁 PDF",
@@ -1386,10 +1386,7 @@
       "start": "开始",
       "reset": "重置",
       "recordTime": "记录时间",
-      "hours": "小时",
-      "pomodoro": "Pomodoro",
-      "focus": "Focus · 25 min",
-      "shortBreak": "Break · 5 min"
+      "hours": "小时"
     },
     "random-generator": {
       "name": "随机生成器",

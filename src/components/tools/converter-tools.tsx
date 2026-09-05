@@ -98,7 +98,7 @@ const UNIT_CATALOG: Record<UnitCategory, UnitOption[]> = {
     { code: "kJ", label: "Kilojoules" },
     { code: "Wh", label: "Watt-hours" },
     { code: "kWh", label: "Kilowatt-hours" },
-    { code: "cal", label: "Calories" },
+    { code: "cal", label: "calorie (th)" },
     { code: "kcal", label: "Kilocalories" },
     { code: "eV", label: "Electronvolts" },
   ],
@@ -332,9 +332,9 @@ function UnitConverter({
     : (compatibleTo.find((option) => option.code !== from)?.code ?? to);
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
-    const qFrom = params.get("from");
-    const qTo = params.get("to");
-    const qV = params.get("v");
+    const qFrom = params.get("uf");
+    const qTo = params.get("ut");
+    const qV = params.get("uv");
     const nextFrom = qFrom && options.some((option) => option.code === qFrom) ? (qFrom as UnitCode) : null;
     const nextTo = qTo && options.some((option) => option.code === qTo) ? (qTo as UnitCode) : null;
     queueMicrotask(() => {
@@ -348,9 +348,11 @@ function UnitConverter({
   }, [category, options]);
   useEffect(() => {
     const url = new URL(window.location.href);
-    url.searchParams.set("from", from);
-    url.searchParams.set("to", toCode);
-    url.searchParams.set("v", source);
+    url.searchParams.set("uf", from);
+    url.searchParams.set("ut", toCode);
+    url.searchParams.set("uv", source);
+    url.searchParams.delete("to");
+    url.searchParams.delete("v");
     window.history.replaceState(null, "", `${url.pathname}${url.search}${url.hash}`);
   }, [from, source, toCode]);
   const [rootFontSizePx, setRootFontSizePx] = useState("16");

@@ -2,6 +2,15 @@ import * as pdfjs from "pdfjs-dist";
 import { forEachJobIndex } from "@/lib/jobs/batch";
 import { withBasePath } from "@/lib/base-path";
 import { integerCanvasSize, pdfPageWindow, type PdfPageBatch } from "./limits";
+import type { ViewportTransform } from "./viewport";
+
+export type { ViewportTransform } from "./viewport";
+export {
+  applyInverseViewportTransform,
+  applyViewportTransform,
+  canvasRectToPdfBox,
+  pdfBoxToCanvasRect,
+} from "./viewport";
 
 export { MAX_PDF_RASTER_PAGES, pdfPageWindow } from "./limits";
 export type { PdfPageBatch } from "./limits";
@@ -60,7 +69,7 @@ export async function renderPdfPagePreview(
   data: ArrayBuffer,
   pageNum = 1,
   scale = 1.35
-): Promise<{ url: string; scale: number; width: number; height: number; pageCount: number }> {
+): Promise<{ url: string; scale: number; width: number; height: number; pageCount: number; transform: ViewportTransform }> {
   ensurePdfWorker();
   const { doc, loadingTask } = await openPdfDocument(data);
   try {
@@ -68,7 +77,8 @@ export async function renderPdfPagePreview(
     const index = Math.min(pageCount, Math.max(1, pageNum));
     const page = await doc.getPage(index);
     const base = page.getViewport({ scale: 1 });
-    const viewport = page.getViewport({ scale: clampPdfScale(base.width, base.height, scale) });
+    const applied = clampPdfScale(base.width, base.height, scale);
+    const viewport = page.getViewport({ scale: applied });
     const canvas = document.createElement("canvas");
     const size = integerCanvasSize(viewport.width, viewport.height);
     canvas.width = size.width;
@@ -81,10 +91,11 @@ export async function renderPdfPagePreview(
     );
     return {
       url: URL.createObjectURL(blob),
-      scale,
+      scale: applied,
       width: viewport.width,
       height: viewport.height,
       pageCount,
+      transform: viewport.transform as ViewportTransform,
     };
   } finally {
     await doc.cleanup();

@@ -56,6 +56,20 @@ describe("explainCron", () => {
     expect(r.text).toContain("every 15 minutes");
     expect(r.text).toMatch(/Monday|Friday/);
   });
+
+  it("localizes month and weekday names when a locale is passed", () => {
+    const r = explainCron("0 0 1 1 0", "es");
+    expect(r.ok).toBe(true);
+    if (!r.ok) return;
+    expect(r.text).toMatch(/enero/i);
+    expect(r.text).toMatch(/domingo/i);
+    const en = explainCron("0 0 1 1 0");
+    expect(en.ok).toBe(true);
+    if (en.ok) {
+      expect(en.text).toContain("January");
+      expect(en.text).toContain("Sunday");
+    }
+  });
 });
 
 describe("convertBase", () => {

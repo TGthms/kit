@@ -23,7 +23,48 @@ import { runSequentialBatch, stemmedName } from "@/lib/jobs/batch";
 import { ActionBar, ToolLimits, ToolShell, useToolHistory, useToolJob, loadFfmpeg } from "./shared";
 
 const selectClass =
-  "flex h-10 w-full rounded-xl border border-input bg-background px-3 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring";
+  "flex h-10 w-full rounded-xl border border-input bg-background px-3 text-base focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring";
+
+function clampMediaTimes(start: number, end: number, duration: number): { start: number; end: number } {
+  const known = Number.isFinite(duration) && duration > 0;
+  let s = Number.isFinite(start) ? Math.max(0, start) : 0;
+  let e = Number.isFinite(end) ? end : s;
+  if (known) {
+    s = Math.min(s, duration);
+    e = Math.min(Math.max(0, e), duration);
+    if (!(e > s)) {
+      if (s >= duration) {
+        e = duration;
+        s = Math.max(0, duration - Math.min(0.05, duration));
+      } else {
+        e = Math.min(duration, s + 0.05);
+      }
+    }
+  } else if (!(e > s)) {
+    e = s + 0.05;
+  }
+  return { start: s, end: e };
+}
+
+function isMissingAudioError(err: unknown): boolean {
+  const parts: string[] = [];
+  const walk = (value: unknown, depth: number) => {
+    if (value == null || depth > 3) return;
+    if (typeof value === "string") {
+      parts.push(value);
+      return;
+    }
+    if (value instanceof Error) {
+      parts.push(value.name, value.message);
+      walk((value as Error & { cause?: unknown }).cause, depth + 1);
+      return;
+    }
+  };
+  walk(err, 0);
+  return /stream map|\[0:a\]|0:a|no audio|does not contain any stream|matches no streams|stream not found|unconnected output/i.test(
+    parts.join(" ")
+  );
+}
 
 export function VideoConvert() {
   const t = useTranslations("tools.video-convert");
@@ -103,10 +144,17 @@ export function VideoTrim() {
   const [files, setFiles] = useState<FileItem[]>([]);
   const [start, setStart] = useState(0);
   const [end, setEnd] = useState(10);
+  const [duration, setDuration] = useState(0);
   const job = useToolJob();
+  const setRange = (nextStart: number, nextEnd: number, dur = duration) => {
+    const next = clampMediaTimes(nextStart, nextEnd, dur);
+    setStart(next.start);
+    setEnd(next.end);
+  };
 
   const run = async () => {
-    if (!files[0] || !Number.isFinite(start) || !Number.isFinite(end) || end <= start) {
+    const range = clampMediaTimes(start, end, duration);
+    if (!files[0] || !(range.end > range.start)) {
       toast.error(tc("error"));
       return;
     }
@@ -121,7 +169,7 @@ export function VideoTrim() {
         input,
         data,
         output,
-        trimArgs(input, output, start, end),
+        trimArgs(input, output, range.start, range.end),
         (p) => job.setProgress(Math.round(p * 100)),
         ac.signal
       );
@@ -144,9 +192,10 @@ export function VideoTrim() {
         file={files[0]?.file ?? null}
         start={start}
         end={end}
-        onChange={(a, b) => {
-          setStart(a);
-          setEnd(b);
+        onChange={(a, b) => setRange(a, b)}
+        onDuration={(dur) => {
+          setDuration(dur);
+          setRange(start, end, dur);
         }}
         startLabel={tc("start")}
         endLabel={tc("end")}
@@ -156,13 +205,21 @@ export function VideoTrim() {
           <Label>
             {tc("start")} (s)
           </Label>
-          <Input value={start} onChange={(e) => setStart(Number(e.target.value) || 0)} inputMode="decimal" />
+          <Input
+            value={start}
+            onChange={(e) => setRange(Number(e.target.value) || 0, end)}
+            inputMode="decimal"
+          />
         </div>
         <div className="space-y-2">
           <Label>
             {tc("end")} (s)
           </Label>
-          <Input value={end} onChange={(e) => setEnd(Number(e.target.value) || 0)} inputMode="decimal" />
+          <Input
+            value={end}
+            onChange={(e) => setRange(start, Number(e.target.value) || 0)}
+            inputMode="decimal"
+          />
         </div>
       </div>
       {job.loading && <Progress value={job.progress} />}
@@ -207,7 +264,7 @@ export function VideoSpeed() {
         );
       } catch (err) {
         if (ac.signal.aborted) throw err;
-        // Silent videos have no [0:a] stream for the audio filter graph.
+        if (!isMissingAudioError(err)) throw err;
         out = await runFFmpeg(
           input,
           data,
@@ -314,10 +371,17 @@ export function VideoGif() {
   const [files, setFiles] = useState<FileItem[]>([]);
   const [start, setStart] = useState(0);
   const [end, setEnd] = useState(3);
+  const [duration, setDuration] = useState(0);
   const job = useToolJob();
+  const setRange = (nextStart: number, nextEnd: number, dur = duration) => {
+    const next = clampMediaTimes(nextStart, nextEnd, dur);
+    setStart(next.start);
+    setEnd(next.end);
+  };
 
   const run = async () => {
-    if (!files[0] || !Number.isFinite(start) || !Number.isFinite(end) || end <= start) {
+    const range = clampMediaTimes(start, end, duration);
+    if (!files[0] || !(range.end > range.start)) {
       toast.error(tc("error"));
       return;
     }
@@ -332,7 +396,7 @@ export function VideoGif() {
         input,
         data,
         output,
-        gifClipArgs(input, output, String(start), String(end)),
+        gifClipArgs(input, output, String(range.start), String(range.end)),
         (p) => job.setProgress(Math.round(p * 100)),
         ac.signal
       );
@@ -358,9 +422,10 @@ export function VideoGif() {
         file={files[0]?.file ?? null}
         start={start}
         end={end}
-        onChange={(a, b) => {
-          setStart(a);
-          setEnd(b);
+        onChange={(a, b) => setRange(a, b)}
+        onDuration={(dur) => {
+          setDuration(dur);
+          setRange(start, end, dur);
         }}
         startLabel={tc("start")}
         endLabel={tc("end")}
@@ -370,13 +435,21 @@ export function VideoGif() {
           <Label>
             {tc("start")} (s)
           </Label>
-          <Input value={start} onChange={(e) => setStart(Number(e.target.value) || 0)} inputMode="decimal" />
+          <Input
+            value={start}
+            onChange={(e) => setRange(Number(e.target.value) || 0, end)}
+            inputMode="decimal"
+          />
         </div>
         <div className="space-y-2">
           <Label>
             {tc("end")} (s)
           </Label>
-          <Input value={end} onChange={(e) => setEnd(Number(e.target.value) || 0)} inputMode="decimal" />
+          <Input
+            value={end}
+            onChange={(e) => setRange(start, Number(e.target.value) || 0)}
+            inputMode="decimal"
+          />
         </div>
       </div>
       {job.loading && <Progress value={job.progress} />}

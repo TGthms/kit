@@ -1,8 +1,11 @@
-import { describe, expect, it } from "vitest";
+// @vitest-environment jsdom
+
+import { afterEach, describe, expect, it, vi } from "vitest";
 import {
   CHUNK_RELOAD_GUARD_MS,
   CHUNK_RELOAD_KEY,
   isChunkLoadError,
+  reloadForStaleChunk,
   shouldReloadForChunkError,
 } from "./chunk-load";
 
@@ -43,5 +46,40 @@ describe("shouldReloadForChunkError", () => {
 
   it("reloads when storage is missing", () => {
     expect(shouldReloadForChunkError(1, null)).toBe(true);
+  });
+});
+
+describe("reloadForStaleChunk", () => {
+  afterEach(() => {
+    sessionStorage.clear();
+    vi.unstubAllGlobals();
+    vi.restoreAllMocks();
+  });
+
+  function stubLocation(href: string) {
+    const replace = vi.fn();
+    const reload = vi.fn();
+    vi.stubGlobal("location", { href, replace, reload });
+    return { replace, reload };
+  }
+
+  it("replaces the location with a cache-bust query instead of reload", () => {
+    const { replace, reload } = stubLocation("https://trykit.pages.dev/en/tools/pdf-merge/?x=1");
+    expect(reloadForStaleChunk()).toBe(true);
+    expect(reload).not.toHaveBeenCalled();
+    expect(replace).toHaveBeenCalledTimes(1);
+    const dest = String(replace.mock.calls[0]?.[0] ?? "");
+    expect(dest).toContain("/en/tools/pdf-merge/");
+    expect(dest).toContain("x=1");
+    expect(dest).toMatch(/[?&]_kitcb=\d+/);
+    expect(sessionStorage.getItem(CHUNK_RELOAD_KEY)).toBeTruthy();
+  });
+
+  it("honors the 10s sessionStorage guard", () => {
+    const { replace } = stubLocation("https://trykit.pages.dev/en/");
+    expect(reloadForStaleChunk()).toBe(true);
+    expect(replace).toHaveBeenCalledTimes(1);
+    expect(reloadForStaleChunk()).toBe(false);
+    expect(replace).toHaveBeenCalledTimes(1);
   });
 });

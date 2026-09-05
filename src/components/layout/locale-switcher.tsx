@@ -38,11 +38,11 @@ export function LocaleSwitcher({
     <select
       aria-label={t("language")}
       className={cn(
-        "rounded-xl border border-input bg-background text-sm",
+        "rounded-xl border border-input bg-background text-base",
         "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
         variant === "settings"
           ? "h-11 w-full max-w-md px-3"
-          : "h-9 max-w-[9.5rem] px-2 text-xs sm:max-w-[11rem] sm:text-sm",
+          : "h-9 max-w-[9.5rem] px-2 sm:max-w-[11rem]",
         className
       )}
       value={locale}

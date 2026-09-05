@@ -566,7 +566,7 @@
     "image-convert": {
       "name": "이미지 형식 변환",
       "description": "JPEG, PNG, WEBP 등 웹 형식 사이를 바꿉니다.",
-      "keywords": "이미지 변환 형식 webp avif png jpg jpeg",
+      "keywords": "이미지 변환 형식 webp png jpg jpeg",
       "run": "변환",
       "success": "이미지 {count}개를 변환했습니다."
     },
@@ -769,14 +769,14 @@
       "description": "제목, 작성자 및 기타 Info 필드를 보거나 고치거나 지웁니다.",
       "keywords": "키워드",
       "run": "메타데이터 저장",
-      "strip": "모든 필드 지우기",
+      "strip": "Info 필드와 XMP 지우기",
       "title": "제목",
       "author": "작성자",
       "subject": "주제",
       "creator": "만든 이",
       "producer": "생성 프로그램",
       "saved": "메타데이터를 저장했습니다.",
-      "stripped": "메타데이터를 지웠습니다."
+      "stripped": "Info 필드와 XMP를 지웠습니다."
     },
     "pdf-protect": {
       "name": "PDF 잠금 또는 잠금 해제",
@@ -1386,10 +1386,7 @@
       "start": "시작",
       "reset": "재설정",
       "recordTime": "시간 기록",
-      "hours": "시간",
-      "pomodoro": "Pomodoro",
-      "focus": "Focus · 25 min",
-      "shortBreak": "Break · 5 min"
+      "hours": "시간"
     },
     "random-generator": {
       "name": "랜덤 생성기",

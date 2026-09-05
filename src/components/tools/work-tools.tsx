@@ -1,10 +1,11 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { CopyButton } from "@/components/ui/copy-button";
+import { Field } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
@@ -20,10 +21,11 @@ import { jsonToTypescript } from "@/lib/text/json-types";
 import { ToolShell, useToolHistory } from "./shared";
 
 const selectClass =
-  "flex h-10 w-full rounded-xl border border-input bg-background px-3 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring";
+  "flex h-10 w-full rounded-xl border border-input bg-background px-3 text-base focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring";
 
 export function JwtDecode() {
   const t = useTranslations("tools.jwt-decode");
+  const tc = useTranslations("common");
   const log = useToolHistory("jwt-decode");
   const [token, setToken] = useState("");
   const result = useMemo(() => (token.trim() ? decodeJwt(token) : null), [token]);
@@ -31,12 +33,14 @@ export function JwtDecode() {
   return (
     <ToolShell toolId="jwt-decode">
       <p className="text-sm text-muted-foreground">{t("limits")}</p>
-      <Textarea
-        value={token}
-        onChange={(e) => setToken(e.target.value)}
-        className="min-h-32 font-mono"
-        placeholder="eyJhbGciOi..."
-      />
+      <Field label={tc("input")}>
+        <Textarea
+          value={token}
+          onChange={(e) => setToken(e.target.value)}
+          className="min-h-32 font-mono"
+          placeholder="eyJhbGciOi..."
+        />
+      </Field>
       {result && !result.ok ? <p className="text-sm text-destructive">{result.error}</p> : null}
       {result?.ok ? (
         <div className="space-y-3">
@@ -88,7 +92,9 @@ export function UnixTimestamp() {
           {t("now")}
         </Button>
       </div>
-      <Input value={value} onChange={(e) => setValue(e.target.value)} className="font-mono" />
+      <Field label={tc("input")}>
+        <Input value={value} onChange={(e) => setValue(e.target.value)} className="font-mono" />
+      </Field>
       {parsed.ok ? (
         <div className="space-y-1 rounded-2xl border bg-card p-4 text-sm">
           <p>
@@ -114,13 +120,17 @@ export function UnixTimestamp() {
 
 export function CronExplain() {
   const t = useTranslations("tools.cron-explain");
+  const tc = useTranslations("common");
+  const locale = useLocale();
   const log = useToolHistory("cron-explain");
   const [expr, setExpr] = useState("*/15 9-17 * * 1-5");
-  const result = explainCron(expr);
+  const result = explainCron(expr, locale);
 
   return (
     <ToolShell toolId="cron-explain">
-      <Input value={expr} onChange={(e) => setExpr(e.target.value)} className="font-mono" />
+      <Field label={tc("input")}>
+        <Input value={expr} onChange={(e) => setExpr(e.target.value)} className="font-mono" />
+      </Field>
       {result.ok ? (
         <p className="rounded-2xl border bg-card p-4 text-sm">{result.text}</p>
       ) : (

@@ -35,6 +35,16 @@ export async function mergePdfs(files: ArrayBuffer[]): Promise<Uint8Array> {
   return out.save();
 }
 
+/** pdf-lib rotates around (x, y). Shift so the box center stays on (cx, cy). */
+export function rotatedDrawOrigin(cx: number, cy: number, width: number, height: number, degreesAngle: number): { x: number; y: number } {
+  const radians = (degreesAngle * Math.PI) / 180;
+  const cos = Math.cos(radians);
+  const sin = Math.sin(radians);
+  const dx = -width / 2;
+  const dy = -height / 2;
+  return { x: cx + dx * cos - dy * sin, y: cy + dx * sin + dy * cos };
+}
+
 function needsBrowserUnicodeFont(text: string): boolean {
   return /[^\x00-\x7F]/u.test(text);
 }
@@ -148,14 +158,18 @@ export async function watermarkPdf(
       const x = (width - rendered.width) / 2;
       let y = height - rendered.height - 16;
       if (position === "footer") y = 12;
-      if (position === "center") y = (height - rendered.height) / 2;
-      page.drawImage(rendered.image, {
-        x,
-        y,
-        width: rendered.width,
-        height: rendered.height,
-        rotate: position === "center" ? degrees(-30) : undefined,
-      });
+      if (position === "center") {
+        const origin = rotatedDrawOrigin(width / 2, height / 2, rendered.width, rendered.height, -30);
+        page.drawImage(rendered.image, {
+          x: origin.x,
+          y: origin.y,
+          width: rendered.width,
+          height: rendered.height,
+          rotate: degrees(-30),
+        });
+        continue;
+      }
+      page.drawImage(rendered.image, { x, y, width: rendered.width, height: rendered.height });
       continue;
     }
     if (!font) throw new Error("PDF font is unavailable");
@@ -163,7 +177,19 @@ export async function watermarkPdf(
     const x = (width - tw) / 2;
     let y = height - 28;
     if (position === "footer") y = 20;
-    if (position === "center") y = height / 2;
+    if (position === "center") {
+      const origin = rotatedDrawOrigin(width / 2, height / 2, tw, size, -30);
+      page.drawText(text, {
+        x: origin.x,
+        y: origin.y,
+        size,
+        font,
+        color: rgb(0.4, 0.4, 0.4),
+        opacity: alpha,
+        rotate: degrees(-30),
+      });
+      continue;
+    }
     page.drawText(text, {
       x,
       y,
@@ -171,7 +197,6 @@ export async function watermarkPdf(
       font,
       color: rgb(0.4, 0.4, 0.4),
       opacity: alpha,
-      rotate: position === "center" ? degrees(-30) : undefined,
     });
   }
   return doc.save();
@@ -446,12 +471,13 @@ export async function stripPdfMetadata(buf: PdfInput): Promise<Uint8Array> {
   doc.setSubject("");
   doc.setKeywords([]);
   doc.setCreator("");
-  doc.setProducer("Kit");
+  doc.setProducer("");
   // The standard Info-dict fields above aren't the only place metadata can
   // live: reset the dates (they otherwise keep leaking the original
   // authoring time) and drop any XMP metadata stream, which can duplicate
   // author/title/timestamps outside the Info dict and survive the calls
-  // above untouched.
+  // above untouched. This is not a forensic wipe; other object streams can
+  // still hold identifying data.
   const now = new Date();
   doc.setCreationDate(now);
   doc.setModificationDate(now);

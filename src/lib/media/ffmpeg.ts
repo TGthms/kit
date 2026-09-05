@@ -21,6 +21,8 @@ export type { AudioFormat, VideoFormat } from "./ffmpeg-args";
 let ffmpeg: FFmpeg | null = null;
 let loading: Promise<FFmpeg> | null = null;
 let inFlight: FFmpeg | null = null;
+let loadGeneration = 0;
+let execLock: Promise<void> = Promise.resolve();
 let progressHandler: ((event: { progress: number }) => void) | null = null;
 const coreBlobUrls: string[] = [];
 
@@ -60,6 +62,7 @@ function terminateInstance(instance: FFmpeg | null) {
 }
 
 export function cancelFFmpeg() {
+  loadGeneration += 1;
   terminateInstance(ffmpeg ?? inFlight);
   ffmpeg = null;
   inFlight = null;
@@ -83,6 +86,7 @@ export async function getFFmpeg(onProgress?: (ratio: number) => void): Promise<F
   if (loading) return loading;
 
   loading = (async () => {
+    const generation = loadGeneration;
     const instance = new FFmpeg();
     inFlight = instance;
     if (onProgress) {
@@ -95,6 +99,10 @@ export async function getFFmpeg(onProgress?: (ratio: number) => void): Promise<F
     const wasmURL = await toGunzippedWasmBlobURL(`${base}/ffmpeg-core.wasm.gz`);
     coreBlobUrls.push(coreURL, wasmURL);
     await instance.load({ coreURL, wasmURL });
+    if (generation !== loadGeneration) {
+      terminateInstance(instance);
+      throw new DOMException("Aborted", "AbortError");
+    }
     ffmpeg = instance;
     inFlight = null;
     return instance;
@@ -120,6 +128,20 @@ export type FFmpegFileHost = {
   deleteFile(name: string): Promise<unknown>;
 };
 
+async function withExecLock<T>(fn: () => Promise<T>): Promise<T> {
+  let release = () => undefined as void;
+  const previous = execLock;
+  execLock = new Promise<void>((resolve) => {
+    release = resolve;
+  });
+  await previous;
+  try {
+    return await fn();
+  } finally {
+    release();
+  }
+}
+
 export async function transcodeOnFFmpeg(
   ff: FFmpegFileHost,
   inputName: string,
@@ -127,18 +149,20 @@ export async function transcodeOnFFmpeg(
   outputName: string,
   args: string[]
 ): Promise<Uint8Array> {
-  try {
-    await ff.writeFile(inputName, inputData);
-    const code = await ff.exec(args);
-    if (typeof code === "number" && code !== 0) {
-      throw new Error(`FFmpeg exited with code ${code}`);
+  return withExecLock(async () => {
+    try {
+      await ff.writeFile(inputName, inputData);
+      const code = await ff.exec(args);
+      if (typeof code === "number" && code !== 0) {
+        throw new Error(`FFmpeg exited with code ${code}`);
+      }
+      const data = await ff.readFile(outputName);
+      return typeof data === "string" ? new TextEncoder().encode(data) : data;
+    } finally {
+      await ff.deleteFile(inputName).catch(() => undefined);
+      await ff.deleteFile(outputName).catch(() => undefined);
     }
-    const data = await ff.readFile(outputName);
-    return typeof data === "string" ? new TextEncoder().encode(data) : data;
-  } finally {
-    await ff.deleteFile(inputName).catch(() => undefined);
-    await ff.deleteFile(outputName).catch(() => undefined);
-  }
+  });
 }
 
 export async function runFFmpeg(

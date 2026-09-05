@@ -89,7 +89,7 @@ export function ConvertHub() {
       <div className="space-y-2">
         <Label>{t("chooseOutput")}</Label>
         <select
-          className="h-10 w-full rounded-xl border border-input bg-background px-3 text-sm"
+          className="h-10 w-full rounded-xl border border-input bg-background px-3 text-base"
           value={output}
           onChange={(e) => setOutput(e.target.value)}
         >

@@ -15,6 +15,7 @@ import {
   watermarkPdf,
   stampPdfSignature,
   coverPdfContent,
+  rotatedDrawOrigin,
 } from "./core";
 import { lockPdf, unlockPdf, isPdfEncrypted, inspectPdfReadability } from "./protect";
 import { runSequentialBatch, stemmedName } from "@/lib/jobs/batch";
@@ -132,6 +133,19 @@ describe("PDF metadata", () => {
     expect(empty.title).toBe("");
     expect(empty.author).toBe("");
     expect(empty.subject).toBe("");
+    expect(empty.producer).toBe("");
+  });
+});
+
+describe("rotatedDrawOrigin", () => {
+  it("centers an unrotated box on (cx, cy)", () => {
+    expect(rotatedDrawOrigin(100, 80, 40, 20, 0)).toEqual({ x: 80, y: 70 });
+  });
+
+  it("shifts origin so a 90° rotation stays centered", () => {
+    const origin = rotatedDrawOrigin(100, 80, 40, 20, 90);
+    expect(origin.x).toBeCloseTo(110);
+    expect(origin.y).toBeCloseTo(60);
   });
 });
 

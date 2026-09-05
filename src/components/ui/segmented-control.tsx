@@ -27,7 +27,7 @@ export function SegmentedControl<T extends string>({
   function activate(index: number, event?: ActivateEvent) {
     const option = options[index];
     if (!option) return;
-    onChange(option.value, event);
+    if (option.value !== value) onChange(option.value, event);
     buttons.current[index]?.focus();
   }
 
@@ -87,7 +87,10 @@ export function SegmentedControl<T extends string>({
               "transition-colors duration-200 motion-reduce:transition-none",
               selected ? "text-foreground" : "text-muted-foreground hover:text-foreground"
             )}
-            onClick={(event) => onChange(option.value, event)}
+            onClick={(event) => {
+              if (option.value === value) return;
+              onChange(option.value, event);
+            }}
             onKeyDown={(event) => onKeyDown(index, event)}
           >
             {Icon ? <Icon className="h-4 w-4" /> : null}

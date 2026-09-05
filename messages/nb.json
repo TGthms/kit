@@ -566,7 +566,7 @@
     "image-convert": {
       "name": "Konverter bildeformat",
       "description": "Bytt mellom JPEG, PNG, WEBP og lignende nettformater.",
-      "keywords": "bilde konvertere format webp avif png jpg jpeg",
+      "keywords": "bilde konvertere format webp png jpg jpeg",
       "run": "Konverter",
       "success": "Konverterte {count} bilde(r)."
     },
@@ -769,14 +769,14 @@
       "description": "Vis, rediger eller fjern tittel, forfatter og andre Info-felt.",
       "keywords": "Nøkkelord",
       "run": "Lagre metadata",
-      "strip": "Fjern alle felt",
+      "strip": "Tøm Info-felt og XMP",
       "title": "Tittel",
       "author": "Forfatter",
       "subject": "Emne",
       "creator": "Opphavsmann",
       "producer": "Produsent",
       "saved": "Metadata lagret.",
-      "stripped": "Metadata fjernet."
+      "stripped": "Info-felt og XMP tømt."
     },
     "pdf-protect": {
       "name": "Lås eller lås opp PDF",
@@ -1395,10 +1395,7 @@
       "start": "Start",
       "reset": "Tilbakestill",
       "recordTime": "Lagre tid",
-      "hours": "Timer",
-      "pomodoro": "Pomodoro",
-      "focus": "Focus · 25 min",
-      "shortBreak": "Break · 5 min"
+      "hours": "Timer"
     },
     "random-generator": {
       "name": "Tilfeldighetsgenerator",

@@ -29,8 +29,8 @@ export function FloatingNav({
       )}
       aria-label={ariaLabel}
     >
-      <div className="pointer-events-auto mx-auto w-full max-w-lg px-3">
-        <div className="floating-nav-shell rounded-full">
+      <div className="pointer-events-none mx-auto flex w-full max-w-lg justify-center px-3">
+        <div className="pointer-events-auto floating-nav-shell w-full rounded-full">
           <div
             ref={contentRef}
             className={cn(

@@ -566,7 +566,7 @@
     "image-convert": {
       "name": "Convert image format",
       "description": "Switch between JPEG, PNG, WEBP, and similar web formats.",
-      "keywords": "image convert format webp avif png jpg jpeg",
+      "keywords": "image convert format webp png jpg jpeg",
       "run": "Convert",
       "success": "Converted {count} image(s)."
     },
@@ -769,14 +769,14 @@
       "description": "View, edit, or strip title, author, and other document Info fields.",
       "keywords": "Keywords",
       "run": "Save metadata",
-      "strip": "Strip all fields",
+      "strip": "Clear Info fields and XMP",
       "title": "Title",
       "author": "Author",
       "subject": "Subject",
       "creator": "Creator",
       "producer": "Producer",
       "saved": "Metadata saved.",
-      "stripped": "Metadata stripped."
+      "stripped": "Info fields and XMP cleared."
     },
     "pdf-protect": {
       "name": "Lock or unlock PDF",
@@ -1443,10 +1443,7 @@
       "finished": "Finished",
       "start": "Start",
       "reset": "Reset",
-      "recordTime": "Record time",
-      "pomodoro": "Pomodoro",
-      "focus": "Focus · 25 min",
-      "shortBreak": "Break · 5 min"
+      "recordTime": "Record time"
     },
     "random-generator": {
       "name": "Random generator",

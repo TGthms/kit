@@ -4,7 +4,7 @@
    Safari rejects a document response from a worker if it followed HTTP redirects
    ("Response served by service worker has redirections"). Never return a
    redirect Response or a fetch() result with redirected === true. */
-const CACHE = "kit-shell-v9";
+const CACHE = "kit-shell-v10";
 const LAST_HOME = "./last-home";
 const NAV_FETCH_MS = 8000;
 const NAV_CACHE_MS = 2500;
@@ -20,7 +20,7 @@ self.addEventListener("install", (event) => {
         /* offline install */
       }
       try {
-        const res = asDirectResponse(await fetch("./", { headers: { Accept: "text/html" } }));
+        const res = await asDirectResponse(await fetch("./", { headers: { Accept: "text/html" } }));
         if (isUsableHtml(res)) await cache.put("./", res);
       } catch {
         /* ignore */
@@ -63,16 +63,13 @@ function isUsableHtml(res) {
 }
 
 /** Safari cannot consume a SW navigation response that followed redirects. */
-function asDirectResponse(res) {
+async function asDirectResponse(res) {
   if (!res || res.redirected !== true) return res;
+  const buf = await res.arrayBuffer();
   const headers = new Headers(res.headers);
   headers.delete("content-encoding");
   headers.delete("content-length");
-  return new Response(res.body, {
-    status: res.status,
-    statusText: res.statusText,
-    headers,
-  });
+  return new Response(buf, { status: res.status, statusText: res.statusText, headers });
 }
 
 function htmlPathFromTxt(pathname) {
@@ -100,29 +97,37 @@ function deadlineFetch(resource, init) {
   });
 }
 
-async function cachedNavigation(req) {
+/** Exact URL or same path without search — never last-home / shell. */
+async function cachedExactNavigation(req) {
   const cache = await caches.open(CACHE);
   const exact = await cache.match(req);
-  if (isUsableHtml(exact)) return asDirectResponse(exact);
+  if (isUsableHtml(exact)) return await asDirectResponse(exact);
   try {
     const url = new URL(typeof req === "string" ? req : req.url);
     if (url.search) {
       url.search = "";
       const noSearch = await cache.match(url.href);
-      if (isUsableHtml(noSearch)) return asDirectResponse(noSearch);
+      if (isUsableHtml(noSearch)) return await asDirectResponse(noSearch);
     }
   } catch {
     /* ignore */
   }
+  return null;
+}
+
+async function cachedNavigation(req) {
+  const exact = await cachedExactNavigation(req);
+  if (isUsableHtml(exact)) return exact;
+  const cache = await caches.open(CACHE);
   const lastHome = await cache.match(LAST_HOME);
-  if (isUsableHtml(lastHome)) return asDirectResponse(lastHome);
+  if (isUsableHtml(lastHome)) return await asDirectResponse(lastHome);
   const shell = await cache.match("./");
-  if (isUsableHtml(shell)) return asDirectResponse(shell);
+  if (isUsableHtml(shell)) return await asDirectResponse(shell);
   return Response.error();
 }
 
 async function networkHtml(resource) {
-  const res = asDirectResponse(await deadlineFetch(resource));
+  const res = await asDirectResponse(await deadlineFetch(resource));
   if (isUsableHtml(res)) {
     const cache = await caches.open(CACHE);
     await cache.put(resource, res.clone());
@@ -130,7 +135,7 @@ async function networkHtml(resource) {
   }
   if (res && !isHtmlResponse(res)) {
     const url = typeof resource === "string" ? resource : resource.url;
-    const retry = asDirectResponse(await deadlineFetch(url, { headers: { Accept: "text/html" }, cache: "no-store" }));
+    const retry = await asDirectResponse(await deadlineFetch(url, { headers: { Accept: "text/html" }, cache: "no-store" }));
     if (isUsableHtml(retry)) return retry;
   }
   return res;
@@ -139,6 +144,7 @@ async function networkHtml(resource) {
 /** Network first, but if the socket hangs after idle, serve cached HTML at 2.5s. */
 async function navigateDocument(req, dest) {
   const target = dest || req;
+  const exactP = cachedExactNavigation(req);
   const cachedP = cachedNavigation(req);
 
   return await new Promise((resolve) => {
@@ -162,7 +168,7 @@ async function navigateDocument(req, dest) {
     );
 
     setTimeout(() => {
-      cachedP.then((cached) => {
+      exactP.then((cached) => {
         if (isUsableHtml(cached)) settle(cached);
       });
     }, NAV_CACHE_MS);
@@ -175,6 +181,7 @@ async function navigateDocument(req, dest) {
 
 let fillPaused = false;
 let fillBusy = false;
+let fillAbort = null;
 const fillQueue = [];
 const fillSeen = new Set();
 
@@ -193,19 +200,29 @@ function enqueueFill(urls) {
     }
     if (!href.startsWith(self.location.origin)) continue;
     if (fillSeen.has(href)) continue;
-    fillSeen.add(href);
+    if (fillQueue.includes(href)) continue;
     fillQueue.push(href);
   }
 }
 
 async function cacheFillUrl(href) {
   const cache = await caches.open(CACHE);
-  if (await cache.match(href)) return;
-  const init = { cache: "no-store", priority: "low" };
-  if (href.endsWith("/") || href.endsWith(".html")) init.headers = { Accept: "text/html" };
-  const res = asDirectResponse(await fetch(href, init));
-  if (!res || !res.ok || res.type === "error") return;
-  await cache.put(href, res);
+  if (await cache.match(href)) {
+    fillSeen.add(href);
+    return;
+  }
+  const ctrl = new AbortController();
+  fillAbort = ctrl;
+  try {
+    const init = { cache: "no-store", priority: "low", signal: ctrl.signal };
+    if (href.endsWith("/") || href.endsWith(".html")) init.headers = { Accept: "text/html" };
+    const res = await asDirectResponse(await fetch(href, init));
+    if (!res || !res.ok || res.type === "error") return;
+    await cache.put(href, res);
+    fillSeen.add(href);
+  } finally {
+    if (fillAbort === ctrl) fillAbort = null;
+  }
 }
 
 async function pumpFill() {
@@ -218,8 +235,8 @@ async function pumpFill() {
       if (!href) continue;
       try {
         await cacheFillUrl(href);
-      } catch {
-        /* quota / network — skip */
+      } catch (err) {
+        if (err && err.name === "AbortError") fillQueue.unshift(href);
       }
     }
   } finally {
@@ -253,6 +270,7 @@ self.addEventListener("message", (event) => {
 
   if (data.type === "PRECACHE_PAUSE") {
     fillPaused = true;
+    if (fillAbort) fillAbort.abort();
     return;
   }
   if (data.type === "PRECACHE_RESUME") {
@@ -277,7 +295,7 @@ self.addEventListener("message", (event) => {
   if (!url.pathname.endsWith("/")) return;
   event.waitUntil(
     (async () => {
-      const res = asDirectResponse(await fetch(url.href, { headers: { Accept: "text/html" }, cache: "no-store" }));
+      const res = await asDirectResponse(await fetch(url.href, { headers: { Accept: "text/html" }, cache: "no-store" }));
       if (!isUsableHtml(res)) return;
       const cache = await caches.open(CACHE);
       await cache.put(url.href, res.clone());
@@ -309,34 +327,33 @@ self.addEventListener("fetch", (event) => {
 
   if (isIconOrManifest(url)) {
     event.respondWith(
-      fetch(req)
-        .then((res) => {
-          const direct = asDirectResponse(res);
+      (async () => {
+        try {
+          const direct = await asDirectResponse(await fetch(req));
           if (direct.ok) {
             const copy = direct.clone();
             event.waitUntil(caches.open(CACHE).then((c) => c.put(req, copy)));
           }
           return direct;
-        })
-        .catch(() => caches.match(req))
+        } catch {
+          return caches.match(req);
+        }
+      })()
     );
     return;
   }
 
   if (isStaticAsset(url)) {
     event.respondWith(
-      caches.match(req).then(
-        (cached) =>
-          cached ||
-          fetch(req).then((res) => {
-            const direct = asDirectResponse(res);
-            if (direct.ok) {
-              const copy = direct.clone();
-              event.waitUntil(caches.open(CACHE).then((c) => c.put(req, copy)));
-            }
-            return direct;
-          })
-      )
+      caches.match(req).then(async (cached) => {
+        if (cached) return cached;
+        const direct = await asDirectResponse(await fetch(req));
+        if (direct.ok) {
+          const copy = direct.clone();
+          event.waitUntil(caches.open(CACHE).then((c) => c.put(req, copy)));
+        }
+        return direct;
+      })
     );
   }
 });

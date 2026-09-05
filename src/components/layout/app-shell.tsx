@@ -161,7 +161,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
           </div>
         </aside>
 
-        <main id="kit-main" className="anim-surface min-w-0 flex-1 pb-3 md:pb-8">{children}</main>
+        <main id="kit-main" tabIndex={-1} className="anim-surface min-w-0 flex-1 pb-3 md:pb-8">{children}</main>
       </div>
 
       <div className="pb-[var(--floating-tabbar-clearance)] md:pb-0">

@@ -147,10 +147,10 @@ Cloudflare Pages clones this repo and runs `npm run build` (the gitignored local
 
 ## Tech stack
 
-Next.js 16 (App Router, static export) · TypeScript · Tailwind CSS · shadcn-style UI · Zustand · next-intl · @cantoo/pdf-lib / PDF.js · Canvas · FFmpeg WASM · PWA service worker
+Next.js 16 (App Router, static export) · TypeScript · Tailwind CSS · shadcn-style UI · Zustand · next-intl · @cantoo/pdf-lib / PDF.js · Canvas · FFmpeg WASM · fireworks-js · PWA service worker
 
 ## License
 
 [MIT](LICENSE) © Tim G (GitHub: [TGthms](https://github.com/TGthms))
 
-Kit’s own source is MIT. Audio and video tools also load an FFmpeg WebAssembly engine (`@ffmpeg/core`) licensed **GPL-2.0-or-later** (H.264 / LAME and related codecs). That engine is served from this site and runs in your browser; media is not uploaded to a Kit server. pdf.js and other libraries keep their own Apache, BSD, or MIT licenses.
+Kit’s own source is MIT. The New Year easter egg uses `fireworks-js` (MIT). Audio and video tools also load an FFmpeg WebAssembly engine (`@ffmpeg/core`) licensed **GPL-2.0-or-later** (H.264 / LAME and related codecs). That engine is served from this site and runs in your browser; media is not uploaded to a Kit server. pdf.js and other libraries keep their own Apache, BSD, or MIT licenses.

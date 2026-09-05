@@ -46,10 +46,7 @@ export default function SettingsPage() {
                 const persist = () => {
                   rememberThemeChoice(next, setTheme, system);
                 };
-                if (next === appearance) {
-                  persist();
-                  return;
-                }
+                if (next === appearance) return;
                 runCircularThemeTransition(
                   next,
                   persist,

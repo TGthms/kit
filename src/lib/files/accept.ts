@@ -10,7 +10,7 @@ export function fileMatchesAccept(file: File, accept?: string): boolean {
       const prefix = part.slice(0, -1);
       if (file.type.toLowerCase().startsWith(prefix)) return true;
       if (part === "image/*") {
-        return /\.(png|jpe?g|gif|webp|bmp|heic|tiff?)$/.test(name);
+        return /\.(png|jpe?g|gif|webp|bmp)$/.test(name);
       }
       if (part === "audio/*") {
         return /\.(mp3|wav|wave|ogg|oga|flac|aac|m4a|opus|weba|aiff?)$/.test(name);

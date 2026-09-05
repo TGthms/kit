@@ -14,6 +14,7 @@ import { downloadBlob, downloadMany, extensionForMime } from "@/lib/utils";
 import { parseImageMetadata } from "@/lib/image/exif";
 import {
   compressImage,
+  compressOutputMime,
   resizeImage,
   cropImage,
   convertImage,
@@ -33,6 +34,9 @@ export function ImageCompress() {
   const [loading, setLoading] = useState(false);
   const [progress, setProgress] = useState(0);
 
+  const qualityApplies =
+    files.length === 0 || files.some((item) => compressOutputMime(item.file.type) !== "image/png");
+
   const run = async () => {
     if (!files.length) return;
     setLoading(true);
@@ -45,7 +49,7 @@ export function ImageCompress() {
           quality,
           maxWidth: maxW,
           maxHeight: maxW,
-          mime: f.file.type === "image/png" ? "image/png" : "image/jpeg",
+          mime: compressOutputMime(f.file.type),
         });
         const name = f.file.name.replace(/\.\w+$/, "") + `-compressed.${extensionForMime(blob.type, "jpg")}`;
         zip.file(name, blob);
@@ -70,12 +74,14 @@ export function ImageCompress() {
     <ToolShell toolId="image-compress">
       <FileDropzone accept="image/*" files={files} onChange={setFiles} />
       <div className="grid gap-4 sm:grid-cols-2">
-        <div className="space-y-2">
-          <Label>
-            {tc("quality")}: {Math.round(quality * 100)}%
-          </Label>
-          <Slider value={[quality]} min={0.1} max={1} step={0.05} onValueChange={(v) => setQuality(v[0])} />
-        </div>
+        {qualityApplies ? (
+          <div className="space-y-2">
+            <Label>
+              {tc("quality")}: {Math.round(quality * 100)}%
+            </Label>
+            <Slider value={[quality]} min={0.1} max={1} step={0.05} onValueChange={(v) => setQuality(v[0])} />
+          </div>
+        ) : null}
         <div className="space-y-2">
           <Label>{tc("maxWidth")}</Label>
           <Input type="number" value={maxW} onChange={(e) => setMaxW(Number(e.target.value) || 1920)} />
@@ -292,7 +298,13 @@ export function ImageCrop() {
               className="block max-h-[min(28rem,70vh)] w-auto max-w-full"
               onLoad={(event) => {
                 const image = event.currentTarget;
-                setNatural({ width: image.naturalWidth, height: image.naturalHeight });
+                const width = image.naturalWidth;
+                const height = image.naturalHeight;
+                setNatural({ width, height });
+                setX(0);
+                setY(0);
+                setW(width);
+                setH(height);
               }}
             />
             <CropBox
@@ -373,7 +385,7 @@ export function ImageConvert() {
       <div className="space-y-2">
         <Label>{tc("format")}</Label>
         <select
-          className="h-10 w-full rounded-xl border border-input bg-background px-3 text-sm"
+          className="h-10 w-full rounded-xl border border-input bg-background px-3 text-base"
           value={mime}
           onChange={(e) => setMime(e.target.value as ImageMime)}
         >

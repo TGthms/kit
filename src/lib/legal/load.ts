@@ -53,7 +53,7 @@ export function renderSimpleMarkdown(md: string): string {
     }
     if (line.startsWith("- ")) {
       if (!inList) {
-        html.push('<ul class="list-disc pl-5 space-y-1 my-3">');
+        html.push('<ul class="list-disc ps-5 space-y-1 my-3">');
         inList = true;
       }
       html.push(`<li class="text-sm leading-relaxed text-muted-foreground">${inline(line.slice(2))}</li>`);

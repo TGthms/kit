@@ -4,7 +4,29 @@ function get2dContext(canvas: HTMLCanvasElement): CanvasRenderingContext2D {
   return ctx;
 }
 
+export const MAX_IMAGE_CANVAS_EDGE = 8192;
+export const MAX_IMAGE_CANVAS_PIXELS = 16_777_216;
+
+export function clampImageSize(width: number, height: number): { width: number; height: number } {
+  if (!(width > 0) || !(height > 0)) return { width: 1, height: 1 };
+  const edgeScale = MAX_IMAGE_CANVAS_EDGE / Math.max(width, height);
+  const pixelScale = Math.sqrt(MAX_IMAGE_CANVAS_PIXELS / (width * height));
+  const scale = Math.min(1, edgeScale, pixelScale);
+  return {
+    width: Math.max(1, Math.round(width * scale)),
+    height: Math.max(1, Math.round(height * scale)),
+  };
+}
+
 export type ImageMime = "image/jpeg" | "image/png" | "image/webp";
+
+/** PNG/GIF stills stay lossless PNG; WebP stays WebP; everything else is JPEG. */
+export function compressOutputMime(type: string): ImageMime {
+  const normalized = type.toLowerCase().split(";", 1)[0];
+  if (normalized === "image/png" || normalized === "image/gif") return "image/png";
+  if (normalized === "image/webp") return "image/webp";
+  return "image/jpeg";
+}
 
 export async function loadImageBitmap(file: Blob): Promise<ImageBitmap> {
   try {
@@ -38,16 +60,16 @@ export async function compressImage(
   const bmp = await loadImageBitmap(file);
   let { width, height } = bmp;
   const scale = Math.min(1, opts.maxWidth / width, opts.maxHeight / height);
-  width = Math.max(1, Math.round(width * scale));
-  height = Math.max(1, Math.round(height * scale));
+  const clamped = clampImageSize(Math.max(1, Math.round(width * scale)), Math.max(1, Math.round(height * scale)));
+  width = clamped.width;
+  height = clamped.height;
   const canvas = document.createElement("canvas");
   canvas.width = width;
   canvas.height = height;
   const ctx = get2dContext(canvas);
   ctx.drawImage(bmp, 0, 0, width, height);
   bmp.close();
-  const mime = opts.mime || (file.type as ImageMime) || "image/jpeg";
-  const outType = mime === "image/png" ? "image/png" : mime === "image/webp" ? "image/webp" : "image/jpeg";
+  const outType = compressOutputMime(opts.mime || file.type || "image/jpeg");
   return canvasToBlob(canvas, outType, outType === "image/png" ? undefined : opts.quality);
 }
 
@@ -85,8 +107,9 @@ export async function resizeImage(
     }
   }
   const canvas = document.createElement("canvas");
-  canvas.width = Math.max(1, w);
-  canvas.height = Math.max(1, h);
+  const size = clampImageSize(Math.max(1, w), Math.max(1, h));
+  canvas.width = size.width;
+  canvas.height = size.height;
   get2dContext(canvas).drawImage(bmp, 0, 0, canvas.width, canvas.height);
   bmp.close();
   const type = opts.mime || file.type || "image/png";
@@ -115,8 +138,9 @@ export async function cropImage(
     throw new Error("Crop region is outside the image.");
   }
   const canvas = document.createElement("canvas");
-  canvas.width = Math.max(1, Math.round(sw));
-  canvas.height = Math.max(1, Math.round(sh));
+  const size = clampImageSize(Math.max(1, Math.round(sw)), Math.max(1, Math.round(sh)));
+  canvas.width = size.width;
+  canvas.height = size.height;
   get2dContext(canvas).drawImage(bmp, sx, sy, sw, sh, 0, 0, canvas.width, canvas.height);
   bmp.close();
   return canvasToBlob(canvas, mime || file.type || "image/png", 0.92);
@@ -125,9 +149,10 @@ export async function cropImage(
 export async function convertImage(file: Blob, mime: ImageMime, quality = 0.9): Promise<Blob> {
   const bmp = await loadImageBitmap(file);
   const canvas = document.createElement("canvas");
-  canvas.width = bmp.width;
-  canvas.height = bmp.height;
-  get2dContext(canvas).drawImage(bmp, 0, 0);
+  const size = clampImageSize(bmp.width, bmp.height);
+  canvas.width = size.width;
+  canvas.height = size.height;
+  get2dContext(canvas).drawImage(bmp, 0, 0, size.width, size.height);
   bmp.close();
   return canvasToBlob(canvas, mime, mime === "image/png" ? undefined : quality);
 }
@@ -156,11 +181,12 @@ export async function adjustImage(
 ): Promise<Blob> {
   const bmp = await loadImageBitmap(file);
   const canvas = document.createElement("canvas");
-  canvas.width = bmp.width;
-  canvas.height = bmp.height;
+  const size = clampImageSize(bmp.width, bmp.height);
+  canvas.width = size.width;
+  canvas.height = size.height;
   const ctx = get2dContext(canvas);
   ctx.filter = `brightness(${opts.brightness}%) contrast(${opts.contrast}%) saturate(${opts.saturation}%)`;
-  ctx.drawImage(bmp, 0, 0);
+  ctx.drawImage(bmp, 0, 0, size.width, size.height);
   bmp.close();
   return canvasToBlob(canvas, file.type || "image/png", 0.92);
 }
@@ -168,10 +194,11 @@ export async function adjustImage(
 async function bitmapToBuffer(file: Blob) {
   const bmp = await loadImageBitmap(file);
   const canvas = document.createElement("canvas");
-  canvas.width = bmp.width;
-  canvas.height = bmp.height;
+  const size = clampImageSize(bmp.width, bmp.height);
+  canvas.width = size.width;
+  canvas.height = size.height;
   const ctx = get2dContext(canvas);
-  ctx.drawImage(bmp, 0, 0);
+  ctx.drawImage(bmp, 0, 0, size.width, size.height);
   bmp.close();
   const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
   return { canvas, ctx, imageData };

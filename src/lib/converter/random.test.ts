@@ -36,9 +36,11 @@ describe("random generation helpers", () => {
     expect(randomDecimals(0, 1, { count: 2, precision: 1, rng: () => 0 })).toEqual([0, 0]);
   });
 
-  it("formats non-password rolls for history without overflowing the summary cap", () => {
-    expect(randomResultSummary("integer", ["42"])).toBe("integer: 42");
-    expect(randomResultSummary("integer", ["4", "8", "15"])).toBe("integer × 3: 4, 8, 15");
+  it("formats non-password rolls for history without persisting rolled values", () => {
+    expect(randomResultSummary("integer", ["42"])).toBe("integer × 1");
+    expect(randomResultSummary("integer", ["4", "8", "15"])).toBe("integer × 3");
+    expect(randomResultSummary("decimal", ["0.25", "0.5"])).toBe("decimal × 2");
+    expect(randomResultSummary("boolean", ["true", "false", "true"])).toBe("boolean × 3");
     expect(randomResultSummary("pick", ["red", "blue"])).toBe("pick × 2");
     expect(randomResultSummary("pick", Array.from({ length: 40 }, (_, index) => `choice-${index}`))).toBe("pick × 40");
   });

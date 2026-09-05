@@ -26,6 +26,8 @@ describe("ffmpeg core origin", () => {
     expect(src).toContain("/vendor/ffmpeg");
     expect(src).toContain("ffmpeg-core.wasm.gz");
     expect(src).toContain("DecompressionStream");
+    expect(src).toContain("loadGeneration");
+    expect(src).toMatch(/generation !== loadGeneration/);
   });
 });
 
@@ -54,7 +56,8 @@ describe("ffmpeg args", () => {
     expect(audioConvertArgs("in.wav", "out.flac", "flac").includes("flac")).toBe(true);
     expect(audioConvertArgs("in.wav", "out.bin", "unknown")).toEqual(["-i", "in.wav", "-vn", "out.bin"]);
     expect(videoConvertArgs("in.mp4", "out.webm", "webm")).toEqual(["-i", "in.mp4", "-c:v", "libvpx", "-c:a", "libvorbis", "out.webm"]);
-    expect(videoConvertArgs("in.mp4", "out.gif", "gif")).toContain("fps=12,scale=480:-1:flags=lanczos");
+    expect(videoConvertArgs("in.mp4", "out.gif", "gif").join(" ")).toContain("palettegen");
+    expect(videoConvertArgs("in.mp4", "out.gif", "gif")).toContain("-filter_complex");
     expect(videoConvertArgs("in.webm", "out.mp4", "mp4")).toEqual([
       "-i",
       "in.webm",
@@ -110,8 +113,8 @@ describe("ffmpeg args", () => {
       "1",
       "-t",
       "2",
-      "-vf",
-      "fps=12,scale=480:-1:flags=lanczos",
+      "-filter_complex",
+      "fps=12,scale=480:-1:flags=lanczos,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse",
       "-loop",
       "0",
       "out.gif",

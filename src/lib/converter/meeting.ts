@@ -27,9 +27,15 @@ function assertWorkBound(value: number, name: string): void {
   }
 }
 
+function localIsoDate(parts: { year: number; month: number; day: number }): string {
+  return `${String(parts.year).padStart(4, "0")}-${String(parts.month).padStart(2, "0")}-${String(parts.day).padStart(2, "0")}`;
+}
+
 /**
- * Find UTC hours on `date` (YYYY-MM-DD) between startHour..endHour where every
- * zone's local calendar date matches and local hour is in [workStart, workEnd).
+ * Find UTC hours in a 72-hour window around `date` (YYYY-MM-DD) where every
+ * zone is in [workStart, workEnd) and at least one zone is on that local date.
+ * startHour/endHour still filter by UTC hour-of-day. Do not require every
+ * zone to share the same calendar date — that hides real date-line overlaps.
  */
 export function overlapWindows({
   zones,
@@ -55,21 +61,24 @@ export function overlapWindows({
   const hourStart = Math.min(startHour, endHour);
   const hourEnd = Math.max(startHour, endHour);
 
-  for (let utcHour = hourStart; utcHour <= hourEnd; utcHour += 1) {
-    const instant = new Date(Date.UTC(year, month - 1, day, utcHour, 0, 0, 0));
-    const localHours: Record<string, number> = {};
-    let ok = true;
-    for (const zone of zones) {
-      const parts = getTimeZoneParts(instant, zone);
-      const localDate = `${String(parts.year).padStart(4, "0")}-${String(parts.month).padStart(2, "0")}-${String(parts.day).padStart(2, "0")}`;
-      if (localDate !== date || parts.hour < workStart || parts.hour >= workEnd) {
-        ok = false;
-        break;
+  for (let dayOffset = -1; dayOffset <= 1; dayOffset += 1) {
+    for (let utcHour = hourStart; utcHour <= hourEnd; utcHour += 1) {
+      const instant = new Date(Date.UTC(year, month - 1, day + dayOffset, utcHour, 0, 0, 0));
+      const localHours: Record<string, number> = {};
+      let onPickedDate = false;
+      let ok = true;
+      for (const zone of zones) {
+        const parts = getTimeZoneParts(instant, zone);
+        if (parts.hour < workStart || parts.hour >= workEnd) {
+          ok = false;
+          break;
+        }
+        if (localIsoDate(parts) === date) onPickedDate = true;
+        localHours[zone] = parts.hour;
       }
-      localHours[zone] = parts.hour;
-    }
-    if (ok) {
-      results.push({ utcHour, utcIso: instant.toISOString(), localHours });
+      if (ok && onPickedDate) {
+        results.push({ utcHour, utcIso: instant.toISOString(), localHours });
+      }
     }
   }
   return results;

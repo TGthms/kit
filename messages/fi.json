@@ -566,7 +566,7 @@
     "image-convert": {
       "name": "Muunna kuvamuoto",
       "description": "Vaihda JPEG-, PNG-, WEBP- ja vastaavien verkkomuotojen välillä.",
-      "keywords": "kuva muunna muoto webp avif png jpg jpeg",
+      "keywords": "kuva muunna muoto webp png jpg jpeg",
       "run": "Muunna",
       "success": "Muunnettiin {count} kuvaa."
     },
@@ -769,14 +769,14 @@
       "description": "Tarkastele, muokkaa tai poista otsikko, tekijä ja muut Info-kentät.",
       "keywords": "Avainsanat",
       "run": "Tallenna metatiedot",
-      "strip": "Poista kaikki kentät",
+      "strip": "Tyhjennä Info-kentät ja XMP",
       "title": "Otsikko",
       "author": "Tekijä",
       "subject": "Aihe",
       "creator": "Luonut",
       "producer": "Tuottaja",
       "saved": "Metatiedot tallennettu.",
-      "stripped": "Metatiedot poistettu."
+      "stripped": "Info-kentät ja XMP tyhjennetty."
     },
     "pdf-protect": {
       "name": "Lukitse tai avaa PDF",
@@ -1386,10 +1386,7 @@
       "start": "Alku",
       "reset": "Palauta",
       "recordTime": "Tallenna aika",
-      "hours": "Tunnit",
-      "pomodoro": "Pomodoro",
-      "focus": "Focus · 25 min",
-      "shortBreak": "Break · 5 min"
+      "hours": "Tunnit"
     },
     "random-generator": {
       "name": "Satunnaislukugeneraattori",

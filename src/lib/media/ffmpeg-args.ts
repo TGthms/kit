@@ -12,10 +12,13 @@ export function audioConvertArgs(input: string, output: string, format: string):
   return ["-i", input, "-vn", output];
 }
 
+const GIF_PALETTE_FILTER =
+  "fps=12,scale=480:-1:flags=lanczos,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse";
+
 export function videoConvertArgs(input: string, output: string, format: string): string[] {
   if (format === "webm") return ["-i", input, "-c:v", "libvpx", "-c:a", "libvorbis", output];
   if (format === "gif") {
-    return ["-i", input, "-vf", "fps=12,scale=480:-1:flags=lanczos", "-loop", "0", output];
+    return ["-i", input, "-filter_complex", GIF_PALETTE_FILTER, "-loop", "0", output];
   }
   // Stream copy only re-muxes. It can leave codecs incompatible with the
   // target container, such as VP9 copied from WebM into MP4.
@@ -74,8 +77,8 @@ export function gifClipArgs(input: string, output: string, start: string, end: s
     String(startSeconds),
     "-t",
     String(duration),
-    "-vf",
-    "fps=12,scale=480:-1:flags=lanczos",
+    "-filter_complex",
+    GIF_PALETTE_FILTER,
     "-loop",
     "0",
     output,

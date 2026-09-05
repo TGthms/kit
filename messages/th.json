@@ -566,7 +566,7 @@
     "image-convert": {
       "name": "แปลงรูปแบบรูปภาพ",
       "description": "สลับระหว่าง JPEG, PNG, WEBP และรูปแบบเว็บที่คล้ายกัน",
-      "keywords": "รูป แปลง รูปแบบ webp avif png jpg jpeg",
+      "keywords": "รูป แปลง รูปแบบ webp png jpg jpeg",
       "run": "แปลง",
       "success": "แปลงแล้ว {count} รูป"
     },
@@ -769,14 +769,14 @@
       "description": "ดู แก้ไข หรือลบชื่อ ผู้เขียน และฟิลด์ Info อื่น ๆ",
       "keywords": "คำสำคัญ",
       "run": "บันทึกเมทาดาทา",
-      "strip": "ลบทุกฟิลด์",
+      "strip": "ล้างฟิลด์ Info และ XMP",
       "title": "ชื่อเรื่อง",
       "author": "ผู้เขียน",
       "subject": "หัวเรื่อง",
       "creator": "ผู้สร้าง",
       "producer": "ผู้ผลิต",
       "saved": "บันทึกเมทาดาทาแล้ว",
-      "stripped": "ลบเมทาดาทาแล้ว"
+      "stripped": "ล้างฟิลด์ Info และ XMP แล้ว"
     },
     "pdf-protect": {
       "name": "ล็อกหรือปลดล็อก PDF",
@@ -1386,10 +1386,7 @@
       "start": "เริ่ม",
       "reset": "รีเซ็ต",
       "recordTime": "บันทึกเวลา",
-      "hours": "ชั่วโมง",
-      "pomodoro": "Pomodoro",
-      "focus": "Focus · 25 min",
-      "shortBreak": "Break · 5 min"
+      "hours": "ชั่วโมง"
     },
     "random-generator": {
       "name": "ตัวสร้างค่าสุ่ม",

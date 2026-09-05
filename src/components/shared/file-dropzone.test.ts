@@ -17,6 +17,8 @@ describe("fileMatchesAccept", () => {
     expect(fileMatchesAccept(file("a.jpg", "image/jpeg"), "image/*")).toBe(true);
     expect(fileMatchesAccept(file("a.webp", ""), "image/*")).toBe(true);
     expect(fileMatchesAccept(file("a.pdf", "application/pdf"), "image/*")).toBe(false);
+    expect(fileMatchesAccept(file("a.heic", ""), "image/*")).toBe(false);
+    expect(fileMatchesAccept(file("a.tiff", ""), "image/*")).toBe(false);
   });
 
   it("accepts audio and video by extension when MIME is empty", () => {

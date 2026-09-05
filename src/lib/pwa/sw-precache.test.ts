@@ -21,6 +21,10 @@ describe("sw-precache manifest", () => {
     writeFileSync(join(root, "en/tools/pdf-merge/index.html"), "<html>");
     mkdirSync(join(root, "ar"), { recursive: true });
     writeFileSync(join(root, "ar/index.html"), "<html>");
+    mkdirSync(join(root, "404"), { recursive: true });
+    writeFileSync(join(root, "404/index.html"), "<html>");
+    mkdirSync(join(root, "_not-found"), { recursive: true });
+    writeFileSync(join(root, "_not-found/index.html"), "<html>");
 
     const manifest = buildPrecacheManifest(root) as {
       core: string[];
@@ -36,5 +40,8 @@ describe("sw-precache manifest", () => {
     expect(manifest.chromeByLocale.ar).toContain("/ar/settings/");
     expect(manifest.toolsByLocale.en).toContain("/en/tools/pdf-merge/");
     expect(manifest.toolsByLocale.ar ?? []).toEqual([]);
+    expect(manifest.chromeByLocale["404"]).toBeUndefined();
+    expect(manifest.chromeByLocale["_not-found"]).toBeUndefined();
+    expect(Object.keys(manifest.chromeByLocale).sort()).toEqual(["ar", "en"]);
   });
 });

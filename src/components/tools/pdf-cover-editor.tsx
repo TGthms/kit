@@ -3,9 +3,10 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
+import { Field } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import type { FileItem } from "@/components/shared/file-dropzone";
+import { canvasRectToPdfBox, pdfBoxToCanvasRect, type ViewportTransform } from "@/lib/pdf/viewport";
 import { loadPdfjs } from "./shared";
 
 export type CoverBox = { page: number; x: number; y: number; w: number; h: number };
@@ -16,6 +17,7 @@ type Preview = {
   width: number;
   height: number;
   pageCount: number;
+  transform: ViewportTransform;
 };
 
 export function PdfCoverEditor(props: {
@@ -89,15 +91,8 @@ function PdfCoverEditorBody({
       const rect = canvas.getBoundingClientRect();
       const sx = shot.width / rect.width;
       const sy = shot.height / rect.height;
-      const x1 = Math.min(start.x, end.x) * sx;
-      const y1 = Math.min(start.y, end.y) * sy;
-      const x2 = Math.max(start.x, end.x) * sx;
-      const y2 = Math.max(start.y, end.y) * sy;
-      const pdfX = x1 / shot.scale;
-      const pdfY = (shot.height - y2) / shot.scale;
-      const pdfW = (x2 - x1) / shot.scale;
-      const pdfH = (y2 - y1) / shot.scale;
-      return { page: page - 1, x: pdfX, y: pdfY, w: pdfW, h: pdfH };
+      const box = canvasRectToPdfBox(shot.transform, start.x * sx, start.y * sy, end.x * sx, end.y * sy);
+      return { page: page - 1, ...box };
     },
     [page]
   );
@@ -135,8 +130,7 @@ function PdfCoverEditorBody({
   return (
     <div className="space-y-3">
       <div className="flex flex-wrap items-end gap-3">
-        <div className="space-y-2">
-          <Label>{tc("page")}</Label>
+        <Field label={tc("page")}>
           <Input
             type="number"
             min={1}
@@ -148,7 +142,7 @@ function PdfCoverEditorBody({
             }}
             className="w-24"
           />
-        </div>
+        </Field>
         <Button type="button" variant="outline" size="sm" onClick={() => onChange(boxes.slice(0, -1))} disabled={!boxes.length}>
           {t("undoBox")}
         </Button>
@@ -186,17 +180,14 @@ function PdfCoverEditorBody({
           />
           <svg className="pointer-events-none absolute inset-0 h-full w-full">
             {pageBoxes.map((box, index) => {
-              const x = (box.x * preview.scale / preview.width) * 100;
-              const w = (box.w * preview.scale / preview.width) * 100;
-              const y = ((preview.height / preview.scale - box.y - box.h) * preview.scale / preview.height) * 100;
-              const h = (box.h * preview.scale / preview.height) * 100;
+              const rect = pdfBoxToCanvasRect(preview.transform, box);
               return (
                 <rect
                   key={`${box.x}-${box.y}-${index}`}
-                  x={`${x}%`}
-                  y={`${y}%`}
-                  width={`${w}%`}
-                  height={`${h}%`}
+                  x={`${(rect.x / preview.width) * 100}%`}
+                  y={`${(rect.y / preview.height) * 100}%`}
+                  width={`${(rect.w / preview.width) * 100}%`}
+                  height={`${(rect.h / preview.height) * 100}%`}
                   fill="black"
                   fillOpacity="0.72"
                 />

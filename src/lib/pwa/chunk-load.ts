@@ -43,6 +43,8 @@ export function reloadForStaleChunk(force = false): boolean {
       /* private mode */
     }
   }
-  window.location.reload();
+  const url = new URL(window.location.href);
+  url.searchParams.set("_kitcb", String(Date.now()));
+  window.location.replace(url.href);
   return true;
 }
