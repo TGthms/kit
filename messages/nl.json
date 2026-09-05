@@ -400,7 +400,9 @@
       "countdownSubtitleSeconds": "Nog een paar stille seconden. Daarna een nieuwe bladzijde.",
       "celebrateTitle": "Gelukkig nieuwjaar.",
       "celebrateSubtitle": "{year} begint hier.",
-      "countdownLabel": "{minutes} minuten en {seconds} seconden tot {year}."
+      "countdownLabel": "{minutes} minuten en {seconds} seconden tot {year}.",
+      "countdownLabelMinute": "1 minuut en {seconds} seconden tot {year}.",
+      "countdownLabelSeconds": "{seconds} seconden tot {year}."
     }
   },
   "categories": {

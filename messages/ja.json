@@ -400,7 +400,9 @@
       "countdownSubtitleSeconds": "あと数秒。そのあと、新しいページ。",
       "celebrateTitle": "明けましておめでとうございます。",
       "celebrateSubtitle": "{year}は、ここから。",
-      "countdownLabel": "{year}まであと{minutes}分{seconds}秒"
+      "countdownLabel": "{year}まであと{minutes}分{seconds}秒",
+      "countdownLabelMinute": "{year}まであと1分{seconds}秒",
+      "countdownLabelSeconds": "{year}まであと{seconds}秒"
     }
   },
   "categories": {

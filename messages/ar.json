@@ -400,7 +400,9 @@
       "countdownSubtitleSeconds": "ثوانٍ هادئة. ثم صفحة جديدة.",
       "celebrateTitle": "سنة جديدة سعيدة.",
       "celebrateSubtitle": "{year} يبدأ من هنا.",
-      "countdownLabel": "{minutes} دقيقة و{seconds} ثانية حتى {year}."
+      "countdownLabel": "{minutes} دقيقة و{seconds} ثانية حتى {year}.",
+      "countdownLabelMinute": "دقيقة واحدة و{seconds} ثانية حتى {year}.",
+      "countdownLabelSeconds": "{seconds} ثانية حتى {year}."
     }
   },
   "categories": {

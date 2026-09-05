@@ -400,7 +400,9 @@
       "countdownSubtitleSeconds": "Pár tichých sekund. Pak nová stránka.",
       "celebrateTitle": "Šťastný nový rok.",
       "celebrateSubtitle": "{year} začíná tady.",
-      "countdownLabel": "{minutes} minut a {seconds} sekund do roku {year}."
+      "countdownLabel": "{minutes} minut a {seconds} sekund do roku {year}.",
+      "countdownLabelMinute": "1 minuta a {seconds} sekund do {year}.",
+      "countdownLabelSeconds": "{seconds} sekund do {year}."
     }
   },
   "categories": {

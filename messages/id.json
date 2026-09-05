@@ -400,7 +400,9 @@
       "countdownSubtitleSeconds": "Beberapa detik yang tenang. Lalu halaman baru.",
       "celebrateTitle": "Selamat Tahun Baru.",
       "celebrateSubtitle": "{year} dimulai di sini.",
-      "countdownLabel": "{minutes} menit {seconds} detik menuju {year}."
+      "countdownLabel": "{minutes} menit {seconds} detik menuju {year}.",
+      "countdownLabelMinute": "1 menit {seconds} detik menuju {year}.",
+      "countdownLabelSeconds": "{seconds} detik menuju {year}."
     }
   },
   "categories": {

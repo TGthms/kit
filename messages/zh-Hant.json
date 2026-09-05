@@ -400,7 +400,9 @@
       "countdownSubtitleSeconds": "只剩幾秒。然後翻開新的一頁。",
       "celebrateTitle": "新年快樂。",
       "celebrateSubtitle": "{year}，從這裡開始。",
-      "countdownLabel": "距 {year} 還有 {minutes} 分 {seconds} 秒。"
+      "countdownLabel": "距 {year} 還有 {minutes} 分 {seconds} 秒。",
+      "countdownLabelMinute": "距 {year} 還有 1 分 {seconds} 秒。",
+      "countdownLabelSeconds": "距 {year} 還有 {seconds} 秒。"
     }
   },
   "categories": {

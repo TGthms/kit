@@ -400,7 +400,9 @@
       "countdownSubtitleSeconds": "Unos segundos serenos. Después, una página nueva.",
       "celebrateTitle": "Feliz Año Nuevo.",
       "celebrateSubtitle": "{year} empieza aquí.",
-      "countdownLabel": "{minutes} minutos y {seconds} segundos para {year}."
+      "countdownLabel": "{minutes} minutos y {seconds} segundos para {year}.",
+      "countdownLabelMinute": "1 minuto y {seconds} segundos hasta {year}.",
+      "countdownLabelSeconds": "{seconds} segundos hasta {year}."
     }
   },
   "categories": {

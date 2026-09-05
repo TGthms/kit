@@ -400,7 +400,9 @@
       "countdownSubtitleSeconds": "कुछ शांत सेकंड. फिर एक नया पन्ना.",
       "celebrateTitle": "नव वर्ष मंगलमय हो.",
       "celebrateSubtitle": "{year} यहीं से शुरू होता है.",
-      "countdownLabel": "{year} तक {minutes} मिनट और {seconds} सेकंड."
+      "countdownLabel": "{year} तक {minutes} मिनट और {seconds} सेकंड.",
+      "countdownLabelMinute": "{year} तक 1 मिनट और {seconds} सेकंड.",
+      "countdownLabelSeconds": "{year} तक {seconds} सेकंड."
     }
   },
   "categories": {

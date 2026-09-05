@@ -400,7 +400,9 @@
       "countdownSubtitleSeconds": "Λίγα ήσυχα δευτερόλεπτα. Μετά μια καθαρή σελίδα.",
       "celebrateTitle": "Καλή Χρονιά.",
       "celebrateSubtitle": "Το {year} αρχίζει εδώ.",
-      "countdownLabel": "{minutes} λεπτά και {seconds} δευτερόλεπτα μέχρι το {year}."
+      "countdownLabel": "{minutes} λεπτά και {seconds} δευτερόλεπτα μέχρι το {year}.",
+      "countdownLabelMinute": "1 λεπτό και {seconds} δευτερόλεπτα μέχρι το {year}.",
+      "countdownLabelSeconds": "{seconds} δευτερόλεπτα μέχρι το {year}."
     }
   },
   "categories": {

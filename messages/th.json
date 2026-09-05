@@ -400,7 +400,9 @@
       "countdownSubtitleSeconds": "อีกไม่กี่วินาที แล้วจะพลิกหน้าใหม่",
       "celebrateTitle": "สวัสดีปีใหม่",
       "celebrateSubtitle": "{year} เริ่มตรงนี้",
-      "countdownLabel": "อีก {minutes} นาที {seconds} วินาทีสู่ปี {year}"
+      "countdownLabel": "อีก {minutes} นาที {seconds} วินาทีสู่ปี {year}",
+      "countdownLabelMinute": "อีก 1 นาที {seconds} วินาทีถึง {year}",
+      "countdownLabelSeconds": "อีก {seconds} วินาทีถึง {year}"
     }
   },
   "categories": {

@@ -400,7 +400,9 @@
       "countdownSubtitleSeconds": "Birkaç sakin saniye. Sonra yeni bir sayfa.",
       "celebrateTitle": "Yeni yılın kutlu olsun.",
       "celebrateSubtitle": "{year} burada başlıyor.",
-      "countdownLabel": "{year} yılına {minutes} dakika {seconds} saniye."
+      "countdownLabel": "{year} yılına {minutes} dakika {seconds} saniye.",
+      "countdownLabelMinute": "{year} için 1 dakika {seconds} saniye.",
+      "countdownLabelSeconds": "{year} için {seconds} saniye."
     }
   },
   "categories": {

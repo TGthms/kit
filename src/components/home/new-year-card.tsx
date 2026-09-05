@@ -17,9 +17,12 @@ function prefersReducedMotion(): boolean {
 export function NewYearCard({
   state,
   getNow,
+  heading = "h1",
 }: {
   state: NewYearCardState;
   getNow: () => Date;
+  /** Category pages already have a PageHeader `h1`; the card is not a heading there. */
+  heading?: "h1" | "p";
 }) {
   const t = useTranslations("home.newYearCard");
   const [reducedMotion] = useState(prefersReducedMotion);
@@ -33,6 +36,12 @@ export function NewYearCard({
       : subtitleKind === "minute"
         ? t("countdownSubtitleMinute")
         : t("countdownSubtitleSeconds");
+  const clockLabel =
+    parts.minutes >= 2
+      ? t("countdownLabel", { year: live.year, minutes: parts.minutes, seconds: parts.seconds })
+      : parts.minutes === 1
+        ? t("countdownLabelMinute", { year: live.year, seconds: parts.seconds })
+        : t("countdownLabelSeconds", { year: live.year, seconds: parts.seconds });
 
   return (
     <Card
@@ -45,7 +54,7 @@ export function NewYearCard({
           <>
             <GreetingHeadline
               key={`ny-count-${live.year}`}
-              as="h1"
+              as={heading}
               className="type-title text-foreground"
               text={t("countdownTitle", { year: live.year })}
             />
@@ -56,11 +65,7 @@ export function NewYearCard({
               animate={!reducedMotion}
               className="text-[2.75rem] font-semibold tracking-[-0.04em] text-foreground sm:text-6xl"
               digitClassName="font-semibold"
-              label={t("countdownLabel", {
-                year: live.year,
-                minutes: parts.minutes,
-                seconds: parts.seconds,
-              })}
+              label={clockLabel}
             />
             <GreetingSubtitle
               key={subtitleKind}
@@ -74,7 +79,7 @@ export function NewYearCard({
           <>
             <GreetingHeadline
               key={`ny-hi-${live.year}`}
-              as="h1"
+              as={heading}
               className="type-display text-foreground"
               text={t("celebrateTitle", { year: live.year })}
             />

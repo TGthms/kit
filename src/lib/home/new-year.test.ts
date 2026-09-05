@@ -7,6 +7,7 @@ import {
   getNewYearCardState,
   nextNewYearTickMs,
   newYearStart,
+  shouldBurstNewYearFireworks,
   shouldPlayNewYearFireworks,
 } from "./new-year";
 
@@ -40,12 +41,15 @@ describe("new year card window", () => {
     const flip = getNewYearCardState(new Date(2027, 0, 1, 0, 0, 0, 0));
     expect(flip).toMatchObject({ phase: "celebrate", year: 2027, msLeft: 0, msSinceStart: 0 });
     expect(shouldPlayNewYearFireworks(flip)).toBe(true);
+    expect(shouldBurstNewYearFireworks(flip)).toBe(false);
     const later = getNewYearCardState(new Date(2027, 0, 1, 0, 0, 10, 0));
     expect(later.phase).toBe("celebrate");
     expect(shouldPlayNewYearFireworks(later)).toBe(false);
+    expect(shouldBurstNewYearFireworks(later)).toBe(true);
     const noon = getNewYearCardState(new Date(2027, 0, 1, 12, 0, 0, 0));
     expect(noon.phase).toBe("celebrate");
     expect(shouldPlayNewYearFireworks(noon)).toBe(false);
+    expect(shouldBurstNewYearFireworks(noon)).toBe(true);
     const nextDay = getNewYearCardState(new Date(2027, 0, 2, 0, 0, 0, 0));
     expect(nextDay.phase).toBe("hidden");
     const opening = getNewYearCardState(new Date(2027, 0, 1, 0, 0, 3, 0));

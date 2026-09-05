@@ -2,6 +2,8 @@
 
 export const NEW_YEAR_COUNTDOWN_MS = 10 * 60 * 1000;
 export const NEW_YEAR_FIREWORKS_MS = 10_000;
+/** One volley when landing on 1 Jan after the opening 10s. */
+export const NEW_YEAR_BURST_ROCKETS = 12;
 
 export type NewYearCardPhase = "hidden" | "countdown" | "celebrate";
 
@@ -57,9 +59,14 @@ export function countdownSubtitleKind(minutes: number): CountdownSubtitleKind {
   return "seconds";
 }
 
-/** Fireworks only when the year has just turned, not all of 1 Jan. */
+/** Continuous show for the remainder of the first 10 seconds after midnight. */
 export function shouldPlayNewYearFireworks(state: NewYearCardState): boolean {
   return state.phase === "celebrate" && state.msSinceStart < NEW_YEAR_FIREWORKS_MS;
+}
+
+/** One volley when opening home on 1 Jan after that opening window. */
+export function shouldBurstNewYearFireworks(state: NewYearCardState): boolean {
+  return state.phase === "celebrate" && state.msSinceStart >= NEW_YEAR_FIREWORKS_MS;
 }
 
 /**

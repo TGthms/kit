@@ -400,7 +400,9 @@
       "countdownSubtitleSeconds": "Несколько тихих секунд. Потом чистая страница.",
       "celebrateTitle": "С Новым годом.",
       "celebrateSubtitle": "{year} начинается здесь.",
-      "countdownLabel": "{minutes} минут и {seconds} секунд до {year}."
+      "countdownLabel": "{minutes} минут и {seconds} секунд до {year}.",
+      "countdownLabelMinute": "1 минута и {seconds} секунд до {year}.",
+      "countdownLabelSeconds": "{seconds} секунд до {year}."
     }
   },
   "categories": {

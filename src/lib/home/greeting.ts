@@ -96,6 +96,8 @@ export const NEW_YEAR_CARD_KEYS = [
   "celebrateTitle",
   "celebrateSubtitle",
   "countdownLabel",
+  "countdownLabelMinute",
+  "countdownLabelSeconds",
 ] as const;
 
 export const SUBTITLE_FACT_KEYS = [

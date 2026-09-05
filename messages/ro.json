@@ -400,7 +400,9 @@
       "countdownSubtitleSeconds": "Câteva secunde line. Apoi o pagină nouă.",
       "celebrateTitle": "An Nou fericit.",
       "celebrateSubtitle": "{year} începe aici.",
-      "countdownLabel": "{minutes} minute și {seconds} secunde până în {year}."
+      "countdownLabel": "{minutes} minute și {seconds} secunde până în {year}.",
+      "countdownLabelMinute": "1 minut și {seconds} secunde până la {year}.",
+      "countdownLabelSeconds": "{seconds} secunde până la {year}."
     }
   },
   "categories": {

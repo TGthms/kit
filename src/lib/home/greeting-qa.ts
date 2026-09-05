@@ -1,11 +1,11 @@
 /**
  * Hidden greeting preview. Works in production as well as `next dev`.
  *
- *   /en/?greetingDate=2026-12-25
- *   /zh-Hans/?greetingDate=2026-03-14&greetingSeed=3
- *   /en/?greetingDate=2026-12-31&time=23:59:03
+ *   /en/?date=2026-12-25
+ *   /zh-Hans/?date=2026-03-14&greetingSeed=3
+ *   /en/?date=2026-12-31&time=23:59:03
  *
- * greetingDate=YYYY-MM-DD — that calendar day.
+ * date=YYYY-MM-DD (alias: greetingDate) — that calendar day.
  * time=HH:MM or HH:MM:SS (alias: greetingTime) — optional clock on that day.
  *   If omitted, the real wall-clock hour/minute/second is kept.
  *   If set, preview time starts there and advances with the real clock

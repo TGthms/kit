@@ -400,7 +400,9 @@
       "countdownSubtitleSeconds": "Pár csendes másodperc. Aztán egy üres lap.",
       "celebrateTitle": "Boldog új évet.",
       "celebrateSubtitle": "{year} itt kezdődik.",
-      "countdownLabel": "{minutes} perc és {seconds} másodperc {year}-ig."
+      "countdownLabel": "{minutes} perc és {seconds} másodperc {year}-ig.",
+      "countdownLabelMinute": "1 perc és {seconds} másodperc {year}-ig.",
+      "countdownLabelSeconds": "{seconds} másodperc {year}-ig."
     }
   },
   "categories": {

@@ -400,7 +400,9 @@
       "countdownSubtitleSeconds": "Vài giây yên. Rồi một trang mới.",
       "celebrateTitle": "Chúc mừng năm mới.",
       "celebrateSubtitle": "{year} bắt đầu từ đây.",
-      "countdownLabel": "Còn {minutes} phút {seconds} giây nữa đến {year}."
+      "countdownLabel": "Còn {minutes} phút {seconds} giây nữa đến {year}.",
+      "countdownLabelMinute": "Còn 1 phút {seconds} giây đến {year}.",
+      "countdownLabelSeconds": "Còn {seconds} giây đến {year}."
     }
   },
   "categories": {

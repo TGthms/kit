@@ -400,7 +400,9 @@
       "countdownSubtitleSeconds": "Några stilla sekunder. Sedan ett nytt blad.",
       "celebrateTitle": "Gott nytt år.",
       "celebrateSubtitle": "{year} börjar här.",
-      "countdownLabel": "{minutes} minuter och {seconds} sekunder till {year}."
+      "countdownLabel": "{minutes} minuter och {seconds} sekunder till {year}.",
+      "countdownLabelMinute": "1 minut och {seconds} sekunder till {year}.",
+      "countdownLabelSeconds": "{seconds} sekunder till {year}."
     }
   },
   "categories": {
