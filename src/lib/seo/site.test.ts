@@ -34,6 +34,13 @@ describe("og locale tags", () => {
   });
 });
 
+describe("google favicon", () => {
+  it("ships a 48px PNG for Search favicons", () => {
+    const icon = join(dirname(fileURLToPath(import.meta.url)), "../../../public/icons/favicon-48.png");
+    expect(readFileSync(icon).length).toBeGreaterThan(32);
+  });
+});
+
 describe("og image URL", () => {
   it("points at the canonical host without a GitHub Pages prefix", () => {
     expect(ogImageUrl()).toBe(`${SITE_URL}/og/kit.png`);
@@ -146,10 +153,26 @@ describe("social metadata builders", () => {
   });
 });
 
+describe("backup host robots", () => {
+  it("noindexes every page when NEXT_PUBLIC_BASE_PATH is set", async () => {
+    const previous = process.env.NEXT_PUBLIC_BASE_PATH;
+    process.env.NEXT_PUBLIC_BASE_PATH = "/kit";
+    try {
+      const home = await buildLocaleMetadata("en");
+      expect(home.robots).toMatchObject({ index: false, follow: true });
+    } finally {
+      if (previous === undefined) delete process.env.NEXT_PUBLIC_BASE_PATH;
+      else process.env.NEXT_PUBLIC_BASE_PATH = previous;
+    }
+  });
+});
+
 describe("sitemap", () => {
   it("indexes first-class locales and omits chrome and /zh/", async () => {
     const { default: sitemap } = await import("@/app/sitemap");
     const urls = sitemap().map((entry) => entry.url);
+    expect(urls[0]).toBe(`${SITE_URL}/`);
+    expect(sitemap()[0].lastModified).toBeInstanceOf(Date);
     expect(urls.some((url) => url.endsWith("/en/"))).toBe(true);
     expect(urls.some((url) => url.includes("/zh-Hans/tools/world-clock/"))).toBe(true);
     expect(urls.some((url) => url.includes("/zh/"))).toBe(false);

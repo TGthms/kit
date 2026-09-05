@@ -10,6 +10,11 @@ export const WEBSITE_ID = `${SITE_URL}/#website`;
 export const PERSON_ID = `${SITE_AUTHOR_URL}/#person`;
 export const APP_ID = `${SITE_URL}/#app`;
 
+/** GitHub Pages backup is built with NEXT_PUBLIC_BASE_PATH=/kit. */
+export function isBackupHost(): boolean {
+  return Boolean(process.env.NEXT_PUBLIC_BASE_PATH);
+}
+
 /**
  * Static-host CSP for the client-only app.
  *

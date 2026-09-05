@@ -13,6 +13,7 @@ import {
   SITE_AUTHOR_URL,
   SITE_NAME,
   SITE_URL,
+  isBackupHost,
 } from "./site";
 
 type Messages = {
@@ -96,7 +97,7 @@ export function buildSocialMetadata({
   const canonicalLoc = canonicalLocale(pathLoc);
   const url = absoluteUrl(`/${canonicalLoc}${pathAfterLocale}`);
   const images = socialImages();
-  const hide = noindex || pathLoc === "zh" || NOINDEX_SECTIONS.has(pathAfterLocale);
+  const hide = noindex || pathLoc === "zh" || NOINDEX_SECTIONS.has(pathAfterLocale) || isBackupHost();
   return {
     title,
     description,

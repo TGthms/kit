@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { withBasePath, withAsset } from "@/lib/base-path";
 import { languageAlternates, socialImages } from "@/lib/seo/metadata";
 import {
+  isBackupHost,
   ogImageUrl,
   SITE_AUTHOR,
   SITE_AUTHOR_URL,
@@ -33,11 +34,13 @@ export const metadata: Metadata = {
   verification: {
     google: "0rE0QD0vWPSfPxelCpS8qL2_n3JGrd_ZYPJBaGwnLZQ",
   },
+  robots: isBackupHost() ? { index: false, follow: true } : undefined,
   icons: {
     icon: [
       { url: withAsset("/favicon.ico"), sizes: "32x32", type: "image/x-icon" },
       { url: withAsset("/icons/favicon.svg"), type: "image/svg+xml" },
       { url: withAsset("/icons/favicon-32.png"), sizes: "32x32", type: "image/png" },
+      { url: withAsset("/icons/favicon-48.png"), sizes: "48x48", type: "image/png" },
       { url: withAsset("/icons/icon.svg"), type: "image/svg+xml" },
     ],
     apple: [{ url: withAsset("/icons/apple-touch-icon.png"), sizes: "180x180" }],
