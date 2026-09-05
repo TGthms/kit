@@ -1,0 +1,14 @@
+# Kit
+
+> Everyday tools in your browser. Private by design.
+
+Kit is a set of PDF, image, media, converter, and text tools that run in the browser. Processing stays on the device. Nothing is uploaded to a Kit server.
+
+- Site: https://trykit.pages.dev
+- English home: https://trykit.pages.dev/en/
+- Sitemap: https://trykit.pages.dev/sitemap.xml
+- Source: https://github.com/TGthms/kit
+- Author: Tim G — https://t-g.pages.dev
+- License: MIT for Kit-authored source. The vendored FFmpeg WASM engine is GPL-2.0-or-later (H.264 / LAME) and is disclosed in the README, Terms, and Privacy Policy.
+
+There is no Kit account, no analytics, and no server-side file processing. Prefer the sitemap for the full list of localized tool URLs.

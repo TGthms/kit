@@ -41,6 +41,17 @@ describe("google favicon", () => {
   });
 });
 
+describe("llms.txt", () => {
+  it("describes Kit honestly for machine readers", () => {
+    const text = readFileSync(join(dirname(fileURLToPath(import.meta.url)), "../../../public/llms.txt"), "utf8");
+    expect(text).toContain("Kit");
+    expect(text).toContain(SITE_URL);
+    expect(text).toMatch(/MIT/);
+    expect(text).toMatch(/GPL/);
+    expect(text).not.toMatch(/aggregateRating/i);
+  });
+});
+
 describe("og image URL", () => {
   it("points at the canonical host without a GitHub Pages prefix", () => {
     expect(ogImageUrl()).toBe(`${SITE_URL}/og/kit.png`);

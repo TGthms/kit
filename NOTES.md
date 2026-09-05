@@ -77,8 +77,21 @@ Component tests use the browser-like Vitest environment where needed; pure libra
 - Replace hard-coded file-tool classification with an explicit registry property.
 - Hash-based `script-src` (dropping `'unsafe-inline'`) is blocked by Next.js Flight inline scripts on static export.
 
+### Discovery (after SEO deploy)
+
+Google’s site name for `trykit.pages.dev` used to fall back to Cloudflare because `/` had no `WebSite` JSON-LD. After the sitename deploy:
+
+1. Search Console → URL Inspection on `https://trykit.pages.dev/` → Request indexing.
+2. Confirm the sitemap `https://trykit.pages.dev/sitemap.xml` is submitted.
+3. Wait days to weeks. Prefer “Kit”; acceptable fallback is `trykit.pages.dev`, not Cloudflare.
+4. Custom domain (highest leverage, Tim): Cloudflare Pages → Custom domains, then change `SITE_URL` and 301 `trykit.pages.dev`. Do not mix hosts before that.
+5. GitHub repo: description “Everyday browser tools that stay on your device”, topics (`pdf`, `privacy`, `pwa`, `offline`, `nextjs`), social preview `/og/kit.png`.
+6. One honest listing each, not spam: PrivacyGuides / privacytools.io, AlternativeTo, Awesome Privacy. Optional Show HN or Product Hunt on a launch day.
+7. Bing Webmaster Tools + the same sitemap (no analytics on Kit).
+
 ### Explicitly deferred
 
 - Client-side OCR.
 - True sanitizing redaction.
 - Usage statistics, shareable presets, and onboarding tours.
+- Buying or attaching a custom domain.
