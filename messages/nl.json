@@ -1946,7 +1946,7 @@
     "greetWeek": "Weekdagen en weekend",
     "greetWeekBody": "Maandagochtend en vrijdagmiddag kunnen een eigen regel krijgen. Zaterdag en zondag ook. De rest van de week blijft gewoon.",
     "greetDays": "Kalenderdagen",
-    "greetDaysBody": "Sommige data wisselen een seizoensregel in: Nieuwjaarsdag, Pi-dag, Wereldwachtwoorddag, kerst en een paar internet- en privacydagen. Arabisch, Hebreeuws en Hindi slaan de christelijke over. De datum is lokaal, geen feestdagentabel op een server.",
+    "greetDaysBody": "Sommige data wisselen een seizoensregel in: Nieuwjaarsdag, Pi-dag, Wereldwachtwoorddag, kerst en een paar internet- en privacydagen. De datum is lokaal, geen feestdagentabel op een server.",
     "greetSub": "De stillere regel eronder",
     "greetSubBody": "Onder de groet staat een korte zin. Sommige linken naar een hulpmiddel of naar deze pagina — op Wereldwachtwoorddag kan de wachtwoordgenerator opengaan, op privacydagen deze uitleg.",
     "greetNewYear": "Nieuwjaar",

@@ -1946,7 +1946,7 @@
     "greetWeek": "Entre semana y el fin de semana",
     "greetWeekBody": "El lunes por la mañana y el viernes por la tarde pueden tener su propia frase. El sábado y el domingo, también. El resto de la semana se queda en lo habitual.",
     "greetDays": "Días del calendario",
-    "greetDaysBody": "Algunas fechas cambian el saludo: Año Nuevo, el Día de Pi, el Día Mundial de la Contraseña, Navidad y unos cuantos días de internet y privacidad. El árabe, el hebreo y el hindi omiten las fiestas cristianas. La fecha es la local, no una tabla de festivos en un servidor.",
+    "greetDaysBody": "Algunas fechas cambian el saludo: Año Nuevo, el Día de Pi, el Día Mundial de la Contraseña, Navidad y unos cuantos días de internet y privacidad. La fecha es la local, no una tabla de festivos en un servidor.",
     "greetSub": "La línea más discreta, debajo",
     "greetSubBody": "Bajo el saludo hay un dato breve. Algunos enlazan a una herramienta o a esta página: el Día Mundial de la Contraseña puede abrir el generador de contraseñas; los días de privacidad, Cómo funciona Kit.",
     "greetNewYear": "Año Nuevo",

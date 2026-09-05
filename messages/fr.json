@@ -1946,7 +1946,7 @@
     "greetWeek": "Jours de semaine et week-end",
     "greetWeekBody": "Le lundi matin et le vendredi après-midi peuvent avoir leur propre phrase. Le samedi et le dimanche aussi. Le reste de la semaine reste ordinaire.",
     "greetDays": "Jours du calendrier",
-    "greetDaysBody": "Certaines dates remplacent la phrase : le Jour de l’An, la journée de pi, la Journée mondiale du mot de passe, Noël, et quelques journées d’internet et de confidentialité. L’arabe, l’hébreu et le hindi laissent de côté les fêtes chrétiennes. La date est locale, pas un calendrier de fêtes sur un serveur.",
+    "greetDaysBody": "Certaines dates remplacent la phrase : le Jour de l’An, la journée de pi, la Journée mondiale du mot de passe, Noël, et quelques journées d’internet et de confidentialité. La date est locale, pas un calendrier de fêtes sur un serveur.",
     "greetSub": "La ligne plus discrète, en dessous",
     "greetSubBody": "Un court fait s’affiche sous le salut. Certains mènent à un outil ou à cette page : la Journée mondiale du mot de passe peut ouvrir le générateur ; les journées vie privée, Comment fonctionne Kit.",
     "greetNewYear": "Nouvel An",

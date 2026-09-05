@@ -1897,7 +1897,7 @@
     "greetWeek": "Weekdays and weekends",
     "greetWeekBody": "Monday morning and Friday afternoon can get their own lines. Saturday and Sunday can too. The rest of the week stays ordinary.",
     "greetDays": "Calendar days",
-    "greetDaysBody": "Some dates swap in a seasonal line: New Year’s Day, Pi Day, World Password Day, Christmas, and a handful of internet-and-privacy days. Arabic, Hebrew, and Hindi skip the Christian ones. The date is local, not a holiday table on a server.",
+    "greetDaysBody": "Some dates swap in a seasonal line: New Year’s Day, Pi Day, World Password Day, Christmas, and a handful of internet-and-privacy days. The date is local, not a holiday table on a server.",
     "greetSub": "The quieter line underneath",
     "greetSubBody": "A short fact sits under the greeting. A few of those link into a tool or this page — World Password Day can open the password generator; privacy days can open How Kit works.",
     "greetNewYear": "New Year",

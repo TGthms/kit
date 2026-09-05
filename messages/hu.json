@@ -1946,7 +1946,7 @@
     "greetWeek": "Hétköznap és hétvége",
     "greetWeekBody": "A hétfő reggel és a péntek délután kaphat saját sort. A szombat és a vasárnap is. A hét többi része marad hétköznapi.",
     "greetDays": "Naptári napok",
-    "greetDaysBody": "Egyes dátumokra szezonális sor kerül: Újév, Szenteste, Karácsony, Nagypéntek, Virágvasárnap, a pí napja, a jelszó világnapja, és néhány internetes, adatvédelmi nap. Arab, héber és hindi felületen a keresztény napok kimaradnak. A dátum helyi, nem egy szerveren tárolt ünneptábla.",
+    "greetDaysBody": "Egyes dátumokra szezonális sor kerül: Újév, Szenteste, Karácsony, Nagypéntek, Virágvasárnap, a pí napja, a jelszó világnapja, és néhány internetes, adatvédelmi nap. A dátum helyi, nem egy szerveren tárolt ünneptábla.",
     "greetSub": "A halkabb sor a köszönés alatt",
     "greetSubBody": "A köszönés alatt egy rövid tény áll. Néhány egy eszközre vagy erre az oldalra visz: a jelszó világnapja megnyithatja a jelszógenerátort, az adatvédelmi napok a „Hogyan működik Kit” oldalt.",
     "greetNewYear": "Újév",

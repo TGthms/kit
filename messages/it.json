@@ -1946,7 +1946,7 @@
     "greetWeek": "Giorni feriali e fine settimana",
     "greetWeekBody": "Il lunedì mattina e il venerdì pomeriggio possono avere una riga propria. Sabato e domenica anche. Il resto della settimana resta ordinario.",
     "greetDays": "Giorni di calendario",
-    "greetDaysBody": "Alcune date cambiano la riga: Capodanno, il Pi greco, la Giornata mondiale della password, Natale, e alcune giornate di internet e privacy. Arabo, ebraico e hindi saltano le feste cristiane. La data è locale, non una tabella di festività su un server.",
+    "greetDaysBody": "Alcune date cambiano la riga: Capodanno, il Pi greco, la Giornata mondiale della password, Natale, e alcune giornate di internet e privacy. La data è locale, non una tabella di festività su un server.",
     "greetSub": "La riga più discreta, sotto",
     "greetSubBody": "Sotto il saluto c’è un fatto breve. Alcuni portano a uno strumento o a questa pagina: la Giornata mondiale della password può aprire il generatore; i giorni della privacy, Come funziona Kit.",
     "greetNewYear": "Capodanno",

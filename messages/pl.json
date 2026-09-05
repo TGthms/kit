@@ -1946,7 +1946,7 @@
     "greetWeek": "Dni powszednie i weekend",
     "greetWeekBody": "Poniedziałkowy poranek i piątkowe popołudnie mogą mieć własne wersy. Sobota i niedziela też. Reszta tygodnia zostaje zwyczajna.",
     "greetDays": "Dni w kalendarzu",
-    "greetDaysBody": "Niektóre daty wstawiają sezonowy wers: Nowy Rok, Wigilia, Boże Narodzenie, Wielki Piątek, Niedziela Palmowa, Poniedziałek Wielkanocny, Dzień liczby π, Światowy Dzień Hasła i kilka dni internetu oraz prywatności. W arabskim, hebrajskim i hindi dni chrześcijańskie są pomijane. Data jest lokalna, nie z tabeli świąt na serwerze.",
+    "greetDaysBody": "Niektóre daty wstawiają sezonowy wers: Nowy Rok, Wigilia, Boże Narodzenie, Wielki Piątek, Niedziela Palmowa, Poniedziałek Wielkanocny, Dzień liczby π, Światowy Dzień Hasła i kilka dni internetu oraz prywatności. Data jest lokalna, nie z tabeli świąt na serwerze.",
     "greetSub": "Cichszy wers pod powitaniem",
     "greetSubBody": "Pod powitaniem stoi krótki fakt. Niektóre prowadzą do narzędzia albo na tę stronę: Światowy Dzień Hasła może otworzyć generator haseł, dni prywatności — „Jak działa Kit”.",
     "greetNewYear": "Nowy Rok",

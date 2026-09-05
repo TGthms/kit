@@ -1946,7 +1946,7 @@
     "greetWeek": "Hari kerja dan akhir pekan",
     "greetWeekBody": "Senin pagi dan Jumat sore bisa mendapat baris sendiri. Sabtu dan Minggu juga. Hari lain dalam minggu tetap biasa.",
     "greetDays": "Hari kalender",
-    "greetDaysBody": "Beberapa tanggal menukar baris musiman: Tahun Baru, Hari Pi, Hari Kata Sandi Sedunia, Natal, dan beberapa hari internet serta privasi. Arab, Ibrani, dan Hindi melewati hari Kristen. Tanggalnya lokal, bukan tabel hari libur di server.",
+    "greetDaysBody": "Beberapa tanggal menukar baris musiman: Tahun Baru, Hari Pi, Hari Kata Sandi Sedunia, Natal, dan beberapa hari internet serta privasi. Tanggalnya lokal, bukan tabel hari libur di server.",
     "greetSub": "Baris yang lebih tenang di bawahnya",
     "greetSubBody": "Fakta singkat duduk di bawah sapaan. Beberapa mengarah ke alat atau halaman ini — Hari Kata Sandi Sedunia bisa membuka pembuat kata sandi; hari privasi bisa membuka Cara kerja Kit.",
     "greetNewYear": "Tahun Baru",

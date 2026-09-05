@@ -1946,7 +1946,7 @@
     "greetWeek": "Hverdage og weekend",
     "greetWeekBody": "Mandag morgen og fredag eftermiddag kan få deres egne linjer. Lørdag og søndag også. Resten af ugen er almindelig.",
     "greetDays": "Kalenderdage",
-    "greetDaysBody": "Nogle datoer skifter en sæsonlinje ind: Nytårsdag, pi-dag, verdens adgangskodedag, jul og et par internet- og persondatadage. Arabisk, hebraisk og hindi springer de kristne over. Datoen er lokal, ikke en helligdagstabel på en server.",
+    "greetDaysBody": "Nogle datoer skifter en sæsonlinje ind: Nytårsdag, pi-dag, verdens adgangskodedag, jul og et par internet- og persondatadage. Datoen er lokal, ikke en helligdagstabel på en server.",
     "greetSub": "Den stille linje nedenunder",
     "greetSubBody": "Under hilsenen står en kort sætning. Nogle peger ind i et værktøj eller til denne side — på verdens adgangskodedag kan adgangskodegeneratoren åbne, på persondatadage denne forklaring.",
     "greetNewYear": "Nytår",

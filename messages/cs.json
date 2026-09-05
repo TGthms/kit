@@ -1946,7 +1946,7 @@
     "greetWeek": "Všední dny a víkend",
     "greetWeekBody": "Pondělní ráno a páteční odpoledne můžou mít vlastní řádky. Sobota a neděle taky. Zbytek týdne zůstane obyčejný.",
     "greetDays": "Kalendářní dny",
-    "greetDaysBody": "Některá data dosadí sezónní řádek: Nový rok, Štědrý den, Velký pátek, Květná neděle, den pí, Světový den hesel a několik dní internetu a soukromí. V arabštině, hebrejštině a hindštině se křesťanské dny vynechají. Datum je místní, ne sváteční tabulka na serveru.",
+    "greetDaysBody": "Některá data dosadí sezónní řádek: Nový rok, Štědrý den, Velký pátek, Květná neděle, den pí, Světový den hesel a několik dní internetu a soukromí. Datum je místní, ne sváteční tabulka na serveru.",
     "greetSub": "Tišší řádek pod pozdravem",
     "greetSubBody": "Pod pozdravem je krátký fakt. Některé vedou do nástroje nebo na tuto stránku: Světový den hesel může otevřít generátor hesel, dny soukromí — „Jak Kit funguje“.",
     "greetNewYear": "Nový rok",

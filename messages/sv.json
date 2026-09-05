@@ -1946,7 +1946,7 @@
     "greetWeek": "Vardagar och helg",
     "greetWeekBody": "Måndagsmorgon och fredagseftermiddag kan få egna rader. Lördag och söndag också. Resten av veckan är vanlig.",
     "greetDays": "Kalenderdagar",
-    "greetDaysBody": "Vissa datum byter in en säsongsrad: Nyårsdagen, pi-dagen, världslösenordsdagen, jul och några internet- och integritetsdagar. Arabiska, hebreiska och hindi hoppar över de kristna. Datumet är lokalt, ingen helgdagstabell på en server.",
+    "greetDaysBody": "Vissa datum byter in en säsongsrad: Nyårsdagen, pi-dagen, världslösenordsdagen, jul och några internet- och integritetsdagar. Datumet är lokalt, ingen helgdagstabell på en server.",
     "greetSub": "Den tystare raden under",
     "greetSubBody": "Under hälsningen står en kort mening. Några leder in i ett verktyg eller till den här sidan — på världslösenordsdagen kan lösenordsgeneratorn öppnas, på integritetsdagar den här förklaringen.",
     "greetNewYear": "Nyår",

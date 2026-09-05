@@ -1955,7 +1955,7 @@
     "greetWeek": "Ukedager og helg",
     "greetWeekBody": "Mandag morgen og fredag ettermiddag kan få egne linjer. Lørdag og søndag også. Resten av uken er vanlig.",
     "greetDays": "Kalenderdager",
-    "greetDaysBody": "Noen datoer bytter inn en sesonglinje: første nyttårsdag, pi-dagen, verdens passorddag, jul og noen internett- og personverndager. Arabisk, hebraisk og hindi hopper over de kristne. Datoen er lokal, ingen helligdagstabell på en server.",
+    "greetDaysBody": "Noen datoer bytter inn en sesonglinje: første nyttårsdag, pi-dagen, verdens passorddag, jul og noen internett- og personverndager. Datoen er lokal, ingen helligdagstabell på en server.",
     "greetSub": "Den stillere linjen under",
     "greetSubBody": "Under hilsenen står en kort setning. Noen peker inn i et verktøy eller til denne siden — på verdens passorddag kan passordgeneratoren åpne, på personverndager denne forklaringen.",
     "greetNewYear": "Nyttår",

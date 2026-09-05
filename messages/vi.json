@@ -1946,7 +1946,7 @@
     "greetWeek": "Ngày thường và cuối tuần",
     "greetWeekBody": "Sáng thứ Hai và chiều thứ Sáu có thể có câu riêng. Thứ Bảy và Chủ nhật cũng vậy. Các ngày còn lại trong tuần giữ câu bình thường.",
     "greetDays": "Ngày trong lịch",
-    "greetDaysBody": "Một số ngày đổi sang câu theo mùa: Tết Dương lịch, Ngày số Pi, Ngày Mật khẩu Thế giới, Giáng sinh, và vài ngày về internet với quyền riêng tư. Tiếng Ả Rập, Hebrew và Hindi bỏ các ngày Kitô giáo. Ngày là địa phương, không phải bảng ngày lễ trên máy chủ.",
+    "greetDaysBody": "Một số ngày đổi sang câu theo mùa: Tết Dương lịch, Ngày số Pi, Ngày Mật khẩu Thế giới, Giáng sinh, và vài ngày về internet với quyền riêng tư. Ngày là địa phương, không phải bảng ngày lễ trên máy chủ.",
     "greetSub": "Dòng nhẹ bên dưới",
     "greetSubBody": "Một sự thật ngắn nằm dưới lời chào. Một vài dòng liên kết vào công cụ hoặc trang này — Ngày Mật khẩu Thế giới có thể mở trình tạo mật khẩu; ngày quyền riêng tư có thể mở Cách Kit hoạt động.",
     "greetNewYear": "Tết Dương lịch",

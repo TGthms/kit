@@ -1946,7 +1946,7 @@
     "greetWeek": "Wochentage und Wochenende",
     "greetWeekBody": "Montagmorgen und Freitagnachmittag können eigene Zeilen bekommen. Samstag und Sonntag ebenfalls. Unter der Woche bleibt es gewöhnlich.",
     "greetDays": "Kalendertage",
-    "greetDaysBody": "Manche Daten bringen eine saisonale Zeile: Neujahr, Pi-Tag, Welt-Passwort-Tag, Weihnachten und ein paar Internet- und Datenschutztage. Arabisch, Hebräisch und Hindi lassen die christlichen aus. Das Datum ist lokal, keine Feiertagstabelle auf einem Server.",
+    "greetDaysBody": "Manche Daten bringen eine saisonale Zeile: Neujahr, Pi-Tag, Welt-Passwort-Tag, Weihnachten und ein paar Internet- und Datenschutztage. Das Datum ist lokal, keine Feiertagstabelle auf einem Server.",
     "greetSub": "Die leisere Zeile darunter",
     "greetSubBody": "Unter der Begrüßung steht ein kurzer Satz. Manche führen zu einem Werkzeug oder zu dieser Seite — am Welt-Passwort-Tag kann der Passwortgenerator aufgehen, an Datenschutztagen diese Erklärung.",
     "greetNewYear": "Neujahr",

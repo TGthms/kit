@@ -1946,7 +1946,7 @@
     "greetWeek": "Dias úteis e fim de semana",
     "greetWeekBody": "Segunda de manhã e sexta à tarde podem ter uma frase só delas. Sábado e domingo também. O resto da semana segue o normal.",
     "greetDays": "Dias do calendário",
-    "greetDaysBody": "Algumas datas trocam a frase: Ano Novo, Dia do Pi, Dia Mundial da Senha, Natal e alguns dias de internet e privacidade. Árabe, hebraico e hindi pulam as festas cristãs. A data é a local, não uma tabela de feriados num servidor.",
+    "greetDaysBody": "Algumas datas trocam a frase: Ano Novo, Dia do Pi, Dia Mundial da Senha, Natal e alguns dias de internet e privacidade. A data é a local, não uma tabela de feriados num servidor.",
     "greetSub": "A linha mais discreta, embaixo",
     "greetSubBody": "Debaixo do cumprimento tem um fato curto. Alguns levam a uma ferramenta ou a esta página: o Dia Mundial da Senha pode abrir o gerador; os dias de privacidade, Como o Kit funciona.",
     "greetNewYear": "Ano Novo",

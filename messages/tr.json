@@ -1946,7 +1946,7 @@
     "greetWeek": "Hafta içi ve hafta sonu",
     "greetWeekBody": "Pazartesi sabahı ve cuma öğleden sonrası kendi satırlarını alabilir. Cumartesi ve pazar da. Haftanın gerisi sıradan kalır.",
     "greetDays": "Takvim günleri",
-    "greetDaysBody": "Bazı tarihler mevsimlik bir satır değiştirir: Yılbaşı, Pi Günü, Dünya Parola Günü, Noel ve birkaç internet-gizlilik günü. Arapça, İbranice ve Hintçe Hristiyan olanları atlar. Tarih yereldır; sunucuda bir tatil tablosu yoktur.",
+    "greetDaysBody": "Bazı tarihler mevsimlik bir satır değiştirir: Yılbaşı, Pi Günü, Dünya Parola Günü, Noel ve birkaç internet-gizlilik günü. Tarih yereldir; sunucuda bir tatil tablosu yoktur.",
     "greetSub": "Altındaki daha sakin satır",
     "greetSubBody": "Selamlamanın altında kısa bir bilgi durur. Birkaçı bir araca veya bu sayfaya gider — Dünya Parola Günü parola üretecini açabilir; gizlilik günleri Kit nasıl çalışır’ı açabilir.",
     "greetNewYear": "Yılbaşı",
