@@ -22,14 +22,14 @@ export function shouldReloadForChunkError(
   now = Date.now(),
   storage: Pick<Storage, "getItem" | "setItem"> | null | undefined = typeof window === "undefined" ? null : window.sessionStorage,
 ): boolean {
-  if (!storage) return true;
+  if (!storage) return false;
   try {
     const previous = Number(storage.getItem(CHUNK_RELOAD_KEY) || 0);
     if (previous && now - previous < CHUNK_RELOAD_GUARD_MS) return false;
     storage.setItem(CHUNK_RELOAD_KEY, String(now));
     return true;
   } catch {
-    return true;
+    return false;
   }
 }
 

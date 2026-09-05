@@ -44,8 +44,17 @@ describe("shouldReloadForChunkError", () => {
     expect(shouldReloadForChunkError(1_000 + CHUNK_RELOAD_GUARD_MS, storage)).toBe(true);
   });
 
-  it("reloads when storage is missing", () => {
-    expect(shouldReloadForChunkError(1, null)).toBe(true);
+  it("does not loop-reload when storage is missing or throws", () => {
+    expect(shouldReloadForChunkError(1, null)).toBe(false);
+    const throwing = {
+      getItem: () => {
+        throw new Error("quota");
+      },
+      setItem: () => {
+        throw new Error("quota");
+      },
+    };
+    expect(shouldReloadForChunkError(1, throwing)).toBe(false);
   });
 });
 
