@@ -39,6 +39,7 @@ describe("sw-precache manifest", () => {
     expect(manifest.engines.some((url) => url.includes("ffmpeg-core.wasm.gz"))).toBe(true);
     expect(manifest.engines.some((url) => url.includes("pdf.worker.min.mjs"))).toBe(true);
     expect(manifest.chromeByLocale.en).toContain("/en/");
+    expect(manifest.chromeByLocale.en).toContain("/en/how/");
     expect(manifest.chromeByLocale.en).toContain("/en/c/pdf/");
     expect(manifest.chromeByLocale.ar).toContain("/ar/settings/");
     expect(manifest.toolsByLocale.en).toContain("/en/tools/pdf-merge/");

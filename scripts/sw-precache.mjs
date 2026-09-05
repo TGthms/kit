@@ -8,7 +8,7 @@ import { fileURLToPath, pathToFileURL } from "node:url";
 
 const SKIP_DIRS = new Set(["node_modules"]);
 const SKIP_LOCALE_DIRS = new Set(["_next", "vendor", "boot", "icons", "404", "_not-found"]);
-const CHROME_SEGMENTS = ["", "settings/", "favorites/", "history/", "privacy/", "terms/"];
+const CHROME_SEGMENTS = ["", "settings/", "favorites/", "history/", "privacy/", "terms/", "how/"];
 
 export function toSitePath(outDir, file) {
   const rel = relative(outDir, file).split("\\").join("/");

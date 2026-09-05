@@ -2,7 +2,7 @@
   "name": "Kit",
   "short_name": "Kit",
   "description": "Everyday tools in the browser. Private by design.",
-  "start_url": "./en/",
+  "start_url": "./",
   "display": "standalone",
   "background_color": "#f5f5f7",
   "theme_color": "#f5f5f7",
