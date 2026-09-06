@@ -4,13 +4,37 @@ export type XmlNode = {
   children: Array<XmlNode | string>;
 };
 
+const NAMED_ENTITIES: Record<string, string> = {
+  lt: "<",
+  gt: ">",
+  quot: '"',
+  apos: "'",
+  amp: "&",
+};
+
+function decodeCharReference(codePoint: number, original: string): string {
+  // Lenient parser: a reference outside the XML 1.0 character set (surrogate
+  // halves, noncharacters, control codes) stays literal rather than emitted.
+  const validXmlChar =
+    codePoint === 0x09 ||
+    codePoint === 0x0a ||
+    codePoint === 0x0d ||
+    (codePoint >= 0x20 && codePoint <= 0xd7ff) ||
+    (codePoint >= 0xe000 && codePoint <= 0xfffd) ||
+    (codePoint >= 0x10000 && codePoint <= 0x10ffff);
+  if (!Number.isInteger(codePoint) || !validXmlChar) return original;
+  return String.fromCodePoint(codePoint);
+}
+
 function decodeEntities(s: string): string {
-  return s
-    .replace(/&lt;/g, "<")
-    .replace(/&gt;/g, ">")
-    .replace(/&quot;/g, '"')
-    .replace(/&apos;/g, "'")
-    .replace(/&amp;/g, "&");
+  return s.replace(
+    /&(?:#[xX]([0-9a-fA-F]+)|#([0-9]+)|([A-Za-z][A-Za-z0-9]*));/g,
+    (original, hex: string | undefined, dec: string | undefined, name: string | undefined) => {
+      if (hex !== undefined) return decodeCharReference(parseInt(hex, 16), original);
+      if (dec !== undefined) return decodeCharReference(parseInt(dec, 10), original);
+      return (name && NAMED_ENTITIES[name]) || original;
+    }
+  );
 }
 
 function encodeEntities(s: string): string {

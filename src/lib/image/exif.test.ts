@@ -81,6 +81,18 @@ describe("parseImageMetadata", () => {
     expect(tags.some((t) => t.tag === "Software" && t.value === "Kit")).toBe(true);
   });
 
+  it("terminates on a PNG chunk length that is negative when read signed", () => {
+    // 0xFFFFFFF4 is -12 as int32. With a signed length the cursor used to
+    // compute i = dataEnd + 4 === i and spin on the main thread forever.
+    const bytes = Uint8Array.from([
+      0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a,
+      0xff, 0xff, 0xff, 0xf4, // length (negative as int32)
+      0x74, 0x45, 0x58, 0x74, // tEXt
+      0x00, 0x00, 0x00, 0x00, // truncated: no data, no CRC
+    ]);
+    expect(parseImageMetadata(bytes)).toEqual([]);
+  });
+
   it("returns empty for unknown bytes", () => {
     expect(parseImageMetadata(new Uint8Array([1, 2, 3, 4]))).toEqual([]);
   });

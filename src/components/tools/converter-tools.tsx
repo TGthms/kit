@@ -552,7 +552,18 @@ function readCurrencyCache(): CachedRateRecord[] {
     return parsed.filter((record): record is CachedRateRecord => {
       if (!record || typeof record !== "object") return false;
       const item = record as Record<string, unknown>;
-      return typeof item.date === "string" && typeof item.base === "string" && typeof item.quote === "string" && typeof item.rate === "number" && typeof item.fetchedAt === "number";
+      // The network validator (isRate in currency.ts) requires a positive
+      // finite rate; the cache must not accept what the fetch path would
+      // reject, or a poisoned cache entry would bypass validation forever.
+      return (
+        typeof item.date === "string" &&
+        typeof item.base === "string" &&
+        typeof item.quote === "string" &&
+        typeof item.rate === "number" &&
+        Number.isFinite(item.rate) &&
+        item.rate > 0 &&
+        typeof item.fetchedAt === "number"
+      );
     });
   } catch {
     return [];
@@ -667,6 +678,9 @@ export function CurrencyConverter({ namespace = "tools.currency-converter" }: { 
     fetchFrankfurterRates({ base, symbols: [quote] })
       .then((fetched) => {
         if (!active) return;
+        // A recovered fetch must retire the previous failure message.
+        setError("");
+        setErrorFor("");
         const created = createCachedRateRecords(fetched);
         const next = [...cached.filter((record) => !created.some((item) => item.base === record.base && item.quote === record.quote)), ...created];
         setLiveRates(next);

@@ -41,6 +41,7 @@ function SearchableSelectField({
   const listId = useId();
   const controlId = useId();
   const rootRef = useRef<HTMLDivElement>(null);
+  const listRef = useRef<HTMLDivElement>(null);
   const [query, setQuery] = useState("");
   const [open, setOpen] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
@@ -77,6 +78,17 @@ function SearchableSelectField({
       document.removeEventListener("keydown", onKey);
     };
   }, [open]);
+
+  // Keyboard navigation must keep the active option visible: with long option
+  // lists the highlighted entry otherwise moves out of the scrolled viewport
+  // while aria-activedescendant keeps pointing at it.
+  useEffect(() => {
+    if (!open) return;
+    const active = listRef.current?.querySelector<HTMLElement>('[data-active="true"]');
+    if (active && typeof active.scrollIntoView === "function") {
+      active.scrollIntoView({ block: "nearest" });
+    }
+  }, [open, activeIndex, filtered]);
 
   const labelNode = hideLabel ? (
     <span className="sr-only">{label}</span>
@@ -175,7 +187,7 @@ function SearchableSelectField({
           className="pe-9 text-base"
           role="combobox"
           aria-expanded={open}
-          aria-controls={listId}
+          aria-controls={open ? listId : undefined}
           aria-autocomplete="list"
           aria-activedescendant={open ? activeId : undefined}
           aria-label={label}
@@ -186,6 +198,7 @@ function SearchableSelectField({
       {open ? (
         <div
           id={listId}
+          ref={listRef}
           role="listbox"
           aria-label={translateOr(t, "searchResults", `${label} search results`, { label })}
           className="max-h-52 overflow-y-auto rounded-xl border border-input bg-background p-1 shadow-sm"

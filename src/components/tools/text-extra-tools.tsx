@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 import { FileDropzone, type FileItem } from "@/components/shared/file-dropzone";
@@ -13,7 +13,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { blobFromDataUrl, downloadBlob } from "@/lib/utils";
 import { xmlToJsonText, jsonToXmlText } from "@/lib/text/xml";
 import { formatSql } from "@/lib/text/sql";
-import { runRegex, replaceRegex } from "@/lib/text/regex";
+import { runRegexAsync, replaceRegexAsync, type RegexResult } from "@/lib/text/regex";
 import { HASH_ALGOS, hashBytes, hashText, type HashAlgo } from "@/lib/text/hash";
 import { generateUuids } from "@/lib/text/uuid";
 import { convertColor, hslToRgb, rgbToHex } from "@/lib/text/color";
@@ -91,11 +91,25 @@ export function RegexTester() {
   const [input, setInput] = useState("hello kit world");
   const [repl, setRepl] = useState("$1!");
   const [out, setOut] = useState("");
+  const [result, setResult] = useState<RegexResult>({ ok: true, matches: [], flags: "g" });
 
-  const result = useMemo(() => runRegex(pattern, flags, input), [pattern, flags, input]);
+  useEffect(() => {
+    let alive = true;
+    // Debounced and evaluated in a worker: a single catastrophic exec() must
+    // never block the main thread on the keystroke that scheduled it.
+    const timer = window.setTimeout(() => {
+      runRegexAsync(pattern, flags, input).then((next) => {
+        if (alive) setResult(next);
+      });
+    }, 200);
+    return () => {
+      alive = false;
+      window.clearTimeout(timer);
+    };
+  }, [pattern, flags, input]);
 
-  const replace = () => {
-    const r = replaceRegex(pattern, flags, input, repl);
+  const replace = async () => {
+    const r = await replaceRegexAsync(pattern, flags, input, repl);
     if (!r.ok) {
       toast.error(r.error);
       log("failed", "failed");

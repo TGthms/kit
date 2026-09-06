@@ -58,11 +58,14 @@ export function AudioConvert() {
       toast.success(t("success"));
       log(`${format} n=${files.length}`, "success");
     } catch (e) {
-      if (e instanceof DOMException && e.name === "AbortError") toast.error(tc("cancel"));
-      else toast.error(e instanceof Error ? e.message : tc("error"));
-      log("failed", "failed");
+      if (e instanceof DOMException && e.name === "AbortError") {
+        toast.error(tc("cancel"));
+      } else {
+        toast.error(e instanceof Error ? e.message : tc("error"));
+        log("failed", "failed");
+      }
     } finally {
-      job.stop();
+      job.stop(ac);
     }
   };
 
@@ -135,11 +138,14 @@ export function AudioTrim() {
       toast.success(t("success"));
       log("completed", "success");
     } catch (e) {
-      if (e instanceof DOMException && e.name === "AbortError") toast.error(tc("cancel"));
-      else toast.error(e instanceof Error ? e.message : tc("error"));
-      log("failed", "failed");
+      if (e instanceof DOMException && e.name === "AbortError") {
+        toast.error(tc("cancel"));
+      } else {
+        toast.error(e instanceof Error ? e.message : tc("error"));
+        log("failed", "failed");
+      }
     } finally {
-      job.stop();
+      job.stop(ac);
     }
   };
 
@@ -221,11 +227,14 @@ export function AudioSpeed() {
       toast.success(t("success"));
       log(`speed=${speed}`, "success");
     } catch (e) {
-      if (e instanceof DOMException && e.name === "AbortError") toast.error(tc("cancel"));
-      else toast.error(e instanceof Error ? e.message : tc("error"));
-      log("failed", "failed");
+      if (e instanceof DOMException && e.name === "AbortError") {
+        toast.error(tc("cancel"));
+      } else {
+        toast.error(e instanceof Error ? e.message : tc("error"));
+        log("failed", "failed");
+      }
     } finally {
-      job.stop();
+      job.stop(ac);
     }
   };
 

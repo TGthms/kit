@@ -28,6 +28,7 @@
     "how": "Cara Kit bekerja"
   },
   "common": {
+    "waveformTooLarge": "File ini terlalu besar untuk pratinjau bentuk gelombang. Atur rentangnya di kolom di bawah.",
     "cancel": "Batal",
     "clear": "Hapus",
     "close": "Tutup",

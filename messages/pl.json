@@ -28,6 +28,7 @@
     "how": "Jak działa Kit"
   },
   "common": {
+    "waveformTooLarge": "Ten plik jest za duży, aby wyświetlić przebieg fali. Ustaw zakres w polach poniżej.",
     "cancel": "Anuluj",
     "clear": "Wyczyść",
     "close": "Zamknij",

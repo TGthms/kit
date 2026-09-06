@@ -10,6 +10,7 @@ import {
   stripPdfMetadata,
   imagesToPdf,
   detectImageMime,
+  getPdfPageCount,
   splitPdf,
   organizePdf,
   watermarkPdf,
@@ -185,7 +186,7 @@ describe("watermark batch", () => {
 describe("stampPdfSignature", () => {
   it("stamps signed text and keeps the page count", async () => {
     const src = await blankPdf(2);
-    const out = await stampPdfSignature(src, "Tim G", "all");
+    const out = await stampPdfSignature(src, "Tim G");
     const doc = await PDFDocument.load(out);
     expect(doc.getPageCount()).toBe(2);
     expect(out.byteLength).toBeGreaterThan(src.byteLength);
@@ -219,5 +220,41 @@ describe("lock / unlock", () => {
     const junk = new Uint8Array([0, 1, 2, 3, 4, 5, 6, 7]);
     expect(await inspectPdfReadability(junk)).toBe("unreadable");
     expect(await isPdfEncrypted(junk)).toBe(false);
+  });
+
+  it("treats owner-password-only PDFs (empty user password) as readable", async () => {
+    const doc = await PDFDocument.create();
+    doc.addPage([200, 200]);
+    doc.setTitle("Owner only");
+    doc.encrypt({ userPassword: "", ownerPassword: "owner-secret", algorithm: "AES-256" });
+    const locked = await doc.save();
+
+    expect(await inspectPdfReadability(locked)).toBe("open");
+    expect(await isPdfEncrypted(locked)).toBe(false);
+    expect(await getPdfPageCount(locked)).toBe(1);
+    // Info-dict strings are not recoverable through the fork's decrypt-load,
+    // so metadata reads come back empty rather than failing the tool.
+    expect((await getPdfMetadata(locked)).title).toBe("");
+
+    const unlocked = await unlockPdf(locked, "");
+    expect(await isPdfEncrypted(unlocked)).toBe(false);
+  });
+
+  it("unlocking produces a clean page-level copy without form widgets", async () => {
+    const doc = await PDFDocument.create();
+    const page = doc.addPage([300, 200]);
+    const field = doc.getForm().createTextField("fullName");
+    field.setText("Kit");
+    field.addToPage(page, { x: 40, y: 80, width: 160, height: 20 });
+    doc.encrypt({ userPassword: "correct-horse", ownerPassword: "correct-horse", algorithm: "AES-256" });
+    const locked = await doc.save();
+
+    // The fork cannot re-save a decrypted document cleanly (stale /Encrypt
+    // reference, lost Info strings), so Unlock re-saves page content only.
+    // The dropped form fields are disclosed in the Unlock UI.
+    const unlocked = await unlockPdf(locked, "correct-horse");
+    const reopened = await PDFDocument.load(unlocked);
+    expect(reopened.getPageCount()).toBe(1);
+    expect(reopened.getForm().getFields()).toHaveLength(0);
   });
 });

@@ -28,6 +28,7 @@
     "how": "Comment Kit fonctionne"
   },
   "common": {
+    "waveformTooLarge": "Ce fichier est trop volumineux pour un aperçu de forme d'onde. Définissez la plage avec les champs ci-dessous.",
     "cancel": "Annuler",
     "clear": "Effacer",
     "close": "Fermer",

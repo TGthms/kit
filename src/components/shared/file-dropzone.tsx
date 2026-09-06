@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 import { Upload } from "lucide-react";
 import { cn, formatBytes, isLargeFile } from "@/lib/utils";
@@ -32,6 +32,7 @@ export function FileDropzone({
   const [drag, setDrag] = useState(false);
   const [rejectMessage, setRejectMessage] = useState<string | null>(null);
   const dragId = useRef<string | null>(null);
+  const dragDepth = useRef(0);
 
   const addFiles = useCallback(
     (list: FileList | File[]) => {
@@ -51,18 +52,22 @@ export function FileDropzone({
     [accept, files, multiple, onChange, t]
   );
 
-  const onPaste = useCallback(
-    (e: React.ClipboardEvent) => {
-      if (e.clipboardData.files?.length) {
-        e.preventDefault();
-        addFiles(e.clipboardData.files);
+  // Paste works anywhere on the page while a dropzone is mounted; the
+  // subtree-level handler only fired when the dropzone itself held focus.
+  // Only pastes that actually carry files are intercepted.
+  useEffect(() => {
+    const onWindowPaste = (event: ClipboardEvent) => {
+      if (event.clipboardData?.files?.length) {
+        event.preventDefault();
+        addFiles(event.clipboardData.files);
       }
-    },
-    [addFiles]
-  );
+    };
+    window.addEventListener("paste", onWindowPaste);
+    return () => window.removeEventListener("paste", onWindowPaste);
+  }, [addFiles]);
 
   return (
-    <div className="space-y-3" onPaste={onPaste}>
+    <div className="space-y-3">
       <div
         className={cn(
           "pressable-soft flex min-h-[9.5rem] cursor-pointer flex-col items-center justify-center rounded-2xl border-2 border-dashed px-4 py-8 text-center sm:min-h-[11rem] sm:py-10",
@@ -72,13 +77,21 @@ export function FileDropzone({
             ? "border-primary bg-accent/50 surface-float"
             : "border-border bg-card hover:bg-accent/30 hover:border-primary/35"
         )}
-        onDragOver={(e) => {
+        onDragOver={(e) => e.preventDefault()}
+        onDragEnter={(e) => {
           e.preventDefault();
+          // enter/leave fire for every child element; a depth counter keeps
+          // the highlight from flickering as the pointer crosses them.
+          dragDepth.current += 1;
           setDrag(true);
         }}
-        onDragLeave={() => setDrag(false)}
+        onDragLeave={() => {
+          dragDepth.current = Math.max(0, dragDepth.current - 1);
+          if (dragDepth.current === 0) setDrag(false);
+        }}
         onDrop={(e) => {
           e.preventDefault();
+          dragDepth.current = 0;
           setDrag(false);
           if (e.dataTransfer.files?.length) addFiles(e.dataTransfer.files);
         }}

@@ -28,6 +28,7 @@
     "how": "So funktioniert Kit"
   },
   "common": {
+    "waveformTooLarge": "Diese Datei ist zu groß für eine Wellenform-Vorschau. Lege den Bereich über die Felder unten fest.",
     "cancel": "Abbrechen",
     "clear": "Leeren",
     "close": "Schließen",

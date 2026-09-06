@@ -163,7 +163,11 @@ function parsePngText(bytes: Uint8Array): ExifTag[] {
   if (bytes.length < 8 || bytes[0] !== 0x89 || bytes[1] !== 0x50) return tags;
   let i = 8;
   while (i + 12 <= bytes.length) {
-    const len = (bytes[i] << 24) | (bytes[i + 1] << 16) | (bytes[i + 2] << 8) | bytes[i + 3];
+    // PNG lengths are unsigned 32-bit. A signed read turns 0xFFFFFFFF-class
+    // lengths negative; with len === -12 the cursor below computes
+    // i = dataEnd + 4 = i and the parser spins forever on the main thread.
+    const len =
+      ((bytes[i] << 24) | (bytes[i + 1] << 16) | (bytes[i + 2] << 8) | bytes[i + 3]) >>> 0;
     const type = String.fromCharCode(bytes[i + 4], bytes[i + 5], bytes[i + 6], bytes[i + 7]);
     const dataStart = i + 8;
     const dataEnd = dataStart + len;

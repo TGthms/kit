@@ -28,6 +28,7 @@
     "how": "Kit이 작동하는 방식"
   },
   "common": {
+    "waveformTooLarge": "이 파일은 파형 미리보기에는 너무 큽니다. 아래 입력란으로 범위를 지정하세요.",
     "cancel": "취소",
     "clear": "지우기",
     "close": "닫기",

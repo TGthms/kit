@@ -85,7 +85,7 @@ export function gifClipArgs(input: string, output: string, start: string, end: s
   ];
 }
 
-/** Two-pass EBU R128 loudness toward typical podcast loudness. */
+/** EBU R128 loudness normalization toward typical podcast loudness (single pass). */
 export function audioNormalizeArgs(input: string, output: string): string[] {
   return ["-i", input, "-af", "loudnorm=I=-16:TP=-1.5:LRA=11", output];
 }

@@ -96,11 +96,14 @@ export function PdfMerge() {
       toast.success(t("success", { count: files.length }));
       log(`${files.length} files`, "success");
     } catch (e) {
-      if (e instanceof DOMException && e.name === "AbortError") toast.error(tc("cancel"));
-      else toast.error(e instanceof Error ? e.message : tc("error"));
-      log("merge failed", "failed");
+      if (e instanceof DOMException && e.name === "AbortError") {
+        toast.error(tc("cancel"));
+      } else {
+        toast.error(e instanceof Error ? e.message : tc("error"));
+        log("merge failed", "failed");
+      }
     } finally {
-      job.stop();
+      job.stop(ac);
     }
   };
 
@@ -382,11 +385,14 @@ export function PdfCompress() {
       toast.success(t("success"));
       log(`q=${quality} n=${files.length}`, "success", { quality, count: files.length });
     } catch (e) {
-      if (e instanceof DOMException && e.name === "AbortError") toast.error(tc("cancel"));
-      else toast.error(e instanceof Error ? e.message : tc("error"));
-      log("failed", "failed");
+      if (e instanceof DOMException && e.name === "AbortError") {
+        toast.error(tc("cancel"));
+      } else {
+        toast.error(e instanceof Error ? e.message : tc("error"));
+        log("failed", "failed");
+      }
     } finally {
-      job.stop();
+      job.stop(ac);
     }
   };
 
@@ -444,11 +450,14 @@ export function PdfWatermark() {
       toast.success(t("success"));
       log(`n=${files.length}`, "success");
     } catch (e) {
-      if (e instanceof DOMException && e.name === "AbortError") toast.error(tc("cancel"));
-      else toast.error(e instanceof Error ? e.message : tc("error"));
-      log("failed", "failed");
+      if (e instanceof DOMException && e.name === "AbortError") {
+        toast.error(tc("cancel"));
+      } else {
+        toast.error(e instanceof Error ? e.message : tc("error"));
+        log("failed", "failed");
+      }
     } finally {
-      job.stop();
+      job.stop(ac);
     }
   };
 
@@ -575,11 +584,14 @@ export function PdfExtract() {
       toast.success(t("success"));
       log(mode, "success");
     } catch (e) {
-      if (e instanceof DOMException && e.name === "AbortError") toast.error(tc("cancel"));
-      else toast.error(e instanceof Error ? e.message : tc("error"));
-      log("failed", "failed");
+      if (e instanceof DOMException && e.name === "AbortError") {
+        toast.error(tc("cancel"));
+      } else {
+        toast.error(e instanceof Error ? e.message : tc("error"));
+        log("failed", "failed");
+      }
     } finally {
-      job.stop();
+      job.stop(ac);
     }
   };
 

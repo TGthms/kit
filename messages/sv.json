@@ -28,6 +28,7 @@
     "how": "Så fungerar Kit"
   },
   "common": {
+    "waveformTooLarge": "Filen är för stor för en vågformsförhandsvisning. Ange intervallet i fälten nedan.",
     "cancel": "Avbryt",
     "clear": "Rensa",
     "close": "Stäng",

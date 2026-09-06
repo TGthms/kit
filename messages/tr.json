@@ -28,6 +28,7 @@
     "how": "Kit nasıl çalışır"
   },
   "common": {
+    "waveformTooLarge": "Bu dosya dalga formu önizlemesi için çok büyük. Aralığı aşağıdaki alanlarla ayarlayın.",
     "cancel": "İptal",
     "clear": "Temizle",
     "close": "Kapat",

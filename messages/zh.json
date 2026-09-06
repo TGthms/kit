@@ -28,6 +28,7 @@
     "how": "Kit 如何运作"
   },
   "common": {
+    "waveformTooLarge": "文件过大，无法显示波形预览。请在下方输入起止时间。",
     "cancel": "取消",
     "clear": "清空",
     "close": "关闭",

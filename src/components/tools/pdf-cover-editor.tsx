@@ -153,57 +153,63 @@ function PdfCoverEditorBody({
       <p className="text-sm text-muted-foreground">{t("drawHint")}</p>
       {error ? <p className="text-sm text-destructive">{error}</p> : null}
       {preview ? (
-        <div className="relative max-w-full overflow-auto rounded-2xl border border-border/60 bg-card">
-          <canvas
-            ref={(node) => {
-              canvasRef.current = node;
-              if (!node || !preview) return;
-              const image = new Image();
-              image.onload = () => {
-                const ctx = node.getContext("2d");
-                if (!ctx) return;
-                ctx.drawImage(image, 0, 0, node.width, node.height);
-              };
-              image.src = preview.url;
-            }}
-            width={preview.width}
-            height={preview.height}
-            className="block max-w-full cursor-crosshair touch-none"
-            style={{ aspectRatio: `${preview.width} / ${preview.height}` }}
-            onPointerDown={(event) => onPointer(event, "down")}
-            onPointerMove={(event) => onPointer(event, "move")}
-            onPointerUp={(event) => onPointer(event, "up")}
-            onPointerCancel={() => {
-              drag.current = null;
-              setDraft(null);
-            }}
-          />
-          <svg className="pointer-events-none absolute inset-0 h-full w-full">
-            {pageBoxes.map((box, index) => {
-              const rect = pdfBoxToCanvasRect(preview.transform, box);
-              return (
+        <div className="max-w-full overflow-auto rounded-2xl border border-border/60 bg-card">
+          {/* The overlay must share the canvas box, not this scroll container:
+              committed boxes are percentages of the preview bitmap, so an
+              overlay spanning the column drifts right and wider whenever the
+              column is wider than the preview (desktop portrait pages). */}
+          <div className="relative w-fit max-w-full">
+            <canvas
+              ref={(node) => {
+                canvasRef.current = node;
+                if (!node || !preview) return;
+                const image = new Image();
+                image.onload = () => {
+                  const ctx = node.getContext("2d");
+                  if (!ctx) return;
+                  ctx.drawImage(image, 0, 0, node.width, node.height);
+                };
+                image.src = preview.url;
+              }}
+              width={preview.width}
+              height={preview.height}
+              className="block max-w-full cursor-crosshair touch-none"
+              style={{ aspectRatio: `${preview.width} / ${preview.height}` }}
+              onPointerDown={(event) => onPointer(event, "down")}
+              onPointerMove={(event) => onPointer(event, "move")}
+              onPointerUp={(event) => onPointer(event, "up")}
+              onPointerCancel={() => {
+                drag.current = null;
+                setDraft(null);
+              }}
+            />
+            <svg className="pointer-events-none absolute inset-0 h-full w-full">
+              {pageBoxes.map((box, index) => {
+                const rect = pdfBoxToCanvasRect(preview.transform, box);
+                return (
+                  <rect
+                    key={`${box.x}-${box.y}-${index}`}
+                    x={`${(rect.x / preview.width) * 100}%`}
+                    y={`${(rect.y / preview.height) * 100}%`}
+                    width={`${(rect.w / preview.width) * 100}%`}
+                    height={`${(rect.h / preview.height) * 100}%`}
+                    fill="black"
+                    fillOpacity="0.72"
+                  />
+                );
+              })}
+              {draft && draft.w > 2 && draft.h > 2 && preview ? (
                 <rect
-                  key={`${box.x}-${box.y}-${index}`}
-                  x={`${(rect.x / preview.width) * 100}%`}
-                  y={`${(rect.y / preview.height) * 100}%`}
-                  width={`${(rect.w / preview.width) * 100}%`}
-                  height={`${(rect.h / preview.height) * 100}%`}
+                  x={draft.x}
+                  y={draft.y}
+                  width={draft.w}
+                  height={draft.h}
                   fill="black"
-                  fillOpacity="0.72"
+                  fillOpacity="0.45"
                 />
-              );
-            })}
-            {draft && draft.w > 2 && draft.h > 2 && preview ? (
-              <rect
-                x={draft.x}
-                y={draft.y}
-                width={draft.w}
-                height={draft.h}
-                fill="black"
-                fillOpacity="0.45"
-              />
-            ) : null}
-          </svg>
+              ) : null}
+            </svg>
+          </div>
         </div>
       ) : null}
     </div>

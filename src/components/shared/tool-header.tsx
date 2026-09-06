@@ -7,6 +7,7 @@ import type { ToolId } from "@/lib/tools/registry";
 import { getTool, isFileTool } from "@/lib/tools/registry";
 import { toolBackHref } from "@/lib/navigation/routes";
 import { toolShareUrl } from "@/lib/seo/share";
+import { useHydrated } from "@/lib/react/hydrated";
 import { useFavoritesStore } from "@/stores/favorites-store";
 import { PageHeader } from "@/components/layout/page-header";
 import { Button } from "@/components/ui/button";
@@ -29,8 +30,11 @@ export function ToolHeader({ toolId }: { toolId: ToolId }) {
   const tCat = useTranslations("categories");
   const locale = useLocale();
   const searchParams = useSearchParams();
+  // SSR renders ids:[]; gating the favorite state on hydration keeps the
+  // first client render identical to the server tree (no mismatch).
+  const hydrated = useHydrated();
   const { ids, toggle } = useFavoritesStore();
-  const fav = ids.includes(toolId);
+  const fav = hydrated && ids.includes(toolId);
   const tool = getTool(toolId);
   const fromHref = safeInternalHref(searchParams.get("from"));
   const backHref = fromHref ?? toolBackHref(toolId);

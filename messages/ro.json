@@ -28,6 +28,7 @@
     "how": "Cum funcționează Kit"
   },
   "common": {
+    "waveformTooLarge": "Acest fișier este prea mare pentru previzualizarea formei de undă. Stabilește intervalul în câmpurile de mai jos.",
     "cancel": "Anulează",
     "clear": "Golește",
     "close": "Închide",

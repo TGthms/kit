@@ -1,34 +1,12 @@
 import { PDFDocument, PDFName, degrees, rgb, StandardFonts } from "@cantoo/pdf-lib";
-import { inspectPdfReadability } from "./protect";
+import { loadReadablePdf } from "./protect";
 
 export type PdfInput = ArrayBuffer | Uint8Array;
-
-export function asPdfBytes(buf: PdfInput): Uint8Array {
-  return buf instanceof Uint8Array ? buf : new Uint8Array(buf);
-}
-
-/**
- * Structure tools use `@cantoo/pdf-lib` with `{ ignoreEncryption: true }`.
- * That option only skips the password check; it does not decrypt content
- * streams. Encrypted input still yields parser errors or garbage, so we
- * fail fast via inspectPdfReadability (protect.ts) and send the user to
- * Unlock first.
- */
-async function assertNotEncrypted(buf: PdfInput): Promise<void> {
-  const state = await inspectPdfReadability(asPdfBytes(buf));
-  if (state === "encrypted") {
-    throw new Error("This PDF is password-protected. Unlock it first, then try again.");
-  }
-  if (state === "unreadable") {
-    throw new Error("This file could not be read as a PDF.");
-  }
-}
 
 export async function mergePdfs(files: ArrayBuffer[]): Promise<Uint8Array> {
   const out = await PDFDocument.create();
   for (const buf of files) {
-    await assertNotEncrypted(buf);
-    const doc = await PDFDocument.load(buf, { ignoreEncryption: true });
+    const doc = await loadReadablePdf(buf);
     const pages = await out.copyPages(doc, doc.getPageIndices());
     pages.forEach((p) => out.addPage(p));
   }
@@ -104,8 +82,7 @@ export function parsePageRange(range: string, pageCount: number): number[] {
 }
 
 export async function splitPdf(buf: PdfInput, range: string): Promise<Uint8Array> {
-  await assertNotEncrypted(buf);
-  const src = await PDFDocument.load(asPdfBytes(buf), { ignoreEncryption: true });
+  const src = await loadReadablePdf(buf);
   const indices = parsePageRange(range, src.getPageCount());
   if (!indices.length) throw new Error("No valid pages in range");
   const out = await PDFDocument.create();
@@ -120,8 +97,7 @@ export async function organizePdf(
   rotations: Record<number, number>,
   deleted: Set<number>
 ): Promise<Uint8Array> {
-  await assertNotEncrypted(buf);
-  const src = await PDFDocument.load(buf, { ignoreEncryption: true });
+  const src = await loadReadablePdf(buf);
   const out = await PDFDocument.create();
   const kept = order.filter((i) => !deleted.has(i));
   if (!kept.length) throw new Error("Keep at least one page.");
@@ -145,15 +121,16 @@ export async function watermarkPdf(
   position: "header" | "footer" | "center",
   opacity: number
 ): Promise<Uint8Array> {
-  await assertNotEncrypted(buf);
-  const doc = await PDFDocument.load(asPdfBytes(buf), { ignoreEncryption: true });
+  const doc = await loadReadablePdf(buf);
   const font = needsBrowserUnicodeFont(text) ? null : await doc.embedFont(StandardFonts.Helvetica);
   const pages = doc.getPages();
   const alpha = Math.min(1, Math.max(0.05, opacity));
+  const size = position === "center" ? 36 : 12;
+  // Loop-invariant: rasterize and embed the fallback text once instead of
+  // once per page (a 200-page doc would otherwise carry 200 PNG XObjects).
+  const rendered = await embedBrowserText(doc, text, size, [0.4, 0.4, 0.4], alpha);
   for (const page of pages) {
     const { width, height } = page.getSize();
-    const size = position === "center" ? 36 : 12;
-    const rendered = await embedBrowserText(doc, text, size, [0.4, 0.4, 0.4], alpha);
     if (rendered) {
       const x = (width - rendered.width) / 2;
       let y = height - rendered.height - 16;
@@ -221,8 +198,7 @@ export async function coverPdfContent(
   buf: PdfInput,
   boxes: Array<{ page: number; x: number; y: number; w: number; h: number }>
 ): Promise<Uint8Array> {
-  await assertNotEncrypted(buf);
-  const doc = await PDFDocument.load(asPdfBytes(buf), { ignoreEncryption: true });
+  const doc = await loadReadablePdf(buf);
   const pages = doc.getPages();
   let applied = 0;
   for (const box of boxes) {
@@ -243,8 +219,7 @@ export async function coverPdfContent(
 }
 
 export async function getPdfPageCount(buf: PdfInput): Promise<number> {
-  await assertNotEncrypted(buf);
-  const doc = await PDFDocument.load(asPdfBytes(buf), { ignoreEncryption: true });
+  const doc = await loadReadablePdf(buf);
   return doc.getPageCount();
 }
 
@@ -271,8 +246,7 @@ export async function numberPdfPages(
   const template = opts.template || "{page} / {pages}";
   const position = opts.position || "footer-center";
   const start = opts.start ?? 1;
-  await assertNotEncrypted(buf);
-  const doc = await PDFDocument.load(asPdfBytes(buf), { ignoreEncryption: true });
+  const doc = await loadReadablePdf(buf);
   const font = needsBrowserUnicodeFont(template) ? null : await doc.embedFont(StandardFonts.Helvetica);
   const pages = doc.getPages();
   const total = pages.length;
@@ -372,8 +346,7 @@ export async function imagesToPdf(
 export async function flattenPdfForms(
   buf: PdfInput
 ): Promise<{ bytes: Uint8Array; fieldCount: number }> {
-  await assertNotEncrypted(buf);
-  const doc = await PDFDocument.load(asPdfBytes(buf), { ignoreEncryption: true });
+  const doc = await loadReadablePdf(buf);
   const form = doc.getForm();
   const fieldCount = form.getFields().length;
   if (fieldCount > 0) form.flatten();
@@ -390,11 +363,9 @@ export type PdfMeta = {
 };
 
 export async function getPdfMetadata(buf: PdfInput): Promise<PdfMeta> {
-  await assertNotEncrypted(buf);
-  const doc = await PDFDocument.load(asPdfBytes(buf), {
-    ignoreEncryption: true,
-    updateMetadata: false,
-  });
+  // Read-only access: updateMetadata must stay off or the loader rewrites
+  // Producer/dates in memory before we read them.
+  const doc = await loadReadablePdf(buf, { updateMetadata: false });
   return {
     title: doc.getTitle() ?? "",
     author: doc.getAuthor() ?? "",
@@ -406,8 +377,7 @@ export async function getPdfMetadata(buf: PdfInput): Promise<PdfMeta> {
 }
 
 export async function setPdfMetadata(buf: PdfInput, meta: Partial<PdfMeta>): Promise<Uint8Array> {
-  await assertNotEncrypted(buf);
-  const doc = await PDFDocument.load(asPdfBytes(buf), { ignoreEncryption: true });
+  const doc = await loadReadablePdf(buf);
   if (meta.title !== undefined) doc.setTitle(meta.title);
   if (meta.author !== undefined) doc.setAuthor(meta.author);
   if (meta.subject !== undefined) doc.setSubject(meta.subject);
@@ -424,20 +394,12 @@ export async function setPdfMetadata(buf: PdfInput, meta: Partial<PdfMeta>): Pro
   return doc.save();
 }
 
-export async function stampPdfSignature(
-  buf: PdfInput,
-  text: string,
-  where: "all" | number = "all"
-): Promise<Uint8Array> {
+export async function stampPdfSignature(buf: PdfInput, text: string): Promise<Uint8Array> {
   if (!text.trim()) throw new Error("Signature is empty");
-  await assertNotEncrypted(buf);
-  const doc = await PDFDocument.load(asPdfBytes(buf), { ignoreEncryption: true });
+  const doc = await loadReadablePdf(buf);
   const font = needsBrowserUnicodeFont(text) ? null : await doc.embedFont(StandardFonts.HelveticaOblique);
   const pages = doc.getPages();
-  const targets =
-    where === "all" ? pages : pages[Math.max(0, where - 1)] ? [pages[Math.max(0, where - 1)]] : [];
-  if (!targets.length) throw new Error("Page not found");
-  for (const page of targets) {
+  for (const page of pages) {
     const { width } = page.getSize();
     const size = 14;
     const rendered = await embedBrowserText(doc, text, size, [0.12, 0.12, 0.16], 1, true);
@@ -464,8 +426,7 @@ export async function stampPdfSignature(
 }
 
 export async function stripPdfMetadata(buf: PdfInput): Promise<Uint8Array> {
-  await assertNotEncrypted(buf);
-  const doc = await PDFDocument.load(asPdfBytes(buf), { ignoreEncryption: true });
+  const doc = await loadReadablePdf(buf);
   doc.setTitle("");
   doc.setAuthor("");
   doc.setSubject("");

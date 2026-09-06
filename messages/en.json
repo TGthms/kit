@@ -28,6 +28,7 @@
     "emailTim": "Email Tim"
   },
   "common": {
+    "waveformTooLarge": "This file is too large for a waveform preview. Set the range with the fields below.",
     "cancel": "Cancel",
     "clear": "Clear",
     "close": "Close",

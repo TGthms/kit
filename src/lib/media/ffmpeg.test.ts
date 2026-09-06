@@ -28,6 +28,9 @@ describe("ffmpeg core origin", () => {
     expect(src).toContain("DecompressionStream");
     expect(src).toContain("loadGeneration");
     expect(src).toMatch(/generation !== loadGeneration/);
+    // Diagnostics only reach JS through "log" events; the transcode path must
+    // keep subscribing or every failure reads "exited with code 1".
+    expect(src).toMatch(/on\("log"/);
   });
 });
 

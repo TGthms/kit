@@ -1,10 +1,14 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useTranslations } from "next-intl";
 import { peaksFromChannel } from "@/lib/media/peaks";
 import { cn } from "@/lib/utils";
 
-const MAX_WAVEFORM_BYTES = 100 * 1024 * 1024;
+// Decoding a file into PCM allocates several times its source size and can
+// freeze the tab, so decode only small inputs; anything larger keeps the
+// numeric time fields and gets a visible note instead of a waveform.
+const MAX_WAVEFORM_BYTES = 12 * 1024 * 1024;
 
 type Props = {
   file: File | null;
@@ -17,6 +21,7 @@ type Props = {
 };
 
 export function MediaTimeline({ file, start, end, onChange, startLabel, endLabel, onDuration }: Props) {
+  const t = useTranslations("common");
   const trackRef = useRef<HTMLDivElement>(null);
   const [loaded, setLoaded] = useState<{ file: File; duration: number; peaks: number[] } | null>(null);
   const drag = useRef<"start" | "end" | null>(null);
@@ -49,9 +54,6 @@ export function MediaTimeline({ file, start, end, onChange, startLabel, endLabel
     el.addEventListener("loadedmetadata", onMeta);
 
     let cancelled = false;
-    // Decoding a large video into PCM can allocate several times the source
-    // size and freeze the tab. Keep the timeline usable with numeric controls
-    // and placeholder bars instead of attempting the waveform.
     if (file.size <= MAX_WAVEFORM_BYTES) {
       file.arrayBuffer().then(async (buf) => {
         let ctx: AudioContext | null = null;
@@ -60,7 +62,8 @@ export function MediaTimeline({ file, start, end, onChange, startLabel, endLabel
             window.AudioContext ||
             (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
           ctx = new Ctx();
-          const decoded = await ctx.decodeAudioData(buf.slice(0));
+          // decodeAudioData detaches its input; buf has no other reader here.
+          const decoded = await ctx.decodeAudioData(buf);
           const ch = decoded.getChannelData(0);
           if (!cancelled) {
             const nextPeaks = peaksFromChannel(ch, 80);
@@ -163,6 +166,9 @@ export function MediaTimeline({ file, start, end, onChange, startLabel, endLabel
           />
         ))}
       </div>
+      {file.size > MAX_WAVEFORM_BYTES ? (
+        <p className="text-xs text-muted-foreground">{t("waveformTooLarge")}</p>
+      ) : null}
       <p className="text-xs text-muted-foreground">
         {start.toFixed(2)}s – {end.toFixed(2)}s
         {duration ? ` / ${duration.toFixed(2)}s` : ""}

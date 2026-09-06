@@ -55,4 +55,20 @@ describe("SearchableSelect", () => {
     fireEvent.keyDown(combobox, { key: "Enter" });
     expect(onChange).toHaveBeenCalledWith("eur");
   });
+
+  it("only references the listbox while it is open", () => {
+    render(
+      createElement(SearchableSelect, {
+        label: "From",
+        value: "usd",
+        options,
+        onChange: vi.fn(),
+      })
+    );
+    const combobox = screen.getByRole("combobox", { name: "From" });
+    expect(combobox).not.toHaveAttribute("aria-controls");
+    fireEvent.focus(combobox);
+    expect(combobox).toHaveAttribute("aria-controls");
+    expect(screen.getByRole("listbox")).toBeInTheDocument();
+  });
 });

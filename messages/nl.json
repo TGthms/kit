@@ -28,6 +28,7 @@
     "how": "Hoe Kit werkt"
   },
   "common": {
+    "waveformTooLarge": "Dit bestand is te groot voor een golfvormvoorvertoning. Stel het bereik in met de velden hieronder.",
     "cancel": "Annuleren",
     "clear": "Wissen",
     "close": "Sluiten",

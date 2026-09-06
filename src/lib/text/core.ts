@@ -110,6 +110,6 @@ export {
   hsvToRgb,
   convertColor,
 } from "./color";
-export { runRegex, replaceRegex } from "./regex";
+export { runRegex, replaceRegex, runRegexAsync, replaceRegexAsync } from "./regex";
 export { generateLorem, type LoremMode } from "./lorem";
 export { generateQrDataUrl, readQrFromImageData, qrToPixels } from "./qr";

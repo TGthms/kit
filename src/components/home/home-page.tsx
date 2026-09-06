@@ -23,6 +23,7 @@ import { Input } from "@/components/ui/input";
 import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { PageHeader } from "@/components/layout/page-header";
 import { useFavoritesStore } from "@/stores/favorites-store";
+import { useHydrated } from "@/lib/react/hydrated";
 import { cn } from "@/lib/utils";
 import { GreetingHeadline } from "@/components/home/greeting-headline";
 import { GreetingSubtitle } from "@/components/home/greeting-subtitle";
@@ -156,6 +157,8 @@ function ToolCard({
   );
 }
 
+const EMPTY_FAV_IDS: Array<ToolId | string> = [];
+
 function HomePageInner() {
   const t = useTranslations("home");
   const locale = useLocale();
@@ -262,7 +265,11 @@ function HomePageInner() {
     // eslint-disable-next-line react-hooks/exhaustive-deps -- query strings are the identity; preview objects are new each render
   }, [greetingDateParam, greetingSeedParam, greetingTimeParam, locale]);
 
-  const favIds = useFavoritesStore((s) => s.ids);
+  // Rehydrated favorites may differ from the server-rendered ids:[] — gating
+  // on useHydrated keeps the first client render identical to the SSR tree.
+  const hydrated = useHydrated();
+  const storedFavIds = useFavoritesStore((s) => s.ids);
+  const favIds = hydrated ? storedFavIds : EMPTY_FAV_IDS;
   const toggle = useFavoritesStore((s) => s.toggle);
 
   const query = q.trim().toLowerCase();

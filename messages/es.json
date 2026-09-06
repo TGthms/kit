@@ -28,6 +28,7 @@
     "how": "Cómo funciona Kit"
   },
   "common": {
+    "waveformTooLarge": "Este archivo es demasiado grande para la vista previa de forma de onda. Fija el rango con los campos de abajo.",
     "cancel": "Cancelar",
     "clear": "Vaciar",
     "close": "Cerrar",

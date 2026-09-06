@@ -7,7 +7,7 @@ import { FileDropzone, type FileItem } from "@/components/shared/file-dropzone";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { downloadMany, extensionForMime } from "@/lib/utils";
-import { rotateImage, flipImage, filterImage, exportFavicons } from "@/lib/image/core";
+import { rotateImage, flipImage, filterImage, exportFavicons, watermarkImage } from "@/lib/image/core";
 import type { FilterName } from "@/lib/image/transform";
 import { ActionBar, ToolShell, useToolHistory } from "./shared";
 
@@ -132,8 +132,6 @@ export function ImageWatermark() {
     if (!files.length || !text.trim()) return;
     setLoading(true);
     try {
-      const { watermarkImage } = await import("@/lib/image/core");
-      const { downloadMany } = await import("@/lib/utils");
       const items = [];
       for (const f of files) {
         const blob = await watermarkImage(f.file, { text: text.trim(), position });

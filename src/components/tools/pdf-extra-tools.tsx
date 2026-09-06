@@ -16,10 +16,14 @@ import {
   setPdfMetadata,
   stripPdfMetadata,
   imagesToPdf,
+  detectImageMime,
+  type EmbeddableImage,
   type PageNumberPosition,
   type PdfMeta,
 } from "@/lib/pdf/core";
 import { lockPdf, unlockPdf } from "@/lib/pdf/protect";
+import { translateOr } from "@/lib/i18n/translate";
+import { parseImageMetadata } from "@/lib/image/exif";
 import { ActionBar, DownloadResult, ToolLimits, ToolShell, useToolHistory, useToolJob, loadPdfjs } from "./shared";
 import { Progress } from "@/components/ui/progress";
 
@@ -115,11 +119,14 @@ export function PdfToImages() {
       toast.success(t("success", { count: raster.blobs.length }));
       log(`${raster.blobs.length} pages`, "success");
     } catch (e) {
-      if (e instanceof DOMException && e.name === "AbortError") toast.error(tc("cancel"));
-      else toast.error(e instanceof Error ? e.message : tc("error"));
-      log("failed", "failed");
+      if (e instanceof DOMException && e.name === "AbortError") {
+        toast.error(tc("cancel"));
+      } else {
+        toast.error(e instanceof Error ? e.message : tc("error"));
+        log("failed", "failed");
+      }
     } finally {
-      job.stop();
+      job.stop(ac);
     }
   };
 
@@ -288,7 +295,7 @@ export function PdfSign() {
     setLoading(true);
     try {
       const { stampPdfSignature } = await import("@/lib/pdf/core");
-      const out = await stampPdfSignature(await files[0].file.arrayBuffer(), text.trim(), "all");
+      const out = await stampPdfSignature(await files[0].file.arrayBuffer(), text.trim());
       downloadBlob(bytesToBlob(out, "application/pdf"), "signed.pdf");
       toast.success(t("success"));
       log("sign", "success");
@@ -325,7 +332,10 @@ export function PdfProtect() {
   const [loading, setLoading] = useState(false);
 
   const run = async () => {
-    if (!files[0] || !password) return;
+    // Unlock may run with an empty password: owner-restricted PDFs (empty
+    // user password) decrypt freely and are exactly the files people need
+    // Unlock for, so only lock requires a password here.
+    if (!files[0] || (mode === "lock" && !password)) return;
     setLoading(true);
     try {
       const buf = await files[0].file.arrayBuffer();
@@ -358,11 +368,25 @@ export function PdfProtect() {
         </Button>
       </div>
       <FileDropzone accept="application/pdf" multiple={false} files={files} onChange={setFiles} />
+      {mode === "unlock" ? (
+        <p className="text-sm text-muted-foreground">
+          {translateOr(
+            t,
+            "unlockNote",
+            "Unlocking re-saves the pages: form fields, bookmarks, and document metadata are not carried over."
+          )}
+        </p>
+      ) : null}
       <div className="space-y-2">
         <Label>{t("password")}</Label>
         <Input type="password" value={password} onChange={(e) => setPassword(e.target.value)} autoComplete="off" />
       </div>
-      <ActionBar onRun={run} loading={loading} label={t("run")} disabled={!files[0] || !password} />
+      <ActionBar
+        onRun={run}
+        loading={loading}
+        label={t("run")}
+        disabled={!files[0] || (mode === "lock" && !password)}
+      />
     </ToolShell>
   );
 }
@@ -381,11 +405,23 @@ export function ImagesToPdf() {
     const ac = job.start();
     try {
       const { convertImage } = await import("@/lib/image/core");
-      const images = [];
+      const images: EmbeddableImage[] = [];
       for (let i = 0; i < files.length; i += 1) {
         if (ac.signal.aborted) throw new DOMException("Aborted", "AbortError");
-        const png = await convertImage(files[i].file, "image/png");
-        images.push({ bytes: new Uint8Array(await png.arrayBuffer()), mime: "image/png" as const });
+        const bytes = new Uint8Array(await files[i].file.arrayBuffer());
+        const mime = detectImageMime(bytes);
+        // JPEG/PNG pass straight through to pdf-lib's native embedders; only
+        // other formats (or oriented JPEGs, which would embed rotated) pay
+        // for a canvas re-encode to PNG.
+        const orientedJpeg =
+          mime === "image/jpeg" &&
+          parseImageMetadata(bytes).some((tag) => tag.tag === "Orientation" && tag.value !== "1");
+        if (mime && !orientedJpeg) {
+          images.push({ bytes, mime });
+        } else {
+          const png = await convertImage(files[i].file, "image/png");
+          images.push({ bytes: new Uint8Array(await png.arrayBuffer()), mime: "image/png" });
+        }
         job.setProgress(Math.round(((i + 1) / (files.length + 1)) * 100));
       }
       const output = await imagesToPdf(images, { pageSize, margin: 24 });
@@ -397,11 +433,14 @@ export function ImagesToPdf() {
       toast.success(t("success", { count: files.length }));
       log(`${files.length} images`, "success");
     } catch (reason) {
-      if (reason instanceof DOMException && reason.name === "AbortError") toast.error(tc("cancel"));
-      else toast.error(reason instanceof Error ? reason.message : tc("error"));
-      log("failed", "failed");
+      if (reason instanceof DOMException && reason.name === "AbortError") {
+        toast.error(tc("cancel"));
+      } else {
+        toast.error(reason instanceof Error ? reason.message : tc("error"));
+        log("failed", "failed");
+      }
     } finally {
-      job.stop();
+      job.stop(ac);
     }
   };
 

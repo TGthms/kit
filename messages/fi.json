@@ -28,6 +28,7 @@
     "how": "Miten Kit toimii"
   },
   "common": {
+    "waveformTooLarge": "Tiedosto on liian suuri aaltomuodon esikatseluun. Aseta aikaväli alla olevilla kentillä.",
     "cancel": "Peruuta",
     "clear": "Tyhjennä",
     "close": "Sulje",

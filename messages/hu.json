@@ -28,6 +28,7 @@
     "how": "Hogyan működik Kit"
   },
   "common": {
+    "waveformTooLarge": "Ez a fájl túl nagy a hullámforma előnézetéhez. Az intervallumot az alábbi mezőkben állítsd be.",
     "cancel": "Mégse",
     "clear": "Törlés",
     "close": "Bezárás",

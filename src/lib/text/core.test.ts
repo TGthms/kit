@@ -5,7 +5,13 @@ import { hashText } from "./hash";
 import { md5Hex } from "./md5";
 import { generateUuid, generateUuids } from "./uuid";
 import { convertColor, hslToRgb, parseHex, rgbToHex, rgbToHsl } from "./color";
-import { replaceRegex, runRegex } from "./regex";
+import {
+  REGEX_WORKER_SOURCE,
+  replaceRegex,
+  runRegex,
+  runRegexJob,
+  type RegexWorkerRequest,
+} from "./regex";
 import { generateLorem } from "./lorem";
 import { qrToPixels, readQrFromImageData } from "./qr";
 
@@ -35,6 +41,18 @@ describe("XML ↔ JSON", () => {
     const xml = `<!DOCTYPE note [ <!ENTITY foo "bar"> ]><note><to>Tim</to></note>`;
     const json = xmlToJson(xml) as { to: string };
     expect(json.to).toBe("Tim");
+  });
+
+  it("decodes numeric character references", () => {
+    // Leaf elements decode to their text directly.
+    expect(xmlToJson("<price>&#163;5</price>")).toBe("£5");
+    const hex = xmlToJson('<t a="&#x41;&#X42;">&#955;</t>') as { "@attributes": { a: string } };
+    expect(hex["@attributes"].a).toBe("AB");
+    // Invalid references (outside the XML char set) stay literal, and a
+    // doubled named reference decodes exactly one level.
+    expect(xmlToJson("<t>&#x110000;</t>")).toBe("&#x110000;");
+    expect(xmlToJson("<t>&#0;</t>")).toBe("&#0;");
+    expect(xmlToJson("<t>&amp;lt;</t>")).toBe("&lt;");
   });
 });
 
@@ -103,6 +121,41 @@ describe("color convert", () => {
     const all = convertColor("#336699");
     expect(all?.hex).toBe("#336699");
     expect(all?.cssRgb).toBe("rgb(51, 102, 153)");
+  });
+});
+
+describe("regex worker source", () => {
+  it("behaves identically to runRegexJob", () => {
+    // The Blob worker executes this string; pinning it here keeps the
+    // duplicated logic from drifting away from runRegex/replaceRegex.
+    const fakeSelf: {
+      last: unknown;
+      onmessage?: (event: { data: unknown }) => void;
+      postMessage: (message: unknown) => void;
+    } = {
+      last: undefined,
+      postMessage(message: unknown) {
+        fakeSelf.last = message;
+      },
+    };
+    new Function("self", REGEX_WORKER_SOURCE)(fakeSelf);
+    expect(typeof fakeSelf.onmessage).toBe("function");
+
+    const cases: RegexWorkerRequest[] = [
+      { id: 1, pattern: "(\\w+)@(\\w+)", flags: "g", input: "a@b c@d" },
+      { id: 2, pattern: "", flags: "g", input: "x" },
+      { id: 3, pattern: "(", flags: "", input: "x" },
+      { id: 4, kind: "replace", pattern: "(\\w+)", flags: "g", input: "hi kit", replacement: "$1!" },
+      { id: 5, pattern: "a*", flags: "g", input: "bab" },
+      { id: 6, pattern: "[z-a]", flags: "g", input: "abc" },
+    ];
+    for (const request of cases) {
+      fakeSelf.onmessage?.({ data: request });
+      expect(fakeSelf.last).toEqual(runRegexJob(request));
+    }
+    // Malformed frames are dropped, not answered.
+    fakeSelf.onmessage?.({ data: { nope: true } });
+    expect(fakeSelf.last).toEqual(runRegexJob(cases[5]!));
   });
 });
 

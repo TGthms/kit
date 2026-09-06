@@ -101,11 +101,14 @@ export function VideoConvert() {
       toast.success(t("success"));
       log(`${format} n=${files.length}`, "success");
     } catch (e) {
-      if (e instanceof DOMException && e.name === "AbortError") toast.error(tc("cancel"));
-      else toast.error(e instanceof Error ? e.message : tc("error"));
-      log("failed", "failed");
+      if (e instanceof DOMException && e.name === "AbortError") {
+        toast.error(tc("cancel"));
+      } else {
+        toast.error(e instanceof Error ? e.message : tc("error"));
+        log("failed", "failed");
+      }
     } finally {
-      job.stop();
+      job.stop(ac);
     }
   };
 
@@ -177,11 +180,14 @@ export function VideoTrim() {
       toast.success(t("success"));
       log("completed", "success");
     } catch (e) {
-      if (e instanceof DOMException && e.name === "AbortError") toast.error(tc("cancel"));
-      else toast.error(e instanceof Error ? e.message : tc("error"));
-      log("failed", "failed");
+      if (e instanceof DOMException && e.name === "AbortError") {
+        toast.error(tc("cancel"));
+      } else {
+        toast.error(e instanceof Error ? e.message : tc("error"));
+        log("failed", "failed");
+      }
     } finally {
-      job.stop();
+      job.stop(ac);
     }
   };
 
@@ -278,11 +284,14 @@ export function VideoSpeed() {
       toast.success(t("success"));
       log(`speed=${speed}`, "success");
     } catch (e) {
-      if (e instanceof DOMException && e.name === "AbortError") toast.error(tc("cancel"));
-      else toast.error(e instanceof Error ? e.message : tc("error"));
-      log("failed", "failed");
+      if (e instanceof DOMException && e.name === "AbortError") {
+        toast.error(tc("cancel"));
+      } else {
+        toast.error(e instanceof Error ? e.message : tc("error"));
+        log("failed", "failed");
+      }
     } finally {
-      job.stop();
+      job.stop(ac);
     }
   };
 
@@ -341,11 +350,14 @@ export function VideoExtractAudio() {
       toast.success(t("success"));
       log("completed", "success");
     } catch (e) {
-      if (e instanceof DOMException && e.name === "AbortError") toast.error(tc("cancel"));
-      else toast.error(e instanceof Error ? e.message : tc("error"));
-      log("failed", "failed");
+      if (e instanceof DOMException && e.name === "AbortError") {
+        toast.error(tc("cancel"));
+      } else {
+        toast.error(e instanceof Error ? e.message : tc("error"));
+        log("failed", "failed");
+      }
     } finally {
-      job.stop();
+      job.stop(ac);
     }
   };
 
@@ -404,11 +416,14 @@ export function VideoGif() {
       toast.success(t("success"));
       log("completed", "success");
     } catch (e) {
-      if (e instanceof DOMException && e.name === "AbortError") toast.error(tc("cancel"));
-      else toast.error(e instanceof Error ? e.message : tc("error"));
-      log("failed", "failed");
+      if (e instanceof DOMException && e.name === "AbortError") {
+        toast.error(tc("cancel"));
+      } else {
+        toast.error(e instanceof Error ? e.message : tc("error"));
+        log("failed", "failed");
+      }
     } finally {
-      job.stop();
+      job.stop(ac);
     }
   };
 

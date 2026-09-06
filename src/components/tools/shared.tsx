@@ -39,7 +39,10 @@ export function useToolJob() {
     return ac;
   };
 
-  const stop = () => {
+  const stop = (ac?: AbortController) => {
+    // A rapid double-start aborts run A while run B is already the current
+    // controller; A's finally must not hide B's Cancel button.
+    if (ac && controller.current !== ac) return;
     setLoading(false);
     controller.current = null;
   };

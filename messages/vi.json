@@ -28,6 +28,7 @@
     "how": "Kit hoạt động thế nào"
   },
   "common": {
+    "waveformTooLarge": "Tệp này quá lớn để xem trước dạng sóng. Hãy đặt khoảng thời gian trong các ô bên dưới.",
     "cancel": "Hủy",
     "clear": "Xóa",
     "close": "Đóng",

@@ -28,6 +28,7 @@
     "how": "Slik virker Kit"
   },
   "common": {
+    "waveformTooLarge": "Denne filen er for stor for forhåndsvisning av bølgeform. Angi intervallet i feltene nedenfor.",
     "cancel": "Avbryt",
     "clear": "Tøm",
     "close": "Lukk",
