@@ -28,6 +28,14 @@ import { subtitleMotionFor, type SubtitleMotion } from "@/lib/home/subtitle-moti
 import { GOOD_FRIDAY_VERSE_ID, type WebVerseId } from "@/lib/home/verses";
 
 export type GreetingPeriod = "morning" | "afternoon" | "evening" | "night";
+
+/** Local-hour boundaries for the periods, shared with the How Kit works copy. */
+export const GREETING_PERIOD_BOUNDS = {
+  morningStart: 5,
+  morningEnd: 12,
+  afternoonEnd: 17,
+  eveningEnd: 22,
+} as const;
 export type GreetingCategory = "timeOfDay" | "weekend" | "productivity" | "kit" | "privacy";
 
 export type GreetingSubtitle =
@@ -236,9 +244,10 @@ export const OBSERVANCE_RULES: readonly ObservanceRule[] = [
 
 export function getGreetingPeriod(date: Date): GreetingPeriod {
   const hour = date.getHours();
-  if (hour >= 5 && hour < 12) return "morning";
-  if (hour >= 12 && hour < 17) return "afternoon";
-  if (hour >= 17 && hour < 22) return "evening";
+  const { morningStart, morningEnd, afternoonEnd, eveningEnd } = GREETING_PERIOD_BOUNDS;
+  if (hour >= morningStart && hour < morningEnd) return "morning";
+  if (hour >= morningEnd && hour < afternoonEnd) return "afternoon";
+  if (hour >= afternoonEnd && hour < eveningEnd) return "evening";
   return "night";
 }
 
@@ -261,10 +270,11 @@ export function getGreetingVisitSeed(): number {
 /** Slot aligned with greeting periods (night / morning / afternoon / evening / late night). */
 export function getGreetingPeriodSlot(date: Date): number {
   const hour = date.getHours();
-  if (hour < 5) return 0;
-  if (hour < 12) return 1;
-  if (hour < 17) return 2;
-  if (hour < 22) return 3;
+  const { morningStart, morningEnd, afternoonEnd, eveningEnd } = GREETING_PERIOD_BOUNDS;
+  if (hour < morningStart) return 0;
+  if (hour < morningEnd) return 1;
+  if (hour < afternoonEnd) return 2;
+  if (hour < eveningEnd) return 3;
   return 4;
 }
 

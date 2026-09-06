@@ -2,6 +2,7 @@ import { existsSync } from "node:fs";
 import { join } from "node:path";
 import type { Metadata } from "next";
 import { defaultLocale, isPathLocale, locales, messageFileFor } from "@/lib/i18n/config";
+import { HOW_FAQ_KEYS } from "@/lib/how/facts";
 import { getTool, legacyToolIdMap, resolveToolId, type ToolCategory } from "@/lib/tools/registry";
 import { parseCategoryParam, toolPathSegment } from "@/lib/navigation/routes";
 import {
@@ -27,7 +28,7 @@ type Messages = {
   history: { title: string; subtitle: string };
   favorites: { title: string; subtitle: string };
   legal: { privacyTitle: string; termsTitle: string };
-  how: { title: string; description: string };
+  how: { title: string; description: string } & Record<string, string>;
   categories: Record<string, string>;
 };
 
@@ -347,4 +348,19 @@ export async function legalJsonLdInput(
       { name, url },
     ],
   };
+}
+
+/** FAQ strings for the How page, mirroring legalJsonLdInput's null-for-zh contract. */
+export async function faqJsonLdInput(locale: string): Promise<{
+  questions: { q: string; a: string }[];
+} | null> {
+  const pathLoc = isPathLocale(locale) ? locale : defaultLocale;
+  if (!isIndexablePathLocale(pathLoc)) return null;
+  const messages = await loadMessages(pathLoc);
+  const questions = HOW_FAQ_KEYS.map(([questionKey, answerKey]) => ({
+    q: messages.how[questionKey],
+    a: messages.how[answerKey],
+  }));
+  if (questions.some(({ q, a }) => !q || !a)) return null;
+  return { questions };
 }

@@ -109,7 +109,10 @@ describe("message catalogs", () => {
   it("does not leave English How Kit works story copy", async () => {
     const leftover: string[] = [];
     const enHow = (en as { how: Record<string, string> }).how;
-    const keys = ["lanesTitle", "leavesTitle", "greetTitle", "greetLede", "offlineTitle", "sizeTitle"] as const;
+    const keys = [
+      "lanesTitle", "greetTitle", "greetLede", "offlineTitle", "sizeTitle",
+      "whyTitle", "exampleTitle", "verifyTitle", "faqTitle", "ctaTitle",
+    ] as const;
     for (const loc of locales) {
       if (loc === "en") continue;
       const file = messageFileFor(loc);

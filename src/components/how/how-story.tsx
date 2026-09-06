@@ -1,25 +1,32 @@
 "use client";
 
+import type { ReactNode } from "react";
 import { useTranslations } from "next-intl";
-import { ChevronRight, File, HardDrive, MonitorSmartphone } from "lucide-react";
+import {
+  ChevronRight,
+  File,
+  Gauge,
+  HardDrive,
+  MonitorSmartphone,
+  ShieldCheck,
+  WifiOff,
+  Zap,
+} from "lucide-react";
 import { Link } from "@/lib/i18n/navigation";
+import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { HOW_FAQ_KEYS, HOW_GREETING_BOUNDS, HOW_MEDIA_ENGINE_MB } from "@/lib/how/facts";
+import { LaneDiagram } from "./lane-diagram";
+import { NetworkCheck } from "./network-check";
 
 const COMPARE_ROWS = [
   ["rowFile", "typicalFile", "kitFile"],
+  ["rowResult", "typicalResult", "kitResult"],
   ["rowAccount", "typicalAccount", "kitAccount"],
   ["rowTracking", "typicalTracking", "kitTracking"],
   ["rowProcessing", "typicalProcessing", "kitProcessing"],
+  ["rowCurrency", "typicalCurrency", "kitCurrency"],
   ["rowAfter", "typicalAfter", "kitAfter"],
-] as const;
-
-const LEAVES_ROWS = [
-  ["leavesFile", "leavesFileTypical", "leavesFileKit"],
-  ["leavesResult", "leavesResultTypical", "leavesResultKit"],
-  ["leavesAccount", "leavesAccountTypical", "leavesAccountKit"],
-  ["leavesTrack", "leavesTrackTypical", "leavesTrackKit"],
-  ["leavesApp", "leavesAppTypical", "leavesAppKit"],
-  ["leavesRates", "leavesRatesTypical", "leavesRatesKit"],
 ] as const;
 
 const SIZE_ROWS = [
@@ -55,17 +62,114 @@ const PATH_STEPS = [
 const DEVICE_LANES = ["lanesDeviceFile", "lanesDeviceAmount", "lanesDevicePrefs"] as const;
 const NETWORK_LANES = ["lanesNetworkApp", "lanesNetworkRates", "lanesNetworkHost"] as const;
 
-export function HowStory() {
+const WHY_ITEMS = [
+  { title: "whyPrivate", body: "whyPrivateBody", icon: ShieldCheck },
+  { title: "whyFast", body: "whyFastBody", icon: Zap },
+  { title: "whyCaps", body: "whyCapsBody", icon: Gauge },
+  { title: "whyOffline", body: "whyOfflineBody", icon: WifiOff },
+] as const;
+
+const TOC_ITEMS = [
+  ["compareTitle", "#how-compare-heading"],
+  ["whyTitle", "#how-why-heading"],
+  ["exampleTitle", "#how-example-heading"],
+  ["sizeTitle", "#how-size-heading"],
+  ["techTitle", "#how-tech-heading"],
+  ["verifyTitle", "#how-verify-heading"],
+  ["faqTitle", "#how-faq-heading"],
+] as const;
+
+function Section({
+  id,
+  title,
+  lede,
+  children,
+}: {
+  id: string;
+  title: string;
+  lede?: string;
+  children: ReactNode;
+}) {
+  return (
+    <section className="space-y-3" aria-labelledby={`${id}-heading`}>
+      <h2 id={`${id}-heading`} className="text-xl font-semibold tracking-[-0.02em] text-foreground">
+        {title}
+      </h2>
+      {lede ? <p className="type-body max-w-2xl text-muted-foreground">{lede}</p> : null}
+      {children}
+    </section>
+  );
+}
+
+function FaqItem({ question, answer }: { question: string; answer: string }) {
+  return (
+    <details className="rounded-2xl border border-border/60 bg-card px-4 py-3 text-sm">
+      <summary className="cursor-pointer select-none font-medium text-foreground">{question}</summary>
+      <p className="anim-details-content mt-2 leading-relaxed text-muted-foreground">{answer}</p>
+    </details>
+  );
+}
+
+export function HowStory({ toolCount, languageCount }: { toolCount: number; languageCount: number }) {
   const t = useTranslations("how");
+
+  // Keys carrying values derived from the repo itself, so copy cannot drift.
+  const tr = (key: string): string => {
+    switch (key) {
+      case "statsTools":
+      case "exampleNote":
+        return t(key, { count: toolCount });
+      case "statsLangs":
+        return t(key, { count: languageCount });
+      case "techUiJob":
+        return t(key, { langs: languageCount });
+      case "sizeMediaBody":
+      case "faqMediaQ":
+      case "limitMedia":
+        return t(key, { mediaMb: HOW_MEDIA_ENGINE_MB });
+      case "greetClockBody":
+        return t(key, {
+          h1: HOW_GREETING_BOUNDS.morningStart,
+          h2: HOW_GREETING_BOUNDS.morningEnd,
+          h3: HOW_GREETING_BOUNDS.afternoonEnd,
+          h4: HOW_GREETING_BOUNDS.eveningEnd,
+        });
+      default:
+        return t(key);
+    }
+  };
 
   return (
     <div className="space-y-10">
       <p className="type-body max-w-2xl text-muted-foreground">{t("lede")}</p>
 
-      <section className="space-y-3" aria-labelledby="how-compare-heading">
-        <h2 id="how-compare-heading" className="text-xl font-semibold tracking-[-0.02em] text-foreground">
-          {t("compareTitle")}
-        </h2>
+      <div>
+        <div role="group" aria-label={t("statsAria")} className="grid gap-3 sm:grid-cols-3">
+          {["statsTools", "statsLangs", "statsUploads"].map((key) => (
+            <div key={key} className="rounded-2xl border border-border/50 bg-card px-4 py-5 text-center surface-float">
+              <p className="type-title tabular-nums text-foreground">{tr(key)}</p>
+            </div>
+          ))}
+        </div>
+        <p className="type-caption mt-3 text-muted-foreground">{t("statsNote")}</p>
+      </div>
+
+      <nav aria-label={t("tocAria")} className="rounded-2xl border border-border/50 bg-card px-4 py-3 surface-float">
+        <ul className="flex flex-wrap gap-x-4 gap-y-2">
+          {TOC_ITEMS.map(([key, href]) => (
+            <li key={key}>
+              <a
+                href={href}
+                className="type-caption text-muted-foreground underline-offset-4 hover:text-foreground hover:underline"
+              >
+                {t(key)}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+
+      <Section id="how-compare" title={t("compareTitle")}>
         <div className="overflow-x-auto rounded-2xl border border-border/50 bg-card surface-float">
           <table className="w-full min-w-[32rem] text-start text-sm">
             <caption className="sr-only">{t("compareTitle")}</caption>
@@ -93,12 +197,9 @@ export function HowStory() {
             </tbody>
           </table>
         </div>
-      </section>
+      </Section>
 
-      <section className="space-y-3" aria-labelledby="how-path-heading">
-        <h2 id="how-path-heading" className="text-xl font-semibold tracking-[-0.02em] text-foreground">
-          {t("pathTitle")}
-        </h2>
+      <Section id="how-path" title={t("pathTitle")}>
         <ol className="grid gap-3 sm:grid-cols-[1fr_auto_1fr_auto_1fr] sm:items-stretch">
           {PATH_STEPS.map((step, index) => {
             const Icon = step.icon;
@@ -123,12 +224,10 @@ export function HowStory() {
           })}
         </ol>
         <p className="type-caption text-muted-foreground">{t("pathNote")}</p>
-      </section>
+      </Section>
 
-      <section className="space-y-3" aria-labelledby="how-lanes-heading">
-        <h2 id="how-lanes-heading" className="text-xl font-semibold tracking-[-0.02em] text-foreground">
-          {t("lanesTitle")}
-        </h2>
+      <Section id="how-lanes" title={t("lanesTitle")}>
+        <LaneDiagram />
         <div className="grid gap-3 sm:grid-cols-2">
           <Card className="border-border/50">
             <CardHeader>
@@ -156,47 +255,60 @@ export function HowStory() {
           </Card>
         </div>
         <p className="type-caption text-muted-foreground">{t("lanesNote")}</p>
-      </section>
+      </Section>
 
-      <section className="space-y-3" aria-labelledby="how-leaves-heading">
-        <h2 id="how-leaves-heading" className="text-xl font-semibold tracking-[-0.02em] text-foreground">
-          {t("leavesTitle")}
-        </h2>
-        <div className="overflow-x-auto rounded-2xl border border-border/50 bg-card surface-float">
-          <table className="w-full min-w-[36rem] text-start text-sm">
-            <caption className="sr-only">{t("leavesTitle")}</caption>
-            <thead>
-              <tr className="border-b border-border/50 text-muted-foreground">
-                <th scope="col" className="px-4 py-3 font-medium">
-                  {t("leavesWhat")}
-                </th>
-                <th scope="col" className="px-4 py-3 font-medium">
-                  {t("compareTypical")}
-                </th>
-                <th scope="col" className="px-4 py-3 font-medium text-foreground">
-                  {t("compareKit")}
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {LEAVES_ROWS.map(([label, typical, kit]) => (
-                <tr key={label} className="border-b border-border/40 last:border-0">
-                  <th scope="row" className="px-4 py-3 font-medium text-foreground">
-                    {t(label)}
-                  </th>
-                  <td className="px-4 py-3 text-muted-foreground">{t(typical)}</td>
-                  <td className="px-4 py-3 text-foreground">{t(kit)}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+      <Section id="how-why" title={t("whyTitle")} lede={t("whyLede")}>
+        <div className="grid gap-3 sm:grid-cols-2">
+          {WHY_ITEMS.map((item) => {
+            const Icon = item.icon;
+            return (
+              <Card key={item.title} className="border-border/50">
+                <CardHeader className="flex-row items-center gap-3 space-y-0 p-4">
+                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                    <Icon className="h-4 w-4" aria-hidden />
+                  </span>
+                  <CardTitle className="text-base">{t(item.title)}</CardTitle>
+                </CardHeader>
+                <CardContent className="pt-0">
+                  <p className="text-sm leading-relaxed text-muted-foreground">{t(item.body)}</p>
+                </CardContent>
+              </Card>
+            );
+          })}
         </div>
-      </section>
+      </Section>
 
-      <section className="space-y-3" aria-labelledby="how-size-heading">
-        <h2 id="how-size-heading" className="text-xl font-semibold tracking-[-0.02em] text-foreground">
-          {t("sizeTitle")}
-        </h2>
+      <Section id="how-example" title={t("exampleTitle")} lede={t("exampleLede")}>
+        <div className="grid gap-3 sm:grid-cols-2">
+          <Card className="border-border/50">
+            <CardHeader>
+              <CardTitle>{t("exampleMergeHeading")}</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <ol className="list-decimal space-y-2 ps-5 text-sm leading-relaxed text-muted-foreground">
+                {(["exampleMerge1", "exampleMerge2", "exampleMerge3", "exampleMerge4"] as const).map((key) => (
+                  <li key={key}>{t(key)}</li>
+                ))}
+              </ol>
+            </CardContent>
+          </Card>
+          <Card className="border-border/50">
+            <CardHeader>
+              <CardTitle>{t("examplePasswordHeading")}</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <ol className="list-decimal space-y-2 ps-5 text-sm leading-relaxed text-muted-foreground">
+                {(["examplePassword1", "examplePassword2", "examplePassword3"] as const).map((key) => (
+                  <li key={key}>{t(key)}</li>
+                ))}
+              </ol>
+            </CardContent>
+          </Card>
+        </div>
+        <p className="type-caption text-muted-foreground">{tr("exampleNote")}</p>
+      </Section>
+
+      <Section id="how-size" title={t("sizeTitle")}>
         <div className="overflow-x-auto rounded-2xl border border-border/50 bg-card surface-float">
           <table className="w-full min-w-[28rem] text-start text-sm">
             <caption className="sr-only">{t("sizeTitle")}</caption>
@@ -216,34 +328,16 @@ export function HowStory() {
                   <th scope="row" className="px-4 py-3 font-medium text-foreground">
                     {t(label)}
                   </th>
-                  <td className="px-4 py-3 text-muted-foreground">{t(body)}</td>
+                  <td className="px-4 py-3 text-muted-foreground">{tr(body)}</td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
         <p className="type-caption text-muted-foreground">{t("sizeNote")}</p>
-      </section>
+      </Section>
 
-      <section className="space-y-3" aria-labelledby="how-greet-heading">
-        <h2 id="how-greet-heading" className="text-xl font-semibold tracking-[-0.02em] text-foreground">
-          {t("greetTitle")}
-        </h2>
-        <p className="type-body max-w-2xl text-muted-foreground">{t("greetLede")}</p>
-        <dl className="space-y-4 rounded-2xl border border-border/50 bg-card p-5 surface-float">
-          {GREET_ITEMS.map(([term, body]) => (
-            <div key={term} className="space-y-1">
-              <dt className="text-sm font-medium text-foreground">{t(term)}</dt>
-              <dd className="text-sm leading-relaxed text-muted-foreground">{t(body)}</dd>
-            </div>
-          ))}
-        </dl>
-      </section>
-
-      <section className="space-y-3" aria-labelledby="how-tech-heading">
-        <h2 id="how-tech-heading" className="text-xl font-semibold tracking-[-0.02em] text-foreground">
-          {t("techTitle")}
-        </h2>
+      <Section id="how-tech" title={t("techTitle")}>
         <div className="overflow-x-auto rounded-2xl border border-border/50 bg-card surface-float">
           <table className="w-full min-w-[36rem] text-start text-sm">
             <caption className="sr-only">{t("techTitle")}</caption>
@@ -264,7 +358,7 @@ export function HowStory() {
               {TECH_ROWS.map(([job, runs, where]) => (
                 <tr key={job} className="border-b border-border/40 last:border-0">
                   <th scope="row" className="px-4 py-3 font-medium text-foreground">
-                    {t(job)}
+                    {tr(job)}
                   </th>
                   <td className="px-4 py-3 text-muted-foreground">{t(runs)}</td>
                   <td className="px-4 py-3 text-muted-foreground">{t(where)}</td>
@@ -273,26 +367,11 @@ export function HowStory() {
             </tbody>
           </table>
         </div>
-      </section>
+      </Section>
 
-      <section className="space-y-3" aria-labelledby="how-stays-heading">
-        <h2 id="how-stays-heading" className="text-xl font-semibold tracking-[-0.02em] text-foreground">
-          {t("staysTitle")}
-        </h2>
-        <ul className="list-disc space-y-2 ps-5 text-sm leading-relaxed text-muted-foreground">
-          <li>{t("staysFiles")}</li>
-          <li>{t("staysHistory")}</li>
-          <li>{t("staysPrefs")}</li>
-          <li>{t("staysClear")}</li>
-        </ul>
-      </section>
-
-      <section className="space-y-3" aria-labelledby="how-offline-heading">
-        <h2 id="how-offline-heading" className="text-xl font-semibold tracking-[-0.02em] text-foreground">
-          {t("offlineTitle")}
-        </h2>
-        <p className="type-body max-w-2xl text-muted-foreground">{t("offlineBody")}</p>
-      </section>
+      <Section id="how-verify" title={t("verifyTitle")} lede={t("verifyLede")}>
+        <NetworkCheck />
+      </Section>
 
       <Card className="border-border/50">
         <CardHeader>
@@ -301,6 +380,67 @@ export function HowStory() {
         <CardContent className="space-y-3">
           <p className="text-sm leading-relaxed text-muted-foreground">{t("exceptionBody")}</p>
           <p className="text-sm leading-relaxed text-muted-foreground">{t("hostNote")}</p>
+          <ul className="list-disc space-y-1 ps-5 text-sm leading-relaxed text-muted-foreground">
+            <li>{t("limitLarge")}</li>
+            <li>{tr("limitMedia")}</li>
+            <li>{t("limitBrowser")}</li>
+          </ul>
+        </CardContent>
+      </Card>
+
+      <Section id="how-stays" title={t("staysTitle")}>
+        <ul className="list-disc space-y-2 ps-5 text-sm leading-relaxed text-muted-foreground">
+          <li>{t("staysFiles")}</li>
+          <li>{t("staysHistory")}</li>
+          <li>{t("staysPrefs")}</li>
+          <li>{t("staysClear")}</li>
+        </ul>
+      </Section>
+
+      <Section id="how-offline" title={t("offlineTitle")}>
+        <p className="type-body max-w-2xl text-muted-foreground">{t("offlineBody")}</p>
+      </Section>
+
+      <Section id="how-faq" title={t("faqTitle")}>
+        <div className="space-y-2">
+          {HOW_FAQ_KEYS.map(([questionKey, answerKey]) => (
+            <FaqItem key={questionKey} question={tr(questionKey)} answer={tr(answerKey)} />
+          ))}
+        </div>
+      </Section>
+
+      <details className="rounded-2xl border border-border/60 bg-card px-4 py-3 text-sm">
+        <summary className="cursor-pointer select-none font-medium text-foreground">{t("greetTitle")}</summary>
+        <div className="anim-details-content mt-3 space-y-3">
+          <p className="type-body text-muted-foreground">{t("greetLede")}</p>
+          <dl className="space-y-4">
+            {GREET_ITEMS.map(([term, body]) => (
+              <div key={term} className="space-y-1">
+                <dt className="font-medium text-foreground">{t(term)}</dt>
+                <dd className="leading-relaxed text-muted-foreground">{tr(body)}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </details>
+
+      <Card className="border-primary/20">
+        <CardHeader>
+          <CardTitle>{t("ctaTitle")}</CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <p className="text-sm leading-relaxed text-muted-foreground">{t("ctaBody")}</p>
+          <div className="flex flex-wrap gap-2">
+            <Button asChild>
+              <Link href="/tools/pdf-merge">{t("ctaMerge")}</Link>
+            </Button>
+            <Button asChild variant="outline">
+              <Link href="/tools/password-generator">{t("ctaPassword")}</Link>
+            </Button>
+            <Button asChild variant="ghost">
+              <Link href="/tools">{t("ctaBrowse")}</Link>
+            </Button>
+          </div>
         </CardContent>
       </Card>
 

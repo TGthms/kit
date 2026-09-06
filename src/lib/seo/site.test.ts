@@ -3,8 +3,8 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { describe, expect, it } from "vitest";
 import { CONTENT_SECURITY_POLICY, CONTENT_SECURITY_POLICY_HEADER, ogImageUrl, ogLocaleFor, SITE_HOST, SITE_NAME, SITE_URL, WEBSITE_ID } from "./site";
-import { websiteJsonLd, serializeJsonLd, homeJsonLd, toolJsonLd, legalJsonLd } from "./json-ld";
-import { buildCategoryMetadata, buildLocaleMetadata, buildSectionMetadata, buildToolMetadata, categoryJsonLdInput, languageAlternates, legalJsonLdInput, socialImages, toolJsonLdInput } from "./metadata";
+import { websiteJsonLd, serializeJsonLd, homeJsonLd, toolJsonLd, legalJsonLd, howJsonLd } from "./json-ld";
+import { buildCategoryMetadata, buildLocaleMetadata, buildSectionMetadata, buildToolMetadata, categoryJsonLdInput, faqJsonLdInput, languageAlternates, legalJsonLdInput, socialImages, toolJsonLdInput } from "./metadata";
 
 describe("content security policy", () => {
   it("does not allow jsDelivr and includes wasm-unsafe-eval", () => {
@@ -135,6 +135,19 @@ describe("home and tool JSON-LD", () => {
     expect(fr?.url).toBe(`${SITE_URL}/fr/how/`);
     expect(fr?.url).not.toContain("/en/how");
     expect(await legalJsonLdInput("zh", "how")).toBeNull();
+  });
+
+  it("adds the page FAQ as a FAQPage node in the same graph", async () => {
+    const faq = await faqJsonLdInput("en");
+    expect(faq?.questions.length).toBeGreaterThan(3);
+    expect(faq?.questions.every(({ q, a }) => q.length > 0 && a.length > 0)).toBe(true);
+
+    const input = await legalJsonLdInput("en", "how");
+    const data = howJsonLd({ ...input!, questions: faq!.questions });
+    expect(data["@graph"].map((node) => node["@type"])).toEqual(["WebPage", "BreadcrumbList", "FAQPage"]);
+    const faqNode = data["@graph"][2] as { mainEntity: { name: string }[] };
+    expect(faqNode.mainEntity[0].name).toBe("Is Kit really free?");
+    expect(await faqJsonLdInput("zh")).toBeNull();
   });
 });
 

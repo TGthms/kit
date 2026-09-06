@@ -132,6 +132,24 @@ export function webPageJsonLd({
   };
 }
 
+export function faqPageJsonLd({
+  url,
+  questions,
+}: {
+  url: string;
+  questions: { q: string; a: string }[];
+}) {
+  return {
+    "@type": "FAQPage",
+    url,
+    mainEntity: questions.map(({ q, a }) => ({
+      "@type": "Question",
+      name: q,
+      acceptedAnswer: { "@type": "Answer", text: a },
+    })),
+  };
+}
+
 export function toolJsonLd({
   name,
   description,
@@ -160,6 +178,25 @@ export function legalJsonLd({
   return graph([webPageJsonLd({ name, description, url }), breadcrumbJsonLd(breadcrumbs)]);
 }
 
+/** How Kit works page: WebPage + breadcrumbs, plus the FAQ when the locale has one. */
+export function howJsonLd({
+  name,
+  description,
+  url,
+  breadcrumbs,
+  questions,
+}: {
+  name: string;
+  description: string;
+  url: string;
+  breadcrumbs: { name: string; url: string }[];
+  questions?: { q: string; a: string }[];
+}) {
+  const nodes: Record<string, unknown>[] = [webPageJsonLd({ name, description, url }), breadcrumbJsonLd(breadcrumbs)];
+  if (questions?.length) nodes.push(faqPageJsonLd({ url, questions }));
+  return graph(nodes);
+}
+
 export function WebSiteJsonLd() {
   return <JsonLd data={websiteJsonLd()} />;
 }
@@ -184,4 +221,14 @@ export function LegalJsonLd(props: {
   breadcrumbs: { name: string; url: string }[];
 }) {
   return <JsonLd data={legalJsonLd(props)} />;
+}
+
+export function HowJsonLd(props: {
+  name: string;
+  description: string;
+  url: string;
+  breadcrumbs: { name: string; url: string }[];
+  questions?: { q: string; a: string }[];
+}) {
+  return <JsonLd data={howJsonLd(props)} />;
 }

@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import { setRequestLocale, getTranslations } from "next-intl/server";
-import { isPathLocale } from "@/lib/i18n/config";
+import { isPathLocale, locales } from "@/lib/i18n/config";
 import { notFound } from "next/navigation";
+import { tools } from "@/lib/tools/registry";
 import { LegalPageShell } from "@/components/layout/legal-page-shell";
 import { HowStory } from "@/components/how/how-story";
-import { LegalJsonLd } from "@/lib/seo/json-ld";
-import { buildSectionMetadata, legalJsonLdInput } from "@/lib/seo/metadata";
+import { HowJsonLd } from "@/lib/seo/json-ld";
+import { buildSectionMetadata, faqJsonLdInput, legalJsonLdInput } from "@/lib/seo/metadata";
 
 export async function generateMetadata({
   params,
@@ -27,11 +28,14 @@ export default async function HowPage({
   const t = await getTranslations("how");
   const tn = await getTranslations("nav");
   const jsonLd = await legalJsonLdInput(locale, "how");
+  const faq = await faqJsonLdInput(locale);
 
   return (
     <LegalPageShell title={t("title")} backHref="/" backLabel={tn("home")}>
-      <HowStory />
-      {jsonLd ? <LegalJsonLd {...jsonLd} /> : null}
+      <HowStory toolCount={tools.length} languageCount={locales.length} />
+      {jsonLd ? (
+        <HowJsonLd {...jsonLd} questions={faq?.questions} />
+      ) : null}
     </LegalPageShell>
   );
 }
