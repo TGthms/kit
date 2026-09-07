@@ -7,6 +7,7 @@ import { useSearchParams } from "next/navigation";
 import { Home, History, Star, Settings } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { withAsset } from "@/lib/base-path";
+import { startRecentSession } from "@/lib/navigation/recent";
 import { FloatingNav } from "@/components/ui/floating-nav";
 import { GlidingPill, useGlidingPill } from "@/components/ui/gliding-pill";
 import {
@@ -167,6 +168,10 @@ export function AppShell({ children }: { children: React.ReactNode }) {
   const tb = useTranslations("brand");
   const tc = useTranslations("common");
   const pathname = usePathname();
+
+  useEffect(() => {
+    startRecentSession(pathname);
+  }, [pathname]);
 
   return (
     <div className="flex min-h-dvh flex-col overflow-x-clip bg-background">

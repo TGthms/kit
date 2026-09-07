@@ -2001,6 +2001,14 @@
     "ctaBody": "挑一個你不會捨不得的檔案，用工具處理一遍，盯著網路面板看。這個頁面上最有分量的宣稱，就是你自己能驗證的那一條。",
     "ctaMerge": "合併兩個 PDF",
     "ctaPassword": "產生密碼",
-    "ctaBrowse": "瀏覽全部工具"
+    "ctaBrowse": "瀏覽全部工具",
+    "techDl": "Downloads",
+    "techPdfDl": "The engine, when you first use a PDF tool",
+    "techMediaDl": "About {mediaMb} MB once, then cached",
+    "techImageDl": "Nothing extra — the browser already has it",
+    "techCryptoDl": "Nothing extra — the browser already has it",
+    "techPwaDl": "Nothing extra — it caches, it does not send",
+    "techUiDl": "The pages and scripts themselves",
+    "exceptionOffline": "Lost connection after a page loaded? The tools keep working. Install Kit and the same holds between visits."
   }
 }

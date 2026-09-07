@@ -46,7 +46,6 @@
 
 **Ιστότοπος:** https://trykit.pages.dev
 
-**Σχετικά με τον συγγραφέα:** https://t-g.pages.dev
 
 ## Τι παίρνετε
 

@@ -2001,6 +2001,14 @@
     "ctaBody": "Pilih berkas yang tidak Anda pedulikan, jalankan lewat sebuah alat, dan amati tab jaringan. Klaim terkuat di halaman ini adalah yang bisa Anda periksa sendiri.",
     "ctaMerge": "Gabungkan dua PDF",
     "ctaPassword": "Buat kata sandi",
-    "ctaBrowse": "Jelajahi semua alat"
+    "ctaBrowse": "Jelajahi semua alat",
+    "techDl": "Downloads",
+    "techPdfDl": "The engine, when you first use a PDF tool",
+    "techMediaDl": "About {mediaMb} MB once, then cached",
+    "techImageDl": "Nothing extra — the browser already has it",
+    "techCryptoDl": "Nothing extra — the browser already has it",
+    "techPwaDl": "Nothing extra — it caches, it does not send",
+    "techUiDl": "The pages and scripts themselves",
+    "exceptionOffline": "Lost connection after a page loaded? The tools keep working. Install Kit and the same holds between visits."
   }
 }

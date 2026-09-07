@@ -29,13 +29,6 @@ const COMPARE_ROWS = [
   ["rowAfter", "typicalAfter", "kitAfter"],
 ] as const;
 
-const SIZE_ROWS = [
-  ["sizeUi", "sizeUiBody"],
-  ["sizePdf", "sizePdfBody"],
-  ["sizeMedia", "sizeMediaBody"],
-  ["sizeRates", "sizeRatesBody"],
-] as const;
-
 const GREET_ITEMS = [
   ["greetClock", "greetClockBody"],
   ["greetWeek", "greetWeekBody"],
@@ -45,12 +38,12 @@ const GREET_ITEMS = [
 ] as const;
 
 const TECH_ROWS = [
-  ["techPdfJob", "techPdfRuns", "techPdfWhere"],
-  ["techMediaJob", "techMediaRuns", "techMediaWhere"],
-  ["techImageJob", "techImageRuns", "techImageWhere"],
-  ["techCryptoJob", "techCryptoRuns", "techCryptoWhere"],
-  ["techPwaJob", "techPwaRuns", "techPwaWhere"],
-  ["techUiJob", "techUiRuns", "techUiWhere"],
+  ["techPdfJob", "techPdfRuns", "techPdfWhere", "techPdfDl"],
+  ["techMediaJob", "techMediaRuns", "techMediaWhere", "techMediaDl"],
+  ["techImageJob", "techImageRuns", "techImageWhere", "techImageDl"],
+  ["techCryptoJob", "techCryptoRuns", "techCryptoWhere", "techCryptoDl"],
+  ["techPwaJob", "techPwaRuns", "techPwaWhere", "techPwaDl"],
+  ["techUiJob", "techUiRuns", "techUiWhere", "techUiDl"],
 ] as const;
 
 const PATH_STEPS = [
@@ -73,7 +66,6 @@ const TOC_ITEMS = [
   ["compareTitle", "#how-compare-heading"],
   ["whyTitle", "#how-why-heading"],
   ["exampleTitle", "#how-example-heading"],
-  ["sizeTitle", "#how-size-heading"],
   ["techTitle", "#how-tech-heading"],
   ["verifyTitle", "#how-verify-heading"],
   ["faqTitle", "#how-faq-heading"],
@@ -126,6 +118,7 @@ export function HowStory({ toolCount, languageCount }: { toolCount: number; lang
       case "sizeMediaBody":
       case "faqMediaQ":
       case "limitMedia":
+      case "techMediaDl":
         return t(key, { mediaMb: HOW_MEDIA_ENGINE_MB });
       case "greetClockBody":
         return t(key, {
@@ -308,38 +301,9 @@ export function HowStory({ toolCount, languageCount }: { toolCount: number; lang
         <p className="type-caption text-muted-foreground">{tr("exampleNote")}</p>
       </Section>
 
-      <Section id="how-size" title={t("sizeTitle")}>
-        <div className="overflow-x-auto rounded-2xl border border-border/50 bg-card surface-float">
-          <table className="w-full min-w-[28rem] text-start text-sm">
-            <caption className="sr-only">{t("sizeTitle")}</caption>
-            <thead>
-              <tr className="border-b border-border/50 text-muted-foreground">
-                <th scope="col" className="px-4 py-3 font-medium">
-                  {t("sizeWhat")}
-                </th>
-                <th scope="col" className="px-4 py-3 font-medium">
-                  {t("sizeDetail")}
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {SIZE_ROWS.map(([label, body]) => (
-                <tr key={label} className="border-b border-border/40 last:border-0">
-                  <th scope="row" className="px-4 py-3 font-medium text-foreground">
-                    {t(label)}
-                  </th>
-                  <td className="px-4 py-3 text-muted-foreground">{tr(body)}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-        <p className="type-caption text-muted-foreground">{t("sizeNote")}</p>
-      </Section>
-
       <Section id="how-tech" title={t("techTitle")}>
         <div className="overflow-x-auto rounded-2xl border border-border/50 bg-card surface-float">
-          <table className="w-full min-w-[36rem] text-start text-sm">
+          <table className="w-full min-w-[44rem] text-start text-sm">
             <caption className="sr-only">{t("techTitle")}</caption>
             <thead>
               <tr className="border-b border-border/50 text-muted-foreground">
@@ -352,16 +316,20 @@ export function HowStory({ toolCount, languageCount }: { toolCount: number; lang
                 <th scope="col" className="px-4 py-3 font-medium">
                   {t("techWhere")}
                 </th>
+                <th scope="col" className="px-4 py-3 font-medium">
+                  {t("techDl")}
+                </th>
               </tr>
             </thead>
             <tbody>
-              {TECH_ROWS.map(([job, runs, where]) => (
+              {TECH_ROWS.map(([job, runs, where, dl]) => (
                 <tr key={job} className="border-b border-border/40 last:border-0">
                   <th scope="row" className="px-4 py-3 font-medium text-foreground">
                     {tr(job)}
                   </th>
                   <td className="px-4 py-3 text-muted-foreground">{t(runs)}</td>
                   <td className="px-4 py-3 text-muted-foreground">{t(where)}</td>
+                  <td className="px-4 py-3 text-muted-foreground">{tr(dl)}</td>
                 </tr>
               ))}
             </tbody>
@@ -380,6 +348,7 @@ export function HowStory({ toolCount, languageCount }: { toolCount: number; lang
         <CardContent className="space-y-3">
           <p className="text-sm leading-relaxed text-muted-foreground">{t("exceptionBody")}</p>
           <p className="text-sm leading-relaxed text-muted-foreground">{t("hostNote")}</p>
+          <p className="text-sm leading-relaxed text-muted-foreground">{t("exceptionOffline")}</p>
           <ul className="list-disc space-y-1 ps-5 text-sm leading-relaxed text-muted-foreground">
             <li>{t("limitLarge")}</li>
             <li>{tr("limitMedia")}</li>
@@ -387,19 +356,6 @@ export function HowStory({ toolCount, languageCount }: { toolCount: number; lang
           </ul>
         </CardContent>
       </Card>
-
-      <Section id="how-stays" title={t("staysTitle")}>
-        <ul className="list-disc space-y-2 ps-5 text-sm leading-relaxed text-muted-foreground">
-          <li>{t("staysFiles")}</li>
-          <li>{t("staysHistory")}</li>
-          <li>{t("staysPrefs")}</li>
-          <li>{t("staysClear")}</li>
-        </ul>
-      </Section>
-
-      <Section id="how-offline" title={t("offlineTitle")}>
-        <p className="type-body max-w-2xl text-muted-foreground">{t("offlineBody")}</p>
-      </Section>
 
       <Section id="how-faq" title={t("faqTitle")}>
         <div className="space-y-2">

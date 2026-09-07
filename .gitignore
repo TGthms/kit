@@ -52,4 +52,6 @@ __pycache__/
 # local agent scratch (not product source)
 .planning/
 CODEBASE_NOTES.md
-/.zcode
+/scripts/i18n
+/scripts
+/scripts

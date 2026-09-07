@@ -2001,6 +2001,14 @@
     "ctaBody": "เลือกไฟล์ที่ไม่เป็นไรถ้าหาย ส่งผ่านเครื่องมือสักตัว แล้วดูแท็บเครือข่าย คำกล่าวที่หนักแน่นที่สุดในหน้านี้คือข้อที่คุณตรวจเองได้",
     "ctaMerge": "รวม PDF สองไฟล์",
     "ctaPassword": "สร้างรหัสผ่าน",
-    "ctaBrowse": "ดูเครื่องมือทั้งหมด"
+    "ctaBrowse": "ดูเครื่องมือทั้งหมด",
+    "techDl": "Downloads",
+    "techPdfDl": "The engine, when you first use a PDF tool",
+    "techMediaDl": "About {mediaMb} MB once, then cached",
+    "techImageDl": "Nothing extra — the browser already has it",
+    "techCryptoDl": "Nothing extra — the browser already has it",
+    "techPwaDl": "Nothing extra — it caches, it does not send",
+    "techUiDl": "The pages and scripts themselves",
+    "exceptionOffline": "Lost connection after a page loaded? The tools keep working. Install Kit and the same holds between visits."
   }
 }

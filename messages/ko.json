@@ -2001,6 +2001,14 @@
     "ctaBody": "잃어도 아깝지 않은 파일을 골라 도구에 통과시키고, 네트워크 탭을 지켜 보세요. 이 페이지에서 가장 강한 주장은 당신이 직접 확인할 수 있는 것입니다.",
     "ctaMerge": "두 개의 PDF 합치기",
     "ctaPassword": "비밀번호 생성",
-    "ctaBrowse": "모든 도구 둘러보기"
+    "ctaBrowse": "모든 도구 둘러보기",
+    "techDl": "Downloads",
+    "techPdfDl": "The engine, when you first use a PDF tool",
+    "techMediaDl": "About {mediaMb} MB once, then cached",
+    "techImageDl": "Nothing extra — the browser already has it",
+    "techCryptoDl": "Nothing extra — the browser already has it",
+    "techPwaDl": "Nothing extra — it caches, it does not send",
+    "techUiDl": "The pages and scripts themselves",
+    "exceptionOffline": "Lost connection after a page loaded? The tools keep working. Install Kit and the same holds between visits."
   }
 }

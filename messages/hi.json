@@ -2001,6 +2001,14 @@
     "ctaBody": "कोई ऐसी फ़ाइल चुनिए जिसकी आपको परवाह न हो, उसे किसी टूल से चलाइए, और नेटवर्क टैब पर नज़र रखिए। इस पृष्ठ का सबसे मज़बूत दावा वही है जिसे आप खुद जाँच सकते हैं।",
     "ctaMerge": "दो PDF मिलाएँ",
     "ctaPassword": "पासवर्ड बनाएँ",
-    "ctaBrowse": "सभी टूल देखें"
+    "ctaBrowse": "सभी टूल देखें",
+    "techDl": "Downloads",
+    "techPdfDl": "The engine, when you first use a PDF tool",
+    "techMediaDl": "About {mediaMb} MB once, then cached",
+    "techImageDl": "Nothing extra — the browser already has it",
+    "techCryptoDl": "Nothing extra — the browser already has it",
+    "techPwaDl": "Nothing extra — it caches, it does not send",
+    "techUiDl": "The pages and scripts themselves",
+    "exceptionOffline": "Lost connection after a page loaded? The tools keep working. Install Kit and the same holds between visits."
   }
 }

@@ -69,7 +69,9 @@ describe("HowStory", () => {
   it("keeps the download and engine facts parameterized from code", () => {
     renderHow();
     expect(screen.getByText("FFmpeg WebAssembly (GPL-2.0-or-later)")).toBeInTheDocument();
-    expect(screen.getByText(/about 10 MB gzipped/)).toBeInTheDocument();
+    expect(screen.getByText("About 10 MB once, then cached")).toBeInTheDocument();
+    expect(screen.getByText(/about 10 MB; after that it is cached and reused/)).toBeInTheDocument();
+    expect(screen.getByText("Downloads")).toBeInTheDocument();
   });
 
   it("offers the network log and the FAQ", () => {

@@ -56,7 +56,7 @@ export function personNode() {
     "@id": PERSON_ID,
     name: SITE_AUTHOR,
     url: SITE_AUTHOR_URL,
-    sameAs: [SITE_GITHUB_PROFILE, SITE_AUTHOR_URL],
+    sameAs: Array.from(new Set([SITE_GITHUB_PROFILE, SITE_AUTHOR_URL])),
   };
 }
 

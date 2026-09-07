@@ -2001,6 +2001,14 @@
     "ctaBody": "בוחרים קובץ שלא אכפת לכם ממנו, מריצים אותו בכלי, ומשגיחים על לשונית הרשת. הטענה החזקה ביותר בעמוד הזה היא זו שאפשר לבדוק לבד.",
     "ctaMerge": "למזג שני קובצי PDF",
     "ctaPassword": "ליצור סיסמה",
-    "ctaBrowse": "לעיין בכל הכלים"
+    "ctaBrowse": "לעיין בכל הכלים",
+    "techDl": "Downloads",
+    "techPdfDl": "The engine, when you first use a PDF tool",
+    "techMediaDl": "About {mediaMb} MB once, then cached",
+    "techImageDl": "Nothing extra — the browser already has it",
+    "techCryptoDl": "Nothing extra — the browser already has it",
+    "techPwaDl": "Nothing extra — it caches, it does not send",
+    "techUiDl": "The pages and scripts themselves",
+    "exceptionOffline": "Lost connection after a page loaded? The tools keep working. Install Kit and the same holds between visits."
   }
 }

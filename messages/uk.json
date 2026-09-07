@@ -2001,6 +2001,14 @@
     "ctaBody": "Візьміть файл, який вам не шкода, прогоніть його через інструмент і стежте за вкладкою мережі. Найсильніше твердження на цій сторінці — те, яке ви можете перевірити самі.",
     "ctaMerge": "Об’єднати PDF",
     "ctaPassword": "Генератор паролів",
-    "ctaBrowse": "Переглянути всі інструменти"
+    "ctaBrowse": "Переглянути всі інструменти",
+    "techDl": "Downloads",
+    "techPdfDl": "The engine, when you first use a PDF tool",
+    "techMediaDl": "About {mediaMb} MB once, then cached",
+    "techImageDl": "Nothing extra — the browser already has it",
+    "techCryptoDl": "Nothing extra — the browser already has it",
+    "techPwaDl": "Nothing extra — it caches, it does not send",
+    "techUiDl": "The pages and scripts themselves",
+    "exceptionOffline": "Lost connection after a page loaded? The tools keep working. Install Kit and the same holds between visits."
   }
 }

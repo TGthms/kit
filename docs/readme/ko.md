@@ -46,7 +46,6 @@ Kit는 PDF, 이미지, 미디어, 변환, 텍스트 도구가 기기에서 실�
 
 **사이트:** https://trykit.pages.dev
 
-**작성자 소개:** https://t-g.pages.dev
 
 ## 무엇을 얻나요
 

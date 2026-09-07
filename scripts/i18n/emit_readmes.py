@@ -47,7 +47,6 @@ FEATURED = ["en", "es", "fr", "de", "pt-BR", "ja", "zh-Hans", "zh-Hant", "ko", "
 
 # Privacy/terms path: official locale. zh-Hans still uses the /zh/ app route.
 SITE = "https://trykit.pages.dev"
-ABOUT = "https://t-g.pages.dev"
 PAGES = "https://TGthms.github.io/kit/"
 REPO = "https://github.com/TGthms/kit"
 
@@ -1703,8 +1702,6 @@ npm run lint
 {c["intro"]}
 
 **{c["site"]}:** {SITE}
-
-**{c["author"]}:** {ABOUT}
 
 ## {c["what_h"]}
 

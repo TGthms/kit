@@ -46,7 +46,6 @@ Kit הוא אוסף כלי PDF, תמונות, מדיה, המרה וטקסט שר
 
 **אתר:** https://trykit.pages.dev
 
-**על המחבר:** https://t-g.pages.dev
 
 ## מה מקבלים
 

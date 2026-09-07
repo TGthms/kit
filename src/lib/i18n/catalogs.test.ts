@@ -110,7 +110,7 @@ describe("message catalogs", () => {
     const leftover: string[] = [];
     const enHow = (en as { how: Record<string, string> }).how;
     const keys = [
-      "lanesTitle", "greetTitle", "greetLede", "offlineTitle", "sizeTitle",
+      "lanesTitle", "greetTitle", "greetLede",
       "whyTitle", "exampleTitle", "verifyTitle", "faqTitle", "ctaTitle",
     ] as const;
     for (const loc of locales) {

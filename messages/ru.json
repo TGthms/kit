@@ -2001,6 +2001,14 @@
     "ctaBody": "Возьмите файл, который вам не жалко, прогоните его через инструмент и следите за вкладкой сети. Самое сильное заявление на этой странице — то, которое вы можете проверить сами.",
     "ctaMerge": "Объединить PDF",
     "ctaPassword": "Генератор паролей",
-    "ctaBrowse": "Посмотреть все инструменты"
+    "ctaBrowse": "Посмотреть все инструменты",
+    "techDl": "Downloads",
+    "techPdfDl": "The engine, when you first use a PDF tool",
+    "techMediaDl": "About {mediaMb} MB once, then cached",
+    "techImageDl": "Nothing extra — the browser already has it",
+    "techCryptoDl": "Nothing extra — the browser already has it",
+    "techPwaDl": "Nothing extra — it caches, it does not send",
+    "techUiDl": "The pages and scripts themselves",
+    "exceptionOffline": "Lost connection after a page loaded? The tools keep working. Install Kit and the same holds between visits."
   }
 }

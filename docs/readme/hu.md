@@ -46,7 +46,6 @@ A Kit PDF-, kép-, média-, konvertáló és szöveges eszközök készlete, ame
 
 **Webhely:** https://trykit.pages.dev
 
-**A szerzőről:** https://t-g.pages.dev
 
 ## Mit kap
 

@@ -2001,6 +2001,14 @@
     "ctaBody": "挑一个你不心疼的文件，用工具处理一遍，盯着网络面板看。这个页面上最有力量的声明，就是你自己能验证的那一条。",
     "ctaMerge": "合并两个 PDF",
     "ctaPassword": "生成密码",
-    "ctaBrowse": "浏览全部工具"
+    "ctaBrowse": "浏览全部工具",
+    "techDl": "Downloads",
+    "techPdfDl": "The engine, when you first use a PDF tool",
+    "techMediaDl": "About {mediaMb} MB once, then cached",
+    "techImageDl": "Nothing extra — the browser already has it",
+    "techCryptoDl": "Nothing extra — the browser already has it",
+    "techPwaDl": "Nothing extra — it caches, it does not send",
+    "techUiDl": "The pages and scripts themselves",
+    "exceptionOffline": "Lost connection after a page loaded? The tools keep working. Install Kit and the same holds between visits."
   }
 }

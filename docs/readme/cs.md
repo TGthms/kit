@@ -46,7 +46,6 @@ Kit je sada nástrojů pro PDF, obrázky, média, převody a text, které běž�
 
 **Web:** https://trykit.pages.dev
 
-**O autorovi:** https://t-g.pages.dev
 
 ## Co získáte
 

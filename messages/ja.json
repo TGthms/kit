@@ -2001,6 +2001,14 @@
     "ctaBody": "どうでもいいファイルを 1 つ選び、ツールに通して、ネットワークのタブを見てください。このページでいちばん強い主張は、自分で確かめられるものです。",
     "ctaMerge": "2 つの PDF を結合",
     "ctaPassword": "パスワードを生成",
-    "ctaBrowse": "すべてのツールを見る"
+    "ctaBrowse": "すべてのツールを見る",
+    "techDl": "Downloads",
+    "techPdfDl": "The engine, when you first use a PDF tool",
+    "techMediaDl": "About {mediaMb} MB once, then cached",
+    "techImageDl": "Nothing extra — the browser already has it",
+    "techCryptoDl": "Nothing extra — the browser already has it",
+    "techPwaDl": "Nothing extra — it caches, it does not send",
+    "techUiDl": "The pages and scripts themselves",
+    "exceptionOffline": "Lost connection after a page loaded? The tools keep working. Install Kit and the same holds between visits."
   }
 }

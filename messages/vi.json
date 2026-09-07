@@ -2001,6 +2001,14 @@
     "ctaBody": "Chọn một tệp bạn không ngại, chạy qua một công cụ, và xem tab mạng. Khẳng định mạnh nhất trên trang này là thứ bạn tự kiểm chứng được.",
     "ctaMerge": "Gộp hai tệp PDF",
     "ctaPassword": "Tạo mật khẩu",
-    "ctaBrowse": "Xem tất cả công cụ"
+    "ctaBrowse": "Xem tất cả công cụ",
+    "techDl": "Downloads",
+    "techPdfDl": "The engine, when you first use a PDF tool",
+    "techMediaDl": "About {mediaMb} MB once, then cached",
+    "techImageDl": "Nothing extra — the browser already has it",
+    "techCryptoDl": "Nothing extra — the browser already has it",
+    "techPwaDl": "Nothing extra — it caches, it does not send",
+    "techUiDl": "The pages and scripts themselves",
+    "exceptionOffline": "Lost connection after a page loaded? The tools keep working. Install Kit and the same holds between visits."
   }
 }

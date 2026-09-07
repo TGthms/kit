@@ -46,7 +46,6 @@ Kit réunit des outils PDF, image, média, conversion et texte qui s’exécuten
 
 **Site:** https://trykit.pages.dev
 
-**À propos de l’auteur:** https://t-g.pages.dev
 
 ## Ce que vous obtenez
 

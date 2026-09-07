@@ -1,11 +1,13 @@
 "use client";
 
-import { useEffect, useState, type ReactNode, type Ref } from "react";
+import { useEffect, useState, type MouseEvent, type ReactNode, type Ref } from "react";
 import { createPortal } from "react-dom";
 import { ChevronLeft } from "lucide-react";
-import { Link } from "@/lib/i18n/navigation";
+import { useTranslations } from "next-intl";
+import { Link, useRouter } from "@/lib/i18n/navigation";
 import { cn } from "@/lib/utils";
 import { useHydrated } from "@/lib/react/hydrated";
+import { previousRecentPath, stepRecentBack } from "@/lib/navigation/recent";
 
 type PageHeaderProps = {
   title: string;
@@ -36,12 +38,27 @@ export function PageHeader({
   headerRef,
 }: PageHeaderProps) {
   const [compact, setCompact] = useState(false);
+  const router = useRouter();
+  const tc = useTranslations("common");
   // Portal the compact overlay to <body>. It uses `position: fixed`, and an
   // ancestor (<main>, via the page-enter animation) keeps a non-`none`
   // transform after animating in, which would otherwise turn this "fixed"
   // element into something positioned relative to that ancestor instead of
   // the viewport, so it scrolls away with the page instead of staying put.
   const hydrated = useHydrated();
+  // With in-tab history, back means "where you came from"; without it
+  // (fresh tab, deep link), fall back to the caller's up-href and label.
+  const historyBack = hydrated && previousRecentPath() !== null;
+  const resolvedBackLabel = historyBack ? tc("back") : backLabel;
+  const onBackClick = historyBack
+    ? (event: MouseEvent<HTMLAnchorElement>) => {
+        event.preventDefault();
+        const destination = stepRecentBack();
+        if (destination) {
+          router.push(destination);
+        }
+      }
+    : undefined;
 
   useEffect(() => {
     if (!sticky || !backHref) return;
@@ -65,9 +82,10 @@ export function PageHeader({
         <div className="glass chrome-edge flex h-full items-center gap-1 px-3">
           <Link
             href={backHref}
+            onClick={onBackClick}
             data-pressable
             data-restore-scroll
-            aria-label={backLabel}
+            aria-label={resolvedBackLabel}
             tabIndex={compact ? undefined : -1}
             className={cn(
               "pressable-soft inline-flex h-11 w-11 items-center justify-center rounded-full text-primary",
@@ -91,9 +109,10 @@ export function PageHeader({
         {backHref ? (
           <Link
             href={backHref}
+            onClick={onBackClick}
             data-pressable
             data-restore-scroll
-            aria-label={backLabel}
+            aria-label={resolvedBackLabel}
             className={cn(
               "pressable-soft mb-1 inline-flex min-h-11 max-w-full items-center gap-0.5",
               "-ms-1.5 rounded-lg px-1.5 text-[17px] font-normal text-primary",
@@ -101,7 +120,7 @@ export function PageHeader({
             )}
           >
             <ChevronLeft className="h-5 w-5 shrink-0 stroke-[2.5] rtl:rotate-180" aria-hidden />
-            <span className="truncate">{backLabel}</span>
+            <span className="truncate">{resolvedBackLabel}</span>
           </Link>
         ) : null}
 

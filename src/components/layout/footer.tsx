@@ -3,6 +3,7 @@
 import { useTranslations } from "next-intl";
 import { Link } from "@/lib/i18n/navigation";
 import { Button } from "@/components/ui/button";
+import { Btn2 } from "@/components/ui/btn-2";
 
 function GitHubMark({ className }: { className?: string }) {
   return (
@@ -50,21 +51,15 @@ export function SiteFooter() {
                 {t("emailTim")}
               </a>
             </Button>
-            <Button asChild variant="outline" size="sm" className="h-10 rounded-full px-4">
-              <a href="https://t-g.pages.dev" target="_blank" rel="noopener noreferrer">
-                {t("aboutMe")}
-              </a>
-            </Button>
-            <Button asChild variant="outline" size="sm" className="h-10 rounded-full px-4">
-              <a
-                href="https://github.com/TGthms/kit"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <GitHubMark className="h-3.5 w-3.5" />
-                {t("github")}
-              </a>
-            </Button>
+            <Btn2
+              href="https://github.com/TGthms/kit"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={t("github")}
+            >
+              <GitHubMark className="h-3.5 w-3.5" />
+              {t("github")}
+            </Btn2>
           </div>
         </div>
 

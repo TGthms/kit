@@ -6,17 +6,17 @@ import { Button } from "@/components/ui/button";
 import { useHydrated } from "@/lib/react/hydrated";
 
 const MAX_ROWS = 40;
+const LIST_MAX_HEIGHT = "max-h-72";
 
 type RequestRow = { key: string; label: string; size: number | null };
 
 type RequestGroups = { local: RequestRow[]; network: RequestRow[]; cross: RequestRow[] };
 
 /**
- * Reads the page's own resource timing so the "How Kit works" claims can be
- * checked against reality. transferSize 0 means the entry was served from
- * cache or the service worker without touching the network; the only
- * cross-origin origin Kit can talk to is api.frankfurter.dev (see CSP).
- * Null means the browser exposes no timing (or it errored).
+ * Reads the page's own resource timing. transferSize 0 means the entry was
+ * served from cache or the service worker without touching the network;
+ * background fetches the service worker makes for its own precache are
+ * invisible here. Null means the browser exposes no timing (or it errored).
  */
 function readRequests(): RequestGroups | null {
   try {
@@ -78,8 +78,8 @@ function RequestList({ title, rows }: { title: string; rows: RequestRow[] }) {
 export function NetworkCheck() {
   const t = useTranslations("how");
   const hydrated = useHydrated();
-  // First read happens in the initializer; SSR yields null, and the null
-  // render is suppressed until hydration anyway, so there is no mismatch.
+  // First read happens in the initializer: SSR yields null, and the null
+  // render is suppressed until hydration, so the two trees match.
   const [groups, setGroups] = useState<RequestGroups | null>(() => readRequests());
 
   const recheck = useCallback(() => {
@@ -113,7 +113,7 @@ export function NetworkCheck() {
             <summary className="cursor-pointer select-none text-sm font-medium text-foreground">
               {t("verifyOpen")}
             </summary>
-            <div className="anim-details-content mt-3 space-y-3">
+            <div className={`anim-details-content mt-3 space-y-3 ${LIST_MAX_HEIGHT} overflow-y-auto pe-1`}>
               <RequestList title={t("verifyLocal")} rows={groups.local} />
               <RequestList title={t("verifyNetwork")} rows={groups.network} />
               <RequestList title={t("verifyCross")} rows={groups.cross} />

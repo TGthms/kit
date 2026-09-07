@@ -46,7 +46,6 @@ Kit er et sett med PDF-, bilde-, medie-, konverterings- og tekstverktøy som kj�
 
 **Nettsted:** https://trykit.pages.dev
 
-**Om forfatteren:** https://t-g.pages.dev
 
 ## Hva du får
 
