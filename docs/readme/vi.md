@@ -46,7 +46,6 @@ Kit là bộ công cụ PDF, ảnh, media, chuyển đổi và văn bản chạy
 
 **Trang web:** https://trykit.pages.dev
 
-
 ## Bạn nhận được gì
 
 Một bộ công cụ chỉn chu: bố cục rõ, sáng và tối, 30 ngôn ngữ với bộ chọn gốc, PWA cài được, và giới hạn trung thực về khả năng trình duyệt.

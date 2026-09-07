@@ -46,7 +46,6 @@ Kit is een set pdf-, beeld-, media-, conversie- en teksttools die op uw apparaat
 
 **Site:** https://trykit.pages.dev
 
-
 ## Wat u krijgt
 
 Een verzorgde toolkit: heldere layout, licht en donker, 30 talen met een native kiezer, installeerbare PWA en eerlijke grenzen van wat een browser kan.

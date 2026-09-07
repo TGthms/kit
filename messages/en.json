@@ -1858,7 +1858,6 @@
     "lanesNetworkHost": "Ordinary hosting logs for the page request — IP, user agent — not the document",
     "lanesNote": "There is no third column. Kit does not have a processing server sitting between this tab and your file.",
     "leavesTitle": "When you run a tool, what crosses the network",
-    "sizeTitle": "What Kit downloads (once, not per file)",
     "greetTitle": "The line on the home page",
     "greetLede": "Kit reads this device’s clock and calendar. Nothing about the greeting is sent anywhere. There is no account, so it cannot greet you by name — that is the point.",
     "greetClock": "Time of day",

@@ -1902,7 +1902,6 @@
     "lanesNetworkHost": "Os registos habituais de alojamento do pedido da página — IP, agente de utilizador — não o documento",
     "lanesNote": "Não há uma terceira coluna. O Kit não tem um servidor de processamento entre este separador e o seu ficheiro.",
     "leavesTitle": "Quando corre uma ferramenta, o que atravessa a rede",
-    "sizeTitle": "O que o Kit descarrega (uma vez, não por ficheiro)",
     "greetTitle": "A linha da página inicial",
     "greetLede": "O Kit lê o relógio e o calendário deste dispositivo. A saudação não é enviada para lado nenhum. Não há conta, por isso não o pode cumprimentar pelo nome: é precisamente essa a ideia.",
     "greetClock": "Hora do dia",

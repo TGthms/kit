@@ -46,7 +46,6 @@ Kit to zestaw narzędzi PDF, obrazów, mediów, konwersji i tekstu, które dzia�
 
 **Witryna:** https://trykit.pages.dev
 
-
 ## Co dostajesz
 
 Dopracowany zestaw: czytelny układ, jasny i ciemny motyw, 30 języków z natywnym selektorem, instalowalne PWA i szczere granice tego, co potrafi przeglądarka.

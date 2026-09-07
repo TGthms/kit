@@ -1902,7 +1902,6 @@
     "lanesNetworkHost": "Sayfa isteği için olağan barındırma kayıtları — IP, user agent — belge değil",
     "lanesNote": "Üçüncü sütun yok. Kit’in, bu sekme ile dosyanın arasında duran bir işleme sunucusu yoktur.",
     "leavesTitle": "Bir araç çalıştırınca ağdan ne geçer",
-    "sizeTitle": "Kit ne indirir (bir kez, dosya başına değil)",
     "greetTitle": "Ana sayfadaki satır",
     "greetLede": "Kit bu cihazın saatini ve takvimini okur. Selamlamadan hiçbir şey gönderilmez. Hesap olmadığı için adınla selamlanmazsın — mesele bu.",
     "greetClock": "Günün saati",

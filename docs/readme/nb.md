@@ -46,7 +46,6 @@ Kit er et sett med PDF-, bilde-, medie-, konverterings- og tekstverktøy som kj�
 
 **Nettsted:** https://trykit.pages.dev
 
-
 ## Hva du får
 
 Et gjennomarbeidet verktøysett: tydelig layout, lyst og mørkt, 30 språk med en innebygd velger, installerbar PWA og ærlige grenser for hva en nettleser kan.

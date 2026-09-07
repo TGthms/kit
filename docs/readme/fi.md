@@ -46,7 +46,6 @@ Kit on joukko PDF-, kuva-, media-, muunto- ja tekstityökaluja, jotka toimivat l
 
 **Sivusto:** https://trykit.pages.dev
 
-
 ## Mitä saat
 
 Huolellinen työkalupakki: selkeä asettelu, vaalea ja tumma, 30 kieltä natiivilla valitsimella, asennettava PWA ja rehelliset rajat sille, mitä selain voi tehdä.

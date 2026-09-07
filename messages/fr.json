@@ -1902,7 +1902,6 @@
     "lanesNetworkHost": "Les journaux d’hébergement habituels de la requête de page — IP, agent utilisateur — pas le document",
     "lanesNote": "Il n’y a pas de troisième colonne. Kit n’a pas de serveur de traitement entre cet onglet et votre fichier.",
     "leavesTitle": "Quand vous lancez un outil, ce qui traverse le réseau",
-    "sizeTitle": "Ce que Kit télécharge (une fois, pas à chaque fichier)",
     "greetTitle": "La ligne sur la page d’accueil",
     "greetLede": "Kit lit l’horloge et le calendrier de cet appareil. Rien du salut n’est envoyé nulle part. Il n’y a pas de compte, donc il ne peut pas vous appeler par votre nom : c’est précisément le but.",
     "greetClock": "Moment de la journée",

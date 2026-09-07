@@ -46,7 +46,6 @@ Kit adalah kumpulan alat PDF, gambar, media, konversi, dan teks yang berjalan di
 
 **Situs:** https://trykit.pages.dev
 
-
 ## Apa yang Anda dapatkan
 
 Perangkat yang rapi: tata letak jelas, terang dan gelap, 30 bahasa dengan pemilih asli, PWA yang dapat dipasang, dan batas jujur tentang kemampuan peramban.

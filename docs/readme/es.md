@@ -46,7 +46,6 @@ Kit es un conjunto de herramientas que se ejecutan en tu dispositivo: PDF, imág
 
 **Sitio:** https://trykit.pages.dev
 
-
 ## Para qué sirve
 
 Un kit coherente y cuidado: interfaz clara, modo claro y oscuro, interfaz en 30 idiomas con un selector nativo, PWA instalable y límites honestos sobre lo que un navegador puede hacer.

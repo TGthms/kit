@@ -46,7 +46,6 @@ Kit ist eine Sammlung von PDF-, Bild-, Medien-, Konverter- und Textwerkzeugen, d
 
 **Website:** https://trykit.pages.dev
 
-
 ## Was Sie bekommen
 
 Ein durchdachtes Werkzeugset: klare Oberfläche, hell und dunkel, 30 Sprachen mit nativem Auswahlfeld, installierbare PWA und ehrliche Grenzen dessen, was ein Browser kann.

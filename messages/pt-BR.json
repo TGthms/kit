@@ -1902,7 +1902,6 @@
     "lanesNetworkHost": "Os registros habituais de hospedagem do pedido da página — IP, user agent — não o documento",
     "lanesNote": "Não existe uma terceira coluna. O Kit não tem um servidor de processamento entre esta aba e o seu arquivo.",
     "leavesTitle": "Quando você usa uma ferramenta, o que cruza a rede",
-    "sizeTitle": "O que o Kit baixa (uma vez, não por arquivo)",
     "greetTitle": "A linha da página inicial",
     "greetLede": "O Kit lê o relógio e o calendário deste dispositivo. O cumprimento não é enviado a lugar nenhum. Não tem conta, então ele não pode te chamar pelo nome: é exatamente essa a ideia.",
     "greetClock": "Hora do dia",

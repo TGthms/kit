@@ -1902,7 +1902,6 @@
     "lanesNetworkHost": "Übliche Hosting-Protokolle zur Seitenanfrage — IP, Browserkennung — nicht das Dokument",
     "lanesNote": "Eine dritte Spalte gibt es nicht. Kit hat keinen Verarbeitungsserver zwischen diesem Tab und Ihrer Datei.",
     "leavesTitle": "Was bei einem Werkzeug ins Netz geht",
-    "sizeTitle": "Was Kit einmal lädt (nicht pro Datei)",
     "greetTitle": "Die Zeile auf der Startseite",
     "greetLede": "Kit liest Uhr und Kalender dieses Geräts. An der Begrüßung wird nichts verschickt. Ohne Konto kann Kit Sie nicht namentlich begrüßen — genau darum geht es.",
     "greetClock": "Tageszeit",

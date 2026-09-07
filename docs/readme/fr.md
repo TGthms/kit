@@ -46,7 +46,6 @@ Kit réunit des outils PDF, image, média, conversion et texte qui s’exécuten
 
 **Site:** https://trykit.pages.dev
 
-
 ## Ce que vous obtenez
 
 Une boîte à outils soignée : mise en page claire, thèmes clair et sombre, interface en 30 langues avec un sélecteur natif, PWA installable, et des limites honnêtes sur ce qu’un navigateur peut faire.

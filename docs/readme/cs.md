@@ -46,7 +46,6 @@ Kit je sada nástrojů pro PDF, obrázky, média, převody a text, které běž�
 
 **Web:** https://trykit.pages.dev
 
-
 ## Co získáte
 
 Propracovaná sada: přehledné rozložení, světlý a tmavý vzhled, 30 jazyků s nativním výběrem, instalovatelná PWA a poctivé limity toho, co prohlížeč umí.

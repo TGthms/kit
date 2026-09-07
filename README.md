@@ -46,7 +46,6 @@ Kit is a set of PDF, image, media, converter, and text tools that run on your de
 
 **Live site:** https://trykit.pages.dev
 
-
 ## What you get
 
 A complete, polished toolkit: 94 tools, clear layout, light and dark appearance, a 30-language UI with a native picker, an installable PWA shell, and honest limits about what a browser can do.

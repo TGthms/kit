@@ -1902,7 +1902,6 @@
     "lanesNetworkHost": "I registri di hosting abituali della richiesta di pagina — IP, user agent — non il documento",
     "lanesNote": "Non c’è una terza colonna. Kit non ha un server di elaborazione tra questa scheda e il tuo file.",
     "leavesTitle": "Quando usi uno strumento, cosa attraversa la rete",
-    "sizeTitle": "Cosa scarica Kit (una volta, non per ogni file)",
     "greetTitle": "La riga in home",
     "greetLede": "Kit legge l’orologio e il calendario di questo dispositivo. Il saluto non viene inviato da nessuna parte. Non c’è un account, quindi non può salutarti per nome: è proprio il punto.",
     "greetClock": "Ora del giorno",

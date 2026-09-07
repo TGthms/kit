@@ -46,7 +46,6 @@ Kit este un set de unelte PDF, imagine, media, conversie și text care rulează 
 
 **Site:** https://trykit.pages.dev
 
-
 ## Ce obții
 
 Un set îngrijit: aspect clar, temă deschisă și închisă, 30 de limbi cu selector nativ, PWA instalabilă și limite sincere despre ce poate un browser.

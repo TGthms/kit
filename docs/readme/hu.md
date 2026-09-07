@@ -46,7 +46,6 @@ A Kit PDF-, kép-, média-, konvertáló és szöveges eszközök készlete, ame
 
 **Webhely:** https://trykit.pages.dev
 
-
 ## Mit kap
 
 Átgondolt eszköztár: tiszta elrendezés, világos és sötét, 30 nyelv natív választóval, telepíthető PWA, és őszinte határok arról, mire képes egy böngésző.

@@ -1902,7 +1902,6 @@
     "lanesNetworkHost": "Almindelige hosting-logfiler for sidekaldet — IP og browseroplysninger — ikke dokumentet",
     "lanesNote": "Der er ingen tredje kolonne. Kit har ingen behandlingsserver mellem denne fane og din fil.",
     "leavesTitle": "Hvad der går på nettet, når du kører et værktøj",
-    "sizeTitle": "Hvad Kit henter én gang (ikke pr. fil)",
     "greetTitle": "Linjen på startsiden",
     "greetLede": "Kit læser denne enheds ur og kalender. Intet ved hilsenen sendes nogen steder hen. Uden konto kan Kit ikke hilse dig ved navn — det er meningen.",
     "greetClock": "Tid på dagen",
