@@ -178,7 +178,6 @@ export function legalJsonLd({
   return graph([webPageJsonLd({ name, description, url }), breadcrumbJsonLd(breadcrumbs)]);
 }
 
-/** How Kit works page: WebPage + breadcrumbs, plus the FAQ when the locale has one. */
 export function howJsonLd({
   name,
   description,

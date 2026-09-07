@@ -46,7 +46,7 @@ export function SiteFooter() {
           </div>
 
           <div className="flex flex-wrap items-center gap-2">
-            <Button asChild variant="outline" size="sm" className="h-10 rounded-full px-4">
+            <Button asChild variant="outline" className="h-10 rounded-full px-4">
               <a href="mailto:contact.timg@icloud.com">
                 {t("emailTim")}
               </a>
@@ -55,9 +55,8 @@ export function SiteFooter() {
               href="https://github.com/TGthms/kit"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label={t("github")}
+              icon={<GitHubMark />}
             >
-              <GitHubMark className="h-3.5 w-3.5" />
               {t("github")}
             </Btn2>
           </div>
