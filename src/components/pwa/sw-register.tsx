@@ -3,11 +3,13 @@
 import { useEffect } from "react";
 import { useLocale } from "next-intl";
 import { withBasePath } from "@/lib/base-path";
-
-const UPDATE_EVERY_MS = 5 * 60 * 1000;
-const UPDATE_AFTER_VISIBLE_MS = 4000;
-const FILL_AFTER_IDLE_MS = 2500;
-const FILL_RESUME_MS = 2000;
+import {
+  FILL_AFTER_IDLE_MS,
+  FILL_RESUME_MS,
+  UPDATE_AFTER_VISIBLE_MS,
+  shouldCheckForUpdate,
+  shouldSkipHeavyFill,
+} from "@/lib/pwa/sw-schedule";
 
 export function ServiceWorkerRegister() {
   const locale = useLocale();
@@ -19,7 +21,7 @@ export function ServiceWorkerRegister() {
     const swUrl = `${base}/sw.js`;
     const homeUrl = `${window.location.origin}${withBasePath(`/${locale}/`)}`;
     const connection = (navigator as Navigator & { connection?: { saveData?: boolean; effectiveType?: string } }).connection;
-    const skipHeavy = Boolean(connection?.saveData || connection?.effectiveType === "slow-2g" || connection?.effectiveType === "2g");
+    const skipHeavy = shouldSkipHeavyFill(connection);
     const post = (worker: ServiceWorker | null, message: Record<string, unknown>) => {
       worker?.postMessage(message);
     };
@@ -39,7 +41,7 @@ export function ServiceWorkerRegister() {
       visibleTimer = 0;
       if (!registration) return;
       const now = Date.now();
-      if (now - lastUpdateAt < UPDATE_EVERY_MS) return;
+      if (!shouldCheckForUpdate(now, lastUpdateAt)) return;
       lastUpdateAt = now;
       registration.update().catch(() => undefined);
     };

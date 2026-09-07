@@ -6,6 +6,7 @@ import { describe, expect, it } from "vitest";
 const here = dirname(fileURLToPath(import.meta.url));
 const sw = readFileSync(join(here, "../../../public/sw.js"), "utf8");
 const register = readFileSync(join(here, "sw-register.tsx"), "utf8");
+const schedule = readFileSync(join(here, "../../lib/pwa/sw-schedule.ts"), "utf8");
 
 describe("service worker update policy", () => {
   it("does not seize open tabs on install or activate", () => {
@@ -65,7 +66,9 @@ describe("service worker update policy", () => {
   });
 
   it("throttles update checks after the tab becomes visible", () => {
-    expect(register).toMatch(/UPDATE_EVERY_MS\s*=\s*5\s*\*\s*60\s*\*\s*1000/);
+    expect(schedule).toMatch(/UPDATE_EVERY_MS\s*=\s*5\s*\*\s*60\s*\*\s*1000/);
+    expect(schedule).toMatch(/UPDATE_AFTER_VISIBLE_MS\s*=\s*4000/);
+    expect(register).toMatch(/shouldCheckForUpdate\(/);
     expect(register).toMatch(/UPDATE_AFTER_VISIBLE_MS/);
   });
 

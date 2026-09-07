@@ -1248,8 +1248,7 @@
       "unitTib": "Tebibytes",
       "unitPib": "Pebibytes",
       "unitArcmin": "Arcminutes",
-      "unitArcsec": "Arcseconds",
-      "noMatches": "No matches found."
+      "unitArcsec": "Arcseconds"
     },
     "text-counter": {
       "name": "텍스트 카운터",

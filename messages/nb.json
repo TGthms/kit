@@ -1248,17 +1248,7 @@
       "unitTib": "Tebibytes",
       "unitPib": "Pebibytes",
       "unitArcmin": "Arcminutes",
-      "unitArcsec": "Arcseconds",
-      "noMatches": "No matches found.",
-      "decimal": "Desimal",
-      "minimum": "Minimum",
-      "maximum": "Maksimum",
-      "step": "Hoppet med",
-      "count": "Hvor mange",
-      "unique": "Ingen gjentakelser",
-      "download": "Last ned listen",
-      "batch": "Samling",
-      "countHint": "Opptil {max} om gangen."
+      "unitArcsec": "Arcseconds"
     },
     "text-counter": {
       "name": "Tekstteller",
