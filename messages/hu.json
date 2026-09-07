@@ -23,7 +23,7 @@
     "license": "MIT-licenc",
     "copyright": "© {year} Tim G (TGthms). A Kit nyílt forráskódú, MIT-licenc alatt.",
     "github": "GitHub",
-    "emailTim": "E-mail Timnek",
+    "emailTim": "E-mail",
     "how": "Hogyan működik Kit"
   },
   "common": {
@@ -1949,7 +1949,7 @@
     "examplePassword3": "A jelszó megjelenik ebben a lapban, és eltűnik, amikor távozs. A Kit nem tudhatja meg, és nincs hová elmentenie.",
     "exampleNote": "A többi {count} eszköz bármelyike ugyanígy működik: a bemenet itt marad, a motor itt fut, az eredmény ide íródik.",
     "verifyTitle": "Nézd meg a saját böngésződben",
-    "verifyLede": "Az alábbi naplót maga ez az oldal írta, az imént, a böngésződ saját resource timing adataiból. Ez mérés, nem ígéret.",
+    "verifyLede": "Az alábbiakat ebben a böngészőben mérték meg, most azonnal — ez mérés, nem ígéret.",
     "verifyLocal": "Gyorsítótárból vagy service workerből",
     "verifyNetwork": "Hálózatról letöltve",
     "verifyCross": "Cross-origin kérések",
@@ -1981,13 +1981,13 @@
     "ctaMerge": "PDF-ek egyesítése",
     "ctaPassword": "Jelszógenerátor",
     "ctaBrowse": "Összes eszköz megtekintése",
-    "techDl": "Downloads",
-    "techPdfDl": "The engine, when you first use a PDF tool",
-    "techMediaDl": "About {mediaMb} MB once, then cached",
-    "techImageDl": "Nothing extra — the browser already has it",
-    "techCryptoDl": "Nothing extra — the browser already has it",
-    "techPwaDl": "Nothing extra — it caches, it does not send",
-    "techUiDl": "The pages and scripts themselves",
-    "exceptionOffline": "Lost connection after a page loaded? The tools keep working. Install Kit and the same holds between visits."
+    "techDl": "Letöltés",
+    "techPdfDl": "A motor — amikor először használsz PDF-eszközt",
+    "techMediaDl": "Kb. {mediaMb} MB egyszer, utána gyorsítótárban",
+    "techImageDl": "Semmi extra — a böngészőben már megvan",
+    "techCryptoDl": "Semmi extra — a böngészőben már megvan",
+    "techPwaDl": "Semmi extra — gyorsítótáraz, nem küld el semmit",
+    "techUiDl": "Maguk az oldalak és a szkriptek",
+    "exceptionOffline": "Megszakadt a kapcsolat, miután az oldal betöltődött? Az eszközök tovább működnek. Telepítsd a Kitet, és látogatások között is ugyanez igaz."
   }
 }

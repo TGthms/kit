@@ -23,7 +23,7 @@
     "license": "MIT लाइसेंस",
     "copyright": "© {year} Tim G (TGthms)। Kit MIT लाइसेंस के तहत ओपन सोर्स है।",
     "github": "GitHub",
-    "emailTim": "Tim को ईमेल करें",
+    "emailTim": "ईमेल",
     "how": "Kit कैसे काम करता है"
   },
   "common": {
@@ -1949,7 +1949,7 @@
     "examplePassword3": "पासवर्ड इसी टैब में दिखता है और आपके जाते ही मिट जाता है। Kit के पास उसे जानने का कोई रास्ता नहीं और उसे रखने की कोई जगह नहीं।",
     "exampleNote": "बाकी {count} टूल में से कोई भी इसी ढाँचे पर चलता है: इनपुट यहीं रहता है, इंजन यहीं चलता है, परिणाम यहीं लिखा जाता है।",
     "verifyTitle": "इसे अपने ही ब्राउज़र में देखिए",
-    "verifyLede": "नीचे का लॉग इसी पृष्ठ ने अभी लिखा है, आपके ब्राउज़र के अपने रिसोर्स टाइमिंग से। यह एक माप है, कोई वादा नहीं।",
+    "verifyLede": "नीचे का सब कुछ इसी ब्राउज़र में अभी मापा गया है — माप है, वादा नहीं।",
     "verifyLocal": "कैश या service worker से सर्व किया गया",
     "verifyNetwork": "नेटवर्क से डाउनलोड किया गया",
     "verifyCross": "क्रॉस-ओरिजिन अनुरोध",
@@ -1981,13 +1981,13 @@
     "ctaMerge": "दो PDF मिलाएँ",
     "ctaPassword": "पासवर्ड बनाएँ",
     "ctaBrowse": "सभी टूल देखें",
-    "techDl": "Downloads",
-    "techPdfDl": "The engine, when you first use a PDF tool",
-    "techMediaDl": "About {mediaMb} MB once, then cached",
-    "techImageDl": "Nothing extra — the browser already has it",
-    "techCryptoDl": "Nothing extra — the browser already has it",
-    "techPwaDl": "Nothing extra — it caches, it does not send",
-    "techUiDl": "The pages and scripts themselves",
-    "exceptionOffline": "Lost connection after a page loaded? The tools keep working. Install Kit and the same holds between visits."
+    "techDl": "डाउनलोड",
+    "techPdfDl": "इंजन — PDF औज़ार पहली बार इस्तेमाल करने पर",
+    "techMediaDl": "लगभग {mediaMb} MB एक बार, फिर कैश में",
+    "techImageDl": "कुछ अतिरिक्त नहीं — ब्राउज़र में पहले से है",
+    "techCryptoDl": "कुछ अतिरिक्त नहीं — ब्राउज़र में पहले से है",
+    "techPwaDl": "कुछ अतिरिक्त नहीं — कैश करता है, कुछ नहीं भेजता",
+    "techUiDl": "पृष्ठ और स्क्रिप्ट स्वयं",
+    "exceptionOffline": "पृष्ठ लोड होने के बाद कनेक्शन टूट गया? टूल चलते रहते हैं। Kit इंस्टॉल कीजिए और यही बात विज़िट के बीच भी सही रहती है।"
   }
 }

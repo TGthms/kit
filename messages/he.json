@@ -23,7 +23,7 @@
     "license": "רישיון MIT",
     "copyright": "© {year} Tim G (TGthms). Kit הוא קוד פתוח ברישיון MIT.",
     "github": "GitHub",
-    "emailTim": "שלחו אימייל ל-Tim",
+    "emailTim": "אימייל",
     "how": "איך Kit עובד"
   },
   "common": {
@@ -1949,7 +1949,7 @@
     "examplePassword3": "הסיסמה מופיעה בלשונית הזו ונעלמת כשיוצאים. ל־Kit אין דרך לדעת אותה ואין לאן לשמור אותה.",
     "exampleNote": "כל אחד מהכלים האחרים, {count} במספר, עובד באותה צורה: הקלט נשאר כאן, המנוע רץ כאן, התוצאה נכתבת כאן.",
     "verifyTitle": "רואים את זה בדפדפן שלכם",
-    "verifyLede": "היומן למטה נכתב על ידי העמוד הזה, ממש עכשיו, מתוך נתוני תזמון המשאבים של הדפדפן שלכם. זו מדידה, לא הבטחה.",
+    "verifyLede": "הכול למטה נמדד בדפדפן הזה, ממש עכשיו — מדידה, לא הבטחה.",
     "verifyLocal": "מסופק ממטמון או מ־service worker",
     "verifyNetwork": "הורד מהרשת",
     "verifyCross": "בקשות למקור אחר",
@@ -1981,13 +1981,13 @@
     "ctaMerge": "למזג שני קובצי PDF",
     "ctaPassword": "ליצור סיסמה",
     "ctaBrowse": "לעיין בכל הכלים",
-    "techDl": "Downloads",
-    "techPdfDl": "The engine, when you first use a PDF tool",
-    "techMediaDl": "About {mediaMb} MB once, then cached",
-    "techImageDl": "Nothing extra — the browser already has it",
-    "techCryptoDl": "Nothing extra — the browser already has it",
-    "techPwaDl": "Nothing extra — it caches, it does not send",
-    "techUiDl": "The pages and scripts themselves",
-    "exceptionOffline": "Lost connection after a page loaded? The tools keep working. Install Kit and the same holds between visits."
+    "techDl": "הורדות",
+    "techPdfDl": "המנוע — כשמשתמשים לראשונה בכלי PDF",
+    "techMediaDl": "בערך {mediaMb} MB פעם אחת, ואז במטמון",
+    "techImageDl": "שום דבר נוסף — הדפדפן כבר כולל את זה",
+    "techCryptoDl": "שום דבר נוסף — הדפדפן כבר כולל את זה",
+    "techPwaDl": "שום דבר נוסף — שומר במטמון, לא שולח כלום",
+    "techUiDl": "העמודים והסקריפטים עצמם",
+    "exceptionOffline": "החיבור נותק אחרי שעמוד נטען? הכלים ממשיכים לרוץ. מתקינים את Kit ואותו דבר תקף גם בין כניסות."
   }
 }

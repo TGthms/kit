@@ -23,7 +23,7 @@
     "license": "Ліцензія MIT",
     "copyright": "© {year} Tim G (TGthms). Kit — відкритий проєкт за ліцензією MIT.",
     "github": "GitHub",
-    "emailTim": "Написати Тіму",
+    "emailTim": "Пошта",
     "how": "Як працює Kit"
   },
   "common": {
@@ -1949,7 +1949,7 @@
     "examplePassword3": "Пароль з’являється у цій вкладці й зникає, коли ви йдете. У Kit немає ані способу його дізнатися, ані місця, де його зберігати.",
     "exampleNote": "Будь-який із решти {count} інструментів улаштований так само: введення лишається тут, рушій працює тут, результат записується тут.",
     "verifyTitle": "Перевірте це у своєму браузері",
-    "verifyLede": "Журнал нижче щойно записала ця сторінка — з власного resource timing вашого браузера. Це вимірювання, а не обіцянка.",
+    "verifyLede": "Усе нижче виміряно в цьому браузері просто зараз — вимірювання, а не обіцянка.",
     "verifyLocal": "З кешу або від service worker",
     "verifyNetwork": "Завантажено з мережі",
     "verifyCross": "Крос-доменні запити",
@@ -1981,13 +1981,13 @@
     "ctaMerge": "Об’єднати PDF",
     "ctaPassword": "Генератор паролів",
     "ctaBrowse": "Переглянути всі інструменти",
-    "techDl": "Downloads",
-    "techPdfDl": "The engine, when you first use a PDF tool",
-    "techMediaDl": "About {mediaMb} MB once, then cached",
-    "techImageDl": "Nothing extra — the browser already has it",
-    "techCryptoDl": "Nothing extra — the browser already has it",
-    "techPwaDl": "Nothing extra — it caches, it does not send",
-    "techUiDl": "The pages and scripts themselves",
-    "exceptionOffline": "Lost connection after a page loaded? The tools keep working. Install Kit and the same holds between visits."
+    "techDl": "Завантаження",
+    "techPdfDl": "Рушій — під час першого використання PDF-інструмента",
+    "techMediaDl": "Близько {mediaMb} МБ один раз, далі кешується",
+    "techImageDl": "Нічого зайвого — це вже є в браузері",
+    "techCryptoDl": "Нічого зайвого — це вже є в браузері",
+    "techPwaDl": "Нічого зайвого — кешує, нікуди не надсилає",
+    "techUiDl": "Самі сторінки й скрипти",
+    "exceptionOffline": "З’єднання зникло після завантаження сторінки? Інструменти далі працюють. Установіть Kit — і між відвідуваннями діє те саме."
   }
 }

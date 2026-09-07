@@ -23,7 +23,7 @@
     "license": "Licence MIT",
     "copyright": "© {year} Tim G (TGthms). Kit je open source pod licencí MIT.",
     "github": "GitHub",
-    "emailTim": "Napsat Timovi",
+    "emailTim": "E-mail",
     "how": "Jak Kit funguje"
   },
   "common": {
@@ -1949,7 +1949,7 @@
     "examplePassword3": "Heslo se objeví na této kartě a zmizí, jakmile odejdete. Kit ho nemá jak zjistit a nemá kam ho uložit.",
     "exampleNote": "Každý z ostatních {count} nástrojů funguje podle stejného vzoru: vstup zůstává tady, motor běží tady, výsledek se zapisuje tady.",
     "verifyTitle": "Ověřte to ve svém prohlížeči",
-    "verifyLede": "Protokol níže zapsala tato stránka, právě teď, z vlastního resource timingu vašeho prohlížeče. Je to měření, ne slib.",
+    "verifyLede": "Vše níže je naměřeno v tomto prohlížeči, právě teď — je to měření, ne slib.",
     "verifyLocal": "Z mezipaměti nebo od service workera",
     "verifyNetwork": "Staženo ze sítě",
     "verifyCross": "Cross-origin požadavky",
@@ -1981,13 +1981,13 @@
     "ctaMerge": "Sloučit PDF",
     "ctaPassword": "Generátor hesel",
     "ctaBrowse": "Zobrazit všechny nástroje",
-    "techDl": "Downloads",
-    "techPdfDl": "The engine, when you first use a PDF tool",
-    "techMediaDl": "About {mediaMb} MB once, then cached",
-    "techImageDl": "Nothing extra — the browser already has it",
-    "techCryptoDl": "Nothing extra — the browser already has it",
-    "techPwaDl": "Nothing extra — it caches, it does not send",
-    "techUiDl": "The pages and scripts themselves",
-    "exceptionOffline": "Lost connection after a page loaded? The tools keep working. Install Kit and the same holds between visits."
+    "techDl": "Stažení",
+    "techPdfDl": "Motor — když poprvé použijete PDF nástroj",
+    "techMediaDl": "Asi {mediaMb} MB jednou, pak v mezipaměti",
+    "techImageDl": "Nic navíc — prohlížeč to už má",
+    "techCryptoDl": "Nic navíc — prohlížeč to už má",
+    "techPwaDl": "Nic navíc — ukládá do mezipaměti, nic neposílá",
+    "techUiDl": "Samotné stránky a skripty",
+    "exceptionOffline": "Připojení se po načtení stránky ztratilo? Nástroje běží dál. Nainstalujte Kit a totéž platí mezi návštěvami."
   }
 }

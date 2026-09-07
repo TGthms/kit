@@ -23,7 +23,7 @@
     "license": "رخصة MIT",
     "copyright": "© {year} Tim G (TGthms). Kit برنامج مفتوح المصدر برخصة MIT.",
     "github": "GitHub",
-    "emailTim": "راسل تيم",
+    "emailTim": "البريد الإلكتروني",
     "how": "كيف يعمل Kit"
   },
   "common": {
@@ -1949,7 +1949,7 @@
     "examplePassword3": "تظهر كلمة المرور في هذا التبويب وتزول حين تغادر. لا سبيل لدى Kit لمعرفتها ولا مكان لحفظها.",
     "exampleNote": "أي من الأدوات الأخرى البالغ عددها {count} تسير بالشكل نفسه: المدخلات تبقى هنا، والمحرك يعمل هنا، والنتيجة تُكتب هنا.",
     "verifyTitle": "شاهد ذلك في متصفحك نفسه",
-    "verifyLede": "السجل أدناه كتبته هذه الصفحة للتو، من بيانات توقيت الموارد في متصفحك نفسه. إنه قياس، لا وعد.",
+    "verifyLede": "كل ما هو أدناه مقيس في هذا المتصفح الآن — إنه قياس، لا وعد.",
     "verifyLocal": "مقدَّم من الخبيئة أو service worker",
     "verifyNetwork": "نُزِّل عبر الشبكة",
     "verifyCross": "طلبات من مصادر أخرى",
@@ -1981,13 +1981,13 @@
     "ctaMerge": "ادمج ملفي PDF",
     "ctaPassword": "ولّد كلمة مرور",
     "ctaBrowse": "استعرض كل الأدوات",
-    "techDl": "Downloads",
-    "techPdfDl": "The engine, when you first use a PDF tool",
-    "techMediaDl": "About {mediaMb} MB once, then cached",
-    "techImageDl": "Nothing extra — the browser already has it",
-    "techCryptoDl": "Nothing extra — the browser already has it",
-    "techPwaDl": "Nothing extra — it caches, it does not send",
-    "techUiDl": "The pages and scripts themselves",
-    "exceptionOffline": "Lost connection after a page loaded? The tools keep working. Install Kit and the same holds between visits."
+    "techDl": "التنزيلات",
+    "techPdfDl": "المحرك — عند أول استخدام لأداة PDF",
+    "techMediaDl": "نحو {mediaMb} MB مرة واحدة، ثم يُخزَّن",
+    "techImageDl": "لا شيء إضافيًا — المتصفح يملكه بالفعل",
+    "techCryptoDl": "لا شيء إضافيًا — المتصفح يملكه بالفعل",
+    "techPwaDl": "لا شيء إضافيًا — يخزّن ولا يرسل شيئًا",
+    "techUiDl": "الصفحات والنصوص البرمجية نفسها",
+    "exceptionOffline": "انقطع الاتصال بعد تحميل صفحة؟ الأدوات تواصل العمل. ثبّت Kit ويصحّ الأمر نفسه بين الزيارات."
   }
 }

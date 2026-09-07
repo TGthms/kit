@@ -23,7 +23,7 @@
     "license": "Лицензия MIT",
     "copyright": "© {year} Tim G (TGthms). Kit — открытый проект по лицензии MIT.",
     "github": "GitHub",
-    "emailTim": "Написать Тиму",
+    "emailTim": "Почта",
     "how": "Как работает Kit"
   },
   "common": {
@@ -1949,7 +1949,7 @@
     "examplePassword3": "Пароль появляется в этой вкладке и исчезает, когда вы уходите. У Kit нет ни способа его узнать, ни места, где его хранить.",
     "exampleNote": "Любой из остальных {count} инструментов устроен так же: ввод остаётся здесь, движок работает здесь, результат записывается здесь.",
     "verifyTitle": "Проверьте это в своём браузере",
-    "verifyLede": "Журнал ниже только что записала эта страница — из собственного resource timing вашего браузера. Это измерение, а не обещание.",
+    "verifyLede": "Всё ниже измерено в этом браузере прямо сейчас — измерение, а не обещание.",
     "verifyLocal": "Из кэша или от service worker",
     "verifyNetwork": "Скачано по сети",
     "verifyCross": "Кросс-доменные запросы",
@@ -1981,13 +1981,13 @@
     "ctaMerge": "Объединить PDF",
     "ctaPassword": "Генератор паролей",
     "ctaBrowse": "Посмотреть все инструменты",
-    "techDl": "Downloads",
-    "techPdfDl": "The engine, when you first use a PDF tool",
-    "techMediaDl": "About {mediaMb} MB once, then cached",
-    "techImageDl": "Nothing extra — the browser already has it",
-    "techCryptoDl": "Nothing extra — the browser already has it",
-    "techPwaDl": "Nothing extra — it caches, it does not send",
-    "techUiDl": "The pages and scripts themselves",
-    "exceptionOffline": "Lost connection after a page loaded? The tools keep working. Install Kit and the same holds between visits."
+    "techDl": "Загрузки",
+    "techPdfDl": "Движок — при первом использовании PDF-инструмента",
+    "techMediaDl": "Около {mediaMb} МБ один раз, затем кэшируется",
+    "techImageDl": "Ничего лишнего — это уже есть в браузере",
+    "techCryptoDl": "Ничего лишнего — это уже есть в браузере",
+    "techPwaDl": "Ничего лишнего — кэширует, никуда не отправляет",
+    "techUiDl": "Сами страницы и скрипты",
+    "exceptionOffline": "Пропало соединение после того, как страница загрузилась? Инструменты продолжают работать. Установите Kit — и между визитами действует то же самое."
   }
 }

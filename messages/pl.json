@@ -23,7 +23,7 @@
     "license": "Licencja MIT",
     "copyright": "© {year} Tim G (TGthms). Kit jest oprogramowaniem open source na licencji MIT.",
     "github": "GitHub",
-    "emailTim": "Napisz do Tima",
+    "emailTim": "E-mail",
     "how": "Jak działa Kit"
   },
   "common": {
@@ -1949,7 +1949,7 @@
     "examplePassword3": "Hasło pojawia się w tej karcie i znika, gdy odchodzisz. Kit nie ma jak się o nim dowiedzieć ani gdzie go przechować.",
     "exampleNote": "Każde z pozostałych {count} narzędzi działa według tego samego schematu: dane wejściowe zostają tutaj, silnik pracuje tutaj, wynik zapisuje się tutaj.",
     "verifyTitle": "Zobacz to we własnej przeglądarce",
-    "verifyLede": "Dziennik poniżej zapisała ta strona, przed chwilą, na podstawie własnego resource timing przeglądarki. To pomiar, nie obietnica.",
+    "verifyLede": "Wszystko poniżej jest mierzone w tej przeglądarce, właśnie teraz — to pomiar, nie obietnica.",
     "verifyLocal": "Z pamięci podręcznej lub od service workera",
     "verifyNetwork": "Pobrane przez sieć",
     "verifyCross": "Żądania cross-origin",
@@ -1981,13 +1981,13 @@
     "ctaMerge": "Scal PDF-y",
     "ctaPassword": "Generator haseł",
     "ctaBrowse": "Zobacz wszystkie narzędzia",
-    "techDl": "Downloads",
-    "techPdfDl": "The engine, when you first use a PDF tool",
-    "techMediaDl": "About {mediaMb} MB once, then cached",
-    "techImageDl": "Nothing extra — the browser already has it",
-    "techCryptoDl": "Nothing extra — the browser already has it",
-    "techPwaDl": "Nothing extra — it caches, it does not send",
-    "techUiDl": "The pages and scripts themselves",
-    "exceptionOffline": "Lost connection after a page loaded? The tools keep working. Install Kit and the same holds between visits."
+    "techDl": "Pobieranie",
+    "techPdfDl": "Silnik — przy pierwszym użyciu narzędzia PDF",
+    "techMediaDl": "Około {mediaMb} MB raz, potem w pamięci podręcznej",
+    "techImageDl": "Nic dodatkowego — przeglądarka już to ma",
+    "techCryptoDl": "Nic dodatkowego — przeglądarka już to ma",
+    "techPwaDl": "Nic dodatkowego — zapisuje w pamięci podręcznej, niczego nie wysyła",
+    "techUiDl": "Same strony i skrypty",
+    "exceptionOffline": "Utracono połączenie po wczytaniu strony? Narzędzia działają dalej. Zainstaluj Kit — i to samo obowiązuje między wizytami."
   }
 }
