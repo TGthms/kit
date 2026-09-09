@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 import { Link } from "@/lib/i18n/navigation";
 import { Button } from "@/components/ui/button";
@@ -15,7 +16,33 @@ function GitHubMark({ className }: { className?: string }) {
 
 export function SiteFooter() {
   const t = useTranslations("footer");
+  const common = useTranslations("common");
   const year = new Date().getFullYear();
+  const [supportOpen, setSupportOpen] = useState(false);
+  const supportButtonRef = useRef<HTMLButtonElement>(null);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    if (!supportOpen) return;
+
+    closeButtonRef.current?.focus();
+    const trigger = supportButtonRef.current;
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        event.preventDefault();
+        setSupportOpen(false);
+      }
+    };
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", onKeyDown);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", onKeyDown);
+      trigger?.focus();
+    };
+  }, [supportOpen]);
 
   return (
     <footer className="mt-auto border-t border-border/40 bg-card/40">
@@ -51,11 +78,6 @@ export function SiteFooter() {
                 {t("emailTim")}
               </a>
             </Button>
-            <Button asChild variant="outline" className="h-10 rounded-full px-4">
-              <a href="https://ko-fi.com/tgthms" target="_blank" rel="noopener noreferrer">
-                {t("supportMe")}
-              </a>
-            </Button>
             <Btn2
               href="https://github.com/TGthms/kit"
               target="_blank"
@@ -64,6 +86,16 @@ export function SiteFooter() {
             >
               {t("github")}
             </Btn2>
+            <Button
+              ref={supportButtonRef}
+              variant="outline"
+              className="h-10 rounded-full px-4"
+              onClick={() => setSupportOpen(true)}
+              aria-haspopup="dialog"
+              aria-expanded={supportOpen}
+            >
+              {t("supportMe")}
+            </Button>
           </div>
         </div>
 
@@ -71,6 +103,45 @@ export function SiteFooter() {
           {t("copyright", { year })}
         </p>
       </div>
+
+      {supportOpen ? (
+        <div
+          className="fixed inset-0 z-[70] flex items-end justify-center bg-black/45 p-0 sm:items-center sm:p-6"
+          role="presentation"
+          onMouseDown={(event) => {
+            if (event.target === event.currentTarget) setSupportOpen(false);
+          }}
+        >
+          <section
+            className="anim-surface flex h-[min(92dvh,48rem)] w-full max-w-2xl flex-col overflow-hidden rounded-t-3xl border bg-card shadow-2xl sm:h-[min(88dvh,48rem)] sm:rounded-3xl"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="kit-support-title"
+          >
+            <div className="flex items-center justify-between gap-4 border-b px-5 py-4 sm:px-6">
+              <h2 id="kit-support-title" className="type-title">
+                {t("supportMe")}
+              </h2>
+              <Button
+                ref={closeButtonRef}
+                size="icon"
+                variant="ghost"
+                onClick={() => setSupportOpen(false)}
+                aria-label={common("close")}
+              >
+                ×
+              </Button>
+            </div>
+            <iframe
+              id="kofiframe"
+              src="https://ko-fi.com/tgthms/?hidefeed=true&widget=true&embed=true&preview=true"
+              title="tgthms"
+              className="min-h-0 w-full flex-1 border-0 bg-[#f9f9f9] p-1 dark:bg-[#1c1c1e]"
+              loading="lazy"
+            />
+          </section>
+        </div>
+      ) : null}
     </footer>
   );
 }
