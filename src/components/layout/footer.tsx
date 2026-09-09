@@ -51,6 +51,11 @@ export function SiteFooter() {
                 {t("emailTim")}
               </a>
             </Button>
+            <Button asChild variant="outline" className="h-10 rounded-full px-4">
+              <a href="https://ko-fi.com/tgthms" target="_blank" rel="noopener noreferrer">
+                {t("supportMe")}
+              </a>
+            </Button>
             <Btn2
               href="https://github.com/TGthms/kit"
               target="_blank"
