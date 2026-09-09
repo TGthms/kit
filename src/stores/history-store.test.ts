@@ -1,5 +1,7 @@
-import { describe, expect, it } from "vitest";
-import { safeSummary } from "./history-store";
+import { beforeEach, describe, expect, it } from "vitest";
+import { safeSummary, useHistoryStore } from "./history-store";
+
+// @vitest-environment jsdom
 
 describe("history summaries", () => {
   it("keeps conversion and clock values", () => {
@@ -23,5 +25,28 @@ describe("history summaries", () => {
     expect(safeSummary("password", "success")).toBe("password");
     expect(safeSummary("password × 3", "success")).toBe("password × 3");
     expect(safeSummary("boom", "failed")).toBe("failed");
+    expect(safeSummary("a".repeat(120), "success")).toBe("completed");
+  });
+});
+
+describe("history recording", () => {
+  beforeEach(() => {
+    useHistoryStore.setState({ entries: [], enabled: false });
+  });
+
+  it("records nothing while the opt-in is off, even on a direct add()", () => {
+    useHistoryStore.getState().add({ toolId: "pdf-merge", summary: "completed", status: "success" });
+    expect(useHistoryStore.getState().entries).toEqual([]);
+  });
+
+  it("keeps only finite-number and boolean options", () => {
+    useHistoryStore.getState().setEnabled(true);
+    useHistoryStore.getState().add({
+      toolId: "image-compress",
+      summary: "completed",
+      status: "success",
+      options: { q: 80, label: "secret-name", weird: Number.NaN, ok: true },
+    });
+    expect(useHistoryStore.getState().entries[0].options).toEqual({ q: 80, ok: true });
   });
 });

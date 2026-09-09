@@ -33,6 +33,15 @@ export function blobFromDataUrl(dataUrl: string): Blob {
   return new Blob([decodeURIComponent(body)], { type: mime });
 }
 
+/**
+ * How long a download URL stays alive after the click. The 1 s base covers
+ * Safari's click-to-download handoff; large blobs earn more time so a slow
+ * consumer reading at ≥5 MB/s can finish before the revoke.
+ */
+export function downloadRevokeDelayMs(size: number): number {
+  return Math.min(10_000, 1_000 + Math.ceil(size / 5_000));
+}
+
 export function downloadBlob(blob: Blob, filename: string) {
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");
@@ -42,8 +51,7 @@ export function downloadBlob(blob: Blob, filename: string) {
   document.body.appendChild(a);
   a.click();
   a.remove();
-  // Delay revoke so Safari finishes the download
-  setTimeout(() => URL.revokeObjectURL(url), 1_000);
+  setTimeout(() => URL.revokeObjectURL(url), downloadRevokeDelayMs(blob.size));
 }
 
 /** Safe Blob from Uint8Array (avoids SharedArrayBuffer / offset buffer issues). */

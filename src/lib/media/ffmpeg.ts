@@ -164,9 +164,15 @@ export async function transcodeOnFFmpeg(
   inputName: string,
   inputData: Uint8Array,
   outputName: string,
-  args: string[]
+  args: string[],
+  signal?: AbortSignal
 ): Promise<Uint8Array> {
   return withExecLock(async () => {
+    // Ownership of the shared instance is claimed when the exec slot is
+    // acquired, not at call time, so a queued run's cancel can never tear
+    // down the job that holds the slot.
+    if (signal) activeSignal = signal;
+    if (signal?.aborted) throw abortError();
     try {
       logLines.length = 0;
       await ff.writeFile(inputName, inputData);
@@ -204,22 +210,32 @@ export async function runFFmpeg(
 ): Promise<Uint8Array> {
   if (signal?.aborted) throw abortError();
   const onAbort = () => {
-    // Only the owning run may terminate the shared instance; a queued run's
-    // cancel must not kill another job's in-flight exec.
-    if (activeSignal === signal) cancelFFmpeg();
+    // Only the run holding the exec slot may tear the instance down during
+    // its exec, and a queued run's cancel must not kill another job's
+    // in-flight exec. While nobody owns the slot (the load phase, or the
+    // idle window before a queued run acquires it) any cancel is free to
+    // reset the shared instance.
+    if (activeSignal === signal || activeSignal === null) cancelFFmpeg();
   };
   signal?.addEventListener("abort", onAbort);
-  activeSignal = signal ?? null;
   const onProg = onProgress
     ? (event: { progress: number }) => onProgress(event.progress)
     : null;
   try {
-    let ff = await getFFmpeg();
+    let ff: FFmpeg;
+    try {
+      ff = await getFFmpeg();
+    } catch (error) {
+      // A cancel during the load rejects the load itself; a cancelled run
+      // must surface that as a cancel, not as the raw termination error.
+      if (signal?.aborted) throw abortError();
+      throw error;
+    }
     if (signal?.aborted) throw abortError();
     for (let attempt = 0; ; attempt += 1) {
       if (onProg) ff.on("progress", onProg);
       try {
-        const output = await transcodeOnFFmpeg(ff, inputName, inputData, outputName, args);
+        const output = await transcodeOnFFmpeg(ff, inputName, inputData, outputName, args, signal);
         // A cancel that lands after exec resolved must still surface as a
         // cancel, not a successful download.
         if (signal?.aborted) throw abortError();

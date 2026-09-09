@@ -27,73 +27,44 @@ import { parseLiveNumber, type EditedSide } from "./converter-shared";
 
 const text = translateOr;
 
-const CURRENCIES = [
-  ["USD", "US dollar · United States"],
-  ["CAD", "Canadian dollar · Canada"],
-  ["MXN", "Mexican peso · Mexico"],
-  ["BRL", "Brazilian real · Brazil"],
-  ["ARS", "Argentine peso · Argentina"],
-  ["EUR", "Euro · Europe"],
-  ["GBP", "British pound · United Kingdom"],
-  ["CHF", "Swiss franc · Switzerland"],
-  ["SEK", "Swedish krona · Sweden"],
-  ["NOK", "Norwegian krone · Norway"],
-  ["DKK", "Danish krone · Denmark"],
-  ["PLN", "Polish zloty · Poland"],
-  ["CZK", "Czech koruna · Czechia"],
-  ["TRY", "Turkish lira · Türkiye"],
-  ["JPY", "Japanese yen · Japan"],
-  ["CNY", "Chinese yuan · China"],
-  ["HKD", "Hong Kong dollar · Hong Kong, China"],
-  ["SGD", "Singapore dollar · Singapore"],
-  ["KRW", "South Korean won · South Korea"],
-  ["INR", "Indian rupee · India"],
-  ["THB", "Thai baht · Thailand"],
-  ["IDR", "Indonesian rupiah · Indonesia"],
-  ["MYR", "Malaysian ringgit · Malaysia"],
-  ["PHP", "Philippine peso · Philippines"],
-  ["VND", "Vietnamese dong · Vietnam"],
-  ["NZD", "New Zealand dollar · New Zealand"],
-  ["AED", "UAE dirham · United Arab Emirates"],
-  ["SAR", "Saudi riyal · Saudi Arabia"],
-  ["ILS", "Israeli new shekel · Israel"],
-  ["ZAR", "South African rand · South Africa"],
-  ["EGP", "Egyptian pound · Egypt"],
-] as const;
-
-const CURRENCY_MESSAGE_KEYS: Record<string, string> = {
-  USD: "currencyUsd",
-  CAD: "currencyCad",
-  MXN: "currencyMxn",
-  BRL: "currencyBrl",
-  ARS: "currencyArs",
-  EUR: "currencyEur",
-  GBP: "currencyGbp",
-  CHF: "currencyChf",
-  SEK: "currencySek",
-  NOK: "currencyNok",
-  DKK: "currencyDkk",
-  PLN: "currencyPln",
-  CZK: "currencyCzk",
-  TRY: "currencyTry",
-  JPY: "currencyJpy",
-  CNY: "currencyCny",
-  HKD: "currencyHkd",
-  SGD: "currencySgd",
-  KRW: "currencyKrw",
-  INR: "currencyInr",
-  THB: "currencyThb",
-  IDR: "currencyIdr",
-  MYR: "currencyMyr",
-  PHP: "currencyPhp",
-  VND: "currencyVnd",
-  NZD: "currencyNzd",
-  AED: "currencyAed",
-  SAR: "currencySar",
-  ILS: "currencyIls",
-  ZAR: "currencyZar",
-  EGP: "currencyEgp",
-};
+/**
+ * Supported currencies: [ISO 4217 code, ISO region for the display name,
+ * English fallback name]. A null region marks a multinational currency
+ * (the euro), which shows the localized currency name alone.
+ */
+const CURRENCIES: ReadonlyArray<readonly [string, string | null, string]> = [
+  ["USD", "US", "US dollar"],
+  ["CAD", "CA", "Canadian dollar"],
+  ["MXN", "MX", "Mexican peso"],
+  ["BRL", "BR", "Brazilian real"],
+  ["ARS", "AR", "Argentine peso"],
+  ["EUR", null, "Euro"],
+  ["GBP", "GB", "British pound"],
+  ["CHF", "CH", "Swiss franc"],
+  ["SEK", "SE", "Swedish krona"],
+  ["NOK", "NO", "Norwegian krone"],
+  ["DKK", "DK", "Danish krone"],
+  ["PLN", "PL", "Polish zloty"],
+  ["CZK", "CZ", "Czech koruna"],
+  ["TRY", "TR", "Turkish lira"],
+  ["JPY", "JP", "Japanese yen"],
+  ["CNY", "CN", "Chinese yuan"],
+  ["HKD", "HK", "Hong Kong dollar"],
+  ["SGD", "SG", "Singapore dollar"],
+  ["KRW", "KR", "South Korean won"],
+  ["INR", "IN", "Indian rupee"],
+  ["THB", "TH", "Thai baht"],
+  ["IDR", "ID", "Indonesian rupiah"],
+  ["MYR", "MY", "Malaysian ringgit"],
+  ["PHP", "PH", "Philippine peso"],
+  ["VND", "VN", "Vietnamese dong"],
+  ["NZD", "NZ", "New Zealand dollar"],
+  ["AED", "AE", "UAE dirham"],
+  ["SAR", "SA", "Saudi riyal"],
+  ["ILS", "IL", "Israeli new shekel"],
+  ["ZAR", "ZA", "South African rand"],
+  ["EGP", "EG", "Egyptian pound"],
+];
 
 const CURRENCY_CACHE_KEY = "kit-everyday-currency-rates-v1";
 
@@ -150,19 +121,22 @@ export function CurrencyConverter({ namespace = "tools.currency-converter" }: { 
   const displayError = errorFor === pairKey ? error : "";
   const [refreshToken, setRefreshToken] = useState(0);
   const currencyOptions = useMemo(
-    () => CURRENCIES.map(([value, fallback]) => {
-      const country = fallback.split(" · ")[1] ?? "";
-      let localizedName = text(t, CURRENCY_MESSAGE_KEYS[value] ?? "", fallback);
-      let localizedCountry = country;
-      try {
-        localizedName = new Intl.DisplayNames([locale], { type: "currency" }).of(value) ?? localizedName;
-        if (/^[A-Z]{2}/u.test(country)) localizedCountry = new Intl.DisplayNames([locale], { type: "region" }).of(country) ?? country;
-      } catch {
-        // Keep the catalog fallback when DisplayNames is unavailable.
-      }
-      return { value, label: localizedCountry ? `${localizedName} · ${localizedCountry}` : localizedName };
-    }),
-    [locale, t]
+    () =>
+      CURRENCIES.map(([value, region, fallbackName]) => {
+        // CLDR owns currency and country names: `Intl.DisplayNames` localizes
+        // both, so a new currency needs no translation work. Region needs the
+        // ISO code — a full country name makes `.of()` throw.
+        try {
+          const name = new Intl.DisplayNames([locale], { type: "currency" }).of(value) ?? fallbackName;
+          const regionName = region
+            ? (new Intl.DisplayNames([locale], { type: "region" }).of(region) ?? null)
+            : null;
+          return { value, label: regionName ? `${name} · ${regionName}` : name };
+        } catch {
+          return { value, label: fallbackName };
+        }
+      }),
+    [locale]
   );
   const match = useMemo(() => (base === quote ? null : findCachedRate(rates, base, quote)), [base, quote, rates]);
   const stale = match ? isCachedRateStale(match.record) : false;

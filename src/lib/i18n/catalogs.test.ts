@@ -140,4 +140,69 @@ describe("message catalogs", () => {
     }
     expect(leftover).toEqual([]);
   });
+
+  it("translates multi-word English phrases in every catalog", async () => {
+    // Single words are often legitimate cognates (cs "Text", de "Start") and
+    // stay under the spot checks above. A multi-word English sentence or
+    // label surviving into a locale, however, is always an untranslated gap.
+    const allow = new Set([
+      "brand.name", "footer.github", "categories.pdf",
+      "tools.markdown-html.name", "tools.markdown-html.toHtml", "tools.markdown-html.toMd",
+      "tools.csv-json.name", "tools.csv-json.toJson", "tools.csv-json.toCsv",
+      "tools.xml-json.name", "tools.xml-json.toJson", "tools.xml-json.toXml",
+      "tools.json-types.name", "tools.video-gif.name", "tools.pdf-to-images.name",
+      "tools.images-to-pdf.name", "tools.base64.name",
+      "tools.everyday-converter.unitRem", "tools.everyday-converter.unitEm",
+      "tools.everyday-converter.unitPsi", "tools.everyday-converter.unitBar",
+      "tools.everyday-converter.dpi",
+      "tools.everyday-converter.presetKmhMph", "tools.everyday-converter.presetGbGib",
+      "tools.everyday-converter.presetHzRpm", "tools.everyday-converter.presetNmLbFt",
+      "tools.everyday-converter.presetPxRem", "tools.everyday-converter.presetPxPt",
+      "tools.everyday-converter.presetL100kmMpg", "tools.everyday-converter.presetBarPsi",
+      "tools.everyday-converter.presetOhmsKilohms", "tools.everyday-converter.presetKwhJoules",
+      "tools.everyday-converter.presetMs2G", "tools.everyday-converter.presetCelsiusFahrenheit",
+      "tools.everyday-converter.presetCelsiusKelvin", "tools.everyday-converter.presetVoltsMillivolts",
+      "tools.timezone-converter.zoneUtc",
+      "tools.date-calculator.holidaysPlaceholder", "tools.date-calculator.minutesResult",
+      "tools.meeting-planner.utcHour", "tools.meeting-planner.zone",
+      "tools.tip-split-calculator.person",
+      "tools.image-palette.pixels",
+      "tools.slugify.slug", "how.statsUploads",
+      "tools.bmi-calorie-calculator.minorBadge", "tools.bmi-calorie-calculator.imperial",
+      "tools.everyday-converter.presetMetricImperial",
+      "tools.hash-generator.keywords", "tools.tip-split-calculator.tipPercent",
+      "tools.bmi-calorie-calculator.cm", "tools.bmi-calorie-calculator.ft",
+      "tools.bmi-calorie-calculator.in", "tools.bmi-calorie-calculator.kg",
+      "tools.bmi-calorie-calculator.lb", "tools.bmi-calorie-calculator.kcal",
+      "tools.bmi-calorie-calculator.bmr", "tools.bmi-calorie-calculator.bmi",
+      "tools.bmi-calorie-calculator.healthyWeightValue",
+      "how.techDl", "tools.percentage-calculator.modeOf",
+      "how.compareKit", "how.techPdfJob", "how.techMediaRuns",
+      "how.techImageRuns", "how.techCryptoRuns", "how.techPwaRuns",
+      "tools.slugify.name", "tools.lorem-ipsum.name", "tools.hash-generator.digest",
+      "tools.regex-tester.flags", "tools.image-filters.sepia",
+      "tools.image-filters.invert", "tools.image-filters.filter",
+      "tools.currency-converter.searchAria", "tools.timezone-converter.searchAria",
+    ]);
+    const masked = (path: string) => /tools\.(everyday-converter|currency-converter)\.unit[A-Z]/.test(path);
+    // Latin-script locales may keep geographic exonyms identical to English.
+    const nonLatin = new Set(["ja", "ko", "zh-Hans", "zh-Hant", "zh", "ar", "he", "hi", "th", "ru", "uk", "el"]);
+    const isGeo = (path: string) => /tools\.timezone-converter\.(city|zone)[A-Z]/.test(path);
+    const leaves = leafPaths(en).map((path) => [path, getPath(en, path)] as const);
+
+    const leftover: string[] = [];
+    for (const loc of locales) {
+      if (loc === "en") continue;
+      const file = messageFileFor(loc);
+      const catalog = (await import(`../../../messages/${file}.json`)).default;
+      for (const [path, enValue] of leaves) {
+        if (typeof enValue !== "string" || !enValue.includes(" ") || !/[A-Za-z]{2}/.test(enValue)) continue;
+        if (allow.has(path) || masked(path)) continue;
+        if (isGeo(path) && !nonLatin.has(loc)) continue;
+        const value = getPath(catalog, path);
+        if (value === enValue) leftover.push(`${loc}:${path}`);
+      }
+    }
+    expect(leftover).toEqual([]);
+  });
 });

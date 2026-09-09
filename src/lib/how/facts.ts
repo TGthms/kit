@@ -16,6 +16,7 @@ export const HOW_GREETING_BOUNDS = GREETING_PERIOD_BOUNDS;
  */
 export const HOW_FAQ_KEYS = [
   ["faqFreeQ", "faqFreeA"],
+  ["faqBrowserQ", "faqBrowserA"],
   ["faqFilesQ", "faqFilesA"],
   ["faqOfflineQ", "faqOfflineA"],
   ["faqMediaQ", "faqMediaA"],
