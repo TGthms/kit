@@ -123,7 +123,20 @@ export function SiteFooter() {
                 <h2 id="kit-support-title" className="type-title">
                   {t("supportMe")}
                 </h2>
-                <p className="mt-1 text-xs text-muted-foreground">{t("supportSecureNote")}</p>
+                <p className="mt-1 text-xs text-muted-foreground">
+                  {t.rich("supportWalletNote", {
+                    link: (chunks) => (
+                      <a
+                        href="https://ko-fi.com/tgthms"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="font-medium text-foreground underline underline-offset-2 hover:no-underline"
+                      >
+                        {chunks}
+                      </a>
+                    ),
+                  })}
+                </p>
               </div>
               <Button
                 ref={closeButtonRef}
@@ -153,18 +166,7 @@ export function SiteFooter() {
               users to Ko-fi's own hosted page, where those methods do work.
             */}
             <p className="shrink-0 border-t bg-muted/30 px-5 py-2.5 text-center text-xs text-muted-foreground sm:px-6">
-              {t.rich("supportWalletNote", {
-                link: (chunks) => (
-                  <a
-                    href="https://ko-fi.com/tgthms"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="font-medium text-foreground underline underline-offset-2 hover:no-underline"
-                  >
-                    {chunks}
-                  </a>
-                ),
-              })}
+              {t("supportSecureNote")}
             </p>
           </section>
         </div>
