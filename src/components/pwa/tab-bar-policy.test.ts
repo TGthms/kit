@@ -43,8 +43,7 @@ describe("mobile PWA tab bar material", () => {
   });
 
   it("marks navigation as client-ready after hydration", () => {
-    expect(shell).toMatch(/const \[hydrated, setHydrated\] = useState\(false\)/);
-    expect(shell).toMatch(/setHydrated\(true\)/);
+    expect(shell).toMatch(/useHydrated\(\)/);
     expect(shell).toMatch(/data-navigation-intent=\{hydrated \? "client" : undefined\}/);
   });
 

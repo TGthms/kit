@@ -20,6 +20,7 @@ import { SiteFooter } from "./footer";
 import { LocaleSwitcher } from "./locale-switcher";
 import { RouteProgress } from "./route-progress";
 import { ScrollRestoration } from "./scroll-restoration";
+import { useHydrated } from "@/lib/react/hydrated";
 
 const nav = [
   { href: "/", key: "home", icon: Home },
@@ -90,14 +91,10 @@ function TabBar({ pathname }: { pathname: string }) {
   const [target, setTarget] = useState<HTMLElement | null>(null);
   const { rect, ready } = useGlidingPill(container, target);
   const keyboardHidden = useKeyboardHidesTabBar();
-  const [hydrated, setHydrated] = useState(false);
+  const hydrated = useHydrated();
   const previousActive = useRef<string | null>(null);
   const [popHref, setPopHref] = useState<string | null>(null);
   const activeIndex = nav.findIndex((item) => isActive(pathname, item.href));
-
-  useEffect(() => {
-    setHydrated(true);
-  }, []);
 
   useLayoutEffect(() => {
     const current = nav.find((item) => isActive(pathname, item.href))?.href ?? null;
