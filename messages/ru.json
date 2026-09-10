@@ -27,7 +27,7 @@
     "emailTim": "Почта",
     "how": "Как работает Kit",
     "supportSecureNote": "Только оплата картой, безопасно обрабатывается Ko-fi",
-    "supportWalletNote": "Предпочитаете Apple Pay, Google Pay или PayPal? <link>Продолжить на Ko-fi.com</link>"
+    "supportWalletNote": "Предпочитаете Apple Pay, Google Pay или Cash App Pay? <link>Продолжить на Ko-fi.com</link>"
   },
   "common": {
     "waveformTooLarge": "Файл слишком велик для предпросмотра формы волны. Задайте диапазон в полях ниже.",

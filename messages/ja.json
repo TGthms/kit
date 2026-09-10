@@ -27,7 +27,7 @@
     "emailTim": "メール",
     "how": "Kit のしくみ",
     "supportSecureNote": "カード決済のみ、Ko-fiが安全に処理します",
-    "supportWalletNote": "Apple Pay、Google Pay、PayPalをご希望ですか？ <link>Ko-fi.comで続ける</link>"
+    "supportWalletNote": "Apple Pay、Google Pay、Cash App Payをご希望ですか？ <link>Ko-fi.comで続ける</link>"
   },
   "common": {
     "waveformTooLarge": "このファイルは波形プレビューには大きすぎます。下の欄で範囲を指定してください。",
