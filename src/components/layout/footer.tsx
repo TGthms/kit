@@ -142,7 +142,7 @@ export function SiteFooter() {
               title="tgthms"
               className="min-h-0 w-full flex-1 border-0 bg-[#f9f9f9] p-1 dark:bg-[#1c1c1e]"
               loading="eager"
-              allow="payment"
+              allow="payment *"
               referrerPolicy="strict-origin-when-cross-origin"
             />
           </section>
