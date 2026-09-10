@@ -31,6 +31,7 @@ export function FloatingNav({
       )}
       aria-label={ariaLabel}
       aria-hidden={keyboardHidden ? true : undefined}
+      inert={keyboardHidden || undefined}
       data-keyboard={keyboardHidden ? "" : undefined}
     >
       <div className="pointer-events-none mx-auto flex w-full max-w-lg justify-center px-3">

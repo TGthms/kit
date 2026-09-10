@@ -90,8 +90,14 @@ function TabBar({ pathname }: { pathname: string }) {
   const [target, setTarget] = useState<HTMLElement | null>(null);
   const { rect, ready } = useGlidingPill(container, target);
   const keyboardHidden = useKeyboardHidesTabBar();
+  const [hydrated, setHydrated] = useState(false);
   const previousActive = useRef<string | null>(null);
   const [popHref, setPopHref] = useState<string | null>(null);
+  const activeIndex = nav.findIndex((item) => isActive(pathname, item.href));
+
+  useEffect(() => {
+    setHydrated(true);
+  }, []);
 
   useLayoutEffect(() => {
     const current = nav.find((item) => isActive(pathname, item.href))?.href ?? null;
@@ -110,6 +116,9 @@ function TabBar({ pathname }: { pathname: string }) {
       <GlidingPill
         rect={rect}
         ready={ready}
+        hydrated={hydrated}
+        fallbackIndex={Math.max(0, activeIndex)}
+        fallbackCount={nav.length}
         className="gliding-pill-fast rounded-full bg-primary/12"
       />
       {nav.map(({ href, key, icon: Icon }) => {
@@ -121,6 +130,8 @@ function TabBar({ pathname }: { pathname: string }) {
             data-pressable
             data-restore-scroll
             aria-current={active ? "page" : undefined}
+            tabIndex={keyboardHidden ? -1 : undefined}
+            data-navigation-intent={hydrated ? "client" : undefined}
             className={cn(
               "pressable-soft relative z-10 flex min-h-[3.6rem] min-w-0 flex-1 flex-col items-center justify-center gap-0.5 px-1 py-1",
               "text-[11px] font-medium tracking-[-0.01em]",

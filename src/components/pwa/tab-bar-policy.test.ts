@@ -28,9 +28,24 @@ describe("mobile PWA tab bar material", () => {
     expect(shell).not.toMatch(/pressable-soft[^"]*scale-/);
   });
 
-  it("hides the bar while the keyboard covers the bottom", () => {
+  it("hides the bar while the keyboard covers the bottom and removes it from focus", () => {
     expect(floatingNav).toMatch(/keyboardHidden/);
+    expect(floatingNav).toMatch(/inert=\{keyboardHidden \|\| undefined\}/);
+    expect(shell).toMatch(/tabIndex=\{keyboardHidden \? -1 : undefined\}/);
     expect(css).toMatch(/\.floating-nav\[data-keyboard\] \.floating-nav-shell/);
+  });
+
+  it("keeps the active pill visible through hydration", () => {
+    expect(shell).toMatch(/fallbackIndex=\{Math\.max\(0, activeIndex\)\}/);
+    expect(shell).toMatch(/fallbackCount=\{nav\.length\}/);
+    expect(css).toMatch(/\.gliding-pill-fallback:not\(\[data-ready\]\)/);
+    expect(css).toMatch(/\.gliding-pill:not\(\[data-hydrated\]\)/);
+  });
+
+  it("marks navigation as client-ready after hydration", () => {
+    expect(shell).toMatch(/const \[hydrated, setHydrated\] = useState\(false\)/);
+    expect(shell).toMatch(/setHydrated\(true\)/);
+    expect(shell).toMatch(/data-navigation-intent=\{hydrated \? "client" : undefined\}/);
   });
 
   it("drops blur and spring when accessibility preferences ask", () => {

@@ -323,6 +323,20 @@ scritto-flow.kit-scritto-inline {
   transition: none;
 }
 
+/* Keep the selected tab visible during hydration while the measured pill catches up. */
+.gliding-pill-fallback:not([data-ready]) {
+  opacity: 1;
+  left: calc(var(--gliding-pill-index) * (100% / var(--gliding-pill-count)));
+  top: 0;
+  width: calc(100% / var(--gliding-pill-count));
+  height: 100%;
+}
+
+/* The SSR/hydration frame must not animate from the fallback into its measured box. */
+.gliding-pill:not([data-hydrated]) {
+  transition: none !important;
+}
+
 .copy-icon {
   position: relative;
   display: inline-flex;

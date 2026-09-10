@@ -16,6 +16,10 @@ export function measurePill(container: HTMLElement, target: HTMLElement): PillRe
   };
 }
 
+function sameRect(a: PillRect, b: PillRect): boolean {
+  return a.left === b.left && a.top === b.top && a.width === b.width && a.height === b.height;
+}
+
 export function useGlidingPill(container: HTMLElement | null, target: HTMLElement | null) {
   const [rect, setRect] = useState<PillRect>({ left: 0, top: 0, width: 0, height: 0 });
   const [ready, setReady] = useState(false);
@@ -23,20 +27,28 @@ export function useGlidingPill(container: HTMLElement | null, target: HTMLElemen
   useLayoutEffect(() => {
     if (!container || !target) return;
 
+    let frame = 0;
     const update = () => {
-      if (target.getBoundingClientRect().width === 0) return;
-      setRect(measurePill(container, target));
+      frame = 0;
+      const next = measurePill(container, target);
+      if (next.width === 0) return;
+      setRect((current) => (sameRect(current, next) ? current : next));
       setReady(true);
     };
+    const scheduleUpdate = () => {
+      if (frame) return;
+      frame = window.requestAnimationFrame(update);
+    };
 
-    update();
-    const ro = new ResizeObserver(update);
+    scheduleUpdate();
+    const ro = new ResizeObserver(scheduleUpdate);
     ro.observe(container);
     ro.observe(target);
-    window.addEventListener("resize", update);
+    window.addEventListener("resize", scheduleUpdate);
     return () => {
       ro.disconnect();
-      window.removeEventListener("resize", update);
+      window.removeEventListener("resize", scheduleUpdate);
+      window.cancelAnimationFrame(frame);
     };
   }, [container, target]);
 
@@ -46,24 +58,35 @@ export function useGlidingPill(container: HTMLElement | null, target: HTMLElemen
 export function GlidingPill({
   rect,
   ready,
+  hydrated = true,
+  fallbackIndex,
+  fallbackCount,
   className,
 }: {
   rect: PillRect;
   ready: boolean;
+  hydrated?: boolean;
+  fallbackIndex?: number;
+  fallbackCount?: number;
   className?: string;
 }) {
-  const style: CSSProperties = {
-    left: rect.left,
-    top: rect.top,
-    width: rect.width,
-    height: rect.height,
-  };
+  const style: CSSProperties = ready
+    ? { left: rect.left, top: rect.top, width: rect.width, height: rect.height }
+    : {};
+  const hasFallback = fallbackIndex !== undefined && fallbackCount !== undefined && fallbackCount > 0;
+  const fallbackStyle = hasFallback
+    ? ({
+        "--gliding-pill-index": fallbackIndex,
+        "--gliding-pill-count": fallbackCount,
+      } as CSSProperties)
+    : {};
   return (
     <span
       aria-hidden
       data-ready={ready ? "" : undefined}
-      className={cn("gliding-pill pointer-events-none absolute", className)}
-      style={style}
+      data-hydrated={hydrated ? "" : undefined}
+      style={hasFallback ? { ...style, ...fallbackStyle } : style}
+      className={cn("gliding-pill pointer-events-none absolute", hasFallback && "gliding-pill-fallback", className)}
     />
   );
 }
