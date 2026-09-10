@@ -13,6 +13,9 @@ describe("content security policy", () => {
     expect(CONTENT_SECURITY_POLICY).toContain("https://api.frankfurter.dev");
     expect(CONTENT_SECURITY_POLICY).not.toContain("frame-ancestors");
     expect(CONTENT_SECURITY_POLICY_HEADER).toContain("frame-ancestors 'none'");
+    expect(readFileSync(join(dirname(fileURLToPath(import.meta.url)), "../../../public/_headers"), "utf8")).toContain(
+      'Permissions-Policy: camera=(), microphone=(), geolocation=(), interest-cohort=(), usb=(), serial=(), bluetooth=(), payment=(self "https://ko-fi.com" "https://*.ko-fi.com"), browsing-topics=()'
+    );
   });
 
   it("mirrors the Cloudflare _headers CSP plus frame-ancestors", () => {
