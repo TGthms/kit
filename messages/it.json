@@ -1864,6 +1864,7 @@
     "kitCurrency": "Solo i codici della coppia, e solo quando questo browser non ha una cache recente. Gli importi restano qui.",
     "supportTitle": "Ko-fi",
     "supportBody": "Il pannello opzionale «Supporta» si collega a Ko-fi in un riquadro incorporato. È separato dagli strumenti di Kit: Ko-fi può trattare i propri dati tecnici e le informazioni su donazioni e pagamenti secondo le sue politiche, mentre Kit non riceve mai i tuoi file né i dati di pagamento. Preferisci restare completamente in locale? Lascia semplicemente chiuso il pannello.",
+    "supportSecureNote": "Pagamento sicuro gestito da Ko-fi",
     "whyTitle": "Perché Kit funziona così",
     "whyLede": "Tenere i file nel browser non è solo una scelta di privacy. Cambia ciò che uno strumento può prometterti.",
     "whyPrivate": "Privato per impostazione predefinita",

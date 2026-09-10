@@ -106,22 +106,25 @@ export function SiteFooter() {
 
       {supportOpen ? (
         <div
-          className="fixed inset-0 z-[70] flex items-end justify-center bg-black/45 p-0 sm:items-center sm:p-6"
+          className="fixed inset-0 z-[70] flex items-center justify-center bg-black/45 p-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] sm:p-6"
           role="presentation"
           onMouseDown={(event) => {
             if (event.target === event.currentTarget) setSupportOpen(false);
           }}
         >
           <section
-            className="anim-surface flex h-[min(92dvh,48rem)] w-full max-w-2xl flex-col overflow-hidden rounded-t-3xl border bg-card shadow-2xl sm:h-[min(88dvh,48rem)] sm:rounded-3xl"
+            className="anim-surface flex h-[min(86dvh,48rem)] w-full max-w-2xl flex-col overflow-hidden rounded-3xl border bg-card shadow-2xl sm:h-[min(88dvh,48rem)]"
             role="dialog"
             aria-modal="true"
             aria-labelledby="kit-support-title"
           >
-            <div className="flex items-center justify-between gap-4 border-b px-5 py-4 sm:px-6">
-              <h2 id="kit-support-title" className="type-title">
-                {t("supportMe")}
-              </h2>
+            <div className="flex items-center justify-between gap-4 border-b px-5 py-3.5 sm:px-6">
+              <div>
+                <h2 id="kit-support-title" className="type-title">
+                  {t("supportMe")}
+                </h2>
+                <p className="mt-1 text-xs text-muted-foreground">{t("supportSecureNote")}</p>
+              </div>
               <Button
                 ref={closeButtonRef}
                 size="icon"
@@ -138,7 +141,9 @@ export function SiteFooter() {
               src="https://ko-fi.com/tgthms/?hidefeed=true&widget=true&embed=true&preview=true"
               title="tgthms"
               className="min-h-0 w-full flex-1 border-0 bg-[#f9f9f9] p-1 dark:bg-[#1c1c1e]"
-              loading="lazy"
+              loading="eager"
+              allow="payment *"
+              referrerPolicy="strict-origin-when-cross-origin"
             />
           </section>
         </div>

@@ -44,7 +44,7 @@ export const CONTENT_SECURITY_POLICY = [
   "media-src 'self' blob:",
   "connect-src 'self' https://api.frankfurter.dev blob:",
   "worker-src 'self' blob:",
-  "frame-src 'self' https://ko-fi.com",
+  "frame-src 'self' https://ko-fi.com https://*.ko-fi.com",
 ].join("; ");
 
 /** HTTP-only directives that a `<meta>` CSP cannot express. */

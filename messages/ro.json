@@ -1864,6 +1864,7 @@
     "kitCurrency": "Doar codurile perechii, și numai când acest browser n-are cache proaspăt. Sumele rămân aici.",
     "supportTitle": "Ko-fi",
     "supportBody": "Panoul opțional „Susține-mă” se conectează la Ko-fi într-un cadru încorporat. Este separat de instrumentele Kit: Ko-fi poate procesa propriile date tehnice și informații despre donații și plăți conform politicilor sale, în timp ce Kit nu primește niciodată fișierele sau datele tale de plată. Preferi să rămâi complet local? Lasă pur și simplu panoul închis.",
+    "supportSecureNote": "Plata securizată este procesată de Ko-fi",
     "whyTitle": "De ce funcționează Kit așa",
     "whyLede": "A ține fișierele în browser nu e doar o chestiune de principiu privind confidențialitatea. Schimbă ce poate să-ți promită o unealtă.",
     "whyPrivate": "Privat implicit",

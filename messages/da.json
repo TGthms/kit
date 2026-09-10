@@ -1864,6 +1864,7 @@
     "kitCurrency": "Kun par-koderne, og kun når denne browser ikke har parret friskt i cachen. Beløb bliver her.",
     "supportTitle": "Ko-fi",
     "supportBody": "Det valgfri “Støt mig”-panel opretter forbindelse til Ko-fi i en indlejret ramme. Det er adskilt fra Kits værktøjer: Ko-fi kan behandle egne tekniske data samt oplysninger om donationer og betalinger efter deres politikker, mens Kit aldrig modtager dine filer eller betalingsoplysninger. Vil du helst blive helt lokalt? Lad blot panelet være lukket.",
+    "supportSecureNote": "Sikker betaling håndteres af Ko-fi",
     "whyTitle": "Hvorfor Kit virker sådan",
     "whyLede": "At holde filer i browseren er ikke kun et privatlivsvalg. Det ændrer, hvad et værktøj kan love dig.",
     "whyPrivate": "Privat som standard",
