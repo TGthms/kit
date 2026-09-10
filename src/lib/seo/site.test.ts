@@ -14,7 +14,7 @@ describe("content security policy", () => {
     expect(CONTENT_SECURITY_POLICY).not.toContain("frame-ancestors");
     expect(CONTENT_SECURITY_POLICY_HEADER).toContain("frame-ancestors 'none'");
     expect(readFileSync(join(dirname(fileURLToPath(import.meta.url)), "../../../public/_headers"), "utf8")).toContain(
-      'Permissions-Policy: camera=(), microphone=(), geolocation=(), interest-cohort=(), usb=(), serial=(), bluetooth=(), payment=(self "https://ko-fi.com" "https://*.ko-fi.com" "https://js.stripe.com" "https://checkout.stripe.com"), browsing-topics=()'
+      'Permissions-Policy: camera=(), microphone=(), geolocation=(), interest-cohort=(), usb=(), serial=(), bluetooth=(), payment=(self "https://ko-fi.com" "https://js.stripe.com" "https://checkout.stripe.com"), browsing-topics=()'
     );
   });
 

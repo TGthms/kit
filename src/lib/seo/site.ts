@@ -52,6 +52,22 @@ export const CONTENT_SECURITY_POLICY = [
   // here or the Permissions-Policy payment allowlist, Safari drops the Apple Pay button
   // with no visible error — the Permissions-Policy gap in particular is easy to miss
   // since nothing throws.
+  //
+  // DO NOT add "https://*.ko-fi.com" (or any wildcard-subdomain origin) to the
+  // Permissions-Policy `payment` allowlist in public/_headers. CSP source lists support
+  // `https://*.example.com` natively, so it's tempting to assume Permissions-Policy does
+  // too — but Permissions-Policy origins are parsed as Structured Field quoted strings,
+  // where a bare `*.host` is not a valid URL. Safari does not implement the separate
+  // "wildcards in Permissions Policy" extension that Chromium ships, and its Structured
+  // Field parser does not gracefully drop just the malformed token: it invalidates the
+  // whole `payment` directive and falls back to that feature's spec default of `self`.
+  // That silently strips the cross-origin grant to ko-fi.com entirely — regardless of
+  // the iframe's own `allow="payment"` attribute, since the effective policy is the
+  // intersection of the header and the attribute. This is exactly why the Apple Pay
+  // button worked on ko-fi.com's own page and on other sites embedding the identical
+  // widget (none of which send a restrictive `payment` Permissions-Policy at all, so the
+  // feature is unrestricted by default) but not here, once this header started explicitly
+  // scoping `payment` down. Keep this allowlist to exact origins only.
   "frame-src 'self' https://ko-fi.com https://*.ko-fi.com https://js.stripe.com https://checkout.stripe.com",
 ].join("; ");
 
