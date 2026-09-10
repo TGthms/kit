@@ -26,7 +26,8 @@
     "supportMe": "Støt mig",
     "emailTim": "E-mail",
     "how": "Sådan virker Kit",
-    "supportSecureNote": "Sikker betaling håndteres af Ko-fi"
+    "supportSecureNote": "Kun kortbetaling, håndteret sikkert af Ko-fi",
+    "supportWalletNote": "Foretrækker du Apple Pay, Google Pay eller PayPal? <link>Fortsæt på Ko-fi.com</link>"
   },
   "common": {
     "waveformTooLarge": "Denne fil er for stor til en bølgeform-forhåndsvisning. Angiv intervallet i felterne nedenfor.",

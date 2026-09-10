@@ -26,7 +26,8 @@
     "supportMe": "सहयोग करें",
     "emailTim": "ईमेल",
     "how": "Kit कैसे काम करता है",
-    "supportSecureNote": "सुरक्षित भुगतान Ko-fi द्वारा संभाला जाता है"
+    "supportSecureNote": "केवल कार्ड भुगतान, Ko-fi द्वारा सुरक्षित रूप से संसाधित",
+    "supportWalletNote": "Apple Pay, Google Pay या PayPal पसंद करते हैं? <link>Ko-fi.com पर जारी रखें</link>"
   },
   "common": {
     "waveformTooLarge": "यह फ़ाइल वेवफ़ॉर्म प्रीव्यू के लिए बहुत बड़ी है। रेंज नीचे दिए गए फ़ील्ड से सेट करें।",

@@ -145,6 +145,27 @@ export function SiteFooter() {
               allow="payment *"
               referrerPolicy="strict-origin-when-cross-origin"
             />
+            {/*
+              Ko-fi's embedded widget only ever offers card payment in practice, even
+              though it requests the "payment" permission — Apple Pay / Google Pay simply
+              never render inside it, embedded or not, browser or headers notwithstanding.
+              Rather than keep chasing that, tell people up front and hand off wallet-pay
+              users to Ko-fi's own hosted page, where those methods do work.
+            */}
+            <p className="shrink-0 border-t bg-muted/30 px-5 py-2.5 text-center text-xs text-muted-foreground sm:px-6">
+              {t.rich("supportWalletNote", {
+                link: (chunks) => (
+                  <a
+                    href="https://ko-fi.com/tgthms"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-medium text-foreground underline underline-offset-2 hover:no-underline"
+                  >
+                    {chunks}
+                  </a>
+                ),
+              })}
+            </p>
           </section>
         </div>
       ) : null}

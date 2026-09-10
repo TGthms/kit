@@ -26,7 +26,8 @@
     "supportMe": "Podpořte mě",
     "emailTim": "E-mail",
     "how": "Jak Kit funguje",
-    "supportSecureNote": "Bezpečnou platbu zajišťuje Ko-fi"
+    "supportSecureNote": "Pouze platba kartou, bezpečně zpracovaná službou Ko-fi",
+    "supportWalletNote": "Preferujete Apple Pay, Google Pay nebo PayPal? <link>Pokračujte na Ko-fi.com</link>"
   },
   "common": {
     "waveformTooLarge": "Tento soubor je příliš velký pro náhled průběhu vlny. Rozsah nastavte v polích níže.",

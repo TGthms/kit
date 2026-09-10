@@ -26,7 +26,8 @@
     "supportMe": "Ủng hộ tôi",
     "emailTim": "Email",
     "how": "Kit hoạt động thế nào",
-    "supportSecureNote": "Thanh toán an toàn do Ko-fi xử lý"
+    "supportSecureNote": "Chỉ thanh toán bằng thẻ, được Ko-fi xử lý an toàn",
+    "supportWalletNote": "Muốn dùng Apple Pay, Google Pay hoặc PayPal? <link>Tiếp tục trên Ko-fi.com</link>"
   },
   "common": {
     "waveformTooLarge": "Tệp này quá lớn để xem trước dạng sóng. Hãy đặt khoảng thời gian trong các ô bên dưới.",

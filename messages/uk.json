@@ -26,7 +26,8 @@
     "supportMe": "Підтримати",
     "emailTim": "Пошта",
     "how": "Як працює Kit",
-    "supportSecureNote": "Безпечний платіж обробляє Ko-fi"
+    "supportSecureNote": "Лише оплата карткою, безпечно обробляється Ko-fi",
+    "supportWalletNote": "Надаєте перевагу Apple Pay, Google Pay або PayPal? <link>Продовжити на Ko-fi.com</link>"
   },
   "common": {
     "waveformTooLarge": "Файл завеликий для попереднього перегляду форми хвилі. Укажіть діапазон у полях нижче.",

@@ -26,7 +26,8 @@
     "supportMe": "Tue minua",
     "emailTim": "Sähköposti",
     "how": "Miten Kit toimii",
-    "supportSecureNote": "Ko-fi käsittelee maksun turvallisesti"
+    "supportSecureNote": "Vain korttimaksu, jonka Ko-fi käsittelee turvallisesti",
+    "supportWalletNote": "Haluatko käyttää Apple Paytä, Google Payta tai PayPalia? <link>Jatka Ko-fi.comissa</link>"
   },
   "common": {
     "waveformTooLarge": "Tiedosto on liian suuri aaltomuodon esikatseluun. Aseta aikaväli alla olevilla kentillä.",

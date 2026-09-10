@@ -26,7 +26,8 @@
     "supportMe": "สนับสนุนฉัน",
     "emailTim": "อีเมล",
     "how": "Kit ทำงานอย่างไร",
-    "supportSecureNote": "Ko-fi เป็นผู้ดำเนินการชำระเงินอย่างปลอดภัย"
+    "supportSecureNote": "ชำระเงินด้วยบัตรเท่านั้น ดำเนินการอย่างปลอดภัยโดย Ko-fi",
+    "supportWalletNote": "ต้องการใช้ Apple Pay, Google Pay หรือ PayPal ใช่ไหม? <link>ดำเนินการต่อที่ Ko-fi.com</link>"
   },
   "common": {
     "waveformTooLarge": "ไฟล์นี้ใหญ่เกินไปสำหรับดูตัวอย่างรูปคลื่น ตั้งช่วงเวลาโดยใช้ช่องด้านล่าง",

@@ -26,7 +26,8 @@
     "supportMe": "Apóyame",
     "emailTim": "Correo",
     "how": "Cómo funciona Kit",
-    "supportSecureNote": "Pago seguro gestionado por Ko-fi"
+    "supportSecureNote": "Solo pago con tarjeta, gestionado de forma segura por Ko-fi",
+    "supportWalletNote": "¿Prefieres Apple Pay, Google Pay o PayPal? <link>Continúa en Ko-fi.com</link>"
   },
   "common": {
     "waveformTooLarge": "Este archivo es demasiado grande para la vista previa de forma de onda. Fija el rango con los campos de abajo.",

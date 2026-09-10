@@ -26,7 +26,8 @@
     "supportMe": "支持我",
     "emailTim": "电子邮件",
     "how": "Kit 如何运作",
-    "supportSecureNote": "安全支付由 Ko-fi 处理"
+    "supportSecureNote": "仅支持银行卡支付，由 Ko-fi 安全处理",
+    "supportWalletNote": "想用 Apple Pay、Google Pay 或 PayPal？<link>前往 Ko-fi.com 继续</link>"
   },
   "common": {
     "waveformTooLarge": "文件过大，无法显示波形预览。请在下方输入起止时间。",

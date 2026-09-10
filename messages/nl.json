@@ -26,7 +26,8 @@
     "supportMe": "Steun mij",
     "emailTim": "E-mail",
     "how": "Hoe Kit werkt",
-    "supportSecureNote": "Veilige betaling via Ko-fi"
+    "supportSecureNote": "Alleen kaartbetaling, veilig verwerkt door Ko-fi",
+    "supportWalletNote": "Liever Apple Pay, Google Pay of PayPal? <link>Ga verder op Ko-fi.com</link>"
   },
   "common": {
     "waveformTooLarge": "Dit bestand is te groot voor een golfvormvoorvertoning. Stel het bereik in met de velden hieronder.",
