@@ -1862,6 +1862,8 @@
     "rowCurrency": "Devizaátváltás",
     "typicalCurrency": "Gyakran az összeget is",
     "kitCurrency": "Csak a párkódok, és csak ha ebben a böngészőben nincs friss gyorsítótár. Az összegek itt maradnak.",
+    "supportTitle": "Ko-fi",
+    "supportBody": "Az opcionális „Támogass” panel beágyazott keretben csatlakozik a Ko-fihoz. Ez elkülönül a Kit eszközeitől: a Ko-fi a saját szabályzatai szerint kezelheti a technikai, adományozási és fizetési információkat, miközben a Kit soha nem kapja meg a fájlokat vagy a fizetési adatokat. Inkább teljesen helyben maradna? Egyszerűen hagyja bezárva a panelt.",
     "whyTitle": "Miért működik a Kit így",
     "whyLede": "A fájlok böngészőben tartása nem csak adatvédelmi álláspont. Megváltoztatja, mit ígérhet egy eszköz.",
     "whyPrivate": "Alapból privát",

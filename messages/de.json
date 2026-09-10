@@ -1862,6 +1862,8 @@
     "rowCurrency": "Währungsumrechnung",
     "typicalCurrency": "Oft reist der Betrag mit",
     "kitCurrency": "Nur die Paarcodes, und nur wenn dieser Browser keinen frischen Cache hat. Beträge bleiben hier.",
+    "supportTitle": "Ko-fi",
+    "supportBody": "Das optionale „Unterstützen“-Panel verbindet sich in einem eingebetteten Rahmen mit Ko-fi. Es ist von den Kit-Werkzeugen getrennt: Ko-fi kann gemäß seinen Richtlinien eigene technische Daten sowie Spenden- und Zahlungsinformationen verarbeiten, während Kit niemals Ihre Dateien oder Zahlungsdaten erhält. Möchten Sie vollständig lokal bleiben? Lassen Sie das Panel einfach geschlossen.",
     "whyTitle": "Warum Kit so funktioniert",
     "whyLede": "Dateien im Browser zu behalten ist nicht nur eine Frage der Privatsphäre. Es ändert, was ein Werkzeug Ihnen versprechen kann.",
     "whyPrivate": "Standardmäßig privat",

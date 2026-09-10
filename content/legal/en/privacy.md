@@ -41,7 +41,11 @@ PDF tools load the pdf.js worker, fonts, and related assets from **this same sit
 
 The FFmpeg engine (`@ffmpeg/core`) is licensed **GPL-2.0-or-later** because it includes codecs such as H.264 and LAME MP3. Kit’s own source remains MIT. pdf.js and other bundled libraries keep their own Apache, BSD, or MIT licenses.
 
-### 4. Currency rates
+### 4. Support panel and Ko-fi
+
+The optional **Support Me** panel embeds Ko-fi, a separate donation service, in an iframe. Opening it connects your browser to `ko-fi.com`; Ko-fi may process technical data and donation details under its own [Privacy Policy](https://more.ko-fi.com/privacy) and [Terms](https://more.ko-fi.com/terms). Kit does not receive or store donation or payment information. If you prefer not to connect to Ko-fi, simply do not open the panel.
+
+### 5. Currency rates
 
 When you open the currency converter, switch currencies, or tap Refresh, this browser may query Frankfurter's public API if no fresh cached rate exists for that pair. The request may share standard network metadata (such as IP address, user agent, time, and requested URL) with Frankfurter. Amounts you type are not sent. Rates may come from this browser's cache and may be stale. They are daily reference data only, not a guarantee for trading, accounting, tax, or settlement purposes.
 

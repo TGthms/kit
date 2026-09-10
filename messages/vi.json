@@ -1862,6 +1862,8 @@
     "rowCurrency": "Đổi tiền",
     "typicalCurrency": "Thường gửi cả số tiền",
     "kitCurrency": "Chỉ mã cặp, và chỉ khi trình duyệt này chưa có bộ nhớ đệm mới. Số tiền ở lại đây.",
+    "supportTitle": "Ko-fi",
+    "supportBody": "Bảng “Ủng hộ tôi” tùy chọn kết nối với Ko-fi trong một khung nhúng. Bảng này tách biệt với các công cụ của Kit: Ko-fi có thể xử lý dữ liệu kỹ thuật và thông tin quyên góp, thanh toán của riêng họ theo chính sách của họ, còn Kit không bao giờ nhận tệp hoặc thông tin thanh toán của bạn. Bạn muốn hoàn toàn ở trên thiết bị? Chỉ cần để bảng đóng.",
     "whyTitle": "Tại sao Kit hoạt động theo cách này",
     "whyLede": "Giữ tệp trong trình duyệt không chỉ là thái độ về quyền riêng tư. Điều đó thay đổi những gì một công cụ có thể hứa với bạn.",
     "whyPrivate": "Riêng tư mặc định",

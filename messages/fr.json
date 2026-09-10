@@ -1862,6 +1862,8 @@
     "rowCurrency": "Conversion de devises",
     "typicalCurrency": "Souvent le montant aussi",
     "kitCurrency": "Les codes de la paire seulement, et seulement si ce navigateur n’a pas de cache récent. Les montants restent ici.",
+    "supportTitle": "Ko-fi",
+    "supportBody": "Le panneau facultatif « Soutenir » se connecte à Ko-fi dans un cadre intégré. Il est distinct des outils de Kit : Ko-fi peut traiter ses propres données techniques, de don et de paiement selon ses politiques, tandis que Kit ne reçoit jamais vos fichiers ni vos informations de paiement. Vous préférez rester entièrement en local ? Laissez simplement le panneau fermé.",
     "whyTitle": "Pourquoi Kit fonctionne ainsi",
     "whyLede": "Garder les fichiers dans le navigateur n’est pas qu’une position de principe sur la vie privée. Cela change ce qu’un outil peut vous promettre.",
     "whyPrivate": "Privé par défaut",

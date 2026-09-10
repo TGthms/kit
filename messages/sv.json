@@ -1862,6 +1862,8 @@
     "rowCurrency": "Valutaomvandling",
     "typicalCurrency": "Ofta följer beloppet med",
     "kitCurrency": "Bara parkoderna, och bara när den här webbläsaren saknar färsk cache. Belopp stannar här.",
+    "supportTitle": "Ko-fi",
+    "supportBody": "Den valfria panelen “Stöd mig” ansluter till Ko-fi i en inbäddad ram. Den är separat från Kits verktyg: Ko-fi kan behandla sina egna tekniska uppgifter samt donations- och betalningsinformation enligt sina policyer, medan Kit aldrig tar emot dina filer eller betalningsuppgifter. Vill du stanna helt lokalt? Låt bara panelen vara stängd.",
     "whyTitle": "Varför Kit fungerar så här",
     "whyLede": "Att hålla filer i webbläsaren är inte bara en integritetsfråga. Det förändrar vad ett verktyg kan lova dig.",
     "whyPrivate": "Privat som standard",

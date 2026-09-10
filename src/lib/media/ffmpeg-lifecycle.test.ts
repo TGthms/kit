@@ -103,7 +103,7 @@ async function until(condition: () => boolean): Promise<void> {
 }
 
 /** Start a run, wait for its load to begin, then let the load finish. */
-async function startAndLoad(run: Promise<unknown>): Promise<FakeFFmpeg> {
+async function startAndLoad(): Promise<FakeFFmpeg> {
   await until(() => FakeFFmpeg.instances[0]?.loadCalls === 1);
   const instance = FakeFFmpeg.instances[0];
   instance.settleLoad();
@@ -129,7 +129,7 @@ describe("runFFmpeg lifecycle", () => {
   it("loads, transcodes, and returns the output bytes", async () => {
     const { runFFmpeg } = await freshModule();
     const run = runFFmpeg("in.wav", new Uint8Array([0]), "out.mp3", ["-i", "in.wav"]);
-    const instance = await startAndLoad(run);
+    const instance = await startAndLoad();
     await until(() => instance.execPending);
     instance.settleExec(0);
     await expect(run).resolves.toEqual(OUTPUT);
@@ -140,7 +140,7 @@ describe("runFFmpeg lifecycle", () => {
     const { runFFmpeg } = await freshModule();
     const ratios: number[] = [];
     const run = runFFmpeg("in.wav", new Uint8Array([0]), "out.mp3", ["x"], (ratio) => ratios.push(ratio));
-    const instance = await startAndLoad(run);
+    const instance = await startAndLoad();
     await until(() => instance.execPending);
     instance.emit("progress", { progress: 0.5 });
     instance.settleExec(0);
@@ -152,7 +152,7 @@ describe("runFFmpeg lifecycle", () => {
     const { runFFmpeg } = await freshModule();
     const controller = new AbortController();
     const run = runFFmpeg("in.wav", new Uint8Array([0]), "out.mp3", ["x"], undefined, controller.signal);
-    const dead = await startAndLoad(run);
+    const dead = await startAndLoad();
     await until(() => dead.execPending);
 
     controller.abort();
@@ -192,7 +192,7 @@ describe("runFFmpeg lifecycle", () => {
     const { runFFmpeg } = await freshModule();
     const first = runFFmpeg("a.wav", new Uint8Array([0]), "a.mp3", ["x"]);
     const second = runFFmpeg("b.wav", new Uint8Array([0]), "b.mp3", ["x"]);
-    const instance = await startAndLoad(first);
+    const instance = await startAndLoad();
     await until(() => instance.execPending);
     // The second run must not touch the filesystem while the first holds the slot.
     expect(instance.execCalls).toBe(1);
@@ -211,7 +211,7 @@ describe("runFFmpeg lifecycle", () => {
     const secondController = new AbortController();
     const first = runFFmpeg("a.wav", new Uint8Array([0]), "a.mp3", ["x"], undefined, firstController.signal);
     const second = runFFmpeg("b.wav", new Uint8Array([0]), "b.mp3", ["x"], undefined, secondController.signal);
-    const instance = await startAndLoad(first);
+    const instance = await startAndLoad();
     await until(() => instance.execPending);
     expect(instance.written).toEqual(["a.wav"]);
 

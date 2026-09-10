@@ -1862,6 +1862,8 @@
     "rowCurrency": "Przeliczanie walut",
     "typicalCurrency": "Często także kwota",
     "kitCurrency": "Tylko kody pary, i tylko gdy w tej przeglądarce nie ma świeżej pamięci. Kwoty zostają tutaj.",
+    "supportTitle": "Ko-fi",
+    "supportBody": "Opcjonalny panel „Wesprzyj mnie” łączy się z Ko-fi w osadzonej ramce. Jest niezależny od narzędzi Kit: Ko-fi może przetwarzać własne dane techniczne oraz informacje o darowiznach i płatnościach zgodnie ze swoimi zasadami, a Kit nigdy nie otrzymuje Twoich plików ani danych płatniczych. Wolisz pozostać całkowicie lokalnie? Po prostu pozostaw panel zamknięty.",
     "whyTitle": "Dlaczego Kit działa właśnie tak",
     "whyLede": "Przechowywanie plików w przeglądarce to nie tylko kwestia prywatności. To zmienia, co narzędzie może ci obiecać.",
     "whyPrivate": "Prywatność domyślnie",

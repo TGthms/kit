@@ -126,6 +126,7 @@ export function SiteFooter() {
                 ref={closeButtonRef}
                 size="icon"
                 variant="ghost"
+                className="h-11 w-11 shrink-0 rounded-full text-xl"
                 onClick={() => setSupportOpen(false)}
                 aria-label={common("close")}
               >

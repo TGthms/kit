@@ -1862,6 +1862,8 @@
     "rowCurrency": "Převod měn",
     "typicalCurrency": "Často i částka",
     "kitCurrency": "Jen kódy páru, a jen když tento prohlížeč nemá čerstvou mezipaměť. Částky zůstanou tady.",
+    "supportTitle": "Ko-fi",
+    "supportBody": "Volitelný panel „Podpoř mě“ se připojuje ke Ko-fi v vloženém rámci. Je oddělený od nástrojů Kit: Ko-fi může podle svých zásad zpracovávat vlastní technické údaje a informace o darech a platbách, zatímco Kit nikdy nedostane vaše soubory ani platební údaje. Chcete zůstat zcela lokálně? Panel jednoduše nechte zavřený.",
     "whyTitle": "Proč Kit funguje právě takto",
     "whyLede": "Ponechání souborů v prohlížeči není jen postoj k soukromí. Mění to, co vám může nástroj slíbit.",
     "whyPrivate": "Soukromí ve výchozím nastavení",

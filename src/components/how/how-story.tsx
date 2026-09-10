@@ -250,6 +250,15 @@ export function HowStory({ toolCount, languageCount }: { toolCount: number; lang
         <p className="type-caption text-muted-foreground">{t("lanesNote")}</p>
       </Section>
 
+      <Card className="border-border/50">
+        <CardHeader>
+          <CardTitle>{t("supportTitle")}</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <p className="text-sm leading-relaxed text-muted-foreground">{t("supportBody")}</p>
+        </CardContent>
+      </Card>
+
       <Section id="how-why" title={t("whyTitle")} lede={t("whyLede")}>
         <div className="grid gap-3 sm:grid-cols-2">
           {WHY_ITEMS.map((item) => {

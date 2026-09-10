@@ -1862,6 +1862,8 @@
     "rowCurrency": "Valutaomrekening",
     "typicalCurrency": "Vaak reist het bedrag mee",
     "kitCurrency": "Alleen de paarcodes, en alleen als deze browser geen verse cache heeft. Bedragen blijven hier.",
+    "supportTitle": "Ko-fi",
+    "supportBody": "Het optionele paneel “Steun mij” maakt in een ingesloten frame verbinding met Ko-fi. Het staat los van de Kit-tools: Ko-fi kan volgens zijn beleid eigen technische gegevens en informatie over donaties en betalingen verwerken, terwijl Kit nooit je bestanden of betaalgegevens ontvangt. Wil je volledig lokaal blijven? Laat het paneel dan gewoon gesloten.",
     "whyTitle": "Waarom Kit zo werkt",
     "whyLede": "Bestanden in de browser houden is niet alleen een privacykeuze. Het verandert wat een hulpmiddel je kan beloven.",
     "whyPrivate": "Standaard privé",

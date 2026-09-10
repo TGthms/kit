@@ -1862,6 +1862,8 @@
     "rowCurrency": "Valutaomregning",
     "typicalCurrency": "Ofte følger beløpet med",
     "kitCurrency": "Bare parkodene, og bare når denne nettleseren ikke har fersk hurtiglager. Beløp blir her.",
+    "supportTitle": "Ko-fi",
+    "supportBody": "Det valgfrie «Støtt meg»-panelet kobler til Ko-fi i en innebygd ramme. Det er adskilt fra Kits verktøy: Ko-fi kan behandle egne tekniske data samt donasjons- og betalingsinformasjon etter sine retningslinjer, mens Kit aldri mottar filene eller betalingsopplysningene dine. Vil du holde deg helt lokalt? La panelet være lukket.",
     "whyTitle": "Hvorfor Kit virker slik",
     "whyLede": "Å holde filer i nettleseren er ikke bare et personvernvalg. Det endrer hva et verktøy kan love deg.",
     "whyPrivate": "Privat som standard",
