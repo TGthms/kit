@@ -44,7 +44,12 @@ export const CONTENT_SECURITY_POLICY = [
   "media-src 'self' blob:",
   "connect-src 'self' https://api.frankfurter.dev blob:",
   "worker-src 'self' blob:",
-  "frame-src 'self' https://ko-fi.com https://*.ko-fi.com",
+  // js.stripe.com / checkout.stripe.com must match the "payment" Permissions-Policy
+  // allowlist below: Ko-fi's checkout renders Stripe's Apple Pay sheet in a frame,
+  // and on Safari 17+ that frame can be a *direct* child of this document (not just
+  // nested inside the ko-fi.com iframe) to satisfy Apple Pay's iframe rules. Without
+  // these here, Safari drops the Apple Pay button with no visible error.
+  "frame-src 'self' https://ko-fi.com https://*.ko-fi.com https://js.stripe.com https://checkout.stripe.com",
 ].join("; ");
 
 /** HTTP-only directives that a `<meta>` CSP cannot express. */
