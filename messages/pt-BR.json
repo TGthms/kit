@@ -25,7 +25,8 @@
     "github": "GitHub",
     "supportMe": "Apoie-me",
     "emailTim": "E-mail",
-    "how": "Como o Kit funciona"
+    "how": "Como o Kit funciona",
+    "supportSecureNote": "Pagamento seguro processado pelo Ko-fi"
   },
   "common": {
     "waveformTooLarge": "Este arquivo é grande demais para a pré-visualização de forma de onda. Defina o intervalo com os campos abaixo.",
@@ -1864,7 +1865,6 @@
     "kitCurrency": "Só os códigos do par, e só quando este navegador não tem cache recente. Os valores ficam aqui.",
     "supportTitle": "Ko-fi",
     "supportBody": "O painel opcional “Apoie” conecta-se ao Ko-fi em um quadro incorporado. Ele é separado das ferramentas do Kit: o Ko-fi pode processar seus próprios dados técnicos e informações de doação e pagamento conforme suas políticas, enquanto o Kit nunca recebe seus arquivos nem seus dados de pagamento. Prefere permanecer totalmente no dispositivo? Basta deixar o painel fechado.",
-    "supportSecureNote": "Pagamento seguro processado pelo Ko-fi",
     "whyTitle": "Por que o Kit funciona assim",
     "whyLede": "Manter arquivos no navegador não é só uma postura de privacidade. Isso muda o que uma ferramenta pode prometer a você.",
     "whyPrivate": "Privado por padrão",

@@ -25,7 +25,8 @@
     "github": "GitHub",
     "supportMe": "Dukung saya",
     "emailTim": "Email",
-    "how": "Cara Kit bekerja"
+    "how": "Cara Kit bekerja",
+    "supportSecureNote": "Pembayaran aman diproses oleh Ko-fi"
   },
   "common": {
     "waveformTooLarge": "File ini terlalu besar untuk pratinjau bentuk gelombang. Atur rentangnya di kolom di bawah.",
@@ -1864,7 +1865,6 @@
     "kitCurrency": "Hanya kode pasangan, dan hanya jika peramban ini tidak punya cache baru. Jumlah tetap di sini.",
     "supportTitle": "Ko-fi",
     "supportBody": "Panel “Dukung saya” opsional terhubung ke Ko-fi dalam bingkai sematan. Panel ini terpisah dari alat Kit: Ko-fi dapat memproses data teknis serta informasi donasi dan pembayaran mereka sendiri sesuai kebijakan mereka, sementara Kit tidak pernah menerima file atau data pembayaran Anda. Ingin tetap sepenuhnya lokal? Biarkan panel tetap tertutup.",
-    "supportSecureNote": "Pembayaran aman diproses oleh Ko-fi",
     "whyTitle": "Mengapa Kit bekerja seperti ini",
     "whyLede": "Menyimpan berkas di peramban bukan hanya sikap soal privasi. Itu mengubah apa yang bisa dijanjikan sebuah alat kepada Anda.",
     "whyPrivate": "Privat secara bawaan",

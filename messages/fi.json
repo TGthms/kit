@@ -25,7 +25,8 @@
     "github": "GitHub",
     "supportMe": "Tue minua",
     "emailTim": "Sähköposti",
-    "how": "Miten Kit toimii"
+    "how": "Miten Kit toimii",
+    "supportSecureNote": "Ko-fi käsittelee maksun turvallisesti"
   },
   "common": {
     "waveformTooLarge": "Tiedosto on liian suuri aaltomuodon esikatseluun. Aseta aikaväli alla olevilla kentillä.",
@@ -1864,7 +1865,6 @@
     "kitCurrency": "Vain parikoodit, ja vain kun tällä selaimella ei ole tuoretta välimuistia. Summat jäävät tänne.",
     "supportTitle": "Ko-fi",
     "supportBody": "Valinnainen “Tue minua” -paneeli muodostaa yhteyden Ko-fiin upotetussa kehyksessä. Se on erillinen Kitin työkaluista: Ko-fi voi käsitellä omia teknisiä tietojaan sekä lahjoitus- ja maksutietojaan käytäntöjensä mukaisesti, mutta Kit ei koskaan vastaanota tiedostojasi tai maksutietojasi. Haluatko pysyä täysin paikallisesti? Jätä paneeli vain suljetuksi.",
-    "supportSecureNote": "Ko-fi käsittelee maksun turvallisesti",
     "whyTitle": "Miksi Kit toimii näin",
     "whyLede": "Tiedostojen pitäminen selaimessa ei ole vain tietosuojavalinta. Se muuttaa sen, mitä työkalu voi luvata sinulle.",
     "whyPrivate": "Yksityinen oletuksena",

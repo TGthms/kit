@@ -25,7 +25,8 @@
     "github": "GitHub",
     "supportMe": "Apóyame",
     "emailTim": "Correo",
-    "how": "Cómo funciona Kit"
+    "how": "Cómo funciona Kit",
+    "supportSecureNote": "Pago seguro gestionado por Ko-fi"
   },
   "common": {
     "waveformTooLarge": "Este archivo es demasiado grande para la vista previa de forma de onda. Fija el rango con los campos de abajo.",
@@ -1864,7 +1865,6 @@
     "kitCurrency": "Solo los códigos del par, y solo cuando este navegador no tiene caché reciente. Los importes se quedan aquí.",
     "supportTitle": "Ko-fi",
     "supportBody": "El panel opcional «Apóyame» conecta con Ko-fi mediante un marco incrustado. Es independiente de las herramientas de Kit: Ko-fi puede procesar sus propios datos técnicos, de donaciones y de pago según sus políticas, mientras que Kit nunca recibe tus archivos ni tus datos de pago. ¿Prefieres mantenerte completamente en local? Solo tienes que dejar el panel cerrado.",
-    "supportSecureNote": "Pago seguro gestionado por Ko-fi",
     "whyTitle": "Por qué Kit funciona así",
     "whyLede": "Mantener los archivos en el navegador no es solo una postura de privacidad. Cambia lo que una herramienta puede prometerte.",
     "whyPrivate": "Privado por defecto",

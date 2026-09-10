@@ -25,7 +25,8 @@
     "github": "GitHub",
     "supportMe": "Destek Ol",
     "emailTim": "E-posta",
-    "how": "Kit nasıl çalışır"
+    "how": "Kit nasıl çalışır",
+    "supportSecureNote": "Güvenli ödeme Ko-fi tarafından işlenir"
   },
   "common": {
     "waveformTooLarge": "Bu dosya dalga formu önizlemesi için çok büyük. Aralığı aşağıdaki alanlarla ayarlayın.",
@@ -1864,7 +1865,6 @@
     "kitCurrency": "Yalnızca çift kodları, ve yalnızca bu tarayıcıda taze önbellek yoksa. Tutarlar burada kalır.",
     "supportTitle": "Ko-fi",
     "supportBody": "İsteğe bağlı “Beni destekle” paneli, gömülü bir çerçeve içinde Ko-fi’ye bağlanır. Kit araçlarından ayrıdır: Ko-fi kendi politikaları kapsamında teknik verileri, bağış ve ödeme bilgilerini işleyebilir; Kit ise dosyalarınızı veya ödeme bilgilerinizi hiçbir zaman almaz. Tamamen yerel kalmayı mı tercih ediyorsunuz? Paneli kapalı bırakmanız yeterli.",
-    "supportSecureNote": "Güvenli ödeme Ko-fi tarafından işlenir",
     "whyTitle": "Kit neden böyle çalışır",
     "whyLede": "Dosyaları tarayıcıda tutmak yalnızca bir gizlilik duruşu değil. Bir aracın sana ne vadedebileceğini değiştirir.",
     "whyPrivate": "Varsayılan olarak özel",
