@@ -124,7 +124,8 @@
     "pdfPageCap": "Questo PDF ha {total} pagine. Kit ha elaborato le prime {processed} in questa scheda.",
     "fileRejectedSize": "Quel file supera 200 MB, quindi Kit non lo mette in coda in questa scheda.",
     "fileRejectedType": "Quel tipo di file non è accettato qui.",
-    "fileRejectedEmpty": "Nessun file utilizzabile è stato aggiunto."
+    "fileRejectedEmpty": "Nessun file utilizzabile è stato aggiunto.",
+    "offlineIndicator": "Offline: nessuna connessione a Internet"
   },
   "home": {
     "title": "Cosa ti serve fare?",
@@ -466,7 +467,22 @@
     "viewTerms": "Termini di utilizzo",
     "shortcutsHelp": "Premi ? in qualsiasi momento per le scorciatoie da tastiera.",
     "version": "Versione",
-    "viewHow": "Come funziona Kit"
+    "viewHow": "Come funziona Kit",
+    "offlineAccess": "Accesso offline",
+    "offlineAccessDesc": "Scegli strumenti, categorie e lingue da usare offline.",
+    "offlineLanguages": "Languages",
+    "offlineLanguagesDesc": "Aggiungi altre lingue per averle disponibili offline.",
+    "offlineTools": "Tools",
+    "offlineToolsDesc": "Scegli singoli strumenti o un’intera categoria.",
+    "offlineEngines": "Includi motori multimediali grandi",
+    "offlineEnginesDesc": "Aggiunge i runtime PDF, audio e video e usa più spazio.",
+    "offlineStorage": "Spazio del browser",
+    "offlineStorageUnknown": "Stima dello spazio non disponibile",
+    "offlineComplete": "L’accesso offline è pronto",
+    "offlineCanceled": "Download annullato",
+    "offlineBackgroundNote": "Puoi lasciare questa pagina mentre il download continua.",
+    "offlineLog": "Dettagli del download",
+    "offlineOpen": "Apri accesso offline"
   },
   "shortcuts": {
     "title": "Scorciatoie da tastiera",

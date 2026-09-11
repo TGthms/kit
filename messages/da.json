@@ -124,7 +124,8 @@
     "pdfPageCap": "Denne PDF har {total} sider. Kit behandlede de første {processed} i denne fane.",
     "fileRejectedSize": "Filen er over 200 MB, så Kit sætter den ikke i kø i denne fane.",
     "fileRejectedType": "Den filtype accepteres ikke her.",
-    "fileRejectedEmpty": "Ingen brugbare filer blev tilføjet."
+    "fileRejectedEmpty": "Ingen brugbare filer blev tilføjet.",
+    "offlineIndicator": "Offline: ingen internetforbindelse"
   },
   "home": {
     "title": "Hvad skal du have gjort?",
@@ -466,7 +467,22 @@
     "viewTerms": "Brugsvilkår",
     "shortcutsHelp": "Tryk på ? når som helst for tastaturgenveje.",
     "version": "Version",
-    "viewHow": "Sådan virker Kit"
+    "viewHow": "Sådan virker Kit",
+    "offlineAccess": "Offlineadgang",
+    "offlineAccessDesc": "Vælg værktøjer, kategorier og sprog til offlinebrug.",
+    "offlineLanguages": "Languages",
+    "offlineLanguagesDesc": "Tilføj flere sprog, hvis de skal være tilgængelige offline.",
+    "offlineTools": "Tools",
+    "offlineToolsDesc": "Vælg enkelte værktøjer eller en hel kategori.",
+    "offlineEngines": "Medtag store mediemotorer",
+    "offlineEnginesDesc": "Tilføjer PDF-, lyd- og videoruntimes og bruger mere lager.",
+    "offlineStorage": "Browserlager",
+    "offlineStorageUnknown": "Lagerestimat er ikke tilgængeligt",
+    "offlineComplete": "Offlineadgang er klar",
+    "offlineCanceled": "Download annulleret",
+    "offlineBackgroundNote": "Du kan forlade siden, mens download fortsætter.",
+    "offlineLog": "Downloaddetaljer",
+    "offlineOpen": "Åbn offlineadgang"
   },
   "shortcuts": {
     "title": "Tastaturgenveje",

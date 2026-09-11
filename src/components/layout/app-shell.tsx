@@ -21,6 +21,7 @@ import { LocaleSwitcher } from "./locale-switcher";
 import { RouteProgress } from "./route-progress";
 import { ScrollRestoration } from "./scroll-restoration";
 import { useHydrated } from "@/lib/react/hydrated";
+import { OfflineIndicator } from "./offline-indicator";
 
 const nav = [
   { href: "/", key: "home", icon: Home },
@@ -94,7 +95,10 @@ function TabBar({ pathname }: { pathname: string }) {
   const hydrated = useHydrated();
   const previousActive = useRef<string | null>(null);
   const [popHref, setPopHref] = useState<string | null>(null);
-  const activeIndex = nav.findIndex((item) => isActive(pathname, item.href));
+  const [pendingHref, setPendingHref] = useState<string | null>(null);
+  const currentHref = nav.find((item) => isActive(pathname, item.href))?.href ?? "/";
+  const selectedHref = pendingHref && !isActive(pathname, pendingHref) ? pendingHref : currentHref;
+  const activeIndex = nav.findIndex((item) => item.href === selectedHref);
 
   useLayoutEffect(() => {
     const current = nav.find((item) => isActive(pathname, item.href))?.href ?? null;
@@ -120,6 +124,8 @@ function TabBar({ pathname }: { pathname: string }) {
       />
       {nav.map(({ href, key, icon: Icon }) => {
         const active = isActive(pathname, href);
+        const selected = href === selectedHref;
+        const pending = pendingHref === href && !active;
         return (
           <Link
             key={href}
@@ -132,10 +138,13 @@ function TabBar({ pathname }: { pathname: string }) {
             className={cn(
               "pressable-soft relative z-10 flex min-h-[3.6rem] min-w-0 flex-1 flex-col items-center justify-center gap-0.5 px-1 py-1",
               "text-[11px] font-medium tracking-[-0.01em]",
-              active ? "text-primary" : "text-muted-foreground"
+              selected ? "text-primary" : "text-muted-foreground"
             )}
             onClick={(event) => {
-              if (!active) return;
+              if (!active) {
+                setPendingHref(href);
+                return;
+              }
               scrollActiveTabToTop(event, {
                 reduceMotion: window.matchMedia("(prefers-reduced-motion: reduce)").matches,
                 scrollTo: (opts) => window.scrollTo(opts),
@@ -144,14 +153,14 @@ function TabBar({ pathname }: { pathname: string }) {
           >
             <span
               ref={(el) => {
-                if (active && el) setTarget(el);
+                if (selected && el) setTarget(el);
               }}
               aria-hidden
               className="pointer-events-none absolute inset-0 rounded-full"
             />
             <span
               className="tab-icon relative"
-              data-pop={active && popHref === href ? "" : undefined}
+              data-pop={selected && (pending || popHref === href) ? "" : undefined}
             >
               <Icon className={cn("h-[22px] w-[22px]", active && "stroke-[2.25]")} />
             </span>
@@ -210,6 +219,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
               draggable={false}
             />
             <span className="truncate text-[17px] leading-none">{tb("name")}</span>
+            <OfflineIndicator />
           </Link>
           <div className="flex shrink-0 items-center gap-1">
             {/* Language lives in header + Settings — not a second mobile nav */}

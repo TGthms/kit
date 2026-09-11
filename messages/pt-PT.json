@@ -124,7 +124,8 @@
     "pdfPageCap": "Este PDF tem {total} páginas. O Kit processou as primeiras {processed} neste separador.",
     "fileRejectedSize": "Esse ficheiro tem mais de 200 MB, pelo que o Kit não o coloca em fila neste separador.",
     "fileRejectedType": "Esse tipo de ficheiro não é aceite aqui.",
-    "fileRejectedEmpty": "Não foram adicionados ficheiros utilizáveis."
+    "fileRejectedEmpty": "Não foram adicionados ficheiros utilizáveis.",
+    "offlineIndicator": "Offline: sem ligação à Internet"
   },
   "home": {
     "title": "O que precisa de fazer?",
@@ -466,7 +467,22 @@
     "viewTerms": "Termos de utilização",
     "shortcutsHelp": "Prima ? em qualquer momento para ver os atalhos de teclado.",
     "version": "Versão",
-    "viewHow": "Como o Kit funciona"
+    "viewHow": "Como o Kit funciona",
+    "offlineAccess": "Acesso offline",
+    "offlineAccessDesc": "Escolha ferramentas, categorias e idiomas para utilizar o Kit offline.",
+    "offlineLanguages": "Languages",
+    "offlineLanguagesDesc": "Adicione outros idiomas para os ter disponíveis offline.",
+    "offlineTools": "Tools",
+    "offlineToolsDesc": "Escolha ferramentas individuais ou uma categoria inteira.",
+    "offlineEngines": "Incluir motores multimédia grandes",
+    "offlineEnginesDesc": "Adiciona os runtimes de PDF, áudio e vídeo e utiliza mais espaço.",
+    "offlineStorage": "Armazenamento do navegador",
+    "offlineStorageUnknown": "Estimativa de armazenamento indisponível",
+    "offlineComplete": "O acesso offline está pronto",
+    "offlineCanceled": "Transferência cancelada",
+    "offlineBackgroundNote": "Pode sair desta página enquanto a transferência continua.",
+    "offlineLog": "Detalhes da transferência",
+    "offlineOpen": "Abrir acesso offline"
   },
   "shortcuts": {
     "title": "Atalhos de teclado",

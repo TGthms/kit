@@ -124,7 +124,8 @@
     "pdfPageCap": "Den här PDF:en har {total} sidor. Kit bearbetade de första {processed} i den här fliken.",
     "fileRejectedSize": "Filen är över 200 MB, så Kit köar den inte i den här fliken.",
     "fileRejectedType": "Den filtypen accepteras inte här.",
-    "fileRejectedEmpty": "Inga användbara filer lades till."
+    "fileRejectedEmpty": "Inga användbara filer lades till.",
+    "offlineIndicator": "Offline: ingen internetanslutning"
   },
   "home": {
     "title": "Vad behöver du göra?",
@@ -466,7 +467,22 @@
     "viewTerms": "Användarvillkor",
     "shortcutsHelp": "Tryck på ? när som helst för kortkommandon.",
     "version": "Version",
-    "viewHow": "Så fungerar Kit"
+    "viewHow": "Så fungerar Kit",
+    "offlineAccess": "Offlineåtkomst",
+    "offlineAccessDesc": "Välj verktyg, kategorier och språk för offlineanvändning.",
+    "offlineLanguages": "Languages",
+    "offlineLanguagesDesc": "Lägg till fler språk om de ska vara tillgängliga offline.",
+    "offlineTools": "Tools",
+    "offlineToolsDesc": "Välj enskilda verktyg eller en hel kategori.",
+    "offlineEngines": "Inkludera stora mediemotorer",
+    "offlineEnginesDesc": "Lägger till PDF-, ljud- och videokörningar och använder mer lagring.",
+    "offlineStorage": "Webbläsarlagring",
+    "offlineStorageUnknown": "Lagringsuppskattning saknas",
+    "offlineComplete": "Offlineåtkomst är klar",
+    "offlineCanceled": "Nedladdning avbruten",
+    "offlineBackgroundNote": "Du kan lämna sidan medan nedladdningen fortsätter.",
+    "offlineLog": "Nedladdningsdetaljer",
+    "offlineOpen": "Öppna offlineåtkomst"
   },
   "shortcuts": {
     "title": "Kortkommandon",

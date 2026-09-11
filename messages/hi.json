@@ -124,7 +124,8 @@
     "pdfPageCap": "इस PDF में {total} पृष्ठ हैं। Kit ने इस टैब में पहले {processed} संसाधित किए।",
     "fileRejectedSize": "फ़ाइल 200 MB से बड़ी है, इसलिए Kit इसे इस टैब में कतार में नहीं रखेगा।",
     "fileRejectedType": "यह फ़ाइल प्रकार यहाँ स्वीकार नहीं है।",
-    "fileRejectedEmpty": "कोई उपयोगी फ़ाइल नहीं जोड़ी गई।"
+    "fileRejectedEmpty": "कोई उपयोगी फ़ाइल नहीं जोड़ी गई।",
+    "offlineIndicator": "ऑफ़लाइन: इंटरनेट कनेक्शन नहीं है"
   },
   "home": {
     "title": "आपको क्या करना है?",
@@ -466,7 +467,22 @@
     "viewTerms": "उपयोग की शर्तें",
     "shortcutsHelp": "कीबोर्ड शॉर्टकट के लिए कभी भी ? दबाएँ।",
     "version": "संस्करण",
-    "viewHow": "Kit कैसे काम करता है"
+    "viewHow": "Kit कैसे काम करता है",
+    "offlineAccess": "ऑफ़लाइन पहुंच",
+    "offlineAccessDesc": "ऑफ़लाइन उपयोग के लिए टूल, श्रेणियां और भाषाएं चुनें।",
+    "offlineLanguages": "Languages",
+    "offlineLanguagesDesc": "ऑफ़लाइन उपलब्धता के लिए अन्य भाषाएं जोड़ें।",
+    "offlineTools": "Tools",
+    "offlineToolsDesc": "अलग-अलग टूल या पूरी श्रेणी चुनें।",
+    "offlineEngines": "बड़े मीडिया इंजन शामिल करें",
+    "offlineEnginesDesc": "PDF, ऑडियो और वीडियो रनटाइम जोड़ता है और अधिक स्टोरेज लेता है।",
+    "offlineStorage": "ब्राउज़र स्टोरेज",
+    "offlineStorageUnknown": "स्टोरेज अनुमान उपलब्ध नहीं है",
+    "offlineComplete": "ऑफ़लाइन पहुंच तैयार है",
+    "offlineCanceled": "डाउनलोड रद्द किया गया",
+    "offlineBackgroundNote": "डाउनलोड जारी रहने के दौरान आप यह पेज छोड़ सकते हैं।",
+    "offlineLog": "डाउनलोड विवरण",
+    "offlineOpen": "ऑफ़लाइन पहुंच खोलें"
   },
   "shortcuts": {
     "title": "कीबोर्ड शॉर्टकट",

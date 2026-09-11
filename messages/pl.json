@@ -124,7 +124,8 @@
     "pdfPageCap": "Ten PDF ma {total} stron. Kit przetworzył pierwsze {processed} w tej karcie.",
     "fileRejectedSize": "Ten plik ma ponad 200 MB, więc Kit nie doda go do kolejki w tej karcie.",
     "fileRejectedType": "Ten typ pliku nie jest tu akceptowany.",
-    "fileRejectedEmpty": "Nie dodano użytecznych plików."
+    "fileRejectedEmpty": "Nie dodano użytecznych plików.",
+    "offlineIndicator": "Offline: brak połączenia z internetem"
   },
   "home": {
     "title": "Co chcesz zrobić?",
@@ -466,7 +467,22 @@
     "viewTerms": "Warunki korzystania",
     "shortcutsHelp": "Naciśnij ? w dowolnym momencie, aby zobaczyć skróty klawiszowe.",
     "version": "Wersja",
-    "viewHow": "Jak działa Kit"
+    "viewHow": "Jak działa Kit",
+    "offlineAccess": "Dostęp offline",
+    "offlineAccessDesc": "Wybierz narzędzia, kategorie i języki do pracy offline.",
+    "offlineLanguages": "Languages",
+    "offlineLanguagesDesc": "Dodaj kolejne języki, aby były dostępne offline.",
+    "offlineTools": "Tools",
+    "offlineToolsDesc": "Wybierz pojedyncze narzędzia lub całą kategorię.",
+    "offlineEngines": "Uwzględnij duże silniki multimedialne",
+    "offlineEnginesDesc": "Dodaje środowiska PDF, audio i wideo, zajmując więcej miejsca.",
+    "offlineStorage": "Pamięć przeglądarki",
+    "offlineStorageUnknown": "Szacowanie pamięci niedostępne",
+    "offlineComplete": "Dostęp offline jest gotowy",
+    "offlineCanceled": "Pobieranie anulowane",
+    "offlineBackgroundNote": "Możesz opuścić tę stronę podczas pobierania.",
+    "offlineLog": "Szczegóły pobierania",
+    "offlineOpen": "Otwórz dostęp offline"
   },
   "shortcuts": {
     "title": "Skróty klawiszowe",

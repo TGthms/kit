@@ -124,7 +124,8 @@
     "pdfPageCap": "Ce PDF a {total} pages. Kit a traité les {processed} premières dans cet onglet.",
     "fileRejectedSize": "Ce fichier dépasse 200 Mo, Kit ne le mettra pas en file dans cet onglet.",
     "fileRejectedType": "Ce type de fichier n’est pas accepté ici.",
-    "fileRejectedEmpty": "Aucun fichier utilisable n’a été ajouté."
+    "fileRejectedEmpty": "Aucun fichier utilisable n’a été ajouté.",
+    "offlineIndicator": "Hors ligne : aucune connexion Internet"
   },
   "home": {
     "title": "Que voulez-vous faire ?",
@@ -466,7 +467,22 @@
     "viewTerms": "Conditions d’utilisation",
     "shortcutsHelp": "Appuyez sur ? à tout moment pour les raccourcis.",
     "version": "Version",
-    "viewHow": "Comment Kit fonctionne"
+    "viewHow": "Comment Kit fonctionne",
+    "offlineAccess": "Accès hors ligne",
+    "offlineAccessDesc": "Choisissez des outils, des catégories et des langues pour utiliser Kit hors ligne.",
+    "offlineLanguages": "Languages",
+    "offlineLanguagesDesc": "Ajoutez d’autres langues pour les utiliser hors ligne.",
+    "offlineTools": "Tools",
+    "offlineToolsDesc": "Choisissez des outils ou une catégorie entière.",
+    "offlineEngines": "Inclure les moteurs multimédias volumineux",
+    "offlineEnginesDesc": "Ajoute les moteurs PDF, audio et vidéo et utilise plus d’espace.",
+    "offlineStorage": "Stockage du navigateur",
+    "offlineStorageUnknown": "Estimation du stockage indisponible",
+    "offlineComplete": "L’accès hors ligne est prêt",
+    "offlineCanceled": "Téléchargement annulé",
+    "offlineBackgroundNote": "Vous pouvez quitter cette page pendant le téléchargement.",
+    "offlineLog": "Détails du téléchargement",
+    "offlineOpen": "Ouvrir l’accès hors ligne"
   },
   "shortcuts": {
     "title": "Raccourcis clavier",

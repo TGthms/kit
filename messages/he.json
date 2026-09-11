@@ -124,7 +124,8 @@
     "pdfPageCap": "ב־PDF הזה יש {total} עמודים. Kit עיבד את {processed} הראשונים בלשונית הזו.",
     "fileRejectedSize": "הקובץ גדול מ־200 MB, לכן Kit לא יכניס אותו לתור בלשונית הזו.",
     "fileRejectedType": "סוג הקובץ הזה אינו מתקבל כאן.",
-    "fileRejectedEmpty": "לא נוספו קבצים שמישים."
+    "fileRejectedEmpty": "לא נוספו קבצים שמישים.",
+    "offlineIndicator": "לא מקוון: אין חיבור לאינטרנט"
   },
   "home": {
     "title": "מה תרצו לעשות?",
@@ -466,7 +467,22 @@
     "viewTerms": "תנאי שימוש",
     "shortcutsHelp": "לחצו ? בכל עת לקיצורי מקלדת.",
     "version": "גרסה",
-    "viewHow": "איך Kit עובד"
+    "viewHow": "איך Kit עובד",
+    "offlineAccess": "גישה לא מקוונת",
+    "offlineAccessDesc": "בחרו כלים, קטגוריות ושפות לשימוש ללא חיבור.",
+    "offlineLanguages": "Languages",
+    "offlineLanguagesDesc": "הוסיפו שפות נוספות כדי שיהיו זמינות ללא חיבור.",
+    "offlineTools": "Tools",
+    "offlineToolsDesc": "בחרו כלים בודדים או קטגוריה שלמה.",
+    "offlineEngines": "כלול מנועי מדיה גדולים",
+    "offlineEnginesDesc": "מוסיף מנועי PDF, שמע ווידאו ומשתמש ביותר אחסון.",
+    "offlineStorage": "אחסון הדפדפן",
+    "offlineStorageUnknown": "הערכת האחסון אינה זמינה",
+    "offlineComplete": "הגישה הלא מקוונת מוכנה",
+    "offlineCanceled": "ההורדה בוטלה",
+    "offlineBackgroundNote": "אפשר לעזוב את הדף בזמן שההורדה נמשכת.",
+    "offlineLog": "פרטי ההורדה",
+    "offlineOpen": "פתיחת גישה לא מקוונת"
   },
   "shortcuts": {
     "title": "קיצורי מקלדת",

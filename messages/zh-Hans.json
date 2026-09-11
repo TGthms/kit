@@ -124,7 +124,8 @@
     "pdfPageCap": "此 PDF 共 {total} 页。Kit 在此标签页处理了前 {processed} 页。",
     "fileRejectedSize": "该文件超过 200 MB，Kit 不会在此标签页排队处理。",
     "fileRejectedType": "此处不接受该文件类型。",
-    "fileRejectedEmpty": "没有加入可用文件。"
+    "fileRejectedEmpty": "没有加入可用文件。",
+    "offlineIndicator": "离线：没有互联网连接"
   },
   "home": {
     "title": "今天有什么要做的？",
@@ -466,7 +467,22 @@
     "viewTerms": "使用条款",
     "shortcutsHelp": "随时按 ? 查看键盘快捷键。",
     "version": "版本",
-    "viewHow": "Kit 如何运作"
+    "viewHow": "Kit 如何运作",
+    "offlineAccess": "离线访问",
+    "offlineAccessDesc": "选择工具、类别和语言以便离线使用。",
+    "offlineLanguages": "Languages",
+    "offlineLanguagesDesc": "添加更多语言，让它们也能离线使用。",
+    "offlineTools": "Tools",
+    "offlineToolsDesc": "选择单个工具或整个类别。",
+    "offlineEngines": "包含大型媒体引擎",
+    "offlineEnginesDesc": "添加 PDF、音频和视频运行时，会占用更多存储空间。",
+    "offlineStorage": "浏览器存储",
+    "offlineStorageUnknown": "无法估算存储空间",
+    "offlineComplete": "离线访问已准备就绪",
+    "offlineCanceled": "下载已取消",
+    "offlineBackgroundNote": "下载继续时可以离开此页面。",
+    "offlineLog": "下载详情",
+    "offlineOpen": "打开离线访问"
   },
   "shortcuts": {
     "title": "键盘快捷键",

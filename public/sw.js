@@ -6,8 +6,8 @@
    Safari rejects a document response from a worker if it followed HTTP redirects
    ("Response served by service worker has redirections"). Never return a
    redirect Response or a fetch() result with redirected === true. */
-const CACHE = "kit-shell-v11";
-const RSC_CACHE = "kit-rsc-v11";
+const CACHE = "kit-shell-v12";
+const RSC_CACHE = "kit-rsc-v12";
 const LAST_HOME = "./last-home";
 const NAV_FETCH_MS = 8000;
 const NAV_CACHE_MS = 400;
@@ -226,6 +226,8 @@ let fillBusy = false;
 let fillAbort = null;
 const fillQueue = [];
 const fillSeen = new Set();
+let offlineAbort = null;
+let offlineCancelRequested = false;
 
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -300,6 +302,80 @@ async function pumpFill() {
   }
 }
 
+async function sendOfflineProgress(data) {
+  const windows = await self.clients.matchAll({ type: "window", includeUncontrolled: true });
+  windows.forEach((client) => client.postMessage({ type: "OFFLINE_PROGRESS", ...data }));
+}
+
+async function selectedOfflineUrls(data) {
+  let manifest;
+  try {
+    manifest = await (await fetch(FILL_PRECACHE, { cache: "no-store" })).json();
+  } catch {
+    return [];
+  }
+  const locales = Array.isArray(data.locales) ? data.locales : [];
+  const selectedTools = new Set(Array.isArray(data.tools) ? data.tools : []);
+  const urls = new Set(manifest.core || []);
+  const chrome = manifest.chromeByLocale || {};
+  const toolsByLocale = manifest.toolsByLocale || {};
+  const rscByLocale = manifest.rscByLocale || {};
+  for (const locale of locales) {
+    if (typeof locale !== "string") continue;
+    for (const url of chrome[locale] || []) urls.add(url);
+    for (const url of rscByLocale[locale] || []) {
+      if (!selectedTools.size || [...selectedTools].some((id) => url.includes(`/tools/${id}/`))) urls.add(url);
+    }
+    for (const url of toolsByLocale[locale] || []) {
+      if (selectedTools.has(url.split("/tools/")[1]?.replace(/\/$/u, ""))) urls.add(url);
+    }
+  }
+  if (data.engines) for (const url of manifest.engines || []) urls.add(url);
+  return [...urls];
+}
+
+async function downloadSelectedOffline(data) {
+  if (offlineAbort) offlineAbort.abort();
+  offlineCancelRequested = false;
+  const ctrl = new AbortController();
+  offlineAbort = ctrl;
+  const urls = await selectedOfflineUrls(data);
+  let done = 0;
+  if (!urls.length) {
+    await sendOfflineProgress({ status: "error", done, total: 0, log: "No offline resources were available" });
+    if (offlineAbort === ctrl) offlineAbort = null;
+    return;
+  }
+  await sendOfflineProgress({ status: "running", done, total: urls.length, log: `Preparing ${urls.length} items` });
+  try {
+    for (const href of urls) {
+      if (offlineCancelRequested) break;
+      const cache = await caches.open(cacheNameFor(href));
+      if (await cache.match(href)) {
+        done += 1;
+        await sendOfflineProgress({ status: "running", done, total: urls.length, log: `Already ready: ${new URL(href, self.location.origin).pathname}` });
+        continue;
+      }
+      try {
+        const res = await asDirectResponse(await fetch(href, { cache: "no-store", priority: "low", signal: ctrl.signal }));
+        if (res && res.ok && res.type !== "error") {
+          await cache.put(href, res);
+          done += 1;
+          await sendOfflineProgress({ status: "running", done, total: urls.length, log: `Downloaded: ${new URL(href, self.location.origin).pathname}` });
+        } else {
+          await sendOfflineProgress({ status: "running", done, total: urls.length, log: `Skipped: ${new URL(href, self.location.origin).pathname}` });
+        }
+      } catch (err) {
+        if (err && err.name === "AbortError") break;
+        await sendOfflineProgress({ status: "running", done, total: urls.length, log: `Could not download: ${new URL(href, self.location.origin).pathname}` });
+      }
+    }
+    await sendOfflineProgress({ status: offlineCancelRequested ? "canceled" : "complete", done, total: urls.length, log: offlineCancelRequested ? "Download canceled" : "Offline access is ready" });
+  } finally {
+    if (offlineAbort === ctrl) offlineAbort = null;
+  }
+}
+
 async function startLocaleFill(locale, skipHeavy) {
   if (typeof locale !== "string" || !/^[A-Za-z0-9-]+$/.test(locale)) return;
   let manifest;
@@ -342,6 +418,15 @@ self.addEventListener("message", (event) => {
   if (data.type === "PRECACHE_RESUME") {
     fillPaused = false;
     event.waitUntil(pumpFill());
+    return;
+  }
+  if (data.type === "OFFLINE_CANCEL") {
+    offlineCancelRequested = true;
+    offlineAbort?.abort();
+    return;
+  }
+  if (data.type === "OFFLINE_DOWNLOAD") {
+    event.waitUntil(downloadSelectedOffline(data));
     return;
   }
 

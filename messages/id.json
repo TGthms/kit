@@ -124,7 +124,8 @@
     "pdfPageCap": "PDF ini punya {total} halaman. Kit memproses {processed} halaman pertama di tab ini.",
     "fileRejectedSize": "Berkas itu lebih dari 200 MB, jadi Kit tidak mengantrikannya di tab ini.",
     "fileRejectedType": "Jenis berkas itu tidak diterima di sini.",
-    "fileRejectedEmpty": "Tidak ada berkas yang dapat digunakan."
+    "fileRejectedEmpty": "Tidak ada berkas yang dapat digunakan.",
+    "offlineIndicator": "Offline: tidak ada koneksi internet"
   },
   "home": {
     "title": "Apa yang ingin Anda lakukan?",
@@ -466,7 +467,22 @@
     "viewTerms": "Ketentuan Penggunaan",
     "shortcutsHelp": "Tekan ? kapan saja untuk pintasan papan ketik.",
     "version": "Versi",
-    "viewHow": "Cara Kit bekerja"
+    "viewHow": "Cara Kit bekerja",
+    "offlineAccess": "Akses offline",
+    "offlineAccessDesc": "Pilih alat, kategori, dan bahasa untuk penggunaan offline.",
+    "offlineLanguages": "Languages",
+    "offlineLanguagesDesc": "Tambahkan bahasa lain agar tersedia secara offline.",
+    "offlineTools": "Tools",
+    "offlineToolsDesc": "Pilih alat satu per satu atau seluruh kategori.",
+    "offlineEngines": "Sertakan mesin media besar",
+    "offlineEnginesDesc": "Menambahkan runtime PDF, audio, dan video serta memakai lebih banyak penyimpanan.",
+    "offlineStorage": "Penyimpanan browser",
+    "offlineStorageUnknown": "Perkiraan penyimpanan tidak tersedia",
+    "offlineComplete": "Akses offline siap",
+    "offlineCanceled": "Unduhan dibatalkan",
+    "offlineBackgroundNote": "Anda dapat meninggalkan halaman saat unduhan berlanjut.",
+    "offlineLog": "Detail unduhan",
+    "offlineOpen": "Buka akses offline"
   },
   "shortcuts": {
     "title": "Pintasan papan ketik",

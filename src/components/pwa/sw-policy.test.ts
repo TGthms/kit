@@ -43,8 +43,8 @@ describe("service worker update policy", () => {
   });
 
   it("busts the shell cache when navigation policy changes", () => {
-    expect(sw).toMatch(/kit-shell-v11/);
-    expect(sw).toMatch(/kit-rsc-v11/);
+    expect(sw).toMatch(/kit-shell-v12/);
+    expect(sw).toMatch(/kit-rsc-v12/);
     expect(sw).toMatch(/PRECACHE_LOCALE/);
     expect(sw).toMatch(/PRECACHE_PAUSE/);
     expect(sw).toMatch(/priority:\s*["']low["']/);
@@ -70,6 +70,13 @@ describe("service worker update policy", () => {
     expect(schedule).toMatch(/UPDATE_AFTER_VISIBLE_MS\s*=\s*4000/);
     expect(register).toMatch(/shouldCheckForUpdate\(/);
     expect(register).toMatch(/UPDATE_AFTER_VISIBLE_MS/);
+  });
+
+  it("supports selected offline downloads with progress and cancellation", () => {
+    expect(sw).toMatch(/OFFLINE_DOWNLOAD/);
+    expect(sw).toMatch(/OFFLINE_CANCEL/);
+    expect(sw).toMatch(/OFFLINE_PROGRESS/);
+    expect(sw).toMatch(/selectedOfflineUrls/);
   });
 
   it("starts the idle fill only after first paint and pauses on interaction", () => {

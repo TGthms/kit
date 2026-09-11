@@ -124,7 +124,8 @@
     "pdfPageCap": "Toto PDF má {total} stran. Kit zpracoval prvních {processed} na této kartě.",
     "fileRejectedSize": "Soubor je větší než 200 MB, proto ho Kit v tomto panelu nezařadí.",
     "fileRejectedType": "Tento typ souboru zde není přijímán.",
-    "fileRejectedEmpty": "Nebyly přidány žádné použitelné soubory."
+    "fileRejectedEmpty": "Nebyly přidány žádné použitelné soubory.",
+    "offlineIndicator": "Offline: bez připojení k internetu"
   },
   "home": {
     "title": "Co potřebujete udělat?",
@@ -466,7 +467,22 @@
     "viewTerms": "Podmínky použití",
     "shortcutsHelp": "Stiskněte kdykoli ?, zobrazí se klávesové zkratky.",
     "version": "Verze",
-    "viewHow": "Jak Kit funguje"
+    "viewHow": "Jak Kit funguje",
+    "offlineAccess": "Přístup offline",
+    "offlineAccessDesc": "Vyberte nástroje, kategorie a jazyky pro použití offline.",
+    "offlineLanguages": "Languages",
+    "offlineLanguagesDesc": "Přidejte další jazyky, pokud je chcete používat offline.",
+    "offlineTools": "Tools",
+    "offlineToolsDesc": "Vyberte jednotlivé nástroje nebo celou kategorii.",
+    "offlineEngines": "Zahrnout velké multimediální moduly",
+    "offlineEnginesDesc": "Přidá PDF, audio a video moduly a využije více úložiště.",
+    "offlineStorage": "Úložiště prohlížeče",
+    "offlineStorageUnknown": "Odhad úložiště není k dispozici",
+    "offlineComplete": "Přístup offline je připraven",
+    "offlineCanceled": "Stahování zrušeno",
+    "offlineBackgroundNote": "Během stahování můžete stránku opustit.",
+    "offlineLog": "Podrobnosti stahování",
+    "offlineOpen": "Otevřít přístup offline"
   },
   "shortcuts": {
     "title": "Klávesové zkratky",

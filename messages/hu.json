@@ -124,7 +124,8 @@
     "pdfPageCap": "Ez a PDF {total} oldalas. A Kit az első {processed} oldalt dolgozta fel ebben a lapon.",
     "fileRejectedSize": "A fájl 200 MB feletti, ezért a Kit nem sorolja be ezen a lapon.",
     "fileRejectedType": "Ez a fájltípus itt nem fogadható el.",
-    "fileRejectedEmpty": "Nem került hozzá használható fájl."
+    "fileRejectedEmpty": "Nem került hozzá használható fájl.",
+    "offlineIndicator": "Offline: nincs internetkapcsolat"
   },
   "home": {
     "title": "Mit szeretnél csinálni?",
@@ -466,7 +467,22 @@
     "viewTerms": "Felhasználási feltételek",
     "shortcutsHelp": "Bármikor nyomj ?-t a billentyűparancsokhoz.",
     "version": "Verzió",
-    "viewHow": "Hogyan működik Kit"
+    "viewHow": "Hogyan működik Kit",
+    "offlineAccess": "Offline hozzáférés",
+    "offlineAccessDesc": "Válasszon eszközöket, kategóriákat és nyelveket offline használathoz.",
+    "offlineLanguages": "Languages",
+    "offlineLanguagesDesc": "Adjon hozzá további nyelveket, hogy offline is elérhetők legyenek.",
+    "offlineTools": "Tools",
+    "offlineToolsDesc": "Válasszon egyes eszközöket vagy egy teljes kategóriát.",
+    "offlineEngines": "Nagy média-motorok beillesztése",
+    "offlineEnginesDesc": "PDF-, hang- és videómodulokat ad hozzá, és több tárhelyet használ.",
+    "offlineStorage": "Böngészőtárhely",
+    "offlineStorageUnknown": "A tárhely becslése nem érhető el",
+    "offlineComplete": "Az offline hozzáférés kész",
+    "offlineCanceled": "Letöltés megszakítva",
+    "offlineBackgroundNote": "A letöltés közben elhagyhatja ezt az oldalt.",
+    "offlineLog": "Letöltési részletek",
+    "offlineOpen": "Offline hozzáférés megnyitása"
   },
   "shortcuts": {
     "title": "Billentyűparancsok",

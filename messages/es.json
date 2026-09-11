@@ -124,7 +124,8 @@
     "pdfPageCap": "Este PDF tiene {total} páginas. Kit procesó las primeras {processed} en esta pestaña.",
     "fileRejectedSize": "Ese archivo supera 200 MB, así que Kit no lo pondrá en cola en esta pestaña.",
     "fileRejectedType": "Ese tipo de archivo no se acepta aquí.",
-    "fileRejectedEmpty": "No se añadieron archivos utilizables."
+    "fileRejectedEmpty": "No se añadieron archivos utilizables.",
+    "offlineIndicator": "Sin conexión a Internet"
   },
   "home": {
     "title": "¿Qué quieres hacer?",
@@ -466,7 +467,22 @@
     "viewTerms": "Condiciones de uso",
     "shortcutsHelp": "Pulsa ? en cualquier momento para ver los atajos.",
     "version": "Versión",
-    "viewHow": "Cómo funciona Kit"
+    "viewHow": "Cómo funciona Kit",
+    "offlineAccess": "Acceso sin conexión",
+    "offlineAccessDesc": "Elige herramientas, categorías e idiomas para usar Kit sin conexión.",
+    "offlineLanguages": "Languages",
+    "offlineLanguagesDesc": "Añade más idiomas para tenerlos disponibles sin conexión.",
+    "offlineTools": "Tools",
+    "offlineToolsDesc": "Elige herramientas individuales o una categoría completa.",
+    "offlineEngines": "Incluir motores multimedia grandes",
+    "offlineEnginesDesc": "Añade los motores de PDF, audio y vídeo; usarán más espacio.",
+    "offlineStorage": "Almacenamiento del navegador",
+    "offlineStorageUnknown": "No se puede estimar el almacenamiento",
+    "offlineComplete": "El acceso sin conexión está listo",
+    "offlineCanceled": "Descarga cancelada",
+    "offlineBackgroundNote": "Puedes salir de esta página mientras continúa la descarga.",
+    "offlineLog": "Detalles de la descarga",
+    "offlineOpen": "Abrir acceso sin conexión"
   },
   "shortcuts": {
     "title": "Atajos de teclado",

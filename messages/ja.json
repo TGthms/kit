@@ -124,7 +124,8 @@
     "pdfPageCap": "この PDF は {total} ページです。Kit はこのタブで先頭 {processed} ページを処理しました。",
     "fileRejectedSize": "そのファイルは 200 MB を超えるため、このタブではキューに入れません。",
     "fileRejectedType": "この種類のファイルはここでは受け付けません。",
-    "fileRejectedEmpty": "使えるファイルは追加されませんでした。"
+    "fileRejectedEmpty": "使えるファイルは追加されませんでした。",
+    "offlineIndicator": "オフライン：インターネット接続なし"
   },
   "home": {
     "title": "何をしますか？",
@@ -466,7 +467,22 @@
     "viewTerms": "利用規約",
     "shortcutsHelp": "いつでも ? キーでショートカット一覧を表示できます。",
     "version": "バージョン",
-    "viewHow": "Kit のしくみ"
+    "viewHow": "Kit のしくみ",
+    "offlineAccess": "オフラインアクセス",
+    "offlineAccessDesc": "オフラインで使うツール、カテゴリ、言語を選択します。",
+    "offlineLanguages": "Languages",
+    "offlineLanguagesDesc": "オフラインで使う言語を追加できます。",
+    "offlineTools": "Tools",
+    "offlineToolsDesc": "個別のツールまたはカテゴリ全体を選択します。",
+    "offlineEngines": "大きなメディアエンジンを含める",
+    "offlineEnginesDesc": "PDF、音声、動画のランタイムを追加し、より多くの容量を使います。",
+    "offlineStorage": "ブラウザのストレージ",
+    "offlineStorageUnknown": "ストレージ容量を推定できません",
+    "offlineComplete": "オフラインアクセスの準備完了",
+    "offlineCanceled": "ダウンロードをキャンセルしました",
+    "offlineBackgroundNote": "ダウンロード中にこのページを離れても続行します。",
+    "offlineLog": "ダウンロードの詳細",
+    "offlineOpen": "オフラインアクセスを開く"
   },
   "shortcuts": {
     "title": "キーボードショートカット",

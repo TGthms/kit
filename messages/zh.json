@@ -124,7 +124,8 @@
     "pdfPageCap": "此 PDF 共 {total} 页。Kit 在此标签页处理了前 {processed} 页。",
     "fileRejectedSize": "该文件超过 200 MB，Kit 不会在此标签页排队处理。",
     "fileRejectedType": "此处不接受该文件类型。",
-    "fileRejectedEmpty": "没有加入可用文件。"
+    "fileRejectedEmpty": "没有加入可用文件。",
+    "offlineIndicator": "离线：没有互联网连接"
   },
   "home": {
     "title": "今天有什么要做的？",
@@ -466,7 +467,22 @@
     "viewTerms": "使用条款",
     "shortcutsHelp": "随时按 ? 查看键盘快捷键。",
     "version": "版本",
-    "viewHow": "Kit 如何运作"
+    "viewHow": "Kit 如何运作",
+    "offlineAccess": "Offline access",
+    "offlineAccessDesc": "Choose tools, categories, and languages to prepare for offline use. Downloads continue in the background and stay on this device.",
+    "offlineLanguages": "Languages",
+    "offlineLanguagesDesc": "The current language is selected by default. Add more languages if you want them available offline.",
+    "offlineTools": "Tools",
+    "offlineToolsDesc": "Choose individual tools or select an entire category for a faster setup.",
+    "offlineEngines": "Include large media engines",
+    "offlineEnginesDesc": "Adds PDF, audio, and video runtimes. This may use more storage, but enables more tools offline.",
+    "offlineStorage": "Browser storage",
+    "offlineStorageUnknown": "Storage estimate unavailable",
+    "offlineComplete": "Offline access is ready",
+    "offlineCanceled": "Download canceled",
+    "offlineBackgroundNote": "You can leave this page while the download continues. Kit pauses its optional background work when you interact.",
+    "offlineLog": "Download details",
+    "offlineOpen": "打开离线访问"
   },
   "shortcuts": {
     "title": "键盘快捷键",

@@ -124,7 +124,8 @@
     "pdfPageCap": "PDF này có {total} trang. Kit đã xử lý {processed} trang đầu trong thẻ này.",
     "fileRejectedSize": "Tệp đó hơn 200 MB nên Kit không xếp hàng trong thẻ này.",
     "fileRejectedType": "Loại tệp đó không được chấp nhận ở đây.",
-    "fileRejectedEmpty": "Không có tệp dùng được nào được thêm."
+    "fileRejectedEmpty": "Không có tệp dùng được nào được thêm.",
+    "offlineIndicator": "Ngoại tuyến: không có kết nối Internet"
   },
   "home": {
     "title": "Bạn cần làm gì?",
@@ -466,7 +467,22 @@
     "viewTerms": "Điều khoản sử dụng",
     "shortcutsHelp": "Nhấn ? bất cứ lúc nào để xem phím tắt.",
     "version": "Phiên bản",
-    "viewHow": "Kit hoạt động thế nào"
+    "viewHow": "Kit hoạt động thế nào",
+    "offlineAccess": "Truy cập ngoại tuyến",
+    "offlineAccessDesc": "Chọn công cụ, danh mục và ngôn ngữ để dùng ngoại tuyến.",
+    "offlineLanguages": "Languages",
+    "offlineLanguagesDesc": "Thêm ngôn ngữ khác để dùng khi ngoại tuyến.",
+    "offlineTools": "Tools",
+    "offlineToolsDesc": "Chọn từng công cụ hoặc cả danh mục.",
+    "offlineEngines": "Bao gồm bộ máy đa phương tiện lớn",
+    "offlineEnginesDesc": "Thêm runtime PDF, âm thanh và video và dùng nhiều bộ nhớ hơn.",
+    "offlineStorage": "Dung lượng trình duyệt",
+    "offlineStorageUnknown": "Không thể ước tính dung lượng",
+    "offlineComplete": "Đã sẵn sàng dùng ngoại tuyến",
+    "offlineCanceled": "Đã hủy tải xuống",
+    "offlineBackgroundNote": "Bạn có thể rời trang trong khi tải xuống tiếp tục.",
+    "offlineLog": "Chi tiết tải xuống",
+    "offlineOpen": "Mở truy cập ngoại tuyến"
   },
   "shortcuts": {
     "title": "Phím tắt",

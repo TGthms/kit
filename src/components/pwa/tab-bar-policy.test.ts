@@ -42,6 +42,13 @@ describe("mobile PWA tab bar material", () => {
     expect(css).toMatch(/\.gliding-pill:not\(\[data-hydrated\]\)/);
   });
 
+  it("starts selection feedback before pathname changes", () => {
+    expect(shell).toMatch(/pendingHref/);
+    expect(shell).toMatch(/setPendingHref\(href\)/);
+    expect(shell).toMatch(/selectedHref/);
+    expect(shell).toMatch(/data-pop=\{selected && \(pending \|\| popHref === href\)/);
+  });
+
   it("marks navigation as client-ready after hydration", () => {
     expect(shell).toMatch(/useHydrated\(\)/);
     expect(shell).toMatch(/data-navigation-intent=\{hydrated \? "client" : undefined\}/);

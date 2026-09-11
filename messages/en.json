@@ -124,7 +124,8 @@
     "searchAria": "{label} search",
     "searchResults": "{label} search results",
     "skipToContent": "Skip to content",
-    "pdfPageCap": "This PDF has {total} pages. Kit processed the first {processed} in this tab."
+    "pdfPageCap": "This PDF has {total} pages. Kit processed the first {processed} in this tab.",
+    "offlineIndicator": "Offline: no internet connection"
   },
   "home": {
     "title": "What do you need to do?",
@@ -466,7 +467,22 @@
     "viewPrivacy": "Privacy Policy",
     "viewTerms": "Terms of Use",
     "shortcutsHelp": "Press ? anytime for keyboard shortcuts.",
-    "version": "Version"
+    "version": "Version",
+    "offlineAccess": "Offline access",
+    "offlineAccessDesc": "Choose tools, categories, and languages to prepare for offline use. Downloads continue in the background and stay on this device.",
+    "offlineLanguages": "Languages",
+    "offlineLanguagesDesc": "The current language is selected by default. Add more languages if you want them available offline.",
+    "offlineTools": "Tools",
+    "offlineToolsDesc": "Choose individual tools or select an entire category for a faster setup.",
+    "offlineEngines": "Include large media engines",
+    "offlineEnginesDesc": "Adds PDF, audio, and video runtimes. This may use more storage, but enables more tools offline.",
+    "offlineStorage": "Browser storage",
+    "offlineStorageUnknown": "Storage estimate unavailable",
+    "offlineComplete": "Offline access is ready",
+    "offlineCanceled": "Download canceled",
+    "offlineBackgroundNote": "You can leave this page while the download continues. Kit pauses its optional background work when you interact.",
+    "offlineLog": "Download details",
+    "offlineOpen": "Open offline access"
   },
   "shortcuts": {
     "title": "Keyboard shortcuts",

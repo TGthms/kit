@@ -13,6 +13,7 @@ import { Switch } from "@/components/ui/switch";
 import { rememberThemeChoice } from "@/lib/theme/resolve";
 import { useHydrated } from "@/lib/react/hydrated";
 import { runCircularThemeTransition } from "@/lib/theme/circular-transition";
+import { HardDriveDownload } from "lucide-react";
 
 export default function SettingsPage() {
   const t = useTranslations("settings");
@@ -73,7 +74,14 @@ export default function SettingsPage() {
         </CardContent>
       </Card>
 
-      <Card className="anim-stagger border-border/40" style={{ animationDelay: "120ms" }}>
+      <Card className="anim-stagger border-primary/20 bg-primary/[0.035]" style={{ animationDelay: "120ms" }}>
+        <CardContent className="flex flex-col gap-4 p-5 sm:flex-row sm:items-center sm:justify-between sm:p-6">
+          <div className="flex items-start gap-3"><span className="rounded-xl bg-primary/12 p-2.5 text-primary"><HardDriveDownload className="h-5 w-5" /></span><div><CardTitle>{t("offlineAccess")}</CardTitle><p className="mt-1 type-body text-muted-foreground">{t("offlineAccessDesc")}</p></div></div>
+          <Button asChild className="shrink-0"><Link href="/settings/offline">{t("offlineOpen")}</Link></Button>
+        </CardContent>
+      </Card>
+
+      <Card className="anim-stagger border-border/40" style={{ animationDelay: "160ms" }}>
         <CardHeader>
           <CardTitle>{t("data")}</CardTitle>
         </CardHeader>

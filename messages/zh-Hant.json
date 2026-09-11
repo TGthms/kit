@@ -124,7 +124,8 @@
     "pdfPageCap": "此 PDF 共 {total} 頁。Kit 在此分頁處理了前 {processed} 頁。",
     "fileRejectedSize": "該檔案超過 200 MB，Kit 不會在此分頁排隊處理。",
     "fileRejectedType": "此處不接受該檔案類型。",
-    "fileRejectedEmpty": "沒有加入可用檔案。"
+    "fileRejectedEmpty": "沒有加入可用檔案。",
+    "offlineIndicator": "離線：沒有網際網路連線"
   },
   "home": {
     "title": "今天有什麼要做的？",
@@ -466,7 +467,22 @@
     "viewTerms": "使用條款",
     "shortcutsHelp": "随時按 ? 查看键盤快捷键。",
     "version": "版本",
-    "viewHow": "Kit 如何運作"
+    "viewHow": "Kit 如何運作",
+    "offlineAccess": "離線存取",
+    "offlineAccessDesc": "選擇工具、類別和語言，以便離線使用。",
+    "offlineLanguages": "Languages",
+    "offlineLanguagesDesc": "新增其他語言，讓它們也能離線使用。",
+    "offlineTools": "Tools",
+    "offlineToolsDesc": "選擇個別工具或整個類別。",
+    "offlineEngines": "包含大型媒體引擎",
+    "offlineEnginesDesc": "新增 PDF、音訊和影片執行環境，會使用更多儲存空間。",
+    "offlineStorage": "瀏覽器儲存空間",
+    "offlineStorageUnknown": "無法估算儲存空間",
+    "offlineComplete": "離線存取已準備就緒",
+    "offlineCanceled": "下載已取消",
+    "offlineBackgroundNote": "下載繼續時可以離開此頁面。",
+    "offlineLog": "下載詳細資料",
+    "offlineOpen": "開啟離線存取"
   },
   "shortcuts": {
     "title": "键盤快捷键",

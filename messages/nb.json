@@ -124,7 +124,8 @@
     "pdfPageCap": "Denne PDF-en har {total} sider. Kit behandlet de første {processed} i denne fanen.",
     "fileRejectedSize": "Filen er over 200 MB, så Kit køer den ikke i denne fanen.",
     "fileRejectedType": "Den filtypen godtas ikke her.",
-    "fileRejectedEmpty": "Ingen brukbare filer ble lagt til."
+    "fileRejectedEmpty": "Ingen brukbare filer ble lagt til.",
+    "offlineIndicator": "Frakoblet: ingen internettforbindelse"
   },
   "home": {
     "title": "Hva trenger du å gjøre?",
@@ -466,7 +467,22 @@
     "viewTerms": "Bruksvilkår",
     "shortcutsHelp": "Trykk ? når som helst for tastatursnarveier.",
     "version": "Versjon",
-    "viewHow": "Slik virker Kit"
+    "viewHow": "Slik virker Kit",
+    "offlineAccess": "Frakoblet tilgang",
+    "offlineAccessDesc": "Velg verktøy, kategorier og språk for frakoblet bruk.",
+    "offlineLanguages": "Languages",
+    "offlineLanguagesDesc": "Legg til flere språk hvis de skal være tilgjengelige uten nett.",
+    "offlineTools": "Tools",
+    "offlineToolsDesc": "Velg enkeltverktøy eller en hel kategori.",
+    "offlineEngines": "Ta med store mediemotorer",
+    "offlineEnginesDesc": "Legger til PDF-, lyd- og videokjøretider og bruker mer lagring.",
+    "offlineStorage": "Nettleserlagring",
+    "offlineStorageUnknown": "Lagringsestimat er ikke tilgjengelig",
+    "offlineComplete": "Frakoblet tilgang er klar",
+    "offlineCanceled": "Nedlasting avbrutt",
+    "offlineBackgroundNote": "Du kan forlate siden mens nedlastingen fortsetter.",
+    "offlineLog": "Nedlastingsdetaljer",
+    "offlineOpen": "Åpne frakoblet tilgang"
   },
   "shortcuts": {
     "title": "Tastatursnarveier",

@@ -124,7 +124,8 @@
     "pdfPageCap": "Acest PDF are {total} pagini. Kit a procesat primele {processed} în această filă.",
     "fileRejectedSize": "Fișierul depășește 200 MB, deci Kit nu îl pune în coadă în această filă.",
     "fileRejectedType": "Acest tip de fișier nu este acceptat aici.",
-    "fileRejectedEmpty": "Nu au fost adăugate fișiere utilizabile."
+    "fileRejectedEmpty": "Nu au fost adăugate fișiere utilizabile.",
+    "offlineIndicator": "Offline: fără conexiune la internet"
   },
   "home": {
     "title": "Ce ai de făcut?",
@@ -466,7 +467,22 @@
     "viewTerms": "Termeni de utilizare",
     "shortcutsHelp": "Apasă ? oricând pentru scurtăturile de tastatură.",
     "version": "Versiune",
-    "viewHow": "Cum funcționează Kit"
+    "viewHow": "Cum funcționează Kit",
+    "offlineAccess": "Acces offline",
+    "offlineAccessDesc": "Alege instrumente, categorii și limbi pentru utilizare offline.",
+    "offlineLanguages": "Languages",
+    "offlineLanguagesDesc": "Adaugă alte limbi pentru a le avea disponibile offline.",
+    "offlineTools": "Tools",
+    "offlineToolsDesc": "Alege instrumente individuale sau o categorie întreagă.",
+    "offlineEngines": "Include motoare media mari",
+    "offlineEnginesDesc": "Adaugă componente PDF, audio și video și folosește mai mult spațiu.",
+    "offlineStorage": "Stocarea browserului",
+    "offlineStorageUnknown": "Estimarea stocării nu este disponibilă",
+    "offlineComplete": "Accesul offline este gata",
+    "offlineCanceled": "Descărcare anulată",
+    "offlineBackgroundNote": "Poți părăsi pagina în timp ce descărcarea continuă.",
+    "offlineLog": "Detalii descărcare",
+    "offlineOpen": "Deschide accesul offline"
   },
   "shortcuts": {
     "title": "Scurtături de tastatură",

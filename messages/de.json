@@ -124,7 +124,8 @@
     "pdfPageCap": "Dieses PDF hat {total} Seiten. Kit hat die ersten {processed} in diesem Tab verarbeitet.",
     "fileRejectedSize": "Diese Datei ist größer als 200 MB, daher reiht Kit sie in diesem Tab nicht ein.",
     "fileRejectedType": "Dieser Dateityp wird hier nicht akzeptiert.",
-    "fileRejectedEmpty": "Es wurden keine nutzbaren Dateien hinzugefügt."
+    "fileRejectedEmpty": "Es wurden keine nutzbaren Dateien hinzugefügt.",
+    "offlineIndicator": "Offline: keine Internetverbindung"
   },
   "home": {
     "title": "Was möchten Sie tun?",
@@ -466,7 +467,22 @@
     "viewTerms": "Nutzungsbedingungen",
     "shortcutsHelp": "Drücken Sie jederzeit ?, um die Tastenkürzel zu sehen.",
     "version": "Version",
-    "viewHow": "So funktioniert Kit"
+    "viewHow": "So funktioniert Kit",
+    "offlineAccess": "Offline-Zugriff",
+    "offlineAccessDesc": "Wähle Tools, Kategorien und Sprachen für die Offline-Nutzung aus.",
+    "offlineLanguages": "Languages",
+    "offlineLanguagesDesc": "Füge weitere Sprachen für die Offline-Nutzung hinzu.",
+    "offlineTools": "Tools",
+    "offlineToolsDesc": "Wähle einzelne Tools oder eine ganze Kategorie.",
+    "offlineEngines": "Große Medien-Engines einschließen",
+    "offlineEnginesDesc": "Fügt PDF-, Audio- und Video-Laufzeiten hinzu und benötigt mehr Speicher.",
+    "offlineStorage": "Browser-Speicher",
+    "offlineStorageUnknown": "Speicherschätzung nicht verfügbar",
+    "offlineComplete": "Offline-Zugriff ist bereit",
+    "offlineCanceled": "Download abgebrochen",
+    "offlineBackgroundNote": "Du kannst diese Seite verlassen, während der Download weiterläuft.",
+    "offlineLog": "Download-Details",
+    "offlineOpen": "Offline-Zugriff öffnen"
   },
   "shortcuts": {
     "title": "Tastenkürzel",

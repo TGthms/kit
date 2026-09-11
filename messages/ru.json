@@ -124,7 +124,8 @@
     "pdfPageCap": "В этом PDF {total} страниц. Kit обработал первые {processed} в этой вкладке.",
     "fileRejectedSize": "Файл больше 200 МБ, поэтому Kit не ставит его в очередь в этой вкладке.",
     "fileRejectedType": "Этот тип файла здесь не принимается.",
-    "fileRejectedEmpty": "Подходящие файлы не добавлены."
+    "fileRejectedEmpty": "Подходящие файлы не добавлены.",
+    "offlineIndicator": "Офлайн: нет подключения к интернету"
   },
   "home": {
     "title": "Что нужно сделать?",
@@ -466,7 +467,22 @@
     "viewTerms": "Условия использования",
     "shortcutsHelp": "Нажмите ?, чтобы в любой момент открыть горячие клавиши.",
     "version": "Версия",
-    "viewHow": "Как работает Kit"
+    "viewHow": "Как работает Kit",
+    "offlineAccess": "Офлайн-доступ",
+    "offlineAccessDesc": "Выберите инструменты, категории и языки для работы офлайн.",
+    "offlineLanguages": "Languages",
+    "offlineLanguagesDesc": "Добавьте другие языки, чтобы использовать их офлайн.",
+    "offlineTools": "Tools",
+    "offlineToolsDesc": "Выберите отдельные инструменты или целую категорию.",
+    "offlineEngines": "Включить большие медиамодули",
+    "offlineEnginesDesc": "Добавляет модули PDF, аудио и видео и использует больше места.",
+    "offlineStorage": "Хранилище браузера",
+    "offlineStorageUnknown": "Оценка хранилища недоступна",
+    "offlineComplete": "Офлайн-доступ готов",
+    "offlineCanceled": "Загрузка отменена",
+    "offlineBackgroundNote": "Можно покинуть страницу, пока загрузка продолжается.",
+    "offlineLog": "Сведения о загрузке",
+    "offlineOpen": "Открыть офлайн-доступ"
   },
   "shortcuts": {
     "title": "Горячие клавиши",

@@ -124,7 +124,8 @@
     "pdfPageCap": "PDF นี้มี {total} หน้า Kit ประมวลผล {processed} หน้าแรกในแท็บนี้",
     "fileRejectedSize": "ไฟล์นี้เกิน 200 MB ดังนั้น Kit จะไม่ใส่คิวในแท็บนี้",
     "fileRejectedType": "ไม่รับชนิดไฟล์นี้ที่นี่",
-    "fileRejectedEmpty": "ไม่ได้เพิ่มไฟล์ที่ใช้ได้"
+    "fileRejectedEmpty": "ไม่ได้เพิ่มไฟล์ที่ใช้ได้",
+    "offlineIndicator": "ออฟไลน์: ไม่มีการเชื่อมต่ออินเทอร์เน็ต"
   },
   "home": {
     "title": "คุณต้องการทำอะไร",
@@ -466,7 +467,22 @@
     "viewTerms": "ข้อกำหนดการใช้งาน",
     "shortcutsHelp": "กด ? ได้ทุกเมื่อเพื่อดูทางลัดแป้นพิมพ์",
     "version": "เวอร์ชัน",
-    "viewHow": "Kit ทำงานอย่างไร"
+    "viewHow": "Kit ทำงานอย่างไร",
+    "offlineAccess": "การใช้งานออฟไลน์",
+    "offlineAccessDesc": "เลือกเครื่องมือ หมวดหมู่ และภาษาสำหรับใช้งานออฟไลน์",
+    "offlineLanguages": "Languages",
+    "offlineLanguagesDesc": "เพิ่มภาษาอื่นเพื่อให้ใช้งานออฟไลน์ได้",
+    "offlineTools": "Tools",
+    "offlineToolsDesc": "เลือกเครื่องมือแต่ละรายการหรือทั้งหมวดหมู่",
+    "offlineEngines": "รวมเอนจินสื่อขนาดใหญ่",
+    "offlineEnginesDesc": "เพิ่มรันไทม์ PDF เสียง และวิดีโอ และใช้พื้นที่มากขึ้น",
+    "offlineStorage": "พื้นที่จัดเก็บของเบราว์เซอร์",
+    "offlineStorageUnknown": "ไม่สามารถประเมินพื้นที่จัดเก็บได้",
+    "offlineComplete": "พร้อมใช้งานออฟไลน์",
+    "offlineCanceled": "ยกเลิกการดาวน์โหลดแล้ว",
+    "offlineBackgroundNote": "คุณออกจากหน้านี้ได้ขณะดาวน์โหลดต่อ",
+    "offlineLog": "รายละเอียดการดาวน์โหลด",
+    "offlineOpen": "เปิดการใช้งานออฟไลน์"
   },
   "shortcuts": {
     "title": "ทางลัดแป้นพิมพ์",

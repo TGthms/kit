@@ -124,7 +124,8 @@
     "pdfPageCap": "Deze PDF heeft {total} pagina’s. Kit verwerkte de eerste {processed} in dit tabblad.",
     "fileRejectedSize": "Dat bestand is groter dan 200 MB, dus Kit zet het niet in de wachtrij in dit tabblad.",
     "fileRejectedType": "Dat bestandstype wordt hier niet geaccepteerd.",
-    "fileRejectedEmpty": "Er zijn geen bruikbare bestanden toegevoegd."
+    "fileRejectedEmpty": "Er zijn geen bruikbare bestanden toegevoegd.",
+    "offlineIndicator": "Offline: geen internetverbinding"
   },
   "home": {
     "title": "Wat wil je doen?",
@@ -466,7 +467,22 @@
     "viewTerms": "Gebruiksvoorwaarden",
     "shortcutsHelp": "Druk op elk moment op ? voor sneltoetsen.",
     "version": "Versie",
-    "viewHow": "Hoe Kit werkt"
+    "viewHow": "Hoe Kit werkt",
+    "offlineAccess": "Offline toegang",
+    "offlineAccessDesc": "Kies tools, categorieën en talen voor offline gebruik.",
+    "offlineLanguages": "Languages",
+    "offlineLanguagesDesc": "Voeg meer talen toe om ze offline beschikbaar te maken.",
+    "offlineTools": "Tools",
+    "offlineToolsDesc": "Kies losse tools of een volledige categorie.",
+    "offlineEngines": "Grote media-engines opnemen",
+    "offlineEnginesDesc": "Voegt PDF-, audio- en videoruntimes toe en gebruikt meer opslag.",
+    "offlineStorage": "Browseropslag",
+    "offlineStorageUnknown": "Opslaginschatting niet beschikbaar",
+    "offlineComplete": "Offline toegang is klaar",
+    "offlineCanceled": "Download geannuleerd",
+    "offlineBackgroundNote": "Je kunt deze pagina verlaten terwijl de download doorgaat.",
+    "offlineLog": "Downloaddetails",
+    "offlineOpen": "Offline toegang openen"
   },
   "shortcuts": {
     "title": "Sneltoetsen",

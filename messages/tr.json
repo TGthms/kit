@@ -124,7 +124,8 @@
     "pdfPageCap": "Bu PDF {total} sayfa. Kit bu sekmede ilk {processed} sayfayı işledi.",
     "fileRejectedSize": "Bu dosya 200 MB’ı aşıyor, Kit bu sekmede kuyruğa almaz.",
     "fileRejectedType": "Bu dosya türü burada kabul edilmiyor.",
-    "fileRejectedEmpty": "Kullanılabilir dosya eklenmedi."
+    "fileRejectedEmpty": "Kullanılabilir dosya eklenmedi.",
+    "offlineIndicator": "Çevrimdışı: internet bağlantısı yok"
   },
   "home": {
     "title": "Ne yapmak istiyorsunuz?",
@@ -466,7 +467,22 @@
     "viewTerms": "Kullanım Koşulları",
     "shortcutsHelp": "Klavye kısayolları için istediğiniz zaman ? tuşuna basın.",
     "version": "Sürüm",
-    "viewHow": "Kit nasıl çalışır"
+    "viewHow": "Kit nasıl çalışır",
+    "offlineAccess": "Çevrimdışı erişim",
+    "offlineAccessDesc": "Çevrimdışı kullanım için araçları, kategorileri ve dilleri seçin.",
+    "offlineLanguages": "Languages",
+    "offlineLanguagesDesc": "Çevrimdışı kullanılabilmeleri için başka diller ekleyin.",
+    "offlineTools": "Tools",
+    "offlineToolsDesc": "Tek tek araçları veya bir kategorinin tamamını seçin.",
+    "offlineEngines": "Büyük medya motorlarını dahil et",
+    "offlineEnginesDesc": "PDF, ses ve video çalışma zamanlarını ekler ve daha fazla depolama kullanır.",
+    "offlineStorage": "Tarayıcı depolaması",
+    "offlineStorageUnknown": "Depolama tahmini kullanılamıyor",
+    "offlineComplete": "Çevrimdışı erişim hazır",
+    "offlineCanceled": "İndirme iptal edildi",
+    "offlineBackgroundNote": "İndirme devam ederken bu sayfadan ayrılabilirsiniz.",
+    "offlineLog": "İndirme ayrıntıları",
+    "offlineOpen": "Çevrimdışı erişimi aç"
   },
   "shortcuts": {
     "title": "Klavye kısayolları",

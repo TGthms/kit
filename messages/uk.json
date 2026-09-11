@@ -124,7 +124,8 @@
     "pdfPageCap": "У цьому PDF {total} сторінок. Kit опрацював перші {processed} у цій вкладці.",
     "fileRejectedSize": "Файл більший за 200 МБ, тож Kit не ставить його в чергу в цій вкладці.",
     "fileRejectedType": "Цей тип файлу тут не приймається.",
-    "fileRejectedEmpty": "Придатних файлів не додано."
+    "fileRejectedEmpty": "Придатних файлів не додано.",
+    "offlineIndicator": "Офлайн: немає підключення до Інтернету"
   },
   "home": {
     "title": "Що потрібно зробити?",
@@ -466,7 +467,22 @@
     "viewTerms": "Умови використання",
     "shortcutsHelp": "Натисніть ?, щоб будь-коли відкрити клавіатурні скорочення.",
     "version": "Версія",
-    "viewHow": "Як працює Kit"
+    "viewHow": "Як працює Kit",
+    "offlineAccess": "Офлайн-доступ",
+    "offlineAccessDesc": "Виберіть інструменти, категорії та мови для роботи офлайн.",
+    "offlineLanguages": "Languages",
+    "offlineLanguagesDesc": "Додайте інші мови, щоб вони були доступні офлайн.",
+    "offlineTools": "Tools",
+    "offlineToolsDesc": "Виберіть окремі інструменти або всю категорію.",
+    "offlineEngines": "Додати великі медіамодулі",
+    "offlineEnginesDesc": "Додає модулі PDF, аудіо й відео та використовує більше пам’яті.",
+    "offlineStorage": "Сховище браузера",
+    "offlineStorageUnknown": "Оцінка сховища недоступна",
+    "offlineComplete": "Офлайн-доступ готовий",
+    "offlineCanceled": "Завантаження скасовано",
+    "offlineBackgroundNote": "Ви можете залишити сторінку, поки завантаження триває.",
+    "offlineLog": "Деталі завантаження",
+    "offlineOpen": "Відкрити офлайн-доступ"
   },
   "shortcuts": {
     "title": "Клавіатурні скорочення",

@@ -124,7 +124,8 @@
     "pdfPageCap": "Tässä PDF:ssä on {total} sivua. Kit käsitteli ensimmäiset {processed} tässä välilehdessä.",
     "fileRejectedSize": "Tiedosto on yli 200 Mt, joten Kit ei jonota sitä tässä välilehdessä.",
     "fileRejectedType": "Tätä tiedostotyyppiä ei hyväksytä täällä.",
-    "fileRejectedEmpty": "Käyttökelpoisia tiedostoja ei lisätty."
+    "fileRejectedEmpty": "Käyttökelpoisia tiedostoja ei lisätty.",
+    "offlineIndicator": "Offline: ei internetyhteyttä"
   },
   "home": {
     "title": "Mitä haluat tehdä?",
@@ -466,7 +467,22 @@
     "viewTerms": "Käyttöehdot",
     "shortcutsHelp": "Paina ? milloin tahansa nähdäksesi pikanäppäimet.",
     "version": "Versio",
-    "viewHow": "Miten Kit toimii"
+    "viewHow": "Miten Kit toimii",
+    "offlineAccess": "Offline-käyttö",
+    "offlineAccessDesc": "Valitse työkalut, luokat ja kielet offline-käyttöä varten.",
+    "offlineLanguages": "Languages",
+    "offlineLanguagesDesc": "Lisää kieliä, jos haluat ne käyttöön offline-tilassa.",
+    "offlineTools": "Tools",
+    "offlineToolsDesc": "Valitse yksittäisiä työkaluja tai kokonainen luokka.",
+    "offlineEngines": "Sisällytä suuret media-ajonaikaiset ympäristöt",
+    "offlineEnginesDesc": "Lisää PDF-, ääni- ja videoajotilat ja käyttää enemmän tallennustilaa.",
+    "offlineStorage": "Selaimen tallennustila",
+    "offlineStorageUnknown": "Tallennustilan arviota ei ole saatavilla",
+    "offlineComplete": "Offline-käyttö on valmis",
+    "offlineCanceled": "Lataus peruutettu",
+    "offlineBackgroundNote": "Voit poistua sivulta latauksen jatkuessa.",
+    "offlineLog": "Latauksen tiedot",
+    "offlineOpen": "Avaa offline-käyttö"
   },
   "shortcuts": {
     "title": "Pikanäppäimet",
