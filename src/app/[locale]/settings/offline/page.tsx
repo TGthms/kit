@@ -1,13 +1,8 @@
-import type { Metadata } from "next";
+"use client";
+
 import { useTranslations } from "next-intl";
-import { buildSectionMetadata } from "@/lib/seo/metadata";
 import { PageHeader } from "@/components/layout/page-header";
 import { OfflineAccess } from "@/components/settings/offline-access";
-
-export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
-  const { locale } = await params;
-  return buildSectionMetadata(locale, "settings");
-}
 
 export default function OfflineSettingsPage() {
   const t = useTranslations("settings");
