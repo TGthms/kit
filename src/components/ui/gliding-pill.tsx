@@ -8,9 +8,15 @@ export type PillRect = { left: number; top: number; width: number; height: numbe
 export function measurePill(container: HTMLElement, target: HTMLElement): PillRect {
   const c = container.getBoundingClientRect();
   const t = target.getBoundingClientRect();
+  // `left`/`top` on the absolutely positioned pill resolve against the
+  // container's padding box, while getBoundingClientRect() reports the border
+  // box. Subtract the border so the measured box and the CSS fallback describe
+  // the same coordinate space.
+  const borderLeft = container.clientLeft || 0;
+  const borderTop = container.clientTop || 0;
   return {
-    left: t.left - c.left,
-    top: t.top - c.top,
+    left: t.left - c.left - borderLeft,
+    top: t.top - c.top - borderTop,
     width: t.width,
     height: t.height,
   };
@@ -28,7 +34,7 @@ export function useGlidingPill(container: HTMLElement | null, target: HTMLElemen
     if (!container || !target) return;
 
     let frame = 0;
-    const update = () => {
+    const commit = () => {
       frame = 0;
       const next = measurePill(container, target);
       if (next.width === 0) return;
@@ -37,10 +43,15 @@ export function useGlidingPill(container: HTMLElement | null, target: HTMLElemen
     };
     const scheduleUpdate = () => {
       if (frame) return;
-      frame = window.requestAnimationFrame(update);
+      frame = window.requestAnimationFrame(commit);
     };
 
-    scheduleUpdate();
+    // Measure once synchronously so `ready` is already true at the first paint.
+    // `ready` is what lifts `.gliding-pill:not([data-ready]) { transition: none }`,
+    // so deferring this to a frame left the pill unable to animate during the
+    // first paint — a tab switch in that window jumped instead of gliding.
+    // Later ResizeObserver/resize updates still coalesce into a single frame.
+    commit();
     const ro = new ResizeObserver(scheduleUpdate);
     ro.observe(container);
     ro.observe(target);

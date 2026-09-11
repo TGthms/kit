@@ -1,6 +1,7 @@
 import { describe, expect, it, vi } from "vitest";
 import {
   KEYBOARD_TABBAR_HIDE_PX,
+  KEYBOARD_TABBAR_MIN_SHARE,
   keyboardCoverPx,
   scrollActiveTabToTop,
   shouldHideFloatingTabBar,
@@ -31,6 +32,29 @@ describe("shouldHideFloatingTabBar", () => {
   it("hides when a keyboard covers the bottom", () => {
     expect(shouldHideFloatingTabBar(KEYBOARD_TABBAR_HIDE_PX + 1)).toBe(true);
     expect(shouldHideFloatingTabBar(300)).toBe(true);
+  });
+
+  it("keeps the old floor when the viewport height is unknown", () => {
+    expect(shouldHideFloatingTabBar(KEYBOARD_TABBAR_HIDE_PX + 1, 0)).toBe(true);
+    expect(shouldHideFloatingTabBar(KEYBOARD_TABBAR_HIDE_PX, 0)).toBe(false);
+  });
+
+  it("ignores a first-load viewport settle that is not a keyboard", () => {
+    const viewport = 800;
+    const shareFloor = viewport * KEYBOARD_TABBAR_MIN_SHARE;
+    expect(shareFloor).toBeGreaterThan(KEYBOARD_TABBAR_HIDE_PX);
+    // A collapsing URL bar/toolbar is over the pixel floor but nowhere near a
+    // keyboard's share of the viewport.
+    expect(shouldHideFloatingTabBar(100, viewport)).toBe(false);
+    expect(shouldHideFloatingTabBar(shareFloor - 1, viewport)).toBe(false);
+  });
+
+  it("still hides for a real keyboard share of the viewport", () => {
+    const viewport = 800;
+    const shareFloor = viewport * KEYBOARD_TABBAR_MIN_SHARE;
+    expect(shouldHideFloatingTabBar(shareFloor, viewport)).toBe(false);
+    expect(shouldHideFloatingTabBar(shareFloor + 1, viewport)).toBe(true);
+    expect(shouldHideFloatingTabBar(320, viewport)).toBe(true);
   });
 });
 

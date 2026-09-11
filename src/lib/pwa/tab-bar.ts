@@ -10,8 +10,20 @@ export function keyboardCoverPx(
 /** Ignore URL-bar show/hide; a real keyboard is hundreds of pixels. */
 export const KEYBOARD_TABBAR_HIDE_PX = 80;
 
-export function shouldHideFloatingTabBar(coverPx: number): boolean {
-  return coverPx > KEYBOARD_TABBAR_HIDE_PX;
+/**
+ * Browser chrome (URL bar, toolbar) collapses by a bounded amount, while a
+ * software keyboard covers a large share of the layout viewport. Requiring both
+ * an absolute floor and a share keeps a first-load viewport settle from being
+ * read as a keyboard and sliding the bar away.
+ */
+export const KEYBOARD_TABBAR_MIN_SHARE = 0.18;
+
+export function shouldHideFloatingTabBar(coverPx: number, viewportHeight = 0): boolean {
+  const threshold =
+    viewportHeight > 0
+      ? Math.max(KEYBOARD_TABBAR_HIDE_PX, viewportHeight * KEYBOARD_TABBAR_MIN_SHARE)
+      : KEYBOARD_TABBAR_HIDE_PX;
+  return coverPx > threshold;
 }
 
 /** Re-tapping the current tab scrolls to top, like UITabBarController. */

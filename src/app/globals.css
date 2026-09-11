@@ -323,13 +323,21 @@ scritto-flow.kit-scritto-inline {
   transition: none;
 }
 
-/* Keep the selected tab visible during hydration while the measured pill catches up. */
+/* Keep the selected tab visible during hydration while the measured pill catches up.
+   The geometry must match the measured box exactly or the pill visibly settles once
+   measurement lands: the face has a 1px border and px-1.5 py-1.5 padding, and the
+   tabs are equal flex children of the padding box, so the highlight is inset by the
+   padding rather than flush to the container edges. */
 .gliding-pill-fallback:not([data-ready]) {
+  --gliding-pill-inset: 0.375rem;
   opacity: 1;
-  left: calc(var(--gliding-pill-index) * (100% / var(--gliding-pill-count)));
-  top: 0;
-  width: calc(100% / var(--gliding-pill-count));
-  height: 100%;
+  left: calc(
+    var(--gliding-pill-inset) +
+      var(--gliding-pill-index) * ((100% - 2 * var(--gliding-pill-inset)) / var(--gliding-pill-count))
+  );
+  top: var(--gliding-pill-inset);
+  width: calc((100% - 2 * var(--gliding-pill-inset)) / var(--gliding-pill-count));
+  height: calc(100% - 2 * var(--gliding-pill-inset));
 }
 
 /* The SSR/hydration frame must not animate from the fallback into its measured box. */

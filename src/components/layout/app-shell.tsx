@@ -71,7 +71,8 @@ function useKeyboardHidesTabBar() {
     const visual = window.visualViewport;
     if (!visual) return;
     const update = () => {
-      setHidden(shouldHideFloatingTabBar(keyboardCoverPx(window.innerHeight, visual)));
+      const viewportHeight = window.innerHeight;
+      setHidden(shouldHideFloatingTabBar(keyboardCoverPx(viewportHeight, visual), viewportHeight));
     };
     update();
     visual.addEventListener("resize", update);
@@ -108,6 +109,10 @@ function TabBar({ pathname }: { pathname: string }) {
     previousActive.current = current;
   }, [pathname]);
 
+  // Before hydration these links are plain anchors, so an early tap is a real
+  // document navigation and the pill cannot glide across documents. The
+  // fallback geometry in globals.css matches the measured box exactly, so the
+  // destination still paints the highlight on the right tab with no correction.
   return (
     <FloatingNav
       aria-label={tb("name")}
@@ -134,7 +139,6 @@ function TabBar({ pathname }: { pathname: string }) {
             data-restore-scroll
             aria-current={active ? "page" : undefined}
             tabIndex={keyboardHidden ? -1 : undefined}
-            data-navigation-intent={hydrated ? "client" : undefined}
             className={cn(
               "pressable-soft relative z-10 flex min-h-[3.6rem] min-w-0 flex-1 flex-col items-center justify-center gap-0.5 px-1 py-1",
               "text-[11px] font-medium tracking-[-0.01em]",

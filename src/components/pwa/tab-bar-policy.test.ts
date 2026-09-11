@@ -7,6 +7,7 @@ const here = dirname(fileURLToPath(import.meta.url));
 const css = readFileSync(join(here, "../../../src/app/globals.css"), "utf8");
 const floatingNav = readFileSync(join(here, "../ui/floating-nav.tsx"), "utf8");
 const shell = readFileSync(join(here, "../layout/app-shell.tsx"), "utf8");
+const pill = readFileSync(join(here, "../ui/gliding-pill.tsx"), "utf8");
 
 describe("mobile PWA tab bar material", () => {
   it("uses a dedicated thinner fill and a stronger blur than other glass", () => {
@@ -49,9 +50,23 @@ describe("mobile PWA tab bar material", () => {
     expect(shell).toMatch(/data-pop=\{selected && \(pending \|\| popHref === href\)/);
   });
 
+  it("measures before the first paint so the pill can animate immediately", () => {
+    expect(pill).toMatch(/commit\(\);\n\s*const ro = new ResizeObserver\(scheduleUpdate\)/);
+    expect(pill).toMatch(/window\.requestAnimationFrame\(commit\)/);
+  });
+
+  it("keeps the fallback geometry equal to the measured box", () => {
+    expect(pill).toMatch(/container\.clientLeft \|\| 0/);
+    expect(pill).toMatch(/container\.clientTop \|\| 0/);
+    expect(css).toMatch(/--gliding-pill-inset:\s*0\.375rem/);
+    expect(css).toMatch(/width: calc\(\(100% - 2 \* var\(--gliding-pill-inset\)\) \/ var\(--gliding-pill-count\)\)/);
+  });
+
   it("marks navigation as client-ready after hydration", () => {
     expect(shell).toMatch(/useHydrated\(\)/);
-    expect(shell).toMatch(/data-navigation-intent=\{hydrated \? "client" : undefined\}/);
+    // An anchor already carries its navigation intent in `href`; the old
+    // attribute was only ever read for HTMLButtonElement, so it was inert here.
+    expect(shell).not.toMatch(/data-navigation-intent/);
   });
 
   it("drops blur and spring when accessibility preferences ask", () => {
