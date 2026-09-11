@@ -1891,7 +1891,7 @@
     "whyCaps": "Tanpa batasan yang dipaksakan server",
     "whyCapsBody": "Tanpa batas unggah, tanpa antrean, tanpa paket premium untuk berkas lebih besar. Batas sebenarnya adalah memori perangkat ini.",
     "whyOffline": "Bekerja tanpa sinyal",
-    "whyOfflineBody": "Setelah halaman termuat, alat tetap berjalan dalam mode pesawat. Pasang Kit dan hal yang sama berlaku di antara kunjungan.",
+    "whyOfflineBody": "Setelah halaman dimuat, alat tetap berjalan dalam mode pesawat. Jika Kit dipasang, hal yang sama berlaku antar kunjungan. Di Akses offline pada Pengaturan, Anda memilih bahasa dan alat untuk disiapkan lebih awal.",
     "exampleTitle": "Ikuti satu tugas dari awal sampai akhir",
     "exampleLede": "Dua contoh nyata, dilacak langkah demi langkah. Tak satu pun menyentuh jaringan lebih dari memuat Kit sendiri.",
     "exampleMergeHeading": "Menggabungkan dua PDF",
@@ -1925,7 +1925,7 @@
     "faqFilesQ": "Ke mana sebenarnya berkas saya pergi?",
     "faqFilesA": "Tidak ke mana pun. Berkas dibaca dan diproses di dalam tab ini dan ditulis kembali ke disk Anda saat Anda menyimpan. Catatan jaringan di halaman ini menunjukkan persis apa yang dikirim lewat jaringan.",
     "faqOfflineQ": "Apakah Kit bekerja luring?",
-    "faqOfflineA": "Ya. Setelah halaman alat termuat — atau setelah Kit terpasang — alat tetap bekerja tanpa koneksi. Konverter mata uang satu-satunya pengecualian, dan hanya untuk kurs baru.",
+    "faqOfflineA": "Ya. Setelah halaman alat dimuat — atau setelah Kit dipasang — alat tetap berfungsi tanpa koneksi. Di Akses offline pada Pengaturan, bahasa dan alat yang Anda pilih diunduh lebih awal. Konverter mata uang adalah satu-satunya pengecualian, dan hanya untuk kurs terbaru.",
     "faqMediaQ": "Mengapa alat media mengunduh sekitar {mediaMb} MB sekali saja?",
     "faqMediaA": "Audio dan video berjalan di atas FFmpeg yang dikompilasi ke WebAssembly. Mesin itu diunduh sekali, service worker menyimpannya di cache, dan setiap berkas setelahnya memakainya ulang.",
     "faqStoredQ": "Apa yang disimpan Kit di antara kunjungan?",
@@ -1946,6 +1946,6 @@
     "techCryptoDl": "Tidak ada tambahan — peramban sudah memilikinya",
     "techPwaDl": "Tidak ada tambahan — ia menyimpan cache, tidak mengirim apa pun",
     "techUiDl": "Halaman dan skripnya sendiri",
-    "exceptionOffline": "Kehilangan koneksi setelah halaman termuat? Alat tetap berjalan. Pasang Kit dan hal yang sama berlaku di antara kunjungan."
+    "exceptionOffline": "Koneksi hilang setelah halaman dimuat? Alat tetap berfungsi. Jika Kit dipasang, hal yang sama berlaku antar kunjungan, dan Akses offline pada Pengaturan menyiapkan apa yang Anda butuhkan."
   }
 }

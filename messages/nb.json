@@ -1891,7 +1891,7 @@
     "whyCaps": "Ingen grenser fra en server",
     "whyCapsBody": "Ingen opplastingsgrense, ingen kø, intet premiumnivå for større filer. Den reelle grensen er minnet på denne enheten.",
     "whyOffline": "Virker uten signal",
-    "whyOfflineBody": "Når en side er lastet, fortsetter verktøyet å kjøre i flymodus. Installer Kit, og det samme gjelder mellom besøk.",
+    "whyOfflineBody": "Når en side først er lastet, fortsetter verktøyet å virke i flymodus. Installerer du Kit, gjelder det samme mellom besøk. Under Frakoblet tilgang i Innstillinger velger du språkene og verktøyene som klargjøres på forhånd.",
     "exampleTitle": "Følg én oppgave fra start til slutt",
     "exampleLede": "To ekte eksempler, fulgt trinn for trinn. Ingen av dem rører nettet utover å laste Kit selv.",
     "exampleMergeHeading": "Å slå sammen to PDF-er",
@@ -1925,7 +1925,7 @@
     "faqFilesQ": "Hvor går filene mine egentlig hen?",
     "faqFilesA": "Ingen steder. De leses og behandles inne i denne fanen og skrives tilbake til disken din når du lagrer. Nettverksloggen på denne siden viser nøyaktig hva som gikk over ledningen.",
     "faqOfflineQ": "Fungerer Kit offline?",
-    "faqOfflineA": "Ja. Når en verktøyside er lastet — eller når Kit er installert — fortsetter verktøyene å fungere uten tilkobling. Valutakalkulatoren er det eneste unntaket, og bare for ferske kurser.",
+    "faqOfflineA": "Ja. Når en verktøyside er lastet – eller når Kit er installert – virker verktøyene uten tilkobling. Under Frakoblet tilgang i Innstillinger lastes språkene og verktøyene du velger ned på forhånd. Valutakonvertereren er det eneste unntaket, og bare for ferske kurser.",
     "faqMediaQ": "Hvorfor laster mediaverktøyet ned omtrent {mediaMb} MB én gang?",
     "faqMediaA": "Lyd og video kjører på FFmpeg, kompilert til WebAssembly. Motoren lastes ned én gang, service workeren lagrer den i hurtiglageret, og hver fil etterpå gjenbruker den.",
     "faqStoredQ": "Hva lagrer Kit mellom besøk?",
@@ -1946,6 +1946,6 @@
     "techCryptoDl": "Ingenting ekstra — nettleseren har det allerede",
     "techPwaDl": "Ingenting ekstra — den bufrer, den sender ikke",
     "techUiDl": "Sidene og skriptene selv",
-    "exceptionOffline": "Mistet tilkoblingen etter at en side var lastet? Verktøyene fortsetter å fungere. Installer Kit, og det samme gjelder mellom besøk."
+    "exceptionOffline": "Mistet tilkoblingen etter at en side ble lastet? Verktøyene virker videre. Installerer du Kit, gjelder det samme mellom besøk, og Frakoblet tilgang i Innstillinger klargjør det du trenger."
   }
 }

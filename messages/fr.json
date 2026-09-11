@@ -1891,7 +1891,7 @@
     "whyCaps": "Aucune limite imposée par un serveur",
     "whyCapsBody": "Pas de plafond d’envoi, pas de file d’attente, pas d’offre premium pour les fichiers plus gros. La vraie limite, c’est la mémoire de cet appareil.",
     "whyOffline": "Fonctionne sans réseau",
-    "whyOfflineBody": "Une fois la page chargée, l’outil continue de tourner en mode avion. Installez Kit, et c’est pareil entre vos visites.",
+    "whyOfflineBody": "Une fois une page chargée, l’outil continue de fonctionner en mode avion. Installez Kit et il en va de même entre les visites. L’Accès hors ligne, dans les Réglages, vous permet de choisir à l’avance les langues et les outils à préparer.",
     "exampleTitle": "Suivez une tâche de bout en bout",
     "exampleLede": "Deux exemples réels, suivis pas à pas. Ni l’un ni l’autre ne touche le réseau au-delà du chargement de Kit lui-même.",
     "exampleMergeHeading": "Fusionner deux PDF",
@@ -1925,7 +1925,7 @@
     "faqFilesQ": "Où vont vraiment mes fichiers ?",
     "faqFilesA": "Nulle part. Ils sont lus et traités dans cet onglet, puis réécrits sur votre disque quand vous enregistrez. Le journal réseau de cette page montre exactement ce qui a circulé sur le réseau.",
     "faqOfflineQ": "Kit fonctionne-t-il hors ligne ?",
-    "faqOfflineA": "Oui. Une fois la page d’un outil chargée — ou une fois Kit installé — les outils continuent de fonctionner sans connexion. Le convertisseur de devises est la seule exception, et seulement pour des taux à jour.",
+    "faqOfflineA": "Oui. Une fois une page d’outil chargée — ou une fois Kit installé — les outils continuent de fonctionner sans connexion. L’Accès hors ligne, dans les Réglages, télécharge à l’avance les langues et les outils que vous choisissez. Le convertisseur de devises est la seule exception, et uniquement pour obtenir des taux à jour.",
     "faqMediaQ": "Pourquoi l’outil média télécharge-t-il environ {mediaMb} Mo une seule fois ?",
     "faqMediaA": "L’audio et la vidéo tournent sur FFmpeg compilé en WebAssembly. Ce moteur se télécharge une fois, le service worker le met en cache, et chaque fichier suivant le réutilise.",
     "faqStoredQ": "Que garde Kit entre les visites ?",
@@ -1946,6 +1946,6 @@
     "techCryptoDl": "Rien de plus — le navigateur l’a déjà",
     "techPwaDl": "Rien de plus — il met en cache, il n’envoie rien",
     "techUiDl": "Les pages et les scripts eux-mêmes",
-    "exceptionOffline": "Connexion perdue après le chargement d’une page ? Les outils continuent de fonctionner. Installez Kit, et c’est pareil entre vos visites."
+    "exceptionOffline": "Connexion perdue après le chargement d’une page ? Les outils continuent de fonctionner. Installez Kit et il en va de même entre les visites, et l’Accès hors ligne, dans les Réglages, prépare ce dont vous avez besoin avant de partir."
   }
 }

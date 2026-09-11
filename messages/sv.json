@@ -1891,7 +1891,7 @@
     "whyCaps": "Inga begränsningar från en server",
     "whyCapsBody": "Ingen uppladdningsgräns, ingen kö, ingen premiumnivå för större filer. Det verkliga taket är den här enhetens minne.",
     "whyOffline": "Fungerar utan signal",
-    "whyOfflineBody": "När en sida har lästs in fortsätter verktyget att köras i flygplansläge. Installera Kit, och detsamma gäller mellan besök.",
+    "whyOfflineBody": "När en sida väl har laddats fortsätter verktyget att fungera i flygplansläge. Installerar du Kit gäller samma sak mellan besök. Under Offlineåtkomst i Inställningar väljer du de språk och verktyg som förbereds i förväg.",
     "exampleTitle": "Följ en uppgift från början till slut",
     "exampleLede": "Två riktiga exempel, spårade steg för steg. Ingen av dem rör nätet mer än att hämta Kit själv.",
     "exampleMergeHeading": "Att slå ihop två PDF:er",
@@ -1925,7 +1925,7 @@
     "faqFilesQ": "Vart går mina filer egentligen?",
     "faqFilesA": "Ingenstans. De läses och bearbetas inne i den här fliken och skrivs tillbaka till din disk när du sparar. Nätverksloggen på den här sidan visar exakt vad som gick över ledningen.",
     "faqOfflineQ": "Fungerar Kit offline?",
-    "faqOfflineA": "Ja. När en verktygssida har lästs in — eller när Kit är installerat — fortsätter verktygen att fungera utan anslutning. Valutaomvandlaren är det enda undantaget, och bara för färska kurser.",
+    "faqOfflineA": "Ja. När en verktygssida har laddats – eller när Kit är installerat – fortsätter verktygen att fungera utan anslutning. Under Offlineåtkomst i Inställningar laddas de språk och verktyg du väljer ner i förväg. Valutakonverteraren är det enda undantaget, och bara för färska kurser.",
     "faqMediaQ": "Varför hämtar mediaverktyget ungefär {mediaMb} MB en gång?",
     "faqMediaA": "Ljud och video körs på FFmpeg, kompilerat till WebAssembly. Motorn hämtas en gång, service workern cachar den, och varje fil därefter återanvänder den.",
     "faqStoredQ": "Vad lagrar Kit mellan besök?",
@@ -1946,6 +1946,6 @@
     "techCryptoDl": "Inget extra — webbläsaren har det redan",
     "techPwaDl": "Inget extra — den cachar, den skickar inte",
     "techUiDl": "Sidorna och skripten själva",
-    "exceptionOffline": "Tappade anslutningen efter att en sida lästs in? Verktygen fortsätter fungera. Installera Kit, och detsamma gäller mellan besök."
+    "exceptionOffline": "Tappat anslutningen efter att en sida laddats? Verktygen fortsätter att fungera. Installerar du Kit gäller samma sak mellan besök, och Offlineåtkomst i Inställningar förbereder det du behöver."
   }
 }

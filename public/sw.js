@@ -12,6 +12,16 @@ const LAST_HOME = "./last-home";
 const NAV_FETCH_MS = 8000;
 const NAV_CACHE_MS = 400;
 const FILL_PRECACHE = "./sw-precache.json";
+const OFFLINE_PROGRESS_MS = 250;
+
+/* Mirrors toolPathSegment() in src/lib/navigation/routes.ts. A tool id is not
+   always its public route segment, so selected ids must be resolved before
+   they are matched against the precache manifest. */
+const TOOL_PATH_SEGMENT = { "timezone-converter": "world-clock" };
+
+function toolPathSegment(toolId) {
+  return TOOL_PATH_SEGMENT[toolId] || toolId;
+}
 
 self.addEventListener("install", (event) => {
   event.waitUntil(
@@ -228,6 +238,9 @@ const fillQueue = [];
 const fillSeen = new Set();
 let offlineAbort = null;
 let offlineCancelRequested = false;
+/* A user-requested offline download owns the connection; the background fill
+   yields until it finishes so the two never compete for bandwidth. */
+let offlineBusy = false;
 
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -287,7 +300,7 @@ async function pumpFill() {
   fillBusy = true;
   try {
     while (fillQueue.length) {
-      while (fillPaused) await sleep(400);
+      while (fillPaused || offlineBusy) await sleep(400);
       const href = fillQueue.shift();
       if (!href) continue;
       try {
@@ -315,7 +328,8 @@ async function selectedOfflineUrls(data) {
     return [];
   }
   const locales = Array.isArray(data.locales) ? data.locales : [];
-  const selectedTools = new Set(Array.isArray(data.tools) ? data.tools : []);
+  /* Resolve ids to public route segments: a tool id is not always its path. */
+  const segments = new Set((Array.isArray(data.tools) ? data.tools : []).map(toolPathSegment));
   const urls = new Set(manifest.core || []);
   const chrome = manifest.chromeByLocale || {};
   const toolsByLocale = manifest.toolsByLocale || {};
@@ -324,10 +338,10 @@ async function selectedOfflineUrls(data) {
     if (typeof locale !== "string") continue;
     for (const url of chrome[locale] || []) urls.add(url);
     for (const url of rscByLocale[locale] || []) {
-      if (!selectedTools.size || [...selectedTools].some((id) => url.includes(`/tools/${id}/`))) urls.add(url);
+      if (!segments.size || [...segments].some((segment) => url.includes(`/tools/${segment}/`))) urls.add(url);
     }
     for (const url of toolsByLocale[locale] || []) {
-      if (selectedTools.has(url.split("/tools/")[1]?.replace(/\/$/u, ""))) urls.add(url);
+      if (segments.has(url.split("/tools/")[1]?.replace(/\/$/u, ""))) urls.add(url);
     }
   }
   if (data.engines) for (const url of manifest.engines || []) urls.add(url);
@@ -339,21 +353,51 @@ async function downloadSelectedOffline(data) {
   offlineCancelRequested = false;
   const ctrl = new AbortController();
   offlineAbort = ctrl;
+  offlineBusy = true;
+  /* Stop the background fill immediately; it waits on offlineBusy to resume. */
+  if (fillAbort) fillAbort.abort();
   const urls = await selectedOfflineUrls(data);
   let done = 0;
+  /* One message per URL would mean thousands of postMessages and React renders.
+     Coalesce log lines and flush at most every OFFLINE_PROGRESS_MS, always
+     flushing the terminal state. */
+  let lastSentAt = 0;
+  let pendingLogs = [];
+  const flush = async (status, force) => {
+    const now = Date.now();
+    if (!force && now - lastSentAt < OFFLINE_PROGRESS_MS) return;
+    lastSentAt = now;
+    const logs = pendingLogs;
+    pendingLogs = [];
+    await sendOfflineProgress({ status, done, total: urls.length, logs });
+  };
+  const note = async (line) => {
+    pendingLogs.push(line);
+    await flush("running", false);
+  };
+  const pathOf = (href) => {
+    try {
+      return new URL(href, self.location.origin).pathname;
+    } catch {
+      return href;
+    }
+  };
+
   if (!urls.length) {
-    await sendOfflineProgress({ status: "error", done, total: 0, log: "No offline resources were available" });
+    await sendOfflineProgress({ status: "error", done, total: 0, logs: ["No offline resources were available"] });
     if (offlineAbort === ctrl) offlineAbort = null;
+    offlineBusy = false;
     return;
   }
-  await sendOfflineProgress({ status: "running", done, total: urls.length, log: `Preparing ${urls.length} items` });
+  pendingLogs.push(`Preparing ${urls.length} items`);
+  await flush("running", true);
   try {
     for (const href of urls) {
       if (offlineCancelRequested) break;
       const cache = await caches.open(cacheNameFor(href));
       if (await cache.match(href)) {
         done += 1;
-        await sendOfflineProgress({ status: "running", done, total: urls.length, log: `Already ready: ${new URL(href, self.location.origin).pathname}` });
+        await note(`Already ready: ${pathOf(href)}`);
         continue;
       }
       try {
@@ -361,18 +405,20 @@ async function downloadSelectedOffline(data) {
         if (res && res.ok && res.type !== "error") {
           await cache.put(href, res);
           done += 1;
-          await sendOfflineProgress({ status: "running", done, total: urls.length, log: `Downloaded: ${new URL(href, self.location.origin).pathname}` });
+          await note(`Downloaded: ${pathOf(href)}`);
         } else {
-          await sendOfflineProgress({ status: "running", done, total: urls.length, log: `Skipped: ${new URL(href, self.location.origin).pathname}` });
+          await note(`Skipped: ${pathOf(href)}`);
         }
       } catch (err) {
         if (err && err.name === "AbortError") break;
-        await sendOfflineProgress({ status: "running", done, total: urls.length, log: `Could not download: ${new URL(href, self.location.origin).pathname}` });
+        await note(`Could not download: ${pathOf(href)}`);
       }
     }
-    await sendOfflineProgress({ status: offlineCancelRequested ? "canceled" : "complete", done, total: urls.length, log: offlineCancelRequested ? "Download canceled" : "Offline access is ready" });
+    pendingLogs.push(offlineCancelRequested ? "Download canceled" : "Offline access is ready");
+    await flush(offlineCancelRequested ? "canceled" : "complete", true);
   } finally {
     if (offlineAbort === ctrl) offlineAbort = null;
+    offlineBusy = false;
   }
 }
 

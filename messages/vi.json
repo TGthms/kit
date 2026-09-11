@@ -1891,7 +1891,7 @@
     "whyCaps": "Không giới hạn do máy chủ áp đặt",
     "whyCapsBody": "Không trần tải lên, không hàng đợi, không gói premium cho tệp lớn hơn. Trần thật sự là bộ nhớ của máy này.",
     "whyOffline": "Hoạt động khi không có mạng",
-    "whyOfflineBody": "Sau khi trang đã tải, công cụ vẫn chạy trong chế độ máy bay. Cài Kit và điều tương tự cũng đúng giữa các lần truy cập.",
+    "whyOfflineBody": "Sau khi một trang đã tải xong, công cụ vẫn chạy ở chế độ máy bay. Nếu cài đặt Kit, điều này cũng đúng giữa các lần truy cập. Trong Truy cập ngoại tuyến ở Cài đặt, bạn chọn ngôn ngữ và công cụ để chuẩn bị trước.",
     "exampleTitle": "Theo một công việc từ đầu đến cuối",
     "exampleLede": "Hai ví dụ thật, được lần theo từng bước. Không ví dụ nào chạm mạng ngoài việc tải chính Kit.",
     "exampleMergeHeading": "Gộp hai tệp PDF",
@@ -1925,7 +1925,7 @@
     "faqFilesQ": "Tệp của tôi thực sự đi đâu?",
     "faqFilesA": "Không đi đâu. Chúng được đọc và xử lý trong tab này, và được ghi lại xuống đĩa của bạn khi bạn lưu. Nhật ký mạng trên trang này cho thấy chính xác những gì đã đi qua mạng.",
     "faqOfflineQ": "Kit có hoạt động ngoại tuyến không?",
-    "faqOfflineA": "Có. Sau khi trang công cụ đã tải — hoặc khi Kit đã được cài — các công cụ vẫn chạy không cần kết nối. Trình đổi tiền là ngoại lệ duy nhất, và chỉ với tỷ giá mới.",
+    "faqOfflineA": "Có. Sau khi một trang công cụ đã tải — hoặc sau khi cài đặt Kit — các công cụ vẫn hoạt động khi không có kết nối. Trong Truy cập ngoại tuyến ở Cài đặt, ngôn ngữ và công cụ bạn chọn được tải trước. Công cụ chuyển đổi tiền tệ là ngoại lệ duy nhất, và chỉ để lấy tỷ giá mới.",
     "faqMediaQ": "Tại sao công cụ media tải khoảng {mediaMb} MB một lần?",
     "faqMediaA": "Âm thanh và video chạy trên FFmpeg biên dịch sang WebAssembly. Engine đó tải một lần, service worker cache nó, và mọi tệp sau đó dùng lại nó.",
     "faqStoredQ": "Kit lưu gì giữa các lần truy cập?",
@@ -1946,6 +1946,6 @@
     "techCryptoDl": "Không thêm gì cả — trình duyệt có sẵn rồi",
     "techPwaDl": "Không thêm gì cả — nó cache, không gửi đi",
     "techUiDl": "Chính các trang và script đó",
-    "exceptionOffline": "Mất kết nối sau khi trang đã tải? Công cụ vẫn chạy. Cài Kit và điều tương tự cũng đúng giữa các lần truy cập."
+    "exceptionOffline": "Mất kết nối sau khi tải một trang? Các công cụ vẫn hoạt động. Nếu cài đặt Kit, điều này cũng đúng giữa các lần truy cập, và Truy cập ngoại tuyến ở Cài đặt sẽ chuẩn bị trước những gì bạn cần."
   }
 }

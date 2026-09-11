@@ -1891,7 +1891,7 @@
     "whyCaps": "Keine Grenzen per Server",
     "whyCapsBody": "Kein Upload-Limit, keine Warteschlange, keine Premium-Stufe für größere Dateien. Die echte Grenze ist der Arbeitsspeicher dieses Geräts.",
     "whyOffline": "Funktioniert ohne Netz",
-    "whyOfflineBody": "Sobald eine Seite geladen ist, läuft das Werkzeug im Flugmodus weiter. Installieren Sie Kit, und dasselbe gilt zwischen Besuchen.",
+    "whyOfflineBody": "Ist eine Seite einmal geladen, läuft das Werkzeug weiter im Flugmodus. Mit installiertem Kit gilt das auch zwischen Besuchen. Unter Offline-Zugriff in den Einstellungen wählst du die Sprachen und Werkzeuge aus, die vorab bereitgestellt werden.",
     "exampleTitle": "Verfolgen Sie eine Aufgabe von Anfang bis Ende",
     "exampleLede": "Zwei echte Beispiele, Schritt für Schritt verfolgt. Keines davon geht übers Netzwerk, außer um Kit selbst zu laden.",
     "exampleMergeHeading": "Zwei PDFs zusammenführen",
@@ -1925,7 +1925,7 @@
     "faqFilesQ": "Wohin gehen meine Dateien wirklich?",
     "faqFilesA": "Nirgendwohin. Sie werden in diesem Tab gelesen und verarbeitet und beim Speichern auf Ihre Festplatte zurückgeschrieben. Das Protokoll auf dieser Seite zeigt genau, was über die Leitung gegangen ist.",
     "faqOfflineQ": "Funktioniert Kit offline?",
-    "faqOfflineA": "Ja. Sobald eine Werkzeugseite geladen ist — oder sobald Kit installiert ist — funktionieren die Werkzeuge ohne Verbindung weiter. Der Währungsrechner ist die einzige Ausnahme, und auch nur für frische Kurse.",
+    "faqOfflineA": "Ja. Sobald eine Werkzeugseite geladen ist – oder Kit installiert ist – arbeiten die Werkzeuge ohne Verbindung weiter. Unter Offline-Zugriff in den Einstellungen werden die gewünschten Sprachen und Werkzeuge vorab heruntergeladen. Der Währungsumrechner ist die einzige Ausnahme, und nur für frische Kurse.",
     "faqMediaQ": "Warum lädt das Medienwerkzeug einmal rund {mediaMb} MB herunter?",
     "faqMediaA": "Audio und Video laufen auf FFmpeg, kompiliert zu WebAssembly. Diese Engine wird einmal heruntergeladen, der Service Worker speichert sie zwischen, und jede weitere Datei verwendet sie wieder.",
     "faqStoredQ": "Was speichert Kit zwischen Besuchen?",
@@ -1946,6 +1946,6 @@
     "techCryptoDl": "Nichts extra — der Browser hat es bereits",
     "techPwaDl": "Nichts extra — er cached, er sendet nicht",
     "techUiDl": "Die Seiten und Skripte selbst",
-    "exceptionOffline": "Verbindung verloren, nachdem eine Seite geladen war? Die Werkzeuge arbeiten weiter. Installieren Sie Kit, und dasselbe gilt zwischen Besuchen."
+    "exceptionOffline": "Verbindung nach dem Laden einer Seite verloren? Die Werkzeuge laufen weiter. Mit installiertem Kit gilt das auch zwischen Besuchen, und Offline-Zugriff in den Einstellungen bereitet vor, was du brauchst."
   }
 }

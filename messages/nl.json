@@ -1891,7 +1891,7 @@
     "whyCaps": "Geen limieten van een server",
     "whyCapsBody": "Geen uploadlimiet, geen wachtrij, geen premium-niveau voor grotere bestanden. Het echte plafond is het geheugen van dit apparaat.",
     "whyOffline": "Werkt zonder bereik",
-    "whyOfflineBody": "Zodra een pagina geladen is, blijft het hulpmiddel draaien in de vliegtuigmodus. Installeer Kit en hetzelfde geldt tussen bezoeken.",
+    "whyOfflineBody": "Zodra een pagina is geladen, blijft de tool werken in vliegtuigmodus. Installeer Kit en dat geldt ook tussen bezoeken. Bij Offline toegang in Instellingen kies je welke talen en tools je vooraf klaarzet.",
     "exampleTitle": "Volg één klus van begin tot einde",
     "exampleLede": "Twee echte voorbeelden, stap voor stap gevolgd. Geen van beide raakt het netwerk verder dan het laden van Kit zelf.",
     "exampleMergeHeading": "Twee PDF’s samenvoegen",
@@ -1925,7 +1925,7 @@
     "faqFilesQ": "Waar gaan mijn bestanden eigenlijk heen?",
     "faqFilesA": "Nergens heen. Ze worden in dit tabblad gelezen en verwerkt en bij het opslaan terug naar je schijf geschreven. Het logboek op deze pagina laat precies zien wat over de lijn is gegaan.",
     "faqOfflineQ": "Werkt Kit offline?",
-    "faqOfflineA": "Ja. Zodra een hulpmiddelpagina geladen is — of zodra Kit geïnstalleerd is — blijven de hulpmiddelen werken zonder verbinding. De Valutaconverter is de enige uitzondering, en alleen voor verse koersen.",
+    "faqOfflineA": "Ja. Zodra een toolpagina is geladen — of zodra Kit is geïnstalleerd — blijven de tools werken zonder verbinding. Bij Offline toegang in Instellingen worden de gekozen talen en tools vooraf gedownload. De valutaomrekenaar is de enige uitzondering, en alleen voor nieuwe koersen.",
     "faqMediaQ": "Waarom downloadt het mediahulpmiddel eenmalig ongeveer {mediaMb} MB?",
     "faqMediaA": "Audio en video draaien op FFmpeg, gecompileerd naar WebAssembly. Die engine wordt één keer gedownload, de service worker cachet die, en elk bestand daarna hergebruikt die.",
     "faqStoredQ": "Wat bewaart Kit tussen bezoeken?",
@@ -1946,6 +1946,6 @@
     "techCryptoDl": "Niets extra — de browser heeft het al",
     "techPwaDl": "Niets extra — hij cachet, hij verstuurt niets",
     "techUiDl": "De pagina’s en scripts zelf",
-    "exceptionOffline": "Verbinding verbroken nadat een pagina geladen was? De hulpmiddelen blijven werken. Installeer Kit en hetzelfde geldt tussen bezoeken."
+    "exceptionOffline": "Verbinding verloren na het laden van een pagina? De tools blijven werken. Installeer Kit en dat geldt ook tussen bezoeken, en Offline toegang in Instellingen zet klaar wat je nodig hebt."
   }
 }

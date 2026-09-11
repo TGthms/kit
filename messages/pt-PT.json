@@ -1891,7 +1891,7 @@
     "whyCaps": "Sem limites impostos por um servidor",
     "whyCapsBody": "Sem limite de envio, sem fila, sem nível premium para ficheiros maiores. O teto real é a memória deste dispositivo.",
     "whyOffline": "Funciona sem rede",
-    "whyOfflineBody": "Depois de a página carregar, a ferramenta continua a funcionar em modo de voo. Instale o Kit e o mesmo se aplica entre as visitas.",
+    "whyOfflineBody": "Depois de uma página carregar, a ferramenta continua a funcionar em modo de avião. Se instalar o Kit, o mesmo acontece entre visitas. Em Acesso offline, nas Definições, escolhe os idiomas e as ferramentas para preparar com antecedência.",
     "exampleTitle": "Siga uma tarefa de ponta a ponta",
     "exampleLede": "Dois exemplos reais, seguidos passo a passo. Nenhum dos dois toca na rede para além de carregar o próprio Kit.",
     "exampleMergeHeading": "Juntar dois PDFs",
@@ -1925,7 +1925,7 @@
     "faqFilesQ": "Para onde vão realmente os meus ficheiros?",
     "faqFilesA": "Para lado nenhum. São lidos e tratados dentro deste separador e escritos de volta no seu disco quando guarda. O registo de rede desta página mostra exatamente o que atravessou o cabo.",
     "faqOfflineQ": "O Kit funciona sem rede?",
-    "faqOfflineA": "Sim. Depois de a página de uma ferramenta carregar — ou de o Kit estar instalado — as ferramentas continuam a funcionar sem ligação. O conversor de moeda é a única exceção, e só para taxas recentes.",
+    "faqOfflineA": "Sim. Depois de uma página de ferramenta carregar — ou de o Kit estar instalado — as ferramentas continuam a funcionar sem ligação. Em Acesso offline, nas Definições, os idiomas e as ferramentas escolhidos são transferidos com antecedência. O conversor de moedas é a única exceção, e apenas para obter taxas novas.",
     "faqMediaQ": "Porque é que a ferramenta de som e vídeo descarrega cerca de {mediaMb} MB uma só vez?",
     "faqMediaA": "O som e o vídeo funcionam sobre FFmpeg compilado para WebAssembly. Esse motor é descarregado uma vez, o service worker põe-no em cache e cada ficheiro seguinte volta a usá-lo.",
     "faqStoredQ": "O que o Kit guarda entre visitas?",
@@ -1946,6 +1946,6 @@
     "techCryptoDl": "Nada extra — o browser já o tem",
     "techPwaDl": "Nada extra — põe em cache, não envia nada",
     "techUiDl": "As páginas e os scripts em si",
-    "exceptionOffline": "Perdeu a ligação depois de a página carregar? As ferramentas continuam a funcionar. Instale o Kit e o mesmo se aplica entre as visitas."
+    "exceptionOffline": "Perdeu a ligação depois de carregar uma página? As ferramentas continuam a funcionar. Se instalar o Kit, o mesmo acontece entre visitas, e o Acesso offline, nas Definições, prepara o que precisa antes de sair."
   }
 }

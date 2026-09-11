@@ -1891,7 +1891,7 @@
     "whyCaps": "Sin límites impuestos por el servidor",
     "whyCapsBody": "Sin límite de subida, sin cola, sin nivel premium para archivos más grandes. El techo real es la memoria de este dispositivo.",
     "whyOffline": "Funciona sin señal",
-    "whyOfflineBody": "Una vez cargada la página, la herramienta sigue funcionando en modo avión. Instala Kit y lo mismo vale entre visitas.",
+    "whyOfflineBody": "Cuando una página ya se ha cargado, la herramienta sigue funcionando en modo avión. Si instalas Kit, ocurre lo mismo entre visitas. En Acceso sin conexión, en Ajustes, puedes elegir los idiomas y las herramientas que quieras preparar con antelación.",
     "exampleTitle": "Sigue una tarea de principio a fin",
     "exampleLede": "Dos ejemplos reales, seguidos paso a paso. Ninguno toca la red más allá de cargar el propio Kit.",
     "exampleMergeHeading": "Unir dos PDF",
@@ -1925,7 +1925,7 @@
     "faqFilesQ": "¿Adónde van realmente mis archivos?",
     "faqFilesA": "A ningún sitio. Se leen y se procesan dentro de esta pestaña y se escriben en tu disco cuando guardas. El registro de red de esta página muestra exactamente qué cruzó el cable.",
     "faqOfflineQ": "¿Funciona Kit sin conexión?",
-    "faqOfflineA": "Sí. Una vez cargada la página de una herramienta — o una vez instalado Kit — las herramientas siguen funcionando sin conexión. El conversor de divisas es la única excepción, y solo para tipos recientes.",
+    "faqOfflineA": "Sí. Cuando una página de herramienta ya se ha cargado —o cuando Kit está instalado— las herramientas siguen funcionando sin conexión. En Acceso sin conexión, en Ajustes, se descargan de antemano los idiomas y las herramientas que elijas. El conversor de divisas es la única excepción, y solo para obtener tasas nuevas.",
     "faqMediaQ": "¿Por qué la herramienta de audio y vídeo descarga unos {mediaMb} MB una sola vez?",
     "faqMediaA": "El audio y el vídeo funcionan sobre FFmpeg compilado a WebAssembly. Ese motor se descarga una vez, el service worker lo guarda en caché y cada archivo posterior lo reutiliza.",
     "faqStoredQ": "¿Qué guarda Kit entre visitas?",
@@ -1946,6 +1946,6 @@
     "techCryptoDl": "Nada extra — el navegador ya lo tiene",
     "techPwaDl": "Nada extra — guarda en caché, no envía nada",
     "techUiDl": "Las páginas y los scripts en sí",
-    "exceptionOffline": "¿Se cortó la conexión después de cargar una página? Las herramientas siguen funcionando. Instala Kit y lo mismo vale entre visitas."
+    "exceptionOffline": "¿Has perdido la conexión después de cargar una página? Las herramientas siguen funcionando. Si instalas Kit, ocurre lo mismo entre visitas, y Acceso sin conexión, en Ajustes, prepara lo que necesitas antes de salir."
   }
 }

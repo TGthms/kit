@@ -1891,7 +1891,7 @@
     "whyCaps": "Nessun limite imposto da un server",
     "whyCapsBody": "Nessun limite di caricamento, nessuna coda, nessun piano premium per file più grandi. Il tetto vero è la memoria di questo dispositivo.",
     "whyOffline": "Funziona senza rete",
-    "whyOfflineBody": "Una volta caricata la pagina, lo strumento continua a funzionare in modalità aereo. Installa Kit e vale lo stesso tra le visite.",
+    "whyOfflineBody": "Una volta caricata una pagina, lo strumento continua a funzionare in modalità aereo. Se installi Kit, vale lo stesso tra una visita e l’altra. In Accesso offline, nelle Impostazioni, puoi scegliere in anticipo le lingue e gli strumenti da preparare.",
     "exampleTitle": "Segui un lavoro dall’inizio alla fine",
     "exampleLede": "Due esempi reali, seguiti passo per passo. Nessuno dei due tocca la rete oltre al caricamento di Kit stesso.",
     "exampleMergeHeading": "Unire due PDF",
@@ -1925,7 +1925,7 @@
     "faqFilesQ": "Dove finiscono davvero i miei file?",
     "faqFilesA": "Da nessuna parte. Vengono letti ed elaborati dentro questa scheda e riscritti sul tuo disco quando salvi. Il registro di rete di questa pagina mostra esattamente cosa è passato sul cavo.",
     "faqOfflineQ": "Kit funziona offline?",
-    "faqOfflineA": "Sì. Una volta caricata la pagina di uno strumento — o una volta installato Kit — gli strumenti continuano a funzionare senza connessione. Il convertitore di valuta è l’unica eccezione, e solo per tassi recenti.",
+    "faqOfflineA": "Sì. Una volta caricata una pagina di uno strumento — o una volta installato Kit — gli strumenti continuano a funzionare senza connessione. In Accesso offline, nelle Impostazioni, vengono scaricati in anticipo le lingue e gli strumenti che scegli. Il convertitore di valuta è l’unica eccezione, e solo per ottenere tassi aggiornati.",
     "faqMediaQ": "Perché lo strumento audio e video scarica circa {mediaMb} MB una volta sola?",
     "faqMediaA": "Audio e video girano su FFmpeg compilato in WebAssembly. Quel motore si scarica una volta, il service worker lo mette in cache e ogni file successivo lo riutilizza.",
     "faqStoredQ": "Cosa conserva Kit tra le visite?",
@@ -1946,6 +1946,6 @@
     "techCryptoDl": "Niente in più — il browser ce l’ha già",
     "techPwaDl": "Niente in più — mette in cache, non invia niente",
     "techUiDl": "Le pagine e gli script stessi",
-    "exceptionOffline": "Connessione persa dopo che una pagina si è caricata? Gli strumenti continuano a funzionare. Installa Kit e vale lo stesso tra le visite."
+    "exceptionOffline": "Hai perso la connessione dopo aver caricato una pagina? Gli strumenti continuano a funzionare. Se installi Kit, vale lo stesso tra una visita e l’altra, e Accesso offline, nelle Impostazioni, prepara ciò che ti serve prima di partire."
   }
 }

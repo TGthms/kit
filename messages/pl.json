@@ -1891,7 +1891,7 @@
     "whyCaps": "Żadnych limitów narzuconych przez serwer",
     "whyCapsBody": "Żadnego limitu wysyłki, żadnej kolejki, żadnej wersji premium dla większych plików. Prawdziwym ograniczeniem jest pamięć tego urządzenia.",
     "whyOffline": "Działa bez zasięgu",
-    "whyOfflineBody": "Gdy strona się już wczyta, narzędzie działa dalej w trybie samolotowym. Zainstaluj Kit — i to samo obowiązuje między wizytami.",
+    "whyOfflineBody": "Gdy strona jest już wczytana, narzędzie działa dalej w trybie samolotowym. Po zainstalowaniu Kit to samo dotyczy kolejnych wizyt. W Dostępie offline w Ustawieniach wybierasz języki i narzędzia do przygotowania z wyprzedzeniem.",
     "exampleTitle": "Prześledź jedno zadanie od początku do końca",
     "exampleLede": "Dwa prawdziwe przykłady, prześledzone krok po kroku. Żaden nie dotyka sieci poza wczytaniem samego Kit.",
     "exampleMergeHeading": "Scalanie dwóch PDF-ów",
@@ -1925,7 +1925,7 @@
     "faqFilesQ": "Dokąd tak naprawdę trafiają moje pliki?",
     "faqFilesA": "Nikąd. Są odczytywane i przetwarzane wewnątrz tej karty, a przy zapisie trafiają z powrotem na twój dysk. Dziennik sieciowy na tej stronie pokazuje dokładnie, co przeszło przez sieć.",
     "faqOfflineQ": "Czy Kit działa offline?",
-    "faqOfflineA": "Tak. Gdy strona narzędzia się wczyta — albo gdy Kit jest zainstalowany — narzędzia działają dalej bez połączenia. Wyjątkiem jest tylko przelicznik walut, i to tylko dla świeżych kursów.",
+    "faqOfflineA": "Tak. Gdy strona narzędzia jest wczytana — lub gdy Kit jest zainstalowany — narzędzia działają bez połączenia. W Dostępie offline w Ustawieniach wybrane języki i narzędzia są pobierane z wyprzedzeniem. Konwerter walut jest jedynym wyjątkiem i tylko dla świeżych kursów.",
     "faqMediaQ": "Dlaczego narzędzie multimedialne raz pobiera około {mediaMb} MB?",
     "faqMediaA": "Dźwięk i wideo działają na FFmpeg skompilowanym do WebAssembly. Ten silnik pobiera się raz, service worker zapisuje go w pamięci podręcznej, a każdy kolejny plik używa go ponownie.",
     "faqStoredQ": "Co Kit przechowuje między wizytami?",
@@ -1946,6 +1946,6 @@
     "techCryptoDl": "Nic dodatkowego — przeglądarka już to ma",
     "techPwaDl": "Nic dodatkowego — zapisuje w pamięci podręcznej, niczego nie wysyła",
     "techUiDl": "Same strony i skrypty",
-    "exceptionOffline": "Utracono połączenie po wczytaniu strony? Narzędzia działają dalej. Zainstaluj Kit — i to samo obowiązuje między wizytami."
+    "exceptionOffline": "Utracono połączenie po wczytaniu strony? Narzędzia działają dalej. Po zainstalowaniu Kit to samo dotyczy kolejnych wizyt, a Dostęp offline w Ustawieniach przygotowuje to, czego potrzebujesz."
   }
 }

@@ -1891,7 +1891,7 @@
     "whyCaps": "Nincsenek szerver által kirótt korlátok",
     "whyCapsBody": "Nincs feltöltési korlát, nincs sorban állás, nincs prémium szint a nagyobb fájlokhoz. A valódi határt a készülék memóriája jelenti.",
     "whyOffline": "Működik jel nélkül",
-    "whyOfflineBody": "Amint az oldal betöltődött, az eszköz repülőgépmódban is fut tovább. Telepítsd a Kitet, és látogatások között is ugyanez igaz.",
+    "whyOfflineBody": "Ha egy oldal már betöltődött, az eszköz repülőgép módban is működik tovább. Ha telepíted a Kitet, ez a látogatások között is így marad. Az Offline hozzáférés a Beállításokban lehetővé teszi a nyelvek és eszközök előzetes kiválasztását.",
     "exampleTitle": "Kövess végig egy feladatot az elejétől a végéig",
     "exampleLede": "Két valós példa, lépésről lépésre végigkövetve. Egyik sem érinti a hálózatot a Kit betöltésén kívül.",
     "exampleMergeHeading": "Két PDF egyesítése",
@@ -1925,7 +1925,7 @@
     "faqFilesQ": "Hová is mennek valójában a fájljaim?",
     "faqFilesA": "Sehová. A lapon belül olvasódnak és dolgozódnak fel, mentéskor pedig visszaíródnak a lemezedre. Az oldal hálózati naplója pontosan mutatja, mi haladt át a hálózaton.",
     "faqOfflineQ": "Működik a Kit offline?",
-    "faqOfflineA": "Igen. Amint egy eszköz oldala betöltődött — vagy a Kit telepítve van —, az eszközök kapcsolat nélkül is működnek tovább. Kivétel csak az átváltó, és az is csak a friss árfolyamok miatt.",
+    "faqOfflineA": "Igen. Ha egy eszközoldal betöltődött – vagy ha a Kit telepítve van – az eszközök kapcsolat nélkül is működnek. Az Offline hozzáférés a Beállításokban előre letölti a kiválasztott nyelveket és eszközöket. Az árfolyamváltó az egyetlen kivétel, és az is csak friss árfolyamokhoz.",
     "faqMediaQ": "Miért tölt le a médiaeszköz egyszer nagyjából {mediaMb} MB-ot?",
     "faqMediaA": "A hang és a videó WebAssembly-re fordított FFmpegen fut. Ezt a motort egyszer tölti le a rendszer, a service worker gyorsítótárazza, és minden további fájl újra felhasználja.",
     "faqStoredQ": "Mit tárol a Kit a látogatások között?",
@@ -1946,6 +1946,6 @@
     "techCryptoDl": "Semmi extra — a böngészőben már megvan",
     "techPwaDl": "Semmi extra — gyorsítótáraz, nem küld el semmit",
     "techUiDl": "Maguk az oldalak és a szkriptek",
-    "exceptionOffline": "Megszakadt a kapcsolat, miután az oldal betöltődött? Az eszközök tovább működnek. Telepítsd a Kitet, és látogatások között is ugyanez igaz."
+    "exceptionOffline": "Megszakadt a kapcsolat egy oldal betöltése után? Az eszközök tovább működnek. Ha telepíted a Kitet, ez a látogatások között is így marad, az Offline hozzáférés pedig előre elkészíti, amire szükséged van."
   }
 }

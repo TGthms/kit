@@ -1891,7 +1891,7 @@
     "whyCaps": "Žádná omezení ze serveru",
     "whyCapsBody": "Žádný strop pro nahrávání, žádná fronta, žádná prémiová úroveň pro větší soubory. Skutečným stropem je paměť tohoto zařízení.",
     "whyOffline": "Funguje bez signálu",
-    "whyOfflineBody": "Jakmile se stránka načte, nástroj běží dál i v režimu letadlo. Nainstalujte Kit a totéž platí mezi návštěvami.",
+    "whyOfflineBody": "Jakmile je stránka načtená, nástroj funguje dál v režimu letadlo. Po instalaci Kitu to platí i mezi návštěvami. V Přístupu offline v Nastavení vyberete jazyky a nástroje, které se předem připraví.",
     "exampleTitle": "Sledujte jeden úkol od začátku do konce",
     "exampleLede": "Dva skutečné příklady, sledované krok za krokem. Žádný se nedotkne sítě, kromě načtení samotného Kit.",
     "exampleMergeHeading": "Sloučení dvou PDF souborů",
@@ -1925,7 +1925,7 @@
     "faqFilesQ": "Kam vlastně jdou mé soubory?",
     "faqFilesA": "Nikam. Čtou se a zpracovávají uvnitř této karty a při ukládání se zapisují zpět na váš disk. Síťový protokol na této stránce přesně ukazuje, co prošlo po síti.",
     "faqOfflineQ": "Funguje Kit offline?",
-    "faqOfflineA": "Ano. Jakmile se načte stránka nástroje — nebo jakmile je Kit nainstalovaný — nástroje běží dál bez připojení. Výjimkou je jen převodník měn, a to jen kvůli čerstvým kurzům.",
+    "faqOfflineA": "Ano. Jakmile je stránka nástroje načtená – nebo jakmile je Kit nainstalovaný – nástroje fungují bez připojení. V Přístupu offline v Nastavení se zvolené jazyky a nástroje stáhnou předem. Převodník měn je jediná výjimka, a to jen pro čerstvé kurzy.",
     "faqMediaQ": "Proč si nástroj pro média jednou stáhne asi {mediaMb} MB?",
     "faqMediaA": "Zvuk a video běží na FFmpeg zkompilovaném do WebAssembly. Ten motor se stáhne jednou, service worker si ho uloží do mezipaměti, a každý další soubor ho znovu použije.",
     "faqStoredQ": "Co Kit ukládá mezi návštěvami?",
@@ -1946,6 +1946,6 @@
     "techCryptoDl": "Nic navíc — prohlížeč to už má",
     "techPwaDl": "Nic navíc — ukládá do mezipaměti, nic neposílá",
     "techUiDl": "Samotné stránky a skripty",
-    "exceptionOffline": "Připojení se po načtení stránky ztratilo? Nástroje běží dál. Nainstalujte Kit a totéž platí mezi návštěvami."
+    "exceptionOffline": "Ztratili jste připojení po načtení stránky? Nástroje fungují dál. Po instalaci Kitu to platí i mezi návštěvami a Přístup offline v Nastavení připraví, co potřebujete."
   }
 }

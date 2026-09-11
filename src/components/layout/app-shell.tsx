@@ -203,24 +203,28 @@ export function AppShell({ children }: { children: React.ReactNode }) {
       </Suspense>
       <header className="glass chrome-edge chrome-touch fixed inset-x-0 top-0 z-50 shrink-0 pt-[env(safe-area-inset-top)]">
         <div className="mx-auto flex h-12 max-w-6xl items-center justify-between gap-2 px-4 sm:h-14 sm:gap-3 sm:px-6 lg:px-8">
-          <Link
-            href="/"
-            data-pressable
-            data-restore-scroll
-            className="pressable-soft flex min-w-0 items-center gap-2 font-semibold tracking-[-0.02em]"
-          >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={withAsset("/icons/icon.svg")}
-              alt=""
-              width={32}
-              height={32}
-              className="h-8 w-8 shrink-0 rounded-[9px] shadow-sm"
-              draggable={false}
-            />
-            <span className="truncate text-[17px] leading-none">{tb("name")}</span>
+          {/* The offline indicator is a sibling of the link, not a child, so it
+              never joins the home link's accessible name. */}
+          <div className="flex min-w-0 items-center gap-2">
+            <Link
+              href="/"
+              data-pressable
+              data-restore-scroll
+              className="pressable-soft flex min-w-0 items-center gap-2 font-semibold tracking-[-0.02em]"
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={withAsset("/icons/icon.svg")}
+                alt=""
+                width={32}
+                height={32}
+                className="h-8 w-8 shrink-0 rounded-[9px] shadow-sm"
+                draggable={false}
+              />
+              <span className="truncate text-[17px] leading-none">{tb("name")}</span>
+            </Link>
             <OfflineIndicator />
-          </Link>
+          </div>
           <div className="flex shrink-0 items-center gap-1">
             {/* Language lives in header + Settings — not a second mobile nav */}
             <LocaleSwitcher />

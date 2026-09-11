@@ -1891,7 +1891,7 @@
     "whyCaps": "Sunucudan dayatılan sınır yok",
     "whyCapsBody": "Yükleme sınırı yok, kuyruk yok, büyük dosyalar için premium katman yok. Gerçek tavan bu cihazın belleğidir.",
     "whyOffline": "Sinyalsiz çalışır",
-    "whyOfflineBody": "Sayfa bir kez yüklendikten sonra araç, uçak modunda da çalışmaya devam eder. Kit’i yüklersen ziyaretler arasında da aynısı geçerli.",
+    "whyOfflineBody": "Bir sayfa yüklendikten sonra araç uçak modunda çalışmaya devam eder. Kit’i kurarsanız bu, ziyaretler arasında da geçerlidir. Ayarlar’daki Çevrimdışı erişim ile dilleri ve araçları önceden hazırlayabilirsiniz.",
     "exampleTitle": "Bir işi baştan sona izle",
     "exampleLede": "İki gerçek örnek, adım adım. İkisi de Kit’in kendisini yüklemenin ötesinde ağa dokunmaz.",
     "exampleMergeHeading": "İki PDF’i birleştirmek",
@@ -1925,7 +1925,7 @@
     "faqFilesQ": "Dosyalarım aslında nereye gidiyor?",
     "faqFilesA": "Hiçbir yere. Bu sekmenin içinde okunur ve işlenir, kaydettiğinde diske geri yazılır. Bu sayfadaki ağ kaydı, hattan gerçekten ne geçtiğini tam olarak gösterir.",
     "faqOfflineQ": "Kit çevrimdışı çalışır mı?",
-    "faqOfflineA": "Evet. Bir araç sayfası yüklendikten sonra — ya da Kit yüklendikten sonra — araçlar bağlantısız çalışmaya devam eder. Tek istisna döviz çeviricidir ve o da yalnızca taze kurlar içindir.",
+    "faqOfflineA": "Evet. Bir araç sayfası yüklendikten sonra — ya da Kit kurulduktan sonra — araçlar bağlantı olmadan çalışmaya devam eder. Ayarlar’daki Çevrimdışı erişim, seçtiğiniz dilleri ve araçları önceden indirir. Döviz çevirici tek istisnadır ve yalnızca güncel kurlar içindir.",
     "faqMediaQ": "Medya aracı neden bir kez yaklaşık {mediaMb} MB indiriyor?",
     "faqMediaA": "Ses ve video, WebAssembly’ye derlenmiş FFmpeg üzerinde çalışır. O motor bir kez indirilir, Service worker önbelleğe alır ve sonraki her dosya onu yeniden kullanır.",
     "faqStoredQ": "Kit ziyaretler arasında ne saklar?",
@@ -1946,6 +1946,6 @@
     "techCryptoDl": "Ekstra bir şey yok — tarayıcıda zaten var",
     "techPwaDl": "Ekstra bir şey yok — önbelleğe alır, göndermez",
     "techUiDl": "Sayfaların ve betiklerin kendisi",
-    "exceptionOffline": "Sayfa yüklendikten sonra bağlantı koptu mu? Araçlar çalışmaya devam eder. Kit’i yüklersen ziyaretler arasında da aynısı geçerli."
+    "exceptionOffline": "Bir sayfa yüklendikten sonra bağlantı mı koptu? Araçlar çalışmaya devam eder. Kit’i kurarsanız bu, ziyaretler arasında da geçerlidir; Ayarlar’daki Çevrimdışı erişim ise ihtiyacınız olanı önceden hazırlar."
   }
 }

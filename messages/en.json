@@ -1876,7 +1876,7 @@
     "whyCaps": "No server-imposed limits",
     "whyCapsBody": "No upload cap, no queue, no premium tier for bigger files. The real ceiling is this device’s memory.",
     "whyOffline": "Works without a signal",
-    "whyOfflineBody": "Once a page has loaded, the tool keeps running in airplane mode. Install Kit and the same holds between visits.",
+    "whyOfflineBody": "Once a page has loaded, the tool keeps running in airplane mode. Install Kit and the same holds between visits. Offline access in Settings lets you choose the languages and tools to prepare ahead of time.",
     "exampleTitle": "Follow one job, end to end",
     "exampleLede": "Two real examples, traced step by step. Neither touches the network beyond loading Kit itself.",
     "exampleMergeHeading": "Merging two PDFs",
@@ -1910,7 +1910,7 @@
     "faqFilesQ": "Where do my files actually go?",
     "faqFilesA": "Nowhere. They are read and processed inside this tab and written back to your disk when you save. The network log on this page shows exactly what crossed the wire.",
     "faqOfflineQ": "Does Kit work offline?",
-    "faqOfflineA": "Yes. Once a tool page has loaded — or once Kit is installed — the tools keep working with no connection. The currency converter is the only exception, and only for fresh rates.",
+    "faqOfflineA": "Yes. Once a tool page has loaded — or once Kit is installed — the tools keep working with no connection. Offline access in Settings downloads the languages and tools you pick in advance. The currency converter is the only exception, and only for fresh rates.",
     "faqMediaQ": "Why does the media tool download about {mediaMb} MB once?",
     "faqMediaA": "Audio and video run on FFmpeg compiled to WebAssembly. That engine downloads once, the service worker caches it, and every file after that reuses it.",
     "faqStoredQ": "What does Kit store between visits?",
@@ -1931,7 +1931,7 @@
     "techCryptoDl": "Nothing extra — the browser already has it",
     "techPwaDl": "Nothing extra — it caches, it does not send",
     "techUiDl": "The pages and scripts themselves",
-    "exceptionOffline": "Lost connection after a page loaded? The tools keep working. Install Kit and the same holds between visits."
+    "exceptionOffline": "Lost connection after a page loaded? The tools keep working. Install Kit and the same holds between visits, and Offline access in Settings prepares what you need before you leave."
   },
   "legal": {
     "lastUpdated": "Last updated",
