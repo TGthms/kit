@@ -8,10 +8,10 @@ export type PillRect = { left: number; top: number; width: number; height: numbe
 export function measurePill(container: HTMLElement, target: HTMLElement): PillRect {
   const c = container.getBoundingClientRect();
   const t = target.getBoundingClientRect();
-  // `left`/`top` on the absolutely positioned pill resolve against the
-  // container's padding box, while getBoundingClientRect() reports the border
-  // box. Subtract the border so the measured box and the CSS fallback describe
-  // the same coordinate space.
+  // The pill's absolute origin (left/top: 0) resolves against the container's
+  // padding box, while getBoundingClientRect() reports the border box. Subtract
+  // the border so the measured box and the CSS fallback share one coordinate
+  // space.
   const borderLeft = container.clientLeft || 0;
   const borderTop = container.clientTop || 0;
   return {
@@ -24,6 +24,16 @@ export function measurePill(container: HTMLElement, target: HTMLElement): PillRe
 
 function sameRect(a: PillRect, b: PillRect): boolean {
   return a.left === b.left && a.top === b.top && a.width === b.width && a.height === b.height;
+}
+
+/**
+ * The measured box as a compositor-only transform. The pill is pinned at
+ * left/top: 0, so translating by the measured padding-box offset places it
+ * exactly where an absolute offset would. Sub-pixel values are preserved so the
+ * pill lands on the real box instead of a rounded one.
+ */
+export function pillTransform(rect: PillRect): string {
+  return `translate3d(${rect.left}px, ${rect.top}px, 0)`;
 }
 
 export function useGlidingPill(container: HTMLElement | null, target: HTMLElement | null) {
@@ -46,11 +56,10 @@ export function useGlidingPill(container: HTMLElement | null, target: HTMLElemen
       frame = window.requestAnimationFrame(commit);
     };
 
-    // Measure once synchronously so `ready` is already true at the first paint.
-    // `ready` is what lifts `.gliding-pill:not([data-ready]) { transition: none }`,
-    // so deferring this to a frame left the pill unable to animate during the
-    // first paint — a tab switch in that window jumped instead of gliding.
-    // Later ResizeObserver/resize updates still coalesce into a single frame.
+    // Measure synchronously so `ready` is true before the first paint: `ready` is
+    // what lifts `.gliding-pill:not([data-ready]) { transition: none }`, and a pill
+    // that is not ready cannot animate a switch. ResizeObserver and resize updates
+    // afterwards still coalesce into a single frame.
     commit();
     const ro = new ResizeObserver(scheduleUpdate);
     ro.observe(container);
@@ -81,8 +90,13 @@ export function GlidingPill({
   fallbackCount?: number;
   className?: string;
 }) {
+  // Positioned by transform, not left/top — see `.gliding-pill` in globals.css.
   const style: CSSProperties = ready
-    ? { left: rect.left, top: rect.top, width: rect.width, height: rect.height }
+    ? {
+        transform: pillTransform(rect),
+        width: rect.width,
+        height: rect.height,
+      }
     : {};
   const hasFallback = fallbackIndex !== undefined && fallbackCount !== undefined && fallbackCount > 0;
   const fallbackStyle = hasFallback

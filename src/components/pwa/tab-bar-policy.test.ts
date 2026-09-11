@@ -9,6 +9,14 @@ const floatingNav = readFileSync(join(here, "../ui/floating-nav.tsx"), "utf8");
 const shell = readFileSync(join(here, "../layout/app-shell.tsx"), "utf8");
 const pill = readFileSync(join(here, "../ui/gliding-pill.tsx"), "utf8");
 
+/** The declaration block for an exact selector, so assertions cannot leak into a
+ *  neighbouring rule that merely shares a prefix. */
+function cssBlock(source: string, selector: string): string {
+  const start = source.indexOf(`${selector} {`);
+  if (start === -1) throw new Error(`selector not found in globals.css: ${selector}`);
+  return source.slice(start, source.indexOf("}", start) + 1);
+}
+
 describe("mobile PWA tab bar material", () => {
   it("uses a dedicated thinner fill and a stronger blur than other glass", () => {
     expect(css).toMatch(/--tabbar-blur:\s*52px/);
@@ -62,10 +70,26 @@ describe("mobile PWA tab bar material", () => {
     expect(css).toMatch(/width: calc\(\(100% - 2 \* var\(--gliding-pill-inset\)\) \/ var\(--gliding-pill-count\)\)/);
   });
 
+  it("moves the pill on the compositor instead of animating layout offsets", () => {
+    const block = cssBlock(css, ".gliding-pill");
+    expect(block).toMatch(/left: 0;/);
+    expect(block).toMatch(/top: 0;/);
+    expect(block).toMatch(/transition:\s*transform 0\.4s var\(--ease-glide\)/);
+    expect(block).not.toMatch(/\bleft 0\.4s|\btop 0\.4s/);
+    expect(pill).toMatch(/transform: pillTransform\(rect\)/);
+  });
+
+  it("expresses the fallback as the same transform the measured box produces", () => {
+    const block = cssBlock(css, ".gliding-pill-fallback:not([data-ready])");
+    expect(block).toMatch(/transform: translate3d\(/);
+    expect(block).toMatch(/calc\(var\(--gliding-pill-inset\) \+ var\(--gliding-pill-index\) \* 100%\)/);
+    // Both states must share one property, and neither may declare a layout offset.
+    expect(block).not.toMatch(/\b(left|top):/);
+  });
+
   it("marks navigation as client-ready after hydration", () => {
     expect(shell).toMatch(/useHydrated\(\)/);
-    // An anchor already carries its navigation intent in `href`; the old
-    // attribute was only ever read for HTMLButtonElement, so it was inert here.
+    // An anchor already carries its navigation intent in `href`.
     expect(shell).not.toMatch(/data-navigation-intent/);
   });
 

@@ -285,10 +285,15 @@ scritto-flow.kit-scritto-inline {
 
 .gliding-pill {
   position: absolute;
+  /* Position changes must go through `transform`. The pill sits inside
+     `.floating-nav-face`, whose 52px backdrop-filter would otherwise be
+     recomputed on every frame of the movement. `width`/`height` stay
+     transitioned for the segmented control, whose segments differ in size. */
+  left: 0;
+  top: 0;
   transition:
-    left 0.4s var(--ease-glide),
+    transform 0.4s var(--ease-glide),
     width 0.4s var(--ease-glide),
-    top 0.4s var(--ease-glide),
     height 0.4s var(--ease-glide);
 }
 
@@ -323,19 +328,22 @@ scritto-flow.kit-scritto-inline {
   transition: none;
 }
 
-/* Keep the selected tab visible during hydration while the measured pill catches up.
-   The geometry must match the measured box exactly or the pill visibly settles once
-   measurement lands: the face has a 1px border and px-1.5 py-1.5 padding, and the
-   tabs are equal flex children of the padding box, so the highlight is inset by the
-   padding rather than flush to the container edges. */
+/* Keeps the selected tab highlighted during hydration, before the measured pill
+   takes over. The geometry must match the measured box exactly, otherwise the
+   highlight visibly settles once measurement lands: the face has a 1px border and
+   px-1.5 padding, and the tabs are equal flex children of its content box, so the
+   highlight is inset by that padding rather than flush to the container edges. */
 .gliding-pill-fallback:not([data-ready]) {
   --gliding-pill-inset: 0.375rem;
   opacity: 1;
-  left: calc(
-    var(--gliding-pill-inset) +
-      var(--gliding-pill-index) * ((100% - 2 * var(--gliding-pill-inset)) / var(--gliding-pill-count))
+  /* A percentage inside translateX resolves against the element's own width,
+     which is exactly one tab step because the tabs are equal flex children, so
+     `index * 100%` reproduces `index * step` without needing the container. */
+  transform: translate3d(
+    calc(var(--gliding-pill-inset) + var(--gliding-pill-index) * 100%),
+    var(--gliding-pill-inset),
+    0
   );
-  top: var(--gliding-pill-inset);
   width: calc((100% - 2 * var(--gliding-pill-inset)) / var(--gliding-pill-count));
   height: calc(100% - 2 * var(--gliding-pill-inset));
 }

@@ -34,7 +34,7 @@ describe("shouldHideFloatingTabBar", () => {
     expect(shouldHideFloatingTabBar(300)).toBe(true);
   });
 
-  it("keeps the old floor when the viewport height is unknown", () => {
+  it("keeps the pixel floor when the viewport height is unknown", () => {
     expect(shouldHideFloatingTabBar(KEYBOARD_TABBAR_HIDE_PX + 1, 0)).toBe(true);
     expect(shouldHideFloatingTabBar(KEYBOARD_TABBAR_HIDE_PX, 0)).toBe(false);
   });

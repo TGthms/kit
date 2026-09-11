@@ -59,7 +59,7 @@ describe("service worker offline selection", () => {
     expect(fn).not.toMatch(/sendOfflineProgress\(\{ status: "running", done, total: urls\.length, log:/);
   });
 
-  it("accepts batched logs and the legacy single line on the client", () => {
+  it("accepts batched logs and a single log line on the client", () => {
     expect(offlineAccess).toMatch(/function readLogs\(message: ProgressMessage\)/);
     expect(offlineAccess).toMatch(/Array\.isArray\(message\.logs\)/);
     expect(offlineAccess).toMatch(/typeof message\.log === "string"/);

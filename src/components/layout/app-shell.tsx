@@ -110,9 +110,9 @@ function TabBar({ pathname }: { pathname: string }) {
   }, [pathname]);
 
   // Before hydration these links are plain anchors, so an early tap is a real
-  // document navigation and the pill cannot glide across documents. The
-  // fallback geometry in globals.css matches the measured box exactly, so the
-  // destination still paints the highlight on the right tab with no correction.
+  // document navigation and the pill cannot glide across documents. The fallback
+  // geometry in globals.css matches the measured box exactly, so the destination
+  // paints the highlight on the correct tab.
   return (
     <FloatingNav
       aria-label={tb("name")}
@@ -207,8 +207,8 @@ export function AppShell({ children }: { children: React.ReactNode }) {
       </Suspense>
       <header className="glass chrome-edge chrome-touch fixed inset-x-0 top-0 z-50 shrink-0 pt-[env(safe-area-inset-top)]">
         <div className="mx-auto flex h-12 max-w-6xl items-center justify-between gap-2 px-4 sm:h-14 sm:gap-3 sm:px-6 lg:px-8">
-          {/* The offline indicator is a sibling of the link, not a child, so it
-              never joins the home link's accessible name. */}
+          {/* The offline indicator sits outside the home link so it does not join
+              that link's accessible name. */}
           <div className="flex min-w-0 items-center gap-2">
             <Link
               href="/"

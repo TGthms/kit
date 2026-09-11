@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { measurePill } from "./gliding-pill";
+import { measurePill, pillTransform } from "./gliding-pill";
 
 describe("measurePill", () => {
   it("returns the target box relative to the container", () => {
@@ -34,5 +34,25 @@ describe("measurePill", () => {
       width: 32,
       height: 32,
     });
+  });
+});
+
+describe("pillTransform", () => {
+  it("encodes the measured box as a compositor-only transform", () => {
+    expect(pillTransform({ left: 6, top: 6, width: 80, height: 44 })).toBe(
+      "translate3d(6px, 6px, 0)"
+    );
+  });
+
+  it("preserves fractional offsets so the pill lands on the real measured box", () => {
+    // Rounding would place the pill slightly off the box it measured.
+    expect(pillTransform({ left: 6.5, top: 5.75, width: 80, height: 44 })).toBe(
+      "translate3d(6.5px, 5.75px, 0)"
+    );
+  });
+
+  it("never emits a layout offset", () => {
+    const value = pillTransform({ left: 12, top: 4, width: 80, height: 44 });
+    expect(value).not.toMatch(/\bleft\(|\btop\(/);
   });
 });

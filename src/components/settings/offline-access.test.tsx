@@ -89,7 +89,7 @@ describe("OfflineAccess", () => {
     expect(screen.getByText("Offline access is ready")).toBeInTheDocument();
   });
 
-  it("accepts the legacy single-line progress payload", async () => {
+  it("accepts a single-line progress payload", async () => {
     renderOffline();
     fireEvent.click(screen.getByRole("button", { name: "Download" }));
     emit({ status: "running", done: 1, total: 2, log: "Preparing 2 items" });

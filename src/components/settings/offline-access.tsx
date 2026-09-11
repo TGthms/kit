@@ -21,7 +21,7 @@ function formatBytes(value: number | null, unknown: string): string {
   return `${(value / (1024 * 1024)).toFixed(1)} MB`;
 }
 
-/** Accepts the batched `logs` array and the legacy single `log` string. */
+/** Accepts the batched `logs` array, or a single `log` string. */
 function readLogs(message: ProgressMessage): string[] {
   if (Array.isArray(message.logs)) return message.logs.filter((line): line is string => typeof line === "string");
   if (typeof message.log === "string") return [message.log];
