@@ -24,7 +24,7 @@
     "license": "MIT License",
     "copyright": "© {year} Tim G (TGthms). Kit is open source under the MIT License.",
     "github": "GitHub",
-    "supportMe": "Support Me",
+    "supportMe": "Support Kit",
     "supportSecureNote": "Card payments only, securely handled by Ko-fi",
     "supportWalletNote": "Prefer Apple Pay, Google Pay, or Cash App Pay? <link>Continue on Ko-fi.com</link>",
     "emailTim": "Email"
@@ -1866,7 +1866,7 @@
     "typicalCurrency": "Often the amount travels, too",
     "kitCurrency": "Pair codes only, and only when this browser has no fresh cache. Amounts stay here.",
     "supportTitle": "Ko-fi",
-    "supportBody": "The optional Support Me panel connects to Ko-fi in an embedded frame. That is separate from Kit’s tools: Ko-fi may process its own technical, donation, and payment information under its policies, while Kit never receives your files or payment details. Prefer to stay fully local? Just leave the panel closed.",
+    "supportBody": "The optional Support Kit panel connects to Ko-fi in an embedded frame. That is separate from Kit’s tools: Ko-fi may process its own technical, donation, and payment information under its policies, while Kit never receives your files or payment details. Prefer to stay fully local? Just leave the panel closed.",
     "whyTitle": "Why Kit works this way",
     "whyLede": "Keeping files in the browser is not only a privacy stance. It changes what a tool can promise you.",
     "whyPrivate": "Private by default",
