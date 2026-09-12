@@ -52,7 +52,7 @@ A complete, polished toolkit: 94 tools, clear layout, light and dark appearance,
 
 ## ☕ Support the Project
 
-If this toolkit saved you some time or you simply found it useful,
+If Kit saved you some time or you simply found it useful,
 consider buying me a coffee. It helps me keep improving and maintaining it.
 
 [☕ Support on Ko-fi](https://ko-fi.com/tgthms)
