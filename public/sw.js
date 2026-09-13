@@ -508,18 +508,27 @@ async function removeOffline(scope) {
   const rscByLocale = manifest.rscByLocale || {};
   const targets = new Set();
 
+  const extrasByLocale = manifest.extrasByLocale || {};
+
+  /* A language is everything stored for it, including the compatibility
+     addresses that live under it, so nothing is left behind. */
   const addLocale = (locale) => {
     for (const url of chrome[locale] || []) targets.add(url);
     for (const url of toolsByLocale[locale] || []) targets.add(url);
     for (const url of rscByLocale[locale] || []) targets.add(url);
+    for (const url of extrasByLocale[locale] || []) targets.add(url);
   };
 
   if (scope.mode === "locale" && typeof scope.locale === "string") {
     addLocale(scope.locale);
   } else if (scope.mode === "tool" && typeof scope.tool === "string") {
+    /* Resolve the id to its public route segment, the same way the download
+       does: the two differ for a tool that was renamed, and matching on the id
+       would silently find nothing to remove. */
+    const segment = toolPathSegment(scope.tool);
     for (const locale of Object.keys(chrome)) {
       for (const url of toolsByLocale[locale] || []) {
-        if (segmentOfToolUrl(url) !== scope.tool) continue;
+        if (segmentOfToolUrl(url) !== segment) continue;
         targets.add(url);
         /* The page and the payload it navigates from are stored separately. */
         targets.add(`${url}index.txt`);
@@ -527,6 +536,9 @@ async function removeOffline(scope) {
     }
   } else {
     for (const locale of Object.keys(chrome)) addLocale(locale);
+    /* A compatibility language has addresses of its own and is not listed in
+       the language pages above. */
+    for (const locale of Object.keys(extrasByLocale)) addLocale(locale);
     for (const url of manifest.engines || []) targets.add(url);
   }
 

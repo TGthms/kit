@@ -2,7 +2,7 @@ import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { afterAll, describe, expect, it } from "vitest";
-import { aliasToolSegments, buildPrecacheManifest } from "../../../scripts/sw-precache.mjs";
+import { aliasLocaleDirs, aliasToolSegments, buildPrecacheManifest } from "../../../scripts/sw-precache.mjs";
 
 type Manifest = {
   core: string[];
@@ -114,5 +114,60 @@ describe("compatibility addresses", () => {
     const based = buildPrecacheManifest(root, "/kit") as Manifest;
     expect(based.toolsByLocale.en).toEqual(["/kit/en/tools/real-tool/"]);
     expect(based.extrasByLocale.en[0]).toBe("/kit/en/tools/old-alias/");
+  });
+});
+
+describe("a language alias", () => {
+  const root = mkdtempSync(join(tmpdir(), "kit-precache-locale-alias-"));
+  afterAll(() => rmSync(root, { recursive: true, force: true }));
+
+  /** A home page that names its own language, as every real one does. */
+  const homeNaming = (name: string) =>
+    `<!DOCTYPE html><html><head><link rel="canonical" href="https://trykit.pages.dev/${name}/"/></head><body></body></html>`;
+
+  for (const locale of ["en", "zh-Hans"]) {
+    mkdirSync(join(root, locale, "tools/pdf-merge"), { recursive: true });
+    writeFileSync(join(root, locale, "index.html"), homeNaming(locale));
+    writeFileSync(join(root, locale, "tools/pdf-merge/index.html"), INDEXABLE);
+    writeFileSync(join(root, locale, "tools/pdf-merge/index.txt"), "flight payload");
+  }
+  /* An old link: its address is `zh`, its content is Simplified Chinese. */
+  mkdirSync(join(root, "zh", "tools/pdf-merge"), { recursive: true });
+  writeFileSync(join(root, "zh", "index.html"), homeNaming("zh-Hans"));
+  writeFileSync(join(root, "zh", "tools/pdf-merge/index.html"), INDEXABLE);
+  writeFileSync(join(root, "zh", "tools/pdf-merge/index.txt"), "flight payload");
+
+  const languages = ["en", "zh", "zh-Hans"];
+
+  it("is recognised from its home page naming a different language", () => {
+    expect([...aliasLocaleDirs(root, languages)]).toEqual(["zh"]);
+  });
+
+  it("is left out of the lists that decide a language is ready", () => {
+    // Offline access offers the languages it can list, so a language counted
+    // here but absent from that list could never be reported as ready.
+    const manifest = buildPrecacheManifest(root) as Manifest;
+    expect(Object.keys(manifest.chromeByLocale).sort()).toEqual(["en", "zh-Hans"]);
+    expect(manifest.toolsByLocale.zh).toBeUndefined();
+    expect(manifest.rscByLocale.zh).toBeUndefined();
+  });
+
+  it("is prefetched all the same, pages and payloads", () => {
+    const manifest = buildPrecacheManifest(root) as Manifest;
+    expect(manifest.extrasByLocale.zh).toContain("/zh/");
+    expect(manifest.extrasByLocale.zh).toContain("/zh/index.txt");
+    expect(manifest.extrasByLocale.zh).toContain("/zh/tools/pdf-merge/");
+    expect(manifest.extrasByLocale.zh).toContain("/zh/tools/pdf-merge/index.txt");
+  });
+
+  it("leaves a language that names itself counted as usual", () => {
+    const manifest = buildPrecacheManifest(root) as Manifest;
+    expect(manifest.chromeByLocale["zh-Hans"]).toContain("/zh-Hans/");
+    expect(manifest.toolsByLocale["zh-Hans"]).toEqual(["/zh-Hans/tools/pdf-merge/"]);
+    expect(manifest.extrasByLocale["zh-Hans"]).toEqual([]);
+  });
+
+  it("finds none when there is no export to read", () => {
+    expect(aliasLocaleDirs(join(root, "nope"), ["en"]).size).toBe(0);
   });
 });

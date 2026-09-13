@@ -144,6 +144,28 @@ describe("removing downloads", () => {
     expect(fn).toMatch(/targets\.add\(url\)/);
     expect(fn).toMatch(/targets\.add\(`\$\{url\}index\.txt`\)/);
   });
+
+  it("resolves a tool id to its route segment before removing it", () => {
+    // A tool whose route segment differs from its id would otherwise match
+    // nothing, so its remove control would appear to do nothing.
+    const fn = sw.slice(sw.indexOf('scope.mode === "tool"'), sw.indexOf("const shellCache = await caches.open(CACHE)"));
+    expect(fn).toMatch(/const segment = toolPathSegment\(scope\.tool\)/);
+    expect(fn).toMatch(/segmentOfToolUrl\(url\) !== segment/);
+    expect(fn).not.toMatch(/segmentOfToolUrl\(url\) !== scope\.tool/);
+  });
+
+  it("takes a language's compatibility addresses with it", () => {
+    expect(sw).toMatch(/const extrasByLocale = manifest\.extrasByLocale \|\| \{\}/);
+    const addLocale = sw.slice(sw.indexOf("const addLocale = (locale)"), sw.indexOf('if (scope.mode === "locale"'));
+    expect(addLocale).toMatch(/for \(const url of extrasByLocale\[locale\] \|\| \[\]\) targets\.add\(url\)/);
+  });
+
+  it("leaves nothing behind when everything is removed", () => {
+    const fn = sw.slice(sw.indexOf("async function removeOffline"), sw.indexOf("async function selectedOfflineUrls"));
+    // A compatibility language owns addresses but is not one of the counted
+    // languages, so removing everything has to reach it separately.
+    expect(fn).toMatch(/for \(const locale of Object\.keys\(extrasByLocale\)\) addLocale\(locale\)/);
+  });
 });
 
 describe("download concurrency", () => {

@@ -62,15 +62,17 @@ export function buildPrecacheManifest(outDir, basePath = "") {
   const toolsByLocale = {};
   const rscByLocale = {};
   const extrasByLocale = {};
-  /* Tool URLs that exist only so an old link keeps working. Each such page marks
-     itself `noindex` and the app rewrites the address to the current one, so it
-     is never offered in Offline access. It is still precached, but it is kept
-     out of the lists below because those are what decides whether a language
-     counts as ready — leaving them in would mean no language could ever be
-     complete, since nothing on the page can select them. */
+  /* Two kinds of address exist only so an old link keeps working, and neither is
+     offered in Offline access. A tool alias marks itself `noindex`; a language
+     alias names a different language as its own address. Both are still
+     precached, but they are kept out of the lists below, because those are what
+     decide whether a language counts as ready — leaving them in would mean no
+     language could ever be complete, since nothing on the page can select
+     them. */
   const aliasSegments = aliasToolSegments(outDir, [...locales]);
+  const aliasLocales = aliasLocaleDirs(outDir, [...locales]);
   for (const locale of [...locales].sort()) {
-    chromeByLocale[locale] = CHROME_SEGMENTS.map((seg) => withBase(`/${locale}/${seg}`));
+    const chrome = CHROME_SEGMENTS.map((seg) => withBase(`/${locale}/${seg}`));
     const toolsRoot = join(outDir, locale, "tools");
     const tools = [];
     const aliases = [];
@@ -82,19 +84,29 @@ export function buildPrecacheManifest(outDir, basePath = "") {
         (aliasSegments.has(entry.name) ? aliases : tools).push(url);
       }
     }
-    toolsByLocale[locale] = tools.sort();
-    const aliasUrls = aliases.sort();
-    extrasByLocale[locale] = [...aliasUrls, ...aliasUrls.map(rscPath)];
+    tools.sort();
+    aliases.sort();
     const catRoot = join(outDir, locale, "c");
     if (existsSync(catRoot)) {
       for (const entry of readdirSync(catRoot, { withFileTypes: true })) {
         if (!entry.isDirectory()) continue;
         if (existsSync(join(catRoot, entry.name, "index.html"))) {
-          chromeByLocale[locale].push(withBase(`/${locale}/c/${entry.name}/`));
+          chrome.push(withBase(`/${locale}/c/${entry.name}/`));
         }
       }
     }
-    rscByLocale[locale] = [...chromeByLocale[locale], ...toolsByLocale[locale]].map(rscPath);
+    const rsc = [...chrome, ...tools].map(rscPath);
+
+    if (aliasLocales.has(locale)) {
+      /* Everything under an aliased language is prefetched, so a visitor who
+         followed the old address still works offline, but none of it counts. */
+      extrasByLocale[locale] = [...chrome, ...tools, ...aliases, ...rsc, ...aliases.map(rscPath)];
+      continue;
+    }
+    chromeByLocale[locale] = chrome;
+    toolsByLocale[locale] = tools;
+    rscByLocale[locale] = rsc;
+    extrasByLocale[locale] = [...aliases, ...aliases.map(rscPath)];
   }
 
   core.sort();
@@ -119,6 +131,33 @@ export function aliasToolSegments(outDir, localeNames) {
     const page = join(toolsRoot, entry.name, "index.html");
     if (!existsSync(page)) continue;
     if (/<meta name="robots" content="noindex[^"]*"/u.test(readFileSync(page, "utf8"))) found.add(entry.name);
+  }
+  return found;
+}
+
+/**
+ * The language directories that are compatibility addresses rather than
+ * languages a visitor can choose.
+ *
+ * A language's home page names itself as its own address; the page behind an
+ * old link names the language it now belongs to instead. That difference is
+ * read off the pages rather than listed here, so adding or removing one needs
+ * no change to this file.
+ */
+export function aliasLocaleDirs(outDir, localeNames) {
+  const found = new Set();
+  for (const name of localeNames) {
+    const page = join(outDir, name, "index.html");
+    if (!existsSync(page)) continue;
+    const href = readFileSync(page, "utf8").match(/<link rel="canonical" href="([^"]+)"/u)?.[1];
+    if (!href) continue;
+    let first;
+    try {
+      first = new URL(href).pathname.split("/").filter(Boolean)[0];
+    } catch {
+      continue;
+    }
+    if (first && first !== name) found.add(name);
   }
   return found;
 }
