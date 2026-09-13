@@ -11,6 +11,7 @@ import { SegmentedControl } from "@/components/ui/segmented-control";
 import { useHistoryStore } from "@/stores/history-store";
 import { Switch } from "@/components/ui/switch";
 import { rememberThemeChoice } from "@/lib/theme/resolve";
+import { APP_VERSION } from "@/lib/version";
 import { useHydrated } from "@/lib/react/hydrated";
 import { runCircularThemeTransition } from "@/lib/theme/circular-transition";
 import { HardDriveDownload } from "lucide-react";
@@ -119,11 +120,15 @@ export default function SettingsPage() {
               {t("clearHistory")}
             </Button>
           </div>
-          <p className="type-caption text-muted-foreground">
-            {t("version")}: 1.0.0 · {t("shortcutsHelp")}
-          </p>
+          <p className="type-caption text-muted-foreground">{t("shortcutsHelp")}</p>
         </CardContent>
       </Card>
+
+      {/* The release the visitor is running, kept on its own at the foot of the
+          page so it can be read out when something needs looking up. */}
+      <p className="pb-4 text-center type-caption text-muted-foreground">
+        {t("version")} {APP_VERSION}
+      </p>
     </div>
   );
 }
