@@ -327,7 +327,7 @@ function HomePageInner() {
                 key={`${greeting.greetingKey}:${greeting.day}`}
                 as={newYear || showCategoryTools ? "h2" : "h1"}
                 className="type-display text-foreground"
-                text={t(greeting.greetingKey, { day: greeting.day, occasion: greeting.occasionKey ? t(`occasionLabel.${greeting.occasionKey}`) : "" })}
+                text={t(greeting.greetingKey, { day: greeting.day, occasion: greeting.occasionKey ? t(`greeting.occasionLabel.${greeting.occasionKey}`) : "" })}
               />
             ) : newYear ? (
               <h2 className="type-display text-foreground">{t("title")}</h2>
@@ -351,7 +351,7 @@ function HomePageInner() {
                   <GreetingSubtitleText
                     subtitleKey={greeting.subtitle.key}
                     day={greeting.day}
-                    occasion={greeting.occasionKey ? t(`occasionLabel.${greeting.occasionKey}`) : ""}
+                    occasion={greeting.occasionKey ? t(`greeting.occasionLabel.${greeting.occasionKey}`) : ""}
                   />
                 )}
               </GreetingSubtitle>
