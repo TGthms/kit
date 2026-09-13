@@ -27,8 +27,8 @@ export function safeSummary(summary: string, status: HistoryEntry["status"]): st
   const normalized = summary.trim().replace(/\s+/gu, " ");
   if (/^(?:completed|success)$/i.test(normalized)) return "completed";
   if (normalized.length > 96) return "completed";
-  // Keep only compact, non-user-controlled operation metadata. Free-form
-  // filenames, watermark text, ranges, and pasted input become "completed".
+  /* Only compact operation metadata survives. Free-form filenames, watermark
+     text, ranges, and pasted input are all reduced to "completed". */
   if (/^\d+(?:\.\d+)?(?: (?:files|images|pages|sizes))?$/i.test(normalized)) return normalized;
   if (/^\d+ words, \d+ characters$/i.test(normalized)) return normalized;
   if (/^BMI \d+(?:\.\d+)? · \d+ kcal$/u.test(normalized)) return normalized;
@@ -48,7 +48,10 @@ export function safeSummary(summary: string, status: HistoryEntry["status"]): st
   ) {
     return normalized;
   }
-  if (/^[A-Za-z0-9_+\-./]+ → [A-Za-z0-9_+\-./]+$/u.test(normalized) && !/\.(?:pdf|png|jpe?g|gif|zip|webm|mp4)\b/iu.test(normalized)) {
+  /* Paired identifiers such as `image/png → image/jpeg` or
+     `America/New_York → Europe/London`. A dot marks a filename, and a filename
+     is never stored, so it is excluded from the accepted characters. */
+  if (/^[A-Za-z0-9_+\-/]+ → [A-Za-z0-9_+\-/]+$/u.test(normalized)) {
     return normalized;
   }
   return "completed";

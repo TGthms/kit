@@ -1,10 +1,19 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 
 export const SHORTCUT_RUN_EVENT = "kit:run";
+
+const FOCUSABLE = [
+  "a[href]",
+  "button:not([disabled])",
+  "input:not([disabled])",
+  "select:not([disabled])",
+  "textarea:not([disabled])",
+  '[tabindex]:not([tabindex="-1"])',
+].join(", ");
 
 function isTypingTarget(target: EventTarget | null): boolean {
   const element = target instanceof HTMLElement ? target : null;
@@ -20,6 +29,45 @@ function isTypingTarget(target: EventTarget | null): boolean {
 export function ShortcutsProvider({ children }: { children: React.ReactNode }) {
   const t = useTranslations("shortcuts");
   const [open, setOpen] = useState(false);
+  const panelRef = useRef<HTMLDivElement>(null);
+  const restoreRef = useRef<HTMLElement | null>(null);
+
+  /* While the help panel is open it takes focus, keeps Tab inside itself, and
+     hands focus back to whatever it interrupted when it closes. */
+  useEffect(() => {
+    if (!open) return;
+    const panel = panelRef.current;
+    if (!panel) return;
+    restoreRef.current = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+    panel.focus();
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key !== "Tab") return;
+      const focusable = Array.from(panel.querySelectorAll<HTMLElement>(FOCUSABLE));
+      if (!focusable.length) {
+        event.preventDefault();
+        panel.focus();
+        return;
+      }
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      const active = document.activeElement;
+      if (event.shiftKey && (active === first || active === panel)) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && active === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    };
+
+    panel.addEventListener("keydown", onKeyDown);
+    return () => {
+      panel.removeEventListener("keydown", onKeyDown);
+      restoreRef.current?.focus();
+      restoreRef.current = null;
+    };
+  }, [open]);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -62,7 +110,9 @@ export function ShortcutsProvider({ children }: { children: React.ReactNode }) {
           onClick={() => setOpen(false)}
         >
           <div
-            className="w-full max-w-md rounded-2xl border bg-card p-5 shadow-xl"
+            ref={panelRef}
+            tabIndex={-1}
+            className="w-full max-w-md rounded-2xl border bg-card p-5 shadow-xl outline-none"
             role="dialog"
             aria-modal="true"
             aria-labelledby="kit-shortcuts-title"

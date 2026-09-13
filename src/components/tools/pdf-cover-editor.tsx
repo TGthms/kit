@@ -63,10 +63,7 @@ function PdfCoverEditorBody({
           URL.revokeObjectURL(next.url);
           return;
         }
-        setPreview((current) => {
-          if (current) URL.revokeObjectURL(current.url);
-          return next;
-        });
+        setPreview(next);
         setError("");
       } catch (reason) {
         if (!cancelled) {
@@ -80,9 +77,30 @@ function PdfCoverEditorBody({
     };
   }, [file, page, tc]);
 
+  /* Revoking here covers both a replaced preview and unmount, so a rendered
+     preview always owns exactly one live object URL. */
   useEffect(() => {
     return () => {
       if (preview) URL.revokeObjectURL(preview.url);
+    };
+  }, [preview]);
+
+  /* The bitmap is painted whenever a new preview arrives. Keeping this out of
+     the render pass means dragging a box repaints only the overlay. */
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas || !preview) return;
+    let cancelled = false;
+    const image = new Image();
+    image.onload = () => {
+      if (cancelled) return;
+      const ctx = canvas.getContext("2d");
+      if (!ctx) return;
+      ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+    };
+    image.src = preview.url;
+    return () => {
+      cancelled = true;
     };
   }, [preview]);
 
@@ -160,17 +178,7 @@ function PdfCoverEditorBody({
               column is wider than the preview (desktop portrait pages). */}
           <div className="relative w-fit max-w-full">
             <canvas
-              ref={(node) => {
-                canvasRef.current = node;
-                if (!node || !preview) return;
-                const image = new Image();
-                image.onload = () => {
-                  const ctx = node.getContext("2d");
-                  if (!ctx) return;
-                  ctx.drawImage(image, 0, 0, node.width, node.height);
-                };
-                image.src = preview.url;
-              }}
+              ref={canvasRef}
               width={preview.width}
               height={preview.height}
               className="block max-w-full cursor-crosshair touch-none"

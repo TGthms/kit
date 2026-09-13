@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useMemo, useRef, useState, type PointerEvent as ReactPointerEvent } from "react";
+import { useEffect, useRef, useState, type PointerEvent as ReactPointerEvent } from "react";
 import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 import { FileDropzone, type FileItem } from "@/components/shared/file-dropzone";
@@ -120,13 +120,22 @@ export function ImageCrop() {
   const [natural, setNatural] = useState({ width: 400, height: 300 });
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState<{ blob: Blob; name: string } | null>(null);
-  const previewUrl = useMemo(() => (files[0] ? URL.createObjectURL(files[0].file) : null), [files]);
+  const imgRef = useRef<HTMLImageElement>(null);
 
+  /* The preview bitmap is a browser resource and not React state, so it is
+     attached to the element directly and released when the file changes or the
+     tool closes. */
   useEffect(() => {
+    const img = imgRef.current;
+    const file = files[0]?.file;
+    if (!img || !file) return;
+    const url = URL.createObjectURL(file);
+    img.src = url;
     return () => {
-      if (previewUrl) URL.revokeObjectURL(previewUrl);
+      img.removeAttribute("src");
+      URL.revokeObjectURL(url);
     };
-  }, [previewUrl]);
+  }, [files]);
 
   const run = async () => {
     if (!files[0]) return;
@@ -149,12 +158,12 @@ export function ImageCrop() {
   return (
     <ToolShell toolId="image-crop">
       <FileDropzone accept="image/*" multiple={false} files={files} onChange={setFiles} />
-      {previewUrl ? (
+      {files[0] ? (
         <div className="overflow-auto rounded-2xl border bg-card">
           <div className="relative inline-block max-w-full">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src={previewUrl}
+              ref={imgRef}
               alt=""
               className="block max-h-[min(28rem,70vh)] w-auto max-w-full"
               onLoad={(event) => {

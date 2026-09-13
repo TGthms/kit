@@ -52,9 +52,9 @@ export function FileDropzone({
     [accept, files, multiple, onChange, t]
   );
 
-  // Paste works anywhere on the page while a dropzone is mounted; the
-  // subtree-level handler only fired when the dropzone itself held focus.
-  // Only pastes that actually carry files are intercepted.
+  // A paste is accepted anywhere on the page while a dropzone is mounted, and
+  // only when the clipboard actually carries a file, so pasting text into a
+  // field is left alone.
   useEffect(() => {
     const onWindowPaste = (event: ClipboardEvent) => {
       if (event.clipboardData?.files?.length) {

@@ -19,6 +19,9 @@ describe("history summaries", () => {
   it("still redacts free-form input", () => {
     expect(safeSummary("Merged family-taxes.pdf", "success")).toBe("completed");
     expect(safeSummary("Merged family-taxes.pdf → out.pdf", "success")).toBe("completed");
+    expect(safeSummary("resume.docx → final.docx", "success")).toBe("completed");
+    expect(safeSummary("report.xlsx → summary.xlsx", "success")).toBe("completed");
+    expect(safeSummary("notes.txt → notes.md", "success")).toBe("completed");
     expect(safeSummary("pick: secret passphrase", "success")).toBe("completed");
     expect(safeSummary("pick × 3: red, blue, green", "success")).toBe("completed");
     expect(safeSummary("password: hunter2", "success")).toBe("completed");
