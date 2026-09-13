@@ -482,7 +482,17 @@
     "offlineCanceled": "Download abgebrochen",
     "offlineBackgroundNote": "Du kannst diese Seite verlassen, während der Download weiterläuft.",
     "offlineLog": "Download-Details",
-    "offlineOpen": "Offline-Zugriff öffnen"
+    "offlineOpen": "Offline-Zugriff öffnen",
+    "offlineStatus": "Was gespeichert ist",
+    "offlineReady": "Bereit",
+    "offlineNotSaved": "Nicht gespeichert",
+    "offlinePartial": "{done} von {total} gespeichert",
+    "offlineStoredVersion": "Für Kit {version} heruntergeladen",
+    "offlineOutdated": "Kit {version} ist verfügbar. Die auf diesem Gerät gespeicherten Kopien stammen aus einer älteren Version.",
+    "offlineUpdate": "Downloads aktualisieren",
+    "offlineRemoveAll": "Alle Downloads entfernen",
+    "offlineRemoveConfirm": "Alle gespeicherten Sprachen, Werkzeugseiten und Medienmodule von diesem Gerät entfernen?",
+    "offlineCleared": "Beim Aktualisieren von Kit wurde heruntergeladener Inhalt entfernt. Dieselben Sprachen und Werkzeuge erneut herunterladen?"
   },
   "shortcuts": {
     "title": "Tastenkürzel",

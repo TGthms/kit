@@ -482,7 +482,17 @@
     "offlineCanceled": "Descărcare anulată",
     "offlineBackgroundNote": "Poți părăsi pagina în timp ce descărcarea continuă.",
     "offlineLog": "Detalii descărcare",
-    "offlineOpen": "Deschide accesul offline"
+    "offlineOpen": "Deschide accesul offline",
+    "offlineStatus": "Ce este salvat",
+    "offlineReady": "Pregătit",
+    "offlineNotSaved": "Nesalvat",
+    "offlinePartial": "{done} din {total} salvate",
+    "offlineStoredVersion": "Descărcat pentru Kit {version}",
+    "offlineOutdated": "Kit {version} este disponibil. Copiile salvate pe acest dispozitiv sunt dintr-o versiune anterioară.",
+    "offlineUpdate": "Actualizează descărcările",
+    "offlineRemoveAll": "Elimină toate descărcările",
+    "offlineRemoveConfirm": "Elimini de pe acest dispozitiv toate limbile, paginile de instrumente și motoarele media salvate?",
+    "offlineCleared": "Conținutul descărcat a fost eliminat la actualizarea Kit. Descărcați din nou aceleași limbi și instrumente?"
   },
   "shortcuts": {
     "title": "Scurtături de tastatură",

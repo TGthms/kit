@@ -482,7 +482,17 @@
     "offlineCanceled": "Pobieranie anulowane",
     "offlineBackgroundNote": "Możesz opuścić tę stronę podczas pobierania.",
     "offlineLog": "Szczegóły pobierania",
-    "offlineOpen": "Otwórz dostęp offline"
+    "offlineOpen": "Otwórz dostęp offline",
+    "offlineStatus": "Co jest zapisane",
+    "offlineReady": "Gotowe",
+    "offlineNotSaved": "Nie zapisano",
+    "offlinePartial": "Zapisano {done} z {total}",
+    "offlineStoredVersion": "Pobrano dla Kit {version}",
+    "offlineOutdated": "Kit {version} jest dostępny. Kopie zapisane na tym urządzeniu pochodzą z wcześniejszego wydania.",
+    "offlineUpdate": "Zaktualizuj pobrane",
+    "offlineRemoveAll": "Usuń wszystkie pobrane",
+    "offlineRemoveConfirm": "Usunąć z tego urządzenia wszystkie zapisane języki, strony narzędzi i silniki multimediów?",
+    "offlineCleared": "Pobrane treści zostały usunięte podczas aktualizacji Kit. Pobrać ponownie te same języki i narzędzia?"
   },
   "shortcuts": {
     "title": "Skróty klawiszowe",

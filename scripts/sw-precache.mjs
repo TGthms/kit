@@ -2,7 +2,7 @@
  * After static export, list shell assets for the service worker's idle fill.
  * Not committed; Cloudflare `npm run build` produces `out/sw-precache.json`.
  */
-import { existsSync, readdirSync, statSync, writeFileSync } from "node:fs";
+import { existsSync, readFileSync, readdirSync, statSync, writeFileSync } from "node:fs";
 import { dirname, join, relative } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 
@@ -61,17 +61,30 @@ export function buildPrecacheManifest(outDir, basePath = "") {
   const chromeByLocale = {};
   const toolsByLocale = {};
   const rscByLocale = {};
+  const extrasByLocale = {};
+  /* Tool URLs that exist only so an old link keeps working. Each such page marks
+     itself `noindex` and the app rewrites the address to the current one, so it
+     is never offered in Offline access. It is still precached, but it is kept
+     out of the lists below because those are what decides whether a language
+     counts as ready — leaving them in would mean no language could ever be
+     complete, since nothing on the page can select them. */
+  const aliasSegments = aliasToolSegments(outDir, [...locales]);
   for (const locale of [...locales].sort()) {
     chromeByLocale[locale] = CHROME_SEGMENTS.map((seg) => withBase(`/${locale}/${seg}`));
     const toolsRoot = join(outDir, locale, "tools");
     const tools = [];
+    const aliases = [];
     if (existsSync(toolsRoot)) {
       for (const entry of readdirSync(toolsRoot, { withFileTypes: true })) {
         if (!entry.isDirectory()) continue;
-        if (existsSync(join(toolsRoot, entry.name, "index.html"))) tools.push(withBase(`/${locale}/tools/${entry.name}/`));
+        if (!existsSync(join(toolsRoot, entry.name, "index.html"))) continue;
+        const url = withBase(`/${locale}/tools/${entry.name}/`);
+        (aliasSegments.has(entry.name) ? aliases : tools).push(url);
       }
     }
     toolsByLocale[locale] = tools.sort();
+    const aliasUrls = aliases.sort();
+    extrasByLocale[locale] = [...aliasUrls, ...aliasUrls.map(rscPath)];
     const catRoot = join(outDir, locale, "c");
     if (existsSync(catRoot)) {
       for (const entry of readdirSync(catRoot, { withFileTypes: true })) {
@@ -87,7 +100,27 @@ export function buildPrecacheManifest(outDir, basePath = "") {
   core.sort();
   pdfjs.sort();
   ffmpeg.sort();
-  return { core, engines: [...pdfjs, ...ffmpeg], chromeByLocale, toolsByLocale, rscByLocale };
+  return { core, engines: [...pdfjs, ...ffmpeg], chromeByLocale, toolsByLocale, rscByLocale, extrasByLocale };
+}
+
+/**
+ * The tool route segments that are aliases rather than tools, read off the
+ * pages themselves: those pages ask not to be indexed, which is exactly what
+ * makes them compatibility addresses instead of something a visitor chooses.
+ * The set is the same in every language, so only one language is read.
+ */
+export function aliasToolSegments(outDir, localeNames) {
+  const locale = localeNames.includes("en") ? "en" : localeNames[0];
+  const toolsRoot = join(outDir, locale, "tools");
+  const found = new Set();
+  if (!locale || !existsSync(toolsRoot)) return found;
+  for (const entry of readdirSync(toolsRoot, { withFileTypes: true })) {
+    if (!entry.isDirectory()) continue;
+    const page = join(toolsRoot, entry.name, "index.html");
+    if (!existsSync(page)) continue;
+    if (/<meta name="robots" content="noindex[^"]*"/u.test(readFileSync(page, "utf8"))) found.add(entry.name);
+  }
+  return found;
 }
 
 export function writePrecacheManifest(outDir, basePath = "") {

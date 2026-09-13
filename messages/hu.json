@@ -482,7 +482,17 @@
     "offlineCanceled": "Letöltés megszakítva",
     "offlineBackgroundNote": "A letöltés közben elhagyhatja ezt az oldalt.",
     "offlineLog": "Letöltési részletek",
-    "offlineOpen": "Offline hozzáférés megnyitása"
+    "offlineOpen": "Offline hozzáférés megnyitása",
+    "offlineStatus": "Mi van mentve",
+    "offlineReady": "Kész",
+    "offlineNotSaved": "Nincs mentve",
+    "offlinePartial": "{done}/{total} mentve",
+    "offlineStoredVersion": "Kit {version} verzióhoz letöltve",
+    "offlineOutdated": "Elérhető a Kit {version}. Az eszközön mentett másolatok egy korábbi kiadásból származnak.",
+    "offlineUpdate": "Letöltések frissítése",
+    "offlineRemoveAll": "Összes letöltés eltávolítása",
+    "offlineRemoveConfirm": "Eltávolítja erről az eszközről az összes mentett nyelvet, eszközoldalt és médiamotort?",
+    "offlineCleared": "A letöltött tartalom a Kit frissítésekor törlődött. Letölti újra ugyanazokat a nyelveket és eszközöket?"
   },
   "shortcuts": {
     "title": "Billentyűparancsok",

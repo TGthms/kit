@@ -482,7 +482,17 @@
     "offlineCanceled": "Завантаження скасовано",
     "offlineBackgroundNote": "Ви можете залишити сторінку, поки завантаження триває.",
     "offlineLog": "Деталі завантаження",
-    "offlineOpen": "Відкрити офлайн-доступ"
+    "offlineOpen": "Відкрити офлайн-доступ",
+    "offlineStatus": "Що збережено",
+    "offlineReady": "Готово",
+    "offlineNotSaved": "Не збережено",
+    "offlinePartial": "Збережено {done} з {total}",
+    "offlineStoredVersion": "Завантажено для Kit {version}",
+    "offlineOutdated": "Доступна версія Kit {version}. Збережені на цьому пристрої копії належать до попереднього випуску.",
+    "offlineUpdate": "Оновити завантаження",
+    "offlineRemoveAll": "Видалити всі завантаження",
+    "offlineRemoveConfirm": "Видалити з цього пристрою всі збережені мови, сторінки інструментів і медіадвижки?",
+    "offlineCleared": "Завантажений вміст було видалено під час оновлення Kit. Завантажити ті самі мови та інструменти знову?"
   },
   "shortcuts": {
     "title": "Клавіатурні скорочення",

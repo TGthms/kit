@@ -482,7 +482,17 @@
     "offlineCanceled": "Transferência cancelada",
     "offlineBackgroundNote": "Pode sair desta página enquanto a transferência continua.",
     "offlineLog": "Detalhes da transferência",
-    "offlineOpen": "Abrir acesso offline"
+    "offlineOpen": "Abrir acesso offline",
+    "offlineStatus": "O que está guardado",
+    "offlineReady": "Pronto",
+    "offlineNotSaved": "Não guardado",
+    "offlinePartial": "{done} de {total} guardados",
+    "offlineStoredVersion": "Transferido para o Kit {version}",
+    "offlineOutdated": "O Kit {version} está disponível. As cópias guardadas neste dispositivo são de uma versão anterior.",
+    "offlineUpdate": "Atualizar transferências",
+    "offlineRemoveAll": "Remover todas as transferências",
+    "offlineRemoveConfirm": "Remover deste dispositivo todos os idiomas, páginas de ferramentas e motores de multimédia guardados?",
+    "offlineCleared": "O conteúdo transferido foi removido ao atualizar o Kit. Transferir novamente os mesmos idiomas e ferramentas?"
   },
   "shortcuts": {
     "title": "Atalhos de teclado",

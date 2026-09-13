@@ -482,7 +482,17 @@
     "offlineCanceled": "下载已取消",
     "offlineBackgroundNote": "下载继续时可以离开此页面。",
     "offlineLog": "下载详情",
-    "offlineOpen": "打开离线访问"
+    "offlineOpen": "打开离线访问",
+    "offlineStatus": "已保存的内容",
+    "offlineReady": "已就绪",
+    "offlineNotSaved": "未保存",
+    "offlinePartial": "已保存 {done}/{total}",
+    "offlineStoredVersion": "已为 Kit {version} 下载",
+    "offlineOutdated": "Kit {version} 已发布。此设备上保存的副本来自较早版本。",
+    "offlineUpdate": "更新下载内容",
+    "offlineRemoveAll": "移除所有下载内容",
+    "offlineRemoveConfirm": "从此设备移除所有已保存的语言、工具页面和媒体引擎？",
+    "offlineCleared": "Kit 更新时已移除下载的内容。要重新下载相同的语言和工具吗？"
   },
   "shortcuts": {
     "title": "键盘快捷键",

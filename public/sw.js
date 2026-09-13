@@ -33,6 +33,10 @@ const OFFLINE_PROGRESS_MS = 250;
    message cannot queue unbounded work. */
 const MAX_OFFLINE_LOCALES = 40;
 const MAX_OFFLINE_TOOLS = 200;
+/* How many resources a download the visitor asked for fetches at once. The
+   optional background fill stays strictly one at a time, so this only applies
+   while someone is waiting on the page and watching the progress bar. */
+const OFFLINE_CONCURRENCY = 6;
 
 /* Mirrors toolPathSegment() in src/lib/navigation/routes.ts. A tool id is not
    always its public route segment, so selected ids must be resolved before
@@ -63,6 +67,13 @@ self.addEventListener("install", (event) => {
       const cache = await caches.open(CACHE);
       try {
         await cache.add("./manifest.webmanifest");
+      } catch {
+        /* offline install */
+      }
+      /* Kept locally as well as fetched: this list is what lets the Offline
+         access page report what is already saved while the device is offline. */
+      try {
+        await cache.add(FILL_PRECACHE);
       } catch {
         /* offline install */
       }
@@ -377,13 +388,161 @@ async function sendOfflineProgress(data) {
   windows.forEach((client) => client.postMessage({ type: "OFFLINE_PROGRESS", ...data }));
 }
 
-async function selectedOfflineUrls(data) {
-  let manifest;
+/**
+ * A report of what is saved, on its own message type so it cannot be mistaken
+ * for download progress.
+ */
+async function sendOfflineState(state) {
+  const windows = await self.clients.matchAll({ type: "window", includeUncontrolled: true });
+  windows.forEach((client) => client.postMessage({ type: "OFFLINE_STATE", state }));
+}
+
+/**
+ * The build's list of offline-able resources.
+ *
+ * The copy stored at install is read first so this still answers when the
+ * device is offline; it is regenerated with each build, so it describes the
+ * version of the app this worker belongs to.
+ */
+async function readManifest() {
   try {
-    manifest = await (await fetch(FILL_PRECACHE, { cache: "no-store" })).json();
+    const cached = await caches.match(FILL_PRECACHE);
+    if (cached) return await cached.json();
   } catch {
-    return [];
+    /* fall through to the network */
   }
+  try {
+    return await (await fetch(FILL_PRECACHE, { cache: "no-store" })).json();
+  } catch {
+    return null;
+  }
+}
+
+/** Every URL currently held, as pathnames, for each of the two caches. */
+async function cachedPathnames() {
+  const paths = async (name) => {
+    const requests = await (await caches.open(name)).keys();
+    const set = new Set();
+    for (const request of requests) {
+      try {
+        set.add(new URL(request.url).pathname);
+      } catch {
+        set.add(request.url);
+      }
+    }
+    return set;
+  };
+  return { shell: await paths(CACHE), rsc: await paths(RSC_CACHE) };
+}
+
+function countPresent(urls, present) {
+  let done = 0;
+  for (const url of urls) if (present.has(url)) done += 1;
+  return done;
+}
+
+/** The public route segment of a tool page URL. */
+function segmentOfToolUrl(url) {
+  return url.split("/tools/")[1]?.replace(/\/$/u, "") || null;
+}
+
+/**
+ * What is saved right now, in the terms the Offline access page shows: per
+ * language, per tool, for the media engines, and for the app's own files.
+ *
+ * Counted from the cache keys rather than by probing each URL, so reporting the
+ * state of several thousand files costs one lookup per cache.
+ *
+ * `generation` identifies this build's cache. A page that saved content under a
+ * different generation is looking at copies this worker has already replaced.
+ */
+async function offlineState() {
+  const manifest = await readManifest();
+  if (!manifest) return null;
+  const { shell, rsc } = await cachedPathnames();
+  const chrome = manifest.chromeByLocale || {};
+  const toolsByLocale = manifest.toolsByLocale || {};
+  const rscByLocale = manifest.rscByLocale || {};
+
+  const locales = {};
+  const toolLocales = {};
+  for (const locale of Object.keys(chrome)) {
+    const pages = [...(chrome[locale] || []), ...(toolsByLocale[locale] || [])];
+    const payloads = rscByLocale[locale] || [];
+    const done = countPresent(pages, shell) + countPresent(payloads, rsc);
+    const total = pages.length + payloads.length;
+    locales[locale] = { done, total, ready: total > 0 && done === total };
+    for (const url of toolsByLocale[locale] || []) {
+      const segment = segmentOfToolUrl(url);
+      if (!segment || !shell.has(url)) continue;
+      toolLocales[segment] = (toolLocales[segment] || 0) + 1;
+    }
+  }
+
+  const core = manifest.core || [];
+  const engines = manifest.engines || [];
+  return {
+    generation: CACHE.replace(/^kit-shell-/u, ""),
+    core: { done: countPresent(core, shell), total: core.length },
+    engines: { done: countPresent(engines, shell), total: engines.length },
+    locales,
+    tools: toolLocales,
+    readyLocales: Object.values(locales).filter((entry) => entry.ready).length,
+  };
+}
+
+/**
+ * Remove saved offline copies, either everything the Offline access page can
+ * add or one language's worth or one tool's worth.
+ *
+ * The app's own scripts, styles and icons are left alone: those are the
+ * application itself rather than something chosen on that page, they are
+ * refilled as the visitor browses, and dropping them would leave the app unable
+ * to open its own pages.
+ */
+async function removeOffline(scope) {
+  const manifest = await readManifest();
+  if (!manifest) return null;
+  const chrome = manifest.chromeByLocale || {};
+  const toolsByLocale = manifest.toolsByLocale || {};
+  const rscByLocale = manifest.rscByLocale || {};
+  const targets = new Set();
+
+  const addLocale = (locale) => {
+    for (const url of chrome[locale] || []) targets.add(url);
+    for (const url of toolsByLocale[locale] || []) targets.add(url);
+    for (const url of rscByLocale[locale] || []) targets.add(url);
+  };
+
+  if (scope.mode === "locale" && typeof scope.locale === "string") {
+    addLocale(scope.locale);
+  } else if (scope.mode === "tool" && typeof scope.tool === "string") {
+    for (const locale of Object.keys(chrome)) {
+      for (const url of toolsByLocale[locale] || []) {
+        if (segmentOfToolUrl(url) !== scope.tool) continue;
+        targets.add(url);
+        /* The page and the payload it navigates from are stored separately. */
+        targets.add(`${url}index.txt`);
+      }
+    }
+  } else {
+    for (const locale of Object.keys(chrome)) addLocale(locale);
+    for (const url of manifest.engines || []) targets.add(url);
+  }
+
+  const shellCache = await caches.open(CACHE);
+  const rscCache = await caches.open(RSC_CACHE);
+  let removed = 0;
+  for (const url of targets) {
+    const cache = /\.txt$/i.test(url) ? rscCache : shellCache;
+    if (await cache.delete(url)) removed += 1;
+  }
+  return removed;
+}
+
+async function selectedOfflineUrls(data) {
+  const manifest = await readManifest();
+  if (!manifest) return [];
   const locales = (Array.isArray(data.locales) ? data.locales : [])
     .slice(0, MAX_OFFLINE_LOCALES)
     .filter((locale) => typeof locale === "string");
@@ -454,30 +613,43 @@ async function downloadSelectedOffline(data) {
     pendingLogs.push(`Preparing ${urls.length} items`);
     await flush("running", true);
 
-    for (const href of urls) {
-      if (offlineCancelRequested) break;
-      const cache = await caches.open(cacheNameFor(href));
-      if (await cache.match(href)) {
-        done += 1;
-        await note(`Already ready: ${pathOf(href)}`);
-        continue;
-      }
-      try {
-        const res = await asDirectResponse(await fetch(href, { cache: "no-store", priority: "low", signal: ctrl.signal }));
-        if (res && res.ok && TRUSTED_TYPES.has(res.type)) {
-          await cache.put(href, res);
+    /* The visitor is waiting on this page and watching the bar, so several are
+       fetched at once. The background fill, which runs while nobody is waiting,
+       deliberately does not do this. */
+    let cursor = 0;
+    const takeNext = async () => {
+      while (!offlineCancelRequested) {
+        const href = urls[cursor];
+        cursor += 1;
+        if (href === undefined) return;
+        const cache = await caches.open(cacheNameFor(href));
+        if (await cache.match(href)) {
           done += 1;
-          await note(`Downloaded: ${pathOf(href)}`);
-        } else {
-          await note(`Skipped: ${pathOf(href)}`);
+          await note(`Already ready: ${pathOf(href)}`);
+          continue;
         }
-      } catch (err) {
-        if (err && err.name === "AbortError") break;
-        await note(`Could not download: ${pathOf(href)}`);
+        try {
+          const res = await asDirectResponse(await fetch(href, { cache: "no-store", priority: "low", signal: ctrl.signal }));
+          if (res && res.ok && TRUSTED_TYPES.has(res.type)) {
+            await cache.put(href, res);
+            done += 1;
+            await note(`Downloaded: ${pathOf(href)}`);
+          } else {
+            await note(`Skipped: ${pathOf(href)}`);
+          }
+        } catch (err) {
+          if (err && err.name === "AbortError") return;
+          await note(`Could not download: ${pathOf(href)}`);
+        }
       }
-    }
+    };
+    const lanes = Math.max(1, Math.min(OFFLINE_CONCURRENCY, urls.length));
+    await Promise.all(Array.from({ length: lanes }, takeNext));
+
     pendingLogs.push(offlineCancelRequested ? "Download canceled" : "Offline access is ready");
     await flush(offlineCancelRequested ? "canceled" : "complete", true);
+    const state = await offlineState();
+    if (state) await sendOfflineState(state);
   } finally {
     /* Released on every path, including a failed progress report, so the
        background fill is never left waiting on a download that has ended. */
@@ -488,18 +660,19 @@ async function downloadSelectedOffline(data) {
 
 async function startLocaleFill(locale, skipHeavy) {
   if (typeof locale !== "string" || !/^[A-Za-z0-9-]+$/.test(locale)) return;
-  let manifest;
-  try {
-    manifest = await (await fetch(FILL_PRECACHE, { cache: "no-store" })).json();
-  } catch {
-    return;
-  }
+  const manifest = await readManifest();
+  if (!manifest) return;
   enqueueFill(manifest.core || []);
   const chrome = manifest.chromeByLocale || {};
   const rsc = manifest.rscByLocale || {};
   enqueueFill(chrome[locale] || []);
   enqueueFill(rsc[locale] || []);
   enqueueFill((manifest.toolsByLocale && manifest.toolsByLocale[locale]) || []);
+  /* Compatibility addresses for old links, and the payloads that open them.
+     Prefetched like the rest, but never counted towards what a language needs:
+     they are not offered in Offline access, so counting them would mean no
+     language could ever be reported as ready. */
+  enqueueFill((manifest.extrasByLocale && manifest.extrasByLocale[locale]) || []);
   /* Every other language is a convenience for switching later. On a metered or
      slow connection only the language in use is filled, so the visitor keeps
      their data allowance and the connection stays usable. */
@@ -509,6 +682,10 @@ async function startLocaleFill(locale, skipHeavy) {
       enqueueFill(urls);
     }
     for (const [other, urls] of Object.entries(rsc)) {
+      if (other === locale) continue;
+      enqueueFill(urls);
+    }
+    for (const [other, urls] of Object.entries(manifest.extrasByLocale || {})) {
       if (other === locale) continue;
       enqueueFill(urls);
     }
@@ -553,6 +730,29 @@ self.addEventListener("message", (event) => {
   if (data.type === "OFFLINE_CANCEL") {
     offlineCancelRequested = true;
     offlineAbort?.abort();
+    return;
+  }
+  if (data.type === "OFFLINE_STATUS") {
+    event.waitUntil(
+      (async () => {
+        const state = await offlineState();
+        if (state) await sendOfflineState(state);
+      })()
+    );
+    return;
+  }
+  if (data.type === "OFFLINE_REMOVE") {
+    event.waitUntil(
+      (async () => {
+        await removeOffline({
+          mode: typeof data.mode === "string" ? data.mode : "all",
+          locale: typeof data.locale === "string" ? data.locale : undefined,
+          tool: typeof data.tool === "string" ? data.tool : undefined,
+        });
+        const state = await offlineState();
+        if (state) await sendOfflineState(state);
+      })()
+    );
     return;
   }
   if (data.type === "OFFLINE_DOWNLOAD") {

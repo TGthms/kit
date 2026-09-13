@@ -221,11 +221,13 @@ describe("backup host robots", () => {
 });
 
 describe("sitemap", () => {
-  it("indexes first-class locales and omits chrome and /zh/", async () => {
+  it("indexes first-class locales and omits the root, chrome, and /zh/", async () => {
     const { default: sitemap } = await import("@/app/sitemap");
     const urls = sitemap().map((entry) => entry.url);
-    expect(urls[0]).toBe(`${SITE_URL}/`);
-    expect(sitemap()[0].lastModified).toBeInstanceOf(Date);
+    /* `/` forwards to a language rather than being a page, so listing it would
+       offer a redirecting address as a destination. */
+    expect(urls).not.toContain(`${SITE_URL}/`);
+    expect(urls.every((url) => url.startsWith(`${SITE_URL}/`))).toBe(true);
     expect(urls.some((url) => url.endsWith("/en/"))).toBe(true);
     expect(urls.some((url) => url.includes("/en/c/pdf/"))).toBe(true);
     expect(urls.some((url) => url.includes("/zh-Hans/tools/world-clock/"))).toBe(true);

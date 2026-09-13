@@ -482,7 +482,17 @@
     "offlineCanceled": "Nedladdning avbruten",
     "offlineBackgroundNote": "Du kan lämna sidan medan nedladdningen fortsätter.",
     "offlineLog": "Nedladdningsdetaljer",
-    "offlineOpen": "Öppna offlineåtkomst"
+    "offlineOpen": "Öppna offlineåtkomst",
+    "offlineStatus": "Det som är sparat",
+    "offlineReady": "Klar",
+    "offlineNotSaved": "Inte sparat",
+    "offlinePartial": "{done} av {total} sparade",
+    "offlineStoredVersion": "Hämtat för Kit {version}",
+    "offlineOutdated": "Kit {version} finns tillgängligt. Kopiorna som sparats på den här enheten kommer från en tidigare version.",
+    "offlineUpdate": "Uppdatera nedladdningar",
+    "offlineRemoveAll": "Ta bort alla nedladdningar",
+    "offlineRemoveConfirm": "Ta bort alla sparade språk, verktygssidor och mediemotorer från den här enheten?",
+    "offlineCleared": "Nedladdat innehåll togs bort när Kit uppdaterades. Vill du hämta samma språk och verktyg igen?"
   },
   "shortcuts": {
     "title": "Kortkommandon",

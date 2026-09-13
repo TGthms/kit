@@ -7,6 +7,7 @@ const here = dirname(fileURLToPath(import.meta.url));
 const css = readFileSync(join(here, "../../../src/app/globals.css"), "utf8");
 const floatingNav = readFileSync(join(here, "../ui/floating-nav.tsx"), "utf8");
 const shell = readFileSync(join(here, "../layout/app-shell.tsx"), "utf8");
+const tabBar = readFileSync(join(here, "../layout/tab-bar.tsx"), "utf8");
 const pill = readFileSync(join(here, "../ui/gliding-pill.tsx"), "utf8");
 
 /** The declaration block for an exact selector, so assertions cannot leak into a
@@ -25,37 +26,49 @@ describe("mobile PWA tab bar material", () => {
     expect(floatingNav).not.toMatch(/glass-heavy/);
   });
 
+  it("keeps the bar's own markup out of the shell", () => {
+    expect(shell).toMatch(/from "\.\/tab-bar"/);
+    expect(shell).toMatch(/<TabBar pathname=\{pathname\} \/>/);
+    expect(shell).not.toMatch(/gliding-pill/);
+  });
+
   it("springs the pill with a slight overshoot and pops the selected icon", () => {
     expect(css).toMatch(/--ease-tab-spring:\s*cubic-bezier\(0\.22,\s*1\.18,\s*0\.36,\s*1\)/);
     expect(css).toMatch(/gliding-pill-fast[\s\S]{0,180}ease-tab-spring/);
     expect(css).toMatch(/@keyframes tab-icon-spring/);
-    expect(shell).toMatch(/tab-icon/);
-    expect(shell).toMatch(/scrollActiveTabToTop/);
+    expect(tabBar).toMatch(/tab-icon/);
+    expect(tabBar).toMatch(/scrollActiveTabToTop/);
   });
 
   it("does not scale the tab hit target", () => {
-    expect(shell).not.toMatch(/pressable-soft[^"]*scale-/);
+    expect(tabBar).not.toMatch(/pressable-soft[^"]*scale-/);
   });
 
   it("hides the bar while the keyboard covers the bottom and removes it from focus", () => {
     expect(floatingNav).toMatch(/keyboardHidden/);
     expect(floatingNav).toMatch(/inert=\{keyboardHidden \|\| undefined\}/);
-    expect(shell).toMatch(/tabIndex=\{keyboardHidden \? -1 : undefined\}/);
+    expect(tabBar).toMatch(/tabIndex=\{keyboardHidden \? -1 : undefined\}/);
     expect(css).toMatch(/\.floating-nav\[data-keyboard\] \.floating-nav-shell/);
   });
 
   it("keeps the active pill visible through hydration", () => {
-    expect(shell).toMatch(/fallbackIndex=\{Math\.max\(0, activeIndex\)\}/);
-    expect(shell).toMatch(/fallbackCount=\{nav\.length\}/);
+    expect(tabBar).toMatch(/fallbackIndex=\{Math\.max\(0, activeIndex\)\}/);
+    expect(tabBar).toMatch(/fallbackCount=\{nav\.length\}/);
     expect(css).toMatch(/\.gliding-pill-fallback:not\(\[data-ready\]\)/);
     expect(css).toMatch(/\.gliding-pill:not\(\[data-hydrated\]\)/);
   });
 
   it("starts selection feedback before pathname changes", () => {
-    expect(shell).toMatch(/pendingHref/);
-    expect(shell).toMatch(/setPendingHref\(href\)/);
-    expect(shell).toMatch(/selectedHref/);
-    expect(shell).toMatch(/data-pop=\{selected && \(pending \|\| popHref === href\)/);
+    expect(tabBar).toMatch(/pendingHref/);
+    expect(tabBar).toMatch(/setPendingHref\(href\)/);
+    expect(tabBar).toMatch(/selectedHref/);
+    expect(tabBar).toMatch(/data-pop=\{selected && \(pending \|\| popHref === href\)/);
+  });
+
+  it("spends that early feedback on the route change that fulfils it", () => {
+    // Without this the optimistic tab outlives the navigation, and going back
+    // afterwards leaves the highlight on the tab that was left.
+    expect(tabBar).toMatch(/setPendingHref\(null\)/);
   });
 
   it("measures before the first paint so the pill can animate immediately", () => {
@@ -88,9 +101,9 @@ describe("mobile PWA tab bar material", () => {
   });
 
   it("marks navigation as client-ready after hydration", () => {
-    expect(shell).toMatch(/useHydrated\(\)/);
+    expect(tabBar).toMatch(/useHydrated\(\)/);
     // An anchor already carries its navigation intent in `href`.
-    expect(shell).not.toMatch(/data-navigation-intent/);
+    expect(tabBar).not.toMatch(/data-navigation-intent/);
   });
 
   it("drops blur and spring when accessibility preferences ask", () => {
@@ -103,8 +116,8 @@ describe("mobile PWA tab bar material", () => {
   });
 
   it("uses a stadium highlight that matches the bar ends", () => {
-    expect(shell).toMatch(/gliding-pill-fast rounded-full/);
-    expect(shell).toMatch(/absolute inset-0 rounded-full/);
-    expect(shell).not.toMatch(/rounded-\[1\.5rem\]/);
+    expect(tabBar).toMatch(/gliding-pill-fast rounded-full/);
+    expect(tabBar).toMatch(/absolute inset-0 rounded-full/);
+    expect(tabBar).not.toMatch(/rounded-\[1\.5rem\]/);
   });
 });

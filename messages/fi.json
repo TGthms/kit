@@ -482,7 +482,17 @@
     "offlineCanceled": "Lataus peruutettu",
     "offlineBackgroundNote": "Voit poistua sivulta latauksen jatkuessa.",
     "offlineLog": "Latauksen tiedot",
-    "offlineOpen": "Avaa offline-käyttö"
+    "offlineOpen": "Avaa offline-käyttö",
+    "offlineStatus": "Mitä on tallennettu",
+    "offlineReady": "Valmis",
+    "offlineNotSaved": "Ei tallennettu",
+    "offlinePartial": "{done}/{total} tallennettu",
+    "offlineStoredVersion": "Tallennettu Kit-versiolle {version}",
+    "offlineOutdated": "Kit {version} on saatavilla. Tälle laitteelle tallennetut kopiot ovat aiemmasta versiosta.",
+    "offlineUpdate": "Päivitä tallennukset",
+    "offlineRemoveAll": "Poista kaikki tallennukset",
+    "offlineRemoveConfirm": "Poistetaanko tästä laitteesta kaikki tallennetut kielet, työkalusivut ja mediamoottorit?",
+    "offlineCleared": "Ladatut sisällöt poistettiin Kit-päivityksen yhteydessä. Ladataanko samat kielet ja työkalut uudelleen?"
   },
   "shortcuts": {
     "title": "Pikanäppäimet",

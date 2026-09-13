@@ -482,7 +482,17 @@
     "offlineCanceled": "Đã hủy tải xuống",
     "offlineBackgroundNote": "Bạn có thể rời trang trong khi tải xuống tiếp tục.",
     "offlineLog": "Chi tiết tải xuống",
-    "offlineOpen": "Mở truy cập ngoại tuyến"
+    "offlineOpen": "Mở truy cập ngoại tuyến",
+    "offlineStatus": "Nội dung đã lưu",
+    "offlineReady": "Sẵn sàng",
+    "offlineNotSaved": "Chưa lưu",
+    "offlinePartial": "Đã lưu {done} trên {total}",
+    "offlineStoredVersion": "Đã tải cho Kit {version}",
+    "offlineOutdated": "Đã có Kit {version}. Các bản lưu trên thiết bị này thuộc bản phát hành trước.",
+    "offlineUpdate": "Cập nhật nội dung tải",
+    "offlineRemoveAll": "Xóa mọi nội dung đã tải",
+    "offlineRemoveConfirm": "Xóa khỏi thiết bị này mọi ngôn ngữ, trang công cụ và công cụ đa phương tiện đã lưu?",
+    "offlineCleared": "Nội dung đã tải bị xóa khi Kit cập nhật. Tải lại đúng ngôn ngữ và công cụ đó?"
   },
   "shortcuts": {
     "title": "Phím tắt",

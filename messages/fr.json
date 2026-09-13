@@ -482,7 +482,17 @@
     "offlineCanceled": "Téléchargement annulé",
     "offlineBackgroundNote": "Vous pouvez quitter cette page pendant le téléchargement.",
     "offlineLog": "Détails du téléchargement",
-    "offlineOpen": "Ouvrir l’accès hors ligne"
+    "offlineOpen": "Ouvrir l’accès hors ligne",
+    "offlineStatus": "Ce qui est enregistré",
+    "offlineReady": "Prêt",
+    "offlineNotSaved": "Non enregistré",
+    "offlinePartial": "{done} sur {total} enregistrés",
+    "offlineStoredVersion": "Téléchargé pour Kit {version}",
+    "offlineOutdated": "Kit {version} est disponible. Les copies enregistrées sur cet appareil proviennent d'une version antérieure.",
+    "offlineUpdate": "Mettre à jour les téléchargements",
+    "offlineRemoveAll": "Supprimer tous les téléchargements",
+    "offlineRemoveConfirm": "Supprimer de cet appareil toutes les langues, pages d'outils et moteurs multimédias enregistrés ?",
+    "offlineCleared": "Le contenu téléchargé a été supprimé lors de la mise à jour de Kit. Télécharger à nouveau les mêmes langues et outils ?"
   },
   "shortcuts": {
     "title": "Raccourcis clavier",

@@ -482,7 +482,17 @@
     "offlineCanceled": "Загрузка отменена",
     "offlineBackgroundNote": "Можно покинуть страницу, пока загрузка продолжается.",
     "offlineLog": "Сведения о загрузке",
-    "offlineOpen": "Открыть офлайн-доступ"
+    "offlineOpen": "Открыть офлайн-доступ",
+    "offlineStatus": "Что сохранено",
+    "offlineReady": "Готово",
+    "offlineNotSaved": "Не сохранено",
+    "offlinePartial": "Сохранено {done} из {total}",
+    "offlineStoredVersion": "Загружено для Kit {version}",
+    "offlineOutdated": "Доступна версия Kit {version}. Сохранённые на этом устройстве копии относятся к предыдущему выпуску.",
+    "offlineUpdate": "Обновить загрузки",
+    "offlineRemoveAll": "Удалить все загрузки",
+    "offlineRemoveConfirm": "Удалить с этого устройства все сохранённые языки, страницы инструментов и медиадвижки?",
+    "offlineCleared": "Содержимое было удалено при обновлении Kit. Загрузить те же языки и инструменты снова?"
   },
   "shortcuts": {
     "title": "Горячие клавиши",

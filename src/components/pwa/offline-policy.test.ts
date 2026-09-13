@@ -73,6 +73,142 @@ describe("offline indicator placement", () => {
   });
 });
 
+describe("what is saved", () => {
+  it("reports the state from the cache keys rather than by probing each address", () => {
+    expect(sw).toMatch(/async function cachedPathnames\(\)/);
+    expect(sw).toMatch(/\(await caches\.open\(name\)\)\.keys\(\)/);
+    expect(sw).toMatch(/async function offlineState\(\)/);
+    expect(sw).toMatch(/function countPresent\(urls, present\)/);
+    // A generation the page can compare against, so it can tell when a build
+    // has replaced what was saved.
+    expect(sw).toMatch(/generation: CACHE\.replace\(\/\^kit-shell-\/u, ""\)/);
+  });
+
+  it("counts a language as ready only when its pages and payloads are all there", () => {
+    const fn = sw.slice(sw.indexOf("async function offlineState"), sw.indexOf("async function removeOffline"));
+    expect(fn).toMatch(/const pages = \[\.\.\.\(chrome\[locale\] \|\| \[\]\), \.\.\.\(toolsByLocale\[locale\] \|\| \[\]\)\]/);
+    expect(fn).toMatch(/const done = countPresent\(pages, shell\) \+ countPresent\(payloads, rsc\)/);
+    expect(fn).toMatch(/ready: total > 0 && done === total/);
+    /* Compatibility addresses for old links are prefetched but never counted:
+       Offline access cannot offer them, so counting them would leave every
+       language permanently incomplete. */
+    expect(fn).not.toMatch(/extrasByLocale/);
+  });
+
+  it("prefetches the compatibility addresses without promising them", () => {
+    const fill = sw.slice(sw.indexOf("async function startLocaleFill"), sw.indexOf("function isTrustedMessage"));
+    expect(fill).toMatch(/enqueueFill\(\(manifest\.extrasByLocale && manifest\.extrasByLocale\[locale\]\) \|\| \[\]\)/);
+  });
+
+  it("keeps the resource list on the device so the report works offline", () => {
+    expect(sw).toMatch(/await cache\.add\(FILL_PRECACHE\)/);
+    const read = sw.slice(sw.indexOf("async function readManifest"), sw.indexOf("async function cachedPathnames"));
+    expect(read).toMatch(/await caches\.match\(FILL_PRECACHE\)/);
+    expect(read).toMatch(/fetch\(FILL_PRECACHE, \{ cache: "no-store" \}\)/);
+  });
+
+  it("sends the report on its own message type so it cannot be read as progress", () => {
+    expect(sw).toMatch(/async function sendOfflineState\(state\)/);
+    expect(sw).toMatch(/postMessage\(\{ type: "OFFLINE_STATE", state \}\)/);
+    expect(sw).not.toMatch(/sendOfflineProgress\(\{ status: "status"/);
+  });
+
+  it("answers a status request and reports again once a download finishes", () => {
+    expect(sw).toMatch(/if \(data\.type === "OFFLINE_STATUS"\)/);
+    const download = sw.slice(sw.indexOf("async function downloadSelectedOffline"), sw.indexOf("async function startLocaleFill"));
+    expect(download).toMatch(/const state = await offlineState\(\);\n\s*if \(state\) await sendOfflineState\(state\)/);
+  });
+});
+
+describe("removing downloads", () => {
+  it("takes a scope, and only from Kit's own caches", () => {
+    expect(sw).toMatch(/async function removeOffline\(scope\)/);
+    expect(sw).toMatch(/if \(data\.type === "OFFLINE_REMOVE"\)/);
+    const fn = sw.slice(sw.indexOf("async function removeOffline"), sw.indexOf("async function selectedOfflineUrls"));
+    expect(fn).toMatch(/if \(scope\.mode === "locale"/);
+    expect(fn).toMatch(/if \(scope\.mode === "tool"/);
+    expect(fn).toMatch(/await caches\.open\(CACHE\)/);
+    expect(fn).toMatch(/await caches\.open\(RSC_CACHE\)/);
+  });
+
+  it("leaves the application's own files alone", () => {
+    const fn = sw.slice(sw.indexOf("async function removeOffline"), sw.indexOf("async function selectedOfflineUrls"));
+    // The shell's scripts, styles and icons are the app itself, not something
+    // chosen on the Offline access page.
+    expect(fn).not.toMatch(/manifest\.core/);
+    expect(fn).toMatch(/for \(const url of manifest\.engines \|\| \[\]\) targets\.add\(url\)/);
+  });
+
+  it("takes both the page and its payload for a removed tool", () => {
+    const fn = sw.slice(sw.indexOf('scope.mode === "tool"'), sw.indexOf("const shellCache = await caches.open(CACHE)"));
+    expect(fn).toMatch(/targets\.add\(url\)/);
+    expect(fn).toMatch(/targets\.add\(`\$\{url\}index\.txt`\)/);
+  });
+});
+
+describe("download concurrency", () => {
+  it("fetches several at once only while the visitor is waiting", () => {
+    expect(sw).toMatch(/const OFFLINE_CONCURRENCY = 6/);
+    const download = sw.slice(sw.indexOf("async function downloadSelectedOffline"), sw.indexOf("async function startLocaleFill"));
+    expect(download).toMatch(/const lanes = Math\.max\(1, Math\.min\(OFFLINE_CONCURRENCY, urls\.length\)\)/);
+    expect(download).toMatch(/await Promise\.all\(Array\.from\(\{ length: lanes \}, takeNext\)\)/);
+    expect(download).not.toMatch(/for \(const href of urls\)/);
+  });
+
+  it("leaves the background fill fetching one at a time", () => {
+    const fill = sw.slice(sw.indexOf("async function pumpFill"), sw.indexOf("async function sendOfflineProgress"));
+    expect(fill).toMatch(/const href = fillQueue\.shift\(\)/);
+    expect(fill).not.toMatch(/Promise\.all/);
+    expect(fill).not.toMatch(/OFFLINE_CONCURRENCY/);
+  });
+
+  it("runs the visitor's download ahead of the background fill", () => {
+    const download = sw.slice(sw.indexOf("async function downloadSelectedOffline"), sw.indexOf("async function startLocaleFill"));
+    expect(download).toMatch(/offlineBusy = true/);
+    expect(download).toMatch(/if \(fillAbort\) fillAbort\.abort\(\)/);
+  });
+});
+
+describe("offline page state", () => {
+  it("asks the worker what is saved when the page opens", () => {
+    expect(offlineAccess).toMatch(/postMessage\(\{ type: "OFFLINE_STATUS" \}\)/);
+  });
+
+  it("reads the record of what was downloaded from storage rather than copying it", () => {
+    expect(offlineAccess).toMatch(/useSyncExternalStore\(subscribePlan, getPlanSnapshot, getPlanServerSnapshot\)/);
+    expect(offlineAccess).not.toMatch(/setPlan\(loadPlan\(\)\)/);
+  });
+
+  it("records only a download that reported completion", () => {
+    const handler = offlineAccess.slice(offlineAccess.indexOf('data.type === "OFFLINE_STATE"'));
+    expect(handler).toMatch(/status === "done" && request\.current/);
+    expect(handler).toMatch(/savePlan\(\{/);
+  });
+
+  it("forgets the record when the visitor removes everything", () => {
+    expect(offlineAccess).toMatch(/clearPlan\(\)/);
+    expect(offlineAccess).toMatch(/confirm\(t\("offlineRemoveConfirm"\)\)/);
+  });
+
+  it("offers a language list with the same select-all and clear as the tools", () => {
+    const languages = offlineAccess.slice(offlineAccess.indexOf('t("offlineLanguagesDesc")'), offlineAccess.indexOf('t("offlineToolsDesc")'));
+    expect(languages).toMatch(/setSelectedLocales\(\[\.\.\.locales\]\)/);
+    expect(languages).toMatch(/setSelectedLocales\(\[\]\)/);
+  });
+
+  it("offers to remove a single language or tool that is saved", () => {
+    expect(offlineAccess).toMatch(/remove\(\{ mode: "locale", locale: value \}\)/);
+    expect(offlineAccess).toMatch(/remove\(\{ mode: "tool", tool: tool\.id \}\)/);
+  });
+
+  it("reports saved content that belongs to an earlier release and re-runs that selection", () => {
+    expect(offlineAccess).toMatch(/planState === "stale" \|\| planState === "cleared"/);
+    expect(offlineAccess).toMatch(/t\("offlineOutdated", \{ version: APP_VERSION \}\)/);
+    expect(offlineAccess).toMatch(/t\("offlineCleared"\)/);
+    expect(offlineAccess).toMatch(/t\("offlineStoredVersion", \{ version: plan\.version \}\)/);
+  });
+});
+
 describe("How Kit works offline copy", () => {
   it("describes the explicit offline preparation", () => {
     for (const key of ["whyOfflineBody", "exceptionOffline"] as const) {

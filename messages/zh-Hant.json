@@ -482,7 +482,17 @@
     "offlineCanceled": "下載已取消",
     "offlineBackgroundNote": "下載繼續時可以離開此頁面。",
     "offlineLog": "下載詳細資料",
-    "offlineOpen": "開啟離線存取"
+    "offlineOpen": "開啟離線存取",
+    "offlineStatus": "已儲存的內容",
+    "offlineReady": "已就緒",
+    "offlineNotSaved": "未儲存",
+    "offlinePartial": "已儲存 {done}/{total}",
+    "offlineStoredVersion": "已為 Kit {version} 下載",
+    "offlineOutdated": "Kit {version} 已發布。此裝置上儲存的副本來自較早版本。",
+    "offlineUpdate": "更新下載內容",
+    "offlineRemoveAll": "移除所有下載內容",
+    "offlineRemoveConfirm": "從此裝置移除所有已儲存的語言、工具頁面和媒體引擎？",
+    "offlineCleared": "Kit 更新時已移除下載的內容。要重新下載相同的語言和工具嗎？"
   },
   "shortcuts": {
     "title": "键盤快捷键",

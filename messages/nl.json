@@ -482,7 +482,17 @@
     "offlineCanceled": "Download geannuleerd",
     "offlineBackgroundNote": "Je kunt deze pagina verlaten terwijl de download doorgaat.",
     "offlineLog": "Downloaddetails",
-    "offlineOpen": "Offline toegang openen"
+    "offlineOpen": "Offline toegang openen",
+    "offlineStatus": "Wat er is opgeslagen",
+    "offlineReady": "Gereed",
+    "offlineNotSaved": "Niet opgeslagen",
+    "offlinePartial": "{done} van {total} opgeslagen",
+    "offlineStoredVersion": "Gedownload voor Kit {version}",
+    "offlineOutdated": "Kit {version} is beschikbaar. De op dit apparaat opgeslagen kopieën komen uit een eerdere versie.",
+    "offlineUpdate": "Downloads bijwerken",
+    "offlineRemoveAll": "Alle downloads verwijderen",
+    "offlineRemoveConfirm": "Alle opgeslagen talen, gereedschapspagina's en mediamotoren van dit apparaat verwijderen?",
+    "offlineCleared": "Gedownloade inhoud is verwijderd bij het bijwerken van Kit. Dezelfde talen en gereedschappen opnieuw downloaden?"
   },
   "shortcuts": {
     "title": "Sneltoetsen",

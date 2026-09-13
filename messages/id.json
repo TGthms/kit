@@ -482,7 +482,17 @@
     "offlineCanceled": "Unduhan dibatalkan",
     "offlineBackgroundNote": "Anda dapat meninggalkan halaman saat unduhan berlanjut.",
     "offlineLog": "Detail unduhan",
-    "offlineOpen": "Buka akses offline"
+    "offlineOpen": "Buka akses offline",
+    "offlineStatus": "Yang tersimpan",
+    "offlineReady": "Siap",
+    "offlineNotSaved": "Belum disimpan",
+    "offlinePartial": "{done} dari {total} tersimpan",
+    "offlineStoredVersion": "Diunduh untuk Kit {version}",
+    "offlineOutdated": "Kit {version} tersedia. Salinan yang tersimpan di perangkat ini berasal dari versi sebelumnya.",
+    "offlineUpdate": "Perbarui unduhan",
+    "offlineRemoveAll": "Hapus semua unduhan",
+    "offlineRemoveConfirm": "Hapus semua bahasa, halaman alat, dan mesin media yang tersimpan dari perangkat ini?",
+    "offlineCleared": "Konten yang diunduh dihapus saat Kit diperbarui. Unduh bahasa dan alat yang sama lagi?"
   },
   "shortcuts": {
     "title": "Pintasan papan ketik",

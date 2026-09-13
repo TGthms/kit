@@ -482,7 +482,17 @@
     "offlineCanceled": "Stahování zrušeno",
     "offlineBackgroundNote": "Během stahování můžete stránku opustit.",
     "offlineLog": "Podrobnosti stahování",
-    "offlineOpen": "Otevřít přístup offline"
+    "offlineOpen": "Otevřít přístup offline",
+    "offlineStatus": "Co je uloženo",
+    "offlineReady": "Připraveno",
+    "offlineNotSaved": "Neuloženo",
+    "offlinePartial": "Uloženo {done} z {total}",
+    "offlineStoredVersion": "Staženo pro Kit {version}",
+    "offlineOutdated": "Je dostupná verze Kit {version}. Kopie uložené v tomto zařízení pocházejí ze staršího vydání.",
+    "offlineUpdate": "Aktualizovat stažené",
+    "offlineRemoveAll": "Odebrat všechny stažené položky",
+    "offlineRemoveConfirm": "Odebrat z tohoto zařízení všechny uložené jazyky, stránky nástrojů a mediální moduly?",
+    "offlineCleared": "Stažený obsah byl při aktualizaci Kit odebrán. Stáhnout stejné jazyky a nástroje znovu?"
   },
   "shortcuts": {
     "title": "Klávesové zkratky",

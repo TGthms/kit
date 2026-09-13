@@ -482,7 +482,17 @@
     "offlineCanceled": "Download canceled",
     "offlineBackgroundNote": "You can leave this page while the download continues. Kit pauses its optional background work when you interact.",
     "offlineLog": "Download details",
-    "offlineOpen": "Open offline access"
+    "offlineOpen": "Open offline access",
+    "offlineStatus": "What's saved",
+    "offlineReady": "Ready",
+    "offlineNotSaved": "Not saved",
+    "offlinePartial": "{done} of {total} saved",
+    "offlineStoredVersion": "Downloaded for Kit {version}",
+    "offlineOutdated": "Kit {version} is available. The copies saved on this device are from an earlier release.",
+    "offlineCleared": "Downloaded content was removed when Kit updated. Download the same languages and tools again?",
+    "offlineUpdate": "Update downloads",
+    "offlineRemoveAll": "Remove all downloads",
+    "offlineRemoveConfirm": "Remove every saved language, tool page, and media engine from this device?"
   },
   "shortcuts": {
     "title": "Keyboard shortcuts",

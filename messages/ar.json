@@ -482,7 +482,17 @@
     "offlineCanceled": "تم إلغاء التنزيل",
     "offlineBackgroundNote": "يمكنك مغادرة الصفحة أثناء استمرار التنزيل.",
     "offlineLog": "تفاصيل التنزيل",
-    "offlineOpen": "فتح الوصول دون اتصال"
+    "offlineOpen": "فتح الوصول دون اتصال",
+    "offlineStatus": "المحفوظ حاليًا",
+    "offlineReady": "جاهز",
+    "offlineNotSaved": "غير محفوظ",
+    "offlinePartial": "تم حفظ {done} من {total}",
+    "offlineStoredVersion": "تم التنزيل لـ Kit {version}",
+    "offlineOutdated": "أصبح Kit {version} متاحًا. النسخ المحفوظة على هذا الجهاز من إصدار أقدم.",
+    "offlineUpdate": "تحديث التنزيلات",
+    "offlineRemoveAll": "إزالة كل التنزيلات",
+    "offlineRemoveConfirm": "إزالة كل لغة وصفحة أداة ومحرك وسائط محفوظ من هذا الجهاز؟",
+    "offlineCleared": "تمت إزالة المحتوى الذي نزّلته عند تحديث Kit. هل تريد تنزيل اللغات والأدوات نفسها مرة أخرى؟"
   },
   "shortcuts": {
     "title": "اختصارات لوحة المفاتيح",

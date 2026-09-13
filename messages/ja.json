@@ -482,7 +482,17 @@
     "offlineCanceled": "ダウンロードをキャンセルしました",
     "offlineBackgroundNote": "ダウンロード中にこのページを離れても続行します。",
     "offlineLog": "ダウンロードの詳細",
-    "offlineOpen": "オフラインアクセスを開く"
+    "offlineOpen": "オフラインアクセスを開く",
+    "offlineStatus": "保存されているもの",
+    "offlineReady": "準備完了",
+    "offlineNotSaved": "未保存",
+    "offlinePartial": "{total} 件中 {done} 件を保存済み",
+    "offlineStoredVersion": "Kit {version} 用にダウンロード済み",
+    "offlineOutdated": "Kit {version} が利用可能です。この端末に保存された内容は以前のリリースのものです。",
+    "offlineUpdate": "ダウンロードを更新",
+    "offlineRemoveAll": "すべてのダウンロードを削除",
+    "offlineRemoveConfirm": "この端末から保存済みの言語、ツールページ、メディアエンジンをすべて削除しますか？",
+    "offlineCleared": "Kit の更新時にダウンロード済みの内容が削除されました。同じ言語とツールをもう一度ダウンロードしますか？"
   },
   "shortcuts": {
     "title": "キーボードショートカット",

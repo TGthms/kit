@@ -482,7 +482,17 @@
     "offlineCanceled": "Nedlasting avbrutt",
     "offlineBackgroundNote": "Du kan forlate siden mens nedlastingen fortsetter.",
     "offlineLog": "Nedlastingsdetaljer",
-    "offlineOpen": "Åpne frakoblet tilgang"
+    "offlineOpen": "Åpne frakoblet tilgang",
+    "offlineStatus": "Dette er lagret",
+    "offlineReady": "Klar",
+    "offlineNotSaved": "Ikke lagret",
+    "offlinePartial": "{done} av {total} lagret",
+    "offlineStoredVersion": "Lastet ned for Kit {version}",
+    "offlineOutdated": "Kit {version} er tilgjengelig. Kopiene som er lagret på denne enheten, er fra en tidligere utgivelse.",
+    "offlineUpdate": "Oppdater nedlastinger",
+    "offlineRemoveAll": "Fjern alle nedlastinger",
+    "offlineRemoveConfirm": "Fjerne alle lagrede språk, verktøysider og mediemotorer fra denne enheten?",
+    "offlineCleared": "Nedlastet innhold ble fjernet da Kit ble oppdatert. Vil du laste ned de samme språkene og verktøyene igjen?"
   },
   "shortcuts": {
     "title": "Tastatursnarveier",

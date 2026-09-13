@@ -482,7 +482,17 @@
     "offlineCanceled": "ยกเลิกการดาวน์โหลดแล้ว",
     "offlineBackgroundNote": "คุณออกจากหน้านี้ได้ขณะดาวน์โหลดต่อ",
     "offlineLog": "รายละเอียดการดาวน์โหลด",
-    "offlineOpen": "เปิดการใช้งานออฟไลน์"
+    "offlineOpen": "เปิดการใช้งานออฟไลน์",
+    "offlineStatus": "สิ่งที่บันทึกไว้",
+    "offlineReady": "พร้อมใช้",
+    "offlineNotSaved": "ยังไม่ได้บันทึก",
+    "offlinePartial": "บันทึกแล้ว {done} จาก {total}",
+    "offlineStoredVersion": "ดาวน์โหลดสำหรับ Kit {version}",
+    "offlineOutdated": "มี Kit {version} ให้ใช้แล้ว สำเนาที่บันทึกไว้ในอุปกรณ์นี้มาจากเวอร์ชันก่อนหน้า",
+    "offlineUpdate": "อัปเดตการดาวน์โหลด",
+    "offlineRemoveAll": "ลบการดาวน์โหลดทั้งหมด",
+    "offlineRemoveConfirm": "ลบภาษา หน้าเครื่องมือ และเอนจินสื่อที่บันทึกไว้ทั้งหมดออกจากอุปกรณ์นี้หรือไม่",
+    "offlineCleared": "เนื้อหาที่ดาวน์โหลดถูกลบเมื่อ Kit อัปเดต ต้องการดาวน์โหลดภาษาและเครื่องมือเดิมอีกครั้งหรือไม่"
   },
   "shortcuts": {
     "title": "ทางลัดแป้นพิมพ์",

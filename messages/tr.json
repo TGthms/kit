@@ -482,7 +482,17 @@
     "offlineCanceled": "İndirme iptal edildi",
     "offlineBackgroundNote": "İndirme devam ederken bu sayfadan ayrılabilirsiniz.",
     "offlineLog": "İndirme ayrıntıları",
-    "offlineOpen": "Çevrimdışı erişimi aç"
+    "offlineOpen": "Çevrimdışı erişimi aç",
+    "offlineStatus": "Kayıtlı olanlar",
+    "offlineReady": "Hazır",
+    "offlineNotSaved": "Kaydedilmedi",
+    "offlinePartial": "{total} öğeden {done} tanesi kayıtlı",
+    "offlineStoredVersion": "Kit {version} için indirildi",
+    "offlineOutdated": "Kit {version} kullanılabilir. Bu cihazda kayıtlı kopyalar önceki bir sürüme ait.",
+    "offlineUpdate": "İndirmeleri güncelle",
+    "offlineRemoveAll": "Tüm indirmeleri kaldır",
+    "offlineRemoveConfirm": "Bu cihazdan kayıtlı tüm diller, araç sayfaları ve medya motorları kaldırılsın mı?",
+    "offlineCleared": "Kit güncellenirken indirilen içerik kaldırıldı. Aynı diller ve araçlar yeniden indirilsin mi?"
   },
   "shortcuts": {
     "title": "Klavye kısayolları",

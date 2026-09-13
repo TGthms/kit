@@ -482,7 +482,17 @@
     "offlineCanceled": "Download cancelado",
     "offlineBackgroundNote": "Você pode sair desta página enquanto o download continua.",
     "offlineLog": "Detalhes do download",
-    "offlineOpen": "Abrir acesso offline"
+    "offlineOpen": "Abrir acesso offline",
+    "offlineStatus": "O que está salvo",
+    "offlineReady": "Pronto",
+    "offlineNotSaved": "Não salvo",
+    "offlinePartial": "{done} de {total} salvos",
+    "offlineStoredVersion": "Baixado para o Kit {version}",
+    "offlineOutdated": "O Kit {version} está disponível. As cópias salvas neste dispositivo são de uma versão anterior.",
+    "offlineUpdate": "Atualizar downloads",
+    "offlineRemoveAll": "Remover todos os downloads",
+    "offlineRemoveConfirm": "Remover deste dispositivo todos os idiomas, páginas de ferramentas e mecanismos de mídia salvos?",
+    "offlineCleared": "O conteúdo baixado foi removido quando o Kit foi atualizado. Baixar os mesmos idiomas e ferramentas novamente?"
   },
   "shortcuts": {
     "title": "Atalhos de teclado",

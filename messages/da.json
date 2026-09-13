@@ -482,7 +482,17 @@
     "offlineCanceled": "Download annulleret",
     "offlineBackgroundNote": "Du kan forlade siden, mens download fortsætter.",
     "offlineLog": "Downloaddetaljer",
-    "offlineOpen": "Åbn offlineadgang"
+    "offlineOpen": "Åbn offlineadgang",
+    "offlineStatus": "Gemt lige nu",
+    "offlineReady": "Klar",
+    "offlineNotSaved": "Ikke gemt",
+    "offlinePartial": "{done} af {total} gemt",
+    "offlineStoredVersion": "Hentet til Kit {version}",
+    "offlineOutdated": "Kit {version} er tilgængelig. De gemte kopier på denne enhed er fra en tidligere udgivelse.",
+    "offlineUpdate": "Opdater downloads",
+    "offlineRemoveAll": "Fjern alle downloads",
+    "offlineRemoveConfirm": "Fjern alle gemte sprog, værktøjssider og mediemoduler fra denne enhed?",
+    "offlineCleared": "Det hentede indhold blev fjernet, da Kit blev opdateret. Vil du hente de samme sprog og værktøjer igen?"
   },
   "shortcuts": {
     "title": "Tastaturgenveje",

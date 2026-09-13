@@ -482,7 +482,17 @@
     "offlineCanceled": "Download annullato",
     "offlineBackgroundNote": "Puoi lasciare questa pagina mentre il download continua.",
     "offlineLog": "Dettagli del download",
-    "offlineOpen": "Apri accesso offline"
+    "offlineOpen": "Apri accesso offline",
+    "offlineStatus": "Cosa è salvato",
+    "offlineReady": "Pronto",
+    "offlineNotSaved": "Non salvato",
+    "offlinePartial": "{done} di {total} salvati",
+    "offlineStoredVersion": "Scaricato per Kit {version}",
+    "offlineOutdated": "Kit {version} è disponibile. Le copie salvate su questo dispositivo provengono da una versione precedente.",
+    "offlineUpdate": "Aggiorna i download",
+    "offlineRemoveAll": "Rimuovi tutti i download",
+    "offlineRemoveConfirm": "Rimuovere da questo dispositivo tutte le lingue, le pagine degli strumenti e i motori multimediali salvati?",
+    "offlineCleared": "I contenuti scaricati sono stati rimossi con l'aggiornamento di Kit. Scaricare di nuovo le stesse lingue e gli stessi strumenti?"
   },
   "shortcuts": {
     "title": "Scorciatoie da tastiera",

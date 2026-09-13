@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { withBasePath, withAsset } from "@/lib/base-path";
-import { languageAlternates, socialImages } from "@/lib/seo/metadata";
+import { socialImages } from "@/lib/seo/metadata";
 import {
   isBackupHost,
   ogImageUrl,
@@ -15,6 +15,12 @@ const defaultTitle = "Kit — Browser tools that stay private";
 const defaultDescription =
   "Private everyday browser tools—world clocks, converters, calculators, timers, and text helpers—plus PDF, image, media, and developer utilities. Nothing is uploaded.";
 
+/**
+ * Document defaults only. Every page states its own address: a canonical or a
+ * language list declared here would also apply to pages that never set one,
+ * including the not-found document, which would then name the home page as
+ * itself and compete with it.
+ */
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: defaultTitle,
@@ -50,17 +56,12 @@ export const metadata: Metadata = {
     statusBarStyle: "default",
     title: SITE_NAME,
   },
-  alternates: {
-    canonical: `${SITE_URL}/`,
-    languages: languageAlternates("/"),
-  },
   openGraph: {
     type: "website",
     siteName: SITE_NAME,
     locale: "en_US",
     title: defaultTitle,
     description: defaultDescription,
-    url: SITE_URL,
     images: socialImages(),
   },
   twitter: {
