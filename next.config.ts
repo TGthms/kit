@@ -13,8 +13,8 @@ const nextConfig: NextConfig = {
   basePath: basePath || undefined,
   assetPrefix: basePath || undefined,
   outputFileTracingRoot: __dirname,
-  // pdf.js optionally imports node-canvas. Next 16 builds with Turbopack
-  // by default and refuses a webpack() hook, so alias it here instead.
+  // pdf.js optionally imports node-canvas when it detects a Node runtime. The
+  // browser bundle has no such module, so the import resolves to an empty one.
   turbopack: {
     resolveAlias: {
       canvas: {

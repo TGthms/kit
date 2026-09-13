@@ -4,9 +4,14 @@
 # Keep the CSP string in sync with src/lib/seo/site.ts (tested).
 # frame-ancestors is HTTP-only; the matching <meta> CSP cannot express it.
 # GitHub Pages ignores this file; the meta tag still applies there.
+#
+# No Cross-Origin-Opener-Policy: it severs window.opener for cross-origin
+# windows, and the checkout frames allowed below under `payment` are
+# third-party flows whose completion may depend on it.
 /*
   X-Frame-Options: DENY
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
+  Strict-Transport-Security: max-age=31536000
   Permissions-Policy: camera=(), microphone=(), geolocation=(), interest-cohort=(), usb=(), serial=(), bluetooth=(), payment=(self "https://ko-fi.com" "https://js.stripe.com" "https://checkout.stripe.com"), browsing-topics=()
   Content-Security-Policy: default-src 'self'; base-uri 'self'; form-action 'self'; object-src 'none'; script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; media-src 'self' blob:; connect-src 'self' https://api.frankfurter.dev blob:; worker-src 'self' blob:; frame-src 'self' https://ko-fi.com https://*.ko-fi.com https://js.stripe.com https://checkout.stripe.com; frame-ancestors 'none'

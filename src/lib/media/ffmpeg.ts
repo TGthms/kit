@@ -1,6 +1,6 @@
 import { FFmpeg } from "@ffmpeg/ffmpeg";
 import { toBlobURL } from "@ffmpeg/util";
-import { withBasePath } from "@/lib/base-path";
+import { withVendor } from "@/lib/base-path";
 
 export {
   AUDIO_FORMATS,
@@ -98,11 +98,20 @@ function startLoad(): Promise<FFmpeg> {
   instance.on("log", ({ message }) => pushLogLine(String(message)));
   inFlight = instance;
   const promise = (async () => {
-    const base = `${window.location.origin}${withBasePath("/vendor/ffmpeg")}`;
-    const coreURL = await toBlobURL(`${base}/ffmpeg-core.js`, "text/javascript");
+    /* The core is fetched through a blob URL, so its own URL carries the engine
+       version and an upgrade replaces the cached copy. */
+    /* The core is fetched through a blob URL, so each file URL carries the
+       engine version and an upgrade replaces the cached copy. */
+    const origin = window.location.origin;
+    const coreURL = await toBlobURL(
+      `${origin}${withVendor("/vendor/ffmpeg/ffmpeg-core.js")}`,
+      "text/javascript"
+    );
     urls.push(coreURL);
     // Cloudflare Pages rejects files over 25 MiB; the uncompressed core is ~31 MiB.
-    const wasmURL = await toGunzippedWasmBlobURL(`${base}/ffmpeg-core.wasm.gz`);
+    const wasmURL = await toGunzippedWasmBlobURL(
+      `${origin}${withVendor("/vendor/ffmpeg/ffmpeg-core.wasm.gz")}`
+    );
     urls.push(wasmURL);
     await instance.load({ coreURL, wasmURL });
     if (generation !== loadGeneration) {
@@ -233,9 +242,12 @@ export async function runFFmpeg(
     }
     if (signal?.aborted) throw abortError();
     for (let attempt = 0; ; attempt += 1) {
-      if (onProg) ff.on("progress", onProg);
+      /* The listener belongs to one instance. A retry swaps in a fresh engine
+         before the cleanup below runs, so the host is remembered here. */
+      const listenerHost = ff;
+      if (onProg) listenerHost.on("progress", onProg);
       try {
-        const output = await transcodeOnFFmpeg(ff, inputName, inputData, outputName, args, signal);
+        const output = await transcodeOnFFmpeg(listenerHost, inputName, inputData, outputName, args, signal);
         // A cancel that lands after exec resolved must still surface as a
         // cancel, not a successful download.
         if (signal?.aborted) throw abortError();
@@ -251,7 +263,7 @@ export async function runFFmpeg(
         }
         throw error;
       } finally {
-        if (onProg) ff.off("progress", onProg);
+        if (onProg) listenerHost.off("progress", onProg);
       }
     }
   } finally {

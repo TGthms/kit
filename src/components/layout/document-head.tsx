@@ -1,4 +1,4 @@
-import { withBasePath, basePath } from "@/lib/base-path";
+import { withAsset, basePath } from "@/lib/base-path";
 import { locales } from "@/lib/i18n/config";
 import { CONTENT_SECURITY_POLICY } from "@/lib/seo/site";
 
@@ -15,20 +15,21 @@ export function DocumentHead() {
   return (
     <>
       <meta httpEquiv="Content-Security-Policy" content={csp} />
-      {/* Sync on purpose: theme/lang/locale-gate/viewport must run before first paint. */}
+      {/* Sync on purpose: theme/lang/locale-gate/viewport must run before first paint.
+          Each is versioned so a rebuild replaces the cached copy. */}
       {/* eslint-disable-next-line @next/next/no-sync-scripts */}
-      <script src={withBasePath("/boot/theme.js")} />
+      <script src={withAsset("/boot/theme.js")} />
       {/* eslint-disable-next-line @next/next/no-sync-scripts */}
-      <script src={withBasePath("/boot/viewport.js")} />
+      <script src={withAsset("/boot/viewport.js")} />
       {/* eslint-disable-next-line @next/next/no-sync-scripts */}
       <script
-        src={withBasePath("/boot/locale-lang.js")}
+        src={withAsset("/boot/locale-lang.js")}
         data-base-path={basePath}
         data-locales={locales.join(",")}
       />
       {/* eslint-disable-next-line @next/next/no-sync-scripts */}
       <script
-        src={withBasePath("/boot/locale-gate.js")}
+        src={withAsset("/boot/locale-gate.js")}
         data-base-path={basePath}
         data-locales={locales.join(",")}
       />
