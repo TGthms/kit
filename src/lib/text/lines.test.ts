@@ -8,6 +8,15 @@ describe("line text helpers", () => {
     expect(findReplace("Foo BAR foo", "foo", "x", { caseInsensitive: true })).toBe("x BAR x");
   });
 
+  it("treats dollar signs in the replacement as text in every mode", () => {
+    expect(findReplace("a", "a", "$&")).toBe("$&");
+    expect(findReplace("a", "a", "$1")).toBe("$1");
+    expect(findReplace("a", "a", "$&", { all: false })).toBe("$&");
+    expect(findReplace("A", "a", "$&", { caseInsensitive: true })).toBe("$&");
+    expect(findReplace("A", "a", "$&", { caseInsensitive: true, all: false })).toBe("$&");
+    expect(findReplace("price 10", "10", "$5")).toBe("price $5");
+  });
+
   it("sorts lines and preserves a trailing newline", () => {
     expect(sortLines("b\na\nc")).toBe("a\nb\nc");
     expect(sortLines("b\na\nc\n")).toBe("a\nb\nc\n");

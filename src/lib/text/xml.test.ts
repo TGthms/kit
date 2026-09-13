@@ -40,6 +40,25 @@ describe("parseXml", () => {
     expect(() => parseXml(`<a><b></a>`)).toThrow(/Unexpected closing tag/);
     expect(() => parseXml(`<a>`)).toThrow(/Missing closing tag/);
     expect(() => parseXml(`</a>`)).toThrow(/Unexpected closing tag/);
+    expect(() => parseXml(`<a>text</ab>`)).toThrow(/Mismatched closing tag/);
+  });
+
+  it("requires a closing tag to name exactly the element it closes", () => {
+    expect(parseXml(`<a></a>`).name).toBe("a");
+    expect(parseXml(`<a><ab></ab></a>`).name).toBe("a");
+    expect(parseXml(`<a></a >`).name).toBe("a");
+  });
+
+  it("keeps names that collide with object internals", () => {
+    const xml = `<r __proto__="x"><__proto__>v</__proto__></r>`;
+    const node = parseXml(xml);
+    expect(Object.keys(node.attributes)).toEqual(["__proto__"]);
+    expect(node.attributes["__proto__"]).toBe("x");
+
+    const json = xmlToJson(xml) as Record<string, unknown>;
+    expect(Object.prototype.hasOwnProperty.call(json, "__proto__")).toBe(true);
+    expect(json["__proto__"]).toBe("v");
+    expect((json["@attributes"] as Record<string, string>)["__proto__"]).toBe("x");
   });
 });
 

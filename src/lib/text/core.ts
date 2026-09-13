@@ -23,12 +23,14 @@ export function formatYaml(input: string): { ok: true; text: string } | { ok: fa
   }
 }
 
+/**
+ * Validates TOML and returns it with a single trailing newline. The document is
+ * not re-serialised: TOML keeps comments and key order, which a round trip
+ * through a serialiser would discard.
+ */
 export function formatToml(input: string): { ok: true; text: string } | { ok: false; error: string } {
   try {
-    const data = parseToml(input);
-    // re-serialize via JSON-ish dump is limited; return pretty JSON of parsed for validation path
-    // For true TOML output keep original if valid, else error
-    void data;
+    parseToml(input);
     return { ok: true, text: input.trim() + "\n" };
   } catch (e) {
     return { ok: false, error: e instanceof Error ? e.message : String(e) };

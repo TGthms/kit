@@ -26,13 +26,15 @@ function joinPreservingTrailingNewline(lines: string[], trailingNewline: boolean
 export function findReplace(text: string, find: string, replace: string, options: FindReplaceOptions = {}): string {
   const { all = true, caseInsensitive = false } = options;
   if (find.length === 0) return text;
+  /* The replacement is inserted literally in every mode, so a `$` in it stays
+     text rather than being read as a backreference. */
   if (!caseInsensitive) {
-    if (!all) return text.replace(find, replace);
+    if (!all) return text.replace(find, () => replace);
     return text.split(find).join(replace);
   }
   const escaped = find.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
   const flags = all ? "gi" : "i";
-  return text.replace(new RegExp(escaped, flags), replace);
+  return text.replace(new RegExp(escaped, flags), () => replace);
 }
 
 export function sortLines(text: string, options: SortLinesOptions = {}): string {

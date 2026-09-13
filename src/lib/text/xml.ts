@@ -51,7 +51,10 @@ function skipWs(input: string, i: number): number {
 }
 
 function parseAttributes(raw: string): Record<string, string> {
-  const attrs: Record<string, string> = {};
+  /* Names come from the document and can be anything, including `__proto__`.
+     A prototype-free map keeps every name as an ordinary attribute rather than
+     letting one reach an inherited setter. */
+  const attrs: Record<string, string> = Object.create(null);
   const re = /([^\s=]+)(?:\s*=\s*(?:"([^"]*)"|'([^']*)'|(\S+)))?/g;
   let m: RegExpExecArray | null;
   while ((m = re.exec(raw))) {
@@ -128,6 +131,11 @@ function parseNode(input: string, start: number): { node: XmlNode; next: number 
   while (i < input.length) {
     i = skipWs(input, i);
     if (input.startsWith(`</${name}`, i)) {
+      const after = input[i + name.length + 2];
+      /* The name has to end here: `</ab>` does not close `<a>`. */
+      if (after !== undefined && after !== ">" && !/\s/.test(after)) {
+        throw new Error(`Mismatched closing tag at ${i}`);
+      }
       const close = input.indexOf(">", i);
       if (close < 0) throw new Error(`Unterminated closing tag for ${name}`);
       return { node, next: close + 1 };
@@ -179,7 +187,10 @@ function nodeToJson(node: XmlNode): unknown {
   if (!hasAttrs && elements.length === 0) {
     return texts.join(" ");
   }
-  const obj: Record<string, unknown> = {};
+  /* Element names come from the document too, so the result is prototype-free:
+     an element called `__proto__` becomes a normal key instead of reaching an
+     inherited setter and disappearing from the output. */
+  const obj: Record<string, unknown> = Object.create(null);
   if (hasAttrs) obj["@attributes"] = node.attributes;
   if (texts.length) obj["#text"] = texts.join(" ");
   const grouped = new Map<string, unknown[]>();

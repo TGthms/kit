@@ -133,7 +133,6 @@ type PendingRequest = {
 
 let worker: Worker | null = null;
 let workerBlobUrl: string | null = null;
-let workerBroken = false;
 let nextRequestId = 1;
 const pending = new Map<number, PendingRequest>();
 
@@ -170,16 +169,46 @@ function createRegexWorker(): { worker: Worker; blobUrl: string } | null {
   }
 }
 
+/**
+ * True for the shape `(…*…)*`: a quantified group whose body can itself vary in
+ * length. A single `exec()` on such a pattern can run for an unbounded time, so
+ * it is never evaluated on the main thread. The check is a heuristic — nesting
+ * deeper than one level is not detected — and it only ever governs the
+ * no-worker path, where a runaway pattern could not be interrupted.
+ */
+export function canBacktrackUnboundedly(pattern: string): boolean {
+  /* The lookahead skips `(?:`, `(?=`/`(?!` and `(?<=`/`(?<!`, whose `?` is part
+     of the group marker rather than a quantifier. */
+  return /\((?!\?(?:[:=!]|<[=!]))[^()]*[*+?{][^()]*\)\s*[*+?{]/.test(pattern);
+}
+
+/** Runs on the main thread only when no worker is available. */
+function runRegexOnMainThread(pattern: string, flags: string, input: string): RegexResult {
+  if (canBacktrackUnboundedly(pattern)) {
+    return { ok: false, error: "This pattern is too complex to run without a background worker." };
+  }
+  return runRegex(pattern, flags, input);
+}
+
+function replaceRegexOnMainThread(
+  pattern: string,
+  flags: string,
+  input: string,
+  replacement: string
+): RegexReplaceResult {
+  if (canBacktrackUnboundedly(pattern)) {
+    return { ok: false, error: "This pattern is too complex to run without a background worker." };
+  }
+  return replaceRegex(pattern, flags, input, replacement);
+}
+
 function getWorker(): Worker | null {
-  // jsdom/node tests and exotic browsers have no Worker/Blob; the
-  // synchronous fallback keeps the tool working, guarded by the match cap.
-  if (workerBroken || typeof Worker === "undefined") return null;
+  // No Worker (tests, exotic browsers, a locked-down page) means the guarded
+  // main-thread path above is used instead.
+  if (typeof Worker === "undefined") return null;
   if (worker) return worker;
   const created = createRegexWorker();
-  if (!created) {
-    workerBroken = true;
-    return null;
-  }
+  if (!created) return null;
   created.worker.onmessage = (event: MessageEvent) => {
     const data = event.data as { id?: number } | null;
     const id = typeof data?.id === "number" ? data.id : null;
@@ -190,8 +219,9 @@ function getWorker(): Worker | null {
     entry.deliver(data);
   };
   created.worker.onerror = () => {
+    // Drop the failed worker so the next request starts a fresh one; one
+    // transient failure must not leave the rest of the session unprotected.
     killWorker();
-    workerBroken = true;
     failAllPending("Regex worker failed");
   };
   worker = created.worker;
@@ -257,7 +287,7 @@ export function runRegexAsync(pattern: string, flags: string, input: string): Pr
   return runInWorker(
     { kind: "match", pattern, flags, input },
     toMatchResult,
-    () => runRegex(pattern, flags, input)
+    () => runRegexOnMainThread(pattern, flags, input)
   );
 }
 
@@ -270,6 +300,6 @@ export function replaceRegexAsync(
   return runInWorker(
     { kind: "replace", pattern, flags, input, replacement },
     toReplaceResult,
-    () => replaceRegex(pattern, flags, input, replacement)
+    () => replaceRegexOnMainThread(pattern, flags, input, replacement)
   );
 }
