@@ -5,7 +5,10 @@ export function isRscDocumentPath(pathname: string): boolean {
 
 export function htmlPathname(pathname: string): string {
   let path = pathname.replace(/\/index\.txt$/iu, "/").replace(/\.txt$/iu, "");
-  if (!path.startsWith("/")) path = `/${path}`;
+  /* Exactly one leading slash. A path beginning `//host` would be read as an
+     authority and resolve to another origin, so it is collapsed to a path on
+     the current origin. */
+  path = "/" + path.replace(/^\/+/u, "");
   if (!path.endsWith("/")) path += "/";
   return path;
 }

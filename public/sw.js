@@ -1,18 +1,38 @@
-/* Kit service worker — app shell only; never cache user files.
-   RSC payloads live in a separate cache from HTML so a Flight body can
-   never paint as the document.
-   A new worker must wait for existing tabs to close. Taking over mid-navigation
-   (skipWaiting + clients.claim) can orphan a navigate fetch and wedge the page.
-   Safari rejects a document response from a worker if it followed HTTP redirects
-   ("Response served by service worker has redirections"). Never return a
-   redirect Response or a fetch() result with redirected === true. */
-const CACHE = "kit-shell-v12";
-const RSC_CACHE = "kit-rsc-v12";
+/* Kit service worker — app shell only; never caches user files.
+ *
+ * Two caches, kept apart on purpose:
+ *   kit-shell-v13  HTML documents, icons, scripts, styles and engines
+ *   kit-rsc-v13    React Flight payloads used for in-app navigation
+ * Because Flight bodies live in their own cache, a `.txt` body can never be
+ * painted as the page.
+ *
+ * A new worker waits for existing tabs to close before taking over. Seizing
+ * open tabs mid-navigation can orphan a navigate fetch and leave the page
+ * stuck, so neither skipWaiting nor clients.claim is used.
+ *
+ * Safari refuses a document response served by a worker if that response
+ * followed HTTP redirects, so a redirect response, or a fetch result with
+ * redirected === true, is never handed back as-is.
+ *
+ * Responses are only stored or served as documents when this worker can vouch
+ * for them: they must be same-origin ("basic") or have been rebuilt here
+ * ("default"). Cross-origin, opaque and opaque-redirect responses are refused,
+ * so a URL that resolves off-origin can never supply the page.
+ */
+const CACHE = "kit-shell-v13";
+const RSC_CACHE = "kit-rsc-v13";
+/* Cache Storage is shared by every app on the origin. Only names carrying this
+   prefix belong to Kit, so activating a new worker never evicts another app. */
+const CACHE_PREFIX = "kit-";
 const LAST_HOME = "./last-home";
 const NAV_FETCH_MS = 8000;
 const NAV_CACHE_MS = 400;
 const FILL_PRECACHE = "./sw-precache.json";
 const OFFLINE_PROGRESS_MS = 250;
+/* Ceilings on a single offline-access request, so an oversized or malformed
+   message cannot queue unbounded work. */
+const MAX_OFFLINE_LOCALES = 40;
+const MAX_OFFLINE_TOOLS = 200;
 
 /* Mirrors toolPathSegment() in src/lib/navigation/routes.ts. A tool id is not
    always its public route segment, so selected ids must be resolved before
@@ -21,6 +41,20 @@ const TOOL_PATH_SEGMENT = { "timezone-converter": "world-clock" };
 
 function toolPathSegment(toolId) {
   return TOOL_PATH_SEGMENT[toolId] || toolId;
+}
+
+/* Response types worth trusting with a document or a Flight body. */
+const TRUSTED_TYPES = new Set(["basic", "default"]);
+
+/** Resolve a path against this origin, or null when it would leave it. */
+function sameOriginUrl(path) {
+  let url;
+  try {
+    url = new URL(path, self.location.origin);
+  } catch {
+    return null;
+  }
+  return url.origin === self.location.origin ? url : null;
 }
 
 self.addEventListener("install", (event) => {
@@ -44,7 +78,13 @@ self.addEventListener("install", (event) => {
 
 self.addEventListener("activate", (event) => {
   event.waitUntil(
-    caches.keys().then((keys) => Promise.all(keys.filter((k) => k !== CACHE && k !== RSC_CACHE).map((k) => caches.delete(k))))
+    caches.keys().then((keys) =>
+      Promise.all(
+        keys
+          .filter((key) => key.startsWith(CACHE_PREFIX) && key !== CACHE && key !== RSC_CACHE)
+          .map((key) => caches.delete(key))
+      )
+    )
   );
 });
 
@@ -72,13 +112,13 @@ function isHtmlResponse(res) {
 }
 
 function isUsableHtml(res) {
-  return Boolean(res) && res.ok && res.type !== "error" && isHtmlResponse(res);
+  return Boolean(res) && res.ok && TRUSTED_TYPES.has(res.type) && isHtmlResponse(res);
 }
 
+/* Static hosting serves Flight payloads as text/plain, so the content type
+   cannot identify them: being same-origin and not HTML can. */
 function isUsableRsc(res) {
-  if (!res || !res.ok || res.type === "error") return false;
-  if (isHtmlResponse(res)) return false;
-  return true;
+  return Boolean(res) && res.ok && TRUSTED_TYPES.has(res.type) && !isHtmlResponse(res);
 }
 
 /** Safari cannot consume a SW navigation response that followed redirects. */
@@ -91,8 +131,25 @@ async function asDirectResponse(res) {
   return new Response(buf, { status: res.status, statusText: res.statusText, headers });
 }
 
+/** The HTML route that documents the same page as a `.txt` request. */
 function htmlPathFromTxt(pathname) {
-  return pathname.replace(/\/index\.txt$/i, "/").replace(/\.txt$/i, "/");
+  const html = pathname.replace(/\/index\.txt$/i, "/").replace(/\.txt$/i, "/");
+  /* Exactly one leading slash. `//host` would be read as an authority and
+     resolve to another origin, so the result stays a path on this origin. */
+  return "/" + html.replace(/^\/+/, "");
+}
+
+/** Cache key without the stale-chunk reload marker, so recovery cannot grow the cache. */
+function cacheKeyFor(resource) {
+  const href = typeof resource === "string" ? resource : resource.url;
+  try {
+    const url = new URL(href, self.location.origin);
+    if (!url.searchParams.has("_kitcb")) return href;
+    url.searchParams.delete("_kitcb");
+    return url.href;
+  } catch {
+    return href;
+  }
 }
 
 function deadlineFetch(resource, init) {
@@ -116,11 +173,13 @@ function deadlineFetch(resource, init) {
   });
 }
 
-/** Exact URL or same path without search — never last-home / shell. */
+/** Exact URL, the same URL without the reload marker, or the path without search. */
 async function cachedExactNavigation(req) {
   const cache = await caches.open(CACHE);
   const exact = await cache.match(req);
   if (isUsableHtml(exact)) return await asDirectResponse(exact);
+  const normalized = await cache.match(cacheKeyFor(req));
+  if (isUsableHtml(normalized)) return await asDirectResponse(normalized);
   try {
     const url = new URL(typeof req === "string" ? req : req.url);
     if (url.search) {
@@ -149,7 +208,7 @@ async function networkHtml(resource) {
   const res = await asDirectResponse(await deadlineFetch(resource));
   if (isUsableHtml(res)) {
     const cache = await caches.open(CACHE);
-    await cache.put(resource, res.clone());
+    await cache.put(cacheKeyFor(resource), res.clone());
     return res;
   }
   if (res && !isHtmlResponse(res)) {
@@ -175,6 +234,9 @@ async function navigateDocument(req, dest) {
 
   const exactP = cachedExactNavigation(req);
   const cachedP = cachedNavigation(req);
+  /* A cache read can fail. Treat that as "nothing cached" so the navigation
+     always settles instead of waiting on a promise that never resolves. */
+  const orNone = (promise) => promise.then((res) => res, () => null);
 
   return await new Promise((resolve) => {
     let settled = false;
@@ -183,27 +245,26 @@ async function navigateDocument(req, dest) {
       settled = true;
       resolve(asDirectResponse(res));
     };
+    const settleFromCache = (res) => settle(isUsableHtml(res) ? res : Response.error());
 
     networkHtml(target).then(
       (res) => {
         if (isUsableHtml(res)) settle(res);
-        else {
-          cachedP.then((cached) => settle(isUsableHtml(cached) ? cached : res || Response.error()));
-        }
+        else orNone(cachedP).then(settleFromCache);
       },
       () => {
-        cachedP.then((cached) => settle(isUsableHtml(cached) ? cached : Response.error()));
+        orNone(cachedP).then(settleFromCache);
       }
     );
 
     setTimeout(() => {
-      exactP.then((cached) => {
+      orNone(exactP).then((cached) => {
         if (isUsableHtml(cached)) settle(cached);
       });
     }, NAV_CACHE_MS);
 
     setTimeout(() => {
-      cachedP.then((cached) => settle(isUsableHtml(cached) ? cached : Response.error()));
+      orNone(cachedP).then(settleFromCache);
     }, NAV_FETCH_MS);
   });
 }
@@ -249,13 +310,9 @@ function sleep(ms) {
 function enqueueFill(urls) {
   for (const raw of urls) {
     if (typeof raw !== "string" || !raw) continue;
-    let href;
-    try {
-      href = new URL(raw, self.location.origin).href;
-    } catch {
-      continue;
-    }
-    if (!href.startsWith(self.location.origin)) continue;
+    const resolved = sameOriginUrl(raw);
+    if (!resolved) continue;
+    const href = resolved.href;
     if (fillSeen.has(href)) continue;
     if (fillQueue.includes(href)) continue;
     fillQueue.push(href);
@@ -278,7 +335,7 @@ async function cacheFillUrl(href) {
     const init = { cache: "no-store", priority: "low", signal: ctrl.signal };
     if (href.endsWith("/") || href.endsWith(".html")) init.headers = { Accept: "text/html" };
     const res = await asDirectResponse(await fetch(href, init));
-    if (!res || !res.ok || res.type === "error") return;
+    if (!res || !res.ok || !TRUSTED_TYPES.has(res.type)) return;
     if (fillPaused) return;
     if (/\.txt$/i.test(href)) {
       if (isHtmlResponse(res)) return;
@@ -327,15 +384,21 @@ async function selectedOfflineUrls(data) {
   } catch {
     return [];
   }
-  const locales = Array.isArray(data.locales) ? data.locales : [];
+  const locales = (Array.isArray(data.locales) ? data.locales : [])
+    .slice(0, MAX_OFFLINE_LOCALES)
+    .filter((locale) => typeof locale === "string");
   /* Resolve ids to public route segments: a tool id is not always its path. */
-  const segments = new Set((Array.isArray(data.tools) ? data.tools : []).map(toolPathSegment));
+  const segments = new Set(
+    (Array.isArray(data.tools) ? data.tools : [])
+      .slice(0, MAX_OFFLINE_TOOLS)
+      .filter((tool) => typeof tool === "string")
+      .map(toolPathSegment)
+  );
   const urls = new Set(manifest.core || []);
   const chrome = manifest.chromeByLocale || {};
   const toolsByLocale = manifest.toolsByLocale || {};
   const rscByLocale = manifest.rscByLocale || {};
   for (const locale of locales) {
-    if (typeof locale !== "string") continue;
     for (const url of chrome[locale] || []) urls.add(url);
     for (const url of rscByLocale[locale] || []) {
       if (!segments.size || [...segments].some((segment) => url.includes(`/tools/${segment}/`))) urls.add(url);
@@ -356,42 +419,41 @@ async function downloadSelectedOffline(data) {
   offlineBusy = true;
   /* Stop the background fill immediately; it waits on offlineBusy to resume. */
   if (fillAbort) fillAbort.abort();
-  const urls = await selectedOfflineUrls(data);
   let done = 0;
-  /* One message per URL would mean thousands of postMessages and React renders.
-     Coalesce log lines and flush at most every OFFLINE_PROGRESS_MS, always
-     flushing the terminal state. */
-  let lastSentAt = 0;
-  let pendingLogs = [];
-  const flush = async (status, force) => {
-    const now = Date.now();
-    if (!force && now - lastSentAt < OFFLINE_PROGRESS_MS) return;
-    lastSentAt = now;
-    const logs = pendingLogs;
-    pendingLogs = [];
-    await sendOfflineProgress({ status, done, total: urls.length, logs });
-  };
-  const note = async (line) => {
-    pendingLogs.push(line);
-    await flush("running", false);
-  };
-  const pathOf = (href) => {
-    try {
-      return new URL(href, self.location.origin).pathname;
-    } catch {
-      return href;
-    }
-  };
-
-  if (!urls.length) {
-    await sendOfflineProgress({ status: "error", done, total: 0, logs: ["No offline resources were available"] });
-    if (offlineAbort === ctrl) offlineAbort = null;
-    offlineBusy = false;
-    return;
-  }
-  pendingLogs.push(`Preparing ${urls.length} items`);
-  await flush("running", true);
   try {
+    const urls = await selectedOfflineUrls(data);
+    /* One message per URL would mean thousands of postMessages and React renders.
+       Coalesce log lines and flush at most every OFFLINE_PROGRESS_MS, always
+       flushing the terminal state. */
+    let lastSentAt = 0;
+    let pendingLogs = [];
+    const flush = async (status, force) => {
+      const now = Date.now();
+      if (!force && now - lastSentAt < OFFLINE_PROGRESS_MS) return;
+      lastSentAt = now;
+      const logs = pendingLogs;
+      pendingLogs = [];
+      await sendOfflineProgress({ status, done, total: urls.length, logs });
+    };
+    const note = async (line) => {
+      pendingLogs.push(line);
+      await flush("running", false);
+    };
+    const pathOf = (href) => {
+      try {
+        return new URL(href, self.location.origin).pathname;
+      } catch {
+        return href;
+      }
+    };
+
+    if (!urls.length) {
+      await sendOfflineProgress({ status: "error", done, total: 0, logs: ["No offline resources were available"] });
+      return;
+    }
+    pendingLogs.push(`Preparing ${urls.length} items`);
+    await flush("running", true);
+
     for (const href of urls) {
       if (offlineCancelRequested) break;
       const cache = await caches.open(cacheNameFor(href));
@@ -402,7 +464,7 @@ async function downloadSelectedOffline(data) {
       }
       try {
         const res = await asDirectResponse(await fetch(href, { cache: "no-store", priority: "low", signal: ctrl.signal }));
-        if (res && res.ok && res.type !== "error") {
+        if (res && res.ok && TRUSTED_TYPES.has(res.type)) {
           await cache.put(href, res);
           done += 1;
           await note(`Downloaded: ${pathOf(href)}`);
@@ -417,6 +479,8 @@ async function downloadSelectedOffline(data) {
     pendingLogs.push(offlineCancelRequested ? "Download canceled" : "Offline access is ready");
     await flush(offlineCancelRequested ? "canceled" : "complete", true);
   } finally {
+    /* Released on every path, including a failed progress report, so the
+       background fill is never left waiting on a download that has ended. */
     if (offlineAbort === ctrl) offlineAbort = null;
     offlineBusy = false;
   }
@@ -432,25 +496,45 @@ async function startLocaleFill(locale, skipHeavy) {
   }
   enqueueFill(manifest.core || []);
   const chrome = manifest.chromeByLocale || {};
-  enqueueFill(chrome[locale] || []);
   const rsc = manifest.rscByLocale || {};
+  enqueueFill(chrome[locale] || []);
   enqueueFill(rsc[locale] || []);
-  for (const [other, urls] of Object.entries(chrome)) {
-    if (other === locale) continue;
-    enqueueFill(urls);
-  }
   enqueueFill((manifest.toolsByLocale && manifest.toolsByLocale[locale]) || []);
-  for (const [other, urls] of Object.entries(rsc)) {
-    if (other === locale) continue;
-    enqueueFill(urls);
+  /* Every other language is a convenience for switching later. On a metered or
+     slow connection only the language in use is filled, so the visitor keeps
+     their data allowance and the connection stays usable. */
+  if (!skipHeavy) {
+    for (const [other, urls] of Object.entries(chrome)) {
+      if (other === locale) continue;
+      enqueueFill(urls);
+    }
+    for (const [other, urls] of Object.entries(rsc)) {
+      if (other === locale) continue;
+      enqueueFill(urls);
+    }
+    enqueueFill(manifest.engines || []);
   }
-  if (!skipHeavy) enqueueFill(manifest.engines || []);
   await pumpFill();
+}
+
+/** Messages arrive only from pages this worker controls, which are same-origin. */
+function isTrustedMessage(event) {
+  if (typeof event.origin === "string" && event.origin && event.origin !== self.location.origin) return false;
+  const source = event.source;
+  if (source && typeof source.url === "string" && source.url) {
+    try {
+      if (new URL(source.url).origin !== self.location.origin) return false;
+    } catch {
+      return false;
+    }
+  }
+  return true;
 }
 
 self.addEventListener("message", (event) => {
   const data = event.data;
   if (!data || typeof data !== "object") return;
+  if (!isTrustedMessage(event)) return;
 
   if (data.type === "PING") {
     return;
@@ -482,21 +566,20 @@ self.addEventListener("message", (event) => {
   }
 
   if (data.type !== "PRECACHE_HOME" || typeof data.url !== "string") return;
-  let url;
-  try {
-    url = new URL(data.url, self.location.origin);
-  } catch {
-    return;
-  }
-  if (url.origin !== self.location.origin) return;
+  const url = sameOriginUrl(data.url);
+  if (!url) return;
   if (!url.pathname.endsWith("/")) return;
   event.waitUntil(
     (async () => {
-      const res = await asDirectResponse(await fetch(url.href, { headers: { Accept: "text/html" }, cache: "no-store" }));
-      if (!isUsableHtml(res)) return;
-      const cache = await caches.open(CACHE);
-      await cache.put(url.href, res.clone());
-      await cache.put(LAST_HOME, res);
+      try {
+        const res = await asDirectResponse(await fetch(url.href, { headers: { Accept: "text/html" }, cache: "no-store" }));
+        if (!isUsableHtml(res)) return;
+        const cache = await caches.open(CACHE);
+        await cache.put(url.href, res.clone());
+        await cache.put(LAST_HOME, res);
+      } catch {
+        /* registering while offline */
+      }
     })()
   );
 });
@@ -516,8 +599,11 @@ self.addEventListener("fetch", (event) => {
 
   if (req.mode === "navigate" || req.destination === "document") {
     if (/\.txt$/i.test(url.pathname)) {
-      const dest = new URL(htmlPathFromTxt(url.pathname) + url.search, url.origin).href;
-      event.respondWith(navigateDocument(req, dest));
+      /* A `.txt` navigation asks for the page it belongs to. The destination is
+         re-resolved against this origin; anything that could leave it falls back
+         to the request URL. */
+      const dest = sameOriginUrl(htmlPathFromTxt(url.pathname) + url.search);
+      event.respondWith(navigateDocument(req, dest ? dest.href : null));
       return;
     }
     event.respondWith(navigateDocument(req));
@@ -529,7 +615,7 @@ self.addEventListener("fetch", (event) => {
       (async () => {
         try {
           const direct = await asDirectResponse(await fetch(req));
-          if (direct.ok) {
+          if (direct.ok && TRUSTED_TYPES.has(direct.type)) {
             const copy = direct.clone();
             event.waitUntil(caches.open(CACHE).then((c) => c.put(req, copy)));
           }
@@ -547,7 +633,7 @@ self.addEventListener("fetch", (event) => {
       caches.match(req).then(async (cached) => {
         if (cached) return cached;
         const direct = await asDirectResponse(await fetch(req));
-        if (direct.ok) {
+        if (direct.ok && TRUSTED_TYPES.has(direct.type)) {
           const copy = direct.clone();
           event.waitUntil(caches.open(CACHE).then((c) => c.put(req, copy)));
         }

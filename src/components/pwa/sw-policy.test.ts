@@ -43,12 +43,52 @@ describe("service worker update policy", () => {
   });
 
   it("busts the shell cache when navigation policy changes", () => {
-    expect(sw).toMatch(/kit-shell-v12/);
-    expect(sw).toMatch(/kit-rsc-v12/);
+    expect(sw).toMatch(/kit-shell-v13/);
+    expect(sw).toMatch(/kit-rsc-v13/);
     expect(sw).toMatch(/PRECACHE_LOCALE/);
     expect(sw).toMatch(/PRECACHE_PAUSE/);
     expect(sw).toMatch(/priority:\s*["']low["']/);
     expect(sw).toMatch(/js\|mjs\|css\|woff2\?\|wasm\|gz/);
+  });
+
+  it("only evicts caches that belong to Kit", () => {
+    expect(sw).toMatch(/CACHE_PREFIX\s*=\s*["']kit-["']/);
+    const activate = sw.slice(sw.indexOf('addEventListener("activate"'), sw.indexOf("function isIconOrManifest"));
+    expect(activate).toMatch(/startsWith\(CACHE_PREFIX\)/);
+    expect(activate).toMatch(/key !== CACHE && key !== RSC_CACHE/);
+  });
+
+  it("refuses document and Flight responses it cannot vouch for", () => {
+    const head = sw.slice(0, sw.indexOf("async function asDirectResponse"));
+    expect(head).toMatch(/TRUSTED_TYPES\s*=\s*new Set\(\[["']basic["'],\s*["']default["']\]\)/);
+    expect(sw).toMatch(/function isUsableHtml\(res\)\s*\{\s*return Boolean\(res\) && res\.ok && TRUSTED_TYPES\.has\(res\.type\)/);
+    expect(sw).toMatch(/function isUsableRsc\(res\)\s*\{\s*return Boolean\(res\) && res\.ok && TRUSTED_TYPES\.has\(res\.type\)/);
+  });
+
+  it("skips the other-language precache on a metered or slow connection", () => {
+    const fill = sw.slice(sw.indexOf("async function startLocaleFill"), sw.indexOf("function isTrustedMessage"));
+    const gatedAt = fill.indexOf("if (!skipHeavy)");
+    expect(gatedAt).toBeGreaterThan(-1);
+    /* The open locale is always filled; every other language sits behind the guard. */
+    const always = fill.slice(0, gatedAt);
+    expect(always).toMatch(/enqueueFill\(chrome\[locale\]/);
+    expect(always).toMatch(/enqueueFill\(rsc\[locale\]/);
+    const gated = fill.slice(gatedAt);
+    expect(gated).toMatch(/enqueueFill\(urls\)/);
+    expect(gated).toMatch(/manifest\.engines/);
+    expect(gated).not.toMatch(/chrome\[locale\]/);
+  });
+
+  it("releases the offline download on every exit path", () => {
+    const download = sw.slice(sw.indexOf("async function downloadSelectedOffline"), sw.indexOf("async function startLocaleFill"));
+    const finallyAt = download.indexOf("} finally {");
+    expect(finallyAt).toBeGreaterThan(-1);
+    const release = download.slice(finallyAt);
+    expect(release).toMatch(/offlineBusy = false/);
+    /* The first progress report must sit inside the try, so a failed report
+       cannot leave offlineBusy stuck true. */
+    expect(download.indexOf('await flush("running", true)')).toBeLessThan(finallyAt);
+    expect(download.indexOf("try {")).toBeLessThan(download.indexOf('await flush("running", true)'));
   });
 
   it("serves Flight payloads from a separate cache, never as HTML", () => {

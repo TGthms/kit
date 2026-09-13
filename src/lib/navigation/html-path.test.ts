@@ -14,6 +14,13 @@ describe("RSC document paths", () => {
     );
   });
 
+  it("never resolves to another origin", () => {
+    expect(htmlPathname("//evil.tld/index.txt")).toBe("/evil.tld/");
+    expect(htmlPathname("///evil.tld/")).toBe("/evil.tld/");
+    expect(htmlHref("https://trykit.pages.dev//evil.tld/index.txt")).toBe("/evil.tld/");
+    expect(htmlHref("https://trykit.pages.dev//evil.tld/index.txt", "https://trykit.pages.dev").startsWith("//")).toBe(false);
+  });
+
   it("keeps search and hash when hopping onto a locale home", () => {
     expect(withSearchAndHash("/en/")).toBe("/en/");
     expect(withSearchAndHash("/en/", "", "")).toBe("/en/");
