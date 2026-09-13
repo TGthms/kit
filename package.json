@@ -3,7 +3,7 @@
   "version": "1.1.0",
   "private": true,
   "engines": {
-    "node": ">=24.0.0"
+    "node": "^24.0.0"
   },
   "packageManager": "npm@10.9.8",
   "scripts": {
@@ -71,5 +71,11 @@
     "tailwindcss": "^4",
     "typescript": "^5.9.3",
     "vitest": "^4.1.11"
+  },
+  "allowScripts": {
+    "@parcel/watcher": false,
+    "@swc/core": false,
+    "fsevents": false,
+    "unrs-resolver": false
   }
 }

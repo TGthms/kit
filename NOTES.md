@@ -77,6 +77,8 @@ Component tests use the browser-like Vitest environment where needed; pure libra
 - Add focused React tests for the remaining high-risk tool flows and accessibility behavior.
 - Replace hard-coded file-tool classification with an explicit registry property.
 - Hash-based `script-src` (dropping `'unsafe-inline'`) is blocked by Next.js Flight inline scripts on static export.
+- **ESLint 10 is blocked upstream, so the deprecation warning on `eslint@9.39.5` is expected.** Every plugin `eslint-config-next` pulls in caps at ESLint 9 (`eslint-plugin-react` at `^9.7`, `typescript-eslint` at `^9`, `eslint-plugin-import`/`-jsx-a11y`/`-react-hooks` at `^9`), and 9.39.5 is the last 9.x. Upgrading to 10 crashes the linter with `getFilename is not a function`, which would fail the lint gate. Retry once `eslint-config-next` moves its plugins to ESLint 10.
+- **Dependency install scripts are denied on purpose** (`allowScripts` in `package.json`): `@parcel/watcher`, `@swc/core`, `unrs-resolver` and `fsevents` all ship prebuilt binaries as optional dependencies — 12, 12, 21 and a macOS-only binding respectively — so their scripts are unreachable source-build fallbacks. Denying them keeps install-time code execution off and stops `npm ci` needing a C++ toolchain. Approving one would only matter if a future platform lost its prebuilt binary; `npm approve-scripts <pkg>` is the way back if that ever happens.
 
 ### Discovery (after SEO deploy)
 
