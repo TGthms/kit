@@ -90,6 +90,43 @@ export function isOversizedFile(size: number): boolean {
   return size >= MAX_FILE_BYTES;
 }
 
+/** Keeps an archive entry inside the archive: separators become part of the
+    name, parent references are dropped, and a leading dot is stripped. */
+function sanitizeArchiveName(name: string): string {
+  const cleaned = name
+    .replace(/\\/g, "/")
+    .split("/")
+    .filter((part) => part && part !== "." && part !== "..")
+    .join("-")
+    .replace(/^\.+/, "")
+    .trim();
+  return cleaned || "file";
+}
+
+/** Archive entry names made safe and distinct, so two files that share a name
+    both survive and neither is silently replaced by the other. */
+export function uniqueArchiveNames(names: string[]): string[] {
+  const used = new Set<string>();
+  return names.map((raw) => {
+    const base = sanitizeArchiveName(raw);
+    if (!used.has(base)) {
+      used.add(base);
+      return base;
+    }
+    const dot = base.lastIndexOf(".");
+    const stem = dot > 0 ? base.slice(0, dot) : base;
+    const extension = dot > 0 ? base.slice(dot) : "";
+    let index = 2;
+    let candidate = `${stem} (${index})${extension}`;
+    while (used.has(candidate)) {
+      index += 1;
+      candidate = `${stem} (${index})${extension}`;
+    }
+    used.add(candidate);
+    return candidate;
+  });
+}
+
 export async function downloadMany(
   items: Array<{ blob: Blob; name: string }>,
   zipName: string
@@ -101,6 +138,7 @@ export async function downloadMany(
   }
   const JSZip = (await import("jszip")).default;
   const zip = new JSZip();
-  for (const item of items) zip.file(item.name, item.blob);
+  const names = uniqueArchiveNames(items.map((item) => item.name));
+  items.forEach((item, index) => zip.file(names[index], item.blob));
   downloadBlob(await zip.generateAsync({ type: "blob" }), zipName);
 }

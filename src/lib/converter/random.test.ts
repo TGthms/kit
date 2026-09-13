@@ -1,12 +1,12 @@
 import { describe, expect, it } from "vitest";
-import { randomBoolean, randomDecimal, randomDecimals, randomInteger, randomIntegers, randomPassphrase, randomPassword, randomPick, randomResultSummary, randomUnique } from "./random";
+import { MAX_RANDOM_PASSWORD_LENGTH, randomBoolean, randomDecimal, randomDecimals, randomInteger, randomIntegers, randomPassphrase, randomPassword, randomPick, randomResultSummary, randomUnique } from "./random";
 
 describe("random generation helpers", () => {
   it("supports injectable deterministic integer, decimal, boolean, and pick generation", () => {
     expect(randomInteger(1, 6, () => 0)).toBe(1);
     expect(randomInteger(1, 6, () => 0.999999)).toBe(6);
     expect(randomDecimal(0, 10, { rng: () => 0.25 })).toBe(2.5);
-    expect(randomDecimal(0, 1, { precision: 2, rng: () => 0.999 })).toBe(0.99);
+    expect(randomDecimal(0, 1, { precision: 2, rng: () => 0.999 })).toBe(1);
     expect(randomBoolean(() => 0.49)).toBe(true);
     expect(randomBoolean(() => 0.5)).toBe(false);
     expect(randomPick(["a", "b"], () => 0)).toBe("a");
@@ -34,6 +34,23 @@ describe("random generation helpers", () => {
     expect(stepped.every((n) => n % 2 === 0 && n >= 0 && n <= 10)).toBe(true);
     expect(() => randomIntegers(1, 3, { count: 4, unique: true })).toThrow(RangeError);
     expect(randomDecimals(0, 1, { count: 2, precision: 1, rng: () => 0 })).toEqual([0, 0]);
+  });
+
+  it("includes both ends of a decimal range without stepping past them", () => {
+    expect(randomDecimal(0, 1, { precision: 0, rng: () => 0 })).toBe(0);
+    expect(randomDecimal(0, 1, { precision: 0, rng: () => 0.999 })).toBe(1);
+    expect(randomDecimal(0, 10, { precision: 0, rng: () => 1 - Number.EPSILON })).toBe(10);
+    /* 0.07 × 100 is 7.000000000000001 in binary floating point. */
+    expect(randomDecimal(0.07, 0.08, { precision: 2, rng: () => 0 })).toBe(0.07);
+    expect(randomDecimal(0.1, 0.2, { precision: 1, rng: () => 0 })).toBe(0.1);
+    expect(randomDecimal(0.1, 0.2, { precision: 1, rng: () => 0.999 })).toBe(0.2);
+    /* Nothing in [0, 0.5] lands on a whole number except 0. */
+    expect(randomDecimal(0, 0.5, { precision: 0, rng: () => 0.999 })).toBe(0);
+  });
+
+  it("refuses a password longer than the maximum", () => {
+    expect(() => randomPassword({ length: MAX_RANDOM_PASSWORD_LENGTH + 1 })).toThrow(RangeError);
+    expect(randomPassword({ length: MAX_RANDOM_PASSWORD_LENGTH, rng: () => 0 })).toHaveLength(MAX_RANDOM_PASSWORD_LENGTH);
   });
 
   it("formats non-password rolls for history without persisting rolled values", () => {

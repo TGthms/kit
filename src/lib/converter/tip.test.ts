@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { calculateTip, roundMoney } from "./tip";
+import { calculateTip, MAX_TIP_PEOPLE, roundMoney } from "./tip";
 
 describe("tip and split math", () => {
   it("calculates tax and tip from the pre-tax subtotal", () => {
@@ -21,5 +21,11 @@ describe("tip and split math", () => {
     expect(calculateTip({ subtotal: 10, tipPercent: 12.5, taxPercent: 8, roundTo: null }).total).toBe(12.05);
     expect(() => calculateTip({ subtotal: -1, tipPercent: 10 })).toThrow(RangeError);
     expect(() => calculateTip({ subtotal: 1, tipPercent: 10, people: 0 })).toThrow(RangeError);
+  });
+
+  it("refuses a group larger than a split can cover", () => {
+    expect(calculateTip({ subtotal: 100, tipPercent: 0, people: MAX_TIP_PEOPLE }).shares).toHaveLength(MAX_TIP_PEOPLE);
+    expect(() => calculateTip({ subtotal: 100, tipPercent: 0, people: MAX_TIP_PEOPLE + 1 })).toThrow(RangeError);
+    expect(() => calculateTip({ subtotal: 100, tipPercent: 0, people: 1e9 })).toThrow(RangeError);
   });
 });

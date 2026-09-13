@@ -51,10 +51,9 @@ function formatValue(
   const sizeOf: Record<number, number> = { 1: 1, 2: 1, 3: 2, 4: 4, 5: 8, 9: 4, 10: 8 };
   const unit = sizeOf[type] ?? 1;
   const byteLen = unit * count;
-  // Malformed/malicious EXIF can claim a pointer or count that runs past
-  // the buffer; every read below must be bounds-checked so a crafted image
-  // can only ever fail to produce metadata, never throw an uncaught
-  // RangeError out of a binary parser running on untrusted file bytes.
+  // EXIF carried by an untrusted image can claim a pointer or a count that runs
+  // past the buffer. Every read here is bounds-checked, so a crafted image only
+  // ever produces less metadata — it never raises an error out of the parser.
   if (byteLen > 4 && valueOffset + 4 > view.byteLength) return "";
   const dataOffset = byteLen <= 4 ? valueOffset : view.getUint32(valueOffset, little);
   if (dataOffset < 0 || dataOffset > view.byteLength) return "";
@@ -112,9 +111,13 @@ function parseIfd(
 }
 
 function parseTiffExif(bytes: Uint8Array, start: number, length: number): ExifTag[] {
-  const end = Math.min(bytes.length, start + length);
+  /* A declared segment length can point past the end of the file, which would
+     build the view with a negative length. Bounds are settled before the view
+     exists, so a truncated file yields no tags instead of an error. */
+  if (!Number.isInteger(start) || start < 0 || start >= bytes.length) return [];
+  const end = Math.min(bytes.length, start + Math.max(0, length));
+  if (end - start < 8) return [];
   const view = new DataView(bytes.buffer, bytes.byteOffset + start, end - start);
-  if (view.byteLength < 8) return [];
   const b0 = view.getUint8(0);
   const b1 = view.getUint8(1);
   const little = b0 === 0x49 && b1 === 0x49;
@@ -141,8 +144,10 @@ function parseJpegExif(bytes: Uint8Array): ExifTag[] {
     const marker = bytes[i + 1];
     const size = (bytes[i + 2] << 8) | bytes[i + 3];
     if (marker === 0xda) break;
-    if (marker === 0xe1 && size >= 8) {
-      const payload = i + 4;
+    /* The segment header and the start of the TIFF block both have to sit
+       inside the file before either can be read. */
+    const payload = i + 4;
+    if (marker === 0xe1 && size >= 8 && payload + 6 <= bytes.length) {
       const header = String.fromCharCode(
         bytes[payload],
         bytes[payload + 1],
@@ -163,9 +168,9 @@ function parsePngText(bytes: Uint8Array): ExifTag[] {
   if (bytes.length < 8 || bytes[0] !== 0x89 || bytes[1] !== 0x50) return tags;
   let i = 8;
   while (i + 12 <= bytes.length) {
-    // PNG lengths are unsigned 32-bit. A signed read turns 0xFFFFFFFF-class
-    // lengths negative; with len === -12 the cursor below computes
-    // i = dataEnd + 4 = i and the parser spins forever on the main thread.
+    // PNG lengths are unsigned 32-bit. Reading the field as signed would turn
+    // 0xFFFFFFFF-class lengths negative and stall this loop, so it is
+    // normalised to an unsigned value before use.
     const len =
       ((bytes[i] << 24) | (bytes[i + 1] << 16) | (bytes[i + 2] << 8) | bytes[i + 3]) >>> 0;
     const type = String.fromCharCode(bytes[i + 4], bytes[i + 5], bytes[i + 6], bytes[i + 7]);

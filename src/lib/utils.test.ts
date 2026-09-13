@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { blobFromDataUrl, downloadRevokeDelayMs } from "./utils";
+import { blobFromDataUrl, downloadRevokeDelayMs, uniqueArchiveNames } from "./utils";
 
 describe("blobFromDataUrl", () => {
   it("decodes a base64 PNG data URL without fetch", async () => {
@@ -26,5 +26,26 @@ describe("downloadRevokeDelayMs", () => {
   it("caps the wait at ten seconds", () => {
     expect(downloadRevokeDelayMs(200 * 1024 * 1024)).toBe(10_000);
     expect(downloadRevokeDelayMs(Number.MAX_SAFE_INTEGER)).toBe(10_000);
+  });
+});
+
+describe("uniqueArchiveNames", () => {
+  it("keeps every file when two inputs share a name", () => {
+    expect(uniqueArchiveNames(["photo.jpg", "photo.jpg", "photo.jpg"])).toEqual([
+      "photo.jpg",
+      "photo (2).jpg",
+      "photo (3).jpg",
+    ]);
+  });
+
+  it("does not collide with a name that already ends in a counter", () => {
+    expect(uniqueArchiveNames(["a.jpg", "a (2).jpg", "a.jpg"])).toEqual(["a.jpg", "a (2).jpg", "a (3).jpg"]);
+  });
+
+  it("keeps every entry inside the archive", () => {
+    expect(uniqueArchiveNames(["../escape.jpg"])).toEqual(["escape.jpg"]);
+    expect(uniqueArchiveNames(["a/b/c.png"])).toEqual(["a-b-c.png"]);
+    expect(uniqueArchiveNames([".hidden"])).toEqual(["hidden"]);
+    expect(uniqueArchiveNames([""])).toEqual(["file"]);
   });
 });

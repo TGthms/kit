@@ -10,12 +10,20 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
-import { calculateTip } from "@/lib/converter/tip";
+import { calculateTip, MAX_TIP_PEOPLE } from "@/lib/converter/tip";
 import { ToolLimits, ToolShell, useToolHistory } from "./shared";
 import { text, toolId } from "./everyday-format";
 
 function formatMoney(value: number) {
   return new Intl.NumberFormat(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(value);
+}
+
+/** Keeps the group size a whole number that one split can cover. */
+function limitPeople(raw: string): string {
+  if (raw === "") return "";
+  const value = Math.floor(Number(raw));
+  if (!Number.isFinite(value) || value < 1) return "";
+  return String(Math.min(MAX_TIP_PEOPLE, value));
 }
 
 export function TipSplitCalculator() {
@@ -37,7 +45,27 @@ export function TipSplitCalculator() {
     <ToolShell toolId={toolId("tip-split-calculator")}>
       <ToolLimits><p>{text(t, "limits", "Tip and tax are calculated from the subtotal. Rounded shares distribute any remainder to the first people so the split adds back to the total.")}</p></ToolLimits>
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        {[ [text(t, "subtotal", "Subtotal"), subtotal, setSubtotal], [text(t, "tipPercent", "Tip %"), tipPercent, setTipPercent], [text(t, "taxPercent", "Tax %"), taxPercent, setTaxPercent], [text(t, "people", "People"), people, setPeople] ].map(([label, value, setValue]) => <div key={label as string} className="space-y-2"><Label>{label as string}</Label><Input type="number" min="0" step="any" value={value as string} onChange={(event) => (setValue as (value: string) => void)(event.target.value)} /></div>)}
+        {([
+          [text(t, "subtotal", "Subtotal"), subtotal, setSubtotal],
+          [text(t, "tipPercent", "Tip %"), tipPercent, setTipPercent],
+          [text(t, "taxPercent", "Tax %"), taxPercent, setTaxPercent],
+        ] as const).map(([label, value, setValue]) => (
+          <div key={label} className="space-y-2">
+            <Label>{label}</Label>
+            <Input type="number" min="0" step="any" value={value} onChange={(event) => setValue(event.target.value)} />
+          </div>
+        ))}
+        <div className="space-y-2">
+          <Label>{text(t, "people", "People")}</Label>
+          <Input
+            type="number"
+            min={1}
+            max={MAX_TIP_PEOPLE}
+            step={1}
+            value={people}
+            onChange={(event) => setPeople(limitPeople(event.target.value))}
+          />
+        </div>
       </div>
       <div className="flex items-center gap-3"><Switch checked={splitRemainder} onCheckedChange={setSplitRemainder} id="split-remainder" /><Label htmlFor="split-remainder">{text(t, "distributeRoundingRemainder", "Distribute rounding remainder")}</Label></div>
       {result ? (

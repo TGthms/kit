@@ -82,14 +82,27 @@ describe("parseImageMetadata", () => {
   });
 
   it("terminates on a PNG chunk length that is negative when read signed", () => {
-    // 0xFFFFFFF4 is -12 as int32. With a signed length the cursor used to
-    // compute i = dataEnd + 4 === i and spin on the main thread forever.
+    // 0xFFFFFFF4 is -12 when a 32-bit length is read as signed, which would
+    // leave the chunk cursor exactly where it started and loop forever.
     const bytes = Uint8Array.from([
       0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a,
       0xff, 0xff, 0xff, 0xf4, // length (negative as int32)
       0x74, 0x45, 0x58, 0x74, // tEXt
       0x00, 0x00, 0x00, 0x00, // truncated: no data, no CRC
     ]);
+    expect(parseImageMetadata(bytes)).toEqual([]);
+  });
+
+  it("does not throw when an APP1 segment claims more bytes than the file holds", () => {
+    // The "Exif" identifier is present, but the segment's declared length runs
+    // past the end of the file, so the TIFF block would start beyond it.
+    const bytes = Uint8Array.from([
+      0xff, 0xd8,
+      0xff, 0xe1,
+      0x00, 0x64, // declared segment length: 100 bytes
+      0x45, 0x78, 0x69, 0x66, // "Exif", then the file ends
+    ]);
+    expect(() => parseImageMetadata(bytes)).not.toThrow();
     expect(parseImageMetadata(bytes)).toEqual([]);
   });
 

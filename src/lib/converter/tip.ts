@@ -20,6 +20,10 @@ function assertNonNegative(value: number, name: string): void {
   if (!Number.isFinite(value) || value < 0) throw new RangeError(`${name} must be non-negative and finite.`);
 }
 
+/** Largest group a split can be shared between. One share is produced per person,
+    so the count is capped well below the point where the list stops being useful. */
+export const MAX_TIP_PEOPLE = 1000;
+
 export function roundMoney(value: number, decimals = 2): number {
   if (!Number.isFinite(value) || !Number.isInteger(decimals) || decimals < 0 || decimals > 8) throw new RangeError("Money value and decimals must be valid.");
   const factor = 10 ** decimals;
@@ -32,6 +36,7 @@ export function calculateTip(options: TipOptions): TipResult {
   assertNonNegative(tipPercent, "tipPercent");
   assertNonNegative(taxPercent, "taxPercent");
   if (!Number.isInteger(people) || people < 1) throw new RangeError("people must be a positive integer.");
+  if (people > MAX_TIP_PEOPLE) throw new RangeError(`people must be ${MAX_TIP_PEOPLE} or fewer.`);
   if (roundTo !== null && (!Number.isInteger(roundTo) || roundTo < 0 || roundTo > 8)) throw new RangeError("roundTo must be null or an integer from 0 to 8.");
   const round = (value: number) => roundTo === null ? value : roundMoney(value, roundTo);
   const tax = round(subtotal * taxPercent / 100);

@@ -15,6 +15,7 @@ import { Textarea } from "@/components/ui/textarea";
 import {
   cryptoRandom,
   MAX_RANDOM_BATCH,
+  MAX_RANDOM_PASSWORD_LENGTH,
   randomBoolean,
   randomDecimals,
   randomIntegers,
@@ -27,6 +28,14 @@ import {
 import { downloadText } from "@/lib/utils";
 import { ActionBar, ToolLimits, ToolShell, useToolHistory } from "./shared";
 import { text, toolId } from "./everyday-format";
+
+/** Keeps the password length a whole number this generator will produce. */
+function limitPasswordLength(raw: string): string {
+  if (raw === "") return "";
+  const value = Math.floor(Number(raw));
+  if (!Number.isFinite(value) || value < 1) return "";
+  return String(Math.min(MAX_RANDOM_PASSWORD_LENGTH, value));
+}
 
 export function RandomGenerator() {
   const t = useTranslations("tools.random-generator");
@@ -45,6 +54,7 @@ export function RandomGenerator() {
   const [error, setError] = useState("");
   const roll = useRef(0);
   const batch = Math.min(MAX_RANDOM_BATCH, Math.max(1, Number(count) || 1));
+  const passwordLength = Math.min(MAX_RANDOM_PASSWORD_LENGTH, Math.max(1, Math.floor(Number(length)) || 1));
   const generate = () => {
     try {
       let next: string[] = [];
@@ -58,7 +68,7 @@ export function RandomGenerator() {
         const choices = items.split(/\r?\n/).map((item) => item.trim()).filter(Boolean);
         next = unique ? randomUnique(choices, batch) : Array.from({ length: batch }, () => randomPick(choices));
       } else {
-        next = Array.from({ length: batch }, () => randomPassword({ length: Number(length), rng: cryptoRandom }));
+        next = Array.from({ length: batch }, () => randomPassword({ length: passwordLength, rng: cryptoRandom }));
       }
       setValues(next);
       setError("");
@@ -133,7 +143,14 @@ export function RandomGenerator() {
       {mode === "password" ? (
         <div className="space-y-2">
           <Label>{text(t, "passwordLength", "Password length")}</Label>
-          <Input type="number" min="1" max="256" value={length} onChange={(event) => setLength(event.target.value)} />
+          <Input
+            type="number"
+            min={1}
+            max={MAX_RANDOM_PASSWORD_LENGTH}
+            value={length}
+            onChange={(event) => setLength(limitPasswordLength(event.target.value))}
+          />
+
         </div>
       ) : null}
       <div className="rounded-2xl border border-border/60 bg-card p-4">

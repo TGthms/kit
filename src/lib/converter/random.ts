@@ -85,6 +85,10 @@ export function randomDecimals(min: number, max: number, options: RandomDecimalO
   return Array.from({ length: count }, () => randomDecimal(min, max, rest));
 }
 
+/* Binary floating point tolerance: 0.07 × 100 is 7.000000000000001, which would
+   otherwise snap a bound onto the neighbouring step. */
+const STEP_TOLERANCE = 1e-9;
+
 export function randomDecimal(min: number, max: number, options: RandomDecimalOptions = {}): number {
   if (!Number.isFinite(min) || !Number.isFinite(max) || min > max) throw new RangeError("Decimal bounds must be finite and ordered.");
   if (min === max) return min;
@@ -93,9 +97,11 @@ export function randomDecimal(min: number, max: number, options: RandomDecimalOp
   if (options.precision === undefined) return min + random * (max - min);
   assertInteger(options.precision, "precision");
   if (options.precision < 0 || options.precision > 15) throw new RangeError("precision must be between 0 and 15.");
+  /* Both bounds are included, matching Integer mode: the lowest and the highest
+     value in step with the chosen precision can each come up. */
   const factor = 10 ** options.precision;
-  const lower = Math.ceil(min * factor - Number.EPSILON);
-  const upper = Math.ceil(max * factor - Number.EPSILON) - 1;
+  const lower = Math.ceil(min * factor - STEP_TOLERANCE);
+  const upper = Math.floor(max * factor + STEP_TOLERANCE);
   if (upper < lower) return min;
   return (lower + Math.floor(random * (upper - lower + 1))) / factor;
 }
@@ -124,6 +130,11 @@ export function randomUnique<T>(items: readonly T[], count: number, rng: RandomS
 
 export const DEFAULT_PASSWORD_ALPHABET = "ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz23456789!@#$%^&*";
 
+/** Longest password this generator will produce. A password longer than any
+    service accepts is of no use, and the ceiling keeps one request from
+    consuming an unbounded amount of memory. */
+export const MAX_RANDOM_PASSWORD_LENGTH = 256;
+
 export const RANDOM_HISTORY_SUMMARY_MAX = 96;
 export type RecordableRandomMode = "integer" | "decimal" | "boolean" | "pick";
 
@@ -136,10 +147,12 @@ export function randomPassword(options: PasswordOptions = {}): string {
   const length = options.length ?? 16;
   assertInteger(length, "length");
   if (length < 1) throw new RangeError("Password length must be positive.");
+  if (length > MAX_RANDOM_PASSWORD_LENGTH) throw new RangeError(`Password length must be ${MAX_RANDOM_PASSWORD_LENGTH} or fewer.`);
   const alphabet = options.alphabet ?? DEFAULT_PASSWORD_ALPHABET;
   if (alphabet.length === 0) throw new RangeError("Password alphabet must not be empty.");
   const rng = options.rng ?? Math.random;
-  return Array.from({ length }, () => randomPick(Array.from(alphabet), rng)).join("");
+  const characters = Array.from(alphabet);
+  return Array.from({ length }, () => randomPick(characters, rng)).join("");
 }
 
 export function randomPassphrase(words: readonly string[], options: PassphraseOptions = {}): string {
