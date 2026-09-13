@@ -59,19 +59,19 @@ export function PdfOrganize() {
       setOrder(Array.from({ length: n }, (_, i) => i));
       setRotations({});
       setDeleted(new Set());
+      /* Thumbnails are a convenience. A long document is left without them
+         rather than spending the memory to rasterize every page. */
       if (n <= 24) {
-        const { renderPdfThumbnail } = await loadPdfjs();
-        const { runPooled } = await import("@/lib/jobs/batch");
-        const pages = Array.from({ length: n }, (_, i) => i);
-        const entries = await runPooled(pages, 3, async (i) => {
-          try {
-            const url = await renderPdfThumbnail(buffer.slice(0), i + 1, 0.28);
-            return [i, url] as const;
-          } catch {
-            return null;
-          }
+        const { renderPdfThumbnails } = await loadPdfjs();
+        const urls = await renderPdfThumbnails(
+          buffer,
+          Array.from({ length: n }, (_, i) => i + 1),
+          0.28
+        );
+        const next: Record<number, string> = {};
+        urls.forEach((url, index) => {
+          if (url) next[index] = url;
         });
-        const next = Object.fromEntries(entries.filter(Boolean) as Array<readonly [number, string]>);
         if (gen !== thumbsGen.current) {
           revokeObjectUrls(Object.values(next));
           return;

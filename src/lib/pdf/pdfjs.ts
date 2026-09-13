@@ -1,6 +1,6 @@
 import * as pdfjs from "pdfjs-dist";
 import { forEachJobIndex } from "@/lib/jobs/batch";
-import { withBasePath } from "@/lib/base-path";
+import { withBasePath, withVendor } from "@/lib/base-path";
 import { integerCanvasSize, pdfPageWindow, type PdfPageBatch } from "./limits";
 import type { ViewportTransform } from "./viewport";
 
@@ -24,11 +24,17 @@ export function ensurePdfWorker() {
   // depend on a live third-party origin we don't control. The file is kept
   // in sync with the installed pdfjs-dist version by `scripts/sync-vendor.mjs`
   // (wired into `postinstall`/`prebuild`) rather than fetched at request time.
-  pdfjs.GlobalWorkerOptions.workerSrc = withBasePath("/vendor/pdfjs/pdf.worker.min.mjs");
+  // The URL carries that version so an upgrade replaces the cached worker.
+  pdfjs.GlobalWorkerOptions.workerSrc = withVendor("/vendor/pdfjs/pdf.worker.min.mjs");
   workerReady = true;
 }
 
 function pdfjsAssetUrl(path: string): string {
+  /* pdf.js appends each file name to these directory URLs itself, so they must
+     end in "/" and cannot carry a version query. They hold static CMaps,
+     standard fonts, WASM and ICC profiles that change only with a pdf.js
+     upgrade — and that upgrade already changes the versioned worker URL above,
+     which is the file that must match the library. */
   const prefix = withBasePath("/vendor/pdfjs/");
   return `${prefix}${path}`;
 }
@@ -64,6 +70,9 @@ async function openPdfDocument(data: ArrayBuffer) {
     throw error;
   }
 }
+
+/** The pdf.js document handle produced by openPdfDocument. */
+type PdfJsDocument = Awaited<ReturnType<typeof openPdfDocument>>["doc"];
 
 export async function renderPdfPagePreview(
   data: ArrayBuffer,
@@ -103,6 +112,24 @@ export async function renderPdfPagePreview(
   }
 }
 
+/** Render one page of an open document to a JPEG blob URL. */
+async function renderPageThumbnailUrl(doc: PdfJsDocument, pageNum: number, scale: number): Promise<string> {
+  const page = await doc.getPage(pageNum);
+  const base = page.getViewport({ scale: 1 });
+  const viewport = page.getViewport({ scale: clampPdfScale(base.width, base.height, scale) });
+  const canvas = document.createElement("canvas");
+  const size = integerCanvasSize(viewport.width, viewport.height);
+  canvas.width = size.width;
+  canvas.height = size.height;
+  const ctx = canvas.getContext("2d");
+  if (!ctx) throw new Error("Could not create a 2D canvas context");
+  await page.render({ canvasContext: ctx, viewport, canvas }).promise;
+  const blob: Blob = await new Promise((resolve, reject) =>
+    canvas.toBlob((value) => (value ? resolve(value) : reject(new Error("toBlob failed"))), "image/jpeg", 0.7)
+  );
+  return URL.createObjectURL(blob);
+}
+
 /** Blob object URL. Callers must revoke it. */
 export async function renderPdfThumbnail(
   data: ArrayBuffer,
@@ -112,20 +139,37 @@ export async function renderPdfThumbnail(
   ensurePdfWorker();
   const { doc, loadingTask } = await openPdfDocument(data);
   try {
-    const page = await doc.getPage(pageNum);
-    const base = page.getViewport({ scale: 1 });
-    const viewport = page.getViewport({ scale: clampPdfScale(base.width, base.height, scale) });
-    const canvas = document.createElement("canvas");
-    const size = integerCanvasSize(viewport.width, viewport.height);
-    canvas.width = size.width;
-    canvas.height = size.height;
-    const ctx = canvas.getContext("2d");
-    if (!ctx) throw new Error("Could not create a 2D canvas context");
-    await page.render({ canvasContext: ctx, viewport, canvas }).promise;
-    const blob: Blob = await new Promise((resolve, reject) =>
-      canvas.toBlob((value) => (value ? resolve(value) : reject(new Error("toBlob failed"))), "image/jpeg", 0.7)
-    );
-    return URL.createObjectURL(blob);
+    return await renderPageThumbnailUrl(doc, pageNum, scale);
+  } finally {
+    await doc.cleanup();
+    await loadingTask.destroy();
+  }
+}
+
+/**
+ * Blob object URLs for several pages of one file, in the order requested, with
+ * `null` where a page could not be rendered. Callers must revoke what they
+ * receive. The file is copied and parsed once for the whole set rather than
+ * once per page, so a long document stays within reach of low-memory devices.
+ */
+export async function renderPdfThumbnails(
+  data: ArrayBuffer,
+  pageNums: number[],
+  scale = 0.35
+): Promise<Array<string | null>> {
+  if (!pageNums.length) return [];
+  ensurePdfWorker();
+  const { doc, loadingTask } = await openPdfDocument(data);
+  const urls: Array<string | null> = [];
+  try {
+    for (const pageNum of pageNums) {
+      try {
+        urls.push(await renderPageThumbnailUrl(doc, pageNum, scale));
+      } catch {
+        urls.push(null);
+      }
+    }
+    return urls;
   } finally {
     await doc.cleanup();
     await loadingTask.destroy();

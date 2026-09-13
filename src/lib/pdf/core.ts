@@ -227,6 +227,15 @@ export function formatPageLabel(page: number, total: number, template: string): 
   return template.replaceAll("{page}", String(page)).replaceAll("{pages}", String(total));
 }
 
+/**
+ * The label for every page of a document numbered from `start`. `{pages}` is
+ * always the document's page count, so labels stay consistent with the whole
+ * document even when numbering starts above 1.
+ */
+export function pageLabels(total: number, start: number, template: string): string[] {
+  return Array.from({ length: total }, (_, index) => formatPageLabel(start + index, total, template));
+}
+
 export type PageNumberPosition =
   | "header-left"
   | "header-center"
@@ -251,11 +260,12 @@ export async function numberPdfPages(
   const pages = doc.getPages();
   const total = pages.length;
   const size = 10;
+  const labels = pageLabels(total, start, template);
 
   for (let i = 0; i < pages.length; i++) {
     const page = pages[i];
     const { width, height } = page.getSize();
-    const text = formatPageLabel(start + i, start + total - 1, template);
+    const text = labels[i];
     const rendered = await embedBrowserText(doc, text, size, [0.25, 0.25, 0.25]);
     const margin = 28;
     const header = position.startsWith("header");
@@ -399,10 +409,12 @@ export async function stampPdfSignature(buf: PdfInput, text: string): Promise<Ui
   const doc = await loadReadablePdf(buf);
   const font = needsBrowserUnicodeFont(text) ? null : await doc.embedFont(StandardFonts.HelveticaOblique);
   const pages = doc.getPages();
+  const size = 14;
+  // The same signature is stamped on every page, so it is rasterized and
+  // embedded once for the whole document rather than once per page.
+  const rendered = await embedBrowserText(doc, text, size, [0.12, 0.12, 0.16], 1, true);
   for (const page of pages) {
     const { width } = page.getSize();
-    const size = 14;
-    const rendered = await embedBrowserText(doc, text, size, [0.12, 0.12, 0.16], 1, true);
     if (rendered) {
       page.drawImage(rendered.image, {
         x: Math.max(28, width - rendered.width - 36),
@@ -433,12 +445,11 @@ export async function stripPdfMetadata(buf: PdfInput): Promise<Uint8Array> {
   doc.setKeywords([]);
   doc.setCreator("");
   doc.setProducer("");
-  // The standard Info-dict fields above aren't the only place metadata can
-  // live: reset the dates (they otherwise keep leaking the original
-  // authoring time) and drop any XMP metadata stream, which can duplicate
-  // author/title/timestamps outside the Info dict and survive the calls
-  // above untouched. This is not a forensic wipe; other object streams can
-  // still hold identifying data.
+  // Metadata lives outside the standard Info-dict fields too: the dates would
+  // otherwise keep the original authoring time, and an XMP metadata stream can
+  // duplicate author, title and timestamps where those fields do not reach.
+  // This is not a forensic wipe; other object streams can still hold
+  // identifying data.
   const now = new Date();
   doc.setCreationDate(now);
   doc.setModificationDate(now);

@@ -3,6 +3,7 @@ import { PDFDocument, degrees } from "@cantoo/pdf-lib";
 import {
   parsePageRange,
   formatPageLabel,
+  pageLabels,
   numberPdfPages,
   flattenPdfForms,
   getPdfMetadata,
@@ -45,6 +46,18 @@ describe("formatPageLabel", () => {
   it("substitutes page and pages tokens", () => {
     expect(formatPageLabel(2, 10, "{page} / {pages}")).toBe("2 / 10");
     expect(formatPageLabel(1, 1, "p.{page}")).toBe("p.1");
+  });
+});
+
+describe("pageLabels", () => {
+  it("counts against the whole document even when numbering starts above 1", () => {
+    expect(pageLabels(4, 1, "{page} / {pages}")).toEqual(["1 / 4", "2 / 4", "3 / 4", "4 / 4"]);
+    expect(pageLabels(12, 5, "{page} / {pages}")).toEqual([
+      "5 / 12", "6 / 12", "7 / 12", "8 / 12",
+      "9 / 12", "10 / 12", "11 / 12", "12 / 12",
+      "13 / 12", "14 / 12", "15 / 12", "16 / 12",
+    ]);
+    expect(pageLabels(0, 1, "{page} / {pages}")).toEqual([]);
   });
 });
 
