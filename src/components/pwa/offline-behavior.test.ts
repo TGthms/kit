@@ -192,10 +192,10 @@ describe("removing what was downloaded", () => {
     const { worker, paths } = loadWorker();
     await worker.removeOffline({ all: true });
 
-    /* Only the application's own files survive, whatever language they sat
-       under, including one that is only ever a compatibility address. The
-       engines do go: they are offered on this page, so they are part of what it
-       can add. */
+    /* Only the application's own files survive, whichever language directory
+       they were stored under, including one that is only ever a compatibility
+       address. The engines do go: they are offered on this page, so they are part
+       of what it can add. */
     expect(paths()).toEqual(["/app.js"]);
   });
 });

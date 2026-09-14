@@ -80,8 +80,8 @@ export function FileDropzone({
         onDragOver={(e) => e.preventDefault()}
         onDragEnter={(e) => {
           e.preventDefault();
-          // enter/leave fire for every child element; a depth counter keeps
-          // the highlight from flickering as the pointer crosses them.
+          // Enter and leave events fire for every child element, so a depth
+          // counter keeps the highlight from flickering as the pointer crosses them.
           dragDepth.current += 1;
           setDrag(true);
         }}

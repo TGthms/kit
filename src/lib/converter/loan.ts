@@ -26,7 +26,7 @@ function assertPositive(value: number, name: string): void {
 }
 
 /** A rate and term whose result leaves the finite range cannot be shown as an
-    amount, so it is reported rather than displayed as a value that is not money. */
+    amount, so it is reported as out of range rather than formatted. */
 function assertAmount(value: number, name: string): number {
   if (!Number.isFinite(value)) throw new RangeError(`${name} is out of range for these values.`);
   return value;

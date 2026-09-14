@@ -21,7 +21,7 @@ describe("loan and compound helpers", () => {
     expect(() => compoundAmount({ principal: 1, annualRatePercent: 1, years: 1, compoundsPerYear: 0 })).toThrow(RangeError);
   });
 
-  it("reports a result too large to show instead of a value that is not money", () => {
+  it("reports a result too large to show rather than formatting it", () => {
     expect(() => monthlyPayment({ principal: 1e308, annualRatePercent: 1000, years: 1000 })).toThrow(RangeError);
     expect(() => compoundAmount({ principal: 1e308, annualRatePercent: 1000, years: 1000 })).toThrow(RangeError);
     expect(() => amortizationTotal(Number.MAX_VALUE, 1e300)).toThrow(RangeError);

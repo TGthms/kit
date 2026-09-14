@@ -14,7 +14,7 @@ const NAMED_ENTITIES: Record<string, string> = {
 
 function decodeCharReference(codePoint: number, original: string): string {
   // Lenient parser: a reference outside the XML 1.0 character set (surrogate
-  // halves, noncharacters, control codes) stays literal rather than emitted.
+  // halves, noncharacters, control codes) stays literal rather than being emitted.
   const validXmlChar =
     codePoint === 0x09 ||
     codePoint === 0x0a ||

@@ -29,7 +29,7 @@ import { downloadText } from "@/lib/utils";
 import { ActionBar, ToolLimits, ToolShell, useToolHistory } from "./shared";
 import { text, toolId } from "./everyday-format";
 
-/** Keeps the password length a whole number this generator will produce. */
+/** Keeps the password length a whole number within the range this generator produces. */
 function limitPasswordLength(raw: string): string {
   if (raw === "") return "";
   const value = Math.floor(Number(raw));

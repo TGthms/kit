@@ -25,8 +25,8 @@ export function formatYaml(input: string): { ok: true; text: string } | { ok: fa
 
 /**
  * Validates TOML and returns it with a single trailing newline. The document is
- * not re-serialised: TOML keeps comments and key order, which a round trip
- * through a serialiser would discard.
+ * not re-serialized: TOML keeps comments and key order, which a round trip
+ * through a serializer would discard.
  */
 export function formatToml(input: string): { ok: true; text: string } | { ok: false; error: string } {
   try {

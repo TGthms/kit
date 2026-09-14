@@ -98,8 +98,6 @@ function startLoad(): Promise<FFmpeg> {
   instance.on("log", ({ message }) => pushLogLine(String(message)));
   inFlight = instance;
   const promise = (async () => {
-    /* The core is fetched through a blob URL, so its own URL carries the engine
-       version and an upgrade replaces the cached copy. */
     /* The core is fetched through a blob URL, so each file URL carries the
        engine version and an upgrade replaces the cached copy. */
     const origin = window.location.origin;
@@ -235,7 +233,7 @@ export async function runFFmpeg(
     try {
       ff = await getFFmpeg();
     } catch (error) {
-      // A cancel during the load rejects the load itself; a cancelled run
+      // A cancel during the load rejects the load itself; a canceled run
       // must surface that as a cancel, not as the raw termination error.
       if (signal?.aborted) throw abortError();
       throw error;

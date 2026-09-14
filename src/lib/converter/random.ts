@@ -86,7 +86,7 @@ export function randomDecimals(min: number, max: number, options: RandomDecimalO
 }
 
 /* Binary floating point tolerance: 0.07 × 100 is 7.000000000000001, which would
-   otherwise snap a bound onto the neighbouring step. */
+   otherwise snap a bound onto the neighboring step. */
 const STEP_TOLERANCE = 1e-9;
 
 export function randomDecimal(min: number, max: number, options: RandomDecimalOptions = {}): number {

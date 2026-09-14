@@ -18,8 +18,8 @@ describe("parseTimestamp", () => {
   });
 
   it("reads a millisecond value from before 2001 as milliseconds", () => {
-    /* Seconds and milliseconds overlap below 1e12, so a magnitude test read this
-       value as seconds and reported a year in the far future. */
+    /* Seconds and milliseconds overlap below 1e12, so the unit has to come from
+       the digit count rather than the magnitude. */
     expect(parseOk("915148800000").iso).toBe("1999-01-01T00:00:00.000Z");
     expect(parseOk("915148800000").unix).toBe(915148800);
   });

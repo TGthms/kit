@@ -110,7 +110,7 @@ export function TabBar({ pathname }: { pathname: string }) {
     /* A tap moves the highlight straight away, before the route has changed, so
        the bar answers the tap immediately. That optimistic value is spent by the
        route change itself: keeping it would outlive the navigation, and going
-       back afterwards could leave the highlight on the tab that was left rather
+       back afterwards could leave the highlight on the tab it came from rather
        than the one on screen. */
     if (pendingSpentAt.current !== pathname) {
       pendingSpentAt.current = pathname;

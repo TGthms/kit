@@ -170,7 +170,7 @@ function parsePngText(bytes: Uint8Array): ExifTag[] {
   while (i + 12 <= bytes.length) {
     // PNG lengths are unsigned 32-bit. Reading the field as signed would turn
     // 0xFFFFFFFF-class lengths negative and stall this loop, so it is
-    // normalised to an unsigned value before use.
+    // normalized to an unsigned value before use.
     const len =
       ((bytes[i] << 24) | (bytes[i + 1] << 16) | (bytes[i + 2] << 8) | bytes[i + 3]) >>> 0;
     const type = String.fromCharCode(bytes[i + 4], bytes[i + 5], bytes[i + 6], bytes[i + 7]);

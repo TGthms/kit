@@ -1,10 +1,10 @@
-/** Build-time base path for GitHub project pages (e.g. "/kit"). Empty for local. */
+/** Build-time base path for GitHub project pages (e.g. "/kit"). Empty when running locally. */
 export const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
 
 /**
- * Bump when public brand assets change so browsers/SW drop stale copies.
- * `vendor.test.ts` fails if the vendored engine versions below drift from
- * package.json, so an engine upgrade always reaches the URL.
+ * Bump when public brand assets change, so browsers and the service worker drop
+ * stale copies. `vendor.test.ts` fails if the vendored engine versions below
+ * drift from package.json, so an engine upgrade always reaches the URL.
  */
 export const ASSET_VERSION = "6";
 

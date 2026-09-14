@@ -80,7 +80,7 @@ export function parsePlan(raw: string | null): OfflinePlan | null {
 /*
  * The record is read straight out of storage rather than copied into component
  * state, so a component always sees what is really stored and nothing has to be
- * synchronised on mount. The parsed value is cached against the raw text, which
+ * synchronized on mount. The parsed value is cached against the raw text, which
  * keeps the snapshot stable between renders — a fresh object each time would
  * make React re-render forever.
  */
@@ -137,7 +137,7 @@ export function clearPlan(): void {
  *
  * A record with nothing stored behind it is only worth mentioning when the
  * cache has moved on, which means a new release dropped it. Content missing for
- * any other reason — the visitor removed it — is their business, not ours.
+ * any other reason — the visitor removed it — is not reported at all.
  */
 export function planStatus(plan: OfflinePlan | null, state: OfflineState | null, version: string): PlanStatus {
   if (!plan || !state) return "none";

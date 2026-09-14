@@ -11,7 +11,7 @@ const tabBar = readFileSync(join(here, "../layout/tab-bar.tsx"), "utf8");
 const pill = readFileSync(join(here, "../ui/gliding-pill.tsx"), "utf8");
 
 /** The declaration block for an exact selector, so assertions cannot leak into a
- *  neighbouring rule that merely shares a prefix. */
+ *  neighboring rule that merely shares a prefix. */
 function cssBlock(source: string, selector: string): string {
   const start = source.indexOf(`${selector} {`);
   if (start === -1) throw new Error(`selector not found in globals.css: ${selector}`);
@@ -67,7 +67,7 @@ describe("mobile PWA tab bar material", () => {
 
   it("spends that early feedback on the route change that fulfils it", () => {
     // Without this the optimistic tab outlives the navigation, and going back
-    // afterwards leaves the highlight on the tab that was left.
+    // afterwards leaves the highlight on the tab it came from.
     expect(tabBar).toMatch(/setPendingHref\(null\)/);
   });
 
