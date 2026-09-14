@@ -1,5 +1,6 @@
 import type { Locale } from "@/lib/i18n/config";
 import type { ToolId } from "@/lib/tools/registry";
+import { APP_PAGE_IDS, isAppPageId, type AppPageId } from "@/lib/pwa/app-pages";
 import { toolPathSegment } from "@/lib/navigation/routes";
 
 /** The stored key for what a visitor asked to keep offline. */
@@ -33,6 +34,7 @@ export type OfflinePlan = {
   generation: string;
   locales: Locale[];
   tools: ToolId[];
+  pages: AppPageId[];
   engines: boolean;
   at: string;
 };
@@ -69,6 +71,10 @@ export function parsePlan(raw: string | null): OfflinePlan | null {
       generation: typeof parsed.generation === "string" ? parsed.generation : "",
       locales: parsed.locales as Locale[],
       tools: parsed.tools as ToolId[],
+      /* A record with no page list asked for the whole app: every page exists
+         for every language, and leaving one out was not something it could
+         express. */
+      pages: Array.isArray(parsed.pages) ? parsed.pages.filter(isAppPageId) : [...APP_PAGE_IDS],
       engines: Boolean(parsed.engines),
       at: typeof parsed.at === "string" ? parsed.at : "",
     };

@@ -3,7 +3,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { ArrowLeftRight, Check, RefreshCw } from "lucide-react";
-import { notifyHistorySaved } from "@/lib/notify";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -22,7 +21,7 @@ import {
 import { formatConvertedInput } from "@/lib/converter/units";
 import { AnimatedNumber } from "@/components/shared/animated-number";
 import { useHydrated } from "@/lib/react/hydrated";
-import { ToolLimits, ToolShell, useToolHistory } from "./shared";
+import { ToolLimits, ToolShell, useHistoryNote } from "./shared";
 import { parseLiveNumber, type EditedSide } from "./converter-shared";
 
 const text = translateOr;
@@ -105,7 +104,7 @@ function writeCurrencyCache(records: CachedRateRecord[]) {
 export function CurrencyConverter({ namespace = "tools.currency-converter" }: { namespace?: "tools.currency-converter" } = {}) {
   const t = useTranslations(namespace);
   const locale = useLocale();
-  const log = useToolHistory("currency-converter");
+  const note = useHistoryNote("currency-converter");
   const [source, setSource] = useState("100");
   const [edited, setEdited] = useState<EditedSide>("from");
   const [base, setBase] = useState("USD");
@@ -300,8 +299,7 @@ export function CurrencyConverter({ namespace = "tools.currency-converter" }: { 
       <Button
         variant="outline"
         onClick={() => {
-          log(fromNumber === null || toNumber === null ? `${fromText} ${base} → ${quote}` : `${fromText} ${base} → ${toNumber} ${quote}`, "success", { stale, maxAgeMs: DEFAULT_RATE_MAX_AGE_MS });
-          notifyHistorySaved(text(t, "saved", "Conversion saved to history."), text(t, "historyOff", "History is off, so this wasn’t saved."));
+          note(fromNumber === null || toNumber === null ? `${fromText} ${base} → ${quote}` : `${fromText} ${base} → ${toNumber} ${quote}`, text(t, "saved", "Conversion saved to history."), { stale, maxAgeMs: DEFAULT_RATE_MAX_AGE_MS });
         }}
       >
         <Check /> {text(t, "record", "Record conversion")}

@@ -3,7 +3,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { ArrowLeftRight, Check } from "lucide-react";
-import { notifyHistorySaved } from "@/lib/notify";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -13,7 +12,7 @@ import { translateOr } from "@/lib/i18n/translate";
 import { convertUnit, electricalDimension, formatConvertedInput, formatUnitSymbol, UNITS_BY_CATEGORY, type UnitCategory, type UnitCode } from "@/lib/converter/units";
 import type { ToolId } from "@/lib/tools/registry";
 import { AnimatedNumber } from "@/components/shared/animated-number";
-import { ToolShell, useToolHistory } from "./shared";
+import { ToolShell, useHistoryNote } from "./shared";
 import { parseLiveNumber, type EditedSide } from "./converter-shared";
 
 const text = translateOr;
@@ -217,7 +216,7 @@ function UnitConverter({
 }) {
   const t = useTranslations("tools.everyday-converter");
   const locale = useLocale();
-  const log = useToolHistory(historyToolId);
+  const note = useHistoryNote(historyToolId);
   const options: UnitOption[] = useMemo(
     () =>
       UNITS_BY_CATEGORY[category].map((code) => ({
@@ -447,8 +446,7 @@ function UnitConverter({
       <Button
         variant="outline"
         onClick={() => {
-          log(fromNumber === null || toNumber === null ? `${fromText} ${from} → ${toCode}` : `${fromText} ${from} → ${toNumber} ${toCode}`, "success");
-          notifyHistorySaved(text(t, "saved", "Conversion saved to history."), text(t, "historyOff", "History is off, so this wasn’t saved."));
+          note(fromNumber === null || toNumber === null ? `${fromText} ${from} → ${toCode}` : `${fromText} ${from} → ${toNumber} ${toCode}`, text(t, "saved", "Conversion saved to history."));
         }}
       >
         <Check /> {text(t, "record", "Record conversion")}

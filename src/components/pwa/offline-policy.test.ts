@@ -12,6 +12,7 @@ const offlinePage = read("../../app/[locale]/settings/offline/page.tsx");
 const settingsPage = read("../../app/[locale]/settings/page.tsx");
 const offlineAccess = read("../settings/offline-access.tsx");
 const appShell = read("../layout/app-shell.tsx");
+const navigationGuard = read("../layout/navigation-guard.tsx");
 
 describe("offline settings route", () => {
   it("stays a client page with no route-level metadata so static export can prerender it", () => {
@@ -229,10 +230,28 @@ describe("offline page state", () => {
     expect(offlineAccess).toMatch(/confirm\(t\("offlineRemoveConfirm"\)\)/);
   });
 
-  it("offers a language list with the same select-all and clear as the tools", () => {
-    const languages = offlineAccess.slice(offlineAccess.indexOf('t("offlineLanguagesDesc")'), offlineAccess.indexOf('t("offlineToolsDesc")'));
+  it("gives every picker its own select-all and clear", () => {
+    const languages = offlineAccess.slice(
+      offlineAccess.indexOf('t("offlineLanguagesDesc")'),
+      offlineAccess.indexOf('t("offlinePagesDesc")')
+    );
     expect(languages).toMatch(/setSelectedLocales\(\[\.\.\.locales\]\)/);
     expect(languages).toMatch(/setSelectedLocales\(\[\]\)/);
+
+    const pages = offlineAccess.slice(
+      offlineAccess.indexOf('t("offlinePagesDesc")'),
+      offlineAccess.indexOf('t("offlineToolsDesc")')
+    );
+    expect(pages).toMatch(/setSelectedPages\(\[\.\.\.APP_PAGE_IDS\]\)/);
+    expect(pages).toMatch(/setSelectedPages\(\[\]\)/);
+
+    const tools = offlineAccess.slice(offlineAccess.indexOf('t("offlineToolsDesc")'));
+    expect(tools).toMatch(/setSelectedTools\(new Set\(tools\.map\(\(tool\) => tool\.id\)\)\)/);
+    expect(tools).toMatch(/setSelectedTools\(new Set\(\)\)/);
+  });
+
+  it("starts every tool category closed rather than nine lists at once", () => {
+    expect(offlineAccess).toMatch(/useState<Set<ToolCategory>>\(new Set\(\)\)/);
   });
 
   it("keeps the pickers free of any remove control", () => {
@@ -290,6 +309,74 @@ describe("offline page state", () => {
     expect(offlineAccess).toMatch(/t\("offlineOutdated", \{ version: APP_VERSION \}\)/);
     expect(offlineAccess).toMatch(/t\("offlineCleared"\)/);
     expect(offlineAccess).toMatch(/t\("offlineStoredVersion", \{ version: plan\.version \}\)/);
+  });
+});
+
+describe("the app's own pages", () => {
+  it("are offered like anything else that can be downloaded, one row each", () => {
+    expect(offlineAccess).toMatch(/APP_PAGES\.map\(\(page\) =>/);
+    expect(offlineAccess).toMatch(/t\("offlinePages"\)/);
+    expect(offlineAccess).toMatch(/t\("offlinePagesDesc"\)/);
+    /* Every one of them starts ticked: Kit cannot open with no connection
+       without them, and the page that manages all of this is one of them. */
+    expect(offlineAccess).toMatch(/useState<AppPageId\[\]>\(\[\.\.\.APP_PAGE_IDS\]\)/);
+  });
+
+  it("carry the selection through the download and into the record", () => {
+    expect(offlineAccess).toMatch(/pages: selectedPages, engines \}/);
+    expect(offlineAccess).toMatch(/pages: request\.current\.pages,/);
+    expect(offlineAccess).toMatch(/setSelectedPages\(plan\.pages\)/);
+    // A download with no tools at all is a legitimate one, so tools are not
+    // required — but something has to be asked for.
+    expect(offlineAccess).toMatch(/\(!selection\.tools\.length && !selection\.pages\.length\)/);
+  });
+
+  it("are resolved by id from the manifest the build wrote", () => {
+    const fn = sw.slice(
+      sw.indexOf("async function selectedOfflineUrls"),
+      sw.indexOf("async function downloadSelectedOffline")
+    );
+    expect(fn).toMatch(/const pagesByLocale = manifest\.pagesByLocale \|\| \{\}/);
+    expect(fn).toMatch(/for \(const id of chosenPages\) for \(const url of offered\[id\] \|\| \[\]\) pages\.add\(url\)/);
+    expect(fn).toMatch(/\.slice\(0, MAX_OFFLINE_PAGES\)/);
+  });
+
+  it("fetch the whole app for a message that predates the list, and nothing for an empty one", () => {
+    const fn = sw.slice(
+      sw.indexOf("async function selectedOfflineUrls"),
+      sw.indexOf("async function downloadSelectedOffline")
+    );
+    /* The field is optional in one direction only: a message that never carried
+       it was written before pages could be chosen, and asked for the whole app;
+       an empty list is a visitor who un-ticked every page. */
+    expect(fn).toMatch(/Array\.isArray\(data\.pages\)/);
+    expect(fn).toMatch(/\? new Set\(/);
+    expect(fn).toMatch(/: null;/);
+  });
+
+  it("go to the front of the background fill, which pauses while you read", () => {
+    const fill = sw.slice(sw.indexOf("async function startLocaleFill"), sw.indexOf("function isTrustedMessage"));
+    expect(fill.indexOf("enqueueFill(chrome[locale] || [])")).toBeGreaterThan(-1);
+    expect(fill.indexOf("enqueueFill(chrome[locale] || [])")).toBeLessThan(
+      fill.indexOf("enqueueFill(manifest.core || [])")
+    );
+  });
+});
+
+describe("navigating in the app with the network off", () => {
+  it("stays a route change while the destination is held, and only reloads when it is not", () => {
+    /* A document load is a reload: the tab bar loses its glide, the page
+       flashes, and the tap feels like a different app. It is only worth it when
+       there is nothing to route to. */
+    expect(navigationGuard).toMatch(/isHeldOffline\(link\.href, window\.location\.origin\)/);
+    expect(navigationGuard).toMatch(/if \(held\) router\.push\(next\)/);
+    expect(navigationGuard).toMatch(/else window\.location\.assign\(next\)/);
+    expect(navigationGuard).toMatch(/event\.preventDefault\(\)/);
+  });
+
+  it("needs both the page and the payload its route asks for", () => {
+    expect(navigationGuard).toMatch(/const HANG_MS = 8000/);
+    expect(navigationGuard).toMatch(/isRscDocumentPath\(window\.location\.pathname\)/);
   });
 });
 

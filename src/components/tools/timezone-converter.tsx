@@ -3,7 +3,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { Check, Clock3, Globe2 } from "lucide-react";
-import { notifyHistorySaved } from "@/lib/notify";
 import { AnimatedClock } from "@/components/shared/animated-clock";
 import { clockFace } from "@/components/shared/clock-face";
 import { Button } from "@/components/ui/button";
@@ -17,7 +16,7 @@ import {
   getTimeZoneParts,
 } from "@/lib/converter/timezone";
 import { CITIES, cityTimeZones } from "@/lib/converter/cities";
-import { ToolLimits, ToolShell, useToolHistory } from "./shared";
+import { ToolLimits, ToolShell, useHistoryNote } from "./shared";
 import { SearchableSelect } from "@/components/ui/searchable-select";
 import { formatDateInput, text, toolId } from "./everyday-format";
 
@@ -28,7 +27,7 @@ function formatLocalDateTime(value: Date) {
 export function TimezoneConverter() {
   const t = useTranslations("tools.timezone-converter");
   const locale = useLocale();
-  const log = useToolHistory(toolId("timezone-converter"));
+  const note = useHistoryNote(toolId("timezone-converter"));
   const [localDateTime, setLocalDateTime] = useState(() => formatLocalDateTime(new Date()));
   const [fromZone, setFromZone] = useState("America/Los_Angeles");
   const [toZone, setToZone] = useState("Europe/London");
@@ -78,7 +77,7 @@ export function TimezoneConverter() {
                 <div><p className="text-xs text-muted-foreground">{toZone}</p><p className="mt-1 font-mono text-lg">{partLabel(conversion.to)}</p></div>
               </div>
             ) : <p className="text-sm text-destructive">{text(t, "invalid", "Enter a valid local date and time.")}</p>}
-            <Button variant="outline" disabled={!conversion} onClick={() => { if (conversion) { log(`${fromZone} → ${toZone}`, "success"); notifyHistorySaved(text(t, "saved", "Conversion saved to history."), text(t, "historyOff", "History is off, so this wasn’t saved.")); } }}>
+            <Button variant="outline" disabled={!conversion} onClick={() => { if (conversion) { note(`${fromZone} → ${toZone}`, text(t, "saved", "Conversion saved to history.")); } }}>
               <Check /> {text(t, "record", "Record conversion")}
             </Button>
           </CardContent>

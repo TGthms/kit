@@ -447,7 +447,10 @@
     "failed": "Mislyktes",
     "recordingTitle": "Loggfør verktøyaktivitet",
     "recordingOn": "På — korte sammendrag kan lagres på denne enheten.",
-    "recordingOff": "Av — Kit legger ikke til ny aktivitet i historikken."
+    "recordingOff": "Av — Kit legger ikke til ny aktivitet i historikken.",
+    "enableRecording": "Slå på",
+    "notSaved": "Historikken er av, så dette ble ikke lagret.",
+    "enabledAndSaved": "Historikken er på, og denne er lagret."
   },
   "favorites": {
     "title": "Favoritter",
@@ -497,7 +500,9 @@
     "offlineManageDesc": "Se gjennom det som er lagret på denne enheten, og fjern det du vil.",
     "offlineNothingSaved": "Ingenting er lagret på denne enheten ennå.",
     "offlineRemoveSelected": "Fjern valgte",
-    "offlineEnginesLabel": "Mediemotorer"
+    "offlineEnginesLabel": "Mediemotorer",
+    "offlinePages": "Sider",
+    "offlinePagesDesc": "Sidene i selve appen, på språkene du velger. Uten dem kan ikke Kit åpnes uten tilkobling, så alle er valgt på forhånd."
   },
   "shortcuts": {
     "title": "Tastatursnarveier",

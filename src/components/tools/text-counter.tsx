@@ -3,20 +3,19 @@
 import { useMemo, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { Check } from "lucide-react";
-import { notifyHistorySaved } from "@/lib/notify";
 import { AnimatedNumber } from "@/components/shared/animated-number";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { CopyButton } from "@/components/ui/copy-button";
 import { Textarea } from "@/components/ui/textarea";
 import { formatReadingTime, measureText } from "@/lib/converter/text-counter";
-import { ToolLimits, ToolShell, useToolHistory } from "./shared";
+import { ToolLimits, ToolShell, useHistoryNote } from "./shared";
 import { text, toolId } from "./everyday-format";
 
 export function TextCounter() {
   const t = useTranslations("tools.text-counter");
   const locale = useLocale();
-  const log = useToolHistory(toolId("text-counter"));
+  const note = useHistoryNote(toolId("text-counter"));
   const [value, setValue] = useState("");
   const metrics = useMemo(() => measureText(value, { locale }), [locale, value]);
   const metricCards: Array<{ label: string; value?: number; suffix?: string; display?: string }> = [
@@ -59,8 +58,7 @@ export function TextCounter() {
         <Button
           variant="outline"
           onClick={() => {
-            log(`${metrics.words} words, ${metrics.characters} characters`, "success");
-            notifyHistorySaved(text(t, "saved", "Snapshot saved to history."), text(t, "historyOff", "History is off, so this wasn’t saved."));
+            note(`${metrics.words} words, ${metrics.characters} characters`, text(t, "saved", "Snapshot saved to history."));
           }}
         >
           <Check /> {text(t, "record", "Record snapshot")}

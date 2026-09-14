@@ -447,7 +447,10 @@
     "failed": "Misslyckades",
     "recordingTitle": "Spela in verktygsaktivitet",
     "recordingOn": "På — korta sammanfattningar kan sparas på den här enheten.",
-    "recordingOff": "Av — Kit lägger inte till ny aktivitet i historiken."
+    "recordingOff": "Av — Kit lägger inte till ny aktivitet i historiken.",
+    "enableRecording": "Aktivera",
+    "notSaved": "Historiken är av, så detta sparades inte.",
+    "enabledAndSaved": "Historiken är på och den här är sparad."
   },
   "favorites": {
     "title": "Favoriter",
@@ -497,7 +500,9 @@
     "offlineManageDesc": "Granska vad som är sparat på den här enheten och ta bort det du vill.",
     "offlineNothingSaved": "Inget är sparat på den här enheten än.",
     "offlineRemoveSelected": "Ta bort valda",
-    "offlineEnginesLabel": "Mediamotorer"
+    "offlineEnginesLabel": "Mediamotorer",
+    "offlinePages": "Sidor",
+    "offlinePagesDesc": "Appens egna sidor, på de språk du väljer. Utan dem kan Kit inte öppnas utan anslutning, så alla är förvalda."
   },
   "shortcuts": {
     "title": "Kortkommandon",

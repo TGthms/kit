@@ -439,6 +439,27 @@ scritto-flow.kit-scritto-inline {
   height: 1.5rem !important;
 }
 
+/* A notice the visitor can act on, rather than one that only reports. The
+   close control keeps its reserved strip at the end, so the action sits before
+   it instead of under it. */
+[data-sonner-toast].kit-toast [data-button] {
+  flex-shrink: 0 !important;
+  height: auto !important;
+  margin-inline-start: 0.6rem !important;
+  padding: 0.4rem 0.75rem !important;
+  border: 0 !important;
+  border-radius: 0.7rem !important;
+  background: var(--primary) !important;
+  color: var(--primary-foreground) !important;
+  font-size: 0.8125rem !important;
+  font-weight: 600 !important;
+  letter-spacing: -0.01em;
+}
+
+[data-sonner-toast].kit-toast [data-button]:hover {
+  background: color-mix(in srgb, var(--primary) 88%, #000) !important;
+}
+
 .greeting-typewriter {
   position: relative;
   display: block;

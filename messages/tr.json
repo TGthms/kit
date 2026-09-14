@@ -447,7 +447,10 @@
     "failed": "Başarısız",
     "recordingTitle": "Araç etkinliğini kaydet",
     "recordingOn": "Açık — kısa özetler bu cihaza kaydedilebilir.",
-    "recordingOff": "Kapalı — Kit geçmişe yeni etkinlik eklemez."
+    "recordingOff": "Kapalı — Kit geçmişe yeni etkinlik eklemez.",
+    "enableRecording": "Etkinleştir",
+    "notSaved": "Geçmiş kapalı olduğu için bu kaydedilmedi.",
+    "enabledAndSaved": "Geçmiş açık ve bu kayıt kaydedildi."
   },
   "favorites": {
     "title": "Sık kullanılanlar",
@@ -497,7 +500,9 @@
     "offlineManageDesc": "Bu cihazda kayıtlı olanları gözden geçir ve istediklerini kaldır.",
     "offlineNothingSaved": "Bu cihazda henüz hiçbir şey kayıtlı değil.",
     "offlineRemoveSelected": "Seçilenleri kaldır",
-    "offlineEnginesLabel": "Medya motorları"
+    "offlineEnginesLabel": "Medya motorları",
+    "offlinePages": "Sayfalar",
+    "offlinePagesDesc": "Uygulamanın kendi sayfaları, seçtiğiniz dillerde. Bunlar olmadan Kit bağlantı olmadan açılamaz, bu yüzden hepsi seçili gelir."
   },
   "shortcuts": {
     "title": "Klavye kısayolları",

@@ -447,7 +447,10 @@
     "failed": "失敗",
     "recordingTitle": "ツールの利用履歴を記録",
     "recordingOn": "オン — この端末に短い概要を保存できます。",
-    "recordingOff": "オフ — Kit は履歴に新しい利用記録を追加しません。"
+    "recordingOff": "オフ — Kit は履歴に新しい利用記録を追加しません。",
+    "enableRecording": "有効にする",
+    "notSaved": "履歴がオフのため、これは保存されませんでした。",
+    "enabledAndSaved": "履歴をオンにしました。今回の操作も保存済みです。"
   },
   "favorites": {
     "title": "お気に入り",
@@ -497,7 +500,9 @@
     "offlineManageDesc": "この端末に保存されている内容を確認し、削除するものを選べます。",
     "offlineNothingSaved": "この端末にはまだ何も保存されていません。",
     "offlineRemoveSelected": "選択した項目を削除",
-    "offlineEnginesLabel": "メディアエンジン"
+    "offlineEnginesLabel": "メディアエンジン",
+    "offlinePages": "ページ",
+    "offlinePagesDesc": "アプリ自身のページを、選んだ言語で保存します。これらがないと Kit はオフラインで開けないため、すべて最初から選択されています。"
   },
   "shortcuts": {
     "title": "キーボードショートカット",

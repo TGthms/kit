@@ -447,7 +447,10 @@
     "failed": "فشل",
     "recordingTitle": "تسجيل نشاط الأدوات",
     "recordingOn": "مفعّل — قد تُحفظ ملخصات قصيرة على هذا الجهاز.",
-    "recordingOff": "متوقف — لن يضيف Kit نشاطًا جديدًا إلى السجل."
+    "recordingOff": "متوقف — لن يضيف Kit نشاطًا جديدًا إلى السجل.",
+    "enableRecording": "تفعيل",
+    "notSaved": "السجل متوقف، لذا لم يتم حفظ هذا.",
+    "enabledAndSaved": "السجل مفعّل، وقد تم حفظ هذا."
   },
   "favorites": {
     "title": "المفضلة",
@@ -497,7 +500,9 @@
     "offlineManageDesc": "راجع ما هو محفوظ على هذا الجهاز واحذف ما تريد.",
     "offlineNothingSaved": "لا يوجد شيء محفوظ على هذا الجهاز بعد.",
     "offlineRemoveSelected": "حذف المحدد",
-    "offlineEnginesLabel": "محركات الوسائط"
+    "offlineEnginesLabel": "محركات الوسائط",
+    "offlinePages": "الصفحات",
+    "offlinePagesDesc": "صفحات التطبيق نفسه، باللغات التي تختارها. بدونها لا يمكن فتح Kit دون اتصال، لذا فكلها محددة مسبقًا."
   },
   "shortcuts": {
     "title": "اختصارات لوحة المفاتيح",

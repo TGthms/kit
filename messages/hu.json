@@ -447,7 +447,10 @@
     "failed": "Sikertelen",
     "recordingTitle": "Eszköztevékenység rögzítése",
     "recordingOn": "Be — rövid összefoglalók menthetők erre az eszközre.",
-    "recordingOff": "Ki — a Kit nem ad új tevékenységet az előzményekhez."
+    "recordingOff": "Ki — a Kit nem ad új tevékenységet az előzményekhez.",
+    "enableRecording": "Bekapcsolás",
+    "notSaved": "Az előzmények ki vannak kapcsolva, ezért ez nem került mentésre.",
+    "enabledAndSaved": "Az előzmények be vannak kapcsolva, és ez a bejegyzés el van mentve."
   },
   "favorites": {
     "title": "Kedvencek",
@@ -497,7 +500,9 @@
     "offlineManageDesc": "Nézd át, mi van ezen az eszközön, és töröld, amit szeretnél.",
     "offlineNothingSaved": "Ezen az eszközön még nincs semmi eltárolva.",
     "offlineRemoveSelected": "Kijelöltek eltávolítása",
-    "offlineEnginesLabel": "Médiamotorok"
+    "offlineEnginesLabel": "Médiamotorok",
+    "offlinePages": "Oldalak",
+    "offlinePagesDesc": "Az alkalmazás saját oldalai a választott nyelveken. Ezek nélkül a Kit nem nyílik meg kapcsolat nélkül, ezért mind be van jelölve."
   },
   "shortcuts": {
     "title": "Billentyűparancsok",

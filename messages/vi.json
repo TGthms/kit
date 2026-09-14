@@ -447,7 +447,10 @@
     "failed": "Thất bại",
     "recordingTitle": "Ghi lại hoạt động công cụ",
     "recordingOn": "Bật — có thể lưu tóm tắt ngắn trên thiết bị này.",
-    "recordingOff": "Tắt — Kit sẽ không thêm hoạt động mới vào lịch sử."
+    "recordingOff": "Tắt — Kit sẽ không thêm hoạt động mới vào lịch sử.",
+    "enableRecording": "Bật",
+    "notSaved": "Lịch sử đang tắt nên thao tác này không được lưu.",
+    "enabledAndSaved": "Lịch sử đã bật và thao tác này đã được lưu."
   },
   "favorites": {
     "title": "Yêu thích",
@@ -497,7 +500,9 @@
     "offlineManageDesc": "Xem lại nội dung đã lưu trên thiết bị này và xóa bất kỳ mục nào.",
     "offlineNothingSaved": "Chưa có gì được lưu trên thiết bị này.",
     "offlineRemoveSelected": "Xóa mục đã chọn",
-    "offlineEnginesLabel": "Bộ máy media"
+    "offlineEnginesLabel": "Bộ máy media",
+    "offlinePages": "Trang",
+    "offlinePagesDesc": "Các trang của chính ứng dụng, bằng những ngôn ngữ bạn chọn. Không có chúng, Kit không mở được khi không có kết nối, nên tất cả đều được chọn sẵn."
   },
   "shortcuts": {
     "title": "Phím tắt",

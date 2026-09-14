@@ -447,7 +447,10 @@
     "failed": "Échoué",
     "recordingTitle": "Enregistrer l’activité des outils",
     "recordingOn": "Activé — de courts résumés peuvent être enregistrés sur cet appareil.",
-    "recordingOff": "Désactivé — Kit n’ajoutera aucune nouvelle activité à l’historique."
+    "recordingOff": "Désactivé — Kit n’ajoutera aucune nouvelle activité à l’historique.",
+    "enableRecording": "Activer",
+    "notSaved": "L’historique est désactivé, donc rien n’a été enregistré.",
+    "enabledAndSaved": "L’historique est activé et celle-ci est enregistrée."
   },
   "favorites": {
     "title": "Favoris",
@@ -497,7 +500,9 @@
     "offlineManageDesc": "Passez en revue ce qui est enregistré sur cet appareil et supprimez ce que vous voulez.",
     "offlineNothingSaved": "Rien n’est encore enregistré sur cet appareil.",
     "offlineRemoveSelected": "Supprimer la sélection",
-    "offlineEnginesLabel": "Moteurs multimédias"
+    "offlineEnginesLabel": "Moteurs multimédias",
+    "offlinePages": "Pages",
+    "offlinePagesDesc": "Les pages de l’application elle-même, dans les langues que vous choisissez. Sans elles, Kit ne peut pas s’ouvrir sans connexion : toutes sont donc cochées au départ."
   },
   "shortcuts": {
     "title": "Raccourcis clavier",

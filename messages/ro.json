@@ -447,7 +447,10 @@
     "failed": "Eșuat",
     "recordingTitle": "Înregistrează activitatea instrumentelor",
     "recordingOn": "Activat — pe acest dispozitiv pot fi salvate rezumate scurte.",
-    "recordingOff": "Dezactivat — Kit nu va adăuga activitate nouă în istoric."
+    "recordingOff": "Dezactivat — Kit nu va adăuga activitate nouă în istoric.",
+    "enableRecording": "Activează",
+    "notSaved": "Istoricul este oprit, așa că acest lucru nu a fost salvat.",
+    "enabledAndSaved": "Istoricul este pornit, iar acesta a fost salvat."
   },
   "favorites": {
     "title": "Favorite",
@@ -497,7 +500,9 @@
     "offlineManageDesc": "Verifică ce este salvat pe acest dispozitiv și elimină ce dorești.",
     "offlineNothingSaved": "Nu este încă nimic salvat pe acest dispozitiv.",
     "offlineRemoveSelected": "Elimină selectate",
-    "offlineEnginesLabel": "Motoare media"
+    "offlineEnginesLabel": "Motoare media",
+    "offlinePages": "Pagini",
+    "offlinePagesDesc": "Paginile aplicației în sine, în limbile pe care le alegi. Fără ele, Kit nu se poate deschide fără conexiune, așa că toate sunt bifate."
   },
   "shortcuts": {
     "title": "Scurtături de tastatură",

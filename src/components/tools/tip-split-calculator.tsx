@@ -3,7 +3,6 @@
 import { useMemo, useState } from "react";
 import { useTranslations } from "next-intl";
 import { WalletCards } from "lucide-react";
-import { notifyHistorySaved } from "@/lib/notify";
 import { AnimatedNumber } from "@/components/shared/animated-number";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -11,7 +10,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { calculateTip, MAX_TIP_PEOPLE } from "@/lib/converter/tip";
-import { ToolLimits, ToolShell, useToolHistory } from "./shared";
+import { ToolLimits, ToolShell, useHistoryNote } from "./shared";
 import { text, toolId } from "./everyday-format";
 
 function formatMoney(value: number) {
@@ -28,7 +27,7 @@ function limitPeople(raw: string): string {
 
 export function TipSplitCalculator() {
   const t = useTranslations("tools.tip-split-calculator");
-  const log = useToolHistory(toolId("tip-split-calculator"));
+  const note = useHistoryNote(toolId("tip-split-calculator"));
   const [subtotal, setSubtotal] = useState("80");
   const [tipPercent, setTipPercent] = useState("18");
   const [taxPercent, setTaxPercent] = useState("0");
@@ -122,7 +121,7 @@ export function TipSplitCalculator() {
           </div>
         </div>
       ) : null}
-      <Button variant="outline" disabled={!result} onClick={() => { if (result) { log(`${people} people · ${formatMoney(result.total)}`, "success"); notifyHistorySaved(text(t, "saved", "Split saved to history."), text(t, "historyOff", "History is off, so this wasn’t saved.")); } }}><WalletCards /> {text(t, "recordSplit", "Record split")}</Button>
+      <Button variant="outline" disabled={!result} onClick={() => { if (result) { note(`${people} people · ${formatMoney(result.total)}`, text(t, "saved", "Split saved to history.")); } }}><WalletCards /> {text(t, "recordSplit", "Record split")}</Button>
     </ToolShell>
   );
 }

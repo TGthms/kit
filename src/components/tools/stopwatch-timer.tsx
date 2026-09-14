@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import { Check, Clock3, RefreshCw, TimerReset } from "lucide-react";
-import { notifyHistorySaved } from "@/lib/notify";
 import { AnimatedClock } from "@/components/shared/animated-clock";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -26,7 +25,7 @@ import {
   type StopwatchState,
   type TimerState,
 } from "@/lib/converter/timer";
-import { ToolShell, useToolHistory } from "./shared";
+import { ToolShell, useHistoryNote } from "./shared";
 import { text, toolId } from "./everyday-format";
 
 function durationParts(milliseconds: number) {
@@ -60,7 +59,7 @@ function formatClock(milliseconds: number) {
 
 export function StopwatchTimer() {
   const t = useTranslations("tools.stopwatch-timer");
-  const log = useToolHistory(toolId("stopwatch-timer"));
+  const note = useHistoryNote(toolId("stopwatch-timer"));
   const [mode, setMode] = useState<"stopwatch" | "timer">("stopwatch");
   const [stopwatch, setStopwatch] = useState<StopwatchState>(() => createStopwatch());
   const [timer, setTimer] = useState<TimerState>(() => createTimer(5 * 60 * 1000));
@@ -128,7 +127,7 @@ export function StopwatchTimer() {
           className={`font-mono text-5xl font-semibold tracking-tight sm:text-7xl ${timer.status === "finished" ? "text-destructive" : ""}`}
         />
       )}{mode === "timer" ? <div className="grid w-full max-w-md grid-cols-3 gap-3"><div className="space-y-2"><Label>{text(t, "hours", "Hours")}</Label><Input type="number" min="0" inputMode="numeric" value={hours} onChange={(event) => setHours(event.target.value)} disabled={fieldsLocked} /></div><div className="space-y-2"><Label>{text(t, "minutes", "Minutes")}</Label><Input type="number" min="0" max="59" inputMode="numeric" value={minutes} onChange={(event) => setMinutes(event.target.value)} disabled={fieldsLocked} /></div><div className="space-y-2"><Label>{text(t, "seconds", "Seconds")}</Label><Input type="number" min="0" max="59" inputMode="numeric" value={seconds} onChange={(event) => setSeconds(event.target.value)} disabled={fieldsLocked} /></div></div> : null}<div className="flex flex-wrap justify-center gap-2"><Button size="lg" onClick={toggle}>{running ? text(t, "pause", "Pause") : mode === "timer" && timer.status === "finished" ? text(t, "finished", "Finished") : text(t, "start", "Start")}</Button><Button size="lg" variant="outline" onClick={reset}><RefreshCw /> {text(t, "reset", "Reset")}</Button></div></CardContent></Card>
-      {mode === "stopwatch" ? <Button variant="outline" onClick={() => { log(formatDuration(elapsed), "success"); notifyHistorySaved(text(t, "saved", "Time saved to history."), text(t, "historyOff", "History is off, so this wasn’t saved.")); }}><Check /> {text(t, "recordTime", "Record time")}</Button> : null}
+      {mode === "stopwatch" ? <Button variant="outline" onClick={() => { note(formatDuration(elapsed), text(t, "saved", "Time saved to history.")); }}><Check /> {text(t, "recordTime", "Record time")}</Button> : null}
     </ToolShell>
   );
 }

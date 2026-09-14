@@ -8,7 +8,25 @@ import { fileURLToPath, pathToFileURL } from "node:url";
 
 const SKIP_DIRS = new Set(["node_modules"]);
 const SKIP_LOCALE_DIRS = new Set(["_next", "vendor", "boot", "icons", "404", "_not-found"]);
-const CHROME_SEGMENTS = ["", "settings/", "favorites/", "history/", "privacy/", "terms/", "how/"];
+
+/**
+ * The app's own pages, in the order Offline access lists them: the id the page
+ * can offer, and the path segment that names it under each language.
+ *
+ * These are the shell rather than the catalog — whichever language is chosen
+ * they are what makes the app usable with the network off, which is why the
+ * page can offer them like anything else it downloads.
+ */
+export const APP_PAGE_SEGMENTS = [
+  ["home", ""],
+  ["favorites", "favorites/"],
+  ["history", "history/"],
+  ["settings", "settings/"],
+  ["offline", "settings/offline/"],
+  ["how", "how/"],
+  ["privacy", "privacy/"],
+  ["terms", "terms/"],
+];
 
 export function toSitePath(outDir, file) {
   const rel = relative(outDir, file).split("\\").join("/");
@@ -62,6 +80,7 @@ export function buildPrecacheManifest(outDir, basePath = "") {
   const toolsByLocale = {};
   const rscByLocale = {};
   const extrasByLocale = {};
+  const pagesByLocale = {};
   /* Two kinds of address exist only so an old link keeps working, and neither is
      offered in Offline access. A tool alias marks itself `noindex`; a language
      alias names a different language as its own address. Both are still
@@ -72,7 +91,16 @@ export function buildPrecacheManifest(outDir, basePath = "") {
   const aliasSegments = aliasToolSegments(outDir, [...locales]);
   const aliasLocales = aliasLocaleDirs(outDir, [...locales]);
   for (const locale of [...locales].sort()) {
-    const chrome = CHROME_SEGMENTS.map((seg) => withBase(`/${locale}/${seg}`));
+    /* Read off the export rather than assumed: a page that this build did not
+       write is not offered, and is not counted against the language either. */
+    const pages = {};
+    const chrome = [];
+    for (const [id, segment] of APP_PAGE_SEGMENTS) {
+      if (!existsSync(join(outDir, locale, segment, "index.html"))) continue;
+      const url = withBase(`/${locale}/${segment}`);
+      pages[id] = [url];
+      chrome.push(url);
+    }
     const toolsRoot = join(outDir, locale, "tools");
     const tools = [];
     const aliases = [];
@@ -87,14 +115,20 @@ export function buildPrecacheManifest(outDir, basePath = "") {
     tools.sort();
     aliases.sort();
     const catRoot = join(outDir, locale, "c");
+    const categoryPages = [];
     if (existsSync(catRoot)) {
       for (const entry of readdirSync(catRoot, { withFileTypes: true })) {
         if (!entry.isDirectory()) continue;
         if (existsSync(join(catRoot, entry.name, "index.html"))) {
-          chrome.push(withBase(`/${locale}/c/${entry.name}/`));
+          categoryPages.push(withBase(`/${locale}/c/${entry.name}/`));
         }
       }
     }
+    categoryPages.sort();
+    /* One row on the page rather than nine: switching a category on and off is
+       not something a visitor preparing for a flight needs to decide. */
+    pages.categories = categoryPages;
+    chrome.push(...categoryPages);
     const rsc = [...chrome, ...tools].map(rscPath);
 
     if (aliasLocales.has(locale)) {
@@ -106,13 +140,14 @@ export function buildPrecacheManifest(outDir, basePath = "") {
     chromeByLocale[locale] = chrome;
     toolsByLocale[locale] = tools;
     rscByLocale[locale] = rsc;
+    pagesByLocale[locale] = pages;
     extrasByLocale[locale] = [...aliases, ...aliases.map(rscPath)];
   }
 
   core.sort();
   pdfjs.sort();
   ffmpeg.sort();
-  return { core, engines: [...pdfjs, ...ffmpeg], chromeByLocale, toolsByLocale, rscByLocale, extrasByLocale };
+  return { core, engines: [...pdfjs, ...ffmpeg], chromeByLocale, toolsByLocale, rscByLocale, extrasByLocale, pagesByLocale };
 }
 
 /**
@@ -181,4 +216,6 @@ if (invoked) {
   console.log(
     `[sw-precache] core ${manifest.core.length}; engines ${manifest.engines.length}; chrome ${chrome}; locales ${Object.keys(manifest.chromeByLocale).length}`,
   );
+  const pages = Object.values(manifest.pagesByLocale)[0] ?? {};
+  console.log(`[sw-precache] app pages ${Object.keys(pages).length} per language, ${Object.keys(pages).length * Object.keys(manifest.pagesByLocale).length} in total`);
 }

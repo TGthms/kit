@@ -1,6 +1,7 @@
 // @vitest-environment jsdom
 
 import { beforeEach, describe, expect, it, vi } from "vitest";
+import { APP_PAGE_IDS } from "./app-pages";
 import {
   clearPlan,
   getPlanSnapshot,
@@ -21,6 +22,7 @@ const plan: OfflinePlan = {
   generation: "v13",
   locales: ["en", "fr"],
   tools: ["pdf-merge"],
+  pages: ["home", "history"],
   engines: true,
   at: "2026-09-13T00:00:00.000Z",
 };
@@ -145,14 +147,26 @@ describe("the stored record", () => {
   });
 
   it("fills in what the record leaves out", () => {
+    /* With no page list the record asked for the whole app: every page exists
+       for every language, and leaving one out is a choice it could not make. */
     expect(parsePlan(JSON.stringify({ version: "1.1.0", locales: ["en"], tools: [] }))).toEqual({
       version: "1.1.0",
       generation: "",
       locales: ["en"],
       tools: [],
+      pages: [...APP_PAGE_IDS],
       engines: false,
       at: "",
     });
+  });
+
+  it("keeps a recorded page selection, and drops an id it does not know", () => {
+    const recorded = parsePlan(
+      JSON.stringify({ version: "1.1.0", locales: ["en"], tools: [], pages: ["history", "gone"] })
+    );
+    expect(recorded?.pages).toEqual(["history"]);
+    const none = parsePlan(JSON.stringify({ version: "1.1.0", locales: ["en"], tools: [], pages: [] }));
+    expect(none?.pages).toEqual([]);
   });
 
   it("survives storage being unavailable", () => {

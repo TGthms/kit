@@ -447,7 +447,10 @@
     "summary": "Summary",
     "status": "Status",
     "success": "Succeeded",
-    "failed": "Failed"
+    "failed": "Failed",
+    "enableRecording": "Enable",
+    "notSaved": "History is off, so this wasn’t saved.",
+    "enabledAndSaved": "History is on, and this one is saved."
   },
   "favorites": {
     "title": "Favorites",
@@ -497,7 +500,9 @@
     "offlineManageDesc": "Review what is saved on this device and remove any of it.",
     "offlineNothingSaved": "Nothing is saved on this device yet.",
     "offlineRemoveSelected": "Remove selected",
-    "offlineEnginesLabel": "Media engines"
+    "offlineEnginesLabel": "Media engines",
+    "offlinePages": "Pages",
+    "offlinePagesDesc": "The app's own pages, in the languages you choose. Kit needs them to open with no connection, so all of them start selected."
   },
   "shortcuts": {
     "title": "Keyboard shortcuts",

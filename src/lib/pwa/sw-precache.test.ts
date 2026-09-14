@@ -2,7 +2,12 @@ import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { afterAll, describe, expect, it } from "vitest";
-import { aliasLocaleDirs, aliasToolSegments, buildPrecacheManifest } from "../../../scripts/sw-precache.mjs";
+import {
+  APP_PAGE_SEGMENTS,
+  aliasLocaleDirs,
+  aliasToolSegments,
+  buildPrecacheManifest,
+} from "../../../scripts/sw-precache.mjs";
 
 type Manifest = {
   core: string[];
@@ -11,10 +16,19 @@ type Manifest = {
   toolsByLocale: Record<string, string[]>;
   rscByLocale: Record<string, string[]>;
   extrasByLocale: Record<string, string[]>;
+  pagesByLocale: Record<string, Record<string, string[]>>;
 };
 
 const INDEXABLE = '<!DOCTYPE html><html><head><title>T</title></head><body></body></html>';
 const ALIAS = '<!DOCTYPE html><html><head><meta name="robots" content="noindex, follow"/></head><body></body></html>';
+
+/** The app's own pages for one language, as a real export writes them. */
+function writeAppPages(root: string, locale: string) {
+  for (const [, segment] of APP_PAGE_SEGMENTS) {
+    mkdirSync(join(root, locale, segment), { recursive: true });
+    writeFileSync(join(root, locale, segment, "index.html"), INDEXABLE);
+  }
+}
 
 describe("sw-precache manifest", () => {
   it("lists core assets, chrome for every locale, and tools only under that locale", () => {
@@ -29,33 +43,74 @@ describe("sw-precache manifest", () => {
     writeFileSync(join(root, "vendor/pdfjs/pdf.worker.min.mjs"), "mjs");
     mkdirSync(join(root, "en/tools/pdf-merge"), { recursive: true });
     mkdirSync(join(root, "en/c/pdf"), { recursive: true });
-    writeFileSync(join(root, "en/index.html"), "<html>");
     writeFileSync(join(root, "en/tools/pdf-merge/index.html"), "<html>");
     writeFileSync(join(root, "en/c/pdf/index.html"), "<html>");
-    mkdirSync(join(root, "ar"), { recursive: true });
-    writeFileSync(join(root, "ar/index.html"), "<html>");
+    for (const locale of ["en", "ar"]) writeAppPages(root, locale);
     mkdirSync(join(root, "404"), { recursive: true });
     writeFileSync(join(root, "404/index.html"), "<html>");
     mkdirSync(join(root, "_not-found"), { recursive: true });
     writeFileSync(join(root, "_not-found/index.html"), "<html>");
 
-    const manifest = buildPrecacheManifest(root) as Manifest;
+    const manifest = buildPrecacheManifest(root) as unknown as Manifest;
     expect(manifest.core).toContain("/_next/static/chunks/app.js");
     expect(manifest.core).toContain("/boot/theme.js");
     expect(manifest.engines.some((url) => url.includes("ffmpeg-core.wasm.gz"))).toBe(true);
     expect(manifest.engines.some((url) => url.includes("pdf.worker.min.mjs"))).toBe(true);
     expect(manifest.chromeByLocale.en).toContain("/en/");
     expect(manifest.chromeByLocale.en).toContain("/en/how/");
+    expect(manifest.chromeByLocale.en).toContain("/en/settings/offline/");
     expect(manifest.chromeByLocale.en).toContain("/en/c/pdf/");
     expect(manifest.chromeByLocale.ar).toContain("/ar/settings/");
     expect(manifest.toolsByLocale.en).toContain("/en/tools/pdf-merge/");
     expect(manifest.rscByLocale.en).toContain("/en/index.txt");
     expect(manifest.rscByLocale.en).toContain("/en/how/index.txt");
+    expect(manifest.rscByLocale.en).toContain("/en/settings/offline/index.txt");
     expect(manifest.rscByLocale.en).toContain("/en/tools/pdf-merge/index.txt");
     expect(manifest.toolsByLocale.ar ?? []).toEqual([]);
     expect(manifest.chromeByLocale["404"]).toBeUndefined();
     expect(manifest.chromeByLocale["_not-found"]).toBeUndefined();
     expect(Object.keys(manifest.chromeByLocale).sort()).toEqual(["ar", "en"]);
+  });
+
+  it("groups a language's own pages under the ids Offline access offers", () => {
+    const root = mkdtempSync(join(tmpdir(), "kit-precache-pages-"));
+    try {
+      writeAppPages(root, "en");
+      mkdirSync(join(root, "en/c/pdf"), { recursive: true });
+      mkdirSync(join(root, "en/c/text"), { recursive: true });
+      writeFileSync(join(root, "en/c/pdf/index.html"), INDEXABLE);
+      writeFileSync(join(root, "en/c/text/index.html"), INDEXABLE);
+
+      const manifest = buildPrecacheManifest(root) as unknown as Manifest;
+      const pages = manifest.pagesByLocale.en;
+      expect(Object.keys(pages)).toEqual([...APP_PAGE_SEGMENTS.map(([id]) => id), "categories"]);
+      expect(pages.home).toEqual(["/en/"]);
+      expect(pages.offline).toEqual(["/en/settings/offline/"]);
+      /* One row on the page, every category page behind it. */
+      expect(pages.categories).toEqual(["/en/c/pdf/", "/en/c/text/"]);
+      /* The map describes exactly what a language is judged complete on. */
+      const flattened = Object.values(pages).flat().sort();
+      expect(flattened).toEqual([...manifest.chromeByLocale.en].sort());
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("offers only the pages the export actually wrote", () => {
+    const root = mkdtempSync(join(tmpdir(), "kit-precache-partial-"));
+    try {
+      /* A build that wrote the home page alone must not advertise six pages
+         that cannot be fetched, and must not count them against the language. */
+      mkdirSync(join(root, "en"), { recursive: true });
+      writeFileSync(join(root, "en/index.html"), INDEXABLE);
+
+      const manifest = buildPrecacheManifest(root) as unknown as Manifest;
+      expect(Object.keys(manifest.pagesByLocale.en)).toEqual(["home", "categories"]);
+      expect(manifest.chromeByLocale.en).toEqual(["/en/"]);
+      expect(manifest.rscByLocale.en).toEqual(["/en/index.txt"]);
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
   });
 });
 
@@ -94,7 +149,7 @@ describe("compatibility addresses", () => {
     expect(aliasToolSegments(join(root, "nope"), ["en"]).size).toBe(0);
   });
 
-  const manifest = buildPrecacheManifest(root, "") as Manifest;
+  const manifest = buildPrecacheManifest(root, "") as unknown as Manifest;
 
   it("are left out of the lists that decide a language is ready", () => {
     // Offline access cannot offer them, so counting them would leave every
@@ -111,7 +166,7 @@ describe("compatibility addresses", () => {
   });
 
   it("carry the base path like every other list", () => {
-    const based = buildPrecacheManifest(root, "/kit") as Manifest;
+    const based = buildPrecacheManifest(root, "/kit") as unknown as Manifest;
     expect(based.toolsByLocale.en).toEqual(["/kit/en/tools/real-tool/"]);
     expect(based.extrasByLocale.en[0]).toBe("/kit/en/tools/old-alias/");
   });
@@ -146,14 +201,14 @@ describe("a language alias", () => {
   it("is left out of the lists that decide a language is ready", () => {
     // Offline access offers the languages it can list, so a language counted
     // here but absent from that list could never be reported as ready.
-    const manifest = buildPrecacheManifest(root) as Manifest;
+    const manifest = buildPrecacheManifest(root) as unknown as Manifest;
     expect(Object.keys(manifest.chromeByLocale).sort()).toEqual(["en", "zh-Hans"]);
     expect(manifest.toolsByLocale.zh).toBeUndefined();
     expect(manifest.rscByLocale.zh).toBeUndefined();
   });
 
   it("is prefetched all the same, pages and payloads", () => {
-    const manifest = buildPrecacheManifest(root) as Manifest;
+    const manifest = buildPrecacheManifest(root) as unknown as Manifest;
     expect(manifest.extrasByLocale.zh).toContain("/zh/");
     expect(manifest.extrasByLocale.zh).toContain("/zh/index.txt");
     expect(manifest.extrasByLocale.zh).toContain("/zh/tools/pdf-merge/");
@@ -161,7 +216,7 @@ describe("a language alias", () => {
   });
 
   it("leaves a language that names itself counted as usual", () => {
-    const manifest = buildPrecacheManifest(root) as Manifest;
+    const manifest = buildPrecacheManifest(root) as unknown as Manifest;
     expect(manifest.chromeByLocale["zh-Hans"]).toContain("/zh-Hans/");
     expect(manifest.toolsByLocale["zh-Hans"]).toEqual(["/zh-Hans/tools/pdf-merge/"]);
     expect(manifest.extrasByLocale["zh-Hans"]).toEqual([]);

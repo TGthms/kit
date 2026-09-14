@@ -447,7 +447,10 @@
     "failed": "失败",
     "recordingTitle": "记录工具活动",
     "recordingOn": "开启 — 可在本设备保存简短摘要。",
-    "recordingOff": "关闭 — Kit 不会向历史记录添加新活动。"
+    "recordingOff": "关闭 — Kit 不会向历史记录添加新活动。",
+    "enableRecording": "开启",
+    "notSaved": "历史记录已关闭，因此这次没有保存。",
+    "enabledAndSaved": "历史记录已开启，这次也已保存。"
   },
   "favorites": {
     "title": "收藏",
@@ -497,7 +500,9 @@
     "offlineManageDesc": "查看此设备上已保存的内容，并删除不需要的部分。",
     "offlineNothingSaved": "此设备上尚未保存任何内容。",
     "offlineRemoveSelected": "删除所选项",
-    "offlineEnginesLabel": "媒体引擎"
+    "offlineEnginesLabel": "媒体引擎",
+    "offlinePages": "页面",
+    "offlinePagesDesc": "应用自身的页面，按你选择的语言保存。没有它们，Kit 无法在无网络时打开，因此默认全部勾选。"
   },
   "shortcuts": {
     "title": "键盘快捷键",

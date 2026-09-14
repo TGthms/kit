@@ -3,7 +3,6 @@
 import { useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 import { Check, Dice5 } from "lucide-react";
-import { notifyHistorySaved } from "@/lib/notify";
 import { AnimatedNumber } from "@/components/shared/animated-number";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -26,7 +25,7 @@ import {
   type RecordableRandomMode,
 } from "@/lib/converter/random";
 import { downloadText } from "@/lib/utils";
-import { ActionBar, ToolLimits, ToolShell, useToolHistory } from "./shared";
+import { ActionBar, ToolLimits, ToolShell, useHistoryNote, useToolHistory } from "./shared";
 import { text, toolId } from "./everyday-format";
 
 /** Keeps the password length a whole number within the range this generator produces. */
@@ -40,6 +39,7 @@ function limitPasswordLength(raw: string): string {
 export function RandomGenerator() {
   const t = useTranslations("tools.random-generator");
   const log = useToolHistory(toolId("random-generator"));
+  const note = useHistoryNote(toolId("random-generator"));
   const [mode, setMode] = useState<"integer" | "decimal" | "boolean" | "pick" | "password">("integer");
   const [min, setMin] = useState("1");
   const [max, setMax] = useState("100");
@@ -211,8 +211,7 @@ export function RandomGenerator() {
                   variant="outline"
                   size="sm"
                   onClick={() => {
-                    log(randomResultSummary(mode as RecordableRandomMode, values), "success");
-                    notifyHistorySaved(text(t, "saved", "Saved to history."), text(t, "historyOff", "History is off, so this wasn’t saved."));
+                    note(randomResultSummary(mode as RecordableRandomMode, values), text(t, "saved", "Saved to history."));
                   }}
                 >
                   <Check /> {text(t, "record", "Record result")}

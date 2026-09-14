@@ -447,7 +447,10 @@
     "failed": "Niepowodzenie",
     "recordingTitle": "Zapisuj aktywność narzędzi",
     "recordingOn": "Włączone — krótkie podsumowania mogą być zapisywane na tym urządzeniu.",
-    "recordingOff": "Wyłączone — Kit nie doda nowych działań do historii."
+    "recordingOff": "Wyłączone — Kit nie doda nowych działań do historii.",
+    "enableRecording": "Włącz",
+    "notSaved": "Historia jest wyłączona, więc to nie zostało zapisane.",
+    "enabledAndSaved": "Historia jest włączona, a ten wpis został zapisany."
   },
   "favorites": {
     "title": "Ulubione",
@@ -497,7 +500,9 @@
     "offlineManageDesc": "Przejrzyj, co jest zapisane na tym urządzeniu, i usuń, co chcesz.",
     "offlineNothingSaved": "Na tym urządzeniu nic jeszcze nie zapisano.",
     "offlineRemoveSelected": "Usuń zaznaczone",
-    "offlineEnginesLabel": "Silniki multimedialne"
+    "offlineEnginesLabel": "Silniki multimedialne",
+    "offlinePages": "Strony",
+    "offlinePagesDesc": "Strony samej aplikacji w wybranych językach. Bez nich Kit nie otworzy się bez połączenia, więc wszystkie są zaznaczone."
   },
   "shortcuts": {
     "title": "Skróty klawiszowe",

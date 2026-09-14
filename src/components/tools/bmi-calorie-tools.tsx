@@ -3,7 +3,6 @@
 import { useMemo, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { HeartPulse } from "lucide-react";
-import { notifyHistorySaved } from "@/lib/notify";
 import { AnimatedNumber } from "@/components/shared/animated-number";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -26,7 +25,7 @@ import {
   type UnitSystem,
 } from "@/lib/converter/bmi";
 import type { ToolId } from "@/lib/tools/registry";
-import { ToolLimits, ToolShell, useToolHistory } from "./shared";
+import { ToolLimits, ToolShell, useHistoryNote } from "./shared";
 
 const selectClass =
   "flex h-10 w-full rounded-xl border border-input bg-background px-3 text-base focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring";
@@ -89,7 +88,7 @@ function BmiScale({ bmi, label }: { bmi: number; label: string }) {
 export function BmiCalorieCalculator() {
   const t = useTranslations("tools.bmi-calorie-calculator");
   const locale = useLocale();
-  const log = useToolHistory(toolId("bmi-calorie-calculator"));
+  const note = useHistoryNote(toolId("bmi-calorie-calculator"));
   const [system, setSystem] = useState<UnitSystem>("metric");
   const [cm, setCm] = useState("170");
   const [feet, setFeet] = useState("5");
@@ -296,8 +295,7 @@ export function BmiCalorieCalculator() {
         disabled={!result}
         onClick={() => {
           if (!result) return;
-          log(`BMI ${result.bmi} · ${result.tdee} kcal`, "success");
-          notifyHistorySaved(text(t, "saved", "Saved to history."), text(t, "historyOff", "History is off, so this wasn’t saved."));
+          note(`BMI ${result.bmi} · ${result.tdee} kcal`, text(t, "saved", "Saved to history."));
         }}
       >
         <HeartPulse /> {text(t, "record", "Record calculation")}

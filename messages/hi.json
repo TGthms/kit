@@ -447,7 +447,10 @@
     "failed": "विफल",
     "recordingTitle": "टूल गतिविधि रिकॉर्ड करें",
     "recordingOn": "चालू — इस डिवाइस पर छोटे सारांश सहेजे जा सकते हैं।",
-    "recordingOff": "बंद — Kit हिस्ट्री में नई गतिविधि नहीं जोड़ेगा।"
+    "recordingOff": "बंद — Kit हिस्ट्री में नई गतिविधि नहीं जोड़ेगा।",
+    "enableRecording": "चालू करें",
+    "notSaved": "इतिहास बंद है, इसलिए यह सहेजा नहीं गया।",
+    "enabledAndSaved": "इतिहास चालू है और यह प्रविष्टि सहेज दी गई है।"
   },
   "favorites": {
     "title": "पसंदीदा",
@@ -497,7 +500,9 @@
     "offlineManageDesc": "इस डिवाइस पर जो सहेजा गया है उसे देखें और जो चाहें हटाएँ।",
     "offlineNothingSaved": "इस डिवाइस पर अभी कुछ भी सहेजा नहीं गया है।",
     "offlineRemoveSelected": "चुने गए हटाएँ",
-    "offlineEnginesLabel": "मीडिया इंजन"
+    "offlineEnginesLabel": "मीडिया इंजन",
+    "offlinePages": "पेज",
+    "offlinePagesDesc": "ऐप के अपने पेज, आपकी चुनी हुई भाषाओं में। इनके बिना Kit बिना कनेक्शन के नहीं खुल सकता, इसलिए सभी पहले से चुने हुए हैं।"
   },
   "shortcuts": {
     "title": "कीबोर्ड शॉर्टकट",

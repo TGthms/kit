@@ -33,6 +33,7 @@ const OFFLINE_PROGRESS_MS = 250;
    message cannot queue unbounded work. */
 const MAX_OFFLINE_LOCALES = 40;
 const MAX_OFFLINE_TOOLS = 200;
+const MAX_OFFLINE_PAGES = 40;
 /* How many resources a download the visitor asked for fetches at once. The
    optional background fill stays strictly one at a time, so this only applies
    while someone is waiting on the page and watching the progress bar. */
@@ -572,12 +573,27 @@ async function selectedOfflineUrls(data) {
       .filter((tool) => typeof tool === "string")
       .map(toolPathSegment)
   );
+  /* The app's own pages are chosen by id. A message that names no page asks for
+     all of them; an empty list is a choice, and fetches none. */
+  const chosenPages = Array.isArray(data.pages)
+    ? new Set(
+        data.pages
+          .slice(0, MAX_OFFLINE_PAGES)
+          .filter((id) => typeof id === "string")
+      )
+    : null;
+  const pagesByLocale = manifest.pagesByLocale || {};
   const urls = new Set(manifest.core || []);
   const chrome = manifest.chromeByLocale || {};
   const toolsByLocale = manifest.toolsByLocale || {};
   for (const locale of locales) {
     const pages = new Set();
-    for (const url of chrome[locale] || []) pages.add(url);
+    const offered = pagesByLocale[locale] || {};
+    if (chosenPages) {
+      for (const id of chosenPages) for (const url of offered[id] || []) pages.add(url);
+    } else {
+      for (const url of chrome[locale] || []) pages.add(url);
+    }
     for (const url of toolsByLocale[locale] || []) {
       if (segments.has(segmentOfToolUrl(url))) pages.add(url);
     }
@@ -685,11 +701,16 @@ async function startLocaleFill(locale, skipHeavy) {
   if (typeof locale !== "string" || !/^[A-Za-z0-9-]+$/.test(locale)) return;
   const manifest = await readManifest();
   if (!manifest) return;
-  enqueueFill(manifest.core || []);
   const chrome = manifest.chromeByLocale || {};
   const rsc = manifest.rscByLocale || {};
+  /* The app's own pages go first. The fill pauses whenever someone is reading
+     or scrolling, so on a first visit it may only get through a few dozen
+     requests — and a visitor who then loses the network should still be able to
+     open History, Favorites and the Offline access page itself. These are the
+     smallest requests in the list and the ones the app's own navigation needs. */
   enqueueFill(chrome[locale] || []);
   enqueueFill(rsc[locale] || []);
+  enqueueFill(manifest.core || []);
   enqueueFill((manifest.toolsByLocale && manifest.toolsByLocale[locale]) || []);
   /* Compatibility addresses for old links, and the payloads that open them.
      Prefetched like the rest, but never counted towards what a language needs:

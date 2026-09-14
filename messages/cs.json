@@ -447,7 +447,10 @@
     "failed": "Selhání",
     "recordingTitle": "Zaznamenávat aktivitu nástrojů",
     "recordingOn": "Zapnuto — do tohoto zařízení lze ukládat krátká shrnutí.",
-    "recordingOff": "Vypnuto — Kit nebude do historie přidávat novou aktivitu."
+    "recordingOff": "Vypnuto — Kit nebude do historie přidávat novou aktivitu.",
+    "enableRecording": "Zapnout",
+    "notSaved": "Historie je vypnutá, takže se to neuložilo.",
+    "enabledAndSaved": "Historie je zapnutá a tento záznam je uložen."
   },
   "favorites": {
     "title": "Oblíbené",
@@ -497,7 +500,9 @@
     "offlineManageDesc": "Prohlédněte si, co je v tomto zařízení uloženo, a odeberte, co chcete.",
     "offlineNothingSaved": "V tomto zařízení zatím není nic uloženo.",
     "offlineRemoveSelected": "Odebrat vybrané",
-    "offlineEnginesLabel": "Multimediální jádra"
+    "offlineEnginesLabel": "Multimediální jádra",
+    "offlinePages": "Stránky",
+    "offlinePagesDesc": "Stránky samotné aplikace ve zvolených jazycích. Bez nich se Kit bez připojení neotevře, proto jsou všechny předvybrané."
   },
   "shortcuts": {
     "title": "Klávesové zkratky",

@@ -447,7 +447,10 @@
     "failed": "Gagal",
     "recordingTitle": "Rekam aktivitas alat",
     "recordingOn": "Aktif — ringkasan singkat dapat disimpan di perangkat ini.",
-    "recordingOff": "Nonaktif — Kit tidak akan menambahkan aktivitas baru ke riwayat."
+    "recordingOff": "Nonaktif — Kit tidak akan menambahkan aktivitas baru ke riwayat.",
+    "enableRecording": "Aktifkan",
+    "notSaved": "Riwayat nonaktif, jadi ini tidak disimpan.",
+    "enabledAndSaved": "Riwayat aktif dan yang ini telah disimpan."
   },
   "favorites": {
     "title": "Favorit",
@@ -497,7 +500,9 @@
     "offlineManageDesc": "Tinjau apa yang tersimpan di perangkat ini dan hapus yang Anda mau.",
     "offlineNothingSaved": "Belum ada yang tersimpan di perangkat ini.",
     "offlineRemoveSelected": "Hapus yang dipilih",
-    "offlineEnginesLabel": "Mesin media"
+    "offlineEnginesLabel": "Mesin media",
+    "offlinePages": "Halaman",
+    "offlinePagesDesc": "Halaman aplikasi itu sendiri, dalam bahasa yang Anda pilih. Tanpanya Kit tidak dapat dibuka tanpa koneksi, jadi semuanya tercentang sejak awal."
   },
   "shortcuts": {
     "title": "Pintasan papan ketik",

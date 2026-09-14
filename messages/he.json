@@ -447,7 +447,10 @@
     "failed": "נכשל",
     "recordingTitle": "תיעוד פעילות הכלים",
     "recordingOn": "פעיל — ניתן לשמור סיכומים קצרים במכשיר הזה.",
-    "recordingOff": "כבוי — Kit לא יוסיף פעילות חדשה להיסטוריה."
+    "recordingOff": "כבוי — Kit לא יוסיף פעילות חדשה להיסטוריה.",
+    "enableRecording": "הפעלה",
+    "notSaved": "ההיסטוריה כבויה, ולכן זה לא נשמר.",
+    "enabledAndSaved": "ההיסטוריה פעילה, והרשומה הזו נשמרה."
   },
   "favorites": {
     "title": "מועדפים",
@@ -497,7 +500,9 @@
     "offlineManageDesc": "עיין במה שנשמר במכשיר הזה והסר מה שתרצה.",
     "offlineNothingSaved": "עדיין לא נשמר דבר במכשיר הזה.",
     "offlineRemoveSelected": "הסרת הנבחרים",
-    "offlineEnginesLabel": "מנועי מדיה"
+    "offlineEnginesLabel": "מנועי מדיה",
+    "offlinePages": "עמודים",
+    "offlinePagesDesc": "העמודים של האפליקציה עצמה, בשפות שתבחרו. בלעדיהם Kit לא ייפתח ללא חיבור, ולכן כולם מסומנים מראש."
   },
   "shortcuts": {
     "title": "קיצורי מקלדת",

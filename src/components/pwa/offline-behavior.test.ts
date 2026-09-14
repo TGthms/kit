@@ -52,6 +52,12 @@ const MANIFEST = {
     fr: ["/fr/tools/timezone-converter/", "/fr/tools/timezone-converter/index.txt"],
     zh: ["/zh/", "/zh/how/", "/zh/index.txt", "/zh/how/index.txt"],
   },
+  /* The app's own pages, grouped by the ids Offline access offers. Together
+     they cover the chrome lists above, exactly as the real manifest does. */
+  pagesByLocale: {
+    en: { home: ["/en/"], how: ["/en/how/"], categories: [] },
+    fr: { home: ["/fr/"], how: ["/fr/how/"], categories: [] },
+  },
 };
 
 /** Everything a visitor could have downloaded, as pathnames. */
@@ -73,6 +79,8 @@ function fullCache() {
  */
 function loadWorker(seed: Map<string, boolean> = fullCache()) {
   const store = new Map(seed);
+  /** Every address the worker asked the network for, in order. */
+  const fetched: string[] = [];
   const open = async () => ({
     async keys() {
       return [...store.keys()].map((url) => ({ url: `https://trykit.pages.dev${url}` }));
@@ -96,10 +104,12 @@ function loadWorker(seed: Map<string, boolean> = fullCache()) {
   const context = vm.createContext({
     self,
     caches: { open, match: async () => undefined },
-    fetch: async (input: string) =>
-      String(input).includes(FILL_PRECACHE)
+    fetch: async (input: string) => {
+      fetched.push(String(input));
+      return String(input).includes(FILL_PRECACHE)
         ? { ok: true, type: "basic", json: async () => MANIFEST }
-        : { ok: true, type: "basic", status: 200 },
+        : { ok: true, type: "basic", status: 200 };
+    },
     console,
     setTimeout,
     clearTimeout,
@@ -122,13 +132,15 @@ function loadWorker(seed: Map<string, boolean> = fullCache()) {
       readyLocales: number;
     }>;
     toolPathSegment: (toolId: string) => string;
+    startLocaleFill: (locale: string, skipHeavy: boolean) => Promise<void>;
     selectedOfflineUrls: (data: {
       locales?: string[];
       tools?: string[];
+      pages?: string[];
       engines?: boolean;
     }) => Promise<string[]>;
   };
-  return { worker, store, paths: () => [...store.keys()] };
+  return { worker, store, paths: () => [...store.keys()], fetched };
 }
 
 describe("removing what was downloaded", () => {
@@ -259,6 +271,72 @@ describe("what a download covers", () => {
 
     expect(withEngines).toContain("/vendor/ffmpeg/ffmpeg-core.js");
     expect(without).not.toContain("/vendor/ffmpeg/ffmpeg-core.js");
+  });
+
+  it("brings the pages that were chosen, and their payloads", async () => {
+    const { worker } = loadWorker();
+    const urls = await worker.selectedOfflineUrls({
+      locales: ["en"],
+      tools: [],
+      pages: ["how"],
+      engines: false,
+    });
+
+    expect(urls).toContain("/en/how/");
+    expect(urls).toContain("/en/how/index.txt");
+    // The home page was not chosen, so the app will not open at the root.
+    expect(urls).not.toContain("/en/");
+    expect(urls).not.toContain("/en/index.txt");
+  });
+
+  it("takes every page when the message predates the list", async () => {
+    const { worker } = loadWorker();
+    /* A field the page never sent means the whole app, which is what a visitor
+       who chose nothing was given before pages could be chosen at all. */
+    const urls = await worker.selectedOfflineUrls({ locales: ["en"], tools: [], engines: false });
+
+    expect(urls).toContain("/en/");
+    expect(urls).toContain("/en/how/");
+    expect(urls).toContain("/en/index.txt");
+    expect(urls).toContain("/en/how/index.txt");
+  });
+
+  it("takes no page at all when the selection is empty", async () => {
+    const { worker } = loadWorker();
+    /* An empty list is a choice, not a missing field: a visitor who un-ticked
+       every page asked for the tools alone. */
+    const urls = await worker.selectedOfflineUrls({
+      locales: ["en"],
+      tools: ["pdf-merge"],
+      pages: [],
+      engines: false,
+    });
+
+    expect(urls).not.toContain("/en/");
+    expect(urls).not.toContain("/en/index.txt");
+    expect(urls).toContain("/en/tools/pdf-merge/");
+    expect(urls).toContain("/en/tools/pdf-merge/index.txt");
+  });
+});
+
+describe("the background fill", () => {
+  it("fetches the app's own pages before anything else", async () => {
+    /* The fill pauses whenever someone is reading or scrolling, so on a first
+       visit it may only get through a few dozen requests. The pages the app's
+       own navigation needs have to be among them, or a visitor who loses the
+       network cannot open History, Favorites or Offline access until they have
+       visited those pages once. */
+    const { worker, fetched } = loadWorker(new Map());
+    await worker.startLocaleFill("en", true);
+
+    const asked = fetched.filter((url) => !url.includes(FILL_PRECACHE)).map((url) => new URL(url).pathname);
+    const firstPage = asked.findIndex((path) => path === "/en/");
+    const core = asked.findIndex((path) => path === "/app.js");
+
+    expect(asked.slice(0, 2)).toEqual(["/en/", "/en/how/"]);
+    expect(firstPage).toBeLessThan(core);
+    // And their payloads, so an in-app click can stay in the tab.
+    expect(asked.indexOf("/en/index.txt")).toBeLessThan(core);
   });
 });
 

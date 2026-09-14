@@ -447,7 +447,10 @@
     "failed": "Non riuscito",
     "recordingTitle": "Registra attività degli strumenti",
     "recordingOn": "Attivo — su questo dispositivo possono essere salvati brevi riepiloghi.",
-    "recordingOff": "Disattivo — Kit non aggiungerà nuove attività alla cronologia."
+    "recordingOff": "Disattivo — Kit non aggiungerà nuove attività alla cronologia.",
+    "enableRecording": "Attiva",
+    "notSaved": "La cronologia è disattivata, quindi questo non è stato salvato.",
+    "enabledAndSaved": "La cronologia è attiva e questa è stata salvata."
   },
   "favorites": {
     "title": "Preferiti",
@@ -497,7 +500,9 @@
     "offlineManageDesc": "Controlla ciò che è salvato su questo dispositivo e rimuovi ciò che vuoi.",
     "offlineNothingSaved": "Non c’è ancora nulla di salvato su questo dispositivo.",
     "offlineRemoveSelected": "Rimuovi selezionati",
-    "offlineEnginesLabel": "Motori multimediali"
+    "offlineEnginesLabel": "Motori multimediali",
+    "offlinePages": "Pagine",
+    "offlinePagesDesc": "Le pagine dell’app stessa, nelle lingue che scegli. Senza di esse Kit non può aprirsi senza connessione, quindi sono tutte preselezionate."
   },
   "shortcuts": {
     "title": "Scorciatoie da tastiera",

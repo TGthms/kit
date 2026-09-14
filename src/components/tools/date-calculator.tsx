@@ -4,7 +4,6 @@ import { useMemo, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { CalendarDays, Check } from "lucide-react";
 import { toast } from "sonner";
-import { notifyHistorySaved } from "@/lib/notify";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -18,7 +17,7 @@ import {
   differenceInCalendarDays,
   type DateUnit,
 } from "@/lib/converter/date";
-import { ToolLimits, ToolShell, useToolHistory } from "./shared";
+import { ToolLimits, ToolShell, useHistoryNote } from "./shared";
 import { formatDateInput, text, toolId } from "./everyday-format";
 
 const selectClass =
@@ -35,7 +34,7 @@ function parseLocalDate(value: string) {
 export function DateCalculator() {
   const t = useTranslations("tools.date-calculator");
   const locale = useLocale();
-  const log = useToolHistory(toolId("date-calculator"));
+  const note = useHistoryNote(toolId("date-calculator"));
   const [mode, setMode] = useState<"difference" | "add" | "business">("difference");
   const [start, setStart] = useState(() => formatDateInput(new Date()));
   const [end, setEnd] = useState(() => formatDateInput(addDate(new Date(), 30, "days")));
@@ -88,7 +87,7 @@ export function DateCalculator() {
       </div>
       {mode === "business" ? <div className="space-y-4 rounded-2xl border border-border/60 bg-card p-4"><div className="flex items-center gap-3"><Switch checked={inclusive} onCheckedChange={setInclusive} id="inclusive" /><Label htmlFor="inclusive">{text(t, "includeEndpoints", "Include endpoints")}</Label></div><div className="space-y-2"><Label>{text(t, "holidays", "Holidays (comma-separated YYYY-MM-DD)")}</Label><Input value={holidays} onChange={(event) => setHolidays(event.target.value)} placeholder={text(t, "holidaysPlaceholder", "2026-12-25, 2027-01-01")} /></div><Button variant="outline" onClick={addBusiness}><CalendarDays /> {text(t, "addBusinessDays", "Add business days to end")}</Button></div> : null}
       {result ? <Card><CardHeader className="pb-3"><CardTitle>{result.title}</CardTitle></CardHeader><CardContent className="space-y-2">{result.lines.map((line) => <p key={line} className="font-mono text-lg">{line}</p>)}</CardContent></Card> : <p className="text-sm text-destructive">{text(t, "invalid", "Check the date and amount.")}</p>}
-      <Button variant="outline" disabled={!result} onClick={() => { if (result) { log(result.lines[0], "success"); notifyHistorySaved(text(t, "saved", "Calculation saved to history."), text(t, "historyOff", "History is off, so this wasn’t saved.")); } }}><Check /> {text(t, "recordCalculation", "Record calculation")}</Button>
+      <Button variant="outline" disabled={!result} onClick={() => { if (result) { note(result.lines[0], text(t, "saved", "Calculation saved to history.")); } }}><Check /> {text(t, "recordCalculation", "Record calculation")}</Button>
     </ToolShell>
   );
 }

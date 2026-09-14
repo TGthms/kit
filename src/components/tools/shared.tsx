@@ -1,12 +1,13 @@
 "use client";
 
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import { useCallback, useEffect, useRef, useState, type ReactNode } from "react";
 import { useTranslations } from "next-intl";
 import { LoaderCircle } from "lucide-react";
 import type { ToolId } from "@/lib/tools/registry";
 import { ToolHeader } from "@/components/shared/tool-header";
 import { Button } from "@/components/ui/button";
 import { useHistoryStore } from "@/stores/history-store";
+import { notifyHistoryEnabled, notifyHistoryOff, notifySuccess } from "@/lib/notify";
 import { SHORTCUT_RUN_EVENT } from "@/components/layout/shortcuts-provider";
 import { downloadBlob } from "@/lib/utils";
 
@@ -60,6 +61,40 @@ export function useToolHistory(toolId: ToolId) {
     status: "success" | "failed",
     options?: Record<string, unknown>
     ) => { if (enabled) add({ toolId, summary, status, options }); };
+}
+
+/**
+ * The record-to-history buttons.
+ *
+ * Saving is the whole point of the button, so being told that recording is off
+ * must not be a dead end: the notice offers to turn it on, and the action that
+ * prompted it is kept rather than thrown away. A visitor who accepts has
+ * already said they want this one, and the confirmation names the setting as
+ * well as the save, so the new state is not left to be discovered later.
+ */
+export function useHistoryNote(toolId: ToolId) {
+  const th = useTranslations("history");
+  const add = useHistoryStore((s) => s.add);
+  return useCallback(
+    (summary: string, confirmation: string, options?: Record<string, unknown>) => {
+      const entry = { toolId, summary, status: "success" as const, options };
+      /* Read at the moment of the tap: the notice may have switched recording
+         on after this closure was made. */
+      if (useHistoryStore.getState().enabled) {
+        add(entry);
+        notifySuccess(confirmation);
+        return;
+      }
+      notifyHistoryOff(th("notSaved"), th("enableRecording"), () => {
+        useHistoryStore.getState().setEnabled(true);
+        add(entry);
+        /* Two things changed, so the notice says both: the setting, and that
+           the action that asked for it is now in the list. */
+        notifyHistoryEnabled(th("enabledAndSaved"));
+      });
+    },
+    [add, th, toolId]
+  );
 }
 
 export function ActionBar({

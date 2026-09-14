@@ -6,6 +6,7 @@ import { NextIntlClientProvider } from "next-intl";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import en from "../../../messages/en.json";
 import { tools } from "@/lib/tools/registry";
+import { APP_PAGE_IDS } from "@/lib/pwa/app-pages";
 import { OFFLINE_PLAN_KEY, type OfflineState } from "@/lib/pwa/offline-status";
 import { OfflineAccess } from "./offline-access";
 
@@ -33,7 +34,18 @@ function stubBrowser() {
 
 function renderOffline() {
   return render(
-    <NextIntlClientProvider locale="en" messages={{ settings: en.settings, common: en.common, categories: en.categories, tools: en.tools }}>
+    <NextIntlClientProvider
+      locale="en"
+      messages={{
+        settings: en.settings,
+        common: en.common,
+        categories: en.categories,
+        tools: en.tools,
+        nav: en.nav,
+        footer: en.footer,
+        home: en.home,
+      }}
+    >
       <OfflineAccess />
     </NextIntlClientProvider>,
   );
@@ -95,6 +107,42 @@ function figures(): HTMLElement {
   return card as HTMLElement;
 }
 
+/** The card headed by `title`, so one picker can be scoped on its own. */
+function card(title: string): HTMLElement {
+  const heading = screen.getByRole("heading", { name: title, level: 3 });
+  const found = heading.closest("div.rounded-2xl");
+  expect(found).not.toBeNull();
+  return found as HTMLElement;
+}
+
+/**
+ * A picker's heading strip, where its own Select all and Clear live. A category
+ * row offers the same two words once everything in it is ticked, so the whole
+ * card cannot be used to find them.
+ */
+function header(title: string): HTMLElement {
+  const first = card(title).firstElementChild;
+  expect(first).not.toBeNull();
+  return first as HTMLElement;
+}
+
+/** The app's own pages the card offers, in the order it lists them. */
+const PAGE_LABELS = [
+  "Home",
+  "Favorites",
+  "History",
+  "Settings",
+  "Offline access",
+  "How Kit works",
+  "Privacy Policy",
+  "Terms of Use",
+  "Categories",
+];
+
+function pageBoxes(): HTMLInputElement[] {
+  return PAGE_LABELS.map((label) => screen.getByRole("checkbox", { name: label }) as HTMLInputElement);
+}
+
 describe("OfflineAccess", () => {
   it("waits for each figure rather than showing one it has not measured", async () => {
     renderOffline();
@@ -124,15 +172,21 @@ describe("OfflineAccess", () => {
     await waitFor(() => expect(sent("OFFLINE_STATUS")).toBeTruthy());
   });
 
-  it("requests a download with the selected languages, tools, and engines", async () => {
+  it("requests a download with the selected languages, tools, pages, and engines", async () => {
     renderOffline();
     fireEvent.click(screen.getByRole("button", { name: "Download" }));
     await waitFor(() => expect(sent("OFFLINE_DOWNLOAD")).toBeTruthy());
-    const payload = sent("OFFLINE_DOWNLOAD") as { locales: string[]; engines: boolean; tools: string[] };
+    const payload = sent("OFFLINE_DOWNLOAD") as {
+      locales: string[];
+      engines: boolean;
+      tools: string[];
+      pages: string[];
+    };
     expect(payload.locales).toEqual(["en"]);
     expect(payload.engines).toBe(true);
     expect(payload.tools).toContain("pdf-merge");
     expect(payload.tools).toHaveLength(tools.length);
+    expect(payload.pages).toEqual([...APP_PAGE_IDS]);
   });
 
   it("renders batched progress logs and the completed state", async () => {
@@ -194,8 +248,72 @@ describe("what is already saved", () => {
   });
 });
 
-/** The body of the Manage downloads menu, which only exists once expanded. */
-function manageMenu(): HTMLElement {
+describe("the app's own pages", () => {
+  it("offers every one of them, ticked, without being asked", () => {
+    renderOffline();
+    /* Kit cannot open with the network off without its own pages, so they
+       arrive selected — and they are downloads like any other, so each one can
+       be left out on its own. */
+    expect(pageBoxes()).toHaveLength(APP_PAGE_IDS.length);
+    expect(pageBoxes().every((box) => box.checked)).toBe(true);
+  });
+
+  it("takes the ticked set with the download", async () => {
+    renderOffline();
+    fireEvent.click(screen.getByRole("checkbox", { name: "History" }));
+    fireEvent.click(screen.getByRole("button", { name: "Download" }));
+
+    const payload = await sentEventually("OFFLINE_DOWNLOAD");
+    expect(payload.pages).not.toContain("history");
+    expect(payload.pages).toContain("offline");
+    expect(payload.pages).toHaveLength(APP_PAGE_IDS.length - 1);
+  });
+
+  it("selects and clears the whole card from its own controls", () => {
+    renderOffline();
+    const pages = within(header("Pages"));
+    fireEvent.click(pages.getByRole("button", { name: "Clear" }));
+    expect(pageBoxes().some((box) => box.checked)).toBe(false);
+
+    fireEvent.click(pages.getByRole("button", { name: "Select all" }));
+    expect(pageBoxes().every((box) => box.checked)).toBe(true);
+  });
+
+  it("is a download in its own right, without any tool", () => {
+    renderOffline();
+    fireEvent.click(within(header("Tools")).getByRole("button", { name: "Clear" }));
+    // Preparing the app itself for offline is a small, legitimate download.
+    expect(screen.getByRole("button", { name: "Download" })).toBeEnabled();
+  });
+
+  it("will not start a download that asks for nothing at all", () => {
+    renderOffline();
+    fireEvent.click(within(header("Tools")).getByRole("button", { name: "Clear" }));
+    fireEvent.click(within(header("Pages")).getByRole("button", { name: "Clear" }));
+    expect(screen.getByRole("button", { name: "Download" })).toBeDisabled();
+  });
+});
+
+describe("the tool categories", () => {
+  it("start closed, rather than nine lists at once", () => {
+    renderOffline();
+    const tools = within(card("Tools"));
+    expect(tools.queryByText("Merge PDFs")).toBeNull();
+    expect(tools.getByRole("button", { name: /^PDF/ })).toHaveAttribute("aria-expanded", "false");
+    expect(tools.getAllByRole("button", { expanded: false })).toHaveLength(9);
+  });
+
+  it("open one at a time, and the tools inside still choose", () => {
+    renderOffline();
+    const tools = within(card("Tools"));
+    fireEvent.click(tools.getByRole("button", { name: /^PDF/ }));
+    expect(tools.getByText("Merge PDFs")).toBeInTheDocument();
+    // Another category stays as it was.
+    expect(tools.queryByText("Compress images")).toBeNull();
+  });
+});
+
+/** The body of the Manage downloads menu, which only exists once expanded. */function manageMenu(): HTMLElement {
   const body = document.getElementById("kit-offline-manage");
   expect(body).not.toBeNull();
   return body as HTMLElement;
@@ -353,6 +471,7 @@ describe("release changes", () => {
     const stored = JSON.parse(window.localStorage.getItem(OFFLINE_PLAN_KEY) as string);
     expect(stored).toMatchObject({ generation: "v13", locales: ["en"], engines: true });
     expect(stored.tools).toHaveLength(tools.length);
+    expect(stored.pages).toEqual([...APP_PAGE_IDS]);
   });
 
   it("says nothing about a record whose content the visitor removed", () => {
@@ -372,6 +491,15 @@ describe("release changes", () => {
     fireEvent.click(screen.getByRole("button", { name: "Update downloads" }));
     // The saved selection is re-run as it was, not whatever is on screen.
     expect(await sentEventually("OFFLINE_DOWNLOAD")).toMatchObject({ locales: ["en"], tools: ["pdf-merge"], engines: true });
+  });
+
+  it("re-runs the recorded selection, pages included, rather than what is on screen", async () => {
+    record({ version: "1.0.0", pages: ["home", "history"] });
+    renderOffline();
+    emit({ type: "OFFLINE_STATE", state: savedState() });
+    fireEvent.click(screen.getByRole("button", { name: "Update downloads" }));
+    const payload = await sentEventually("OFFLINE_DOWNLOAD");
+    expect(payload.pages).toEqual(["home", "history"]);
   });
 
   it("reports content a new release dropped, and offers to fetch it again", () => {

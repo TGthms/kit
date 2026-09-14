@@ -447,7 +447,10 @@
     "failed": "Mislykkedes",
     "recordingTitle": "Registrer værktøjsaktivitet",
     "recordingOn": "Til — korte opsummeringer kan gemmes på denne enhed.",
-    "recordingOff": "Fra — Kit føjer ikke ny aktivitet til historikken."
+    "recordingOff": "Fra — Kit føjer ikke ny aktivitet til historikken.",
+    "enableRecording": "Slå til",
+    "notSaved": "Historik er slået fra, så dette blev ikke gemt.",
+    "enabledAndSaved": "Historik er slået til, og denne er gemt."
   },
   "favorites": {
     "title": "Favoritter",
@@ -497,7 +500,9 @@
     "offlineManageDesc": "Gennemgå hvad der er gemt på denne enhed, og fjern det, du vil.",
     "offlineNothingSaved": "Der er endnu ikke gemt noget på denne enhed.",
     "offlineRemoveSelected": "Fjern valgte",
-    "offlineEnginesLabel": "Mediemotorer"
+    "offlineEnginesLabel": "Mediemotorer",
+    "offlinePages": "Sider",
+    "offlinePagesDesc": "Siderne i selve appen, på de sprog du vælger. Uden dem kan Kit ikke åbne uden forbindelse, så de er alle valgt fra start."
   },
   "shortcuts": {
     "title": "Tastaturgenveje",

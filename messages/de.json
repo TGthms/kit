@@ -447,7 +447,10 @@
     "failed": "Fehlgeschlagen",
     "recordingTitle": "Werkzeugaktivität aufzeichnen",
     "recordingOn": "Ein — kurze Zusammenfassungen können auf diesem Gerät gespeichert werden.",
-    "recordingOff": "Aus — Kit fügt dem Verlauf keine neuen Aktivitäten hinzu."
+    "recordingOff": "Aus — Kit fügt dem Verlauf keine neuen Aktivitäten hinzu.",
+    "enableRecording": "Aktivieren",
+    "notSaved": "Der Verlauf ist aus, deshalb wurde das nicht gespeichert.",
+    "enabledAndSaved": "Der Verlauf ist an, und dieser Eintrag ist gespeichert."
   },
   "favorites": {
     "title": "Favoriten",
@@ -497,7 +500,9 @@
     "offlineManageDesc": "Prüfe, was auf diesem Gerät gespeichert ist, und entferne, was du nicht mehr brauchst.",
     "offlineNothingSaved": "Auf diesem Gerät ist noch nichts gespeichert.",
     "offlineRemoveSelected": "Ausgewählte entfernen",
-    "offlineEnginesLabel": "Medien-Engines"
+    "offlineEnginesLabel": "Medien-Engines",
+    "offlinePages": "Seiten",
+    "offlinePagesDesc": "Die Seiten der App selbst, in den Sprachen Ihrer Wahl. Ohne sie lässt sich Kit ohne Verbindung nicht öffnen, deshalb sind alle vorausgewählt."
   },
   "shortcuts": {
     "title": "Tastenkürzel",

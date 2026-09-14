@@ -447,7 +447,10 @@
     "failed": "Epäonnistui",
     "recordingTitle": "Tallenna työkalujen toiminta",
     "recordingOn": "Käytössä — lyhyitä yhteenvetoja voidaan tallentaa tälle laitteelle.",
-    "recordingOff": "Pois käytöstä — Kit ei lisää uutta toimintaa historiaan."
+    "recordingOff": "Pois käytöstä — Kit ei lisää uutta toimintaa historiaan.",
+    "enableRecording": "Ota käyttöön",
+    "notSaved": "Historia on pois päältä, joten tätä ei tallennettu.",
+    "enabledAndSaved": "Historia on päällä ja tämä tallennettiin."
   },
   "favorites": {
     "title": "Suosikit",
@@ -497,7 +500,9 @@
     "offlineManageDesc": "Katso, mitä tälle laitteelle on tallennettu, ja poista haluamasi.",
     "offlineNothingSaved": "Tälle laitteelle ei ole vielä tallennettu mitään.",
     "offlineRemoveSelected": "Poista valitut",
-    "offlineEnginesLabel": "Mediamoottorit"
+    "offlineEnginesLabel": "Mediamoottorit",
+    "offlinePages": "Sivut",
+    "offlinePagesDesc": "Sovelluksen omat sivut valitsemillasi kielillä. Ilman niitä Kit ei avaudu ilman yhteyttä, joten kaikki on valittu valmiiksi."
   },
   "shortcuts": {
     "title": "Pikanäppäimet",

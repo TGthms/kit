@@ -447,7 +447,10 @@
     "failed": "Mislukt",
     "recordingTitle": "Toolactiviteit opslaan",
     "recordingOn": "Aan — korte samenvattingen kunnen op dit apparaat worden opgeslagen.",
-    "recordingOff": "Uit — Kit voegt geen nieuwe activiteit toe aan de geschiedenis."
+    "recordingOff": "Uit — Kit voegt geen nieuwe activiteit toe aan de geschiedenis.",
+    "enableRecording": "Inschakelen",
+    "notSaved": "Geschiedenis staat uit, dus dit is niet opgeslagen.",
+    "enabledAndSaved": "Geschiedenis staat aan en deze is opgeslagen."
   },
   "favorites": {
     "title": "Favorieten",
@@ -497,7 +500,9 @@
     "offlineManageDesc": "Bekijk wat er op dit apparaat is opgeslagen en verwijder wat je wilt.",
     "offlineNothingSaved": "Er is nog niets opgeslagen op dit apparaat.",
     "offlineRemoveSelected": "Geselecteerde verwijderen",
-    "offlineEnginesLabel": "Media-engines"
+    "offlineEnginesLabel": "Media-engines",
+    "offlinePages": "Pagina's",
+    "offlinePagesDesc": "De pagina’s van de app zelf, in de talen die je kiest. Zonder deze kan Kit niet zonder verbinding openen, dus ze zijn allemaal aangevinkt."
   },
   "shortcuts": {
     "title": "Sneltoetsen",

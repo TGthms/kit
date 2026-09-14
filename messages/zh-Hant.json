@@ -447,7 +447,10 @@
     "failed": "失败",
     "recordingTitle": "記錄工具活動",
     "recordingOn": "開啟 — 可在此裝置儲存簡短摘要。",
-    "recordingOff": "關閉 — Kit 不會在歷史記錄中新增活動。"
+    "recordingOff": "關閉 — Kit 不會在歷史記錄中新增活動。",
+    "enableRecording": "開啟",
+    "notSaved": "歷史記錄已關閉，因此這次沒有儲存。",
+    "enabledAndSaved": "歷史記錄已開啟，這次也已儲存。"
   },
   "favorites": {
     "title": "收藏",
@@ -497,7 +500,9 @@
     "offlineManageDesc": "檢視此裝置上已儲存的內容，並刪除不需要的部分。",
     "offlineNothingSaved": "此裝置上尚未儲存任何內容。",
     "offlineRemoveSelected": "刪除所選項",
-    "offlineEnginesLabel": "媒體引擎"
+    "offlineEnginesLabel": "媒體引擎",
+    "offlinePages": "頁面",
+    "offlinePagesDesc": "應用程式自身的頁面，依你選擇的語言儲存。沒有它們，Kit 無法在無網路時開啟，因此預設全部勾選。"
   },
   "shortcuts": {
     "title": "键盤快捷键",

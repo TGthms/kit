@@ -6,6 +6,7 @@ import { Check, ChevronDown, Download, HardDriveDownload, LoaderCircle, Trash2, 
 import { cn } from "@/lib/utils";
 import { locales, localeNames, type Locale } from "@/lib/i18n/config";
 import { tools, type ToolCategory, type ToolId } from "@/lib/tools/registry";
+import { APP_PAGES, APP_PAGE_IDS, type AppPageId } from "@/lib/pwa/app-pages";
 import { useHydrated } from "@/lib/react/hydrated";
 import { APP_VERSION } from "@/lib/version";
 import {
@@ -26,7 +27,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 const categories: ToolCategory[] = ["pdf", "image", "audio", "video", "data", "text", "developer", "converter", "everyday"];
 type DownloadState = { status: "idle" | "running" | "done" | "canceled" | "error"; done: number; total: number; logs: string[] };
 type ProgressMessage = { type?: string; status?: string; done?: number; total?: number; logs?: unknown; log?: unknown };
-type Selection = { locales: Locale[]; tools: ToolId[]; engines: boolean };
+type Selection = { locales: Locale[]; tools: ToolId[]; pages: AppPageId[]; engines: boolean };
 /** What the removal menu has ticked at this moment. */
 type RemovalSelection = { locales: Set<Locale>; tools: Set<ToolId>; engines: boolean };
 
@@ -96,6 +97,9 @@ export function OfflineAccess() {
   const tc = useTranslations("common");
   const tcat = useTranslations("categories");
   const ttools = useTranslations("tools");
+  /* The app's own pages are named in several namespaces, so they are read from
+     the root rather than copied into this one. */
+  const tr = useTranslations();
   const locale = useLocale() as Locale;
   const hydrated = useHydrated();
   /* Not every browser can report storage usage; where it cannot, there is
@@ -103,8 +107,13 @@ export function OfflineAccess() {
   const canEstimateStorage = typeof navigator !== "undefined" && Boolean(navigator.storage?.estimate);
   const [selectedLocales, setSelectedLocales] = useState<Locale[]>([locale]);
   const [selectedTools, setSelectedTools] = useState<Set<ToolId>>(new Set(tools.map((tool) => tool.id)));
+  /* Every page is offered by default: they are the shell, and the point of
+     preparing a device for offline use is that the app itself works. */
+  const [selectedPages, setSelectedPages] = useState<AppPageId[]>([...APP_PAGE_IDS]);
   const [engines, setEngines] = useState(true);
-  const [openCategories, setOpenCategories] = useState<Set<ToolCategory>>(new Set(["pdf", "image"]));
+  /* Every category starts closed: nine open lists would bury the rest of the
+     page, and the choice is usually made per category rather than wholesale. */
+  const [openCategories, setOpenCategories] = useState<Set<ToolCategory>>(new Set());
   const [storage, setStorage] = useState<{ usage: number | null; quota: number | null }>({ usage: null, quota: null });
   const [download, setDownload] = useState<DownloadState>({ status: "idle", done: 0, total: 0, logs: [] });
   const [state, setState] = useState<OfflineState | null>(null);
@@ -191,6 +200,7 @@ export function OfflineAccess() {
           generation: state?.generation ?? "",
           locales: request.current.locales,
           tools: request.current.tools,
+          pages: request.current.pages,
           engines: request.current.engines,
           at: new Date().toISOString(),
         });
@@ -207,24 +217,28 @@ export function OfflineAccess() {
     setSelectedTools((current) => { const next = new Set(current); const allSelected = ids.every((id) => next.has(id)); ids.forEach((id) => (allSelected ? next.delete(id) : next.add(id))); return next; });
   };
   const toggleLocale = (value: Locale) => setSelectedLocales((current) => current.includes(value) ? current.filter((item) => item !== value) : [...current, value]);
+  const togglePage = (id: AppPageId) => setSelectedPages((current) => current.includes(id) ? current.filter((item) => item !== id) : [...current, id]);
 
   const runDownload = async (selection: Selection) => {
-    if (!selection.locales.length || !selection.tools.length) return;
+    /* Something has to be asked for. A download of the app's own pages alone is
+       a legitimate small one, so tools are not required. */
+    if (!selection.locales.length || (!selection.tools.length && !selection.pages.length)) return;
     const worker = await activeWorker();
     if (!worker) return;
     request.current = selection;
     setDownload({ status: "running", done: 0, total: 0, logs: [] });
     worker.postMessage({ type: "OFFLINE_DOWNLOAD", ...selection });
   };
-  const downloadSelected = () => runDownload({ locales: selectedLocales, tools: [...selectedTools], engines });
+  const downloadSelected = () => runDownload({ locales: selectedLocales, tools: [...selectedTools], pages: selectedPages, engines });
   const cancelDownload = async () => (await activeWorker())?.postMessage({ type: "OFFLINE_CANCEL" });
   const updateFromPlan = () => {
     if (!plan) return;
     /* The saved selection is re-run as it was, so an update costs one tap. */
     setSelectedLocales(plan.locales);
     setSelectedTools(new Set(plan.tools));
+    setSelectedPages(plan.pages);
     setEngines(plan.engines);
-    void runDownload({ locales: plan.locales, tools: plan.tools, engines: plan.engines });
+    void runDownload({ locales: plan.locales, tools: plan.tools, pages: plan.pages, engines: plan.engines });
   };
 
   const toggleRemoveLocale = (value: Locale) => setRemoval((current) => {
@@ -346,6 +360,32 @@ export function OfflineAccess() {
         </CardContent>
       </Card>
 
+      {/* The app's own pages. They are what makes the app usable with the
+          network off — down to the page that manages all of this — so they are
+          offered like anything else that can be downloaded, one row each, and
+          every one of them is ticked to begin with. */}
+      <Card className="border-border/40">
+        <CardHeader>
+          <div className="flex flex-wrap items-start justify-between gap-3">
+            <div><CardTitle>{t("offlinePages")}</CardTitle><p className="mt-1 type-caption text-muted-foreground">{t("offlinePagesDesc")}</p></div>
+            <div className="flex gap-2">
+              <Button size="sm" variant="outline" onClick={() => setSelectedPages([...APP_PAGE_IDS])}>{tc("selectAll")}</Button>
+              <Button size="sm" variant="ghost" onClick={() => setSelectedPages([])}>{tc("clear")}</Button>
+            </div>
+          </div>
+        </CardHeader>
+        <CardContent>
+          <div className="grid grid-cols-1 gap-1 rounded-xl border border-border/50 p-3 sm:grid-cols-2 lg:grid-cols-3">
+            {APP_PAGES.map((page) => (
+              <label key={page.id} className="flex items-center gap-2 rounded-lg px-2 py-1.5 text-sm hover:bg-secondary/60">
+                <input type="checkbox" checked={selectedPages.includes(page.id)} onChange={() => togglePage(page.id)} />
+                <span className="min-w-0 flex-1 truncate">{tr(page.label)}</span>
+              </label>
+            ))}
+          </div>
+        </CardContent>
+      </Card>
+
       <Card className="border-border/40">
         <CardHeader>
           <div className="flex flex-wrap items-start justify-between gap-3">
@@ -405,7 +445,7 @@ export function OfflineAccess() {
             <span><span className="font-medium">{t("offlineEngines")}</span><span className="mt-0.5 block type-caption text-muted-foreground">{t("offlineEnginesDesc")}</span></span>
           </label>
           <div className="flex flex-wrap items-center gap-3">
-            <Button onClick={downloadSelected} disabled={!selectedLocales.length || !selectedTools.size || download.status === "running"}>
+            <Button onClick={downloadSelected} disabled={!selectedLocales.length || (!selectedTools.size && !selectedPages.length) || download.status === "running"}>
               <Download className="me-2 h-4 w-4" />{tc("download")}
             </Button>
             {download.status === "running" ? (

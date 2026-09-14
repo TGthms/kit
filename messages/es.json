@@ -447,7 +447,10 @@
     "failed": "Fallido",
     "recordingTitle": "Registrar actividad de las herramientas",
     "recordingOn": "Activado — se pueden guardar resúmenes breves en este dispositivo.",
-    "recordingOff": "Desactivado — Kit no añadirá actividad nueva al historial."
+    "recordingOff": "Desactivado — Kit no añadirá actividad nueva al historial.",
+    "enableRecording": "Activar",
+    "notSaved": "El historial está desactivado, así que esto no se guardó.",
+    "enabledAndSaved": "El historial está activado y esta se ha guardado."
   },
   "favorites": {
     "title": "Favoritos",
@@ -497,7 +500,9 @@
     "offlineManageDesc": "Revisa lo que hay guardado en este dispositivo y elimina lo que quieras.",
     "offlineNothingSaved": "Todavía no hay nada guardado en este dispositivo.",
     "offlineRemoveSelected": "Eliminar seleccionados",
-    "offlineEnginesLabel": "Motores multimedia"
+    "offlineEnginesLabel": "Motores multimedia",
+    "offlinePages": "Páginas",
+    "offlinePagesDesc": "Las páginas de la propia aplicación, en los idiomas que elijas. Sin ellas Kit no puede abrirse sin conexión, así que todas vienen marcadas."
   },
   "shortcuts": {
     "title": "Atajos de teclado",

@@ -447,7 +447,10 @@
     "failed": "Falhou",
     "recordingTitle": "Registar atividade das ferramentas",
     "recordingOn": "Ativo — podem ser guardados resumos breves neste dispositivo.",
-    "recordingOff": "Desativado — o Kit não adicionará novas atividades ao histórico."
+    "recordingOff": "Desativado — o Kit não adicionará novas atividades ao histórico.",
+    "enableRecording": "Ativar",
+    "notSaved": "O histórico está desativado, por isso isto não foi guardado.",
+    "enabledAndSaved": "O histórico está ativado e este foi guardado."
   },
   "favorites": {
     "title": "Favoritos",
@@ -497,7 +500,9 @@
     "offlineManageDesc": "Reveja o que está guardado neste dispositivo e remova o que quiser.",
     "offlineNothingSaved": "Ainda não há nada guardado neste dispositivo.",
     "offlineRemoveSelected": "Remover selecionados",
-    "offlineEnginesLabel": "Motores de multimédia"
+    "offlineEnginesLabel": "Motores de multimédia",
+    "offlinePages": "Páginas",
+    "offlinePagesDesc": "As páginas da própria aplicação, nos idiomas que escolher. Sem elas, o Kit não abre sem ligação, por isso estão todas selecionadas."
   },
   "shortcuts": {
     "title": "Atalhos de teclado",
