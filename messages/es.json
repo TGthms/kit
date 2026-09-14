@@ -492,7 +492,12 @@
     "offlineUpdate": "Actualizar descargas",
     "offlineRemoveAll": "Quitar todas las descargas",
     "offlineRemoveConfirm": "¿Quitar de este dispositivo todos los idiomas, páginas de herramientas y motores multimedia guardados?",
-    "offlineCleared": "El contenido descargado se eliminó al actualizar Kit. ¿Descargar de nuevo los mismos idiomas y herramientas?"
+    "offlineCleared": "El contenido descargado se eliminó al actualizar Kit. ¿Descargar de nuevo los mismos idiomas y herramientas?",
+    "offlineManage": "Gestionar descargas",
+    "offlineManageDesc": "Revisa lo que hay guardado en este dispositivo y elimina lo que quieras.",
+    "offlineNothingSaved": "Todavía no hay nada guardado en este dispositivo.",
+    "offlineRemoveSelected": "Eliminar seleccionados",
+    "offlineEnginesLabel": "Motores multimedia"
   },
   "shortcuts": {
     "title": "Atajos de teclado",

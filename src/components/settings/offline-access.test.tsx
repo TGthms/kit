@@ -1,7 +1,7 @@
 // @vitest-environment jsdom
 
 import "@testing-library/jest-dom/vitest";
-import { act, cleanup, fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { act, cleanup, fireEvent, render, screen, waitFor, within } from "@testing-library/react";
 import { NextIntlClientProvider } from "next-intl";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import en from "../../../messages/en.json";
@@ -134,28 +134,175 @@ describe("what is already saved", () => {
     renderOffline();
     emit({ type: "OFFLINE_STATE", state: savedState() });
     expect(screen.getByText(/What's saved/)).toBeInTheDocument();
-    // One language is complete and one is partway.
-    expect(screen.getByText("Ready")).toBeInTheDocument();
-    expect(screen.getByText("3 of 12 saved")).toBeInTheDocument();
+    // One of the two languages is complete, and the engines are all there.
+    expect(screen.getByText(/Languages 1\/2/)).toBeInTheDocument();
+    expect(screen.getByText(/Media engines Ready/)).toBeInTheDocument();
   });
 
-  it("offers to remove a language that is saved", async () => {
+  it("marks a ready language in the picker and leaves a part-saved one unmarked", () => {
     renderOffline();
     emit({ type: "OFFLINE_STATE", state: savedState() });
-    fireEvent.click(screen.getByRole("button", { name: "Remove English" }));
-    expect(await sentEventually("OFFLINE_REMOVE")).toMatchObject({ mode: "locale", locale: "en" });
+    const english = screen.getByText("English").closest("label") as HTMLElement;
+    const french = screen.getByText("Français").closest("label") as HTMLElement;
+    expect(within(english).getByText("Ready")).toBeInTheDocument();
+    expect(within(french).queryByText("Ready")).not.toBeInTheDocument();
   });
 
-  it("offers to remove everything, and forgets the record when it does", async () => {
+  it("keeps the picker free of any remove control", () => {
+    renderOffline();
+    emit({ type: "OFFLINE_STATE", state: savedState() });
+    const picker = screen.getByText("English").closest("label") as HTMLElement;
+    // Choosing and removing are separate jobs, so a picker row holds one control.
+    expect(within(picker).getAllByRole("checkbox")).toHaveLength(1);
+    expect(within(picker).queryAllByRole("button")).toHaveLength(0);
+  });
+});
+
+/** The body of the Manage downloads menu, which only exists once expanded. */
+function manageMenu(): HTMLElement {
+  const body = document.getElementById("kit-offline-manage");
+  expect(body).not.toBeNull();
+  return body as HTMLElement;
+}
+
+function openManageMenu() {
+  fireEvent.click(screen.getByRole("button", { name: /Manage downloads/ }));
+}
+
+describe("manage downloads", () => {
+  it("stays closed until it is asked for", () => {
+    renderOffline();
+    emit({ type: "OFFLINE_STATE", state: savedState() });
+    const toggle = screen.getByRole("button", { name: /Manage downloads/ });
+    expect(toggle).toHaveAttribute("aria-expanded", "false");
+    expect(toggle).toHaveAttribute("aria-controls", "kit-offline-manage");
+    expect(document.getElementById("kit-offline-manage")).toBeNull();
+
+    openManageMenu();
+    expect(toggle).toHaveAttribute("aria-expanded", "true");
+    expect(document.getElementById("kit-offline-manage")).not.toBeNull();
+  });
+
+  it("lists what is on the device rather than the whole catalogue", () => {
+    renderOffline();
+    emit({ type: "OFFLINE_STATE", state: savedState() });
+    openManageMenu();
+    const body = within(manageMenu());
+    // Two languages, one tool, one engines row: not 30 languages and 94 tools.
+    expect(body.getAllByRole("checkbox")).toHaveLength(4);
+    expect(body.getByRole("checkbox", { name: /Français/ })).toBeInTheDocument();
+    expect(body.getByRole("checkbox", { name: /Merge PDFs/ })).toBeInTheDocument();
+    expect(body.queryByRole("checkbox", { name: /Split PDF/ })).toBeNull();
+  });
+
+  it("counts a language's saving and a tool's reach against what it can see", () => {
+    renderOffline();
+    emit({ type: "OFFLINE_STATE", state: savedState() });
+    openManageMenu();
+    const body = within(manageMenu());
+    // Complete, partway, and held by one of the two languages that have
+    // anything saved — never a denominator of zero.
+    expect(body.getByText("Ready")).toBeInTheDocument();
+    expect(body.getByText("3 of 12 saved")).toBeInTheDocument();
+    expect(body.getByText("1/2")).toBeInTheDocument();
+  });
+
+  it("says there is nothing to remove, and offers no disclosure", () => {
+    renderOffline();
+    emit({
+      type: "OFFLINE_STATE",
+      state: savedState({ locales: {}, tools: {}, readyLocales: 0, engines: { done: 0, total: 4 } }),
+    });
+    // Nothing to manage, so the card is a note rather than a control that
+    // reports itself expanded while showing nothing.
+    expect(screen.queryByRole("button", { name: /Manage downloads/ })).toBeNull();
+    expect(screen.getByText("Nothing is saved on this device yet.")).toBeInTheDocument();
+    expect(document.getElementById("kit-offline-manage")).toBeNull();
+  });
+
+  it("names the count in the control and sends one message for the ticked set", async () => {
+    renderOffline();
+    emit({ type: "OFFLINE_STATE", state: savedState() });
+    openManageMenu();
+    const body = within(manageMenu());
+    const remove = body.getByRole("button", { name: /Remove selected/ });
+    // Nothing is ticked, so there is nothing to send and no count to show.
+    expect(remove).toBeDisabled();
+    expect(within(remove).queryByText("2")).toBeNull();
+
+    fireEvent.click(body.getByRole("checkbox", { name: /Français/ }));
+    fireEvent.click(body.getByRole("checkbox", { name: /Merge PDFs/ }));
+    expect(within(remove).getByText("2")).toBeInTheDocument();
+    fireEvent.click(remove);
+
+    expect(await sentEventually("OFFLINE_REMOVE")).toMatchObject({
+      locales: ["fr"],
+      tools: ["pdf-merge"],
+      engines: false,
+    });
+  });
+
+  it("takes everything when the whole selection is ticked", async () => {
+    renderOffline();
+    emit({ type: "OFFLINE_STATE", state: savedState() });
+    openManageMenu();
+    const body = within(manageMenu());
+    fireEvent.click(body.getByRole("button", { name: "Select all" }));
+    fireEvent.click(body.getByRole("button", { name: /Remove selected/ }));
+
+    expect(await sentEventually("OFFLINE_REMOVE")).toMatchObject({
+      locales: ["en", "fr"],
+      tools: ["pdf-merge"],
+      engines: true,
+    });
+  });
+
+  it("forgets the record once the selection takes all of it", async () => {
     record();
     renderOffline();
     emit({ type: "OFFLINE_STATE", state: savedState() });
+    openManageMenu();
+    const body = within(manageMenu());
+    fireEvent.click(body.getByRole("button", { name: "Select all" }));
+    fireEvent.click(body.getByRole("button", { name: /Remove selected/ }));
+    await sentEventually("OFFLINE_REMOVE");
+    expect(window.localStorage.getItem(OFFLINE_PLAN_KEY)).toBeNull();
+  });
+
+  it("keeps the record when only part of it goes", async () => {
+    record();
+    renderOffline();
+    emit({ type: "OFFLINE_STATE", state: savedState() });
+    openManageMenu();
+    const body = within(manageMenu());
+    fireEvent.click(body.getByRole("checkbox", { name: /Français/ }));
+    fireEvent.click(body.getByRole("button", { name: /Remove selected/ }));
+    await sentEventually("OFFLINE_REMOVE");
+    expect(window.localStorage.getItem(OFFLINE_PLAN_KEY)).not.toBeNull();
+  });
+
+  it("removes everything from one control, after confirming", async () => {
+    record();
+    renderOffline();
+    emit({ type: "OFFLINE_STATE", state: savedState() });
+    openManageMenu();
     const confirmSpy = vi.fn(() => true);
     vi.stubGlobal("confirm", confirmSpy);
-    fireEvent.click(screen.getByRole("button", { name: "Remove all downloads" }));
+    fireEvent.click(within(manageMenu()).getByRole("button", { name: "Remove all downloads" }));
+
     expect(confirmSpy).toHaveBeenCalled();
-    expect(await sentEventually("OFFLINE_REMOVE")).toMatchObject({ mode: "all" });
+    expect(await sentEventually("OFFLINE_REMOVE")).toMatchObject({ all: true });
     expect(window.localStorage.getItem(OFFLINE_PLAN_KEY)).toBeNull();
+  });
+
+  it("sends nothing when the removal is not confirmed", async () => {
+    renderOffline();
+    emit({ type: "OFFLINE_STATE", state: savedState() });
+    openManageMenu();
+    vi.stubGlobal("confirm", vi.fn(() => false));
+    fireEvent.click(within(manageMenu()).getByRole("button", { name: "Remove all downloads" }));
+    await waitFor(() => expect(sent("OFFLINE_STATUS")).toBeTruthy());
+    expect(sent("OFFLINE_REMOVE")).toBeUndefined();
   });
 });
 

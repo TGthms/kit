@@ -492,7 +492,12 @@
     "offlineCleared": "Kit 更新时已移除下载的内容。要重新下载相同的语言和工具吗？",
     "offlineUpdate": "更新下载内容",
     "offlineRemoveAll": "移除所有下载内容",
-    "offlineRemoveConfirm": "从此设备移除所有已保存的语言、工具页面和媒体引擎？"
+    "offlineRemoveConfirm": "从此设备移除所有已保存的语言、工具页面和媒体引擎？",
+    "offlineManage": "管理下载",
+    "offlineManageDesc": "查看此设备上已保存的内容，并删除不需要的部分。",
+    "offlineNothingSaved": "此设备上尚未保存任何内容。",
+    "offlineRemoveSelected": "删除所选项",
+    "offlineEnginesLabel": "媒体引擎"
   },
   "shortcuts": {
     "title": "键盘快捷键",

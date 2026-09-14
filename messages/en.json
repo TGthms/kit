@@ -492,7 +492,12 @@
     "offlineCleared": "Downloaded content was removed when Kit updated. Download the same languages and tools again?",
     "offlineUpdate": "Update downloads",
     "offlineRemoveAll": "Remove all downloads",
-    "offlineRemoveConfirm": "Remove every saved language, tool page, and media engine from this device?"
+    "offlineRemoveConfirm": "Remove every saved language, tool page, and media engine from this device?",
+    "offlineManage": "Manage downloads",
+    "offlineManageDesc": "Review what is saved on this device and remove any of it.",
+    "offlineNothingSaved": "Nothing is saved on this device yet.",
+    "offlineRemoveSelected": "Remove selected",
+    "offlineEnginesLabel": "Media engines"
   },
   "shortcuts": {
     "title": "Keyboard shortcuts",

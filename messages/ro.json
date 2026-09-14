@@ -492,7 +492,12 @@
     "offlineUpdate": "Actualizează descărcările",
     "offlineRemoveAll": "Elimină toate descărcările",
     "offlineRemoveConfirm": "Elimini de pe acest dispozitiv toate limbile, paginile de instrumente și motoarele media salvate?",
-    "offlineCleared": "Conținutul descărcat a fost eliminat la actualizarea Kit. Descărcați din nou aceleași limbi și instrumente?"
+    "offlineCleared": "Conținutul descărcat a fost eliminat la actualizarea Kit. Descărcați din nou aceleași limbi și instrumente?",
+    "offlineManage": "Gestionează descărcările",
+    "offlineManageDesc": "Verifică ce este salvat pe acest dispozitiv și elimină ce dorești.",
+    "offlineNothingSaved": "Nu este încă nimic salvat pe acest dispozitiv.",
+    "offlineRemoveSelected": "Elimină selectate",
+    "offlineEnginesLabel": "Motoare media"
   },
   "shortcuts": {
     "title": "Scurtături de tastatură",

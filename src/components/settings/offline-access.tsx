@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState, useSyncExternalStore } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { Check, ChevronDown, Download, HardDriveDownload, Trash2, X } from "lucide-react";
+import { cn } from "@/lib/utils";
 import { locales, localeNames, type Locale } from "@/lib/i18n/config";
 import { tools, type ToolCategory, type ToolId } from "@/lib/tools/registry";
 import { useHydrated } from "@/lib/react/hydrated";
@@ -26,8 +27,12 @@ const categories: ToolCategory[] = ["pdf", "image", "audio", "video", "data", "t
 type DownloadState = { status: "idle" | "running" | "done" | "canceled" | "error"; done: number; total: number; logs: string[] };
 type ProgressMessage = { type?: string; status?: string; done?: number; total?: number; logs?: unknown; log?: unknown };
 type Selection = { locales: Locale[]; tools: ToolId[]; engines: boolean };
+/** What the removal menu has ticked at this moment. */
+type RemovalSelection = { locales: Set<Locale>; tools: Set<ToolId>; engines: boolean };
 
 const MAX_LOGS = 40;
+const MANAGE_ID = "kit-offline-manage";
+const EMPTY_REMOVAL: RemovalSelection = { locales: new Set(), tools: new Set(), engines: false };
 
 function formatBytes(value: number | null, unknown: string): string {
   if (!value || !Number.isFinite(value)) return unknown;
@@ -54,6 +59,25 @@ async function activeWorker(): Promise<ServiceWorker | null> {
   return navigator.serviceWorker.controller ?? (await navigator.serviceWorker.ready).active;
 }
 
+/** A reminder of what is stored, as a short phrase, or null when nothing is. */
+function formatCounts(localeCount: number, toolCount: number, enginesSaved: boolean, t: (key: string) => string): string | null {
+  const parts: string[] = [];
+  if (localeCount) parts.push(`${localeCount} ${t("offlineLanguages")}`);
+  if (toolCount) parts.push(`${toolCount} ${t("offlineTools")}`);
+  if (enginesSaved) parts.push(t("offlineEnginesLabel"));
+  return parts.length ? parts.join(" · ") : null;
+}
+
+/** A tick marking something that works with the network off. */
+function ReadyTick({ label }: { label: string }) {
+  return (
+    <span className="shrink-0 text-primary">
+      <Check aria-hidden className="h-3.5 w-3.5" />
+      <span className="sr-only">{label}</span>
+    </span>
+  );
+}
+
 export function OfflineAccess() {
   const t = useTranslations("settings");
   const tc = useTranslations("common");
@@ -68,6 +92,8 @@ export function OfflineAccess() {
   const [storage, setStorage] = useState<{ usage: number | null; quota: number | null }>({ usage: null, quota: null });
   const [download, setDownload] = useState<DownloadState>({ status: "idle", done: 0, total: 0, logs: [] });
   const [state, setState] = useState<OfflineState | null>(null);
+  const [manageOpen, setManageOpen] = useState(false);
+  const [removal, setRemoval] = useState<RemovalSelection>(EMPTY_REMOVAL);
   /* Read from storage through the store rather than copied into state, so the
      page always shows what is really recorded and nothing has to be loaded on
      mount. */
@@ -80,6 +106,21 @@ export function OfflineAccess() {
     if (!navigator.storage?.estimate) return;
     navigator.storage.estimate().then((estimate) => setStorage({ usage: estimate.usage ?? null, quota: estimate.quota ?? null })).catch(() => undefined);
   }, []);
+
+  /* What is on the device, expressed as things that can be removed. Only what is
+     really saved is listed: this describes the device rather than the app, so it
+     stays short however much the app offers. */
+  const savedLocaleList = useMemo(() => locales.filter((value) => (localeState(state, value)?.done ?? 0) > 0), [state]);
+  const savedToolList = useMemo(() => tools.filter((tool) => toolSavedCount(state, tool.id) > 0), [state]);
+  const enginesSaved = Boolean(state && state.engines.total > 0 && state.engines.done >= state.engines.total);
+  const savedCount = savedLocaleList.length + savedToolList.length + (enginesSaved ? 1 : 0);
+
+  /* A ticked item that has gone since is neither counted nor sent, so the button
+     never promises to remove something that is no longer there. */
+  const removalLocales = savedLocaleList.filter((value) => removal.locales.has(value));
+  const removalTools = savedToolList.filter((tool) => removal.tools.has(tool.id));
+  const removalEngines = removal.engines && enginesSaved;
+  const removalCount = removalLocales.length + removalTools.length + (removalEngines ? 1 : 0);
 
   useEffect(() => { if (hydrated) readStorage(); }, [hydrated, readStorage]);
 
@@ -142,17 +183,6 @@ export function OfflineAccess() {
   };
   const downloadSelected = () => runDownload({ locales: selectedLocales, tools: [...selectedTools], engines });
   const cancelDownload = async () => (await activeWorker())?.postMessage({ type: "OFFLINE_CANCEL" });
-  const remove = async (scope: { mode: "all" } | { mode: "locale"; locale: Locale } | { mode: "tool"; tool: ToolId }) => {
-    const worker = await activeWorker();
-    worker?.postMessage({ type: "OFFLINE_REMOVE", ...scope });
-  };
-  const removeAll = () => {
-    if (!confirm(t("offlineRemoveConfirm"))) return;
-    /* The record goes with the content: the visitor has said they no longer
-       want it, so the next release must not offer to fetch it again. */
-    clearPlan();
-    void remove({ mode: "all" });
-  };
   const updateFromPlan = () => {
     if (!plan) return;
     /* The saved selection is re-run as it was, so an update costs one tap. */
@@ -162,19 +192,52 @@ export function OfflineAccess() {
     void runDownload({ locales: plan.locales, tools: plan.tools, engines: plan.engines });
   };
 
+  const toggleRemoveLocale = (value: Locale) => setRemoval((current) => {
+    const next = new Set(current.locales);
+    if (next.has(value)) next.delete(value); else next.add(value);
+    return { ...current, locales: next };
+  });
+  const toggleRemoveTool = (id: ToolId) => setRemoval((current) => {
+    const next = new Set(current.tools);
+    if (next.has(id)) next.delete(id); else next.add(id);
+    return { ...current, tools: next };
+  });
+  const selectAllSaved = () => setRemoval({
+    locales: new Set(savedLocaleList),
+    tools: new Set(savedToolList.map((tool) => tool.id)),
+    engines: enginesSaved,
+  });
+  const removeSelected = async () => {
+    if (!removalCount) return;
+    const worker = await activeWorker();
+    if (!worker) return;
+    /* If everything saved is going, the record of it goes too: the visitor has
+       said they no longer want it, and the next release must not offer to fetch
+       it again. */
+    if (removalCount === savedCount) clearPlan();
+    worker.postMessage({
+      type: "OFFLINE_REMOVE",
+      locales: removalLocales,
+      tools: removalTools.map((tool) => tool.id),
+      engines: removalEngines,
+    });
+    setRemoval(EMPTY_REMOVAL);
+  };
+  const removeAll = async () => {
+    if (!confirm(t("offlineRemoveConfirm"))) return;
+    const worker = await activeWorker();
+    if (!worker) return;
+    clearPlan();
+    setRemoval(EMPTY_REMOVAL);
+    worker.postMessage({ type: "OFFLINE_REMOVE", all: true });
+  };
+
   const progressPercent = download.total ? Math.round((download.done / download.total) * 100) : 0;
   const statusText = download.status === "done" ? t("offlineComplete") : download.status === "canceled" ? t("offlineCanceled") : download.status === "error" ? tc("error") : `${tc("progress")} · ${progressPercent}%`;
   const storageText = `${formatBytes(storage.usage, t("offlineStorageUnknown"))}${storage.quota ? ` / ${formatBytes(storage.quota, t("offlineStorageUnknown"))}` : ""}`;
   const savedToolCount = state ? tools.filter((tool) => toolSaved(state, tool.id)).length : 0;
   const planState = planStatus(plan, state, APP_VERSION);
-
-  /** The status line for one language: ready, partway, or nothing yet. */
-  const localeBadge = (value: Locale) => {
-    const entry = localeState(state, value);
-    if (!entry || entry.done === 0) return null;
-    if (entry.ready) return <span className="text-primary">{t("offlineReady")}</span>;
-    return <span>{t("offlinePartial", { done: entry.done, total: entry.total })}</span>;
-  };
+  const savedSummary = formatCounts(savedLocaleList.length, savedToolList.length, enginesSaved, t);
 
   return (
     <div className="space-y-6">
@@ -205,7 +268,7 @@ export function OfflineAccess() {
               {" · "}
               {t("offlineTools")} {savedToolCount}/{tools.length}
               {" · "}
-              {t("offlineEngines")} {state.engines.done >= state.engines.total && state.engines.total > 0 ? t("offlineReady") : t("offlineNotSaved")}
+              {t("offlineEnginesLabel")} {enginesSaved ? t("offlineReady") : t("offlineNotSaved")}
             </p>
           ) : null}
           {planState === "saved" && plan ? (
@@ -230,6 +293,8 @@ export function OfflineAccess() {
         </Card>
       ) : null}
 
+      {/* Choosing what to download. What is saved is reported on its own, in the
+          Manage downloads menu below, so each row holds a single control. */}
       <Card className="border-border/40">
         <CardHeader>
           <div className="flex flex-wrap items-start justify-between gap-3">
@@ -241,27 +306,15 @@ export function OfflineAccess() {
           </div>
         </CardHeader>
         <CardContent>
-          <div className="grid max-h-48 grid-cols-2 gap-2 overflow-y-auto rounded-xl border border-border/50 p-3 sm:grid-cols-3">
+          <div className="grid max-h-56 grid-cols-1 gap-1 overflow-y-auto rounded-xl border border-border/50 p-3 sm:grid-cols-2 lg:grid-cols-3">
             {locales.map((value) => {
-              const badge = localeBadge(value);
+              const ready = Boolean(localeState(state, value)?.ready);
               return (
-                <div key={value} className="flex items-center gap-2 rounded-lg px-2 py-1.5 text-sm hover:bg-secondary/60">
-                  <label className="flex min-w-0 flex-1 items-center gap-2">
-                    <input type="checkbox" checked={selectedLocales.includes(value)} onChange={() => toggleLocale(value)} />
-                    <span className="truncate">{localeNames[value]}</span>
-                  </label>
-                  {badge ? <span className="shrink-0 type-caption text-muted-foreground">{badge}</span> : null}
-                  {state?.locales[value]?.done ? (
-                    <button
-                      type="button"
-                      className="shrink-0 rounded-md p-1 text-muted-foreground hover:text-foreground"
-                      aria-label={`${tc("remove")} ${localeNames[value]}`}
-                      onClick={() => void remove({ mode: "locale", locale: value })}
-                    >
-                      <X className="h-3.5 w-3.5" />
-                    </button>
-                  ) : null}
-                </div>
+                <label key={value} className="flex items-center gap-2 rounded-lg px-2 py-1.5 text-sm hover:bg-secondary/60">
+                  <input type="checkbox" checked={selectedLocales.includes(value)} onChange={() => toggleLocale(value)} />
+                  <span className="min-w-0 flex-1 truncate">{localeNames[value]}</span>
+                  {ready ? <ReadyTick label={t("offlineReady")} /> : null}
+                </label>
               );
             })}
           </div>
@@ -282,7 +335,7 @@ export function OfflineAccess() {
           {grouped.map(({ category, items }) => {
             const allSelected = items.every((item) => selectedTools.has(item.id));
             const open = openCategories.has(category);
-            const savedCount = state ? items.filter((item) => toolSaved(state, item.id)).length : 0;
+            const readyCount = state ? items.filter((item) => toolSaved(state, item.id)).length : 0;
             return (
               <div key={category} className="overflow-hidden rounded-xl border border-border/50">
                 <div className="flex items-center justify-between gap-2 px-3 py-2">
@@ -292,47 +345,26 @@ export function OfflineAccess() {
                     className="flex min-w-0 flex-1 items-center gap-2 text-start font-medium"
                     onClick={() => setOpenCategories((current) => { const next = new Set(current); if (next.has(category)) next.delete(category); else next.add(category); return next; })}
                   >
-                    <ChevronDown className={`h-4 w-4 transition-transform ${open ? "rotate-0" : "-rotate-90"}`} />
-                    <span>{tcat(category)}</span>
+                    <ChevronDown className={`h-4 w-4 shrink-0 transition-transform ${open ? "rotate-0" : "-rotate-90"}`} />
+                    <span className="truncate">{tcat(category)}</span>
                     <span className="type-caption text-muted-foreground">{items.length}</span>
-                    {savedCount ? (
-                      <span className="flex items-center gap-1 type-caption text-primary">
-                        <Check className="h-3.5 w-3.5" />{savedCount}
+                    {readyCount ? (
+                      <span className="flex shrink-0 items-center gap-1 type-caption text-primary">
+                        <Check className="h-3.5 w-3.5" />{readyCount}
                       </span>
                     ) : null}
                   </button>
-                  <Button size="sm" variant="ghost" onClick={() => toggleCategory(category)}>{allSelected ? tc("clear") : tc("selectAll")}</Button>
+                  <Button size="sm" variant="ghost" className="shrink-0" onClick={() => toggleCategory(category)}>{allSelected ? tc("clear") : tc("selectAll")}</Button>
                 </div>
                 {open ? (
                   <div className="grid gap-1 border-t border-border/40 p-2 sm:grid-cols-2">
-                    {items.map((tool) => {
-                      const saved = toolSaved(state, tool.id);
-                      const savedIn = toolSavedCount(state, tool.id);
-                      const readyLanguages = state?.readyLocales ?? 0;
-                      return (
-                        <div key={tool.id} className="flex items-center gap-2 rounded-lg px-2 py-1.5 text-sm hover:bg-secondary/60">
-                          <label className="flex min-w-0 flex-1 items-start gap-2">
-                            <input type="checkbox" checked={selectedTools.has(tool.id)} onChange={() => toggleTool(tool.id)} />
-                            <span className="truncate">{ttools(`${tool.id}.name`)}</span>
-                          </label>
-                          {saved ? (
-                            <span className="shrink-0 text-primary" title={t("offlineReady")}><Check className="h-3.5 w-3.5" /></span>
-                          ) : savedIn && readyLanguages ? (
-                            <span className="shrink-0 type-caption text-muted-foreground">{t("offlinePartial", { done: savedIn, total: readyLanguages })}</span>
-                          ) : null}
-                          {savedIn ? (
-                            <button
-                              type="button"
-                              className="shrink-0 rounded-md p-1 text-muted-foreground hover:text-foreground"
-                              aria-label={`${tc("remove")} ${ttools(`${tool.id}.name`)}`}
-                              onClick={() => void remove({ mode: "tool", tool: tool.id })}
-                            >
-                              <X className="h-3.5 w-3.5" />
-                            </button>
-                          ) : null}
-                        </div>
-                      );
-                    })}
+                    {items.map((tool) => (
+                      <label key={tool.id} className="flex items-center gap-2 rounded-lg px-2 py-1.5 text-sm hover:bg-secondary/60">
+                        <input type="checkbox" checked={selectedTools.has(tool.id)} onChange={() => toggleTool(tool.id)} />
+                        <span className="min-w-0 flex-1 truncate">{ttools(`${tool.id}.name`)}</span>
+                        {toolSaved(state, tool.id) ? <ReadyTick label={t("offlineReady")} /> : null}
+                      </label>
+                    ))}
                   </div>
                 ) : null}
               </div>
@@ -347,22 +379,17 @@ export function OfflineAccess() {
             <input type="checkbox" checked={engines} onChange={(event) => setEngines(event.target.checked)} />
             <span><span className="font-medium">{t("offlineEngines")}</span><span className="mt-0.5 block type-caption text-muted-foreground">{t("offlineEnginesDesc")}</span></span>
           </label>
-          <div className="flex flex-wrap items-center justify-between gap-3">
+          <div className="flex flex-wrap items-center gap-3">
             <Button onClick={downloadSelected} disabled={!selectedLocales.length || !selectedTools.size || download.status === "running"}>
               <Download className="me-2 h-4 w-4" />{tc("download")}
             </Button>
-            {state && (state.readyLocales > 0 || state.engines.done > 0) ? (
-              <Button variant="ghost" onClick={removeAll} disabled={download.status === "running"}>
-                <Trash2 className="me-2 h-4 w-4" />{t("offlineRemoveAll")}
-              </Button>
+            {download.status === "running" ? (
+              <Button variant="ghost" onClick={cancelDownload}><X className="me-2 h-4 w-4" />{tc("cancel")}</Button>
             ) : null}
           </div>
           {download.status !== "idle" ? (
             <div className="space-y-3 rounded-xl border border-border/50 p-3" aria-live="polite">
-              <div className="flex items-center justify-between gap-2">
-                <p className="font-medium">{statusText}</p>
-                {download.status === "running" ? <Button size="sm" variant="ghost" onClick={cancelDownload}><X className="me-1 h-4 w-4" />{tc("cancel")}</Button> : null}
-              </div>
+              <p className="font-medium">{statusText}</p>
               <div className="h-2 overflow-hidden rounded-full bg-secondary">
                 <div className="h-full rounded-full bg-primary transition-[width]" style={{ width: `${download.total ? progressPercent : 4}%` }} />
               </div>
@@ -373,6 +400,113 @@ export function OfflineAccess() {
           ) : null}
           <p className="type-caption text-muted-foreground">{t("offlineBackgroundNote")}</p>
         </CardContent>
+      </Card>
+
+      {/* Removing is a separate job from choosing, so it has its own menu, closed
+          until asked for. It lists the device rather than the catalogue: only
+          what is really saved appears, each entry can be picked out on its own,
+          and one control takes all of it. With nothing saved there is nothing to
+          manage, so the card is a plain note rather than a disclosure. */}
+      <Card className="border-border/40">
+        {savedCount ? (
+          <button
+            type="button"
+            aria-expanded={manageOpen}
+            aria-controls={MANAGE_ID}
+            onClick={() => setManageOpen((open) => !open)}
+            className="flex w-full items-start justify-between gap-3 p-5 text-start"
+          >
+            <span className="min-w-0">
+              <span className="block text-base font-semibold leading-snug tracking-[-0.01em]">{t("offlineManage")}</span>
+              <span className="mt-1 block type-caption text-muted-foreground">{savedSummary}</span>
+            </span>
+            <ChevronDown className={cn("mt-1 h-4 w-4 shrink-0 text-muted-foreground transition-transform", manageOpen ? "rotate-0" : "-rotate-90")} />
+          </button>
+        ) : (
+          <div className="p-5">
+            <p className="text-base font-semibold leading-snug tracking-[-0.01em]">{t("offlineManage")}</p>
+            <p className="mt-1 type-caption text-muted-foreground">{t("offlineNothingSaved")}</p>
+          </div>
+        )}
+        {manageOpen && savedCount ? (
+          <CardContent id={MANAGE_ID} className="space-y-5">
+            <div className="flex flex-wrap items-center justify-between gap-2">
+              <p className="type-caption text-muted-foreground">{t("offlineManageDesc")}</p>
+              <div className="flex shrink-0 gap-2">
+                <Button size="sm" variant="outline" onClick={selectAllSaved}>{tc("selectAll")}</Button>
+                <Button size="sm" variant="ghost" onClick={() => setRemoval(EMPTY_REMOVAL)} disabled={!removalCount}>{tc("clear")}</Button>
+              </div>
+            </div>
+
+            {savedLocaleList.length ? (
+              <section className="space-y-1">
+                <h4 className="type-caption font-medium uppercase tracking-wide text-muted-foreground">
+                  {t("offlineLanguages")} · {savedLocaleList.length}
+                </h4>
+                <div className="overflow-hidden rounded-xl border border-border/50">
+                  {savedLocaleList.map((value) => {
+                    const entry = localeState(state, value);
+                    return (
+                      <label key={value} className="flex items-center gap-2 border-b border-border/40 px-3 py-2 text-sm last:border-b-0 hover:bg-secondary/60">
+                        <input type="checkbox" checked={removal.locales.has(value)} onChange={() => toggleRemoveLocale(value)} />
+                        <span className="min-w-0 flex-1 truncate">{localeNames[value]}</span>
+                        <span className="shrink-0 type-caption text-muted-foreground">
+                          {entry?.ready ? t("offlineReady") : t("offlinePartial", { done: entry?.done ?? 0, total: entry?.total ?? 0 })}
+                        </span>
+                      </label>
+                    );
+                  })}
+                </div>
+              </section>
+            ) : null}
+
+            {savedToolList.length ? (
+              <section className="space-y-1">
+                <h4 className="type-caption font-medium uppercase tracking-wide text-muted-foreground">
+                  {t("offlineTools")} · {savedToolList.length}
+                </h4>
+                <div className="overflow-hidden rounded-xl border border-border/50">
+                  {savedToolList.map((tool) => (
+                    <label key={tool.id} className="flex items-center gap-2 border-b border-border/40 px-3 py-2 text-sm last:border-b-0 hover:bg-secondary/60">
+                      <input type="checkbox" checked={removal.tools.has(tool.id)} onChange={() => toggleRemoveTool(tool.id)} />
+                      <span className="min-w-0 flex-1 truncate">{ttools(`${tool.id}.name`)}</span>
+                      {/* Out of the languages this device has anything saved
+                          for, which is never zero for a row that is listed. */}
+                      <span className="shrink-0 type-caption text-muted-foreground">
+                        <span className="sr-only">{t("offlineLanguages")} </span>
+                        {toolSavedCount(state, tool.id)}/{savedLocaleList.length}
+                      </span>
+                    </label>
+                  ))}
+                </div>
+              </section>
+            ) : null}
+
+            {enginesSaved ? (
+              <section className="space-y-1">
+                <h4 className="type-caption font-medium uppercase tracking-wide text-muted-foreground">{t("offlineEnginesLabel")}</h4>
+                <label className="flex items-center gap-2 rounded-xl border border-border/50 px-3 py-2 text-sm hover:bg-secondary/60">
+                  <input type="checkbox" checked={removal.engines} onChange={(event) => setRemoval((current) => ({ ...current, engines: event.target.checked }))} />
+                  <span className="min-w-0 flex-1 truncate">{t("offlineEngines")}</span>
+                </label>
+              </section>
+            ) : null}
+
+            <div className="flex flex-wrap items-center gap-3">
+              <Button variant="destructive" onClick={() => void removeSelected()} disabled={!removalCount || download.status === "running"}>
+                <Trash2 className="me-2 h-4 w-4" />{t("offlineRemoveSelected")}
+                {removalCount ? (
+                  <span className="ms-1 rounded-full bg-destructive-foreground/20 px-2 py-0.5 text-xs tabular-nums">
+                    {removalCount}
+                  </span>
+                ) : null}
+              </Button>
+              <Button variant="ghost" onClick={() => void removeAll()} disabled={download.status === "running"}>
+                {t("offlineRemoveAll")}
+              </Button>
+            </div>
+          </CardContent>
+        ) : null}
       </Card>
     </div>
   );

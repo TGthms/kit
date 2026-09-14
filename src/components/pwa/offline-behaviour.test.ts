@@ -108,7 +108,12 @@ function loadWorker(seed: Map<string, boolean> = fullCache()) {
   });
   vm.runInContext(swSource, context, { filename: "sw.js" });
   const worker = context as unknown as {
-    removeOffline: (scope: Record<string, string>) => Promise<number>;
+    removeOffline: (scope: {
+      all?: boolean;
+      engines?: boolean;
+      locales?: string[];
+      tools?: string[];
+    }) => Promise<number>;
     offlineState: () => Promise<{
       generation: string;
       locales: Record<string, { done: number; total: number; ready: boolean }>;
@@ -117,6 +122,11 @@ function loadWorker(seed: Map<string, boolean> = fullCache()) {
       readyLocales: number;
     }>;
     toolPathSegment: (toolId: string) => string;
+    selectedOfflineUrls: (data: {
+      locales?: string[];
+      tools?: string[];
+      engines?: boolean;
+    }) => Promise<string[]>;
   };
   return { worker, store, paths: () => [...store.keys()] };
 }
@@ -124,7 +134,7 @@ function loadWorker(seed: Map<string, boolean> = fullCache()) {
 describe("removing what was downloaded", () => {
   it("takes out a tool whose route segment differs from its id", async () => {
     const { worker, paths } = loadWorker();
-    const removed = await worker.removeOffline({ mode: "tool", tool: "timezone-converter" });
+    const removed = await worker.removeOffline({ tools: ["timezone-converter"] });
 
     expect(worker.toolPathSegment("timezone-converter")).toBe("world-clock");
     expect(removed).toBe(4); // two languages, page and payload
@@ -135,9 +145,23 @@ describe("removing what was downloaded", () => {
     expect(paths()).toContain("/en/tools/timezone-converter/");
   });
 
+  it("takes one tool out of every language it was stored in", async () => {
+    const { worker, paths } = loadWorker();
+    expect(await worker.removeOffline({ tools: ["pdf-merge"] })).toBe(4);
+    expect(paths().filter((path) => path.includes("pdf-merge"))).toEqual([]);
+    expect(paths()).toContain("/en/tools/world-clock/");
+  });
+
+  it("takes a whole chosen set in one pass", async () => {
+    const { worker, paths } = loadWorker();
+    // Both languages in full, which already covers the tool named with them.
+    expect(await worker.removeOffline({ locales: ["en", "fr"], tools: ["pdf-merge"] })).toBe(20);
+    expect(paths().filter((path) => path.startsWith("/en/") || path.startsWith("/fr/"))).toEqual([]);
+  });
+
   it("takes a language's compatibility addresses with it", async () => {
     const { worker, paths } = loadWorker();
-    await worker.removeOffline({ mode: "locale", locale: "en" });
+    await worker.removeOffline({ locales: ["en"] });
 
     expect(paths().filter((path) => path.startsWith("/en/"))).toEqual([]);
     expect(paths()).toContain("/fr/");
@@ -146,15 +170,95 @@ describe("removing what was downloaded", () => {
     expect(paths()).toContain("/vendor/ffmpeg/ffmpeg-core.js");
   });
 
+  it("can drop the media engines on their own, keeping the pages that use them", async () => {
+    const { worker, paths } = loadWorker();
+    expect(await worker.removeOffline({ engines: true })).toBe(1);
+
+    expect(paths()).not.toContain("/vendor/ffmpeg/ffmpeg-core.js");
+    expect(paths()).toContain("/en/");
+    expect(paths()).toContain("/en/tools/pdf-merge/");
+    expect(paths()).toContain("/en/tools/pdf-merge/index.txt");
+  });
+
+  it("removes nothing when the message names nothing", async () => {
+    const { worker, paths } = loadWorker();
+    const before = paths().length;
+    /* A malformed message must never be read as a request for everything. */
+    expect(await worker.removeOffline({})).toBe(0);
+    expect(paths()).toHaveLength(before);
+  });
+
   it("leaves nothing behind when everything is removed", async () => {
     const { worker, paths } = loadWorker();
-    await worker.removeOffline({ mode: "all" });
+    await worker.removeOffline({ all: true });
 
     /* Only the application's own files survive, whatever language they sat
        under, including one that is only ever a compatibility address. The
        engines do go: they are offered on this page, so they are part of what it
        can add. */
     expect(paths()).toEqual(["/app.js"]);
+  });
+});
+
+describe("what a download covers", () => {
+  const everyToolId = ["pdf-merge", "timezone-converter"];
+
+  it("brings every address a language is judged complete on", async () => {
+    const { worker } = loadWorker();
+    const urls = new Set(
+      await worker.selectedOfflineUrls({ locales: ["en"], tools: everyToolId, engines: false })
+    );
+    /* Readiness counts a language's pages and their payloads. Anything missing
+       here could never be fetched by this route, so the language would stay
+       incomplete however long the visitor waited. */
+    const needed = [
+      ...MANIFEST.chromeByLocale.en,
+      ...MANIFEST.toolsByLocale.en,
+      ...MANIFEST.rscByLocale.en,
+    ];
+    expect(needed.filter((url) => !urls.has(url))).toEqual([]);
+  });
+
+  it("brings the language's own payloads when only one tool is chosen", async () => {
+    const { worker } = loadWorker();
+    const urls = await worker.selectedOfflineUrls({
+      locales: ["en"],
+      tools: ["pdf-merge"],
+      engines: false,
+    });
+
+    expect(urls).toContain("/en/");
+    expect(urls).toContain("/en/index.txt");
+    expect(urls).toContain("/en/how/index.txt");
+    expect(urls).toContain("/en/tools/pdf-merge/");
+    expect(urls).toContain("/en/tools/pdf-merge/index.txt");
+    // A tool that was not chosen is left out, page and payload alike.
+    expect(urls).not.toContain("/en/tools/world-clock/");
+    expect(urls).not.toContain("/en/tools/world-clock/index.txt");
+  });
+
+  it("covers a language chosen while another one is in use", async () => {
+    const { worker } = loadWorker();
+    // The background fill only covers the language in use, so a second language
+    // has to arrive complete from this route or it never will.
+    const urls = new Set(
+      await worker.selectedOfflineUrls({ locales: ["fr"], tools: everyToolId, engines: false })
+    );
+    const needed = [
+      ...MANIFEST.chromeByLocale.fr,
+      ...MANIFEST.toolsByLocale.fr,
+      ...MANIFEST.rscByLocale.fr,
+    ];
+    expect(needed.filter((url) => !urls.has(url))).toEqual([]);
+  });
+
+  it("takes the engines only when they were asked for", async () => {
+    const { worker } = loadWorker();
+    const withEngines = await worker.selectedOfflineUrls({ locales: ["en"], tools: [], engines: true });
+    const without = await worker.selectedOfflineUrls({ locales: ["en"], tools: [], engines: false });
+
+    expect(withEngines).toContain("/vendor/ffmpeg/ffmpeg-core.js");
+    expect(without).not.toContain("/vendor/ffmpeg/ffmpeg-core.js");
   });
 });
 
@@ -192,7 +296,7 @@ describe("reporting what is saved", () => {
 
   it("takes readiness from the cache rather than from what was asked for", async () => {
     const { worker, paths } = loadWorker();
-    await worker.removeOffline({ mode: "locale", locale: "en" });
+    await worker.removeOffline({ locales: ["en"] });
     const state = await worker.offlineState();
 
     expect(state.locales.en).toEqual({ done: 0, total: 8, ready: false });

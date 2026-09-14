@@ -492,7 +492,12 @@
     "offlineUpdate": "ダウンロードを更新",
     "offlineRemoveAll": "すべてのダウンロードを削除",
     "offlineRemoveConfirm": "この端末から保存済みの言語、ツールページ、メディアエンジンをすべて削除しますか？",
-    "offlineCleared": "Kit の更新時にダウンロード済みの内容が削除されました。同じ言語とツールをもう一度ダウンロードしますか？"
+    "offlineCleared": "Kit の更新時にダウンロード済みの内容が削除されました。同じ言語とツールをもう一度ダウンロードしますか？",
+    "offlineManage": "ダウンロードの管理",
+    "offlineManageDesc": "この端末に保存されている内容を確認し、削除するものを選べます。",
+    "offlineNothingSaved": "この端末にはまだ何も保存されていません。",
+    "offlineRemoveSelected": "選択した項目を削除",
+    "offlineEnginesLabel": "メディアエンジン"
   },
   "shortcuts": {
     "title": "キーボードショートカット",

@@ -492,7 +492,12 @@
     "offlineUpdate": "Downloads bijwerken",
     "offlineRemoveAll": "Alle downloads verwijderen",
     "offlineRemoveConfirm": "Alle opgeslagen talen, gereedschapspagina's en mediamotoren van dit apparaat verwijderen?",
-    "offlineCleared": "Gedownloade inhoud is verwijderd bij het bijwerken van Kit. Dezelfde talen en gereedschappen opnieuw downloaden?"
+    "offlineCleared": "Gedownloade inhoud is verwijderd bij het bijwerken van Kit. Dezelfde talen en gereedschappen opnieuw downloaden?",
+    "offlineManage": "Downloads beheren",
+    "offlineManageDesc": "Bekijk wat er op dit apparaat is opgeslagen en verwijder wat je wilt.",
+    "offlineNothingSaved": "Er is nog niets opgeslagen op dit apparaat.",
+    "offlineRemoveSelected": "Geselecteerde verwijderen",
+    "offlineEnginesLabel": "Media-engines"
   },
   "shortcuts": {
     "title": "Sneltoetsen",

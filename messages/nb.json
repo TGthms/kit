@@ -492,7 +492,12 @@
     "offlineUpdate": "Oppdater nedlastinger",
     "offlineRemoveAll": "Fjern alle nedlastinger",
     "offlineRemoveConfirm": "Fjerne alle lagrede språk, verktøysider og mediemotorer fra denne enheten?",
-    "offlineCleared": "Nedlastet innhold ble fjernet da Kit ble oppdatert. Vil du laste ned de samme språkene og verktøyene igjen?"
+    "offlineCleared": "Nedlastet innhold ble fjernet da Kit ble oppdatert. Vil du laste ned de samme språkene og verktøyene igjen?",
+    "offlineManage": "Administrer nedlastinger",
+    "offlineManageDesc": "Se gjennom det som er lagret på denne enheten, og fjern det du vil.",
+    "offlineNothingSaved": "Ingenting er lagret på denne enheten ennå.",
+    "offlineRemoveSelected": "Fjern valgte",
+    "offlineEnginesLabel": "Mediemotorer"
   },
   "shortcuts": {
     "title": "Tastatursnarveier",

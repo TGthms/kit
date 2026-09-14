@@ -492,7 +492,12 @@
     "offlineUpdate": "Cập nhật nội dung tải",
     "offlineRemoveAll": "Xóa mọi nội dung đã tải",
     "offlineRemoveConfirm": "Xóa khỏi thiết bị này mọi ngôn ngữ, trang công cụ và công cụ đa phương tiện đã lưu?",
-    "offlineCleared": "Nội dung đã tải bị xóa khi Kit cập nhật. Tải lại đúng ngôn ngữ và công cụ đó?"
+    "offlineCleared": "Nội dung đã tải bị xóa khi Kit cập nhật. Tải lại đúng ngôn ngữ và công cụ đó?",
+    "offlineManage": "Quản lý bản tải xuống",
+    "offlineManageDesc": "Xem lại nội dung đã lưu trên thiết bị này và xóa bất kỳ mục nào.",
+    "offlineNothingSaved": "Chưa có gì được lưu trên thiết bị này.",
+    "offlineRemoveSelected": "Xóa mục đã chọn",
+    "offlineEnginesLabel": "Bộ máy media"
   },
   "shortcuts": {
     "title": "Phím tắt",

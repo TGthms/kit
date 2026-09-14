@@ -492,7 +492,12 @@
     "offlineUpdate": "Opdater downloads",
     "offlineRemoveAll": "Fjern alle downloads",
     "offlineRemoveConfirm": "Fjern alle gemte sprog, værktøjssider og mediemoduler fra denne enhed?",
-    "offlineCleared": "Det hentede indhold blev fjernet, da Kit blev opdateret. Vil du hente de samme sprog og værktøjer igen?"
+    "offlineCleared": "Det hentede indhold blev fjernet, da Kit blev opdateret. Vil du hente de samme sprog og værktøjer igen?",
+    "offlineManage": "Administrer downloads",
+    "offlineManageDesc": "Gennemgå hvad der er gemt på denne enhed, og fjern det, du vil.",
+    "offlineNothingSaved": "Der er endnu ikke gemt noget på denne enhed.",
+    "offlineRemoveSelected": "Fjern valgte",
+    "offlineEnginesLabel": "Mediemotorer"
   },
   "shortcuts": {
     "title": "Tastaturgenveje",

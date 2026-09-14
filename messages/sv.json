@@ -492,7 +492,12 @@
     "offlineUpdate": "Uppdatera nedladdningar",
     "offlineRemoveAll": "Ta bort alla nedladdningar",
     "offlineRemoveConfirm": "Ta bort alla sparade språk, verktygssidor och mediemotorer från den här enheten?",
-    "offlineCleared": "Nedladdat innehåll togs bort när Kit uppdaterades. Vill du hämta samma språk och verktyg igen?"
+    "offlineCleared": "Nedladdat innehåll togs bort när Kit uppdaterades. Vill du hämta samma språk och verktyg igen?",
+    "offlineManage": "Hantera nedladdningar",
+    "offlineManageDesc": "Granska vad som är sparat på den här enheten och ta bort det du vill.",
+    "offlineNothingSaved": "Inget är sparat på den här enheten än.",
+    "offlineRemoveSelected": "Ta bort valda",
+    "offlineEnginesLabel": "Mediamotorer"
   },
   "shortcuts": {
     "title": "Kortkommandon",

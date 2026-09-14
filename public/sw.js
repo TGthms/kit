@@ -492,8 +492,8 @@ async function offlineState() {
 }
 
 /**
- * Remove saved offline copies, either everything the Offline access page can
- * add or one language's worth or one tool's worth.
+ * Remove saved offline copies: a chosen set of languages and tools, or
+ * everything the Offline access page can add.
  *
  * The app's own scripts, styles and icons are left alone: those are the
  * application itself rather than something chosen on that page, they are
@@ -506,12 +506,12 @@ async function removeOffline(scope) {
   const chrome = manifest.chromeByLocale || {};
   const toolsByLocale = manifest.toolsByLocale || {};
   const rscByLocale = manifest.rscByLocale || {};
+  const extrasByLocale = manifest.extrasByLocale || {};
   const targets = new Set();
 
-  const extrasByLocale = manifest.extrasByLocale || {};
-
   /* A language is everything stored for it, including the compatibility
-     addresses that live under it, so nothing is left behind. */
+     addresses that live under it, so nothing is left behind. Removing a
+     language that is not stored, or not a language at all, matches nothing. */
   const addLocale = (locale) => {
     for (const url of chrome[locale] || []) targets.add(url);
     for (const url of toolsByLocale[locale] || []) targets.add(url);
@@ -519,27 +519,35 @@ async function removeOffline(scope) {
     for (const url of extrasByLocale[locale] || []) targets.add(url);
   };
 
-  if (scope.mode === "locale" && typeof scope.locale === "string") {
-    addLocale(scope.locale);
-  } else if (scope.mode === "tool" && typeof scope.tool === "string") {
-    /* Resolve the id to its public route segment, the same way the download
-       does: the two differ for a tool that was renamed, and matching on the id
-       would silently find nothing to remove. */
-    const segment = toolPathSegment(scope.tool);
+  /* A tool is stored once per language, as a page and as the payload that opens
+     it. The id is resolved to the public route segment first, the same way the
+     download resolves it: the two differ for a tool that was renamed, and
+     matching on the id would find nothing to remove. */
+  const addTool = (tool) => {
+    const segment = toolPathSegment(tool);
     for (const locale of Object.keys(chrome)) {
       for (const url of toolsByLocale[locale] || []) {
         if (segmentOfToolUrl(url) !== segment) continue;
         targets.add(url);
-        /* The page and the payload it navigates from are stored separately. */
         targets.add(`${url}index.txt`);
       }
     }
-  } else {
+  };
+
+  if (scope.all) {
     for (const locale of Object.keys(chrome)) addLocale(locale);
-    /* A compatibility language has addresses of its own and is not listed in
-       the language pages above. */
+    /* A compatibility language owns addresses but is not one of the languages
+       listed above, so it is reached separately. */
     for (const locale of Object.keys(extrasByLocale)) addLocale(locale);
     for (const url of manifest.engines || []) targets.add(url);
+  } else {
+    /* Nothing named removes nothing: a message that selects no address must
+       never be read as a request for everything. */
+    for (const locale of scope.locales || []) addLocale(locale);
+    for (const tool of scope.tools || []) addTool(tool);
+    /* The engines are offered on the page like anything else in the list, so
+       they can be dropped on their own without losing the pages that use them. */
+    if (scope.engines) for (const url of manifest.engines || []) targets.add(url);
   }
 
   const shellCache = await caches.open(CACHE);
@@ -568,14 +576,19 @@ async function selectedOfflineUrls(data) {
   const urls = new Set(manifest.core || []);
   const chrome = manifest.chromeByLocale || {};
   const toolsByLocale = manifest.toolsByLocale || {};
-  const rscByLocale = manifest.rscByLocale || {};
   for (const locale of locales) {
-    for (const url of chrome[locale] || []) urls.add(url);
-    for (const url of rscByLocale[locale] || []) {
-      if (!segments.size || [...segments].some((segment) => url.includes(`/tools/${segment}/`))) urls.add(url);
-    }
+    const pages = new Set();
+    for (const url of chrome[locale] || []) pages.add(url);
     for (const url of toolsByLocale[locale] || []) {
-      if (segments.has(url.split("/tools/")[1]?.replace(/\/$/u, ""))) urls.add(url);
+      if (segments.has(segmentOfToolUrl(url))) pages.add(url);
+    }
+    /* A page and the payload it navigates from are saved together, so every
+       page included brings its payload. A language is counted complete only
+       when both are present, and the payloads of the pages that are not tool
+       pages appear in no other list that could fill them in later. */
+    for (const url of pages) {
+      urls.add(url);
+      urls.add(`${url}index.txt`);
     }
   }
   if (data.engines) for (const url of manifest.engines || []) urls.add(url);
@@ -756,10 +769,17 @@ self.addEventListener("message", (event) => {
   if (data.type === "OFFLINE_REMOVE") {
     event.waitUntil(
       (async () => {
+        /* One message for the whole chosen set, so several at once cost one
+           round trip and one report back. */
         await removeOffline({
-          mode: typeof data.mode === "string" ? data.mode : "all",
-          locale: typeof data.locale === "string" ? data.locale : undefined,
-          tool: typeof data.tool === "string" ? data.tool : undefined,
+          all: data.all === true,
+          engines: data.engines === true,
+          locales: (Array.isArray(data.locales) ? data.locales : [])
+            .slice(0, MAX_OFFLINE_LOCALES)
+            .filter((locale) => typeof locale === "string"),
+          tools: (Array.isArray(data.tools) ? data.tools : [])
+            .slice(0, MAX_OFFLINE_TOOLS)
+            .filter((tool) => typeof tool === "string"),
         });
         const state = await offlineState();
         if (state) await sendOfflineState(state);

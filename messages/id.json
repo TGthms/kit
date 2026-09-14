@@ -492,7 +492,12 @@
     "offlineUpdate": "Perbarui unduhan",
     "offlineRemoveAll": "Hapus semua unduhan",
     "offlineRemoveConfirm": "Hapus semua bahasa, halaman alat, dan mesin media yang tersimpan dari perangkat ini?",
-    "offlineCleared": "Konten yang diunduh dihapus saat Kit diperbarui. Unduh bahasa dan alat yang sama lagi?"
+    "offlineCleared": "Konten yang diunduh dihapus saat Kit diperbarui. Unduh bahasa dan alat yang sama lagi?",
+    "offlineManage": "Kelola unduhan",
+    "offlineManageDesc": "Tinjau apa yang tersimpan di perangkat ini dan hapus yang Anda mau.",
+    "offlineNothingSaved": "Belum ada yang tersimpan di perangkat ini.",
+    "offlineRemoveSelected": "Hapus yang dipilih",
+    "offlineEnginesLabel": "Mesin media"
   },
   "shortcuts": {
     "title": "Pintasan papan ketik",

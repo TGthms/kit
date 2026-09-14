@@ -121,50 +121,67 @@ describe("what is saved", () => {
 });
 
 describe("removing downloads", () => {
-  it("takes a scope, and only from Kit's own caches", () => {
+  const fn = () =>
+    sw.slice(sw.indexOf("async function removeOffline"), sw.indexOf("async function selectedOfflineUrls"));
+
+  it("takes one scope for the whole chosen set, and only from Kit's own caches", () => {
     expect(sw).toMatch(/async function removeOffline\(scope\)/);
     expect(sw).toMatch(/if \(data\.type === "OFFLINE_REMOVE"\)/);
-    const fn = sw.slice(sw.indexOf("async function removeOffline"), sw.indexOf("async function selectedOfflineUrls"));
-    expect(fn).toMatch(/if \(scope\.mode === "locale"/);
-    expect(fn).toMatch(/if \(scope\.mode === "tool"/);
-    expect(fn).toMatch(/await caches\.open\(CACHE\)/);
-    expect(fn).toMatch(/await caches\.open\(RSC_CACHE\)/);
+    expect(fn()).toMatch(/if \(scope\.all\)/);
+    expect(fn()).toMatch(/for \(const locale of scope\.locales \|\| \[\]\) addLocale\(locale\)/);
+    expect(fn()).toMatch(/for \(const tool of scope\.tools \|\| \[\]\) addTool\(tool\)/);
+    expect(fn()).toMatch(/await caches\.open\(CACHE\)/);
+    expect(fn()).toMatch(/await caches\.open\(RSC_CACHE\)/);
+  });
+
+  it("reads a message as a selection, never as a request for everything", () => {
+    const handler = sw.slice(
+      sw.indexOf('if (data.type === "OFFLINE_REMOVE")'),
+      sw.indexOf('if (data.type === "OFFLINE_DOWNLOAD")')
+    );
+    expect(handler).toMatch(/all: data\.all === true/);
+    expect(handler).toMatch(/engines: data\.engines === true/);
+    // Bounded like every other message the worker accepts.
+    expect(handler).toMatch(/\.slice\(0, MAX_OFFLINE_LOCALES\)/);
+    expect(handler).toMatch(/\.slice\(0, MAX_OFFLINE_TOOLS\)/);
   });
 
   it("leaves the application's own files alone", () => {
-    const fn = sw.slice(sw.indexOf("async function removeOffline"), sw.indexOf("async function selectedOfflineUrls"));
     // The shell's scripts, styles and icons are the app itself, not something
     // chosen on the Offline access page.
-    expect(fn).not.toMatch(/manifest\.core/);
-    expect(fn).toMatch(/for \(const url of manifest\.engines \|\| \[\]\) targets\.add\(url\)/);
+    expect(fn()).not.toMatch(/manifest\.core/);
+  });
+
+  it("can drop the media engines without the pages that use them", () => {
+    expect(fn()).toMatch(
+      /if \(scope\.engines\) for \(const url of manifest\.engines \|\| \[\]\) targets\.add\(url\)/
+    );
   });
 
   it("takes both the page and its payload for a removed tool", () => {
-    const fn = sw.slice(sw.indexOf('scope.mode === "tool"'), sw.indexOf("const shellCache = await caches.open(CACHE)"));
-    expect(fn).toMatch(/targets\.add\(url\)/);
-    expect(fn).toMatch(/targets\.add\(`\$\{url\}index\.txt`\)/);
+    const tool = sw.slice(sw.indexOf("const addTool = (tool)"), sw.indexOf("if (scope.all)"));
+    expect(tool).toMatch(/targets\.add\(url\)/);
+    expect(tool).toMatch(/targets\.add\(`\$\{url\}index\.txt`\)/);
   });
 
   it("resolves a tool id to its route segment before removing it", () => {
-    // A tool whose route segment differs from its id would otherwise match
-    // nothing, so its remove control would appear to do nothing.
-    const fn = sw.slice(sw.indexOf('scope.mode === "tool"'), sw.indexOf("const shellCache = await caches.open(CACHE)"));
-    expect(fn).toMatch(/const segment = toolPathSegment\(scope\.tool\)/);
-    expect(fn).toMatch(/segmentOfToolUrl\(url\) !== segment/);
-    expect(fn).not.toMatch(/segmentOfToolUrl\(url\) !== scope\.tool/);
+    /* The two differ for a tool that was renamed, so the id has to be resolved
+       before it can be matched against a stored address. */
+    const tool = sw.slice(sw.indexOf("const addTool = (tool)"), sw.indexOf("if (scope.all)"));
+    expect(tool).toMatch(/const segment = toolPathSegment\(tool\)/);
+    expect(tool).toMatch(/segmentOfToolUrl\(url\) !== segment/);
+    expect(tool).not.toMatch(/segmentOfToolUrl\(url\) !== tool/);
   });
 
   it("takes a language's compatibility addresses with it", () => {
-    expect(sw).toMatch(/const extrasByLocale = manifest\.extrasByLocale \|\| \{\}/);
-    const addLocale = sw.slice(sw.indexOf("const addLocale = (locale)"), sw.indexOf('if (scope.mode === "locale"'));
+    const addLocale = sw.slice(sw.indexOf("const addLocale = (locale)"), sw.indexOf("const addTool = (tool)"));
     expect(addLocale).toMatch(/for \(const url of extrasByLocale\[locale\] \|\| \[\]\) targets\.add\(url\)/);
   });
 
   it("leaves nothing behind when everything is removed", () => {
-    const fn = sw.slice(sw.indexOf("async function removeOffline"), sw.indexOf("async function selectedOfflineUrls"));
     // A compatibility language owns addresses but is not one of the counted
     // languages, so removing everything has to reach it separately.
-    expect(fn).toMatch(/for \(const locale of Object\.keys\(extrasByLocale\)\) addLocale\(locale\)/);
+    expect(fn()).toMatch(/for \(const locale of Object\.keys\(extrasByLocale\)\) addLocale\(locale\)/);
   });
 });
 
@@ -218,9 +235,28 @@ describe("offline page state", () => {
     expect(languages).toMatch(/setSelectedLocales\(\[\]\)/);
   });
 
-  it("offers to remove a single language or tool that is saved", () => {
-    expect(offlineAccess).toMatch(/remove\(\{ mode: "locale", locale: value \}\)/);
-    expect(offlineAccess).toMatch(/remove\(\{ mode: "tool", tool: tool\.id \}\)/);
+  it("keeps the pickers free of any remove control", () => {
+    // Choosing and removing are separate jobs: a row in either picker holds one
+    // control, and removal lives in the menu below.
+    expect(offlineAccess).not.toMatch(/aria-label=\{`\$\{tc\("remove"\)\}/);
+    expect(offlineAccess).not.toMatch(/remove\(\{ mode:/);
+  });
+
+  it("gives removal its own menu, closed until asked for", () => {
+    expect(offlineAccess).toMatch(/t\("offlineManage"\)/);
+    expect(offlineAccess).toMatch(/aria-expanded=\{manageOpen\}/);
+    expect(offlineAccess).toMatch(/aria-controls=\{MANAGE_ID\}/);
+    // The menu describes the device, so it lists what is saved, not everything
+    // the app offers.
+    expect(offlineAccess).toMatch(/const savedLocaleList = useMemo\(\(\) => locales\.filter/);
+    expect(offlineAccess).toMatch(/const savedToolList = useMemo\(\(\) => tools\.filter/);
+  });
+
+  it("takes the whole ticked set in one message, and offers everything at once", () => {
+    expect(offlineAccess).toMatch(/type: "OFFLINE_REMOVE",\n\s*locales: removalLocales,/);
+    expect(offlineAccess).toMatch(/\{t\("offlineRemoveSelected"\)\}/);
+    expect(offlineAccess).toMatch(/\{removalCount \? \(/);
+    expect(offlineAccess).toMatch(/postMessage\(\{ type: "OFFLINE_REMOVE", all: true \}\)/);
   });
 
   it("reports saved content that belongs to an earlier release and re-runs that selection", () => {

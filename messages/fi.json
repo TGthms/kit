@@ -492,7 +492,12 @@
     "offlineUpdate": "Päivitä tallennukset",
     "offlineRemoveAll": "Poista kaikki tallennukset",
     "offlineRemoveConfirm": "Poistetaanko tästä laitteesta kaikki tallennetut kielet, työkalusivut ja mediamoottorit?",
-    "offlineCleared": "Ladatut sisällöt poistettiin Kit-päivityksen yhteydessä. Ladataanko samat kielet ja työkalut uudelleen?"
+    "offlineCleared": "Ladatut sisällöt poistettiin Kit-päivityksen yhteydessä. Ladataanko samat kielet ja työkalut uudelleen?",
+    "offlineManage": "Hallitse latauksia",
+    "offlineManageDesc": "Katso, mitä tälle laitteelle on tallennettu, ja poista haluamasi.",
+    "offlineNothingSaved": "Tälle laitteelle ei ole vielä tallennettu mitään.",
+    "offlineRemoveSelected": "Poista valitut",
+    "offlineEnginesLabel": "Mediamoottorit"
   },
   "shortcuts": {
     "title": "Pikanäppäimet",

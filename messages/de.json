@@ -492,7 +492,12 @@
     "offlineUpdate": "Downloads aktualisieren",
     "offlineRemoveAll": "Alle Downloads entfernen",
     "offlineRemoveConfirm": "Alle gespeicherten Sprachen, Werkzeugseiten und Medienmodule von diesem Gerät entfernen?",
-    "offlineCleared": "Beim Aktualisieren von Kit wurde heruntergeladener Inhalt entfernt. Dieselben Sprachen und Werkzeuge erneut herunterladen?"
+    "offlineCleared": "Beim Aktualisieren von Kit wurde heruntergeladener Inhalt entfernt. Dieselben Sprachen und Werkzeuge erneut herunterladen?",
+    "offlineManage": "Downloads verwalten",
+    "offlineManageDesc": "Prüfe, was auf diesem Gerät gespeichert ist, und entferne, was du nicht mehr brauchst.",
+    "offlineNothingSaved": "Auf diesem Gerät ist noch nichts gespeichert.",
+    "offlineRemoveSelected": "Ausgewählte entfernen",
+    "offlineEnginesLabel": "Medien-Engines"
   },
   "shortcuts": {
     "title": "Tastenkürzel",

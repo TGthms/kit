@@ -492,7 +492,12 @@
     "offlineUpdate": "עדכן הורדות",
     "offlineRemoveAll": "הסר את כל ההורדות",
     "offlineRemoveConfirm": "להסיר מהמכשיר הזה את כל השפות, עמודי הכלים ומנועי המדיה שנשמרו?",
-    "offlineCleared": "התוכן שהורד הוסר בעדכון של Kit. להוריד שוב את אותן שפות וכלים?"
+    "offlineCleared": "התוכן שהורד הוסר בעדכון של Kit. להוריד שוב את אותן שפות וכלים?",
+    "offlineManage": "ניהול הורדות",
+    "offlineManageDesc": "עיין במה שנשמר במכשיר הזה והסר מה שתרצה.",
+    "offlineNothingSaved": "עדיין לא נשמר דבר במכשיר הזה.",
+    "offlineRemoveSelected": "הסרת הנבחרים",
+    "offlineEnginesLabel": "מנועי מדיה"
   },
   "shortcuts": {
     "title": "קיצורי מקלדת",

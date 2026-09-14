@@ -492,7 +492,12 @@
     "offlineUpdate": "Aktualizovat stažené",
     "offlineRemoveAll": "Odebrat všechny stažené položky",
     "offlineRemoveConfirm": "Odebrat z tohoto zařízení všechny uložené jazyky, stránky nástrojů a mediální moduly?",
-    "offlineCleared": "Stažený obsah byl při aktualizaci Kit odebrán. Stáhnout stejné jazyky a nástroje znovu?"
+    "offlineCleared": "Stažený obsah byl při aktualizaci Kit odebrán. Stáhnout stejné jazyky a nástroje znovu?",
+    "offlineManage": "Správa stažených dat",
+    "offlineManageDesc": "Prohlédněte si, co je v tomto zařízení uloženo, a odeberte, co chcete.",
+    "offlineNothingSaved": "V tomto zařízení zatím není nic uloženo.",
+    "offlineRemoveSelected": "Odebrat vybrané",
+    "offlineEnginesLabel": "Multimediální jádra"
   },
   "shortcuts": {
     "title": "Klávesové zkratky",

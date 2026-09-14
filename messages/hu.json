@@ -492,7 +492,12 @@
     "offlineUpdate": "Letöltések frissítése",
     "offlineRemoveAll": "Összes letöltés eltávolítása",
     "offlineRemoveConfirm": "Eltávolítja erről az eszközről az összes mentett nyelvet, eszközoldalt és médiamotort?",
-    "offlineCleared": "A letöltött tartalom a Kit frissítésekor törlődött. Letölti újra ugyanazokat a nyelveket és eszközöket?"
+    "offlineCleared": "A letöltött tartalom a Kit frissítésekor törlődött. Letölti újra ugyanazokat a nyelveket és eszközöket?",
+    "offlineManage": "Letöltések kezelése",
+    "offlineManageDesc": "Nézd át, mi van ezen az eszközön, és töröld, amit szeretnél.",
+    "offlineNothingSaved": "Ezen az eszközön még nincs semmi eltárolva.",
+    "offlineRemoveSelected": "Kijelöltek eltávolítása",
+    "offlineEnginesLabel": "Médiamotorok"
   },
   "shortcuts": {
     "title": "Billentyűparancsok",

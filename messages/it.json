@@ -492,7 +492,12 @@
     "offlineUpdate": "Aggiorna i download",
     "offlineRemoveAll": "Rimuovi tutti i download",
     "offlineRemoveConfirm": "Rimuovere da questo dispositivo tutte le lingue, le pagine degli strumenti e i motori multimediali salvati?",
-    "offlineCleared": "I contenuti scaricati sono stati rimossi con l'aggiornamento di Kit. Scaricare di nuovo le stesse lingue e gli stessi strumenti?"
+    "offlineCleared": "I contenuti scaricati sono stati rimossi con l'aggiornamento di Kit. Scaricare di nuovo le stesse lingue e gli stessi strumenti?",
+    "offlineManage": "Gestisci i download",
+    "offlineManageDesc": "Controlla ciò che è salvato su questo dispositivo e rimuovi ciò che vuoi.",
+    "offlineNothingSaved": "Non c’è ancora nulla di salvato su questo dispositivo.",
+    "offlineRemoveSelected": "Rimuovi selezionati",
+    "offlineEnginesLabel": "Motori multimediali"
   },
   "shortcuts": {
     "title": "Scorciatoie da tastiera",

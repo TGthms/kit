@@ -492,7 +492,12 @@
     "offlineUpdate": "Mettre à jour les téléchargements",
     "offlineRemoveAll": "Supprimer tous les téléchargements",
     "offlineRemoveConfirm": "Supprimer de cet appareil toutes les langues, pages d'outils et moteurs multimédias enregistrés ?",
-    "offlineCleared": "Le contenu téléchargé a été supprimé lors de la mise à jour de Kit. Télécharger à nouveau les mêmes langues et outils ?"
+    "offlineCleared": "Le contenu téléchargé a été supprimé lors de la mise à jour de Kit. Télécharger à nouveau les mêmes langues et outils ?",
+    "offlineManage": "Gérer les téléchargements",
+    "offlineManageDesc": "Passez en revue ce qui est enregistré sur cet appareil et supprimez ce que vous voulez.",
+    "offlineNothingSaved": "Rien n’est encore enregistré sur cet appareil.",
+    "offlineRemoveSelected": "Supprimer la sélection",
+    "offlineEnginesLabel": "Moteurs multimédias"
   },
   "shortcuts": {
     "title": "Raccourcis clavier",

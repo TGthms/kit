@@ -492,7 +492,12 @@
     "offlineUpdate": "İndirmeleri güncelle",
     "offlineRemoveAll": "Tüm indirmeleri kaldır",
     "offlineRemoveConfirm": "Bu cihazdan kayıtlı tüm diller, araç sayfaları ve medya motorları kaldırılsın mı?",
-    "offlineCleared": "Kit güncellenirken indirilen içerik kaldırıldı. Aynı diller ve araçlar yeniden indirilsin mi?"
+    "offlineCleared": "Kit güncellenirken indirilen içerik kaldırıldı. Aynı diller ve araçlar yeniden indirilsin mi?",
+    "offlineManage": "İndirilenleri yönet",
+    "offlineManageDesc": "Bu cihazda kayıtlı olanları gözden geçir ve istediklerini kaldır.",
+    "offlineNothingSaved": "Bu cihazda henüz hiçbir şey kayıtlı değil.",
+    "offlineRemoveSelected": "Seçilenleri kaldır",
+    "offlineEnginesLabel": "Medya motorları"
   },
   "shortcuts": {
     "title": "Klavye kısayolları",

@@ -492,7 +492,12 @@
     "offlineUpdate": "Atualizar transferências",
     "offlineRemoveAll": "Remover todas as transferências",
     "offlineRemoveConfirm": "Remover deste dispositivo todos os idiomas, páginas de ferramentas e motores de multimédia guardados?",
-    "offlineCleared": "O conteúdo transferido foi removido ao atualizar o Kit. Transferir novamente os mesmos idiomas e ferramentas?"
+    "offlineCleared": "O conteúdo transferido foi removido ao atualizar o Kit. Transferir novamente os mesmos idiomas e ferramentas?",
+    "offlineManage": "Gerir transferências",
+    "offlineManageDesc": "Reveja o que está guardado neste dispositivo e remova o que quiser.",
+    "offlineNothingSaved": "Ainda não há nada guardado neste dispositivo.",
+    "offlineRemoveSelected": "Remover selecionados",
+    "offlineEnginesLabel": "Motores de multimédia"
   },
   "shortcuts": {
     "title": "Atalhos de teclado",

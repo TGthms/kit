@@ -492,7 +492,12 @@
     "offlineUpdate": "Zaktualizuj pobrane",
     "offlineRemoveAll": "Usuń wszystkie pobrane",
     "offlineRemoveConfirm": "Usunąć z tego urządzenia wszystkie zapisane języki, strony narzędzi i silniki multimediów?",
-    "offlineCleared": "Pobrane treści zostały usunięte podczas aktualizacji Kit. Pobrać ponownie te same języki i narzędzia?"
+    "offlineCleared": "Pobrane treści zostały usunięte podczas aktualizacji Kit. Pobrać ponownie te same języki i narzędzia?",
+    "offlineManage": "Zarządzaj pobranymi",
+    "offlineManageDesc": "Przejrzyj, co jest zapisane na tym urządzeniu, i usuń, co chcesz.",
+    "offlineNothingSaved": "Na tym urządzeniu nic jeszcze nie zapisano.",
+    "offlineRemoveSelected": "Usuń zaznaczone",
+    "offlineEnginesLabel": "Silniki multimedialne"
   },
   "shortcuts": {
     "title": "Skróty klawiszowe",
