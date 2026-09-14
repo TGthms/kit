@@ -259,6 +259,32 @@ describe("offline page state", () => {
     expect(offlineAccess).toMatch(/postMessage\(\{ type: "OFFLINE_REMOVE", all: true \}\)/);
   });
 
+  it("waits for the worker's report instead of claiming nothing is saved", () => {
+    expect(offlineAccess).toMatch(/const waitingForReport = !hydrated \|\| !reportLoaded/);
+    expect(offlineAccess).toMatch(/\{waitingForReport \? \(/);
+    /* The worker answers even when it has nothing to report, so the page can
+       tell "there is nothing here" apart from "no answer yet". */
+    expect(sw).toMatch(/await sendOfflineState\(await offlineState\(\)\)/);
+    // And a worker that never answers must not leave the page waiting for ever.
+    expect(offlineAccess).toMatch(/window\.setTimeout\(\(\) => setReportLoaded\(true\), STATUS_WAIT_MS\)/);
+  });
+
+  it("shows a wait rather than a figure it has not measured, and never the selection", () => {
+    expect(offlineAccess).toMatch(/function Figure\(\{ label, value, waiting \}/);
+    expect(offlineAccess).toMatch(/\{value \?\? <Waiting label=\{waiting\} \/>\}/);
+    expect(offlineAccess).toMatch(/const waitingForStorage = !hydrated \|\| \(canEstimateStorage && !storageRead\)/);
+    const card = offlineAccess.slice(
+      offlineAccess.indexOf("<Figure"),
+      offlineAccess.indexOf('{planState === "saved"')
+    );
+    // Four figures, each of which waits for its own source.
+    expect(card.match(/<Figure /g)).toHaveLength(4);
+    /* Every figure describes the device. The selection belongs to the pickers,
+       so a figure is never a selection count. */
+    expect(card).not.toMatch(/selectedLocales\.length/);
+    expect(card).not.toMatch(/selectedTools\.size/);
+  });
+
   it("reports saved content that belongs to an earlier release and re-runs that selection", () => {
     expect(offlineAccess).toMatch(/planState === "stale" \|\| planState === "cleared"/);
     expect(offlineAccess).toMatch(/t\("offlineOutdated", \{ version: APP_VERSION \}\)/);

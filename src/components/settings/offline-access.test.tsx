@@ -88,11 +88,35 @@ afterEach(() => {
   vi.unstubAllGlobals();
 });
 
+/** The card of figures. Nothing else on the page uses a description list. */
+function figures(): HTMLElement {
+  const card = document.querySelector("dl");
+  expect(card).not.toBeNull();
+  return card as HTMLElement;
+}
+
 describe("OfflineAccess", () => {
-  it("summarizes the current selection and the storage estimate", async () => {
+  it("waits for each figure rather than showing one it has not measured", async () => {
     renderOffline();
-    expect(screen.getByText(String(tools.length))).toBeInTheDocument();
-    await waitFor(() => expect(screen.getByText("5.0 MB / 100.0 MB")).toBeInTheDocument());
+    /* Nothing has been read yet, so all four figures are waits: a number here
+       is always one that was measured, never a guess. */
+    expect(within(figures()).getAllByText("Loading…")).toHaveLength(4);
+
+    emit({ type: "OFFLINE_STATE", state: savedState() });
+    await waitFor(() => expect(within(figures()).queryAllByText("Loading…")).toHaveLength(0));
+    expect(within(figures()).getByText("1 / 2")).toBeInTheDocument();
+  });
+
+  it("reports the device rather than the current selection", async () => {
+    renderOffline();
+    emit({ type: "OFFLINE_STATE", state: savedState() });
+    /* One of two languages ready, one of 94 tools usable offline, the engines
+       complete, and the storage estimate. The selection belongs to the pickers,
+       where it is chosen, so a figure here is never a selection count. */
+    await waitFor(() => expect(within(figures()).getByText("5.0 MB / 100.0 MB")).toBeInTheDocument());
+    expect(within(figures()).getByText("1 / 2")).toBeInTheDocument();
+    expect(within(figures()).getByText("1 / 94")).toBeInTheDocument();
+    expect(within(figures()).getByText("Ready")).toBeInTheDocument();
   });
 
   it("asks the worker what is already saved", async () => {
@@ -130,13 +154,25 @@ describe("OfflineAccess", () => {
 });
 
 describe("what is already saved", () => {
-  it("reports the languages, tools, and engines the worker holds", () => {
+  it("waits in the menu too, rather than saying nothing is saved", async () => {
     renderOffline();
+    /* The worker has not answered, so the page states nothing about the device
+       and does not claim the device is empty. */
+    expect(screen.queryByText("Nothing is saved on this device yet.")).not.toBeInTheDocument();
+    expect(screen.getAllByText("Loading…").length).toBeGreaterThan(0);
+
     emit({ type: "OFFLINE_STATE", state: savedState() });
-    expect(screen.getByText(/What's saved/)).toBeInTheDocument();
-    // One of the two languages is complete, and the engines are all there.
-    expect(screen.getByText(/Languages 1\/2/)).toBeInTheDocument();
-    expect(screen.getByText(/Media engines Ready/)).toBeInTheDocument();
+    await waitFor(() => expect(screen.queryAllByText("Loading…")).toHaveLength(0));
+    expect(screen.queryByText("Nothing is saved on this device yet.")).not.toBeInTheDocument();
+  });
+
+  it("says nothing is saved once the worker has reported an empty device", () => {
+    renderOffline();
+    emit({
+      type: "OFFLINE_STATE",
+      state: savedState({ locales: {}, tools: {}, readyLocales: 0, engines: { done: 0, total: 4 } }),
+    });
+    expect(screen.getByText("Nothing is saved on this device yet.")).toBeInTheDocument();
   });
 
   it("marks a ready language in the picker and leaves a part-saved one unmarked", () => {
@@ -183,7 +219,7 @@ describe("manage downloads", () => {
     expect(document.getElementById("kit-offline-manage")).not.toBeNull();
   });
 
-  it("lists what is on the device rather than the whole catalogue", () => {
+  it("lists what is on the device rather than the whole catalog", () => {
     renderOffline();
     emit({ type: "OFFLINE_STATE", state: savedState() });
     openManageMenu();

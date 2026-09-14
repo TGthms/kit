@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState, useSyncExternalStore } from "react";
 import { useLocale, useTranslations } from "next-intl";
-import { Check, ChevronDown, Download, HardDriveDownload, Trash2, X } from "lucide-react";
+import { Check, ChevronDown, Download, HardDriveDownload, LoaderCircle, Trash2, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { locales, localeNames, type Locale } from "@/lib/i18n/config";
 import { tools, type ToolCategory, type ToolId } from "@/lib/tools/registry";
@@ -33,6 +33,28 @@ type RemovalSelection = { locales: Set<Locale>; tools: Set<ToolId>; engines: boo
 const MAX_LOGS = 40;
 const MANAGE_ID = "kit-offline-manage";
 const EMPTY_REMOVAL: RemovalSelection = { locales: new Set(), tools: new Set(), engines: false };
+/** How long to wait for the worker before the page speaks for itself. */
+const STATUS_WAIT_MS = 10_000;
+
+/** A figure that has not been measured yet. */
+function Waiting({ label }: { label: string }) {
+  return (
+    <span className="inline-flex items-center gap-1.5 text-muted-foreground">
+      <LoaderCircle aria-hidden className="h-3.5 w-3.5 shrink-0 animate-spin" />
+      <span className="sr-only">{label}</span>
+    </span>
+  );
+}
+
+/** One figure on the status card, waiting in place of a value not yet read. */
+function Figure({ label, value, waiting }: { label: string; value: string | null; waiting: string }) {
+  return (
+    <div className="min-w-0">
+      <dt className="type-caption text-muted-foreground">{label}</dt>
+      <dd className="font-semibold tabular-nums">{value ?? <Waiting label={waiting} />}</dd>
+    </div>
+  );
+}
 
 function formatBytes(value: number | null, unknown: string): string {
   if (!value || !Number.isFinite(value)) return unknown;
@@ -59,15 +81,6 @@ async function activeWorker(): Promise<ServiceWorker | null> {
   return navigator.serviceWorker.controller ?? (await navigator.serviceWorker.ready).active;
 }
 
-/** A reminder of what is stored, as a short phrase, or null when nothing is. */
-function formatCounts(localeCount: number, toolCount: number, enginesSaved: boolean, t: (key: string) => string): string | null {
-  const parts: string[] = [];
-  if (localeCount) parts.push(`${localeCount} ${t("offlineLanguages")}`);
-  if (toolCount) parts.push(`${toolCount} ${t("offlineTools")}`);
-  if (enginesSaved) parts.push(t("offlineEnginesLabel"));
-  return parts.length ? parts.join(" · ") : null;
-}
-
 /** A tick marking something that works with the network off. */
 function ReadyTick({ label }: { label: string }) {
   return (
@@ -85,6 +98,9 @@ export function OfflineAccess() {
   const ttools = useTranslations("tools");
   const locale = useLocale() as Locale;
   const hydrated = useHydrated();
+  /* Not every browser can report storage usage; where it cannot, there is
+     nothing to wait for. */
+  const canEstimateStorage = typeof navigator !== "undefined" && Boolean(navigator.storage?.estimate);
   const [selectedLocales, setSelectedLocales] = useState<Locale[]>([locale]);
   const [selectedTools, setSelectedTools] = useState<Set<ToolId>>(new Set(tools.map((tool) => tool.id)));
   const [engines, setEngines] = useState(true);
@@ -92,6 +108,10 @@ export function OfflineAccess() {
   const [storage, setStorage] = useState<{ usage: number | null; quota: number | null }>({ usage: null, quota: null });
   const [download, setDownload] = useState<DownloadState>({ status: "idle", done: 0, total: 0, logs: [] });
   const [state, setState] = useState<OfflineState | null>(null);
+  /* Whether each figure has been measured. Until then the page shows a spinner
+     rather than a number it has not been told yet. */
+  const [reportLoaded, setReportLoaded] = useState(false);
+  const [storageRead, setStorageRead] = useState(false);
   const [manageOpen, setManageOpen] = useState(false);
   const [removal, setRemoval] = useState<RemovalSelection>(EMPTY_REMOVAL);
   /* Read from storage through the store rather than copied into state, so the
@@ -103,8 +123,10 @@ export function OfflineAccess() {
   const request = useRef<Selection | null>(null);
   const grouped = useMemo(() => categories.map((category) => ({ category, items: tools.filter((tool) => tool.category === category) })), []);
   const readStorage = useCallback(() => {
-    if (!navigator.storage?.estimate) return;
-    navigator.storage.estimate().then((estimate) => setStorage({ usage: estimate.usage ?? null, quota: estimate.quota ?? null })).catch(() => undefined);
+    navigator.storage?.estimate()
+      .then((estimate) => setStorage({ usage: estimate.usage ?? null, quota: estimate.quota ?? null }))
+      .catch(() => undefined)
+      .finally(() => setStorageRead(true));
   }, []);
 
   /* What is on the device, expressed as things that can be removed. Only what is
@@ -122,19 +144,32 @@ export function OfflineAccess() {
   const removalEngines = removal.engines && enginesSaved;
   const removalCount = removalLocales.length + removalTools.length + (removalEngines ? 1 : 0);
 
-  useEffect(() => { if (hydrated) readStorage(); }, [hydrated, readStorage]);
+  /* The figures below all describe the device, and each has its own source: the
+     worker's report, or the storage estimate. A figure shows a wait until its
+     own source has answered, so a number on screen is always one that was read. */
+  const waitingForReport = !hydrated || !reportLoaded;
+  const waitingForStorage = !hydrated || (canEstimateStorage && !storageRead);
+
+  useEffect(() => {
+    if (hydrated && canEstimateStorage) readStorage();
+  }, [hydrated, canEstimateStorage, readStorage]);
 
   useEffect(() => {
     if (!hydrated) return;
     activeWorker().then((worker) => worker?.postMessage({ type: "OFFLINE_STATUS" })).catch(() => undefined);
+    const giveUp = window.setTimeout(() => setReportLoaded(true), STATUS_WAIT_MS);
+    return () => window.clearTimeout(giveUp);
   }, [hydrated]);
 
   useEffect(() => {
     if (!hydrated || !("serviceWorker" in navigator)) return;
     const onMessage = (event: MessageEvent) => {
-      const data = event.data as ProgressMessage & { state?: OfflineState } | null;
+      const data = event.data as ProgressMessage & { state?: OfflineState | null } | null;
       if (!data || typeof data !== "object") return;
       if (data.type === "OFFLINE_STATE") {
+        /* A report has arrived. It may carry nothing — the worker says so when
+           it cannot read its own resource list — and that is still an answer. */
+        setReportLoaded(true);
         if (data.state) setState(data.state);
         readStorage();
         return;
@@ -149,8 +184,8 @@ export function OfflineAccess() {
         logs: incoming.length ? [...current.logs, ...incoming].slice(-MAX_LOGS) : current.logs,
       }));
       if (status === "done" && request.current) {
-        /* Written now rather than when the button was pressed, so a download
-           that was cancelled or failed is not recorded as saved content. */
+  /* Written now rather than when the button was pressed, so a download
+     that was canceled or failed is not recorded as saved content. */
         savePlan({
           version: APP_VERSION,
           generation: state?.generation ?? "",
@@ -235,42 +270,32 @@ export function OfflineAccess() {
   const progressPercent = download.total ? Math.round((download.done / download.total) * 100) : 0;
   const statusText = download.status === "done" ? t("offlineComplete") : download.status === "canceled" ? t("offlineCanceled") : download.status === "error" ? tc("error") : `${tc("progress")} · ${progressPercent}%`;
   const storageText = `${formatBytes(storage.usage, t("offlineStorageUnknown"))}${storage.quota ? ` / ${formatBytes(storage.quota, t("offlineStorageUnknown"))}` : ""}`;
-  const savedToolCount = state ? tools.filter((tool) => toolSaved(state, tool.id)).length : 0;
+  const availableTools = state ? tools.filter((tool) => toolSaved(state, tool.id)).length : 0;
   const planState = planStatus(plan, state, APP_VERSION);
-  const savedSummary = formatCounts(savedLocaleList.length, savedToolList.length, enginesSaved, t);
+  /* Null is what tells <Figure> to show a wait instead of a value. */
+  const languagesValue = waitingForReport
+    ? null
+    : `${state?.readyLocales ?? 0} / ${state ? Object.keys(state.locales).length : locales.length}`;
+  const toolsValue = waitingForReport ? null : `${availableTools} / ${tools.length}`;
+  const enginesValue = waitingForReport ? null : enginesSaved ? t("offlineReady") : t("offlineNotSaved");
+  const storageValue = waitingForStorage ? null : storageText;
 
   return (
     <div className="space-y-6">
       <Card className="border-primary/20 bg-primary/[0.035]">
         <CardContent className="space-y-4 p-5 sm:p-6">
-          <div className="flex items-center gap-4">
+          <div className="flex items-start gap-4">
             <span aria-hidden className="rounded-xl bg-primary/12 p-2.5 text-primary"><HardDriveDownload className="h-5 w-5" /></span>
-            <dl className="grid min-w-0 flex-1 grid-cols-1 gap-3 sm:grid-cols-3">
-              <div className="min-w-0">
-                <dt className="type-caption text-muted-foreground">{t("offlineLanguages")}</dt>
-                <dd className="font-semibold tabular-nums">{selectedLocales.length}</dd>
-              </div>
-              <div className="min-w-0">
-                <dt className="type-caption text-muted-foreground">{t("offlineTools")}</dt>
-                <dd className="font-semibold tabular-nums">{selectedTools.size}</dd>
-              </div>
-              <div className="min-w-0">
-                <dt className="type-caption text-muted-foreground">{t("offlineStorage")}</dt>
-                <dd className="truncate font-semibold tabular-nums">{storageText}</dd>
-              </div>
+            {/* Every figure describes this device: the same thing the pickers
+                tick and the menu lists, so the numbers here and the rows below
+                them agree. */}
+            <dl className="grid min-w-0 flex-1 grid-cols-2 gap-x-4 gap-y-4 sm:grid-cols-4">
+              <Figure label={t("offlineLanguages")} value={languagesValue} waiting={tc("loading")} />
+              <Figure label={t("offlineTools")} value={toolsValue} waiting={tc("loading")} />
+              <Figure label={t("offlineEnginesLabel")} value={enginesValue} waiting={tc("loading")} />
+              <Figure label={t("offlineStorage")} value={storageValue} waiting={tc("loading")} />
             </dl>
           </div>
-          {/* What the worker actually holds, which is not the same as what is
-              selected above: this is what works with the network switched off. */}
-          {state ? (
-            <p className="type-caption text-muted-foreground">
-              {t("offlineStatus")} · {t("offlineLanguages")} {state.readyLocales}/{Object.keys(state.locales).length}
-              {" · "}
-              {t("offlineTools")} {savedToolCount}/{tools.length}
-              {" · "}
-              {t("offlineEnginesLabel")} {enginesSaved ? t("offlineReady") : t("offlineNotSaved")}
-            </p>
-          ) : null}
           {planState === "saved" && plan ? (
             <p className="type-caption text-muted-foreground">{t("offlineStoredVersion", { version: plan.version })}</p>
           ) : null}
@@ -403,12 +428,22 @@ export function OfflineAccess() {
       </Card>
 
       {/* Removing is a separate job from choosing, so it has its own menu, closed
-          until asked for. It lists the device rather than the catalogue: only
+          until asked for. It lists the device rather than the catalog: only
           what is really saved appears, each entry can be picked out on its own,
           and one control takes all of it. With nothing saved there is nothing to
           manage, so the card is a plain note rather than a disclosure. */}
       <Card className="border-border/40">
-        {savedCount ? (
+        {waitingForReport ? (
+          /* The worker has not answered, so the page states nothing about the
+             device and shows a wait in its place. */
+          <div className="p-5">
+            <p className="text-base font-semibold leading-snug tracking-[-0.01em]">{t("offlineManage")}</p>
+            <p className="mt-1 flex items-center gap-2 type-caption text-muted-foreground">
+              <LoaderCircle aria-hidden className="h-3.5 w-3.5 animate-spin" />
+              {tc("loading")}
+            </p>
+          </div>
+        ) : savedCount ? (
           <button
             type="button"
             aria-expanded={manageOpen}
@@ -418,7 +453,7 @@ export function OfflineAccess() {
           >
             <span className="min-w-0">
               <span className="block text-base font-semibold leading-snug tracking-[-0.01em]">{t("offlineManage")}</span>
-              <span className="mt-1 block type-caption text-muted-foreground">{savedSummary}</span>
+              <span className="mt-1 block type-caption text-muted-foreground">{t("offlineManageDesc")}</span>
             </span>
             <ChevronDown className={cn("mt-1 h-4 w-4 shrink-0 text-muted-foreground transition-transform", manageOpen ? "rotate-0" : "-rotate-90")} />
           </button>
@@ -430,12 +465,9 @@ export function OfflineAccess() {
         )}
         {manageOpen && savedCount ? (
           <CardContent id={MANAGE_ID} className="space-y-5">
-            <div className="flex flex-wrap items-center justify-between gap-2">
-              <p className="type-caption text-muted-foreground">{t("offlineManageDesc")}</p>
-              <div className="flex shrink-0 gap-2">
-                <Button size="sm" variant="outline" onClick={selectAllSaved}>{tc("selectAll")}</Button>
-                <Button size="sm" variant="ghost" onClick={() => setRemoval(EMPTY_REMOVAL)} disabled={!removalCount}>{tc("clear")}</Button>
-              </div>
+            <div className="flex flex-wrap items-center justify-end gap-2">
+              <Button size="sm" variant="outline" onClick={selectAllSaved}>{tc("selectAll")}</Button>
+              <Button size="sm" variant="ghost" onClick={() => setRemoval(EMPTY_REMOVAL)} disabled={!removalCount}>{tc("clear")}</Button>
             </div>
 
             {savedLocaleList.length ? (

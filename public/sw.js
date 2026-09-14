@@ -521,8 +521,7 @@ async function removeOffline(scope) {
 
   /* A tool is stored once per language, as a page and as the payload that opens
      it. The id is resolved to the public route segment first, the same way the
-     download resolves it: the two differ for a tool that was renamed, and
-     matching on the id would find nothing to remove. */
+     download resolves it, so both agree on which tool is meant. */
   const addTool = (tool) => {
     const segment = toolPathSegment(tool);
     for (const locale of Object.keys(chrome)) {
@@ -583,9 +582,8 @@ async function selectedOfflineUrls(data) {
       if (segments.has(segmentOfToolUrl(url))) pages.add(url);
     }
     /* A page and the payload it navigates from are saved together, so every
-       page included brings its payload. A language is counted complete only
-       when both are present, and the payloads of the pages that are not tool
-       pages appear in no other list that could fill them in later. */
+       page included brings its payload: a language is counted complete only
+       when both are present. */
     for (const url of pages) {
       urls.add(url);
       urls.add(`${url}index.txt`);
@@ -760,8 +758,9 @@ self.addEventListener("message", (event) => {
   if (data.type === "OFFLINE_STATUS") {
     event.waitUntil(
       (async () => {
-        const state = await offlineState();
-        if (state) await sendOfflineState(state);
+        /* Always answered, even when there is nothing to report, so the page can
+           tell "there is nothing here" apart from "no answer yet". */
+        await sendOfflineState(await offlineState());
       })()
     );
     return;
