@@ -24,6 +24,15 @@ function getPath(obj: unknown, path: string): unknown {
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "../../../messages");
 
+/**
+ * A tool's own sentence is newer than the rest of the catalog and is being
+ * written language by language. While a language has none, its tool pages fall
+ * back to the card label it already carries — which is translated — so an absent
+ * summary is a state rather than a gap. Any summary that *is* present is still
+ * held to the rule below: it must not be the English one.
+ */
+const optionalKey = (path: string) => /^tools\.[^.]+\.summary$/u.test(path);
+
 describe("message catalogs", () => {
   const required = leafPaths(en);
 
@@ -34,12 +43,25 @@ describe("message catalogs", () => {
     }
   });
 
+  it("gives every tool a sentence of its own in English", async () => {
+    /* Adding a tool without writing its sentence should fail here rather than
+       ship a page whose only description is its own name. */
+    for (const tool of tools) {
+      const summary = (en as { tools: Record<string, { summary?: string }> }).tools[tool.id]?.summary;
+      expect(summary, tool.id).toBeTruthy();
+      expect(summary!.length, `${tool.id} length`).toBeGreaterThanOrEqual(100);
+      expect(summary!.length, `${tool.id} length`).toBeLessThanOrEqual(160);
+      expect(summary!, tool.id).not.toMatch(/[{}]/u);
+    }
+  });
+
   it("keeps every English key in every catalog, including tool names", async () => {
     const missingByLocale: Record<string, string[]> = {};
     for (const loc of locales) {
       const file = messageFileFor(loc);
       const catalog = (await import(`../../../messages/${file}.json`)).default;
       const missing = required.filter((path) => {
+        if (optionalKey(path)) return false;
         const value = getPath(catalog, path);
         return typeof value !== "string" || value.trim() === "";
       });

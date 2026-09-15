@@ -23,7 +23,7 @@ import {
 
 type Messages = {
   meta: { title: string; description: string };
-  tools: Record<string, { name?: string; description?: string }>;
+  tools: Record<string, { name?: string; description?: string; summary?: string }>;
   settings: { title: string; subtitle: string };
   history: { title: string; subtitle: string };
   favorites: { title: string; subtitle: string };
@@ -35,6 +35,29 @@ type Messages = {
 export async function loadMessages(locale: string): Promise<Messages> {
   const file = messageFileFor(isPathLocale(locale) ? locale : defaultLocale);
   return (await import(`../../../messages/${file}.json`)).default as Messages;
+}
+
+type ToolCopy = { name?: string; description?: string; summary?: string };
+
+/**
+ * What a tool page says it is, in one sentence.
+ *
+ * A catalog holds two strings for a tool and they are not interchangeable. The
+ * `description` is the label a card shows in the home grid — short enough to sit
+ * under a tool's name, and the words the home search matches against. The
+ * `summary` is the sentence the tool's own page carries under its heading, and
+ * the text a search engine shows for it. Falling back to the label keeps every
+ * language that has no sentence yet showing exactly what it shows today.
+ */
+function sentenceFor(entry: ToolCopy | undefined, fallback: string): string {
+  return entry?.summary || entry?.description || fallback;
+}
+
+/** The sentence a tool page shows in a given language, for the page to render. */
+export async function toolSubtitle(locale: string, toolId: string): Promise<string | undefined> {
+  const messages = await loadMessages(locale);
+  const resolved = resolveToolId(toolId) ?? getTool(toolId)?.id ?? toolId;
+  return sentenceFor(messages.tools[resolved] ?? messages.tools[toolId], "");
 }
 
 export function socialImages(imagePath?: string) {
@@ -156,7 +179,7 @@ export async function buildToolMetadata(
   const publicSegment = pathSegment ?? toolPathSegment(resolved as Parameters<typeof toolPathSegment>[0]);
   const entry = messages.tools[resolved] ?? messages.tools[toolId];
   const title = entry?.name ? pageTitle(entry.name) : messages.meta.title;
-  const description = entry?.description || messages.meta.description;
+  const description = sentenceFor(entry, messages.meta.description);
   const noindex =
     toolId in legacyToolIdMap || (toolId === "timezone-converter" && pathSegment !== "world-clock");
   return buildSocialMetadata({
@@ -274,7 +297,7 @@ export async function toolJsonLdInput(
   const publicSegment = pathSegment ?? toolPathSegment(resolved as Parameters<typeof toolPathSegment>[0]);
   const entry = messages.tools[resolved] ?? messages.tools[toolId];
   const name = entry?.name || resolved;
-  const description = entry?.description || messages.meta.description;
+  const description = sentenceFor(entry, messages.meta.description);
   const homeUrl = absoluteUrl(`/${loc}/`);
   const categoryUrl = absoluteUrl(`/${loc}/c/${tool.category}/`);
   const url = absoluteUrl(`/${loc}/tools/${publicSegment}/`);

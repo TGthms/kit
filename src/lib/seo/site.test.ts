@@ -202,6 +202,25 @@ describe("root language alternates", () => {
 });
 
 describe("social metadata builders", () => {
+  it("shows a tool's own sentence, and its label where a language has none", async () => {
+    /* English carries a sentence per tool; the other thirty are being written.
+       A language without one must fall back to its own label — never to the
+       English sentence, and never to nothing. */
+    const english = await buildToolMetadata("en", "frequency-converter");
+    expect(String(english.description)).toMatch(/hertz/u);
+
+    const fr = (await import("../../../messages/fr.json")).default as {
+      tools: Record<string, { description?: string }>;
+    };
+    const french = await buildToolMetadata("fr", "frequency-converter");
+    expect(french.description).toBeTruthy();
+    expect(String(french.description)).toBe(fr.tools["frequency-converter"]?.description);
+
+    /* The record a machine reads says what the page says. */
+    const record = await toolJsonLdInput("en", "frequency-converter");
+    expect(record?.description).toBe(String(english.description));
+  });
+
   it("uses a large Twitter card and the OG image on home, tools, and sections", async () => {
     const home = await buildLocaleMetadata("fr");
     expect(home.twitter).toMatchObject({ card: "summary_large_image" });

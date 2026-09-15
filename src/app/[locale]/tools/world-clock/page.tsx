@@ -5,7 +5,7 @@ import { ToolPageClient } from "@/components/tools/tool-page-client";
 import { ToolIntro } from "@/components/tools/tool-intro";
 import { ToolGuide } from "@/components/tools/tool-guide";
 import { ToolJsonLd } from "@/lib/seo/json-ld";
-import { buildToolMetadata, toolJsonLdInput } from "@/lib/seo/metadata";
+import { buildToolMetadata, toolJsonLdInput, toolSubtitle } from "@/lib/seo/metadata";
 
 export async function generateMetadata({
   params,
@@ -28,9 +28,10 @@ export default async function WorldClockPage({
   const { locale } = await params;
   setRequestLocale(locale);
   const jsonLd = await toolJsonLdInput(locale, "timezone-converter", "world-clock");
+  const subtitle = await toolSubtitle(locale, "timezone-converter");
   return (
     <>
-      <ToolIntro toolId="timezone-converter" />
+      <ToolIntro toolId="timezone-converter" subtitle={subtitle} />
       <ToolPageClient toolId="timezone-converter" />
       <ToolGuide toolId="timezone-converter" />
       {jsonLd ? <ToolJsonLd {...jsonLd} /> : null}

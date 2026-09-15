@@ -16,6 +16,9 @@ describe("slimMessagesForShell", () => {
     expect(slim.tools["currency-converter"].from).toBeUndefined();
     expect(slim.tools["everyday-converter"]).toBeUndefined();
     expect(Object.keys(slim.tools["pdf-merge"] ?? {})).toEqual(["name", "description", "keywords"]);
+    /* A tool's own sentence is resolved on the server and handed to the heading
+       as a prop, so it does not ride along in a payload that only needs cards. */
+    expect(slim.tools["pdf-merge"].summary).toBeUndefined();
   });
 });
 

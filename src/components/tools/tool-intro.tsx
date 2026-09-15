@@ -21,8 +21,13 @@ import { ShareButton } from "@/components/ui/share-button";
  * are part of the document a crawler is served. Everything here works from
  * props and the address bar alone: a search-param hook would hold the heading
  * back to the client and leave the page with no heading in its HTML at all.
+ *
+ * `subtitle` is handed in by the route, which reads it from the catalog server
+ * side: the card label the client catalog carries is a shorter string, and a
+ * sentence is what this page wants. The label stays the fallback so a language
+ * without a sentence of its own renders exactly as it did before.
  */
-export function ToolIntro({ toolId }: { toolId: ToolId }) {
+export function ToolIntro({ toolId, subtitle }: { toolId: ToolId; subtitle?: string }) {
   const t = useTranslations(`tools.${toolId}`);
   const tc = useTranslations("common");
   const tCat = useTranslations("categories");
@@ -40,7 +45,7 @@ export function ToolIntro({ toolId }: { toolId: ToolId }) {
   return (
     <PageHeader
       title={t("name")}
-      subtitle={t("description")}
+      subtitle={subtitle || t("description")}
       backHref={back.href}
       backLabel={backLabel}
       below={
