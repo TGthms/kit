@@ -42,9 +42,13 @@ describe("service worker update policy", () => {
     expect(navFn).toMatch(/cachedExactNavigation\s*\(/);
   });
 
-  it("busts the shell cache when navigation policy changes", () => {
-    expect(sw).toMatch(/kit-shell-v13/);
-    expect(sw).toMatch(/kit-rsc-v13/);
+  it("names its caches after the build, so a new one cannot inherit the old content", () => {
+    /* The stamp is written into the exported copy by scripts/sw-precache.mjs:
+       the placeholder is what `public/sw.js` carries, and both caches are named
+       from whatever ends up on that line. */
+    expect(sw).toMatch(/^const BUILD = "__KIT_BUILD__";$/mu);
+    expect(sw).toMatch(/kit-shell-\$\{GENERATION\}/u);
+    expect(sw).toMatch(/kit-rsc-\$\{GENERATION\}/u);
     expect(sw).toMatch(/PRECACHE_LOCALE/);
     expect(sw).toMatch(/PRECACHE_PAUSE/);
     expect(sw).toMatch(/priority:\s*["']low["']/);

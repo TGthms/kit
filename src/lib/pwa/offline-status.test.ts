@@ -19,7 +19,7 @@ import {
 
 const plan: OfflinePlan = {
   version: "1.1.0",
-  generation: "v13",
+  generation: "3f9a1c4e77b2",
   locales: ["en", "fr"],
   tools: ["pdf-merge"],
   pages: ["home", "history"],
@@ -29,7 +29,7 @@ const plan: OfflinePlan = {
 
 function state(overrides: Partial<OfflineState> = {}): OfflineState {
   return {
-    generation: "v13",
+    generation: "3f9a1c4e77b2",
     core: { done: 167, total: 167 },
     engines: { done: 203, total: 203 },
     locales: { en: { done: 12, total: 12, ready: true }, fr: { done: 0, total: 12, ready: false } },

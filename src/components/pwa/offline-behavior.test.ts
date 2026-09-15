@@ -77,24 +77,29 @@ function fullCache() {
  * Load the worker with just enough of a browser around it: a cache that is one
  * Map, a manifest served from the network, and a `self` to hang listeners on.
  */
-function loadWorker(seed: Map<string, boolean> = fullCache()) {
+function loadWorker(seed: Map<string, boolean> = fullCache(), source = swSource) {
   const store = new Map(seed);
   /** Every address the worker asked the network for, in order. */
   const fetched: string[] = [];
-  const open = async () => ({
-    async keys() {
-      return [...store.keys()].map((url) => ({ url: `https://trykit.pages.dev${url}` }));
-    },
-    async match(url: string) {
-      return store.has(url) ? { url } : undefined;
-    },
-    async put(url: string) {
-      store.set(url, true);
-    },
-    async delete(url: string) {
-      return store.delete(url);
-    },
-  });
+  /** Every cache the worker opened, by name. */
+  const opened = new Set<string>();
+  const open = async (name: string) => {
+    opened.add(name);
+    return {
+      async keys() {
+        return [...store.keys()].map((url) => ({ url: `https://trykit.pages.dev${url}` }));
+      },
+      async match(url: string) {
+        return store.has(url) ? { url } : undefined;
+      },
+      async put(url: string) {
+        store.set(url, true);
+      },
+      async delete(url: string) {
+        return store.delete(url);
+      },
+    };
+  };
   const self = {
     location: { origin: "https://trykit.pages.dev" },
     addEventListener: () => undefined,
@@ -116,7 +121,7 @@ function loadWorker(seed: Map<string, boolean> = fullCache()) {
     AbortController,
     URL,
   });
-  vm.runInContext(swSource, context, { filename: "sw.js" });
+  vm.runInContext(source, context, { filename: "sw.js" });
   const worker = context as unknown as {
     removeOffline: (scope: {
       all?: boolean;
@@ -140,7 +145,7 @@ function loadWorker(seed: Map<string, boolean> = fullCache()) {
       engines?: boolean;
     }) => Promise<string[]>;
   };
-  return { worker, store, paths: () => [...store.keys()], fetched };
+  return { worker, store, paths: () => [...store.keys()], fetched, opened };
 }
 
 describe("removing what was downloaded", () => {
@@ -380,5 +385,32 @@ describe("reporting what is saved", () => {
     expect(state.locales.en).toEqual({ done: 0, total: 8, ready: false });
     expect(state.readyLocales).toBe(1);
     expect(paths()).toContain("/fr/");
+  });
+});
+
+describe("the build a worker belongs to", () => {
+  /* The stamp is what stops one release answering for another: a new build
+     changes the worker, so the browser installs it, it opens its own caches,
+     and activating it deletes the ones before it. */
+  const stamped = (stamp: string) => swSource.replace("__KIT_BUILD__", stamp);
+
+  it("names the caches it opens after the build it carries", async () => {
+    const { worker, opened } = loadWorker(fullCache(), stamped("0123456789ab"));
+    await worker.offlineState();
+
+    expect([...opened].sort()).toEqual(["kit-rsc-0123456789ab", "kit-shell-0123456789ab"]);
+  });
+
+  it("reports the build it carries, so a page can tell one release from the next", async () => {
+    const { worker } = loadWorker(fullCache(), stamped("0123456789ab"));
+    expect((await worker.offlineState())?.generation).toBe("0123456789ab");
+  });
+
+  it("keeps to one name of its own when served straight from public/", async () => {
+    const { worker, opened } = loadWorker();
+    await worker.offlineState();
+
+    /* Nothing ships from there, so the name only has to be stable. */
+    expect([...opened].sort()).toEqual(["kit-rsc-dev", "kit-shell-dev"]);
   });
 });

@@ -82,7 +82,7 @@ describe("what is saved", () => {
     expect(sw).toMatch(/function countPresent\(urls, present\)/);
     // A generation the page can compare against, so it can tell when a build
     // has replaced what was saved.
-    expect(sw).toMatch(/generation: CACHE\.replace\(\/\^kit-shell-\/u, ""\)/);
+    expect(sw).toMatch(/generation: GENERATION/);
   });
 
   it("counts a language as ready only when its pages and payloads are all there", () => {
@@ -104,8 +104,13 @@ describe("what is saved", () => {
   it("keeps the resource list on the device so the report works offline", () => {
     expect(sw).toMatch(/await cache\.add\(FILL_PRECACHE\)/);
     const read = sw.slice(sw.indexOf("async function readManifest"), sw.indexOf("async function cachedPathnames"));
-    expect(read).toMatch(/await caches\.match\(FILL_PRECACHE\)/);
+    expect(read).toMatch(/await cache\.match\(FILL_PRECACHE\)/);
     expect(read).toMatch(/fetch\(FILL_PRECACHE, \{ cache: "no-store" \}\)/);
+    /* Read out of this build's own cache. Matching across all of them could
+       answer with another generation's list, which names content that is not
+       here — the report would then count it as saved. */
+    expect(read).toMatch(/caches\.open\(CACHE\)/);
+    expect(read).not.toMatch(/^\s*const cached = await caches\.match\(/mu);
   });
 
   it("sends the report on its own message type so it cannot be read as progress", () => {

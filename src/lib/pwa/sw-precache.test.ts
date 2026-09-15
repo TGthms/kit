@@ -1,12 +1,15 @@
-import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
+import { mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { afterAll, describe, expect, it } from "vitest";
 import {
   APP_PAGE_SEGMENTS,
+  BUILD_PLACEHOLDER,
   aliasLocaleDirs,
   aliasToolSegments,
   buildPrecacheManifest,
+  buildStamp,
+  stampServiceWorker,
 } from "../../../scripts/sw-precache.mjs";
 
 type Manifest = {
@@ -224,5 +227,120 @@ describe("a language alias", () => {
 
   it("finds none when there is no export to read", () => {
     expect(aliasLocaleDirs(join(root, "nope"), ["en"]).size).toBe(0);
+  });
+});
+
+/** A small export whose home page can be rewritten, to move its content. */
+function writeExport(root: string, homeBody: string) {
+  mkdirSync(join(root, "en/tools/pdf-merge"), { recursive: true });
+  writeFileSync(join(root, "en/index.html"), `<!DOCTYPE html><html><body>${homeBody}</body></html>`);
+  writeFileSync(join(root, "en/tools/pdf-merge/index.html"), INDEXABLE);
+  writeFileSync(join(root, "en/tools/pdf-merge/index.txt"), "flight payload");
+}
+
+describe("the build stamp that names the caches", () => {
+  it("moves only when the shipped content does", () => {
+    const root = mkdtempSync(join(tmpdir(), "kit-stamp-"));
+    try {
+      writeExport(root, "one");
+      const first = buildStamp(root, buildPrecacheManifest(root));
+      expect(first).toMatch(/^[a-f0-9]{12}$/u);
+      /* The same content twice names the same caches, so a rebuild that changes
+         nothing does not throw away what a device already holds. */
+      expect(buildStamp(root, buildPrecacheManifest(root))).toBe(first);
+
+      /* One word inside one page is enough: the bytes are what is hashed. */
+      writeExport(root, "two");
+      const second = buildStamp(root, buildPrecacheManifest(root));
+      expect(second).not.toBe(first);
+
+      writeExport(root, "one");
+      expect(buildStamp(root, buildPrecacheManifest(root))).toBe(first);
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("moves when a page or a script appears", () => {
+    const root = mkdtempSync(join(tmpdir(), "kit-stamp-add-"));
+    try {
+      writeExport(root, "one");
+      const before = buildStamp(root, buildPrecacheManifest(root));
+
+      mkdirSync(join(root, "en/tools/pdf-split"), { recursive: true });
+      writeFileSync(join(root, "en/tools/pdf-split/index.html"), INDEXABLE);
+      expect(buildStamp(root, buildPrecacheManifest(root))).not.toBe(before);
+
+      const withTool = buildStamp(root, buildPrecacheManifest(root));
+      mkdirSync(join(root, "_next/static/chunks"), { recursive: true });
+      writeFileSync(join(root, "_next/static/chunks/late.js"), "js");
+      expect(buildStamp(root, buildPrecacheManifest(root))).not.toBe(withTool);
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+
+  it("reads the file behind an address that carries the base path", () => {
+    const root = mkdtempSync(join(tmpdir(), "kit-stamp-base-"));
+    try {
+      /* The backup host serves every address under `/kit`, while the export
+         keeps them at the root: an address has to be resolved back to the file
+         it names, or the content would not be read and the stamp would sit
+         still while the app changed underneath it. */
+      writeExport(root, "one");
+      const withBase = () => buildStamp(root, buildPrecacheManifest(root, "/kit"), "/kit");
+      const first = withBase();
+      writeExport(root, "two");
+      expect(withBase()).not.toBe(first);
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  });
+});
+
+describe("stamping the exported worker", () => {
+  const workerCarrying = (build: string) =>
+    `/* Kit service worker */\nconst BUILD = "${build}";\nconst CACHE = \`kit-shell-\${GENERATION}\`;\n`;
+
+  function withExport(contents: string, run: (dir: string) => void) {
+    const root = mkdtempSync(join(tmpdir(), "kit-stamp-sw-"));
+    try {
+      writeFileSync(join(root, "sw.js"), contents);
+      run(root);
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  }
+
+  it("puts the stamp where the placeholder was", () => {
+    withExport(workerCarrying(BUILD_PLACEHOLDER), (dir) => {
+      expect(stampServiceWorker(dir, "0123456789ab")).toBe("0123456789ab");
+      const stamped = readFileSync(join(dir, "sw.js"), "utf8");
+      expect(stamped).toContain('const BUILD = "0123456789ab";');
+      expect(stamped).not.toContain(BUILD_PLACEHOLDER);
+    });
+  });
+
+  it("can be run again over an export that already carries a stamp", () => {
+    /* A resumed build, or the step run by hand, must not be an error and must
+       not leave the previous build's name in place. */
+    withExport(workerCarrying("aaaaaaaaaaaa"), (dir) => {
+      stampServiceWorker(dir, "bbbbbbbbbbbb");
+      expect(readFileSync(join(dir, "sw.js"), "utf8")).toContain('const BUILD = "bbbbbbbbbbbb";');
+      stampServiceWorker(dir, "bbbbbbbbbbbb");
+      expect(readFileSync(join(dir, "sw.js"), "utf8")).toContain('const BUILD = "bbbbbbbbbbbb";');
+    });
+  });
+
+  it("refuses a worker that declares no build, which would share one cache forever", () => {
+    withExport("const CACHE = `kit-shell-${GENERATION}`;\n", (dir) => {
+      expect(() => stampServiceWorker(dir, "0123456789ab")).toThrow(/BUILD/u);
+    });
+  });
+
+  it("refuses a build value it did not write", () => {
+    withExport(workerCarrying("v13"), (dir) => {
+      expect(() => stampServiceWorker(dir, "0123456789ab")).toThrow(/neither the placeholder nor a stamp/u);
+    });
   });
 });

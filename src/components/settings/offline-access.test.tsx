@@ -60,7 +60,7 @@ function emit(data: Record<string, unknown>) {
 /** A worker report: one language fully saved, one tool reachable offline. */
 function savedState(overrides: Partial<OfflineState> = {}): OfflineState {
   return {
-    generation: "v13",
+    generation: "3f9a1c4e77b2",
     core: { done: 10, total: 10 },
     engines: { done: 4, total: 4 },
     locales: { en: { done: 12, total: 12, ready: true }, fr: { done: 3, total: 12, ready: false } },
@@ -73,7 +73,7 @@ function savedState(overrides: Partial<OfflineState> = {}): OfflineState {
 function record(overrides: Record<string, unknown> = {}) {
   window.localStorage.setItem(
     OFFLINE_PLAN_KEY,
-    JSON.stringify({ version: "1.1.0", generation: "v13", locales: ["en"], tools: ["pdf-merge"], engines: true, at: "2026-09-13T00:00:00.000Z", ...overrides }),
+    JSON.stringify({ version: "1.1.0", generation: "3f9a1c4e77b2", locales: ["en"], tools: ["pdf-merge"], engines: true, at: "2026-09-13T00:00:00.000Z", ...overrides }),
   );
 }
 
@@ -469,7 +469,7 @@ describe("release changes", () => {
     expect(window.localStorage.getItem(OFFLINE_PLAN_KEY)).toBeNull();
     emit({ status: "complete", done: 2, total: 2, logs: [] });
     const stored = JSON.parse(window.localStorage.getItem(OFFLINE_PLAN_KEY) as string);
-    expect(stored).toMatchObject({ generation: "v13", locales: ["en"], engines: true });
+    expect(stored).toMatchObject({ generation: "3f9a1c4e77b2", locales: ["en"], engines: true });
     expect(stored.tools).toHaveLength(tools.length);
     expect(stored.pages).toEqual([...APP_PAGE_IDS]);
   });

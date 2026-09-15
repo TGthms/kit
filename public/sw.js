@@ -1,10 +1,17 @@
 /* Kit service worker — app shell only; never caches user files.
  *
  * Two caches, kept apart on purpose:
- *   kit-shell-v13  HTML documents, icons, scripts, styles and engines
- *   kit-rsc-v13    React Flight payloads used for in-app navigation
+ *   kit-shell-<build>  HTML documents, icons, scripts, styles and engines
+ *   kit-rsc-<build>    React Flight payloads used for in-app navigation
  * Because Flight bodies live in their own cache, a `.txt` body can never be
  * painted as the page.
+ *
+ * `<build>` is a digest of the content this worker serves, written into the
+ * exported copy of this file by `scripts/sw-precache.mjs`. Naming the caches
+ * after the content is what keeps a device from ever serving an older build: a
+ * new build changes this file, so the browser installs it, it opens a fresh
+ * pair of caches, and activating it deletes the previous pair. Anything saved
+ * by an earlier build is gone rather than quietly answering requests.
  *
  * A new worker waits for existing tabs to close before taking over. Seizing
  * open tabs mid-navigation can orphan a navigate fetch and leave the page
@@ -19,8 +26,12 @@
  * ("default"). Cross-origin, opaque and opaque-redirect responses are refused,
  * so a URL that resolves off-origin can never supply the page.
  */
-const CACHE = "kit-shell-v13";
-const RSC_CACHE = "kit-rsc-v13";
+const BUILD = "__KIT_BUILD__";
+/* Served straight out of `public/` during development, where the placeholder is
+   still in place. Nothing ships from there, so the name only has to be stable. */
+const GENERATION = /^[a-z0-9]+$/iu.test(BUILD) ? BUILD : "dev";
+const CACHE = `kit-shell-${GENERATION}`;
+const RSC_CACHE = `kit-rsc-${GENERATION}`;
 /* Cache Storage is shared by every app on the origin. Only names carrying this
    prefix belong to Kit, so activating a new worker never evicts another app. */
 const CACHE_PREFIX = "kit-";
@@ -337,6 +348,7 @@ function cacheNameFor(href) {
 
 async function cacheFillUrl(href) {
   const cache = await caches.open(cacheNameFor(href));
+  /* Held for this build, as the cache's own name guarantees. */
   if (await cache.match(href)) {
     fillSeen.add(href);
     return;
@@ -403,11 +415,14 @@ async function sendOfflineState(state) {
  *
  * The copy stored at install is read first so this still answers when the
  * device is offline; it is regenerated with each build, so it describes the
- * version of the app this worker belongs to.
+ * version of the app this worker belongs to. Read out of this build's own
+ * cache rather than matched across all of them: another generation's list
+ * would name content that is not here.
  */
 async function readManifest() {
   try {
-    const cached = await caches.match(FILL_PRECACHE);
+    const cache = await caches.open(CACHE);
+    const cached = await cache.match(FILL_PRECACHE);
     if (cached) return await cached.json();
   } catch {
     /* fall through to the network */
@@ -483,7 +498,7 @@ async function offlineState() {
   const core = manifest.core || [];
   const engines = manifest.engines || [];
   return {
-    generation: CACHE.replace(/^kit-shell-/u, ""),
+    generation: GENERATION,
     core: { done: countPresent(core, shell), total: core.length },
     engines: { done: countPresent(engines, shell), total: engines.length },
     locales,
@@ -662,6 +677,9 @@ async function downloadSelectedOffline(data) {
         cursor += 1;
         if (href === undefined) return;
         const cache = await caches.open(cacheNameFor(href));
+        /* Already held means already held *for this build*: the caches carry
+           the build's stamp, so anything an earlier build wrote lives in a
+           different cache and is fetched again here rather than counted. */
         if (await cache.match(href)) {
           done += 1;
           await note(`Already ready: ${pathOf(href)}`);

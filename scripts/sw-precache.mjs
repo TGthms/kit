@@ -1,10 +1,17 @@
 /**
- * After static export, list shell assets for the service worker's idle fill.
- * Not committed; Cloudflare `npm run build` produces `out/sw-precache.json`.
+ * After static export, list shell assets for the service worker's idle fill,
+ * and name the build's caches after their contents.
+ *
+ * Not committed; Cloudflare `npm run build` produces `out/sw-precache.json` and
+ * rewrites `out/sw.js` with the stamp described below.
  */
+import { createHash } from "node:crypto";
 import { existsSync, readFileSync, readdirSync, statSync, writeFileSync } from "node:fs";
 import { dirname, join, relative } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
+
+/** The token `public/sw.js` carries in place of the stamp. */
+export const BUILD_PLACEHOLDER = "__KIT_BUILD__";
 
 const SKIP_DIRS = new Set(["node_modules"]);
 const SKIP_LOCALE_DIRS = new Set(["_next", "vendor", "boot", "icons", "404", "_not-found"]);
@@ -197,10 +204,79 @@ export function aliasLocaleDirs(outDir, localeNames) {
   return found;
 }
 
+/**
+ * A digest of everything this build ships, used to name its caches.
+ *
+ * The worker carries it, so the worker's own bytes change exactly when the
+ * content does: a browser then installs the new worker, which opens a fresh
+ * pair of caches and deletes the previous pair. Content written by an earlier
+ * build can therefore never be served alongside this one.
+ *
+ * An address that carries its own hash in the name is covered by the list
+ * alone; documents and Flight payloads keep the same address whatever they
+ * contain, so their bytes are read as well.
+ */
+export function buildStamp(outDir, manifest, basePath = "") {
+  const prefix = basePath.replace(/\/$/, "");
+  const fileFor = (url) => {
+    const path = prefix && url.startsWith(prefix) ? url.slice(prefix.length) : url;
+    return join(outDir, path.endsWith("/") ? `${path}index.html` : path);
+  };
+  const urls = new Set([
+    ...manifest.core,
+    ...manifest.engines,
+    ...Object.values(manifest.chromeByLocale).flat(),
+    ...Object.values(manifest.toolsByLocale).flat(),
+    ...Object.values(manifest.rscByLocale).flat(),
+    ...Object.values(manifest.extrasByLocale).flat(),
+  ]);
+  const hash = createHash("sha256");
+  for (const url of [...urls].sort()) {
+    hash.update(url);
+    hash.update("\0");
+    const file = fileFor(url);
+    if (existsSync(file)) hash.update(readFileSync(file));
+    hash.update("\0");
+  }
+  return hash.digest("hex").slice(0, 12);
+}
+
+/** The line the worker declares its build on. */
+const BUILD_LINE = /^const BUILD = "([^"]*)";$/mu;
+const STAMP = /^[a-f0-9]{12}$/u;
+
+/**
+ * Put this build's stamp into the exported worker.
+ *
+ * `public/sw.js` is the source and keeps the placeholder, so what the worker
+ * does is readable there. Only the exported copy is stamped. Running this again
+ * over an export that already carries a stamp is expected — a resumed build, or
+ * a hand-run step — so the current value is replaced rather than required to be
+ * the placeholder.
+ */
+export function stampServiceWorker(outDir, stamp) {
+  const file = join(outDir, "sw.js");
+  if (!existsSync(file)) throw new Error(`no worker at ${file}`);
+  const source = readFileSync(file, "utf8");
+  const current = source.match(BUILD_LINE)?.[1];
+  if (current === undefined) {
+    throw new Error(
+      `the worker has no \`const BUILD = "…"\` line: without one every build would share a single set of caches`,
+    );
+  }
+  if (current !== BUILD_PLACEHOLDER && !STAMP.test(current)) {
+    throw new Error(`the worker's build is ${JSON.stringify(current)}, which is neither the placeholder nor a stamp`);
+  }
+  if (current === stamp) return stamp;
+  writeFileSync(file, source.replace(BUILD_LINE, `const BUILD = "${stamp}";`));
+  return stamp;
+}
+
 export function writePrecacheManifest(outDir, basePath = "") {
   if (!existsSync(outDir)) throw new Error(`export directory not found: ${outDir}`);
   const manifest = buildPrecacheManifest(outDir, basePath);
   writeFileSync(join(outDir, "sw-precache.json"), `${JSON.stringify(manifest)}\n`);
+  stampServiceWorker(outDir, buildStamp(outDir, manifest, basePath));
   return manifest;
 }
 
@@ -218,4 +294,5 @@ if (invoked) {
   );
   const pages = Object.values(manifest.pagesByLocale)[0] ?? {};
   console.log(`[sw-precache] app pages ${Object.keys(pages).length} per language, ${Object.keys(pages).length * Object.keys(manifest.pagesByLocale).length} in total`);
+  console.log(`[sw-precache] build ${readFileSync(join(outDir, "sw.js"), "utf8").match(/^const BUILD = "([^"]+)"/mu)?.[1]}`);
 }
