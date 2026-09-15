@@ -9,6 +9,8 @@ import { afterEach, describe, expect, it, vi } from "vitest";
 import { locales } from "@/lib/i18n/config";
 import { LocaleGate } from "./locale-gate";
 
+const COUNTS = { tools: 94, sections: 9, languages: 30 };
+
 describe("LocaleGate", () => {
   afterEach(() => {
     vi.unstubAllGlobals();
@@ -16,7 +18,7 @@ describe("LocaleGate", () => {
   });
 
   it("ssr includes a Kit heading and noscript locale homes", () => {
-    const html = renderToStaticMarkup(createElement(LocaleGate));
+    const html = renderToStaticMarkup(createElement(LocaleGate, COUNTS));
     expect(html).toContain(">Kit</h1>");
     expect(html).toContain('alt="Kit"');
     expect(html).toContain("<noscript>");
@@ -25,10 +27,20 @@ describe("LocaleGate", () => {
     }
   });
 
+  it("says what the site holds, which is all this address gives a reader without scripting", () => {
+    /* Most of what a machine fetching `/` can learn. The numbers are handed in
+       from the registry, so this cannot become a page that describes a site the
+       project no longer is. */
+    const html = renderToStaticMarkup(createElement(LocaleGate, COUNTS));
+    expect(html).toContain("94 tools across 9 sections");
+    expect(html).toContain("30 languages");
+    expect(html).toContain("nothing is uploaded");
+  });
+
   it("replaces to a locale home after mount", () => {
     const replace = vi.fn();
     vi.stubGlobal("location", { replace, search: "", hash: "" });
-    render(createElement(LocaleGate));
+    render(createElement(LocaleGate, COUNTS));
     expect(screen.getByRole("heading", { level: 1, name: "Kit" })).toBeInTheDocument();
     expect(replace).toHaveBeenCalledWith("/en/");
   });
@@ -36,7 +48,7 @@ describe("LocaleGate", () => {
   it("keeps greeting preview query and hash on the locale hop", () => {
     const replace = vi.fn();
     vi.stubGlobal("location", { replace, search: "?date=2026-12-25", hash: "#top" });
-    render(createElement(LocaleGate));
+    render(createElement(LocaleGate, COUNTS));
     expect(replace).toHaveBeenCalledWith("/en/?date=2026-12-25#top");
   });
 

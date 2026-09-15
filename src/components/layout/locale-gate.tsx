@@ -8,8 +8,24 @@ import { SITE_NAME } from "@/lib/seo/site";
 
 const TAGLINE = "Everyday tools in your browser. Private by design.";
 
-/** First-visit language pick for the static `/` entry. */
-export function LocaleGate() {
+/**
+ * First-visit language pick for the static `/` entry.
+ *
+ * The count line is the only description of the site on this address, and it is
+ * what a reader that does not run the redirect has: a person with scripting off,
+ * or anything fetching the document to see what Kit is. It is why the numbers
+ * are handed in from the registry rather than written here — a page that says
+ * "94 tools" after someone adds the ninety-fifth is worse than saying nothing.
+ */
+export function LocaleGate({
+  tools,
+  sections,
+  languages,
+}: {
+  tools: number;
+  sections: number;
+  languages: number;
+}) {
   useEffect(() => {
     let stored: string | null = null;
     try {
@@ -42,7 +58,11 @@ export function LocaleGate() {
       />
       <div className="space-y-2">
         <h1 className="type-display text-3xl text-foreground">{SITE_NAME}</h1>
-        <p className="max-w-sm text-sm text-muted-foreground">{TAGLINE}</p>
+        <p className="mx-auto max-w-sm text-sm text-muted-foreground">{TAGLINE}</p>
+        <p className="mx-auto max-w-md text-sm text-muted-foreground">
+          {tools} tools across {sections} sections, each at its own address in {languages} languages. Everything runs
+          in your browser; nothing is uploaded.
+        </p>
       </div>
       <span className="kit-spinner" aria-hidden />
       <p className="sr-only" role="status">
