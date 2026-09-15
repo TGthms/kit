@@ -25,11 +25,6 @@ const DEFAULT_LOCALE = "en";
 const NETWORK_EXCEPTION =
   "Currency conversion asks api.frankfurter.dev for rates when the browser has no fresh ones; only the currency pair code is sent, never an amount or a file.";
 
-/** A page asking not to be indexed is a compatibility address, not a tool. */
-export function isIndexablePage(html) {
-  return !/<meta name="robots" content="noindex[^"]*"/u.test(html);
-}
-
 function jsonLdBlocks(html) {
   return [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/gu)]
     .map((match) => {
@@ -49,6 +44,12 @@ function nodesOf(block) {
 /**
  * What one tool page says about itself: the name, description and kind from its
  * own structured data, and the address and language from its own head.
+ *
+ * A page that declares no application is not a tool page. The aliases kept for
+ * old links emit only a page and a breadcrumb, which is what makes them
+ * recognisable here without consulting a list of names — and unlike a marker
+ * about indexing, that holds on the backup host too, where every page is asked
+ * not to be indexed so it cannot compete with the canonical host.
  */
 export function readToolPage(html) {
   const nodes = jsonLdBlocks(html).flatMap(nodesOf);
@@ -87,7 +88,6 @@ export function collectTools(outDir, locales) {
       const page = join(root, segment.name, "index.html");
       if (!existsSync(page)) continue;
       const html = readFileSync(page, "utf8");
-      if (!isIndexablePage(html)) continue;
       const facts = readToolPage(html);
       if (!facts) continue;
       const entry = found.get(segment.name) ?? { segment: segment.name, locales: {} };

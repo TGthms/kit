@@ -2,15 +2,23 @@ import { mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "nod
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { afterAll, describe, expect, it } from "vitest";
-import { collectTools, isIndexablePage, readToolPage, writeDiscoveryFiles } from "./discovery.mjs";
+import { collectTools, readToolPage, writeDiscoveryFiles } from "./discovery.mjs";
 
 const SITE = "https://trykit.pages.dev";
 
-/** One tool page, as the exporter writes it: head, canonical, and its own JSON-LD. */
-function toolPage({ name, description, url, category, categoryUrl, kind, inLanguage, noindex = false }) {
+/**
+ * One tool page, as the exporter writes it: head, canonical, and its own JSON-LD.
+ *
+ * An alias — an address kept alive for a link that has moved — is a page and a
+ * breadcrumb with no application of its own, which is how the catalogue tells
+ * the two apart without a list of names.
+ */
+function toolPage({ name, description, url, category, categoryUrl, kind, inLanguage, alias = false }) {
   const graph = [
     { "@type": "WebPage", name, description, url },
-    { "@type": "SoftwareApplication", name, description, url, applicationCategory: kind, inLanguage },
+    ...(alias
+      ? []
+      : [{ "@type": "SoftwareApplication", name, description, url, applicationCategory: kind, inLanguage }]),
     {
       "@type": "BreadcrumbList",
       itemListElement: [
@@ -23,7 +31,7 @@ function toolPage({ name, description, url, category, categoryUrl, kind, inLangu
   return `<!DOCTYPE html><html lang="${inLanguage}"><head>
 <title>${name} — Kit</title>
 <meta name="description" content="${description}"/>
-${noindex ? '<meta name="robots" content="noindex, follow"/>' : ""}
+${alias ? '<meta name="robots" content="noindex, follow"/>' : ""}
 <link rel="canonical" href="${url}"/>
 <script type="application/ld+json">${JSON.stringify({ "@context": "https://schema.org", "@graph": graph })}</script>
 </head><body></body></html>`;
@@ -69,7 +77,7 @@ function writeExport(locales = ["en", "fr"]) {
         categoryUrl: `${SITE}/${locale}/c/pdf/`,
         kind: "BusinessApplication",
         inLanguage: locale,
-        noindex: true,
+        alias: true,
       }),
     );
   }
@@ -123,10 +131,35 @@ describe("reading a tool page", () => {
     expect(readToolPage("<!DOCTYPE html><html><body></body></html>")).toBeNull();
   });
 
-  it("treats an ask not to be indexed as a compatibility address", () => {
-    expect(isIndexablePage('<meta name="robots" content="noindex, follow"/>')).toBe(false);
-    expect(isIndexablePage('<meta name="robots" content="index, follow"/>')).toBe(true);
-    expect(isIndexablePage("<html></html>")).toBe(true);
+  it("takes a page that declares no application as a compatibility address", () => {
+    /* An address kept alive for a moved link asks not to be indexed and offers
+       no application of its own. The indexing marker alone is not enough to go
+       on: on the backup host every page carries it, so a rule built on it would
+       describe no tools there at all. */
+    const alias = toolPage({
+      name: "Merge PDFs",
+      description: "Renamed.",
+      url: `${SITE}/en/tools/merged-pdfs/`,
+      category: "PDF",
+      categoryUrl: `${SITE}/en/c/pdf/`,
+      kind: "BusinessApplication",
+      inLanguage: "en",
+      alias: true,
+    });
+    expect(readToolPage(alias)).toBeNull();
+
+    const real = toolPage({
+      name: "Merge PDFs",
+      description: "Stack several PDFs into one.",
+      url: `${SITE}/en/tools/pdf-merge/`,
+      category: "PDF",
+      categoryUrl: `${SITE}/en/c/pdf/`,
+      kind: "BusinessApplication",
+      inLanguage: "en",
+    });
+    expect(readToolPage(real)?.name).toBe("Merge PDFs");
+    /* Being asked not to be indexed does not make a page less of a tool. */
+    expect(readToolPage(real.replace("<head>", '<head><meta name="robots" content="noindex, follow"/>'))).not.toBeNull();
   });
 });
 

@@ -23,7 +23,14 @@ type Manifest = {
 };
 
 const INDEXABLE = '<!DOCTYPE html><html><head><title>T</title></head><body></body></html>';
-const ALIAS = '<!DOCTYPE html><html><head><meta name="robots" content="noindex, follow"/></head><body></body></html>';
+
+/**
+ * A tool page naming the address it belongs at. An alias names another one,
+ * which is what marks it a compatibility address rather than a tool — and
+ * unlike a "do not index" marker, that is true on both hosts.
+ */
+const toolPageNaming = (canonicalPath: string) =>
+  `<!DOCTYPE html><html><head><link rel="canonical" href="https://trykit.pages.dev${canonicalPath}"/></head><body></body></html>`;
 
 /** The app's own pages for one language, as a real export writes them. */
 function writeAppPages(root: string, locale: string) {
@@ -124,14 +131,20 @@ describe("compatibility addresses", () => {
   for (const locale of ["en", "fr"]) {
     mkdirSync(join(root, locale), { recursive: true });
     writeFileSync(join(root, locale, "index.html"), INDEXABLE);
-    for (const [segment, html] of [["real-tool", INDEXABLE], ["old-alias", ALIAS]] as const) {
+    /* `old-alias` is the address a renamed tool used to live at, so it names
+       the tool's current address as its own. */
+    const addresses: [string, string][] = [
+      ["real-tool", `/${locale}/tools/real-tool/`],
+      ["old-alias", `/${locale}/tools/real-tool/`],
+    ];
+    for (const [segment, canonical] of addresses) {
       mkdirSync(join(root, locale, "tools", segment), { recursive: true });
-      writeFileSync(join(root, locale, "tools", segment, "index.html"), html);
+      writeFileSync(join(root, locale, "tools", segment, "index.html"), toolPageNaming(canonical));
       writeFileSync(join(root, locale, "tools", segment, "index.txt"), "flight payload");
     }
   }
 
-  it("is recognised from the page asking not to be indexed", () => {
+  it("is recognised from the page naming another address as its own", () => {
     expect([...aliasToolSegments(root, ["en", "fr"])]).toEqual(["old-alias"]);
   });
 
@@ -139,9 +152,9 @@ describe("compatibility addresses", () => {
     const onlyFr = mkdtempSync(join(tmpdir(), "kit-precache-fr-"));
     try {
       mkdirSync(join(onlyFr, "fr/tools/old-alias"), { recursive: true });
-      writeFileSync(join(onlyFr, "fr/tools/old-alias/index.html"), ALIAS);
+      writeFileSync(join(onlyFr, "fr/tools/old-alias/index.html"), toolPageNaming("/fr/tools/real-tool/"));
       mkdirSync(join(onlyFr, "fr/tools/real-tool"), { recursive: true });
-      writeFileSync(join(onlyFr, "fr/tools/real-tool/index.html"), INDEXABLE);
+      writeFileSync(join(onlyFr, "fr/tools/real-tool/index.html"), toolPageNaming("/fr/tools/real-tool/"));
       expect([...aliasToolSegments(onlyFr, ["fr"])]).toEqual(["old-alias"]);
     } finally {
       rmSync(onlyFr, { recursive: true, force: true });

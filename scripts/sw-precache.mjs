@@ -159,9 +159,14 @@ export function buildPrecacheManifest(outDir, basePath = "") {
 
 /**
  * The tool route segments that are aliases rather than tools, read off the
- * pages themselves: those pages ask not to be indexed, which is exactly what
- * makes them compatibility addresses instead of something a visitor chooses.
- * The set is the same in every language, so only one language is read.
+ * pages themselves: an alias names some other address as its own, which is
+ * exactly what makes it a compatibility address instead of something a visitor
+ * chooses. The set is the same in every language, so only one language is read.
+ *
+ * The rule is the page's own canonical rather than its "do not index" marker:
+ * the backup host asks every one of its pages not to be indexed, so judging by
+ * that would call every tool an alias there and leave its Offline access page
+ * offering none. This is also the rule the language aliases below already use.
  */
 export function aliasToolSegments(outDir, localeNames) {
   const locale = localeNames.includes("en") ? "en" : localeNames[0];
@@ -172,7 +177,15 @@ export function aliasToolSegments(outDir, localeNames) {
     if (!entry.isDirectory()) continue;
     const page = join(toolsRoot, entry.name, "index.html");
     if (!existsSync(page)) continue;
-    if (/<meta name="robots" content="noindex[^"]*"/u.test(readFileSync(page, "utf8"))) found.add(entry.name);
+    const href = readFileSync(page, "utf8").match(/<link rel="canonical" href="([^"]+)"/u)?.[1];
+    if (!href) continue;
+    let path;
+    try {
+      path = new URL(href).pathname;
+    } catch {
+      continue;
+    }
+    if (path !== `/${locale}/tools/${entry.name}/`) found.add(entry.name);
   }
   return found;
 }
