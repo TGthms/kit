@@ -6,6 +6,7 @@ import { CONTENT_SECURITY_POLICY, CONTENT_SECURITY_POLICY_HEADER, ogImageUrl, og
 import { websiteJsonLd, serializeJsonLd, homeJsonLd, toolJsonLd, legalJsonLd, howJsonLd } from "./json-ld";
 import { buildCategoryMetadata, buildLocaleMetadata, buildSectionMetadata, buildToolMetadata, categoryJsonLdInput, faqJsonLdInput, languageAlternates, legalJsonLdInput, socialImages, toolJsonLdInput } from "./metadata";
 import { tools } from "@/lib/tools/registry";
+import { locales, messageFileFor } from "@/lib/i18n/config";
 import { toolPathSegment } from "@/lib/navigation/routes";
 
 describe("content security policy", () => {
@@ -202,23 +203,31 @@ describe("root language alternates", () => {
 });
 
 describe("social metadata builders", () => {
-  it("shows a tool's own sentence, and its label where a language has none", async () => {
-    /* English carries a sentence per tool; the other thirty are being written.
-       A language without one must fall back to its own label — never to the
-       English sentence, and never to nothing. */
-    const english = await buildToolMetadata("en", "frequency-converter");
-    expect(String(english.description)).toMatch(/hertz/u);
+  it("gives every tool page a real sentence, in the language it is written in", async () => {
+    /* English and French carry a sentence per tool; the rest are being written.
+       Whatever a language has, its page must say that: its own sentence, or its
+       own label while it waits — never the English sentence, never nothing. */
+    const english = await import("../../../messages/en.json");
+    for (const loc of locales) {
+      const file = messageFileFor(loc);
+      const catalog = (await import(`../../../messages/${file}.json`)).default as {
+        tools: Record<string, { description?: string; summary?: string }>;
+      };
+      const entry = catalog.tools["frequency-converter"];
+      const expected = entry.summary || entry.description;
 
-    const fr = (await import("../../../messages/fr.json")).default as {
-      tools: Record<string, { description?: string }>;
-    };
-    const french = await buildToolMetadata("fr", "frequency-converter");
-    expect(french.description).toBeTruthy();
-    expect(String(french.description)).toBe(fr.tools["frequency-converter"]?.description);
+      const meta = await buildToolMetadata(loc, "frequency-converter");
+      expect(meta.description, loc).toBe(expected);
+      expect(meta.description, loc).toBeTruthy();
+      if (loc !== "en") {
+        expect(meta.description, loc).not.toBe(english.tools["frequency-converter"].summary);
+      }
+    }
 
     /* The record a machine reads says what the page says. */
     const record = await toolJsonLdInput("en", "frequency-converter");
-    expect(record?.description).toBe(String(english.description));
+    expect(record?.description).toBe(english.tools["frequency-converter"].summary);
+    expect(String(record?.description)).toMatch(/hertz/u);
   });
 
   it("uses a large Twitter card and the OG image on home, tools, and sections", async () => {

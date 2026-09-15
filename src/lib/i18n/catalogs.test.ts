@@ -55,6 +55,18 @@ describe("message catalogs", () => {
     }
   });
 
+  it("gives a language either every sentence or none of them", async () => {
+    /* Half a language would show a sentence on some tool pages and a plain
+       label on others: the fallback belongs to the language, not to the tool. */
+    for (const loc of locales) {
+      const catalog = (await import(`../../../messages/${messageFileFor(loc)}.json`)).default as {
+        tools: Record<string, { summary?: string }>;
+      };
+      const written = tools.filter((tool) => catalog.tools[tool.id]?.summary).length;
+      expect([0, tools.length], `${loc} has ${written} sentences`).toContain(written);
+    }
+  });
+
   it("keeps every English key in every catalog, including tool names", async () => {
     const missingByLocale: Record<string, string[]> = {};
     for (const loc of locales) {

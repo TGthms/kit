@@ -518,6 +518,7 @@
     "pdf-merge": {
       "name": "Fusionner des PDF",
       "description": "Empilez plusieurs PDF en un seul. Prévisualisez les pages et glissez pour réordonner.",
+      "summary": "Combinez plusieurs PDF en un seul fichier, en prévisualisant les pages et en les glissant dans l’ordre voulu avant d’enregistrer.",
       "keywords": "pdf fusionner combiner joindre assembler multipage",
       "run": "Fusionner",
       "empty": "Ajoutez au moins deux fichiers PDF.",
@@ -526,6 +527,7 @@
     "pdf-split": {
       "name": "Découper un PDF",
       "description": "Extrayez une plage de pages vers un nouveau PDF.",
+      "summary": "Extrayez une ou plusieurs plages de pages d’un PDF dans un nouveau fichier, ou découpez un document en plusieurs, sans l’envoyer nulle part.",
       "keywords": "pdf découper extraire pages plage",
       "run": "Découper",
       "range": "Pages (par exemple 1-3,5)",
@@ -534,6 +536,7 @@
     "pdf-organize": {
       "name": "Organiser les pages",
       "description": "Faites pivoter, supprimez celles dont vous n’avez pas besoin et définissez un nouvel ordre.",
+      "summary": "Faites pivoter, supprimez et réordonnez les pages d’un PDF, puis enregistrez le document réorganisé. Rien ne quitte votre appareil.",
       "keywords": "pdf pivoter supprimer réordonner organiser pages",
       "run": "Enregistrer le PDF",
       "success": "Votre PDF a été mis à jour.",
@@ -542,6 +545,7 @@
     "pdf-compress": {
       "name": "Réduire en images",
       "description": "Rasterise chaque page en JPEG. Le texte, les liens et les vecteurs ne sont pas conservés.",
+      "summary": "Réduisez un PDF en convertissant chaque page en JPEG à la qualité et à la taille choisies — un fichier plus léger, sans texte sélectionnable.",
       "keywords": "pdf compresser réduire taille plus léger",
       "run": "Réduire",
       "note": "Chaque page devient une image JPEG, puis un nouveau PDF. Le texte interrogeable, les liens et les vecteurs disparaissent. Le fichier peut grossir. Pour les scans photo, pas pour les contrats à rechercher.",
@@ -550,6 +554,7 @@
     "pdf-watermark": {
       "name": "Filigrane PDF",
       "description": "Ajoutez un texte en filigrane, en-tête ou pied de page sur chaque page.",
+      "summary": "Apposez un texte sur chaque page comme filigrane, en-tête ou pied de page, en réglant le contenu, la taille, l’angle, l’opacité et la position.",
       "keywords": "pdf filigrane tampon en-tête pied confidentiel",
       "run": "Appliquer",
       "text": "Texte du filigrane",
@@ -563,6 +568,7 @@
     "pdf-redact": {
       "name": "Masquer du contenu",
       "description": "Placez des rectangles noirs sur les zones sensibles (masquage visuel).",
+      "summary": "Masquez des zones par des rectangles noirs. Couverture visuelle et non caviardage réel, le texte en dessous est toujours présent.",
       "keywords": "pdf masquer caviarder cacher sensible",
       "run": "Appliquer le masque",
       "note": "Masquage visuel uniquement. Cela ne garantit pas la suppression de tout le flux de texte sous-jacent — vérifiez les documents sensibles.",
@@ -574,6 +580,7 @@
     "pdf-extract": {
       "name": "Extraire d’un PDF",
       "description": "Récupérez le texte lisible ou exportez une page en image.",
+      "summary": "Extrayez le texte sélectionnable d’un PDF, ou exportez ses pages en images JPEG dans un ZIP, sans envoyer le document nulle part.",
       "keywords": "pdf extraire texte images",
       "run": "Extraire",
       "modeText": "Texte",
@@ -585,6 +592,7 @@
     "image-compress": {
       "name": "Compresser des images",
       "description": "Baissez la qualité et la taille max pour que les photos restent partageables.",
+      "summary": "Allégez vos photos pour l’e-mail, la messagerie ou le web en baissant la qualité, en limitant le plus grand côté, ou les deux.",
       "keywords": "image compresser jpg png webp taille photo",
       "run": "Compresser",
       "success": "{count} image(s) compressée(s)."
@@ -592,6 +600,7 @@
     "image-resize": {
       "name": "Redimensionner des images",
       "description": "Fixez les dimensions exactes, avec verrouillage du ratio en option.",
+      "summary": "Donnez à une image des dimensions exactes en pixels, ou redimensionnez-la en pourcentage, en gardant les proportions si vous le souhaitez.",
       "keywords": "image redimensionner échelle largeur hauteur",
       "run": "Redimensionner",
       "lockAspect": "Conserver les proportions",
@@ -600,6 +609,7 @@
     "image-crop": {
       "name": "Recadrer une image",
       "description": "Ne gardez que le rectangle qui vous intéresse.",
+      "summary": "Recadrez une photo sur la partie qui compte en faisant glisser la sélection, puis exportez uniquement ce rectangle.",
       "keywords": "image recadrer couper zone",
       "run": "Recadrer",
       "success": "Image recadrée prête."
@@ -607,6 +617,7 @@
     "image-convert": {
       "name": "Convertir le format d’image",
       "description": "Passez de JPEG à PNG, WEBP et formats web similaires.",
+      "summary": "Convertissez entre JPEG, PNG, WEBP, AVIF et GIF, une image ou tout un lot, sans téléverser les fichiers.",
       "keywords": "image convertir format webp png jpg jpeg",
       "run": "Convertir",
       "success": "{count} image(s) convertie(s)."
@@ -614,6 +625,7 @@
     "image-metadata": {
       "name": "Métadonnées d’image",
       "description": "Consultez l’EXIF et les balises similaires, puis exportez une copie sans elles.",
+      "summary": "Inspectez les données EXIF d’une photo — appareil, objectif, date, GPS — puis enregistrez une copie sans ces informations.",
       "keywords": "image exif métadonnées supprimer confidentialité localisation",
       "run": "Supprimer les métadonnées",
       "note": "Les pixels sont réencodés dans le navigateur : les métadonnées embarquées disparaissent.",
@@ -625,6 +637,7 @@
     "image-adjust": {
       "name": "Ajuster une image",
       "description": "Modifiez luminosité, contraste et saturation.",
+      "summary": "Corrigez la luminosité, le contraste, la saturation et l’exposition à l’œil, le résultat se redessinant à chaque curseur.",
       "keywords": "image luminosité contraste saturation couleur",
       "run": "Appliquer",
       "brightness": "Luminosité",
@@ -635,6 +648,7 @@
     "convert-hub": {
       "name": "Conversion intelligente",
       "description": "Détecte des fichiers ou textes mélangés et convertit entre formats (pas un studio média).",
+      "summary": "Collez un contenu mixte et laissez Kit déterminer ce que c’est — JSON, CSV, YAML, XML, TOML ou SQL — puis convertissez-le vers un autre format.",
       "keywords": "convertir hub intelligent lot json yaml csv zip image données",
       "run": "Convertir",
       "detect": "Détecté comme",
@@ -644,6 +658,7 @@
     "json-format": {
       "name": "Formateur JSON",
       "description": "Indente, minifie et détecte tôt les erreurs JSON.",
+      "summary": "Mettez en forme ou minifiez du JSON, et voyez exactement où se situe une erreur de syntaxe, la ligne fautive étant surlignée.",
       "keywords": "json formater valider minifier pretty",
       "run": "Formater",
       "success": "Le JSON est valide et formaté."
@@ -651,6 +666,7 @@
     "yaml-format": {
       "name": "Formateur YAML",
       "description": "Vérifie la structure YAML et range la mise en page.",
+      "summary": "Vérifiez la structure d’un YAML et remettez l’indentation d’aplomb, pour qu’un fichier de configuration se lise comme il doit.",
       "keywords": "yaml formater valider yml",
       "run": "Formater",
       "success": "Le YAML est valide."
@@ -658,6 +674,7 @@
     "toml-format": {
       "name": "Formateur TOML",
       "description": "Validez le TOML et gardez le fichier net.",
+      "summary": "Validez du TOML et présentez-le proprement, en repérant les erreurs de syntaxe qu’un analyseur de configuration refuserait.",
       "keywords": "toml formater valider config",
       "run": "Formater",
       "success": "Le TOML est valide."
@@ -665,6 +682,7 @@
     "markdown-html": {
       "name": "Markdown ↔ HTML",
       "description": "Passez du Markdown en HTML, ou l’inverse.",
+      "summary": "Convertissez du Markdown en HTML, ou du HTML en Markdown, en conservant titres, liens, listes, tableaux et blocs de code.",
       "keywords": "markdown html convertir md balisage",
       "run": "Convertir",
       "toHtml": "Markdown → HTML",
@@ -674,6 +692,7 @@
     "csv-json": {
       "name": "CSV ↔ JSON",
       "description": "Passez des données tabulaires entre CSV et tableaux JSON.",
+      "summary": "Convertissez un CSV en tableau JSON, ou du JSON en CSV, avec le séparateur et la ligne d’en-tête sous votre contrôle.",
       "keywords": "csv json convertir tableau tableur",
       "run": "Convertir",
       "toJson": "CSV → JSON",
@@ -683,6 +702,7 @@
     "text-diff": {
       "name": "Comparer du texte",
       "description": "Voyez les changements ligne par ligne entre deux versions.",
+      "summary": "Comparez deux versions d’un texte côte à côte et voyez quelles lignes ont été ajoutées, supprimées ou modifiées, au caractère près.",
       "keywords": "diff comparer texte changements patch",
       "run": "Comparer",
       "left": "Original",
@@ -692,6 +712,7 @@
     "base64": {
       "name": "Base64",
       "description": "Encodez ou décodez du Base64 pour du texte ou des fichiers entiers.",
+      "summary": "Encodez un texte ou un fichier entier en Base64, ou décodez-le pour retrouver l’original, sans que le contenu quitte le navigateur.",
       "keywords": "base64 encoder décoder binaire",
       "run": "Convertir",
       "mode": "Sens",
@@ -702,6 +723,7 @@
     "url-encode": {
       "name": "Encodage d’URL",
       "description": "Encodez ou décodez en pourcent les composants d’URL.",
+      "summary": "Encodez une URL, une chaîne de requête ou une valeur de formulaire en pourcentages, ou décodez ce qui l’a déjà été.",
       "keywords": "url encoder décoder pourcent uri requête",
       "run": "Convertir",
       "success": "Terminé."
@@ -709,6 +731,7 @@
     "audio-convert": {
       "name": "Convertir l’audio",
       "description": "Changez de conteneur audio (MP3, WAV, OGG…) dans le navigateur.",
+      "summary": "Convertissez l’audio entre MP3, WAV, OGG, M4A et d’autres formats courants dans le navigateur, au débit dont vous avez besoin.",
       "keywords": "audio convertir mp3 wav ogg ffmpeg son",
       "run": "Convertir",
       "loadingFfmpeg": "Chargement du moteur audio…",
@@ -722,6 +745,7 @@
     "audio-trim": {
       "name": "Rogner l’audio",
       "description": "Ne gardez que l’intervalle entre deux instants d’un fichier audio.",
+      "summary": "Ne gardez que la portion d’un fichier audio comprise entre deux horodatages, le début et la fin réglables à la seconde.",
       "keywords": "audio rogner couper extrait mp3 wav",
       "run": "Rogner",
       "success": "Rognage audio terminé."
@@ -729,6 +753,7 @@
     "audio-speed": {
       "name": "Vitesse et volume audio",
       "description": "Accélérez, ralentissez ou changez le volume d’un audio.",
+      "summary": "Accélérez ou ralentissez un fichier audio sans changer sa hauteur de voix, et ajustez le volume du résultat avant d’enregistrer.",
       "keywords": "audio vitesse tempo volume hauteur",
       "run": "Appliquer",
       "success": "L’audio traité est prêt."
@@ -736,6 +761,7 @@
     "video-convert": {
       "name": "Convertir la vidéo",
       "description": "Changez de conteneur vidéo (MP4, WEBM…) dans le navigateur.",
+      "summary": "Convertissez une vidéo entre MP4, WEBM et MKV dans le navigateur, avec des réglages H.264 et AAC déjà choisis.",
       "keywords": "vidéo convertir mp4 webm ffmpeg film",
       "run": "Convertir",
       "loadingFfmpeg": "Chargement du moteur vidéo…",
@@ -745,6 +771,7 @@
     "video-trim": {
       "name": "Rogner la vidéo",
       "description": "Ne gardez que le clip entre deux instants.",
+      "summary": "Ne gardez que le passage voulu d’une vidéo en définissant un point de début et de fin, puis exportez cette plage dans un fichier.",
       "keywords": "vidéo rogner couper extrait mp4",
       "run": "Rogner",
       "success": "Rognage vidéo terminé."
@@ -752,6 +779,7 @@
     "video-speed": {
       "name": "Vitesse et volume vidéo",
       "description": "Changez la vitesse de lecture et le niveau audio d’une vidéo.",
+      "summary": "Changez la vitesse de lecture d’une vidéo, en gardant son audio ou en le remplaçant, et réglez le niveau avant d’enregistrer.",
       "keywords": "vidéo vitesse tempo volume",
       "run": "Appliquer",
       "success": "La vidéo traitée est prête."
@@ -759,6 +787,7 @@
     "video-extract-audio": {
       "name": "Extraire l’audio d’une vidéo",
       "description": "Enregistrez la bande-son d’une vidéo en fichier audio.",
+      "summary": "Extrayez la bande sonore d’une vidéo et enregistrez-la comme fichier audio séparé, sans rien réenregistrer.",
       "keywords": "vidéo extraire audio mp3 bande-son",
       "run": "Extraire l’audio",
       "success": "Audio extrait."
@@ -766,6 +795,7 @@
     "pdf-numbers": {
       "name": "Numéros de page",
       "description": "Ajoutez une étiquette du type 1 / 12 sur chaque page.",
+      "summary": "Ajoutez des numéros de page dans le format de votre choix, par exemple 1 / 12 ou 1 sur 12, à la position que vous voulez.",
       "keywords": "pdf numéros page pied en-tête pagination",
       "run": "Ajouter les numéros",
       "template": "Libellé ({page} et {pages})",
@@ -782,6 +812,7 @@
     "pdf-to-images": {
       "name": "PDF → images",
       "description": "Rasterisez chaque page en JPEG et téléchargez-les en ZIP.",
+      "summary": "Convertissez chaque page d’un PDF en image JPEG à la résolution choisie, et téléchargez l’ensemble dans un fichier ZIP.",
       "keywords": "pdf image jpg jpeg zip pages exporter",
       "run": "Exporter les pages",
       "limits": "Les pages sont dessinées avec PDF.js dans cet onglet. Les très gros documents peuvent être lents et gourmands. C’est un raster visuel, pas une extraction d’objets image embarqués.",
@@ -790,6 +821,7 @@
     "images-to-pdf": {
       "name": "Images → PDF",
       "description": "Empilez des photos dans un PDF, une image par page.",
+      "summary": "Réunissez photos et scans dans un seul PDF, une image par page, au format A4 ou à leur taille d’origine.",
       "keywords": "images pdf jpg png combiner",
       "run": "Créer le PDF",
       "success": "{count, plural, one {PDF créé à partir de # image.} other {PDF créé à partir de # images.}}",
@@ -800,6 +832,7 @@
     "pdf-flatten": {
       "name": "Aplatir les formulaires",
       "description": "Intègre les champs AcroForm à la page pour qu’ils ne soient plus modifiables.",
+      "summary": "Transformez les champs de formulaire remplis en contenu définitif, pour que le PDF s’imprime et se lise partout sans pouvoir être modifié.",
       "keywords": "pdf aplatir formulaire champs acroform",
       "run": "Aplatir",
       "limits": "Fonctionne avec les champs AcroForm standard. Les formulaires XFA dynamiques ne sont pas entièrement pris en charge.",
@@ -808,6 +841,7 @@
     "pdf-metadata": {
       "name": "Métadonnées PDF",
       "description": "Consultez, modifiez ou effacez titre, auteur et autres champs Info.",
+      "summary": "Lisez, modifiez ou supprimez le titre, l’auteur, les mots-clés et les autres propriétés d’un PDF, puis enregistrez une copie propre.",
       "keywords": "Mots-clés",
       "run": "Enregistrer les métadonnées",
       "strip": "Effacer les champs Info et XMP",
@@ -822,6 +856,7 @@
     "pdf-protect": {
       "name": "Verrouiller ou déverrouiller un PDF",
       "description": "Ajoutez ou retirez un mot de passe utilisateur. Le chiffrement reste dans ce navigateur.",
+      "summary": "Ajoutez un mot de passe à un PDF ou retirez celui que vous connaissez, le chiffrement se faisant dans cet onglet et non sur un serveur.",
       "keywords": "pdf mot de passe verrouiller déverrouiller chiffrer",
       "run": "Appliquer",
       "lock": "Verrouiller",
@@ -833,6 +868,7 @@
     "image-rotate": {
       "name": "Pivoter et retourner",
       "description": "Tournez les images de 90° ou retournez-les horizontalement ou verticalement.",
+      "summary": "Faites pivoter vos photos par quarts de tour, redressez-les de quelques degrés ou retournez-les — une image ou tout un lot.",
       "keywords": "image pivoter retourner miroir",
       "run": "Appliquer",
       "operation": "Transformation",
@@ -846,6 +882,7 @@
     "image-filters": {
       "name": "Filtres d’image",
       "description": "Appliquez niveaux de gris, sépia ou inversion à une ou plusieurs photos.",
+      "summary": "Appliquez noir et blanc, sépia, inversion, flou ou netteté à une photo, ou à tout un dossier, puis téléchargez le résultat.",
       "keywords": "image filtre gris sépia inverser",
       "run": "Appliquer",
       "filter": "Filtre",
@@ -857,6 +894,7 @@
     "image-favicon": {
       "name": "Pack de favicon",
       "description": "Exportez une image source aux tailles d’icône courantes dans un ZIP.",
+      "summary": "Transformez une image en toutes les tailles d’icône attendues par un site ou une app — favicon, icône Apple, Android maskable — dans un ZIP.",
       "keywords": "favicon icône 16 32 180 192 512 apple touch",
       "run": "Exporter les icônes",
       "note": "Exporte des PNG en 16, 32, 48, 180, 192 et 512 pixels.",
@@ -865,6 +903,7 @@
     "video-gif": {
       "name": "Vidéo → GIF",
       "description": "Transformez un court extrait en GIF en boucle, dans le navigateur.",
+      "summary": "Transformez un court passage vidéo en GIF en boucle, en choisissant le début et la fin. L’encodage est lent sur les longs extraits.",
       "keywords": "vidéo gif extrait convertir ffmpeg",
       "run": "Créer le GIF",
       "limits": "Utilise FFmpeg WASM. Gardez les extraits courts : l’encodage GIF est lent et gourmand. Codecs selon la compilation dans le navigateur.",
@@ -873,6 +912,7 @@
     "xml-json": {
       "name": "XML ↔ JSON",
       "description": "Convertissez des documents XML en JSON, ou l’inverse.",
+      "summary": "Convertissez un document XML en JSON, ou l’inverse, en gardant attributs et éléments répétés dans une forme prévisible.",
       "keywords": "xml json convertir analyser",
       "run": "Convertir",
       "toJson": "XML → JSON",
@@ -882,6 +922,7 @@
     "sql-format": {
       "name": "Formateur SQL",
       "description": "Indente le SQL pour rendre clauses et listes plus lisibles.",
+      "summary": "Reformatez du SQL pour que clauses, jointures et longues listes s’alignent et se lisent dans l’ordre d’exécution.",
       "keywords": "sql formater pretty requête",
       "run": "Formater",
       "success": "SQL formaté."
@@ -889,6 +930,7 @@
     "regex-tester": {
       "name": "Testeur d’expressions rationnelles",
       "description": "Essayez une expression rationnelle sur un texte et remplacez les correspondances.",
+      "summary": "Testez une expression régulière sur votre propre texte, voyez les correspondances se surligner et essayez le remplacement.",
       "keywords": "regex expression rationnelle tester remplacer",
       "pattern": "Motif",
       "flags": "Options",
@@ -901,6 +943,7 @@
     "hash-generator": {
       "name": "Générateur de hash",
       "description": "SHA-1/256/384/512 et MD5 d’un texte ou d’un fichier, calculés localement.",
+      "summary": "Calculez SHA-1, SHA-256, SHA-384, SHA-512 ou MD5 pour un texte ou un fichier entier, sans rien envoyer nulle part.",
       "keywords": "hash sha256 md5 sha1 somme contrôle",
       "run": "Hasher",
       "algo": "Algorithme",
@@ -911,6 +954,7 @@
     "uuid-generator": {
       "name": "Générateur d’UUID",
       "description": "Créez des UUID version 4 ou 7 sur cet appareil.",
+      "summary": "Générez des UUID de version 4 ou 7, un par un ou en lot, créés sur votre appareil plutôt que par un serveur.",
       "keywords": "uuid guid v4 v7 générer",
       "run": "Générer",
       "count": "Combien",
@@ -920,6 +964,7 @@
     "color-convert": {
       "name": "Convertisseur de couleurs",
       "description": "Passez de HEX à RGB, HSL et HSV, avec un sélecteur de couleur.",
+      "summary": "Convertissez une couleur entre HEX, RVB, TSL, TSV et noms CSS, ou choisissez-la sur la roue et lisez toutes les notations.",
       "keywords": "couleur hex rgb hsl hsv sélecteur",
       "picker": "Sélecteur de couleur",
       "invalid": "Saisissez une couleur hexadécimale de 3 ou 6 chiffres."
@@ -927,6 +972,7 @@
     "lorem-ipsum": {
       "name": "Lorem ipsum",
       "description": "Générez des paragraphes, phrases ou mots de remplacement.",
+      "summary": "Générez des paragraphes, phrases ou mots de remplissage pour une maquette, en la quantité voulue et prêts à coller.",
       "keywords": "lorem ipsum faux texte placeholder",
       "run": "Générer",
       "count": "Nombre",
@@ -939,6 +985,7 @@
     "qr-code": {
       "name": "Code QR",
       "description": "Créez un QR à partir d’un texte, ou lisez-en un depuis une image.",
+      "summary": "Créez un QR code à partir d’un lien, d’un texte ou de coordonnées, téléchargez-le en image, ou lisez-en un depuis une photo.",
       "keywords": "qr code générer scanner lire code-barres",
       "run": "Générer",
       "payload": "Texte ou URL",
@@ -951,6 +998,7 @@
     "pdf-sign": {
       "name": "Signer un PDF",
       "description": "Apposez une signature tapée sur chaque page. Visuel uniquement — pas un certificat.",
+      "summary": "Placez une signature tapée sur les pages de votre choix. Elle est dessinée sur la page pour la lecture, ce n’est pas une signature cryptographique.",
       "keywords": "pdf signer signature tampon nom",
       "run": "Signer",
       "signature": "Texte de la signature",
@@ -961,6 +1009,7 @@
     "image-watermark": {
       "name": "Filigrane d’images",
       "description": "Superposez du texte sur des photos, une ou par lot.",
+      "summary": "Superposez un texte sur vos photos — position, taille, couleur et opacité — pour une image seule ou pour tout un lot.",
       "keywords": "image filigrane tampon copyright",
       "run": "Appliquer",
       "text": "Texte du filigrane",
@@ -974,6 +1023,7 @@
     "password-generator": {
       "name": "Générateur de mot de passe",
       "description": "Créez un mot de passe robuste sur cet appareil. Rien n’est stocké.",
+      "summary": "Créez un mot de passe robuste à la longueur et avec les caractères choisis. Il est généré sur cet appareil et jamais conservé.",
       "keywords": "mot de passe générer aléatoire secret",
       "run": "Générer",
       "length": "Longueur",
@@ -986,6 +1036,7 @@
     "case-convert": {
       "name": "Changer la casse",
       "description": "Passez de camel à snake, kebab, titre, etc.",
+      "summary": "Passez un texte entre camelCase, snake_case, kebab-case, Casse De Titre et les autres conventions des développeurs.",
       "keywords": "casse camel snake kebab pascal titre",
       "run": "Convertir",
       "style": "Style",
@@ -994,6 +1045,7 @@
     "jwt-decode": {
       "name": "Décodeur JWT",
       "description": "Lisez l’en-tête et la charge d’un JWT en local. Les signatures ne sont pas vérifiées.",
+      "summary": "Lisez l’en-tête et la charge utile d’un jeton JWT, voyez quand il expire, et décodez-le en local. La signature n’est pas vérifiée.",
       "keywords": "jwt décoder jeton bearer auth",
       "run": "Décoder",
       "limits": "Kit ne décode que le Base64url. Sans clé, il ne peut pas prouver l’authenticité du jeton.",
@@ -1005,12 +1057,14 @@
     "unix-timestamp": {
       "name": "Horodatage Unix",
       "description": "Convertissez un temps Unix en ISO et inversement.",
+      "summary": "Convertissez un horodatage Unix en date et heure lisibles, ou l’inverse, dans le fuseau horaire de votre choix.",
       "keywords": "unix epoch horodatage iso date",
       "now": "Utiliser maintenant"
     },
     "cron-explain": {
       "name": "Expliquer une cron",
       "description": "Transformez une cron à 5 champs en langage clair.",
+      "summary": "Traduisez une expression cron à cinq champs en une phrase claire, pour savoir quand une tâche planifiée s’exécute.",
       "keywords": "cron planning crontab expliquer",
       "run": "Expliquer",
       "success": "Expliqué."
@@ -1018,6 +1072,7 @@
     "number-base": {
       "name": "Base numérique",
       "description": "Convertissez des entiers entre les bases 2 et 36.",
+      "summary": "Convertissez un entier entre binaire, octal, décimal, hexadécimal et toute base de 2 à 36, avec la représentation binaire sous les yeux.",
       "keywords": "binaire hexadécimal décimal base convertir",
       "value": "Nombre",
       "from": "Depuis la base",
@@ -1026,6 +1081,7 @@
     "html-entities": {
       "name": "Entités HTML",
       "description": "Encodez ou décodez &lt; &amp; et les entités numériques.",
+      "summary": "Encodez ou décodez chevrons, guillemets et entités HTML numériques, pour que le texte soit sûr en balisage et lisible hors de lui.",
       "keywords": "html entités encoder décoder échapper",
       "run": "Convertir",
       "encode": "Encoder",
@@ -1035,6 +1091,7 @@
     "json-types": {
       "name": "JSON → TypeScript",
       "description": "Déduisez des interfaces TypeScript à partir d’un exemple JSON.",
+      "summary": "Transformez un exemple de réponse JSON en interfaces TypeScript, avec les objets et tableaux imbriqués typés autant que possible.",
       "keywords": "json typescript interface type générer",
       "run": "Générer les types",
       "success": "Types générés."
@@ -1129,15 +1186,15 @@
       "unitC": "Celsius (°C)",
       "unitF": "Fahrenheit (°F)",
       "unitK": "Kelvin (K)",
-      "unitMs": "Milliseconds",
+      "unitMs": "Millisecondes",
       "unitS": "Secondes",
       "unitMin": "Minutes",
       "unitH": "Heures",
       "unitDay": "Jours",
       "unitWeek": "Semaines",
-      "unitM_s": "Mètres per second",
-      "unitKm_h": "Kilomètres per hour",
-      "unitMph": "Miles per hour",
+      "unitM_s": "Mètres par seconde",
+      "unitKm_h": "Kilomètres par heure",
+      "unitMph": "Miles par heure",
       "unitKnot": "Nœuds",
       "unitMl": "Millilitres",
       "unitL": "Litres",
@@ -1153,8 +1210,8 @@
       "unitHp": "Cheval-vapeur mécanique",
       "unitJ": "Joules",
       "unitKj": "Kilojoules",
-      "unitWh": "Watt-hours",
-      "unitKwh": "Kilowatt-hours",
+      "unitWh": "Wattheures",
+      "unitKwh": "Kilowattheures",
       "unitCal": "Calories",
       "unitKcal": "Kilocalories",
       "unitEv": "Electronvolts",
@@ -1163,11 +1220,11 @@
       "unitBar": "Bar",
       "unitPsi": "PSI",
       "unitAtm": "Atmosphères",
-      "unitMmHg": "Millimètres of mercury",
+      "unitMmHg": "Millimètres de mercure",
       "unitMm2": "Square millimeters",
       "unitCm2": "Square centimeters",
       "unitM2": "Mètres carrés",
-      "unitKm2": "Square kilometers",
+      "unitKm2": "Kilomètres carrés",
       "unitFt2": "Pieds carrés",
       "unitAcre": "Acres",
       "unitHectare": "Hectares",
@@ -1188,22 +1245,22 @@
       "unitKhz": "Kilohertz",
       "unitMhz": "Megahertz",
       "unitGhz": "Gigahertz",
-      "unitRpm": "Revolutions per minute",
+      "unitRpm": "Tours par minute",
       "unitN": "Newtons",
       "unitKn": "Kilonewtons",
-      "unitLbf": "Pound-force",
+      "unitLbf": "Livre-force",
       "unitKgf": "Kilogram-force",
-      "unitL_100km": "Litres per 100 km",
-      "unitKm_L": "Kilomètres per liter",
-      "unitMpgUs": "Miles per US gallon",
-      "unitMpgImperial": "Miles per imperial gallon",
-      "unitM_s2": "Mètres per second squared",
+      "unitL_100km": "Litres aux 100 km",
+      "unitKm_L": "Kilomètres par litre",
+      "unitMpgUs": "Miles par gallon américain",
+      "unitMpgImperial": "Miles par gallon impérial",
+      "unitM_s2": "Mètres par seconde carrée",
       "unitG0": "Standard gravity",
-      "unitFt_s2": "Pieds per second squared",
-      "unitNm": "Newton-meters",
-      "unitKnm": "Kilonewton-meters",
-      "unitLbFt": "Pound-feet",
-      "unitLbIn": "Pound-inches",
+      "unitFt_s2": "Pieds par seconde carrée",
+      "unitNm": "Newtons-mètres",
+      "unitKnm": "Kilonewton-mètres",
+      "unitLbFt": "Livres-pieds",
+      "unitLbIn": "Livres-pouces",
       "unitMv": "Millivolts",
       "unitV": "Volts",
       "unitKv": "Kilovolts",
@@ -1243,8 +1300,8 @@
       "presetOhmsKilohms": "Ohms ↔ kilohms",
       "presetPxRem": "px ↔ rem",
       "presetPxPt": "px ↔ pt",
-      "unitUsFlOz": "US fluid ounces",
-      "unitUsPt": "US pints",
+      "unitUsFlOz": "Onces liquides US",
+      "unitUsPt": "Pintes US",
       "unitUsQt": "US quarts",
       "unitGw": "Gigawatts",
       "unitMj": "Megajoules",
@@ -1260,6 +1317,7 @@
     "text-counter": {
       "name": "Compteur de texte",
       "description": "Comptez les mots, caractères, phrases, paragraphes et le temps de lecture.",
+      "summary": "Comptez mots, caractères, phrases et paragraphes à mesure que vous tapez, avec une estimation du temps de lecture.",
       "keywords": "compteur mots caractères statistiques texte temps lecture",
       "limits": "Le comptage utilise la segmentation Unicode native du navigateur quand elle est disponible, afin de mieux traiter les emojis et caractères combinés.",
       "input": "Texte à compter",
@@ -1276,6 +1334,7 @@
     "timezone-converter": {
       "name": "Horloge mondiale",
       "description": "Convertissez une date et une heure locales entre fuseaux et consultez une horloge mondiale.",
+      "summary": "Voyez l’heure qu’il est dans les villes du monde entier, et convertissez un instant entre fuseaux horaires, changement de date compris.",
       "keywords": "convertisseur fuseau horaire horloge mondiale heure été date heure",
       "limits": "Saisissez l’heure dans la ville source. La conversion utilise les règles de fuseaux IANA, y compris les changements d’heure d’été.",
       "convert": "Convertir une date et une heure",
@@ -1325,6 +1384,7 @@
     "date-calculator": {
       "name": "Calculateur de dates",
       "description": "Comparez des dates, ajoutez une durée et comptez les jours ouvrés avec jours fériés.",
+      "summary": "Calculez l’écart entre deux dates, ajoutez ou retranchez des jours et des mois, et comptez les jours ouvrés hors jours fériés.",
       "keywords": "calculateur dates différence ajouter jours ouvrés jours fériés",
       "updated": "Date mise à jour.",
       "invalid": "Vérifiez les données.",
@@ -1363,6 +1423,7 @@
     "tip-split-calculator": {
       "name": "Calculateur de pourboire et partage",
       "description": "Calculez pourboire, taxes, total et parts équitables pour un groupe.",
+      "summary": "Calculez le pourboire, la taxe et le total d’une addition, puis partagez équitablement entre le nombre de personnes qui paient.",
       "keywords": "calculateur pourboire partage addition taxe restaurant parts",
       "limits": "Le pourboire et les taxes sont calculés sur le sous-total. Les parts arrondies distribuent le reste aux premières personnes afin que la somme corresponde au total.",
       "invalid": "Vérifiez les données.",
@@ -1383,6 +1444,7 @@
     "stopwatch-timer": {
       "name": "Chronomètre et minuteur",
       "description": "Utilisez un chronomètre précis ou un compte à rebours dans le navigateur.",
+      "summary": "Lancez un chronomètre précis avec temps intermédiaires, ou un compte à rebours dans un onglet qui continue en arrière-plan.",
       "keywords": "chronomètre minuteur compte à rebours horloge en ligne",
       "saved": "Enregistré dans l’historique.",
       "stopwatch": "Chronomètre",
@@ -1399,6 +1461,7 @@
     "random-generator": {
       "name": "Générateur aléatoire",
       "description": "Générez des nombres, valeurs booléennes, choix ou mots de passe au quotidien.",
+      "summary": "Tirez un nombre au hasard, jouez à pile ou face, lancez des dés ou choisissez dans une liste, plage et nombre de résultats réglables.",
       "keywords": "générateur nombres aléatoires sélecteur générateur mots de passe",
       "invalid": "Vérifiez les données.",
       "limits": "Le hasard utilise la source Math.random du navigateur. Les résultats sont destinés aux choix courants, pas aux secrets cryptographiques.",
@@ -1428,6 +1491,7 @@
     "currency-converter": {
       "name": "Convertisseur de devises",
       "description": "Taux de change en direct avec cache local",
+      "summary": "Convertissez entre devises avec des taux quotidiens, mis en cache sur votre appareil pour que le dernier jeu fonctionne hors ligne.",
       "keywords": "convertisseur de devises taux de change argent Frankfurter",
       "currency": "Devise",
       "limits": "Les taux viennent de Frankfurter à l’ouverture de l’outil ou quand vous touchez Actualiser, puis restent six heures dans le cache de ce navigateur. Les montants ne sont pas envoyés. Ce sont des données de référence quotidiennes, pas pour le trading ni les impôts.",
@@ -1451,6 +1515,7 @@
     "length-converter": {
       "name": "Longueur",
       "description": "Distances, dimensions et déplacements",
+      "summary": "Convertissez une longueur entre mètres, pieds, miles, pouces, centimètres et les autres unités du voyage et du bricolage.",
       "keywords": "Longueur length converter",
       "run": "Enregistrer la conversion",
       "success": "Conversion enregistrée dans l’historique."
@@ -1458,6 +1523,7 @@
     "mass-converter": {
       "name": "Masse",
       "description": "Poids de milligrammes à tonnes",
+      "summary": "Convertissez un poids entre milligrammes, grammes, kilogrammes, tonnes, livres, onces et stone, pour la cuisine ou l’expédition.",
       "keywords": "Masse mass converter",
       "run": "Enregistrer la conversion",
       "success": "Conversion enregistrée dans l’historique."
@@ -1465,6 +1531,7 @@
     "temperature-converter": {
       "name": "Température",
       "description": "Celsius, Fahrenheit et Kelvin",
+      "summary": "Convertissez une température entre Celsius, Fahrenheit et Kelvin, y compris les points de gel et d’ébullition de l’eau.",
       "keywords": "Température temperature converter",
       "run": "Enregistrer la conversion",
       "success": "Conversion enregistrée dans l’historique."
@@ -1472,6 +1539,7 @@
     "speed-converter": {
       "name": "Vitesse",
       "description": "Vitesses courantes et nautiques",
+      "summary": "Convertissez une vitesse entre kilomètres par heure, miles par heure, mètres par seconde et nœuds, pour la route, l’air et la mer.",
       "keywords": "Vitesse speed converter",
       "run": "Enregistrer la conversion",
       "success": "Conversion enregistrée dans l’historique."
@@ -1479,6 +1547,7 @@
     "duration-converter": {
       "name": "Durée",
       "description": "Des millisecondes aux semaines",
+      "summary": "Convertissez une durée entre millisecondes, secondes, minutes, heures, jours et semaines, dans les deux sens.",
       "keywords": "Durée duration converter",
       "run": "Enregistrer la conversion",
       "success": "Conversion enregistrée dans l’historique."
@@ -1486,6 +1555,7 @@
     "volume-converter": {
       "name": "Volume",
       "description": "Mesures métriques et de cuisine",
+      "summary": "Convertissez un volume entre litres, millilitres, gallons, tasses, pintes et les mesures dans lesquelles une recette est écrite.",
       "keywords": "Volume convertisseur de volume",
       "run": "Enregistrer la conversion",
       "success": "Conversion enregistrée dans l’historique."
@@ -1493,6 +1563,7 @@
     "power-converter": {
       "name": "Puissance",
       "description": "Watts et chevaux",
+      "summary": "Convertissez une puissance entre watts, kilowatts, mégawatts et chevaux métriques ou mécaniques, pour appareils et moteurs.",
       "keywords": "Puissance power converter",
       "run": "Enregistrer la conversion",
       "success": "Conversion enregistrée dans l’historique."
@@ -1500,6 +1571,7 @@
     "energy-converter": {
       "name": "Énergie",
       "description": "Joules, calories et watt-heures",
+      "summary": "Convertissez une énergie entre joules, calories, kilocalories et kilowattheures — les unités d’une étiquette ou d’une facture.",
       "keywords": "Énergie energy converter",
       "run": "Enregistrer la conversion",
       "success": "Conversion enregistrée dans l’historique."
@@ -1507,6 +1579,7 @@
     "pressure-converter": {
       "name": "Pression",
       "description": "Pa, bar, PSI et plus",
+      "summary": "Convertissez une pression entre pascals, bars, PSI, atmosphères, torrs et millimètres de mercure, pour pneus ou météo.",
       "keywords": "Pression pressure converter",
       "run": "Enregistrer la conversion",
       "success": "Conversion enregistrée dans l’historique."
@@ -1514,6 +1587,7 @@
     "area-converter": {
       "name": "Surface",
       "description": "Surfaces et terrains",
+      "summary": "Convertissez une surface entre mètres carrés, pieds carrés, acres, hectares et les autres mesures du terrain et du logement.",
       "keywords": "Surface area converter",
       "run": "Enregistrer la conversion",
       "success": "Conversion enregistrée dans l’historique."
@@ -1521,6 +1595,7 @@
     "data-converter": {
       "name": "Données",
       "description": "Stockage décimal et binaire",
+      "summary": "Convertissez une taille de fichier entre octets, kilo-octets, méga-octets, gigaoctets et téraoctets, en décimal ou en binaire.",
       "keywords": "Données data converter",
       "run": "Enregistrer la conversion",
       "success": "Conversion enregistrée dans l’historique."
@@ -1528,6 +1603,7 @@
     "angle-converter": {
       "name": "Angle",
       "description": "Degrés, radians et tours",
+      "summary": "Convertissez un angle entre degrés, radians, grades et tours, avec les formes décimale et fractionnaire en regard.",
       "keywords": "Angle convertisseur d'angle",
       "run": "Enregistrer la conversion",
       "success": "Conversion enregistrée dans l’historique."
@@ -1535,6 +1611,7 @@
     "frequency-converter": {
       "name": "Fréquence",
       "description": "De Hz à tr/min",
+      "summary": "Convertissez une fréquence entre hertz, kilohertz, mégahertz, gigahertz et tr/min, pour le son, la radio et les machines tournantes.",
       "keywords": "Fréquence frequency converter",
       "run": "Enregistrer la conversion",
       "success": "Conversion enregistrée dans l’historique."
@@ -1542,6 +1619,7 @@
     "force-converter": {
       "name": "Force",
       "description": "Newtons et unités de force",
+      "summary": "Convertissez une force entre newtons, kilonewtons, kilogramme-force, livre-force et dynes, pour la physique et l’ingénierie.",
       "keywords": "Force convertisseur de force",
       "run": "Enregistrer la conversion",
       "success": "Conversion enregistrée dans l’historique."
@@ -1549,6 +1627,7 @@
     "fuel-economy-converter": {
       "name": "Consommation",
       "description": "Consommation et kilométrage",
+      "summary": "Convertissez une consommation entre litres aux 100 kilomètres, miles par gallon américain ou britannique, et kilomètres par litre.",
       "keywords": "Consommation fuel economy converter",
       "run": "Enregistrer la conversion",
       "success": "Conversion enregistrée dans l’historique."
@@ -1556,6 +1635,7 @@
     "acceleration-converter": {
       "name": "Accélération",
       "description": "Mouvement et gravité",
+      "summary": "Convertissez une accélération entre mètres par seconde carrée, gravité standard, pieds par seconde carrée et galileo.",
       "keywords": "Accélération acceleration converter",
       "run": "Enregistrer la conversion",
       "success": "Conversion enregistrée dans l’historique."
@@ -1563,6 +1643,7 @@
     "torque-converter": {
       "name": "Couple",
       "description": "Force de rotation",
+      "summary": "Convertissez un couple entre newton-mètres, kilogrammes-force mètres, livres-pieds et livres-pouces, pour écrous et moteurs.",
       "keywords": "Couple torque converter",
       "run": "Enregistrer la conversion",
       "success": "Conversion enregistrée dans l’historique."
@@ -1570,6 +1651,7 @@
     "electrical-converter": {
       "name": "Électricité",
       "description": "Tension, courant et résistance",
+      "summary": "Convertissez entre les unités électriques de tension, courant, résistance et puissance — volts, ampères, ohms et watts.",
       "keywords": "Électricité electrical converter",
       "run": "Enregistrer la conversion",
       "success": "Conversion enregistrée dans l’historique."
@@ -1577,6 +1659,7 @@
     "typography-converter": {
       "name": "Typographie",
       "description": "Tailles CSS et impression",
+      "summary": "Convertissez des tailles de caractères entre pixels, points, em, rem et picas, selon la taille de référence que vous définissez.",
       "keywords": "Typographie typography converter",
       "run": "Enregistrer la conversion",
       "success": "Conversion enregistrée dans l’historique."
@@ -1584,6 +1667,7 @@
     "bmi-calorie-calculator": {
       "name": "Calculateur IMC et calories",
       "description": "Calculez l’IMC, une fourchette de poids sain et les besoins caloriques quotidiens selon la taille, le poids, l’âge et l’activité.",
+      "summary": "Vérifiez l’IMC face à une fourchette de poids santé, et estimez les calories quotidiennes selon taille, poids, âge et activité.",
       "keywords": "imc calories tdee bmr mifflin poids santé",
       "limits": "L’IMC utilise les seuils OMS adultes. Moins de 18 ans est autorisé mais signalé, car l’IMC de l’enfant se lit d’habitude sur des courbes de croissance. Les calories utilisent Mifflin-St Jeor, une formule adulte. Le calcul reste sur cet appareil et n’est pas un avis médical.",
       "invalid": "Saisissez une taille, un poids et un âge réalistes.",
@@ -1642,6 +1726,7 @@
     "percentage-calculator": {
       "name": "Calculateur de pourcentage",
       "description": "Calculer un pourcentage, retrouver un taux, mesurer une variation ou appliquer une hausse/baisse.",
+      "summary": "Calculez un pourcentage d’un nombre, retrouvez-le, mesurez l’écart entre deux valeurs, ou appliquez une augmentation.",
       "keywords": "pourcentage calculateur hausse baisse remise majoration",
       "mode": "Calcul",
       "modeOf": "% of",
@@ -1665,6 +1750,7 @@
     "loan-calculator": {
       "name": "Calculateur de prêt et intérêts",
       "description": "Estimer une mensualité ou des intérêts composés à partir du capital, du taux et des années.",
+      "summary": "Estimez une mensualité, ou voyez ce que les intérêts composés produisent dans le temps, à partir du capital, du taux et de la durée.",
       "keywords": "prêt hypothèque mensualité amortissement intérêts composés APR",
       "limits": "Le mode prêt utilise la mensualité d’amortissement standard à taux fixe. Le mode intérêts composés capitalise périodiquement (mensuellement par défaut). Il s’agit d’une estimation, pas d’un conseil financier.",
       "mode": "Mode",
@@ -1685,6 +1771,7 @@
     "text-lines": {
       "name": "Outils de lignes",
       "description": "Rechercher-remplacer, trier ou dédupliquer des lignes dans le navigateur.",
+      "summary": "Recherchez et remplacez dans une liste de lignes, triez-la par ordre numérique ou alphabétique, et supprimez les doublons.",
       "keywords": "rechercher remplacer tri lignes uniques texte",
       "find": "Rechercher",
       "replace": "Remplacer par",
@@ -1699,6 +1786,7 @@
     "slugify": {
       "name": "Slugify",
       "description": "Transformer un titre en slug d’URL ou nettoyer un nom de fichier.",
+      "summary": "Transformez un titre en identifiant d’URL propre, avec les options d’accents, de casse et de séparateurs utiles à un nom de fichier.",
       "keywords": "slugify slug url nom de fichier nettoyer kebab",
       "input": "Texte",
       "slug": "Slug d’URL",
@@ -1709,6 +1797,7 @@
     "color-contrast": {
       "name": "Contraste des couleurs",
       "description": "Vérifier le contraste WCAG entre premier plan et arrière-plan.",
+      "summary": "Vérifiez le contraste entre un texte et son fond au regard des seuils WCAG AA et AAA avant de livrer une palette.",
       "keywords": "wcag contraste accessibilité aa aaa lisibilité",
       "limits": "Le rapport utilise la luminance relative WCAG 2 pour les couleurs hex sRGB. Les niveaux affichés s’appliquent au texte normal (AA ≥ 4,5 ; AAA ≥ 7).",
       "foreground": "Premier plan",
@@ -1724,6 +1813,7 @@
     "image-palette": {
       "name": "Palette d’image",
       "description": "Extraire les couleurs dominantes d’une photo pour le design.",
+      "summary": "Relevez les couleurs dominantes d’une photo sous forme de codes hexadécimaux, prêtes à réutiliser dans un design ou une charte.",
       "keywords": "palette couleurs extraire dominante nuances image",
       "limits": "Les couleurs sont quantifiées dans cet onglet à partir d’un aperçu réduit. Les résultats sont approximatifs et restent sur cet appareil.",
       "maxColors": "Couleurs max",
@@ -1735,6 +1825,7 @@
     "aspect-ratio": {
       "name": "Ratio d’aspect",
       "description": "Réduire largeur/hauteur en ratio, ou calculer le côté manquant.",
+      "summary": "Réduisez une largeur et une hauteur au rapport le plus simple, ou trouvez le côté manquant à partir d’un rapport que vous connaissez.",
       "keywords": "ratio d’aspect 16:9 dimensions côté manquant",
       "mode": "Mode",
       "modeFromSize": "À partir des dimensions",
@@ -1751,6 +1842,7 @@
     "meeting-planner": {
       "name": "Planificateur de réunion",
       "description": "Trouver les créneaux de travail qui se chevauchent entre fuseaux horaires.",
+      "summary": "Trouvez l’heure qui convient à tout le monde en comparant les horaires de travail de plusieurs fuseaux, pour une date donnée.",
       "keywords": "réunion fuseau horaire chevauchement horloge mondiale heures de travail",
       "limits": "Le chevauchement utilise les fuseaux IANA et les dates locales de calendrier. Les heures sont des heures UTC entières où chaque fuseau reste sur la date choisie et dans la fenêtre de travail.",
       "date": "Date",
@@ -1770,6 +1862,7 @@
     "json-query": {
       "name": "Requête JSON",
       "description": "Aplatir un JSON imbriqué ou lire des valeurs JSONPath simples.",
+      "summary": "Aplatissez du JSON profondément imbriqué en lignes, ou extrayez une valeur avec une expression JSONPath simple comme $.items[0].name.",
       "keywords": "json path requête aplatir jq jsonpath",
       "limits": "Prend en charge un petit sous-ensemble de JSONPath : $.a.b, $.items[0] et $['key']. Les jokers et les filtres ne sont pas inclus.",
       "mode": "Mode",
@@ -1784,6 +1877,7 @@
     "check-digits": {
       "name": "Chiffres de contrôle",
       "description": "Valider localement ISBN-10/13, EAN-13 et IBAN.",
+      "summary": "Validez la clé de contrôle d’un ISBN-10, ISBN-13, EAN-13 ou IBAN, et voyez à quelle position une saisie fautive échoue.",
       "keywords": "isbn ean iban chiffre de contrôle code-barres valider",
       "limits": "Vérifie uniquement les algorithmes de chiffres de contrôle publiés. Un chiffre de contrôle valide ne prouve pas que le numéro est attribué ni que le compte existe.",
       "kind": "Type",
