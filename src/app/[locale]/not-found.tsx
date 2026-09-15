@@ -1,18 +1,30 @@
-import { getTranslations } from "next-intl/server";
-import { Link } from "@/lib/i18n/navigation";
+import { getLocale, getTranslations } from "next-intl/server";
+import { NotFoundCard } from "@/components/layout/not-found-card";
+import { withBasePath } from "@/lib/base-path";
+import { defaultLocale, isPathLocale } from "@/lib/i18n/config";
 
+/**
+ * The same page, reached from inside a language: a route asking for something
+ * it does not have.
+ *
+ * It is rendered in the app shell like any other page, so it contributes the
+ * card and nothing else — no heading of its own, no way back of its own. The
+ * address that cannot be found is told in one place, and the one a host serves
+ * for a missing address (`app/not-found.tsx`) shows the same card.
+ */
 export default async function NotFound() {
   const t = await getTranslations("notFound");
+  const requested = await getLocale();
+  const segment = isPathLocale(requested) ? requested : defaultLocale;
+
   return (
-    <div className="mx-auto max-w-lg py-16 text-center">
-      <h1 className="type-display text-3xl">{t("title")}</h1>
-      <p className="mt-3 text-muted-foreground">{t("body")}</p>
-      <Link
-        href="/"
-        className="mt-6 inline-flex min-h-11 items-center rounded-xl bg-primary px-4 text-sm font-medium text-primary-foreground"
-      >
-        {t("home")}
-      </Link>
+    <div className="py-16">
+      <NotFoundCard
+        title={t("title")}
+        body={t("body")}
+        home={t("home")}
+        href={withBasePath(`/${segment}/`)}
+      />
     </div>
   );
 }
