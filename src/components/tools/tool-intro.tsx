@@ -19,9 +19,8 @@ import { ShareButton } from "@/components/ui/share-button";
  *
  * This sits above the tool rather than inside it, so the name and description
  * are part of the document a crawler is served. Everything here works from
- * props and the address bar alone — a search-param hook would hold the heading
- * back to the client, which is what used to leave these pages with no heading
- * in the HTML at all.
+ * props and the address bar alone: a search-param hook would hold the heading
+ * back to the client and leave the page with no heading in its HTML at all.
  */
 export function ToolIntro({ toolId }: { toolId: ToolId }) {
   const t = useTranslations(`tools.${toolId}`);

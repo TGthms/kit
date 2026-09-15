@@ -12,8 +12,8 @@ import { describe, expect, it } from "vitest";
  * `loading.tsx` already provides such a boundary, so one search-param hook
  * anywhere on a page is enough to replace that page's entire body with a
  * loading spinner — in the HTML, for every crawler that does not run
- * JavaScript. Nothing about the page looks wrong in a browser, which is how it
- * went unnoticed; these assertions are what make it visible.
+ * JavaScript. The page looks correct in a browser either way, so only an
+ * assertion over the source catches it; these are those assertions.
  */
 const here = dirname(fileURLToPath(import.meta.url));
 const root = join(here, "../..");
@@ -61,7 +61,7 @@ describe("what the server is able to render", () => {
   it("renders a tool page's heading and guide outside the tool's own boundary", () => {
     const route = files.find((file) => file.path === "app/[locale]/tools/[toolId]/page.tsx")!;
     const order = ["<ToolIntro", "<ToolPageClient", "<ToolGuide"].map((tag) => route.text.indexOf(tag));
-    expect(order.every((at) => at > -1), "the route no longer composes heading, tool and guide").toBe(true);
+    expect(order.every((at) => at > -1), "the route does not compose heading, tool and guide").toBe(true);
     expect(order).toEqual([...order].sort((a, b) => a - b));
 
     const intro = files.find((file) => file.path === "components/tools/tool-intro.tsx")!;

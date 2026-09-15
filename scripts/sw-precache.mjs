@@ -218,7 +218,7 @@ export function aliasLocaleDirs(outDir, localeNames) {
 }
 
 /**
- * A digest of everything this build ships, used to name its caches.
+ * A digest of everything this build ships, which names its caches.
  *
  * The worker carries it, so the worker's own bytes change exactly when the
  * content does: a browser then installs the new worker, which opens a fresh
