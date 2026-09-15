@@ -5,4 +5,4 @@
  * `package.json` remains the record; `version.test.ts` fails if the two
  * disagree, so the number can only change in one place and cannot drift.
  */
-export const APP_VERSION = "1.2.3";
+export const APP_VERSION = "1.2.4";
