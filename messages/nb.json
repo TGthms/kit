@@ -1967,5 +1967,8 @@
     "techPwaDl": "Ingenting ekstra — den bufrer, den sender ikke",
     "techUiDl": "Sidene og skriptene selv",
     "exceptionOffline": "Mistet tilkoblingen etter at en side ble lastet? Verktøyene virker videre. Installerer du Kit, gjelder det samme mellom besøk, og Frakoblet tilgang i Innstillinger klargjør det du trenger."
+  },
+  "toolPage": {
+    "related": "Lignende verktøy"
   }
 }

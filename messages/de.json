@@ -1967,5 +1967,8 @@
     "techPwaDl": "Nichts extra — er cached, er sendet nicht",
     "techUiDl": "Die Seiten und Skripte selbst",
     "exceptionOffline": "Verbindung nach dem Laden einer Seite verloren? Die Werkzeuge laufen weiter. Mit installiertem Kit gilt das auch zwischen Besuchen, und Offline-Zugriff in den Einstellungen bereitet vor, was du brauchst."
+  },
+  "toolPage": {
+    "related": "Ähnliche Werkzeuge"
   }
 }

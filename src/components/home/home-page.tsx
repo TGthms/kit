@@ -1,7 +1,6 @@
 "use client";
 
 import { Suspense, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
-import { useSearchParams } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
 import {
   Search,
@@ -17,7 +16,8 @@ import {
   ArrowLeftRight,
 } from "lucide-react";
 import { tools, categories, featuredToolIds, groupedTools, type ToolCategory, type ToolId } from "@/lib/tools/registry";
-import { homeHref, parseCategoryParam, parseCategoryPath, rewriteCategoryQuery, toolHref } from "@/lib/navigation/routes";
+import { homeHref, parseCategoryPath, rewriteCategoryQuery, toolHref } from "@/lib/navigation/routes";
+import { useLegacyCategory } from "@/lib/navigation/address";
 import { Link, usePathname } from "@/lib/i18n/navigation";
 import { Input } from "@/components/ui/input";
 import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -166,11 +166,15 @@ function HomePageInner() {
   const tcommon = useTranslations("common");
   const tt = useTranslations("tools");
   const tn = useTranslations("nav");
-  const searchParams = useSearchParams();
   const pathname = usePathname();
-  const selectedCat =
-    parseCategoryPath(pathname) ?? parseCategoryParam(searchParams.get("c"));
-  const greetingSearch = greetingSearchFromLocation(searchParams);
+  /* The address bar answers for the legacy `?c=` form, which is rewritten in
+     place with `replaceState` and so is not visible to the router. Asking the
+     address directly is also what lets this page render on the server: the
+     router's search-param hook holds the page back to the client, leaving a
+     crawler the shell and nothing in it. */
+  const legacyCategory = useLegacyCategory();
+  const selectedCat = parseCategoryPath(pathname) ?? legacyCategory ?? null;
+  const greetingSearch = greetingSearchFromLocation();
   const greetingPreview = readGreetingPreview(greetingSearch);
   const greetingDateParam = greetingSearch.get("date") ?? greetingSearch.get("greetingDate");
   const greetingSeedParam = greetingSearch.get("greetingSeed");

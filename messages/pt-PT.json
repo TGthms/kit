@@ -1967,5 +1967,8 @@
     "techPwaDl": "Nada extra — põe em cache, não envia nada",
     "techUiDl": "As páginas e os scripts em si",
     "exceptionOffline": "Perdeu a ligação depois de carregar uma página? As ferramentas continuam a funcionar. Se instalar o Kit, o mesmo acontece entre visitas, e o Acesso offline, nas Definições, prepara o que precisa antes de sair."
+  },
+  "toolPage": {
+    "related": "Ferramentas relacionadas"
   }
 }

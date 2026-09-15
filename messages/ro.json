@@ -1967,5 +1967,8 @@
     "techPwaDl": "Nimic în plus — pune în cache, nu trimite",
     "techUiDl": "Chiar paginile și scripturile",
     "exceptionOffline": "Ai pierdut conexiunea după încărcarea unei pagini? Instrumentele funcționează în continuare. Dacă instalezi Kit, același lucru se aplică între vizite, iar Acces offline, din Setări, pregătește ce ai nevoie."
+  },
+  "toolPage": {
+    "related": "Instrumente similare"
   }
 }

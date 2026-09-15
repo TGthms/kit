@@ -1967,5 +1967,8 @@
     "techPwaDl": "Rien de plus — il met en cache, il n’envoie rien",
     "techUiDl": "Les pages et les scripts eux-mêmes",
     "exceptionOffline": "Connexion perdue après le chargement d’une page ? Les outils continuent de fonctionner. Installez Kit et il en va de même entre les visites, et l’Accès hors ligne, dans les Réglages, prépare ce dont vous avez besoin avant de partir."
+  },
+  "toolPage": {
+    "related": "Outils similaires"
   }
 }

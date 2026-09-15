@@ -1967,5 +1967,8 @@
     "techPwaDl": "Nic dodatkowego — zapisuje w pamięci podręcznej, niczego nie wysyła",
     "techUiDl": "Same strony i skrypty",
     "exceptionOffline": "Utracono połączenie po wczytaniu strony? Narzędzia działają dalej. Po zainstalowaniu Kit to samo dotyczy kolejnych wizyt, a Dostęp offline w Ustawieniach przygotowuje to, czego potrzebujesz."
+  },
+  "toolPage": {
+    "related": "Podobne narzędzia"
   }
 }

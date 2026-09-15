@@ -1967,5 +1967,8 @@
     "techPwaDl": "Inget extra — den cachar, den skickar inte",
     "techUiDl": "Sidorna och skripten själva",
     "exceptionOffline": "Tappat anslutningen efter att en sida laddats? Verktygen fortsätter att fungera. Installerar du Kit gäller samma sak mellan besök, och Offlineåtkomst i Inställningar förbereder det du behöver."
+  },
+  "toolPage": {
+    "related": "Liknande verktyg"
   }
 }

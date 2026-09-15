@@ -1967,5 +1967,8 @@
     "techPwaDl": "Intet ekstra — den cacher, den sender ikke",
     "techUiDl": "Siderne og scriptsene selv",
     "exceptionOffline": "Mistet forbindelsen efter at have indlæst en side? Værktøjerne virker videre. Installerer du Kit, gælder det også mellem besøg, og Offlineadgang i Indstillinger gør det klar, du har brug for."
+  },
+  "toolPage": {
+    "related": "Relaterede værktøjer"
   }
 }

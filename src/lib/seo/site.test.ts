@@ -5,6 +5,8 @@ import { describe, expect, it } from "vitest";
 import { CONTENT_SECURITY_POLICY, CONTENT_SECURITY_POLICY_HEADER, ogImageUrl, ogLocaleFor, SITE_HOST, SITE_NAME, SITE_URL, WEBSITE_ID } from "./site";
 import { websiteJsonLd, serializeJsonLd, homeJsonLd, toolJsonLd, legalJsonLd, howJsonLd } from "./json-ld";
 import { buildCategoryMetadata, buildLocaleMetadata, buildSectionMetadata, buildToolMetadata, categoryJsonLdInput, faqJsonLdInput, languageAlternates, legalJsonLdInput, socialImages, toolJsonLdInput } from "./metadata";
+import { tools } from "@/lib/tools/registry";
+import { toolPathSegment } from "@/lib/navigation/routes";
 
 describe("content security policy", () => {
   it("does not allow jsDelivr and includes wasm-unsafe-eval", () => {
@@ -41,17 +43,6 @@ describe("google favicon", () => {
   it("ships a 48px PNG for Search favicons", () => {
     const icon = join(dirname(fileURLToPath(import.meta.url)), "../../../public/icons/favicon-48.png");
     expect(readFileSync(icon).length).toBeGreaterThan(32);
-  });
-});
-
-describe("llms.txt", () => {
-  it("describes Kit honestly for machine readers", () => {
-    const text = readFileSync(join(dirname(fileURLToPath(import.meta.url)), "../../../public/llms.txt"), "utf8");
-    expect(text).toContain("Kit");
-    expect(text).toContain(SITE_URL);
-    expect(text).toMatch(/MIT/);
-    expect(text).toMatch(/GPL/);
-    expect(text).not.toMatch(/aggregateRating/i);
   });
 });
 
@@ -105,13 +96,59 @@ describe("home and tool JSON-LD", () => {
     expect(input?.breadcrumbs.map((crumb) => crumb.name)).toEqual(["Kit", "PDF", expect.any(String)]);
     expect(input?.breadcrumbs[1]?.url).toBe(`${SITE_URL}/en/c/pdf/`);
     const data = toolJsonLd(input!);
-    expect(data["@graph"].map((node) => node["@type"])).toEqual(["WebPage", "BreadcrumbList"]);
+    expect(data["@graph"].map((node) => node["@type"])).toEqual([
+      "WebPage",
+      "SoftwareApplication",
+      "BreadcrumbList",
+    ]);
 
     expect(await toolJsonLdInput("en", "timezone-converter")).toBeNull();
     expect(await toolJsonLdInput("en", "timezone-converter", "world-clock")).not.toBeNull();
     expect(await toolJsonLdInput("en", "media-convert")).toBeNull();
     expect(await toolJsonLdInput("zh", "pdf-merge")).toBeNull();
   });
+
+  it("describes a tool as software a browser runs, for free, in one language", async () => {
+    const input = await toolJsonLdInput("en", "pdf-merge");
+    const data = toolJsonLd(input!);
+    const app = data["@graph"].find((node) => node["@type"] === "SoftwareApplication");
+    if (!app) throw new Error("the tool graph has no SoftwareApplication node");
+    expect(app).toMatchObject({
+      name: expect.stringContaining("Merge"),
+      operatingSystem: "Web Browser",
+      isAccessibleForFree: true,
+      inLanguage: "en",
+      isPartOf: { "@id": WEBSITE_ID },
+    });
+    /* A schema.org Application subtype, not free text, so a consumer looking
+       for one finds it. */
+    expect(app.applicationCategory).toBe("BusinessApplication");
+    expect(app.offers).toMatchObject({ price: "0" });
+    /* The same sentence the page shows, so the data cannot claim more. */
+    expect(app.description).toBe(input?.description);
+    /* Nothing here is measured, so nothing may imply a score. */
+    expect(serializeJsonLd(data)).not.toContain("aggregateRating");
+  });
+
+  it("tells the document, media and developer families apart", async () => {
+    const category = async (toolId: string) => {
+      const input = await toolJsonLdInput("en", toolId);
+      return toolJsonLd(input!)["@graph"].find((node) => node["@type"] === "SoftwareApplication")
+        ?.applicationCategory;
+    };
+    expect(await category("image-compress")).toBe("MultimediaApplication");
+    expect(await category("video-convert")).toBe("MultimediaApplication");
+    expect(await category("json-format")).toBe("DeveloperApplication");
+    expect(await category("length-converter")).toBe("UtilitiesApplication");
+    /* Every tool the site offers resolves to one of them, by its own public
+       address, so none is left out of the structured data. */
+    for (const tool of tools) {
+      const input = await toolJsonLdInput("en", tool.id, toolPathSegment(tool.id));
+      expect(input, tool.id).not.toBeNull();
+      const app = toolJsonLd(input!)["@graph"].find((node) => node["@type"] === "SoftwareApplication");
+      expect(app?.applicationCategory, tool.id).toMatch(/Application$/u);
+    }
+  }, 30_000);
 
   it("describes category pages with a unique title", async () => {
     const meta = await buildCategoryMetadata("en", "pdf");

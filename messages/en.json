@@ -1967,5 +1967,8 @@
     "title": "Something went wrong",
     "body": "The last action failed in this browser. You can try again without leaving the page.",
     "retry": "Try again"
+  },
+  "toolPage": {
+    "related": "Related tools"
   }
 }

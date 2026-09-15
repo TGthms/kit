@@ -1,7 +1,7 @@
 import { existsSync } from "node:fs";
 import { join } from "node:path";
 import type { Metadata } from "next";
-import { defaultLocale, isPathLocale, locales, messageFileFor } from "@/lib/i18n/config";
+import { defaultLocale, isPathLocale, localeHtmlLang, locales, messageFileFor } from "@/lib/i18n/config";
 import { HOW_FAQ_KEYS } from "@/lib/how/facts";
 import { getTool, legacyToolIdMap, resolveToolId, type ToolCategory } from "@/lib/tools/registry";
 import { parseCategoryParam, toolPathSegment } from "@/lib/navigation/routes";
@@ -258,6 +258,8 @@ export async function toolJsonLdInput(
   description: string;
   url: string;
   breadcrumbs: { name: string; url: string }[];
+  category: ToolCategory;
+  inLanguage: string;
 } | null> {
   const pathLoc = isPathLocale(locale) ? locale : defaultLocale;
   if (!isIndexablePathLocale(pathLoc)) return null;
@@ -281,6 +283,8 @@ export async function toolJsonLdInput(
     name,
     description,
     url,
+    category: tool.category,
+    inLanguage: localeHtmlLang(canonicalLocale(pathLoc)),
     breadcrumbs: [
       { name: SITE_NAME, url: homeUrl },
       { name: categoryName, url: categoryUrl },

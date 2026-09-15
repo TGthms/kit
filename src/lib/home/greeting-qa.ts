@@ -64,12 +64,14 @@ export function parseEmbeddedGreetingTime(value: string | null | undefined): Gre
 }
 
 /**
- * Prefer `window.location.search` so a static export / replaceState still sees
- * `date` / `time` even if Next's `useSearchParams` snapshot is empty.
+ * Prefer `window.location.search`, which a static export and its `replaceState`
+ * writes both leave visible. The router's own snapshot is only a fallback, for
+ * the moment before the address bar can be read — on the server, where there is
+ * no address bar, it is the caller's to supply or leave out.
  */
-export function greetingSearchFromLocation(searchParams: { toString(): string }): URLSearchParams {
+export function greetingSearchFromLocation(searchParams?: { toString(): string }): URLSearchParams {
   const fromWindow = typeof window !== "undefined" ? window.location.search.replace(/^\?/, "") : "";
-  return new URLSearchParams(fromWindow || searchParams.toString());
+  return new URLSearchParams(fromWindow || searchParams?.toString() || "");
 }
 
 export function readGreetingPreview(search: { get(name: string): string | null }): GreetingPreview {

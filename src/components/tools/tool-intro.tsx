@@ -1,11 +1,10 @@
 "use client";
 
 import { useLocale, useTranslations } from "next-intl";
-import { useSearchParams } from "next/navigation";
 import { Star } from "lucide-react";
 import type { ToolId } from "@/lib/tools/registry";
 import { getTool, isFileTool } from "@/lib/tools/registry";
-import { toolBackHref } from "@/lib/navigation/routes";
+import { useToolBack } from "@/lib/navigation/address";
 import { toolShareUrl } from "@/lib/seo/share";
 import { useHydrated } from "@/lib/react/hydrated";
 import { useFavoritesStore } from "@/stores/favorites-store";
@@ -14,38 +13,36 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ShareButton } from "@/components/ui/share-button";
 
-function safeInternalHref(value: string | null): string | null {
-  if (!value) return null;
-  try {
-    const decoded = decodeURIComponent(value);
-    return decoded.startsWith("/") && !decoded.startsWith("//") ? decoded : null;
-  } catch {
-    return null;
-  }
-}
-
-export function ToolHeader({ toolId }: { toolId: ToolId }) {
+/**
+ * The heading of a tool page: its name, what it does, and what a visitor can do
+ * with it besides use it.
+ *
+ * This sits above the tool rather than inside it, so the name and description
+ * are part of the document a crawler is served. Everything here works from
+ * props and the address bar alone — a search-param hook would hold the heading
+ * back to the client, which is what used to leave these pages with no heading
+ * in the HTML at all.
+ */
+export function ToolIntro({ toolId }: { toolId: ToolId }) {
   const t = useTranslations(`tools.${toolId}`);
   const tc = useTranslations("common");
   const tCat = useTranslations("categories");
   const locale = useLocale();
-  const searchParams = useSearchParams();
-  // SSR renders ids:[]; gating the favorite state on hydration keeps the
-  // first client render identical to the server tree (no mismatch).
+  /* SSR renders ids:[]; gating the favorite state on hydration keeps the
+     first client render identical to the server tree (no mismatch). */
   const hydrated = useHydrated();
   const { ids, toggle } = useFavoritesStore();
   const fav = hydrated && ids.includes(toolId);
   const tool = getTool(toolId);
-  const fromHref = safeInternalHref(searchParams.get("from"));
-  const backHref = fromHref ?? toolBackHref(toolId);
-  const backLabel = fromHref ? tc("back") : tool ? tCat(tool.category) : tc("back");
+  const back = useToolBack(toolId);
+  const backLabel = back.fromElsewhere ? tc("back") : tool ? tCat(tool.category) : tc("back");
   const showClientSideNote = tool ? isFileTool(tool) : false;
 
   return (
     <PageHeader
       title={t("name")}
       subtitle={t("description")}
-      backHref={backHref}
+      backHref={back.href}
       backLabel={backLabel}
       below={
         showClientSideNote ? (

@@ -1967,5 +1967,8 @@
     "techPwaDl": "Tidak ada tambahan — ia menyimpan cache, tidak mengirim apa pun",
     "techUiDl": "Halaman dan skripnya sendiri",
     "exceptionOffline": "Koneksi hilang setelah halaman dimuat? Alat tetap berfungsi. Jika Kit dipasang, hal yang sama berlaku antar kunjungan, dan Akses offline pada Pengaturan menyiapkan apa yang Anda butuhkan."
+  },
+  "toolPage": {
+    "related": "Alat serupa"
   }
 }

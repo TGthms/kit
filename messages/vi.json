@@ -1967,5 +1967,8 @@
     "techPwaDl": "Không thêm gì cả — nó cache, không gửi đi",
     "techUiDl": "Chính các trang và script đó",
     "exceptionOffline": "Mất kết nối sau khi tải một trang? Các công cụ vẫn hoạt động. Nếu cài đặt Kit, điều này cũng đúng giữa các lần truy cập, và Truy cập ngoại tuyến ở Cài đặt sẽ chuẩn bị trước những gì bạn cần."
+  },
+  "toolPage": {
+    "related": "Công cụ tương tự"
   }
 }

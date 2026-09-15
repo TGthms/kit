@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { setRequestLocale } from "next-intl/server";
 import { pathLocales } from "@/lib/i18n/config";
 import { ToolPageClient } from "@/components/tools/tool-page-client";
+import { ToolIntro } from "@/components/tools/tool-intro";
+import { ToolGuide } from "@/components/tools/tool-guide";
 import { ToolJsonLd } from "@/lib/seo/json-ld";
 import { buildToolMetadata, toolJsonLdInput } from "@/lib/seo/metadata";
 
@@ -28,7 +30,9 @@ export default async function WorldClockPage({
   const jsonLd = await toolJsonLdInput(locale, "timezone-converter", "world-clock");
   return (
     <>
+      <ToolIntro toolId="timezone-converter" />
       <ToolPageClient toolId="timezone-converter" />
+      <ToolGuide toolId="timezone-converter" />
       {jsonLd ? <ToolJsonLd {...jsonLd} /> : null}
     </>
   );

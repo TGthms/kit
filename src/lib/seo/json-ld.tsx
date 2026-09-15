@@ -102,6 +102,65 @@ export function homeJsonLd({
   return graph([websiteNode(), personNode(), webApplicationNode({ description, locale, url })]);
 }
 
+/**
+ * The kind of application, in schema.org's own vocabulary.
+ *
+ * These are Application subtypes rather than free text, so a consumer that
+ * looks for one finds it. A tool's section of the catalogue is the closest
+ * honest match: the document, media and developer families are distinct enough
+ * to be worth telling apart, and the rest are utilities.
+ */
+const APPLICATION_CATEGORY: Record<string, string> = {
+  pdf: "BusinessApplication",
+  image: "MultimediaApplication",
+  audio: "MultimediaApplication",
+  video: "MultimediaApplication",
+  data: "DeveloperApplication",
+  developer: "DeveloperApplication",
+  text: "UtilitiesApplication",
+  converter: "UtilitiesApplication",
+  everyday: "UtilitiesApplication",
+};
+
+/**
+ * One tool, as a piece of software rather than only a page: what it is, what it
+ * costs, and that it runs in the browser with nothing to install.
+ *
+ * The description is the same sentence the page shows, so the structured data
+ * cannot claim more than the page does.
+ */
+export function softwareApplicationNode({
+  name,
+  description,
+  url,
+  category,
+  inLanguage,
+}: {
+  name: string;
+  description: string;
+  url: string;
+  category: string;
+  inLanguage?: string;
+}) {
+  return {
+    "@type": "SoftwareApplication",
+    name,
+    description,
+    url,
+    applicationCategory: APPLICATION_CATEGORY[category] ?? "UtilitiesApplication",
+    operatingSystem: "Web Browser",
+    browserRequirements: "Requires JavaScript. Works without installing anything.",
+    inLanguage,
+    isAccessibleForFree: true,
+    isPartOf: { "@id": WEBSITE_ID },
+    offers: {
+      "@type": "Offer",
+      price: "0",
+      priceCurrency: "USD",
+    },
+  };
+}
+
 export function breadcrumbJsonLd(items: { name: string; url: string }[]) {
   return {
     "@type": "BreadcrumbList",
@@ -155,13 +214,20 @@ export function toolJsonLd({
   description,
   url,
   breadcrumbs,
+  category,
+  inLanguage,
 }: {
   name: string;
   description: string;
   url: string;
   breadcrumbs: { name: string; url: string }[];
+  category?: string;
+  inLanguage?: string;
 }) {
-  return graph([webPageJsonLd({ name, description, url }), breadcrumbJsonLd(breadcrumbs)]);
+  const nodes: Record<string, unknown>[] = [webPageJsonLd({ name, description, url })];
+  if (category) nodes.push(softwareApplicationNode({ name, description, url, category, inLanguage }));
+  nodes.push(breadcrumbJsonLd(breadcrumbs));
+  return graph(nodes);
 }
 
 export function legalJsonLd({
@@ -209,6 +275,8 @@ export function ToolJsonLd(props: {
   description: string;
   url: string;
   breadcrumbs: { name: string; url: string }[];
+  category: string;
+  inLanguage: string;
 }) {
   return <JsonLd data={toolJsonLd(props)} />;
 }

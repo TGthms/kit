@@ -1967,5 +1967,8 @@
     "techPwaDl": "Niets extra — hij cachet, hij verstuurt niets",
     "techUiDl": "De pagina’s en scripts zelf",
     "exceptionOffline": "Verbinding verloren na het laden van een pagina? De tools blijven werken. Installeer Kit en dat geldt ook tussen bezoeken, en Offline toegang in Instellingen zet klaar wat je nodig hebt."
+  },
+  "toolPage": {
+    "related": "Gerelateerde hulpmiddelen"
   }
 }

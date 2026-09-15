@@ -1967,5 +1967,8 @@
     "techPwaDl": "Ekstra bir şey yok — önbelleğe alır, göndermez",
     "techUiDl": "Sayfaların ve betiklerin kendisi",
     "exceptionOffline": "Bir sayfa yüklendikten sonra bağlantı mı koptu? Araçlar çalışmaya devam eder. Kit’i kurarsanız bu, ziyaretler arasında da geçerlidir; Ayarlar’daki Çevrimdışı erişim ise ihtiyacınız olanı önceden hazırlar."
+  },
+  "toolPage": {
+    "related": "Benzer araçlar"
   }
 }

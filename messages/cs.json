@@ -1967,5 +1967,8 @@
     "techPwaDl": "Nic navíc — ukládá do mezipaměti, nic neposílá",
     "techUiDl": "Samotné stránky a skripty",
     "exceptionOffline": "Ztratili jste připojení po načtení stránky? Nástroje fungují dál. Po instalaci Kitu to platí i mezi návštěvami a Přístup offline v Nastavení připraví, co potřebujete."
+  },
+  "toolPage": {
+    "related": "Podobné nástroje"
   }
 }

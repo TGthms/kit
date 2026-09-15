@@ -4,7 +4,6 @@ import { useCallback, useEffect, useRef, useState, type ReactNode } from "react"
 import { useTranslations } from "next-intl";
 import { LoaderCircle } from "lucide-react";
 import type { ToolId } from "@/lib/tools/registry";
-import { ToolHeader } from "@/components/shared/tool-header";
 import { Button } from "@/components/ui/button";
 import { useHistoryStore } from "@/stores/history-store";
 import { notifyHistoryEnabled, notifyHistoryOff, notifySuccess } from "@/lib/notify";
@@ -188,6 +187,14 @@ export function ToolLimits({ children }: { children: ReactNode }) {
   );
 }
 
+/**
+ * The box a tool renders its own controls in.
+ *
+ * The page's heading is not part of this: it is rendered above by the route, so
+ * the tool's name and description are in the document a crawler is served
+ * rather than only in the interactive view. `toolId` names the tool on the
+ * element, which is what makes the rendered tree self-describing.
+ */
 export function ToolShell({
   toolId,
   children,
@@ -196,8 +203,7 @@ export function ToolShell({
   children: ReactNode;
 }) {
   return (
-    <div>
-      <ToolHeader toolId={toolId} />
+    <div data-tool={toolId}>
       <div className="space-y-6">{children}</div>
     </div>
   );

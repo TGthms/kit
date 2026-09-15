@@ -1967,5 +1967,8 @@
     "techPwaDl": "Ei mitään ylimääräistä — se välimuistittaa, se ei lähetä",
     "techUiDl": "Itse sivut ja skriptit",
     "exceptionOffline": "Yhteys katkesi sivun latauduttua? Työkalut toimivat edelleen. Jos asennat Kitin, sama pätee käyntien välillä, ja Offline-käyttö asetuksissa valmistelee tarvitsemasi."
+  },
+  "toolPage": {
+    "related": "Samankaltaiset työkalut"
   }
 }

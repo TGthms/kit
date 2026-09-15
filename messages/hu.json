@@ -1967,5 +1967,8 @@
     "techPwaDl": "Semmi extra — gyorsítótáraz, nem küld el semmit",
     "techUiDl": "Maguk az oldalak és a szkriptek",
     "exceptionOffline": "Megszakadt a kapcsolat egy oldal betöltése után? Az eszközök tovább működnek. Ha telepíted a Kitet, ez a látogatások között is így marad, az Offline hozzáférés pedig előre elkészíti, amire szükséged van."
+  },
+  "toolPage": {
+    "related": "Kapcsolódó eszközök"
   }
 }
