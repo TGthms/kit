@@ -138,6 +138,19 @@ function isUsableHtml(res) {
   return Boolean(res) && res.ok && TRUSTED_TYPES.has(res.type) && isHtmlResponse(res);
 }
 
+/**
+ * The host's answer that this address does not exist.
+ *
+ * It is a document and it is the truthful answer, so it is handed back rather
+ * than replaced by a cached page: a visitor who mistyped an address, followed a
+ * link that no longer resolves or opened a stale bookmark is better told so
+ * than shown a page whose address is not the one they asked for. It is never
+ * stored, since an address can start existing again.
+ */
+function isMissingPage(res) {
+  return Boolean(res) && res.status === 404 && TRUSTED_TYPES.has(res.type) && isHtmlResponse(res);
+}
+
 /* Static hosting serves Flight payloads as text/plain, so the content type
    cannot identify them: being same-origin and not HTML can. */
 function isUsableRsc(res) {
@@ -272,7 +285,9 @@ async function navigateDocument(req, dest) {
 
     networkHtml(target).then(
       (res) => {
-        if (isUsableHtml(res)) settle(res);
+        /* The host answered: either the page, or that there is no page. Both
+           are answers, and only its silence falls back to what is cached. */
+        if (isUsableHtml(res) || isMissingPage(res)) settle(res);
         else orNone(cachedP).then(settleFromCache);
       },
       () => {
