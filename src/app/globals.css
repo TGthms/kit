@@ -659,6 +659,23 @@ details[open] > .anim-details-content {
   animation: details-in 0.18s var(--ease-out-soft) both;
 }
 
+/* A panel anchored to the control that opens it travels out of that control, so
+   the distance it starts at follows the side it was placed on. */
+@keyframes popover-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, var(--popover-from, -4px), 0) scale(0.99);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+.anim-popover {
+  animation: popover-in 0.18s var(--ease-out-soft) both;
+}
+
 /* Press feedback must not scale the hit target: iOS drops the click when
    pointerup lands outside the shrunken box (first tap no-ops, second works). */
 .pressable,
@@ -779,6 +796,9 @@ button[data-pressed]:not(:disabled),
     transform: none !important;
   }
   details[open] > .anim-details-content {
+    animation: none !important;
+  }
+  .anim-popover {
     animation: none !important;
   }
   .pressable,
