@@ -518,6 +518,7 @@
     "pdf-merge": {
       "name": "Gabungkan PDF",
       "description": "Tumpuk beberapa PDF menjadi satu. Pratinjau halaman dan seret untuk mengurutkan ulang.",
+      "summary": "Gabungkan beberapa PDF menjadi satu berkas, pratinjau halamannya, dan seret ke urutan yang Anda mau sebelum menyimpan.",
       "keywords": "pdf gabung satukan jahit banyak halaman",
       "run": "Gabungkan",
       "empty": "Tambahkan setidaknya dua berkas PDF.",
@@ -526,6 +527,7 @@
     "pdf-split": {
       "name": "Pisahkan PDF",
       "description": "Ambil rentang halaman menjadi PDF baru.",
+      "summary": "Ambil satu atau beberapa rentang halaman dari PDF ke berkas baru, atau pecah satu dokumen menjadi banyak, tanpa mengunggah.",
       "keywords": "pdf pisah ekstrak halaman rentang",
       "run": "Pisahkan",
       "range": "Halaman (misalnya 1-3,5)",
@@ -534,6 +536,7 @@
     "pdf-organize": {
       "name": "Atur halaman",
       "description": "Putar halaman, hapus yang tidak perlu, dan tetapkan urutan baru.",
+      "summary": "Putar, hapus, dan urutkan ulang halaman PDF, lalu simpan dokumen yang sudah ditata. Tidak ada yang keluar dari perangkat Anda.",
       "keywords": "pdf putar hapus urut atur halaman",
       "run": "Simpan PDF",
       "success": "PDF Anda telah diperbarui.",
@@ -542,6 +545,7 @@
     "pdf-compress": {
       "name": "Perkecil sebagai gambar",
       "description": "Meraster setiap halaman menjadi JPEG. Teks, tautan, dan vektor tidak dipertahankan.",
+      "summary": "Perkecil PDF dengan merender tiap halaman sebagai JPEG pada kualitas dan ukuran yang Anda pilih — berkas lebih ringan tanpa teks yang bisa dipilih.",
       "keywords": "pdf kompres perkecil ukuran",
       "run": "Perkecil",
       "note": "Setiap halaman menjadi gambar JPEG lalu disusun PDF baru. Teks yang bisa dicari, tautan, dan vektor hilang. Berkas bisa membesar. Cocok untuk pindaian foto, bukan kontrak yang perlu dicari.",
@@ -550,6 +554,7 @@
     "pdf-watermark": {
       "name": "Tanda air PDF",
       "description": "Cap teks sebagai tanda air, kepala, atau kaki di setiap halaman.",
+      "summary": "Cap teks di setiap halaman sebagai tanda air, tajuk, atau kaki halaman, dengan pilihan kata, ukuran, sudut, opasitas, dan posisi.",
       "keywords": "pdf tanda air cap kepala kaki rahasia",
       "run": "Terapkan",
       "text": "Teks tanda air",
@@ -563,6 +568,7 @@
     "pdf-redact": {
       "name": "Tutupi konten",
       "description": "Letakkan kotak hitam padat di atas area sensitif (penutup visual).",
+      "summary": "Tutup halaman dengan kotak hitam untuk menyembunyikan yang tidak boleh dibaca. Ini penutup visual, bukan penyuntingan sungguhan: teksnya masih ada di bawah.",
       "keywords": "pdf redaksi hitam sembunyi sensitif",
       "run": "Terapkan penutup",
       "note": "Hanya penutup visual. Tidak menjamin penghapusan setiap aliran teks di bawahnya — periksa ulang dokumen sensitif.",
@@ -574,6 +580,7 @@
     "pdf-extract": {
       "name": "Ekstrak dari PDF",
       "description": "Ambil teks yang dapat dibaca atau ekspor halaman sebagai gambar.",
+      "summary": "Ambil teks yang bisa dipilih dari PDF, atau ekspor halamannya sebagai gambar JPEG dalam berkas ZIP, tanpa mengirim dokumen ke mana pun.",
       "keywords": "pdf ekstrak teks gambar",
       "run": "Ekstrak",
       "modeText": "Teks",
@@ -585,6 +592,7 @@
     "image-compress": {
       "name": "Kompres gambar",
       "description": "Turunkan kualitas dan ukuran maksimum agar foto tetap mudah dibagikan.",
+      "summary": "Perkecil foto untuk surel, obrolan, atau web dengan menurunkan kualitas, membatasi sisi terpanjang, atau keduanya.",
       "keywords": "gambar kompres jpg png webp ukuran foto",
       "run": "Kompres",
       "success": "Mengompres {count} gambar."
@@ -592,6 +600,7 @@
     "image-resize": {
       "name": "Ubah ukuran gambar",
       "description": "Tetapkan dimensi pasti, dengan kunci rasio aspek opsional.",
+      "summary": "Setel gambar ke ukuran piksel yang tepat, atau skala dengan persentase, dan pertahankan proporsinya saat Anda ingin mempertahankannya.",
       "keywords": "gambar ukuran skala dimensi lebar tinggi",
       "run": "Ubah ukuran",
       "lockAspect": "Pertahankan rasio aspek",
@@ -600,6 +609,7 @@
     "image-crop": {
       "name": "Potong gambar",
       "description": "Simpan hanya persegi yang Anda butuhkan.",
+      "summary": "Potong foto ke bagian yang penting dengan menyeret pilihan di atasnya, lalu ekspor hanya persegi panjang itu.",
       "keywords": "gambar potong potong wilayah",
       "run": "Potong",
       "success": "Gambar yang dipotong siap."
@@ -607,6 +617,7 @@
     "image-convert": {
       "name": "Konversi format gambar",
       "description": "Beralih antara JPEG, PNG, WEBP, dan format web serupa.",
+      "summary": "Konversi antara JPEG, PNG, WEBP, AVIF, dan GIF, satu gambar atau satu batch penuh, tanpa mengunggah gambarnya.",
       "keywords": "gambar konversi format webp png jpg jpeg",
       "run": "Konversi",
       "success": "Mengonversi {count} gambar."
@@ -614,6 +625,7 @@
     "image-metadata": {
       "name": "Metadata gambar",
       "description": "Periksa EXIF dan tag serupa, lalu ekspor salinan bersih tanpanya.",
+      "summary": "Periksa EXIF yang dibawa foto — kamera, lensa, tanggal, GPS — lalu simpan salinan tanpa informasi itu.",
       "keywords": "gambar exif metadata hapus privasi lokasi",
       "run": "Hapus metadata",
       "note": "Piksel dikodekan ulang di peramban sehingga metadata tertanam dihapus.",
@@ -625,6 +637,7 @@
     "image-adjust": {
       "name": "Sesuaikan gambar",
       "description": "Ubah kecerahan, kontras, dan saturasi.",
+      "summary": "Perbaiki kecerahan, kontras, saturasi, dan pencahayaan dengan mata, dengan hasil digambar ulang saat Anda menggeser tiap penggeser.",
       "keywords": "gambar kecerahan kontras saturasi warna",
       "run": "Terapkan",
       "brightness": "Kecerahan",
@@ -635,6 +648,7 @@
     "convert-hub": {
       "name": "Konversi cerdas",
       "description": "Mendeteksi jenis berkas atau teks campuran dan mengonversi antarformat (bukan studio media).",
+      "summary": "Tempelkan isi campuran dan biarkan Kit menebak itu apa — JSON, CSV, YAML, XML, TOML, atau SQL — lalu ubah ke format lain.",
       "keywords": "konversi hub cerdas massal json yaml csv zip gambar data",
       "run": "Konversi",
       "detect": "Terdeteksi sebagai",
@@ -644,6 +658,7 @@
     "json-format": {
       "name": "Pemformat JSON",
       "description": "Rapikan, perkecil, dan tangkap kesalahan JSON lebih awal.",
+      "summary": "Rapikan JSON atau kecilkan, dan lihat persis di mana kesalahan sintaksisnya, dengan baris yang salah disorot.",
       "keywords": "json format validasi perkecil pretty",
       "run": "Format",
       "success": "JSON valid dan terformat."
@@ -651,6 +666,7 @@
     "yaml-format": {
       "name": "Pemformat YAML",
       "description": "Periksa struktur YAML dan rapikan tata letak.",
+      "summary": "Periksa YAML dari kesalahan struktur dan rapikan indentasinya, supaya berkas konfigurasi terbaca sebagaimana mestinya.",
       "keywords": "yaml format validasi yml",
       "run": "Format",
       "success": "YAML valid."
@@ -658,6 +674,7 @@
     "toml-format": {
       "name": "Pemformat TOML",
       "description": "Validasi TOML dan jaga berkas tetap rapi.",
+      "summary": "Validasi TOML dan tata dengan rapi, sambil menangkap kesalahan sintaksis yang akan ditolak pengurai konfigurasi.",
       "keywords": "toml format validasi config",
       "run": "Format",
       "success": "TOML valid."
@@ -665,6 +682,7 @@
     "markdown-html": {
       "name": "Markdown ↔ HTML",
       "description": "Ubah Markdown menjadi HTML, atau HTML kembali menjadi Markdown.",
+      "summary": "Ubah Markdown menjadi HTML atau HTML kembali menjadi Markdown, dengan judul, tautan, daftar, tabel, dan kode tetap utuh.",
       "keywords": "markdown html konversi md markup",
       "run": "Konversi",
       "toHtml": "Markdown → HTML",
@@ -674,6 +692,7 @@
     "csv-json": {
       "name": "CSV ↔ JSON",
       "description": "Pindahkan data tabular antara CSV dan array JSON.",
+      "summary": "Ubah berkas CSV menjadi larik JSON, atau JSON kembali menjadi CSV, dengan pemisah dan baris tajuk dalam kendali Anda.",
       "keywords": "csv json konversi tabel spreadsheet",
       "run": "Konversi",
       "toJson": "CSV → JSON",
@@ -683,6 +702,7 @@
     "text-diff": {
       "name": "Bandingkan teks",
       "description": "Lihat perubahan baris demi baris antara dua versi.",
+      "summary": "Bandingkan dua draf berdampingan dan lihat baris mana yang ditambah, dihapus, atau diubah, sampai ke karakternya.",
       "keywords": "diff banding teks perubahan patch",
       "run": "Bandingkan",
       "left": "Asli",
@@ -692,6 +712,7 @@
     "base64": {
       "name": "Base64",
       "description": "Kodekan atau dekode Base64 untuk teks biasa atau seluruh berkas.",
+      "summary": "Kodekan teks biasa atau seluruh berkas sebagai Base64, atau dekode kembali, tanpa isinya keluar dari peramban.",
       "keywords": "base64 kodekan dekode biner",
       "run": "Konversi",
       "mode": "Arah",
@@ -702,6 +723,7 @@
     "url-encode": {
       "name": "Pengodean URL",
       "description": "Kodekan atau dekode komponen URL secara aman dengan persen.",
+      "summary": "Kodekan URL, string kueri, atau nilai formulir secara persen, atau dekode yang sudah terkode.",
       "keywords": "url kodekan dekode persen uri kueri",
       "run": "Konversi",
       "success": "Selesai."
@@ -709,6 +731,7 @@
     "audio-convert": {
       "name": "Konversi audio",
       "description": "Ubah wadah audio seperti MP3, WAV, dan OGG di peramban.",
+      "summary": "Konversi audio antara MP3, WAV, OGG, M4A, dan format umum lain di peramban, pada laju bit yang Anda butuhkan.",
       "keywords": "audio konversi mp3 wav ogg ffmpeg suara",
       "run": "Konversi",
       "loadingFfmpeg": "Memuat mesin audio…",
@@ -722,6 +745,7 @@
     "audio-trim": {
       "name": "Potong audio",
       "description": "Simpan hanya rentang antara dua stempel waktu dalam berkas audio.",
+      "summary": "Potong berkas audio ke bagian di antara dua penanda waktu, dengan awal dan akhir yang bisa disetel sampai detik.",
       "keywords": "audio potong klip mp3 wav",
       "run": "Potong",
       "success": "Pemotongan audio selesai."
@@ -729,6 +753,7 @@
     "audio-speed": {
       "name": "Kecepatan & volume audio",
       "description": "Percepat, perlambat, atau ubah kekerasan audio.",
+      "summary": "Percepat atau perlambat berkas audio tanpa mengubah nada, dan tentukan seberapa keras hasilnya.",
       "keywords": "audio kecepatan tempo volume nada",
       "run": "Terapkan",
       "success": "Audio yang diproses siap."
@@ -736,6 +761,7 @@
     "video-convert": {
       "name": "Konversi video",
       "description": "Ubah wadah video seperti MP4 dan WEBM di peramban.",
+      "summary": "Konversi video antara MP4, WEBM, dan MKV di peramban, dengan setelan H.264 dan AAC yang masuk akal sudah dipilih.",
       "keywords": "video konversi mp4 webm ffmpeg film",
       "run": "Konversi",
       "loadingFfmpeg": "Memuat mesin video…",
@@ -745,6 +771,7 @@
     "video-trim": {
       "name": "Potong video",
       "description": "Simpan hanya klip antara dua stempel waktu.",
+      "summary": "Potong video ke klip yang Anda mau dengan menetapkan titik awal dan akhir, lalu ekspor hanya rentang itu sebagai berkas.",
       "keywords": "video potong klip mp4",
       "run": "Potong",
       "success": "Pemotongan video selesai."
@@ -752,6 +779,7 @@
     "video-speed": {
       "name": "Kecepatan & volume video",
       "description": "Ubah kecepatan putar dan tingkat audio sebuah video.",
+      "summary": "Ubah kecepatan putar video, dengan suara tetap seirama atau diganti, dan setel levelnya sebelum menyimpan.",
       "keywords": "video kecepatan tempo volume",
       "run": "Terapkan",
       "success": "Video yang diproses siap."
@@ -759,6 +787,7 @@
     "video-extract-audio": {
       "name": "Ekstrak audio dari video",
       "description": "Simpan jalur suara video sebagai berkas audio.",
+      "summary": "Ambil trek suara dari video dan simpan sebagai berkas audio tersendiri, tanpa merekam ulang apa pun.",
       "keywords": "video ekstrak audio mp3 jalur suara",
       "run": "Ekstrak audio",
       "success": "Audio diekstrak."
@@ -766,6 +795,7 @@
     "pdf-numbers": {
       "name": "Nomor halaman",
       "description": "Cap label halaman seperti 1 / 12 di setiap halaman.",
+      "summary": "Tambahkan nomor halaman dalam format yang Anda pilih, seperti 1 / 12 atau 1 dari 12, di posisi yang Anda mau pada setiap halaman.",
       "keywords": "pdf nomor halaman kaki kepala paginasi",
       "run": "Tambah nomor",
       "template": "Label ({page} dan {pages})",
@@ -782,6 +812,7 @@
     "pdf-to-images": {
       "name": "PDF → gambar",
       "description": "Raster setiap halaman ke JPEG dan unduh sebagai ZIP.",
+      "summary": "Ubah setiap halaman PDF menjadi gambar JPEG pada resolusi yang Anda pilih, dan unduh seluruh setnya sebagai berkas ZIP.",
       "keywords": "pdf gambar jpg jpeg zip halaman ekspor",
       "run": "Ekspor halaman",
       "limits": "Halaman digambar dengan PDF.js di tab ini. Dokumen yang sangat besar bisa lambat dan memakai banyak memori. Ini raster visual, bukan ekstrak objek gambar tertanam.",
@@ -790,6 +821,7 @@
     "images-to-pdf": {
       "name": "Gambar → PDF",
       "description": "Tumpuk foto menjadi PDF, satu gambar per halaman.",
+      "summary": "Gabungkan foto dan hasil pindai menjadi satu PDF, satu gambar per halaman, dipaskan ke A4 atau dibiarkan seukuran aslinya.",
       "keywords": "gambar pdf jpg png gabung",
       "run": "Buat PDF",
       "success": "{count, plural, other {PDF dibuat dari # gambar.}}",
@@ -800,6 +832,7 @@
     "pdf-flatten": {
       "name": "Ratakan formulir",
       "description": "Panggang bidang AcroForm ke halaman agar tidak bisa diedit lagi.",
+      "summary": "Ubah kolom formulir yang sudah diisi menjadi isi halaman yang permanen, supaya PDF tercetak dan terbaca sama di mana pun.",
       "keywords": "pdf ratakan formulir bidang acroform",
       "run": "Ratakan",
       "limits": "Berfungsi pada bidang AcroForm standar. Formulir XFA dinamis tidak didukung sepenuhnya.",
@@ -808,6 +841,7 @@
     "pdf-metadata": {
       "name": "Metadata PDF",
       "description": "Lihat, sunting, atau hapus judul, penulis, dan bidang Info lainnya.",
+      "summary": "Baca, ubah, atau hapus judul, penulis, kata kunci, dan properti dokumen lain pada PDF, lalu simpan salinan bersih.",
       "keywords": "Kata kunci",
       "run": "Simpan metadata",
       "strip": "Hapus bidang Info dan XMP",
@@ -822,6 +856,7 @@
     "pdf-protect": {
       "name": "Kunci atau buka PDF",
       "description": "Tambah atau hapus kata sandi pengguna. Enkripsi tetap di peramban ini.",
+      "summary": "Beri kata sandi pada PDF atau lepas sandi yang Anda tahu, dengan enkripsinya dikerjakan di tab ini, bukan di server.",
       "keywords": "pdf kata sandi kunci buka enkripsi dekripsi",
       "run": "Terapkan",
       "lock": "Kunci",
@@ -833,6 +868,7 @@
     "image-rotate": {
       "name": "Putar & balik",
       "description": "Putar gambar 90° sekaligus atau balik secara horizontal atau vertikal.",
+      "summary": "Putar foto seperempat putaran sekali, luruskan beberapa derajat, atau cerminkan — satu gambar atau satu batch penuh.",
       "keywords": "gambar putar balik cermin",
       "run": "Terapkan",
       "operation": "Transformasi",
@@ -846,6 +882,7 @@
     "image-filters": {
       "name": "Filter gambar",
       "description": "Terapkan skala abu-abu, sepia, atau invert pada satu atau banyak foto.",
+      "summary": "Terapkan skala abu-abu, sepia, inversi, buram, atau pertajam pada satu foto atau satu folder penuh, lalu unduh hasilnya.",
       "keywords": "gambar filter abu sepia invert",
       "run": "Terapkan",
       "filter": "Filter",
@@ -857,6 +894,7 @@
     "image-favicon": {
       "name": "Paket favicon",
       "description": "Ekspor gambar sumber sebagai ukuran ikon umum dalam ZIP.",
+      "summary": "Ubah satu gambar menjadi ukuran ikon yang diminta situs atau aplikasi — favicon, ikon Apple, Android maskable — dalam satu ZIP.",
       "keywords": "favicon ikon 16 32 180 192 512 apple touch",
       "run": "Ekspor ikon",
       "note": "Mengekspor berkas PNG pada 16, 32, 48, 180, 192, dan 512 piksel.",
@@ -865,6 +903,7 @@
     "video-gif": {
       "name": "Video → GIF",
       "description": "Ubah klip pendek menjadi GIF berulang di peramban.",
+      "summary": "Ubah potongan pendek video menjadi GIF yang berulang, dengan awal dan akhir yang Anda pilih. Pengodean klip panjang lambat.",
       "keywords": "video gif klip konversi ffmpeg",
       "run": "Buat GIF",
       "limits": "Menggunakan FFmpeg WASM. Jaga klip tetap pendek — pengodean GIF lambat dan boros memori. Palet dan codec mengikuti build di peramban.",
@@ -873,6 +912,7 @@
     "xml-json": {
       "name": "XML ↔ JSON",
       "description": "Konversi dokumen XML ke JSON, atau JSON kembali ke XML.",
+      "summary": "Ubah dokumen XML menjadi JSON atau JSON kembali menjadi XML, dengan atribut dan elemen berulang dalam bentuk yang bisa ditebak.",
       "keywords": "xml json konversi uraikan",
       "run": "Konversi",
       "toJson": "XML → JSON",
@@ -882,6 +922,7 @@
     "sql-format": {
       "name": "Pemformat SQL",
       "description": "Rapikan SQL agar klausa dan daftar lebih mudah dibaca.",
+      "summary": "Rapikan SQL supaya klausa, penggabungan, dan daftar kolom panjang sejajar dan terbaca sesuai urutan jalannya.",
       "keywords": "sql format pretty kueri",
       "run": "Format",
       "success": "SQL diformat."
@@ -889,6 +930,7 @@
     "regex-tester": {
       "name": "Penguji regex",
       "description": "Uji ekspresi reguler terhadap teks sampel dan ganti kecocokan.",
+      "summary": "Coba ekspresi reguler pada teks contoh Anda sendiri, lihat kecocokannya tersorot, dan uji penggantiannya.",
       "keywords": "regex ekspresi reguler uji ganti",
       "pattern": "Pola",
       "flags": "Bendera",
@@ -901,6 +943,7 @@
     "hash-generator": {
       "name": "Pembuat hash",
       "description": "SHA-1/256/384/512 dan MD5 dari teks atau berkas, dihitung secara lokal.",
+      "summary": "Hitung SHA-1, SHA-256, SHA-384, SHA-512, atau MD5 untuk sepotong teks atau seluruh berkas, tanpa mengirim apa pun ke mana pun.",
       "keywords": "hash sha256 md5 sha1 checksum digest",
       "run": "Hash",
       "algo": "Algoritma",
@@ -911,6 +954,7 @@
     "uuid-generator": {
       "name": "Pembuat UUID",
       "description": "Buat UUID versi 4 atau 7 di perangkat ini.",
+      "summary": "Buat UUID versi 4 atau versi 7 satu per satu atau sekaligus, dibuat di perangkat ini, bukan oleh server.",
       "keywords": "uuid guid v4 v7 hasilkan",
       "run": "Hasilkan",
       "count": "Berapa banyak",
@@ -920,6 +964,7 @@
     "color-convert": {
       "name": "Konverter warna",
       "description": "Konversi antara HEX, RGB, HSL, dan HSV, dengan pemilih warna.",
+      "summary": "Konversi warna antara HEX, RGB, HSL, HSV, dan nama CSS, atau pilih dari roda warna dan baca semua notasinya sekaligus.",
       "keywords": "warna hex rgb hsl hsv pemilih",
       "picker": "Pemilih warna",
       "invalid": "Masukkan warna hex 3 atau 6 digit."
@@ -927,6 +972,7 @@
     "lorem-ipsum": {
       "name": "Lorem ipsum",
       "description": "Hasilkan paragraf, kalimat, atau kata placeholder.",
+      "summary": "Buat teks pengisi sebagai paragraf, kalimat, atau kata untuk tata letak, sebanyak yang Anda butuhkan dan siap ditempel.",
       "keywords": "lorem ipsum placeholder dummy teks",
       "run": "Hasilkan",
       "count": "Jumlah",
@@ -939,6 +985,7 @@
     "qr-code": {
       "name": "Kode QR",
       "description": "Buat kode QR dari teks, atau baca dari gambar.",
+      "summary": "Buat kode QR dari tautan, teks, atau detail kontak lalu unduh sebagai gambar, atau baca kode dari sebuah gambar.",
       "keywords": "qr kode hasilkan pindai baca barcode",
       "run": "Hasilkan",
       "payload": "Teks atau URL",
@@ -951,6 +998,7 @@
     "pdf-sign": {
       "name": "Tandai PDF",
       "description": "Cap tanda tangan ketikan di setiap halaman. Hanya visual — bukan sertifikat.",
+      "summary": "Letakkan tanda tangan yang diketik pada halaman yang Anda pilih. Itu digambar di halaman untuk dibaca, bukan tanda tangan kriptografis.",
       "keywords": "pdf tanda tangan cap nama",
       "run": "Tandai",
       "signature": "Teks tanda tangan",
@@ -961,6 +1009,7 @@
     "image-watermark": {
       "name": "Tanda air gambar",
       "description": "Lapisi teks pada foto, satu berkas atau seluruh batch.",
+      "summary": "Timpakan teks pada foto Anda — memilih posisi, ukuran, warna, dan opasitas — untuk satu gambar atau satu batch penuh.",
       "keywords": "gambar tanda air cap hak cipta",
       "run": "Terapkan",
       "text": "Teks tanda air",
@@ -974,6 +1023,7 @@
     "password-generator": {
       "name": "Pembuat kata sandi",
       "description": "Buat kata sandi kuat di perangkat ini. Tidak ada yang disimpan.",
+      "summary": "Buat kata sandi kuat pada panjang dan campuran karakter yang Anda pilih. Dibuat di perangkat ini dan tidak pernah disimpan.",
       "keywords": "kata sandi hasilkan acak rahasia",
       "run": "Hasilkan",
       "length": "Panjang",
@@ -986,6 +1036,7 @@
     "case-convert": {
       "name": "Ubah huruf",
       "description": "Beralih antara camel, snake, kebab, judul, dan lainnya.",
+      "summary": "Ubah teks antara camelCase, snake_case, kebab-case, Title Case, dan konvensi lain yang dipakai pengembang.",
       "keywords": "huruf camel snake kebab pascal judul",
       "run": "Konversi",
       "style": "Gaya",
@@ -994,6 +1045,7 @@
     "jwt-decode": {
       "name": "Dekoder JWT",
       "description": "Baca header dan payload JWT secara lokal. Tanda tangan tidak diverifikasi.",
+      "summary": "Baca tajuk dan muatan JSON Web Token, lihat kapan kedaluwarsa, dan dekode di perangkat ini. Tanda tangannya tidak diverifikasi.",
       "keywords": "jwt dekode token bearer auth",
       "run": "Dekode",
       "limits": "Kit hanya mendekode Base64url. Tanpa kunci ia tidak dapat membuktikan token asli.",
@@ -1005,12 +1057,14 @@
     "unix-timestamp": {
       "name": "Stempel waktu Unix",
       "description": "Konversi waktu Unix ke ISO dan sebaliknya.",
+      "summary": "Ubah stempel waktu Unix menjadi tanggal dan waktu yang terbaca, atau sebaliknya, di zona waktu yang Anda pilih.",
       "keywords": "unix epoch stempel waktu iso tanggal",
       "now": "Gunakan sekarang"
     },
     "cron-explain": {
       "name": "Penjelas cron",
       "description": "Ubah ekspresi cron 5 bidang menjadi bahasa biasa.",
+      "summary": "Ubah ekspresi cron lima kolom menjadi kalimat biasa, supaya jelas kapan tugas terjadwal berjalan dan seberapa sering.",
       "keywords": "cron jadwal crontab jelaskan",
       "run": "Jelaskan",
       "success": "Dijelaskan."
@@ -1018,6 +1072,7 @@
     "number-base": {
       "name": "Basis bilangan",
       "description": "Konversi bilangan bulat antara basis 2 dan 36.",
+      "summary": "Ubah bilangan bulat antara biner, oktal, desimal, heksadesimal, dan basis apa pun dari 2 sampai 36, dengan pola bitnya ditampilkan.",
       "keywords": "biner hex desimal basis konversi",
       "value": "Angka",
       "from": "Dari basis",
@@ -1026,6 +1081,7 @@
     "html-entities": {
       "name": "Entitas HTML",
       "description": "Kodekan atau dekode &lt; &amp; dan entitas numerik.",
+      "summary": "Kodekan atau dekode kurung sudut, tanda kutip, dan entitas HTML numerik, supaya teks aman di dalam markup dan terbaca di luarnya.",
       "keywords": "html entitas kodekan dekode escape",
       "run": "Konversi",
       "encode": "Kodekan",
@@ -1035,6 +1091,7 @@
     "json-types": {
       "name": "JSON → TypeScript",
       "description": "Simpulkan antarmuka TypeScript dari sampel JSON.",
+      "summary": "Ubah contoh respons JSON menjadi antarmuka TypeScript, dengan objek dan larik bersarang bertipe sejauh contohnya memungkinkan.",
       "keywords": "json typescript interface tipe hasilkan",
       "run": "Hasilkan tipe",
       "success": "Tipe dihasilkan."
@@ -1102,42 +1159,42 @@
       "categoryElectricalDescription": "Tegangan, arus, dan hambatan",
       "categoryTypography": "Tipografi",
       "categoryTypographyDescription": "Ukuran CSS dan cetak",
-      "unitMm": "Millimeters (mm)",
-      "unitCm": "Centimeters (cm)",
-      "unitM": "Meters (m)",
-      "unitKm": "Kilometers (km)",
-      "unitIn": "Inches (in)",
-      "unitFt": "Feet (ft)",
-      "unitYd": "Yards (yd)",
-      "unitMi": "Miles (mi)",
+      "unitMm": "Milimeter (mm)",
+      "unitCm": "Sentimeter (cm)",
+      "unitM": "Meter (m)",
+      "unitKm": "Kilometer (km)",
+      "unitIn": "Inci (in)",
+      "unitFt": "Kaki (ft)",
+      "unitYd": "Yard (yd)",
+      "unitMi": "Mil (mi)",
       "unitNmi": "Mil laut (nmi)",
-      "unitMg": "Milligrams (mg)",
-      "unitG": "Grams (g)",
-      "unitKg": "Kilograms (kg)",
-      "unitT": "Metric tonnes (t)",
-      "unitOz": "Ounces (oz)",
-      "unitLb": "Pounds (lb)",
+      "unitMg": "Miligram (mg)",
+      "unitG": "Gram (g)",
+      "unitKg": "Kilogram (kg)",
+      "unitT": "Ton metrik (t)",
+      "unitOz": "Ons (oz)",
+      "unitLb": "Pon (lb)",
       "unitStone": "Stone (st)",
       "unitC": "Celsius (°C)",
       "unitF": "Fahrenheit (°F)",
       "unitK": "Kelvin (K)",
-      "unitMs": "Milliseconds",
-      "unitS": "Seconds",
-      "unitMin": "Minutes",
-      "unitH": "Hours",
-      "unitDay": "Days",
-      "unitWeek": "Weeks",
-      "unitM_s": "Meters per second",
-      "unitKm_h": "Kilometers per hour",
-      "unitMph": "Miles per hour",
+      "unitMs": "Milidetik",
+      "unitS": "Detik",
+      "unitMin": "Menit",
+      "unitH": "Jam",
+      "unitDay": "Hari",
+      "unitWeek": "Minggu",
+      "unitM_s": "Meter per detik",
+      "unitKm_h": "Kilometer per jam",
+      "unitMph": "Mil per jam",
       "unitKnot": "Knot",
-      "unitMl": "Milliliters",
-      "unitL": "Liters",
-      "unitM3": "Cubic meters",
-      "unitUsTsp": "Sendok teh US",
-      "unitUsTbsp": "Sendok makan US",
-      "unitUsCup": "Cangkir US",
-      "unitUsGal": "Galon US",
+      "unitMl": "Mililiter",
+      "unitL": "Liter",
+      "unitM3": "Meter kubik",
+      "unitUsTsp": "Sendok teh AS",
+      "unitUsTbsp": "Sendok makan AS",
+      "unitUsCup": "Cangkir AS",
+      "unitUsGal": "Galon AS",
       "unitImpGal": "Galon imperial",
       "unitW": "Watts",
       "unitKw": "Kilowatts",
@@ -1145,70 +1202,70 @@
       "unitHp": "Daya kuda mekanis",
       "unitJ": "Joules",
       "unitKj": "Kilojoules",
-      "unitWh": "Watt-hours",
-      "unitKwh": "Kilowatt-hours",
-      "unitCal": "Calories",
-      "unitKcal": "Kilocalories",
-      "unitEv": "Electronvolts",
+      "unitWh": "Watt-jam",
+      "unitKwh": "Kilowatt-jam",
+      "unitCal": "Kalori",
+      "unitKcal": "Kilokalori",
+      "unitEv": "Elektronvolt",
       "unitPa": "Pascals",
       "unitKpa": "Kilopascals",
       "unitBar": "Bar",
       "unitPsi": "PSI",
-      "unitAtm": "Atmospheres",
-      "unitMmHg": "Millimeters of mercury",
-      "unitMm2": "Square millimeters",
-      "unitCm2": "Square centimeters",
-      "unitM2": "Square meters",
-      "unitKm2": "Square kilometers",
-      "unitFt2": "Square feet",
-      "unitAcre": "Acres",
-      "unitHectare": "Hectares",
-      "unitBit": "Bits",
-      "unitB": "Bytes",
-      "unitKb": "Kilobytes",
-      "unitMb": "Megabytes",
-      "unitGb": "Gigabytes",
-      "unitTb": "Terabytes",
-      "unitKib": "Kibibytes",
-      "unitMib": "Mebibytes",
-      "unitGib": "Gibibytes",
-      "unitDeg": "Degrees",
-      "unitRad": "Radians",
-      "unitGrad": "Gradians",
-      "unitTurn": "Turns",
+      "unitAtm": "Atmosfer",
+      "unitMmHg": "Milimeter merkuri",
+      "unitMm2": "Milimeter persegi",
+      "unitCm2": "Sentimeter persegi",
+      "unitM2": "Meter persegi",
+      "unitKm2": "Kilometer persegi",
+      "unitFt2": "Kaki persegi",
+      "unitAcre": "Acre",
+      "unitHectare": "Hektare",
+      "unitBit": "Bit",
+      "unitB": "Bita",
+      "unitKb": "Kilobita",
+      "unitMb": "Megabita",
+      "unitGb": "Gigabita",
+      "unitTb": "Terabita",
+      "unitKib": "Kibibita",
+      "unitMib": "Mebibita",
+      "unitGib": "Gibibita",
+      "unitDeg": "Derajat",
+      "unitRad": "Radian",
+      "unitGrad": "Gradian",
+      "unitTurn": "Putaran",
       "unitHz": "Hertz",
       "unitKhz": "Kilohertz",
       "unitMhz": "Megahertz",
       "unitGhz": "Gigahertz",
-      "unitRpm": "Revolutions per minute",
-      "unitN": "Newtons",
-      "unitKn": "Kilonewtons",
-      "unitLbf": "Pound-force",
-      "unitKgf": "Kilogram-force",
-      "unitL_100km": "Liters per 100 km",
-      "unitKm_L": "Kilometers per liter",
-      "unitMpgUs": "Miles per US gallon",
-      "unitMpgImperial": "Miles per imperial gallon",
-      "unitM_s2": "Meters per second squared",
-      "unitG0": "Standard gravity",
-      "unitFt_s2": "Feet per second squared",
-      "unitNm": "Newton-meters",
-      "unitKnm": "Kilonewton-meters",
-      "unitLbFt": "Pound-feet",
-      "unitLbIn": "Pound-inches",
-      "unitMv": "Millivolts",
-      "unitV": "Volts",
-      "unitKv": "Kilovolts",
-      "unitMa": "Milliamps",
-      "unitA": "Amps",
-      "unitKa": "Kiloamps",
-      "unitMOhm": "Milliohms",
-      "unitOhm": "Ohms",
-      "unitKOhm": "Kilohms",
-      "unitMOhmBig": "Megohms",
-      "unitPx": "Pixels",
-      "unitPt": "Points",
-      "unitPc": "Picas",
+      "unitRpm": "Putaran per menit",
+      "unitN": "Newton",
+      "unitKn": "Kilonewton",
+      "unitLbf": "Pon-gaya",
+      "unitKgf": "Kilogram-gaya",
+      "unitL_100km": "Liter per 100 km",
+      "unitKm_L": "Kilometer per liter",
+      "unitMpgUs": "Mil per galon AS",
+      "unitMpgImperial": "Mil per galon imperial",
+      "unitM_s2": "Meter per detik persegi",
+      "unitG0": "Gravitasi standar",
+      "unitFt_s2": "Kaki per detik persegi",
+      "unitNm": "Newton-meter",
+      "unitKnm": "Kilonewton-meter",
+      "unitLbFt": "Pon-kaki",
+      "unitLbIn": "Pon-inci",
+      "unitMv": "Milivolt",
+      "unitV": "Volt",
+      "unitKv": "Kilovolt",
+      "unitMa": "Miliampere",
+      "unitA": "Ampere",
+      "unitKa": "Kiloampere",
+      "unitMOhm": "Miliohm",
+      "unitOhm": "Ohm",
+      "unitKOhm": "Kilohm",
+      "unitMOhmBig": "Megaohm",
+      "unitPx": "Piksel",
+      "unitPt": "Poin",
+      "unitPc": "Pica",
       "unitRem": "rem",
       "unitEm": "em",
       "presetMetricImperial": "Metrik ↔ imperial",
@@ -1243,23 +1300,24 @@
       "parentFontSize": "Ukuran fon parent",
       "dpi": "DPI",
       "rateUnavailable": "Layanan kurs tidak tersedia",
-      "unitUsFlOz": "US fluid ounces",
-      "unitUsPt": "US pints",
-      "unitUsQt": "US quarts",
+      "unitUsFlOz": "Ons cair AS",
+      "unitUsPt": "Pint AS",
+      "unitUsQt": "Quart AS",
       "unitGw": "Gigawatts",
       "unitMj": "Megajoules",
       "unitMpa": "Megapascals",
-      "unitIn2": "Square inches",
-      "unitYd2": "Square yards",
-      "unitPb": "Petabytes",
-      "unitTib": "Tebibytes",
-      "unitPib": "Pebibytes",
-      "unitArcmin": "Arcminutes",
-      "unitArcsec": "Arcseconds"
+      "unitIn2": "Inci persegi",
+      "unitYd2": "Yard persegi",
+      "unitPb": "Petabita",
+      "unitTib": "Tebibita",
+      "unitPib": "Pebibita",
+      "unitArcmin": "Menit busur",
+      "unitArcsec": "Detik busur"
     },
     "text-counter": {
       "name": "Penghitung teks",
       "description": "Hitung kata, karakter, kalimat, paragraf, dan waktu baca.",
+      "summary": "Hitung kata, karakter, kalimat, dan paragraf saat Anda mengetik, plus perkiraan berapa lama teksnya dibaca.",
       "keywords": "penghitung kata penghitung karakter statistik teks waktu baca",
       "limits": "Penghitungan menggunakan segmentasi Unicode bawaan browser jika tersedia, sehingga emoji dan karakter gabungan ditangani lebih alami.",
       "input": "Teks yang dihitung",
@@ -1276,6 +1334,7 @@
     "timezone-converter": {
       "name": "Jam dunia",
       "description": "Konversi tanggal dan waktu lokal antar-zona waktu serta lihat jam dunia.",
+      "summary": "Lihat pukul berapa sekarang di kota-kota dunia, dan ubah satu saat antar zona waktu bahkan melewati pergantian tanggal.",
       "keywords": "konverter zona waktu jam dunia DST tanggal waktu",
       "limits": "Masukkan waktu lokal di kota sumber. Konversi menggunakan aturan zona waktu IANA, termasuk perubahan waktu musim panas.",
       "convert": "Konversi tanggal dan waktu",
@@ -1325,6 +1384,7 @@
     "date-calculator": {
       "name": "Kalkulator tanggal",
       "description": "Bandingkan tanggal, tambahkan waktu, dan hitung hari kerja dengan hari libur opsional.",
+      "summary": "Hitung selisih antara dua tanggal, tambah atau kurangi hari dan bulan, dan hitung hari kerja di sekitar hari libur.",
       "keywords": "kalkulator tanggal selisih tanggal tambah hari hari kerja hari libur",
       "updated": "Tanggal diperbarui.",
       "invalid": "Periksa input.",
@@ -1363,6 +1423,7 @@
     "tip-split-calculator": {
       "name": "Kalkulator tip dan pembagian",
       "description": "Hitung tip, pajak, total, dan bagian yang adil untuk kelompok.",
+      "summary": "Hitung tip, pajak, dan total sebuah tagihan, lalu bagi dengan adil ke sebanyak apa pun orang yang membayar.",
       "keywords": "kalkulator tip bagi tagihan pajak restoran bagian",
       "limits": "Tip dan pajak dihitung dari subtotal. Bagian yang dibulatkan membagikan sisa ke orang pertama agar jumlahnya tetap sama dengan total.",
       "invalid": "Periksa input.",
@@ -1383,6 +1444,7 @@
     "stopwatch-timer": {
       "name": "Stopwatch dan timer",
       "description": "Jalankan stopwatch presisi atau timer hitung mundur di browser.",
+      "summary": "Jalankan stopwatch presisi dengan catatan putaran, atau hitung mundur ke nol di tab yang tetap berjalan saat Anda di tempat lain.",
       "keywords": "stopwatch timer hitung mundur jam timer online",
       "saved": "Disimpan ke riwayat.",
       "stopwatch": "Penghitung waktu",
@@ -1399,6 +1461,7 @@
     "random-generator": {
       "name": "Generator acak",
       "description": "Buat angka, nilai boolean, pilihan, atau kata sandi untuk kebutuhan sehari-hari.",
+      "summary": "Ambil angka acak, lempar koin, lempar dadu, atau pilih dari daftar, dengan rentang dan jumlah hasil yang Anda tetapkan.",
       "keywords": "generator angka acak pemilih generator kata sandi",
       "invalid": "Periksa input.",
       "limits": "Keacakan menggunakan sumber Math.random browser. Hasilnya untuk pilihan sehari-hari, bukan rahasia kriptografis.",
@@ -1428,6 +1491,7 @@
     "currency-converter": {
       "name": "Konverter mata uang",
       "description": "Kurs live dengan cache lokal",
+      "summary": "Konversi antar mata uang dengan kurs harian yang disimpan di perangkat Anda, supaya set terakhir tetap jalan tanpa koneksi.",
       "keywords": "konverter mata uang kurs uang Frankfurter",
       "currency": "Mata uang",
       "limits": "Kurs diambil dari Frankfurter saat alat ini dibuka atau saat Anda mengetuk Segarkan, lalu disimpan di cache browser ini selama enam jam. Jumlah tidak dikirim. Ini data referensi harian, bukan untuk trading atau pajak.",
@@ -1451,6 +1515,7 @@
     "length-converter": {
       "name": "Panjang",
       "description": "Jarak, dimensi, dan perjalanan",
+      "summary": "Konversi panjang antara meter, kaki, mil, inci, sentimeter, dan satuan lain yang ditemui perjalanan dan renovasi.",
       "keywords": "Panjang length converter",
       "run": "Catat konversi",
       "success": "Konversi disimpan ke riwayat."
@@ -1458,6 +1523,7 @@
     "mass-converter": {
       "name": "Massa",
       "description": "Berat dari miligram hingga ton",
+      "summary": "Konversi berat antara miligram, gram, kilogram, ton, pon, ons, dan stone, untuk memasak atau mengirim barang.",
       "keywords": "Massa mass converter",
       "run": "Catat konversi",
       "success": "Konversi disimpan ke riwayat."
@@ -1465,6 +1531,7 @@
     "temperature-converter": {
       "name": "Suhu",
       "description": "Celsius, Fahrenheit, dan Kelvin",
+      "summary": "Konversi suhu antara Celsius, Fahrenheit, dan Kelvin, termasuk titik saat air membeku dan mendidih.",
       "keywords": "Suhu temperature converter",
       "run": "Catat konversi",
       "success": "Konversi disimpan ke riwayat."
@@ -1472,6 +1539,7 @@
     "speed-converter": {
       "name": "Kecepatan",
       "description": "Kecepatan sehari-hari dan nautika",
+      "summary": "Konversi kecepatan antara kilometer per jam, mil per jam, meter per detik, dan knot, untuk jalan, udara, dan laut.",
       "keywords": "Kecepatan speed converter",
       "run": "Catat konversi",
       "success": "Konversi disimpan ke riwayat."
@@ -1479,6 +1547,7 @@
     "duration-converter": {
       "name": "Durasi",
       "description": "Milidetik hingga minggu",
+      "summary": "Konversi durasi antara milidetik, detik, menit, jam, hari, dan minggu, membaca nilainya dalam dua arah.",
       "keywords": "Durasi duration converter",
       "run": "Catat konversi",
       "success": "Konversi disimpan ke riwayat."
@@ -1486,6 +1555,7 @@
     "volume-converter": {
       "name": "Volume",
       "description": "Ukuran metrik dan dapur",
+      "summary": "Konversi volume antara liter, mililiter, galon, cangkir, pint, dan ukuran yang dipakai sebuah resep.",
       "keywords": "Volume konverter volume",
       "run": "Catat konversi",
       "success": "Konversi disimpan ke riwayat."
@@ -1493,6 +1563,7 @@
     "power-converter": {
       "name": "Daya",
       "description": "Watt dan tenaga kuda",
+      "summary": "Konversi daya antara watt, kilowatt, megawatt, dan daya kuda metrik atau mekanis, untuk peralatan dan mesin.",
       "keywords": "Daya power converter",
       "run": "Catat konversi",
       "success": "Konversi disimpan ke riwayat."
@@ -1500,6 +1571,7 @@
     "energy-converter": {
       "name": "Energi",
       "description": "Joule, kalori, dan watt-jam",
+      "summary": "Konversi energi antara joule, kalori, kilokalori, dan kilowatt-jam — satuan pada label pangan atau tagihan listrik.",
       "keywords": "Energi energy converter",
       "run": "Catat konversi",
       "success": "Konversi disimpan ke riwayat."
@@ -1507,6 +1579,7 @@
     "pressure-converter": {
       "name": "Tekanan",
       "description": "Pa, bar, PSI, dan lainnya",
+      "summary": "Konversi tekanan antara pascal, bar, PSI, atmosfer, torr, dan milimeter merkuri, untuk ban atau cuaca.",
       "keywords": "Tekanan pressure converter",
       "run": "Catat konversi",
       "success": "Konversi disimpan ke riwayat."
@@ -1514,6 +1587,7 @@
     "area-converter": {
       "name": "Luas",
       "description": "Luas permukaan dan lahan",
+      "summary": "Konversi luas antara meter persegi, kaki persegi, acre, hektare, dan ukuran lain untuk tanah dan lantai.",
       "keywords": "Luas area converter",
       "run": "Catat konversi",
       "success": "Konversi disimpan ke riwayat."
@@ -1521,6 +1595,7 @@
     "data-converter": {
       "name": "Data",
       "description": "Penyimpanan desimal dan biner",
+      "summary": "Konversi ukuran berkas atau penyimpanan antara bita, kilobita, megabita, gigabita, dan terabita, desimal atau biner.",
       "keywords": "Data konverter data",
       "run": "Catat konversi",
       "success": "Konversi disimpan ke riwayat."
@@ -1528,6 +1603,7 @@
     "angle-converter": {
       "name": "Sudut",
       "description": "Derajat, radian, dan putaran",
+      "summary": "Konversi sudut antara derajat, radian, gradian, dan putaran, dengan bentuk desimal dan pecahannya berdampingan.",
       "keywords": "Sudut angle converter",
       "run": "Catat konversi",
       "success": "Konversi disimpan ke riwayat."
@@ -1535,6 +1611,7 @@
     "frequency-converter": {
       "name": "Frekuensi",
       "description": "Hz hingga RPM",
+      "summary": "Konversi frekuensi antara hertz, kilohertz, megahertz, gigahertz, dan putaran per menit, untuk suara, radio, dan mesin berputar.",
       "keywords": "Frekuensi frequency converter",
       "run": "Catat konversi",
       "success": "Konversi disimpan ke riwayat."
@@ -1542,6 +1619,7 @@
     "force-converter": {
       "name": "Gaya",
       "description": "Newton dan satuan gaya",
+      "summary": "Konversi gaya antara newton, kilonewton, kilogram-gaya, pon-gaya, dan dyne, untuk fisika dan teknik.",
       "keywords": "Gaya force converter",
       "run": "Catat konversi",
       "success": "Konversi disimpan ke riwayat."
@@ -1549,6 +1627,7 @@
     "fuel-economy-converter": {
       "name": "Efisiensi bahan bakar",
       "description": "Konsumsi dan jarak tempuh",
+      "summary": "Konversi konsumsi bahan bakar antara liter per 100 kilometer, mil per galon AS atau imperial, dan kilometer per liter.",
       "keywords": "Efisiensi bahan bakar fuel economy converter",
       "run": "Catat konversi",
       "success": "Konversi disimpan ke riwayat."
@@ -1556,6 +1635,7 @@
     "acceleration-converter": {
       "name": "Percepatan",
       "description": "Gerak dan gravitasi",
+      "summary": "Konversi percepatan antara meter per detik persegi, gravitasi standar, kaki per detik persegi, dan galileo.",
       "keywords": "Percepatan acceleration converter",
       "run": "Catat konversi",
       "success": "Konversi disimpan ke riwayat."
@@ -1563,6 +1643,7 @@
     "torque-converter": {
       "name": "Torsi",
       "description": "Gaya rotasi",
+      "summary": "Konversi torsi antara newton-meter, kilogram-gaya meter, pon-kaki, dan pon-inci, untuk mur dan mesin.",
       "keywords": "Torsi torque converter",
       "run": "Catat konversi",
       "success": "Konversi disimpan ke riwayat."
@@ -1570,6 +1651,7 @@
     "electrical-converter": {
       "name": "Kelistrikan",
       "description": "Tegangan, arus, dan hambatan",
+      "summary": "Konversi antar satuan listrik untuk tegangan, arus, hambatan, dan daya — volt, ampere, ohm, dan watt.",
       "keywords": "Kelistrikan electrical converter",
       "run": "Catat konversi",
       "success": "Konversi disimpan ke riwayat."
@@ -1577,6 +1659,7 @@
     "typography-converter": {
       "name": "Tipografi",
       "description": "Ukuran CSS dan cetak",
+      "summary": "Konversi ukuran huruf antara piksel, poin, em, rem, dan pica, terhadap ukuran akar, induk, atau layar yang Anda setel.",
       "keywords": "Tipografi typography converter",
       "run": "Catat konversi",
       "success": "Konversi disimpan ke riwayat."
@@ -1584,6 +1667,7 @@
     "bmi-calorie-calculator": {
       "name": "Kalkulator IMT dan kalori",
       "description": "Lihat IMT, rentang berat sehat, dan kebutuhan kalori harian dari tinggi, berat, usia, dan aktivitas.",
+      "summary": "Bandingkan BMI dengan rentang berat yang sehat, dan perkirakan kebutuhan kalori harian dari tinggi, berat, usia, dan aktivitas.",
       "keywords": "imt kalori tdee bmr berat kesehatan",
       "limits": "IMT memakai ambang WHO dewasa. Di bawah 18 diizinkan, tetapi ditandai, karena IMT anak biasanya dibaca lewat kurva pertumbuhan. Kalori memakai Mifflin-St Jeor, rumus dewasa. Perhitungan tetap di perangkat ini dan bukan nasihat medis.",
       "invalid": "Masukkan tinggi, berat, dan usia yang wajar.",
@@ -1642,6 +1726,7 @@
     "percentage-calculator": {
       "name": "Kalkulator persentase",
       "description": "Hitung persen dari angka, balik persen, ukur perubahan, atau terapkan naik/turun persen.",
+      "summary": "Hitung persentase dari sebuah angka, lacak balik nilai asalnya, ukur perubahan antara dua nilai, atau terapkan kenaikan.",
       "keywords": "persentase kalkulator naik diskon markup",
       "mode": "Perhitungan",
       "modeOf": "% of",
@@ -1665,6 +1750,7 @@
     "loan-calculator": {
       "name": "Kalkulator pinjaman & bunga",
       "description": "Perkirakan cicilan bulanan atau bunga majemuk dari pokok, suku bunga, dan tahun.",
+      "summary": "Perkirakan angsuran bulanan, atau lihat apa yang dilakukan bunga majemuk seiring waktu, dari pokok, suku bunga, dan tenor.",
       "keywords": "pinjaman KPR cicilan amortisasi bunga majemuk APR",
       "limits": "Mode pinjaman memakai anuitas bunga tetap standar. Mode bunga majemuk mengkapitalisasi secara periodik (bulanan secara bawaan). Ini estimasi, bukan saran keuangan.",
       "mode": "Mode",
@@ -1685,6 +1771,7 @@
     "text-lines": {
       "name": "Alat baris",
       "description": "Cari dan ganti, urutkan, atau hapus baris duplikat di browser.",
+      "summary": "Cari dan ganti pada daftar baris, urutkan secara numerik atau alfabetis, dan hapus baris yang berulang.",
       "keywords": "cari ganti urut unik baris teks",
       "find": "Cari",
       "replace": "Ganti dengan",
@@ -1699,6 +1786,7 @@
     "slugify": {
       "name": "Slugify",
       "description": "Ubah judul menjadi slug URL atau bersihkan nama file yang aman.",
+      "summary": "Ubah judul menjadi slug URL yang bersih, dengan pilihan aksen, besar-kecil huruf, dan pemisah yang dibutuhkan nama berkas.",
       "keywords": "slugify slug url nama file bersihkan kebab",
       "input": "Teks",
       "slug": "Slug URL",
@@ -1709,6 +1797,7 @@
     "color-contrast": {
       "name": "Kontras warna",
       "description": "Periksa kontras WCAG antara warna latar depan dan belakang.",
+      "summary": "Periksa kontras antara teks dan latar terhadap ambang WCAG AA dan AAA sebelum melepas paletnya.",
       "keywords": "wcag kontras aksesibilitas aa aaa keterbacaan",
       "limits": "Rasio memakai luminans relatif WCAG 2 untuk warna hex sRGB. Tingkat yang ditampilkan berlaku untuk teks normal (AA ≥ 4,5, AAA ≥ 7).",
       "foreground": "Warna depan",
@@ -1724,6 +1813,7 @@
     "image-palette": {
       "name": "Palet gambar",
       "description": "Ambil warna dominan dari foto untuk referensi desain.",
+      "summary": "Baca warna dominan sebuah foto sebagai kode hex, supaya paletnya bisa langsung masuk ke desain atau pemeriksaan merek.",
       "keywords": "palet warna ekstrak dominan swatch gambar",
       "limits": "Warna dikuantisasi di tab ini dari pratinjau yang diperkecil. Hasil bersifat perkiraan dan tetap di perangkat ini.",
       "maxColors": "Warna maksimum",
@@ -1735,6 +1825,7 @@
     "aspect-ratio": {
       "name": "Rasio aspek",
       "description": "Sederhanakan lebar dan tinggi menjadi rasio, atau hitung sisi yang hilang.",
+      "summary": "Sederhanakan lebar dan tinggi ke rasio paling sederhana, atau hitung sisi yang hilang dari rasio yang sudah Anda tahu.",
       "keywords": "rasio aspek 16:9 dimensi sisi hilang",
       "mode": "Mode",
       "modeFromSize": "Dari ukuran",
@@ -1751,6 +1842,7 @@
     "meeting-planner": {
       "name": "Perencana rapat",
       "description": "Temukan jendela jam kerja yang tumpang tindih antar zona waktu pada suatu tanggal.",
+      "summary": "Temukan jam yang cocok untuk semua orang dengan membandingkan jam kerja di beberapa zona waktu pada tanggal pilihan Anda.",
       "keywords": "rapat zona waktu tumpang tindih jam dunia jam kerja",
       "limits": "Tumpang tindih memakai zona IANA dan tanggal kalender lokal. Jam adalah jam UTC penuh ketika setiap zona masih pada tanggal terpilih dan berada dalam jam kerja.",
       "date": "Tanggal",
@@ -1770,6 +1862,7 @@
     "json-query": {
       "name": "Kueri JSON",
       "description": "Ratakan JSON bersarang atau baca nilai JSONPath sederhana seperti $.items[0].name.",
+      "summary": "Ratakan JSON yang bersarang dalam menjadi baris, atau ambil nilai tunggal dengan ekspresi JSONPath sederhana seperti $.items[0].name.",
       "keywords": "json path kueri ratakan jq",
       "limits": "Mendukung sebagian kecil JSONPath: $.a.b, $.items[0], dan $['key']. Kartu liar dan filter tidak termasuk.",
       "mode": "Mode",
@@ -1784,6 +1877,7 @@
     "check-digits": {
       "name": "Digit pemeriksaan",
       "description": "Validasi ISBN-10/13, EAN-13, dan IBAN secara lokal.",
+      "summary": "Validasi digit pemeriksa pada ISBN-10, ISBN-13, EAN-13, atau IBAN, dan lihat di posisi mana entri yang salah gagal.",
       "keywords": "isbn ean iban digit pemeriksaan barcode validasi",
       "limits": "Hanya memeriksa algoritme digit pemeriksa yang dipublikasikan. Digit pemeriksa yang valid tidak membuktikan nomor terdaftar atau akun ada.",
       "kind": "Jenis",

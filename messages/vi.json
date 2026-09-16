@@ -518,6 +518,7 @@
     "pdf-merge": {
       "name": "Gộp PDF",
       "description": "Xếp nhiều PDF thành một. Xem trước trang và kéo để sắp lại.",
+      "summary": "Gộp nhiều PDF thành một tệp, xem trước các trang và kéo chúng vào thứ tự bạn muốn trước khi lưu.",
       "keywords": "pdf gộp nối ghép nhiều trang",
       "run": "Gộp",
       "empty": "Thêm ít nhất hai tệp PDF.",
@@ -526,6 +527,7 @@
     "pdf-split": {
       "name": "Tách PDF",
       "description": "Lấy một dải trang ra thành PDF mới.",
+      "summary": "Tách một hoặc vài khoảng trang từ PDF ra tệp mới, hoặc chia một tài liệu thành nhiều phần, không cần tải lên.",
       "keywords": "pdf tách trích trang dải",
       "run": "Tách",
       "range": "Trang (ví dụ 1-3,5)",
@@ -534,6 +536,7 @@
     "pdf-organize": {
       "name": "Sắp xếp trang",
       "description": "Xoay trang, xóa những trang không cần và đặt thứ tự mới.",
+      "summary": "Xoay, xóa và sắp xếp lại các trang của PDF, rồi lưu tài liệu đã sắp xếp. Không gì rời khỏi thiết bị của bạn.",
       "keywords": "pdf xoay xóa sắp xếp tổ chức trang",
       "run": "Lưu PDF",
       "success": "PDF của bạn đã được cập nhật.",
@@ -542,6 +545,7 @@
     "pdf-compress": {
       "name": "Thu nhỏ thành ảnh",
       "description": "Raster từng trang thành JPEG. Văn bản, liên kết và vector không được giữ.",
+      "summary": "Thu nhỏ PDF bằng cách vẽ mỗi trang thành JPEG ở chất lượng và kích thước bạn chọn — tệp nhẹ hơn, không còn văn bản chọn được.",
       "keywords": "pdf nén giảm kích thước",
       "run": "Thu nhỏ",
       "note": "Mỗi trang thành ảnh JPEG rồi ghép PDF mới. Chữ tìm được, liên kết và vector biến mất. Tệp có thể lớn hơn. Dùng cho bản scan ảnh, không phải hợp đồng cần tìm.",
@@ -550,6 +554,7 @@
     "pdf-watermark": {
       "name": "Hình mờ PDF",
       "description": "Đóng dấu văn bản làm hình mờ, đầu trang hoặc chân trang trên mọi trang.",
+      "summary": "Đóng dấu văn bản lên mọi trang làm hình mờ, đầu trang hoặc chân trang, chọn nội dung, cỡ, góc, độ mờ và vị trí.",
       "keywords": "pdf hình mờ đóng dấu đầu trang chân trang mật",
       "run": "Áp dụng",
       "text": "Văn bản hình mờ",
@@ -563,6 +568,7 @@
     "pdf-redact": {
       "name": "Che nội dung",
       "description": "Đặt hộp đen đặc lên vùng nhạy cảm (che bằng mắt).",
+      "summary": "Phủ các ô đen lên trang để che điều không nên đọc. Đây là che bằng mắt, không phải che thật: văn bản vẫn nằm bên dưới.",
       "keywords": "pdf che đen ẩn nhạy cảm",
       "run": "Áp dụng lớp che",
       "note": "Chỉ là lớp che bằng mắt. Không bảo đảm xóa mọi luồng văn bản bên dưới — hãy kiểm tra lại tài liệu nhạy cảm.",
@@ -574,6 +580,7 @@
     "pdf-extract": {
       "name": "Trích từ PDF",
       "description": "Lấy văn bản đọc được hoặc xuất một trang thành ảnh.",
+      "summary": "Lấy văn bản chọn được ra khỏi PDF, hoặc xuất các trang thành ảnh JPEG trong tệp ZIP, không gửi tài liệu đi đâu.",
       "keywords": "pdf trích văn bản ảnh",
       "run": "Trích xuất",
       "modeText": "Văn bản",
@@ -585,6 +592,7 @@
     "image-compress": {
       "name": "Nén ảnh",
       "description": "Giảm chất lượng và kích thước tối đa để ảnh vẫn dễ chia sẻ.",
+      "summary": "Thu nhỏ ảnh cho email, trò chuyện hoặc web bằng cách giảm chất lượng, giới hạn cạnh dài nhất, hoặc cả hai.",
       "keywords": "ảnh nén jpg png webp kích thước ảnh",
       "run": "Nén",
       "success": "Đã nén {count} ảnh."
@@ -592,6 +600,7 @@
     "image-resize": {
       "name": "Đổi kích thước ảnh",
       "description": "Đặt kích thước chính xác, có thể khóa tỉ lệ.",
+      "summary": "Đặt ảnh về kích thước điểm ảnh chính xác, hoặc thu phóng theo phần trăm, giữ nguyên tỉ lệ khi bạn muốn giữ.",
       "keywords": "ảnh kích thước tỉ lệ rộng cao",
       "run": "Đổi kích thước",
       "lockAspect": "Giữ tỉ lệ khung hình",
@@ -600,6 +609,7 @@
     "image-crop": {
       "name": "Cắt ảnh",
       "description": "Chỉ giữ hình chữ nhật bạn quan tâm.",
+      "summary": "Cắt ảnh về đúng phần quan trọng bằng cách kéo vùng chọn trên đó, rồi xuất riêng hình chữ nhật ấy.",
       "keywords": "ảnh cắt vùng",
       "run": "Cắt",
       "success": "Ảnh đã cắt sẵn sàng."
@@ -607,6 +617,7 @@
     "image-convert": {
       "name": "Chuyển định dạng ảnh",
       "description": "Chuyển giữa JPEG, PNG, WEBP và các định dạng web tương tự.",
+      "summary": "Chuyển đổi giữa JPEG, PNG, WEBP, AVIF và GIF, một ảnh hoặc cả loạt, không cần tải ảnh lên.",
       "keywords": "ảnh chuyển định dạng webp png jpg jpeg",
       "run": "Chuyển đổi",
       "success": "Đã chuyển {count} ảnh."
@@ -614,6 +625,7 @@
     "image-metadata": {
       "name": "Siêu dữ liệu ảnh",
       "description": "Xem EXIF và thẻ tương tự, rồi xuất bản sao sạch không còn chúng.",
+      "summary": "Xem EXIF mà ảnh mang theo — máy ảnh, ống kính, ngày, GPS — rồi lưu một bản đã bỏ những thông tin đó.",
       "keywords": "ảnh exif siêu dữ liệu xóa riêng tư vị trí",
       "run": "Xóa siêu dữ liệu",
       "note": "Pixel được mã hóa lại trong trình duyệt nên siêu dữ liệu nhúng bị bỏ.",
@@ -625,6 +637,7 @@
     "image-adjust": {
       "name": "Chỉnh ảnh",
       "description": "Chỉnh độ sáng, tương phản và độ bão hòa.",
+      "summary": "Chỉnh độ sáng, tương phản, độ bão hòa và phơi sáng bằng mắt, kết quả được vẽ lại ngay khi bạn kéo từng thanh trượt.",
       "keywords": "ảnh sáng tương phản bão hòa màu",
       "run": "Áp dụng",
       "brightness": "Độ sáng",
@@ -635,6 +648,7 @@
     "convert-hub": {
       "name": "Chuyển đổi thông minh",
       "description": "Nhận loại tệp hoặc văn bản lẫn lộn và chuyển giữa các định dạng (không phải studio media).",
+      "summary": "Dán nội dung hỗn hợp và để Kit nhận ra đó là gì — JSON, CSV, YAML, XML, TOML hay SQL — rồi chuyển sang định dạng khác.",
       "keywords": "chuyển đổi trung tâm thông minh hàng loạt json yaml csv zip ảnh dữ liệu",
       "run": "Chuyển đổi",
       "detect": "Nhận dạng là",
@@ -644,6 +658,7 @@
     "json-format": {
       "name": "Bộ định dạng JSON",
       "description": "In đẹp, thu nhỏ và bắt lỗi JSON sớm.",
+      "summary": "Định dạng JSON cho dễ đọc hoặc thu gọn, và thấy chính xác lỗi cú pháp nằm ở đâu, với dòng mắc lỗi được tô sáng.",
       "keywords": "json định dạng kiểm tra thu nhỏ pretty",
       "run": "Định dạng",
       "success": "JSON hợp lệ và đã được định dạng."
@@ -651,6 +666,7 @@
     "yaml-format": {
       "name": "Bộ định dạng YAML",
       "description": "Kiểm tra cấu trúc YAML và chỉnh bố cục.",
+      "summary": "Kiểm tra YAML xem có lỗi cấu trúc không và sắp lại thụt lề, để tệp cấu hình đọc đúng như nó phải thế.",
       "keywords": "yaml định dạng kiểm tra yml",
       "run": "Định dạng",
       "success": "YAML hợp lệ."
@@ -658,6 +674,7 @@
     "toml-format": {
       "name": "Bộ định dạng TOML",
       "description": "Xác thực TOML và giữ tệp gọn gàng.",
+      "summary": "Kiểm tra TOML và trình bày gọn gàng, bắt được những lỗi cú pháp mà trình phân tích cấu hình sẽ từ chối.",
       "keywords": "toml định dạng kiểm tra config",
       "run": "Định dạng",
       "success": "TOML hợp lệ."
@@ -665,6 +682,7 @@
     "markdown-html": {
       "name": "Markdown ↔ HTML",
       "description": "Chuyển Markdown thành HTML, hoặc HTML ngược lại thành Markdown.",
+      "summary": "Chuyển Markdown thành HTML hoặc HTML ngược lại thành Markdown, giữ nguyên tiêu đề, liên kết, danh sách, bảng và mã.",
       "keywords": "markdown html chuyển md đánh dấu",
       "run": "Chuyển đổi",
       "toHtml": "Markdown → HTML",
@@ -674,6 +692,7 @@
     "csv-json": {
       "name": "CSV ↔ JSON",
       "description": "Chuyển dữ liệu bảng giữa CSV và mảng JSON.",
+      "summary": "Chuyển tệp CSV thành mảng JSON, hoặc JSON ngược lại thành CSV, với dấu phân cách và dòng tiêu đề trong tay bạn.",
       "keywords": "csv json chuyển bảng bảng tính",
       "run": "Chuyển đổi",
       "toJson": "CSV → JSON",
@@ -683,6 +702,7 @@
     "text-diff": {
       "name": "So sánh văn bản",
       "description": "Xem thay đổi từng dòng giữa hai phiên bản.",
+      "summary": "So hai bản nháp cạnh nhau và xem dòng nào được thêm, bỏ hay sửa, chi tiết đến từng ký tự.",
       "keywords": "diff so sánh văn bản thay đổi patch",
       "run": "So sánh",
       "left": "Gốc",
@@ -692,6 +712,7 @@
     "base64": {
       "name": "Base64",
       "description": "Mã hóa hoặc giải mã Base64 cho văn bản thuần hoặc cả tệp.",
+      "summary": "Mã hóa văn bản thuần hoặc cả tệp thành Base64, hoặc giải mã trở lại, mà nội dung không rời khỏi trình duyệt.",
       "keywords": "base64 mã hóa giải mã nhị phân",
       "run": "Chuyển đổi",
       "mode": "Hướng",
@@ -702,6 +723,7 @@
     "url-encode": {
       "name": "Mã hóa URL",
       "description": "Phần trăm-mã hóa hoặc giải mã thành phần URL an toàn.",
+      "summary": "Mã hóa phần trăm cho URL, chuỗi truy vấn hoặc giá trị biểu mẫu, hoặc giải mã thứ đã được mã hóa.",
       "keywords": "url mã hóa giải mã phần trăm uri truy vấn",
       "run": "Chuyển đổi",
       "success": "Xong."
@@ -709,6 +731,7 @@
     "audio-convert": {
       "name": "Chuyển đổi âm thanh",
       "description": "Đổi container âm thanh như MP3, WAV và OGG trong trình duyệt.",
+      "summary": "Chuyển âm thanh giữa MP3, WAV, OGG, M4A và các định dạng phổ biến khác trong trình duyệt, ở tốc độ bit bạn cần.",
       "keywords": "âm thanh chuyển mp3 wav ogg ffmpeg tiếng",
       "run": "Chuyển đổi",
       "loadingFfmpeg": "Đang tải engine âm thanh…",
@@ -722,6 +745,7 @@
     "audio-trim": {
       "name": "Cắt âm thanh",
       "description": "Chỉ giữ đoạn giữa hai mốc thời gian trong tệp âm thanh.",
+      "summary": "Cắt tệp âm thanh về đoạn giữa hai mốc thời gian, với điểm đầu và điểm cuối chỉnh được đến từng giây.",
       "keywords": "âm thanh cắt clip mp3 wav",
       "run": "Cắt",
       "success": "Cắt âm thanh xong."
@@ -729,6 +753,7 @@
     "audio-speed": {
       "name": "Tốc độ và âm lượng",
       "description": "Tăng tốc, làm chậm hoặc đổi độ lớn của âm thanh.",
+      "summary": "Tăng hoặc giảm tốc tệp âm thanh mà không đổi cao độ, và đặt mức âm lượng cho kết quả.",
       "keywords": "âm thanh tốc độ nhịp âm lượng cao độ",
       "run": "Áp dụng",
       "success": "Âm thanh đã xử lý sẵn sàng."
@@ -736,6 +761,7 @@
     "video-convert": {
       "name": "Chuyển đổi video",
       "description": "Đổi container video như MP4 và WEBM trong trình duyệt.",
+      "summary": "Chuyển video giữa MP4, WEBM và MKV trong trình duyệt, với thiết lập H.264 và AAC hợp lý đã chọn sẵn.",
       "keywords": "video chuyển mp4 webm ffmpeg phim",
       "run": "Chuyển đổi",
       "loadingFfmpeg": "Đang tải engine video…",
@@ -745,6 +771,7 @@
     "video-trim": {
       "name": "Cắt video",
       "description": "Chỉ giữ clip giữa hai mốc thời gian.",
+      "summary": "Cắt video về đoạn bạn muốn bằng cách đặt điểm đầu và điểm cuối, rồi xuất riêng khoảng đó thành tệp.",
       "keywords": "video cắt clip mp4",
       "run": "Cắt",
       "success": "Cắt video xong."
@@ -752,6 +779,7 @@
     "video-speed": {
       "name": "Tốc độ và âm lượng video",
       "description": "Đổi tốc độ phát và mức âm thanh của video.",
+      "summary": "Đổi tốc độ phát video, giữ âm thanh khớp nhịp hoặc thay bằng bản khác, và đặt mức âm lượng trước khi lưu.",
       "keywords": "video tốc độ nhịp âm lượng",
       "run": "Áp dụng",
       "success": "Video đã xử lý sẵn sàng."
@@ -759,6 +787,7 @@
     "video-extract-audio": {
       "name": "Tách âm thanh từ video",
       "description": "Lưu nhạc nền của video thành tệp âm thanh.",
+      "summary": "Tách rãnh âm thanh khỏi video và lưu thành tệp âm thanh riêng, không phải thu lại gì cả.",
       "keywords": "video tách âm thanh mp3 nhạc nền",
       "run": "Tách âm thanh",
       "success": "Đã tách âm thanh."
@@ -766,6 +795,7 @@
     "pdf-numbers": {
       "name": "Số trang",
       "description": "Đóng dấu nhãn trang như 1 / 12 trên mọi trang.",
+      "summary": "Thêm số trang theo định dạng bạn chọn, như 1 / 12 hoặc 1 trên 12, đặt ở vị trí bạn muốn trên mọi trang.",
       "keywords": "pdf số trang chân trang đầu trang phân trang",
       "run": "Thêm số",
       "template": "Nhãn ({page} và {pages})",
@@ -782,6 +812,7 @@
     "pdf-to-images": {
       "name": "PDF → ảnh",
       "description": "Raster mọi trang thành JPEG và tải chúng dưới dạng ZIP.",
+      "summary": "Chuyển từng trang của PDF thành ảnh JPEG ở độ phân giải bạn chọn, và tải cả bộ về trong một tệp ZIP.",
       "keywords": "pdf ảnh jpg jpeg zip trang xuất",
       "run": "Xuất trang",
       "limits": "Trang được vẽ bằng PDF.js trong thẻ này. Tài liệu rất lớn có thể chậm và dùng nhiều bộ nhớ. Đây là raster hình ảnh, không phải trích xuất đối tượng ảnh nhúng.",
@@ -790,6 +821,7 @@
     "images-to-pdf": {
       "name": "Ảnh → PDF",
       "description": "Xếp ảnh thành PDF, một ảnh mỗi trang.",
+      "summary": "Gộp ảnh và bản quét thành một PDF, mỗi trang một ảnh, vừa khổ A4 hoặc giữ nguyên kích thước gốc.",
       "keywords": "ảnh pdf jpg png gộp",
       "run": "Tạo PDF",
       "success": "{count, plural, other {Đã tạo PDF từ # ảnh.}}",
@@ -800,6 +832,7 @@
     "pdf-flatten": {
       "name": "Làm phẳng biểu mẫu",
       "description": "Nướng trường AcroForm vào trang để không còn chỉnh sửa được.",
+      "summary": "Biến các trường biểu mẫu đã điền thành nội dung cố định của trang, để PDF in và đọc giống nhau ở mọi nơi.",
       "keywords": "pdf làm phẳng biểu mẫu trường acroform",
       "run": "Làm phẳng",
       "limits": "Hoạt động với trường AcroForm chuẩn. Biểu mẫu XFA động chưa được hỗ trợ đầy đủ.",
@@ -808,6 +841,7 @@
     "pdf-metadata": {
       "name": "Siêu dữ liệu PDF",
       "description": "Xem, sửa hoặc xóa tiêu đề, tác giả và các trường Info khác.",
+      "summary": "Đọc, sửa hoặc xóa tiêu đề, tác giả, từ khóa và các thuộc tính khác của PDF, rồi lưu một bản sạch.",
       "keywords": "Từ khóa",
       "run": "Lưu siêu dữ liệu",
       "strip": "Xóa trường Info và XMP",
@@ -822,6 +856,7 @@
     "pdf-protect": {
       "name": "Khóa hoặc mở khóa PDF",
       "description": "Thêm hoặc gỡ mật khẩu người dùng. Mã hóa ở lại trình duyệt này.",
+      "summary": "Đặt mật khẩu cho PDF hoặc gỡ mật khẩu bạn đã biết, với việc mã hóa làm ngay trong thẻ này, không trên máy chủ.",
       "keywords": "pdf mật khẩu khóa mở khóa mã hóa giải mã",
       "run": "Áp dụng",
       "lock": "Khóa",
@@ -833,6 +868,7 @@
     "image-rotate": {
       "name": "Xoay và lật",
       "description": "Xoay ảnh từng 90° hoặc lật ngang hay dọc.",
+      "summary": "Xoay ảnh từng một phần tư vòng, làm thẳng lại vài độ, hoặc lật gương — một ảnh hay cả loạt.",
       "keywords": "ảnh xoay lật gương",
       "run": "Áp dụng",
       "operation": "Biến đổi",
@@ -846,6 +882,7 @@
     "image-filters": {
       "name": "Bộ lọc ảnh",
       "description": "Áp dụng xám, sepia hoặc đảo màu cho một hoặc nhiều ảnh.",
+      "summary": "Áp thang độ xám, nâu đỏ, đảo màu, làm mờ hoặc làm nét cho một ảnh hay cả thư mục, rồi tải kết quả về.",
       "keywords": "ảnh bộ lọc xám sepia đảo",
       "run": "Áp dụng",
       "filter": "Bộ lọc",
@@ -857,6 +894,7 @@
     "image-favicon": {
       "name": "Gói favicon",
       "description": "Xuất ảnh nguồn thành các kích thước biểu tượng phổ biến trong ZIP.",
+      "summary": "Biến một ảnh thành các cỡ biểu tượng mà trang web hay ứng dụng yêu cầu — favicon, biểu tượng Apple, Android maskable — trong một tệp ZIP.",
       "keywords": "favicon biểu tượng 16 32 180 192 512 apple touch",
       "run": "Xuất biểu tượng",
       "note": "Xuất tệp PNG ở 16, 32, 48, 180, 192 và 512 pixel.",
@@ -865,6 +903,7 @@
     "video-gif": {
       "name": "Video → GIF",
       "description": "Biến clip ngắn thành GIF lặp trong trình duyệt.",
+      "summary": "Biến một đoạn ngắn của video thành GIF lặp lại, chọn điểm đầu và điểm cuối. Mã hóa đoạn dài thì chậm.",
       "keywords": "video gif clip chuyển ffmpeg",
       "run": "Tạo GIF",
       "limits": "Dùng FFmpeg WASM. Giữ clip ngắn — mã hóa GIF chậm và tốn bộ nhớ. Bảng màu và codec theo bản dựng trong trình duyệt.",
@@ -873,6 +912,7 @@
     "xml-json": {
       "name": "XML ↔ JSON",
       "description": "Chuyển tài liệu XML thành JSON, hoặc JSON ngược lại thành XML.",
+      "summary": "Chuyển tài liệu XML thành JSON hoặc JSON ngược lại thành XML, giữ thuộc tính và phần tử lặp theo một dạng đoán trước được.",
       "keywords": "xml json chuyển phân tích",
       "run": "Chuyển đổi",
       "toJson": "XML → JSON",
@@ -882,6 +922,7 @@
     "sql-format": {
       "name": "Bộ định dạng SQL",
       "description": "In đẹp SQL để mệnh đề và danh sách dễ đọc hơn.",
+      "summary": "Định dạng lại SQL để mệnh đề, phép nối và danh sách cột dài thẳng hàng, và đọc theo đúng thứ tự thực thi.",
       "keywords": "sql định dạng pretty truy vấn",
       "run": "Định dạng",
       "success": "Đã định dạng SQL."
@@ -889,6 +930,7 @@
     "regex-tester": {
       "name": "Trình thử regex",
       "description": "Thử biểu thức chính quy trên văn bản mẫu và thay các khớp.",
+      "summary": "Thử một biểu thức chính quy trên đoạn văn bản mẫu của bạn, xem các kết quả khớp được tô sáng, và thử phần thay thế.",
       "keywords": "regex biểu thức chính quy thử thay",
       "pattern": "Mẫu",
       "flags": "Cờ",
@@ -901,6 +943,7 @@
     "hash-generator": {
       "name": "Trình tạo hash",
       "description": "SHA-1/256/384/512 và MD5 của văn bản hoặc tệp, tính cục bộ.",
+      "summary": "Tính SHA-1, SHA-256, SHA-384, SHA-512 hoặc MD5 cho một đoạn văn bản hay cả tệp, không gửi gì đi đâu.",
       "keywords": "hash sha256 md5 sha1 tổng kiểm tra digest",
       "run": "Hash",
       "algo": "Thuật toán",
@@ -911,6 +954,7 @@
     "uuid-generator": {
       "name": "Trình tạo UUID",
       "description": "Tạo UUID phiên bản 4 hoặc 7 trên thiết bị này.",
+      "summary": "Tạo UUID phiên bản 4 hoặc 7 từng cái một hay theo lô, được tạo trên thiết bị này chứ không phải máy chủ.",
       "keywords": "uuid guid v4 v7 tạo",
       "run": "Tạo",
       "count": "Bao nhiêu",
@@ -920,6 +964,7 @@
     "color-convert": {
       "name": "Bộ chuyển màu",
       "description": "Chuyển giữa HEX, RGB, HSL và HSV, kèm bộ chọn màu.",
+      "summary": "Chuyển một màu giữa HEX, RGB, HSL, HSV và tên CSS, hoặc chọn từ vòng tròn màu và đọc mọi cách ghi cùng lúc.",
       "keywords": "màu hex rgb hsl hsv chọn",
       "picker": "Bộ chọn màu",
       "invalid": "Nhập màu hex 3 hoặc 6 chữ số."
@@ -927,6 +972,7 @@
     "lorem-ipsum": {
       "name": "Lorem ipsum",
       "description": "Tạo đoạn, câu hoặc từ giữ chỗ.",
+      "summary": "Tạo văn bản giữ chỗ thành đoạn, câu hoặc từ cho một bố cục, đúng số lượng bạn cần và sẵn sàng để dán.",
       "keywords": "lorem ipsum giữ chỗ dummy văn bản",
       "run": "Tạo",
       "count": "Số lượng",
@@ -939,6 +985,7 @@
     "qr-code": {
       "name": "Mã QR",
       "description": "Tạo mã QR từ văn bản, hoặc đọc từ ảnh.",
+      "summary": "Tạo mã QR từ liên kết, đoạn văn bản hoặc thông tin liên hệ và tải về thành ảnh, hoặc đọc mã từ một bức ảnh.",
       "keywords": "qr mã tạo quét đọc mã vạch",
       "run": "Tạo",
       "payload": "Văn bản hoặc URL",
@@ -951,6 +998,7 @@
     "pdf-sign": {
       "name": "Ký PDF",
       "description": "Đóng dấu chữ ký gõ trên mọi trang. Chỉ bằng mắt — không phải chứng chỉ.",
+      "summary": "Đặt chữ ký đã gõ lên những trang bạn chọn. Nó được vẽ lên trang để đọc, không phải chữ ký mật mã.",
       "keywords": "pdf ký chữ ký đóng dấu tên",
       "run": "Ký",
       "signature": "Văn bản chữ ký",
@@ -961,6 +1009,7 @@
     "image-watermark": {
       "name": "Hình mờ ảnh",
       "description": "Phủ văn bản lên ảnh, một tệp hoặc cả lô.",
+      "summary": "Phủ văn bản lên ảnh của bạn — chọn vị trí, cỡ, màu và độ mờ — cho một ảnh hoặc cả loạt.",
       "keywords": "ảnh hình mờ đóng dấu bản quyền",
       "run": "Áp dụng",
       "text": "Văn bản hình mờ",
@@ -974,6 +1023,7 @@
     "password-generator": {
       "name": "Trình tạo mật khẩu",
       "description": "Tạo mật khẩu mạnh trên thiết bị này. Không lưu gì cả.",
+      "summary": "Tạo mật khẩu mạnh với độ dài và bộ ký tự bạn chọn. Nó sinh ra trên thiết bị này và không bao giờ được lưu.",
       "keywords": "mật khẩu tạo ngẫu nhiên bí mật",
       "run": "Tạo",
       "length": "Độ dài",
@@ -986,6 +1036,7 @@
     "case-convert": {
       "name": "Đổi kiểu chữ",
       "description": "Chuyển giữa camel, snake, kebab, title và hơn thế.",
+      "summary": "Đổi văn bản giữa camelCase, snake_case, kebab-case, Title Case và những quy ước khác mà lập trình viên dùng.",
       "keywords": "kiểu chữ camel snake kebab pascal tiêu đề",
       "run": "Chuyển đổi",
       "style": "Kiểu",
@@ -994,6 +1045,7 @@
     "jwt-decode": {
       "name": "Bộ giải JWT",
       "description": "Đọc header và payload JWT cục bộ. Không xác minh chữ ký.",
+      "summary": "Đọc phần đầu và phần nội dung của JSON Web Token, xem khi nào hết hạn, và giải mã ngay tại máy. Chữ ký không được kiểm.",
       "keywords": "jwt giải mã token bearer auth",
       "run": "Giải mã",
       "limits": "Kit chỉ giải Base64url. Không có khóa thì không thể chứng minh token là thật.",
@@ -1005,12 +1057,14 @@
     "unix-timestamp": {
       "name": "Dấu thời gian Unix",
       "description": "Chuyển thời gian Unix sang ISO và ngược lại.",
+      "summary": "Chuyển mốc thời gian Unix thành ngày giờ đọc được, hoặc ngược lại, theo múi giờ bạn chọn.",
       "keywords": "unix epoch dấu thời gian iso ngày",
       "now": "Dùng lúc này"
     },
     "cron-explain": {
       "name": "Trình giải thích cron",
       "description": "Đưa biểu thức cron 5 trường thành ngôn ngữ thường.",
+      "summary": "Chuyển biểu thức cron năm trường thành một câu đơn giản, để rõ tác vụ hẹn giờ chạy khi nào và bao lâu một lần.",
       "keywords": "cron lịch crontab giải thích",
       "run": "Giải thích",
       "success": "Đã giải thích."
@@ -1018,6 +1072,7 @@
     "number-base": {
       "name": "Cơ số số",
       "description": "Chuyển số nguyên giữa các cơ số từ 2 đến 36.",
+      "summary": "Chuyển một số nguyên giữa hệ nhị phân, bát phân, thập phân, thập lục phân và mọi cơ số từ 2 đến 36, kèm mẫu bit.",
       "keywords": "nhị phân hex thập phân cơ số chuyển",
       "value": "Số",
       "from": "Từ cơ số",
@@ -1026,6 +1081,7 @@
     "html-entities": {
       "name": "Thực thể HTML",
       "description": "Mã hóa hoặc giải mã &lt; &amp; và thực thể số.",
+      "summary": "Mã hóa hoặc giải mã dấu ngoặc nhọn, dấu nháy và thực thể HTML dạng số, để văn bản an toàn trong thẻ và đọc được ngoài thẻ.",
       "keywords": "html thực thể mã hóa giải mã escape",
       "run": "Chuyển đổi",
       "encode": "Mã hóa",
@@ -1035,6 +1091,7 @@
     "json-types": {
       "name": "JSON → TypeScript",
       "description": "Suy ra interface TypeScript từ mẫu JSON.",
+      "summary": "Chuyển một phản hồi JSON mẫu thành các giao diện TypeScript, với đối tượng và mảng lồng nhau được định kiểu tới mức mẫu cho phép.",
       "keywords": "json typescript interface kiểu tạo",
       "run": "Tạo kiểu",
       "success": "Đã tạo kiểu."
@@ -1102,113 +1159,113 @@
       "categoryElectricalDescription": "Điện áp, dòng điện và điện trở",
       "categoryTypography": "Kiểu chữ",
       "categoryTypographyDescription": "Kích thước CSS và in ấn",
-      "unitMm": "Millimeters (mm)",
-      "unitCm": "Centimeters (cm)",
-      "unitM": "Meters (m)",
-      "unitKm": "Kilometers (km)",
-      "unitIn": "Inches (in)",
+      "unitMm": "Milimét (mm)",
+      "unitCm": "Xentimét (cm)",
+      "unitM": "Mét (m)",
+      "unitKm": "Kilômét (km)",
+      "unitIn": "Inch (in)",
       "unitFt": "Feet (ft)",
-      "unitYd": "Yards (yd)",
-      "unitMi": "Miles (mi)",
+      "unitYd": "Yard (yd)",
+      "unitMi": "Dặm (mi)",
       "unitNmi": "Hải lý (nmi)",
-      "unitMg": "Milligrams (mg)",
-      "unitG": "Grams (g)",
-      "unitKg": "Kilograms (kg)",
-      "unitT": "Metric tonnes (t)",
-      "unitOz": "Ounces (oz)",
-      "unitLb": "Pounds (lb)",
+      "unitMg": "Miligam (mg)",
+      "unitG": "Gam (g)",
+      "unitKg": "Kilôgam (kg)",
+      "unitT": "Tấn mét (t)",
+      "unitOz": "Ao (oz)",
+      "unitLb": "Pao (lb)",
       "unitStone": "Stone (st)",
       "unitC": "Celsius (°C)",
       "unitF": "Fahrenheit (°F)",
       "unitK": "Kelvin (K)",
-      "unitMs": "Milliseconds",
-      "unitS": "Seconds",
-      "unitMin": "Minutes",
-      "unitH": "Hours",
-      "unitDay": "Days",
-      "unitWeek": "Weeks",
-      "unitM_s": "Meters per second",
-      "unitKm_h": "Kilometers per hour",
-      "unitMph": "Miles per hour",
-      "unitKnot": "Hải lý/giờ",
-      "unitMl": "Milliliters",
-      "unitL": "Liters",
-      "unitM3": "Cubic meters",
-      "unitUsTsp": "Muỗng cà phê US",
-      "unitUsTbsp": "Muỗng canh US",
-      "unitUsCup": "Tách US",
-      "unitUsGal": "Gallon US",
-      "unitImpGal": "Gallon đế quốc",
-      "unitW": "Watts",
-      "unitKw": "Kilowatts",
-      "unitMw": "Megawatts",
+      "unitMs": "Miligiây",
+      "unitS": "Giây",
+      "unitMin": "Phút",
+      "unitH": "Giờ",
+      "unitDay": "Ngày",
+      "unitWeek": "Tuần",
+      "unitM_s": "Mét trên giây",
+      "unitKm_h": "Kilômét trên giờ",
+      "unitMph": "Dặm trên giờ",
+      "unitKnot": "Nút",
+      "unitMl": "Mililít",
+      "unitL": "Lít",
+      "unitM3": "Mét khối",
+      "unitUsTsp": "Thìa cà phê Mỹ",
+      "unitUsTbsp": "Thìa canh Mỹ",
+      "unitUsCup": "Cốc Mỹ",
+      "unitUsGal": "Galông Mỹ",
+      "unitImpGal": "Galông Anh",
+      "unitW": "Oát",
+      "unitKw": "Kilôoát",
+      "unitMw": "Mêgaoát",
       "unitHp": "Mã lực cơ học",
-      "unitJ": "Joules",
-      "unitKj": "Kilojoules",
-      "unitWh": "Watt-hours",
-      "unitKwh": "Kilowatt-hours",
-      "unitCal": "Calories",
-      "unitKcal": "Kilocalories",
-      "unitEv": "Electronvolts",
+      "unitJ": "Jun",
+      "unitKj": "Kilôjun",
+      "unitWh": "Oát-giờ",
+      "unitKwh": "Kilôoát-giờ",
+      "unitCal": "Calo",
+      "unitKcal": "Kilôcalo",
+      "unitEv": "Electron vôn",
       "unitPa": "Pascals",
-      "unitKpa": "Kilopascals",
+      "unitKpa": "Kilôpascal",
       "unitBar": "Bar",
       "unitPsi": "PSI",
-      "unitAtm": "Atmospheres",
-      "unitMmHg": "Millimeters of mercury",
-      "unitMm2": "Square millimeters",
-      "unitCm2": "Square centimeters",
-      "unitM2": "Square meters",
-      "unitKm2": "Square kilometers",
-      "unitFt2": "Square feet",
-      "unitAcre": "Acres",
-      "unitHectare": "Hectares",
-      "unitBit": "Bits",
-      "unitB": "Bytes",
-      "unitKb": "Kilobytes",
-      "unitMb": "Megabytes",
-      "unitGb": "Gigabytes",
-      "unitTb": "Terabytes",
-      "unitKib": "Kibibytes",
-      "unitMib": "Mebibytes",
-      "unitGib": "Gibibytes",
-      "unitDeg": "Degrees",
-      "unitRad": "Radians",
-      "unitGrad": "Gradians",
-      "unitTurn": "Turns",
+      "unitAtm": "Atmốtphe",
+      "unitMmHg": "Milimét thủy ngân",
+      "unitMm2": "Milimét vuông",
+      "unitCm2": "Xentimét vuông",
+      "unitM2": "Mét vuông",
+      "unitKm2": "Kilômét vuông",
+      "unitFt2": "Feet vuông",
+      "unitAcre": "Mẫu Anh",
+      "unitHectare": "Hécta",
+      "unitBit": "Bit",
+      "unitB": "Byte",
+      "unitKb": "Kilobyte",
+      "unitMb": "Megabyte",
+      "unitGb": "Gigabyte",
+      "unitTb": "Terabyte",
+      "unitKib": "Kibibyte",
+      "unitMib": "Mebibyte",
+      "unitGib": "Gibibyte",
+      "unitDeg": "Độ",
+      "unitRad": "Radian",
+      "unitGrad": "Gradian",
+      "unitTurn": "Vòng",
       "unitHz": "Hertz",
       "unitKhz": "Kilohertz",
       "unitMhz": "Megahertz",
       "unitGhz": "Gigahertz",
-      "unitRpm": "Revolutions per minute",
-      "unitN": "Newtons",
-      "unitKn": "Kilonewtons",
-      "unitLbf": "Pound-force",
-      "unitKgf": "Kilogram-force",
-      "unitL_100km": "Liters per 100 km",
-      "unitKm_L": "Kilometers per liter",
-      "unitMpgUs": "Miles per US gallon",
-      "unitMpgImperial": "Miles per imperial gallon",
-      "unitM_s2": "Meters per second squared",
-      "unitG0": "Standard gravity",
-      "unitFt_s2": "Feet per second squared",
-      "unitNm": "Newton-meters",
-      "unitKnm": "Kilonewton-meters",
-      "unitLbFt": "Pound-feet",
-      "unitLbIn": "Pound-inches",
-      "unitMv": "Millivolts",
-      "unitV": "Volts",
-      "unitKv": "Kilovolts",
-      "unitMa": "Milliamps",
-      "unitA": "Amps",
-      "unitKa": "Kiloamps",
-      "unitMOhm": "Milliohms",
-      "unitOhm": "Ohms",
-      "unitKOhm": "Kilohms",
-      "unitMOhmBig": "Megohms",
-      "unitPx": "Pixels",
-      "unitPt": "Points",
-      "unitPc": "Picas",
+      "unitRpm": "Vòng trên phút",
+      "unitN": "Newton",
+      "unitKn": "Kilônewton",
+      "unitLbf": "Pao-lực",
+      "unitKgf": "Kilôgam-lực",
+      "unitL_100km": "Lít trên 100 km",
+      "unitKm_L": "Kilômét trên lít",
+      "unitMpgUs": "Dặm trên galông Mỹ",
+      "unitMpgImperial": "Dặm trên galông Anh",
+      "unitM_s2": "Mét trên giây bình phương",
+      "unitG0": "Trọng lực tiêu chuẩn",
+      "unitFt_s2": "Feet trên giây bình phương",
+      "unitNm": "Newton-mét",
+      "unitKnm": "Kilônewton-mét",
+      "unitLbFt": "Pao-feet",
+      "unitLbIn": "Pao-inch",
+      "unitMv": "Milivôn",
+      "unitV": "Vôn",
+      "unitKv": "Kilôvôn",
+      "unitMa": "Miliampe",
+      "unitA": "Ampe",
+      "unitKa": "Kilôampe",
+      "unitMOhm": "Miliohm",
+      "unitOhm": "Ohm",
+      "unitKOhm": "Kilôohm",
+      "unitMOhmBig": "Mêgaohm",
+      "unitPx": "Pixel",
+      "unitPt": "Điểm",
+      "unitPc": "Pica",
       "unitRem": "rem",
       "unitEm": "em",
       "presetMetricImperial": "Hệ mét ↔ hệ Anh",
@@ -1243,23 +1300,24 @@
       "parentFontSize": "Cỡ chữ phần tử cha",
       "dpi": "DPI",
       "rateUnavailable": "Không dùng được dịch vụ tỷ giá",
-      "unitUsFlOz": "US fluid ounces",
-      "unitUsPt": "US pints",
-      "unitUsQt": "US quarts",
-      "unitGw": "Gigawatts",
-      "unitMj": "Megajoules",
-      "unitMpa": "Megapascals",
-      "unitIn2": "Square inches",
-      "unitYd2": "Square yards",
-      "unitPb": "Petabytes",
-      "unitTib": "Tebibytes",
-      "unitPib": "Pebibytes",
-      "unitArcmin": "Arcminutes",
-      "unitArcsec": "Arcseconds"
+      "unitUsFlOz": "Ao chất lỏng Mỹ",
+      "unitUsPt": "Panh Mỹ",
+      "unitUsQt": "Quart Mỹ",
+      "unitGw": "Gigaoát",
+      "unitMj": "Mêgajun",
+      "unitMpa": "Mêgapascal",
+      "unitIn2": "Inch vuông",
+      "unitYd2": "Yard vuông",
+      "unitPb": "Petabyte",
+      "unitTib": "Tebibyte",
+      "unitPib": "Pebibyte",
+      "unitArcmin": "Phút cung",
+      "unitArcsec": "Giây cung"
     },
     "text-counter": {
       "name": "Đếm văn bản",
       "description": "Đếm từ, ký tự, câu, đoạn văn và thời gian đọc.",
+      "summary": "Đếm từ, ký tự, câu và đoạn khi bạn gõ, kèm ước lượng thời gian đọc hết văn bản.",
       "keywords": "đếm từ đếm ký tự thống kê văn bản thời gian đọc",
       "limits": "Khi có thể, việc đếm dùng phân đoạn Unicode gốc của trình duyệt nên emoji và ký tự kết hợp được xử lý tự nhiên hơn.",
       "input": "Văn bản cần đếm",
@@ -1276,6 +1334,7 @@
     "timezone-converter": {
       "name": "Đồng hồ thế giới",
       "description": "Chuyển đổi ngày giờ địa phương giữa các múi giờ và xem đồng hồ thế giới.",
+      "summary": "Xem bây giờ là mấy giờ ở các thành phố trên thế giới, và chuyển một thời điểm giữa các múi giờ kể cả qua ngày.",
       "keywords": "chuyển đổi múi giờ đồng hồ thế giới giờ mùa hè ngày giờ",
       "limits": "Nhập giờ tại thành phố nguồn. Việc chuyển đổi dùng quy tắc múi giờ IANA, bao gồm thay đổi giờ mùa hè.",
       "convert": "Chuyển đổi ngày và giờ",
@@ -1325,6 +1384,7 @@
     "date-calculator": {
       "name": "Tính ngày tháng",
       "description": "So sánh ngày, cộng thời gian và đếm ngày làm việc với ngày nghỉ tùy chọn.",
+      "summary": "Tính khoảng cách giữa hai ngày, cộng hoặc trừ ngày và tháng, và đếm ngày làm việc quanh các ngày lễ.",
       "keywords": "tính ngày tháng chênh lệch ngày cộng ngày làm việc ngày nghỉ",
       "updated": "Đã cập nhật ngày.",
       "invalid": "Kiểm tra dữ liệu nhập.",
@@ -1363,6 +1423,7 @@
     "tip-split-calculator": {
       "name": "Tính tiền boa và chia hóa đơn",
       "description": "Tính tiền boa, thuế, tổng tiền và phần chia công bằng cho nhóm.",
+      "summary": "Tính tiền tip, thuế và tổng của hóa đơn, rồi chia công bằng cho số người cùng trả.",
       "keywords": "tính tiền boa chia hóa đơn thuế nhà hàng phần",
       "limits": "Tiền boa và thuế được tính từ số tiền tạm tính. Các phần đã làm tròn phân phối phần dư cho những người đầu tiên để tổng khớp.",
       "invalid": "Kiểm tra dữ liệu nhập.",
@@ -1383,6 +1444,7 @@
     "stopwatch-timer": {
       "name": "Đồng hồ bấm giờ và hẹn giờ",
       "description": "Chạy đồng hồ bấm giờ chính xác hoặc bộ đếm ngược trong trình duyệt.",
+      "summary": "Chạy đồng hồ bấm giây chính xác có ghi vòng, hoặc đếm ngược về không trong thẻ vẫn đếm khi bạn ở nơi khác.",
       "keywords": "đồng hồ bấm giờ hẹn giờ đếm ngược đồng hồ trực tuyến",
       "saved": "Đã lưu vào lịch sử.",
       "stopwatch": "Đồng hồ bấm giờ",
@@ -1399,6 +1461,7 @@
     "random-generator": {
       "name": "Tạo ngẫu nhiên",
       "description": "Tạo số, giá trị boolean, lựa chọn hoặc mật khẩu cho nhu cầu hằng ngày.",
+      "summary": "Rút một số ngẫu nhiên, tung đồng xu, gieo xúc xắc hoặc chọn từ danh sách, với khoảng và số kết quả bạn đặt.",
       "keywords": "tạo số ngẫu nhiên bộ chọn tạo mật khẩu",
       "invalid": "Kiểm tra dữ liệu nhập.",
       "limits": "Tính ngẫu nhiên dùng nguồn Math.random của trình duyệt. Kết quả dành cho lựa chọn hằng ngày, không phải bí mật mật mã.",
@@ -1428,6 +1491,7 @@
     "currency-converter": {
       "name": "Đổi tiền tệ",
       "description": "Tỷ giá trực tiếp với bộ nhớ đệm cục bộ",
+      "summary": "Chuyển đổi giữa các loại tiền theo tỉ giá hằng ngày, lưu trên thiết bị để bộ gần nhất vẫn dùng được khi mất mạng.",
       "keywords": "máy đổi tiền tỷ giá tiền tệ Frankfurter",
       "currency": "Tiền tệ",
       "limits": "Tỷ giá đến từ Frankfurter khi mở công cụ hoặc khi bạn nhấn Làm mới, rồi lưu trong bộ nhớ đệm trình duyệt này sáu giờ. Số tiền không được gửi. Đây là dữ liệu tham chiếu hàng ngày, không dùng để giao dịch hay thuế.",
@@ -1451,6 +1515,7 @@
     "length-converter": {
       "name": "Độ dài",
       "description": "Khoảng cách, kích thước và du lịch",
+      "summary": "Chuyển đổi độ dài giữa mét, feet, dặm, inch, xentimét và những đơn vị khác mà việc đi lại và sửa chữa gặp phải.",
       "keywords": "Độ dài length converter",
       "run": "Ghi lại chuyển đổi",
       "success": "Đã lưu chuyển đổi vào lịch sử."
@@ -1458,6 +1523,7 @@
     "mass-converter": {
       "name": "Khối lượng",
       "description": "Khối lượng từ miligam đến tấn",
+      "summary": "Chuyển đổi khối lượng giữa miligam, gam, kilôgam, tấn, pao, ao và stone, cho việc nấu ăn hoặc gửi hàng.",
       "keywords": "Khối lượng mass converter",
       "run": "Ghi lại chuyển đổi",
       "success": "Đã lưu chuyển đổi vào lịch sử."
@@ -1465,6 +1531,7 @@
     "temperature-converter": {
       "name": "Nhiệt độ",
       "description": "Độ C, độ F và Kelvin",
+      "summary": "Chuyển đổi nhiệt độ giữa Celsius, Fahrenheit và Kelvin, kể cả những điểm nước đóng băng và sôi.",
       "keywords": "Nhiệt độ temperature converter",
       "run": "Ghi lại chuyển đổi",
       "success": "Đã lưu chuyển đổi vào lịch sử."
@@ -1472,6 +1539,7 @@
     "speed-converter": {
       "name": "Tốc độ",
       "description": "Tốc độ thông dụng và hàng hải",
+      "summary": "Chuyển đổi tốc độ giữa kilômét trên giờ, dặm trên giờ, mét trên giây và hải lý trên giờ, cho đường bộ, hàng không và đường biển.",
       "keywords": "Tốc độ speed converter",
       "run": "Ghi lại chuyển đổi",
       "success": "Đã lưu chuyển đổi vào lịch sử."
@@ -1479,6 +1547,7 @@
     "duration-converter": {
       "name": "Thời lượng",
       "description": "Từ mili giây đến tuần",
+      "summary": "Chuyển đổi khoảng thời gian giữa miligiây, giây, phút, giờ, ngày và tuần, đọc được giá trị theo cả hai chiều.",
       "keywords": "Thời lượng duration converter",
       "run": "Ghi lại chuyển đổi",
       "success": "Đã lưu chuyển đổi vào lịch sử."
@@ -1486,6 +1555,7 @@
     "volume-converter": {
       "name": "Thể tích",
       "description": "Đơn vị mét và đo lường nhà bếp",
+      "summary": "Chuyển đổi thể tích giữa lít, mililít, galông, cốc, panh và những đơn vị mà một công thức nấu ăn dùng.",
       "keywords": "Thể tích volume converter",
       "run": "Ghi lại chuyển đổi",
       "success": "Đã lưu chuyển đổi vào lịch sử."
@@ -1493,6 +1563,7 @@
     "power-converter": {
       "name": "Công suất",
       "description": "Oát và mã lực",
+      "summary": "Chuyển đổi công suất giữa oát, kilôoát, mêgaoát và mã lực hệ mét hay cơ học, cho thiết bị và động cơ.",
       "keywords": "Công suất power converter",
       "run": "Ghi lại chuyển đổi",
       "success": "Đã lưu chuyển đổi vào lịch sử."
@@ -1500,6 +1571,7 @@
     "energy-converter": {
       "name": "Năng lượng",
       "description": "Jun, calo và oát-giờ",
+      "summary": "Chuyển đổi năng lượng giữa jun, calo, kilôcalo và kilôoát-giờ — những đơn vị trên nhãn thực phẩm hay hóa đơn điện.",
       "keywords": "Năng lượng energy converter",
       "run": "Ghi lại chuyển đổi",
       "success": "Đã lưu chuyển đổi vào lịch sử."
@@ -1507,6 +1579,7 @@
     "pressure-converter": {
       "name": "Áp suất",
       "description": "Pa, bar, PSI và hơn thế nữa",
+      "summary": "Chuyển đổi áp suất giữa pascal, bar, PSI, átmốtphe, torr và milimét thủy ngân, cho lốp xe hoặc thời tiết.",
       "keywords": "Áp suất pressure converter",
       "run": "Ghi lại chuyển đổi",
       "success": "Đã lưu chuyển đổi vào lịch sử."
@@ -1514,6 +1587,7 @@
     "area-converter": {
       "name": "Diện tích",
       "description": "Diện tích bề mặt và đất",
+      "summary": "Chuyển đổi diện tích giữa mét vuông, feet vuông, mẫu Anh, hécta và những đơn vị đo đất và sàn khác.",
       "keywords": "Diện tích area converter",
       "run": "Ghi lại chuyển đổi",
       "success": "Đã lưu chuyển đổi vào lịch sử."
@@ -1521,6 +1595,7 @@
     "data-converter": {
       "name": "Dữ liệu",
       "description": "Lưu trữ thập phân và nhị phân",
+      "summary": "Chuyển đổi kích thước tệp hay dung lượng lưu trữ giữa byte, kilobyte, megabyte, gigabyte và terabyte, theo hệ mười hoặc hệ hai.",
       "keywords": "Dữ liệu data converter",
       "run": "Ghi lại chuyển đổi",
       "success": "Đã lưu chuyển đổi vào lịch sử."
@@ -1528,6 +1603,7 @@
     "angle-converter": {
       "name": "Góc",
       "description": "Độ, radian và vòng quay",
+      "summary": "Chuyển đổi góc giữa độ, radian, gradian và vòng, với dạng thập phân và dạng phân số đặt cạnh nhau.",
       "keywords": "Góc angle converter",
       "run": "Ghi lại chuyển đổi",
       "success": "Đã lưu chuyển đổi vào lịch sử."
@@ -1535,6 +1611,7 @@
     "frequency-converter": {
       "name": "Tần số",
       "description": "Hz đến RPM",
+      "summary": "Chuyển đổi tần số giữa hertz, kilohertz, megahertz, gigahertz và vòng trên phút, cho âm thanh, vô tuyến và máy quay.",
       "keywords": "Tần số frequency converter",
       "run": "Ghi lại chuyển đổi",
       "success": "Đã lưu chuyển đổi vào lịch sử."
@@ -1542,6 +1619,7 @@
     "force-converter": {
       "name": "Lực",
       "description": "Newton và đơn vị lực",
+      "summary": "Chuyển đổi lực giữa newton, kilônewton, kilôgam-lực, pao-lực và dyn, cho vật lý và kỹ thuật.",
       "keywords": "Lực force converter",
       "run": "Ghi lại chuyển đổi",
       "success": "Đã lưu chuyển đổi vào lịch sử."
@@ -1549,6 +1627,7 @@
     "fuel-economy-converter": {
       "name": "Mức tiêu thụ nhiên liệu",
       "description": "Mức tiêu thụ và quãng đường",
+      "summary": "Chuyển đổi mức tiêu thụ nhiên liệu giữa lít trên 100 kilômét, dặm trên galông Mỹ hoặc Anh và kilômét trên lít.",
       "keywords": "Mức tiêu thụ nhiên liệu fuel economy converter",
       "run": "Ghi lại chuyển đổi",
       "success": "Đã lưu chuyển đổi vào lịch sử."
@@ -1556,6 +1635,7 @@
     "acceleration-converter": {
       "name": "Gia tốc",
       "description": "Chuyển động và trọng lực",
+      "summary": "Chuyển đổi gia tốc giữa mét trên giây bình phương, trọng lực tiêu chuẩn, feet trên giây bình phương và galileo.",
       "keywords": "Gia tốc acceleration converter",
       "run": "Ghi lại chuyển đổi",
       "success": "Đã lưu chuyển đổi vào lịch sử."
@@ -1563,6 +1643,7 @@
     "torque-converter": {
       "name": "Mô-men xoắn",
       "description": "Mô-men xoắn",
+      "summary": "Chuyển đổi mô men xoắn giữa newton-mét, kilôgam-lực-mét, pao-feet và pao-inch, cho đai ốc và động cơ.",
       "keywords": "Mô-men xoắn torque converter",
       "run": "Ghi lại chuyển đổi",
       "success": "Đã lưu chuyển đổi vào lịch sử."
@@ -1570,6 +1651,7 @@
     "electrical-converter": {
       "name": "Điện",
       "description": "Điện áp, dòng điện và điện trở",
+      "summary": "Chuyển đổi giữa các đơn vị điện của hiệu điện thế, dòng điện, điện trở và công suất — vôn, ampe, ohm và oát.",
       "keywords": "Điện electrical converter",
       "run": "Ghi lại chuyển đổi",
       "success": "Đã lưu chuyển đổi vào lịch sử."
@@ -1577,6 +1659,7 @@
     "typography-converter": {
       "name": "Kiểu chữ",
       "description": "Kích thước CSS và in ấn",
+      "summary": "Chuyển đổi cỡ chữ giữa pixel, point, em, rem và pica, so với cỡ gốc, cỡ phần tử cha hoặc cỡ màn hình bạn đặt.",
       "keywords": "Kiểu chữ typography converter",
       "run": "Ghi lại chuyển đổi",
       "success": "Đã lưu chuyển đổi vào lịch sử."
@@ -1584,6 +1667,7 @@
     "bmi-calorie-calculator": {
       "name": "Máy tính BMI và calo",
       "description": "Xem BMI, khoảng cân nặng khỏe mạnh và nhu cầu calo hàng ngày từ chiều cao, cân nặng, tuổi và hoạt động.",
+      "summary": "So BMI với khoảng cân nặng lành mạnh, và ước lượng nhu cầu calo mỗi ngày từ chiều cao, cân nặng, tuổi và vận động.",
       "keywords": "bmi calo tdee bmr cân nặng sức khỏe",
       "limits": "BMI dùng ngưỡng WHO cho người lớn. Dưới 18 được tính nhưng đánh dấu, vì BMI trẻ em thường đọc theo biểu đồ tăng trưởng. Calo dùng Mifflin-St Jeor, công thức người lớn. Phép tính ở lại trên thiết bị này và không phải lời khuyên y tế.",
       "invalid": "Nhập chiều cao, cân nặng và tuổi hợp lý.",
@@ -1642,6 +1726,7 @@
     "percentage-calculator": {
       "name": "Máy tính phần trăm",
       "description": "Tính phần trăm của một số, đảo ngược phần trăm, đo mức thay đổi hoặc áp dụng tăng/giảm.",
+      "summary": "Tính phần trăm của một số, tìm lại giá trị gốc, đo mức thay đổi giữa hai giá trị, hoặc cộng thêm một mức tăng.",
       "keywords": "phần trăm máy tính tăng giảm chiết khấu",
       "mode": "Cách tính",
       "modeOf": "% of",
@@ -1665,6 +1750,7 @@
     "loan-calculator": {
       "name": "Máy tính khoản vay & lãi",
       "description": "Ước tính trả góp hàng tháng hoặc lãi kép từ gốc, lãi suất và số năm.",
+      "summary": "Ước lượng khoản trả hằng tháng, hoặc xem lãi kép làm gì theo thời gian, từ số tiền gốc, lãi suất và kỳ hạn.",
       "keywords": "khoản vay thế chấp trả góp khấu hao lãi kép APR",
       "limits": "Chế độ vay dùng công thức chuẩn khoản trả đều, lãi suất cố định. Chế độ lãi kép cộng lãi định kỳ (mặc định theo tháng). Đây chỉ là ước tính, không phải tư vấn tài chính.",
       "mode": "Chế độ",
@@ -1685,6 +1771,7 @@
     "text-lines": {
       "name": "Công cụ dòng",
       "description": "Tìm và thay thế, sắp xếp hoặc loại bỏ dòng trùng trong trình duyệt.",
+      "summary": "Tìm và thay trong một danh sách dòng, sắp xếp theo số hoặc theo chữ cái, và bỏ những dòng trùng nhau.",
       "keywords": "tìm thay thế sắp xếp dòng duy nhất văn bản",
       "find": "Tìm",
       "replace": "Thay bằng",
@@ -1699,6 +1786,7 @@
     "slugify": {
       "name": "Slugify",
       "description": "Đổi tiêu đề thành slug URL hoặc làm sạch tên tệp an toàn.",
+      "summary": "Biến tiêu đề thành slug URL gọn gàng, với các tùy chọn dấu, chữ hoa chữ thường và dấu phân cách mà tên tệp cần.",
       "keywords": "slugify slug url tên tệp làm sạch kebab",
       "input": "Văn bản",
       "slug": "Slug URL",
@@ -1709,6 +1797,7 @@
     "color-contrast": {
       "name": "Độ tương phản màu",
       "description": "Kiểm tra độ tương phản WCAG giữa màu chữ và nền.",
+      "summary": "Kiểm tra độ tương phản giữa chữ và nền theo ngưỡng WCAG AA và AAA trước khi đưa bảng màu ra dùng.",
       "keywords": "wcag tương phản trợ năng aa aaa dễ đọc",
       "limits": "Tỷ số dùng độ sáng tương đối WCAG 2 cho màu hex sRGB. Các mức hiển thị áp dụng cho văn bản thường (AA ≥ 4,5, AAA ≥ 7).",
       "foreground": "Màu chữ",
@@ -1724,6 +1813,7 @@
     "image-palette": {
       "name": "Bảng màu ảnh",
       "description": "Trích xuất màu chủ đạo từ ảnh để tham khảo thiết kế.",
+      "summary": "Đọc những màu chủ đạo của ảnh thành mã hex, để bảng màu đi thẳng vào thiết kế hoặc kiểm tra thương hiệu.",
       "keywords": "bảng màu trích xuất chủ đạo mẫu ảnh",
       "limits": "Màu sắc được lượng tử hóa trong thẻ này từ một bản xem trước đã thu nhỏ. Kết quả chỉ gần đúng và không rời khỏi thiết bị.",
       "maxColors": "Số màu tối đa",
@@ -1735,6 +1825,7 @@
     "aspect-ratio": {
       "name": "Tỷ lệ khung hình",
       "description": "Rút gọn rộng/cao thành tỷ lệ, hoặc tính cạnh còn thiếu.",
+      "summary": "Rút gọn chiều rộng và chiều cao về tỉ lệ đơn giản nhất, hoặc tính cạnh còn thiếu từ tỉ lệ bạn đã biết.",
       "keywords": "tỷ lệ khung hình 16:9 kích thước cạnh thiếu",
       "mode": "Chế độ",
       "modeFromSize": "Từ kích thước",
@@ -1751,6 +1842,7 @@
     "meeting-planner": {
       "name": "Lập lịch họp",
       "description": "Tìm khung giờ làm việc chồng chéo giữa các múi giờ trong một ngày.",
+      "summary": "Tìm giờ hợp với mọi người bằng cách so giờ làm việc ở vài múi giờ trong ngày bạn chọn.",
       "keywords": "họp múi giờ chồng chéo đồng hồ thế giới giờ làm việc",
       "limits": "Phần chồng lấn dùng múi giờ IANA và ngày dương lịch tại chỗ. Các giờ là giờ UTC tròn mà mọi múi giờ vẫn còn trong ngày đã chọn và nằm trong khung làm việc.",
       "date": "Ngày",
@@ -1770,6 +1862,7 @@
     "json-query": {
       "name": "Truy vấn JSON",
       "description": "Làm phẳng JSON lồng nhau hoặc đọc JSONPath đơn giản như $.items[0].name.",
+      "summary": "Làm phẳng JSON lồng sâu thành các dòng, hoặc lấy ra từng giá trị bằng biểu thức JSONPath đơn giản như $.items[0].name.",
       "keywords": "json path truy vấn làm phẳng jq",
       "limits": "Hỗ trợ một phần nhỏ của JSONPath: $.a.b, $.items[0] và $['key']. Không hỗ trợ ký tự đại diện và bộ lọc.",
       "mode": "Chế độ",
@@ -1784,6 +1877,7 @@
     "check-digits": {
       "name": "Chữ số kiểm tra",
       "description": "Xác thực ISBN-10/13, EAN-13 và IBAN ngay trên máy.",
+      "summary": "Kiểm tra chữ số kiểm tra của ISBN-10, ISBN-13, EAN-13 hoặc IBAN, và xem một mục sai hỏng ở vị trí nào.",
       "keywords": "isbn ean iban chữ số kiểm tra mã vạch xác thực",
       "limits": "Chỉ kiểm tra các thuật toán chữ số kiểm tra đã công bố. Chữ số kiểm tra hợp lệ không chứng minh số đó đã được cấp hay tài khoản thực sự tồn tại.",
       "kind": "Loại",
