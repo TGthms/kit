@@ -518,6 +518,7 @@
     "pdf-merge": {
       "name": "合并 PDF",
       "description": "把多个 PDF 合成一份。可预览页面并拖动排序。",
+      "summary": "把多个 PDF 合成一份，预览各页，并在保存前把它们拖到你要的顺序。",
       "keywords": "pdf 合并 组合 拼接 多页",
       "run": "合并",
       "empty": "请至少添加两个 PDF 文件。",
@@ -526,6 +527,7 @@
     "pdf-split": {
       "name": "拆分 PDF",
       "description": "按页码范围提取页面，生成新的 PDF。",
+      "summary": "从 PDF 中取出一个或多个页码范围，存成新文件，或把一份文档拆成多份，全程无需上传。",
       "keywords": "pdf 拆分 提取 页码 范围",
       "run": "拆分",
       "range": "页码（例如 1-3,5）",
@@ -534,6 +536,7 @@
     "pdf-organize": {
       "name": "整理页面",
       "description": "旋转页面、删除不需要的页，并重新设定顺序。",
+      "summary": "旋转、删除并重新排列 PDF 的页面，然后保存整理后的文档。什么都不会离开你的设备。",
       "keywords": "pdf 旋转 删除 排序 整理",
       "run": "保存 PDF",
       "success": "PDF 已更新。",
@@ -542,6 +545,7 @@
     "pdf-compress": {
       "name": "转为图像并缩小",
       "description": "将每一页栅格化为 JPEG。文本、链接和矢量不会保留。",
+      "summary": "把每页按你选的画质和尺寸渲染成 JPEG 来压缩 PDF——文件更小，代价是文字不能再选中。",
       "keywords": "pdf 压缩 体积 瘦身",
       "run": "缩小",
       "note": "每一页都会变成 JPEG 图片再组成新的 PDF。可搜索的文字、链接和矢量会消失。文件可能会变大。适合照片扫描，不适合还需要检索的合同。",
@@ -550,6 +554,7 @@
     "pdf-watermark": {
       "name": "添加水印",
       "description": "在每一页加上文字水印、页眉或页脚。",
+      "summary": "在每一页盖上文字，作为水印、页眉或页脚，措辞、大小、角度、透明度和位置都由你定。",
       "keywords": "pdf 水印 页眉 页脚 机密",
       "run": "应用",
       "text": "水印文字",
@@ -563,6 +568,7 @@
     "pdf-redact": {
       "name": "遮盖内容",
       "description": "在敏感区域覆盖黑色方块（视觉遮盖）。",
+      "summary": "用黑色方块盖住不该被人读到的内容。这是视觉遮挡，不是真正的涂黑：下面的文字还在。",
       "keywords": "pdf 遮盖 涂黑 隐私 敏感",
       "run": "应用遮盖",
       "note": "仅为视觉遮盖，不保证清除底层全部文本。处理敏感文件时请务必自行核对。",
@@ -574,6 +580,7 @@
     "pdf-extract": {
       "name": "从 PDF 提取",
       "description": "提取可读文本，或将页面导出为图片。",
+      "summary": "把 PDF 中可选中的文字提取出来，或把各页导出成 JPEG 图片打包成 ZIP，文档不会发往任何地方。",
       "keywords": "pdf 提取 文本 图片",
       "run": "提取",
       "modeText": "文本",
@@ -585,6 +592,7 @@
     "image-compress": {
       "name": "压缩图片",
       "description": "调节画质与最大尺寸，让照片更易分享。",
+      "summary": "通过降低画质、限制最长边，或两者兼用，把照片压小，方便发邮件、聊天或放到网上。",
       "keywords": "图片 压缩 照片 jpg png webp 体积",
       "run": "压缩",
       "success": "已压缩 {count} 张图片。"
@@ -592,6 +600,7 @@
     "image-resize": {
       "name": "调整图片尺寸",
       "description": "指定宽高，可选锁定宽高比。",
+      "summary": "把图片设成精确的像素尺寸，或按百分比缩放；想保留原比例时就保留原比例。",
       "keywords": "图片 缩放 尺寸 宽高",
       "run": "调整尺寸",
       "lockAspect": "保持宽高比",
@@ -600,6 +609,7 @@
     "image-crop": {
       "name": "裁剪图片",
       "description": "只保留你需要的矩形区域。",
+      "summary": "在照片上拖动选区，裁到真正重要的部分，然后只导出那个矩形。",
       "keywords": "图片 裁剪 区域",
       "run": "裁剪",
       "success": "裁剪完成。"
@@ -607,6 +617,7 @@
     "image-convert": {
       "name": "转换图片格式",
       "description": "在 JPEG、PNG、WEBP 等常见网页格式之间转换。",
+      "summary": "在 JPEG、PNG、WEBP、AVIF 和 GIF 之间转换，单张或整批都行，图片不会被上传。",
       "keywords": "图片 格式 转换 webp png jpg jpeg",
       "run": "转换",
       "success": "已转换 {count} 张图片。"
@@ -614,6 +625,7 @@
     "image-metadata": {
       "name": "图片元数据",
       "description": "查看 EXIF 等标签，再导出一份去掉它们的副本。",
+      "summary": "查看照片携带的 EXIF 信息——相机、镜头、日期、GPS——再保存一份把这些都去掉的副本。",
       "keywords": "图片 exif 元数据 隐私 定位",
       "run": "清除元数据",
       "note": "在浏览器中重编码像素，从而丢弃嵌入的元数据。",
@@ -625,6 +637,7 @@
     "image-adjust": {
       "name": "调整图片",
       "description": "调节亮度、对比度与饱和度。",
+      "summary": "用眼睛调亮度、对比度、饱和度和曝光，每拖动一个滑块，结果都会重新绘制。",
       "keywords": "图片 亮度 对比度 饱和度 色彩",
       "run": "应用",
       "brightness": "亮度",
@@ -635,6 +648,7 @@
     "convert-hub": {
       "name": "智能转换",
       "description": "识别输入类型，并给出合适的输出格式建议。",
+      "summary": "粘贴混杂的内容，让 Kit 判断它是 JSON、CSV、YAML、XML、TOML 还是 SQL，再转成另一种格式。",
       "keywords": "转换 智能 json yaml csv zip",
       "run": "转换",
       "detect": "识别为",
@@ -644,6 +658,7 @@
     "json-format": {
       "name": "JSON 格式化",
       "description": "美化缩进、压缩体积，并尽早发现 JSON 错误。",
+      "summary": "把 JSON 格式化得易读，或压成一行，并准确指出语法错误在哪，出错的那一行会高亮。",
       "keywords": "json 格式化 校验 压缩 美化",
       "run": "格式化",
       "success": "JSON 有效，并已格式化。"
@@ -651,6 +666,7 @@
     "yaml-format": {
       "name": "YAML 格式化",
       "description": "检查 YAML 结构并整理排版。",
+      "summary": "检查 YAML 的结构错误并理顺缩进，让配置文件按它本该有的样子读出来。",
       "keywords": "yaml 格式化 校验 yml",
       "run": "格式化",
       "success": "YAML 有效。"
@@ -658,6 +674,7 @@
     "toml-format": {
       "name": "TOML 格式化",
       "description": "校验 TOML，并保持文件整洁易读。",
+      "summary": "校验 TOML 并把它排得整齐，同时抓出配置解析器会拒绝的语法错误。",
       "keywords": "toml 格式化 校验 配置",
       "run": "格式化",
       "success": "TOML 有效。"
@@ -665,6 +682,7 @@
     "markdown-html": {
       "name": "Markdown ↔ HTML",
       "description": "在 Markdown 与 HTML 之间互相转换。",
+      "summary": "把 Markdown 转成 HTML，或把 HTML 转回 Markdown，标题、链接、列表、表格和代码都原样保留。",
       "keywords": "markdown html 转换 md 标记",
       "run": "转换",
       "toHtml": "Markdown → HTML",
@@ -674,6 +692,7 @@
     "csv-json": {
       "name": "CSV ↔ JSON",
       "description": "在 CSV 表格与 JSON 数组之间转换数据。",
+      "summary": "把 CSV 文件转成 JSON 数组，或把 JSON 转回 CSV，分隔符和表头行都由你掌握。",
       "keywords": "csv json 转换 表格 电子表格",
       "run": "转换",
       "toJson": "CSV → JSON",
@@ -683,6 +702,7 @@
     "text-diff": {
       "name": "文本对比",
       "description": "逐行查看两个版本之间的差异。",
+      "summary": "把两份草稿并排比较，看清哪些行被添加、删除或修改，细到单个字符。",
       "keywords": "diff 对比 文本 变更 差异",
       "run": "对比",
       "left": "原文",
@@ -692,6 +712,7 @@
     "base64": {
       "name": "Base64",
       "description": "对纯文本或完整文件进行 Base64 编码或解码。",
+      "summary": "把一段文字或整个文件编码成 Base64，或把它解码回原样，内容不会离开浏览器。",
       "keywords": "base64 编码 解码 二进制",
       "run": "转换",
       "mode": "方向",
@@ -702,6 +723,7 @@
     "url-encode": {
       "name": "URL 编解码",
       "description": "对 URL 组件进行百分号编码，或安全还原。",
+      "summary": "把网址、查询字符串或表单取值做百分号编码，让它能在请求中存活，或把已编码的解回来。",
       "keywords": "url 编码 解码 百分号 uri 查询",
       "run": "转换",
       "success": "完成。"
@@ -709,6 +731,7 @@
     "audio-convert": {
       "name": "转换音频",
       "description": "在浏览器中转换 MP3、WAV、OGG 等音频格式。",
+      "summary": "在浏览器里把音频在 MP3、WAV、OGG、M4A 等常见格式之间转换，码率由你决定。",
       "keywords": "音频 转换 mp3 wav ogg 声音",
       "run": "转换",
       "loadingFfmpeg": "正在加载音频引擎…",
@@ -722,6 +745,7 @@
     "audio-trim": {
       "name": "裁剪音频",
       "description": "只保留音频中两个时间点之间的片段。",
+      "summary": "把音频文件剪成两个时间点之间的一段，起点和终点都能精确到秒。",
       "keywords": "音频 裁剪 截取 mp3 wav",
       "run": "裁剪",
       "success": "音频裁剪完成。"
@@ -729,6 +753,7 @@
     "audio-speed": {
       "name": "音频速度与音量",
       "description": "加快、放慢或调节音频音量。",
+      "summary": "在不改变音调的前提下把音频调快或调慢，并设定结果的音量。",
       "keywords": "音频 速度 倍速 音量",
       "run": "应用",
       "success": "处理后的音频已就绪。"
@@ -736,6 +761,7 @@
     "video-convert": {
       "name": "转换视频",
       "description": "在浏览器中转换 MP4、WEBM 等视频封装。",
+      "summary": "在浏览器里把视频在 MP4、WEBM 和 MKV 之间转换，合理的 H.264 与 AAC 设置已经选好。",
       "keywords": "视频 转换 mp4 webm",
       "run": "转换",
       "loadingFfmpeg": "正在加载视频引擎…",
@@ -745,6 +771,7 @@
     "video-trim": {
       "name": "裁剪视频",
       "description": "只保留两个时间点之间的视频片段。",
+      "summary": "设定起点和终点，把视频剪成你要的片段，然后只把这一段导出成文件。",
       "keywords": "视频 裁剪 截取 mp4",
       "run": "裁剪",
       "success": "视频裁剪完成。"
@@ -752,6 +779,7 @@
     "video-speed": {
       "name": "视频速度与音量",
       "description": "调整视频播放速度与音量。",
+      "summary": "改变视频的播放速度，音频可以跟着同步或替换，保存前还能设定音量。",
       "keywords": "视频 速度 倍速 音量",
       "run": "应用",
       "success": "处理后的视频已就绪。"
@@ -759,6 +787,7 @@
     "video-extract-audio": {
       "name": "从视频提取音频",
       "description": "将视频中的音轨保存为音频文件。",
+      "summary": "把视频里的音轨抽出来，存成单独的音频文件，不需要重新录制任何内容。",
       "keywords": "视频 提取 音频 mp3 音轨",
       "run": "提取音频",
       "success": "音频已提取。"
@@ -766,6 +795,7 @@
     "pdf-numbers": {
       "name": "页码",
       "description": "在每一页加上类似 1 / 12 的页码。",
+      "summary": "按你选的格式加上页码，比如 1 / 12 或 12 分之 1，放在每页你想要的位置。",
       "keywords": "pdf 页码 页脚 页眉",
       "run": "添加页码",
       "template": "文案（{page} 和 {pages}）",
@@ -782,6 +812,7 @@
     "pdf-to-images": {
       "name": "PDF → 图片",
       "description": "把每一页渲染成 JPEG，打包成 ZIP 下载。",
+      "summary": "把 PDF 的每一页转成你选分辨率的 JPEG 图片，并把整套打包成 ZIP 下载。",
       "keywords": "pdf 图片 jpg zip 导出",
       "run": "导出页面",
       "limits": "页面由本标签页中的 PDF.js 绘制。超大文档会较慢并占用较多内存。这是视觉栅格化，不是抽取内嵌图像对象。",
@@ -790,6 +821,7 @@
     "images-to-pdf": {
       "name": "图片 → PDF",
       "description": "把多张图片合成一个 PDF，一页一张。",
+      "summary": "把照片和扫描件合成一份 PDF，一页一张图，可以铺满 A4 或保持原始尺寸。",
       "keywords": "图片 pdf jpg png",
       "run": "生成 PDF",
       "success": "{count, plural, other {已用 # 张图片生成 PDF。}}",
@@ -800,6 +832,7 @@
     "pdf-flatten": {
       "name": "压平表单",
       "description": "把 AcroForm 字段画进页面，之后不能再编辑。",
+      "summary": "把填好的表单字段变成页面上永久的内容，让 PDF 在哪里打印和阅读都一样。",
       "keywords": "pdf 表单 压平 字段",
       "run": "压平",
       "limits": "适用于标准 AcroForm 字段。动态 XFA 表单支持不完整。",
@@ -808,6 +841,7 @@
     "pdf-metadata": {
       "name": "PDF 元数据",
       "description": "查看、编辑或清除标题、作者等信息字段。",
+      "summary": "读取、修改或删除 PDF 的标题、作者、关键词和其他文档属性，然后保存一份干净的副本。",
       "keywords": "关键词",
       "run": "保存元数据",
       "strip": "清除 Info 字段和 XMP",
@@ -822,6 +856,7 @@
     "pdf-protect": {
       "name": "锁定或解锁 PDF",
       "description": "添加或移除用户密码。加密只在这个浏览器里完成。",
+      "summary": "给 PDF 加上密码，或去掉你知道的密码，加密就在这个标签页里做，不经过服务器。",
       "keywords": "pdf 密码 加密 解锁",
       "run": "应用",
       "lock": "锁定",
@@ -833,6 +868,7 @@
     "image-rotate": {
       "name": "旋转与翻转",
       "description": "按 90° 旋转，或水平 / 垂直翻转图片。",
+      "summary": "把照片每次转四分之一圈，或微调几度把它摆正，也可以镜像——单张或整批都行。",
       "keywords": "图片 旋转 翻转 镜像",
       "run": "应用",
       "operation": "变换",
@@ -846,6 +882,7 @@
     "image-filters": {
       "name": "图片滤镜",
       "description": "对一张或多张照片应用灰度、褐色或反相。",
+      "summary": "给一张照片或整个文件夹套上黑白、复古、反色、模糊或锐化，再下载结果。",
       "keywords": "图片 滤镜 灰度 褐色 反相",
       "run": "应用",
       "filter": "滤镜",
@@ -857,6 +894,7 @@
     "image-favicon": {
       "name": "网站图标包",
       "description": "把一张图导出为常用图标尺寸，打包成 ZIP。",
+      "summary": "把一张图片做成网站或应用要的各种图标尺寸——favicon、Apple 触摸图标、Android maskable——打包成一个 ZIP。",
       "keywords": "favicon 图标 16 32 180 192 512",
       "run": "导出图标",
       "note": "导出 16、32、48、180、192、512 像素的 PNG。",
@@ -865,6 +903,7 @@
     "video-gif": {
       "name": "视频 → GIF",
       "description": "在浏览器里把一小段视频做成循环 GIF。",
+      "summary": "把视频的一小段做成循环播放的 GIF，起止点由你选。长片段编码会比较慢。",
       "keywords": "视频 gif ffmpeg",
       "run": "生成 GIF",
       "limits": "使用 FFmpeg WASM。请保持片段较短——GIF 编码又慢又占内存。编码能力取决于浏览器内的构建。",
@@ -873,6 +912,7 @@
     "xml-json": {
       "name": "XML ↔ JSON",
       "description": "在 XML 与 JSON 之间转换。",
+      "summary": "把 XML 文档转成 JSON，或把 JSON 转回 XML，属性和重复元素都保持可预期的形状。",
       "keywords": "xml json 转换",
       "run": "转换",
       "toJson": "XML → JSON",
@@ -882,6 +922,7 @@
     "sql-format": {
       "name": "SQL 格式化",
       "description": "整理 SQL 语句，让子句和列表更好读。",
+      "summary": "重新排版 SQL，让子句、连接和长长的字段列表对齐，并按执行顺序读下来。",
       "keywords": "sql 格式化 查询",
       "run": "格式化",
       "success": "SQL 已格式化。"
@@ -889,6 +930,7 @@
     "regex-tester": {
       "name": "正则测试",
       "description": "用样本文本测试正则，并替换匹配项。",
+      "summary": "用你自己的示例文字试一条正则，看着匹配处高亮出来，再试替换的效果。",
       "keywords": "正则 表达式 替换",
       "pattern": "模式",
       "flags": "标志",
@@ -901,6 +943,7 @@
     "hash-generator": {
       "name": "哈希生成",
       "description": "在本地计算文本或文件的 SHA-1/256/384/512 与 MD5。",
+      "summary": "为一段文字或整个文件算出 SHA-1、SHA-256、SHA-384、SHA-512 或 MD5，两者都不会发往任何地方。",
       "keywords": "哈希 sha256 md5 校验",
       "run": "计算",
       "algo": "算法",
@@ -911,6 +954,7 @@
     "uuid-generator": {
       "name": "UUID 生成",
       "description": "在本机生成 UUID v4 或 v7。",
+      "summary": "生成第 4 版或第 7 版的 UUID，一次一个或批量生成，都在本机完成，不经过服务器。",
       "keywords": "uuid guid v4 v7",
       "run": "生成",
       "count": "数量",
@@ -920,6 +964,7 @@
     "color-convert": {
       "name": "颜色转换",
       "description": "在 HEX、RGB、HSL、HSV 之间转换，并带取色器。",
+      "summary": "在 HEX、RGB、HSL、HSV 和 CSS 颜色名之间转换，或从色轮里选一个，一次读出所有写法。",
       "keywords": "颜色 hex rgb hsl hsv",
       "picker": "取色器",
       "invalid": "请输入 3 位或 6 位十六进制颜色。"
@@ -927,6 +972,7 @@
     "lorem-ipsum": {
       "name": "占位文本",
       "description": "生成段落、句子或单词占位文案。",
+      "summary": "为版式生成占位文字，段落、句子或单词都行，数量随你要，生成即可粘贴。",
       "keywords": "lorem 占位 假文",
       "run": "生成",
       "count": "数量",
@@ -939,6 +985,7 @@
     "qr-code": {
       "name": "二维码",
       "description": "用文字生成二维码，或从图片中识别。",
+      "summary": "用链接、文字或联系人信息生成二维码并下载成图片，也可以从图片里读出二维码。",
       "keywords": "二维码 qr 生成 识别",
       "run": "生成",
       "payload": "文本或网址",
@@ -951,6 +998,7 @@
     "pdf-sign": {
       "name": "签署 PDF",
       "description": "在每一页盖上打字签名。仅视觉效果，不是证书签名。",
+      "summary": "把你输入的签名放在选定的页面上。它是画在页面上供人阅读的，不是密码学签名。",
       "keywords": "pdf 签名 盖章",
       "run": "签署",
       "signature": "签名文字",
@@ -961,6 +1009,7 @@
     "image-watermark": {
       "name": "图片水印",
       "description": "在照片上叠文字，支持单张或批量。",
+      "summary": "给你的照片叠上文字——位置、大小、颜色和透明度都可选——单张或整批都行。",
       "keywords": "图片 水印 版权",
       "run": "应用",
       "text": "水印文字",
@@ -974,6 +1023,7 @@
     "password-generator": {
       "name": "密码生成",
       "description": "在本机生成强密码，不会保存。",
+      "summary": "按你选的长度和字符组合生成强密码。它在本机生成，永远不会被保存。",
       "keywords": "密码 随机 生成",
       "run": "生成",
       "length": "长度",
@@ -986,6 +1036,7 @@
     "case-convert": {
       "name": "大小写转换",
       "description": "在 camel、snake、kebab、标题等风格之间转换。",
+      "summary": "在 camelCase、snake_case、kebab-case、Title Case 以及开发者常用的其他写法之间切换文字。",
       "keywords": "大小写 camel snake kebab",
       "run": "转换",
       "style": "风格",
@@ -994,6 +1045,7 @@
     "jwt-decode": {
       "name": "JWT 解码",
       "description": "在本地查看 JWT 的头和载荷。不验证签名。",
+      "summary": "读取 JSON Web Token 的头部和负载，看清它什么时候过期，并在本地解码。签名不会被验证。",
       "keywords": "jwt token 令牌",
       "run": "解码",
       "limits": "Kit 只做 Base64url 解码。没有密钥就无法证明令牌真实。",
@@ -1005,12 +1057,14 @@
     "unix-timestamp": {
       "name": "Unix 时间戳",
       "description": "在 Unix 时间与 ISO 之间转换。",
+      "summary": "把 Unix 时间戳换成可读的日期和时间，或反过来，时区由你选。",
       "keywords": "unix 时间戳 iso",
       "now": "使用现在"
     },
     "cron-explain": {
       "name": "Cron 说明",
       "description": "把 5 段 cron 表达式翻译成白话。",
+      "summary": "把五段式的 cron 表达式翻成一句普通话，让定时任务什么时候跑、多久跑一次一目了然。",
       "keywords": "cron 定时 计划",
       "run": "说明",
       "success": "已说明。"
@@ -1018,6 +1072,7 @@
     "number-base": {
       "name": "进制转换",
       "description": "在 2–36 进制之间转换整数。",
+      "summary": "把整数在二进制、八进制、十进制、十六进制以及 2 到 36 之间任意进制间转换，并显示位模式。",
       "keywords": "二进制 十六进制 十进制",
       "value": "数字",
       "from": "从",
@@ -1026,6 +1081,7 @@
     "html-entities": {
       "name": "HTML 实体",
       "description": "编码或解码 &lt; &amp; 以及数字实体。",
+      "summary": "对尖括号、引号和数字型 HTML 实体做编码或解码，让文字在标记里安全、在标记外可读。",
       "keywords": "html 实体 转义",
       "run": "转换",
       "encode": "编码",
@@ -1035,6 +1091,7 @@
     "json-types": {
       "name": "JSON → TypeScript",
       "description": "根据 JSON 样例推断 TypeScript 接口。",
+      "summary": "把一段示例 JSON 响应转成 TypeScript 接口，嵌套的对象和数组按示例能给的范围标注类型。",
       "keywords": "json typescript 接口",
       "run": "生成类型",
       "success": "类型已生成。"
@@ -1113,110 +1170,110 @@
       "unitMm": "毫米 (mm)",
       "unitCm": "厘米 (cm)",
       "unitM": "米 (m)",
-      "unitKm": "千米 (km)",
+      "unitKm": "公里 (km)",
       "unitIn": "英寸 (in)",
       "unitFt": "英尺 (ft)",
       "unitYd": "码 (yd)",
       "unitMi": "英里 (mi)",
       "unitNmi": "海里 (nmi)",
-      "unitMg": "Milligrams (mg)",
-      "unitG": "Grams (g)",
-      "unitKg": "Kilograms (kg)",
-      "unitT": "Metric tonnes (t)",
-      "unitOz": "Ounces (oz)",
-      "unitLb": "Pounds (lb)",
+      "unitMg": "毫克 (mg)",
+      "unitG": "克 (g)",
+      "unitKg": "千克 (kg)",
+      "unitT": "公吨 (t)",
+      "unitOz": "盎司 (oz)",
+      "unitLb": "磅 (lb)",
       "unitStone": "英石",
-      "unitC": "Celsius (°C)",
-      "unitF": "Fahrenheit (°F)",
-      "unitK": "Kelvin (K)",
-      "unitMs": "Milliseconds",
-      "unitS": "Seconds",
-      "unitMin": "Minutes",
-      "unitH": "Hours",
-      "unitDay": "Days",
-      "unitWeek": "Weeks",
-      "unitM_s": "Meters per second",
-      "unitKm_h": "Kilometers per hour",
-      "unitMph": "Miles per hour",
+      "unitC": "摄氏度 (°C)",
+      "unitF": "华氏度 (°F)",
+      "unitK": "开尔文 (K)",
+      "unitMs": "毫秒",
+      "unitS": "秒",
+      "unitMin": "分钟",
+      "unitH": "小时",
+      "unitDay": "天",
+      "unitWeek": "周",
+      "unitM_s": "米每秒",
+      "unitKm_h": "公里每小时",
+      "unitMph": "英里每小时",
       "unitKnot": "节",
-      "unitMl": "Milliliters",
-      "unitL": "Liters",
-      "unitM3": "Cubic meters",
+      "unitMl": "毫升",
+      "unitL": "升",
+      "unitM3": "立方米",
       "unitUsTsp": "美制茶匙",
       "unitUsTbsp": "美制汤匙",
       "unitUsCup": "美制杯",
       "unitUsGal": "美制加仑",
       "unitImpGal": "英制加仑",
-      "unitW": "Watts",
-      "unitKw": "Kilowatts",
-      "unitMw": "Megawatts",
+      "unitW": "瓦",
+      "unitKw": "千瓦",
+      "unitMw": "兆瓦",
       "unitHp": "机械马力",
-      "unitJ": "Joules",
-      "unitKj": "Kilojoules",
-      "unitWh": "Watt-hours",
-      "unitKwh": "Kilowatt-hours",
-      "unitCal": "Calories",
-      "unitKcal": "Kilocalories",
-      "unitEv": "Electronvolts",
-      "unitPa": "Pascals",
-      "unitKpa": "Kilopascals",
-      "unitBar": "Bar",
+      "unitJ": "焦耳",
+      "unitKj": "千焦",
+      "unitWh": "瓦时",
+      "unitKwh": "千瓦时",
+      "unitCal": "卡",
+      "unitKcal": "千卡",
+      "unitEv": "电子伏",
+      "unitPa": "帕斯卡",
+      "unitKpa": "千帕",
+      "unitBar": "巴",
       "unitPsi": "PSI",
-      "unitAtm": "Atmospheres",
-      "unitMmHg": "Millimeters of mercury",
-      "unitMm2": "Square millimeters",
-      "unitCm2": "Square centimeters",
-      "unitM2": "Square meters",
-      "unitKm2": "Square kilometers",
-      "unitFt2": "Square feet",
-      "unitAcre": "Acres",
-      "unitHectare": "Hectares",
-      "unitBit": "Bits",
-      "unitB": "Bytes",
-      "unitKb": "Kilobytes",
-      "unitMb": "Megabytes",
-      "unitGb": "Gigabytes",
-      "unitTb": "Terabytes",
-      "unitKib": "Kibibytes",
-      "unitMib": "Mebibytes",
-      "unitGib": "Gibibytes",
-      "unitDeg": "Degrees",
-      "unitRad": "Radians",
-      "unitGrad": "Gradians",
-      "unitTurn": "Turns",
-      "unitHz": "Hertz",
-      "unitKhz": "Kilohertz",
-      "unitMhz": "Megahertz",
-      "unitGhz": "Gigahertz",
-      "unitRpm": "Revolutions per minute",
-      "unitN": "Newtons",
-      "unitKn": "Kilonewtons",
-      "unitLbf": "Pound-force",
-      "unitKgf": "Kilogram-force",
-      "unitL_100km": "Liters per 100 km",
-      "unitKm_L": "Kilometers per liter",
-      "unitMpgUs": "Miles per US gallon",
-      "unitMpgImperial": "Miles per imperial gallon",
-      "unitM_s2": "Meters per second squared",
-      "unitG0": "Standard gravity",
-      "unitFt_s2": "Feet per second squared",
-      "unitNm": "Newton-meters",
-      "unitKnm": "Kilonewton-meters",
-      "unitLbFt": "Pound-feet",
-      "unitLbIn": "Pound-inches",
-      "unitMv": "Millivolts",
-      "unitV": "Volts",
-      "unitKv": "Kilovolts",
-      "unitMa": "Milliamps",
-      "unitA": "Amps",
-      "unitKa": "Kiloamps",
-      "unitMOhm": "Milliohms",
-      "unitOhm": "Ohms",
-      "unitKOhm": "Kilohms",
-      "unitMOhmBig": "Megohms",
-      "unitPx": "Pixels",
-      "unitPt": "Points",
-      "unitPc": "Picas",
+      "unitAtm": "标准大气压",
+      "unitMmHg": "毫米汞柱",
+      "unitMm2": "平方毫米",
+      "unitCm2": "平方厘米",
+      "unitM2": "平方米",
+      "unitKm2": "平方公里",
+      "unitFt2": "平方英尺",
+      "unitAcre": "英亩",
+      "unitHectare": "公顷",
+      "unitBit": "比特",
+      "unitB": "字节",
+      "unitKb": "千字节",
+      "unitMb": "兆字节",
+      "unitGb": "吉字节",
+      "unitTb": "太字节",
+      "unitKib": "基比字节",
+      "unitMib": "米比字节",
+      "unitGib": "吉比字节",
+      "unitDeg": "度",
+      "unitRad": "弧度",
+      "unitGrad": "百分度",
+      "unitTurn": "圈",
+      "unitHz": "赫兹",
+      "unitKhz": "千赫兹",
+      "unitMhz": "兆赫兹",
+      "unitGhz": "吉赫兹",
+      "unitRpm": "每分钟转数",
+      "unitN": "牛顿",
+      "unitKn": "千牛",
+      "unitLbf": "磅力",
+      "unitKgf": "千克力",
+      "unitL_100km": "升/100 公里",
+      "unitKm_L": "公里/升",
+      "unitMpgUs": "英里/美制加仑",
+      "unitMpgImperial": "英里/英制加仑",
+      "unitM_s2": "米每平方秒",
+      "unitG0": "标准重力",
+      "unitFt_s2": "英尺每平方秒",
+      "unitNm": "牛顿米",
+      "unitKnm": "千牛米",
+      "unitLbFt": "磅英尺",
+      "unitLbIn": "磅英寸",
+      "unitMv": "毫伏",
+      "unitV": "伏",
+      "unitKv": "千伏",
+      "unitMa": "毫安",
+      "unitA": "安",
+      "unitKa": "千安",
+      "unitMOhm": "毫欧",
+      "unitOhm": "欧",
+      "unitKOhm": "千欧",
+      "unitMOhmBig": "兆欧",
+      "unitPx": "像素",
+      "unitPt": "点",
+      "unitPc": "派卡",
       "unitRem": "rem",
       "unitEm": "em",
       "presetMetricImperial": "公制 ↔ 英制",
@@ -1243,23 +1300,24 @@
       "presetOhmsKilohms": "Ohms ↔ kilohms",
       "presetPxRem": "px ↔ rem",
       "presetPxPt": "px ↔ pt",
-      "unitUsFlOz": "US fluid ounces",
-      "unitUsPt": "US pints",
-      "unitUsQt": "US quarts",
-      "unitGw": "Gigawatts",
-      "unitMj": "Megajoules",
-      "unitMpa": "Megapascals",
-      "unitIn2": "Square inches",
-      "unitYd2": "Square yards",
-      "unitPb": "Petabytes",
-      "unitTib": "Tebibytes",
-      "unitPib": "Pebibytes",
-      "unitArcmin": "Arcminutes",
-      "unitArcsec": "Arcseconds"
+      "unitUsFlOz": "美制液量盎司",
+      "unitUsPt": "美制品脱",
+      "unitUsQt": "美制夸脱",
+      "unitGw": "吉瓦",
+      "unitMj": "兆焦",
+      "unitMpa": "兆帕",
+      "unitIn2": "平方英寸",
+      "unitYd2": "平方码",
+      "unitPb": "拍字节",
+      "unitTib": "太比字节",
+      "unitPib": "拍比字节",
+      "unitArcmin": "角分",
+      "unitArcsec": "角秒"
     },
     "text-counter": {
       "name": "文字计数器",
       "description": "统计单词、字符、句子、段落和阅读时间。",
+      "summary": "一边输入一边统计字数、字符数、句子数和段落数，还会估算读完这段文字要多久。",
       "keywords": "字数统计 字符计数 文本统计 阅读时间",
       "limits": "计数在可用时使用浏览器原生 Unicode 分段，因此能更自然地处理表情符号和组合字符。",
       "input": "要统计的文本",
@@ -1276,6 +1334,7 @@
     "timezone-converter": {
       "name": "世界时钟",
       "description": "在不同时区之间转换本地日期和时间，并查看世界时钟。",
+      "summary": "看看世界各大城市现在几点，并在时区之间换算一个时刻，跨过日期也没问题。",
       "keywords": "时区转换 世界时钟 夏令时 日期 时间",
       "limits": "输入来源城市的当地时间。转换使用 IANA 时区规则，包括夏令时变化。",
       "convert": "转换日期和时间",
@@ -1325,6 +1384,7 @@
     "date-calculator": {
       "name": "日期计算器",
       "description": "比较日期、增加时间，并可按节假日计算工作日。",
+      "summary": "算出两个日期之间的间隔，加减天数和月份，并数出公共假期前后的工作日。",
       "keywords": "日期计算 日期差 添加天数 工作日 节假日",
       "updated": "日期已更新。",
       "invalid": "请检查输入。",
@@ -1363,6 +1423,7 @@
     "tip-split-calculator": {
       "name": "小费与分账计算器",
       "description": "计算小费、税费、总额以及多人公平分摊金额。",
+      "summary": "算出账单的小费、税费和总额，再在付钱的人之间公平分摊。",
       "keywords": "小费计算 分账 税费 餐厅 分摊",
       "limits": "小费和税费按小计计算。四舍五入后的分摊会把余数分给前面的人，确保总额相加一致。",
       "invalid": "请检查输入。",
@@ -1383,6 +1444,7 @@
     "stopwatch-timer": {
       "name": "秒表与计时器",
       "description": "在浏览器中运行精确秒表或倒计时器。",
+      "summary": "用带计圈的精确秒表，或在一个切到别处也继续走的标签页里倒计时到零。",
       "keywords": "秒表 计时器 倒计时 时钟 在线计时器",
       "saved": "已保存到历史记录。",
       "stopwatch": "秒表",
@@ -1399,6 +1461,7 @@
     "random-generator": {
       "name": "随机生成器",
       "description": "为日常用途生成数字、布尔值、选项或密码。",
+      "summary": "抽一个随机数、抛硬币、掷骰子或从列表里挑一个，范围和结果个数都由你定。",
       "keywords": "随机数生成器 选择器 密码生成器",
       "invalid": "请检查输入。",
       "limits": "随机结果使用浏览器的 Math.random 来源，适合日常选择，不适用于加密秘密。",
@@ -1428,6 +1491,7 @@
     "currency-converter": {
       "name": "货币转换器",
       "description": "实时汇率，使用本地缓存",
+      "summary": "按每日汇率换算货币，汇率缓存在你的设备上，断网时最近一次的数据照样能用。",
       "keywords": "货币换算 汇率 钱 Frankfurter",
       "currency": "货币",
       "limits": "汇率在打开此工具或点按刷新时从 Frankfurter 获取，并在本浏览器缓存中保留六小时。不会发送金额。汇率为每日参考数据，不用于交易或报税。",
@@ -1451,6 +1515,7 @@
     "length-converter": {
       "name": "长度",
       "description": "距离、尺寸与出行",
+      "summary": "在米、英尺、英里、英寸、厘米以及出行和装修会碰到的其他单位之间换算长度。",
       "keywords": "长度 length converter",
       "run": "记录转换",
       "success": "转换已保存到历史记录。"
@@ -1458,6 +1523,7 @@
     "mass-converter": {
       "name": "质量",
       "description": "从毫克到吨的重量",
+      "summary": "在毫克、克、千克、吨、磅、盎司和英石之间换算重量，做饭或寄包裹都用得上。",
       "keywords": "质量 mass converter",
       "run": "记录转换",
       "success": "转换已保存到历史记录。"
@@ -1465,6 +1531,7 @@
     "temperature-converter": {
       "name": "温度",
       "description": "摄氏度、华氏度与开尔文",
+      "summary": "在摄氏度、华氏度和开尔文之间换算温度，也包括水结冰和沸腾的那两个点。",
       "keywords": "温度 temperature converter",
       "run": "记录转换",
       "success": "转换已保存到历史记录。"
@@ -1472,6 +1539,7 @@
     "speed-converter": {
       "name": "速度",
       "description": "日常与航海速度",
+      "summary": "在公里每小时、英里每小时、米每秒和节之间换算速度，公路、天空和海上都用得上。",
       "keywords": "速度 speed converter",
       "run": "记录转换",
       "success": "转换已保存到历史记录。"
@@ -1479,6 +1547,7 @@
     "duration-converter": {
       "name": "时长",
       "description": "从毫秒到周的时长",
+      "summary": "在毫秒、秒、分钟、小时、天和周之间换算时长，两个方向都能读。",
       "keywords": "时长 duration converter",
       "run": "记录转换",
       "success": "转换已保存到历史记录。"
@@ -1486,6 +1555,7 @@
     "volume-converter": {
       "name": "体积",
       "description": "公制与厨房计量",
+      "summary": "在升、毫升、加仑、杯、品脱以及食谱里写的那些量之间换算体积。",
       "keywords": "体积 volume converter",
       "run": "记录转换",
       "success": "转换已保存到历史记录。"
@@ -1493,6 +1563,7 @@
     "power-converter": {
       "name": "功率",
       "description": "瓦特与马力",
+      "summary": "在瓦、千瓦、兆瓦以及公制或机械马力之间换算功率，家电和发动机都用得上。",
       "keywords": "功率 power converter",
       "run": "记录转换",
       "success": "转换已保存到历史记录。"
@@ -1500,6 +1571,7 @@
     "energy-converter": {
       "name": "能量",
       "description": "焦耳、卡路里与瓦时",
+      "summary": "在焦耳、卡、千卡和千瓦时之间换算能量——食品标签和电费单上的那些单位。",
       "keywords": "能量 energy converter",
       "run": "记录转换",
       "success": "转换已保存到历史记录。"
@@ -1507,6 +1579,7 @@
     "pressure-converter": {
       "name": "压力",
       "description": "帕、巴、PSI 等",
+      "summary": "在帕斯卡、巴、PSI、标准大气压、托和毫米汞柱之间换算压力，轮胎和天气都用得上。",
       "keywords": "压力 pressure converter",
       "run": "记录转换",
       "success": "转换已保存到历史记录。"
@@ -1514,6 +1587,7 @@
     "area-converter": {
       "name": "面积",
       "description": "面积与土地面积",
+      "summary": "在平方米、平方英尺、英亩、公顷以及其他量地和量楼板面积的单位之间换算。",
       "keywords": "面积 area converter",
       "run": "记录转换",
       "success": "转换已保存到历史记录。"
@@ -1521,6 +1595,7 @@
     "data-converter": {
       "name": "数据",
       "description": "十进制与二进制存储容量",
+      "summary": "在字节、千字节、兆字节、吉字节和太字节之间换算文件或存储容量，十进制和二进制都行。",
       "keywords": "数据 data converter",
       "run": "记录转换",
       "success": "转换已保存到历史记录。"
@@ -1528,6 +1603,7 @@
     "angle-converter": {
       "name": "角度",
       "description": "度、弧度与圈数",
+      "summary": "在度、弧度、百分度和圈之间换算角度，小数形式和分数形式并排显示。",
       "keywords": "角度 angle converter",
       "run": "记录转换",
       "success": "转换已保存到历史记录。"
@@ -1535,6 +1611,7 @@
     "frequency-converter": {
       "name": "频率",
       "description": "从 Hz 到 RPM",
+      "summary": "在赫兹、千赫兹、兆赫兹、吉赫兹和每分钟转数之间换算频率，声音、无线电和转动的机器都用得上。",
       "keywords": "频率 frequency converter",
       "run": "记录转换",
       "success": "转换已保存到历史记录。"
@@ -1542,6 +1619,7 @@
     "force-converter": {
       "name": "力",
       "description": "牛顿与力的单位",
+      "summary": "在牛顿、千牛、千克力、磅力和达因之间换算力，物理和工程都用得上。",
       "keywords": "力 force converter",
       "run": "记录转换",
       "success": "转换已保存到历史记录。"
@@ -1549,6 +1627,7 @@
     "fuel-economy-converter": {
       "name": "燃油经济性",
       "description": "消耗量与里程",
+      "summary": "在升每 100 公里、英里每美制或英制加仑以及公里每升之间换算油耗。",
       "keywords": "燃油经济性 fuel economy converter",
       "run": "记录转换",
       "success": "转换已保存到历史记录。"
@@ -1556,6 +1635,7 @@
     "acceleration-converter": {
       "name": "加速度",
       "description": "运动与重力",
+      "summary": "在米每平方秒、标准重力、英尺每平方秒和伽利略之间换算加速度。",
       "keywords": "加速度 acceleration converter",
       "run": "记录转换",
       "success": "转换已保存到历史记录。"
@@ -1563,6 +1643,7 @@
     "torque-converter": {
       "name": "扭矩",
       "description": "旋转力",
+      "summary": "在牛顿米、千克力米、磅英尺和磅英寸之间换算力矩，螺母和发动机都用得上。",
       "keywords": "扭矩 torque converter",
       "run": "记录转换",
       "success": "转换已保存到历史记录。"
@@ -1570,6 +1651,7 @@
     "electrical-converter": {
       "name": "电学",
       "description": "电压、电流与电阻",
+      "summary": "在电压、电流、电阻和功率这些电学单位之间换算——伏、安、欧和瓦。",
       "keywords": "电学 electrical converter",
       "run": "记录转换",
       "success": "转换已保存到历史记录。"
@@ -1577,6 +1659,7 @@
     "typography-converter": {
       "name": "排版",
       "description": "CSS 与印刷尺寸",
+      "summary": "在像素、点、em、rem 和派卡之间换算字体大小，基准由你设定的根、父级或屏幕尺寸决定。",
       "keywords": "排版 typography converter",
       "run": "记录转换",
       "success": "转换已保存到历史记录。"
@@ -1584,6 +1667,7 @@
     "bmi-calorie-calculator": {
       "name": "BMI 与热量计算器",
       "description": "根据身高、体重、年龄和活动量查看 BMI、健康体重范围和每日热量需求。",
+      "summary": "把 BMI 和健康体重区间对照，并从身高、体重、年龄和活动量估算每日所需热量。",
       "keywords": "bmi 热量 tdee bmr 体重 健康",
       "limits": "BMI 使用成人 WHO 界值。未满 18 岁可以计算，但会标明，因为儿童 BMI 通常对照生长曲线。热量使用成人 Mifflin-St Jeor 公式。计算留在本设备上，不构成医疗建议。",
       "invalid": "请输入合理的身高、体重和年龄。",
@@ -1642,6 +1726,7 @@
     "percentage-calculator": {
       "name": "百分比计算器",
       "description": "计算某数的百分之几、逆向百分比、涨跌幅度，或应用百分比增减。",
+      "summary": "算出一个数的百分之几，倒推出原值，量出两个值之间的变化，或加上一个增幅。",
       "keywords": "百分比 百分数 涨跌 折扣 加价",
       "mode": "计算",
       "modeOf": "% of",
@@ -1665,6 +1750,7 @@
     "loan-calculator": {
       "name": "贷款与利息计算器",
       "description": "根据本金、利率和年限估算月供或复利终值。",
+      "summary": "估算每月还款额，或看看本金、利率和期限之下，复利随时间会带来什么。",
       "keywords": "贷款 房贷 月供 复利 利息 APR",
       "limits": "贷款模式采用标准的固定利率等额本息还款。复利模式按周期复利计算（默认每月）。结果仅为估算，不构成理财建议。",
       "mode": "模式",
@@ -1685,6 +1771,7 @@
     "text-lines": {
       "name": "行处理",
       "description": "在浏览器中查找替换、排序或去除重复行。",
+      "summary": "在一列行里查找替换，按数字或字母排序，并去掉重复的行。",
       "keywords": "查找 替换 排序 去重 行 文本",
       "find": "查找",
       "replace": "替换为",
@@ -1699,6 +1786,7 @@
     "slugify": {
       "name": "生成短链标识",
       "description": "把标题变成 URL 短链，或清理安全的文件名。",
+      "summary": "把标题变成干净的网址片段，重音、大小写和分隔符按文件名需要的来。",
       "keywords": "短链 slug URL 文件名 清理",
       "input": "文本",
       "slug": "URL slug",
@@ -1709,6 +1797,7 @@
     "color-contrast": {
       "name": "颜色对比度",
       "description": "检查前景色与背景色的 WCAG 对比度。",
+      "summary": "在交付一套配色之前，先按 WCAG 的 AA 和 AAA 门槛检查文字与背景的对比度。",
       "keywords": "WCAG 对比度 无障碍 AA AAA 可读性",
       "limits": "对比度按 WCAG 2 的相对亮度针对 sRGB 十六进制颜色计算。所示等级针对正常文本（AA ≥ 4.5，AAA ≥ 7）。",
       "foreground": "前景",
@@ -1724,6 +1813,7 @@
     "image-palette": {
       "name": "图片色板",
       "description": "从照片中提取主色，便于设计参考。",
+      "summary": "把照片的主色读成十六进制色值，让这套配色能直接进入设计或品牌检查。",
       "keywords": "色板 主色 提取 色卡 图片",
       "limits": "颜色在此标签页内根据缩小后的预览图量化。结果为近似值，且不会离开此设备。",
       "maxColors": "最大颜色数",
@@ -1735,6 +1825,7 @@
     "aspect-ratio": {
       "name": "宽高比",
       "description": "把宽高约简成比例，或根据比例求缺失边。",
+      "summary": "把宽和高化简成最简比例，或用已知的比例算出缺少的那条边。",
       "keywords": "宽高比 16:9 尺寸 缺边",
       "mode": "模式",
       "modeFromSize": "由尺寸计算",
@@ -1751,6 +1842,7 @@
     "meeting-planner": {
       "name": "会议时间规划",
       "description": "在指定日期查找跨时区的重叠工作时段。",
+      "summary": "在你选定的日子里比较几个时区的工作时间，找出所有人都合适的那一个小时。",
       "keywords": "会议 时区 重叠 世界时钟 工作时间",
       "limits": "重叠计算使用 IANA 时区和各地日历日期。候选时间为整点 UTC 时间：所有时区仍处于所选日期且位于工作时段内。",
       "date": "日期",
@@ -1770,6 +1862,7 @@
     "json-query": {
       "name": "JSON 查询",
       "description": "展平嵌套 JSON，或用简单 JSONPath 读取值，如 $.items[0].name。",
+      "summary": "把嵌套很深的 JSON 摊平成一行行，或用像 $.items[0].name 这样简单的 JSONPath 取值。",
       "keywords": "json path 查询 展平 jq",
       "limits": "支持一小部分 JSONPath：$.a.b、$.items[0] 和 $['key']。不支持通配符和过滤器。",
       "mode": "模式",
@@ -1784,6 +1877,7 @@
     "check-digits": {
       "name": "校验位检查",
       "description": "在本地验证 ISBN-10/13、EAN-13 和 IBAN 校验位。",
+      "summary": "校验 ISBN-10、ISBN-13、EAN-13 或 IBAN 的校验位，并看出输错时是第几位过不去。",
       "keywords": "isbn ean iban 校验位 条码",
       "limits": "仅校验公开的校验位算法。校验位正确并不代表该号码已被使用，也不代表账户真实存在。",
       "kind": "类型",
