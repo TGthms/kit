@@ -518,6 +518,7 @@
     "pdf-merge": {
       "name": "PDF birleştir",
       "description": "Birkaç PDF’yi tek dosyada toplayın. Sayfaları önizleyin ve sürükleyerek sıralayın.",
+      "summary": "Birkaç PDF’yi tek dosyada toplayın, sayfaları önizleyin ve kaydetmeden önce istediğiniz sıraya sürükleyin.",
       "keywords": "pdf birleştir birleştir ekle çok sayfa",
       "run": "Birleştir",
       "empty": "En az iki PDF dosyası ekleyin.",
@@ -526,6 +527,7 @@
     "pdf-split": {
       "name": "PDF böl",
       "description": "Bir sayfa aralığını yepyeni bir PDF’ye çıkarın.",
+      "summary": "Bir PDF’ten bir veya birkaç sayfa aralığını yeni bir dosyaya çıkarın, ya da bir belgeyi çok parçaya bölün; yükleme yok.",
       "keywords": "pdf böl ayıkla sayfalar aralık",
       "run": "Böl",
       "range": "Sayfalar (örneğin 1-3,5)",
@@ -534,6 +536,7 @@
     "pdf-organize": {
       "name": "Sayfaları düzenle",
       "description": "Sayfaları döndürün, gerekmeyenleri silin ve yeni bir sıra verin.",
+      "summary": "Bir PDF’nin sayfalarını döndürün, silin ve yeniden sıralayın, sonra düzenlenmiş belgeyi kaydedin. Hiçbir şey cihazınızdan çıkmaz.",
       "keywords": "pdf döndür sil yeniden sırala düzenle sayfalar",
       "run": "PDF’yi kaydet",
       "success": "PDF güncellendi.",
@@ -542,6 +545,7 @@
     "pdf-compress": {
       "name": "Görüntü olarak küçült",
       "description": "Her sayfayı JPEG olarak tarar. Metin, bağlantılar ve vektörler korunmaz.",
+      "summary": "Her sayfayı seçtiğiniz kalitede ve boyutta JPEG olarak çizerek bir PDF’yi küçültün — seçilebilir metni olmayan daha hafif bir dosya.",
       "keywords": "pdf sıkıştır küçült boyut",
       "run": "Küçült",
       "note": "Her sayfa JPEG görüntüye dönüşüp yeni bir PDF olur. Aranabilir metin, bağlantılar ve vektörler gider. Dosya büyüyebilir. Fotoğraf taramaları için; aranacak sözleşmeler için değil.",
@@ -550,6 +554,7 @@
     "pdf-watermark": {
       "name": "PDF filigranı",
       "description": "Her sayfaya filigran, üst bilgi veya alt bilgi olarak metin damgalayın.",
+      "summary": "Her sayfaya filigran, üstbilgi veya altbilgi olarak metin basın; ifadeyi, boyutu, açıyı, saydamlığı ve konumu siz seçin.",
       "keywords": "pdf filigran damga üst bilgi alt bilgi gizli",
       "run": "Uygula",
       "text": "Filigran metni",
@@ -563,6 +568,7 @@
     "pdf-redact": {
       "name": "İçeriği ört",
       "description": "Hassas bölgelerin üzerine düz siyah kutular koyun (görsel örtü).",
+      "summary": "Okunmaması gerekeni gizlemek için sayfaların üzerine siyah kutular çizin. Bu görsel bir örtü, gerçek redaksiyon değil: metin hâlâ altında duruyor.",
       "keywords": "pdf karart ört gizle hassas",
       "run": "Örtüyü uygula",
       "note": "Yalnızca görsel örtü. Altta kalan her metin akışının silindiğini garanti etmez — hassas belgeleri iki kez kontrol edin.",
@@ -574,6 +580,7 @@
     "pdf-extract": {
       "name": "PDF’den ayıkla",
       "description": "Okunabilir metni çekin veya bir sayfayı görüntü olarak dışa aktarın.",
+      "summary": "Bir PDF’ten seçilebilir metni çıkarın ya da sayfalarını ZIP içinde JPEG görüntü olarak dışa aktarın; belge hiçbir yere gitmez.",
       "keywords": "pdf ayıkla metin görüntüler",
       "run": "Ayıkla",
       "modeText": "Metin",
@@ -585,6 +592,7 @@
     "image-compress": {
       "name": "Görüntüleri sıkıştır",
       "description": "Kaliteyi ve en büyük boyutu düşürün ki fotoğraflar paylaşılabilir kalsın.",
+      "summary": "Fotoğrafları e-posta, sohbet veya web için kaliteyi düşürerek, en uzun kenarı sınırlayarak ya da her ikisini yaparak küçültün.",
       "keywords": "görüntü sıkıştır jpg png webp boyut fotoğraf",
       "run": "Sıkıştır",
       "success": "{count} görüntü sıkıştırıldı."
@@ -592,6 +600,7 @@
     "image-resize": {
       "name": "Görüntüleri yeniden boyutlandır",
       "description": "İsteğe bağlı en-boy kilidiyle tam boyutları ayarlayın.",
+      "summary": "Bir görüntüyü tam piksel ölçülerine ayarlayın ya da yüzdeyle ölçekleyin; oranları korumak istediğinizde korunur.",
       "keywords": "görüntü boyut ölçek ölçü genişlik yükseklik",
       "run": "Yeniden boyutlandır",
       "lockAspect": "En-boy oranını koru",
@@ -600,6 +609,7 @@
     "image-crop": {
       "name": "Görüntü kırp",
       "description": "Yalnızca önemsediğiniz dikdörtgeni bırakın.",
+      "summary": "Bir fotoğrafı önemli olan kısmına kırpın: seçimi üzerine sürükleyin ve yalnızca o dikdörtgeni dışa aktarın.",
       "keywords": "görüntü kırp kes bölge",
       "run": "Kırp",
       "success": "Kırpılmış görüntü hazır."
@@ -607,6 +617,7 @@
     "image-convert": {
       "name": "Görüntü biçimini dönüştür",
       "description": "JPEG, PNG, WEBP ve benzeri web biçimleri arasında geçiş yapın.",
+      "summary": "JPEG, PNG, WEBP, AVIF ve GIF arasında dönüştürün; tek görüntü ya da bütün bir grup, görüntüleri yüklemeden.",
       "keywords": "görüntü dönüştür biçim webp png jpg jpeg",
       "run": "Dönüştür",
       "success": "{count} görüntü dönüştürüldü."
@@ -614,6 +625,7 @@
     "image-metadata": {
       "name": "Görüntü üst verisi",
       "description": "EXIF ve benzeri etiketleri inceleyin, ardından bunlarsız temiz bir kopya dışa aktarın.",
+      "summary": "Bir fotoğrafın taşıdığı EXIF’e bakın — kamera, lens, tarih, GPS — sonra bu bilgiler silinmiş bir kopyasını kaydedin.",
       "keywords": "görüntü exif üstveri sil gizlilik konum",
       "run": "Üst veriyi sil",
       "note": "Pikseller tarayıcıda yeniden kodlanır; gömülü üst veri düşer.",
@@ -625,6 +637,7 @@
     "image-adjust": {
       "name": "Görüntüyü ayarla",
       "description": "Parlaklık, karşıtlık ve doygunluğu ince ayarlayın.",
+      "summary": "Parlaklığı, kontrastı, doygunluğu ve pozlamayı gözle düzeltin; her kaydırıcıyı oynattığınızda sonuç yeniden çizilir.",
       "keywords": "görüntü parlaklık karşıtlık doygunluk renk",
       "run": "Uygula",
       "brightness": "Parlaklık",
@@ -635,6 +648,7 @@
     "convert-hub": {
       "name": "Akıllı dönüştür",
       "description": "Karışık dosya veya metin türlerini algılar ve biçimler arasında dönüştürür (medya stüdyosu değil).",
+      "summary": "Karışık içerik yapıştırın, Kit ne olduğunu anlasın — JSON, CSV, YAML, XML, TOML ya da SQL — sonra başka bir biçime dönüştürün.",
       "keywords": "dönüştür merkez akıllı toplu json yaml csv zip görüntü veri",
       "run": "Dönüştür",
       "detect": "Algılanan",
@@ -644,6 +658,7 @@
     "json-format": {
       "name": "JSON biçimleyici",
       "description": "JSON’u güzelleştirin, küçültün ve hataları erken yakalayın.",
+      "summary": "JSON’u okunur biçimde düzenleyin ya da küçültün; sözdizimi hatasının tam olarak nerede olduğunu, o satır vurgulanmış olarak görün.",
       "keywords": "json biçim doğrula küçült pretty",
       "run": "Biçimlendir",
       "success": "JSON geçerli ve biçimlendirildi."
@@ -651,6 +666,7 @@
     "yaml-format": {
       "name": "YAML biçimleyici",
       "description": "YAML yapısını denetleyin ve düzeni toparlayın.",
+      "summary": "YAML’ı yapı hatalarına karşı denetleyin ve girintiyi düzenleyin; böylece bir yapılandırma dosyası olması gerektiği gibi okunur.",
       "keywords": "yaml biçim doğrula yml",
       "run": "Biçimlendir",
       "success": "YAML geçerli."
@@ -658,6 +674,7 @@
     "toml-format": {
       "name": "TOML biçimleyici",
       "description": "TOML’u doğrulayın ve dosyayı düzenli tutun.",
+      "summary": "TOML’ı doğrulayın ve düzenli yerleştirin; bir yapılandırma ayrıştırıcısının reddedeceği sözdizimi hatalarını yakalayın.",
       "keywords": "toml biçim doğrula config",
       "run": "Biçimlendir",
       "success": "TOML geçerli."
@@ -665,6 +682,7 @@
     "markdown-html": {
       "name": "Markdown ↔ HTML",
       "description": "Markdown’ı HTML’ye veya HTML’yi Markdown’a çevirin.",
+      "summary": "Markdown’ı HTML’e ya da HTML’i geri Markdown’a çevirin; başlıklar, bağlantılar, listeler, tablolar ve kod olduğu gibi kalır.",
       "keywords": "markdown html dönüştür md işaretleme",
       "run": "Dönüştür",
       "toHtml": "Markdown → HTML",
@@ -674,6 +692,7 @@
     "csv-json": {
       "name": "CSV ↔ JSON",
       "description": "Tablo verisini CSV ile JSON dizileri arasında taşıyın.",
+      "summary": "Bir CSV dosyasını JSON dizisine, JSON’u da geri CSV’ye çevirin; ayırıcı ve başlık satırı sizin denetiminizde.",
       "keywords": "csv json dönüştür tablo e-tablo",
       "run": "Dönüştür",
       "toJson": "CSV → JSON",
@@ -683,6 +702,7 @@
     "text-diff": {
       "name": "Metin karşılaştır",
       "description": "İki sürüm arasındaki satır satır değişiklikleri görün.",
+      "summary": "İki taslağı yan yana karşılaştırın ve hangi satırların eklendiğini, silindiğini ya da değiştiğini karaktere kadar görün.",
       "keywords": "diff karşılaştır metin değişiklikler patch",
       "run": "Karşılaştır",
       "left": "Özgün",
@@ -692,6 +712,7 @@
     "base64": {
       "name": "Base64",
       "description": "Düz metin veya tüm dosyalar için Base64 kodlayın veya çözün.",
+      "summary": "Düz metni ya da koca bir dosyayı Base64 olarak kodlayın veya geri çözün; içerik tarayıcıdan çıkmaz.",
       "keywords": "base64 kodla çöz ikili",
       "run": "Dönüştür",
       "mode": "Yön",
@@ -702,6 +723,7 @@
     "url-encode": {
       "name": "URL kodlama",
       "description": "URL parçalarını güvenle yüzde kodlayın veya çözün.",
+      "summary": "Bir URL’yi, sorgu dizesini ya da form değerini yüzde kodlamasıyla kodlayın; ya da zaten kodlanmış olanı çözün.",
       "keywords": "url kodla çöz yüzde uri sorgu",
       "run": "Dönüştür",
       "success": "Bitti."
@@ -709,6 +731,7 @@
     "audio-convert": {
       "name": "Sesi dönüştür",
       "description": "MP3, WAV ve OGG gibi ses kaplarını tarayıcıda değiştirin.",
+      "summary": "Sesi MP3, WAV, OGG, M4A ve diğer yaygın biçimler arasında tarayıcıda dönüştürün; bit hızını siz seçin.",
       "keywords": "ses dönüştür mp3 wav ogg ffmpeg ses",
       "run": "Dönüştür",
       "loadingFfmpeg": "Ses motoru yükleniyor…",
@@ -722,6 +745,7 @@
     "audio-trim": {
       "name": "Sesi kırp",
       "description": "Bir ses dosyasında yalnızca iki zaman damgası arasındaki dilimi bırakın.",
+      "summary": "Bir ses dosyasını iki zaman damgası arasındaki bölüme kesin; başlangıç ve bitiş saniye hassasiyetinde ayarlanır.",
       "keywords": "ses kırp kes klip mp3 wav",
       "run": "Kırp",
       "success": "Ses kırpma bitti."
@@ -729,6 +753,7 @@
     "audio-speed": {
       "name": "Ses hızı ve ses düzeyi",
       "description": "Sesi hızlandırın, yavaşlatın veya ses düzeyini değiştirin.",
+      "summary": "Bir ses dosyasını perdeyi değiştirmeden hızlandırın ya da yavaşlatın ve sonucun ne kadar yüksek olacağını ayarlayın.",
       "keywords": "ses hız tempo düzey perde",
       "run": "Uygula",
       "success": "İşlenmiş ses hazır."
@@ -736,6 +761,7 @@
     "video-convert": {
       "name": "Videoyu dönüştür",
       "description": "MP4 ve WEBM gibi video kaplarını tarayıcıda değiştirin.",
+      "summary": "Videoyu tarayıcıda MP4, WEBM ve MKV arasında dönüştürün; makul H.264 ve AAC ayarları önceden seçilmiştir.",
       "keywords": "video dönüştür mp4 webm ffmpeg film",
       "run": "Dönüştür",
       "loadingFfmpeg": "Video motoru yükleniyor…",
@@ -745,6 +771,7 @@
     "video-trim": {
       "name": "Videoyu kırp",
       "description": "Yalnızca iki zaman damgası arasındaki klibi bırakın.",
+      "summary": "Bir videoyu başlangıç ve bitiş noktası belirleyerek istediğiniz klibe kesin, sonra yalnızca o aralığı dosya olarak dışa aktarın.",
       "keywords": "video kırp kes klip mp4",
       "run": "Kırp",
       "success": "Video kırpma bitti."
@@ -752,6 +779,7 @@
     "video-speed": {
       "name": "Video hızı ve ses düzeyi",
       "description": "Bir videonun oynatma hızını ve ses düzeyini değiştirin.",
+      "summary": "Bir videonun oynatma hızını değiştirin; ses adım uydursun ya da değiştirilsin, düzeyi kaydetmeden önce ayarlayın.",
       "keywords": "video hız tempo düzey",
       "run": "Uygula",
       "success": "İşlenmiş video hazır."
@@ -759,6 +787,7 @@
     "video-extract-audio": {
       "name": "Videodan ses ayıkla",
       "description": "Bir videonun ses izini ses dosyası olarak kaydedin.",
+      "summary": "Bir videodan ses parçasını çıkarın ve tek başına bir ses dosyası olarak kaydedin; hiçbir şeyi yeniden kaydetmeden.",
       "keywords": "video ses ayıkla mp3 ses izi",
       "run": "Sesi ayıkla",
       "success": "Ses ayıklandı."
@@ -766,6 +795,7 @@
     "pdf-numbers": {
       "name": "Sayfa numaraları",
       "description": "Her sayfaya 1 / 12 gibi bir etiket damgalayın.",
+      "summary": "Sayfa numaralarını seçtiğiniz biçimde ekleyin, örneğin 1 / 12 veya 12’de 1; her sayfada istediğiniz yere yerleştirin.",
       "keywords": "pdf sayfa numaraları alt bilgi üst bilgi sayfalama",
       "run": "Numara ekle",
       "template": "Etiket ({page} ve {pages})",
@@ -782,6 +812,7 @@
     "pdf-to-images": {
       "name": "PDF → görüntüler",
       "description": "Her sayfayı JPEG’e rasterleştirip ZIP olarak indirin.",
+      "summary": "Bir PDF’nin her sayfasını seçtiğiniz çözünürlükte JPEG görüntüye çevirin ve tüm takımı ZIP dosyası olarak indirin.",
       "keywords": "pdf görüntü jpg jpeg zip sayfalar dışa aktar",
       "run": "Sayfaları dışa aktar",
       "limits": "Sayfalar bu sekmede PDF.js ile çizilir. Çok büyük belgeler yavaş olabilir ve çok bellek kullanabilir. Bu görsel bir rasterdir, gömülü görüntü nesnelerinin ayıklanması değildir.",
@@ -790,6 +821,7 @@
     "images-to-pdf": {
       "name": "Görüntüler → PDF",
       "description": "Fotoğrafları PDF’de toplayın, sayfa başına bir görüntü.",
+      "summary": "Fotoğrafları ve taramaları tek bir PDF’de birleştirin; sayfa başına bir görüntü, A4’e sığdırılmış ya da özgün boyutunda.",
       "keywords": "görüntüler pdf jpg png birleştir",
       "run": "PDF oluştur",
       "success": "{count, plural, one {# görüntüden PDF.} other {# görüntüden PDF.}}",
@@ -800,6 +832,7 @@
     "pdf-flatten": {
       "name": "Formları düzleştir",
       "description": "AcroForm alanlarını sayfaya pişirin ki artık düzenlenemesin.",
+      "summary": "Doldurulmuş form alanlarını kalıcı sayfa içeriğine çevirin; böylece PDF her yerde aynı yazdırılır ve artık düzenlenemez.",
       "keywords": "pdf düzleştir form alanlar acroform",
       "run": "Düzleştir",
       "limits": "Standart AcroForm alanlarında çalışır. Dinamik XFA formları tam desteklenmez.",
@@ -808,6 +841,7 @@
     "pdf-metadata": {
       "name": "PDF üst verisi",
       "description": "Başlık, yazar ve diğer Info alanlarını görüntüleyin, düzenleyin veya silin.",
+      "summary": "Bir PDF’nin taşıdığı başlığı, yazarı, anahtar sözcükleri ve diğer belge özelliklerini okuyun, düzenleyin ya da silin.",
       "keywords": "Anahtar sözcükler",
       "run": "Üst veriyi kaydet",
       "strip": "Info alanlarını ve XMP'yi temizle",
@@ -822,6 +856,7 @@
     "pdf-protect": {
       "name": "PDF kilitle veya aç",
       "description": "Kullanıcı parolası ekleyin veya kaldırın. Şifreleme bu tarayıcıda kalır.",
+      "summary": "Bir PDF’ye parola ekleyin ya da bildiğiniz bir parolayı kaldırın; şifreleme sunucuda değil bu sekmede yapılır.",
       "keywords": "pdf parola kilitle aç şifrele çöz",
       "run": "Uygula",
       "lock": "Kilitle",
@@ -833,6 +868,7 @@
     "image-rotate": {
       "name": "Döndür ve çevir",
       "description": "Görüntüleri 90° adımlarla döndürün veya yatay ya da dikey çevirin.",
+      "summary": "Fotoğrafları çeyrek tur döndürün, birkaç derece düzeltin ya da aynalayın — tek görüntü ya da bütün bir grup.",
       "keywords": "görüntü döndür çevir ayna",
       "run": "Uygula",
       "operation": "Dönüşüm",
@@ -846,6 +882,7 @@
     "image-filters": {
       "name": "Görüntü süzgeçleri",
       "description": "Bir veya birçok fotoğrafa gri ton, sepia veya ters çevirme uygulayın.",
+      "summary": "Bir fotoğrafa ya da bütün bir klasöre gri tonlama, sepya, negatif, bulanıklık veya keskinlik uygulayın ve sonuçları indirin.",
       "keywords": "görüntü süzgeç gri sepia ters",
       "run": "Uygula",
       "filter": "Süzgeç",
@@ -857,6 +894,7 @@
     "image-favicon": {
       "name": "Favicon paketi",
       "description": "Kaynak görüntüyü yaygın simge boyutlarında bir ZIP olarak dışa aktarın.",
+      "summary": "Tek bir görüntüyü bir sitenin ya da uygulamanın istediği simge boyutlarına çevirin — favicon, Apple simgesi, Android maskable — tek ZIP’te.",
       "keywords": "favicon simge 16 32 180 192 512 apple touch",
       "run": "Simgeleri dışa aktar",
       "note": "16, 32, 48, 180, 192 ve 512 piksel PNG dosyaları dışa aktarır.",
@@ -865,6 +903,7 @@
     "video-gif": {
       "name": "Video → GIF",
       "description": "Kısa bir klibi tarayıcıda döngülü GIF’e çevirin.",
+      "summary": "Bir videonun kısa bir bölümünü döngüde oynayan GIF’e çevirin; başlangıcı ve bitişi siz seçin. Uzun kliplerde kodlama yavaştır.",
       "keywords": "video gif klip dönüştür ffmpeg",
       "run": "GIF yap",
       "limits": "FFmpeg WASM kullanır. Klipleri kısa tutun — GIF kodlama yavaştır ve bellek yer. Palet ve kodlayıcılar tarayıcı derlemesini izler.",
@@ -873,6 +912,7 @@
     "xml-json": {
       "name": "XML ↔ JSON",
       "description": "XML belgelerini JSON’a veya JSON’u XML’e çevirin.",
+      "summary": "Bir XML belgesini JSON’a ya da JSON’u geri XML’e çevirin; nitelikler ve yinelenen öğeler öngörülebilir bir biçimde kalır.",
       "keywords": "xml json dönüştür ayrıştır",
       "run": "Dönüştür",
       "toJson": "XML → JSON",
@@ -882,6 +922,7 @@
     "sql-format": {
       "name": "SQL biçimleyici",
       "description": "SQL’i güzelleştirin ki yan tümceler ve listeler daha kolay okunsun.",
+      "summary": "SQL’i yeniden biçimlendirin; koşullar, birleştirmeler ve uzun sütun listeleri hizalanır ve çalışma sırasına göre okunur.",
       "keywords": "sql biçim pretty sorgu",
       "run": "Biçimlendir",
       "success": "SQL biçimlendirildi."
@@ -889,6 +930,7 @@
     "regex-tester": {
       "name": "Düzenli ifade sınayıcı",
       "description": "Örnek metne karşı bir düzenli ifade deneyin ve eşleşmeleri değiştirin.",
+      "summary": "Bir düzenli ifadeyi kendi örnek metninizde deneyin, eşleşmelerin vurgulanışını izleyin ve değiştirmeyi sınayın.",
       "keywords": "regex düzenli ifade sınama değiştir",
       "pattern": "Desen",
       "flags": "Bayraklar",
@@ -901,6 +943,7 @@
     "hash-generator": {
       "name": "Özet üreteci",
       "description": "Metnin veya bir dosyanın SHA-1/256/384/512 ve MD5 özeti, yerelde hesaplanır.",
+      "summary": "Bir metin ya da koca bir dosya için SHA-1, SHA-256, SHA-384, SHA-512 veya MD5 hesaplayın; hiçbir yere göndermeden.",
       "keywords": "hash sha256 md5 sha1 sağlama özet",
       "run": "Özetle",
       "algo": "Algoritma",
@@ -911,6 +954,7 @@
     "uuid-generator": {
       "name": "UUID üreteci",
       "description": "Bu cihazda sürüm 4 veya 7 UUID oluşturun.",
+      "summary": "Sürüm 4 ya da 7 UUID’leri tek tek veya toplu üretin; bir sunucuda değil bu cihazda oluşturulur.",
       "keywords": "uuid guid v4 v7 üret",
       "run": "Üret",
       "count": "Kaç tane",
@@ -920,6 +964,7 @@
     "color-convert": {
       "name": "Renk dönüştürücü",
       "description": "Renk seçiciyle HEX, RGB, HSL ve HSV arasında dönüştürün.",
+      "summary": "Bir rengi HEX, RGB, HSL, HSV ve CSS adları arasında çevirin; ya da çemberden seçip bütün gösterimleri bir arada okuyun.",
       "keywords": "renk hex rgb hsl hsv seçici",
       "picker": "Renk seçici",
       "invalid": "3 veya 6 basamaklı bir onaltılık renk girin."
@@ -927,6 +972,7 @@
     "lorem-ipsum": {
       "name": "Lorem ipsum",
       "description": "Yer tutucu paragraflar, cümleler veya sözcükler üretin.",
+      "summary": "Bir yerleşim için dolgu metnini paragraf, cümle ya da sözcük olarak, ihtiyacınız kadar üretin.",
       "keywords": "lorem ipsum yer tutucu dummy metin",
       "run": "Üret",
       "count": "Sayı",
@@ -939,6 +985,7 @@
     "qr-code": {
       "name": "QR kod",
       "description": "Metinden QR kod oluşturun veya bir görüntüden okuyun.",
+      "summary": "Bir bağlantıdan, metinden ya da iletişim bilgisinden QR kod oluşturun ve görüntü olarak indirin; ya da bir fotoğraftan okuyun.",
       "keywords": "qr kod üret tara oku barkod",
       "run": "Üret",
       "payload": "Metin veya URL",
@@ -951,6 +998,7 @@
     "pdf-sign": {
       "name": "PDF imzala",
       "description": "Her sayfaya yazılmış bir imza damgalayın. Yalnızca görsel — sertifika değil.",
+      "summary": "Yazılmış bir imzayı seçtiğiniz sayfalara yerleştirin. Okunmak için sayfaya çizilir, kriptografik bir imza değildir.",
       "keywords": "pdf imza damga ad",
       "run": "İmzala",
       "signature": "İmza metni",
@@ -961,6 +1009,7 @@
     "image-watermark": {
       "name": "Görüntülere filigran",
       "description": "Fotoğrafların üzerine metin koyun, tek dosya veya tüm parti.",
+      "summary": "Fotoğraflarınızın üzerine metin bindirin — konumu, boyutu, rengi ve saydamlığı seçerek — tek görüntü ya da bütün bir grup için.",
       "keywords": "görüntü filigran damga telif",
       "run": "Uygula",
       "text": "Filigran metni",
@@ -974,6 +1023,7 @@
     "password-generator": {
       "name": "Parola üreteci",
       "description": "Bu cihazda güçlü bir parola oluşturun. Hiçbir şey saklanmaz.",
+      "summary": "Seçtiğiniz uzunlukta ve karakter karışımında güçlü bir parola oluşturun. Bu cihazda üretilir ve asla saklanmaz.",
       "keywords": "parola üret rastgele gizli",
       "run": "Üret",
       "length": "Uzunluk",
@@ -986,6 +1036,7 @@
     "case-convert": {
       "name": "Büyük/küçük harf",
       "description": "Camel, snake, kebab, başlık ve diğer stiller arasında geçiş yapın.",
+      "summary": "Metni camelCase, snake_case, kebab-case, Title Case ve geliştiricilerin kullandığı diğer kurallar arasında değiştirin.",
       "keywords": "harf camel snake kebab pascal başlık",
       "run": "Dönüştür",
       "style": "Stil",
@@ -994,6 +1045,7 @@
     "jwt-decode": {
       "name": "JWT çözücü",
       "description": "JWT başlığını ve yükünü yerelde okuyun. İmzalar doğrulanmaz.",
+      "summary": "Bir JSON Web Token’ın başlığını ve içeriğini okuyun, süresinin ne zaman dolduğunu görün ve yerelde çözün. İmza doğrulanmaz.",
       "keywords": "jwt çöz token bearer auth",
       "run": "Çöz",
       "limits": "Kit yalnızca Base64url çözer. Anahtar olmadan belirtecin gerçek olduğunu kanıtlayamaz.",
@@ -1005,12 +1057,14 @@
     "unix-timestamp": {
       "name": "Unix zaman damgası",
       "description": "Unix zamanını ISO’ya ve geri dönüştürün.",
+      "summary": "Bir Unix zaman damgasını okunabilir tarih ve saate, ya da tersine, seçtiğiniz saat diliminde çevirin.",
       "keywords": "unix epoch zaman damgası iso tarih",
       "now": "Şimdi kullan"
     },
     "cron-explain": {
       "name": "Cron açıklayıcı",
       "description": "5 alanlı bir cron ifadesini sade dile çevirin.",
+      "summary": "Beş alanlı bir cron ifadesini düz bir cümleye çevirin; planlanmış bir işin ne zaman ve ne sıklıkla çalıştığı açık olsun.",
       "keywords": "cron zamanlama crontab açıkla",
       "run": "Açıkla",
       "success": "Açıklandı."
@@ -1018,6 +1072,7 @@
     "number-base": {
       "name": "Sayı tabanı",
       "description": "Tam sayıları 2 ile 36 tabanları arasında dönüştürün.",
+      "summary": "Bir tam sayıyı ikilik, sekizlik, onluk, onaltılık ve 2 ile 36 arasındaki her taban arasında çevirin; bit deseni görünür.",
       "keywords": "ikili hex ondalık taban dönüştür",
       "value": "Sayı",
       "from": "Kaynak taban",
@@ -1026,6 +1081,7 @@
     "html-entities": {
       "name": "HTML varlıkları",
       "description": "&lt; &amp; ve sayısal varlıkları kodlayın veya çözün.",
+      "summary": "Açılı parantezleri, tırnakları ve sayısal HTML varlıklarını kodlayın ya da çözün; metin biçimlemede güvenli, dışında okunur olsun.",
       "keywords": "html varlık kodla çöz escape",
       "run": "Dönüştür",
       "encode": "Kodla",
@@ -1035,6 +1091,7 @@
     "json-types": {
       "name": "JSON → TypeScript",
       "description": "Bir JSON örneğinden TypeScript arayüzleri çıkarın.",
+      "summary": "Örnek bir JSON yanıtını TypeScript arayüzlerine çevirin; iç içe nesneler ve diziler örneğin izin verdiği kadar tiplenir.",
       "keywords": "json typescript interface tip üret",
       "run": "Tipleri üret",
       "success": "Tipler üretildi."
@@ -1102,113 +1159,113 @@
       "categoryElectricalDescription": "Gerilim, akım ve direnç",
       "categoryTypography": "Tipografi",
       "categoryTypographyDescription": "CSS ve baskı boyutları",
-      "unitMm": "Millimeters (mm)",
-      "unitCm": "Centimeters (cm)",
-      "unitM": "Meters (m)",
-      "unitKm": "Kilometers (km)",
-      "unitIn": "Inches (in)",
-      "unitFt": "Feet (ft)",
-      "unitYd": "Yards (yd)",
-      "unitMi": "Miles (mi)",
+      "unitMm": "Milimetre (mm)",
+      "unitCm": "Santimetre (cm)",
+      "unitM": "Metre (m)",
+      "unitKm": "Kilometre (km)",
+      "unitIn": "İnç (in)",
+      "unitFt": "Fit (ft)",
+      "unitYd": "Yarda (yd)",
+      "unitMi": "Mil (mi)",
       "unitNmi": "Deniz mili (nmi)",
-      "unitMg": "Milligrams (mg)",
-      "unitG": "Grams (g)",
-      "unitKg": "Kilograms (kg)",
-      "unitT": "Metric tonnes (t)",
-      "unitOz": "Ounces (oz)",
-      "unitLb": "Pounds (lb)",
+      "unitMg": "Miligram (mg)",
+      "unitG": "Gram (g)",
+      "unitKg": "Kilogram (kg)",
+      "unitT": "Metrik ton (t)",
+      "unitOz": "Ons (oz)",
+      "unitLb": "Libre (lb)",
       "unitStone": "Stone (st)",
-      "unitC": "Celsius (°C)",
-      "unitF": "Fahrenheit (°F)",
+      "unitC": "Santigrat (°C)",
+      "unitF": "Fahrenhayt (°F)",
       "unitK": "Kelvin (K)",
-      "unitMs": "Milliseconds",
-      "unitS": "Seconds",
-      "unitMin": "Minutes",
-      "unitH": "Hours",
-      "unitDay": "Days",
-      "unitWeek": "Weeks",
-      "unitM_s": "Meters per second",
-      "unitKm_h": "Kilometers per hour",
-      "unitMph": "Miles per hour",
+      "unitMs": "Milisaniye",
+      "unitS": "Saniye",
+      "unitMin": "Dakika",
+      "unitH": "Saat",
+      "unitDay": "Gün",
+      "unitWeek": "Hafta",
+      "unitM_s": "Metre/saniye",
+      "unitKm_h": "Kilometre/saat",
+      "unitMph": "Mil/saat",
       "unitKnot": "Knot",
-      "unitMl": "Milliliters",
-      "unitL": "Liters",
-      "unitM3": "Cubic meters",
-      "unitUsTsp": "US çay kaşığı",
-      "unitUsTbsp": "US yemek kaşığı",
-      "unitUsCup": "US su bardağı",
-      "unitUsGal": "US galon",
-      "unitImpGal": "Emperyal galon",
+      "unitMl": "Mililitre",
+      "unitL": "Litre",
+      "unitM3": "Metreküp",
+      "unitUsTsp": "ABD çay kaşığı",
+      "unitUsTbsp": "ABD yemek kaşığı",
+      "unitUsCup": "ABD su bardağı",
+      "unitUsGal": "ABD galonu",
+      "unitImpGal": "İngiliz galonu",
       "unitW": "Watts",
       "unitKw": "Kilowatts",
       "unitMw": "Megawatts",
       "unitHp": "Mekanik beygir gücü",
       "unitJ": "Joules",
       "unitKj": "Kilojoules",
-      "unitWh": "Watt-hours",
-      "unitKwh": "Kilowatt-hours",
-      "unitCal": "Calories",
-      "unitKcal": "Kilocalories",
-      "unitEv": "Electronvolts",
+      "unitWh": "Watt saat",
+      "unitKwh": "Kilowatt saat",
+      "unitCal": "Kalori",
+      "unitKcal": "Kilokalori",
+      "unitEv": "Elektronvolt",
       "unitPa": "Pascals",
       "unitKpa": "Kilopascals",
       "unitBar": "Bar",
       "unitPsi": "PSI",
-      "unitAtm": "Atmospheres",
-      "unitMmHg": "Millimeters of mercury",
-      "unitMm2": "Square millimeters",
-      "unitCm2": "Square centimeters",
-      "unitM2": "Square meters",
-      "unitKm2": "Square kilometers",
-      "unitFt2": "Square feet",
-      "unitAcre": "Acres",
-      "unitHectare": "Hectares",
-      "unitBit": "Bits",
-      "unitB": "Bytes",
-      "unitKb": "Kilobytes",
-      "unitMb": "Megabytes",
-      "unitGb": "Gigabytes",
-      "unitTb": "Terabytes",
-      "unitKib": "Kibibytes",
-      "unitMib": "Mebibytes",
-      "unitGib": "Gibibytes",
-      "unitDeg": "Degrees",
-      "unitRad": "Radians",
-      "unitGrad": "Gradians",
-      "unitTurn": "Turns",
+      "unitAtm": "Atmosfer",
+      "unitMmHg": "Milimetre cıva",
+      "unitMm2": "Milimetrekare",
+      "unitCm2": "Santimetrekare",
+      "unitM2": "Metrekare",
+      "unitKm2": "Kilometrekare",
+      "unitFt2": "Fitkare",
+      "unitAcre": "Akre",
+      "unitHectare": "Hektar",
+      "unitBit": "Bit",
+      "unitB": "Bayt",
+      "unitKb": "Kilobayt",
+      "unitMb": "Megabayt",
+      "unitGb": "Gigabayt",
+      "unitTb": "Terabayt",
+      "unitKib": "Kibibayt",
+      "unitMib": "Mebibayt",
+      "unitGib": "Gibibayt",
+      "unitDeg": "Derece",
+      "unitRad": "Radyan",
+      "unitGrad": "Gradyan",
+      "unitTurn": "Tur",
       "unitHz": "Hertz",
       "unitKhz": "Kilohertz",
       "unitMhz": "Megahertz",
       "unitGhz": "Gigahertz",
-      "unitRpm": "Revolutions per minute",
-      "unitN": "Newtons",
-      "unitKn": "Kilonewtons",
-      "unitLbf": "Pound-force",
-      "unitKgf": "Kilogram-force",
-      "unitL_100km": "Liters per 100 km",
-      "unitKm_L": "Kilometers per liter",
-      "unitMpgUs": "Miles per US gallon",
-      "unitMpgImperial": "Miles per imperial gallon",
-      "unitM_s2": "Meters per second squared",
-      "unitG0": "Standard gravity",
-      "unitFt_s2": "Feet per second squared",
-      "unitNm": "Newton-meters",
-      "unitKnm": "Kilonewton-meters",
-      "unitLbFt": "Pound-feet",
-      "unitLbIn": "Pound-inches",
-      "unitMv": "Millivolts",
-      "unitV": "Volts",
-      "unitKv": "Kilovolts",
-      "unitMa": "Milliamps",
-      "unitA": "Amps",
-      "unitKa": "Kiloamps",
-      "unitMOhm": "Milliohms",
-      "unitOhm": "Ohms",
-      "unitKOhm": "Kilohms",
-      "unitMOhmBig": "Megohms",
-      "unitPx": "Pixels",
-      "unitPt": "Points",
-      "unitPc": "Picas",
+      "unitRpm": "Dakikadaki devir",
+      "unitN": "Newton",
+      "unitKn": "Kilonewton",
+      "unitLbf": "Libre-kuvvet",
+      "unitKgf": "Kilogram-kuvvet",
+      "unitL_100km": "Litre/100 km",
+      "unitKm_L": "Kilometre/litre",
+      "unitMpgUs": "Mil/ABD galonu",
+      "unitMpgImperial": "Mil/İngiliz galonu",
+      "unitM_s2": "Metre/saniye kare",
+      "unitG0": "Standart yerçekimi",
+      "unitFt_s2": "Fit/saniye kare",
+      "unitNm": "Newtonmetre",
+      "unitKnm": "Kilonewtonmetre",
+      "unitLbFt": "Libre-fit",
+      "unitLbIn": "Libre-inç",
+      "unitMv": "Milivolt",
+      "unitV": "Volt",
+      "unitKv": "Kilovolt",
+      "unitMa": "Miliamper",
+      "unitA": "Amper",
+      "unitKa": "Kiloamper",
+      "unitMOhm": "Miliohm",
+      "unitOhm": "Ohm",
+      "unitKOhm": "Kiloom",
+      "unitMOhmBig": "Megaohm",
+      "unitPx": "Piksel",
+      "unitPt": "Nokta",
+      "unitPc": "Pika",
       "unitRem": "rem",
       "unitEm": "em",
       "presetMetricImperial": "Metrik ↔ emperyal",
@@ -1243,23 +1300,24 @@
       "parentFontSize": "Üst yazı tipi boyutu",
       "dpi": "DPI",
       "rateUnavailable": "Kur hizmeti kullanılamıyor",
-      "unitUsFlOz": "US fluid ounces",
-      "unitUsPt": "US pints",
-      "unitUsQt": "US quarts",
+      "unitUsFlOz": "ABD sıvı onsu",
+      "unitUsPt": "ABD pinti",
+      "unitUsQt": "ABD kuartı",
       "unitGw": "Gigawatts",
       "unitMj": "Megajoules",
       "unitMpa": "Megapascals",
-      "unitIn2": "Square inches",
-      "unitYd2": "Square yards",
-      "unitPb": "Petabytes",
-      "unitTib": "Tebibytes",
-      "unitPib": "Pebibytes",
-      "unitArcmin": "Arcminutes",
-      "unitArcsec": "Arcseconds"
+      "unitIn2": "İnçkare",
+      "unitYd2": "Yardakare",
+      "unitPb": "Petabayt",
+      "unitTib": "Tebibayt",
+      "unitPib": "Pebibayt",
+      "unitArcmin": "Yay dakikası",
+      "unitArcsec": "Yay saniyesi"
     },
     "text-counter": {
       "name": "Metin sayacı",
       "description": "Sözcükleri, karakterleri, cümleleri, paragrafları ve okuma süresini sayın.",
+      "summary": "Siz yazarken sözcükleri, karakterleri, cümleleri ve paragrafları sayın; metnin okunma süresi de tahmin edilir.",
       "keywords": "sözcük sayacı karakter sayacı metin istatistikleri okuma süresi",
       "limits": "Sayım, kullanılabildiğinde tarayıcının yerel Unicode bölümlemesini kullanır; emoji ve birleşik karakterler daha doğal işlenir.",
       "input": "Sayılacak metin",
@@ -1276,6 +1334,7 @@
     "timezone-converter": {
       "name": "Dünya saati",
       "description": "Yerel tarih ve saati saat dilimleri arasında dönüştürün ve dünya saatini izleyin.",
+      "summary": "Dünyadaki şehirlerde şu an saatin kaç olduğunu görün ve bir anı saat dilimleri arasında, tarih değişiminin üzerinden bile çevirin.",
       "keywords": "saat dilimi dönüştürücü dünya saati yaz saati tarih saat",
       "limits": "Kaynak şehirdeki saat bilgisini girin. Dönüştürme, yaz saati değişiklikleri dahil IANA saat dilimi kurallarını kullanır.",
       "convert": "Tarih ve saati dönüştür",
@@ -1325,6 +1384,7 @@
     "date-calculator": {
       "name": "Tarih hesaplayıcı",
       "description": "Tarihleri karşılaştırın, süre ekleyin ve isteğe bağlı tatillerle iş günlerini sayın.",
+      "summary": "İki tarih arasındaki aralığı hesaplayın, gün ve ay ekleyip çıkarın, resmî tatillerin çevresindeki iş günlerini sayın.",
       "keywords": "tarih hesaplayıcı tarih farkı gün ekle iş günleri tatiller",
       "updated": "Tarih güncellendi.",
       "invalid": "Girdileri kontrol edin.",
@@ -1363,6 +1423,7 @@
     "tip-split-calculator": {
       "name": "Bahşiş ve hesap bölme hesaplayıcı",
       "description": "Bir grup için bahşişi, vergiyi, toplamı ve adil payları hesaplayın.",
+      "summary": "Bir hesabın bahşişini, vergisini ve toplamını hesaplayın; sonra kaç kişi ödüyorsa aralarında adil biçimde bölün.",
       "keywords": "bahşiş hesaplayıcı hesap bölme vergi restoran pay",
       "limits": "Bahşiş ve vergi ara toplamdan hesaplanır. Yuvarlanan paylar, toplamın tutması için kalanı ilk kişilere dağıtır.",
       "invalid": "Girdileri kontrol edin.",
@@ -1383,6 +1444,7 @@
     "stopwatch-timer": {
       "name": "Kronometre ve zamanlayıcı",
       "description": "Tarayıcıda hassas bir kronometre veya geri sayım zamanlayıcısı çalıştırın.",
+      "summary": "Tur süreli hassas bir kronometre çalıştırın ya da başka bir yerdeyken saymaya devam eden bir sekmede sıfıra geri sayın.",
       "keywords": "kronometre zamanlayıcı geri sayım saat çevrimiçi",
       "saved": "Geçmişe kaydedildi.",
       "stopwatch": "Kronometre",
@@ -1399,6 +1461,7 @@
     "random-generator": {
       "name": "Rastgele oluşturucu",
       "description": "Günlük kullanım için sayılar, doğru/yanlış değerleri, seçenekler veya parolalar üretin.",
+      "summary": "Rastgele bir sayı çekin, yazı tura atın, zar atın ya da bir listeden seçin; aralığı ve sonuç sayısını siz belirlersiniz.",
       "keywords": "rastgele sayı oluşturucu seçim parola oluşturucu",
       "invalid": "Girdileri kontrol edin.",
       "limits": "Rastgelelik tarayıcının Math.random kaynağını kullanır. Sonuçlar günlük seçimler içindir, kriptografik sırlar için değildir.",
@@ -1428,6 +1491,7 @@
     "currency-converter": {
       "name": "Döviz çevirici",
       "description": "Yerel önbellekli canlı kurlar",
+      "summary": "Günlük kurlarla para birimleri arasında çevirin; son takım cihazınızda saklanır, böylece bağlantı olmadan da çalışır.",
       "keywords": "döviz çevirici kur döviz kuru para Frankfurter",
       "currency": "Para birimi",
       "limits": "Kurlar bu araç açıldığında veya Yenile’ye dokunduğunuzda Frankfurter’dan gelir ve bu tarayıcının önbelleğinde altı saat kalır. Tutarlar gönderilmez. Günlük referans verileridir; alım satım veya vergi için değildir.",
@@ -1451,6 +1515,7 @@
     "length-converter": {
       "name": "Uzunluk",
       "description": "Mesafeler, boyutlar ve seyahat",
+      "summary": "Uzunluğu metre, fit, mil, inç, santimetre ve seyahatin ya da tadilatın karşınıza çıkardığı diğer birimler arasında çevirin.",
       "keywords": "Uzunluk length converter",
       "run": "Dönüştürmeyi kaydet",
       "success": "Dönüştürme geçmişe kaydedildi."
@@ -1458,6 +1523,7 @@
     "mass-converter": {
       "name": "Kütle",
       "description": "Miligramdan tona ağırlıklar",
+      "summary": "Ağırlığı miligram, gram, kilogram, ton, libre, ons ve stone arasında çevirin; yemek ya da kargo için.",
       "keywords": "Kütle mass converter",
       "run": "Dönüştürmeyi kaydet",
       "success": "Dönüştürme geçmişe kaydedildi."
@@ -1465,6 +1531,7 @@
     "temperature-converter": {
       "name": "Sıcaklık",
       "description": "Santigrat, Fahrenheit ve Kelvin",
+      "summary": "Sıcaklığı Celsius, Fahrenheit ve Kelvin arasında çevirin; suyun donduğu ve kaynadığı noktalar dahil.",
       "keywords": "Sıcaklık temperature converter",
       "run": "Dönüştürmeyi kaydet",
       "success": "Dönüştürme geçmişe kaydedildi."
@@ -1472,6 +1539,7 @@
     "speed-converter": {
       "name": "Hız",
       "description": "Günlük ve denizcilik hızı",
+      "summary": "Hızı kilometre/saat, mil/saat, metre/saniye ve knot arasında çevirin; kara, hava ve deniz için.",
       "keywords": "Hız speed converter",
       "run": "Dönüştürmeyi kaydet",
       "success": "Dönüştürme geçmişe kaydedildi."
@@ -1479,6 +1547,7 @@
     "duration-converter": {
       "name": "Süre",
       "description": "Milisaniyeden haftalara",
+      "summary": "Bir süreyi milisaniye, saniye, dakika, saat, gün ve hafta arasında çevirin; değeri iki yönde de okuyun.",
       "keywords": "Süre duration converter",
       "run": "Dönüştürmeyi kaydet",
       "success": "Dönüştürme geçmişe kaydedildi."
@@ -1486,6 +1555,7 @@
     "volume-converter": {
       "name": "Hacim",
       "description": "Metrik ve mutfak ölçüleri",
+      "summary": "Hacmi litre, mililitre, galon, bardak, pint ve bir tarifin yazıldığı ölçüler arasında çevirin.",
       "keywords": "Hacim volume converter",
       "run": "Dönüştürmeyi kaydet",
       "success": "Dönüştürme geçmişe kaydedildi."
@@ -1493,6 +1563,7 @@
     "power-converter": {
       "name": "Güç",
       "description": "Watt ve beygir gücü",
+      "summary": "Gücü watt, kilowatt, megawatt ve metrik ya da mekanik beygir gücü arasında çevirin; cihazlar ve motorlar için.",
       "keywords": "Güç power converter",
       "run": "Dönüştürmeyi kaydet",
       "success": "Dönüştürme geçmişe kaydedildi."
@@ -1500,6 +1571,7 @@
     "energy-converter": {
       "name": "Enerji",
       "description": "Joule, kalori ve watt-saat",
+      "summary": "Enerjiyi joule, kalori, kilokalori ve kilowatt saat arasında çevirin — bir etiketteki ya da elektrik faturasındaki birimler.",
       "keywords": "Enerji energy converter",
       "run": "Dönüştürmeyi kaydet",
       "success": "Dönüştürme geçmişe kaydedildi."
@@ -1507,6 +1579,7 @@
     "pressure-converter": {
       "name": "Basınç",
       "description": "Pa, bar, PSI ve daha fazlası",
+      "summary": "Basıncı pascal, bar, PSI, atmosfer, torr ve milimetre cıva arasında çevirin; lastikler ya da hava durumu için.",
       "keywords": "Basınç pressure converter",
       "run": "Dönüştürmeyi kaydet",
       "success": "Dönüştürme geçmişe kaydedildi."
@@ -1514,6 +1587,7 @@
     "area-converter": {
       "name": "Alan",
       "description": "Yüzey ve arazi alanı",
+      "summary": "Alanı metrekare, fitkare, akre, hektar ve arazi ile zeminin diğer ölçüleri arasında çevirin.",
       "keywords": "Alan area converter",
       "run": "Dönüştürmeyi kaydet",
       "success": "Dönüştürme geçmişe kaydedildi."
@@ -1521,6 +1595,7 @@
     "data-converter": {
       "name": "Veri",
       "description": "Ondalık ve ikili depolama",
+      "summary": "Dosya ya da depolama boyutunu bayt, kilobayt, megabayt, gigabayt ve terabayt arasında çevirin; onluk ya da ikilik.",
       "keywords": "Veri data converter",
       "run": "Dönüştürmeyi kaydet",
       "success": "Dönüştürme geçmişe kaydedildi."
@@ -1528,6 +1603,7 @@
     "angle-converter": {
       "name": "Açı",
       "description": "Derece, radyan ve dönüş",
+      "summary": "Açıyı derece, radyan, gradyan ve tur arasında çevirin; ondalık ve kesirli biçim yan yana görünsün.",
       "keywords": "Açı angle converter",
       "run": "Dönüştürmeyi kaydet",
       "success": "Dönüştürme geçmişe kaydedildi."
@@ -1535,6 +1611,7 @@
     "frequency-converter": {
       "name": "Frekans",
       "description": "Hz'den RPM'ye",
+      "summary": "Frekansı hertz, kilohertz, megahertz, gigahertz ve dakikadaki devir arasında çevirin; ses, radyo ve dönen makineler için.",
       "keywords": "Frekans frequency converter",
       "run": "Dönüştürmeyi kaydet",
       "success": "Dönüştürme geçmişe kaydedildi."
@@ -1542,6 +1619,7 @@
     "force-converter": {
       "name": "Kuvvet",
       "description": "Newton ve kuvvet birimleri",
+      "summary": "Kuvveti newton, kilonewton, kilogram-kuvvet, libre-kuvvet ve dyn arasında çevirin; fizik ve mühendislik için.",
       "keywords": "Kuvvet force converter",
       "run": "Dönüştürmeyi kaydet",
       "success": "Dönüştürme geçmişe kaydedildi."
@@ -1549,6 +1627,7 @@
     "fuel-economy-converter": {
       "name": "Yakıt ekonomisi",
       "description": "Tüketim ve kilometre",
+      "summary": "Yakıt tüketimini 100 kilometrede litre, ABD ya da İngiliz galonu başına mil ve litre başına kilometre arasında çevirin.",
       "keywords": "Yakıt ekonomisi fuel economy converter",
       "run": "Dönüştürmeyi kaydet",
       "success": "Dönüştürme geçmişe kaydedildi."
@@ -1556,6 +1635,7 @@
     "acceleration-converter": {
       "name": "İvme",
       "description": "Hareket ve yerçekimi",
+      "summary": "İvmeyi metre/saniye kare, standart yerçekimi, fit/saniye kare ve galileo arasında çevirin.",
       "keywords": "İvme acceleration converter",
       "run": "Dönüştürmeyi kaydet",
       "success": "Dönüştürme geçmişe kaydedildi."
@@ -1563,6 +1643,7 @@
     "torque-converter": {
       "name": "Tork",
       "description": "Dönme kuvveti",
+      "summary": "Torku newtonmetre, kilogram-kuvvet metre, libre-fit ve libre-inç arasında çevirin; somunlar ve motorlar için.",
       "keywords": "Tork torque converter",
       "run": "Dönüştürmeyi kaydet",
       "success": "Dönüştürme geçmişe kaydedildi."
@@ -1570,6 +1651,7 @@
     "electrical-converter": {
       "name": "Elektrik",
       "description": "Gerilim, akım ve direnç",
+      "summary": "Gerilim, akım, direnç ve gücün elektrik birimleri arasında çevirin — volt, amper, ohm ve watt.",
       "keywords": "Elektrik electrical converter",
       "run": "Dönüştürmeyi kaydet",
       "success": "Dönüştürme geçmişe kaydedildi."
@@ -1577,6 +1659,7 @@
     "typography-converter": {
       "name": "Tipografi",
       "description": "CSS ve baskı boyutları",
+      "summary": "Yazı boyutlarını piksel, nokta, em, rem ve pika arasında çevirin; ayarladığınız kök, üst öğe ya da ekran boyutuna göre.",
       "keywords": "Tipografi typography converter",
       "run": "Dönüştürmeyi kaydet",
       "success": "Dönüştürme geçmişe kaydedildi."
@@ -1584,6 +1667,7 @@
     "bmi-calorie-calculator": {
       "name": "BKİ ve kalori hesaplayıcı",
       "description": "Boy, kilo, yaş ve aktiviteden BKİ, sağlıklı kilo aralığı ve günlük kalori ihtiyacını görün.",
+      "summary": "BMI’yi sağlıklı bir kilo aralığıyla karşılaştırın ve boy, kilo, yaş ve hareket düzeyinden günlük kalori ihtiyacını tahmin edin.",
       "keywords": "bki kalori tdee bmr mifflin kilo sağlık",
       "limits": "BKİ yetişkin DSÖ eşiklerini kullanır. 18 yaş altı hesaplanır ama işaretlenir; çocuk BKİ’si genellikle büyüme eğrilerine göre okunur. Kaloriler yetişkin Mifflin-St Jeor formülüdür. Hesap bu cihazda kalır ve tıbbi tavsiye değildir.",
       "invalid": "Gerçekçi bir boy, kilo ve yaş girin.",
@@ -1642,6 +1726,7 @@
     "percentage-calculator": {
       "name": "Yüzde hesaplayıcı",
       "description": "Bir sayının yüzdesini bulun, ters yüzde alın, değişimi ölçün veya yüzde artış/azalış uygulayın.",
+      "summary": "Bir sayının yüzdesini hesaplayın, geriye doğru aslını bulun, iki değer arasındaki değişimi ölçün ya da bir artış uygulayın.",
       "keywords": "yüzde hesaplayıcı artış indirim marj",
       "mode": "Hesaplama",
       "modeOf": "% of",
@@ -1665,6 +1750,7 @@
     "loan-calculator": {
       "name": "Kredi ve faiz hesaplayıcı",
       "description": "Anapara, faiz ve yıldan aylık taksit veya bileşik faiz tahmin edin.",
+      "summary": "Aylık taksiti tahmin edin ya da anapara, faiz ve vadeden yola çıkarak bileşik faizin zamanla ne yaptığını görün.",
       "keywords": "kredi ipotek taksit amortisman bileşik faiz APR",
       "limits": "Kredi modu, standart sabit faizli bir amortisman taksiti kullanır. Bileşik mod, faizi periyodik olarak bileşikler (varsayılan ayda bir). Bu bir tahmindir, finansal tavsiye değildir.",
       "mode": "Mod",
@@ -1685,6 +1771,7 @@
     "text-lines": {
       "name": "Satır araçları",
       "description": "Tarayıcıda bul-değiştir, sırala veya yinelenen satırları kaldır.",
+      "summary": "Bir satır listesinde bulup değiştirin, sayısal ya da alfabetik sıralayın ve yinelenen satırları kaldırın.",
       "keywords": "bul değiştir sırala benzersiz satır metin",
       "find": "Bul",
       "replace": "Şununla değiştir",
@@ -1699,6 +1786,7 @@
     "slugify": {
       "name": "Slugify",
       "description": "Başlığı URL slug’ına çevirin veya güvenli dosya adı temizleyin.",
+      "summary": "Bir başlığı temiz bir URL adresine çevirin; aksan, büyük-küçük harf ve ayırıcı seçenekleri dosya adının ihtiyacına göre.",
       "keywords": "slugify slug url dosya adı temizle kebab",
       "input": "Metin",
       "slug": "URL slug’ı",
@@ -1709,6 +1797,7 @@
     "color-contrast": {
       "name": "Renk kontrastı",
       "description": "Ön plan ve arka plan renkleri arasında WCAG kontrastını kontrol edin.",
+      "summary": "Bir paleti yayına almadan önce metin ile arka plan arasındaki karşıtlığı WCAG AA ve AAA eşiklerine göre denetleyin.",
       "keywords": "wcag kontrast erişilebilirlik aa aaa okunabilirlik",
       "limits": "Oran, sRGB on altılı renkler için WCAG 2 göreli parlaklığını kullanır. Gösterilen düzeyler normal metin içindir (AA ≥ 4.5, AAA ≥ 7).",
       "foreground": "Ön plan",
@@ -1724,6 +1813,7 @@
     "image-palette": {
       "name": "Görsel paleti",
       "description": "Tasarım için fotoğraftan baskın renkleri çıkarın.",
+      "summary": "Bir fotoğrafın baskın renklerini hex kodu olarak okuyun; palet doğrudan bir tasarıma ya da marka denetimine girebilsin.",
       "keywords": "palet renk çıkarma baskın örnek görsel",
       "limits": "Renkler, küçültülmüş bir önizlemeden bu sekmede nicemlenir. Sonuçlar yaklaşıktır ve bu cihazda kalır.",
       "maxColors": "En fazla renk",
@@ -1735,6 +1825,7 @@
     "aspect-ratio": {
       "name": "En-boy oranı",
       "description": "Genişlik ve yüksekliği orana indirgeyin veya eksik kenarı hesaplayın.",
+      "summary": "Bir genişlik ve yüksekliği en basit orana indirin ya da zaten bildiğiniz bir orandan eksik kenarı hesaplayın.",
       "keywords": "en boy oranı 16:9 boyutlar eksik kenar",
       "mode": "Mod",
       "modeFromSize": "Boyuttan",
@@ -1751,6 +1842,7 @@
     "meeting-planner": {
       "name": "Toplantı planlayıcı",
       "description": "Belirli bir günde saat dilimleri arasında örtüşen çalışma saatlerini bulun.",
+      "summary": "Seçtiğiniz bir günde birkaç saat dilimindeki çalışma saatlerini karşılaştırarak herkese uyan saati bulun.",
       "keywords": "toplantı saat dilimi örtüşme dünya saati çalışma saatleri",
       "limits": "Örtüşme, IANA saat dilimlerini ve yerel takvim tarihlerini kullanır. Saatler, her saat diliminin hâlâ seçilen tarihte ve çalışma penceresi içinde olduğu tam UTC saatleridir.",
       "date": "Tarih",
@@ -1770,6 +1862,7 @@
     "json-query": {
       "name": "JSON sorgusu",
       "description": "İç içe JSON’u düzleştirin veya $.items[0].name gibi basit JSONPath değerlerini okuyun.",
+      "summary": "Derin iç içe JSON’u satırlara düzleştirin ya da $.items[0].name gibi basit bir JSONPath ifadesiyle tek değerleri çıkarın.",
       "keywords": "json path sorgu düzleştir jq",
       "limits": "Küçük bir JSONPath alt kümesini destekler: $.a.b, $.items[0] ve $['key']. Joker karakterler ve filtreler dahil değildir.",
       "mode": "Mod",
@@ -1784,6 +1877,7 @@
     "check-digits": {
       "name": "Kontrol basamakları",
       "description": "ISBN-10/13, EAN-13 ve IBAN kontrol basamaklarını yerelde doğrulayın.",
+      "summary": "ISBN-10, ISBN-13, EAN-13 ya da IBAN’daki kontrol basamağını doğrulayın ve hatalı bir girişin hangi konumda başarısız olduğunu görün.",
       "keywords": "isbn ean iban kontrol basamağı barkod doğrula",
       "limits": "Yalnızca yayımlanmış kontrol basamağı algoritmalarını denetler. Geçerli bir kontrol basamağı, numaranın atanmış olduğunu veya bir hesabın var olduğunu kanıtlamaz.",
       "kind": "Tür",

@@ -518,6 +518,7 @@
     "pdf-merge": {
       "name": "Unește PDF-uri",
       "description": "Stivuiește mai multe PDF-uri într-unul. Previzualizează paginile și trage pentru a reordona.",
+      "summary": "Combină mai multe PDF-uri într-unul singur, previzualizează paginile și trage-le în ordinea dorită înainte de a salva.",
       "keywords": "pdf unește combină lipește coase multipagină",
       "run": "Unește",
       "empty": "Adaugă cel puțin două fișiere PDF.",
@@ -526,6 +527,7 @@
     "pdf-split": {
       "name": "Împarte PDF",
       "description": "Scoate un interval de pagini într-un PDF nou-nouț.",
+      "summary": "Scoate un interval de pagini sau mai multe dintr-un PDF într-un fișier nou, sau împarte un document în multe, fără să îl încarci.",
       "keywords": "pdf împarte extrage pagini interval",
       "run": "Împarte",
       "range": "Pagini (de exemplu 1-3,5)",
@@ -534,6 +536,7 @@
     "pdf-organize": {
       "name": "Organizează paginile",
       "description": "Rotește pagini, elimină-le pe cele de prisos și setează o ordine nouă.",
+      "summary": "Rotește, șterge și reordonează paginile unui PDF, apoi salvează documentul rearanjat. Nimic nu părăsește dispozitivul tău.",
       "keywords": "pdf rotește șterge reordonează organizează pagini",
       "run": "Salvează PDF",
       "success": "PDF-ul tău a fost actualizat.",
@@ -542,6 +545,7 @@
     "pdf-compress": {
       "name": "Micșorează ca imagini",
       "description": "Rasterizează fiecare pagină în JPEG. Textul, linkurile și vectorii nu se păstrează.",
+      "summary": "Micșorează un PDF redând fiecare pagină ca JPEG la calitatea și dimensiunea alese — un fișier mai mic, fără text selectabil.",
       "keywords": "pdf comprimă reduce dimensiune mai mic",
       "run": "Micșorează",
       "note": "Fiecare pagină devine o imagine JPEG, apoi un PDF nou. Textul căutabil, linkurile și vectorii dispar. Fișierul poate crește. Pentru scanări foto, nu pentru contracte de căutat.",
@@ -550,6 +554,7 @@
     "pdf-watermark": {
       "name": "Filigran PDF",
       "description": "Pune text ca filigran, antet sau subsol pe fiecare pagină.",
+      "summary": "Aplică text pe fiecare pagină ca filigran, antet sau subsol, alegând formularea, dimensiunea, unghiul, opacitatea și poziția.",
       "keywords": "pdf filigran ștampilă antet subsol confidențial",
       "run": "Aplică",
       "text": "Textul filigranului",
@@ -563,6 +568,7 @@
     "pdf-redact": {
       "name": "Acoperă conținutul",
       "description": "Pune dreptunghiuri negre peste zonele sensibile (doar vizual).",
+      "summary": "Acoperă paginile cu dreptunghiuri negre pentru a ascunde ce nu trebuie citit. O acoperire vizuală, nu o redactare reală: textul e încă acolo.",
       "keywords": "pdf redactare înnegrire ascunde sensibil",
       "run": "Aplică acoperirea",
       "note": "Este doar o acoperire vizuală. Nu garantează eliminarea fiecărui flux de text de dedesubt — verifică documentele sensibile.",
@@ -574,6 +580,7 @@
     "pdf-extract": {
       "name": "Extrage din PDF",
       "description": "Scoate text lizibil sau exportă o pagină ca imagine.",
+      "summary": "Scoate textul selectabil dintr-un PDF sau exportă paginile ca imagini JPEG într-o arhivă ZIP, fără să trimiți documentul nicăieri.",
       "keywords": "pdf extrage text imagini",
       "run": "Extrage",
       "modeText": "Text",
@@ -585,6 +592,7 @@
     "image-compress": {
       "name": "Comprimă imagini",
       "description": "Scade calitatea și dimensiunea maximă ca fotografiile să rămână ușor de trimis.",
+      "summary": "Micșorează fotografiile pentru e-mail, chat sau web scăzând calitatea, limitând latura mai lungă, sau ambele.",
       "keywords": "imagine comprimă jpg png webp dimensiune foto",
       "run": "Comprimă",
       "success": "S-au comprimat {count} imagini."
@@ -592,6 +600,7 @@
     "image-resize": {
       "name": "Redimensionează imagini",
       "description": "Setează dimensiuni exacte, cu blocarea opțională a raportului de aspect.",
+      "summary": "Setează o imagine la dimensiuni exacte în pixeli sau scalează-o procentual, păstrând proporțiile atunci când vrei să le păstrezi.",
       "keywords": "imagine redimensionează scară dimensiuni lățime înălțime",
       "run": "Redimensionează",
       "lockAspect": "Păstrează raportul de aspect",
@@ -600,6 +609,7 @@
     "image-crop": {
       "name": "Decupează imaginea",
       "description": "Păstrează doar dreptunghiul care te interesează.",
+      "summary": "Decupează o fotografie la partea care contează trăgând selecția peste ea, apoi exportă doar acel dreptunghi.",
       "keywords": "imagine decupează taie zonă",
       "run": "Decupează",
       "success": "Imaginea decupată este gata."
@@ -607,6 +617,7 @@
     "image-convert": {
       "name": "Convertește formatul imaginii",
       "description": "Treci între JPEG, PNG, WEBP și formate web similare.",
+      "summary": "Convertește între JPEG, PNG, WEBP, AVIF și GIF, o imagine sau un lot întreg, fără să încarci fotografiile.",
       "keywords": "imagine convertește format webp png jpg jpeg",
       "run": "Convertește",
       "success": "S-au convertit {count} imagini."
@@ -614,6 +625,7 @@
     "image-metadata": {
       "name": "Metadate imagine",
       "description": "Inspectează EXIF și etichete similare, apoi exportă o copie curată fără ele.",
+      "summary": "Inspectează EXIF-ul pe care îl poartă o fotografie — aparat, obiectiv, dată, GPS — apoi salvează o copie fără aceste date.",
       "keywords": "imagine exif metadate elimină confidențialitate locație",
       "run": "Elimină metadatele",
       "note": "Pixelii sunt recodificați în browser, deci metadatele încorporate dispar.",
@@ -625,6 +637,7 @@
     "image-adjust": {
       "name": "Ajustează imaginea",
       "description": "Reglează luminozitatea, contrastul și saturația.",
+      "summary": "Corectează luminozitatea, contrastul, saturația și expunerea din ochi, cu rezultatul redesenat pe măsură ce miști fiecare cursor.",
       "keywords": "imagine luminozitate contrast saturație culoare",
       "run": "Aplică",
       "brightness": "Luminozitate",
@@ -635,6 +648,7 @@
     "convert-hub": {
       "name": "Conversie inteligentă",
       "description": "Detectează tipuri mixte de fișiere sau text și convertește între formate (nu e un studio media).",
+      "summary": "Lipește conținut amestecat și lasă Kit să deducă ce este — JSON, CSV, YAML, XML, TOML sau SQL — apoi convertește-l în alt format.",
       "keywords": "conversie hub inteligent lot json yaml csv zip imagine date",
       "run": "Convertește",
       "detect": "Detectat ca",
@@ -644,6 +658,7 @@
     "json-format": {
       "name": "Formator JSON",
       "description": "Formatează frumos, minifică și prinde erorile JSON din timp.",
+      "summary": "Formatează sau minifică JSON și vezi exact unde se află o eroare de sintaxă, cu linia vinovată evidențiată.",
       "keywords": "json format validează minifică pretty",
       "run": "Formatează",
       "success": "JSON-ul pare valid și este formatat."
@@ -651,6 +666,7 @@
     "yaml-format": {
       "name": "Formator YAML",
       "description": "Verifică structura YAML și curăță aranjamentul.",
+      "summary": "Verifică YAML pentru greșeli de structură și aranjează indentarea, ca un fișier de configurare să se citească așa cum trebuie.",
       "keywords": "yaml format validează yml",
       "run": "Formatează",
       "success": "YAML-ul pare valid."
@@ -658,6 +674,7 @@
     "toml-format": {
       "name": "Formator TOML",
       "description": "Validează TOML și păstrează fișierul îngrijit.",
+      "summary": "Validează TOML și așază-l îngrijit, prinzând greșelile de sintaxă pe care le-ar respinge un parser de configurare.",
       "keywords": "toml format validează config",
       "run": "Formatează",
       "success": "TOML-ul pare valid."
@@ -665,6 +682,7 @@
     "markdown-html": {
       "name": "Markdown ↔ HTML",
       "description": "Transformă Markdown în HTML sau HTML înapoi în Markdown.",
+      "summary": "Transformă Markdown în HTML sau HTML înapoi în Markdown, păstrând titlurile, linkurile, listele, tabelele și codul.",
       "keywords": "markdown html convertește md marcaj",
       "run": "Convertește",
       "toHtml": "Markdown → HTML",
@@ -674,6 +692,7 @@
     "csv-json": {
       "name": "CSV ↔ JSON",
       "description": "Mută date tabelare între CSV și tablouri JSON.",
+      "summary": "Convertește un fișier CSV într-o matrice JSON sau JSON înapoi în CSV, cu separatorul și rândul de antet sub controlul tău.",
       "keywords": "csv json convertește tabel foaie",
       "run": "Convertește",
       "toJson": "CSV → JSON",
@@ -683,6 +702,7 @@
     "text-diff": {
       "name": "Compară text",
       "description": "Vezi modificările linie cu linie între două versiuni.",
+      "summary": "Compară două variante una lângă alta și vezi ce rânduri au fost adăugate, șterse sau modificate, până la caracter.",
       "keywords": "diff compară text modificări patch",
       "run": "Compară",
       "left": "Original",
@@ -692,6 +712,7 @@
     "base64": {
       "name": "Base64",
       "description": "Codifică sau decodifică Base64 pentru text simplu sau fișiere întregi.",
+      "summary": "Codează text simplu sau un fișier întreg ca Base64 ori decodează-l înapoi, fără ca conținutul să părăsească browserul.",
       "keywords": "base64 codifică decodifică binar",
       "run": "Convertește",
       "mode": "Direcție",
@@ -702,6 +723,7 @@
     "url-encode": {
       "name": "Codificare URL",
       "description": "Codifică sau decodifică în siguranță componentele URL (percent-encoding).",
+      "summary": "Codează procentual un URL, un șir de interogare sau o valoare de formular, ori decodează unul deja codat.",
       "keywords": "url codifică decodifică percent uri interogare",
       "run": "Convertește",
       "success": "Gata."
@@ -709,6 +731,7 @@
     "audio-convert": {
       "name": "Convertește audio",
       "description": "Schimbă containere audio precum MP3, WAV și OGG în browser.",
+      "summary": "Convertește audio între MP3, WAV, OGG, M4A și alte formate uzuale în browser, la rata de biți de care ai nevoie.",
       "keywords": "audio convertește mp3 wav ogg ffmpeg sunet",
       "run": "Convertește",
       "loadingFfmpeg": "Se încarcă motorul audio…",
@@ -722,6 +745,7 @@
     "audio-trim": {
       "name": "Taie audio",
       "description": "Păstrează doar intervalul dintre două marcaje de timp dintr-un fișier audio.",
+      "summary": "Taie un fișier audio la porțiunea dintre două momente, cu începutul și sfârșitul ajustabile la secundă.",
       "keywords": "audio taie decupează clip mp3 wav",
       "run": "Taie",
       "success": "Tăierea audio s-a încheiat."
@@ -729,6 +753,7 @@
     "audio-speed": {
       "name": "Viteză și volum audio",
       "description": "Accelerează, încetinește sau schimbă tăria sunetului.",
+      "summary": "Accelerează sau încetinește un fișier audio fără să schimbi înălțimea sunetului și setează cât de tare să fie rezultatul.",
       "keywords": "audio tempo viteză volum înălțime",
       "run": "Aplică",
       "success": "Audio-ul procesat este gata."
@@ -736,6 +761,7 @@
     "video-convert": {
       "name": "Convertește video",
       "description": "Schimbă containere video precum MP4 și WEBM în browser.",
+      "summary": "Convertește video între MP4, WEBM și MKV în browser, cu setări rezonabile H.264 și AAC deja alese.",
       "keywords": "video convertește mp4 webm ffmpeg film",
       "run": "Convertește",
       "loadingFfmpeg": "Se încarcă motorul video…",
@@ -745,6 +771,7 @@
     "video-trim": {
       "name": "Taie video",
       "description": "Păstrează doar clipul dintre două marcaje de timp.",
+      "summary": "Taie un video la clipul dorit setând un punct de început și unul de sfârșit, apoi exportă doar acel interval ca fișier.",
       "keywords": "video taie decupează clip mp4",
       "run": "Taie",
       "success": "Tăierea video s-a încheiat."
@@ -752,6 +779,7 @@
     "video-speed": {
       "name": "Viteză și volum video",
       "description": "Schimbă viteza de redare și nivelul audio al unui video.",
+      "summary": "Schimbă viteza de redare a unui video, cu sunetul în pas sau înlocuit, și setează nivelul înainte de a salva.",
       "keywords": "video tempo viteză volum",
       "run": "Aplică",
       "success": "Videoclipul procesat este gata."
@@ -759,6 +787,7 @@
     "video-extract-audio": {
       "name": "Extrage audio din video",
       "description": "Salvează pista sonoră a unui video ca fișier audio.",
+      "summary": "Scoate coloana sonoră dintr-un video și salveaz-o ca fișier audio de sine stătător, fără să înregistrezi nimic din nou.",
       "keywords": "video extrage audio mp3 pistă",
       "run": "Extrage audio",
       "success": "Audio extras."
@@ -766,6 +795,7 @@
     "pdf-numbers": {
       "name": "Numere de pagină",
       "description": "Pune o etichetă de pagină, de exemplu 1 / 12, pe fiecare pagină.",
+      "summary": "Adaugă numere de pagină în formatul ales, cum ar fi 1 / 12 sau 1 din 12, poziționate unde vrei pe fiecare pagină.",
       "keywords": "pdf numere pagină subsol antet paginare",
       "run": "Adaugă numere",
       "template": "Etichetă ({page} și {pages})",
@@ -782,6 +812,7 @@
     "pdf-to-images": {
       "name": "PDF → imagini",
       "description": "Rasterizează fiecare pagină în JPEG și descarcă-le ca ZIP.",
+      "summary": "Convertește fiecare pagină a unui PDF într-o imagine JPEG la rezoluția aleasă și descarcă întregul set ca arhivă ZIP.",
       "keywords": "pdf imagine jpg jpeg zip pagini export",
       "run": "Exportă paginile",
       "limits": "Paginile sunt desenate cu PDF.js în această filă. Documentele foarte mari pot fi lente și consumă multă memorie. Este un raster vizual, nu o extragere a obiectelor de imagine încorporate.",
@@ -790,6 +821,7 @@
     "images-to-pdf": {
       "name": "Imagini → PDF",
       "description": "Stivuiește fotografii într-un PDF, o imagine pe pagină.",
+      "summary": "Combină fotografii și scanări într-un singur PDF, o imagine pe pagină, potrivit la A4 sau păstrat la dimensiunea originală.",
       "keywords": "imagini pdf jpg png combină",
       "run": "Creează PDF",
       "success": "{count, plural, one {PDF creat din # imagine.} few {PDF creat din # imagini.} other {PDF creat din # de imagini.}}",
@@ -800,6 +832,7 @@
     "pdf-flatten": {
       "name": "Aplatizează formulare",
       "description": "Coace câmpurile AcroForm în pagină ca să nu mai poată fi editate.",
+      "summary": "Transformă câmpurile de formular completate în conținut permanent al paginii, ca PDF-ul să se tipărească la fel oriunde.",
       "keywords": "pdf aplatizează formular câmpuri acroform",
       "run": "Aplatizează",
       "limits": "Funcționează pe câmpuri AcroForm standard. Formularele XFA dinamice nu sunt pe deplin acceptate.",
@@ -808,6 +841,7 @@
     "pdf-metadata": {
       "name": "Metadate PDF",
       "description": "Vezi, editează sau elimină titlul, autorul și alte câmpuri Info ale documentului.",
+      "summary": "Citește, editează sau elimină titlul, autorul, cuvintele cheie și alte proprietăți ale unui PDF, apoi salvează o copie curată.",
       "keywords": "Cuvinte cheie",
       "run": "Salvează metadatele",
       "strip": "Șterge câmpurile Info și XMP",
@@ -822,6 +856,7 @@
     "pdf-protect": {
       "name": "Blochează sau deblochează PDF",
       "description": "Adaugă sau elimină o parolă de utilizator. Criptarea rămâne în acest browser.",
+      "summary": "Adaugă o parolă unui PDF sau elimină una pe care o știi, cu criptarea făcută în acest tab, nu pe un server.",
       "keywords": "pdf parolă blochează deblochează criptează decriptează",
       "run": "Aplică",
       "lock": "Blochează",
@@ -833,6 +868,7 @@
     "image-rotate": {
       "name": "Rotește și inversează",
       "description": "Rotește imaginile din 90° în 90° sau inversează-le orizontal ori vertical.",
+      "summary": "Rotește fotografiile câte un sfert de tură, îndreaptă-le cu câteva grade sau oglindește-le — o imagine sau un lot întreg.",
       "keywords": "imagine rotește inversează oglindă",
       "run": "Aplică",
       "operation": "Transformare",
@@ -846,6 +882,7 @@
     "image-filters": {
       "name": "Filtre de imagine",
       "description": "Aplică tonuri de gri, sepia sau inversare pe una sau mai multe fotografii.",
+      "summary": "Aplică tonuri de gri, sepia, inversare, estompare sau clarificare unei fotografii sau unui întreg dosar și descarcă rezultatele.",
       "keywords": "imagine filtru gri sepia inversare",
       "run": "Aplică",
       "filter": "Filtru",
@@ -857,6 +894,7 @@
     "image-favicon": {
       "name": "Pachet favicon",
       "description": "Exportă o imagine-sursă ca dimensiuni obișnuite de icoane într-un ZIP.",
+      "summary": "Transformă o imagine în dimensiunile de iconiță cerute de un site sau o aplicație — favicon, iconiță Apple, Android maskable — într-un singur ZIP.",
       "keywords": "favicon pictogramă 16 32 180 192 512 apple touch",
       "run": "Exportă icoanele",
       "note": "Exportă fișiere PNG de 16, 32, 48, 180, 192 și 512 pixeli.",
@@ -865,6 +903,7 @@
     "video-gif": {
       "name": "Video → GIF",
       "description": "Transformă un clip scurt într-un GIF în buclă, în browser.",
+      "summary": "Transformă o porțiune scurtă de video într-un GIF care se repetă, alegând începutul și sfârșitul. Codarea e lentă la clipuri lungi.",
       "keywords": "video gif clip convertește ffmpeg",
       "run": "Fă GIF",
       "limits": "Folosește FFmpeg WASM. Ține clipurile scurte — codificarea GIF este lentă și consumă memorie. Paleta și codecurile urmează build-ul din browser.",
@@ -873,6 +912,7 @@
     "xml-json": {
       "name": "XML ↔ JSON",
       "description": "Convertește documente XML în JSON sau JSON înapoi în XML.",
+      "summary": "Convertește un document XML în JSON sau JSON înapoi în XML, păstrând atributele și elementele repetate într-o formă previzibilă.",
       "keywords": "xml json convertește parsează",
       "run": "Convertește",
       "toJson": "XML → JSON",
@@ -882,6 +922,7 @@
     "sql-format": {
       "name": "Formator SQL",
       "description": "Formatează frumos SQL ca să citești mai ușor clauzele și listele.",
+      "summary": "Reformatează SQL astfel încât clauzele, îmbinările și listele lungi de coloane să stea aliniate și să se citească în ordinea execuției.",
       "keywords": "sql format pretty interogare",
       "run": "Formatează",
       "success": "SQL formatat."
@@ -889,6 +930,7 @@
     "regex-tester": {
       "name": "Tester regex",
       "description": "Încearcă o expresie regulată pe un text-exemplu și înlocuiește potrivirile.",
+      "summary": "Încearcă o expresie regulată pe propriul text, urmărește potrivirile evidențiate și testează înlocuirea.",
       "keywords": "regex expresie regulată test înlocuiește",
       "pattern": "Model",
       "flags": "Flaguri",
@@ -901,6 +943,7 @@
     "hash-generator": {
       "name": "Generator de hash",
       "description": "SHA-1/256/384/512 și MD5 din text sau fișier, calculate local.",
+      "summary": "Calculează SHA-1, SHA-256, SHA-384, SHA-512 sau MD5 pentru un text sau un fișier întreg, fără să trimiți nimic nicăieri.",
       "keywords": "hash sha256 md5 sha1 sumă de control digest",
       "run": "Calculează hash-ul",
       "algo": "Algoritm",
@@ -911,6 +954,7 @@
     "uuid-generator": {
       "name": "Generator UUID",
       "description": "Creează UUID versiunea 4 sau 7 pe acest dispozitiv.",
+      "summary": "Generează UUID-uri versiunea 4 sau 7, unul câte unul sau în bloc, create pe acest dispozitiv, nu de un server.",
       "keywords": "uuid guid v4 v7 generează",
       "run": "Generează",
       "count": "Câte",
@@ -920,6 +964,7 @@
     "color-convert": {
       "name": "Convertor de culori",
       "description": "Convertește între HEX, RGB, HSL și HSV, cu un selector de culoare.",
+      "summary": "Convertește o culoare între HEX, RGB, HSL, HSV și nume CSS, ori alege una din cerc și citește toate notațiile deodată.",
       "keywords": "culoare hex rgb hsl hsv selector",
       "picker": "Selector de culoare",
       "invalid": "Introdu o culoare hex de 3 sau 6 cifre."
@@ -927,6 +972,7 @@
     "lorem-ipsum": {
       "name": "Lorem ipsum",
       "description": "Generează paragrafe, propoziții sau cuvinte de umplutură.",
+      "summary": "Generează text de umplutură ca paragrafe, propoziții sau cuvinte pentru un aspect, în numărul de care ai nevoie.",
       "keywords": "lorem ipsum substituent dummy text",
       "run": "Generează",
       "count": "Număr",
@@ -939,6 +985,7 @@
     "qr-code": {
       "name": "Cod QR",
       "description": "Creează un cod QR din text sau citește unul dintr-o imagine.",
+      "summary": "Fă un cod QR dintr-un link, un text sau date de contact și descarcă-l ca imagine, ori citește unul dintr-o poză.",
       "keywords": "qr cod generează scanează citește barcode",
       "run": "Generează",
       "payload": "Text sau URL",
@@ -951,6 +998,7 @@
     "pdf-sign": {
       "name": "Semnează PDF",
       "description": "Pune o semnătură tastată pe fiecare pagină. Doar vizual — nu e un certificat.",
+      "summary": "Aplică o semnătură tastată pe paginile alese. Este desenată pe pagină pentru citire, nu este o semnătură criptografică.",
       "keywords": "pdf semnează semnătură ștampilă nume",
       "run": "Semnează",
       "signature": "Textul semnăturii",
@@ -961,6 +1009,7 @@
     "image-watermark": {
       "name": "Filigran pe imagini",
       "description": "Suprapune text pe fotografii, un fișier sau un lot întreg.",
+      "summary": "Suprapune text pe fotografiile tale — alegând poziția, dimensiunea, culoarea și opacitatea — pentru o imagine sau un lot întreg.",
       "keywords": "imagine filigran ștampilă copyright",
       "run": "Aplică",
       "text": "Textul filigranului",
@@ -974,6 +1023,7 @@
     "password-generator": {
       "name": "Generator de parole",
       "description": "Creează o parolă puternică pe acest dispozitiv. Nimic nu este stocat.",
+      "summary": "Creează o parolă puternică la lungimea și combinația de caractere alese. Se generează pe acest dispozitiv și nu se stochează.",
       "keywords": "parolă generează aleator secret",
       "run": "Generează",
       "length": "Lungime",
@@ -986,6 +1036,7 @@
     "case-convert": {
       "name": "Schimbă majusculele",
       "description": "Treci între camel, snake, kebab, title și altele.",
+      "summary": "Comută textul între camelCase, snake_case, kebab-case, Title Case și celelalte convenții folosite de programatori.",
       "keywords": "majuscule camel snake kebab pascal title",
       "run": "Convertește",
       "style": "Stil",
@@ -994,6 +1045,7 @@
     "jwt-decode": {
       "name": "Decodor JWT",
       "description": "Citește local antetul și payload-ul unui JWT. Semnăturile nu sunt verificate.",
+      "summary": "Citește antetul și conținutul unui JSON Web Token, vezi când expiră și decodează-l local. Semnătura nu este verificată.",
       "keywords": "jwt decodifică token bearer auth",
       "run": "Decodifică",
       "limits": "Kit decodifică doar Base64url. Fără o cheie nu poate dovedi că tokenul e autentic.",
@@ -1005,12 +1057,14 @@
     "unix-timestamp": {
       "name": "Marcaj de timp Unix",
       "description": "Convertește timpul Unix în ISO și înapoi.",
+      "summary": "Convertește un timestamp Unix într-o dată și o oră lizibile, sau invers, în fusul orar ales.",
       "keywords": "unix epoch marcaj iso dată",
       "now": "Folosește acum"
     },
     "cron-explain": {
       "name": "Explicator cron",
       "description": "Transformă o expresie cron cu 5 câmpuri în limbaj clar.",
+      "summary": "Transformă o expresie cron cu cinci câmpuri într-o propoziție simplă, ca să fie clar când rulează o sarcină programată.",
       "keywords": "cron program crontab explică",
       "run": "Explică",
       "success": "Explicat."
@@ -1018,6 +1072,7 @@
     "number-base": {
       "name": "Bază numerică",
       "description": "Convertește întregi între bazele 2 și 36.",
+      "summary": "Convertește un număr întreg între binar, octal, zecimal, hexazecimal și orice bază de la 2 la 36, cu modelul de biți afișat.",
       "keywords": "binar hex zecimal bază convertește",
       "value": "Număr",
       "from": "Din baza",
@@ -1026,6 +1081,7 @@
     "html-entities": {
       "name": "Entități HTML",
       "description": "Codifică sau decodifică &lt; &amp; și entitățile numerice.",
+      "summary": "Codează sau decodează parantezele unghiulare, ghilimelele și entitățile numerice HTML, ca textul să fie sigur în marcaj.",
       "keywords": "html entități codifică decodifică escape",
       "run": "Convertește",
       "encode": "Codifică",
@@ -1035,6 +1091,7 @@
     "json-types": {
       "name": "JSON → TypeScript",
       "description": "Deduce interfețe TypeScript dintr-un eșantion JSON.",
+      "summary": "Transformă un răspuns JSON de exemplu în interfețe TypeScript, cu obiectele și tablourile imbricate tipizate cât permite exemplul.",
       "keywords": "json typescript interface tip generează",
       "run": "Generează tipuri",
       "success": "Tipurile au fost generate."
@@ -1102,113 +1159,113 @@
       "categoryElectricalDescription": "Tensiune, curent și rezistență",
       "categoryTypography": "Tipografie",
       "categoryTypographyDescription": "Dimensiuni CSS și de tipar",
-      "unitMm": "Millimeters (mm)",
-      "unitCm": "Centimeters (cm)",
-      "unitM": "Meters (m)",
-      "unitKm": "Kilometers (km)",
-      "unitIn": "Inches (in)",
-      "unitFt": "Feet (ft)",
-      "unitYd": "Yards (yd)",
-      "unitMi": "Miles (mi)",
+      "unitMm": "Milimetri (mm)",
+      "unitCm": "Centimetri (cm)",
+      "unitM": "Metri (m)",
+      "unitKm": "Kilometri (km)",
+      "unitIn": "Țoli (in)",
+      "unitFt": "Picioare (ft)",
+      "unitYd": "Iarzi (yd)",
+      "unitMi": "Mile (mi)",
       "unitNmi": "Mile marine (nmi)",
-      "unitMg": "Milligrams (mg)",
-      "unitG": "Grams (g)",
-      "unitKg": "Kilograms (kg)",
-      "unitT": "Metric tonnes (t)",
-      "unitOz": "Ounces (oz)",
-      "unitLb": "Pounds (lb)",
+      "unitMg": "Miligrame (mg)",
+      "unitG": "Grame (g)",
+      "unitKg": "Kilograme (kg)",
+      "unitT": "Tone metrice (t)",
+      "unitOz": "Uncii (oz)",
+      "unitLb": "Livre (lb)",
       "unitStone": "Stone (st)",
       "unitC": "Celsius (°C)",
       "unitF": "Fahrenheit (°F)",
       "unitK": "Kelvin (K)",
-      "unitMs": "Milliseconds",
-      "unitS": "Seconds",
-      "unitMin": "Minutes",
-      "unitH": "Hours",
-      "unitDay": "Days",
-      "unitWeek": "Weeks",
-      "unitM_s": "Meters per second",
-      "unitKm_h": "Kilometers per hour",
-      "unitMph": "Miles per hour",
+      "unitMs": "Milisecunde",
+      "unitS": "Secunde",
+      "unitMin": "Minute",
+      "unitH": "Ore",
+      "unitDay": "Zile",
+      "unitWeek": "Săptămâni",
+      "unitM_s": "Metri pe secundă",
+      "unitKm_h": "Kilometri pe oră",
+      "unitMph": "Mile pe oră",
       "unitKnot": "Noduri",
-      "unitMl": "Milliliters",
-      "unitL": "Liters",
-      "unitM3": "Cubic meters",
-      "unitUsTsp": "Lingurițe US",
-      "unitUsTbsp": "Linguri US",
-      "unitUsCup": "Căni US",
-      "unitUsGal": "Galoni US",
+      "unitMl": "Mililitri",
+      "unitL": "Litri",
+      "unitM3": "Metri cubi",
+      "unitUsTsp": "Lingurițe americane",
+      "unitUsTbsp": "Linguri americane",
+      "unitUsCup": "Căni americane",
+      "unitUsGal": "Galoni americani",
       "unitImpGal": "Galoni imperiali",
-      "unitW": "Watts",
-      "unitKw": "Kilowatts",
-      "unitMw": "Megawatts",
-      "unitHp": "Cal putere mecanic",
-      "unitJ": "Joules",
-      "unitKj": "Kilojoules",
-      "unitWh": "Watt-hours",
-      "unitKwh": "Kilowatt-hours",
-      "unitCal": "Calories",
-      "unitKcal": "Kilocalories",
-      "unitEv": "Electronvolts",
-      "unitPa": "Pascals",
-      "unitKpa": "Kilopascals",
-      "unitBar": "Bar",
+      "unitW": "Watt",
+      "unitKw": "Kilowatt",
+      "unitMw": "Megawatt",
+      "unitHp": "Cai putere mecanici",
+      "unitJ": "Jouli",
+      "unitKj": "Kilojouli",
+      "unitWh": "Wați-oră",
+      "unitKwh": "Kilowați-oră",
+      "unitCal": "Calorii",
+      "unitKcal": "Kilocalorii",
+      "unitEv": "Electronvolți",
+      "unitPa": "Pascali",
+      "unitKpa": "Kilopascali",
+      "unitBar": "Bari",
       "unitPsi": "PSI",
-      "unitAtm": "Atmospheres",
-      "unitMmHg": "Millimeters of mercury",
-      "unitMm2": "Square millimeters",
-      "unitCm2": "Square centimeters",
-      "unitM2": "Square meters",
-      "unitKm2": "Square kilometers",
-      "unitFt2": "Square feet",
-      "unitAcre": "Acres",
-      "unitHectare": "Hectares",
-      "unitBit": "Bits",
-      "unitB": "Bytes",
-      "unitKb": "Kilobytes",
-      "unitMb": "Megabytes",
-      "unitGb": "Gigabytes",
-      "unitTb": "Terabytes",
-      "unitKib": "Kibibytes",
-      "unitMib": "Mebibytes",
-      "unitGib": "Gibibytes",
-      "unitDeg": "Degrees",
-      "unitRad": "Radians",
-      "unitGrad": "Gradians",
-      "unitTurn": "Turns",
-      "unitHz": "Hertz",
-      "unitKhz": "Kilohertz",
-      "unitMhz": "Megahertz",
-      "unitGhz": "Gigahertz",
-      "unitRpm": "Revolutions per minute",
-      "unitN": "Newtons",
-      "unitKn": "Kilonewtons",
-      "unitLbf": "Pound-force",
-      "unitKgf": "Kilogram-force",
-      "unitL_100km": "Liters per 100 km",
-      "unitKm_L": "Kilometers per liter",
-      "unitMpgUs": "Miles per US gallon",
-      "unitMpgImperial": "Miles per imperial gallon",
-      "unitM_s2": "Meters per second squared",
-      "unitG0": "Standard gravity",
-      "unitFt_s2": "Feet per second squared",
-      "unitNm": "Newton-meters",
-      "unitKnm": "Kilonewton-meters",
-      "unitLbFt": "Pound-feet",
-      "unitLbIn": "Pound-inches",
-      "unitMv": "Millivolts",
-      "unitV": "Volts",
-      "unitKv": "Kilovolts",
-      "unitMa": "Milliamps",
-      "unitA": "Amps",
-      "unitKa": "Kiloamps",
-      "unitMOhm": "Milliohms",
-      "unitOhm": "Ohms",
-      "unitKOhm": "Kilohms",
-      "unitMOhmBig": "Megohms",
-      "unitPx": "Pixels",
-      "unitPt": "Points",
-      "unitPc": "Picas",
+      "unitAtm": "Atmosfere",
+      "unitMmHg": "Milimetri de mercur",
+      "unitMm2": "Milimetri pătrați",
+      "unitCm2": "Centimetri pătrați",
+      "unitM2": "Metri pătrați",
+      "unitKm2": "Kilometri pătrați",
+      "unitFt2": "Picioare pătrate",
+      "unitAcre": "Acri",
+      "unitHectare": "Hectare",
+      "unitBit": "Biți",
+      "unitB": "Octeți",
+      "unitKb": "Kiloocteți",
+      "unitMb": "Megaocteți",
+      "unitGb": "Gigaocteți",
+      "unitTb": "Teraocteți",
+      "unitKib": "Kibiocteți",
+      "unitMib": "Mebiocteți",
+      "unitGib": "Gibiocteți",
+      "unitDeg": "Grade",
+      "unitRad": "Radiani",
+      "unitGrad": "Gradieni",
+      "unitTurn": "Ture",
+      "unitHz": "Herți",
+      "unitKhz": "Kiloherți",
+      "unitMhz": "Megaherți",
+      "unitGhz": "Gigaherți",
+      "unitRpm": "Rotații pe minut",
+      "unitN": "Newtoni",
+      "unitKn": "Kilonewtoni",
+      "unitLbf": "Livre-forță",
+      "unitKgf": "Kilogram-forță",
+      "unitL_100km": "Litri la 100 km",
+      "unitKm_L": "Kilometri pe litru",
+      "unitMpgUs": "Mile pe galon american",
+      "unitMpgImperial": "Mile pe galon imperial",
+      "unitM_s2": "Metri pe secundă la pătrat",
+      "unitG0": "Gravitație standard",
+      "unitFt_s2": "Picioare pe secundă la pătrat",
+      "unitNm": "Newton-metri",
+      "unitKnm": "Kilonewton-metri",
+      "unitLbFt": "Livre-picioare",
+      "unitLbIn": "Livre-țoli",
+      "unitMv": "Milivolți",
+      "unitV": "Volți",
+      "unitKv": "Kilovolți",
+      "unitMa": "Miliamperi",
+      "unitA": "Amperi",
+      "unitKa": "Kiloamperi",
+      "unitMOhm": "Milliohmi",
+      "unitOhm": "Ohmi",
+      "unitKOhm": "Kilohmi",
+      "unitMOhmBig": "Megohmi",
+      "unitPx": "Pixeli",
+      "unitPt": "Puncte",
+      "unitPc": "Pici",
       "unitRem": "rem",
       "unitEm": "em",
       "presetMetricImperial": "Metric ↔ imperial",
@@ -1243,23 +1300,24 @@
       "parentFontSize": "Dimensiunea fontului părintelui",
       "dpi": "DPI",
       "rateUnavailable": "Serviciul de cursuri nu este disponibil",
-      "unitUsFlOz": "US fluid ounces",
-      "unitUsPt": "US pints",
-      "unitUsQt": "US quarts",
-      "unitGw": "Gigawatts",
-      "unitMj": "Megajoules",
-      "unitMpa": "Megapascals",
-      "unitIn2": "Square inches",
-      "unitYd2": "Square yards",
-      "unitPb": "Petabytes",
-      "unitTib": "Tebibytes",
-      "unitPib": "Pebibytes",
-      "unitArcmin": "Arcminutes",
-      "unitArcsec": "Arcseconds"
+      "unitUsFlOz": "Uncii lichide americane",
+      "unitUsPt": "Pinte americane",
+      "unitUsQt": "Quarte americane",
+      "unitGw": "Gigawatt",
+      "unitMj": "Megajouli",
+      "unitMpa": "Megapascali",
+      "unitIn2": "Țoli pătrați",
+      "unitYd2": "Iarzi pătrați",
+      "unitPb": "Petaocteți",
+      "unitTib": "Tebiocteți",
+      "unitPib": "Pebiocteți",
+      "unitArcmin": "Minute de arc",
+      "unitArcsec": "Secunde de arc"
     },
     "text-counter": {
       "name": "Contor de text",
       "description": "Numără cuvinte, caractere, propoziții, paragrafe și timpul de citire.",
+      "summary": "Numără cuvintele, caracterele, propozițiile și paragrafele în timp ce scrii, cu o estimare a timpului de citire.",
       "keywords": "contor cuvinte caractere statistici text timp citire",
       "limits": "Numărarea folosește segmentarea Unicode nativă a browserului când este disponibilă, pentru a trata mai natural emoji și caracterele combinate.",
       "input": "Text de numărat",
@@ -1276,6 +1334,7 @@
     "timezone-converter": {
       "name": "Ceas mondial",
       "description": "Convertește data și ora locală între fusuri orare și verifică un ceas mondial.",
+      "summary": "Vezi cât e ceasul în orașe din toată lumea chiar acum și convertește un moment între fusuri orare, chiar și peste o schimbare de dată.",
       "keywords": "convertor fus orar ceas mondial ora de vară dată oră",
       "limits": "Introdu ora din orașul sursă. Conversia folosește regulile IANA pentru fusuri orare, inclusiv schimbările orei de vară.",
       "convert": "Convertește data și ora",
@@ -1325,6 +1384,7 @@
     "date-calculator": {
       "name": "Calculator de date",
       "description": "Compară date, adaugă timp și numără zile lucrătoare cu sărbători opționale.",
+      "summary": "Calculează intervalul dintre două date, adună sau scade zile și luni și numără zilele lucrătoare din jurul sărbătorilor.",
       "keywords": "calculator date diferență date adaugă zile zile lucrătoare sărbători",
       "updated": "Data a fost actualizată.",
       "invalid": "Verifică datele introduse.",
@@ -1363,6 +1423,7 @@
     "tip-split-calculator": {
       "name": "Calculator de bacșiș și împărțire",
       "description": "Calculează bacșișul, taxele, totalul și părțile corecte pentru un grup.",
+      "summary": "Calculează bacșișul, taxa și totalul unei note, apoi împarte-o corect între câte persoane plătesc.",
       "keywords": "calculator bacșiș împarte nota taxe restaurant părți",
       "limits": "Bacșișul și taxele se calculează din subtotal. Părțile rotunjite distribuie restul primelor persoane pentru ca suma să coincidă.",
       "invalid": "Verifică datele introduse.",
@@ -1383,6 +1444,7 @@
     "stopwatch-timer": {
       "name": "Cronometru și timer",
       "description": "Rulează un cronometru precis sau un timer cu numărătoare inversă în browser.",
+      "summary": "Folosește un cronometru precis cu timpi intermediari sau numără invers până la zero într-un tab care continuă când ești altundeva.",
       "keywords": "cronometru timer numărătoare inversă ceas online",
       "saved": "Salvat în istoric.",
       "stopwatch": "Cronometru",
@@ -1399,6 +1461,7 @@
     "random-generator": {
       "name": "Generator aleatoriu",
       "description": "Generează numere, valori booleene, alegeri sau parole pentru uz zilnic.",
+      "summary": "Extrage un număr aleatoriu, aruncă o monedă, aruncă zaruri sau alege dintr-o listă, cu intervalul și numărul de rezultate alese.",
       "keywords": "generator numere aleatoare selector generator parole",
       "invalid": "Verifică datele introduse.",
       "limits": "Aleatoritatea folosește sursa Math.random a browserului. Rezultatele sunt pentru alegeri de zi cu zi, nu pentru secrete criptografice.",
@@ -1428,6 +1491,7 @@
     "currency-converter": {
       "name": "Convertor valutar",
       "description": "Cursuri live cu cache local",
+      "summary": "Convertește între valute la cursuri zilnice, salvate pe dispozitivul tău ca ultimul set să funcționeze și fără conexiune.",
       "keywords": "convertor valutar cursuri valutare bani Frankfurter",
       "currency": "Monedă",
       "limits": "Cursurile vin de la Frankfurter la deschiderea instrumentului sau când atingeți Reîmprospătare și rămân șase ore în cache-ul acestui browser. Sumele nu sunt trimise. Sunt date de referință zilnice, nu pentru tranzacționare sau taxe.",
@@ -1451,6 +1515,7 @@
     "length-converter": {
       "name": "Lungime",
       "description": "Distanțe, dimensiuni și călătorii",
+      "summary": "Convertește o lungime între metri, picioare, mile, țoli, centimetri și celelalte unități pe care le întâlnesc călătoriile.",
       "keywords": "Lungime length converter",
       "run": "Înregistrează conversia",
       "success": "Conversia a fost salvată în istoric."
@@ -1458,6 +1523,7 @@
     "mass-converter": {
       "name": "Masă",
       "description": "Greutăți de la miligrame la tone",
+      "summary": "Convertește o greutate între miligrame, grame, kilograme, tone, livre, uncii și stone, pentru gătit sau expediere.",
       "keywords": "Masă mass converter",
       "run": "Înregistrează conversia",
       "success": "Conversia a fost salvată în istoric."
@@ -1465,6 +1531,7 @@
     "temperature-converter": {
       "name": "Temperatură",
       "description": "Celsius, Fahrenheit și Kelvin",
+      "summary": "Convertește o temperatură între Celsius, Fahrenheit și Kelvin, inclusiv punctele la care apa îngheață și fierbe.",
       "keywords": "Temperatură temperature converter",
       "run": "Înregistrează conversia",
       "success": "Conversia a fost salvată în istoric."
@@ -1472,6 +1539,7 @@
     "speed-converter": {
       "name": "Viteză",
       "description": "Viteză obișnuită și nautică",
+      "summary": "Convertește o viteză între kilometri pe oră, mile pe oră, metri pe secundă și noduri, pentru drum, aer și mare.",
       "keywords": "Viteză speed converter",
       "run": "Înregistrează conversia",
       "success": "Conversia a fost salvată în istoric."
@@ -1479,6 +1547,7 @@
     "duration-converter": {
       "name": "Durată",
       "description": "De la milisecunde la săptămâni",
+      "summary": "Convertește o durată între milisecunde, secunde, minute, ore, zile și săptămâni, citind valoarea în ambele sensuri.",
       "keywords": "Durată duration converter",
       "run": "Înregistrează conversia",
       "success": "Conversia a fost salvată în istoric."
@@ -1486,6 +1555,7 @@
     "volume-converter": {
       "name": "Volum",
       "description": "Măsuri metrice și de bucătărie",
+      "summary": "Convertește un volum între litri, mililitri, galoane, căni, pinte și măsurile în care e scrisă o rețetă.",
       "keywords": "Volum volume converter",
       "run": "Înregistrează conversia",
       "success": "Conversia a fost salvată în istoric."
@@ -1493,6 +1563,7 @@
     "power-converter": {
       "name": "Putere",
       "description": "Wați și cai putere",
+      "summary": "Convertește puterea între wați, kilowați, megawați și cai putere metrici sau mecanici, pentru aparate și motoare.",
       "keywords": "Putere power converter",
       "run": "Înregistrează conversia",
       "success": "Conversia a fost salvată în istoric."
@@ -1500,6 +1571,7 @@
     "energy-converter": {
       "name": "Energie",
       "description": "Jouli, calorii și wați-oră",
+      "summary": "Convertește energia între jouli, calorii, kilocalorii și kilowați-oră — unitățile de pe o etichetă sau o factură de curent.",
       "keywords": "Energie energy converter",
       "run": "Înregistrează conversia",
       "success": "Conversia a fost salvată în istoric."
@@ -1507,6 +1579,7 @@
     "pressure-converter": {
       "name": "Presiune",
       "description": "Pa, bar, PSI și altele",
+      "summary": "Convertește presiunea între pascali, bari, PSI, atmosfere, torr și milimetri de mercur, pentru anvelope sau vreme.",
       "keywords": "Presiune pressure converter",
       "run": "Înregistrează conversia",
       "success": "Conversia a fost salvată în istoric."
@@ -1514,6 +1587,7 @@
     "area-converter": {
       "name": "Suprafață",
       "description": "Suprafață și terenuri",
+      "summary": "Convertește o suprafață între metri pătrați, picioare pătrate, acri, hectare și celelalte măsuri de teren și pardoseală.",
       "keywords": "Suprafață area converter",
       "run": "Înregistrează conversia",
       "success": "Conversia a fost salvată în istoric."
@@ -1521,6 +1595,7 @@
     "data-converter": {
       "name": "Date",
       "description": "Stocare zecimală și binară",
+      "summary": "Convertește o dimensiune de fișier sau de stocare între octeți, kiloocteți, megaocteți, gigaocteți și teraocteți.",
       "keywords": "Date data converter",
       "run": "Înregistrează conversia",
       "success": "Conversia a fost salvată în istoric."
@@ -1528,6 +1603,7 @@
     "angle-converter": {
       "name": "Unghi",
       "description": "Grade, radiani și rotații",
+      "summary": "Convertește un unghi între grade, radiani, gradieni și ture, cu forma zecimală și cea fracționară alături.",
       "keywords": "Unghi angle converter",
       "run": "Înregistrează conversia",
       "success": "Conversia a fost salvată în istoric."
@@ -1535,6 +1611,7 @@
     "frequency-converter": {
       "name": "Frecvență",
       "description": "De la Hz la RPM",
+      "summary": "Convertește o frecvență între herți, kiloherți, megaherți, gigaherți și rotații pe minut, pentru sunet, radio și mașini rotative.",
       "keywords": "Frecvență frequency converter",
       "run": "Înregistrează conversia",
       "success": "Conversia a fost salvată în istoric."
@@ -1542,6 +1619,7 @@
     "force-converter": {
       "name": "Forță",
       "description": "Newtoni și unități de forță",
+      "summary": "Convertește forța între newtoni, kilonewtoni, kilogram-forță, livră-forță și dina, pentru fizică și inginerie.",
       "keywords": "Forță force converter",
       "run": "Înregistrează conversia",
       "success": "Conversia a fost salvată în istoric."
@@ -1549,6 +1627,7 @@
     "fuel-economy-converter": {
       "name": "Consum de combustibil",
       "description": "Consum și kilometraj",
+      "summary": "Convertește consumul între litri la 100 de kilometri, mile pe galon american sau imperial și kilometri pe litru.",
       "keywords": "Consum de combustibil fuel economy converter",
       "run": "Înregistrează conversia",
       "success": "Conversia a fost salvată în istoric."
@@ -1556,6 +1635,7 @@
     "acceleration-converter": {
       "name": "Accelerație",
       "description": "Mișcare și gravitație",
+      "summary": "Convertește accelerația între metri pe secundă la pătrat, gravitația standard, picioare pe secundă la pătrat și galileo.",
       "keywords": "Accelerație acceleration converter",
       "run": "Înregistrează conversia",
       "success": "Conversia a fost salvată în istoric."
@@ -1563,6 +1643,7 @@
     "torque-converter": {
       "name": "Cuplu",
       "description": "Forță de rotație",
+      "summary": "Convertește cuplul între newton-metri, kilogram-forță-metri, livre-picioare și livre-țoli, pentru piulițe și motoare.",
       "keywords": "Cuplu torque converter",
       "run": "Înregistrează conversia",
       "success": "Conversia a fost salvată în istoric."
@@ -1570,6 +1651,7 @@
     "electrical-converter": {
       "name": "Electric",
       "description": "Tensiune, curent și rezistență",
+      "summary": "Convertește între unitățile electrice de tensiune, curent, rezistență și putere — volți, amperi, ohmi și wați.",
       "keywords": "Electric electrical converter",
       "run": "Înregistrează conversia",
       "success": "Conversia a fost salvată în istoric."
@@ -1577,6 +1659,7 @@
     "typography-converter": {
       "name": "Tipografie",
       "description": "Dimensiuni CSS și de tipar",
+      "summary": "Convertește dimensiunile de literă între pixeli, puncte, em, rem și pici, față de dimensiunea de bază sau de ecran setată.",
       "keywords": "Tipografie typography converter",
       "run": "Înregistrează conversia",
       "success": "Conversia a fost salvată în istoric."
@@ -1584,6 +1667,7 @@
     "bmi-calorie-calculator": {
       "name": "Calculator IMC și calorii",
       "description": "Află IMC-ul, un interval de greutate sănătos și necesarul zilnic de calorii din înălțime, greutate, vârstă și activitate.",
+      "summary": "Compară IMC cu un interval sănătos de greutate și estimează necesarul zilnic de calorii din înălțime, greutate, vârstă și activitate.",
       "keywords": "imc calorii tdee bmr mifflin greutate sănătate",
       "limits": "IMC-ul folosește pragurile OMS pentru adulți. Sub 18 este permis, dar marcat, pentru că IMC-ul copiilor se citește de obicei pe curbe de creștere. Caloriile folosesc Mifflin-St Jeor, o formulă pentru adulți. Calculul rămâne pe acest dispozitiv și nu este sfat medical.",
       "invalid": "Introdu o înălțime, o greutate și o vârstă realiste.",
@@ -1642,6 +1726,7 @@
     "percentage-calculator": {
       "name": "Calculator procentual",
       "description": "Calculează un procent, inversul, variația sau aplică o creștere/scădere.",
+      "summary": "Calculează un procent dintr-un număr, află valoarea inițială, măsoară schimbarea dintre două valori sau aplică o majorare.",
       "keywords": "procent calculator creștere reducere adaos",
       "mode": "Calcul",
       "modeOf": "% of",
@@ -1665,6 +1750,7 @@
     "loan-calculator": {
       "name": "Calculator credit și dobândă",
       "description": "Estimează rata lunară sau dobânda compusă din principal, rată și ani.",
+      "summary": "Estimează o rată lunară sau vezi ce face dobânda compusă în timp, pornind de la principal, rată și perioadă.",
       "keywords": "credit ipotecă rată amortizare dobândă compusă APR",
       "limits": "Modul credit folosește o rată standard de amortizare cu dobândă fixă. Modul dobândă compusă capitalizează periodic (implicit lunar). Este o estimare, nu un sfat financiar.",
       "mode": "Mod",
@@ -1685,6 +1771,7 @@
     "text-lines": {
       "name": "Instrumente pe linii",
       "description": "Caută și înlocuiește, sortează sau elimină liniile duplicate în browser.",
+      "summary": "Caută și înlocuiește într-o listă de rânduri, sorteaz-o numeric sau alfabetic și elimină rândurile duplicate.",
       "keywords": "caută înlocuiește sortează linii unice text",
       "find": "Caută",
       "replace": "Înlocuiește cu",
@@ -1699,6 +1786,7 @@
     "slugify": {
       "name": "Slugify",
       "description": "Transformă un titlu într-un slug URL sau curăță un nume de fișier.",
+      "summary": "Transformă un titlu într-un slug curat de URL, cu opțiunile pentru diacritice, majuscule și separatori de care are nevoie un fișier.",
       "keywords": "slugify slug url nume fișier curățare kebab",
       "input": "Text",
       "slug": "Slug URL",
@@ -1709,6 +1797,7 @@
     "color-contrast": {
       "name": "Contrast de culoare",
       "description": "Verifică contrastul WCAG între prim-plan și fundal.",
+      "summary": "Verifică contrastul dintre text și fundal față de pragurile WCAG AA și AAA înainte de a livra o paletă.",
       "keywords": "wcag contrast accesibilitate aa aaa lizibilitate",
       "limits": "Raportul folosește luminanța relativă WCAG 2 pentru culorile hex sRGB. Nivelurile afișate sunt pentru text normal (AA ≥ 4,5, AAA ≥ 7).",
       "foreground": "Prim-plan",
@@ -1724,6 +1813,7 @@
     "image-palette": {
       "name": "Paletă din imagine",
       "description": "Extrage culorile dominante dintr-o fotografie pentru design.",
+      "summary": "Citește culorile dominante ale unei fotografii ca coduri hex, ca paleta să intre direct într-un design sau într-o verificare de brand.",
       "keywords": "paletă culori extrage dominantă mostre imagine",
       "limits": "Culorile sunt cuantificate în această filă pe baza unei previzualizări redimensionate. Rezultatele sunt aproximative și rămân pe acest dispozitiv.",
       "maxColors": "Număr maxim de culori",
@@ -1735,6 +1825,7 @@
     "aspect-ratio": {
       "name": "Raport de aspect",
       "description": "Reduce lățimea și înălțimea la un raport sau calculează latura lipsă.",
+      "summary": "Simplifică o lățime și o înălțime la raportul cel mai simplu sau calculează latura lipsă dintr-un raport pe care îl știi.",
       "keywords": "raport de aspect 16:9 dimensiuni latură lipsă",
       "mode": "Mod",
       "modeFromSize": "Din dimensiuni",
@@ -1751,6 +1842,7 @@
     "meeting-planner": {
       "name": "Planificator de întâlniri",
       "description": "Găsește ferestre de program de lucru care se suprapun pe fusuri orare.",
+      "summary": "Găsește ora care merge pentru toată lumea comparând programul de lucru în mai multe fusuri orare într-o zi aleasă.",
       "keywords": "întâlnire fus orar suprapunere ceas mondial program de lucru",
       "limits": "Suprapunerea folosește fusuri orare IANA și date calendaristice locale. Orele sunt ore UTC întregi în care fiecare fus este încă în data aleasă și în intervalul de program.",
       "date": "Data",
@@ -1770,6 +1862,7 @@
     "json-query": {
       "name": "Interogare JSON",
       "description": "Aplatizează JSON imbricat sau citește valori JSONPath simple.",
+      "summary": "Aplatizează JSON-ul adânc imbricat în rânduri sau extrage valori individuale cu o expresie JSONPath simplă, precum $.items[0].name.",
       "keywords": "json path interogare aplatizare jq",
       "limits": "Suportă un subset mic de JSONPath: $.a.b, $.items[0] și $['key']. Caracterele joker și filtrele nu sunt incluse.",
       "mode": "Mod",
@@ -1784,6 +1877,7 @@
     "check-digits": {
       "name": "Cifre de control",
       "description": "Validează local ISBN-10/13, EAN-13 și IBAN.",
+      "summary": "Validează cifra de control a unui ISBN-10, ISBN-13, EAN-13 sau IBAN și vezi la ce poziție eșuează o introducere greșită.",
       "keywords": "isbn ean iban cifră de control cod de bare validare",
       "limits": "Verifică doar algoritmii publicați pentru cifre de control. O cifră de control validă nu dovedește că numărul este atribuit sau că există un cont.",
       "kind": "Tip",

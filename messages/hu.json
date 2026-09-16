@@ -518,6 +518,7 @@
     "pdf-merge": {
       "name": "PDF-ek egyesítése",
       "description": "Több PDF egymásra rakása egyetlen fájlba. Oldalak előnézete és húzás a sorrendhez.",
+      "summary": "Több PDF összefűzése egyetlen fájlba, az oldalak előnézetével és áthúzásával a kívánt sorrendbe mentés előtt.",
       "keywords": "pdf egyesítés összevonás összekapcsolás fűzés többoldalas",
       "run": "Egyesítés",
       "empty": "Adj hozzá legalább két PDF-fájlt.",
@@ -526,6 +527,7 @@
     "pdf-split": {
       "name": "PDF darabolása",
       "description": "Oldaltartomány kinyerése egy vadonatúj PDF-be.",
+      "summary": "Egy vagy több oldaltartomány kiemelése egy PDF-ből új fájlba, vagy egy dokumentum felosztása több részre, feltöltés nélkül.",
       "keywords": "pdf darabolás kinyerés oldalak tartomány",
       "run": "Darabolás",
       "range": "Oldalak (például 1-3,5)",
@@ -534,6 +536,7 @@
     "pdf-organize": {
       "name": "Oldalak rendezése",
       "description": "Oldalak forgatása, a feleslegesek törlése és új sorrend beállítása.",
+      "summary": "PDF oldalainak forgatása, törlése és átrendezése, majd az átrendezett dokumentum mentése. Semmi nem hagyja el a készülékedet.",
       "keywords": "pdf forgatás törlés átrendezés rendezés oldalak",
       "run": "PDF mentése",
       "success": "A PDF frissült.",
@@ -542,6 +545,7 @@
     "pdf-compress": {
       "name": "Kicsinyítés képként",
       "description": "Minden oldalt JPEG-képpé raszterizál. A szöveg, a hivatkozások és a vektorok nem maradnak meg.",
+      "summary": "PDF kisebbítése, ha minden oldalt JPEG-ként rajzol ki a választott minőségben és méretben — könnyebb fájl jelölhető szöveg nélkül.",
       "keywords": "pdf tömörítés csökkentés méret kisebb",
       "run": "Kicsinyítés",
       "note": "Minden oldal JPEG-kép lesz, majd új PDF készül. A kereshető szöveg, a hivatkozások és a vektorok eltűnnek. A fájl nőhet. Fénykép-szkenneléshez való, nem kereshető szerződésekhez.",
@@ -550,6 +554,7 @@
     "pdf-watermark": {
       "name": "PDF vízjel",
       "description": "Szöveg pecsételése vízjelként, élőfejként vagy élőlábként minden oldalra.",
+      "summary": "Szöveg pecsételése minden oldalra vízjelként, fej- vagy láblécként, a szöveg, méret, szög, átlátszóság és hely megválasztásával.",
       "keywords": "pdf vízjel pecsét élőfej élőláb bizalmas",
       "run": "Alkalmazás",
       "text": "Vízjel szövege",
@@ -563,6 +568,7 @@
     "pdf-redact": {
       "name": "Tartalom takarása",
       "description": "Fekete téglalapok érzékeny területekre (csak vizuális takarás).",
+      "summary": "Oldalak lefedése fekete téglalapokkal, hogy rejtve maradjon, amit nem szabad elolvasni. Vizuális takarás, nem igazi kitakarás: a szöveg ott van alatta.",
       "keywords": "pdf kitakarás feketítés elrejtés érzékeny",
       "run": "Takarás alkalmazása",
       "note": "Ez csak vizuális takarás. Nem garantálja minden mögöttes szövegfolyam eltávolítását — ellenőrizd az érzékeny dokumentumokat.",
@@ -574,6 +580,7 @@
     "pdf-extract": {
       "name": "Kinyerés PDF-ből",
       "description": "Olvasható szöveg kinyerése vagy egy oldal exportálása képként.",
+      "summary": "A jelölhető szöveg kiemelése egy PDF-ből, vagy az oldalak exportálása JPEG-képként ZIP-ben, a dokumentum elküldése nélkül.",
       "keywords": "pdf kinyerés szöveg képek",
       "run": "Kinyerés",
       "modeText": "Szöveg",
@@ -585,6 +592,7 @@
     "image-compress": {
       "name": "Képek tömörítése",
       "description": "Csökkentsd a minőséget és a maximális méretet, hogy a fotók könnyen megoszthatók maradjanak.",
+      "summary": "Fotók kisebbítése e-mailhez, csevegéshez vagy webhez a minőség csökkentésével, a hosszabb oldal korlátozásával, vagy mindkettővel.",
       "keywords": "kép tömörítés jpg png webp méret fotó",
       "run": "Tömörítés",
       "success": "{count} kép tömörítve."
@@ -592,6 +600,7 @@
     "image-resize": {
       "name": "Képek átméretezése",
       "description": "Pontos méretek beállítása, opcionális oldalarány-zárral.",
+      "summary": "Kép beállítása pontos képpontméretre, vagy méretezése százalékban, a képarány megtartásával, amikor meg akarod tartani.",
       "keywords": "kép átméretezés skála méretek szélesség magasság",
       "run": "Átméretezés",
       "lockAspect": "Oldalarány megtartása",
@@ -600,6 +609,7 @@
     "image-crop": {
       "name": "Kép vágása",
       "description": "Csak azt a téglalapot tartsd meg, ami számít.",
+      "summary": "Fotó körbevágása arra a részre, amely számít, a kijelölés áthúzásával, majd csak az a téglalap exportálása.",
       "keywords": "kép vágás kivágás terület",
       "run": "Vágás",
       "success": "A vágott kép kész."
@@ -607,6 +617,7 @@
     "image-convert": {
       "name": "Képformátum átalakítása",
       "description": "Váltás JPEG, PNG, WEBP és hasonló webes formátumok között.",
+      "summary": "Átváltás JPEG, PNG, WEBP, AVIF és GIF között, egy képpel vagy egy egész köteggel, a képek feltöltése nélkül.",
       "keywords": "kép átalakítás formátum webp png jpg jpeg",
       "run": "Átalakítás",
       "success": "{count} kép átalakítva."
@@ -614,6 +625,7 @@
     "image-metadata": {
       "name": "Kép metaadatai",
       "description": "EXIF és hasonló címkék megtekintése, majd tiszta másolat exportálása nélkülük.",
+      "summary": "A fotóban tárolt EXIF megtekintése — fényképezőgép, objektív, dátum, GPS —, majd másolat mentése ezek nélkül.",
       "keywords": "kép exif metaadat eltávolítás adatvédelem hely",
       "run": "Metaadatok eltávolítása",
       "note": "A pixelek a böngészőben újra kódolódnak, így a beágyazott metaadatok kiesnek.",
@@ -625,6 +637,7 @@
     "image-adjust": {
       "name": "Kép igazítása",
       "description": "Fényerő, kontraszt és telítettség finomhangolása.",
+      "summary": "Fényerő, kontraszt, telítettség és expozíció javítása szemre, a csúszka mozgatásakor újrarajzolt eredménnyel.",
       "keywords": "kép fényerő kontraszt telítettség szín",
       "run": "Alkalmazás",
       "brightness": "Fényerő",
@@ -635,6 +648,7 @@
     "convert-hub": {
       "name": "Okos átalakítás",
       "description": "Vegyes fájl- vagy szövegtípusok felismerése és konverzió formátumok között (nem médiastúdió).",
+      "summary": "Vegyes tartalom beillesztése, és a Kit kitalálja, mi az — JSON, CSV, YAML, XML, TOML vagy SQL —, majd átalakítja más formátumba.",
       "keywords": "átalakítás hub okos köteg json yaml csv zip kép adat",
       "run": "Átalakítás",
       "detect": "Felismerve mint",
@@ -644,6 +658,7 @@
     "json-format": {
       "name": "JSON-formázó",
       "description": "Szép formázás, tömörítés és a JSON-hibák korai kiszűrése.",
+      "summary": "JSON szép formázása vagy tömörítése, és pontosan látszik, hol a szintaktikai hiba, a vétkes sor kiemelésével.",
       "keywords": "json formázás ellenőrzés minifikálás pretty",
       "run": "Formázás",
       "success": "A JSON érvényesnek tűnik és formázva van."
@@ -651,6 +666,7 @@
     "yaml-format": {
       "name": "YAML-formázó",
       "description": "YAML-szerkezet ellenőrzése és az elrendezés rendezése.",
+      "summary": "YAML ellenőrzése szerkezeti hibákra és a behúzás rendezése, hogy a konfigurációs fájl úgy olvasódjon, ahogy kell.",
       "keywords": "yaml formázás ellenőrzés yml",
       "run": "Formázás",
       "success": "A YAML érvényesnek tűnik."
@@ -658,6 +674,7 @@
     "toml-format": {
       "name": "TOML-formázó",
       "description": "TOML ellenőrzése és a fájl rendben tartása.",
+      "summary": "TOML ellenőrzése és rendezett elrendezése, elkapva azokat a szintaktikai hibákat, amelyeket a konfigurációs értelmező elutasítana.",
       "keywords": "toml formázás ellenőrzés config",
       "run": "Formázás",
       "success": "A TOML érvényesnek tűnik."
@@ -665,6 +682,7 @@
     "markdown-html": {
       "name": "Markdown ↔ HTML",
       "description": "Markdown átalakítása HTML-lé, vagy HTML vissza Markdownná.",
+      "summary": "Markdown átalakítása HTML-lé vagy vissza Markdownná, a címek, hivatkozások, listák, táblázatok és kód megtartásával.",
       "keywords": "markdown html átalakítás md jelölés",
       "run": "Átalakítás",
       "toHtml": "Markdown → HTML",
@@ -674,6 +692,7 @@
     "csv-json": {
       "name": "CSV ↔ JSON",
       "description": "Táblázatos adatok mozgatása CSV és JSON-tömbök között.",
+      "summary": "CSV-fájl átalakítása JSON-tömbbé, vagy JSON vissza CSV-vé, az elválasztó és a fejlécsor feletti ellenőrzéssel.",
       "keywords": "csv json átalakítás tábla táblázat",
       "run": "Átalakítás",
       "toJson": "CSV → JSON",
@@ -683,6 +702,7 @@
     "text-diff": {
       "name": "Szöveg-összehasonlítás",
       "description": "Soronkénti változások két verzió között.",
+      "summary": "Két vázlat összehasonlítása egymás mellett, és annak megtekintése, mely sorok kerültek be, tűntek el vagy változtak, karakterig.",
       "keywords": "diff összehasonlítás szöveg változások patch",
       "run": "Összehasonlítás",
       "left": "Eredeti",
@@ -692,6 +712,7 @@
     "base64": {
       "name": "Base64",
       "description": "Base64 kódolása vagy dekódolása sima szöveghez vagy egész fájlokhoz.",
+      "summary": "Szöveg vagy egy egész fájl kódolása Base64-ként, vagy visszafejtése, anélkül hogy a tartalom elhagyná a böngészőt.",
       "keywords": "base64 kódolás dekódolás bináris",
       "run": "Átalakítás",
       "mode": "Irány",
@@ -702,6 +723,7 @@
     "url-encode": {
       "name": "URL-kódolás",
       "description": "URL-részek biztonságos percent-kódolása vagy dekódolása.",
+      "summary": "URL, lekérdezési karakterlánc vagy űrlapérték százalékos kódolása, vagy egy már kódolt érték visszafejtése.",
       "keywords": "url kódolás dekódolás percent uri lekérdezés",
       "run": "Átalakítás",
       "success": "Kész."
@@ -709,6 +731,7 @@
     "audio-convert": {
       "name": "Hang átalakítása",
       "description": "Hangkonténerek cseréje, például MP3, WAV és OGG a böngészőben.",
+      "summary": "Hang átalakítása MP3, WAV, OGG, M4A és más gyakori formátumok között a böngészőben, a szükséges bitrátával.",
       "keywords": "audio átalakítás mp3 wav ogg ffmpeg hang",
       "run": "Átalakítás",
       "loadingFfmpeg": "A hangmotor betöltése…",
@@ -722,6 +745,7 @@
     "audio-trim": {
       "name": "Hang vágása",
       "description": "Csak a két időbélyeg közötti szakasz megtartása egy hangfájlban.",
+      "summary": "Hangfájl levágása a két időbélyeg közötti részre, a kezdés és a vég másodperc pontosságú állításával.",
       "keywords": "audio vágás kivágás klip mp3 wav",
       "run": "Vágás",
       "success": "A hangvágás kész."
@@ -729,6 +753,7 @@
     "audio-speed": {
       "name": "Hangsebesség és hangerő",
       "description": "Hang gyorsítása, lassítása vagy hangerőjének módosítása.",
+      "summary": "Hangfájl gyorsítása vagy lassítása a hangmagasság megváltoztatása nélkül, és a végeredmény hangerősségének beállítása.",
       "keywords": "audio tempó sebesség hangerő hangmagasság",
       "run": "Alkalmazás",
       "success": "A feldolgozott hang kész."
@@ -736,6 +761,7 @@
     "video-convert": {
       "name": "Videó átalakítása",
       "description": "Videókonténerek cseréje, például MP4 és WEBM a böngészőben.",
+      "summary": "Videó átalakítása MP4, WEBM és MKV között a böngészőben, ésszerű H.264 és AAC beállításokkal előre kiválasztva.",
       "keywords": "video átalakítás mp4 webm ffmpeg film",
       "run": "Átalakítás",
       "loadingFfmpeg": "A videómotor betöltése…",
@@ -745,6 +771,7 @@
     "video-trim": {
       "name": "Videó vágása",
       "description": "Csak a két időbélyeg közötti klip megtartása.",
+      "summary": "Videó levágása a kívánt részre egy kezdő- és egy végpont megadásával, majd csak az a szakasz exportálása fájlba.",
       "keywords": "video vágás kivágás klip mp4",
       "run": "Vágás",
       "success": "A videóvágás kész."
@@ -752,6 +779,7 @@
     "video-speed": {
       "name": "Videósebesség és hangerő",
       "description": "A videó lejátszási sebességének és hangsávjának módosítása.",
+      "summary": "Videó lejátszási sebességének módosítása, a hangot lépést tartva vagy lecserélve, és a szint beállítása mentés előtt.",
       "keywords": "video tempó sebesség hangerő",
       "run": "Alkalmazás",
       "success": "A feldolgozott videó kész."
@@ -759,6 +787,7 @@
     "video-extract-audio": {
       "name": "Hang kinyerése videóból",
       "description": "A videó hangsávjának mentése hangfájlként.",
+      "summary": "A hangsáv kiemelése egy videóból és mentése önálló hangfájlként, bármi újrafelvétele nélkül.",
       "keywords": "video kinyerés audio mp3 hangsáv",
       "run": "Hang kinyerése",
       "success": "Hang kinyerve."
@@ -766,6 +795,7 @@
     "pdf-numbers": {
       "name": "Oldalszámok",
       "description": "Oldalcímke pecsételése, például 1 / 12, minden oldalra.",
+      "summary": "Oldalszámok hozzáadása a választott formátumban, például 1 / 12 vagy 1 a 12-ből, minden oldalon a kívánt helyen.",
       "keywords": "pdf oldalszámok élőláb élőfej lapszámozás",
       "run": "Számok hozzáadása",
       "template": "Címke ({page} és {pages})",
@@ -782,6 +812,7 @@
     "pdf-to-images": {
       "name": "PDF → képek",
       "description": "Minden oldal raszterizálása JPEG-gé, majd letöltés ZIP-ként.",
+      "summary": "PDF minden oldalának átalakítása JPEG-képpé a választott felbontásban, és a teljes sorozat letöltése ZIP-fájlként.",
       "keywords": "pdf kép jpg jpeg zip oldalak export",
       "run": "Oldalak exportálása",
       "limits": "Az oldalakat a PDF.js rajzolja ebben a lapon. A nagyon nagy dokumentumok lassúak lehetnek és sok memóriát használhatnak. Ez vizuális raszter, nem a beágyazott képtárgyak kinyerése.",
@@ -790,6 +821,7 @@
     "images-to-pdf": {
       "name": "Képek → PDF",
       "description": "Fotók egymásra rakása PDF-be, oldalanként egy kép.",
+      "summary": "Fotók és szkennelések összefűzése egyetlen PDF-be, oldalanként egy képpel, A4-hez igazítva vagy eredeti méretben.",
       "keywords": "képek pdf jpg png egyesítés",
       "run": "PDF létrehozása",
       "success": "{count, plural, one {PDF # képből.} other {PDF # képből.}}",
@@ -800,6 +832,7 @@
     "pdf-flatten": {
       "name": "Űrlapok lapítása",
       "description": "AcroForm-mezők beégetése az oldalba, hogy ne legyenek szerkeszthetők.",
+      "summary": "Kitöltött űrlapmezők állandó oldaltartalommá alakítása, hogy a PDF mindenhol ugyanúgy nyomtatható és olvasható legyen.",
       "keywords": "pdf lapítás űrlap mezők acroform",
       "run": "Lapítás",
       "limits": "A szabványos AcroForm-mezőkön működik. A dinamikus XFA-űrlapok nem teljesen támogatottak.",
@@ -808,6 +841,7 @@
     "pdf-metadata": {
       "name": "PDF-metaadatok",
       "description": "Cím, szerző és egyéb Info-mezők megtekintése, szerkesztése vagy eltávolítása.",
+      "summary": "PDF címe, szerzője, kulcsszavai és egyéb dokumentumtulajdonságai olvasása, szerkesztése vagy törlése, majd tiszta másolat mentése.",
       "keywords": "Kulcsszavak",
       "run": "Metaadatok mentése",
       "strip": "Info-mezők és XMP törlése",
@@ -822,6 +856,7 @@
     "pdf-protect": {
       "name": "PDF zárolása vagy feloldása",
       "description": "Felhasználói jelszó hozzáadása vagy eltávolítása. A titkosítás ebben a böngészőben marad.",
+      "summary": "Jelszó hozzáadása egy PDF-hez vagy egy ismert jelszó eltávolítása, a titkosítással ebben a lapon, nem egy kiszolgálón.",
       "keywords": "pdf jelszó zárolás feloldás titkosítás visszafejtés",
       "run": "Alkalmazás",
       "lock": "Zárolás",
@@ -833,6 +868,7 @@
     "image-rotate": {
       "name": "Forgatás és tükrözés",
       "description": "Képek forgatása 90°-onként, vagy vízszintes illetve függőleges tükrözése.",
+      "summary": "Fotók forgatása negyed fordulattal, kiegyenesítésük néhány fokkal, vagy tükrözésük — egy kép vagy egy egész köteg.",
       "keywords": "kép forgatás tükrözés tükör",
       "run": "Alkalmazás",
       "operation": "Átalakítás",
@@ -846,6 +882,7 @@
     "image-filters": {
       "name": "Képszűrők",
       "description": "Szürkeárnyalat, szépia vagy invertálás egy vagy több fotón.",
+      "summary": "Szürkeárnyalat, szépia, invertálás, elmosás vagy élesítés alkalmazása egy fotóra vagy egy egész mappára, majd az eredmény letöltése.",
       "keywords": "kép szűrő szürkeárnyalat szépia invertálás",
       "run": "Alkalmazás",
       "filter": "Szűrő",
@@ -857,6 +894,7 @@
     "image-favicon": {
       "name": "Favicon-csomag",
       "description": "Forráskép exportálása gyakori ikonméretekben, ZIP-ben.",
+      "summary": "Egy kép átalakítása azokra az ikonméretekre, amelyeket egy webhely vagy alkalmazás kér — favicon, Apple ikon, Android maskable — egy ZIP-ben.",
       "keywords": "favicon ikon 16 32 180 192 512 apple touch",
       "run": "Ikonok exportálása",
       "note": "PNG-fájlokat exportál 16, 32, 48, 180, 192 és 512 pixelen.",
@@ -865,6 +903,7 @@
     "video-gif": {
       "name": "Videó → GIF",
       "description": "Rövid klip hurkolt GIF-fé alakítása a böngészőben.",
+      "summary": "Videó rövid szakaszának átalakítása ismétlődő GIF-fé, a kezdés és a vég kiválasztásával. Hosszú részletek kódolása lassú.",
       "keywords": "video gif klip átalakítás ffmpeg",
       "run": "GIF készítése",
       "limits": "FFmpeg WASM-ot használ. Tartsd röviden a klipeket — a GIF-kódolás lassú és memóriazabáló. A paletta és a kodekek a böngészős buildet követik.",
@@ -873,6 +912,7 @@
     "xml-json": {
       "name": "XML ↔ JSON",
       "description": "XML-dokumentumok konvertálása JSON-né, vagy JSON vissza XML-lé.",
+      "summary": "XML-dokumentum átalakítása JSON-ná vagy JSON vissza XML-lé, az attribútumok és ismétlődő elemek kiszámítható formában tartásával.",
       "keywords": "xml json átalakítás parse",
       "run": "Átalakítás",
       "toJson": "XML → JSON",
@@ -882,6 +922,7 @@
     "sql-format": {
       "name": "SQL-formázó",
       "description": "SQL szép formázása, hogy a záradékok és listák olvashatóbbak legyenek.",
+      "summary": "SQL újraformázása, hogy a záradékok, illesztések és hosszú oszloplisták egy vonalba kerüljenek, és futási sorrendben olvasódjanak.",
       "keywords": "sql formázás pretty lekérdezés",
       "run": "Formázás",
       "success": "SQL formázva."
@@ -889,6 +930,7 @@
     "regex-tester": {
       "name": "Regex-tesztelő",
       "description": "Reguláris kifejezés kipróbálása mintaszövegen és a találatok cseréje.",
+      "summary": "Reguláris kifejezés kipróbálása a saját mintaszövegeden, az egyezések kiemelésének megfigyelése, és a csere kipróbálása.",
       "keywords": "regex reguláris kifejezés teszt csere",
       "pattern": "Minta",
       "flags": "Jelzők",
@@ -901,6 +943,7 @@
     "hash-generator": {
       "name": "Hash-generátor",
       "description": "Szöveg vagy fájl SHA-1/256/384/512 és MD5 értéke, helyben számolva.",
+      "summary": "SHA-1, SHA-256, SHA-384, SHA-512 vagy MD5 kiszámítása egy szövegre vagy egy egész fájlra, bármit elküldése nélkül.",
       "keywords": "hash sha256 md5 sha1 ellenőrzőösszeg digest",
       "run": "Hashelés",
       "algo": "Algoritmus",
@@ -911,6 +954,7 @@
     "uuid-generator": {
       "name": "UUID-generátor",
       "description": "4-es vagy 7-es verziójú UUID-k létrehozása ezen a készüléken.",
+      "summary": "4-es vagy 7-es verziójú UUID-k létrehozása egyenként vagy tömegesen, ezen a készüléken, nem egy kiszolgálón.",
       "keywords": "uuid guid v4 v7 generálás",
       "run": "Generálás",
       "count": "Hány darab",
@@ -920,6 +964,7 @@
     "color-convert": {
       "name": "Színkonverter",
       "description": "Konverzió HEX, RGB, HSL és HSV között, színválasztóval.",
+      "summary": "Szín átváltása HEX, RGB, HSL, HSV és CSS-nevek között, vagy kiválasztása a színkerékről, és az összes jelölés leolvasása egyszerre.",
       "keywords": "szín hex rgb hsl hsv választó",
       "picker": "Színválasztó",
       "invalid": "Adj meg 3 vagy 6 jegyű hex színt."
@@ -927,6 +972,7 @@
     "lorem-ipsum": {
       "name": "Lorem ipsum",
       "description": "Helykitöltő bekezdések, mondatok vagy szavak generálása.",
+      "summary": "Helykitöltő szöveg létrehozása bekezdésként, mondatként vagy szóként egy elrendezéshez, a szükséges mennyiségben.",
       "keywords": "lorem ipsum helykitöltő dummy szöveg",
       "run": "Generálás",
       "count": "Darabszám",
@@ -939,6 +985,7 @@
     "qr-code": {
       "name": "QR-kód",
       "description": "QR-kód készítése szövegből, vagy beolvasása egy képről.",
+      "summary": "QR-kód készítése hivatkozásból, szövegből vagy névjegyadatokból és letöltése képként, vagy kód beolvasása egy képről.",
       "keywords": "qr kód generálás beolvasás olvasás barcode",
       "run": "Generálás",
       "payload": "Szöveg vagy URL",
@@ -951,6 +998,7 @@
     "pdf-sign": {
       "name": "PDF aláírása",
       "description": "Gépelt aláírás pecsételése minden oldalra. Csak vizuális — nem tanúsítvány.",
+      "summary": "Beírt aláírás elhelyezése a kiválasztott oldalakon. Olvasásra rajzolódik az oldalra, nem kriptográfiai aláírás.",
       "keywords": "pdf aláírás pecsét név",
       "run": "Aláírás",
       "signature": "Aláírás szövege",
@@ -961,6 +1009,7 @@
     "image-watermark": {
       "name": "Képek vízjelezése",
       "description": "Szöveg ráhelyezése fotókra, egy fájlra vagy egy egész kötegre.",
+      "summary": "Szöveg rétegzése a fotóidra — a hely, méret, szín és átlátszóság megválasztásával — egy képre vagy egy egész kötegre.",
       "keywords": "kép vízjel pecsét copyright",
       "run": "Alkalmazás",
       "text": "Vízjel szövege",
@@ -974,6 +1023,7 @@
     "password-generator": {
       "name": "Jelszógenerátor",
       "description": "Erős jelszó létrehozása ezen a készüléken. Semmi sem tárolódik.",
+      "summary": "Erős jelszó létrehozása a választott hosszal és karakterkészlettel. Ezen a készüléken készül, és soha nem tárolódik.",
       "keywords": "jelszó generálás véletlen titkos",
       "run": "Generálás",
       "length": "Hossz",
@@ -986,6 +1036,7 @@
     "case-convert": {
       "name": "Kis- és nagybetű",
       "description": "Váltás camel, snake, kebab, title és más stílusok között.",
+      "summary": "Szöveg váltogatása camelCase, snake_case, kebab-case, Title Case és a fejlesztők többi szokása között.",
       "keywords": "kisbetű camel snake kebab pascal title",
       "run": "Átalakítás",
       "style": "Stílus",
@@ -994,6 +1045,7 @@
     "jwt-decode": {
       "name": "JWT-dekódoló",
       "description": "JWT-fejléc és payload helyi olvasása. Az aláírások nincsenek ellenőrizve.",
+      "summary": "JSON Web Token fejlécének és tartalmának olvasása, a lejárat megtekintése és helyi visszafejtése. Az aláírás nem ellenőrzött.",
       "keywords": "jwt dekódolás token bearer auth",
       "run": "Dekódolás",
       "limits": "A Kit csak Base64url-t dekódol. Kulcs nélkül nem tudja igazolni a token hitelességét.",
@@ -1005,12 +1057,14 @@
     "unix-timestamp": {
       "name": "Unix időbélyeg",
       "description": "Unix-idő konvertálása ISO-ra és vissza.",
+      "summary": "Unix időbélyeg átalakítása olvasható dátummá és idővé, vagy fordítva, a választott időzónában.",
       "keywords": "unix epoch időbélyeg iso dátum",
       "now": "Most használata"
     },
     "cron-explain": {
       "name": "Cron-magyarázó",
       "description": "5 mezős cron-kifejezés közérthető nyelvre fordítása.",
+      "summary": "Ötmezős cron-kifejezés átalakítása egyszerű mondattá, hogy világos legyen, mikor és milyen gyakran fut egy ütemezett feladat.",
       "keywords": "cron ütemezés crontab magyarázat",
       "run": "Magyarázat",
       "success": "Megmagyarázva."
@@ -1018,6 +1072,7 @@
     "number-base": {
       "name": "Számrendszer",
       "description": "Egészek konvertálása a 2-es és 36-os alapok között.",
+      "summary": "Egész szám átváltása bináris, oktális, tizedes, hexadecimális és bármely 2 és 36 közötti számrendszer között, a bitmintázat megjelenítésével.",
       "keywords": "bináris hex decimális alap átalakítás",
       "value": "Szám",
       "from": "Erről az alapról",
@@ -1026,6 +1081,7 @@
     "html-entities": {
       "name": "HTML-entitások",
       "description": "&lt; &amp; és numerikus entitások kódolása vagy dekódolása.",
+      "summary": "Kacsacsőrök, idézőjelek és numerikus HTML-entitások kódolása vagy visszafejtése, hogy a szöveg biztonságos legyen a jelölésben.",
       "keywords": "html entitások kódolás dekódolás escape",
       "run": "Átalakítás",
       "encode": "Kódolás",
@@ -1035,6 +1091,7 @@
     "json-types": {
       "name": "JSON → TypeScript",
       "description": "TypeScript-interfészek következtetése egy JSON-mintából.",
+      "summary": "Minta JSON-válasz átalakítása TypeScript-interfészekké, a beágyazott objektumok és tömbök olyan mélységig tipizálva, ameddig a minta engedi.",
       "keywords": "json typescript interface típus generálás",
       "run": "Típusok generálása",
       "success": "Típusok létrehozva."
@@ -1102,113 +1159,113 @@
       "categoryElectricalDescription": "Feszültség, áram és ellenállás",
       "categoryTypography": "Tipográfia",
       "categoryTypographyDescription": "CSS- és nyomtatási méretek",
-      "unitMm": "Millimeters (mm)",
-      "unitCm": "Centimeters (cm)",
-      "unitM": "Meters (m)",
-      "unitKm": "Kilometers (km)",
-      "unitIn": "Inches (in)",
-      "unitFt": "Feet (ft)",
-      "unitYd": "Yards (yd)",
-      "unitMi": "Miles (mi)",
+      "unitMm": "Milliméter (mm)",
+      "unitCm": "Centiméter (cm)",
+      "unitM": "Méter (m)",
+      "unitKm": "Kilométer (km)",
+      "unitIn": "Hüvelyk (in)",
+      "unitFt": "Láb (ft)",
+      "unitYd": "Yard (yd)",
+      "unitMi": "Mérföld (mi)",
       "unitNmi": "Tengeri mérföld (nmi)",
-      "unitMg": "Milligrams (mg)",
-      "unitG": "Grams (g)",
-      "unitKg": "Kilograms (kg)",
-      "unitT": "Metric tonnes (t)",
-      "unitOz": "Ounces (oz)",
-      "unitLb": "Pounds (lb)",
+      "unitMg": "Milligramm (mg)",
+      "unitG": "Gramm (g)",
+      "unitKg": "Kilogramm (kg)",
+      "unitT": "Metrikus tonna (t)",
+      "unitOz": "Uncia (oz)",
+      "unitLb": "Font (lb)",
       "unitStone": "Stone (st)",
       "unitC": "Celsius (°C)",
       "unitF": "Fahrenheit (°F)",
       "unitK": "Kelvin (K)",
-      "unitMs": "Milliseconds",
-      "unitS": "Seconds",
-      "unitMin": "Minutes",
-      "unitH": "Hours",
-      "unitDay": "Days",
-      "unitWeek": "Weeks",
-      "unitM_s": "Meters per second",
-      "unitKm_h": "Kilometers per hour",
-      "unitMph": "Miles per hour",
+      "unitMs": "Ezredmásodperc",
+      "unitS": "Másodperc",
+      "unitMin": "Perc",
+      "unitH": "Óra",
+      "unitDay": "Nap",
+      "unitWeek": "Hét",
+      "unitM_s": "Méter másodpercenként",
+      "unitKm_h": "Kilométer óránként",
+      "unitMph": "Mérföld óránként",
       "unitKnot": "Csomó",
-      "unitMl": "Milliliters",
-      "unitL": "Liters",
-      "unitM3": "Cubic meters",
-      "unitUsTsp": "US teáskanál",
-      "unitUsTbsp": "US evőkanál",
-      "unitUsCup": "US csésze",
-      "unitUsGal": "US gallon",
-      "unitImpGal": "Birodalmi gallon",
+      "unitMl": "Milliliter",
+      "unitL": "Liter",
+      "unitM3": "Köbméter",
+      "unitUsTsp": "Amerikai teáskanál",
+      "unitUsTbsp": "Amerikai evőkanál",
+      "unitUsCup": "Amerikai csésze",
+      "unitUsGal": "Amerikai gallon",
+      "unitImpGal": "Angol gallon",
       "unitW": "Watts",
       "unitKw": "Kilowatts",
       "unitMw": "Megawatts",
-      "unitHp": "Mechanikai lóerő",
+      "unitHp": "Mechanikus lóerő",
       "unitJ": "Joules",
       "unitKj": "Kilojoules",
-      "unitWh": "Watt-hours",
-      "unitKwh": "Kilowatt-hours",
-      "unitCal": "Calories",
-      "unitKcal": "Kilocalories",
-      "unitEv": "Electronvolts",
+      "unitWh": "Wattóra",
+      "unitKwh": "Kilowattóra",
+      "unitCal": "Kalória",
+      "unitKcal": "Kilokalória",
+      "unitEv": "Elektronvolt",
       "unitPa": "Pascals",
       "unitKpa": "Kilopascals",
-      "unitBar": "Bar",
+      "unitBar": "Bár",
       "unitPsi": "PSI",
-      "unitAtm": "Atmospheres",
-      "unitMmHg": "Millimeters of mercury",
-      "unitMm2": "Square millimeters",
-      "unitCm2": "Square centimeters",
-      "unitM2": "Square meters",
-      "unitKm2": "Square kilometers",
-      "unitFt2": "Square feet",
-      "unitAcre": "Acres",
-      "unitHectare": "Hectares",
-      "unitBit": "Bits",
-      "unitB": "Bytes",
-      "unitKb": "Kilobytes",
-      "unitMb": "Megabytes",
-      "unitGb": "Gigabytes",
-      "unitTb": "Terabytes",
-      "unitKib": "Kibibytes",
-      "unitMib": "Mebibytes",
-      "unitGib": "Gibibytes",
-      "unitDeg": "Degrees",
-      "unitRad": "Radians",
-      "unitGrad": "Gradians",
-      "unitTurn": "Turns",
+      "unitAtm": "Atmoszféra",
+      "unitMmHg": "Higanymilliméter",
+      "unitMm2": "Négyzetmilliméter",
+      "unitCm2": "Négyzetcentiméter",
+      "unitM2": "Négyzetméter",
+      "unitKm2": "Négyzetkilométer",
+      "unitFt2": "Négyzetláb",
+      "unitAcre": "Acre",
+      "unitHectare": "Hektár",
+      "unitBit": "Bit",
+      "unitB": "Byte",
+      "unitKb": "Kilobyte",
+      "unitMb": "Megabyte",
+      "unitGb": "Gigabyte",
+      "unitTb": "Terabyte",
+      "unitKib": "Kibibyte",
+      "unitMib": "Mebibyte",
+      "unitGib": "Gibibyte",
+      "unitDeg": "Fok",
+      "unitRad": "Radián",
+      "unitGrad": "Gradián",
+      "unitTurn": "Fordulat",
       "unitHz": "Hertz",
       "unitKhz": "Kilohertz",
       "unitMhz": "Megahertz",
       "unitGhz": "Gigahertz",
-      "unitRpm": "Revolutions per minute",
-      "unitN": "Newtons",
-      "unitKn": "Kilonewtons",
-      "unitLbf": "Pound-force",
-      "unitKgf": "Kilogram-force",
-      "unitL_100km": "Liters per 100 km",
-      "unitKm_L": "Kilometers per liter",
-      "unitMpgUs": "Miles per US gallon",
-      "unitMpgImperial": "Miles per imperial gallon",
-      "unitM_s2": "Meters per second squared",
-      "unitG0": "Standard gravity",
-      "unitFt_s2": "Feet per second squared",
-      "unitNm": "Newton-meters",
-      "unitKnm": "Kilonewton-meters",
-      "unitLbFt": "Pound-feet",
-      "unitLbIn": "Pound-inches",
-      "unitMv": "Millivolts",
-      "unitV": "Volts",
-      "unitKv": "Kilovolts",
-      "unitMa": "Milliamps",
-      "unitA": "Amps",
-      "unitKa": "Kiloamps",
-      "unitMOhm": "Milliohms",
-      "unitOhm": "Ohms",
-      "unitKOhm": "Kilohms",
-      "unitMOhmBig": "Megohms",
-      "unitPx": "Pixels",
-      "unitPt": "Points",
-      "unitPc": "Picas",
+      "unitRpm": "Fordulat percenként",
+      "unitN": "Newton",
+      "unitKn": "Kilonewton",
+      "unitLbf": "Font-erő",
+      "unitKgf": "Kilogramm-erő",
+      "unitL_100km": "Liter / 100 km",
+      "unitKm_L": "Kilométer literenként",
+      "unitMpgUs": "Mérföld amerikai gallononként",
+      "unitMpgImperial": "Mérföld angol gallononként",
+      "unitM_s2": "Méter másodpercenként négyzeten",
+      "unitG0": "Nehézségi gyorsulás",
+      "unitFt_s2": "Láb másodpercenként négyzeten",
+      "unitNm": "Newtonméter",
+      "unitKnm": "Kilonewtonméter",
+      "unitLbFt": "Font-láb",
+      "unitLbIn": "Font-hüvelyk",
+      "unitMv": "Millivolt",
+      "unitV": "Volt",
+      "unitKv": "Kilovolt",
+      "unitMa": "Milliamper",
+      "unitA": "Amper",
+      "unitKa": "Kiloamper",
+      "unitMOhm": "Milliohm",
+      "unitOhm": "Ohm",
+      "unitKOhm": "Kilohm",
+      "unitMOhmBig": "Megohm",
+      "unitPx": "Pixel",
+      "unitPt": "Pont",
+      "unitPc": "Pica",
       "unitRem": "rem",
       "unitEm": "em",
       "presetMetricImperial": "Metrikus ↔ angolszász",
@@ -1243,23 +1300,24 @@
       "parentFontSize": "Szülőelem betűmérete",
       "dpi": "DPI",
       "rateUnavailable": "Az árfolyam-szolgáltatás nem érhető el",
-      "unitUsFlOz": "US fluid ounces",
-      "unitUsPt": "US pints",
-      "unitUsQt": "US quarts",
+      "unitUsFlOz": "Amerikai folyadékuncia",
+      "unitUsPt": "Amerikai pint",
+      "unitUsQt": "Amerikai quart",
       "unitGw": "Gigawatts",
       "unitMj": "Megajoules",
       "unitMpa": "Megapascals",
-      "unitIn2": "Square inches",
-      "unitYd2": "Square yards",
-      "unitPb": "Petabytes",
-      "unitTib": "Tebibytes",
-      "unitPib": "Pebibytes",
-      "unitArcmin": "Arcminutes",
-      "unitArcsec": "Arcseconds"
+      "unitIn2": "Négyzethüvelyk",
+      "unitYd2": "Négyzetyard",
+      "unitPb": "Petabyte",
+      "unitTib": "Tebibyte",
+      "unitPib": "Pebibyte",
+      "unitArcmin": "Szögperc",
+      "unitArcsec": "Szögmásodperc"
     },
     "text-counter": {
       "name": "Szövegszámláló",
       "description": "Szavak, karakterek, mondatok, bekezdések és olvasási idő számlálása.",
+      "summary": "Szavak, karakterek, mondatok és bekezdések számlálása gépelés közben, az olvasási idő becslésével.",
       "keywords": "szószámláló karakterszámláló szövegstatisztika olvasási idő",
       "limits": "A számlálás elérhetőség esetén a böngésző natív Unicode-szegmentálását használja, így az emojikat és összetett karaktereket természetesebben kezeli.",
       "input": "Számolandó szöveg",
@@ -1276,6 +1334,7 @@
     "timezone-converter": {
       "name": "Világóra",
       "description": "Helyi dátum és idő átváltása időzónák között, világóra megtekintése.",
+      "summary": "Annak megtekintése, mennyi az idő a világ városaiban most, és egy pillanat átváltása időzónák között dátumváltáson át is.",
       "keywords": "időzóna átváltó világóra nyári időszámítás dátum idő",
       "limits": "Adja meg a forrásváros helyi idejét. Az átváltás az IANA időzóna-szabályait, a nyári időszámítás változásait is használja.",
       "convert": "Dátum és idő átváltása",
@@ -1325,6 +1384,7 @@
     "date-calculator": {
       "name": "Dátumkalkulátor",
       "description": "Dátumok összehasonlítása, idő hozzáadása és munkanapok számolása ünnepnapokkal.",
+      "summary": "Két dátum közötti távolság kiszámítása, napok és hónapok hozzáadása vagy kivonása, és munkanapok számolása az ünnepek körül.",
       "keywords": "dátumkalkulátor dátumkülönbség napok hozzáadása munkanapok ünnepek",
       "updated": "Dátum frissítve.",
       "invalid": "Ellenőrizze a bemeneteket.",
@@ -1363,6 +1423,7 @@
     "tip-split-calculator": {
       "name": "Borravaló- és számlamegosztó",
       "description": "Borravaló, adó, végösszeg és tisztességes részek számítása egy csoportnak.",
+      "summary": "A borravaló, az adó és a számla végösszegének kiszámítása, majd tisztességes felosztása annyi ember között, ahányan fizetnek.",
       "keywords": "borravaló kalkulátor számlamegosztás adó étterem részek",
       "limits": "A borravaló és az adó a részösszegből számítódik. A kerekített részek a maradékot az első személyek között osztják el, így az összeg stimmel.",
       "invalid": "Ellenőrizze a bemeneteket.",
@@ -1383,6 +1444,7 @@
     "stopwatch-timer": {
       "name": "Stopper és időzítő",
       "description": "Pontos stopper vagy visszaszámláló időzítő futtatása a böngészőben.",
+      "summary": "Pontos stopperóra használata résidőkkel, vagy visszaszámlálás nulláig egy lapon, amely tovább számol, míg máshol vagy.",
       "keywords": "stopper időzítő visszaszámlálás óra online időzítő",
       "saved": "Elmentve az előzményekbe.",
       "stopwatch": "Stopper",
@@ -1399,6 +1461,7 @@
     "random-generator": {
       "name": "Véletlenszám-generátor",
       "description": "Számok, logikai értékek, választások vagy jelszavak készítése mindennapi használatra.",
+      "summary": "Véletlen szám húzása, érmedobás, kockadobás vagy választás egy listáról, a beállított tartománnyal és eredményszámmal.",
       "keywords": "véletlenszám-generátor választó jelszógenerátor",
       "invalid": "Ellenőrizze a bemeneteket.",
       "limits": "A véletlenszerűség a böngésző Math.random forrását használja. Az eredmények mindennapi választásokhoz, nem kriptográfiai titkokhoz valók.",
@@ -1428,6 +1491,7 @@
     "currency-converter": {
       "name": "Pénznemváltó",
       "description": "Élő árfolyamok helyi gyorsítótárral",
+      "summary": "Váltás pénznemek között napi árfolyamokkal, a készülékeden tárolva, hogy az utolsó készlet kapcsolat nélkül is működjön.",
       "keywords": "valutaátváltó árfolyam pénz Frankfurter",
       "currency": "Pénznem",
       "limits": "Az árfolyamok a Frankfurtertől érkeznek az eszköz megnyitásakor vagy a Frissítés koppintásakor, és hat óráig maradnak a böngésző gyorsítótárában. Az összegek nem kerülnek elküldésre. Napi referenciaadatok, nem kereskedésre vagy adózásra.",
@@ -1451,6 +1515,7 @@
     "length-converter": {
       "name": "Hosszúság",
       "description": "Távolságok, méretek és utazás",
+      "summary": "Hossz átváltása méter, láb, mérföld, hüvelyk, centiméter és az utazás meg a felújítás többi mértékegysége között.",
       "keywords": "Hosszúság length converter",
       "run": "Átváltás rögzítése",
       "success": "Az átváltás mentve az előzményekbe."
@@ -1458,6 +1523,7 @@
     "mass-converter": {
       "name": "Tömeg",
       "description": "Tömegek milligrammtól tonnáig",
+      "summary": "Súly átváltása milligramm, gramm, kilogramm, tonna, font, uncia és stone között, főzéshez vagy szállításhoz.",
       "keywords": "Tömeg mass converter",
       "run": "Átváltás rögzítése",
       "success": "Az átváltás mentve az előzményekbe."
@@ -1465,6 +1531,7 @@
     "temperature-converter": {
       "name": "Hőmérséklet",
       "description": "Celsius, Fahrenheit és Kelvin",
+      "summary": "Hőmérséklet átváltása Celsius, Fahrenheit és Kelvin között, beleértve azokat a pontokat, ahol a víz fagy és forr.",
       "keywords": "Hőmérséklet temperature converter",
       "run": "Átváltás rögzítése",
       "success": "Az átváltás mentve az előzményekbe."
@@ -1472,6 +1539,7 @@
     "speed-converter": {
       "name": "Sebesség",
       "description": "Mindennapi és tengeri sebesség",
+      "summary": "Sebesség átváltása kilométer per óra, mérföld per óra, méter per szekundum és csomó között, útra, levegőre és vízre.",
       "keywords": "Sebesség speed converter",
       "run": "Átváltás rögzítése",
       "success": "Az átváltás mentve az előzményekbe."
@@ -1479,6 +1547,7 @@
     "duration-converter": {
       "name": "Időtartam",
       "description": "Milliszekundumtól hetekig",
+      "summary": "Időtartam átváltása ezredmásodperc, másodperc, perc, óra, nap és hét között, az érték mindkét irányú leolvasásával.",
       "keywords": "Időtartam duration converter",
       "run": "Átváltás rögzítése",
       "success": "Az átváltás mentve az előzményekbe."
@@ -1486,6 +1555,7 @@
     "volume-converter": {
       "name": "Térfogat",
       "description": "Metrikus és konyhai mértékek",
+      "summary": "Térfogat átváltása liter, milliliter, gallon, csésze, pint és a receptben szereplő mértékek között.",
       "keywords": "Térfogat volume converter",
       "run": "Átváltás rögzítése",
       "success": "Az átváltás mentve az előzményekbe."
@@ -1493,6 +1563,7 @@
     "power-converter": {
       "name": "Teljesítmény",
       "description": "Watt és lóerő",
+      "summary": "Teljesítmény átváltása watt, kilowatt, megawatt és metrikus vagy mechanikus lóerő között, gépekhez és motorokhoz.",
       "keywords": "Teljesítmény power converter",
       "run": "Átváltás rögzítése",
       "success": "Az átváltás mentve az előzményekbe."
@@ -1500,6 +1571,7 @@
     "energy-converter": {
       "name": "Energia",
       "description": "Joule, kalória és wattóra",
+      "summary": "Energia átváltása joule, kalória, kilokalória és kilowattóra között — a címkén vagy a villanyszámlán szereplő mértékegységekben.",
       "keywords": "Energia energy converter",
       "run": "Átváltás rögzítése",
       "success": "Az átváltás mentve az előzményekbe."
@@ -1507,6 +1579,7 @@
     "pressure-converter": {
       "name": "Nyomás",
       "description": "Pa, bar, PSI és mások",
+      "summary": "Nyomás átváltása pascal, bár, PSI, atmoszféra, torr és higanymilliméter között, gumikhoz vagy időjáráshoz.",
       "keywords": "Nyomás pressure converter",
       "run": "Átváltás rögzítése",
       "success": "Az átváltás mentve az előzményekbe."
@@ -1514,6 +1587,7 @@
     "area-converter": {
       "name": "Terület",
       "description": "Felület és földterület",
+      "summary": "Terület átváltása négyzetméter, négyzetláb, acre, hektár és a telek meg a padló többi mértéke között.",
       "keywords": "Terület area converter",
       "run": "Átváltás rögzítése",
       "success": "Az átváltás mentve az előzményekbe."
@@ -1521,6 +1595,7 @@
     "data-converter": {
       "name": "Adatok",
       "description": "Decimális és bináris tárhely",
+      "summary": "Fájl- vagy tárhelyméret átváltása byte, kilobyte, megabyte, gigabyte és terabyte között, tízes vagy kettes rendszerben.",
       "keywords": "Adatok data converter",
       "run": "Átváltás rögzítése",
       "success": "Az átváltás mentve az előzményekbe."
@@ -1528,6 +1603,7 @@
     "angle-converter": {
       "name": "Szög",
       "description": "Fok, radián és fordulat",
+      "summary": "Szög átváltása fok, radián, gradián és fordulat között, a tizedes és tört alak egymás mellett.",
       "keywords": "Szög angle converter",
       "run": "Átváltás rögzítése",
       "success": "Az átváltás mentve az előzményekbe."
@@ -1535,6 +1611,7 @@
     "frequency-converter": {
       "name": "Frekvencia",
       "description": "Hz-től RPM-ig",
+      "summary": "Frekvencia átváltása hertz, kilohertz, megahertz, gigahertz és fordulat per perc között, hanghoz, rádióhoz és forgó gépekhez.",
       "keywords": "Frekvencia frequency converter",
       "run": "Átváltás rögzítése",
       "success": "Az átváltás mentve az előzményekbe."
@@ -1542,6 +1619,7 @@
     "force-converter": {
       "name": "Erő",
       "description": "Newton és erőegységek",
+      "summary": "Erő átváltása newton, kilonewton, kilogramm-erő, font-erő és dyn között, fizikához és mérnöki munkához.",
       "keywords": "Erő force converter",
       "run": "Átváltás rögzítése",
       "success": "Az átváltás mentve az előzményekbe."
@@ -1549,6 +1627,7 @@
     "fuel-economy-converter": {
       "name": "Üzemanyag-fogyasztás",
       "description": "Fogyasztás és kilométeróra",
+      "summary": "Üzemanyag-fogyasztás átváltása liter per 100 kilométer, mérföld amerikai vagy angol gallononként és kilométer per liter között.",
       "keywords": "Üzemanyag-fogyasztás fuel economy converter",
       "run": "Átváltás rögzítése",
       "success": "Az átváltás mentve az előzményekbe."
@@ -1556,6 +1635,7 @@
     "acceleration-converter": {
       "name": "Gyorsulás",
       "description": "Mozgás és gravitáció",
+      "summary": "Gyorsulás átváltása méter per szekundum négyzeten, nehézségi gyorsulás, láb per szekundum négyzeten és galileo között.",
       "keywords": "Gyorsulás acceleration converter",
       "run": "Átváltás rögzítése",
       "success": "Az átváltás mentve az előzményekbe."
@@ -1563,6 +1643,7 @@
     "torque-converter": {
       "name": "Forgatónyomaték",
       "description": "Forgatónyomaték",
+      "summary": "Nyomaték átváltása newtonméter, kilogramm-erőméter, font-láb és font-hüvelyk között, anyákhoz és motorokhoz.",
       "keywords": "Forgatónyomaték torque converter",
       "run": "Átváltás rögzítése",
       "success": "Az átváltás mentve az előzményekbe."
@@ -1570,6 +1651,7 @@
     "electrical-converter": {
       "name": "Elektromos",
       "description": "Feszültség, áram és ellenállás",
+      "summary": "Váltás a feszültség, áramerősség, ellenállás és teljesítmény elektromos mértékegységei között — volt, amper, ohm és watt.",
       "keywords": "Elektromos electrical converter",
       "run": "Átváltás rögzítése",
       "success": "Az átváltás mentve az előzményekbe."
@@ -1577,6 +1659,7 @@
     "typography-converter": {
       "name": "Tipográfia",
       "description": "CSS- és nyomtatási méretek",
+      "summary": "Betűméret átváltása pixel, pont, em, rem és pica között, a beállított gyökér-, szülő- vagy képernyőmérethez viszonyítva.",
       "keywords": "Tipográfia typography converter",
       "run": "Átváltás rögzítése",
       "success": "Az átváltás mentve az előzményekbe."
@@ -1584,6 +1667,7 @@
     "bmi-calorie-calculator": {
       "name": "BMI- és kalóriaszámoló",
       "description": "BMI, egészséges súlytartomány és napi kalóriaigény magasság, súly, életkor és aktivitás alapján.",
+      "summary": "A BMI összevetése egy egészséges testsúlytartománnyal, és a napi kalóriaszükséglet becslése magasságból, súlyból, életkorból és aktivitásból.",
       "keywords": "bmi kalória tdee bmr mifflin súly egészség",
       "limits": "A BMI felnőtt WHO-határokat használ. 18 év alatt engedélyezett, de megjelöljük, mert a gyerek-BMI-t általában növekedési görbéhez viszonyítják. A kalória a Mifflin-St Jeor felnőttképlet. A számítás ezen az eszközön marad, és nem orvosi tanács.",
       "invalid": "Adj meg reális magasságot, súlyt és életkort.",
@@ -1642,6 +1726,7 @@
     "percentage-calculator": {
       "name": "Százalékszámoló",
       "description": "Számoljon százalékot, fordított százalékot, változást, vagy alkalmazzon növelést/csökkentést.",
+      "summary": "Egy szám százalékának kiszámítása, az eredeti visszakeresése, két érték közötti változás mérése, vagy növelés alkalmazása.",
       "keywords": "százalék számoló növekedés kedvezmény felár",
       "mode": "Számítás",
       "modeOf": "% of",
@@ -1665,6 +1750,7 @@
     "loan-calculator": {
       "name": "Hitel- és kamatszámoló",
       "description": "Becsülje a havi törlesztőt vagy a kamatos kamatot tőke, kamat és évek alapján.",
+      "summary": "Havi törlesztőrészlet becslése, vagy annak megtekintése, mit tesz a kamatos kamat az idő múlásával, a tőke és a futamidő alapján.",
       "keywords": "hitel jelzálog törlesztő amortizáció kamatos kamat APR",
       "limits": "A kölcsön mód a szabványos, rögzített kamatozású törlesztőrészletet használja. A kamatos kamat mód időszakonként kamatoztat (alapértelmezetten havonta). Ez csak becslés, nem pénzügyi tanács.",
       "mode": "Mód",
@@ -1685,6 +1771,7 @@
     "text-lines": {
       "name": "Soreszközök",
       "description": "Keresés és csere, rendezés vagy ismétlődő sorok eltávolítása a böngészőben.",
+      "summary": "Keresés és csere egy sorlistában, annak rendezése szám szerint vagy ábécében, és az ismétlődő sorok eltávolítása.",
       "keywords": "keresés csere rendezés egyedi sorok szöveg",
       "find": "Keresés",
       "replace": "Csere erre",
@@ -1699,6 +1786,7 @@
     "slugify": {
       "name": "Slugify",
       "description": "Címet URL-sluggá alakít, vagy biztonságos fájlnevet tisztít.",
+      "summary": "Cím átalakítása tiszta URL-azonosítóvá, az ékezetekre, kis-nagy betűre és elválasztókra vonatkozó beállításokkal.",
       "keywords": "slugify slug url fájlnév tisztítás kebab",
       "input": "Szöveg",
       "slug": "URL-slug",
@@ -1709,6 +1797,7 @@
     "color-contrast": {
       "name": "Színkontraszt",
       "description": "Ellenőrizze a WCAG kontrasztot előtér és háttér között.",
+      "summary": "A szöveg és a háttér kontrasztjának ellenőrzése a WCAG AA és AAA küszöbértékekkel szemben, mielőtt kiadod a palettát.",
       "keywords": "wcag kontraszt akadálymentesség aa aaa olvashatóság",
       "limits": "Az arány a WCAG 2 relatív luminanciáját használja sRGB hex színekhez. A szintek normál szövegre vonatkoznak (AA ≥ 4,5, AAA ≥ 7).",
       "foreground": "Előtér",
@@ -1724,6 +1813,7 @@
     "image-palette": {
       "name": "Képpaletta",
       "description": "Emelje ki a domináns színeket egy fotóból tervezéshez.",
+      "summary": "A fotó uralkodó színeinek leolvasása hex-kódként, hogy a paletta egyenesen a tervezésbe vagy a márkaellenőrzésbe kerülhessen.",
       "keywords": "paletta színek kinyerés domináns minták kép",
       "limits": "A színek ezen a lapon, egy lekicsinyített előnézet alapján kvantálódnak. Az eredmények közelítők, és ezen az eszközön maradnak.",
       "maxColors": "Maximális színszám",
@@ -1735,6 +1825,7 @@
     "aspect-ratio": {
       "name": "Képarány",
       "description": "Szélességet és magasságot arányra egyszerűsít, vagy hiányzó oldalt számol.",
+      "summary": "Egy szélesség és magasság egyszerűsítése a legegyszerűbb arányra, vagy a hiányzó oldal kiszámítása egy ismert arányból.",
       "keywords": "képarány 16:9 méretek hiányzó oldal",
       "mode": "Mód",
       "modeFromSize": "Méretekből",
@@ -1751,6 +1842,7 @@
     "meeting-planner": {
       "name": "Megbeszélés-tervező",
       "description": "Keressen átfedő munkaidő-ablakokat időzónák között egy napon.",
+      "summary": "Annak az órának a megtalálása, amely mindenkinek jó, a munkaidők összevetésével több időzónában egy kiválasztott napon.",
       "keywords": "megbeszélés időzóna átfedés világóra munkaidő",
       "limits": "Az átfedés IANA-időzónákat és helyi naptári dátumokat használ. Az órák olyan egész UTC-órák, amikor minden zóna még a választott napon és a munkaidő-ablakon belül van.",
       "date": "Dátum",
@@ -1770,6 +1862,7 @@
     "json-query": {
       "name": "JSON-lekérdezés",
       "description": "Lapítson beágyazott JSON-t, vagy olvasson egyszerű JSONPath értékeket.",
+      "summary": "Mélyen beágyazott JSON kilapítása sorokká, vagy egyes értékek kiemelése egyszerű JSONPath-kifejezéssel, például $.items[0].name.",
       "keywords": "json path lekérdezés lapítás jq",
       "limits": "A JSONPath kis részhalmazát támogatja: $.a.b, $.items[0] és $['key']. Helyettesítő karakterek és szűrők nincsenek benne.",
       "mode": "Mód",
@@ -1784,6 +1877,7 @@
     "check-digits": {
       "name": "Ellenőrző számjegyek",
       "description": "Helyben ellenőrizze az ISBN-10/13, EAN-13 és IBAN számokat.",
+      "summary": "ISBN-10, ISBN-13, EAN-13 vagy IBAN ellenőrző számjegyének ellenőrzése, és annak megtekintése, melyik pozíción bukik el egy hibás bevitel.",
       "keywords": "isbn ean iban ellenőrző számjegy vonalkód érvényesítés",
       "limits": "Csak a közzétett ellenőrző számjegy-algoritmusokat ellenőrzi. Az érvényes ellenőrző számjegy nem bizonyítja, hogy a szám ki van adva, vagy hogy a számla létezik.",
       "kind": "Típus",
