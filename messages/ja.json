@@ -518,6 +518,7 @@
     "pdf-merge": {
       "name": "PDF を結合",
       "description": "複数の PDF を 1 つにまとめます。ページをプレビューし、ドラッグで並べ替えできます。",
+      "summary": "複数の PDF を 1 つにまとめます。ページをプレビューし、保存前にドラッグで並べ替えられます。",
       "keywords": "pdf 結合 マージ つなげる 複数",
       "run": "結合する",
       "empty": "PDF を 2 つ以上追加してください。",
@@ -526,6 +527,7 @@
     "pdf-split": {
       "name": "PDF を分割",
       "description": "指定したページ範囲だけを新しい PDF として書き出します。",
+      "summary": "PDF から 1 つまたは複数のページ範囲を新しいファイルに取り出すか、1 つの文書を複数に分割します。",
       "keywords": "pdf 分割 抽出 ページ 範囲",
       "run": "分割する",
       "range": "ページ（例: 1-3,5）",
@@ -534,6 +536,7 @@
     "pdf-organize": {
       "name": "ページを整理",
       "description": "回転や不要ページの削除、並び順の変更ができます。",
+      "summary": "PDF のページを回転・削除・並べ替えて、整えた文書を保存します。何も端末の外に出ません。",
       "keywords": "pdf 回転 削除 並べ替え 整理",
       "run": "PDF を保存",
       "success": "PDF を更新しました。",
@@ -542,6 +545,7 @@
     "pdf-compress": {
       "name": "画像にして縮小",
       "description": "各ページをJPEG画像にします。テキスト、リンク、ベクターは残りません。",
+      "summary": "各ページを選んだ品質とサイズの JPEG として描き直して PDF を軽くします。テキストは選べなくなります。",
       "keywords": "pdf 圧縮 サイズ 軽量化",
       "run": "縮小する",
       "note": "各ページをJPEG画像にして新しいPDFを組み立てます。検索できる文字、リンク、ベクターは消えます。ファイルが大きくなることもあります。契約書の検索用途ではなく、写真スキャン向けです。",
@@ -550,6 +554,7 @@
     "pdf-watermark": {
       "name": "透かしを入れる",
       "description": "全ページに文字の透かし、ヘッダー、またはフッターを追加します。",
+      "summary": "全ページに透かし・ヘッダー・フッターとして文字を入れ、文言・大きさ・角度・不透明度・位置を選べます。",
       "keywords": "pdf 透かし ヘッダー フッター 機密",
       "run": "適用する",
       "text": "透かしの文字",
@@ -563,6 +568,7 @@
     "pdf-redact": {
       "name": "内容を覆う",
       "description": "伏せたい部分に黒い矩形を重ねます（見た目の覆い）。",
+      "summary": "読ませたくない部分を黒い四角で覆います。見た目の目隠しで、本物の墨消しではありません。下の文字は残ります。",
       "keywords": "pdf 墨消し 隠す 機密 黒塗り",
       "run": "覆いを適用",
       "note": "あくまで見た目の覆いです。下層のテキストが完全に消えるとは限りません。機密文書は必ずご自身で確認してください。",
@@ -574,6 +580,7 @@
     "pdf-extract": {
       "name": "PDF から取り出す",
       "description": "読み取れるテキストを抽出するか、ページを画像として書き出します。",
+      "summary": "PDF から選択できるテキストを取り出すか、ページを JPEG 画像として ZIP に書き出します。文書は送信しません。",
       "keywords": "pdf 抽出 テキスト 画像",
       "run": "取り出す",
       "modeText": "テキスト",
@@ -585,6 +592,7 @@
     "image-compress": {
       "name": "画像を圧縮",
       "description": "画質と最大サイズを調整して、共有しやすい写真にします。",
+      "summary": "品質を下げ、長い辺を制限するか、その両方で、メール・チャット・Web 用に写真を小さくします。",
       "keywords": "画像 圧縮 写真 jpg png webp サイズ",
       "run": "圧縮する",
       "success": "{count} 枚の画像を圧縮しました。"
@@ -592,6 +600,7 @@
     "image-resize": {
       "name": "画像サイズを変更",
       "description": "幅と高さを指定。アスペクト比の固定もできます。",
+      "summary": "画像を正確なピクセル寸法にそろえるか、パーセントで拡大縮小します。比率は保ちたいときに保てます。",
       "keywords": "画像 リサイズ 拡大縮小 寸法",
       "run": "サイズ変更",
       "lockAspect": "縦横比を保つ",
@@ -600,6 +609,7 @@
     "image-crop": {
       "name": "画像を切り抜き",
       "description": "必要な矩形だけを残します。",
+      "summary": "大事な部分に合わせて選択枠をドラッグして写真を切り取り、その長方形だけを書き出します。",
       "keywords": "画像 クロップ 切り抜き 範囲",
       "run": "切り抜く",
       "success": "切り抜きが完了しました。"
@@ -607,6 +617,7 @@
     "image-convert": {
       "name": "画像形式を変換",
       "description": "JPEG / PNG / WEBP など、よく使う Web 向け形式の間で変換します。",
+      "summary": "JPEG・PNG・WEBP・AVIF・GIF の間で変換します。1 枚でもまとめてでも、画像はアップロードしません。",
       "keywords": "画像 変換 形式 webp png jpg jpeg",
       "run": "変換する",
       "success": "{count} 枚の画像を変換しました。"
@@ -614,6 +625,7 @@
     "image-metadata": {
       "name": "画像メタデータ",
       "description": "EXIF などのタグを確認し、取り除いたコピーを書き出します。",
+      "summary": "写真が持つ EXIF（カメラ・レンズ・日付・GPS）を確認し、それを消した複製を保存します。",
       "keywords": "画像 exif メタデータ プライバシー 位置情報",
       "run": "メタデータを削除",
       "note": "ブラウザ内で画素を再エンコードし、埋め込みメタデータを除去します。",
@@ -625,6 +637,7 @@
     "image-adjust": {
       "name": "画像を調整",
       "description": "明るさ・コントラスト・彩度を調整します。",
+      "summary": "明るさ・コントラスト・彩度・露出を目で見て整えます。スライダーを動かすたびに結果が描き直されます。",
       "keywords": "画像 明るさ コントラスト 彩度 色",
       "run": "適用する",
       "brightness": "明るさ",
@@ -635,6 +648,7 @@
     "convert-hub": {
       "name": "スマート変換",
       "description": "入力の種類を判定し、適切な出力形式を提案します。",
+      "summary": "混ざった内容を貼り付けると、Kit が JSON・CSV・YAML・XML・TOML・SQL のどれかを判別し、別の形式に変換します。",
       "keywords": "変換 スマート json yaml csv zip",
       "run": "変換する",
       "detect": "判定結果",
@@ -644,6 +658,7 @@
     "json-format": {
       "name": "JSON を整形",
       "description": "インデント整形・圧縮、JSON の誤りを早めに見つけます。",
+      "summary": "JSON を読みやすく整形するか圧縮し、構文エラーの位置を正確に示します。問題の行は強調されます。",
       "keywords": "json 整形 検証 圧縮 pretty",
       "run": "整形する",
       "success": "JSON は有効で、整形済みです。"
@@ -651,6 +666,7 @@
     "yaml-format": {
       "name": "YAML を整形",
       "description": "YAML の構造を確認し、読みやすく整えます。",
+      "summary": "YAML の構造的な誤りを確認し、インデントを整えます。設定ファイルが本来の読み方で読めるようになります。",
       "keywords": "yaml 整形 検証 yml",
       "run": "整形する",
       "success": "YAML は有効です。"
@@ -658,6 +674,7 @@
     "toml-format": {
       "name": "TOML を整形",
       "description": "TOML を検証し、読みやすい状態に保ちます。",
+      "summary": "TOML を検証して整えて並べます。設定パーサーが拒否するような構文エラーも見つけます。",
       "keywords": "toml 整形 検証 設定",
       "run": "整形する",
       "success": "TOML は有効です。"
@@ -665,6 +682,7 @@
     "markdown-html": {
       "name": "Markdown ↔ HTML",
       "description": "Markdown と HTML を相互に変換します。",
+      "summary": "Markdown を HTML に、または HTML を Markdown に戻します。見出し・リンク・リスト・表・コードはそのままです。",
       "keywords": "markdown html 変換 md マークアップ",
       "run": "変換する",
       "toHtml": "Markdown → HTML",
@@ -674,6 +692,7 @@
     "csv-json": {
       "name": "CSV ↔ JSON",
       "description": "表形式データを CSV と JSON 配列のあいだで変換します。",
+      "summary": "CSV ファイルを JSON 配列に、または JSON を CSV に戻します。区切り文字と見出し行は指定できます。",
       "keywords": "csv json 変換 表 スプレッドシート",
       "run": "変換する",
       "toJson": "CSV → JSON",
@@ -683,6 +702,7 @@
     "text-diff": {
       "name": "テキスト比較",
       "description": "2 つの版の違いを行単位で確認します。",
+      "summary": "2 つの下書きを並べて比べ、どの行が追加・削除・変更されたかを文字単位まで示します。",
       "keywords": "diff 比較 テキスト 差分 変更",
       "run": "比較する",
       "left": "元の文章",
@@ -692,6 +712,7 @@
     "base64": {
       "name": "Base64",
       "description": "テキストやファイル全体を Base64 でエンコード／デコードします。",
+      "summary": "文章やファイル全体を Base64 に符号化するか、元に戻します。中身がブラウザの外に出ることはありません。",
       "keywords": "base64 エンコード デコード バイナリ",
       "run": "変換する",
       "mode": "方向",
@@ -702,6 +723,7 @@
     "url-encode": {
       "name": "URL エンコード",
       "description": "URL の構成要素をパーセントエンコード／デコードします。",
+      "summary": "URL・クエリ文字列・フォームの値をパーセント符号化して要求に耐えさせ、符号化済みのものは元に戻します。",
       "keywords": "url エンコード デコード パーセント uri クエリ",
       "run": "変換する",
       "success": "完了しました。"
@@ -709,6 +731,7 @@
     "audio-convert": {
       "name": "音声を変換",
       "description": "MP3 / WAV / OGG など音声形式をブラウザ内で変換します。",
+      "summary": "音声を MP3・WAV・OGG・M4A などの一般的な形式の間でブラウザ内で変換します。ビットレートも選べます。",
       "keywords": "音声 変換 mp3 wav ogg オーディオ",
       "run": "変換する",
       "loadingFfmpeg": "音声エンジンを読み込み中…",
@@ -722,6 +745,7 @@
     "audio-trim": {
       "name": "音声を切り取る",
       "description": "音声ファイルの開始〜終了時刻だけを残します。",
+      "summary": "音声ファイルを 2 つの時点の間だけに切り出します。始まりと終わりは秒単位で調整できます。",
       "keywords": "音声 トリム カット mp3 wav",
       "run": "切り取る",
       "success": "音声の切り取りが完了しました。"
@@ -729,6 +753,7 @@
     "audio-speed": {
       "name": "音声の速度と音量",
       "description": "音声を速く／遅くしたり、音量を変えたりします。",
+      "summary": "音の高さを変えずに音声ファイルを速くしたり遅くしたりし、仕上がりの音量も決められます。",
       "keywords": "音声 速度 テンポ 音量",
       "run": "適用する",
       "success": "処理した音声の準備ができました。"
@@ -736,6 +761,7 @@
     "video-convert": {
       "name": "動画を変換",
       "description": "MP4 / WEBM など動画コンテナをブラウザ内で変換します。",
+      "summary": "動画をブラウザ内で MP4・WEBM・MKV の間で変換します。H.264 と AAC の妥当な設定は選んであります。",
       "keywords": "動画 変換 mp4 webm ビデオ",
       "run": "変換する",
       "loadingFfmpeg": "動画エンジンを読み込み中…",
@@ -745,6 +771,7 @@
     "video-trim": {
       "name": "動画を切り取る",
       "description": "開始〜終了時刻のクリップだけを残します。",
+      "summary": "始点と終点を決めて動画を必要な部分に切り出し、その範囲だけをファイルとして書き出します。",
       "keywords": "動画 トリム カット mp4",
       "run": "切り取る",
       "success": "動画の切り取りが完了しました。"
@@ -752,6 +779,7 @@
     "video-speed": {
       "name": "動画の速度と音量",
       "description": "動画の再生速度と音量を変更します。",
+      "summary": "動画の再生速度を変えます。音声は合わせたままでも差し替えてもよく、保存前に音量を決められます。",
       "keywords": "動画 速度 テンポ 音量",
       "run": "適用する",
       "success": "処理した動画の準備ができました。"
@@ -759,6 +787,7 @@
     "video-extract-audio": {
       "name": "動画から音声を取り出す",
       "description": "動画の音声トラックを音声ファイルとして保存します。",
+      "summary": "動画から音声トラックを取り出し、単独の音声ファイルとして保存します。録り直しは要りません。",
       "keywords": "動画 音声 抽出 mp3 サウンドトラック",
       "run": "音声を取り出す",
       "success": "音声を取り出しました。"
@@ -766,6 +795,7 @@
     "pdf-numbers": {
       "name": "ページ番号",
       "description": "各ページに 1 / 12 のようなラベルを入れます。",
+      "summary": "1 / 12 や 12 分の 1 など、選んだ形式でページ番号を全ページの好きな位置に入れます。",
       "keywords": "pdf ページ番号 フッター ヘッダー",
       "run": "番号を入れる",
       "template": "ラベル（{page} と {pages}）",
@@ -782,6 +812,7 @@
     "pdf-to-images": {
       "name": "PDF → 画像",
       "description": "全ページを JPEG にして ZIP でダウンロードします。",
+      "summary": "PDF の各ページを選んだ解像度の JPEG 画像に変換し、まとめて ZIP ファイルとしてダウンロードします。",
       "keywords": "pdf 画像 jpg zip 書き出し",
       "run": "ページを書き出す",
       "limits": "ページはタブ内の PDF.js で描画します。巨大な文書は遅く、メモリも使います。埋め込み画像オブジェクトの抽出ではなく、見た目のラスタ化です。",
@@ -790,6 +821,7 @@
     "images-to-pdf": {
       "name": "画像 → PDF",
       "description": "写真を 1 枚 1 ページの PDF にまとめます。",
+      "summary": "写真やスキャンを 1 つの PDF にまとめます。1 ページに 1 枚、A4 に合わせるか元の大きさのままです。",
       "keywords": "画像 pdf jpg png",
       "run": "PDF を作る",
       "success": "{count, plural, other {# 枚の画像から PDF を作成しました。}}",
@@ -800,6 +832,7 @@
     "pdf-flatten": {
       "name": "フォームを固定",
       "description": "AcroForm フィールドをページに焼き込み、編集できないようにします。",
+      "summary": "入力済みのフォーム欄をページの恒久的な内容に変えます。どこでも同じように印刷・表示されます。",
       "keywords": "pdf フォーム flatten フィールド",
       "run": "固定する",
       "limits": "標準の AcroForm に対応します。動的 XFA は完全には扱えません。",
@@ -808,6 +841,7 @@
     "pdf-metadata": {
       "name": "PDF のメタデータ",
       "description": "タイトルや作成者などの Info を表示・編集・削除します。",
+      "summary": "PDF の題名・著者・キーワードなどの文書プロパティを読み取り、編集し、削除して、きれいな複製を保存します。",
       "keywords": "キーワード",
       "run": "メタデータを保存",
       "strip": "Info と XMP を消去",
@@ -822,6 +856,7 @@
     "pdf-protect": {
       "name": "PDF のロック / 解除",
       "description": "ユーザーパスワードを付けたり外したりします。暗号化はこのブラウザ内で行います。",
+      "summary": "PDF にパスワードをかけたり、知っているパスワードを外したりします。暗号化はこのタブで行います。",
       "keywords": "pdf パスワード 暗号化 解除",
       "run": "実行",
       "lock": "ロック",
@@ -833,6 +868,7 @@
     "image-rotate": {
       "name": "回転と反転",
       "description": "90° 単位で回すか、左右・上下に反転します。",
+      "summary": "写真を 4 分の 1 回転ずつ回し、数度だけ傾きを直し、または鏡映します。1 枚でもまとめてでもできます。",
       "keywords": "画像 回転 反転 ミラー",
       "run": "適用",
       "operation": "変換",
@@ -846,6 +882,7 @@
     "image-filters": {
       "name": "画像フィルター",
       "description": "グレースケール、セピア、階調反転を 1 枚または複数に適用します。",
+      "summary": "グレースケール・セピア・反転・ぼかし・シャープを 1 枚の写真にもフォルダ全体にもかけ、結果を保存します。",
       "keywords": "画像 フィルター グレースケール セピア",
       "run": "適用",
       "filter": "フィルター",
@@ -857,6 +894,7 @@
     "image-favicon": {
       "name": "ファビコン一式",
       "description": "元画像をよく使うアイコンサイズで ZIP に書き出します。",
+      "summary": "1 枚の画像から、サイトやアプリが求めるアイコン寸法（favicon・Apple タッチアイコン・Android maskable）を 1 つの ZIP に作ります。",
       "keywords": "favicon アイコン 16 32 180 192 512",
       "run": "アイコンを書き出す",
       "note": "16 / 32 / 48 / 180 / 192 / 512 ピクセルの PNG を書き出します。",
@@ -865,6 +903,7 @@
     "video-gif": {
       "name": "動画 → GIF",
       "description": "短いクリップをブラウザ内でループ GIF にします。",
+      "summary": "動画の短い区間を繰り返し再生する GIF にします。始まりと終わりは選べます。長い区間は符号化に時間がかかります。",
       "keywords": "動画 gif ffmpeg",
       "run": "GIF を作る",
       "limits": "FFmpeg WASM を使います。短いクリップにしてください。GIF エンコードは遅く、メモリも使います。対応コーデックはブラウザ内ビルドに依存します。",
@@ -873,6 +912,7 @@
     "xml-json": {
       "name": "XML ↔ JSON",
       "description": "XML を JSON に、またはその逆に変換します。",
+      "summary": "XML 文書を JSON に、または JSON を XML に戻します。属性と繰り返し要素は予測できる形のままです。",
       "keywords": "xml json 変換",
       "run": "変換",
       "toJson": "XML → JSON",
@@ -882,6 +922,7 @@
     "sql-format": {
       "name": "SQL 整形",
       "description": "SQL を読みやすいように整形します。",
+      "summary": "SQL を組み直し、句・結合・長い列の並びをそろえて、実行される順に読めるようにします。明らかな誤りも見つけます。",
       "keywords": "sql 整形 クエリ",
       "run": "整形",
       "success": "SQL を整形しました。"
@@ -889,6 +930,7 @@
     "regex-tester": {
       "name": "正規表現テスター",
       "description": "サンプルテキストで正規表現を試し、置換もできます。",
+      "summary": "手持ちの文章で正規表現を試し、一致が強調されるのを見て、置換も試せます。",
       "keywords": "正規表現 regex 置換",
       "pattern": "パターン",
       "flags": "フラグ",
@@ -901,6 +943,7 @@
     "hash-generator": {
       "name": "ハッシュ生成",
       "description": "テキストやファイルの SHA-1/256/384/512 と MD5 をこの端末で計算します。",
+      "summary": "文章またはファイル全体の SHA-1・SHA-256・SHA-384・SHA-512・MD5 を計算します。どちらもどこにも送りません。",
       "keywords": "ハッシュ sha256 md5 チェックサム",
       "run": "計算",
       "algo": "アルゴリズム",
@@ -911,6 +954,7 @@
     "uuid-generator": {
       "name": "UUID 生成",
       "description": "この端末で UUID v4 または v7 を作ります。",
+      "summary": "バージョン 4 または 7 の UUID を 1 つずつ、あるいはまとめて作ります。サーバーではなくこの端末で生成します。",
       "keywords": "uuid guid v4 v7",
       "run": "生成",
       "count": "個数",
@@ -920,6 +964,7 @@
     "color-convert": {
       "name": "カラー変換",
       "description": "HEX / RGB / HSL / HSV を相互変換し、カラーピッカーも使えます。",
+      "summary": "色を HEX・RGB・HSL・HSV・CSS 名の間で変換し、または色相環から選んで全ての表記を一度に読み取ります。",
       "keywords": "色 hex rgb hsl hsv",
       "picker": "カラーピッカー",
       "invalid": "3 桁または 6 桁の 16 進カラーを入力してください。"
@@ -927,6 +972,7 @@
     "lorem-ipsum": {
       "name": "Lorem ipsum",
       "description": "段落・文・単語のダミーテキストを生成します。",
+      "summary": "レイアウト用のダミー文章を段落・文・単語で必要なだけ作り、そのまま貼り付けられます。",
       "keywords": "lorem ダミー プレースホルダー",
       "run": "生成",
       "count": "数",
@@ -939,6 +985,7 @@
     "qr-code": {
       "name": "QR コード",
       "description": "テキストから QR を作る、または画像から読み取ります。",
+      "summary": "リンク・文章・連絡先から QR コードを作って画像として保存し、または画像からコードを読み取ります。",
       "keywords": "qr コード 生成 読み取り",
       "run": "生成",
       "payload": "テキストまたは URL",
@@ -951,6 +998,7 @@
     "pdf-sign": {
       "name": "PDF に署名",
       "description": "入力した署名を全ページに押します。見た目だけで、証明書ではありません。",
+      "summary": "選んだページに打ち込んだ署名を置きます。読むためのもので、暗号学的な署名ではありません。",
       "keywords": "pdf 署名 スタンプ",
       "run": "署名する",
       "signature": "署名テキスト",
@@ -961,6 +1009,7 @@
     "image-watermark": {
       "name": "画像透かし",
       "description": "写真に文字を重ねます。1 枚でもまとめてでも。",
+      "summary": "位置・大きさ・色・不透明度を選んで、写真の上に文字を重ねます。1 枚でもまとめてでもできます。",
       "keywords": "画像 透かし 著作権",
       "run": "適用",
       "text": "透かし文字",
@@ -974,6 +1023,7 @@
     "password-generator": {
       "name": "パスワード生成",
       "description": "この端末で強いパスワードを作ります。保存しません。",
+      "summary": "選んだ長さと文字の組み合わせで強いパスワードを作ります。この端末で生成し、保存はしません。",
       "keywords": "パスワード 生成 乱数",
       "run": "生成",
       "length": "長さ",
@@ -986,6 +1036,7 @@
     "case-convert": {
       "name": "ケース変換",
       "description": "camel / snake / kebab / タイトルなどを切り替えます。",
+      "summary": "文章を camelCase・snake_case・kebab-case・Title Case など、開発者が使う表記の間で切り替えます。",
       "keywords": "ケース camel snake kebab",
       "run": "変換",
       "style": "スタイル",
@@ -994,6 +1045,7 @@
     "jwt-decode": {
       "name": "JWT デコード",
       "description": "JWT のヘッダーとペイロードをこの端末で読みます。署名は検証しません。",
+      "summary": "JSON Web Token のヘッダーと内容を読み、有効期限を確認し、端末内で復号します。署名は検証しません。",
       "keywords": "jwt トークン bearer",
       "run": "デコード",
       "limits": "Kit は Base64url を読むだけです。鍵がなければ真正性は証明できません。",
@@ -1005,12 +1057,14 @@
     "unix-timestamp": {
       "name": "Unix タイムスタンプ",
       "description": "Unix 時刻と ISO を相互変換します。",
+      "summary": "Unix 時刻を読める日時に、またはその逆に、選んだ時間帯で変換します。",
       "keywords": "unix epoch iso",
       "now": "現在を使う"
     },
     "cron-explain": {
       "name": "Cron の説明",
       "description": "5 フィールドの cron を普通の言葉にします。",
+      "summary": "5 項目の cron 式を普通の文に直し、定期実行の仕事がいつ、どのくらいの頻度で走るかをはっきりさせます。",
       "keywords": "cron crontab スケジュール",
       "run": "説明する",
       "success": "説明しました。"
@@ -1018,6 +1072,7 @@
     "number-base": {
       "name": "基数変換",
       "description": "2〜36 進の整数を変換します。",
+      "summary": "整数を 2 進・8 進・10 進・16 進、および 2 から 36 までの任意の基数の間で変換し、ビット列も示します。",
       "keywords": "2進 16進 10進",
       "value": "数値",
       "from": "変換元",
@@ -1026,6 +1081,7 @@
     "html-entities": {
       "name": "HTML 実体参照",
       "description": "&lt; や &amp;、数値実体をエンコード / デコードします。",
+      "summary": "山かっこ・引用符・数値文字参照を符号化または復号し、マークアップの中で安全に、外で読めるようにします。",
       "keywords": "html 実体 エスケープ",
       "run": "変換",
       "encode": "エンコード",
@@ -1035,6 +1091,7 @@
     "json-types": {
       "name": "JSON → TypeScript",
       "description": "JSON の例から TypeScript の interface を推定します。",
+      "summary": "見本の JSON 応答を TypeScript のインターフェースに変えます。入れ子のオブジェクトと配列は見本の範囲で型付けします。",
       "keywords": "json typescript interface",
       "run": "型を生成",
       "success": "型を生成しました。"
@@ -1119,104 +1176,104 @@
       "unitYd": "ヤード (yd)",
       "unitMi": "マイル (mi)",
       "unitNmi": "海里 (nmi)",
-      "unitMg": "Milligrams (mg)",
-      "unitG": "Grams (g)",
-      "unitKg": "Kilograms (kg)",
-      "unitT": "Metric tonnes (t)",
-      "unitOz": "Ounces (oz)",
-      "unitLb": "Pounds (lb)",
+      "unitMg": "ミリグラム (mg)",
+      "unitG": "グラム (g)",
+      "unitKg": "キログラム (kg)",
+      "unitT": "メートルトン (t)",
+      "unitOz": "オンス (oz)",
+      "unitLb": "ポンド (lb)",
       "unitStone": "ストーン",
-      "unitC": "Celsius (°C)",
-      "unitF": "Fahrenheit (°F)",
-      "unitK": "Kelvin (K)",
-      "unitMs": "Milliseconds",
-      "unitS": "Seconds",
-      "unitMin": "Minutes",
-      "unitH": "Hours",
-      "unitDay": "Days",
-      "unitWeek": "Weeks",
-      "unitM_s": "Meters per second",
-      "unitKm_h": "Kilometers per hour",
-      "unitMph": "Miles per hour",
+      "unitC": "摂氏 (°C)",
+      "unitF": "華氏 (°F)",
+      "unitK": "ケルビン (K)",
+      "unitMs": "ミリ秒",
+      "unitS": "秒",
+      "unitMin": "分",
+      "unitH": "時間",
+      "unitDay": "日",
+      "unitWeek": "週",
+      "unitM_s": "メートル毎秒",
+      "unitKm_h": "キロメートル毎時",
+      "unitMph": "マイル毎時",
       "unitKnot": "ノット",
-      "unitMl": "Milliliters",
-      "unitL": "Liters",
-      "unitM3": "Cubic meters",
-      "unitUsTsp": "米ティースプーン",
-      "unitUsTbsp": "米テーブルスプーン",
+      "unitMl": "ミリリットル",
+      "unitL": "リットル",
+      "unitM3": "立方メートル",
+      "unitUsTsp": "米小さじ",
+      "unitUsTbsp": "米大さじ",
       "unitUsCup": "米カップ",
       "unitUsGal": "米ガロン",
       "unitImpGal": "英ガロン",
-      "unitW": "Watts",
-      "unitKw": "Kilowatts",
-      "unitMw": "Megawatts",
+      "unitW": "ワット",
+      "unitKw": "キロワット",
+      "unitMw": "メガワット",
       "unitHp": "機械馬力",
-      "unitJ": "Joules",
-      "unitKj": "Kilojoules",
-      "unitWh": "Watt-hours",
-      "unitKwh": "Kilowatt-hours",
-      "unitCal": "Calories",
-      "unitKcal": "Kilocalories",
-      "unitEv": "Electronvolts",
-      "unitPa": "Pascals",
-      "unitKpa": "Kilopascals",
-      "unitBar": "Bar",
+      "unitJ": "ジュール",
+      "unitKj": "キロジュール",
+      "unitWh": "ワット時",
+      "unitKwh": "キロワット時",
+      "unitCal": "カロリー",
+      "unitKcal": "キロカロリー",
+      "unitEv": "電子ボルト",
+      "unitPa": "パスカル",
+      "unitKpa": "キロパスカル",
+      "unitBar": "バール",
       "unitPsi": "PSI",
-      "unitAtm": "Atmospheres",
-      "unitMmHg": "Millimeters of mercury",
-      "unitMm2": "Square millimeters",
-      "unitCm2": "Square centimeters",
-      "unitM2": "Square meters",
-      "unitKm2": "Square kilometers",
-      "unitFt2": "Square feet",
-      "unitAcre": "Acres",
-      "unitHectare": "Hectares",
-      "unitBit": "Bits",
-      "unitB": "Bytes",
-      "unitKb": "Kilobytes",
-      "unitMb": "Megabytes",
-      "unitGb": "Gigabytes",
-      "unitTb": "Terabytes",
-      "unitKib": "Kibibytes",
-      "unitMib": "Mebibytes",
-      "unitGib": "Gibibytes",
-      "unitDeg": "Degrees",
-      "unitRad": "Radians",
-      "unitGrad": "Gradians",
-      "unitTurn": "Turns",
-      "unitHz": "Hertz",
-      "unitKhz": "Kilohertz",
-      "unitMhz": "Megahertz",
-      "unitGhz": "Gigahertz",
-      "unitRpm": "Revolutions per minute",
-      "unitN": "Newtons",
-      "unitKn": "Kilonewtons",
-      "unitLbf": "Pound-force",
-      "unitKgf": "Kilogram-force",
-      "unitL_100km": "Liters per 100 km",
-      "unitKm_L": "Kilometers per liter",
-      "unitMpgUs": "Miles per US gallon",
-      "unitMpgImperial": "Miles per imperial gallon",
-      "unitM_s2": "Meters per second squared",
-      "unitG0": "Standard gravity",
-      "unitFt_s2": "Feet per second squared",
-      "unitNm": "Newton-meters",
-      "unitKnm": "Kilonewton-meters",
-      "unitLbFt": "Pound-feet",
-      "unitLbIn": "Pound-inches",
-      "unitMv": "Millivolts",
-      "unitV": "Volts",
-      "unitKv": "Kilovolts",
-      "unitMa": "Milliamps",
-      "unitA": "Amps",
-      "unitKa": "Kiloamps",
-      "unitMOhm": "Milliohms",
-      "unitOhm": "Ohms",
-      "unitKOhm": "Kilohms",
-      "unitMOhmBig": "Megohms",
-      "unitPx": "Pixels",
-      "unitPt": "Points",
-      "unitPc": "Picas",
+      "unitAtm": "気圧",
+      "unitMmHg": "水銀柱ミリメートル",
+      "unitMm2": "平方ミリメートル",
+      "unitCm2": "平方センチメートル",
+      "unitM2": "平方メートル",
+      "unitKm2": "平方キロメートル",
+      "unitFt2": "平方フィート",
+      "unitAcre": "エーカー",
+      "unitHectare": "ヘクタール",
+      "unitBit": "ビット",
+      "unitB": "バイト",
+      "unitKb": "キロバイト",
+      "unitMb": "メガバイト",
+      "unitGb": "ギガバイト",
+      "unitTb": "テラバイト",
+      "unitKib": "キビバイト",
+      "unitMib": "メビバイト",
+      "unitGib": "ギビバイト",
+      "unitDeg": "度",
+      "unitRad": "ラジアン",
+      "unitGrad": "グラジアン",
+      "unitTurn": "回転",
+      "unitHz": "ヘルツ",
+      "unitKhz": "キロヘルツ",
+      "unitMhz": "メガヘルツ",
+      "unitGhz": "ギガヘルツ",
+      "unitRpm": "毎分回転数",
+      "unitN": "ニュートン",
+      "unitKn": "キロニュートン",
+      "unitLbf": "重量ポンド",
+      "unitKgf": "重量キログラム",
+      "unitL_100km": "リットル/100 km",
+      "unitKm_L": "キロメートル/リットル",
+      "unitMpgUs": "マイル/米ガロン",
+      "unitMpgImperial": "マイル/英ガロン",
+      "unitM_s2": "メートル毎秒毎秒",
+      "unitG0": "標準重力",
+      "unitFt_s2": "フィート毎秒毎秒",
+      "unitNm": "ニュートンメートル",
+      "unitKnm": "キロニュートンメートル",
+      "unitLbFt": "ポンドフィート",
+      "unitLbIn": "ポンドインチ",
+      "unitMv": "ミリボルト",
+      "unitV": "ボルト",
+      "unitKv": "キロボルト",
+      "unitMa": "ミリアンペア",
+      "unitA": "アンペア",
+      "unitKa": "キロアンペア",
+      "unitMOhm": "ミリオーム",
+      "unitOhm": "オーム",
+      "unitKOhm": "キロオーム",
+      "unitMOhmBig": "メガオーム",
+      "unitPx": "ピクセル",
+      "unitPt": "ポイント",
+      "unitPc": "パイカ",
       "unitRem": "rem",
       "unitEm": "em",
       "presetMetricImperial": "メートル法 ↔ ヤード・ポンド法",
@@ -1243,23 +1300,24 @@
       "presetOhmsKilohms": "Ohms ↔ kilohms",
       "presetPxRem": "px ↔ rem",
       "presetPxPt": "px ↔ pt",
-      "unitUsFlOz": "US fluid ounces",
-      "unitUsPt": "US pints",
-      "unitUsQt": "US quarts",
-      "unitGw": "Gigawatts",
-      "unitMj": "Megajoules",
-      "unitMpa": "Megapascals",
-      "unitIn2": "Square inches",
-      "unitYd2": "Square yards",
-      "unitPb": "Petabytes",
-      "unitTib": "Tebibytes",
-      "unitPib": "Pebibytes",
-      "unitArcmin": "Arcminutes",
-      "unitArcsec": "Arcseconds"
+      "unitUsFlOz": "米液量オンス",
+      "unitUsPt": "米パイント",
+      "unitUsQt": "米クォート",
+      "unitGw": "ギガワット",
+      "unitMj": "メガジュール",
+      "unitMpa": "メガパスカル",
+      "unitIn2": "平方インチ",
+      "unitYd2": "平方ヤード",
+      "unitPb": "ペタバイト",
+      "unitTib": "テビバイト",
+      "unitPib": "ペビバイト",
+      "unitArcmin": "角度の分",
+      "unitArcsec": "角度の秒"
     },
     "text-counter": {
       "name": "文字数カウンター",
       "description": "単語、文字、文、段落、読了時間を数えます。",
+      "summary": "入力しながら語数・文字数・文数・段落数を数え、読み終えるのにかかる時間も見積もります。",
       "keywords": "文字数カウンター 単語数 テキスト統計 読了時間",
       "limits": "可能な場合はブラウザー標準のUnicode分割を使うため、絵文字や結合文字も自然に扱えます。",
       "input": "数えるテキスト",
@@ -1276,6 +1334,7 @@
     "timezone-converter": {
       "name": "世界時計",
       "description": "現地の日付と時刻をタイムゾーン間で変換し、世界時計を確認します。",
+      "summary": "世界の都市の現在時刻を見て、日付をまたいでも時間帯の間で時刻を変換します。",
       "keywords": "タイムゾーン変換 世界時計 夏時間 日付 時刻",
       "limits": "基準都市の時刻を入力してください。変換には夏時間の変更を含むIANAタイムゾーン規則を使います。",
       "convert": "日時を変換",
@@ -1325,6 +1384,7 @@
     "date-calculator": {
       "name": "日付計算",
       "description": "日付を比較し、時間を加算し、休日を指定して営業日を数えます。",
+      "summary": "2 つの日付の間隔を出し、日や月を足し引きし、祝日をはさんだ営業日を数えます。",
       "keywords": "日付計算 日付差 日数加算 営業日 休日",
       "updated": "日付を更新しました。",
       "invalid": "入力を確認してください。",
@@ -1363,6 +1423,7 @@
     "tip-split-calculator": {
       "name": "チップ・割り勘計算",
       "description": "グループのチップ、税金、合計、均等な支払い額を計算します。",
+      "summary": "請求額のチップ・税・合計を計算し、支払う人数で公平に割り勘にします。",
       "keywords": "チップ計算 割り勘 税金 レストラン 支払い",
       "limits": "チップと税は小計から計算します。丸めによる余りは先頭の人に配分し、合計が一致するようにします。",
       "invalid": "入力を確認してください。",
@@ -1383,6 +1444,7 @@
     "stopwatch-timer": {
       "name": "ストップウォッチ・タイマー",
       "description": "ブラウザーで正確なストップウォッチやカウントダウンを使えます。",
+      "summary": "ラップ付きの正確なストップウォッチを使うか、別の場所にいても数え続けるタブで 0 まで数えます。",
       "keywords": "ストップウォッチ タイマー カウントダウン 時計 オンライン",
       "saved": "履歴に保存しました。",
       "stopwatch": "ストップウォッチ",
@@ -1399,6 +1461,7 @@
     "random-generator": {
       "name": "ランダム生成",
       "description": "日常用途の数値、真偽値、選択肢、パスワードを生成します。",
+      "summary": "乱数を引く・硬貨を投げる・さいころを振る・一覧から選ぶ。範囲と結果の数は指定できます。",
       "keywords": "乱数生成 選択 パスワード生成",
       "invalid": "入力を確認してください。",
       "limits": "乱数にはブラウザーのMath.randomを使います。結果は日常の選択用で、暗号学的な秘密には使えません。",
@@ -1428,6 +1491,7 @@
     "currency-converter": {
       "name": "通貨コンバーター",
       "description": "ライブ為替レート（端末内キャッシュ）",
+      "summary": "日々の為替レートで通貨を換算します。レートは端末に保存されるので、通信が切れても直近の分は使えます。",
       "keywords": "通貨コンバーター 為替レート お金 Frankfurter",
       "currency": "通貨",
       "limits": "為替レートは、このツールを開いたときまたは更新をタップしたときに Frankfurter から取得し、このブラウザのキャッシュに6時間残します。金額は送信しません。取引や税務向けではなく、日次の参考データです。",
@@ -1451,6 +1515,7 @@
     "length-converter": {
       "name": "長さ",
       "description": "距離・寸法・旅行",
+      "summary": "長さをメートル・フィート・マイル・インチ・センチメートルなど、旅や模様替えで出会う単位の間で換算します。",
       "keywords": "長さ length converter",
       "run": "変換を記録",
       "success": "変換を履歴に保存しました。"
@@ -1458,6 +1523,7 @@
     "mass-converter": {
       "name": "質量",
       "description": "ミリグラムからトンまでの重さ",
+      "summary": "重さをミリグラム・グラム・キログラム・トン・ポンド・オンス・ストーンの間で換算します。料理や発送に。",
       "keywords": "質量 mass converter",
       "run": "変換を記録",
       "success": "変換を履歴に保存しました。"
@@ -1465,6 +1531,7 @@
     "temperature-converter": {
       "name": "温度",
       "description": "摂氏・華氏・ケルビン",
+      "summary": "温度を摂氏・華氏・ケルビンの間で換算します。水が凍る点と沸く点も含みます。",
       "keywords": "温度 temperature converter",
       "run": "変換を記録",
       "success": "変換を履歴に保存しました。"
@@ -1472,6 +1539,7 @@
     "speed-converter": {
       "name": "速度",
       "description": "日常と航海の速度",
+      "summary": "速さを時速キロメートル・時速マイル・秒速メートル・ノットの間で換算します。道路・空・海のために。",
       "keywords": "速度 speed converter",
       "run": "変換を記録",
       "success": "変換を履歴に保存しました。"
@@ -1479,6 +1547,7 @@
     "duration-converter": {
       "name": "期間",
       "description": "ミリ秒から週まで",
+      "summary": "時間の長さをミリ秒・秒・分・時間・日・週の間で換算し、値を両方向に読み取れます。",
       "keywords": "期間 duration converter",
       "run": "変換を記録",
       "success": "変換を履歴に保存しました。"
@@ -1486,6 +1555,7 @@
     "volume-converter": {
       "name": "体積",
       "description": "メートル法と料理の単位",
+      "summary": "体積をリットル・ミリリットル・ガロン・カップ・パイントなど、レシピで使う単位の間で換算します。",
       "keywords": "体積 volume converter",
       "run": "変換を記録",
       "success": "変換を履歴に保存しました。"
@@ -1493,6 +1563,7 @@
     "power-converter": {
       "name": "電力",
       "description": "ワットと馬力",
+      "summary": "電力をワット・キロワット・メガワット・メートル法または機械式の馬力の間で換算します。家電やエンジンに。",
       "keywords": "電力 power converter",
       "run": "変換を記録",
       "success": "変換を履歴に保存しました。"
@@ -1500,6 +1571,7 @@
     "energy-converter": {
       "name": "エネルギー",
       "description": "ジュール・カロリー・ワット時",
+      "summary": "エネルギーをジュール・カロリー・キロカロリー・キロワット時の間で換算します。食品表示や電気料金の単位です。",
       "keywords": "エネルギー energy converter",
       "run": "変換を記録",
       "success": "変換を履歴に保存しました。"
@@ -1507,6 +1579,7 @@
     "pressure-converter": {
       "name": "圧力",
       "description": "Pa・bar・PSI など",
+      "summary": "圧力をパスカル・バール・PSI・気圧・トル・水銀柱ミリメートルの間で換算します。タイヤや天気に。",
       "keywords": "圧力 pressure converter",
       "run": "変換を記録",
       "success": "変換を履歴に保存しました。"
@@ -1514,6 +1587,7 @@
     "area-converter": {
       "name": "面積",
       "description": "面積と土地の広さ",
+      "summary": "面積を平方メートル・平方フィート・エーカー・ヘクタールなど、土地と床の単位の間で換算します。",
       "keywords": "面積 area converter",
       "run": "変換を記録",
       "success": "変換を履歴に保存しました。"
@@ -1521,6 +1595,7 @@
     "data-converter": {
       "name": "データ",
       "description": "10進数と2進数の容量",
+      "summary": "ファイルや記憶の大きさをバイト・キロバイト・メガバイト・ギガバイト・テラバイトの間で換算します。",
       "keywords": "データ data converter",
       "run": "変換を記録",
       "success": "変換を履歴に保存しました。"
@@ -1528,6 +1603,7 @@
     "angle-converter": {
       "name": "角度",
       "description": "度・ラジアン・回転",
+      "summary": "角度を度・ラジアン・グラジアン・回転の間で換算し、小数表示と分数表示を並べて示します。",
       "keywords": "角度 angle converter",
       "run": "変換を記録",
       "success": "変換を履歴に保存しました。"
@@ -1535,6 +1611,7 @@
     "frequency-converter": {
       "name": "周波数",
       "description": "Hz から RPM まで",
+      "summary": "周波数をヘルツ・キロヘルツ・メガヘルツ・ギガヘルツ・毎分回転数の間で換算します。音・電波・回転機に。",
       "keywords": "周波数 frequency converter",
       "run": "変換を記録",
       "success": "変換を履歴に保存しました。"
@@ -1542,6 +1619,7 @@
     "force-converter": {
       "name": "力",
       "description": "ニュートンと力の単位",
+      "summary": "力をニュートン・キロニュートン・重量キログラム・重量ポンド・ダインの間で換算します。物理と工学に。",
       "keywords": "力 force converter",
       "run": "変換を記録",
       "success": "変換を履歴に保存しました。"
@@ -1549,6 +1627,7 @@
     "fuel-economy-converter": {
       "name": "燃費",
       "description": "燃費と走行距離",
+      "summary": "燃費をリットル/100 km・米または英ガロン当たりのマイル・リットル当たりのキロメートルの間で換算します。",
       "keywords": "燃費 fuel economy converter",
       "run": "変換を記録",
       "success": "変換を履歴に保存しました。"
@@ -1556,6 +1635,7 @@
     "acceleration-converter": {
       "name": "加速度",
       "description": "運動と重力",
+      "summary": "加速度をメートル毎秒毎秒・標準重力・フィート毎秒毎秒・ガリレオの間で換算します。",
       "keywords": "加速度 acceleration converter",
       "run": "変換を記録",
       "success": "変換を履歴に保存しました。"
@@ -1563,6 +1643,7 @@
     "torque-converter": {
       "name": "トルク",
       "description": "回転力",
+      "summary": "トルクをニュートンメートル・重量キログラムメートル・ポンドフィート・ポンドインチの間で換算します。",
       "keywords": "トルク torque converter",
       "run": "変換を記録",
       "success": "変換を履歴に保存しました。"
@@ -1570,6 +1651,7 @@
     "electrical-converter": {
       "name": "電気",
       "description": "電圧・電流・抵抗",
+      "summary": "電圧・電流・抵抗・電力の電気単位の間で換算します。ボルト・アンペア・オーム・ワットです。",
       "keywords": "電気 electrical converter",
       "run": "変換を記録",
       "success": "変換を履歴に保存しました。"
@@ -1577,6 +1659,7 @@
     "typography-converter": {
       "name": "タイポグラフィ",
       "description": "CSS と印刷のサイズ",
+      "summary": "文字サイズをピクセル・ポイント・em・rem・パイカの間で換算します。基準は指定したルート・親・画面の大きさです。",
       "keywords": "タイポグラフィ typography converter",
       "run": "変換を記録",
       "success": "変換を履歴に保存しました。"
@@ -1584,6 +1667,7 @@
     "bmi-calorie-calculator": {
       "name": "BMI・カロリー計算機",
       "description": "身長・体重・年齢・活動量からBMI、適正体重の目安、1日の必要カロリーを確認します。",
+      "summary": "BMI を健康的な体重の範囲と比べ、身長・体重・年齢・活動量から 1 日の必要カロリーを見積もります。",
       "keywords": "bmi カロリー tdee bmr 体重 健康",
       "limits": "BMIは成人向けのWHO基準です。18歳未満も計算できますが印を付けます。子どものBMIは通常、成長曲線で読みます。カロリーは成人向けのMifflin-St Jeor式です。計算はこの端末内で完結し、医学的助言ではありません。",
       "invalid": "現実的な身長・体重・年齢を入力してください。",
@@ -1642,6 +1726,7 @@
     "percentage-calculator": {
       "name": "パーセント計算",
       "description": "割合の算出、逆算、増減率、パーセント加減を計算します。",
+      "summary": "ある数の何パーセントかを出し、元の値を逆算し、2 つの値の変化を測り、または増加分を加えます。",
       "keywords": "パーセント 割合 増減 割引 マークアップ",
       "mode": "計算",
       "modeOf": "% of",
@@ -1665,6 +1750,7 @@
     "loan-calculator": {
       "name": "ローン・利息計算",
       "description": "元金・金利・年数から月々の返済額や複利の将来価値を見積もります。",
+      "summary": "毎月の返済額を見積もるか、元本・金利・期間から複利が時間とともに何をするかを見ます。",
       "keywords": "ローン 住宅ローン 返済 複利 金利 APR",
       "limits": "ローンモードは元利均等返済（固定金利）の標準式を使います。複利モードは定期的に複利計算します（既定は毎月）。これは見積もりであり、金融アドバイスではありません。",
       "mode": "モード",
@@ -1685,6 +1771,7 @@
     "text-lines": {
       "name": "行ツール",
       "description": "ブラウザで行の検索置換、並べ替え、重複削除ができます。",
+      "summary": "行の一覧を検索して置換し、数値順または五十音順に並べ、重複した行を取り除きます。",
       "keywords": "検索 置換 並べ替え 重複削除 行 テキスト",
       "find": "検索",
       "replace": "置き換え",
@@ -1699,6 +1786,7 @@
     "slugify": {
       "name": "スラッグ化",
       "description": "タイトルを URL スラッグにしたり、安全なファイル名に整えたりします。",
+      "summary": "見出しをきれいな URL スラッグに変えます。アクセント・大文字小文字・区切りはファイル名に必要な設定で。",
       "keywords": "スラッグ slug URL ファイル名 サニタイズ",
       "input": "テキスト",
       "slug": "URL スラッグ",
@@ -1709,6 +1797,7 @@
     "color-contrast": {
       "name": "カラーコントラスト",
       "description": "前景色と背景色の WCAG コントラストを確認します。",
+      "summary": "配色を出す前に、文字と背景のコントラストを WCAG の AA と AAA の基準に照らして確かめます。",
       "keywords": "wcag コントラスト アクセシビリティ aa aaa 可読性",
       "limits": "コントラスト比は sRGB の 16 進カラーに対する WCAG 2 の相対輝度で計算します。表示されるレベルは通常テキストの基準です（AA ≥ 4.5、AAA ≥ 7）。",
       "foreground": "前景",
@@ -1724,6 +1813,7 @@
     "image-palette": {
       "name": "画像パレット",
       "description": "写真から主な色を抽出してデザインの参考にします。",
+      "summary": "写真の主要な色を 16 進コードとして読み取ります。配色をそのままデザインやブランド確認に使えます。",
       "keywords": "パレット 色 抽出 ドミナント スウォッチ 画像",
       "limits": "色は縮小プレビューからこのタブ内で量子化されます。結果は近似的で、この端末の外に出ません。",
       "maxColors": "最大色数",
@@ -1735,6 +1825,7 @@
     "aspect-ratio": {
       "name": "アスペクト比",
       "description": "幅と高さを比に約分したり、欠けた辺を求めたりします。",
+      "summary": "幅と高さを最も簡単な比に直すか、分かっている比から足りない辺を計算します。",
       "keywords": "アスペクト比 16:9 寸法 欠けた辺",
       "mode": "モード",
       "modeFromSize": "サイズから計算",
@@ -1751,6 +1842,7 @@
     "meeting-planner": {
       "name": "会議プランナー",
       "description": "指定日にタイムゾーン横断の勤務時間の重なりを探します。",
+      "summary": "選んだ日に複数の時間帯の勤務時間を比べ、全員に合う時刻を見つけます。",
       "keywords": "会議 タイムゾーン 重なり 世界時計 勤務時間",
       "limits": "重複の計算には IANA タイムゾーンと各ゾーンの暦日を使います。候補の時間は、すべてのゾーンが選択した日付のままで勤務時間内に収まる、1 時間単位の UTC 時刻です。",
       "date": "日付",
@@ -1770,6 +1862,7 @@
     "json-query": {
       "name": "JSON クエリ",
       "description": "入れ子の JSON を平坦化したり、$.items[0].name のような簡単な JSONPath で値を読みます。",
+      "summary": "深く入れ子になった JSON を行に平らにするか、$.items[0].name のような簡単な JSONPath で値を取り出します。",
       "keywords": "json path クエリ 平坦化 jq",
       "limits": "JSONPath の一部（$.a.b、$.items[0]、$['key']）だけをサポートします。ワイルドカードとフィルターには対応していません。",
       "mode": "モード",
@@ -1784,6 +1877,7 @@
     "check-digits": {
       "name": "チェックディジット",
       "description": "ISBN-10/13、EAN-13、IBAN のチェックディジットを端末内で検証します。",
+      "summary": "ISBN-10・ISBN-13・EAN-13・IBAN の検査数字を確かめ、誤った入力がどの位置で落ちるかを示します。",
       "keywords": "isbn ean iban チェックディジット バーコード 検証",
       "limits": "公表されているチェックディジットのアルゴリズムを確認するだけです。チェックディジットが正しくても、番号が実際に割り当てられていることや口座が存在することは保証されません。",
       "kind": "種類",

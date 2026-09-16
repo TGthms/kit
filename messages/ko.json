@@ -518,6 +518,7 @@
     "pdf-merge": {
       "name": "PDF 합치기",
       "description": "여러 PDF를 하나로 쌓습니다. 페이지를 미리 보고 끌어 순서를 바꿉니다.",
+      "summary": "여러 PDF를 하나로 합치고, 페이지를 미리 본 뒤 저장하기 전에 원하는 순서로 끌어 놓습니다.",
       "keywords": "pdf 합치기 결합 연결 여러 페이지",
       "run": "합치기",
       "empty": "PDF 파일을 두 개 이상 추가하세요.",
@@ -526,6 +527,7 @@
     "pdf-split": {
       "name": "PDF 나누기",
       "description": "페이지 범위를 새 PDF로 뽑습니다.",
+      "summary": "PDF에서 한 개 또는 여러 페이지 범위를 새 파일로 빼내거나, 문서 하나를 여러 개로 나눕니다.",
       "keywords": "pdf 나누기 추출 페이지 범위",
       "run": "나누기",
       "range": "페이지 (예: 1-3,5)",
@@ -534,6 +536,7 @@
     "pdf-organize": {
       "name": "페이지 정리",
       "description": "페이지를 회전하고, 필요 없는 것을 지우고, 새 순서를 정합니다.",
+      "summary": "PDF 페이지를 돌리고 지우고 순서를 바꾼 뒤, 정리된 문서를 저장합니다. 아무것도 기기 밖으로 나가지 않습니다.",
       "keywords": "pdf 회전 삭제 재정렬 정리 페이지",
       "run": "PDF 저장",
       "success": "PDF가 업데이트되었습니다.",
@@ -542,6 +545,7 @@
     "pdf-compress": {
       "name": "이미지로 줄이기",
       "description": "각 페이지를 JPEG로 래스터화합니다. 텍스트, 링크, 벡터는 유지되지 않습니다.",
+      "summary": "각 페이지를 고른 품질과 크기의 JPEG로 그려 PDF를 가볍게 만듭니다. 선택할 수 있는 텍스트는 사라집니다.",
       "keywords": "pdf 압축 줄이기 크기",
       "run": "줄이기",
       "note": "각 페이지가 JPEG 이미지가 되어 새 PDF로 다시 만들어집니다. 검색 가능한 텍스트, 링크, 벡터는 사라집니다. 파일이 커질 수 있습니다. 문서를 검색해야 할 때가 아니라 사진 스캔에 맞습니다.",
@@ -550,6 +554,7 @@
     "pdf-watermark": {
       "name": "PDF 워터마크",
       "description": "모든 페이지에 텍스트를 워터마크, 머리글, 바닥글로 찍습니다.",
+      "summary": "모든 페이지에 워터마크·머리글·바닥글로 글자를 찍고, 문구·크기·각도·불투명도·위치를 고릅니다.",
       "keywords": "pdf 워터마크 스탬프 머리글 바닥글 기밀",
       "run": "적용",
       "text": "워터마크 텍스트",
@@ -563,6 +568,7 @@
     "pdf-redact": {
       "name": "내용 가리기",
       "description": "민감한 영역 위에 검은 상자를 올립니다 (시각적 가림).",
+      "summary": "읽히면 안 되는 곳을 검은 사각형으로 덮습니다. 보기 위한 가림이며 진짜 삭제가 아닙니다. 아래 글자는 그대로 남습니다.",
       "keywords": "pdf 가리기 검정 숨기기 민감",
       "run": "가림 적용",
       "note": "시각적 가림일 뿐입니다. 아래 텍스트 스트림이 모두 제거된다고 보장하지 않습니다. 민감한 문서는 다시 확인하세요.",
@@ -574,6 +580,7 @@
     "pdf-extract": {
       "name": "PDF에서 추출",
       "description": "읽을 수 있는 텍스트를 뽑거나 페이지를 이미지로 내보냅니다.",
+      "summary": "PDF에서 선택할 수 있는 텍스트를 뽑아내거나, 페이지를 JPEG 이미지로 ZIP에 내보냅니다. 문서는 어디로도 보내지 않습니다.",
       "keywords": "pdf 추출 텍스트 이미지",
       "run": "추출",
       "modeText": "텍스트",
@@ -585,6 +592,7 @@
     "image-compress": {
       "name": "이미지 압축",
       "description": "품질과 최대 크기를 낮춰 사진을 공유하기 쉽게 합니다.",
+      "summary": "품질을 낮추거나 가장 긴 변을 제한하거나 둘 다 해서 이메일·채팅·웹에 쓸 사진을 작게 만듭니다.",
       "keywords": "이미지 압축 jpg png webp 크기 사진",
       "run": "압축",
       "success": "이미지 {count}개를 압축했습니다."
@@ -592,6 +600,7 @@
     "image-resize": {
       "name": "이미지 크기 조정",
       "description": "정확한 크기를 지정하고, 필요하면 비율을 고정합니다.",
+      "summary": "이미지를 정확한 픽셀 크기로 맞추거나 퍼센트로 늘리고 줄입니다. 비율은 지키고 싶을 때 지킬 수 있습니다.",
       "keywords": "이미지 크기 비율 너비 높이",
       "run": "크기 조정",
       "lockAspect": "가로세로 비율 유지",
@@ -600,6 +609,7 @@
     "image-crop": {
       "name": "이미지 자르기",
       "description": "원하는 사각형만 남깁니다.",
+      "summary": "선택 영역을 끌어 사진을 중요한 부분만 남기고 자른 뒤, 그 사각형만 내보냅니다.",
       "keywords": "이미지 자르기 영역",
       "run": "자르기",
       "success": "자른 이미지가 준비되었습니다."
@@ -607,6 +617,7 @@
     "image-convert": {
       "name": "이미지 형식 변환",
       "description": "JPEG, PNG, WEBP 등 웹 형식 사이를 바꿉니다.",
+      "summary": "JPEG·PNG·WEBP·AVIF·GIF 사이를 변환합니다. 한 장이든 한 묶음이든 이미지를 업로드하지 않습니다.",
       "keywords": "이미지 변환 형식 webp png jpg jpeg",
       "run": "변환",
       "success": "이미지 {count}개를 변환했습니다."
@@ -614,6 +625,7 @@
     "image-metadata": {
       "name": "이미지 메타데이터",
       "description": "EXIF와 비슷한 태그를 본 뒤, 없는 깨끗한 사본을 내보냅니다.",
+      "summary": "사진이 담고 있는 EXIF(카메라·렌즈·날짜·GPS)를 확인하고, 그것을 지운 복사본을 저장합니다.",
       "keywords": "이미지 exif 메타데이터 제거 개인정보 위치",
       "run": "메타데이터 제거",
       "note": "브라우저에서 픽셀을 다시 인코딩하므로 임베디드 메타데이터가 빠집니다.",
@@ -625,6 +637,7 @@
     "image-adjust": {
       "name": "이미지 조정",
       "description": "밝기, 대비, 채도를 미세 조정합니다.",
+      "summary": "밝기·대비·채도·노출을 눈으로 보고 고칩니다. 슬라이더를 움직일 때마다 결과가 다시 그려집니다.",
       "keywords": "이미지 밝기 대비 채도 색",
       "run": "적용",
       "brightness": "밝기",
@@ -635,6 +648,7 @@
     "convert-hub": {
       "name": "스마트 변환",
       "description": "섞인 파일이나 텍스트 종류를 감지하고 형식 간에 변환합니다 (미디어 스튜디오가 아님).",
+      "summary": "섞인 내용을 붙여 넣으면 Kit이 JSON·CSV·YAML·XML·TOML·SQL 중 무엇인지 알아내 다른 형식으로 바꿉니다.",
       "keywords": "변환 허브 스마트 일괄 json yaml csv zip 이미지 데이터",
       "run": "변환",
       "detect": "다음으로 감지됨",
@@ -644,6 +658,7 @@
     "json-format": {
       "name": "JSON 포맷터",
       "description": "예쁘게 출력하고, 줄이고, JSON 오류를 일찍 잡습니다.",
+      "summary": "JSON을 보기 좋게 정리하거나 압축하고, 문법 오류가 어디인지 정확히 보여 줍니다. 문제 줄은 강조됩니다.",
       "keywords": "json 포맷 검증 축소 pretty",
       "run": "포맷",
       "success": "JSON이 유효하며 포맷되었습니다."
@@ -651,6 +666,7 @@
     "yaml-format": {
       "name": "YAML 포맷터",
       "description": "YAML 구조를 확인하고 레이아웃을 정리합니다.",
+      "summary": "YAML의 구조 오류를 확인하고 들여쓰기를 정리해, 설정 파일이 제대로 읽히도록 만듭니다.",
       "keywords": "yaml 포맷 검증 yml",
       "run": "포맷",
       "success": "YAML이 유효합니다."
@@ -658,6 +674,7 @@
     "toml-format": {
       "name": "TOML 포맷터",
       "description": "TOML을 검증하고 파일을 단정하게 유지합니다.",
+      "summary": "TOML을 검증하고 반듯하게 배치하며, 설정 파서가 거부할 문법 오류를 잡아냅니다.",
       "keywords": "toml 포맷 검증 config",
       "run": "포맷",
       "success": "TOML이 유효합니다."
@@ -665,6 +682,7 @@
     "markdown-html": {
       "name": "Markdown ↔ HTML",
       "description": "Markdown을 HTML로, 또는 HTML을 Markdown으로 바꿉니다.",
+      "summary": "Markdown을 HTML로, 또는 HTML을 다시 Markdown으로 바꿉니다. 제목·링크·목록·표·코드는 그대로입니다.",
       "keywords": "markdown html 변환 md 마크업",
       "run": "변환",
       "toHtml": "Markdown → HTML",
@@ -674,6 +692,7 @@
     "csv-json": {
       "name": "CSV ↔ JSON",
       "description": "표 데이터를 CSV와 JSON 배열 사이에서 옮깁니다.",
+      "summary": "CSV 파일을 JSON 배열로, 또는 JSON을 다시 CSV로 바꿉니다. 구분자와 머리글 행은 지정할 수 있습니다.",
       "keywords": "csv json 변환 표 스프레드시트",
       "run": "변환",
       "toJson": "CSV → JSON",
@@ -683,6 +702,7 @@
     "text-diff": {
       "name": "텍스트 비교",
       "description": "두 버전 사이의 줄 단위 변경을 봅니다.",
+      "summary": "두 초안을 나란히 견주어 어떤 줄이 더해지고 지워지고 바뀌었는지 글자 단위까지 보여 줍니다.",
       "keywords": "diff 비교 텍스트 변경 patch",
       "run": "비교",
       "left": "원본",
@@ -692,6 +712,7 @@
     "base64": {
       "name": "Base64",
       "description": "일반 텍스트나 파일 전체를 Base64로 인코딩하거나 디코딩합니다.",
+      "summary": "글자나 파일 전체를 Base64로 부호화하거나 원래대로 되돌립니다. 내용이 브라우저를 벗어나지 않습니다.",
       "keywords": "base64 인코딩 디코딩 바이너리",
       "run": "변환",
       "mode": "방향",
@@ -702,6 +723,7 @@
     "url-encode": {
       "name": "URL 인코딩",
       "description": "URL 구성 요소를 안전하게 퍼센트 인코딩하거나 디코딩합니다.",
+      "summary": "URL·질의 문자열·폼 값을 퍼센트로 부호화해 요청을 견디게 하고, 이미 부호화된 것은 원래대로 되돌립니다.",
       "keywords": "url 인코딩 디코딩 퍼센트 uri 쿼리",
       "run": "변환",
       "success": "완료."
@@ -709,6 +731,7 @@
     "audio-convert": {
       "name": "오디오 변환",
       "description": "브라우저에서 MP3, WAV, OGG 같은 오디오 컨테이너를 바꿉니다.",
+      "summary": "오디오를 MP3·WAV·OGG·M4A 등 흔한 형식 사이에서 브라우저 안에서 변환합니다. 비트레이트도 고를 수 있습니다.",
       "keywords": "오디오 변환 mp3 wav ogg ffmpeg 소리",
       "run": "변환",
       "loadingFfmpeg": "오디오 엔진을 불러오는 중…",
@@ -722,6 +745,7 @@
     "audio-trim": {
       "name": "오디오 자르기",
       "description": "오디오 파일에서 두 시각 사이의 구간만 남깁니다.",
+      "summary": "오디오 파일을 두 시점 사이 부분만 남기고 자릅니다. 시작과 끝은 초 단위로 맞출 수 있습니다.",
       "keywords": "오디오 자르기 클립 mp3 wav",
       "run": "자르기",
       "success": "오디오 자르기가 끝났습니다."
@@ -729,6 +753,7 @@
     "audio-speed": {
       "name": "오디오 속도와 음량",
       "description": "오디오를 빠르게, 느리게, 또는 크게 바꿉니다.",
+      "summary": "음높이를 바꾸지 않고 오디오 파일을 빠르게 하거나 느리게 하고, 결과의 음량도 정합니다.",
       "keywords": "오디오 속도 템포 음량 음정",
       "run": "적용",
       "success": "처리된 오디오가 준비되었습니다."
@@ -736,6 +761,7 @@
     "video-convert": {
       "name": "비디오 변환",
       "description": "브라우저에서 MP4, WEBM 같은 비디오 컨테이너를 바꿉니다.",
+      "summary": "동영상을 브라우저 안에서 MP4·WEBM·MKV 사이로 변환합니다. 알맞은 H.264와 AAC 설정은 미리 골라 두었습니다.",
       "keywords": "비디오 변환 mp4 webm ffmpeg 영화",
       "run": "변환",
       "loadingFfmpeg": "비디오 엔진을 불러오는 중…",
@@ -745,6 +771,7 @@
     "video-trim": {
       "name": "비디오 자르기",
       "description": "두 시각 사이의 클립만 남깁니다.",
+      "summary": "시작점과 끝점을 정해 동영상을 원하는 부분만 잘라내고, 그 구간만 파일로 내보냅니다.",
       "keywords": "비디오 자르기 클립 mp4",
       "run": "자르기",
       "success": "비디오 자르기가 끝났습니다."
@@ -752,6 +779,7 @@
     "video-speed": {
       "name": "비디오 속도와 음량",
       "description": "비디오의 재생 속도와 오디오 레벨을 바꿉니다.",
+      "summary": "동영상 재생 속도를 바꿉니다. 소리는 박자에 맞추거나 바꿔 끼울 수 있고, 저장 전에 음량을 정합니다.",
       "keywords": "비디오 속도 템포 음량",
       "run": "적용",
       "success": "처리된 비디오가 준비되었습니다."
@@ -759,6 +787,7 @@
     "video-extract-audio": {
       "name": "비디오에서 오디오 추출",
       "description": "비디오의 사운드트랙을 오디오 파일로 저장합니다.",
+      "summary": "동영상에서 소리 트랙을 뽑아 따로 오디오 파일로 저장합니다. 다시 녹음할 필요가 없습니다.",
       "keywords": "비디오 추출 오디오 mp3 사운드트랙",
       "run": "오디오 추출",
       "success": "오디오를 추출했습니다."
@@ -766,6 +795,7 @@
     "pdf-numbers": {
       "name": "쪽 번호",
       "description": "모든 페이지에 1 / 12 같은 쪽 번호를 찍습니다.",
+      "summary": "1 / 12 나 12분의 1처럼 고른 형식으로 페이지 번호를 모든 페이지의 원하는 위치에 넣습니다.",
       "keywords": "pdf 쪽번호 바닥글 머리글 쪽매김",
       "run": "번호 추가",
       "template": "레이블 ({page} 및 {pages})",
@@ -782,6 +812,7 @@
     "pdf-to-images": {
       "name": "PDF → 이미지",
       "description": "모든 페이지를 JPEG로 래스터화해 ZIP으로 다운로드합니다.",
+      "summary": "PDF의 각 페이지를 고른 해상도의 JPEG 이미지로 바꾸고, 전체 묶음을 ZIP 파일로 내려받습니다.",
       "keywords": "pdf 이미지 jpg jpeg zip 페이지 내보내기",
       "run": "페이지 내보내기",
       "limits": "이 탭에서 PDF.js로 페이지를 그립니다. 아주 큰 문서는 느리고 메모리를 많이 쓸 수 있습니다. 시각적 래스터이며 임베디드 이미지 객체를 뽑는 것이 아닙니다.",
@@ -790,6 +821,7 @@
     "images-to-pdf": {
       "name": "이미지 → PDF",
       "description": "사진을 PDF로 쌓습니다. 페이지당 이미지 하나.",
+      "summary": "사진과 스캔본을 하나의 PDF로 묶습니다. 페이지마다 한 장씩, A4에 맞추거나 원래 크기 그대로입니다.",
       "keywords": "이미지 pdf jpg png 결합",
       "run": "PDF 만들기",
       "success": "{count, plural, other {이미지 #장으로 PDF를 만들었습니다.}}",
@@ -800,6 +832,7 @@
     "pdf-flatten": {
       "name": "양식 병합",
       "description": "AcroForm 필드를 페이지에 구워 더 이상 편집할 수 없게 합니다.",
+      "summary": "채워 넣은 양식 필드를 페이지의 영구적인 내용으로 바꿉니다. 어디서나 똑같이 인쇄되고 읽힙니다.",
       "keywords": "pdf 병합 양식 필드 acroform",
       "run": "병합",
       "limits": "표준 AcroForm 필드에서 동작합니다. 동적 XFA 양식은 완전히 지원되지 않습니다.",
@@ -808,6 +841,7 @@
     "pdf-metadata": {
       "name": "PDF 메타데이터",
       "description": "제목, 작성자 및 기타 Info 필드를 보거나 고치거나 지웁니다.",
+      "summary": "PDF의 제목·저자·키워드 등 문서 속성을 읽고 고치고 지운 뒤, 깨끗한 복사본을 저장합니다.",
       "keywords": "키워드",
       "run": "메타데이터 저장",
       "strip": "Info 필드와 XMP 지우기",
@@ -822,6 +856,7 @@
     "pdf-protect": {
       "name": "PDF 잠금 또는 잠금 해제",
       "description": "사용자 비밀번호를 추가하거나 제거합니다. 암호화는 이 브라우저에 남습니다.",
+      "summary": "PDF에 비밀번호를 걸거나 아는 비밀번호를 풉니다. 암호화는 서버가 아니라 이 탭에서 합니다.",
       "keywords": "pdf 비밀번호 잠금 잠금해제 암호화 복호화",
       "run": "적용",
       "lock": "잠금",
@@ -833,6 +868,7 @@
     "image-rotate": {
       "name": "회전과 뒤집기",
       "description": "이미지를 90°씩 돌리거나 가로 또는 세로로 뒤집습니다.",
+      "summary": "사진을 사분의 일 회전씩 돌리고, 몇 도만큼 바로 세우고, 또는 좌우로 뒤집습니다. 한 장이든 묶음이든 됩니다.",
       "keywords": "이미지 회전 뒤집기 거울",
       "run": "적용",
       "operation": "변환",
@@ -846,6 +882,7 @@
     "image-filters": {
       "name": "이미지 필터",
       "description": "하나 또는 여러 사진에 회색조, 세피아, 반전을 적용합니다.",
+      "summary": "흑백·세피아·반전·흐림·선명하게를 사진 한 장이나 폴더 전체에 적용하고 결과를 내려받습니다.",
       "keywords": "이미지 필터 회색조 세피아 반전",
       "run": "적용",
       "filter": "필터",
@@ -857,6 +894,7 @@
     "image-favicon": {
       "name": "파비콘 팩",
       "description": "원본 이미지를 흔한 아이콘 크기로 ZIP에 내보냅니다.",
+      "summary": "이미지 한 장을 사이트나 앱이 요구하는 아이콘 크기(favicon·Apple 터치 아이콘·Android maskable)로 한 ZIP에 만듭니다.",
       "keywords": "파비콘 아이콘 16 32 180 192 512 apple touch",
       "run": "아이콘 내보내기",
       "note": "16, 32, 48, 180, 192, 512픽셀 PNG를 내보냅니다.",
@@ -865,6 +903,7 @@
     "video-gif": {
       "name": "비디오 → GIF",
       "description": "짧은 클립을 브라우저에서 반복 GIF로 만듭니다.",
+      "summary": "동영상의 짧은 구간을 반복 재생되는 GIF로 만듭니다. 시작과 끝은 고를 수 있습니다. 긴 구간은 변환이 느립니다.",
       "keywords": "비디오 gif 클립 변환 ffmpeg",
       "run": "GIF 만들기",
       "limits": "FFmpeg WASM을 사용합니다. 클립을 짧게 유지하세요. GIF 인코딩은 느리고 메모리를 많이 씁니다. 팔레트와 코덱은 브라우저 빌드를 따릅니다.",
@@ -873,6 +912,7 @@
     "xml-json": {
       "name": "XML ↔ JSON",
       "description": "XML 문서를 JSON으로, 또는 JSON을 XML로 변환합니다.",
+      "summary": "XML 문서를 JSON으로, 또는 JSON을 다시 XML로 바꿉니다. 속성과 반복 요소는 예측 가능한 모양으로 남습니다.",
       "keywords": "xml json 변환 구문 분석",
       "run": "변환",
       "toJson": "XML → JSON",
@@ -882,6 +922,7 @@
     "sql-format": {
       "name": "SQL 포맷터",
       "description": "절과 목록을 읽기 쉽게 SQL을 예쁘게 출력합니다.",
+      "summary": "SQL을 다시 정리해 절·조인·긴 열 목록을 줄 맞춰 놓고, 실행 순서대로 읽히게 합니다. 뻔한 실수도 잡아냅니다.",
       "keywords": "sql 포맷 pretty 쿼리",
       "run": "포맷",
       "success": "SQL을 포맷했습니다."
@@ -889,6 +930,7 @@
     "regex-tester": {
       "name": "정규식 테스터",
       "description": "샘플 텍스트에 정규식을 시험하고 일치 항목을 바꿉니다.",
+      "summary": "직접 가진 글에서 정규식을 시험하고, 일치가 강조되는 것을 보며, 바꾸기까지 시험합니다.",
       "keywords": "regex 정규식 테스트 바꾸기",
       "pattern": "패턴",
       "flags": "플래그",
@@ -901,6 +943,7 @@
     "hash-generator": {
       "name": "해시 생성기",
       "description": "텍스트나 파일의 SHA-1/256/384/512 및 MD5를 기기에서 계산합니다.",
+      "summary": "글 한 토막이나 파일 전체의 SHA-1·SHA-256·SHA-384·SHA-512·MD5를 계산합니다. 어느 쪽도 어디로도 보내지 않습니다.",
       "keywords": "hash sha256 md5 sha1 체크섬 다이제스트",
       "run": "해시",
       "algo": "알고리즘",
@@ -911,6 +954,7 @@
     "uuid-generator": {
       "name": "UUID 생성기",
       "description": "이 기기에서 버전 4 또는 7 UUID를 만듭니다.",
+      "summary": "버전 4 또는 7 UUID를 하나씩 또는 한꺼번에 만듭니다. 서버가 아니라 이 기기에서 만들어집니다.",
       "keywords": "uuid guid v4 v7 생성",
       "run": "생성",
       "count": "개수",
@@ -920,6 +964,7 @@
     "color-convert": {
       "name": "색 변환기",
       "description": "색 선택기와 함께 HEX, RGB, HSL, HSV를 변환합니다.",
+      "summary": "색을 HEX·RGB·HSL·HSV·CSS 이름 사이에서 바꾸고, 또는 색상환에서 골라 모든 표기를 한 번에 읽습니다.",
       "keywords": "색 hex rgb hsl hsv 선택기",
       "picker": "색 선택기",
       "invalid": "3자리 또는 6자리 16진 색을 입력하세요."
@@ -927,6 +972,7 @@
     "lorem-ipsum": {
       "name": "Lorem ipsum",
       "description": "자리 표시용 문단, 문장, 단어를 만듭니다.",
+      "summary": "레이아웃에 쓸 채움 글을 문단·문장·단어로 필요한 만큼 만들고, 바로 붙여 넣을 수 있습니다.",
       "keywords": "lorem ipsum 자리표시 dummy 텍스트",
       "run": "생성",
       "count": "개수",
@@ -939,6 +985,7 @@
     "qr-code": {
       "name": "QR 코드",
       "description": "텍스트로 QR 코드를 만들거나 이미지에서 읽습니다.",
+      "summary": "링크·글·연락처로 QR 코드를 만들어 이미지로 내려받고, 또는 사진에서 코드를 읽습니다.",
       "keywords": "qr 코드 생성 스캔 읽기 바코드",
       "run": "생성",
       "payload": "텍스트 또는 URL",
@@ -951,6 +998,7 @@
     "pdf-sign": {
       "name": "PDF 서명",
       "description": "모든 페이지에 입력한 서명을 찍습니다. 시각적일 뿐이며 인증서가 아닙니다.",
+      "summary": "고른 페이지에 입력한 서명을 놓습니다. 읽기 위해 페이지에 그려지는 것이며, 암호학적 서명이 아닙니다.",
       "keywords": "pdf 서명 스탬프 이름",
       "run": "서명",
       "signature": "서명 텍스트",
@@ -961,6 +1009,7 @@
     "image-watermark": {
       "name": "이미지 워터마크",
       "description": "사진 위에 텍스트를 올립니다. 한 파일 또는 일괄.",
+      "summary": "위치·크기·색·불투명도를 골라 사진 위에 글자를 얹습니다. 한 장이나 한 묶음 모두 됩니다.",
       "keywords": "이미지 워터마크 스탬프 저작권",
       "run": "적용",
       "text": "워터마크 텍스트",
@@ -974,6 +1023,7 @@
     "password-generator": {
       "name": "비밀번호 생성기",
       "description": "이 기기에서 강한 비밀번호를 만듭니다. 아무것도 저장하지 않습니다.",
+      "summary": "고른 길이와 문자 조합으로 강한 비밀번호를 만듭니다. 이 기기에서 만들고 저장하지 않습니다.",
       "keywords": "비밀번호 생성 난수 비밀",
       "run": "생성",
       "length": "길이",
@@ -986,6 +1036,7 @@
     "case-convert": {
       "name": "대소문자 바꾸기",
       "description": "camel, snake, kebab, 제목 등 스타일 사이를 바꿉니다.",
+      "summary": "글을 camelCase·snake_case·kebab-case·Title Case 등 개발자들이 쓰는 표기 사이에서 바꿉니다.",
       "keywords": "대소문자 camel snake kebab pascal 제목",
       "run": "변환",
       "style": "스타일",
@@ -994,6 +1045,7 @@
     "jwt-decode": {
       "name": "JWT 디코더",
       "description": "JWT 헤더와 페이로드를 로컬에서 읽습니다. 서명은 검증하지 않습니다.",
+      "summary": "JSON Web Token의 헤더와 내용을 읽고, 언제 만료되는지 보고, 기기 안에서 풉니다. 서명은 검증하지 않습니다.",
       "keywords": "jwt 디코드 token bearer auth",
       "run": "디코드",
       "limits": "Kit는 Base64url만 디코드합니다. 키 없이는 토큰이 진짜인지 증명할 수 없습니다.",
@@ -1005,12 +1057,14 @@
     "unix-timestamp": {
       "name": "유닉스 타임스탬프",
       "description": "유닉스 시간을 ISO로, 다시 되돌립니다.",
+      "summary": "Unix 시각을 읽을 수 있는 날짜와 시간으로, 또는 그 반대로, 고른 시간대에서 바꿉니다.",
       "keywords": "unix epoch 타임스탬프 iso 날짜",
       "now": "지금 사용"
     },
     "cron-explain": {
       "name": "Cron 설명",
       "description": "5필드 cron 식을 쉬운 말로 바꿉니다.",
+      "summary": "다섯 칸 cron 식을 평범한 문장으로 바꿔, 예약된 작업이 언제 얼마나 자주 도는지 분명하게 합니다.",
       "keywords": "cron 일정 crontab 설명",
       "run": "설명",
       "success": "설명했습니다."
@@ -1018,6 +1072,7 @@
     "number-base": {
       "name": "진법",
       "description": "정수를 2진부터 36진까지 변환합니다.",
+      "summary": "정수를 이진·팔진·십진·십육진, 그리고 2에서 36까지 아무 진법 사이에서 바꾸고, 비트 모양도 보여 줍니다.",
       "keywords": "이진 hex 십진 진법 변환",
       "value": "숫자",
       "from": "원래 진법",
@@ -1026,6 +1081,7 @@
     "html-entities": {
       "name": "HTML 엔티티",
       "description": "&lt; &amp; 및 숫자 엔티티를 인코딩하거나 디코딩합니다.",
+      "summary": "꺾쇠괄호·따옴표·숫자 HTML 개체를 부호화하거나 풀어, 마크업 안에서는 안전하고 밖에서는 읽히게 합니다.",
       "keywords": "html 엔티티 인코딩 디코딩 escape",
       "run": "변환",
       "encode": "인코딩",
@@ -1035,6 +1091,7 @@
     "json-types": {
       "name": "JSON → TypeScript",
       "description": "JSON 샘플에서 TypeScript 인터페이스를 추론합니다.",
+      "summary": "견본 JSON 응답을 TypeScript 인터페이스로 바꿉니다. 겹친 객체와 배열은 견본이 허락하는 만큼 형을 붙입니다.",
       "keywords": "json typescript interface 타입 생성",
       "run": "타입 생성",
       "success": "타입을 생성했습니다."
@@ -1119,104 +1176,104 @@
       "unitYd": "야드 (yd)",
       "unitMi": "마일 (mi)",
       "unitNmi": "해리 (nmi)",
-      "unitMg": "Milligrams (mg)",
-      "unitG": "Grams (g)",
-      "unitKg": "Kilograms (kg)",
-      "unitT": "Metric tonnes (t)",
-      "unitOz": "Ounces (oz)",
-      "unitLb": "Pounds (lb)",
+      "unitMg": "밀리그램 (mg)",
+      "unitG": "그램 (g)",
+      "unitKg": "킬로그램 (kg)",
+      "unitT": "미터톤 (t)",
+      "unitOz": "온스 (oz)",
+      "unitLb": "파운드 (lb)",
       "unitStone": "스톤",
-      "unitC": "Celsius (°C)",
-      "unitF": "Fahrenheit (°F)",
-      "unitK": "Kelvin (K)",
-      "unitMs": "Milliseconds",
-      "unitS": "Seconds",
-      "unitMin": "Minutes",
-      "unitH": "Hours",
-      "unitDay": "Days",
-      "unitWeek": "Weeks",
-      "unitM_s": "Meters per second",
-      "unitKm_h": "Kilometers per hour",
-      "unitMph": "Miles per hour",
+      "unitC": "섭씨 (°C)",
+      "unitF": "화씨 (°F)",
+      "unitK": "켈빈 (K)",
+      "unitMs": "밀리초",
+      "unitS": "초",
+      "unitMin": "분",
+      "unitH": "시간",
+      "unitDay": "일",
+      "unitWeek": "주",
+      "unitM_s": "초당 미터",
+      "unitKm_h": "시속 킬로미터",
+      "unitMph": "시속 마일",
       "unitKnot": "노트",
-      "unitMl": "Milliliters",
-      "unitL": "Liters",
-      "unitM3": "Cubic meters",
-      "unitUsTsp": "미국 티스푼",
-      "unitUsTbsp": "미국 테이블스푼",
+      "unitMl": "밀리리터",
+      "unitL": "리터",
+      "unitM3": "세제곱미터",
+      "unitUsTsp": "미국 작은술",
+      "unitUsTbsp": "미국 큰술",
       "unitUsCup": "미국 컵",
       "unitUsGal": "미국 갤런",
       "unitImpGal": "영국 갤런",
-      "unitW": "Watts",
-      "unitKw": "Kilowatts",
-      "unitMw": "Megawatts",
+      "unitW": "와트",
+      "unitKw": "킬로와트",
+      "unitMw": "메가와트",
       "unitHp": "기계 마력",
-      "unitJ": "Joules",
-      "unitKj": "Kilojoules",
-      "unitWh": "Watt-hours",
-      "unitKwh": "Kilowatt-hours",
-      "unitCal": "Calories",
-      "unitKcal": "Kilocalories",
-      "unitEv": "Electronvolts",
-      "unitPa": "Pascals",
-      "unitKpa": "Kilopascals",
-      "unitBar": "Bar",
+      "unitJ": "줄",
+      "unitKj": "킬로줄",
+      "unitWh": "와트시",
+      "unitKwh": "킬로와트시",
+      "unitCal": "칼로리",
+      "unitKcal": "킬로칼로리",
+      "unitEv": "전자볼트",
+      "unitPa": "파스칼",
+      "unitKpa": "킬로파스칼",
+      "unitBar": "바",
       "unitPsi": "PSI",
-      "unitAtm": "Atmospheres",
-      "unitMmHg": "Millimeters of mercury",
-      "unitMm2": "Square millimeters",
-      "unitCm2": "Square centimeters",
-      "unitM2": "Square meters",
-      "unitKm2": "Square kilometers",
-      "unitFt2": "Square feet",
-      "unitAcre": "Acres",
-      "unitHectare": "Hectares",
-      "unitBit": "Bits",
-      "unitB": "Bytes",
-      "unitKb": "Kilobytes",
-      "unitMb": "Megabytes",
-      "unitGb": "Gigabytes",
-      "unitTb": "Terabytes",
-      "unitKib": "Kibibytes",
-      "unitMib": "Mebibytes",
-      "unitGib": "Gibibytes",
-      "unitDeg": "Degrees",
-      "unitRad": "Radians",
-      "unitGrad": "Gradians",
-      "unitTurn": "Turns",
-      "unitHz": "Hertz",
-      "unitKhz": "Kilohertz",
-      "unitMhz": "Megahertz",
-      "unitGhz": "Gigahertz",
-      "unitRpm": "Revolutions per minute",
-      "unitN": "Newtons",
-      "unitKn": "Kilonewtons",
-      "unitLbf": "Pound-force",
-      "unitKgf": "Kilogram-force",
-      "unitL_100km": "Liters per 100 km",
-      "unitKm_L": "Kilometers per liter",
-      "unitMpgUs": "Miles per US gallon",
-      "unitMpgImperial": "Miles per imperial gallon",
-      "unitM_s2": "Meters per second squared",
-      "unitG0": "Standard gravity",
-      "unitFt_s2": "Feet per second squared",
-      "unitNm": "Newton-meters",
-      "unitKnm": "Kilonewton-meters",
-      "unitLbFt": "Pound-feet",
-      "unitLbIn": "Pound-inches",
-      "unitMv": "Millivolts",
-      "unitV": "Volts",
-      "unitKv": "Kilovolts",
-      "unitMa": "Milliamps",
-      "unitA": "Amps",
-      "unitKa": "Kiloamps",
-      "unitMOhm": "Milliohms",
-      "unitOhm": "Ohms",
-      "unitKOhm": "Kilohms",
-      "unitMOhmBig": "Megohms",
-      "unitPx": "Pixels",
-      "unitPt": "Points",
-      "unitPc": "Picas",
+      "unitAtm": "기압",
+      "unitMmHg": "수은주밀리미터",
+      "unitMm2": "제곱밀리미터",
+      "unitCm2": "제곱센티미터",
+      "unitM2": "제곱미터",
+      "unitKm2": "제곱킬로미터",
+      "unitFt2": "제곱피트",
+      "unitAcre": "에이커",
+      "unitHectare": "헥타르",
+      "unitBit": "비트",
+      "unitB": "바이트",
+      "unitKb": "킬로바이트",
+      "unitMb": "메가바이트",
+      "unitGb": "기가바이트",
+      "unitTb": "테라바이트",
+      "unitKib": "키비바이트",
+      "unitMib": "메비바이트",
+      "unitGib": "기비바이트",
+      "unitDeg": "도",
+      "unitRad": "라디안",
+      "unitGrad": "그레이디안",
+      "unitTurn": "회전",
+      "unitHz": "헤르츠",
+      "unitKhz": "킬로헤르츠",
+      "unitMhz": "메가헤르츠",
+      "unitGhz": "기가헤르츠",
+      "unitRpm": "분당 회전수",
+      "unitN": "뉴턴",
+      "unitKn": "킬로뉴턴",
+      "unitLbf": "파운드힘",
+      "unitKgf": "킬로그램힘",
+      "unitL_100km": "리터/100 km",
+      "unitKm_L": "킬로미터/리터",
+      "unitMpgUs": "마일/미국 갤런",
+      "unitMpgImperial": "마일/영국 갤런",
+      "unitM_s2": "제곱초당 미터",
+      "unitG0": "표준 중력",
+      "unitFt_s2": "제곱초당 피트",
+      "unitNm": "뉴턴미터",
+      "unitKnm": "킬로뉴턴미터",
+      "unitLbFt": "파운드피트",
+      "unitLbIn": "파운드인치",
+      "unitMv": "밀리볼트",
+      "unitV": "볼트",
+      "unitKv": "킬로볼트",
+      "unitMa": "밀리암페어",
+      "unitA": "암페어",
+      "unitKa": "킬로암페어",
+      "unitMOhm": "밀리옴",
+      "unitOhm": "옴",
+      "unitKOhm": "킬로옴",
+      "unitMOhmBig": "메가옴",
+      "unitPx": "픽셀",
+      "unitPt": "포인트",
+      "unitPc": "파이카",
       "unitRem": "rem",
       "unitEm": "em",
       "presetMetricImperial": "미터법 ↔ 야드파운드법",
@@ -1243,23 +1300,24 @@
       "presetOhmsKilohms": "Ohms ↔ kilohms",
       "presetPxRem": "px ↔ rem",
       "presetPxPt": "px ↔ pt",
-      "unitUsFlOz": "US fluid ounces",
-      "unitUsPt": "US pints",
-      "unitUsQt": "US quarts",
-      "unitGw": "Gigawatts",
-      "unitMj": "Megajoules",
-      "unitMpa": "Megapascals",
-      "unitIn2": "Square inches",
-      "unitYd2": "Square yards",
-      "unitPb": "Petabytes",
-      "unitTib": "Tebibytes",
-      "unitPib": "Pebibytes",
-      "unitArcmin": "Arcminutes",
-      "unitArcsec": "Arcseconds"
+      "unitUsFlOz": "미국 액량 온스",
+      "unitUsPt": "미국 파인트",
+      "unitUsQt": "미국 쿼트",
+      "unitGw": "기가와트",
+      "unitMj": "메가줄",
+      "unitMpa": "메가파스칼",
+      "unitIn2": "제곱인치",
+      "unitYd2": "제곱야드",
+      "unitPb": "페타바이트",
+      "unitTib": "테비바이트",
+      "unitPib": "페비바이트",
+      "unitArcmin": "각분",
+      "unitArcsec": "각초"
     },
     "text-counter": {
       "name": "텍스트 카운터",
       "description": "단어, 문자, 문장, 문단과 읽기 시간을 셉니다.",
+      "summary": "입력하는 동안 단어·글자·문장·문단을 세고, 글을 다 읽는 데 걸리는 시간도 어림합니다.",
       "keywords": "단어 수 문자 수 텍스트 통계 읽기 시간",
       "limits": "가능한 경우 브라우저의 기본 Unicode 분할을 사용하므로 이모지와 결합 문자를 더 자연스럽게 처리합니다.",
       "input": "셀 텍스트",
@@ -1276,6 +1334,7 @@
     "timezone-converter": {
       "name": "세계 시계",
       "description": "현지 날짜와 시간을 시간대 사이에서 변환하고 세계 시계를 확인합니다.",
+      "summary": "세계 여러 도시의 지금 시각을 보고, 날짜를 넘어가더라도 시간대 사이에서 순간을 바꿉니다.",
       "keywords": "시간대 변환기 세계 시계 서머타임 날짜 시간",
       "limits": "출발 도시의 현지 시각을 입력하세요. 변환에는 서머타임 변경을 포함한 IANA 시간대 규칙이 사용됩니다.",
       "convert": "날짜 및 시간 변환",
@@ -1325,6 +1384,7 @@
     "date-calculator": {
       "name": "날짜 계산기",
       "description": "날짜를 비교하고 시간을 더하며 선택한 공휴일을 반영해 근무일을 셉니다.",
+      "summary": "두 날짜 사이의 간격을 내고, 날과 달을 더하거나 빼고, 공휴일을 낀 영업일을 셉니다.",
       "keywords": "날짜 계산기 날짜 차이 날짜 더하기 근무일 공휴일",
       "updated": "날짜가 업데이트되었습니다.",
       "invalid": "입력을 확인하세요.",
@@ -1363,6 +1423,7 @@
     "tip-split-calculator": {
       "name": "팁·분할 계산기",
       "description": "그룹의 팁, 세금, 합계와 공정한 분담액을 계산합니다.",
+      "summary": "계산서의 팁·세금·합계를 내고, 내는 사람 수만큼 공평하게 나눕니다.",
       "keywords": "팁 계산기 계산서 나누기 세금 레스토랑 분담",
       "limits": "팁과 세금은 소계에서 계산합니다. 반올림으로 생긴 나머지는 앞선 사람에게 나눠 전체 합계가 맞도록 합니다.",
       "invalid": "입력을 확인하세요.",
@@ -1383,6 +1444,7 @@
     "stopwatch-timer": {
       "name": "스톱워치·타이머",
       "description": "브라우저에서 정밀한 스톱워치나 카운트다운 타이머를 실행합니다.",
+      "summary": "구간 기록이 있는 정확한 스톱워치를 쓰거나, 다른 곳에 있어도 계속 세는 탭에서 0까지 거꾸로 셉니다.",
       "keywords": "스톱워치 타이머 카운트다운 시계 온라인 타이머",
       "saved": "기록에 저장했습니다.",
       "stopwatch": "스톱워치",
@@ -1399,6 +1461,7 @@
     "random-generator": {
       "name": "랜덤 생성기",
       "description": "일상적인 용도로 숫자, 불리언, 선택 항목 또는 비밀번호를 생성합니다.",
+      "summary": "난수를 뽑고, 동전을 던지고, 주사위를 굴리고, 목록에서 고릅니다. 범위와 결과 개수는 정할 수 있습니다.",
       "keywords": "난수 생성기 선택기 비밀번호 생성기",
       "invalid": "입력을 확인하세요.",
       "limits": "무작위 값은 브라우저의 Math.random을 사용합니다. 결과는 일상적인 선택용이며 암호학적 비밀에는 적합하지 않습니다.",
@@ -1428,6 +1491,7 @@
     "currency-converter": {
       "name": "통화 변환기",
       "description": "실시간 환율과 로컬 캐시",
+      "summary": "일별 환율로 통화를 바꿉니다. 환율은 기기에 저장되어, 연결이 끊겨도 마지막 묶음은 쓸 수 있습니다.",
       "keywords": "환율 변환기 환율 돈 Frankfurter",
       "currency": "통화",
       "limits": "환율은 이 도구를 열거나 새로고침을 탭할 때 Frankfurter에서 가져오며, 이 브라우저 캐시에 6시간 동안 남습니다. 금액은 전송되지 않습니다. 매매나 세금용이 아닌 일일 참고 시세입니다.",
@@ -1451,6 +1515,7 @@
     "length-converter": {
       "name": "길이",
       "description": "거리, 치수 및 여행",
+      "summary": "길이를 미터·피트·마일·인치·센티미터 등 여행과 집수리에서 만나는 단위 사이에서 바꿉니다.",
       "keywords": "길이 length converter",
       "run": "변환 기록",
       "success": "변환을 기록에 저장했습니다."
@@ -1458,6 +1523,7 @@
     "mass-converter": {
       "name": "질량",
       "description": "밀리그램부터 톤까지의 무게",
+      "summary": "무게를 밀리그램·그램·킬로그램·톤·파운드·온스·스톤 사이에서 바꿉니다. 요리나 발송에 씁니다.",
       "keywords": "질량 mass converter",
       "run": "변환 기록",
       "success": "변환을 기록에 저장했습니다."
@@ -1465,6 +1531,7 @@
     "temperature-converter": {
       "name": "온도",
       "description": "섭씨, 화씨 및 켈빈",
+      "summary": "온도를 섭씨·화씨·켈빈 사이에서 바꿉니다. 물이 어는 점과 끓는 점도 포함합니다.",
       "keywords": "온도 temperature converter",
       "run": "변환 기록",
       "success": "변환을 기록에 저장했습니다."
@@ -1472,6 +1539,7 @@
     "speed-converter": {
       "name": "속도",
       "description": "일상 및 항해 속도",
+      "summary": "속도를 시속 킬로미터·시속 마일·초속 미터·노트 사이에서 바꿉니다. 도로·하늘·바다를 위해.",
       "keywords": "속도 speed converter",
       "run": "변환 기록",
       "success": "변환을 기록에 저장했습니다."
@@ -1479,6 +1547,7 @@
     "duration-converter": {
       "name": "기간",
       "description": "밀리초부터 주까지",
+      "summary": "기간을 밀리초·초·분·시간·일·주 사이에서 바꾸고, 값을 양쪽 방향으로 읽습니다.",
       "keywords": "기간 duration converter",
       "run": "변환 기록",
       "success": "변환을 기록에 저장했습니다."
@@ -1486,6 +1555,7 @@
     "volume-converter": {
       "name": "부피",
       "description": "미터법 및 요리 단위",
+      "summary": "부피를 리터·밀리리터·갤런·컵·파인트 등 조리법에 쓰이는 단위 사이에서 바꿉니다.",
       "keywords": "부피 volume converter",
       "run": "변환 기록",
       "success": "변환을 기록에 저장했습니다."
@@ -1493,6 +1563,7 @@
     "power-converter": {
       "name": "전력",
       "description": "와트 및 마력",
+      "summary": "전력을 와트·킬로와트·메가와트·미터법 또는 기계 마력 사이에서 바꿉니다. 가전과 엔진에 씁니다.",
       "keywords": "전력 power converter",
       "run": "변환 기록",
       "success": "변환을 기록에 저장했습니다."
@@ -1500,6 +1571,7 @@
     "energy-converter": {
       "name": "에너지",
       "description": "줄, 칼로리 및 와트시",
+      "summary": "에너지를 줄·칼로리·킬로칼로리·킬로와트시 사이에서 바꿉니다. 식품 표시나 전기 요금서의 단위입니다.",
       "keywords": "에너지 energy converter",
       "run": "변환 기록",
       "success": "변환을 기록에 저장했습니다."
@@ -1507,6 +1579,7 @@
     "pressure-converter": {
       "name": "압력",
       "description": "Pa, bar, PSI 등",
+      "summary": "압력을 파스칼·바·PSI·기압·토르·수은주밀리미터 사이에서 바꿉니다. 타이어나 날씨에 씁니다.",
       "keywords": "압력 pressure converter",
       "run": "변환 기록",
       "success": "변환을 기록에 저장했습니다."
@@ -1514,6 +1587,7 @@
     "area-converter": {
       "name": "면적",
       "description": "면적 및 토지 면적",
+      "summary": "넓이를 제곱미터·제곱피트·에이커·헥타르 등 땅과 바닥의 단위 사이에서 바꿉니다.",
       "keywords": "면적 area converter",
       "run": "변환 기록",
       "success": "변환을 기록에 저장했습니다."
@@ -1521,6 +1595,7 @@
     "data-converter": {
       "name": "데이터",
       "description": "10진수 및 2진수 저장 용량",
+      "summary": "파일이나 저장 용량을 바이트·킬로바이트·메가바이트·기가바이트·테라바이트 사이에서 바꿉니다.",
       "keywords": "데이터 data converter",
       "run": "변환 기록",
       "success": "변환을 기록에 저장했습니다."
@@ -1528,6 +1603,7 @@
     "angle-converter": {
       "name": "각도",
       "description": "도, 라디안 및 회전",
+      "summary": "각도를 도·라디안·그레이디안·회전 사이에서 바꾸고, 소수 표기와 분수 표기를 나란히 보여 줍니다.",
       "keywords": "각도 angle converter",
       "run": "변환 기록",
       "success": "변환을 기록에 저장했습니다."
@@ -1535,6 +1611,7 @@
     "frequency-converter": {
       "name": "주파수",
       "description": "Hz부터 RPM까지",
+      "summary": "주파수를 헤르츠·킬로헤르츠·메가헤르츠·기가헤르츠·분당 회전수 사이에서 바꿉니다. 소리·전파·회전 기계에 씁니다.",
       "keywords": "주파수 frequency converter",
       "run": "변환 기록",
       "success": "변환을 기록에 저장했습니다."
@@ -1542,6 +1619,7 @@
     "force-converter": {
       "name": "힘",
       "description": "뉴턴 및 힘의 단위",
+      "summary": "힘을 뉴턴·킬로뉴턴·킬로그램힘·파운드힘·다인 사이에서 바꿉니다. 물리와 공학에 씁니다.",
       "keywords": "힘 force converter",
       "run": "변환 기록",
       "success": "변환을 기록에 저장했습니다."
@@ -1549,6 +1627,7 @@
     "fuel-economy-converter": {
       "name": "연비",
       "description": "소비량 및 주행 거리",
+      "summary": "연비를 리터/100 km·미국 또는 영국 갤런당 마일·리터당 킬로미터 사이에서 바꿉니다.",
       "keywords": "연비 fuel economy converter",
       "run": "변환 기록",
       "success": "변환을 기록에 저장했습니다."
@@ -1556,6 +1635,7 @@
     "acceleration-converter": {
       "name": "가속도",
       "description": "운동 및 중력",
+      "summary": "가속도를 제곱초당 미터·표준 중력·제곱초당 피트·갈릴레오 사이에서 바꿉니다.",
       "keywords": "가속도 acceleration converter",
       "run": "변환 기록",
       "success": "변환을 기록에 저장했습니다."
@@ -1563,6 +1643,7 @@
     "torque-converter": {
       "name": "토크",
       "description": "회전력",
+      "summary": "토크를 뉴턴미터·킬로그램힘미터·파운드피트·파운드인치 사이에서 바꿉니다. 너트와 엔진에 씁니다.",
       "keywords": "토크 torque converter",
       "run": "변환 기록",
       "success": "변환을 기록에 저장했습니다."
@@ -1570,6 +1651,7 @@
     "electrical-converter": {
       "name": "전기",
       "description": "전압, 전류 및 저항",
+      "summary": "전압·전류·저항·전력의 전기 단위 사이에서 바꿉니다. 볼트·암페어·옴·와트입니다.",
       "keywords": "전기 electrical converter",
       "run": "변환 기록",
       "success": "변환을 기록에 저장했습니다."
@@ -1577,6 +1659,7 @@
     "typography-converter": {
       "name": "타이포그래피",
       "description": "CSS 및 인쇄 크기",
+      "summary": "글자 크기를 픽셀·포인트·em·rem·파이카 사이에서 바꿉니다. 기준은 정한 뿌리·부모·화면 크기입니다.",
       "keywords": "타이포그래피 typography converter",
       "run": "변환 기록",
       "success": "변환을 기록에 저장했습니다."
@@ -1584,6 +1667,7 @@
     "bmi-calorie-calculator": {
       "name": "BMI 및 칼로리 계산기",
       "description": "키, 몸무게, 나이, 활동량으로 BMI, 건강한 체중 범위, 하루 필요 칼로리를 확인합니다.",
+      "summary": "BMI를 건강한 체중 범위와 견주고, 키·체중·나이·활동량으로 하루 필요 칼로리를 어림합니다.",
       "keywords": "bmi 칼로리 tdee bmr 체중 건강",
       "limits": "BMI는 성인 WHO 기준입니다. 18세 미만도 계산되지만 표시됩니다. 소아 BMI는 보통 성장 곡선으로 읽습니다. 칼로리는 성인용 Mifflin-St Jeor 식입니다. 계산은 이 기기에 남으며 의학적 조언이 아닙니다.",
       "invalid": "현실적인 키, 몸무게, 나이를 입력하세요.",
@@ -1642,6 +1726,7 @@
     "percentage-calculator": {
       "name": "퍼센트 계산기",
       "description": "비율 계산, 역산, 증감률, 퍼센트 가감을 계산합니다.",
+      "summary": "어떤 수의 몇 퍼센트인지 내고, 원래 값을 거꾸로 찾고, 두 값 사이의 변화를 재고, 또는 증가분을 더합니다.",
       "keywords": "퍼센트 비율 계산기 인상 할인",
       "mode": "계산",
       "modeOf": "% of",
@@ -1665,6 +1750,7 @@
     "loan-calculator": {
       "name": "대출·이자 계산기",
       "description": "원금·이율·기간으로 월 상환액 또는 복리 미래가치를 추정합니다.",
+      "summary": "매달 갚을 금액을 어림하거나, 원금·금리·기간으로 복리가 시간에 따라 무엇을 하는지 봅니다.",
       "keywords": "대출 모기지 상환 복리 이자 APR",
       "limits": "대출 모드는 고정금리 원리금균등 상환의 표준 공식을 사용합니다. 복리 모드는 주기적으로 복리 계산을 합니다(기본값 매월). 이는 추정치이며 금융 자문이 아닙니다.",
       "mode": "모드",
@@ -1685,6 +1771,7 @@
     "text-lines": {
       "name": "줄 도구",
       "description": "브라우저에서 줄 찾기/바꾸기, 정렬, 중복 제거를 합니다.",
+      "summary": "줄 목록에서 찾아 바꾸고, 숫자나 가나다 순으로 정렬하고, 겹치는 줄을 지웁니다.",
       "keywords": "찾기 바꾸기 정렬 중복 제거 줄 텍스트",
       "find": "찾기",
       "replace": "바꿀 내용",
@@ -1699,6 +1786,7 @@
     "slugify": {
       "name": "슬러그 만들기",
       "description": "제목을 URL 슬러그로 바꾸거나 안전한 파일 이름으로 정리합니다.",
+      "summary": "제목을 깔끔한 URL 슬러그로 바꿉니다. 강세·대소문자·구분자는 파일 이름에 필요한 대로 정합니다.",
       "keywords": "슬러그 slug URL 파일명 정리",
       "input": "텍스트",
       "slug": "URL 슬러그",
@@ -1709,6 +1797,7 @@
     "color-contrast": {
       "name": "색 대비",
       "description": "전경색과 배경색의 WCAG 대비를 확인합니다.",
+      "summary": "색 조합을 내보내기 전에 글자와 배경의 대비를 WCAG AA와 AAA 기준에 비추어 확인합니다.",
       "keywords": "wcag 대비 접근성 aa aaa 가독성",
       "limits": "명암비는 sRGB 16진수 색상에 대한 WCAG 2 상대 휘도로 계산합니다. 표시된 기준은 일반 텍스트 기준입니다(AA ≥ 4.5, AAA ≥ 7).",
       "foreground": "전경",
@@ -1724,6 +1813,7 @@
     "image-palette": {
       "name": "이미지 팔레트",
       "description": "사진에서 주요 색을 추출해 디자인 참고로 씁니다.",
+      "summary": "사진의 주요 색을 16진 코드로 읽어, 색 조합을 곧바로 디자인이나 브랜드 점검에 쓸 수 있습니다.",
       "keywords": "팔레트 색 추출 지배색 스와치 이미지",
       "limits": "색상은 축소된 미리보기에서 이 탭 안에서 양자화됩니다. 결과는 근사치이며 이 기기 밖으로 나가지 않습니다.",
       "maxColors": "최대 색 수",
@@ -1735,6 +1825,7 @@
     "aspect-ratio": {
       "name": "화면비",
       "description": "너비·높이를 비율로 줄이거나 빠진 변을 구합니다.",
+      "summary": "가로와 세로를 가장 간단한 비로 줄이거나, 아는 비에서 빠진 변을 계산합니다.",
       "keywords": "화면비 16:9 크기 빠진 변",
       "mode": "모드",
       "modeFromSize": "크기로 계산",
@@ -1751,6 +1842,7 @@
     "meeting-planner": {
       "name": "회의 시간 계획",
       "description": "특정 날짜에 여러 시간대의 근무 시간 겹침을 찾습니다.",
+      "summary": "고른 날에 여러 시간대의 근무 시간을 견주어 모두에게 맞는 시각을 찾습니다.",
       "keywords": "회의 시간대 겹침 세계시계 근무시간",
       "limits": "겹침 계산에는 IANA 시간대와 각 시간대의 달력 날짜를 사용합니다. 후보 시간은 모든 시간대가 선택한 날짜이면서 근무 시간 안에 들어오는, 1시간 단위의 UTC 시간입니다.",
       "date": "날짜",
@@ -1770,6 +1862,7 @@
     "json-query": {
       "name": "JSON 조회",
       "description": "중첩 JSON을 펼치거나 $.items[0].name 같은 간단한 JSONPath로 값을 읽습니다.",
+      "summary": "깊이 겹친 JSON을 줄로 펼치거나, $.items[0].name 같은 간단한 JSONPath로 값을 뽑아냅니다.",
       "keywords": "json path 조회 펼치기 jq",
       "limits": "JSONPath의 일부($.a.b, $.items[0], $['key'])만 지원합니다. 와일드카드와 필터는 지원하지 않습니다.",
       "mode": "모드",
@@ -1784,6 +1877,7 @@
     "check-digits": {
       "name": "체크 디지트",
       "description": "ISBN-10/13, EAN-13, IBAN 체크 디지트를 로컬에서 검증합니다.",
+      "summary": "ISBN-10·ISBN-13·EAN-13·IBAN의 검사 숫자를 확인하고, 잘못 넣은 값이 어느 자리에서 걸리는지 보여 줍니다.",
       "keywords": "isbn ean iban 체크 디지트 바코드 검증",
       "limits": "공개된 검사 숫자 알고리즘만 확인합니다. 검사 숫자가 맞더라도 번호가 실제 발급되었거나 계좌가 존재함을 보증하지 않습니다.",
       "kind": "종류",
