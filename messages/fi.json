@@ -518,6 +518,7 @@
     "pdf-merge": {
       "name": "Yhdistä PDF:t",
       "description": "Pinoa useita PDF-tiedostoja yhdeksi. Esikatsele sivuja ja vedä järjestykseen.",
+      "summary": "Yhdistä useita PDF-tiedostoja yhdeksi, esikatsele sivut ja vedä ne haluamaasi järjestykseen ennen tallennusta.",
       "keywords": "pdf yhdistä liitä yhdistä monisivu",
       "run": "Yhdistä",
       "empty": "Lisää vähintään kaksi PDF-tiedostoa.",
@@ -526,6 +527,7 @@
     "pdf-split": {
       "name": "Jaa PDF",
       "description": "Poimi sivualue uuteen PDF-tiedostoon.",
+      "summary": "Poimi yksi tai useampi sivualue PDF-tiedostosta uuteen tiedostoon tai jaa yksi asiakirja moneen, ilman lähetystä.",
       "keywords": "pdf jaa poimi sivut alue",
       "run": "Jaa",
       "range": "Sivut (esimerkiksi 1-3,5)",
@@ -534,6 +536,7 @@
     "pdf-organize": {
       "name": "Järjestä sivut",
       "description": "Kierrä sivuja, poista turhat ja aseta uusi järjestys.",
+      "summary": "Kierrä, poista ja järjestä PDF-tiedoston sivut uudelleen ja tallenna muokattu asiakirja. Mikään ei poistu laitteeltasi.",
       "keywords": "pdf kierrä poista järjestä sivut",
       "run": "Tallenna PDF",
       "success": "PDF on päivitetty.",
@@ -542,6 +545,7 @@
     "pdf-compress": {
       "name": "Pienennä kuvina",
       "description": "Rasteroi jokaisen sivun JPEG-kuvaksi. Teksti, linkit ja vektorit eivät säily.",
+      "summary": "Pienennä PDF-tiedostoa piirtämällä jokainen sivu JPEG-kuvana valitsemallasi laadulla ja koolla — kevyempi tiedosto ilman valittavaa tekstiä.",
       "keywords": "pdf pakkaa pienennä koko",
       "run": "Pienennä",
       "note": "Jokainen sivu muuttuu JPEG-kuvaksi ja kootaan uudeksi PDF:ksi. Haettava teksti, linkit ja vektorit katoavat. Tiedosto voi kasvaa. Sopii valokuvaskannauksiin, ei sopimuksiin.",
@@ -550,6 +554,7 @@
     "pdf-watermark": {
       "name": "PDF-vesileima",
       "description": "Leimaa teksti vesileimaksi, ylätunnisteeksi tai alatunnisteeksi jokaiselle sivulle.",
+      "summary": "Lisää teksti jokaiselle sivulle vesileimana, ylä- tai alatunnisteena ja valitse sanamuoto, koko, kulma, peittävyys ja sijainti.",
       "keywords": "pdf vesileima leima ylätunniste alatunniste luottamuksellinen",
       "run": "Käytä",
       "text": "Vesileimateksti",
@@ -563,6 +568,7 @@
     "pdf-redact": {
       "name": "Peitä sisältö",
       "description": "Aseta mustia laatikoita arkaluontoisten alueiden päälle (visuaalinen peitto).",
+      "summary": "Peitä sivujen sisältöä mustilla laatikoilla. Kyse on visuaalisesta peitosta, ei oikeasta redaktioinnista: teksti on yhä alla.",
       "keywords": "pdf peitä mustaa piilota arkaluontoinen",
       "run": "Käytä peittoa",
       "note": "Vain visuaalinen peitto. Se ei takaa kaikkien tekstivirtojen poistoa — tarkista arkaluontoiset asiakirjat.",
@@ -574,6 +580,7 @@
     "pdf-extract": {
       "name": "Pura PDF:stä",
       "description": "Poimi luettava teksti tai vie sivu kuvana.",
+      "summary": "Poimi valittava teksti PDF-tiedostosta tai vie sen sivut JPEG-kuvina ZIP-pakettiin lähettämättä asiakirjaa minnekään.",
       "keywords": "pdf pura teksti kuvat",
       "run": "Pura",
       "modeText": "Teksti",
@@ -585,6 +592,7 @@
     "image-compress": {
       "name": "Pakkaa kuvat",
       "description": "Laske laatua ja enimmäiskokoa, jotta kuvat pysyvät jaettavina.",
+      "summary": "Pienennä kuvia sähköpostia, chatia tai verkkoa varten laskemalla laatua, rajaamalla pisintä sivua tai molempia.",
       "keywords": "kuva pakkaa jpg png webp koko valokuva",
       "run": "Pakkaa",
       "success": "Pakattiin {count} kuvaa."
@@ -592,6 +600,7 @@
     "image-resize": {
       "name": "Muuta kuvien kokoa",
       "description": "Aseta tarkat mitat, valinnaisesti lukitulla kuvasuhteella.",
+      "summary": "Aseta kuvalle tarkka pikselikoko tai skaalaa se prosenteilla, ja pidä mittasuhteet silloin kun haluat pitää ne.",
       "keywords": "kuva koko skaalaa leveys korkeus",
       "run": "Muuta kokoa",
       "lockAspect": "Säilytä kuvasuhde",
@@ -600,6 +609,7 @@
     "image-crop": {
       "name": "Rajaa kuva",
       "description": "Säilytä vain haluamasi suorakulmio.",
+      "summary": "Rajaa kuva siihen osaan, jolla on väliä, vetämällä valinta sen päälle ja vie sitten vain se suorakaide.",
       "keywords": "kuva rajaa leikkaa alue",
       "run": "Rajaa",
       "success": "Rajattu kuva on valmis."
@@ -607,6 +617,7 @@
     "image-convert": {
       "name": "Muunna kuvamuoto",
       "description": "Vaihda JPEG-, PNG-, WEBP- ja vastaavien verkkomuotojen välillä.",
+      "summary": "Muunna JPEG-, PNG-, WEBP-, AVIF- ja GIF-muotojen välillä, yksi kuva tai koko erä, lähettämättä kuvia mihinkään.",
       "keywords": "kuva muunna muoto webp png jpg jpeg",
       "run": "Muunna",
       "success": "Muunnettiin {count} kuvaa."
@@ -614,6 +625,7 @@
     "image-metadata": {
       "name": "Kuvan metatiedot",
       "description": "Tarkastele EXIF- ja vastaavia tunnisteita ja vie puhdas kopio ilman niitä.",
+      "summary": "Katso kuvan mukana kulkevat EXIF-tiedot — kamera, objektiivi, päiväys, GPS — ja tallenna kopio ilman niitä.",
       "keywords": "kuva exif metatiedot poista tietosuoja sijainti",
       "run": "Poista metatiedot",
       "note": "Pikselit koodataan uudelleen selaimessa, joten upotetut metatiedot poistuvat.",
@@ -625,6 +637,7 @@
     "image-adjust": {
       "name": "Säädä kuvaa",
       "description": "Muuta kirkkautta, kontrastia ja värikylläisyyttä.",
+      "summary": "Korjaa kirkkautta, kontrastia, värikylläisyyttä ja valotusta silmämääräisesti; tulos piirretään uudelleen liukusäätimen liikkuessa.",
       "keywords": "kuva kirkkaus kontrasti kylläisyys väri",
       "run": "Käytä",
       "brightness": "Kirkkaus",
@@ -635,6 +648,7 @@
     "convert-hub": {
       "name": "Älykäs muunto",
       "description": "Tunnistaa sekoitetut tiedosto- tai tekstityypit ja muuntaa formaattien välillä (ei mediastudio).",
+      "summary": "Liitä sekalaista sisältöä ja anna Kitin päätellä, mitä se on — JSON, CSV, YAML, XML, TOML tai SQL — ja muunna se toiseen muotoon.",
       "keywords": "muunto keskus älykäs erä json yaml csv zip kuva data",
       "run": "Muunna",
       "detect": "Tunnistettu",
@@ -644,6 +658,7 @@
     "json-format": {
       "name": "JSON-muotoilija",
       "description": "Sisenna, pienennä ja havaitse JSON-virheet ajoissa.",
+      "summary": "Muotoile JSON luettavaan muotoon tai pienennä se, ja näe tarkalleen missä syntaksivirhe on, virheellinen rivi korostettuna.",
       "keywords": "json muotoile tarkista pienennä pretty",
       "run": "Muotoile",
       "success": "JSON on kelvollinen ja muotoiltu."
@@ -651,6 +666,7 @@
     "yaml-format": {
       "name": "YAML-muotoilija",
       "description": "Tarkista YAML-rakenne ja siisti asettelu.",
+      "summary": "Tarkista YAML rakenteellisten virheiden varalta ja siisti sisennys, jotta asetustiedosto luetaan niin kuin pitää.",
       "keywords": "yaml muotoile tarkista yml",
       "run": "Muotoile",
       "success": "YAML on kelvollinen."
@@ -658,6 +674,7 @@
     "toml-format": {
       "name": "TOML-muotoilija",
       "description": "Tarkista TOML ja pidä tiedosto siistinä.",
+      "summary": "Validoi TOML ja asettele se siististi, ja nappaa kiinni ne syntaksivirheet, jotka asetusten jäsennin hylkäisi.",
       "keywords": "toml muotoile tarkista config",
       "run": "Muotoile",
       "success": "TOML on kelvollinen."
@@ -665,6 +682,7 @@
     "markdown-html": {
       "name": "Markdown ↔ HTML",
       "description": "Muuta Markdown HTML:ksi tai HTML takaisin Markdowniksi.",
+      "summary": "Muunna Markdown HTML:ksi tai HTML takaisin Markdowniksi säilyttäen otsikot, linkit, listat, taulukot ja koodin.",
       "keywords": "markdown html muunna md merkintä",
       "run": "Muunna",
       "toHtml": "Markdown → HTML",
@@ -674,6 +692,7 @@
     "csv-json": {
       "name": "CSV ↔ JSON",
       "description": "Siirrä taulukkodataa CSV:n ja JSON-taulukoiden välillä.",
+      "summary": "Muunna CSV-tiedosto JSON-taulukoksi tai JSON takaisin CSV:ksi, kun erotin ja otsikkorivi ovat sinun hallinnassasi.",
       "keywords": "csv json muunna taulukko laskentataulukko",
       "run": "Muunna",
       "toJson": "CSV → JSON",
@@ -683,6 +702,7 @@
     "text-diff": {
       "name": "Tekstivertailu",
       "description": "Näe rivikohtaiset muutokset kahden version välillä.",
+      "summary": "Vertaa kahta luonnosta vierekkäin ja näe, mitkä rivit lisättiin, poistettiin tai muutettiin, merkkiä myöten.",
       "keywords": "diff vertaa teksti muutokset patch",
       "run": "Vertaa",
       "left": "Alkuperäinen",
@@ -692,6 +712,7 @@
     "base64": {
       "name": "Base64",
       "description": "Koodaa tai pura Base64 pelkkänä tekstinä tai kokonaisina tiedostoina.",
+      "summary": "Koodaa teksti tai kokonainen tiedosto Base64-muotoon tai pura se takaisin, ilman että sisältö poistuu selaimesta.",
       "keywords": "base64 koodaa pura binääri",
       "run": "Muunna",
       "mode": "Suunta",
@@ -702,6 +723,7 @@
     "url-encode": {
       "name": "URL-koodaus",
       "description": "Prosenttikoodaa tai pura URL-osia turvallisesti.",
+      "summary": "Prosenttikoodaa URL, kyselymerkkijono tai lomakekentän arvo säilyttääkseen sen pyynnössä, tai pura jo koodattu sellainen.",
       "keywords": "url koodaa pura prosentti uri kysely",
       "run": "Muunna",
       "success": "Valmis."
@@ -709,6 +731,7 @@
     "audio-convert": {
       "name": "Muunna ääntä",
       "description": "Vaihda äänisäiliöitä kuten MP3, WAV ja OGG selaimessa.",
+      "summary": "Muunna ääntä MP3-, WAV-, OGG-, M4A- ja muiden yleisten muotojen välillä selaimessa haluamallasi bittinopeudella.",
       "keywords": "ääni muunna mp3 wav ogg ffmpeg ääni",
       "run": "Muunna",
       "loadingFfmpeg": "Ladataan äänimoottoria…",
@@ -722,6 +745,7 @@
     "audio-trim": {
       "name": "Leikkaa ääntä",
       "description": "Säilytä vain kahden aikaleiman välinen jakso äänitiedostosta.",
+      "summary": "Leikkaa äänitiedostosta se osuus, joka jää kahden aikaleiman väliin; alku ja loppu säädetään sekunnin tarkkuudella.",
       "keywords": "ääni leikkaa clip mp3 wav",
       "run": "Leikkaa",
       "success": "Äänen leikkaus valmis."
@@ -729,6 +753,7 @@
     "audio-speed": {
       "name": "Äänen nopeus ja voimakkuus",
       "description": "Nopeuta, hidasta tai muuta äänenvoimakkuutta.",
+      "summary": "Nopeuta tai hidasta äänitiedostoa sävelkorkeutta muuttamatta ja aseta, kuinka lujaa lopputulos soi.",
       "keywords": "ääni nopeus tempo voimakkuus sävelkorkeus",
       "run": "Käytä",
       "success": "Käsitelty ääni on valmis."
@@ -736,6 +761,7 @@
     "video-convert": {
       "name": "Muunna video",
       "description": "Vaihda videosäiliöitä kuten MP4 ja WEBM selaimessa.",
+      "summary": "Muunna videota MP4-, WEBM- ja MKV-muotojen välillä selaimessa; järkevät H.264- ja AAC-asetukset on jo valittu.",
       "keywords": "video muunna mp4 webm ffmpeg elokuva",
       "run": "Muunna",
       "loadingFfmpeg": "Ladataan videomoottoria…",
@@ -745,6 +771,7 @@
     "video-trim": {
       "name": "Leikkaa video",
       "description": "Säilytä vain kahden aikaleiman välinen leike.",
+      "summary": "Leikkaa videosta haluamasi pätkä asettamalla alku- ja loppukohta ja vie sitten vain se jakso tiedostona.",
       "keywords": "video leikkaa clip mp4",
       "run": "Leikkaa",
       "success": "Videon leikkaus valmis."
@@ -752,6 +779,7 @@
     "video-speed": {
       "name": "Videon nopeus ja voimakkuus",
       "description": "Muuta videon toistonopeutta ja äänitasoa.",
+      "summary": "Muuta videon toistonopeutta pitäen ääni tahdissa tai korvaten se, ja aseta taso ennen tallennusta.",
       "keywords": "video nopeus tempo voimakkuus",
       "run": "Käytä",
       "success": "Käsitelty video on valmis."
@@ -759,6 +787,7 @@
     "video-extract-audio": {
       "name": "Pura ääni videosta",
       "description": "Tallenna videon ääniraita äänitiedostona.",
+      "summary": "Irrota videosta ääniraita ja tallenna se erillisenä äänitiedostona nauhoittamatta mitään uudelleen.",
       "keywords": "video pura ääni mp3 ääniraita",
       "run": "Pura ääni",
       "success": "Ääni purettu."
@@ -766,6 +795,7 @@
     "pdf-numbers": {
       "name": "Sivunumerot",
       "description": "Leimaa sivumerkintä kuten 1 / 12 jokaiselle sivulle.",
+      "summary": "Lisää sivunumerot valitsemassasi muodossa, kuten 1 / 12, ja aseta ne haluamaasi kohtaan jokaisella sivulla.",
       "keywords": "pdf sivunumerot alatunniste ylätunniste sivutus",
       "run": "Lisää numerot",
       "template": "Merkintä ({page} ja {pages})",
@@ -782,6 +812,7 @@
     "pdf-to-images": {
       "name": "PDF → kuvat",
       "description": "Rasteroi jokainen sivu JPEG-kuvaksi ja lataa ne ZIP-tiedostona.",
+      "summary": "Muunna PDF-tiedoston jokainen sivu JPEG-kuvaksi valitsemallasi tarkkuudella ja lataa koko sarja ZIP-tiedostona.",
       "keywords": "pdf kuva jpg jpeg zip sivut vienti",
       "run": "Vie sivut",
       "limits": "Sivut piirretään PDF.js:llä tässä välilehdessä. Hyvin suuret asiakirjat voivat olla hitaita ja käyttää paljon muistia. Tämä on visuaalinen rasteri, ei upotettujen kuvaobjektien poiminta.",
@@ -790,6 +821,7 @@
     "images-to-pdf": {
       "name": "Kuvat → PDF",
       "description": "Pinoa valokuvat PDF:ksi, yksi kuva per sivu.",
+      "summary": "Yhdistä kuvat ja skannaukset yhdeksi PDF-tiedostoksi, yksi kuva sivua kohden, A4-kokoon sovitettuna tai alkuperäiskoossa.",
       "keywords": "kuvat pdf jpg png yhdistä",
       "run": "Luo PDF",
       "success": "{count, plural, one {PDF # kuvasta.} other {PDF # kuvasta.}}",
@@ -800,6 +832,7 @@
     "pdf-flatten": {
       "name": "Litistä lomakkeet",
       "description": "Paista AcroForm-kentät sivulle niin, ettei niitä voi enää muokata.",
+      "summary": "Muuta täytetyt lomakekentät pysyväksi sivusisällöksi, jotta PDF tulostuu ja näkyy samanlaisena kaikkialla eikä sitä voi enää muokata.",
       "keywords": "pdf litistä lomake kentät acroform",
       "run": "Litistä",
       "limits": "Toimii tavallisilla AcroForm-kentillä. Dynaamisia XFA-lomakkeita ei tueta täysin.",
@@ -808,6 +841,7 @@
     "pdf-metadata": {
       "name": "PDF-metatiedot",
       "description": "Tarkastele, muokkaa tai poista otsikko, tekijä ja muut Info-kentät.",
+      "summary": "Lue, muokkaa tai poista PDF-tiedoston otsikko, tekijä, avainsanat ja muut asiakirjaominaisuudet ja tallenna puhdas kopio.",
       "keywords": "Avainsanat",
       "run": "Tallenna metatiedot",
       "strip": "Tyhjennä Info-kentät ja XMP",
@@ -822,6 +856,7 @@
     "pdf-protect": {
       "name": "Lukitse tai avaa PDF",
       "description": "Lisää tai poista käyttäjän salasana. Salaus pysyy tässä selaimessa.",
+      "summary": "Lisää PDF-tiedostoon salasana tai poista tuntemasi salasana; salaus tehdään tässä välilehdessä, ei palvelimella.",
       "keywords": "pdf salasana lukitse avaa salaa",
       "run": "Käytä",
       "lock": "Lukitse",
@@ -833,6 +868,7 @@
     "image-rotate": {
       "name": "Kierrä ja peilaa",
       "description": "Käännä kuvia 90° kerrallaan tai peilaa vaakasuunnassa tai pystysuunnassa.",
+      "summary": "Kierrä kuvia neljänneskierros kerrallaan, suorista niitä muutamalla asteella tai peilaa ne — yksi kuva tai koko erä.",
       "keywords": "kuva kierrä peilaa",
       "run": "Käytä",
       "operation": "Muunnos",
@@ -846,6 +882,7 @@
     "image-filters": {
       "name": "Kuvasuodattimet",
       "description": "Käytä harmaasävyä, seepiaa tai inversiota yhteen tai useaan kuvaan.",
+      "summary": "Käytä harmaasävyä, seepiaa, käänteisväriä, sumennusta tai terävöitystä kuvaan tai kokonaiseen kansioon ja lataa tulokset.",
       "keywords": "kuva suodatin harmaasävy seepia inversio",
       "run": "Käytä",
       "filter": "Suodatin",
@@ -857,6 +894,7 @@
     "image-favicon": {
       "name": "Favicon-paketti",
       "description": "Vie lähdekuva yleisinä kuvakekokoina ZIP-tiedostoon.",
+      "summary": "Muunna yksi kuva niiksi kuvakkeiden ko'oiksi, joita sivusto tai sovellus pyytää — favicon, Apple-kuvake, Android maskable — yhdessä ZIPissä.",
       "keywords": "favicon kuvake 16 32 180 192 512 apple touch",
       "run": "Vie kuvakkeet",
       "note": "Vie PNG-tiedostot koossa 16, 32, 48, 180, 192 ja 512 pikseliä.",
@@ -865,6 +903,7 @@
     "video-gif": {
       "name": "Video → GIF",
       "description": "Muuta lyhyt leike silmukoivaksi GIF:ksi selaimessa.",
+      "summary": "Muunna videon lyhyt jakso silmukassa toistuvaksi GIFiksi ja valitse alku ja loppu. Koodaus on hidasta pitkillä pätkillä.",
       "keywords": "video gif leike muunna ffmpeg",
       "run": "Tee GIF",
       "limits": "Käyttää FFmpeg WASM:ia. Pidä leikkeet lyhyinä — GIF-koodaus on hidasta ja muistia vievää. Paletti ja koodekit noudattavat selainkoontia.",
@@ -873,6 +912,7 @@
     "xml-json": {
       "name": "XML ↔ JSON",
       "description": "Muunna XML-asiakirjat JSON:ksi tai JSON takaisin XML:ksi.",
+      "summary": "Muunna XML-asiakirja JSONiksi tai JSON takaisin XML:ksi pitäen attribuutit ja toistuvat elementit ennustettavassa muodossa.",
       "keywords": "xml json muunna jäsennä",
       "run": "Muunna",
       "toJson": "XML → JSON",
@@ -882,6 +922,7 @@
     "sql-format": {
       "name": "SQL-muotoilija",
       "description": "Kaunista SQL, jotta lausekkeet ja listat ovat helpompia lukea.",
+      "summary": "Muotoile SQL uudelleen niin, että lauseet, liitokset ja pitkät sarakeluettelot asettuvat linjaan ja näkyvät suoritusjärjestyksessä.",
       "keywords": "sql muotoile pretty kysely",
       "run": "Muotoile",
       "success": "SQL muotoiltu."
@@ -889,6 +930,7 @@
     "regex-tester": {
       "name": "Säännöllisen lausekkeen testaaja",
       "description": "Kokeile säännöllistä lauseketta esimerkkitekstiin ja korvaa osumat.",
+      "summary": "Kokeile säännöllistä lauseketta omalla esimerkkitekstilläsi, katso osumien korostuvan ja testaa korvaus.",
       "keywords": "regex säännöllinen lauseke testi korvaa",
       "pattern": "Kuvio",
       "flags": "Liput",
@@ -901,6 +943,7 @@
     "hash-generator": {
       "name": "Tiivistegeneraattori",
       "description": "SHA-1/256/384/512 ja MD5 tekstistä tai tiedostosta, lasketaan paikallisesti.",
+      "summary": "Laske SHA-1, SHA-256, SHA-384, SHA-512 tai MD5 tekstinpätkälle tai kokonaiselle tiedostolle lähettämättä kumpaakaan minnekään.",
       "keywords": "hash sha256 md5 sha1 tarkiste tiiviste",
       "run": "Tiivistä",
       "algo": "Algoritmi",
@@ -911,6 +954,7 @@
     "uuid-generator": {
       "name": "UUID-generaattori",
       "description": "Luo version 4 tai 7 UUID:itä tällä laitteella.",
+      "summary": "Luo version 4 tai 7 UUID-tunnisteita yksi kerrallaan tai erissä; ne syntyvät tällä laitteella, eivät palvelimella.",
       "keywords": "uuid guid v4 v7 luo",
       "run": "Luo",
       "count": "Kuinka monta",
@@ -920,6 +964,7 @@
     "color-convert": {
       "name": "Värimuunnin",
       "description": "Muunna HEX-, RGB-, HSL- ja HSV-arvojen välillä värivalitsimella.",
+      "summary": "Muunna väri HEX-, RGB-, HSL-, HSV- ja CSS-nimien välillä tai valitse se ympyrästä ja lue kaikki merkintätavat kerralla.",
       "keywords": "väri hex rgb hsl hsv valitsin",
       "picker": "Värivalitsin",
       "invalid": "Anna 3- tai 6-merkkinen heksaväri."
@@ -927,6 +972,7 @@
     "lorem-ipsum": {
       "name": "Lorem ipsum",
       "description": "Luo paikkamerkkikappaleita, lauseita tai sanoja.",
+      "summary": "Luo asettelua varten täytetekstiä kappaleina, lauseina tai sanoina, haluamasi määrä ja valmiina liitettäväksi.",
       "keywords": "lorem ipsum paikkamerkki dummy teksti",
       "run": "Luo",
       "count": "Määrä",
@@ -939,6 +985,7 @@
     "qr-code": {
       "name": "QR-koodi",
       "description": "Luo QR-koodi tekstistä tai lue se kuvasta.",
+      "summary": "Tee QR-koodi linkistä, tekstistä tai yhteystiedoista ja lataa se kuvana, tai lue koodi kuvasta.",
       "keywords": "qr koodi luo skannaa lue viivakoodi",
       "run": "Luo",
       "payload": "Teksti tai URL",
@@ -951,6 +998,7 @@
     "pdf-sign": {
       "name": "Allekirjoita PDF",
       "description": "Leimaa kirjoitettu allekirjoitus jokaiselle sivulle. Vain visuaalinen — ei varmenne.",
+      "summary": "Sijoita kirjoitettu allekirjoitus valitsemillesi sivuille. Se piirretään sivulle luettavaksi, ei kryptografisena allekirjoituksena.",
       "keywords": "pdf allekirjoita leima nimi",
       "run": "Allekirjoita",
       "signature": "Allekirjoitusteksti",
@@ -961,6 +1009,7 @@
     "image-watermark": {
       "name": "Vesileimaa kuvat",
       "description": "Lisää teksti valokuviin, yksi tiedosto tai koko erä.",
+      "summary": "Aseta teksti kuviesi päälle — valiten sijainnin, koon, värin ja peittävyyden — yhdelle kuvalle tai koko erälle.",
       "keywords": "kuva vesileima leima tekijänoikeus",
       "run": "Käytä",
       "text": "Vesileimateksti",
@@ -974,6 +1023,7 @@
     "password-generator": {
       "name": "Salasanageneraattori",
       "description": "Luo vahva salasana tällä laitteella. Mitään ei tallenneta.",
+      "summary": "Luo vahva salasana valitsemallasi pituudella ja merkkivalikoimalla. Se syntyy tällä laitteella eikä sitä tallenneta.",
       "keywords": "salasana luo satunnainen salainen",
       "run": "Luo",
       "length": "Pituus",
@@ -986,6 +1036,7 @@
     "case-convert": {
       "name": "Vaihda kirjainkoko",
       "description": "Vaihda camel-, snake-, kebab-, title-tyylien ja muiden välillä.",
+      "summary": "Vaihda teksti camelCase-, snake_case-, kebab-case-, Title Case- ja muihin kehittäjien käyttämiin tapoihin.",
       "keywords": "kirjainkoko camel snake kebab pascal title",
       "run": "Muunna",
       "style": "Tyyli",
@@ -994,6 +1045,7 @@
     "jwt-decode": {
       "name": "JWT-purkaja",
       "description": "Lue JWT-otsikko ja sisältö paikallisesti. Allekirjoituksia ei varmenneta.",
+      "summary": "Lue JSON Web Tokenin otsake ja sisältö, katso milloin se vanhenee ja pura se paikallisesti. Allekirjoitusta ei vahvisteta.",
       "keywords": "jwt pura token bearer auth",
       "run": "Pura",
       "limits": "Kit purkaa vain Base64url:n. Ilman avainta se ei voi todistaa tunnisteen aitoutta.",
@@ -1005,12 +1057,14 @@
     "unix-timestamp": {
       "name": "Unix-aikaleima",
       "description": "Muunna Unix-aika ISO-muotoon ja takaisin.",
+      "summary": "Muunna Unix-aikaleima luettavaksi päivämääräksi ja ajaksi tai toisin päin valitsemassasi aikavyöhykkeessä.",
       "keywords": "unix epoch aikaleima iso päivämäärä",
       "now": "Käytä nykyhetkeä"
     },
     "cron-explain": {
       "name": "Cron-selittäjä",
       "description": "Muuta 5-kenttäinen cron-lauseke selkokieleksi.",
+      "summary": "Muunna viisikenttäinen cron-lauseke tavalliseksi lauseeksi, jotta näkyy selvästi, milloin ajastettu tehtävä ajetaan ja kuinka usein.",
       "keywords": "cron aikataulu crontab selitä",
       "run": "Selitä",
       "success": "Selitetty."
@@ -1018,6 +1072,7 @@
     "number-base": {
       "name": "Lukujärjestelmä",
       "description": "Muunna kokonaislukuja kantalukujen 2 ja 36 välillä.",
+      "summary": "Muunna kokonaisluku binäärin, oktaalin, desimaalin, heksadesimaalin ja minkä tahansa kantaluvun 2–36 välillä, bittikuvio näkyvissä.",
       "keywords": "binääri hex desimaali kanta muunna",
       "value": "Luku",
       "from": "Lähtökanta",
@@ -1026,6 +1081,7 @@
     "html-entities": {
       "name": "HTML-entiteetit",
       "description": "Koodaa tai pura &lt; &amp; ja numeeriset entiteetit.",
+      "summary": "Koodaa tai pura kulmasulut, lainausmerkit ja numeeriset HTML-entiteetit, jotta teksti on turvallista merkinnöissä ja luettavaa sen ulkopuolella.",
       "keywords": "html entiteetit koodaa pura escape",
       "run": "Muunna",
       "encode": "Koodaa",
@@ -1035,6 +1091,7 @@
     "json-types": {
       "name": "JSON → TypeScript",
       "description": "Päättele TypeScript-rajapinnat JSON-esimerkistä.",
+      "summary": "Muunna esimerkki JSON-vastauksesta TypeScript-rajapinnoiksi, sisäkkäiset oliot ja taulukot tyypitettyinä niin pitkälle kuin esimerkki sallii.",
       "keywords": "json typescript interface tyyppi luo",
       "run": "Luo tyypit",
       "success": "Tyypit luotu."
@@ -1102,113 +1159,113 @@
       "categoryElectricalDescription": "Jännite, virta ja resistanssi",
       "categoryTypography": "Typografia",
       "categoryTypographyDescription": "CSS- ja painokoot",
-      "unitMm": "Millimeters (mm)",
-      "unitCm": "Centimeters (cm)",
-      "unitM": "Meters (m)",
-      "unitKm": "Kilometers (km)",
-      "unitIn": "Inches (in)",
-      "unitFt": "Feet (ft)",
-      "unitYd": "Yards (yd)",
-      "unitMi": "Miles (mi)",
-      "unitNmi": "Meripeninkulmat (nmi)",
-      "unitMg": "Milligrams (mg)",
-      "unitG": "Grams (g)",
-      "unitKg": "Kilograms (kg)",
-      "unitT": "Metric tonnes (t)",
-      "unitOz": "Ounces (oz)",
-      "unitLb": "Pounds (lb)",
+      "unitMm": "Millimetri (mm)",
+      "unitCm": "Senttimetri (cm)",
+      "unitM": "Metri (m)",
+      "unitKm": "Kilometri (km)",
+      "unitIn": "Tuuma (in)",
+      "unitFt": "Jalka (ft)",
+      "unitYd": "Jaardi (yd)",
+      "unitMi": "Maili (mi)",
+      "unitNmi": "Merimaili (nmi)",
+      "unitMg": "Milligramma (mg)",
+      "unitG": "Gramma (g)",
+      "unitKg": "Kilogramma (kg)",
+      "unitT": "Metrinen tonni (t)",
+      "unitOz": "Unssi (oz)",
+      "unitLb": "Pauna (lb)",
       "unitStone": "Stone (st)",
       "unitC": "Celsius (°C)",
       "unitF": "Fahrenheit (°F)",
       "unitK": "Kelvin (K)",
-      "unitMs": "Milliseconds",
-      "unitS": "Seconds",
-      "unitMin": "Minutes",
-      "unitH": "Hours",
-      "unitDay": "Days",
-      "unitWeek": "Weeks",
-      "unitM_s": "Meters per second",
-      "unitKm_h": "Kilometers per hour",
-      "unitMph": "Miles per hour",
-      "unitKnot": "Solmut",
-      "unitMl": "Milliliters",
-      "unitL": "Liters",
-      "unitM3": "Cubic meters",
-      "unitUsTsp": "US teelusikat",
-      "unitUsTbsp": "US ruokalusikat",
-      "unitUsCup": "US kupit",
-      "unitUsGal": "US gallonat",
-      "unitImpGal": "Imperial-gallonat",
-      "unitW": "Watts",
-      "unitKw": "Kilowatts",
-      "unitMw": "Megawatts",
+      "unitMs": "Millisekuntia",
+      "unitS": "Sekuntia",
+      "unitMin": "Minuuttia",
+      "unitH": "Tuntia",
+      "unitDay": "Päivää",
+      "unitWeek": "Viikkoa",
+      "unitM_s": "Metriä sekunnissa",
+      "unitKm_h": "Kilometriä tunnissa",
+      "unitMph": "Mailia tunnissa",
+      "unitKnot": "Solmua",
+      "unitMl": "Millilitraa",
+      "unitL": "Litraa",
+      "unitM3": "Kuutiometri",
+      "unitUsTsp": "Yhdysvaltain teelusikka",
+      "unitUsTbsp": "Yhdysvaltain ruokalusikka",
+      "unitUsCup": "Yhdysvaltain kuppi",
+      "unitUsGal": "Yhdysvaltain gallona",
+      "unitImpGal": "Brittiläinen gallona",
+      "unitW": "Watti",
+      "unitKw": "Kilowatti",
+      "unitMw": "Megawatti",
       "unitHp": "Mekaaninen hevosvoima",
-      "unitJ": "Joules",
-      "unitKj": "Kilojoules",
-      "unitWh": "Watt-hours",
-      "unitKwh": "Kilowatt-hours",
-      "unitCal": "Calories",
-      "unitKcal": "Kilocalories",
-      "unitEv": "Electronvolts",
-      "unitPa": "Pascals",
-      "unitKpa": "Kilopascals",
-      "unitBar": "Bar",
+      "unitJ": "Joule",
+      "unitKj": "Kilojoule",
+      "unitWh": "Wattitunti",
+      "unitKwh": "Kilowattitunti",
+      "unitCal": "Kalori",
+      "unitKcal": "Kilokalori",
+      "unitEv": "Elektronivoltti",
+      "unitPa": "Pascal",
+      "unitKpa": "Kilopascal",
+      "unitBar": "Baari",
       "unitPsi": "PSI",
-      "unitAtm": "Atmospheres",
-      "unitMmHg": "Millimeters of mercury",
-      "unitMm2": "Square millimeters",
-      "unitCm2": "Square centimeters",
-      "unitM2": "Square meters",
-      "unitKm2": "Square kilometers",
-      "unitFt2": "Square feet",
-      "unitAcre": "Acres",
-      "unitHectare": "Hectares",
-      "unitBit": "Bits",
-      "unitB": "Bytes",
-      "unitKb": "Kilobytes",
-      "unitMb": "Megabytes",
-      "unitGb": "Gigabytes",
-      "unitTb": "Terabytes",
-      "unitKib": "Kibibytes",
-      "unitMib": "Mebibytes",
-      "unitGib": "Gibibytes",
-      "unitDeg": "Degrees",
-      "unitRad": "Radians",
-      "unitGrad": "Gradians",
-      "unitTurn": "Turns",
-      "unitHz": "Hertz",
-      "unitKhz": "Kilohertz",
-      "unitMhz": "Megahertz",
-      "unitGhz": "Gigahertz",
-      "unitRpm": "Revolutions per minute",
-      "unitN": "Newtons",
-      "unitKn": "Kilonewtons",
-      "unitLbf": "Pound-force",
-      "unitKgf": "Kilogram-force",
-      "unitL_100km": "Liters per 100 km",
-      "unitKm_L": "Kilometers per liter",
-      "unitMpgUs": "Miles per US gallon",
-      "unitMpgImperial": "Miles per imperial gallon",
-      "unitM_s2": "Meters per second squared",
-      "unitG0": "Standard gravity",
-      "unitFt_s2": "Feet per second squared",
-      "unitNm": "Newton-meters",
-      "unitKnm": "Kilonewton-meters",
-      "unitLbFt": "Pound-feet",
-      "unitLbIn": "Pound-inches",
-      "unitMv": "Millivolts",
-      "unitV": "Volts",
-      "unitKv": "Kilovolts",
-      "unitMa": "Milliamps",
-      "unitA": "Amps",
-      "unitKa": "Kiloamps",
-      "unitMOhm": "Milliohms",
-      "unitOhm": "Ohms",
-      "unitKOhm": "Kilohms",
-      "unitMOhmBig": "Megohms",
-      "unitPx": "Pixels",
-      "unitPt": "Points",
-      "unitPc": "Picas",
+      "unitAtm": "Ilmakehä",
+      "unitMmHg": "Elohopeamillimetri",
+      "unitMm2": "Neliömillimetri",
+      "unitCm2": "Neliösenttimetri",
+      "unitM2": "Neliömetri",
+      "unitKm2": "Neliökilometri",
+      "unitFt2": "Neliöjalka",
+      "unitAcre": "Eekkeri",
+      "unitHectare": "Hehtaari",
+      "unitBit": "Bitti",
+      "unitB": "Tavu",
+      "unitKb": "Kilotavu",
+      "unitMb": "Megatavu",
+      "unitGb": "Gigatavu",
+      "unitTb": "Teratavu",
+      "unitKib": "Kibitavu",
+      "unitMib": "Mebitavu",
+      "unitGib": "Gibitavu",
+      "unitDeg": "Astetta",
+      "unitRad": "Radiaania",
+      "unitGrad": "Gradiaania",
+      "unitTurn": "Kierrosta",
+      "unitHz": "Hertsi",
+      "unitKhz": "Kilohertsi",
+      "unitMhz": "Megahertsi",
+      "unitGhz": "Gigahertsi",
+      "unitRpm": "Kierrosta minuutissa",
+      "unitN": "Newton",
+      "unitKn": "Kilonewton",
+      "unitLbf": "Paunavoima",
+      "unitKgf": "Kilogrammavoima",
+      "unitL_100km": "Litraa / 100 km",
+      "unitKm_L": "Kilometriä litralla",
+      "unitMpgUs": "Mailia / Yhdysvaltain gallona",
+      "unitMpgImperial": "Mailia / brittiläinen gallona",
+      "unitM_s2": "Metriä sekunnissa toiseen",
+      "unitG0": "Putouskiihtyvyys",
+      "unitFt_s2": "Jalkaa sekunnissa toiseen",
+      "unitNm": "Newtonmetri",
+      "unitKnm": "Kilonewtonmetri",
+      "unitLbFt": "Paunajalka",
+      "unitLbIn": "Paunatuuma",
+      "unitMv": "Millivoltti",
+      "unitV": "Voltti",
+      "unitKv": "Kilovoltti",
+      "unitMa": "Milliampeeri",
+      "unitA": "Ampeeri",
+      "unitKa": "Kiloampeeri",
+      "unitMOhm": "Milliohmi",
+      "unitOhm": "Ohmi",
+      "unitKOhm": "Kilo-ohmi",
+      "unitMOhmBig": "Megaohmi",
+      "unitPx": "Pikseli",
+      "unitPt": "Piste",
+      "unitPc": "Pica",
       "unitRem": "rem",
       "unitEm": "em",
       "presetMetricImperial": "Metrinen ↔ imperiaalinen",
@@ -1243,23 +1300,24 @@
       "parentFontSize": "Vanhemman fontin koko",
       "dpi": "DPI",
       "rateUnavailable": "Kurssipalvelu ei ole käytettävissä",
-      "unitUsFlOz": "US fluid ounces",
-      "unitUsPt": "US pints",
-      "unitUsQt": "US quarts",
-      "unitGw": "Gigawatts",
-      "unitMj": "Megajoules",
-      "unitMpa": "Megapascals",
-      "unitIn2": "Square inches",
-      "unitYd2": "Square yards",
-      "unitPb": "Petabytes",
-      "unitTib": "Tebibytes",
-      "unitPib": "Pebibytes",
-      "unitArcmin": "Arcminutes",
-      "unitArcsec": "Arcseconds"
+      "unitUsFlOz": "Yhdysvaltain nesteunssi",
+      "unitUsPt": "Yhdysvaltain pint",
+      "unitUsQt": "Yhdysvaltain quart",
+      "unitGw": "Gigawatti",
+      "unitMj": "Megajoule",
+      "unitMpa": "Megapascal",
+      "unitIn2": "Neliötuuma",
+      "unitYd2": "Neliöjaardi",
+      "unitPb": "Petatavu",
+      "unitTib": "Tebitavu",
+      "unitPib": "Pebitavu",
+      "unitArcmin": "Kaariminuutti",
+      "unitArcsec": "Kaarisekunti"
     },
     "text-counter": {
       "name": "Tekstilaskuri",
       "description": "Laske sanat, merkit, lauseet, kappaleet ja lukuaika.",
+      "summary": "Laske sanoja, merkkejä, lauseita ja kappaleita kirjoittaessasi, sekä arvio siitä, kauanko tekstin lukeminen kestää.",
       "keywords": "sanamäärälaskuri merkkilaskuri tekstin tilastot lukuaika",
       "limits": "Laskenta käyttää selaimen natiivia Unicode-segmentointia, kun se on saatavilla, joten emojit ja yhdistelmämerkit käsitellään luontevammin.",
       "input": "Laskettava teksti",
@@ -1276,6 +1334,7 @@
     "timezone-converter": {
       "name": "Maailmankello",
       "description": "Muunna paikallinen päivämäärä ja aika aikavyöhykkeiden välillä ja tarkista maailmankello.",
+      "summary": "Katso, mitä kello on eri puolilla maailmaa juuri nyt, ja muunna hetki aikavyöhykkeiden välillä myös päivämäärän yli.",
       "keywords": "aikavyöhykemuunnin maailmankello kesäaika päivämäärä aika",
       "limits": "Anna lähdekaupungin kellonaika. Muunnos käyttää IANA-aikavyöhykesääntöjä, myös kesäajan muutoksia.",
       "convert": "Muunna päivämäärä ja aika",
@@ -1325,6 +1384,7 @@
     "date-calculator": {
       "name": "Päivämäärälaskuri",
       "description": "Vertaa päivämääriä, lisää aikaa ja laske työpäivät valinnaiset pyhät huomioiden.",
+      "summary": "Laske kahden päivämäärän välinen aika, lisää tai vähennä päiviä ja kuukausia ja laske arkipäivät juhlapyhien ympäriltä.",
       "keywords": "päivämäärälaskuri päivämääräero lisää päiviä työpäivät pyhät",
       "updated": "Päivämäärä päivitetty.",
       "invalid": "Tarkista syötteet.",
@@ -1363,6 +1423,7 @@
     "tip-split-calculator": {
       "name": "Juomaraha- ja jakolaskuri",
       "description": "Laske juomaraha, vero, loppusumma ja reilut osuudet ryhmälle.",
+      "summary": "Laske tippi, verot ja loppusumma laskusta ja jaa se reilusti niin monelle maksajalle kuin heitä on.",
       "keywords": "juomaraha laskuri laskun jako vero ravintola osuudet",
       "limits": "Juomaraha ja vero lasketaan välisummaa käyttäen. Pyöristetyt osuudet jakavat jäännöksen ensimmäisille henkilöille, jotta summa täsmää.",
       "invalid": "Tarkista syötteet.",
@@ -1383,6 +1444,7 @@
     "stopwatch-timer": {
       "name": "Sekuntikello ja ajastin",
       "description": "Käytä tarkkaa selaimen sekuntikelloa tai lähtölaskenta-ajastinta.",
+      "summary": "Käytä tarkkaa sekuntikelloa väliaikoineen tai laske nollaan välilehdessä, joka jatkaa laskemista muualla ollessasi.",
       "keywords": "sekuntikello ajastin lähtölaskenta kello online ajastin",
       "saved": "Tallennettu historiaan.",
       "stopwatch": "Sekuntikello",
@@ -1399,6 +1461,7 @@
     "random-generator": {
       "name": "Satunnaislukugeneraattori",
       "description": "Luo lukuja, totuusarvoja, valintoja tai salasanoja arjen tarpeisiin.",
+      "summary": "Arvo satunnaisluku, heitä kolikkoa, heitä noppaa tai valitse listalta, asettamillasi vaihteluvälillä ja tulosten määrällä.",
       "keywords": "satunnaislukugeneraattori valitsin salasanageneraattori",
       "invalid": "Tarkista syötteet.",
       "limits": "Satunnaisuus käyttää selaimen Math.random-lähdettä. Tulokset ovat arjen valintoihin, eivät kryptografisia salaisuuksia.",
@@ -1428,6 +1491,7 @@
     "currency-converter": {
       "name": "Valuuttamuunnin",
       "description": "Live-valuuttakurssit paikallisella välimuistilla",
+      "summary": "Muunna valuuttojen välillä päivittäisillä kursseilla, jotka on tallennettu laitteellesi niin että viimeisin sarja toimii ilman yhteyttä.",
       "keywords": "valuuttamuunnin valuuttakurssit raha Frankfurter",
       "currency": "Valuutta",
       "limits": "Kurssit tulevat Frankfurterista, kun työkalu avataan tai napautat Päivitä, ja ne pysyvät tämän selaimen välimuistissa kuusi tuntia. Summia ei lähetetä. Kurssit ovat päivittäistä viiteaineistoa, ei kaupankäyntiin tai verotukseen.",
@@ -1451,6 +1515,7 @@
     "length-converter": {
       "name": "Pituus",
       "description": "Etäisyydet, mitat ja matkustaminen",
+      "summary": "Muunna pituus metrien, jalkojen, mailien, tuumien, senttimetrien ja muiden matkailun ja remontoinnin yksiköiden välillä.",
       "keywords": "Pituus length converter",
       "run": "Kirjaa muunnos",
       "success": "Muunnos tallennettu historiaan."
@@ -1458,6 +1523,7 @@
     "mass-converter": {
       "name": "Massa",
       "description": "Painot milligrammoista tonneihin",
+      "summary": "Muunna paino milligrammojen, grammojen, kilogrammojen, tonnien, paunojen, unssien ja stonen välillä ruokaan tai lähetyksiin.",
       "keywords": "Massa mass converter",
       "run": "Kirjaa muunnos",
       "success": "Muunnos tallennettu historiaan."
@@ -1465,6 +1531,7 @@
     "temperature-converter": {
       "name": "Lämpötila",
       "description": "Celsius, Fahrenheit ja Kelvin",
+      "summary": "Muunna lämpötila Celsius-, Fahrenheit- ja Kelvin-asteikoiden välillä, mukaan lukien kohdat joissa vesi jäätyy ja kiehuu.",
       "keywords": "Lämpötila temperature converter",
       "run": "Kirjaa muunnos",
       "success": "Muunnos tallennettu historiaan."
@@ -1472,6 +1539,7 @@
     "speed-converter": {
       "name": "Nopeus",
       "description": "Arjen ja merenkulun nopeus",
+      "summary": "Muunna nopeus kilometrien tunnissa, mailien tunnissa, metrien sekunnissa ja solmujen välillä tiellä, ilmassa ja merellä.",
       "keywords": "Nopeus speed converter",
       "run": "Kirjaa muunnos",
       "success": "Muunnos tallennettu historiaan."
@@ -1479,6 +1547,7 @@
     "duration-converter": {
       "name": "Kesto",
       "description": "Millisekunneista viikkoihin",
+      "summary": "Muunna kesto millisekuntien, sekuntien, minuuttien, tuntien, päivien ja viikkojen välillä ja lue arvo molempiin suuntiin.",
       "keywords": "Kesto duration converter",
       "run": "Kirjaa muunnos",
       "success": "Muunnos tallennettu historiaan."
@@ -1486,6 +1555,7 @@
     "volume-converter": {
       "name": "Tilavuus",
       "description": "Metriset ja keittiömitat",
+      "summary": "Muunna tilavuus litrojen, millilitrojen, gallonien, kuppien, pinttien ja reseptin mukaisten mittojen välillä.",
       "keywords": "Tilavuus volume converter",
       "run": "Kirjaa muunnos",
       "success": "Muunnos tallennettu historiaan."
@@ -1493,6 +1563,7 @@
     "power-converter": {
       "name": "Teho",
       "description": "Watit ja hevosvoimat",
+      "summary": "Muunna teho wattien, kilowattien, megawattien ja metrisen tai mekaanisen hevosvoiman välillä laitteille ja moottoreille.",
       "keywords": "Teho power converter",
       "run": "Kirjaa muunnos",
       "success": "Muunnos tallennettu historiaan."
@@ -1500,6 +1571,7 @@
     "energy-converter": {
       "name": "Energia",
       "description": "Joulet, kalorit ja wattitunnit",
+      "summary": "Muunna energia joulejen, kalorien, kilokalorien ja kilowattituntien välillä — ruokapakkauksen tai sähkölaskun yksiköissä.",
       "keywords": "Energia energy converter",
       "run": "Kirjaa muunnos",
       "success": "Muunnos tallennettu historiaan."
@@ -1507,6 +1579,7 @@
     "pressure-converter": {
       "name": "Paine",
       "description": "Pa, bar, PSI ja muut",
+      "summary": "Muunna paine pascalien, baarien, PSI:n, ilmakehien, torrien ja elohopeamillimetrien välillä renkaita tai säätä varten.",
       "keywords": "Paine pressure converter",
       "run": "Kirjaa muunnos",
       "success": "Muunnos tallennettu historiaan."
@@ -1514,6 +1587,7 @@
     "area-converter": {
       "name": "Pinta-ala",
       "description": "Pinta-ala ja maa-alueet",
+      "summary": "Muunna pinta-ala neliömetrien, neliöjalkojen, eekkerien, hehtaarien ja muiden tontin ja lattian mittojen välillä.",
       "keywords": "Pinta-ala area converter",
       "run": "Kirjaa muunnos",
       "success": "Muunnos tallennettu historiaan."
@@ -1521,6 +1595,7 @@
     "data-converter": {
       "name": "Data",
       "description": "Desimaali- ja binääritallennus",
+      "summary": "Muunna tiedoston tai tallennustilan koko tavujen, kilotavujen, megatavujen, gigatavujen ja teratavujen välillä, kymmen- tai kaksijärjestelmässä.",
       "keywords": "data datamuunnin",
       "run": "Kirjaa muunnos",
       "success": "Muunnos tallennettu historiaan."
@@ -1528,6 +1603,7 @@
     "angle-converter": {
       "name": "Kulma",
       "description": "Asteet, radiaanit ja kierrokset",
+      "summary": "Muunna kulma asteiden, radiaanien, gradiaanien ja kierrosten välillä, desimaali- ja murtolukumuoto vieressä.",
       "keywords": "Kulma angle converter",
       "run": "Kirjaa muunnos",
       "success": "Muunnos tallennettu historiaan."
@@ -1535,6 +1611,7 @@
     "frequency-converter": {
       "name": "Taajuus",
       "description": "Hz–RPM",
+      "summary": "Muunna taajuus hertsien, kilohertsien, megahertsien, gigahertsien ja kierrosnopeuden välillä äänelle, radiolle ja pyöriville koneille.",
       "keywords": "Taajuus frequency converter",
       "run": "Kirjaa muunnos",
       "success": "Muunnos tallennettu historiaan."
@@ -1542,6 +1619,7 @@
     "force-converter": {
       "name": "Voima",
       "description": "Newtonit ja voiman yksiköt",
+      "summary": "Muunna voima newtonien, kilonewtonien, kilogrammavoiman, paunavoiman ja dynien välillä fysiikkaan ja tekniikkaan.",
       "keywords": "Voima force converter",
       "run": "Kirjaa muunnos",
       "success": "Muunnos tallennettu historiaan."
@@ -1549,6 +1627,7 @@
     "fuel-economy-converter": {
       "name": "Polttoainetalous",
       "description": "Kulutus ja ajomatka",
+      "summary": "Muunna polttoaineenkulutus litrojen sadalla kilometrillä, mailien yhdysvaltalaisella tai brittiläisellä gallonalla ja kilometrien litralla välillä.",
       "keywords": "Polttoainetalous fuel economy converter",
       "run": "Kirjaa muunnos",
       "success": "Muunnos tallennettu historiaan."
@@ -1556,6 +1635,7 @@
     "acceleration-converter": {
       "name": "Kiihtyvyys",
       "description": "Liike ja painovoima",
+      "summary": "Muunna kiihtyvyys metrien sekunnissa toiseen, putouskiihtyvyyden, jalkojen sekunnissa toiseen ja galileon välillä.",
       "keywords": "Kiihtyvyys acceleration converter",
       "run": "Kirjaa muunnos",
       "success": "Muunnos tallennettu historiaan."
@@ -1563,6 +1643,7 @@
     "torque-converter": {
       "name": "Vääntömomentti",
       "description": "Vääntömomentti",
+      "summary": "Muunna vääntömomentti newtonmetrien, kilogrammavoimametrien, paunajalkojen ja paunatuumien välillä muttereille ja moottoreille.",
       "keywords": "Vääntömomentti torque converter",
       "run": "Kirjaa muunnos",
       "success": "Muunnos tallennettu historiaan."
@@ -1570,6 +1651,7 @@
     "electrical-converter": {
       "name": "Sähkö",
       "description": "Jännite, virta ja resistanssi",
+      "summary": "Muunna sähkösuureiden — jännitteen, virran, vastuksen ja tehon — yksiköiden välillä: voltti, ampeeri, ohmi ja watti.",
       "keywords": "Sähkö electrical converter",
       "run": "Kirjaa muunnos",
       "success": "Muunnos tallennettu historiaan."
@@ -1577,6 +1659,7 @@
     "typography-converter": {
       "name": "Typografia",
       "description": "CSS- ja painokoot",
+      "summary": "Muunna kirjasinkoko pikselien, pisteiden, em-, rem- ja pica-yksiköiden välillä asettamaasi juuri-, ylä- tai näyttökokoon nähden.",
       "keywords": "Typografia typography converter",
       "run": "Kirjaa muunnos",
       "success": "Muunnos tallennettu historiaan."
@@ -1584,6 +1667,7 @@
     "bmi-calorie-calculator": {
       "name": "BMI- ja kalorilaskuri",
       "description": "Tarkista BMI, terve painoväli ja päivittäinen kaloritarve pituuden, painon, iän ja aktiivisuuden perusteella.",
+      "summary": "Vertaa BMI:tä terveeseen painohaarukkaan ja arvioi päivittäinen kaloritarve pituuden, painon, iän ja aktiivisuuden perusteella.",
       "keywords": "bmi kalorit tdee bmr mifflin paino terveys",
       "limits": "BMI käyttää WHO:n aikuisrajoja. Alle 18 on sallittu mutta merkitään, koska lasten BMI luetaan yleensä kasvukäyristä. Kalorit käyttävät Mifflin-St Jeor -yhtälöä, joka on aikuisten kaava. Laskenta pysyy tällä laitteella eikä ole lääkärin ohje.",
       "invalid": "Anna realistinen pituus, paino ja ikä.",
@@ -1642,6 +1726,7 @@
     "percentage-calculator": {
       "name": "Prosenttilaskuri",
       "description": "Laske prosenttiosuus, käänteinen prosentti, muutos tai sovella nostoa/laskua.",
+      "summary": "Laske prosenttiosuus luvusta, palauta alkuperäinen luku, mittaa muutos kahden arvon välillä tai lisää korotus.",
       "keywords": "prosentti laskuri nosto alennus kate",
       "mode": "Laskenta",
       "modeOf": "% of",
@@ -1665,6 +1750,7 @@
     "loan-calculator": {
       "name": "Lainalaskuri",
       "description": "Arvioi kuukausierä tai korkoa korolle pääoman, koron ja vuosien perusteella.",
+      "summary": "Arvioi kuukausierä tai katso, mitä korkoa korolle tekee ajan myötä, pääoman, koron ja laina-ajan perusteella.",
       "keywords": "laina asuntolaina erä lyhennys korkoa korolle APR",
       "limits": "Lainatila käyttää tavanomaista kiinteäkorkoista lyhennyslaskentaa. Korkoa korolle -tilassa korko lasketaan jaksoittain (oletuksena kuukausittain). Tämä on arvio, ei taloudellinen neuvo.",
       "mode": "Tila",
@@ -1685,6 +1771,7 @@
     "text-lines": {
       "name": "Rivityökalut",
       "description": "Etsi ja korvaa, lajittele tai poista päällekkäiset rivit selaimessa.",
+      "summary": "Etsi ja korvaa rivien luettelosta, järjestä se numeerisesti tai aakkosittain ja poista päällekkäiset rivit.",
       "keywords": "etsi korvaa lajittele uniikit rivit teksti",
       "find": "Etsi",
       "replace": "Korvaa tekstillä",
@@ -1699,6 +1786,7 @@
     "slugify": {
       "name": "Slugify",
       "description": "Muuta otsikko URL-slugiksi tai siivoa tiedostonimi.",
+      "summary": "Muunna otsikko siistiksi URL-tunnisteeksi, niillä aksentti-, kirjainkoko- ja erotinvalinnoilla joita tiedostonimi tarvitsee.",
       "keywords": "slugify slug url tiedostonimi siivoa kebab",
       "input": "Teksti",
       "slug": "URL-slug",
@@ -1709,6 +1797,7 @@
     "color-contrast": {
       "name": "Värikontrasti",
       "description": "Tarkista WCAG-kontrasti etualan ja taustan välillä.",
+      "summary": "Tarkista tekstin ja taustan kontrasti WCAG AA- ja AAA-rajoja vasten ennen kuin viet väripaletin tuotantoon.",
       "keywords": "wcag kontrasti saavutettavuus aa aaa luettavuus",
       "limits": "Suhde käyttää WCAG 2:n suhteellista luminanssia sRGB-heksaväreille. Tasot näytetään normaalille tekstille (AA ≥ 4,5, AAA ≥ 7).",
       "foreground": "Etuala",
@@ -1724,6 +1813,7 @@
     "image-palette": {
       "name": "Kuvapaletti",
       "description": "Poimi hallitsevat värit valokuvasta suunnittelua varten.",
+      "summary": "Lue kuvan hallitsevat värit hex-koodeina, jotta paletti voi mennä suoraan suunnitteluun tai brändin tarkistukseen.",
       "keywords": "paletti värit poimi hallitseva swatch kuva",
       "limits": "Värit kvantisoidaan tässä välilehdessä pienennetyn esikatselun perusteella. Tulokset ovat arvioita ja jäävät tälle laitteelle.",
       "maxColors": "Värien enimmäismäärä",
@@ -1735,6 +1825,7 @@
     "aspect-ratio": {
       "name": "Kuvasuhde",
       "description": "Pienennä leveys ja korkeus suhteeksi tai laske puuttuva sivu.",
+      "summary": "Supista leveys ja korkeus yksinkertaisimpaan suhteeseen tai laske puuttuva sivu suhteesta, jonka jo tunnet.",
       "keywords": "kuvasuhde 16:9 mitat puuttuva sivu",
       "mode": "Tila",
       "modeFromSize": "Mitoista",
@@ -1751,6 +1842,7 @@
     "meeting-planner": {
       "name": "Kokoussuunnittelija",
       "description": "Etsi päällekkäiset työajat aikavyöhykkeillä tiettynä päivänä.",
+      "summary": "Etsi se tunti, joka sopii kaikille, vertaamalla työaikoja useilla aikavyöhykkeillä valittuna päivänä.",
       "keywords": "kokous aikavyöhyke päällekkäisyys maailmankello työajat",
       "limits": "Päällekkäisyys käyttää IANA-aikavyöhykkeitä ja paikallisia kalenteripäiviä. Tunnit ovat kokonaisia UTC-tunteja, jolloin jokainen vyöhyke on vielä valittuna päivänä ja työajan sisällä.",
       "date": "Päivämäärä",
@@ -1770,6 +1862,7 @@
     "json-query": {
       "name": "JSON-kysely",
       "description": "Litistä sisäkkäinen JSON tai lue yksinkertaisia JSONPath-arvoja.",
+      "summary": "Litistä syvästi sisäkkäinen JSON riveiksi tai poimi yksittäisiä arvoja yksinkertaisella JSONPath-lausekkeella kuten $.items[0].name.",
       "keywords": "json path kysely litistä jq",
       "limits": "Tukee pientä osajoukkoa JSONPathista: $.a.b, $.items[0] ja $['key']. Jokerimerkkejä ja suodattimia ei tueta.",
       "mode": "Tila",
@@ -1784,6 +1877,7 @@
     "check-digits": {
       "name": "Tarkistusnumerot",
       "description": "Tarkista ISBN-10/13, EAN-13 ja IBAN paikallisesti.",
+      "summary": "Tarkista ISBN-10-, ISBN-13-, EAN-13- tai IBAN-tunnisteen tarkistusnumero ja näe, missä kohdassa virheellinen syöte kaatuu.",
       "keywords": "isbn ean iban tarkistusnumero viivakoodi tarkista",
       "limits": "Tarkistaa vain julkaistut tarkistusnumeroalgoritmit. Kelvollinen tarkistusnumero ei todista, että numero on käytössä tai että tili on olemassa.",
       "kind": "Tyyppi",
