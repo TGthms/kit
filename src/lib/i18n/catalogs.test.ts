@@ -67,6 +67,97 @@ describe("message catalogs", () => {
     }
   });
 
+  /* A sentence is measured in columns, not characters: a Chinese glyph is about
+     twice as wide as a Latin one, so fifty characters of Chinese and a hundred of
+     English take the same room in a search result. The floor exists only to
+     reject a label — "From Hz to RPM" and "Hz 到 RPM" both fail it by a wide
+     margin — and the ceiling is about where a search engine would cut in. */
+  const wide =
+    /[\u1100-\u115F\u2E80-\u303F\u3040-\u33FF\u3400-\u4DBF\u4E00-\u9FFF\uA000-\uA4CF\uAC00-\uD7A3\uF900-\uFAFF\uFE30-\uFE6F\uFF00-\uFF60\uFFE0-\uFFE6]/u;
+  const columns = (value: string) => [...value].reduce((n, char) => n + (wide.test(char) ? 2 : 1), 0);
+
+  it("gives every sentence that is present a sentence's worth of room", async () => {
+    const english = en as { tools: Record<string, { summary?: string }> };
+    const problems: string[] = [];
+    for (const loc of locales) {
+      const catalog = (await import(`../../../messages/${messageFileFor(loc)}.json`)).default as {
+        tools: Record<string, { summary?: string }>;
+      };
+      for (const tool of tools) {
+        const summary = catalog.tools[tool.id]?.summary;
+        if (!summary) continue;
+        const width = columns(summary);
+        if (width < 40 || summary.length < 18) problems.push(`${loc} ${tool.id} short: ${width}`);
+        if (width > 175) problems.push(`${loc} ${tool.id} long: ${width}`);
+        if (loc !== "en" && summary === english.tools[tool.id]?.summary)
+          problems.push(`${loc} ${tool.id} is the English sentence`);
+      }
+    }
+    expect(problems).toEqual([]);
+  });
+
+  /* The converter's picker names each unit in the reader's language. Where a
+     label is still the English string it is because that language writes the unit
+     the same way — kelvin, celsius, fahrenheit, bar, psi, hertz and stone in all
+     of them, the CSS units rem and em everywhere, and spelled-alike words such as
+     Dutch "kilometer", Portuguese "megabytes" and French "volts".
+
+     These counts record how many that leaves, so a new unit cannot arrive in
+     English by default: adding one to English raises every language's count and
+     fails here. Lowering a number by naming a label properly is the expected
+     direction; raising one needs a reason. */
+  const englishLabelsAllowed: Record<string, number> = {
+    en: 122,
+    es: 26,
+    fr: 43,
+    de: 11,
+    it: 11,
+    "pt-BR": 34,
+    "pt-PT": 32,
+    nl: 34,
+    da: 15,
+    sv: 14,
+    nb: 13,
+    fi: 6,
+    pl: 4,
+    cs: 4,
+    hu: 10,
+    ro: 6,
+    el: 3,
+    tr: 9,
+    ru: 3,
+    uk: 3,
+    ar: 3,
+    he: 3,
+    hi: 3,
+    th: 3,
+    vi: 12,
+    id: 11,
+    ja: 3,
+    ko: 3,
+    "zh-Hans": 3,
+    "zh-Hant": 3,
+  };
+
+  it("names a unit in the reader's language, and no worse than it does now", async () => {
+    const english = (en as { tools: Record<string, Record<string, string>> }).tools["everyday-converter"];
+    const unitKeys = Object.keys(english).filter((key) => /^unit[A-Z]/u.test(key));
+    expect(unitKeys.length).toBeGreaterThan(100);
+
+    const over: string[] = [];
+    for (const loc of locales) {
+      const catalog = (await import(`../../../messages/${messageFileFor(loc)}.json`)).default as {
+        tools: Record<string, Record<string, string>>;
+      };
+      const everyday = catalog.tools["everyday-converter"];
+      const same = unitKeys.filter((key) => everyday[key] === english[key]).length;
+      const allowed = englishLabelsAllowed[loc];
+      expect(allowed, `${loc} is not in the table`).toBeTypeOf("number");
+      if (same > allowed) over.push(`${loc} ${same} > ${allowed}`);
+    }
+    expect(over).toEqual([]);
+  });
+
   it("keeps every English key in every catalog, including tool names", async () => {
     const missingByLocale: Record<string, string[]> = {};
     for (const loc of locales) {
