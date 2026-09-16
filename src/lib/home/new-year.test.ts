@@ -42,7 +42,9 @@ describe("new year card window", () => {
     expect(flip).toMatchObject({ phase: "celebrate", year: 2027, msLeft: 0, msSinceStart: 0 });
     expect(shouldPlayNewYearFireworks(flip)).toBe(true);
     expect(shouldBurstNewYearFireworks(flip)).toBe(false);
-    const later = getNewYearCardState(new Date(2027, 0, 1, 0, 0, 10, 0));
+    /* Once the opening show is over — however long it is set to run — the card
+       stays and only a single volley would fire. */
+    const later = getNewYearCardState(new Date(2027, 0, 1, 0, 0, 0, NEW_YEAR_FIREWORKS_MS + 1_000));
     expect(later.phase).toBe("celebrate");
     expect(shouldPlayNewYearFireworks(later)).toBe(false);
     expect(shouldBurstNewYearFireworks(later)).toBe(true);
@@ -54,8 +56,8 @@ describe("new year card window", () => {
     expect(nextDay.phase).toBe("hidden");
     const opening = getNewYearCardState(new Date(2027, 0, 1, 0, 0, 3, 0));
     expect(nextNewYearTickMs(opening, new Date(2027, 0, 1, 0, 0, 3, 0))).toBe(NEW_YEAR_FIREWORKS_MS - 3_000);
-    const afterShow = getNewYearCardState(new Date(2027, 0, 1, 0, 0, 11, 0));
-    expect(nextNewYearTickMs(afterShow, new Date(2027, 0, 1, 0, 0, 11, 0))).toBeGreaterThan(1000);
+    const afterShow = getNewYearCardState(new Date(2027, 0, 1, 0, 0, 0, NEW_YEAR_FIREWORKS_MS + 1_000));
+    expect(nextNewYearTickMs(afterShow, new Date(2027, 0, 1, 0, 0, 0, NEW_YEAR_FIREWORKS_MS + 1_000))).toBeGreaterThan(1000);
   });
 
   it("picks countdown subtitle copy from remaining minutes, not a fixed 'ten'", () => {

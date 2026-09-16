@@ -1,8 +1,8 @@
 /** Gregorian New Year card: last 10 local minutes of 31 Dec, then all of 1 Jan. */
 
 export const NEW_YEAR_COUNTDOWN_MS = 10 * 60 * 1000;
-export const NEW_YEAR_FIREWORKS_MS = 10_000;
-/** One volley when landing on 1 Jan after the opening 10s. */
+export const NEW_YEAR_FIREWORKS_MS = 30_000;
+/** One volley when landing on 1 Jan after the opening 30s. */
 export const NEW_YEAR_BURST_ROCKETS = 12;
 
 export type NewYearCardPhase = "hidden" | "countdown" | "celebrate";
@@ -59,7 +59,7 @@ export function countdownSubtitleKind(minutes: number): CountdownSubtitleKind {
   return "seconds";
 }
 
-/** Continuous show for the remainder of the first 10 seconds after midnight. */
+/** Continuous show for the remainder of the first 30 seconds after midnight. */
 export function shouldPlayNewYearFireworks(state: NewYearCardState): boolean {
   return state.phase === "celebrate" && state.msSinceStart < NEW_YEAR_FIREWORKS_MS;
 }
