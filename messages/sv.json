@@ -518,6 +518,7 @@
     "pdf-merge": {
       "name": "Slå ihop PDF:er",
       "description": "Stapla flera PDF:er till en. Förhandsgranska sidor och dra för att ändra ordning.",
+      "summary": "Slå ihop flera pdf:er till en fil, förhandsgranska sidorna och dra dem i den ordning du vill ha dem innan du sparar.",
       "keywords": "pdf slå ihop kombinera sammanfoga häfta flera sidor",
       "run": "Slå ihop",
       "empty": "Lägg till minst två PDF-filer.",
@@ -526,6 +527,7 @@
     "pdf-split": {
       "name": "Dela PDF",
       "description": "Dra ut ett sidintervall till en helt ny PDF.",
+      "summary": "Plocka ut ett eller flera sidintervall ur en pdf till en ny fil, eller dela ett dokument i flera, utan att ladda upp det någonstans.",
       "keywords": "pdf dela extrahera sidor intervall",
       "run": "Dela",
       "range": "Sidor (till exempel 1-3,5)",
@@ -534,6 +536,7 @@
     "pdf-organize": {
       "name": "Ordna sidor",
       "description": "Rotera sidor, ta bort dem du inte behöver och sätt en ny ordning.",
+      "summary": "Rotera, ta bort och ordna om sidorna i en pdf och spara dokumentet i den nya ordningen. Inget lämnar din enhet.",
       "keywords": "pdf rotera ta bort ordna om organisera sidor",
       "run": "Spara PDF",
       "success": "Din PDF har uppdaterats.",
@@ -542,6 +545,7 @@
     "pdf-compress": {
       "name": "Krymp som bilder",
       "description": "Rastrerar varje sida till JPEG. Text, länkar och vektorer behålls inte.",
+      "summary": "Minska en pdf genom att rendera varje sida som JPEG i den kvalitet och storlek du väljer — plattare och mindre, utan markerbar text.",
       "keywords": "pdf komprimera minska storlek mindre",
       "run": "Krymp",
       "note": "Varje sida blir en JPEG-bild och ett nytt PDF. Sökbar text, länkar och vektorer försvinner. Filen kan bli större. För bildskanningar, inte avtal du behöver söka i.",
@@ -550,6 +554,7 @@
     "pdf-watermark": {
       "name": "Vattenstämpel på PDF",
       "description": "Stämpla text som vattenstämpel, sidhuvud eller sidfot på varje sida.",
+      "summary": "Stämpla text på varje sida som vattenstämpel, sidhuvud eller sidfot, med val av text, storlek, vinkel, täckning och placering.",
       "keywords": "pdf vattenstämpel stämpel sidhuvud sidfot konfidentiellt",
       "run": "Tillämpa",
       "text": "Vattenstämpeltext",
@@ -563,6 +568,7 @@
     "pdf-redact": {
       "name": "Täck innehåll",
       "description": "Lägg helt svarta rutor över känsliga områden (visuell täckning).",
+      "summary": "Täck över med svarta rektanglar. Det är en synlig övertäckning och inte en riktig maskning: texten under finns kvar.",
       "keywords": "pdf svärta täcka dölja känsligt",
       "run": "Tillämpa täckning",
       "note": "Endast visuell täckning. Det garanterar inte att varje underliggande textström tas bort — dubbelkolla känsliga dokument.",
@@ -574,6 +580,7 @@
     "pdf-extract": {
       "name": "Extrahera från PDF",
       "description": "Hämta läsbar text eller exportera en sida som bild.",
+      "summary": "Plocka ut den markerbara texten ur en pdf, eller exportera sidorna som JPEG-bilder i en ZIP, utan att skicka dokumentet någonstans.",
       "keywords": "pdf extrahera text bilder",
       "run": "Extrahera",
       "modeText": "Text",
@@ -585,6 +592,7 @@
     "image-compress": {
       "name": "Komprimera bilder",
       "description": "Sänk kvalitet och maxstorlek så att foton förblir delbara.",
+      "summary": "Gör foton mindre för e-post, chatt eller webb genom att sänka kvaliteten, begränsa den längsta sidan, eller båda.",
       "keywords": "bild komprimera jpg png webp storlek foto",
       "run": "Komprimera",
       "success": "Komprimerade {count} bild(er)."
@@ -592,6 +600,7 @@
     "image-resize": {
       "name": "Skala bilder",
       "description": "Ange exakta mått, med valfritt låst bildförhållande.",
+      "summary": "Sätt en bild till exakta pixelmått, eller skala den i procent, med proportionerna kvar när du vill ha dem.",
       "keywords": "bild skala mått dimensioner bredd höjd",
       "run": "Skala",
       "lockAspect": "Behåll bildförhållande",
@@ -600,6 +609,7 @@
     "image-crop": {
       "name": "Beskär bild",
       "description": "Behåll bara den rektangel du bryr dig om.",
+      "summary": "Beskär ett foto till den del som betyder något genom att dra markeringen över bilden, och exportera bara den rektangeln.",
       "keywords": "bild beskära klippa område",
       "run": "Beskär",
       "success": "Beskuren bild klar."
@@ -607,6 +617,7 @@
     "image-convert": {
       "name": "Konvertera bildformat",
       "description": "Växla mellan JPEG, PNG, WEBP och liknande webbformat.",
+      "summary": "Konvertera mellan JPEG, PNG, WEBP, AVIF och GIF, en bild eller en hel hög, utan att ladda upp bilderna.",
       "keywords": "bild konvertera format webp png jpg jpeg",
       "run": "Konvertera",
       "success": "Konverterade {count} bild(er)."
@@ -614,6 +625,7 @@
     "image-metadata": {
       "name": "Bildmetadata",
       "description": "Granska EXIF och liknande taggar och exportera en ren kopia utan dem.",
+      "summary": "Se vilka EXIF-data ett foto bär — kamera, objektiv, datum, GPS — och spara sedan en kopia helt utan dem.",
       "keywords": "bild exif metadata ta bort integritet plats",
       "run": "Ta bort metadata",
       "note": "Pixlar kodas om i webbläsaren så att inbäddad metadata slängs.",
@@ -625,6 +637,7 @@
     "image-adjust": {
       "name": "Justera bild",
       "description": "Justera ljusstyrka, kontrast och mättnad.",
+      "summary": "Justera ljusstyrka, kontrast, mättnad och exponering på känsla, där resultatet ritas om för varje reglage du flyttar.",
       "keywords": "bild ljusstyrka kontrast mättnad färg",
       "run": "Tillämpa",
       "brightness": "Ljusstyrka",
@@ -635,6 +648,7 @@
     "convert-hub": {
       "name": "Smart konvertering",
       "description": "Identifierar blandade fil- eller texttyper och konverterar mellan format (ingen mediastudio).",
+      "summary": "Klistra in blandat innehåll och låt Kit avgöra vad det är — JSON, CSV, YAML, XML, TOML eller SQL — och gör om det till ett annat format.",
       "keywords": "konvertera hub smart batch json yaml csv zip bild data",
       "run": "Konvertera",
       "detect": "Identifierad som",
@@ -644,6 +658,7 @@
     "json-format": {
       "name": "JSON-formaterare",
       "description": "Snygg formatering, minifiering och tidig upptäckt av JSON-fel.",
+      "summary": "Formatera eller komprimera JSON och se exakt var ett syntaxfel sitter, med den felaktiga raden markerad.",
       "keywords": "json formatera validera minifiera pretty",
       "run": "Formatera",
       "success": "JSON ser giltig ut och är formaterad."
@@ -651,6 +666,7 @@
     "yaml-format": {
       "name": "YAML-formaterare",
       "description": "Kontrollera YAML-strukturen och städa layouten.",
+      "summary": "Kontrollera strukturen i YAML och räta upp indragningen, så att en konfigurationsfil läses som den ska.",
       "keywords": "yaml formatera validera yml",
       "run": "Formatera",
       "success": "YAML ser giltig ut."
@@ -658,6 +674,7 @@
     "toml-format": {
       "name": "TOML-formaterare",
       "description": "Validera TOML och håll filen prydlig.",
+      "summary": "Validera TOML och lägg upp det prydligt, där du fångar de syntaxfel en konfigurationsläsare skulle avvisa.",
       "keywords": "toml formatera validera config",
       "run": "Formatera",
       "success": "TOML ser giltig ut."
@@ -665,6 +682,7 @@
     "markdown-html": {
       "name": "Markdown ↔ HTML",
       "description": "Gör om Markdown till HTML, eller HTML tillbaka till Markdown.",
+      "summary": "Gör om Markdown till HTML eller HTML tillbaka till Markdown, där rubriker, länkar, listor, tabeller och kodblock bevaras.",
       "keywords": "markdown html konvertera md markup",
       "run": "Konvertera",
       "toHtml": "Markdown → HTML",
@@ -674,6 +692,7 @@
     "csv-json": {
       "name": "CSV ↔ JSON",
       "description": "Flytta tabelldata mellan CSV och JSON-arrayer.",
+      "summary": "Gör om en CSV-fil till en JSON-array, eller JSON tillbaka till CSV, med avgränsare och rubrikrad efter ditt val.",
       "keywords": "csv json konvertera tabell kalkylblad",
       "run": "Konvertera",
       "toJson": "CSV → JSON",
@@ -683,6 +702,7 @@
     "text-diff": {
       "name": "Jämför text",
       "description": "Se rad-för-rad-ändringar mellan två versioner.",
+      "summary": "Jämför två versioner av en text sida vid sida och se vilka rader som lagts till, tagits bort eller ändrats, ner till tecknet.",
       "keywords": "diff jämföra text ändringar patch",
       "run": "Jämför",
       "left": "Original",
@@ -692,6 +712,7 @@
     "base64": {
       "name": "Base64",
       "description": "Koda eller avkoda Base64 för vanlig text eller hela filer.",
+      "summary": "Koda en text eller en hel fil som Base64, eller avkoda den tillbaka, utan att innehållet lämnar webbläsaren.",
       "keywords": "base64 koda avkoda binär",
       "run": "Konvertera",
       "mode": "Riktning",
@@ -702,6 +723,7 @@
     "url-encode": {
       "name": "URL-kodning",
       "description": "Procentkoda eller avkoda URL-delar säkert.",
+      "summary": "Procentkoda en URL, en query-sträng eller ett värde från ett formulär, eller avkoda det som redan är kodat.",
       "keywords": "url koda avkoda procent uri fråga",
       "run": "Konvertera",
       "success": "Klart."
@@ -709,6 +731,7 @@
     "audio-convert": {
       "name": "Konvertera ljud",
       "description": "Byt ljudbehållare som MP3, WAV och OGG i webbläsaren.",
+      "summary": "Konvertera ljud mellan MP3, WAV, OGG, M4A och andra vanliga format i webbläsaren, i den bithastighet du behöver.",
       "keywords": "ljud konvertera mp3 wav ogg ffmpeg ljud",
       "run": "Konvertera",
       "loadingFfmpeg": "Läser in ljudmotor…",
@@ -722,6 +745,7 @@
     "audio-trim": {
       "name": "Klipp ljud",
       "description": "Behåll bara sträckan mellan två tidpunkter i en ljudfil.",
+      "summary": "Klipp ner en ljudfil till stycket mellan två tidsstämplar, med start och slut ställbara på sekunden.",
       "keywords": "ljud klippa beskära klipp mp3 wav",
       "run": "Klipp",
       "success": "Ljudklipp klart."
@@ -729,6 +753,7 @@
     "audio-speed": {
       "name": "Ljudhastighet och volym",
       "description": "Snabba upp, sakta ner eller ändra ljudstyrkan.",
+      "summary": "Snabba upp eller sakta ner en ljudfil utan att ändra tonhöjden, och ställ in volymen på resultatet innan du sparar.",
       "keywords": "ljud hastighet tempo volym tonhöjd",
       "run": "Tillämpa",
       "success": "Det bearbetade ljudet är klart."
@@ -736,6 +761,7 @@
     "video-convert": {
       "name": "Konvertera video",
       "description": "Byt videobehållare som MP4 och WEBM i webbläsaren.",
+      "summary": "Konvertera video mellan MP4, WEBM och MKV i webbläsaren, med förnuftiga H.264- och AAC-inställningar redan valda.",
       "keywords": "video konvertera mp4 webm ffmpeg film",
       "run": "Konvertera",
       "loadingFfmpeg": "Läser in videomotor…",
@@ -745,6 +771,7 @@
     "video-trim": {
       "name": "Klipp video",
       "description": "Behåll bara klippet mellan två tidpunkter.",
+      "summary": "Klipp ner en video till det stycke du vill ha genom att sätta en start och ett slut, och exportera bara det intervallet.",
       "keywords": "video klippa beskära klipp mp4",
       "run": "Klipp",
       "success": "Videoklipp klart."
@@ -752,6 +779,7 @@
     "video-speed": {
       "name": "Videohastighet och volym",
       "description": "Ändra uppspelningshastighet och ljudnivå för en video.",
+      "summary": "Ändra uppspelningshastigheten för en video, med eller utan ljudet, och ställ in nivån innan du sparar.",
       "keywords": "video hastighet tempo volym",
       "run": "Tillämpa",
       "success": "Den bearbetade videon är klar."
@@ -759,6 +787,7 @@
     "video-extract-audio": {
       "name": "Extrahera ljud från video",
       "description": "Spara ljudspåret från en video som en ljudfil.",
+      "summary": "Plocka ut ljudspåret ur en video och spara det som en egen ljudfil, utan att spela in något på nytt.",
       "keywords": "video extrahera ljud mp3 soundtrack",
       "run": "Extrahera ljud",
       "success": "Ljud extraherat."
@@ -766,6 +795,7 @@
     "pdf-numbers": {
       "name": "Sidnummer",
       "description": "Stämpla en etikett som 1 / 12 på varje sida.",
+      "summary": "Sätt sidnummer i det format du väljer, till exempel 1 / 12 eller 1 av 12, på den plats du vill ha dem på varje sida.",
       "keywords": "pdf sidnummer sidfot sidhuvud paginering",
       "run": "Lägg till nummer",
       "template": "Etikett ({page} och {pages})",
@@ -782,6 +812,7 @@
     "pdf-to-images": {
       "name": "PDF → bilder",
       "description": "Rastrera varje sida till JPEG och hämta dem som ZIP.",
+      "summary": "Gör varje sida i en pdf till en JPEG-bild i den upplösning du väljer, och ladda ner allt samlat i en ZIP-fil.",
       "keywords": "pdf bild jpg jpeg zip sidor exportera",
       "run": "Exportera sidor",
       "limits": "Sidor ritas med PDF.js i den här fliken. Mycket stora dokument kan vara långsamma och använda mycket minne. Detta är en visuell raster, inte ett utdrag av inbäddade bildobjekt.",
@@ -790,6 +821,7 @@
     "images-to-pdf": {
       "name": "Bilder → PDF",
       "description": "Stapla foton till en PDF, en bild per sida.",
+      "summary": "Samla foton och skanningar i en pdf, en bild per sida, anpassade till A4 eller i sin ursprungliga storlek.",
       "keywords": "bilder pdf jpg png kombinera",
       "run": "Skapa PDF",
       "success": "{count, plural, one {PDF skapad från # bild.} other {PDF skapad från # bilder.}}",
@@ -800,6 +832,7 @@
     "pdf-flatten": {
       "name": "Platta ut formulär",
       "description": "Baka in AcroForm-fält i sidan så att de inte längre kan redigeras.",
+      "summary": "Gör ifyllda formulärfält till fast sidinnehåll, så att pdf:en skrivs ut och läses likadant överallt och inte längre kan redigeras.",
       "keywords": "pdf platta ut formulär fält acroform",
       "run": "Platta ut",
       "limits": "Fungerar på vanliga AcroForm-fält. Dynamiska XFA-formulär stöds inte fullt ut.",
@@ -808,6 +841,7 @@
     "pdf-metadata": {
       "name": "PDF-metadata",
       "description": "Visa, redigera eller ta bort titel, författare och andra Info-fält.",
+      "summary": "Läs, ändra eller ta bort titel, författare, nyckelord och andra dokumentegenskaper i en pdf, och spara en ren kopia.",
       "keywords": "Nyckelord",
       "run": "Spara metadata",
       "strip": "Rensa Info-fält och XMP",
@@ -822,6 +856,7 @@
     "pdf-protect": {
       "name": "Lås eller lås upp PDF",
       "description": "Lägg till eller ta bort ett användarlösenord. Krypteringen stannar i den här webbläsaren.",
+      "summary": "Sätt ett lösenord på en pdf eller ta bort ett du känner till, med krypteringen i den här fliken och inte på en server.",
       "keywords": "pdf lösenord låsa låsa upp kryptera dekryptera",
       "run": "Tillämpa",
       "lock": "Lås",
@@ -833,6 +868,7 @@
     "image-rotate": {
       "name": "Rotera och vänd",
       "description": "Vrid bilder 90° i taget eller vänd dem horisontellt eller vertikalt.",
+      "summary": "Rotera foton ett kvarts varv i taget, räta upp dem några grader eller spegelvänd dem — en bild eller en hel hög.",
       "keywords": "bild rotera vända spegla",
       "run": "Tillämpa",
       "operation": "Transformering",
@@ -846,6 +882,7 @@
     "image-filters": {
       "name": "Bildfilter",
       "description": "Tillämpa gråskala, sepia eller invertera på ett eller flera foton.",
+      "summary": "Lägg på gråskala, sepia, invertering, oskärpa eller skärpa på ett foto, eller på en hel mapp, och ladda ner resultatet.",
       "keywords": "bild filter gråskala sepia invertera",
       "run": "Tillämpa",
       "filter": "Filter",
@@ -857,6 +894,7 @@
     "image-favicon": {
       "name": "Favicon-paket",
       "description": "Exportera en källbild som vanliga ikonstorlekar i en ZIP.",
+      "summary": "Gör om en bild till alla ikonstorlekar en webbplats eller app ber om — favicon, Apple-ikon, Android maskable — i en ZIP.",
       "keywords": "favicon ikon 16 32 180 192 512 apple touch",
       "run": "Exportera ikoner",
       "note": "Exporterar PNG-filer på 16, 32, 48, 180, 192 och 512 pixlar.",
@@ -865,6 +903,7 @@
     "video-gif": {
       "name": "Video → GIF",
       "description": "Gör om ett kort klipp till en loopande GIF i webbläsaren.",
+      "summary": "Gör ett kort videostycke till en GIF som upprepas, med val av start och slut. Kodningen är långsam på långa klipp.",
       "keywords": "video gif klipp konvertera ffmpeg",
       "run": "Skapa GIF",
       "limits": "Använder FFmpeg WASM. Håll klippen korta — GIF-kodning är långsam och minneskrävande. Palett och kodekar följer bygget i webbläsaren.",
@@ -873,6 +912,7 @@
     "xml-json": {
       "name": "XML ↔ JSON",
       "description": "Konvertera XML-dokument till JSON, eller JSON tillbaka till XML.",
+      "summary": "Gör om ett XML-dokument till JSON eller tvärtom, där attribut och upprepade element behåller en förutsägbar form.",
       "keywords": "xml json konvertera tolka",
       "run": "Konvertera",
       "toJson": "XML → JSON",
@@ -882,6 +922,7 @@
     "sql-format": {
       "name": "SQL-formaterare",
       "description": "Formatera SQL så att satser och listor blir lättare att läsa.",
+      "summary": "Formatera om SQL så att satser, joins och långa kolumnlistor linjerar och läses i den ordning de körs.",
       "keywords": "sql formatera pretty fråga",
       "run": "Formatera",
       "success": "SQL formaterad."
@@ -889,6 +930,7 @@
     "regex-tester": {
       "name": "Regex-testare",
       "description": "Prova ett reguljärt uttryck mot exempeltext och ersätt träffar.",
+      "summary": "Prova ett reguljärt uttryck på din egen text, se träffarna markeras och pröva ersättningen med en gång.",
       "keywords": "regex reguljärt uttryck testa ersätta",
       "pattern": "Mönster",
       "flags": "Flaggor",
@@ -901,6 +943,7 @@
     "hash-generator": {
       "name": "Hashgenerator",
       "description": "SHA-1/256/384/512 och MD5 av text eller en fil, beräknat lokalt.",
+      "summary": "Beräkna SHA-1, SHA-256, SHA-384, SHA-512 eller MD5 för en text eller en hel fil, utan att skicka något någonstans.",
       "keywords": "hash sha256 md5 sha1 kontrollsumma digest",
       "run": "Hasha",
       "algo": "Algoritm",
@@ -911,6 +954,7 @@
     "uuid-generator": {
       "name": "UUID-generator",
       "description": "Skapa UUID version 4 eller 7 på den här enheten.",
+      "summary": "Generera UUID av version 4 eller version 7, ett i taget eller i klump, skapade på den här enheten och inte på en server.",
       "keywords": "uuid guid v4 v7 generera",
       "run": "Generera",
       "count": "Hur många",
@@ -920,6 +964,7 @@
     "color-convert": {
       "name": "Färgkonverterare",
       "description": "Konvertera mellan HEX, RGB, HSL och HSV, med en färgväljare.",
+      "summary": "Gör om en färg mellan HEX, RGB, HSL, HSV och CSS-namn, eller välj en på hjulet och läs alla notationer på en gång.",
       "keywords": "färg hex rgb hsl hsv väljare",
       "picker": "Färgväljare",
       "invalid": "Ange en hex-färg med 3 eller 6 siffror."
@@ -927,6 +972,7 @@
     "lorem-ipsum": {
       "name": "Lorem ipsum",
       "description": "Generera platshållarstycken, meningar eller ord.",
+      "summary": "Generera utfyllnadsstycken, -meningar eller -ord till en skiss, i den mängd du behöver och klara att klistra in.",
       "keywords": "lorem ipsum platshållare dummy text",
       "run": "Generera",
       "count": "Antal",
@@ -939,6 +985,7 @@
     "qr-code": {
       "name": "QR-kod",
       "description": "Skapa en QR-kod från text, eller läs en från en bild.",
+      "summary": "Skapa en QR-kod av en länk, en text eller kontaktuppgifter och ladda ner den som bild, eller läs av en från ett foto.",
       "keywords": "qr kod generera skanna läsa streckkod",
       "run": "Generera",
       "payload": "Text eller URL",
@@ -951,6 +998,7 @@
     "pdf-sign": {
       "name": "Signera PDF",
       "description": "Stämpla en inskriven signatur på varje sida. Endast visuell — inte ett certifikat.",
+      "summary": "Sätt en skriven signatur på de sidor du väljer. Den ritas på sidan för att kunna läsas, inte som en kryptografisk signatur.",
       "keywords": "pdf signera signatur stämpel namn",
       "run": "Signera",
       "signature": "Signaturtext",
@@ -961,6 +1009,7 @@
     "image-watermark": {
       "name": "Vattenstämpel på bilder",
       "description": "Lägg text över foton, en fil eller en hel batch.",
+      "summary": "Lägg text ovanpå dina foton — placering, storlek, färg och täckning — för en bild eller för en hel hög.",
       "keywords": "bild vattenstämpel stämpel upphovsrätt",
       "run": "Tillämpa",
       "text": "Vattenstämpeltext",
@@ -974,6 +1023,7 @@
     "password-generator": {
       "name": "Lösenordsgenerator",
       "description": "Skapa ett starkt lösenord på den här enheten. Ingenting sparas.",
+      "summary": "Skapa ett starkt lösenord i den längd och med de tecken du väljer. Det skapas på den här enheten och sparas aldrig.",
       "keywords": "lösenord generera slumpmässigt hemligt",
       "run": "Generera",
       "length": "Längd",
@@ -986,6 +1036,7 @@
     "case-convert": {
       "name": "Ändra skiftläge",
       "description": "Växla mellan camel, snake, kebab, titel och mer.",
+      "summary": "Växla text mellan camelCase, snake_case, kebab-case, Rubrikstil och de andra vanorna bland utvecklare.",
       "keywords": "skiftläge camel snake kebab pascal titel",
       "run": "Konvertera",
       "style": "Stil",
@@ -994,6 +1045,7 @@
     "jwt-decode": {
       "name": "JWT-avkodare",
       "description": "Läs JWT-header och payload lokalt. Signaturer verifieras inte.",
+      "summary": "Läs header och payload i en JWT och se när den går ut. Signaturen kontrolleras inte i den här visningen.",
       "keywords": "jwt avkoda token bearer auth",
       "run": "Avkoda",
       "limits": "Kit avkodar bara Base64url. Utan en nyckel kan den inte bevisa att tokenet är äkta.",
@@ -1005,12 +1057,14 @@
     "unix-timestamp": {
       "name": "Unix-tidsstämpel",
       "description": "Konvertera Unix-tid till ISO och tillbaka.",
+      "summary": "Gör om en Unix-tidsstämpel till ett läsbart datum och en tid, eller tvärtom, i den tidszon du väljer.",
       "keywords": "unix epoch tidsstämpel iso datum",
       "now": "Använd nu"
     },
     "cron-explain": {
       "name": "Förklara cron",
       "description": "Gör om ett cron-uttryck med 5 fält till vanlig svenska.",
+      "summary": "Översätt ett cron-uttryck med fem fält till en vanlig mening, så att det står klart när och hur ofta en uppgift körs.",
       "keywords": "cron schema crontab förklara",
       "run": "Förklara",
       "success": "Förklarat."
@@ -1018,6 +1072,7 @@
     "number-base": {
       "name": "Talbas",
       "description": "Konvertera heltal mellan bas 2 och 36.",
+      "summary": "Gör om ett heltal mellan binärt, oktalt, decimalt, hexadecimalt och vilken bas som helst från 2 till 36, med bitmönstret bredvid.",
       "keywords": "binär hex decimal bas konvertera",
       "value": "Tal",
       "from": "Från bas",
@@ -1026,6 +1081,7 @@
     "html-entities": {
       "name": "HTML-entiteter",
       "description": "Koda eller avkoda &lt; &amp; och numeriska entiteter.",
+      "summary": "Koda eller avkoda vinkelparenteser, citattecken och numeriska HTML-entiteter, så att texten är säker i markup och läsbar utanför.",
       "keywords": "html entiteter koda avkoda escape",
       "run": "Konvertera",
       "encode": "Koda",
@@ -1035,6 +1091,7 @@
     "json-types": {
       "name": "JSON → TypeScript",
       "description": "Härled TypeScript-gränssnitt från ett JSON-exempel.",
+      "summary": "Gör om ett exempel på ett JSON-svar till TypeScript-gränssnitt, med nästlade objekt och arrayer typade så långt exemplet räcker.",
       "keywords": "json typescript interface typ generera",
       "run": "Generera typer",
       "success": "Typer genererade."
@@ -1260,6 +1317,7 @@
     "text-counter": {
       "name": "Text räknare",
       "description": "Räkna ord, tecken, meningar, stycken och lästid.",
+      "summary": "Räkna ord, tecken, meningar och stycken medan du skriver, med en uppskattning av hur lång tid texten tar att läsa.",
       "keywords": "ordräknare teckenräknare textstatistik lästid",
       "limits": "Räkningen använder webbläsarens inbyggda Unicode-segmentering när den finns, så emoji och sammansatta tecken hanteras mer naturligt.",
       "input": "Text att räkna",
@@ -1276,6 +1334,7 @@
     "timezone-converter": {
       "name": "Världsklocka",
       "description": "Konvertera lokalt datum och tid mellan tidszoner och se en världsklocka.",
+      "summary": "Se vad klockan är i städer världen över just nu, och räkna om en tidpunkt mellan tidszoner, även när datumet byter.",
       "keywords": "tidszonskonverterare världsklocka sommartid datum tid",
       "limits": "Ange klockslaget i källstaden. Konverteringen använder IANA:s tidszonsregler, inklusive ändringar av sommartid.",
       "convert": "Konvertera datum och tid",
@@ -1325,6 +1384,7 @@
     "date-calculator": {
       "name": "Datumkalkylator",
       "description": "Jämför datum, lägg till tid och räkna arbetsdagar med valfria helgdagar.",
+      "summary": "Räkna ut avståndet mellan två datum, lägg till eller dra ifrån dagar och månader, och räkna vardagar utan helgdagar.",
       "keywords": "datumkalkylator datumskillnad lägg till dagar arbetsdagar helgdagar",
       "updated": "Datum uppdaterat.",
       "invalid": "Kontrollera indata.",
@@ -1363,6 +1423,7 @@
     "tip-split-calculator": {
       "name": "Dricks- och delningskalkylator",
       "description": "Beräkna dricks, skatt, totalsumma och rättvisa andelar för en grupp.",
+      "summary": "Räkna ut dricks, moms och summan på en nota, och dela den rättvist mellan dem som är med och betalar.",
       "keywords": "drickskalkylator dela nota skatt restaurang andelar",
       "limits": "Dricks och skatt beräknas från delbeloppet. Avrundade andelar fördelar resten till de första personerna så att summan stämmer.",
       "invalid": "Kontrollera indata.",
@@ -1383,6 +1444,7 @@
     "stopwatch-timer": {
       "name": "Stoppur och timer",
       "description": "Kör ett exakt stoppur eller en nedräkningstimer i webbläsaren.",
+      "summary": "Starta en noggrann tidtagarur med varvtider, eller en nedräkning i en flik som fortsätter även när du är någon annanstans.",
       "keywords": "stoppur timer nedräkning klocka online timer",
       "saved": "Sparat i historiken.",
       "stopwatch": "Stoppur",
@@ -1399,6 +1461,7 @@
     "random-generator": {
       "name": "Slumpgenerator",
       "description": "Skapa tal, booleska värden, val eller lösenord för vardagsbruk.",
+      "summary": "Dra ett slumptal, singla slant, slå tärning eller välj ur en lista, med intervall och antal resultat som du bestämmer.",
       "keywords": "slumptalsgenerator väljare lösenordsgenerator",
       "invalid": "Kontrollera indata.",
       "limits": "Slumpningen använder webbläsarens Math.random-källa. Resultaten är för vardagliga val, inte kryptografiska hemligheter.",
@@ -1428,6 +1491,7 @@
     "currency-converter": {
       "name": "Valutaomvandlare",
       "description": "Live-valutakurser med lokal cache",
+      "summary": "Omvandla mellan valutor med dagliga kurser, sparade på din enhet så att den senaste uppsättningen fungerar utan uppkoppling.",
       "keywords": "valutaomvandlare växelkurser pengar Frankfurter",
       "currency": "Valuta",
       "limits": "Valutakurser hämtas från Frankfurter när verktyget öppnas eller när du trycker Uppdatera, och stannar i den här webbläsarens cache i sex timmar. Belopp skickas inte. Kurserna är dagliga referensdata, inte för handel eller skatt.",
@@ -1451,6 +1515,7 @@
     "length-converter": {
       "name": "Längd",
       "description": "Avstånd, mått och resor",
+      "summary": "Omvandla en längd mellan meter, fot, mil, tum, centimeter och de andra enheter som resor och gör-det-själv-arbete för med sig.",
       "keywords": "Längd length converter",
       "run": "Registrera konvertering",
       "success": "Konverteringen sparades i historiken."
@@ -1458,6 +1523,7 @@
     "mass-converter": {
       "name": "Massa",
       "description": "Vikter från milligram till ton",
+      "summary": "Omvandla en vikt mellan milligram, gram, kilogram, ton, pund, uns och stone, för köket eller för frakt.",
       "keywords": "Massa mass converter",
       "run": "Registrera konvertering",
       "success": "Konverteringen sparades i historiken."
@@ -1465,6 +1531,7 @@
     "temperature-converter": {
       "name": "Temperatur",
       "description": "Celsius, Fahrenheit och Kelvin",
+      "summary": "Omvandla en temperatur mellan Celsius, Fahrenheit och Kelvin, inklusive de punkter där vatten fryser och kokar.",
       "keywords": "Temperatur temperature converter",
       "run": "Registrera konvertering",
       "success": "Konverteringen sparades i historiken."
@@ -1472,6 +1539,7 @@
     "speed-converter": {
       "name": "Hastighet",
       "description": "Vardaglig och nautisk hastighet",
+      "summary": "Omvandla en hastighet mellan kilometer i timmen, engelska mil i timmen, meter per sekund och knop, för väg, luft och hav.",
       "keywords": "Hastighet speed converter",
       "run": "Registrera konvertering",
       "success": "Konverteringen sparades i historiken."
@@ -1479,6 +1547,7 @@
     "duration-converter": {
       "name": "Varaktighet",
       "description": "Från millisekunder till veckor",
+      "summary": "Omvandla en varaktighet mellan millisekunder, sekunder, minuter, timmar, dagar och veckor, åt båda hållen.",
       "keywords": "Varaktighet duration converter",
       "run": "Registrera konvertering",
       "success": "Konverteringen sparades i historiken."
@@ -1486,6 +1555,7 @@
     "volume-converter": {
       "name": "Volym",
       "description": "Metriska mått och köksmått",
+      "summary": "Omvandla en volym mellan liter, milliliter, gallons, koppar, pints och de mått ett recept är skrivet i.",
       "keywords": "Volym volume converter",
       "run": "Registrera konvertering",
       "success": "Konverteringen sparades i historiken."
@@ -1493,6 +1563,7 @@
     "power-converter": {
       "name": "Effekt",
       "description": "Watt och hästkrafter",
+      "summary": "Omvandla en effekt mellan watt, kilowatt, megawatt och metriska eller mekaniska hästkrafter, för apparater och motorer.",
       "keywords": "Effekt power converter",
       "run": "Registrera konvertering",
       "success": "Konverteringen sparades i historiken."
@@ -1500,6 +1571,7 @@
     "energy-converter": {
       "name": "Energi",
       "description": "Joule, kalorier och wattimmar",
+      "summary": "Omvandla en energi mellan joule, kalorier, kilokalorier och kilowattimmar — enheterna på en etikett eller en elräkning.",
       "keywords": "Energi energy converter",
       "run": "Registrera konvertering",
       "success": "Konverteringen sparades i historiken."
@@ -1507,6 +1579,7 @@
     "pressure-converter": {
       "name": "Tryck",
       "description": "Pa, bar, PSI och mer",
+      "summary": "Omvandla ett tryck mellan pascal, bar, PSI, atmosfärer, torr och millimeter kvicksilver, för däck eller väder.",
       "keywords": "Tryck pressure converter",
       "run": "Registrera konvertering",
       "success": "Konverteringen sparades i historiken."
@@ -1514,6 +1587,7 @@
     "area-converter": {
       "name": "Area",
       "description": "Yta och markareal",
+      "summary": "Omvandla en yta mellan kvadratmeter, kvadratfot, acres, hektar och de andra måtten för mark och bostadsyta.",
       "keywords": "Area areaomvandlare",
       "run": "Registrera konvertering",
       "success": "Konverteringen sparades i historiken."
@@ -1521,6 +1595,7 @@
     "data-converter": {
       "name": "Data",
       "description": "Decimal och binär lagring",
+      "summary": "Omvandla en fil- eller lagringsstorlek mellan byte, kilobyte, megabyte, gigabyte och terabyte, decimalt eller binärt.",
       "keywords": "Data dataomvandlare",
       "run": "Registrera konvertering",
       "success": "Konverteringen sparades i historiken."
@@ -1528,6 +1603,7 @@
     "angle-converter": {
       "name": "Vinkel",
       "description": "Grader, radianer och varv",
+      "summary": "Omvandla en vinkel mellan grader, radianer, gon och varv, med decimalformen och bråkformen sida vid sida.",
       "keywords": "Vinkel angle converter",
       "run": "Registrera konvertering",
       "success": "Konverteringen sparades i historiken."
@@ -1535,6 +1611,7 @@
     "frequency-converter": {
       "name": "Frekvens",
       "description": "Hz till RPM",
+      "summary": "Omvandla en frekvens mellan hertz, kilohertz, megahertz, gigahertz och varv per minut, för ljud, radio och roterande maskiner.",
       "keywords": "Frekvens frequency converter",
       "run": "Registrera konvertering",
       "success": "Konverteringen sparades i historiken."
@@ -1542,6 +1619,7 @@
     "force-converter": {
       "name": "Kraft",
       "description": "Newton och kraftenheter",
+      "summary": "Omvandla en kraft mellan newton, kilonewton, kilogramkraft, pundkraft och dyn, för fysik och teknik.",
       "keywords": "Kraft force converter",
       "run": "Registrera konvertering",
       "success": "Konverteringen sparades i historiken."
@@ -1549,6 +1627,7 @@
     "fuel-economy-converter": {
       "name": "Bränsleförbrukning",
       "description": "Förbrukning och körsträcka",
+      "summary": "Omvandla en förbrukning mellan liter per 100 kilometer, engelska mil per amerikansk eller brittisk gallon, och kilometer per liter.",
       "keywords": "Bränsleförbrukning fuel economy converter",
       "run": "Registrera konvertering",
       "success": "Konverteringen sparades i historiken."
@@ -1556,6 +1635,7 @@
     "acceleration-converter": {
       "name": "Acceleration",
       "description": "Rörelse och gravitation",
+      "summary": "Omvandla en acceleration mellan meter per sekund i kvadrat, standardgravitation, fot per sekund i kvadrat och galileo.",
       "keywords": "Acceleration accelerationsomvandlare",
       "run": "Registrera konvertering",
       "success": "Konverteringen sparades i historiken."
@@ -1563,6 +1643,7 @@
     "torque-converter": {
       "name": "Vridmoment",
       "description": "Vridmoment",
+      "summary": "Omvandla ett vridmoment mellan newtonmeter, kilogramkraftmeter, pund-fot och pund-tum, för muttrar och motorer.",
       "keywords": "Vridmoment torque converter",
       "run": "Registrera konvertering",
       "success": "Konverteringen sparades i historiken."
@@ -1570,6 +1651,7 @@
     "electrical-converter": {
       "name": "Elektrisk",
       "description": "Spänning, ström och resistans",
+      "summary": "Omvandla mellan de elektriska enheterna för spänning, ström, resistans och effekt: volt, ampere, ohm och watt.",
       "keywords": "Elektrisk electrical converter",
       "run": "Registrera konvertering",
       "success": "Konverteringen sparades i historiken."
@@ -1577,6 +1659,7 @@
     "typography-converter": {
       "name": "Typografi",
       "description": "CSS- och tryckstorlekar",
+      "summary": "Omvandla teckenstorlekar mellan pixlar, punkter, em, rem och pica, mot den referensstorlek du ställer in.",
       "keywords": "Typografi typography converter",
       "run": "Registrera konvertering",
       "success": "Konverteringen sparades i historiken."
@@ -1584,6 +1667,7 @@
     "bmi-calorie-calculator": {
       "name": "BMI- och kalorikalkylator",
       "description": "Se BMI, ett hälsosamt viktsintervall och det dagliga kaloribehovet utifrån längd, vikt, ålder och aktivitet.",
+      "summary": "Kontrollera BMI mot ett hälsosamt viktintervall och uppskatta det dagliga kaloribehovet utifrån längd, vikt, ålder och aktivitet.",
       "keywords": "bmi kalorier tdee bmr mifflin vikt hälsa",
       "limits": "BMI använder WHO-gränser för vuxna. Under 18 är tillåtet men markeras, eftersom barns BMI vanligen läses mot tillväxtkurvor. Kalorier använder Mifflin-St Jeor, en vuxenformel. Beräkningen stannar på den här enheten och är inte medicinsk rådgivning.",
       "invalid": "Ange en realistisk längd, vikt och ålder.",
@@ -1642,6 +1726,7 @@
     "percentage-calculator": {
       "name": "Procenträknare",
       "description": "Räkna ut procent, baklängesprocent, förändring eller tillämpa ökning/minskning.",
+      "summary": "Räkna ut en procentandel av ett tal, gör den ogjord, mät skillnaden mellan två värden, eller lägg på en ökning.",
       "keywords": "procent räknare ökning rabatt påslag",
       "mode": "Beräkning",
       "modeOf": "% of",
@@ -1665,6 +1750,7 @@
     "loan-calculator": {
       "name": "Låne- och räntekalkylator",
       "description": "Uppskatta månadsbetalning eller ränta på ränta från belopp, ränta och år.",
+      "summary": "Uppskatta en månadskostnad, eller se vad ränta på ränta gör över tid, utifrån belopp, ränta och löptid.",
       "keywords": "lån bolån amortering ränta på ränta APR",
       "limits": "Låneläget använder standardbetaling med fast ränta (annuitet). Läget ränta på ränta räntar periodiskt (månadsvis som standard). Detta är en uppskattning, inte finansiell rådgivning.",
       "mode": "Läge",
@@ -1685,6 +1771,7 @@
     "text-lines": {
       "name": "Radverktyg",
       "description": "Sök och ersätt, sortera eller ta bort dubblettrader i webbläsaren.",
+      "summary": "Sök och ersätt i en lista med rader, sortera den numeriskt eller alfabetiskt, och ta bort de rader som står flera gånger.",
       "keywords": "sök ersätt sortera unika rader text",
       "find": "Sök",
       "replace": "Ersätt med",
@@ -1699,6 +1786,7 @@
     "slugify": {
       "name": "Slugify",
       "description": "Gör en titel till en URL-slug eller rensa ett filnamn.",
+      "summary": "Gör om en titel till en ren URL-slug, med de val för accenter, versaler och avgränsare som ett filnamn behöver.",
       "keywords": "slugify slug url filnamn rensa kebab",
       "input": "Text",
       "slug": "URL-slug",
@@ -1709,6 +1797,7 @@
     "color-contrast": {
       "name": "Färgkontrast",
       "description": "Kontrollera WCAG-kontrast mellan förgrunds- och bakgrundsfärg.",
+      "summary": "Kontrollera kontrasten mellan text och bakgrund mot WCAG-gränserna AA och AAA innan du släpper en palett.",
       "keywords": "wcag kontrast tillgänglighet aa aaa läsbarhet",
       "limits": "Förhållandet använder WCAG 2 relativ luminans för sRGB-hexfärger. Visade nivåer gäller för normal text (AA ≥ 4,5, AAA ≥ 7).",
       "foreground": "Förgrund",
@@ -1724,6 +1813,7 @@
     "image-palette": {
       "name": "Bildpalett",
       "description": "Extrahera dominanta färger från ett foto för design.",
+      "summary": "Läs av fotots dominerande färger som hexkoder, redo att använda i en design eller för att kontrollera en profil.",
       "keywords": "palett färger extrahera dominant swatches bild",
       "limits": "Färger kvantiseras i den här fliken från en nedskalad förhandsvisning. Resultaten är approximativa och stannar på den här enheten.",
       "maxColors": "Max antal färger",
@@ -1735,6 +1825,7 @@
     "aspect-ratio": {
       "name": "Bildförhållande",
       "description": "Förminska bredd och höjd till ett förhållande, eller beräkna saknad sida.",
+      "summary": "Förkorta en bredd och höjd till det enklaste förhållandet, eller räkna ut den saknade sidan ur ett förhållande du redan känner.",
       "keywords": "bildförhållande 16:9 mått saknad sida",
       "mode": "Läge",
       "modeFromSize": "Från storlek",
@@ -1751,6 +1842,7 @@
     "meeting-planner": {
       "name": "Mötesplanerare",
       "description": "Hitta överlappande arbetstider över tidszoner ett visst datum.",
+      "summary": "Hitta tiden som passar alla genom att jämföra arbetstider över flera tidszoner på ett datum du väljer.",
       "keywords": "möte tidszon överlapp världsklocka arbetstid",
       "limits": "Överlappet använder IANA-zoner och lokala kalenderdatum. Timmar är hela UTC-timmar där varje zon fortfarande är på det valda datumet och inom arbetsfönstret.",
       "date": "Datum",
@@ -1770,6 +1862,7 @@
     "json-query": {
       "name": "JSON-fråga",
       "description": "Platta ut nästlad JSON eller läs enkla JSONPath-värden som $.items[0].name.",
+      "summary": "Platta ut djupt nästlad JSON till rader, eller hämta enstaka värden med ett enkelt JSONPath-uttryck som $.items[0].name.",
       "keywords": "json path fråga platta jq",
       "limits": "Stöder en liten delmängd av JSONPath: $.a.b, $.items[0] och $['key']. Jokertecken och filter ingår inte.",
       "mode": "Läge",
@@ -1784,6 +1877,7 @@
     "check-digits": {
       "name": "Kontrollsiffror",
       "description": "Validera ISBN-10/13, EAN-13 och IBAN lokalt.",
+      "summary": "Validera kontrollsiffran i ett ISBN-10, ISBN-13, EAN-13 eller IBAN, och se på vilken plats en felaktig inmatning faller.",
       "keywords": "isbn ean iban kontrollsiffra streckkod validera",
       "limits": "Kontrollerar endast de publicerade kontrollsiffrealgoritmerna. Ett giltigt kontrollsiffer bevisar inte att numret är tilldelat eller att ett konto finns.",
       "kind": "Typ",
