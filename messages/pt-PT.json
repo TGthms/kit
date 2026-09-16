@@ -518,6 +518,7 @@
     "pdf-merge": {
       "name": "Juntar PDFs",
       "description": "Empilhe vários PDFs num só. Pré-visualize as páginas e arraste para reordenar.",
+      "summary": "Junte vários PDF num só ficheiro, vendo as páginas em antecipação e arrastando-as para a ordem que quiser antes de guardar.",
       "keywords": "pdf juntar combinar unir costurar várias páginas",
       "run": "Juntar",
       "empty": "Adicione pelo menos dois ficheiros PDF.",
@@ -526,6 +527,7 @@
     "pdf-split": {
       "name": "Dividir PDF",
       "description": "Extraia um intervalo de páginas para um PDF novo.",
+      "summary": "Retire um ou vários intervalos de páginas de um PDF para um ficheiro novo, ou divida um documento em vários, sem o enviar para lado nenhum.",
       "keywords": "pdf dividir extrair páginas intervalo",
       "run": "Dividir",
       "range": "Páginas (por exemplo 1-3,5)",
@@ -534,6 +536,7 @@
     "pdf-organize": {
       "name": "Organizar páginas",
       "description": "Rode páginas, remova as de que não precisa e defina uma nova ordem.",
+      "summary": "Rode, apague e reordene as páginas de um PDF e guarde o documento já organizado. Nada sai do seu dispositivo.",
       "keywords": "pdf rodar eliminar reordenar organizar páginas",
       "run": "Guardar PDF",
       "success": "O PDF foi atualizado.",
@@ -542,6 +545,7 @@
     "pdf-compress": {
       "name": "Reduzir como imagens",
       "description": "Rasteriza cada página em JPEG. Texto, ligações e vetores não são mantidos.",
+      "summary": "Diminua um PDF convertendo cada página em JPEG com a qualidade e o tamanho escolhidos: um ficheiro mais leve e sem texto selecionável.",
       "keywords": "pdf comprimir reduzir tamanho mais pequeno",
       "run": "Reduzir",
       "note": "Cada página torna-se uma imagem JPEG e um PDF novo. O texto pesquisável, as ligações e os vetores desaparecem. O ficheiro pode crescer. Para digitalizações fotográficas, não para contratos a pesquisar.",
@@ -550,6 +554,7 @@
     "pdf-watermark": {
       "name": "Marca de água no PDF",
       "description": "Carimbe um texto como marca de água, cabeçalho ou rodapé em cada página.",
+      "summary": "Marque um texto em cada página como marca de água, cabeçalho ou rodapé, escolhendo texto, tamanho, ângulo, opacidade e posição.",
       "keywords": "pdf marca de água carimbo cabeçalho rodapé confidencial",
       "run": "Aplicar",
       "text": "Texto da marca de água",
@@ -563,6 +568,7 @@
     "pdf-redact": {
       "name": "Cobrir conteúdo",
       "description": "Coloque caixas pretas sólidas sobre zonas sensíveis (cobertura visual).",
+      "summary": "Cubra zonas com retângulos pretos. É uma cobertura visual, não uma ocultação real: o texto continua por baixo.",
       "keywords": "pdf ocultar tapar cobrir sensível",
       "run": "Aplicar cobertura",
       "note": "É apenas uma cobertura visual. Não garante a remoção de todo o fluxo de texto por baixo — reveja documentos sensíveis.",
@@ -574,6 +580,7 @@
     "pdf-extract": {
       "name": "Extrair do PDF",
       "description": "Obtenha o texto legível ou exporte uma página como imagem.",
+      "summary": "Retire o texto selecionável de um PDF, ou exporte as páginas como imagens JPEG num ZIP, sem enviar o documento a ninguém.",
       "keywords": "pdf extrair texto imagens",
       "run": "Extrair",
       "modeText": "Texto",
@@ -585,6 +592,7 @@
     "image-compress": {
       "name": "Comprimir imagens",
       "description": "Baixe a qualidade e o tamanho máximo para as fotografias continuarem partilháveis.",
+      "summary": "Torne as fotografias mais leves para e-mail, conversa ou web baixando a qualidade, limitando o lado maior, ou as duas coisas.",
       "keywords": "imagem comprimir jpg png webp tamanho foto",
       "run": "Comprimir",
       "success": "Comprimidas {count} imagens."
@@ -592,6 +600,7 @@
     "image-resize": {
       "name": "Redimensionar imagens",
       "description": "Defina dimensões exatas, com bloqueio opcional das proporções.",
+      "summary": "Defina uma imagem com dimensões exatas em pixéis, ou redimensione-a em percentagem, mantendo as proporções quando quiser.",
       "keywords": "imagem redimensionar escala dimensões largura altura",
       "run": "Redimensionar",
       "lockAspect": "Manter proporções",
@@ -600,6 +609,7 @@
     "image-crop": {
       "name": "Recortar imagem",
       "description": "Fique apenas com o retângulo que lhe interessa.",
+      "summary": "Recorte uma fotografia até à parte que interessa arrastando a seleção sobre a imagem, e exporte só esse retângulo.",
       "keywords": "imagem recortar cortar região",
       "run": "Recortar",
       "success": "Imagem recortada pronta."
@@ -607,6 +617,7 @@
     "image-convert": {
       "name": "Converter formato de imagem",
       "description": "Alterne entre JPEG, PNG, WEBP e formatos web semelhantes.",
+      "summary": "Converta entre JPEG, PNG, WEBP, AVIF e GIF, uma imagem ou um lote inteiro, sem enviar as fotografias para servidor nenhum.",
       "keywords": "imagem converter formato webp png jpg jpeg",
       "run": "Converter",
       "success": "Convertidas {count} imagens."
@@ -614,6 +625,7 @@
     "image-metadata": {
       "name": "Metadados da imagem",
       "description": "Inspecione EXIF e etiquetas semelhantes e exporte uma cópia limpa sem eles.",
+      "summary": "Veja os dados EXIF que uma fotografia traz — máquina, objetiva, data, GPS — e guarde uma cópia sem essa informação.",
       "keywords": "imagem exif metadados remover privacidade localização",
       "run": "Remover metadados",
       "note": "Os píxeis são recodificados no browser, pelo que os metadados incorporados são descartados.",
@@ -625,6 +637,7 @@
     "image-adjust": {
       "name": "Ajustar imagem",
       "description": "Altere o brilho, o contraste e a saturação.",
+      "summary": "Corrija brilho, contraste, saturação e exposição a olho, com o resultado redesenhado a cada controlo que move.",
       "keywords": "imagem brilho contraste saturação cor",
       "run": "Aplicar",
       "brightness": "Brilho",
@@ -635,6 +648,7 @@
     "convert-hub": {
       "name": "Conversão inteligente",
       "description": "Deteta tipos mistos de ficheiro ou texto e converte entre formatos (não é um estúdio multimédia).",
+      "summary": "Cole conteúdo misturado e deixe o Kit descobrir o que é — JSON, CSV, YAML, XML, TOML ou SQL — e converta-o noutro formato.",
       "keywords": "converter hub inteligente lote json yaml csv zip imagem dados",
       "run": "Converter",
       "detect": "Detetado como",
@@ -644,6 +658,7 @@
     "json-format": {
       "name": "Formatador JSON",
       "description": "Indenta, minifica e deteta erros de JSON cedo.",
+      "summary": "Formate ou minifique JSON e veja exatamente onde está um erro de sintaxe, com a linha problemática destacada.",
       "keywords": "json formatar validar minificar pretty",
       "run": "Formatar",
       "success": "O JSON parece válido e está formatado."
@@ -651,6 +666,7 @@
     "yaml-format": {
       "name": "Formatador YAML",
       "description": "Verifique a estrutura YAML e organize o esquema.",
+      "summary": "Confirme a estrutura de um YAML e ponha a indentação em ordem, para um ficheiro de configuração se ler como deve.",
       "keywords": "yaml formatar validar yml",
       "run": "Formatar",
       "success": "O YAML parece válido."
@@ -658,6 +674,7 @@
     "toml-format": {
       "name": "Formatador TOML",
       "description": "Valide TOML e mantenha o ficheiro arrumado.",
+      "summary": "Valide TOML e apresente-o arrumado, apanhando os erros de sintaxe que um analisador de configuração recusaria.",
       "keywords": "toml formatar validar config",
       "run": "Formatar",
       "success": "O TOML parece válido."
@@ -665,6 +682,7 @@
     "markdown-html": {
       "name": "Markdown ↔ HTML",
       "description": "Passe Markdown para HTML, ou HTML de volta para Markdown.",
+      "summary": "Converta Markdown em HTML ou HTML em Markdown, mantendo títulos, ligações, listas, tabelas e blocos de código intactos.",
       "keywords": "markdown html converter md marcação",
       "run": "Converter",
       "toHtml": "Markdown → HTML",
@@ -674,6 +692,7 @@
     "csv-json": {
       "name": "CSV ↔ JSON",
       "description": "Mova dados tabulares entre CSV e arrays JSON.",
+      "summary": "Converta um CSV num array JSON, ou o JSON de volta em CSV, com o separador e a linha de cabeçalho sob o seu controlo.",
       "keywords": "csv json converter tabela folha de cálculo",
       "run": "Converter",
       "toJson": "CSV → JSON",
@@ -683,6 +702,7 @@
     "text-diff": {
       "name": "Comparar texto",
       "description": "Veja as alterações linha a linha entre duas versões.",
+      "summary": "Compare duas versões de um texto lado a lado e veja que linhas foram acrescentadas, retiradas ou editadas, até ao caráter.",
       "keywords": "diff comparar texto alterações patch",
       "run": "Comparar",
       "left": "Original",
@@ -692,6 +712,7 @@
     "base64": {
       "name": "Base64",
       "description": "Codifique ou descodifique Base64 para texto simples ou ficheiros inteiros.",
+      "summary": "Codifique um texto ou um ficheiro inteiro em Base64, ou descodifique de volta ao original, sem o conteúdo sair do browser.",
       "keywords": "base64 codificar descodificar binário",
       "run": "Converter",
       "mode": "Direção",
@@ -702,6 +723,7 @@
     "url-encode": {
       "name": "Codificar URL",
       "description": "Aplique ou reverta a codificação percentual de componentes de URL com segurança.",
+      "summary": "Codifique percentualmente um URL, uma query string ou um valor de formulário, ou descodifique o que já está codificado.",
       "keywords": "url codificar descodificar percentual uri consulta",
       "run": "Converter",
       "success": "Concluído."
@@ -709,6 +731,7 @@
     "audio-convert": {
       "name": "Converter áudio",
       "description": "Altere contentores de áudio como MP3, WAV e OGG no browser.",
+      "summary": "Converta áudio entre MP3, WAV, OGG, M4A e outros formatos comuns no browser, na taxa de bits de que precisa.",
       "keywords": "áudio converter mp3 wav ogg ffmpeg som",
       "run": "Converter",
       "loadingFfmpeg": "A carregar o motor de áudio…",
@@ -722,6 +745,7 @@
     "audio-trim": {
       "name": "Cortar áudio",
       "description": "Fique apenas com o troço entre dois instantes de um ficheiro de áudio.",
+      "summary": "Corte um ficheiro de áudio e fique só com o trecho entre dois instantes, com início e fim ajustáveis ao segundo.",
       "keywords": "áudio cortar recortar clipe mp3 wav",
       "run": "Cortar",
       "success": "Corte de áudio concluído."
@@ -729,6 +753,7 @@
     "audio-speed": {
       "name": "Velocidade e volume do áudio",
       "description": "Acelere, abrande ou altere o volume do áudio.",
+      "summary": "Acelere ou abrande um ficheiro de áudio sem mudar o tom da voz, e ajuste o volume do resultado antes de guardar.",
       "keywords": "áudio velocidade tempo volume tom",
       "run": "Aplicar",
       "success": "O áudio processado está pronto."
@@ -736,6 +761,7 @@
     "video-convert": {
       "name": "Converter vídeo",
       "description": "Altere contentores de vídeo como MP4 e WEBM no browser.",
+      "summary": "Converta vídeo entre MP4, WEBM e MKV no browser, com definições H.264 e AAC já escolhidas e sensatas.",
       "keywords": "vídeo converter mp4 webm ffmpeg filme",
       "run": "Converter",
       "loadingFfmpeg": "A carregar o motor de vídeo…",
@@ -745,6 +771,7 @@
     "video-trim": {
       "name": "Cortar vídeo",
       "description": "Fique apenas com o clipe entre dois instantes.",
+      "summary": "Corte um vídeo e fique só com o trecho que quiser, marcando um início e um fim, e exporte esse intervalo para um ficheiro.",
       "keywords": "vídeo cortar recortar clipe mp4",
       "run": "Cortar",
       "success": "Corte de vídeo concluído."
@@ -752,6 +779,7 @@
     "video-speed": {
       "name": "Velocidade e volume do vídeo",
       "description": "Altere a velocidade de reprodução e o nível de áudio de um vídeo.",
+      "summary": "Mude a velocidade de reprodução de um vídeo, com o áudio dele ou substituindo-o, e ajuste o nível antes de guardar.",
       "keywords": "vídeo velocidade tempo volume",
       "run": "Aplicar",
       "success": "O vídeo processado está pronto."
@@ -759,6 +787,7 @@
     "video-extract-audio": {
       "name": "Extrair áudio do vídeo",
       "description": "Guarde a banda sonora de um vídeo como ficheiro de áudio.",
+      "summary": "Retire a faixa sonora de um vídeo e guarde-a como ficheiro de áudio separado, sem gravar nada de novo.",
       "keywords": "vídeo extrair áudio mp3 banda sonora",
       "run": "Extrair áudio",
       "success": "Áudio extraído."
@@ -766,6 +795,7 @@
     "pdf-numbers": {
       "name": "Números de página",
       "description": "Carimbe uma etiqueta como 1 / 12 em cada página.",
+      "summary": "Coloque números de página no formato que escolher, como 1 / 12 ou 1 de 12, na posição que quiser em cada página.",
       "keywords": "pdf números página rodapé cabeçalho paginação",
       "run": "Adicionar números",
       "template": "Etiqueta ({page} e {pages})",
@@ -782,6 +812,7 @@
     "pdf-to-images": {
       "name": "PDF → imagens",
       "description": "Rasterize cada página em JPEG e descarregue-as num ZIP.",
+      "summary": "Converta cada página de um PDF numa imagem JPEG com a resolução que escolher, e transfira o conjunto num ficheiro ZIP.",
       "keywords": "pdf imagem jpg jpeg zip páginas exportar",
       "run": "Exportar páginas",
       "limits": "As páginas são desenhadas com PDF.js neste separador. Documentos muito grandes podem ser lentos e usar muita memória. É um raster visual, não uma extração de objetos de imagem incorporados.",
@@ -790,6 +821,7 @@
     "images-to-pdf": {
       "name": "Imagens → PDF",
       "description": "Empilhe fotografias num PDF, uma imagem por página.",
+      "summary": "Junte fotografias e digitalizações num único PDF, uma imagem por página, ajustadas a A4 ou no tamanho original.",
       "keywords": "imagens pdf jpg png combinar",
       "run": "Criar PDF",
       "success": "{count, plural, one {PDF criado a partir de # imagem.} other {PDF criado a partir de # imagens.}}",
@@ -800,6 +832,7 @@
     "pdf-flatten": {
       "name": "Achatar formulários",
       "description": "Incorpore os campos AcroForm na página para deixarem de ser editáveis.",
+      "summary": "Transforme os campos de formulário preenchidos em conteúdo fixo, para o PDF imprimir e ler-se igual em todo o lado sem poder ser editado.",
       "keywords": "pdf achatar formulário campos acroform",
       "run": "Achatar",
       "limits": "Funciona com campos AcroForm standard. Formulários XFA dinâmicos não são totalmente suportados.",
@@ -808,6 +841,7 @@
     "pdf-metadata": {
       "name": "Metadados do PDF",
       "description": "Consulte, edite ou remova título, autor e outros campos Info do documento.",
+      "summary": "Leia, edite ou apague título, autor, palavras-chave e outras propriedades do PDF, e guarde uma cópia limpa.",
       "keywords": "Palavras-chave",
       "run": "Guardar metadados",
       "strip": "Limpar campos Info e XMP",
@@ -822,6 +856,7 @@
     "pdf-protect": {
       "name": "Bloquear ou desbloquear PDF",
       "description": "Adicione ou remova uma palavra-passe de utilizador. A encriptação fica neste browser.",
+      "summary": "Coloque uma palavra-passe num PDF ou remova a que já conhece, com a cifragem feita neste separador e não num servidor.",
       "keywords": "pdf palavra-passe bloquear desbloquear encriptar desencriptar",
       "run": "Aplicar",
       "lock": "Bloquear",
@@ -833,6 +868,7 @@
     "image-rotate": {
       "name": "Rodar e inverter",
       "description": "Rode imagens de 90° em 90° ou inverta-as na horizontal ou na vertical.",
+      "summary": "Rode as fotografias de quarto em quarto, endireite alguns graus ou espelhe: uma imagem ou um lote inteiro.",
       "keywords": "imagem rodar inverter espelhar",
       "run": "Aplicar",
       "operation": "Transformação",
@@ -846,6 +882,7 @@
     "image-filters": {
       "name": "Filtros de imagem",
       "description": "Aplique escala de cinzentos, sépia ou inversão a uma ou várias fotografias.",
+      "summary": "Aplique preto e branco, sépia, inversão, desfoque ou nitidez a uma fotografia, ou a uma pasta inteira, e transfira o resultado.",
       "keywords": "imagem filtro cinzentos sépia inverter",
       "run": "Aplicar",
       "filter": "Filtro",
@@ -857,6 +894,7 @@
     "image-favicon": {
       "name": "Pacote de favicon",
       "description": "Exporte uma imagem de origem nos tamanhos de ícone habituais num ZIP.",
+      "summary": "Transforme uma imagem em todos os tamanhos de ícone que um site ou aplicação pede — favicon, ícone da Apple, Android maskable — num ZIP.",
       "keywords": "favicon ícone 16 32 180 192 512 apple touch",
       "run": "Exportar ícones",
       "note": "Exporta ficheiros PNG de 16, 32, 48, 180, 192 e 512 píxeis.",
@@ -865,6 +903,7 @@
     "video-gif": {
       "name": "Vídeo → GIF",
       "description": "Transforme um clipe curto num GIF em ciclo, no browser.",
+      "summary": "Transforme um trecho curto de vídeo num GIF em ciclo, escolhendo início e fim. A codificação é lenta em clipes longos.",
       "keywords": "vídeo gif clipe converter ffmpeg",
       "run": "Criar GIF",
       "limits": "Usa FFmpeg WASM. Mantenha os clipes curtos — a codificação GIF é lenta e pesada em memória. A paleta e os codecs seguem a compilação no browser.",
@@ -873,6 +912,7 @@
     "xml-json": {
       "name": "XML ↔ JSON",
       "description": "Converta documentos XML em JSON, ou JSON de volta em XML.",
+      "summary": "Converta um documento XML em JSON ou o contrário, mantendo atributos e elementos repetidos numa forma previsível.",
       "keywords": "xml json converter analisar",
       "run": "Converter",
       "toJson": "XML → JSON",
@@ -882,6 +922,7 @@
     "sql-format": {
       "name": "Formatador SQL",
       "description": "Indente o SQL para cláusulas e listas ficarem mais fáceis de ler.",
+      "summary": "Reformate SQL para que cláusulas, junções e listas longas fiquem alinhadas e se leiam na ordem em que são executadas.",
       "keywords": "sql formatar pretty consulta",
       "run": "Formatar",
       "success": "SQL formatado."
@@ -889,6 +930,7 @@
     "regex-tester": {
       "name": "Testador de expressões regulares",
       "description": "Experimente uma expressão regular num texto de exemplo e substitua as correspondências.",
+      "summary": "Teste uma expressão regular no seu próprio texto, veja as correspondências destacadas e experimente a substituição.",
       "keywords": "regex expressão regular testar substituir",
       "pattern": "Padrão",
       "flags": "Sinalizadores",
@@ -901,6 +943,7 @@
     "hash-generator": {
       "name": "Gerador de hash",
       "description": "SHA-1/256/384/512 e MD5 de um texto ou ficheiro, calculados localmente.",
+      "summary": "Calcule SHA-1, SHA-256, SHA-384, SHA-512 ou MD5 de um texto ou de um ficheiro inteiro, sem enviar nada para lado nenhum.",
       "keywords": "hash sha256 md5 sha1 soma de controlo resumo",
       "run": "Calcular",
       "algo": "Algoritmo",
@@ -911,6 +954,7 @@
     "uuid-generator": {
       "name": "Gerador de UUID",
       "description": "Crie UUID versão 4 ou 7 neste dispositivo.",
+      "summary": "Gere UUID de versão 4 ou versão 7, um de cada vez ou em lote, criados no seu dispositivo e não num servidor.",
       "keywords": "uuid guid v4 v7 gerar",
       "run": "Gerar",
       "count": "Quantos",
@@ -920,6 +964,7 @@
     "color-convert": {
       "name": "Conversor de cores",
       "description": "Converta entre HEX, RGB, HSL e HSV, com um seletor de cores.",
+      "summary": "Converta uma cor entre HEX, RGB, HSL, HSV e nomes CSS, ou escolha na roda e leia todas as notações de uma vez.",
       "keywords": "cor hex rgb hsl hsv seletor",
       "picker": "Seletor de cores",
       "invalid": "Introduza uma cor hexadecimal de 3 ou 6 dígitos."
@@ -927,6 +972,7 @@
     "lorem-ipsum": {
       "name": "Lorem ipsum",
       "description": "Gere parágrafos, frases ou palavras de preenchimento.",
+      "summary": "Gere parágrafos, frases ou palavras de enchimento para uma maquete, na quantidade de que precisa e prontas a colar.",
       "keywords": "lorem ipsum preenchimento texto fictício",
       "run": "Gerar",
       "count": "Quantidade",
@@ -939,6 +985,7 @@
     "qr-code": {
       "name": "Código QR",
       "description": "Crie um código QR a partir de um texto, ou leia um a partir de uma imagem.",
+      "summary": "Crie um código QR a partir de uma ligação, um texto ou contactos e transfira-o como imagem, ou leia um a partir de uma fotografia.",
       "keywords": "qr código gerar ler código de barras",
       "run": "Gerar",
       "payload": "Texto ou URL",
@@ -951,6 +998,7 @@
     "pdf-sign": {
       "name": "Assinar PDF",
       "description": "Carimbe uma assinatura dactilografada em cada página. Apenas visual — não é um certificado.",
+      "summary": "Coloque uma assinatura escrita nas páginas que escolher. É desenhada na página para leitura, não é uma assinatura criptográfica.",
       "keywords": "pdf assinar assinatura carimbo nome",
       "run": "Assinar",
       "signature": "Texto da assinatura",
@@ -961,6 +1009,7 @@
     "image-watermark": {
       "name": "Marca de água em imagens",
       "description": "Sobreponha texto às fotografias, um ficheiro ou um lote inteiro.",
+      "summary": "Sobreponha um texto às suas fotografias — posição, tamanho, cor e opacidade — para uma imagem ou para um lote completo.",
       "keywords": "imagem marca de água carimbo copyright",
       "run": "Aplicar",
       "text": "Texto da marca de água",
@@ -974,6 +1023,7 @@
     "password-generator": {
       "name": "Gerador de palavra-passe",
       "description": "Crie uma palavra-passe forte neste dispositivo. Nada é armazenado.",
+      "summary": "Crie uma palavra-passe forte no comprimento e com os caracteres que escolher. É gerada neste dispositivo e nunca é guardada.",
       "keywords": "palavra-passe gerar aleatória secreto",
       "run": "Gerar",
       "length": "Comprimento",
@@ -986,6 +1036,7 @@
     "case-convert": {
       "name": "Alterar maiúsculas",
       "description": "Alterne entre camel, snake, kebab, título e outros.",
+      "summary": "Alterne um texto entre camelCase, snake_case, kebab-case, Maiúsculas De Título e as outras convenções de quem programa.",
       "keywords": "maiúsculas camel snake kebab pascal título",
       "run": "Converter",
       "style": "Estilo",
@@ -994,6 +1045,7 @@
     "jwt-decode": {
       "name": "Descodificador JWT",
       "description": "Leia o cabeçalho e o payload de um JWT localmente. As assinaturas não são verificadas.",
+      "summary": "Leia o cabeçalho e a carga de um token JWT, veja quando expira e descodifique tudo localmente. A assinatura não é verificada.",
       "keywords": "jwt descodificar token bearer auth",
       "run": "Descodificar",
       "limits": "Kit apenas descodifica Base64url. Sem uma chave, não pode provar que o token é autêntico.",
@@ -1005,12 +1057,14 @@
     "unix-timestamp": {
       "name": "Carimbo de data/hora Unix",
       "description": "Converta tempo Unix para ISO e de volta.",
+      "summary": "Converta um timestamp Unix numa data e hora legíveis, ou faça o contrário, no fuso horário que preferir.",
       "keywords": "unix epoch timestamp iso data",
       "now": "Usar agora"
     },
     "cron-explain": {
       "name": "Explicar cron",
       "description": "Transforme uma expressão cron de 5 campos em linguagem clara.",
+      "summary": "Traduza uma expressão cron de cinco campos para uma frase clara, para saber quando e com que frequência corre uma tarefa.",
       "keywords": "cron agendamento crontab explicar",
       "run": "Explicar",
       "success": "Explicado."
@@ -1018,6 +1072,7 @@
     "number-base": {
       "name": "Base numérica",
       "description": "Converta inteiros entre as bases 2 e 36.",
+      "summary": "Converta um número inteiro entre binário, octal, decimal, hexadecimal e qualquer base de 2 a 36, com o padrão de bits ao lado.",
       "keywords": "binário hex decimal base converter",
       "value": "Número",
       "from": "Da base",
@@ -1026,6 +1081,7 @@
     "html-entities": {
       "name": "Entidades HTML",
       "description": "Codifique ou descodifique &lt; &amp; e entidades numéricas.",
+      "summary": "Codifique ou descodifique sinais de menor e maior, aspas e entidades HTML numéricas, para o texto ser seguro no código e legível fora dele.",
       "keywords": "html entidades codificar descodificar escape",
       "run": "Converter",
       "encode": "Codificar",
@@ -1035,6 +1091,7 @@
     "json-types": {
       "name": "JSON → TypeScript",
       "description": "Infira interfaces TypeScript a partir de um exemplo JSON.",
+      "summary": "Transforme uma amostra de resposta JSON em interfaces TypeScript, com objetos e arrays aninhados tipados até onde a amostra permite.",
       "keywords": "json typescript interface tipo gerar",
       "run": "Gerar tipos",
       "success": "Tipos gerados."
@@ -1260,6 +1317,7 @@
     "text-counter": {
       "name": "Contador de texto",
       "description": "Conte palavras, caracteres, frases, parágrafos e tempo de leitura.",
+      "summary": "Conte palavras, caracteres, frases e parágrafos enquanto escreve, com uma estimativa de quanto tempo o texto leva a ler.",
       "keywords": "contador de palavras caracteres estatísticas de texto tempo de leitura",
       "limits": "A contagem usa a segmentação Unicode nativa do navegador quando disponível, tratando emojis e caracteres combinados de forma mais natural.",
       "input": "Texto a contar",
@@ -1276,6 +1334,7 @@
     "timezone-converter": {
       "name": "Relógio mundial",
       "description": "Converta data e hora locais entre fusos e consulte um relógio mundial.",
+      "summary": "Veja que horas são agora nas cidades do mundo e converta um instante entre fusos horários, mesmo quando a data muda.",
       "keywords": "conversor fuso horário relógio mundial hora de verão data hora",
       "limits": "Introduza a hora na cidade de origem. A conversão usa as regras de fusos da IANA, incluindo alterações da hora de verão.",
       "convert": "Converter data e hora",
@@ -1325,6 +1384,7 @@
     "date-calculator": {
       "name": "Calculadora de datas",
       "description": "Compare datas, some tempo e conte dias úteis com feriados opcionais.",
+      "summary": "Calcule a distância entre duas datas, some ou subtraia dias e meses e conte dias úteis descontando feriados.",
       "keywords": "calculadora de datas diferença de datas adicionar dias úteis feriados",
       "updated": "Data atualizada.",
       "invalid": "Verifique os dados.",
@@ -1363,6 +1423,7 @@
     "tip-split-calculator": {
       "name": "Calculadora de gorjeta e divisão",
       "description": "Calcule gorjeta, impostos, total e partes justas para um grupo.",
+      "summary": "Calcule a gorjeta, os impostos e o total de uma conta e divida-a em partes iguais por quantos estiverem a pagar.",
       "keywords": "calculadora gorjeta dividir conta impostos restaurante partes",
       "limits": "A gorjeta e os impostos são calculados sobre o subtotal. As partes arredondadas distribuem o restante pelas primeiras pessoas para que o total coincida.",
       "invalid": "Verifique os dados.",
@@ -1383,6 +1444,7 @@
     "stopwatch-timer": {
       "name": "Cronómetro e temporizador",
       "description": "Use um cronómetro preciso ou uma contagem decrescente no navegador.",
+      "summary": "Lance um cronómetro preciso com tempos parciais, ou uma contagem decrescente num separador que continua a contar mesmo que saia.",
       "keywords": "cronómetro temporizador contagem decrescente relógio online",
       "saved": "Guardado no histórico.",
       "stopwatch": "Cronómetro",
@@ -1399,6 +1461,7 @@
     "random-generator": {
       "name": "Gerador aleatório",
       "description": "Gere números, valores booleanos, escolhas ou palavras-passe para o dia a dia.",
+      "summary": "Tire um número ao acaso, atire uma moeda, lance dados ou escolha de uma lista, com o intervalo e a quantidade que definir.",
       "keywords": "gerador números aleatórios seletor gerador palavras-passe",
       "invalid": "Verifique os dados.",
       "limits": "A aleatoriedade usa a origem Math.random do navegador. Os resultados destinam-se a escolhas quotidianas, não a segredos criptográficos.",
@@ -1428,6 +1491,7 @@
     "currency-converter": {
       "name": "Conversor de moeda",
       "description": "Câmbios em direto com cache local",
+      "summary": "Converta entre moedas com as taxas diárias, guardadas no seu dispositivo para o último conjunto funcionar sem ligação.",
       "keywords": "conversor de moedas taxas de câmbio dinheiro Frankfurter",
       "currency": "Moeda",
       "limits": "As cotações vêm do Frankfurter ao abrir a ferramenta ou ao tocar em Atualizar e ficam seis horas na cache deste navegador. Os valores não são enviados. São dados de referência diários, não para negociação nem impostos.",
@@ -1451,6 +1515,7 @@
     "length-converter": {
       "name": "Comprimento",
       "description": "Distâncias, dimensões e viagens",
+      "summary": "Converta um comprimento entre metros, pés, milhas, polegadas, centímetros e as outras unidades que viagens e obras trazem.",
       "keywords": "Comprimento length converter",
       "run": "Registar conversão",
       "success": "Conversão guardada no histórico."
@@ -1458,6 +1523,7 @@
     "mass-converter": {
       "name": "Massa",
       "description": "Pesos de miligramas a toneladas",
+      "summary": "Converta um peso entre miligramas, gramas, quilogramas, toneladas, libras, onças e stone, para cozinha ou envios.",
       "keywords": "Massa mass converter",
       "run": "Registar conversão",
       "success": "Conversão guardada no histórico."
@@ -1465,6 +1531,7 @@
     "temperature-converter": {
       "name": "Temperatura",
       "description": "Celsius, Fahrenheit e Kelvin",
+      "summary": "Converta uma temperatura entre Celsius, Fahrenheit e Kelvin, incluindo os pontos em que a água congela e ferve.",
       "keywords": "Temperatura temperature converter",
       "run": "Registar conversão",
       "success": "Conversão guardada no histórico."
@@ -1472,6 +1539,7 @@
     "speed-converter": {
       "name": "Velocidade",
       "description": "Velocidade comum e náutica",
+      "summary": "Converta uma velocidade entre quilómetros por hora, milhas por hora, metros por segundo e nós, para estrada, ar e mar.",
       "keywords": "Velocidade speed converter",
       "run": "Registar conversão",
       "success": "Conversão guardada no histórico."
@@ -1479,6 +1547,7 @@
     "duration-converter": {
       "name": "Duração",
       "description": "De milissegundos a semanas",
+      "summary": "Converta uma duração entre milissegundos, segundos, minutos, horas, dias e semanas, nos dois sentidos.",
       "keywords": "Duração duration converter",
       "run": "Registar conversão",
       "success": "Conversão guardada no histórico."
@@ -1486,6 +1555,7 @@
     "volume-converter": {
       "name": "Volume",
       "description": "Medidas métricas e de cozinha",
+      "summary": "Converta um volume entre litros, mililitros, galões, chávenas, pintes e as medidas em que uma receita está escrita.",
       "keywords": "Volume conversor de volume",
       "run": "Registar conversão",
       "success": "Conversão guardada no histórico."
@@ -1493,6 +1563,7 @@
     "power-converter": {
       "name": "Potência",
       "description": "Watts e cavalos",
+      "summary": "Converta uma potência entre watts, quilowatts, megawatts e cavalos métricos ou mecânicos, para aparelhos e motores.",
       "keywords": "Potência power converter",
       "run": "Registar conversão",
       "success": "Conversão guardada no histórico."
@@ -1500,6 +1571,7 @@
     "energy-converter": {
       "name": "Energia",
       "description": "Joules, calorias e watt-horas",
+      "summary": "Converta uma energia entre joules, calorias, quilocalorias e quilowatts-hora: as unidades de um rótulo ou de uma fatura.",
       "keywords": "Energia energy converter",
       "run": "Registar conversão",
       "success": "Conversão guardada no histórico."
@@ -1507,6 +1579,7 @@
     "pressure-converter": {
       "name": "Pressão",
       "description": "Pa, bar, PSI e mais",
+      "summary": "Converta uma pressão entre pascais, bars, PSI, atmosferas, torr e milímetros de mercúrio, para pneus ou previsão do tempo.",
       "keywords": "Pressão pressure converter",
       "run": "Registar conversão",
       "success": "Conversão guardada no histórico."
@@ -1514,6 +1587,7 @@
     "area-converter": {
       "name": "Área",
       "description": "Superfícies e terrenos",
+      "summary": "Converta uma área entre metros quadrados, pés quadrados, acres, hectares e as outras medidas de terreno e de habitação.",
       "keywords": "Área area converter",
       "run": "Registar conversão",
       "success": "Conversão guardada no histórico."
@@ -1521,6 +1595,7 @@
     "data-converter": {
       "name": "Dados",
       "description": "Armazenamento decimal e binário",
+      "summary": "Converta um tamanho de ficheiro entre bytes, kilobytes, megabytes, gigabytes e terabytes, em decimal ou em binário.",
       "keywords": "Dados data converter",
       "run": "Registar conversão",
       "success": "Conversão guardada no histórico."
@@ -1528,6 +1603,7 @@
     "angle-converter": {
       "name": "Ângulo",
       "description": "Graus, radianos e voltas",
+      "summary": "Converta um ângulo entre graus, radianos, grados e voltas, com a forma decimal e a fracionária lado a lado.",
       "keywords": "Ângulo angle converter",
       "run": "Registar conversão",
       "success": "Conversão guardada no histórico."
@@ -1535,6 +1611,7 @@
     "frequency-converter": {
       "name": "Frequência",
       "description": "De Hz a RPM",
+      "summary": "Converta uma frequência entre hertz, quilohertz, megahertz, gigahertz e RPM, para som, rádio e máquinas a girar.",
       "keywords": "Frequência frequency converter",
       "run": "Registar conversão",
       "success": "Conversão guardada no histórico."
@@ -1542,6 +1619,7 @@
     "force-converter": {
       "name": "Força",
       "description": "Newtons e unidades de força",
+      "summary": "Converta uma força entre newtons, quilonewtons, quilograma-força, libra-força e dinas, para física e engenharia.",
       "keywords": "Força force converter",
       "run": "Registar conversão",
       "success": "Conversão guardada no histórico."
@@ -1549,6 +1627,7 @@
     "fuel-economy-converter": {
       "name": "Consumo de combustível",
       "description": "Consumo e quilometragem",
+      "summary": "Converta um consumo entre litros aos 100 quilómetros, milhas por galão americano ou imperial e quilómetros por litro.",
       "keywords": "Consumo de combustível fuel economy converter",
       "run": "Registar conversão",
       "success": "Conversão guardada no histórico."
@@ -1556,6 +1635,7 @@
     "acceleration-converter": {
       "name": "Aceleração",
       "description": "Movimento e gravidade",
+      "summary": "Converta uma aceleração entre metros por segundo ao quadrado, gravidade padrão, pés por segundo ao quadrado e galileus.",
       "keywords": "Aceleração acceleration converter",
       "run": "Registar conversão",
       "success": "Conversão guardada no histórico."
@@ -1563,6 +1643,7 @@
     "torque-converter": {
       "name": "Binário",
       "description": "Força rotacional",
+      "summary": "Converta um binário entre newton-metro, quilograma-força metro, libra-pé e libra-polegada, para porcas e motores.",
       "keywords": "Binário torque converter",
       "run": "Registar conversão",
       "success": "Conversão guardada no histórico."
@@ -1570,6 +1651,7 @@
     "electrical-converter": {
       "name": "Elétrica",
       "description": "Tensão, corrente e resistência",
+      "summary": "Converta entre as unidades elétricas de tensão, corrente, resistência e potência: volts, amperes, ohms e watts.",
       "keywords": "Elétrica electrical converter",
       "run": "Registar conversão",
       "success": "Conversão guardada no histórico."
@@ -1577,6 +1659,7 @@
     "typography-converter": {
       "name": "Tipografia",
       "description": "Tamanhos CSS e de impressão",
+      "summary": "Converta tamanhos de letra entre píxeis, pontos, em, rem e picas, conforme o tamanho de referência que definir.",
       "keywords": "Tipografia typography converter",
       "run": "Registar conversão",
       "success": "Conversão guardada no histórico."
@@ -1584,6 +1667,7 @@
     "bmi-calorie-calculator": {
       "name": "Calculadora de IMC e calorias",
       "description": "Consulte o IMC, um intervalo de peso saudável e as calorias diárias a partir da altura, peso, idade e atividade.",
+      "summary": "Confirme o IMC face a um intervalo de peso saudável e estime as calorias diárias por altura, peso, idade e atividade.",
       "keywords": "imc calorias tdee bmr mifflin peso saudável",
       "limits": "O IMC usa limiares da OMS para adultos. Menores de 18 são permitidos, mas assinalados, porque o IMC infantil costuma ler-se em curvas de crescimento. As calorias usam Mifflin-St Jeor, uma fórmula de adultos. O cálculo fica neste dispositivo e não é aconselhamento médico.",
       "invalid": "Introduza uma altura, um peso e uma idade realistas.",
@@ -1642,6 +1726,7 @@
     "percentage-calculator": {
       "name": "Calculadora de percentagem",
       "description": "Calcule uma percentagem, inverta o cálculo, meça a variação ou aplique um aumento/redução.",
+      "summary": "Calcule uma percentagem de um número, desfaça-a, meça a variação entre dois valores ou aplique um aumento.",
       "keywords": "percentagem percentual calculadora aumento desconto",
       "mode": "Cálculo",
       "modeOf": "% of",
@@ -1665,6 +1750,7 @@
     "loan-calculator": {
       "name": "Calculadora de empréstimo e juros",
       "description": "Estime a prestação mensal ou juros compostos a partir do capital, taxa e anos.",
+      "summary": "Estime uma prestação mensal, ou veja o que os juros compostos fazem ao longo do tempo, a partir do capital, da taxa e do prazo.",
       "keywords": "empréstimo hipoteca prestação amortização juros compostos APR",
       "limits": "O modo de empréstimo usa a prestação de amortização padrão com taxa fixa. O modo de juros compostos capitaliza periodicamente (mensalmente por predefinição). É uma estimativa, não um conselho financeiro.",
       "mode": "Modo",
@@ -1685,6 +1771,7 @@
     "text-lines": {
       "name": "Ferramentas de linhas",
       "description": "Procurar e substituir, ordenar ou remover linhas duplicadas no browser.",
+      "summary": "Procure e substitua numa lista de linhas, ordene-a por número ou alfabeticamente e remova as linhas repetidas.",
       "keywords": "procurar substituir ordenar linhas únicas texto",
       "find": "Localizar",
       "replace": "Substituir por",
@@ -1699,6 +1786,7 @@
     "slugify": {
       "name": "Slugify",
       "description": "Transforme um título num slug de URL ou limpe um nome de ficheiro.",
+      "summary": "Transforme um título num slug de URL limpo, com as opções de acentos, maiúsculas e separadores que um nome de ficheiro pede.",
       "keywords": "slugify slug url nome de ficheiro limpar kebab",
       "input": "Texto",
       "slug": "Slug de URL",
@@ -1709,6 +1797,7 @@
     "color-contrast": {
       "name": "Contraste de cores",
       "description": "Verifique o contraste WCAG entre primeiro plano e fundo.",
+      "summary": "Confirme o contraste entre texto e fundo face aos limites WCAG AA e AAA antes de publicar uma paleta.",
       "keywords": "wcag contraste acessibilidade aa aaa legibilidade",
       "limits": "O rácio usa a luminância relativa WCAG 2 para cores hexadecimais sRGB. Os níveis mostrados valem para texto normal (AA ≥ 4,5; AAA ≥ 7).",
       "foreground": "Primeiro plano",
@@ -1724,6 +1813,7 @@
     "image-palette": {
       "name": "Paleta de imagem",
       "description": "Extraia as cores dominantes de uma foto para referência de design.",
+      "summary": "Retire as cores dominantes de uma fotografia como códigos hexadecimais, prontas a usar num projeto ou a conferir uma marca.",
       "keywords": "paleta cores extrair dominante amostras imagem",
       "limits": "As cores são quantizadas neste separador a partir de uma pré-visualização reduzida. Os resultados são aproximados e ficam neste dispositivo.",
       "maxColors": "Máximo de cores",
@@ -1735,6 +1825,7 @@
     "aspect-ratio": {
       "name": "Proporção",
       "description": "Reduza largura e altura a uma proporção, ou calcule o lado em falta.",
+      "summary": "Reduza uma largura e uma altura à proporção mais simples, ou descubra o lado em falta a partir de uma proporção conhecida.",
       "keywords": "proporção 16:9 dimensões lado em falta",
       "mode": "Modo",
       "modeFromSize": "A partir do tamanho",
@@ -1751,6 +1842,7 @@
     "meeting-planner": {
       "name": "Planeador de reuniões",
       "description": "Encontre janelas de horário de trabalho sobrepostas entre fusos numa data.",
+      "summary": "Encontre a hora que serve a todos comparando horários de trabalho de vários fusos numa data escolhida.",
       "keywords": "reunião fuso horário sobreposição relógio mundial horário de trabalho",
       "limits": "A sobreposição usa fusos IANA e datas de calendário locais. As horas são horas UTC inteiras em que cada fuso ainda está na data escolhida e dentro da janela de trabalho.",
       "date": "Data",
@@ -1770,6 +1862,7 @@
     "json-query": {
       "name": "Consulta JSON",
       "description": "Achate JSON aninhado ou leia valores JSONPath simples como $.items[0].name.",
+      "summary": "Achate JSON muito aninhado em linhas, ou retire valores soltos com uma expressão JSONPath simples como $.items[0].name.",
       "keywords": "json path consulta achatar jq jsonpath",
       "limits": "Suporta um pequeno subconjunto de JSONPath: $.a.b, $.items[0] e $['key']. Curingas e filtros não estão incluídos.",
       "mode": "Modo",
@@ -1784,6 +1877,7 @@
     "check-digits": {
       "name": "Dígitos de controlo",
       "description": "Valide localmente ISBN-10/13, EAN-13 e IBAN.",
+      "summary": "Valide o dígito de controlo de um ISBN-10, ISBN-13, EAN-13 ou IBAN, e veja em que posição um valor errado falha.",
       "keywords": "isbn ean iban dígito de controlo código de barras validar",
       "limits": "Verifica apenas os algoritmos publicados de dígitos de controlo. Um dígito de controlo válido não prova que o número esteja atribuído ou que a conta exista.",
       "kind": "Tipo",

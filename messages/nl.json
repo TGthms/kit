@@ -518,6 +518,7 @@
     "pdf-merge": {
       "name": "PDF’s samenvoegen",
       "description": "Stapel meerdere PDF’s tot één. Bekijk pagina’s en sleep om te herschikken.",
+      "summary": "Voeg meerdere pdf’s samen tot één bestand, bekijk de pagina’s vooraf en sleep ze in de volgorde die je wilt voordat je opslaat.",
       "keywords": "pdf samenvoegen combineren voegen hechten meerdere pagina’s",
       "run": "Samenvoegen",
       "empty": "Voeg minstens twee PDF-bestanden toe.",
@@ -526,6 +527,7 @@
     "pdf-split": {
       "name": "PDF splitsen",
       "description": "Haal een paginabereik naar een gloednieuwe PDF.",
+      "summary": "Haal één of meer paginabereiken uit een pdf naar een nieuw bestand, of splits een document in meerdere, zonder het ergens te uploaden.",
       "keywords": "pdf splitsen extraheren pagina’s bereik",
       "run": "Splitsen",
       "range": "Pagina’s (bijvoorbeeld 1-3,5)",
@@ -534,6 +536,7 @@
     "pdf-organize": {
       "name": "Pagina’s ordenen",
       "description": "Draai pagina’s, verwijder wat je niet nodig hebt en stel een nieuwe volgorde in.",
+      "summary": "Draai, verwijder en herschik de pagina’s van een pdf en sla het opnieuw geordende document op. Niets verlaat je apparaat.",
       "keywords": "pdf draaien verwijderen herschikken ordenen pagina’s",
       "run": "PDF opslaan",
       "success": "Je PDF is bijgewerkt.",
@@ -542,6 +545,7 @@
     "pdf-compress": {
       "name": "Verkleinen als afbeeldingen",
       "description": "Rastert elke pagina naar JPEG. Tekst, links en vectoren blijven niet bewaard.",
+      "summary": "Maak een pdf kleiner door elke pagina als JPEG te renderen in de gekozen kwaliteit en grootte — platter en kleiner, zonder selecteerbare tekst.",
       "keywords": "pdf comprimeren verkleinen formaat kleiner",
       "run": "Verkleinen",
       "note": "Elke pagina wordt een JPEG-afbeelding en een nieuwe PDF. Doorzoekbare tekst, links en vectoren verdwijnen. Het bestand kan groter worden. Voor fotoscans, niet voor contracten om in te zoeken.",
@@ -550,6 +554,7 @@
     "pdf-watermark": {
       "name": "Watermerk op PDF",
       "description": "Zet tekst als watermerk, kop- of voettekst op elke pagina.",
+      "summary": "Stempel tekst op elke pagina als watermerk, kop- of voettekst, met keuze uit tekst, grootte, hoek, dekking en positie.",
       "keywords": "pdf watermerk stempel koptekst voettekst vertrouwelijk",
       "run": "Toepassen",
       "text": "Watermerktekst",
@@ -563,6 +568,7 @@
     "pdf-redact": {
       "name": "Inhoud afdekken",
       "description": "Plaats zwarte vlakken over gevoelige gebieden (visuele afdekking).",
+      "summary": "Dek stukken af met zwarte rechthoeken. Dat is een zichtbare afdekking en geen echte redactie: de tekst eronder staat er nog.",
       "keywords": "pdf zwarten afdekken verbergen gevoelig",
       "run": "Afdekking toepassen",
       "note": "Alleen een visuele afdekking. Het garandeert niet dat elke onderliggende tekststroom verdwijnt — controleer gevoelige documenten.",
@@ -574,6 +580,7 @@
     "pdf-extract": {
       "name": "Uit PDF extraheren",
       "description": "Haal leesbare tekst of exporteer een pagina als afbeelding.",
+      "summary": "Haal de selecteerbare tekst uit een pdf, of exporteer de pagina’s als JPEG-afbeeldingen in een ZIP, zonder het document ergens heen te sturen.",
       "keywords": "pdf extraheren tekst afbeeldingen",
       "run": "Extraheren",
       "modeText": "Tekst",
@@ -585,6 +592,7 @@
     "image-compress": {
       "name": "Afbeeldingen comprimeren",
       "description": "Zet kwaliteit en maximale grootte lager zodat foto’s deelbaar blijven.",
+      "summary": "Maak foto’s kleiner voor e-mail, chat of web door de kwaliteit te verlagen, de langste zijde te beperken, of beide.",
       "keywords": "afbeelding comprimeren jpg png webp grootte foto",
       "run": "Comprimeren",
       "success": "{count} afbeelding(en) gecomprimeerd."
@@ -592,6 +600,7 @@
     "image-resize": {
       "name": "Afbeeldingen schalen",
       "description": "Stel exacte afmetingen in, optioneel met vast beeldformaat.",
+      "summary": "Zet een afbeelding op exacte pixelafmetingen, of schaal hem met een percentage, met behoud van verhoudingen wanneer je dat wilt.",
       "keywords": "afbeelding schalen afmetingen breedte hoogte",
       "run": "Schalen",
       "lockAspect": "Beeldverhouding behouden",
@@ -600,6 +609,7 @@
     "image-crop": {
       "name": "Afbeelding bijsnijden",
       "description": "Houd alleen de rechthoek die je nodig hebt.",
+      "summary": "Snijd een foto bij tot het deel dat telt door de selectie over de afbeelding te slepen, en exporteer alleen die rechthoek.",
       "keywords": "afbeelding bijsnijden knippen gebied",
       "run": "Bijsnijden",
       "success": "Bijgesneden afbeelding klaar."
@@ -607,6 +617,7 @@
     "image-convert": {
       "name": "Afbeeldingsformaat converteren",
       "description": "Schakel tussen JPEG, PNG, WEBP en vergelijkbare webformaten.",
+      "summary": "Converteer tussen JPEG, PNG, WEBP, AVIF en GIF, één afbeelding of een hele reeks, zonder de foto’s te uploaden.",
       "keywords": "afbeelding converteren formaat webp png jpg jpeg",
       "run": "Converteren",
       "success": "{count} afbeelding(en) geconverteerd."
@@ -614,6 +625,7 @@
     "image-metadata": {
       "name": "Metagegevens van afbeelding",
       "description": "Bekijk EXIF en vergelijkbare tags en exporteer een schone kopie zonder.",
+      "summary": "Bekijk de EXIF-gegevens die een foto meedraagt — camera, lens, datum, gps — en sla een kopie op zonder die informatie.",
       "keywords": "afbeelding exif metagegevens verwijderen privacy locatie",
       "run": "Metagegevens verwijderen",
       "note": "Pixels worden in de browser opnieuw gecodeerd, zodat ingesloten metagegevens verdwijnen.",
@@ -625,6 +637,7 @@
     "image-adjust": {
       "name": "Afbeelding aanpassen",
       "description": "Pas helderheid, contrast en verzadiging aan.",
+      "summary": "Corrigeer helderheid, contrast, verzadiging en belichting op het oog, waarbij het resultaat bij elke schuif opnieuw wordt getekend.",
       "keywords": "afbeelding helderheid contrast verzadiging kleur",
       "run": "Toepassen",
       "brightness": "Helderheid",
@@ -635,6 +648,7 @@
     "convert-hub": {
       "name": "Slim converteren",
       "description": "Herkent gemengde bestand- of teksttypen en converteert tussen formaten (geen mediastudio).",
+      "summary": "Plak gemengde inhoud en laat Kit bepalen wat het is — JSON, CSV, YAML, XML, TOML of SQL — en zet het om naar een ander formaat.",
       "keywords": "converteren hub slim batch json yaml csv zip afbeelding gegevens",
       "run": "Converteren",
       "detect": "Herkend als",
@@ -644,6 +658,7 @@
     "json-format": {
       "name": "JSON-opmaker",
       "description": "Netjes opmaken, minificeren en JSON-fouten vroeg vinden.",
+      "summary": "Maak JSON leesbaar of juist compact en zie precies waar een syntaxfout zit, met de foutieve regel gemarkeerd.",
       "keywords": "json opmaken valideren minificeren pretty",
       "run": "Opmaak",
       "success": "JSON lijkt geldig en is opgemaakt."
@@ -651,6 +666,7 @@
     "yaml-format": {
       "name": "YAML-opmaker",
       "description": "Controleer de YAML-structuur en ruim de lay-out op.",
+      "summary": "Controleer de structuur van YAML en zet de inspringing recht, zodat een configuratiebestand leest zoals het hoort.",
       "keywords": "yaml opmaken valideren yml",
       "run": "Opmaak",
       "success": "YAML lijkt geldig."
@@ -658,6 +674,7 @@
     "toml-format": {
       "name": "TOML-opmaker",
       "description": "Valideer TOML en houd het bestand netjes.",
+      "summary": "Controleer TOML en zet het netjes neer, waarbij je de syntaxfouten ziet die een configuratieparser zou weigeren.",
       "keywords": "toml opmaken valideren config",
       "run": "Opmaak",
       "success": "TOML lijkt geldig."
@@ -665,6 +682,7 @@
     "markdown-html": {
       "name": "Markdown ↔ HTML",
       "description": "Zet Markdown om in HTML, of HTML terug in Markdown.",
+      "summary": "Zet Markdown om naar HTML of HTML terug naar Markdown, waarbij koppen, links, lijsten, tabellen en codeblokken intact blijven.",
       "keywords": "markdown html converteren md opmaak",
       "run": "Converteren",
       "toHtml": "Markdown → HTML",
@@ -674,6 +692,7 @@
     "csv-json": {
       "name": "CSV ↔ JSON",
       "description": "Verplaats tabelgegevens tussen CSV en JSON-arrays.",
+      "summary": "Zet een CSV-bestand om in een JSON-array, of JSON terug naar CSV, met scheidingsteken en kopregel naar jouw keuze.",
       "keywords": "csv json converteren tabel spreadsheet",
       "run": "Converteren",
       "toJson": "CSV → JSON",
@@ -683,6 +702,7 @@
     "text-diff": {
       "name": "Tekst vergelijken",
       "description": "Zie regel-voor-regel wijzigingen tussen twee versies.",
+      "summary": "Vergelijk twee versies van een tekst naast elkaar en zie welke regels zijn toegevoegd, verwijderd of gewijzigd, tot op het teken.",
       "keywords": "diff vergelijken tekst wijzigingen patch",
       "run": "Vergelijken",
       "left": "Origineel",
@@ -692,6 +712,7 @@
     "base64": {
       "name": "Base64",
       "description": "Codeer of decodeer Base64 voor platte tekst of hele bestanden.",
+      "summary": "Codeer tekst of een heel bestand als Base64, of decodeer het terug, zonder dat de inhoud de browser verlaat.",
       "keywords": "base64 coderen decoderen binair",
       "run": "Converteren",
       "mode": "Richting",
@@ -702,6 +723,7 @@
     "url-encode": {
       "name": "URL coderen",
       "description": "Percent-codeer of decodeer URL-onderdelen veilig.",
+      "summary": "Codeer een URL, een querystring of een formulierwaarde procentueel, of decodeer wat al gecodeerd is.",
       "keywords": "url coderen decoderen procent uri query",
       "run": "Converteren",
       "success": "Klaar."
@@ -709,6 +731,7 @@
     "audio-convert": {
       "name": "Audio converteren",
       "description": "Wissel audiocontainers zoals MP3, WAV en OGG in de browser.",
+      "summary": "Converteer audio in de browser tussen MP3, WAV, OGG, M4A en andere gangbare formaten, in de bitrate die je nodig hebt.",
       "keywords": "audio converteren mp3 wav ogg ffmpeg geluid",
       "run": "Converteren",
       "loadingFfmpeg": "Audio-engine laden…",
@@ -722,6 +745,7 @@
     "audio-trim": {
       "name": "Audio knippen",
       "description": "Houd alleen het stuk tussen twee tijdstippen in een audiobestand.",
+      "summary": "Knip een audiobestand terug tot het stuk tussen twee tijdstippen, met begin en einde tot op de seconde instelbaar.",
       "keywords": "audio knippen trimmen clip mp3 wav",
       "run": "Knippen",
       "success": "Audioknippen voltooid."
@@ -729,6 +753,7 @@
     "audio-speed": {
       "name": "Audiosnelheid en -volume",
       "description": "Versnel, vertraag of verander de luidheid van audio.",
+      "summary": "Versnel of vertraag een audiobestand zonder de toonhoogte te veranderen, en stel het volume van het resultaat in.",
       "keywords": "audio snelheid tempo volume toonhoogte",
       "run": "Toepassen",
       "success": "Verwerkte audio is klaar."
@@ -736,6 +761,7 @@
     "video-convert": {
       "name": "Video converteren",
       "description": "Wissel videocontainers zoals MP4 en WEBM in de browser.",
+      "summary": "Converteer video in de browser tussen MP4, WEBM en MKV, met verstandige H.264- en AAC-instellingen die al gekozen zijn.",
       "keywords": "video converteren mp4 webm ffmpeg film",
       "run": "Converteren",
       "loadingFfmpeg": "Video-engine laden…",
@@ -745,6 +771,7 @@
     "video-trim": {
       "name": "Video knippen",
       "description": "Houd alleen de clip tussen twee tijdstippen.",
+      "summary": "Knip een video terug tot het stuk dat je wilt door een begin en een einde te zetten, en exporteer alleen dat bereik.",
       "keywords": "video knippen trimmen clip mp4",
       "run": "Knippen",
       "success": "Videoknippen voltooid."
@@ -752,6 +779,7 @@
     "video-speed": {
       "name": "Videosnelheid en -volume",
       "description": "Wijzig afspeelsnelheid en audioniveau van een video.",
+      "summary": "Verander de afspeelsnelheid van een video, met of zonder het geluid, en stel het niveau in voordat je opslaat.",
       "keywords": "video snelheid tempo volume",
       "run": "Toepassen",
       "success": "Verwerkte video is klaar."
@@ -759,6 +787,7 @@
     "video-extract-audio": {
       "name": "Audio uit video extraheren",
       "description": "Sla de soundtrack van een video op als audiobestand.",
+      "summary": "Haal de soundtrack uit een video en sla die op als apart audiobestand, zonder iets opnieuw op te nemen.",
       "keywords": "video audio extraheren mp3 soundtrack",
       "run": "Audio extraheren",
       "success": "Audio geëxtraheerd."
@@ -766,6 +795,7 @@
     "pdf-numbers": {
       "name": "Paginanummers",
       "description": "Zet een label zoals 1 / 12 op elke pagina.",
+      "summary": "Zet paginanummers in het formaat dat je kiest, zoals 1 / 12 of 1 van 12, op de plek die je op elke pagina wilt.",
       "keywords": "pdf paginanummers voettekst koptekst paginering",
       "run": "Nummers toevoegen",
       "template": "Label ({page} en {pages})",
@@ -782,6 +812,7 @@
     "pdf-to-images": {
       "name": "PDF → afbeeldingen",
       "description": "Raster elke pagina naar JPEG en download ze als ZIP.",
+      "summary": "Zet elke pagina van een pdf om in een JPEG-afbeelding op de resolutie die je kiest, en download alles samen als ZIP-bestand.",
       "keywords": "pdf afbeelding jpg jpeg zip pagina’s exporteren",
       "run": "Pagina’s exporteren",
       "limits": "Pagina’s worden met PDF.js in dit tabblad getekend. Zeer grote documenten kunnen traag zijn en veel geheugen gebruiken. Dit is een visueel raster, geen extractie van ingesloten afbeeldingsobjecten.",
@@ -790,6 +821,7 @@
     "images-to-pdf": {
       "name": "Afbeeldingen → PDF",
       "description": "Stapel foto’s tot een PDF, één afbeelding per pagina.",
+      "summary": "Voeg foto’s en scans samen tot één pdf, één afbeelding per pagina, passend op A4 of op hun oorspronkelijke formaat.",
       "keywords": "afbeeldingen pdf jpg png combineren",
       "run": "PDF maken",
       "success": "{count, plural, one {PDF gemaakt van # afbeelding.} other {PDF gemaakt van # afbeeldingen.}}",
@@ -800,6 +832,7 @@
     "pdf-flatten": {
       "name": "Formulieren platleggen",
       "description": "Bak AcroForm-velden in de pagina zodat ze niet meer bewerkbaar zijn.",
+      "summary": "Verander ingevulde formuliervelden in vaste paginainhoud, zodat de pdf overal hetzelfde afdrukt en leest en niet meer te wijzigen is.",
       "keywords": "pdf platleggen formulier velden acroform",
       "run": "Platleggen",
       "limits": "Werkt met standaard AcroForm-velden. Dynamische XFA-formulieren worden niet volledig ondersteund.",
@@ -808,6 +841,7 @@
     "pdf-metadata": {
       "name": "PDF-metagegevens",
       "description": "Bekijk, bewerk of verwijder titel, auteur en andere Info-velden van het document.",
+      "summary": "Lees, wijzig of verwijder titel, auteur, trefwoorden en andere documenteigenschappen van een pdf en sla een schone kopie op.",
       "keywords": "Trefwoorden",
       "run": "Metagegevens opslaan",
       "strip": "Info-velden en XMP wissen",
@@ -822,6 +856,7 @@
     "pdf-protect": {
       "name": "PDF vergrendelen of ontgrendelen",
       "description": "Voeg een gebruikerswachtwoord toe of verwijder het. Versleuteling blijft in deze browser.",
+      "summary": "Zet een wachtwoord op een pdf of haal een wachtwoord dat je kent eraf, met de versleuteling in dit tabblad en niet op een server.",
       "keywords": "pdf wachtwoord vergrendelen ontgrendelen versleutelen ontsleutelen",
       "run": "Toepassen",
       "lock": "Vergrendelen",
@@ -833,6 +868,7 @@
     "image-rotate": {
       "name": "Draaien en spiegelen",
       "description": "Draai afbeeldingen per 90° of spiegel ze horizontaal of verticaal.",
+      "summary": "Draai foto’s per kwartslag, zet ze een paar graden recht of spiegel ze — één afbeelding of een hele reeks.",
       "keywords": "afbeelding draaien spiegelen",
       "run": "Toepassen",
       "operation": "Transformatie",
@@ -846,6 +882,7 @@
     "image-filters": {
       "name": "Afbeeldingsfilters",
       "description": "Pas grijswaarden, sepia of inverteren toe op één of meer foto’s.",
+      "summary": "Pas grijstinten, sepia, inverteren, vervagen of verscherpen toe op één foto, of op een hele map, en download het resultaat.",
       "keywords": "afbeelding filter grijswaarden sepia inverteren",
       "run": "Toepassen",
       "filter": "Filter",
@@ -857,6 +894,7 @@
     "image-favicon": {
       "name": "Faviconpakket",
       "description": "Exporteer een bronafbeelding als gangbare pictogramgroottes in een ZIP.",
+      "summary": "Maak van één afbeelding alle icoonformaten die een site of app vraagt — favicon, Apple-touchicoon, Android maskable — in één ZIP.",
       "keywords": "favicon pictogram 16 32 180 192 512 apple touch",
       "run": "Pictogrammen exporteren",
       "note": "Exporteert PNG-bestanden van 16, 32, 48, 180, 192 en 512 pixels.",
@@ -865,6 +903,7 @@
     "video-gif": {
       "name": "Video → GIF",
       "description": "Zet een kort fragment om in een herhalende GIF in de browser.",
+      "summary": "Maak van een kort stuk video een GIF die blijft herhalen, met keuze van begin en einde. Bij lange stukken duurt het coderen lang.",
       "keywords": "video gif clip converteren ffmpeg",
       "run": "GIF maken",
       "limits": "Gebruikt FFmpeg WASM. Houd clips kort — GIF-codering is traag en geheugenintensief. Palet en codecs volgen de build in de browser.",
@@ -873,6 +912,7 @@
     "xml-json": {
       "name": "XML ↔ JSON",
       "description": "Zet XML-documenten om naar JSON, of JSON terug naar XML.",
+      "summary": "Zet een XML-document om naar JSON of andersom, waarbij attributen en herhaalde elementen een voorspelbare vorm houden.",
       "keywords": "xml json converteren ontleden",
       "run": "Converteren",
       "toJson": "XML → JSON",
@@ -882,6 +922,7 @@
     "sql-format": {
       "name": "SQL-opmaker",
       "description": "Maak SQL netjes op zodat clausules en lijsten beter leesbaar zijn.",
+      "summary": "Herschrijf SQL zodat clausules, joins en lange kolomlijsten uitgelijnd staan en lezen in de volgorde waarin ze lopen.",
       "keywords": "sql opmaken pretty query",
       "run": "Opmaak",
       "success": "SQL opgemaakt."
@@ -889,6 +930,7 @@
     "regex-tester": {
       "name": "Regex-tester",
       "description": "Probeer een reguliere expressie op voorbeeldtekst en vervang treffers.",
+      "summary": "Probeer een reguliere expressie op je eigen tekst, zie de treffers oplichten en test meteen ook de vervanging.",
       "keywords": "regex reguliere expressie testen vervangen",
       "pattern": "Patroon",
       "flags": "Flags",
@@ -901,6 +943,7 @@
     "hash-generator": {
       "name": "Hashgenerator",
       "description": "SHA-1/256/384/512 en MD5 van tekst of een bestand, lokaal berekend.",
+      "summary": "Bereken SHA-1, SHA-256, SHA-384, SHA-512 of MD5 van een tekst of een heel bestand, zonder iets ergens heen te sturen.",
       "keywords": "hash sha256 md5 sha1 controlesom digest",
       "run": "Hashen",
       "algo": "Algoritme",
@@ -911,6 +954,7 @@
     "uuid-generator": {
       "name": "UUID-generator",
       "description": "Maak UUID versie 4 of 7 op dit apparaat.",
+      "summary": "Genereer UUID’s van versie 4 of versie 7, één tegelijk of in bulk, gemaakt op dit apparaat in plaats van op een server.",
       "keywords": "uuid guid v4 v7 genereren",
       "run": "Genereren",
       "count": "Hoeveel",
@@ -920,6 +964,7 @@
     "color-convert": {
       "name": "Kleurconverter",
       "description": "Converteer tussen HEX, RGB, HSL en HSV, met een kleurkiezer.",
+      "summary": "Zet een kleur om tussen HEX, RGB, HSL, HSV en CSS-namen, of kies er een op het wiel en lees alle notaties tegelijk.",
       "keywords": "kleur hex rgb hsl hsv kiezer",
       "picker": "Kleurkiezer",
       "invalid": "Voer een hex-kleur van 3 of 6 cijfers in."
@@ -927,6 +972,7 @@
     "lorem-ipsum": {
       "name": "Lorem ipsum",
       "description": "Genereer plaatshouderalinea’s, zinnen of woorden.",
+      "summary": "Genereer alinea’s, zinnen of woorden als vultekst voor een ontwerp, in de hoeveelheid die je nodig hebt en klaar om te plakken.",
       "keywords": "lorem ipsum plaatshouder dummy tekst",
       "run": "Genereren",
       "count": "Aantal",
@@ -939,6 +985,7 @@
     "qr-code": {
       "name": "QR-code",
       "description": "Maak een QR-code van tekst, of lees er een uit een afbeelding.",
+      "summary": "Maak een QR-code van een link, een tekst of contactgegevens en download hem als afbeelding, of lees er een uit een foto.",
       "keywords": "qr code genereren scannen lezen barcode",
       "run": "Genereren",
       "payload": "Tekst of URL",
@@ -951,6 +998,7 @@
     "pdf-sign": {
       "name": "PDF ondertekenen",
       "description": "Zet een getypte handtekening op elke pagina. Alleen visueel — geen certificaat.",
+      "summary": "Zet een getypte handtekening op de pagina’s die je kiest. Die wordt op de pagina getekend om te lezen, geen cryptografische handtekening.",
       "keywords": "pdf ondertekenen handtekening stempel naam",
       "run": "Ondertekenen",
       "signature": "Handtekeningtekst",
@@ -961,6 +1009,7 @@
     "image-watermark": {
       "name": "Watermerk op afbeeldingen",
       "description": "Leg tekst over foto’s, één bestand of een hele batch.",
+      "summary": "Leg tekst over je foto’s — positie, grootte, kleur en dekking — voor één afbeelding of voor een hele reeks.",
       "keywords": "afbeelding watermerk stempel copyright",
       "run": "Toepassen",
       "text": "Watermerktekst",
@@ -974,6 +1023,7 @@
     "password-generator": {
       "name": "Wachtwoordgenerator",
       "description": "Maak een sterk wachtwoord op dit apparaat. Er wordt niets opgeslagen.",
+      "summary": "Maak een sterk wachtwoord in de lengte en met de tekens die je kiest. Het wordt op dit apparaat gemaakt en nooit bewaard.",
       "keywords": "wachtwoord genereren willekeurig geheim",
       "run": "Genereren",
       "length": "Lengte",
@@ -986,6 +1036,7 @@
     "case-convert": {
       "name": "Hoofdletters wijzigen",
       "description": "Schakel tussen camel, snake, kebab, titel en meer.",
+      "summary": "Wissel tekst tussen camelCase, snake_case, kebab-case, Titelkapitalen en de andere gewoonten van wie programmeert.",
       "keywords": "hoofdletters camel snake kebab pascal titel",
       "run": "Converteren",
       "style": "Stijl",
@@ -994,6 +1045,7 @@
     "jwt-decode": {
       "name": "JWT-decoder",
       "description": "Lees JWT-header en payload lokaal. Handtekeningen worden niet gecontroleerd.",
+      "summary": "Lees de header en payload van een JWT en zie wanneer die verloopt. De handtekening wordt niet geverifieerd.",
       "keywords": "jwt decoderen token bearer auth",
       "run": "Decoderen",
       "limits": "Kit decodeert alleen Base64url. Zonder sleutel kan het niet bewijzen dat het token echt is.",
@@ -1005,12 +1057,14 @@
     "unix-timestamp": {
       "name": "Unix-tijdstempel",
       "description": "Zet Unix-tijd om naar ISO en terug.",
+      "summary": "Zet een Unix-tijdstempel om in een leesbare datum en tijd, of andersom, in de tijdzone die je kiest.",
       "keywords": "unix epoch tijdstempel iso datum",
       "now": "Nu gebruiken"
     },
     "cron-explain": {
       "name": "Cron uitleggen",
       "description": "Zet een cron-expressie van 5 velden om in gewone taal.",
+      "summary": "Vertaal een cron-uitdrukking met vijf velden naar een gewone zin, zodat duidelijk is wanneer en hoe vaak een taak loopt.",
       "keywords": "cron planning crontab uitleggen",
       "run": "Uitleggen",
       "success": "Uitgelegd."
@@ -1018,6 +1072,7 @@
     "number-base": {
       "name": "Getallenstelsel",
       "description": "Converteer gehele getallen tussen grondtal 2 en 36.",
+      "summary": "Zet een heel getal om tussen binair, octaal, decimaal, hexadecimaal en elk grondtal van 2 tot 36, met het bitpatroon ernaast.",
       "keywords": "binair hex decimaal grondtal converteren",
       "value": "Getal",
       "from": "Van grondtal",
@@ -1026,6 +1081,7 @@
     "html-entities": {
       "name": "HTML-entiteiten",
       "description": "Codeer of decodeer &lt; &amp; en numerieke entiteiten.",
+      "summary": "Codeer of decodeer punthaken, aanhalingstekens en numerieke HTML-entiteiten, zodat tekst veilig in opmaak staat en leesbaar blijft.",
       "keywords": "html entiteiten coderen decoderen escapen",
       "run": "Converteren",
       "encode": "Coderen",
@@ -1035,6 +1091,7 @@
     "json-types": {
       "name": "JSON → TypeScript",
       "description": "Leid TypeScript-interfaces af van een JSON-voorbeeld.",
+      "summary": "Maak van een voorbeeld van een JSON-antwoord TypeScript-interfaces, met geneste objecten en arrays getypeerd zover het voorbeeld reikt.",
       "keywords": "json typescript interface type genereren",
       "run": "Typen genereren",
       "success": "Typen gegenereerd."
@@ -1260,6 +1317,7 @@
     "text-counter": {
       "name": "Tekstteller",
       "description": "Tel woorden, tekens, zinnen, alinea’s en leestijd.",
+      "summary": "Tel woorden, tekens, zinnen en alinea’s terwijl je typt, met een schatting van hoe lang de tekst kost om te lezen.",
       "keywords": "woordenteller tekenteller tekststatistieken leestijd",
       "limits": "De telling gebruikt waar mogelijk de ingebouwde Unicode-segmentatie van de browser, zodat emoji en gecombineerde tekens natuurlijker worden verwerkt.",
       "input": "Te tellen tekst",
@@ -1276,6 +1334,7 @@
     "timezone-converter": {
       "name": "Wereldklok",
       "description": "Zet lokale datum en tijd om tussen tijdzones en bekijk een wereldklok.",
+      "summary": "Zie hoe laat het nu is in steden over de hele wereld en reken een moment om tussen tijdzones, ook over een datumgrens heen.",
       "keywords": "tijdzone omzetter wereldklok zomertijd datum tijd",
       "limits": "Voer de kloktijd in de bronstad in. De conversie gebruikt IANA-tijdzoneregels, inclusief wijzigingen in zomertijd.",
       "convert": "Datum en tijd omzetten",
@@ -1325,6 +1384,7 @@
     "date-calculator": {
       "name": "Datumberekenaar",
       "description": "Vergelijk datums, tel tijd op en bereken werkdagen met optionele feestdagen.",
+      "summary": "Bereken de afstand tussen twee datums, tel dagen en maanden op of af, en tel werkdagen zonder feestdagen.",
       "keywords": "datumberekenaar datumverschil dagen optellen werkdagen feestdagen",
       "updated": "Datum bijgewerkt.",
       "invalid": "Controleer de invoer.",
@@ -1363,6 +1423,7 @@
     "tip-split-calculator": {
       "name": "Fooi- en verdeelcalculator",
       "description": "Bereken fooi, belasting, totaal en eerlijke delen voor een groep.",
+      "summary": "Bereken fooi, btw en het totaal van een rekening, en verdeel die eerlijk over iedereen die meebetaalt.",
       "keywords": "fooicalculator rekening delen belasting restaurant delen",
       "limits": "Fooi en belasting worden over het subtotaal berekend. Afgeronde delen verdelen een rest over de eerste personen zodat het totaal klopt.",
       "invalid": "Controleer de invoer.",
@@ -1383,6 +1444,7 @@
     "stopwatch-timer": {
       "name": "Stopwatch en timer",
       "description": "Gebruik een nauwkeurige stopwatch of afteltimer in de browser.",
+      "summary": "Start een nauwkeurige stopwatch met rondetijden, of een aftelling in een tabblad dat blijft doorlopen als je even weg bent.",
       "keywords": "stopwatch timer aftellen klok online timer",
       "saved": "Opgeslagen in de geschiedenis.",
       "stopwatch": "Stopwatch",
@@ -1399,6 +1461,7 @@
     "random-generator": {
       "name": "Willekeurige generator",
       "description": "Genereer getallen, booleans, keuzes of wachtwoorden voor dagelijks gebruik.",
+      "summary": "Trek een willekeurig getal, gooi een munt op, rol dobbelstenen of kies uit een lijst, met bereik en aantal naar wens.",
       "keywords": "willekeurige getallen generator keuze wachtwoordgenerator",
       "invalid": "Controleer de invoer.",
       "limits": "Willekeurigheid gebruikt de Math.random-bron van de browser. Resultaten zijn voor dagelijkse keuzes, niet voor cryptografische geheimen.",
@@ -1428,6 +1491,7 @@
     "currency-converter": {
       "name": "Valutaconverter",
       "description": "Live wisselkoersen met lokale cache",
+      "summary": "Reken om tussen valuta met dagelijkse koersen, opgeslagen op je apparaat zodat de laatste set ook zonder verbinding werkt.",
       "keywords": "valutaconverter wisselkoersen geld Frankfurter",
       "currency": "Valuta",
       "limits": "Wisselkoersen komen van Frankfurter wanneer deze tool opent of u op Vernieuwen tikt, en blijven zes uur in de cache van deze browser. Bedragen worden niet verzonden. Het zijn dagelijkse referentiegegevens, niet voor handel of belasting.",
@@ -1451,6 +1515,7 @@
     "length-converter": {
       "name": "Lengte",
       "description": "Afstanden, afmetingen en reizen",
+      "summary": "Reken een lengte om tussen meters, voeten, mijlen, inches, centimeters en de andere eenheden die reizen en klussen meebrengen.",
       "keywords": "Lengte length converter",
       "run": "Conversie vastleggen",
       "success": "Conversie opgeslagen in geschiedenis."
@@ -1458,6 +1523,7 @@
     "mass-converter": {
       "name": "Massa",
       "description": "Gewichten van milligrammen tot tonnen",
+      "summary": "Reken een gewicht om tussen milligram, gram, kilogram, ton, pond, ons en stone, voor de keuken of voor verzending.",
       "keywords": "Massa mass converter",
       "run": "Conversie vastleggen",
       "success": "Conversie opgeslagen in geschiedenis."
@@ -1465,6 +1531,7 @@
     "temperature-converter": {
       "name": "Temperatuur",
       "description": "Celsius, Fahrenheit en Kelvin",
+      "summary": "Reken een temperatuur om tussen Celsius, Fahrenheit en Kelvin, inclusief de punten waarop water bevriest en kookt.",
       "keywords": "Temperatuur temperature converter",
       "run": "Conversie vastleggen",
       "success": "Conversie opgeslagen in geschiedenis."
@@ -1472,6 +1539,7 @@
     "speed-converter": {
       "name": "Snelheid",
       "description": "Dagelijkse en nautische snelheid",
+      "summary": "Reken een snelheid om tussen kilometer per uur, mijl per uur, meter per seconde en knopen, voor weg, lucht en zee.",
       "keywords": "Snelheid speed converter",
       "run": "Conversie vastleggen",
       "success": "Conversie opgeslagen in geschiedenis."
@@ -1479,6 +1547,7 @@
     "duration-converter": {
       "name": "Duur",
       "description": "Van milliseconden tot weken",
+      "summary": "Reken een tijdsduur om tussen milliseconden, seconden, minuten, uren, dagen en weken, beide kanten op.",
       "keywords": "Duur duration converter",
       "run": "Conversie vastleggen",
       "success": "Conversie opgeslagen in geschiedenis."
@@ -1486,6 +1555,7 @@
     "volume-converter": {
       "name": "Volume",
       "description": "Metrische en keukeneenheden",
+      "summary": "Reken een inhoud om tussen liters, milliliters, gallons, kopjes, pints en de maten waarin een recept geschreven is.",
       "keywords": "volume volumenconverter",
       "run": "Conversie vastleggen",
       "success": "Conversie opgeslagen in geschiedenis."
@@ -1493,6 +1563,7 @@
     "power-converter": {
       "name": "Vermogen",
       "description": "Watt en paardenkracht",
+      "summary": "Reken een vermogen om tussen watt, kilowatt, megawatt en metrische of mechanische paardenkracht, voor apparaten en motoren.",
       "keywords": "Vermogen power converter",
       "run": "Conversie vastleggen",
       "success": "Conversie opgeslagen in geschiedenis."
@@ -1500,6 +1571,7 @@
     "energy-converter": {
       "name": "Energie",
       "description": "Joules, calorieën en wattuur",
+      "summary": "Reken een energie om tussen joule, calorieën, kilocalorieën en kilowattuur — de eenheden op een etiket of een energierekening.",
       "keywords": "Energie energy converter",
       "run": "Conversie vastleggen",
       "success": "Conversie opgeslagen in geschiedenis."
@@ -1507,6 +1579,7 @@
     "pressure-converter": {
       "name": "Druk",
       "description": "Pa, bar, PSI en meer",
+      "summary": "Reken een druk om tussen pascal, bar, PSI, atmosfeer, torr en millimeter kwik, voor banden of het weerbericht.",
       "keywords": "Druk pressure converter",
       "run": "Conversie vastleggen",
       "success": "Conversie opgeslagen in geschiedenis."
@@ -1514,6 +1587,7 @@
     "area-converter": {
       "name": "Oppervlakte",
       "description": "Oppervlakte en land",
+      "summary": "Reken een oppervlakte om tussen vierkante meter, vierkante voet, acres, hectare en de andere maten voor grond en woonruimte.",
       "keywords": "Oppervlakte area converter",
       "run": "Conversie vastleggen",
       "success": "Conversie opgeslagen in geschiedenis."
@@ -1521,6 +1595,7 @@
     "data-converter": {
       "name": "Gegevens",
       "description": "Decimale en binaire opslag",
+      "summary": "Reken een bestands- of opslaggrootte om tussen bytes, kilobytes, megabytes, gigabytes en terabytes, decimaal of binair.",
       "keywords": "Gegevens data converter",
       "run": "Conversie vastleggen",
       "success": "Conversie opgeslagen in geschiedenis."
@@ -1528,6 +1603,7 @@
     "angle-converter": {
       "name": "Hoek",
       "description": "Graden, radialen en omwentelingen",
+      "summary": "Reken een hoek om tussen graden, radialen, gradians en omwentelingen, met de decimale en de breukvorm ernaast.",
       "keywords": "Hoek angle converter",
       "run": "Conversie vastleggen",
       "success": "Conversie opgeslagen in geschiedenis."
@@ -1535,6 +1611,7 @@
     "frequency-converter": {
       "name": "Frequentie",
       "description": "Hz tot RPM",
+      "summary": "Reken een frequentie om tussen hertz, kilohertz, megahertz, gigahertz en toeren per minuut, voor geluid, radio en draaiende machines.",
       "keywords": "Frequentie frequency converter",
       "run": "Conversie vastleggen",
       "success": "Conversie opgeslagen in geschiedenis."
@@ -1542,6 +1619,7 @@
     "force-converter": {
       "name": "Kracht",
       "description": "Newton en krachteenheden",
+      "summary": "Reken een kracht om tussen newton, kilonewton, kilogramkracht, pondkracht en dyne, voor natuurkunde en techniek.",
       "keywords": "Kracht force converter",
       "run": "Conversie vastleggen",
       "success": "Conversie opgeslagen in geschiedenis."
@@ -1549,6 +1627,7 @@
     "fuel-economy-converter": {
       "name": "Brandstofverbruik",
       "description": "Verbruik en kilometrage",
+      "summary": "Reken een verbruik om tussen liter per 100 kilometer, mijl per Amerikaanse of Britse gallon, en kilometer per liter.",
       "keywords": "Brandstofverbruik fuel economy converter",
       "run": "Conversie vastleggen",
       "success": "Conversie opgeslagen in geschiedenis."
@@ -1556,6 +1635,7 @@
     "acceleration-converter": {
       "name": "Versnelling",
       "description": "Beweging en zwaartekracht",
+      "summary": "Reken een versnelling om tussen meter per seconde kwadraat, standaardzwaartekracht, voet per seconde kwadraat en galileo.",
       "keywords": "Versnelling acceleration converter",
       "run": "Conversie vastleggen",
       "success": "Conversie opgeslagen in geschiedenis."
@@ -1563,6 +1643,7 @@
     "torque-converter": {
       "name": "Koppel",
       "description": "Draaimoment",
+      "summary": "Reken een koppel om tussen newtonmeter, kilogramkrachtmeter, pond-voet en pond-inch, voor moeren en motoren.",
       "keywords": "Koppel torque converter",
       "run": "Conversie vastleggen",
       "success": "Conversie opgeslagen in geschiedenis."
@@ -1570,6 +1651,7 @@
     "electrical-converter": {
       "name": "Elektrisch",
       "description": "Spanning, stroom en weerstand",
+      "summary": "Reken om tussen de elektrische eenheden van spanning, stroom, weerstand en vermogen: volt, ampère, ohm en watt.",
       "keywords": "Elektrisch electrical converter",
       "run": "Conversie vastleggen",
       "success": "Conversie opgeslagen in geschiedenis."
@@ -1577,6 +1659,7 @@
     "typography-converter": {
       "name": "Typografie",
       "description": "CSS- en drukwerkformaten",
+      "summary": "Reken lettergroottes om tussen pixels, punten, em, rem en pica, ten opzichte van de referentiegrootte die je instelt.",
       "keywords": "Typografie typography converter",
       "run": "Conversie vastleggen",
       "success": "Conversie opgeslagen in geschiedenis."
@@ -1584,6 +1667,7 @@
     "bmi-calorie-calculator": {
       "name": "BMI- en calorieteller",
       "description": "Bekijk BMI, een gezond gewichtsbereik en de dagelijkse caloriebehoefte uit lengte, gewicht, leeftijd en activiteit.",
+      "summary": "Controleer je BMI tegen een gezonde gewichtsrange en schat je dagelijkse calorieën uit lengte, gewicht, leeftijd en activiteit.",
       "keywords": "bmi calorieën tdee bmr mifflin gewicht gezond",
       "limits": "BMI gebruikt WHO-grenzen voor volwassenen. Onder 18 mag, maar wordt gemarkeerd, omdat kinder-BMI meestal via groeicurves wordt gelezen. Calorieën gebruiken Mifflin-St Jeor, een formule voor volwassenen. De berekening blijft op dit apparaat en is geen medisch advies.",
       "invalid": "Voer een realistische lengte, gewicht en leeftijd in.",
@@ -1642,6 +1726,7 @@
     "percentage-calculator": {
       "name": "Percentagecalculator",
       "description": "Bereken een percentage, keer het om, meet de verandering of pas een stijging/daling toe.",
+      "summary": "Bereken een percentage van een getal, draai het terug, meet het verschil tussen twee waarden of tel er iets bij op.",
       "keywords": "percentage calculator toeslag korting toename",
       "mode": "Berekening",
       "modeOf": "% of",
@@ -1665,6 +1750,7 @@
     "loan-calculator": {
       "name": "Lening- & rentecalculator",
       "description": "Schat een maandelijkse aflossing of samengestelde rente vanuit hoofdsom, rente en jaren.",
+      "summary": "Schat een maandlast, of zie wat samengestelde rente in de loop van de tijd doet, uit hoofdsom, rente en looptijd.",
       "keywords": "lening hypotheek aflossing amortisatie samengestelde rente APR",
       "limits": "De leningmodus gebruikt de gebruikelijke annuïteitenbetaling bij vaste rente. De samengestelde-rentemodus rente periodiek (standaard maandelijks). Dit is een schatting, geen financieel advies.",
       "mode": "Modus",
@@ -1685,6 +1771,7 @@
     "text-lines": {
       "name": "Regelgereedschap",
       "description": "Zoeken en vervangen, sorteren of dubbele regels verwijderen in de browser.",
+      "summary": "Zoek en vervang in een lijst met regels, sorteer numeriek of alfabetisch en verwijder dubbele regels.",
       "keywords": "zoeken vervangen sorteren uniek regels tekst",
       "find": "Zoeken",
       "replace": "Vervangen door",
@@ -1699,6 +1786,7 @@
     "slugify": {
       "name": "Slugify",
       "description": "Maak van een titel een URL-slug of ruim een bestandsnaam op.",
+      "summary": "Maak van een titel een schone URL-slug, met de opties voor accenten, kapitalen en scheidingstekens die een bestandsnaam vraagt.",
       "keywords": "slugify slug url bestandsnaam opschonen kebab",
       "input": "Tekst",
       "slug": "URL-slug",
@@ -1709,6 +1797,7 @@
     "color-contrast": {
       "name": "Kleurcontrast",
       "description": "Controleer WCAG-contrast tussen voor- en achtergrondkleur.",
+      "summary": "Controleer het contrast tussen tekst en achtergrond tegen de WCAG-drempels AA en AAA voordat je een palet uitbrengt.",
       "keywords": "wcag contrast toegankelijkheid aa aaa leesbaarheid",
       "limits": "De verhouding gebruikt WCAG-2 relatieve luminantie voor sRGB-hexkleuren. De getoonde niveaus gelden voor normale tekst (AA ≥ 4,5, AAA ≥ 7).",
       "foreground": "Voorgrond",
@@ -1724,6 +1813,7 @@
     "image-palette": {
       "name": "Afbeeldingspalet",
       "description": "Haal dominante kleuren uit een foto voor designreferenties.",
+      "summary": "Lees de dominante kleuren van een foto uit als hexcodes, klaar voor een ontwerp of een controle van je huisstijl.",
       "keywords": "palet kleuren extraheren dominant stalen afbeelding",
       "limits": "Kleuren worden in dit tabblad gekwantiseerd vanuit een verkleinde voorweergave. De resultaten zijn benaderingen en blijven op dit apparaat.",
       "maxColors": "Max. kleuren",
@@ -1735,6 +1825,7 @@
     "aspect-ratio": {
       "name": "Beeldverhouding",
       "description": "Reduceer breedte en hoogte tot een verhouding, of bereken de ontbrekende zijde.",
+      "summary": "Vereenvoudig een breedte en hoogte tot de eenvoudigste verhouding, of reken de ontbrekende zijde uit met een verhouding die je al kent.",
       "keywords": "beeldverhouding 16:9 afmetingen ontbrekende zijde",
       "mode": "Modus",
       "modeFromSize": "Uit grootte",
@@ -1751,6 +1842,7 @@
     "meeting-planner": {
       "name": "Vergaderplanner",
       "description": "Vind overlappende werkuren over tijdzones op een datum.",
+      "summary": "Vind het uur dat iedereen past door werktijden van meerdere tijdzones op een gekozen datum te vergelijken.",
       "keywords": "vergadering tijdzone overlapping wereldklok werktijden",
       "limits": "De overlap gebruikt IANA-zones en lokale kalenderdata. Uren zijn hele UTC-uren waarin elke zone nog op de gekozen datum en binnen het werkvenster valt.",
       "date": "Datum",
@@ -1770,6 +1862,7 @@
     "json-query": {
       "name": "JSON-query",
       "description": "Vlak geneste JSON af of lees eenvoudige JSONPath-waarden zoals $.items[0].name.",
+      "summary": "Maak diep geneste JSON plat tot rijen, of haal losse waarden op met een eenvoudige JSONPath-uitdrukking zoals $.items[0].name.",
       "keywords": "json pad query afvlakken jq jsonpath",
       "limits": "Ondersteunt een klein deel van JSONPath: $.a.b, $.items[0] en $['key']. Jokertekens en filters zijn niet inbegrepen.",
       "mode": "Modus",
@@ -1784,6 +1877,7 @@
     "check-digits": {
       "name": "Controlecijfers",
       "description": "Valideer ISBN-10/13, EAN-13 en IBAN-controlecijfers lokaal.",
+      "summary": "Controleer het controlecijfer van een ISBN-10, ISBN-13, EAN-13 of IBAN, en zie op welke plek een foute invoer stukloopt.",
       "keywords": "isbn ean iban controlecijfer barcode valideren",
       "limits": "Controleert alleen de gepubliceerde controlecijferalgoritmen. Een geldig controlecijfer bewijst niet dat het nummer is toegewezen of dat een rekening bestaat.",
       "kind": "Type",
