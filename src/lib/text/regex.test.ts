@@ -1,5 +1,22 @@
 import { describe, expect, it } from "vitest";
-import { canBacktrackUnboundedly, replaceRegexAsync, runRegex, runRegexAsync } from "./regex";
+import { canBacktrackUnboundedly, REGEX_WORKER_SOURCE, replaceRegexAsync, runRegex, runRegexAsync } from "./regex";
+
+describe("empty Unicode matches", () => {
+  it.each(["gu", "guy"])("advances by code point with %s", (flags) => {
+    const result = runRegex("(?:)", flags, "a😀b");
+    expect(result.ok && result.matches.map((match) => match.index)).toEqual([0, 1, 3, 4]);
+    const frame = { onmessage: (event: { data: unknown }) => { void event; }, postMessage: (reply: typeof result) => {
+      expect(reply.ok && reply.matches.map((match) => match.index)).toEqual([0, 1, 3, 4]);
+    } };
+    new Function("self", REGEX_WORKER_SOURCE)(frame);
+    frame.onmessage({ data: { id: 1, pattern: "(?:)", flags, input: "a😀b" } });
+  });
+
+  it("still advances by UTF-16 code unit without /u", () => {
+    const result = runRegex("(?:)", "g", "😀");
+    expect(result.ok && result.matches.map((match) => match.index)).toEqual([0, 1, 2]);
+  });
+});
 
 describe("canBacktrackUnboundedly", () => {
   it("flags a quantified group whose body can vary in length", () => {

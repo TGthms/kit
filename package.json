@@ -24,6 +24,7 @@
     "@ffmpeg/core": "0.12.10",
     "@ffmpeg/ffmpeg": "^0.12.15",
     "@ffmpeg/util": "^0.12.2",
+    "@glass-sdk/liquid-glass": "0.0.2",
     "@radix-ui/react-label": "^2.1.11",
     "@radix-ui/react-progress": "^1.1.12",
     "@radix-ui/react-slider": "^1.4.3",

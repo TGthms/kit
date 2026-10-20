@@ -502,7 +502,10 @@
     "offlineRemoveSelected": "Supprimer la sélection",
     "offlineEnginesLabel": "Moteurs multimédias",
     "offlinePages": "Pages",
-    "offlinePagesDesc": "Les pages de l’application elle-même, dans les langues que vous choisissez. Sans elles, Kit ne peut pas s’ouvrir sans connexion : toutes sont donc cochées au départ."
+    "offlinePagesDesc": "Les pages de l’application elle-même, dans les langues que vous choisissez. Sans elles, Kit ne peut pas s’ouvrir sans connexion : toutes sont donc cochées au départ.",
+    "navigationAppearance": "Apparence expérimentale",
+    "liquidGlass": "Liquid Glass",
+    "liquidGlassDesc": "Essayez le SDK Liquid Glass pour les onglets, interrupteurs et curseurs. Une réfraction légère reste à l’intérieur de chaque commande. Les commandes habituelles restent disponibles si nécessaire."
   },
   "shortcuts": {
     "title": "Raccourcis clavier",

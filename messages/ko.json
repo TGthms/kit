@@ -502,7 +502,10 @@
     "offlineRemoveSelected": "선택한 항목 삭제",
     "offlineEnginesLabel": "미디어 엔진",
     "offlinePages": "페이지",
-    "offlinePagesDesc": "앱 자체의 페이지를 선택한 언어로 저장합니다. 이것이 없으면 Kit을 오프라인에서 열 수 없으므로 모두 기본 선택되어 있습니다."
+    "offlinePagesDesc": "앱 자체의 페이지를 선택한 언어로 저장합니다. 이것이 없으면 Kit을 오프라인에서 열 수 없으므로 모두 기본 선택되어 있습니다.",
+    "navigationAppearance": "실험적 외관",
+    "liquidGlass": "Liquid Glass",
+    "liquidGlassDesc": "탭, 스위치, 슬라이더에 Liquid Glass SDK를 사용해 보세요. 약한 굴절 효과가 각 컨트롤 내부에만 적용됩니다. 지원되지 않으면 기본 컨트롤을 사용합니다."
   },
   "shortcuts": {
     "title": "키보드 단축키",

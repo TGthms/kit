@@ -13,8 +13,9 @@ const pill = readFileSync(join(here, "../ui/gliding-pill.tsx"), "utf8");
 /** The declaration block for an exact selector, so assertions cannot leak into a
  *  neighboring rule that merely shares a prefix. */
 function cssBlock(source: string, selector: string): string {
-  const start = source.indexOf(`${selector} {`);
-  if (start === -1) throw new Error(`selector not found in globals.css: ${selector}`);
+  const lineStart = source.indexOf(`\n${selector} {`);
+  if (lineStart === -1) throw new Error(`selector not found in globals.css: ${selector}`);
+  const start = lineStart + 1;
   return source.slice(start, source.indexOf("}", start) + 1);
 }
 

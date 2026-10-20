@@ -67,7 +67,7 @@ export function ImageCompress() {
             <Label>
               {tc("quality")}: {Math.round(quality * 100)}%
             </Label>
-            <Slider value={[quality]} min={0.1} max={1} step={0.05} onValueChange={(v) => setQuality(v[0])} />
+            <Slider aria-label={tc("quality")} value={[quality]} min={0.1} max={1} step={0.05} onValueChange={(v) => setQuality(v[0])} />
           </div>
         ) : null}
         <div className="space-y-2">

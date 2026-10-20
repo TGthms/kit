@@ -68,7 +68,7 @@ export function PdfCompress() {
         <Label>
           {tc("quality")}: {Math.round(quality * 100)}%
         </Label>
-        <Slider value={[quality]} min={0.3} max={0.95} step={0.05} onValueChange={(v) => setQuality(v[0])} />
+        <Slider aria-label={tc("quality")} value={[quality]} min={0.3} max={0.95} step={0.05} onValueChange={(v) => setQuality(v[0])} />
       </div>
       {job.loading && <Progress value={job.progress} />}
       <ActionBar

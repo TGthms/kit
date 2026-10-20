@@ -8,6 +8,7 @@ import { Link, useRouter } from "@/lib/i18n/navigation";
 import { cn } from "@/lib/utils";
 import { useHydrated } from "@/lib/react/hydrated";
 import { previousRecentPath, stepRecentBack } from "@/lib/navigation/recent";
+import { isPlainNavigationClick } from "@/lib/navigation/intent";
 
 type PageHeaderProps = {
   title: string;
@@ -52,6 +53,7 @@ export function PageHeader({
   const resolvedBackLabel = historyBack ? tc("back") : backLabel;
   const onBackClick = historyBack
     ? (event: MouseEvent<HTMLAnchorElement>) => {
+        if (!isPlainNavigationClick(event)) return;
         event.preventDefault();
         const destination = stepRecentBack();
         if (destination) {

@@ -502,7 +502,10 @@
     "offlineRemoveSelected": "Xóa mục đã chọn",
     "offlineEnginesLabel": "Bộ máy media",
     "offlinePages": "Trang",
-    "offlinePagesDesc": "Các trang của chính ứng dụng, bằng những ngôn ngữ bạn chọn. Không có chúng, Kit không mở được khi không có kết nối, nên tất cả đều được chọn sẵn."
+    "offlinePagesDesc": "Các trang của chính ứng dụng, bằng những ngôn ngữ bạn chọn. Không có chúng, Kit không mở được khi không có kết nối, nên tất cả đều được chọn sẵn.",
+    "navigationAppearance": "Giao diện thử nghiệm",
+    "liquidGlass": "Liquid Glass",
+    "liquidGlassDesc": "Thử SDK Liquid Glass cho thẻ, công tắc và thanh trượt. Khúc xạ nhẹ được giới hạn bên trong từng điều khiển. Các điều khiển thông thường vẫn có sẵn nếu không được hỗ trợ."
   },
   "shortcuts": {
     "title": "Phím tắt",

@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
+import { openToolSearch } from "@/lib/navigation/search";
 
 export const SHORTCUT_RUN_EVENT = "kit:run";
 
@@ -77,6 +78,7 @@ export function ShortcutsProvider({ children }: { children: React.ReactNode }) {
         return;
       }
       if (isTypingTarget(e.target)) return;
+      if (document.querySelector("dialog[open]")) return;
 
       // Use unmodified, app-local keys instead of Cmd/Ctrl combinations that
       // collide with macOS, Windows, browsers, and assistive technologies.
@@ -90,8 +92,11 @@ export function ShortcutsProvider({ children }: { children: React.ReactNode }) {
         setOpen((v) => !v);
       } else if (e.key === "/") {
         e.preventDefault();
-        document.getElementById("kit-search")?.focus();
-      } else if (e.key.toLowerCase() === "r") {
+        if (open) return;
+        const search = document.getElementById("kit-search");
+        if (search) search.focus();
+        else openToolSearch();
+      } else if (e.key.toLowerCase() === "r" && !open && !document.querySelector("dialog[open]")) {
         e.preventDefault();
         window.dispatchEvent(new Event(SHORTCUT_RUN_EVENT));
       }

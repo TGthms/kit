@@ -502,7 +502,10 @@
     "offlineRemoveSelected": "הסרת הנבחרים",
     "offlineEnginesLabel": "מנועי מדיה",
     "offlinePages": "עמודים",
-    "offlinePagesDesc": "העמודים של האפליקציה עצמה, בשפות שתבחרו. בלעדיהם Kit לא ייפתח ללא חיבור, ולכן כולם מסומנים מראש."
+    "offlinePagesDesc": "העמודים של האפליקציה עצמה, בשפות שתבחרו. בלעדיהם Kit לא ייפתח ללא חיבור, ולכן כולם מסומנים מראש.",
+    "navigationAppearance": "מראה ניסיוני",
+    "liquidGlass": "Liquid Glass",
+    "liquidGlassDesc": "נסו את Liquid Glass SDK בלשוניות, מתגים ומחוונים. שבירת אור עדינה נשארת בתוך כל פקד. ללא תמיכה, הפקדים הרגילים נשארים זמינים."
   },
   "shortcuts": {
     "title": "קיצורי מקלדת",

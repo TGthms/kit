@@ -502,7 +502,10 @@
     "offlineRemoveSelected": "Remover selecionados",
     "offlineEnginesLabel": "Motores de mídia",
     "offlinePages": "Páginas",
-    "offlinePagesDesc": "As páginas do próprio aplicativo, nos idiomas que você escolher. Sem elas o Kit não abre sem conexão, então todas já vêm marcadas."
+    "offlinePagesDesc": "As páginas do próprio aplicativo, nos idiomas que você escolher. Sem elas o Kit não abre sem conexão, então todas já vêm marcadas.",
+    "navigationAppearance": "Aparência experimental",
+    "liquidGlass": "Liquid Glass",
+    "liquidGlassDesc": "Experimente o SDK Liquid Glass em abas, interruptores e controles deslizantes. Uma refração suave fica restrita a cada controle. Se não houver suporte, os controles normais continuam disponíveis."
   },
   "shortcuts": {
     "title": "Atalhos de teclado",

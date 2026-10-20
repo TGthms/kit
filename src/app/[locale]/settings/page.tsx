@@ -15,6 +15,7 @@ import { APP_VERSION } from "@/lib/version";
 import { useHydrated } from "@/lib/react/hydrated";
 import { runCircularThemeTransition } from "@/lib/theme/circular-transition";
 import { HardDriveDownload } from "lucide-react";
+import { useAppearanceStore } from "@/stores/appearance-store";
 
 export default function SettingsPage() {
   const t = useTranslations("settings");
@@ -26,11 +27,13 @@ export default function SettingsPage() {
   const historyEnabled = useHistoryStore((s) => s.enabled);
   const setHistoryEnabled = useHistoryStore((s) => s.setEnabled);
   const hydrated = useHydrated();
+  const liquidGlass = useAppearanceStore((state) => state.liquidGlass);
+  const setLiquidGlass = useAppearanceStore((state) => state.setLiquidGlass);
   // Painted Light/Dark. Stored intent may still be System until the user taps.
   const appearance = hydrated && resolvedTheme === "dark" ? "dark" : "light";
 
   return (
-    <div className="mx-auto max-w-2xl space-y-6">
+    <div className="max-w-3xl space-y-6">
       <PageHeader title={t("title")} subtitle={t("subtitle")} backHref="/" backLabel={tn("home")} />
 
       <Card className="anim-stagger border-border/40" style={{ animationDelay: "40ms" }}>
@@ -72,6 +75,19 @@ export default function SettingsPage() {
         </CardHeader>
         <CardContent>
           <LocaleSwitcher variant="settings" />
+        </CardContent>
+      </Card>
+
+      <Card className="border-border/40">
+        <CardHeader><CardTitle>{t("navigationAppearance")}</CardTitle></CardHeader>
+        <CardContent>
+          <div className="flex items-start justify-between gap-4">
+            <div>
+              <p id="kit-liquid-glass-label" className="font-medium tracking-[-0.01em]">{t("liquidGlass")}</p>
+              <p id="kit-liquid-glass-description" className="mt-1 type-caption text-muted-foreground">{t("liquidGlassDesc")}</p>
+            </div>
+            <Switch glass={false} checked={hydrated && liquidGlass} disabled={!hydrated} onCheckedChange={setLiquidGlass} aria-labelledby="kit-liquid-glass-label" aria-describedby="kit-liquid-glass-description" />
+          </div>
         </CardContent>
       </Card>
 

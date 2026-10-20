@@ -24,7 +24,9 @@ export function runRegex(pattern: string, flags: string, input: string): RegexRe
         text: m[0],
         groups: m.slice(1),
       });
-      if (m[0] === "") re.lastIndex++;
+      // With /u, advancing into the middle of a surrogate pair makes exec()
+      // rewind to the same code point and repeat the empty match forever.
+      if (m[0] === "") re.lastIndex += re.unicode && (input.codePointAt(re.lastIndex) ?? 0) > 0xffff ? 2 : 1;
       if (++guard > 10_000) break;
     }
     return { ok: true, matches, flags: withG };
@@ -102,7 +104,7 @@ function runRegexJob(data) {
     var guard = 0;
     while ((match = re.exec(input))) {
       matches.push({ index: match.index, text: match[0], groups: match.slice(1) });
-      if (match[0] === "") re.lastIndex++;
+      if (match[0] === "") re.lastIndex += re.unicode && (input.codePointAt(re.lastIndex) || 0) > 0xffff ? 2 : 1;
       if (++guard > 10000) break;
     }
     if (data.kind === "replace") {

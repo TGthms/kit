@@ -30,7 +30,7 @@ export default async function LocaleLayout({
   const dir = localeDir(locale);
 
   return (
-    <html lang={lang} dir={dir} suppressHydrationWarning>
+    <html lang={lang} dir={dir} data-scroll-behavior="smooth" suppressHydrationWarning>
       <head>
         <DocumentHead />
       </head>

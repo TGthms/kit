@@ -77,7 +77,7 @@ export function PdfWatermark() {
         <Label>
           {t("opacity")}: {Math.round(opacity * 100)}%
         </Label>
-        <Slider value={[opacity]} min={0.05} max={0.8} step={0.05} onValueChange={(v) => setOpacity(v[0])} />
+        <Slider aria-label={t("opacity")} value={[opacity]} min={0.05} max={0.8} step={0.05} onValueChange={(v) => setOpacity(v[0])} />
       </div>
       {job.loading && <Progress value={job.progress} />}
       <ActionBar

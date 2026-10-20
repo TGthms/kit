@@ -502,7 +502,10 @@
     "offlineRemoveSelected": "Eliminar seleccionados",
     "offlineEnginesLabel": "Motores multimedia",
     "offlinePages": "Páginas",
-    "offlinePagesDesc": "Las páginas de la propia aplicación, en los idiomas que elijas. Sin ellas Kit no puede abrirse sin conexión, así que todas vienen marcadas."
+    "offlinePagesDesc": "Las páginas de la propia aplicación, en los idiomas que elijas. Sin ellas Kit no puede abrirse sin conexión, así que todas vienen marcadas.",
+    "navigationAppearance": "Apariencia experimental",
+    "liquidGlass": "Liquid Glass",
+    "liquidGlassDesc": "Prueba el SDK de Liquid Glass en pestañas, interruptores y deslizadores. Usa una refracción suave dentro de cada control. Si no es compatible, se usan los controles habituales."
   },
   "shortcuts": {
     "title": "Atajos de teclado",

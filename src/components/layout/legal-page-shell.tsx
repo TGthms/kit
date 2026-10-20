@@ -17,7 +17,7 @@ export function LegalPageShell({
   const t = useTranslations("settings");
 
   return (
-    <div className="mx-auto max-w-3xl space-y-4">
+    <div className="max-w-3xl space-y-4">
       <PageHeader title={title} backHref={backHref} backLabel={backLabel ?? t("title")} sticky />
       {children}
     </div>

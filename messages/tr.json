@@ -502,7 +502,10 @@
     "offlineRemoveSelected": "Seçilenleri kaldır",
     "offlineEnginesLabel": "Medya motorları",
     "offlinePages": "Sayfalar",
-    "offlinePagesDesc": "Uygulamanın kendi sayfaları, seçtiğiniz dillerde. Bunlar olmadan Kit bağlantı olmadan açılamaz, bu yüzden hepsi seçili gelir."
+    "offlinePagesDesc": "Uygulamanın kendi sayfaları, seçtiğiniz dillerde. Bunlar olmadan Kit bağlantı olmadan açılamaz, bu yüzden hepsi seçili gelir.",
+    "navigationAppearance": "Deneysel görünüm",
+    "liquidGlass": "Liquid Glass",
+    "liquidGlassDesc": "Sekmeler, anahtarlar ve kaydırıcılar için Liquid Glass SDK’yı deneyin. Hafif ışık kırılması her denetimin içinde kalır. Desteklenmediğinde standart denetimler kullanılabilir."
   },
   "shortcuts": {
     "title": "Klavye kısayolları",

@@ -502,7 +502,10 @@
     "offlineRemoveSelected": "Remove selected",
     "offlineEnginesLabel": "Media engines",
     "offlinePages": "Pages",
-    "offlinePagesDesc": "The app's own pages, in the languages you choose. Kit needs them to open with no connection, so all of them start selected."
+    "offlinePagesDesc": "The app's own pages, in the languages you choose. Kit needs them to open with no connection, so all of them start selected.",
+    "navigationAppearance": "Experimental appearance",
+    "liquidGlass": "Liquid Glass",
+    "liquidGlassDesc": "Try the Liquid Glass SDK on tabs, switches, and sliders. Uses gentle refraction within each control. Standard controls stay available when unsupported."
   },
   "shortcuts": {
     "title": "Keyboard shortcuts",

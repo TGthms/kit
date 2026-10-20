@@ -502,7 +502,10 @@
     "offlineRemoveSelected": "Ta bort valda",
     "offlineEnginesLabel": "Mediamotorer",
     "offlinePages": "Sidor",
-    "offlinePagesDesc": "Appens egna sidor, på de språk du väljer. Utan dem kan Kit inte öppnas utan anslutning, så alla är förvalda."
+    "offlinePagesDesc": "Appens egna sidor, på de språk du väljer. Utan dem kan Kit inte öppnas utan anslutning, så alla är förvalda.",
+    "navigationAppearance": "Experimentellt utseende",
+    "liquidGlass": "Liquid Glass",
+    "liquidGlassDesc": "Prova Liquid Glass SDK för flikar, reglage och skjutreglage. Lätt ljusbrytning hålls inom varje kontroll. Vanliga kontroller finns kvar om stöd saknas."
   },
   "shortcuts": {
     "title": "Kortkommandon",

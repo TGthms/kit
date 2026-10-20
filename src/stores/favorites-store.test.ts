@@ -1,7 +1,26 @@
 // @vitest-environment jsdom
 
-import { describe, expect, it } from "vitest";
-import { sanitizeFavoriteIds } from "./favorites-store";
+import { afterEach, describe, expect, it } from "vitest";
+import { sanitizeFavoriteIds, useFavoritesStore } from "./favorites-store";
+
+afterEach(() => { useFavoritesStore.setState({ ids: [] }); localStorage.clear(); });
+
+describe("favorites hydration", () => {
+  it.each([null, { ids: null }, { ids: "pdf-merge" }, { ids: [null, 3, "unknown"] }])("recovers malformed current-version data: %j", async (state) => {
+    localStorage.setItem("kit-favorites", JSON.stringify({ version: 1, state }));
+    await useFavoritesStore.persist.rehydrate();
+    expect(useFavoritesStore.getState().ids).toEqual([]);
+    useFavoritesStore.getState().toggle("pdf-merge");
+    expect(useFavoritesStore.getState().isFavorite("pdf-merge")).toBe(true);
+  });
+
+  it.each([0, 1])("sanitizes version %s without replacing actions", async (version) => {
+    localStorage.setItem("kit-favorites", JSON.stringify({ version, state: { ids: ["media-convert", "video-convert", "pdf-merge"], toggle: null } }));
+    await useFavoritesStore.persist.rehydrate();
+    expect(useFavoritesStore.getState().ids).toEqual(["video-convert", "pdf-merge"]);
+    expect(typeof useFavoritesStore.getState().toggle).toBe("function");
+  });
+});
 
 describe("sanitizeFavoriteIds", () => {
   it("keeps known tools and resolves legacy ids", () => {

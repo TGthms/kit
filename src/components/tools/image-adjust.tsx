@@ -56,7 +56,7 @@ export function ImageAdjust() {
           <Label>
             {label}: {val}%
           </Label>
-          <Slider value={[val]} min={0} max={200} step={1} onValueChange={(v) => set(v[0])} />
+          <Slider aria-label={label} value={[val]} min={0} max={200} step={1} onValueChange={(v) => set(v[0])} />
         </div>
       ))}
       <ActionBar onRun={run} loading={loading} label={t("run")} disabled={!files.length} />

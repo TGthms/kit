@@ -502,7 +502,10 @@
     "offlineRemoveSelected": "Ausgewählte entfernen",
     "offlineEnginesLabel": "Medien-Engines",
     "offlinePages": "Seiten",
-    "offlinePagesDesc": "Die Seiten der App selbst, in den Sprachen Ihrer Wahl. Ohne sie lässt sich Kit ohne Verbindung nicht öffnen, deshalb sind alle vorausgewählt."
+    "offlinePagesDesc": "Die Seiten der App selbst, in den Sprachen Ihrer Wahl. Ohne sie lässt sich Kit ohne Verbindung nicht öffnen, deshalb sind alle vorausgewählt.",
+    "navigationAppearance": "Experimentelles Aussehen",
+    "liquidGlass": "Liquid Glass",
+    "liquidGlassDesc": "Liquid Glass SDK für Tabs, Schalter und Schieberegler testen. Dezente Lichtbrechung bleibt auf das jeweilige Bedienelement begrenzt. Ohne Unterstützung bleiben die gewohnten Bedienelemente verfügbar."
   },
   "shortcuts": {
     "title": "Tastenkürzel",

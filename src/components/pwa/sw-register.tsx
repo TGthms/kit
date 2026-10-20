@@ -19,6 +19,15 @@ export function ServiceWorkerRegister() {
 
     const base = process.env.NEXT_PUBLIC_BASE_PATH || "";
     const swUrl = `${base}/sw.js`;
+    // A development server has no generated precache manifest. Do not let a
+    // previously installed Kit worker serve stale shell/CSS during hot reload.
+    if (process.env.NODE_ENV !== "production") {
+      void navigator.serviceWorker.getRegistration(`${window.location.origin}${base}/`).then((registration) => {
+        const worker = registration?.active ?? registration?.waiting ?? registration?.installing;
+        if (worker?.scriptURL === `${window.location.origin}${swUrl}`) void registration?.unregister();
+      }).catch(() => undefined);
+      return;
+    }
     const homeUrl = `${window.location.origin}${withBasePath(`/${locale}/`)}`;
     const connection = (navigator as Navigator & { connection?: { saveData?: boolean; effectiveType?: string } }).connection;
     const skipHeavy = shouldSkipHeavyFill(connection);

@@ -2,6 +2,15 @@
 
 This file is the active implementation record. Current source is under `src/`, `messages/`, `content/`, `public/`, and `scripts/`. Do not use the disposable `out/` directory as source evidence.
 
+## Navigation and reliability pass (2026-10-19)
+
+- Desktop uses an anchored navigation rail, direct category links, responsive compact tool cards, and global tool search. Settings and legal content retain readable widths. Category cards omit favorite stars; tool pages retain the favorite action.
+- The original mobile capsule remains the default and the fallback for the experimental Liquid Glass SDK. Its original markup, dimensions, material, and gliding indicator are retained, with modified-click and section-highlighting fixes.
+- Settings → Experimental appearance → Liquid Glass opts into `@glass-sdk/liquid-glass@0.0.2` for tabs, switches, and sliders only. SDK tabs support dragging and commit the tab under the release point even if the selection spring lags. Small refractions are confined to each control's local scene; page content is never registered as a backdrop. SDK chunks load on demand, with standard controls used for unsupported environments, accessibility preferences, chunk/rendering errors, and stalled material preparation.
+- Fixed Unicode empty regex matches repeating inside surrogate pairs, validation of current-version Favorites/History storage, missing tool-card focus indicators, and slider accessible names. Search uses a native modal dialog and preserves keyboard activation and focus restoration.
+- Fixed production CSS minification collapsing paired backdrop declarations to the Safari-only form. A separate feature block preserves the standard declaration; regression tests run the actual CSS optimizer. Development no longer registers a production service worker or requests the generated precache manifest.
+- Validation: typecheck, lint, 755 tests across 119 files, and the full 3,632-page static export pass. Browser checks cover desktop/mobile layouts, SDK tab tap/drag/keyboard behavior, slider keyboard changes, and returning to the stable bar. Physical-device performance remains to be evaluated before making the SDK the default.
+
 ## Current baseline (2026-08-29)
 
 - **94 tools** in `src/lib/tools/registry.ts`.

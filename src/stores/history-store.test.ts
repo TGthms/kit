@@ -1,7 +1,34 @@
-import { beforeEach, describe, expect, it } from "vitest";
-import { safeSummary, useHistoryStore } from "./history-store";
+import { afterEach, beforeEach, describe, expect, it } from "vitest";
+import { safeSummary, sanitizeHistoryState, useHistoryStore } from "./history-store";
 
 // @vitest-environment jsdom
+
+afterEach(() => { useHistoryStore.setState({ entries: [], enabled: false }); localStorage.clear(); });
+
+describe("history hydration", () => {
+  it.each([null, { entries: null, enabled: true }, { entries: "bad", enabled: true }])("recovers malformed current-version data: %j", async (state) => {
+    localStorage.setItem("kit-history", JSON.stringify({ version: 2, state }));
+    await useHistoryStore.persist.rehydrate();
+    expect(useHistoryStore.getState().entries).toEqual([]);
+    useHistoryStore.getState().setEnabled(true);
+    useHistoryStore.getState().add({ toolId: "pdf-merge", summary: "completed", status: "success" });
+    expect(useHistoryStore.getState().entries).toHaveLength(1);
+  });
+
+  it.each([1, 2])("validates entries and privacy on version %s", async (version) => {
+    const entry = { id: "valid", toolId: "media-convert", timestamp: 1000, summary: "family-taxes.pdf", status: "success", options: { quality: 80, filename: "secret.pdf" } };
+    localStorage.setItem("kit-history", JSON.stringify({ version, state: { enabled: true, clear: null, entries: [null, 7, {}, { ...entry, timestamp: 9e15 }, { ...entry, toolId: "unknown" }, entry, entry] } }));
+    await useHistoryStore.persist.rehydrate();
+    expect(useHistoryStore.getState().entries).toEqual([{ ...entry, toolId: "video-convert", summary: "completed", options: { quality: 80 } }]);
+    expect(typeof useHistoryStore.getState().clear).toBe("function");
+  });
+
+  it("discards entries when recording is disabled and tolerates missing summaries", () => {
+    const entry = { id: "valid", toolId: "pdf-merge", timestamp: 1000, status: "success" };
+    expect(sanitizeHistoryState({ enabled: false, entries: [entry] }).entries).toEqual([]);
+    expect(sanitizeHistoryState({ enabled: true, entries: [entry] }).entries[0].summary).toBe("completed");
+  });
+});
 
 describe("history summaries", () => {
   it("keeps conversion and clock values", () => {

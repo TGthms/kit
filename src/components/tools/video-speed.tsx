@@ -73,13 +73,13 @@ export function VideoSpeed() {
         <Label>
           {tc("speed")}: {speed.toFixed(2)}x
         </Label>
-        <Slider value={[speed]} min={0.5} max={2} step={0.05} onValueChange={(v) => setSpeed(v[0])} />
+        <Slider aria-label={tc("speed")} value={[speed]} min={0.5} max={2} step={0.05} onValueChange={(v) => setSpeed(v[0])} />
       </div>
       <div className="space-y-2">
         <Label>
           {tc("volume")}: {volume.toFixed(2)}
         </Label>
-        <Slider value={[volume]} min={0} max={2} step={0.05} onValueChange={(v) => setVolume(v[0])} />
+        <Slider aria-label={tc("volume")} value={[volume]} min={0} max={2} step={0.05} onValueChange={(v) => setVolume(v[0])} />
       </div>
       {job.loading && <Progress value={job.progress} />}
       <ActionBar

@@ -2,7 +2,7 @@
 
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import type { ToolId } from "@/lib/tools/registry";
+import { resolveToolId, type ToolId } from "@/lib/tools/registry";
 
 export interface HistoryEntry {
   id: string;
@@ -58,7 +58,7 @@ export function safeSummary(summary: string, status: HistoryEntry["status"]): st
 }
 
 function safeOptions(options: Record<string, unknown> | undefined): Record<string, unknown> | undefined {
-  if (!options) return undefined;
+  if (!options || typeof options !== "object" || Array.isArray(options)) return undefined;
   const safe = Object.fromEntries(
     Object.entries(options).filter(([, value]) =>
       (typeof value === "number" && Number.isFinite(value)) || typeof value === "boolean"
@@ -76,6 +76,31 @@ function sanitizeEntry(entry: HistoryEntry): HistoryEntry {
     status: entry.status === "failed" ? "failed" : "success",
     options: safeOptions(entry.options),
   };
+}
+
+/** Storage is untrusted even when its schema version is already current. */
+export function sanitizeHistoryState(value: unknown): Pick<HistoryState, "entries" | "enabled"> {
+  const state = value && typeof value === "object" ? value as Partial<HistoryState> : {};
+  const enabled = state.enabled === true;
+  const seen = new Set<string>();
+  const entries: HistoryEntry[] = [];
+  if (enabled && Array.isArray(state.entries)) {
+    for (const entry of state.entries) {
+      if (!entry || typeof entry !== "object") continue;
+      const toolId = typeof entry.toolId === "string" ? resolveToolId(entry.toolId) : null;
+      if (!toolId || !Number.isFinite(entry.timestamp) || Math.abs(entry.timestamp) > 8.64e15) continue;
+      const clean = sanitizeEntry({
+        ...entry,
+        toolId,
+        summary: typeof entry.summary === "string" ? entry.summary : "completed",
+      });
+      if (seen.has(clean.id)) continue;
+      seen.add(clean.id);
+      entries.push(clean);
+      if (entries.length === 100) break;
+    }
+  }
+  return { entries, enabled };
 }
 
 export const useHistoryStore = create<HistoryState>()(
@@ -110,15 +135,9 @@ export const useHistoryStore = create<HistoryState>()(
     {
       name: "kit-history",
       version: 2,
-      migrate: (persisted) => {
-        const state = persisted as Partial<HistoryState>;
-        return {
-          entries: Array.isArray(state.entries)
-            ? state.entries.filter(Boolean).map((entry) => sanitizeEntry(entry as HistoryEntry)).slice(0, 100)
-            : [],
-          enabled: state.enabled === true,
-        };
-      },
+      migrate: sanitizeHistoryState,
+      partialize: (state) => ({ entries: state.entries, enabled: state.enabled }),
+      merge: (persisted, current) => ({ ...current, ...sanitizeHistoryState(persisted) }),
     }
   )
 );

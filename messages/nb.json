@@ -502,7 +502,10 @@
     "offlineRemoveSelected": "Fjern valgte",
     "offlineEnginesLabel": "Mediemotorer",
     "offlinePages": "Sider",
-    "offlinePagesDesc": "Sidene i selve appen, på språkene du velger. Uten dem kan ikke Kit åpnes uten tilkobling, så alle er valgt på forhånd."
+    "offlinePagesDesc": "Sidene i selve appen, på språkene du velger. Uten dem kan ikke Kit åpnes uten tilkobling, så alle er valgt på forhånd.",
+    "navigationAppearance": "Eksperimentelt utseende",
+    "liquidGlass": "Liquid Glass",
+    "liquidGlassDesc": "Prøv Liquid Glass SDK for faner, brytere og glidebrytere. Lett lysbrytning holdes innenfor hver kontroll. Vanlige kontroller brukes når støtte mangler."
   },
   "shortcuts": {
     "title": "Tastatursnarveier",

@@ -502,7 +502,10 @@
     "offlineRemoveSelected": "删除所选项",
     "offlineEnginesLabel": "媒体引擎",
     "offlinePages": "页面",
-    "offlinePagesDesc": "应用自身的页面，按你选择的语言保存。没有它们，Kit 无法在无网络时打开，因此默认全部勾选。"
+    "offlinePagesDesc": "应用自身的页面，按你选择的语言保存。没有它们，Kit 无法在无网络时打开，因此默认全部勾选。",
+    "navigationAppearance": "实验性外观",
+    "liquidGlass": "Liquid Glass",
+    "liquidGlassDesc": "为标签栏、开关和滑块试用 Liquid Glass SDK。轻微折射仅作用于控件内部。不支持时仍使用标准控件。"
   },
   "shortcuts": {
     "title": "键盘快捷键",

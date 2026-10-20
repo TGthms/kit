@@ -1,9 +1,9 @@
 "use client";
 
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { lazy, Suspense, useEffect, useLayoutEffect, useRef, useState, useSyncExternalStore } from "react";
 import { useTranslations } from "next-intl";
 import { Link } from "@/lib/i18n/navigation";
-import { Home, History, Star, Settings } from "lucide-react";
+import { Home, History, Star, Settings, Search, FileText, ImageIcon, AudioLines, Clapperboard, Database, Type, Code2, Calculator, ArrowLeftRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { FloatingNav } from "@/components/ui/floating-nav";
 import { GlidingPill, useGlidingPill } from "@/components/ui/gliding-pill";
@@ -13,6 +13,22 @@ import {
   shouldHideFloatingTabBar,
 } from "@/lib/pwa/tab-bar";
 import { useHydrated } from "@/lib/react/hydrated";
+import { categories, getTool, type ToolCategory } from "@/lib/tools/registry";
+import { homeHref, parseCategoryPath } from "@/lib/navigation/routes";
+import { isPlainNavigationClick } from "@/lib/navigation/intent";
+import { openToolSearch } from "@/lib/navigation/search";
+import { useLiquidGlassEnabled } from "@/lib/theme/liquid-glass";
+import { GlassBoundary } from "@/components/ui/glass-boundary";
+
+const LiquidTabBar = lazy(() => import("./liquid-glass-tab").then((module) => ({ default: module.LiquidTabBar })));
+
+function subscribeMobile(listener: () => void) {
+  const query = window.matchMedia("(max-width: 767px)");
+  query.addEventListener("change", listener);
+  return () => query.removeEventListener("change", listener);
+}
+
+const isMobile = () => window.matchMedia("(max-width: 767px)").matches;
 
 export const nav = [
   { href: "/", key: "home", icon: Home },
@@ -27,14 +43,31 @@ export const nav = [
  * open.
  */
 export function isActive(pathname: string, href: string): boolean {
-  if (href === "/") return pathname === "/" || pathname === "";
+  if (href === "/") return pathname === "/" || pathname === "" || pathname.startsWith("/tools/") || pathname.startsWith("/c/");
   return pathname === href || pathname.startsWith(`${href}/`);
+}
+
+const categoryIcons = { pdf: FileText, image: ImageIcon, audio: AudioLines, video: Clapperboard, data: Database, text: Type, developer: Code2, everyday: Calculator, converter: ArrowLeftRight };
+
+export function activeCategory(pathname: string): ToolCategory | null {
+  const category = parseCategoryPath(pathname);
+  if (category) return category;
+  const id = pathname.match(/^\/tools\/([^/]+)\/?$/)?.[1];
+  return id ? getTool(id === "world-clock" ? "timezone-converter" : id)?.category ?? null : null;
 }
 
 export function SideNav({ pathname }: { pathname: string }) {
   const t = useTranslations("nav");
+  const tc = useTranslations("categories");
+  const th = useTranslations("home");
+  const category = activeCategory(pathname);
   return (
     <nav className="flex flex-col gap-1" aria-label={t("tools")}>
+      <button type="button" onClick={openToolSearch} aria-haspopup="dialog" className="mb-2 flex min-h-11 items-center gap-2 rounded-xl border border-border/60 bg-background/60 px-3 text-sm text-muted-foreground hover:bg-secondary/70 hover:text-foreground">
+        <Search className="h-4 w-4 shrink-0" aria-hidden />
+        <span className="min-w-0 flex-1 truncate text-start">{t("searchPlaceholder")}</span>
+        <kbd aria-hidden className="rounded border border-border px-1.5 text-xs">/</kbd>
+      </button>
       {nav.map(({ href, key, icon: Icon }) => {
         const active = isActive(pathname, href);
         return (
@@ -43,7 +76,7 @@ export function SideNav({ pathname }: { pathname: string }) {
             href={href}
             data-pressable
             data-restore-scroll
-            aria-current={active ? "page" : undefined}
+            aria-current={active ? (pathname.replace(/\/$/, "") === href.replace(/\/$/, "") ? "page" : "location") : undefined}
             className={cn(
               "nav-item flex items-center gap-3 rounded-xl px-3 py-2.5 text-[15px] font-medium pressable-soft",
               active
@@ -51,11 +84,23 @@ export function SideNav({ pathname }: { pathname: string }) {
                 : "text-muted-foreground hover:bg-secondary/70 hover:text-foreground"
             )}
           >
-            <Icon className="h-[18px] w-[18px]" />
+            <Icon className="h-[18px] w-[18px] shrink-0" aria-hidden />
             {t(key)}
           </Link>
         );
       })}
+      <div className="mt-3 border-t border-border/60 pt-3">
+        <p className="mb-2 px-3 text-xs font-semibold text-muted-foreground">{th("categories")}</p>
+        <ul className="space-y-0.5">
+          {categories.map((id) => {
+            const Icon = categoryIcons[id];
+            const active = category === id;
+            return <li key={id}><Link href={homeHref(id)} data-pressable data-restore-scroll aria-current={active ? (parseCategoryPath(pathname) === id ? "page" : "location") : undefined} className={cn("nav-item pressable-soft flex min-h-10 items-center gap-3 rounded-xl px-3 py-2 text-sm", active ? "bg-primary/12 font-medium text-primary" : "text-muted-foreground hover:bg-secondary/70 hover:text-foreground")}>
+              <Icon className="h-4 w-4 shrink-0" aria-hidden /><span className="min-w-0">{tc(id)}</span>
+            </Link></li>;
+          })}
+        </ul>
+      </div>
     </nav>
   );
 }
@@ -86,13 +131,12 @@ function useKeyboardHidesTabBar() {
   return hidden;
 }
 
-export function TabBar({ pathname }: { pathname: string }) {
+function StandardTabBar({ pathname, keyboardHidden }: { pathname: string; keyboardHidden: boolean }) {
   const t = useTranslations("nav");
   const tb = useTranslations("brand");
   const [container, setContainer] = useState<HTMLDivElement | null>(null);
   const [target, setTarget] = useState<HTMLElement | null>(null);
   const { rect, ready } = useGlidingPill(container, target);
-  const keyboardHidden = useKeyboardHidesTabBar();
   const hydrated = useHydrated();
   const previousActive = useRef<string | null>(null);
   const pendingSpentAt = useRef(pathname);
@@ -147,7 +191,7 @@ export function TabBar({ pathname }: { pathname: string }) {
             href={href}
             data-pressable
             data-restore-scroll
-            aria-current={active ? "page" : undefined}
+            aria-current={active ? (pathname.replace(/\/$/, "") === href.replace(/\/$/, "") ? "page" : "location") : undefined}
             tabIndex={keyboardHidden ? -1 : undefined}
             className={cn(
               "pressable-soft relative z-10 flex min-h-[3.6rem] min-w-0 flex-1 flex-col items-center justify-center gap-0.5 px-1 py-1",
@@ -155,7 +199,11 @@ export function TabBar({ pathname }: { pathname: string }) {
               selected ? "text-primary" : "text-muted-foreground"
             )}
             onClick={(event) => {
-              if (!active) {
+              if (!isPlainNavigationClick(event)) return;
+              // Home owns tools/categories, but tapping it there must still
+              // navigate home. Only re-tapping the destination scrolls up.
+              const atDestination = pathname.replace(/\/$/, "") === href.replace(/\/$/, "");
+              if (!atDestination) {
                 setPendingHref(href);
                 return;
               }
@@ -176,7 +224,7 @@ export function TabBar({ pathname }: { pathname: string }) {
               className="tab-icon relative"
               data-pop={selected && (pending || popHref === href) ? "" : undefined}
             >
-              <Icon className={cn("h-[22px] w-[22px]", active && "stroke-[2.25]")} />
+              <Icon aria-hidden className={cn("h-[22px] w-[22px]", active && "stroke-[2.25]")} />
             </span>
             <span className="relative max-w-full truncate">{t(key)}</span>
           </Link>
@@ -184,4 +232,15 @@ export function TabBar({ pathname }: { pathname: string }) {
       })}
     </FloatingNav>
   );
+}
+
+export function TabBar({ pathname }: { pathname: string }) {
+  const enabled = useLiquidGlassEnabled();
+  const mobile = useSyncExternalStore(subscribeMobile, isMobile, () => false);
+  const keyboardHidden = useKeyboardHidesTabBar();
+  const fallback = <StandardTabBar pathname={pathname} keyboardHidden={keyboardHidden} />;
+  if (!enabled || !mobile || keyboardHidden) return fallback;
+  return <GlassBoundary fallback={fallback}><Suspense fallback={fallback}>
+    <LiquidTabBar pathname={pathname} fallback={fallback} />
+  </Suspense></GlassBoundary>;
 }

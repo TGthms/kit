@@ -100,6 +100,7 @@ function ToolCard({
   favoriteLabel,
   unfavoriteLabel,
   showFavorite = true,
+  showCategory = true,
   href,
 }: {
   toolId: ToolId;
@@ -113,6 +114,7 @@ function ToolCard({
   favoriteLabel: string;
   unfavoriteLabel: string;
   showFavorite?: boolean;
+  showCategory?: boolean;
   href?: string;
 }) {
   return (
@@ -123,7 +125,7 @@ function ToolCard({
       {showFavorite ? <button
         type="button"
         className={cn(
-          "absolute right-2.5 top-2.5 z-10 flex h-9 w-9 items-center justify-center rounded-full pressable",
+          "absolute end-2 top-2 z-10 flex h-9 w-9 items-center justify-center rounded-full pressable",
           fav
             ? "bg-primary/10 text-primary"
             : "text-muted-foreground hover:bg-secondary hover:text-foreground"
@@ -137,20 +139,18 @@ function ToolCard({
       >
         <Star className={cn("h-4 w-4", fav && "fill-current")} />
       </button> : null}
-      <Link href={href ?? toolHref(toolId, fromHref)} className="block h-full focus-visible:outline-none">
-        <CardHeader className="space-y-3 p-4 sm:p-5">
-          <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-primary/10 text-primary">
-            <Icon className="h-5 w-5" />
+      <Link href={href ?? toolHref(toolId, fromHref)} className="block h-full rounded-[inherit] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring">
+        <CardHeader className="flex-row items-start gap-3 space-y-0 p-4 sm:p-5">
+          <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
+            <Icon className="h-5 w-5" aria-hidden />
           </span>
-          <div className="pr-8">
+          <div className={cn("min-w-0 flex-1", showFavorite && "pe-5")}>
             <CardTitle className="text-[15px] leading-snug tracking-[-0.012em]">{name}</CardTitle>
             <CardDescription className="mt-1.5 line-clamp-2 type-caption text-muted-foreground">
               {description}
             </CardDescription>
+            {showCategory && <p className="mt-3 text-xs font-medium tracking-[-0.01em] text-muted-foreground">{category}</p>}
           </div>
-          <span className="text-xs font-medium tracking-[-0.01em] text-muted-foreground">
-            {category}
-          </span>
         </CardHeader>
       </Link>
     </Card>
@@ -386,7 +386,7 @@ function HomePageInner() {
           <h2 className="text-xs font-semibold uppercase tracking-[0.06em] text-muted-foreground">
             {t("pinned")}
           </h2>
-          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="kit-tool-grid grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {pinned.map((tool) => {
               const Icon = tool.icon;
               return (
@@ -413,7 +413,7 @@ function HomePageInner() {
           <h2 className="text-xs font-semibold uppercase tracking-[0.06em] text-muted-foreground">
             {t("featured")}
           </h2>
-          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="kit-tool-grid grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {featuredToolIds.map((id) => {
               const tool = tools.find((x) => x.id === id);
               if (!tool) return null;
@@ -448,7 +448,7 @@ function HomePageInner() {
             <h2 className="type-title text-foreground">{t("chooseCategory")}</h2>
             <p className="type-body text-muted-foreground">{t("chooseCategoryHint")}</p>
           </div>
-          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="kit-tool-grid grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {categories.map((c, index) => {
               const meta = categoryMeta[c];
               const Icon = meta.icon;
@@ -460,7 +460,7 @@ function HomePageInner() {
                   data-pressable
                   style={{ animationDelay: `${index * 40}ms` }}
                   className={cn(
-                    "anim-list-item group block rounded-[1.25rem] border border-border/40 bg-card p-5 text-left surface-float",
+                    "anim-list-item group block rounded-[1.25rem] border border-border/40 bg-card p-5 text-start surface-float md:grid md:grid-cols-[3rem_minmax(0,1fr)] md:content-start md:gap-x-4",
                     "pressable transition-[box-shadow,ring] duration-200",
                     "hover:surface-float-lg hover:ring-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
                     meta.ring
@@ -468,7 +468,7 @@ function HomePageInner() {
                 >
                   <span
                     className={cn(
-                      "mb-4 flex h-12 w-12 items-center justify-center rounded-[14px] transition-transform duration-200 group-hover:scale-[1.04]",
+                      "mb-4 flex h-12 w-12 items-center justify-center rounded-[14px] transition-transform duration-200 group-hover:scale-[1.04] md:row-span-3 md:mb-0",
                       meta.tint
                     )}
                   >
@@ -524,7 +524,7 @@ function HomePageInner() {
                     <h3 className="text-xs font-semibold uppercase tracking-[0.06em] text-muted-foreground">
                       {t(`groups.${block.group}`)}
                     </h3>
-                    <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 xl:grid-cols-3">
+                    <div className="kit-tool-grid grid grid-cols-1 gap-3 sm:grid-cols-2 xl:grid-cols-3">
                       {block.tools.map((tool, index) => (
                         <div
                           key={tool.id}
@@ -534,6 +534,8 @@ function HomePageInner() {
                           <ToolCard
                             toolId={tool.id}
                             category={tc(tool.category)}
+                            showCategory={false}
+                            showFavorite={false}
                             fromHref={homeHref(selectedCat)}
                             icon={tool.icon}
                             name={tt(`${tool.id}.name`)}
@@ -564,7 +566,7 @@ function HomePageInner() {
           {searchResults.length === 0 ? (
             <p className="type-body text-muted-foreground">{t("noResults")}</p>
           ) : (
-            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 xl:grid-cols-3">
+            <div className="kit-tool-grid grid grid-cols-1 gap-3 sm:grid-cols-2 xl:grid-cols-3">
               {searchResults.map((tool, index) => (
                 <div
                   key={tool.id}

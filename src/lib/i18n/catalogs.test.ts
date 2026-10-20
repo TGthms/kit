@@ -272,6 +272,7 @@ describe("message catalogs", () => {
     // label surviving into a locale, however, is always an untranslated gap.
     const allow = new Set([
       "brand.name", "footer.github", "categories.pdf",
+      "settings.liquidGlass", // Library's proper name.
       "tools.markdown-html.name", "tools.markdown-html.toHtml", "tools.markdown-html.toMd",
       "tools.csv-json.name", "tools.csv-json.toJson", "tools.csv-json.toCsv",
       "tools.xml-json.name", "tools.xml-json.toJson", "tools.xml-json.toXml",

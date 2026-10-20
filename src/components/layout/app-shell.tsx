@@ -13,6 +13,7 @@ import { LocaleSwitcher } from "./locale-switcher";
 import { RouteProgress } from "./route-progress";
 import { ScrollRestoration } from "./scroll-restoration";
 import { OfflineIndicator } from "./offline-indicator";
+import { ToolSearch } from "./tool-search";
 
 function ScrollRestorationBound({ pathname }: { pathname: string }) {
   const searchParams = useSearchParams();
@@ -44,7 +45,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
         <ScrollRestorationBound pathname={pathname} />
       </Suspense>
       <header className="glass chrome-edge chrome-touch fixed inset-x-0 top-0 z-50 shrink-0 pt-[env(safe-area-inset-top)]">
-        <div className="mx-auto flex h-12 max-w-6xl items-center justify-between gap-2 px-4 sm:h-14 sm:gap-3 sm:px-6 lg:px-8">
+        <div className="flex h-12 w-full items-center justify-between gap-2 px-4 sm:h-14 sm:gap-3 sm:px-6">
           {/* The offline indicator sits outside the home link so it does not join
               that link's accessible name. */}
           <div className="flex min-w-0 items-center gap-2">
@@ -76,21 +77,20 @@ export function AppShell({ children }: { children: React.ReactNode }) {
         <RouteProgress />
       </header>
 
-      <div className="mx-auto flex w-full max-w-6xl flex-1 gap-8 px-4 pb-5 pt-[calc(3rem+env(safe-area-inset-top)+1.25rem)] sm:px-6 sm:pt-[calc(3.5rem+env(safe-area-inset-top)+2rem)] lg:px-8">
-        <aside className="hidden w-[13.5rem] shrink-0 md:block">
-          <div className="glass-heavy sticky top-[4.5rem] rounded-2xl border border-border/35 p-2.5 surface-float">
-            <SideNav pathname={pathname} />
-          </div>
-        </aside>
+      <aside className="kit-sidebar fixed bottom-0 start-0 top-[calc(3.5rem+env(safe-area-inset-top))] z-30 hidden w-60 overflow-y-auto overscroll-contain border-e border-border/60 px-3 py-5 md:block">
+        <SideNav pathname={pathname} />
+      </aside>
 
-        <main id="kit-main" tabIndex={-1} className="anim-surface min-w-0 flex-1 pb-3 md:pb-8">{children}</main>
+      <div className="min-w-0 flex-1 px-4 pb-5 pt-[calc(3rem+env(safe-area-inset-top)+1.25rem)] sm:px-6 sm:pt-[calc(3.5rem+env(safe-area-inset-top)+2rem)] md:ms-60 md:px-8 lg:px-10 xl:px-12">
+        <main id="kit-main" tabIndex={-1} className="anim-surface min-w-0 w-full max-w-[100rem] pb-3 md:pb-8">{children}</main>
       </div>
 
-      <div className="pb-[var(--floating-tabbar-clearance)] md:pb-0">
+      <div className="pb-[var(--floating-tabbar-clearance)] md:ms-60 md:pb-0">
         <SiteFooter />
       </div>
 
       <TabBar pathname={pathname} />
+      <ToolSearch />
     </div>
   );
 }

@@ -502,7 +502,10 @@
     "offlineRemoveSelected": "Poista valitut",
     "offlineEnginesLabel": "Mediamoottorit",
     "offlinePages": "Sivut",
-    "offlinePagesDesc": "Sovelluksen omat sivut valitsemillasi kielillä. Ilman niitä Kit ei avaudu ilman yhteyttä, joten kaikki on valittu valmiiksi."
+    "offlinePagesDesc": "Sovelluksen omat sivut valitsemillasi kielillä. Ilman niitä Kit ei avaudu ilman yhteyttä, joten kaikki on valittu valmiiksi.",
+    "navigationAppearance": "Kokeellinen ulkoasu",
+    "liquidGlass": "Liquid Glass",
+    "liquidGlassDesc": "Kokeile Liquid Glass SDK:ta välilehdissä, kytkimissä ja liukusäätimissä. Kevyt valon taittuminen pysyy kunkin säätimen sisällä. Tavalliset säätimet toimivat ilman tukea."
   },
   "shortcuts": {
     "title": "Pikanäppäimet",

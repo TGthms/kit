@@ -68,7 +68,7 @@ export function SiteFooter() {
 
   return (
     <footer className="mt-auto border-t border-border/40 bg-card/40">
-      <div className="mx-auto flex max-w-6xl flex-col gap-5 px-4 py-8 sm:px-6 lg:px-8">
+      <div className="flex max-w-[100rem] flex-col gap-5 px-4 py-8 sm:px-6 md:px-8 lg:px-10 xl:px-12">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex flex-wrap items-center gap-x-4 gap-y-2 type-caption text-muted-foreground">
             <Link
@@ -121,7 +121,7 @@ export function SiteFooter() {
           </div>
         </div>
 
-        <p className="text-center text-xs leading-relaxed text-muted-foreground sm:text-left">
+        <p className="text-center text-xs leading-relaxed text-muted-foreground sm:text-start">
           {t("copyright", { year })}
         </p>
       </div>

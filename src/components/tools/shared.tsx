@@ -114,6 +114,7 @@ export function ActionBar({
   const t = useTranslations("common");
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
+      if (document.querySelector("dialog[open]")) return;
       if (e.key === "Enter" && (e.metaKey || e.ctrlKey) && !loading && !disabled) {
         e.preventDefault();
         onRun();

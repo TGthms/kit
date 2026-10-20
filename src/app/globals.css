@@ -221,6 +221,17 @@ canvas {
   box-shadow: var(--shadow-float);
 }
 
+.kit-sidebar {
+  background: color-mix(in srgb, var(--card) 55%, var(--background));
+}
+
+/* Fill the desktop workspace as it grows; never stretch a few huge cards. */
+@media (min-width: 48rem) {
+  .kit-tool-grid {
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 17rem), 1fr));
+  }
+}
+
 .floating-nav-shell {
   box-shadow: var(--shadow-float);
   transition:
@@ -241,6 +252,131 @@ canvas {
   border-color: color-mix(in srgb, var(--glass-border) 80%, transparent);
   box-shadow: inset 0 1px 0 var(--glass-border);
   transform: translateZ(0);
+}
+
+/* Keep the standard declaration in its own feature block. Lightning CSS
+   otherwise collapses the paired declarations to only the last vendor form,
+   leaving Chromium without blur while older Safari needs the prefixed form. */
+@supports (backdrop-filter: blur(1px)) {
+  .glass {
+    backdrop-filter: blur(var(--glass-blur)) saturate(180%);
+  }
+  .glass-heavy {
+    backdrop-filter: blur(24px) saturate(180%);
+  }
+  .floating-nav-face {
+    backdrop-filter: blur(var(--tabbar-blur)) saturate(190%);
+  }
+}
+
+/* The experimental SDK scene is only as large as the existing mobile bar. */
+.kit-sdk-tab-scene {
+  width: 100%;
+  border-radius: 9999px;
+  box-shadow: var(--shadow-float);
+}
+
+.kit-sdk-tab-backdrop {
+  background: var(--card);
+  border-radius: 9999px;
+  pointer-events: none;
+}
+
+.kit-sdk-tabs {
+  width: 100%;
+}
+
+.kit-sdk-tab-list {
+  position: relative;
+  width: 100%;
+  align-items: stretch;
+  padding: 0.375rem;
+  border: 1px solid var(--glass-border);
+  touch-action: none;
+}
+
+.kit-sdk-tab {
+  flex: 1 1 0%;
+  min-width: 0;
+  height: 3.6rem;
+  border: 0;
+  padding: 0.25rem;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--muted-foreground);
+  opacity: 1;
+}
+
+.kit-sdk-tab .lg-tab-label {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+}
+
+.kit-sdk-tab-selected {
+  color: var(--primary);
+}
+
+.dark .kit-sdk-tab-selected {
+  color: #8cc8ff;
+}
+
+.kit-sdk-tab-indicator {
+  background: color-mix(in srgb, var(--primary) 12%, transparent);
+  box-shadow: inset 0 0 0 1px var(--glass-border);
+}
+
+.kit-sdk-tab:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: -3px;
+}
+
+/* Actual SDK switches/sliders, each with an isolated, bounded backdrop. */
+.kit-sdk-control {
+  position: relative;
+  isolation: isolate;
+  flex-shrink: 0;
+}
+
+.kit-sdk-switch-scene {
+  width: 48px;
+  height: 28px;
+}
+
+.kit-sdk-control-backdrop {
+  background: var(--card);
+  pointer-events: none;
+}
+
+.kit-sdk-switch {
+  --lg-switch-travel: 20px;
+  width: 48px;
+  height: 28px;
+  padding: 3px;
+}
+
+.kit-sdk-switch:dir(rtl) {
+  --lg-switch-travel: -20px;
+}
+
+.kit-sdk-switch .lg-switch-thumb {
+  width: 22px;
+  height: 22px;
+}
+
+.kit-sdk-switch:focus-visible,
+.kit-sdk-slider .lg-slider-thumb:focus-within {
+  outline: 2px solid var(--ring);
+  outline-offset: 3px;
+}
+
+.kit-sdk-slider-scene,
+.kit-sdk-slider {
+  width: 100%;
+  min-height: 28px;
 }
 
 /* Typography scale helpers */
@@ -769,6 +905,10 @@ button[data-pressed]:not(:disabled),
   outline-offset: 2px;
 }
 
+.kit-search-dialog::backdrop {
+  background: var(--scrim);
+}
+
 /* Accessibility: reduced motion / transparency / contrast */
 @media (prefers-reduced-motion: reduce) {
   html {
@@ -852,6 +992,13 @@ button[data-pressed]:not(:disabled),
   }
   .floating-nav-face {
     box-shadow: none;
+  }
+  @supports (backdrop-filter: blur(1px)) {
+    .glass,
+    .glass-heavy,
+    .floating-nav-face {
+      backdrop-filter: none;
+    }
   }
 }
 

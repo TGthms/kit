@@ -502,7 +502,10 @@
     "offlineRemoveSelected": "Geselecteerde verwijderen",
     "offlineEnginesLabel": "Media-engines",
     "offlinePages": "Pagina's",
-    "offlinePagesDesc": "De pagina’s van de app zelf, in de talen die je kiest. Zonder deze kan Kit niet zonder verbinding openen, dus ze zijn allemaal aangevinkt."
+    "offlinePagesDesc": "De pagina’s van de app zelf, in de talen die je kiest. Zonder deze kan Kit niet zonder verbinding openen, dus ze zijn allemaal aangevinkt.",
+    "navigationAppearance": "Experimentele weergave",
+    "liquidGlass": "Liquid Glass",
+    "liquidGlassDesc": "Probeer de Liquid Glass SDK voor tabs, schakelaars en schuifregelaars. Lichte breking blijft binnen elk bedieningselement. Zonder ondersteuning blijven de gewone bedieningselementen beschikbaar."
   },
   "shortcuts": {
     "title": "Sneltoetsen",

@@ -502,7 +502,10 @@
     "offlineRemoveSelected": "Rimuovi selezionati",
     "offlineEnginesLabel": "Motori multimediali",
     "offlinePages": "Pagine",
-    "offlinePagesDesc": "Le pagine dell’app stessa, nelle lingue che scegli. Senza di esse Kit non può aprirsi senza connessione, quindi sono tutte preselezionate."
+    "offlinePagesDesc": "Le pagine dell’app stessa, nelle lingue che scegli. Senza di esse Kit non può aprirsi senza connessione, quindi sono tutte preselezionate.",
+    "navigationAppearance": "Aspetto sperimentale",
+    "liquidGlass": "Liquid Glass",
+    "liquidGlassDesc": "Prova l’SDK Liquid Glass per schede, interruttori e cursori. Una lieve rifrazione resta all’interno di ogni controllo. Se non supportato, restano disponibili i controlli normali."
   },
   "shortcuts": {
     "title": "Scorciatoie da tastiera",

@@ -502,7 +502,10 @@
     "offlineRemoveSelected": "Kijelöltek eltávolítása",
     "offlineEnginesLabel": "Médiamotorok",
     "offlinePages": "Oldalak",
-    "offlinePagesDesc": "Az alkalmazás saját oldalai a választott nyelveken. Ezek nélkül a Kit nem nyílik meg kapcsolat nélkül, ezért mind be van jelölve."
+    "offlinePagesDesc": "Az alkalmazás saját oldalai a választott nyelveken. Ezek nélkül a Kit nem nyílik meg kapcsolat nélkül, ezért mind be van jelölve.",
+    "navigationAppearance": "Kísérleti megjelenés",
+    "liquidGlass": "Liquid Glass",
+    "liquidGlassDesc": "Próbáld ki a Liquid Glass SDK-t a fülekhez, kapcsolókhoz és csúszkákhoz. Az enyhe fénytörés az egyes vezérlőkön belül marad. Támogatás hiányában a szokásos vezérlők maradnak."
   },
   "shortcuts": {
     "title": "Billentyűparancsok",

@@ -502,7 +502,10 @@
     "offlineRemoveSelected": "Usuń zaznaczone",
     "offlineEnginesLabel": "Silniki multimedialne",
     "offlinePages": "Strony",
-    "offlinePagesDesc": "Strony samej aplikacji w wybranych językach. Bez nich Kit nie otworzy się bez połączenia, więc wszystkie są zaznaczone."
+    "offlinePagesDesc": "Strony samej aplikacji w wybranych językach. Bez nich Kit nie otworzy się bez połączenia, więc wszystkie są zaznaczone.",
+    "navigationAppearance": "Eksperymentalny wygląd",
+    "liquidGlass": "Liquid Glass",
+    "liquidGlassDesc": "Wypróbuj SDK Liquid Glass dla kart, przełączników i suwaków. Delikatne załamanie światła pozostaje wewnątrz każdej kontrolki. Gdy brak obsługi, dostępne są zwykłe kontrolki."
   },
   "shortcuts": {
     "title": "Skróty klawiszowe",

@@ -40,7 +40,7 @@ export const useFavoritesStore = create<FavoritesState>()(
       ids: [],
       toggle: (id) =>
         set((s) => ({
-          ids: s.ids.includes(id) ? s.ids.filter((x) => x !== id) : [...s.ids, id],
+          ids: s.ids.includes(id) ? s.ids.filter((x) => x !== id) : sanitizeFavoriteIds([...s.ids, id]),
         })),
       isFavorite: (id) => get().ids.includes(id),
     }),
@@ -48,6 +48,13 @@ export const useFavoritesStore = create<FavoritesState>()(
       name: "kit-favorites",
       version: 1,
       migrate: (persisted) => ({
+        ids: sanitizeFavoriteIds((persisted as Partial<FavoritesState> | null)?.ids),
+      }),
+      partialize: (state) => ({ ids: state.ids }),
+      // migrate() is skipped for the current version. Validate every load and
+      // merge only data fields so malformed storage cannot replace actions.
+      merge: (persisted, current) => ({
+        ...current,
         ids: sanitizeFavoriteIds((persisted as Partial<FavoritesState> | null)?.ids),
       }),
     }

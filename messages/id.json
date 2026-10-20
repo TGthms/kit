@@ -502,7 +502,10 @@
     "offlineRemoveSelected": "Hapus yang dipilih",
     "offlineEnginesLabel": "Mesin media",
     "offlinePages": "Halaman",
-    "offlinePagesDesc": "Halaman aplikasi itu sendiri, dalam bahasa yang Anda pilih. Tanpanya Kit tidak dapat dibuka tanpa koneksi, jadi semuanya tercentang sejak awal."
+    "offlinePagesDesc": "Halaman aplikasi itu sendiri, dalam bahasa yang Anda pilih. Tanpanya Kit tidak dapat dibuka tanpa koneksi, jadi semuanya tercentang sejak awal.",
+    "navigationAppearance": "Tampilan eksperimental",
+    "liquidGlass": "Liquid Glass",
+    "liquidGlassDesc": "Coba SDK Liquid Glass untuk tab, sakelar, dan penggeser. Pembiasan ringan dibatasi di dalam setiap kontrol. Kontrol standar tetap tersedia jika tidak didukung."
   },
   "shortcuts": {
     "title": "Pintasan papan ketik",

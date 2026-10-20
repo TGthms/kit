@@ -5,11 +5,15 @@ import { createElement, type ReactNode } from "react";
 import { NextIntlClientProvider } from "next-intl";
 import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { TabBar } from "./tab-bar";
+import { activeCategory, isActive, SideNav, TabBar } from "./tab-bar";
+import en from "../../../messages/en.json";
+import { useAppearanceStore } from "@/stores/appearance-store";
 
 const messages = {
   nav: { home: "Home", favorites: "Favorites", history: "History", settings: "Settings" },
   brand: { name: "Kit" },
+  categories: en.categories,
+  home: { categories: "Categories" },
 };
 
 /**
@@ -77,13 +81,44 @@ function tabLabelsInOrder(): string[] {
 }
 
 beforeEach(() => {
+  useAppearanceStore.setState({ liquidGlass: false });
   vi.stubGlobal("ResizeObserver", ResizeObserverStub);
   vi.stubGlobal("matchMedia", () => ({ matches: false, addEventListener() {}, removeEventListener() {} }));
 });
 
-afterEach(cleanup);
+afterEach(() => { cleanup(); vi.restoreAllMocks(); });
+
+describe("navigation sections", () => {
+  it("owns category and tool routes without matching unrelated prefixes", () => {
+    expect(isActive("/tools/pdf-merge/", "/")).toBe(true);
+    expect(isActive("/c/pdf/", "/")).toBe(true);
+    expect(isActive("/settings/offline/", "/settings")).toBe(true);
+    expect(isActive("/settings-other/", "/settings")).toBe(false);
+    expect(activeCategory("/tools/world-clock/")).toBe("everyday");
+    expect(activeCategory("/tools/media-convert/")).toBe("video");
+  });
+
+  it("offers all nine categories and highlights the tool's category on desktop", () => {
+    render(createElement(NextIntlClientProvider, { locale: "en", messages } as never, createElement(SideNav, { pathname: "/tools/pdf-merge/" })));
+    expect(screen.getByRole("link", { name: "PDF" })).toHaveAttribute("aria-current", "location");
+    expect(screen.getByRole("link", { name: "Home" })).toHaveAttribute("aria-current", "location");
+    expect(screen.getAllByRole("link")).toHaveLength(13);
+    expect(screen.getByRole("button")).toHaveAttribute("aria-haspopup", "dialog");
+  });
+});
 
 describe("TabBar highlight", () => {
+  it("uses the original capsule by default and when an opted-in browser lacks WebGPU", () => {
+    const { unmount } = renderTabBar("/favorites");
+    expect(document.querySelector(".floating-nav-face")).toBeInTheDocument();
+    expect(document.querySelector(".kit-sdk-tab-scene")).not.toBeInTheDocument();
+    unmount();
+    useAppearanceStore.setState({ liquidGlass: true });
+    renderTabBar("/favorites");
+    expect(document.querySelector(".floating-nav-face")).toBeInTheDocument();
+    expect(highlightedIndex()).toBe(1);
+    expect(screen.getByRole("link", { name: "Favorites" })).toHaveAttribute("aria-current", "page");
+  });
   it("highlights the section the current path belongs to", () => {
     renderTabBar("/favorites");
     expect(highlightedIndex()).toBe(1);
@@ -93,6 +128,26 @@ describe("TabBar highlight", () => {
   it("keeps a tool page on the Home tab", () => {
     renderTabBar("/tools/merge-pdf");
     expect(highlightedIndex()).toBe(0);
+    expect(screen.getByRole("link", { name: "Home" })).toHaveAttribute("aria-current", "location");
+  });
+
+  it.each([{ metaKey: true }, { ctrlKey: true }, { shiftKey: true }, { altKey: true }])("leaves selection and scrolling alone for modified clicks: %j", (modifiers) => {
+    const scroll = vi.spyOn(window, "scrollTo").mockImplementation(() => {});
+    renderTabBar("/");
+    fireEvent.click(screen.getByRole("link", { name: "Settings" }), modifiers);
+    expect(highlightedIndex()).toBe(0);
+    fireEvent.click(screen.getByRole("link", { name: "Home" }), modifiers);
+    expect(scroll).not.toHaveBeenCalled();
+  });
+
+  it("navigates home from a tool and only scrolls on the actual home page", () => {
+    const scroll = vi.spyOn(window, "scrollTo").mockImplementation(() => {});
+    const { navigateTo } = renderTabBar("/tools/pdf-merge/");
+    fireEvent.click(screen.getByRole("link", { name: "Home" }));
+    expect(scroll).not.toHaveBeenCalled();
+    navigateTo("/");
+    fireEvent.click(screen.getByRole("link", { name: "Home" }));
+    expect(scroll).toHaveBeenCalledWith({ top: 0, behavior: "smooth" });
   });
 
   it("moves the highlight on tap, before the route has changed", () => {

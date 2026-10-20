@@ -502,7 +502,10 @@
     "offlineRemoveSelected": "Elimină selectate",
     "offlineEnginesLabel": "Motoare media",
     "offlinePages": "Pagini",
-    "offlinePagesDesc": "Paginile aplicației în sine, în limbile pe care le alegi. Fără ele, Kit nu se poate deschide fără conexiune, așa că toate sunt bifate."
+    "offlinePagesDesc": "Paginile aplicației în sine, în limbile pe care le alegi. Fără ele, Kit nu se poate deschide fără conexiune, așa că toate sunt bifate.",
+    "navigationAppearance": "Aspect experimental",
+    "liquidGlass": "Liquid Glass",
+    "liquidGlassDesc": "Încearcă SDK-ul Liquid Glass pentru file, comutatoare și glisoare. Refracția discretă rămâne în interiorul fiecărei comenzi. Fără suport, rămân disponibile comenzile obișnuite."
   },
   "shortcuts": {
     "title": "Scurtături de tastatură",

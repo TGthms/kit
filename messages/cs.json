@@ -502,7 +502,10 @@
     "offlineRemoveSelected": "Odebrat vybrané",
     "offlineEnginesLabel": "Multimediální jádra",
     "offlinePages": "Stránky",
-    "offlinePagesDesc": "Stránky samotné aplikace ve zvolených jazycích. Bez nich se Kit bez připojení neotevře, proto jsou všechny předvybrané."
+    "offlinePagesDesc": "Stránky samotné aplikace ve zvolených jazycích. Bez nich se Kit bez připojení neotevře, proto jsou všechny předvybrané.",
+    "navigationAppearance": "Experimentální vzhled",
+    "liquidGlass": "Liquid Glass",
+    "liquidGlassDesc": "Vyzkoušejte SDK Liquid Glass pro karty, přepínače a posuvníky. Jemný lom světla zůstává uvnitř každého ovládacího prvku. Bez podpory zůstávají běžné ovládací prvky."
   },
   "shortcuts": {
     "title": "Klávesové zkratky",
