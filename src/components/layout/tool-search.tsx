@@ -7,6 +7,7 @@ import { Link, usePathname } from "@/lib/i18n/navigation";
 import { tools } from "@/lib/tools/registry";
 import { toolHref } from "@/lib/navigation/routes";
 import { OPEN_TOOL_SEARCH_EVENT } from "@/lib/navigation/search";
+import { usePrimarySearchVisible } from "@/lib/navigation/primary-search";
 import { isPlainNavigationClick } from "@/lib/navigation/intent";
 import { cn } from "@/lib/utils";
 
@@ -17,6 +18,7 @@ export function ToolSearch({ mobile = false }: { mobile?: boolean }) {
   const tt = useTranslations("tools");
   const categories = useTranslations("categories");
   const pathname = usePathname();
+  const primaryVisible = usePrimarySearchVisible(pathname);
   const id = useId();
   const root = useRef<HTMLDivElement>(null);
   const input = useRef<HTMLInputElement>(null);
@@ -32,8 +34,8 @@ export function ToolSearch({ mobile = false }: { mobile?: boolean }) {
     const show = () => {
       if (window.matchMedia("(max-width: 767px)").matches !== mobile) return;
       setOpen(true);
-      if (mobile) requestAnimationFrame(() => input.current?.focus());
-      else input.current?.focus();
+      input.current?.focus();
+      requestAnimationFrame(() => input.current?.focus());
     };
     const dismiss = (event: PointerEvent) => {
       if (!root.current?.contains(event.target as Node)) setOpen(false);
@@ -59,7 +61,7 @@ export function ToolSearch({ mobile = false }: { mobile?: boolean }) {
     setActive(-1);
   }
 
-  return <div ref={root} className={cn(mobile ? "md:hidden" : "relative mb-2 shrink-0")} onBlur={(event) => {
+  return <div hidden={primaryVisible && !open} ref={root} className={cn(mobile ? "md:hidden" : "relative mb-2 shrink-0")} onBlur={(event) => {
     if (!event.currentTarget.contains(event.relatedTarget as Node)) setOpen(false);
   }}>
     {mobile && <button ref={trigger} type="button" aria-label={tn("searchPlaceholder")} aria-expanded={open} onClick={() => { setOpen(!open); if (!open) requestAnimationFrame(() => input.current?.focus()); }} className="flex h-10 w-10 items-center justify-center rounded-full hover:bg-secondary"><Search className="h-[18px] w-[18px]" aria-hidden /></button>}

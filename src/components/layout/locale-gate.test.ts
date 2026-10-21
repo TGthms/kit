@@ -3,7 +3,7 @@
 import "@testing-library/jest-dom/vitest";
 import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
-import { render, screen } from "@testing-library/react";
+import vm from "node:vm";
 import { readFileSync } from "node:fs";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { locales } from "@/lib/i18n/config";
@@ -37,19 +37,32 @@ describe("LocaleGate", () => {
     expect(html).toContain("nothing is uploaded");
   });
 
-  it("replaces to a locale home after mount", () => {
+  it("hands off without React after giving the entry a chance to paint", () => {
     const replace = vi.fn();
-    vi.stubGlobal("location", { replace, search: "", hash: "" });
-    render(createElement(LocaleGate, COUNTS));
-    expect(screen.getByRole("heading", { level: 1, name: "Kit" })).toBeInTheDocument();
-    expect(replace).toHaveBeenCalledWith("/en/");
+    const frames: Array<() => void> = [];
+    const tasks: Array<() => void> = [];
+    const requestAnimationFrame = (callback: () => void) => frames.push(callback);
+    vm.runInNewContext(readFileSync("public/boot/locale-gate.js", "utf8"), {
+      document: { currentScript: { getAttribute: (key: string) => key === "data-locales" ? locales.join(",") : "" } },
+      location: { pathname: "/", search: "?date=2026-12-25", hash: "#top", replace },
+      navigator: { language: "en" }, localStorage: { getItem: () => "zh" },
+      window: { requestAnimationFrame }, requestAnimationFrame,
+      setTimeout: (callback: () => void) => tasks.push(callback),
+    });
+    expect(replace).not.toHaveBeenCalled();
+    expect(frames).toHaveLength(1);
+    frames[0]();
+    expect(replace).not.toHaveBeenCalled();
+    tasks[0]();
+    expect(replace).toHaveBeenCalledWith("/zh-Hans/?date=2026-12-25#top");
   });
 
-  it("keeps greeting preview query and hash on the locale hop", () => {
-    const replace = vi.fn();
-    vi.stubGlobal("location", { replace, search: "?date=2026-12-25", hash: "#top" });
-    render(createElement(LocaleGate, COUNTS));
-    expect(replace).toHaveBeenCalledWith("/en/?date=2026-12-25#top");
+  it("ships inline loading styles and an independent inline locale script", () => {
+    const html = renderToStaticMarkup(createElement(LocaleGate, COUNTS));
+    expect(html).toContain('id="kit-entry-style"');
+    expect(html).toContain('id="kit-locale-entry"');
+    expect(html).toContain("kit-entry-spin");
+    expect(html).not.toMatch(/<script[^>]+src=/);
   });
 
   it("boot script also appends search and hash", () => {

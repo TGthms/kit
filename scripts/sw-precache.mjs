@@ -247,7 +247,7 @@ export function buildStamp(outDir, manifest, basePath = "") {
   // Worker behavior is part of a release too. Two workers must never share a
   // cache just because their HTML happens to be identical.
   const worker = join(outDir, "sw.js");
-  if (existsSync(worker)) hash.update(readFileSync(worker, "utf8").replace(BUILD_LINE, `const BUILD = "${BUILD_PLACEHOLDER}";`));
+  if (existsSync(worker)) hash.update(readFileSync(worker, "utf8").replace(BUILD_LINE, `const BUILD = "${BUILD_PLACEHOLDER}";`).replace(/^const ENTRY_HTML = .*;$/mu, 'const ENTRY_HTML = "__KIT_ENTRY_HTML__";'));
   for (const url of [...urls].sort()) {
     hash.update(url);
     hash.update("\0");

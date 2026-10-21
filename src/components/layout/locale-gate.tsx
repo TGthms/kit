@@ -1,12 +1,29 @@
-"use client";
-
-import { useEffect } from "react";
-import { detectLocale, isLocale, localeNames, locales, resolveLocale } from "@/lib/i18n/config";
-import { withAsset, withBasePath } from "@/lib/base-path";
-import { withSearchAndHash } from "@/lib/navigation/html-path";
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
+import { localeNames, locales } from "@/lib/i18n/config";
+import { basePath, withAsset, withBasePath } from "@/lib/base-path";
 import { SITE_NAME } from "@/lib/seo/site";
 
 const TAGLINE = "Everyday tools in your browser. Private by design.";
+
+// The installed entry can paint and choose a language without loading React,
+// the app stylesheet, or Cache Storage. Postbuild keeps this root document
+// standalone and embeds the exact same bytes into the worker.
+const ENTRY_BOOT = readFileSync(join(process.cwd(), "public/boot/locale-gate.js"), "utf8");
+const ENTRY_STYLE = `
+html,body{margin:0;background:#f5f5f7;color:#171717;font-family:system-ui,-apple-system,sans-serif}
+html.dark,html.dark body{background:#000;color:#f5f5f7}
+.kit-entry{box-sizing:border-box;min-height:100vh;min-height:100dvh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;padding:32px 24px;text-align:center}
+.kit-entry img{width:64px;height:64px;border-radius:14px}
+.kit-entry h1{margin:0 0 8px;font-size:30px;letter-spacing:-.04em}
+.kit-entry p{max-width:28rem;margin:8px auto;font-size:14px;line-height:1.5;opacity:.65}
+.kit-entry .kit-spinner{box-sizing:border-box;width:28px;height:28px;border:3px solid #007aff33;border-top-color:#007aff;border-radius:50%;animation:kit-entry-spin .8s linear infinite}
+.kit-entry .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
+.kit-entry ul{display:flex;flex-wrap:wrap;justify-content:center;gap:8px 12px;padding:0;list-style:none}
+.kit-entry a{color:inherit}
+@keyframes kit-entry-spin{to{transform:rotate(360deg)}}
+@media(prefers-reduced-motion:reduce){.kit-entry .kit-spinner{animation:none}}
+`;
 
 /**
  * First-visit language pick for the static `/` entry.
@@ -26,27 +43,10 @@ export function LocaleGate({
   sections: number;
   languages: number;
 }) {
-  useEffect(() => {
-    let stored: string | null = null;
-    try {
-      stored = localStorage.getItem("kit-locale");
-    } catch {
-      stored = null;
-    }
-    const locale =
-      stored && (isLocale(stored) || stored === "zh")
-        ? resolveLocale(stored)
-        : detectLocale(navigator.language || navigator.languages?.[0]);
-    const dest = withSearchAndHash(
-      withBasePath(`/${locale}/`),
-      window.location.search,
-      window.location.hash,
-    );
-    window.location.replace(dest);
-  }, []);
-
   return (
-    <div className="flex min-h-dvh flex-col items-center justify-center gap-5 bg-background px-6 text-center">
+    <>
+    <style id="kit-entry-style">{ENTRY_STYLE}</style>
+    <div className="kit-entry flex min-h-dvh flex-col items-center justify-center gap-5 bg-background px-6 text-center">
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src={withAsset("/icons/icon.svg")}
@@ -83,5 +83,7 @@ export function LocaleGate({
         </nav>
       </noscript>
     </div>
+    <script id="kit-locale-entry" data-base-path={basePath} data-locales={locales.join(",")} dangerouslySetInnerHTML={{ __html: ENTRY_BOOT }} />
+    </>
   );
 }

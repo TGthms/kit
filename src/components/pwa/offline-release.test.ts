@@ -85,6 +85,21 @@ function load() {
 }
 
 describe("offline release transactions", () => {
+  it("can serve the installed entry before Cache Storage or the network opens", async () => {
+    const handlers: Record<string, (event: unknown) => void> = {};
+    const cacheOpen = () => { throw new Error("cold cache must not be touched"); };
+    const entry = "<!doctype html><html><body>Kit loading</body></html>";
+    const embedded = source.replace('const ENTRY_HTML = "__KIT_ENTRY_HTML__";', `const ENTRY_HTML = ${JSON.stringify(entry)};`);
+    vm.runInNewContext(embedded, {
+      self: { location: { origin }, registration: { scope: `${origin}/kit/` }, addEventListener: (type: string, handler: (event: unknown) => void) => { handlers[type] = handler; } },
+      caches: { open: cacheOpen }, URL, Response,
+    });
+    let response: Response | undefined;
+    handlers.fetch({ request: { method: "GET", url: `${origin}/kit/?preview=1`, headers: new Headers(), mode: "navigate" }, respondWith: (value: Response) => { response = value; } });
+    expect(await response?.text()).toBe(entry);
+    expect(response?.headers.get("content-type")).toBe("text/html; charset=utf-8");
+  });
+
   it("saves one verified release and reports its actual version and request", async () => {
     const run = load();
     await run.worker.downloadSelectedOffline(selection);

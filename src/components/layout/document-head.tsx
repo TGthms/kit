@@ -24,7 +24,7 @@ export function DocumentHead() {
   return (
     <>
       <meta httpEquiv="Content-Security-Policy" content={csp} />
-      <script data-base-path={basePath} data-locales={locales.join(",")} dangerouslySetInnerHTML={{ __html: boot }} />
+      <script id="kit-document-boot" data-base-path={basePath} data-locales={locales.join(",")} dangerouslySetInnerHTML={{ __html: boot }} />
       {STARTUP_SCREENS.flatMap(({ width, height, scale }) => ["portrait", "landscape"].flatMap((orientation) => ["light", "dark"].map((appearance) => (
         <link key={`${width}-${height}-${scale}-${orientation}-${appearance}`} rel="apple-touch-startup-image"
           media={`screen and (device-width: ${width}px) and (device-height: ${height}px) and (-webkit-device-pixel-ratio: ${scale}) and (orientation: ${orientation}) and (prefers-color-scheme: ${appearance})`}

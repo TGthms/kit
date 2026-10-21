@@ -10,7 +10,7 @@
     "dev": "next dev",
     "prebuild": "node scripts/sync-vendor.mjs",
     "build": "next build",
-    "postbuild": "node scripts/prune-export.mjs && node scripts/sw-precache.mjs && node scripts/sitemap-split.mjs && node scripts/discovery.mjs",
+    "postbuild": "node scripts/prune-export.mjs && node scripts/startup-entry.mjs && node scripts/sw-precache.mjs && node scripts/sitemap-split.mjs && node scripts/discovery.mjs",
     "start": "next start",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",

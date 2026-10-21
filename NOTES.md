@@ -2,6 +2,13 @@
 
 This file is the active implementation record. Current source is under `src/`, `messages/`, `content/`, `public/`, and `scripts/`. Do not use the disposable `out/` directory as source evidence.
 
+## Installed entry and contextual search (2026-10-20)
+
+- Follow-up device report: iPhone 16 Pro Max / iOS 27 still showed 3–5 seconds or longer of black after force-quitting, followed by a brief loader. Whether the static native launch image appeared was uncertain; the original patch did not establish a fix for that interval.
+- `/` is now a standalone language handoff: critical styles, theme setup, and locale selection are inline, and it does not wait for React hydration. `scripts/startup-entry.mjs` preserves the exported root's metadata, no-script language links, and content while removing its unused framework scripts/styles. The build fails if independent startup markup is missing. The resulting ~31 KB document is embedded in the release's worker and served directly for root document requests before opening Cache Storage. Global security headers from `_headers` accompany this worker-created response. Hashing remains stable across repeated postbuild runs.
+- Global search yields to the page's visible main search field on mobile and desktop. It reappears when that field leaves view, handles fields arriving after a loading state, and stays available on pages without one. `/` focuses the visible main field or opens global search without scrolling back to an off-screen input. An active global interaction remains open while scrolling.
+- Validation: typecheck, lint, 786 tests across 124 files, and the 3,632-page static export pass. A worker regression test refuses any cache/network access while serving the entry. Browser checks verified the standalone spinner with zero external scripts/stylesheets, automatic language handoff, and mobile/desktop search presence before and after scrolling. Physical iOS force-quit timing remains unverified; do not claim the native black interval is resolved. No commit or deployment performed.
+
 ## Search, cold launch, and offline releases (2026-10-20)
 
 - Global search is an anchored combobox/dropdown in the desktop rail and mobile header, with a bounded result list, active-descendant keyboard selection, Escape/outside dismissal, and no modal backdrop. Page-local catalog filtering remains in place. Verified both the desktop layout and a 440 × 956 mobile viewport.

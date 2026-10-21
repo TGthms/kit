@@ -10,7 +10,7 @@ vi.mock("next-intl", () => ({
   useTranslations: () => (key: string) => key,
 }));
 
-afterEach(cleanup);
+afterEach(() => { cleanup(); vi.restoreAllMocks(); });
 
 describe("ShortcutsProvider", () => {
   it("uses app-local keys and avoids modifier collisions", () => {
@@ -23,6 +23,8 @@ describe("ShortcutsProvider", () => {
         createElement("input", { id: "kit-search", "aria-label": "Search" })
       )
     );
+
+    vi.spyOn(document.getElementById("kit-search")!, "getBoundingClientRect").mockReturnValue({ top: 100, bottom: 144, width: 300, height: 44 } as DOMRect);
 
     fireEvent.keyDown(window, { key: "/" });
     expect(document.activeElement).toBe(document.getElementById("kit-search"));

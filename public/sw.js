@@ -28,6 +28,10 @@
  * so a URL that resolves off-origin can never supply the page.
  */
 const BUILD = "__KIT_BUILD__";
+/* Postbuild embeds the standalone root entry so a cold launch can paint
+   before iOS opens Cache Storage. No page content or user data is embedded. */
+const ENTRY_HTML = "__KIT_ENTRY_HTML__";
+const ENTRY_HEADERS = null;
 /* Served straight out of `public/` during development, where the placeholder is
    still in place. Nothing ships from there, so the name only has to be stable. */
 const GENERATION = /^[a-z0-9]+$/iu.test(BUILD) ? BUILD : "dev";
@@ -997,6 +1001,12 @@ self.addEventListener("fetch", (event) => {
   }
 
   if (req.mode === "navigate" || req.destination === "document") {
+    const root = new URL("./", self.registration.scope).pathname;
+    if ((url.pathname === root || url.pathname === `${root}index.html`) && ENTRY_HTML !== "__KIT_ENTRY_HTML__") {
+      event.respondWith(new Response(ENTRY_HTML, { headers: { ...ENTRY_HEADERS, "Content-Type": "text/html; charset=utf-8", "Cache-Control": "no-store" } }));
+      return;
+    }
+
     if (/\.txt$/i.test(url.pathname)) {
       /* A `.txt` navigation asks for the page it belongs to. The destination is
          re-resolved against this origin; anything that could leave it falls back

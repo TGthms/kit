@@ -26,7 +26,12 @@
       }
     }
     // Keep query/hash so /?date=2026-12-25 survives the locale hop. Same as withSearchAndHash.
-    location.replace((base || "") + "/" + locale + "/" + (location.search || "") + (location.hash || ""));
+    var destination = (base || "") + "/" + locale + "/" + (location.search || "") + (location.hash || "");
+    // Let the self-contained entry paint before starting the next document.
+    // No framework download or hydration is needed for this handoff.
+    var go = function () { location.replace(destination); };
+    if (window.requestAnimationFrame) requestAnimationFrame(function () { setTimeout(go, 0); });
+    else setTimeout(go, 0);
   } catch {
     /* ignore */
   }

@@ -93,9 +93,7 @@ export function ShortcutsProvider({ children }: { children: React.ReactNode }) {
       } else if (e.key === "/") {
         e.preventDefault();
         if (open) return;
-        const search = document.getElementById("kit-search");
-        if (search) search.focus();
-        else openToolSearch();
+        openToolSearch();
       } else if (e.key.toLowerCase() === "r" && !open && !document.querySelector("dialog[open]")) {
         e.preventDefault();
         window.dispatchEvent(new Event(SHORTCUT_RUN_EVENT));
