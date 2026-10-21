@@ -492,6 +492,8 @@
     "offlinePartial": "Uloženo {done} z {total}",
     "offlineStoredVersion": "Staženo pro Kit {version}",
     "offlineOutdated": "Je dostupná verze Kit {version}. Kopie uložené v tomto zařízení pocházejí ze staršího vydání.",
+    "updateAvailable": "Je připravena aktualizace Kitu.",
+    "reviewUpdate": "Zobrazit",
     "offlineUpdateAvailable": "Je připravena aktualizace. Aktualizujte stažený obsah pro použití offline.",
     "offlineUpdate": "Aktualizovat stažené",
     "offlineRemoveAll": "Odebrat všechny stažené položky",

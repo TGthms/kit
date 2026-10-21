@@ -492,6 +492,8 @@
     "offlinePartial": "Збережено {done} з {total}",
     "offlineStoredVersion": "Завантажено для Kit {version}",
     "offlineOutdated": "Доступна версія Kit {version}. Збережені на цьому пристрої копії належать до попереднього випуску.",
+    "updateAvailable": "Доступне оновлення Kit.",
+    "reviewUpdate": "Переглянути",
     "offlineUpdateAvailable": "Доступне оновлення. Оновіть завантаження, щоб користуватися ним без інтернету.",
     "offlineUpdate": "Оновити завантаження",
     "offlineRemoveAll": "Видалити всі завантаження",

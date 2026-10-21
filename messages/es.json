@@ -492,6 +492,8 @@
     "offlinePartial": "{done} de {total} guardados",
     "offlineStoredVersion": "Descargado para Kit {version}",
     "offlineOutdated": "Kit {version} ya está disponible. Las copias guardadas en este dispositivo son de una versión anterior.",
+    "updateAvailable": "Hay una actualización de Kit.",
+    "reviewUpdate": "Revisar",
     "offlineUpdateAvailable": "Hay una actualización lista. Actualiza las descargas para usarla sin conexión.",
     "offlineUpdate": "Actualizar descargas",
     "offlineRemoveAll": "Quitar todas las descargas",

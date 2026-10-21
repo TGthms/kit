@@ -122,6 +122,23 @@ describe("offline release transactions", () => {
     await run.worker.downloadSelectedOffline(selection);
     expect((await run.worker.offlineState()).tools["pdf-merge"]).toBeUndefined();
   });
+  it("accepts Cloudflare's deployed analytics injection while verifying the original HTML", async () => {
+    const run = load();
+    const beacon = `<!-- Cloudflare Pages Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "${"a".repeat(32)}"}'></script><!-- Cloudflare Pages Analytics -->`;
+    for (const path of ["/", "/en/", "/en/tools/pdf-merge/"]) run.overrides.set(path, new Response(html.replace("</body>", `${beacon}</body>`), { headers: { "content-type": "text/html" } }));
+    await run.worker.stageRelease(manifest);
+    await run.worker.downloadSelectedOffline(selection);
+    expect(run.messages.some((message) => message.status === "complete")).toBe(true);
+  });
+  it.each(["tampered page", "unrecognized script", "extra script attribute"])("still rejects %s alongside an analytics block", async (kind) => {
+    const run = load();
+    let beacon = `<!-- Cloudflare Pages Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "${"a".repeat(32)}"}'></script><!-- Cloudflare Pages Analytics -->`;
+    if (kind === "unrecognized script") beacon = beacon.replace("static.cloudflareinsights.com", "untrusted.test");
+    if (kind === "extra script attribute") beacon = beacon.replace("defer src", 'defer onload="unexpected()" src');
+    const page = (kind === "tampered page" ? html.replace("New Kit", "Old Kit") : html).replace("</body>", `${beacon}</body>`);
+    run.overrides.set("/en/", new Response(page, { headers: { "content-type": "text/html" } }));
+    await expect(run.worker.stageRelease(manifest)).rejects.toThrow();
+  });
   it("retries only missing resources after a failed download", async () => {
     const run = load();
     run.overrides.set(script, new Error("offline"));

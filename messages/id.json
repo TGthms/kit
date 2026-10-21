@@ -492,6 +492,8 @@
     "offlinePartial": "{done} dari {total} tersimpan",
     "offlineStoredVersion": "Diunduh untuk Kit {version}",
     "offlineOutdated": "Kit {version} tersedia. Salinan yang tersimpan di perangkat ini berasal dari versi sebelumnya.",
+    "updateAvailable": "Pembaruan Kit siap.",
+    "reviewUpdate": "Tinjau",
     "offlineUpdateAvailable": "Pembaruan siap. Perbarui unduhan untuk menggunakannya secara offline.",
     "offlineUpdate": "Perbarui unduhan",
     "offlineRemoveAll": "Hapus semua unduhan",

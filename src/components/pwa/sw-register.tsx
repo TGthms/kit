@@ -1,7 +1,10 @@
 "use client";
 
 import { useEffect } from "react";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
+import { toast } from "sonner";
+import { useRouter } from "@/lib/i18n/navigation";
+import { observeWaitingWorker } from "@/lib/pwa/update-notice";
 import { withBasePath } from "@/lib/base-path";
 import {
   FILL_AFTER_IDLE_MS,
@@ -13,6 +16,8 @@ import {
 
 export function ServiceWorkerRegister() {
   const locale = useLocale();
+  const t = useTranslations("settings");
+  const router = useRouter();
 
   useEffect(() => {
     if (typeof window === "undefined" || !("serviceWorker" in navigator)) return;
@@ -41,6 +46,20 @@ export function ServiceWorkerRegister() {
       post(worker, { type: "PRECACHE_LOCALE", locale, skipHeavy });
     };
     let registration: ServiceWorkerRegistration | null = null;
+    let disposed = false;
+    let stopUpdateNotice = () => {};
+    const offerUpdate = () => {
+      // This page already presents the update in context, alongside its status.
+      if (/\/settings\/offline\/?$/u.test(window.location.pathname)) return;
+      toast(t("updateAvailable"), {
+        id: "kit-update-ready",
+        duration: Infinity,
+        action: { label: t("reviewUpdate"), onClick: () => {
+          toast.dismiss("kit-update-ready");
+          router.push("/settings/offline");
+        } },
+      });
+    };
     let lastUpdateAt = 0;
     let visibleTimer = 0;
     let fillTimer = 0;
@@ -109,10 +128,13 @@ export function ServiceWorkerRegister() {
     navigator.serviceWorker
       .register(swUrl, { updateViaCache: "none" })
       .then((reg) => {
+        if (disposed) return;
         registration = reg;
+        stopUpdateNotice = observeWaitingWorker(reg, offerUpdate);
         lastUpdateAt = Date.now();
         precacheHome(reg.active);
         navigator.serviceWorker.ready.then((ready) => {
+          if (disposed) return;
           precacheHome(ready.active);
           window.clearTimeout(fillTimer);
           fillTimer = window.setTimeout(() => startFill(ready.active), FILL_AFTER_IDLE_MS);
@@ -124,6 +146,9 @@ export function ServiceWorkerRegister() {
       });
 
     return () => {
+      disposed = true;
+      stopUpdateNotice();
+      toast.dismiss("kit-update-ready");
       window.clearTimeout(visibleTimer);
       window.clearTimeout(fillTimer);
       window.clearTimeout(resumeTimer);
@@ -135,7 +160,7 @@ export function ServiceWorkerRegister() {
       document.removeEventListener("wheel", onInteract, true);
       document.removeEventListener("touchstart", onInteract, true);
     };
-  }, [locale]);
+  }, [locale, router, t]);
 
   return null;
 }

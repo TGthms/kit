@@ -492,6 +492,8 @@
     "offlinePartial": "تم حفظ {done} من {total}",
     "offlineStoredVersion": "تم التنزيل لـ Kit {version}",
     "offlineOutdated": "أصبح Kit {version} متاحًا. النسخ المحفوظة على هذا الجهاز من إصدار أقدم.",
+    "updateAvailable": "يتوفر تحديث لـ Kit.",
+    "reviewUpdate": "مراجعة",
     "offlineUpdateAvailable": "يتوفر تحديث. حدّث التنزيلات لاستخدامه دون اتصال.",
     "offlineUpdate": "تحديث التنزيلات",
     "offlineRemoveAll": "إزالة كل التنزيلات",

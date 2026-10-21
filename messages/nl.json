@@ -492,6 +492,8 @@
     "offlinePartial": "{done} van {total} opgeslagen",
     "offlineStoredVersion": "Gedownload voor Kit {version}",
     "offlineOutdated": "Kit {version} is beschikbaar. De op dit apparaat opgeslagen kopieën komen uit een eerdere versie.",
+    "updateAvailable": "Er staat een Kit-update klaar.",
+    "reviewUpdate": "Bekijken",
     "offlineUpdateAvailable": "Er staat een update klaar. Werk je downloads bij om deze offline te gebruiken.",
     "offlineUpdate": "Downloads bijwerken",
     "offlineRemoveAll": "Alle downloads verwijderen",

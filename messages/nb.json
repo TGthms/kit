@@ -492,6 +492,8 @@
     "offlinePartial": "{done} av {total} lagret",
     "offlineStoredVersion": "Lastet ned for Kit {version}",
     "offlineOutdated": "Kit {version} er tilgjengelig. Kopiene som er lagret på denne enheten, er fra en tidligere utgivelse.",
+    "updateAvailable": "En Kit-oppdatering er klar.",
+    "reviewUpdate": "Se mer",
     "offlineUpdateAvailable": "En oppdatering er klar. Oppdater nedlastingene for å bruke den uten nett.",
     "offlineUpdate": "Oppdater nedlastinger",
     "offlineRemoveAll": "Fjern alle nedlastinger",

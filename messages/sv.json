@@ -492,6 +492,8 @@
     "offlinePartial": "{done} av {total} sparade",
     "offlineStoredVersion": "Hämtat för Kit {version}",
     "offlineOutdated": "Kit {version} finns tillgängligt. Kopiorna som sparats på den här enheten kommer från en tidigare version.",
+    "updateAvailable": "En Kit-uppdatering är klar.",
+    "reviewUpdate": "Visa",
     "offlineUpdateAvailable": "En uppdatering är klar. Uppdatera dina nedladdningar för att använda den offline.",
     "offlineUpdate": "Uppdatera nedladdningar",
     "offlineRemoveAll": "Ta bort alla nedladdningar",

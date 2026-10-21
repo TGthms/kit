@@ -506,6 +506,13 @@ async function readManifest() {
   }
 }
 
+/** Cloudflare Pages appends this precise analytics block after the build. Only
+ * that known, inert configuration is excluded from the content comparison;
+ * arbitrary scripts/attributes and every byte of the app remain verified. */
+function deploymentHtml(html) {
+  return html.replace(/<!-- Cloudflare Pages Analytics -->\s*<script\s+defer\s+src=(["'])https:\/\/static\.cloudflareinsights\.com\/beacon\.min\.js\1\s+data-cf-beacon=(["'])\{\s*"token"\s*:\s*"[a-f0-9]{32}"\s*\}\2\s*>\s*<\/script>\s*<!-- Cloudflare Pages Analytics -->/gu, "");
+}
+
 /** Validate mutable URLs against the release, including downloads during deploys. */
 async function matchesBuild(resource, response) {
   const manifest = await readManifest();
@@ -517,7 +524,13 @@ async function matchesBuild(resource, response) {
   if (!expected) return false;
   const digest = await crypto.subtle.digest("SHA-256", await response.clone().arrayBuffer());
   const actual = Array.from(new Uint8Array(digest), (byte) => byte.toString(16).padStart(2, "0")).join("");
-  return expected === actual;
+  if (expected === actual) return true;
+  if (!isHtmlResponse(response)) return false;
+  const html = await response.clone().text();
+  const normalized = deploymentHtml(html);
+  if (normalized === html) return false;
+  const canonicalDigest = await crypto.subtle.digest("SHA-256", await new Response(normalized).arrayBuffer());
+  return expected === Array.from(new Uint8Array(canonicalDigest), (byte) => byte.toString(16).padStart(2, "0")).join("");
 }
 
 function usableOfflineResource(href, response) {

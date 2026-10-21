@@ -492,6 +492,8 @@
     "offlinePartial": "{done}/{total} tallennettu",
     "offlineStoredVersion": "Tallennettu Kit-versiolle {version}",
     "offlineOutdated": "Kit {version} on saatavilla. Tälle laitteelle tallennetut kopiot ovat aiemmasta versiosta.",
+    "updateAvailable": "Kit-päivitys on valmis.",
+    "reviewUpdate": "Tarkastele",
     "offlineUpdateAvailable": "Päivitys on valmis. Päivitä latauksesi käyttääksesi sitä ilman verkkoyhteyttä.",
     "offlineUpdate": "Päivitä tallennukset",
     "offlineRemoveAll": "Poista kaikki tallennukset",

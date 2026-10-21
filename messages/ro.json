@@ -492,6 +492,8 @@
     "offlinePartial": "{done} din {total} salvate",
     "offlineStoredVersion": "Descărcat pentru Kit {version}",
     "offlineOutdated": "Kit {version} este disponibil. Copiile salvate pe acest dispozitiv sunt dintr-o versiune anterioară.",
+    "updateAvailable": "O actualizare Kit este pregătită.",
+    "reviewUpdate": "Vezi",
     "offlineUpdateAvailable": "O actualizare este pregătită. Actualizează descărcările pentru a o folosi offline.",
     "offlineUpdate": "Actualizează descărcările",
     "offlineRemoveAll": "Elimină toate descărcările",

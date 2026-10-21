@@ -493,6 +493,8 @@
     "offlineStoredVersion": "Downloaded for Kit {version}",
     "offlineOutdated": "Kit {version} is available. The copies saved on this device are from an earlier release.",
     "offlineCleared": "Downloaded content was removed when Kit updated. Download the same languages and tools again?",
+    "updateAvailable": "A Kit update is ready.",
+    "reviewUpdate": "Review",
     "offlineUpdateAvailable": "An update is ready. Update your downloads to use it offline.",
     "offlineUpdate": "Update downloads",
     "offlineRemoveAll": "Remove all downloads",

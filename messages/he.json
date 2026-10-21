@@ -492,6 +492,8 @@
     "offlinePartial": "נשמרו {done} מתוך {total}",
     "offlineStoredVersion": "הורד עבור Kit {version}",
     "offlineOutdated": "Kit {version} זמין. העותקים שנשמרו במכשיר זה הם מגרסה קודמת.",
+    "updateAvailable": "עדכון ל־Kit מוכן.",
+    "reviewUpdate": "לפרטים",
     "offlineUpdateAvailable": "עדכון מוכן. יש לעדכן את ההורדות כדי להשתמש בו ללא חיבור לאינטרנט.",
     "offlineUpdate": "עדכן הורדות",
     "offlineRemoveAll": "הסר את כל ההורדות",

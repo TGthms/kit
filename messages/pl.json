@@ -492,6 +492,8 @@
     "offlinePartial": "Zapisano {done} z {total}",
     "offlineStoredVersion": "Pobrano dla Kit {version}",
     "offlineOutdated": "Kit {version} jest dostępny. Kopie zapisane na tym urządzeniu pochodzą z wcześniejszego wydania.",
+    "updateAvailable": "Aktualizacja Kit jest gotowa.",
+    "reviewUpdate": "Sprawdź",
     "offlineUpdateAvailable": "Aktualizacja jest gotowa. Zaktualizuj pobrane pliki, aby korzystać z niej offline.",
     "offlineUpdate": "Zaktualizuj pobrane",
     "offlineRemoveAll": "Usuń wszystkie pobrane",

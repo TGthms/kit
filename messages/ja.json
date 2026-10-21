@@ -492,6 +492,8 @@
     "offlinePartial": "{total} 件中 {done} 件を保存済み",
     "offlineStoredVersion": "Kit {version} 用にダウンロード済み",
     "offlineOutdated": "Kit {version} が利用可能です。この端末に保存された内容は以前のリリースのものです。",
+    "updateAvailable": "Kitの更新準備ができました。",
+    "reviewUpdate": "確認",
     "offlineUpdateAvailable": "更新の準備ができました。オフラインで使うには、ダウンロードを更新してください。",
     "offlineUpdate": "ダウンロードを更新",
     "offlineRemoveAll": "すべてのダウンロードを削除",
