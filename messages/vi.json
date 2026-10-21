@@ -492,6 +492,7 @@
     "offlinePartial": "Đã lưu {done} trên {total}",
     "offlineStoredVersion": "Đã tải cho Kit {version}",
     "offlineOutdated": "Đã có Kit {version}. Các bản lưu trên thiết bị này thuộc bản phát hành trước.",
+    "offlineUpdateAvailable": "Bản cập nhật đã sẵn sàng. Hãy cập nhật các bản tải xuống để sử dụng ngoại tuyến.",
     "offlineUpdate": "Cập nhật nội dung tải",
     "offlineRemoveAll": "Xóa mọi nội dung đã tải",
     "offlineRemoveConfirm": "Xóa khỏi thiết bị này mọi ngôn ngữ, trang công cụ và công cụ đa phương tiện đã lưu?",

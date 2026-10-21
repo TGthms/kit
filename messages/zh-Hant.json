@@ -492,6 +492,7 @@
     "offlinePartial": "已儲存 {done}/{total}",
     "offlineStoredVersion": "已為 Kit {version} 下載",
     "offlineOutdated": "Kit {version} 已發布。此裝置上儲存的副本來自較早版本。",
+    "offlineUpdateAvailable": "更新已就緒。請更新下載內容，以便離線使用。",
     "offlineUpdate": "更新下載內容",
     "offlineRemoveAll": "移除所有下載內容",
     "offlineRemoveConfirm": "從此裝置移除所有已儲存的語言、工具頁面和媒體引擎？",

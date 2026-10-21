@@ -492,6 +492,7 @@
     "offlinePartial": "Сохранено {done} из {total}",
     "offlineStoredVersion": "Загружено для Kit {version}",
     "offlineOutdated": "Доступна версия Kit {version}. Сохранённые на этом устройстве копии относятся к предыдущему выпуску.",
+    "offlineUpdateAvailable": "Доступно обновление. Обновите загрузки, чтобы использовать его без интернета.",
     "offlineUpdate": "Обновить загрузки",
     "offlineRemoveAll": "Удалить все загрузки",
     "offlineRemoveConfirm": "Удалить с этого устройства все сохранённые языки, страницы инструментов и медиадвижки?",

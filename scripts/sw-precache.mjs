@@ -60,7 +60,7 @@ export function buildPrecacheManifest(outDir, basePath = "") {
   const prefix = basePath.replace(/\/$/, "");
   const withBase = (path) => `${prefix}${path}`;
   const files = walkFiles(outDir);
-  const core = [];
+  const core = existsSync(join(outDir, "index.html")) ? [withBase("/")] : [];
   const pdfjs = [];
   const ffmpeg = [];
   const locales = new Set();
@@ -69,7 +69,7 @@ export function buildPrecacheManifest(outDir, basePath = "") {
     const path = toSitePath(outDir, file);
     if (path.includes("/_next/static/") && /\.(js|css|woff2?)$/u.test(path)) core.push(withBase(path));
     else if (path.startsWith("/boot/") && path.endsWith(".js")) core.push(withBase(path));
-    else if (path.startsWith("/icons/") || path.endsWith("manifest.webmanifest") || path.endsWith("/favicon.ico") || path.endsWith("/favicon.svg")) {
+    else if (path.startsWith("/startup/") || path.startsWith("/icons/") || path.endsWith("manifest.webmanifest") || path.endsWith("/favicon.ico") || path.endsWith("/favicon.svg")) {
       core.push(withBase(path));
     } else if (path.startsWith("/vendor/pdfjs/")) pdfjs.push(withBase(path));
     else if (path.startsWith("/vendor/ffmpeg/")) ffmpeg.push(withBase(path));
@@ -244,6 +244,10 @@ export function buildStamp(outDir, manifest, basePath = "") {
     ...Object.values(manifest.extrasByLocale).flat(),
   ]);
   const hash = createHash("sha256");
+  // Worker behavior is part of a release too. Two workers must never share a
+  // cache just because their HTML happens to be identical.
+  const worker = join(outDir, "sw.js");
+  if (existsSync(worker)) hash.update(readFileSync(worker, "utf8").replace(BUILD_LINE, `const BUILD = "${BUILD_PLACEHOLDER}";`));
   for (const url of [...urls].sort()) {
     hash.update(url);
     hash.update("\0");
@@ -288,8 +292,21 @@ export function stampServiceWorker(outDir, stamp) {
 export function writePrecacheManifest(outDir, basePath = "") {
   if (!existsSync(outDir)) throw new Error(`export directory not found: ${outDir}`);
   const manifest = buildPrecacheManifest(outDir, basePath);
+  const generation = buildStamp(outDir, manifest, basePath);
+  const urls = new Set([...manifest.core, ...manifest.engines,
+    ...Object.values(manifest.chromeByLocale).flat(), ...Object.values(manifest.toolsByLocale).flat(),
+    ...Object.values(manifest.rscByLocale).flat(), ...Object.values(manifest.extrasByLocale).flat()]);
+  const prefix = basePath.replace(/\/$/, "");
+  const integrity = {};
+  for (const url of urls) {
+    const path = prefix && url.startsWith(prefix) ? url.slice(prefix.length) : url;
+    const file = join(outDir, path.endsWith("/") ? `${path}index.html` : path);
+    if (existsSync(file)) integrity[url] = createHash("sha256").update(readFileSync(file)).digest("hex");
+  }
+  const version = JSON.parse(readFileSync(new URL("../package.json", import.meta.url), "utf8")).version;
+  Object.assign(manifest, { generation, version, integrity });
   writeFileSync(join(outDir, "sw-precache.json"), `${JSON.stringify(manifest)}\n`);
-  stampServiceWorker(outDir, buildStamp(outDir, manifest, basePath));
+  stampServiceWorker(outDir, generation);
   return manifest;
 }
 

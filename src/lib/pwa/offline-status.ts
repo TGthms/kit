@@ -148,22 +148,16 @@ export function clearPlan(): void {
 export function planStatus(plan: OfflinePlan | null, state: OfflineState | null, version: string): PlanStatus {
   if (!plan || !state) return "none";
   const generationMoved = Boolean(plan.generation && state.generation && plan.generation !== state.generation);
-  if (state.readyLocales === 0) return generationMoved ? "cleared" : "none";
+  if (!Object.values(state.locales).some((entry) => entry.done > 0)) return generationMoved ? "cleared" : "none";
   const sameVersion = plan.version === version;
   const sameGeneration = !plan.generation || !state.generation || plan.generation === state.generation;
   return sameVersion && sameGeneration ? "saved" : "stale";
 }
 
-/**
- * Whether a tool can be opened offline.
- *
- * A language is all-or-nothing: its pages and their navigation payloads are
- * saved together or not at all, so a tool counts as available only when every
- * fully saved language holds it.
- */
+/** A tool can be saved individually without downloading an entire language.
+ * The worker counts only languages holding both its document and payload. */
 export function toolSaved(state: OfflineState | null, toolId: ToolId): boolean {
-  if (!state || state.readyLocales === 0) return false;
-  return (state.tools[toolPathSegment(toolId)] ?? 0) >= state.readyLocales;
+  return (state?.tools[toolPathSegment(toolId)] ?? 0) > 0;
 }
 
 /** How many languages hold this tool's page, for the detail line. */

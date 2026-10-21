@@ -85,7 +85,7 @@ describe("planStatus", () => {
 });
 
 describe("tool availability", () => {
-  it("counts a tool as available only where every complete language holds it", () => {
+  it("counts a tool as available when its saved document and payload are reported", () => {
     expect(toolSaved(state(), "pdf-merge")).toBe(true);
     expect(toolSavedCount(state(), "pdf-merge")).toBe(1);
     // A tool no language holds is not available offline.
@@ -93,17 +93,22 @@ describe("tool availability", () => {
     expect(toolSavedCount(state({ tools: {} }), "pdf-merge")).toBe(0);
   });
 
-  it("does not claim anything is available when no language is complete", () => {
+  it("does not claim anything is available when no tool is saved", () => {
     expect(toolSaved(emptyState(), "pdf-merge")).toBe(false);
     expect(toolSaved(null, "pdf-merge")).toBe(false);
   });
 
-  it("needs the tool in every complete language, not just one", () => {
+  it("counts a tool saved in one language without requiring every language", () => {
     const two = state({ tools: { "pdf-merge": 1 }, readyLocales: 2 });
-    expect(toolSaved(two, "pdf-merge")).toBe(false);
+    expect(toolSaved(two, "pdf-merge")).toBe(true);
     expect(toolSaved({ ...two, tools: { "pdf-merge": 2 } }, "pdf-merge")).toBe(true);
   });
 
+  it("recognizes a selected tool and plan without a complete catalog", () => {
+    const partial = state({ locales: { en: { done: 4, total: 200, ready: false } }, tools: { "pdf-merge": 1 }, readyLocales: 0 });
+    expect(toolSaved(partial, "pdf-merge")).toBe(true);
+    expect(planStatus(plan, partial, "1.1.0")).toBe("saved");
+  });
   it("resolves a tool id to its public route segment", () => {
     // timezone-converter is served at /tools/world-clock/.
     expect(toolSaved(state({ tools: { "world-clock": 1 } }), "timezone-converter")).toBe(true);

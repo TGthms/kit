@@ -10,7 +10,9 @@ const schedule = readFileSync(join(here, "../../lib/pwa/sw-schedule.ts"), "utf8"
 
 describe("service worker update policy", () => {
   it("does not seize open tabs on install or activate", () => {
-    expect(sw).not.toMatch(/skipWaiting\s*\(/);
+    const install = sw.slice(sw.indexOf('self.addEventListener("install"'), sw.indexOf("function isIconOrManifest"));
+    expect(install).not.toMatch(/skipWaiting\s*\(/);
+    expect(sw).toMatch(/data.type === "ACTIVATE_UPDATE"/);
     expect(sw).not.toMatch(/clients\.claim\s*\(/);
   });
 
@@ -69,18 +71,13 @@ describe("service worker update policy", () => {
     expect(sw).toMatch(/function isUsableRsc\(res\)\s*\{\s*return Boolean\(res\) && res\.ok && TRUSTED_TYPES\.has\(res\.type\)/);
   });
 
-  it("skips the other-language precache on a metered or slow connection", () => {
+  it("reserves large offline downloads for explicit selection", () => {
     const fill = sw.slice(sw.indexOf("async function startLocaleFill"), sw.indexOf("function isTrustedMessage"));
-    const gatedAt = fill.indexOf("if (!skipHeavy)");
-    expect(gatedAt).toBeGreaterThan(-1);
-    /* The open locale is always filled; every other language sits behind the guard. */
-    const always = fill.slice(0, gatedAt);
-    expect(always).toMatch(/enqueueFill\(chrome\[locale\]/);
-    expect(always).toMatch(/enqueueFill\(rsc\[locale\]/);
-    const gated = fill.slice(gatedAt);
-    expect(gated).toMatch(/enqueueFill\(urls\)/);
-    expect(gated).toMatch(/manifest\.engines/);
-    expect(gated).not.toMatch(/chrome\[locale\]/);
+    expect(fill).toMatch(/enqueueFill\(chrome\[locale\]/);
+    expect(fill).toMatch(/shellPayloads.has/);
+    expect(fill).not.toMatch(/manifest\.engines/);
+    expect(fill).not.toMatch(/Object.entries/);
+    expect(fill).not.toMatch(/enqueueFill\(.*toolsByLocale/);
   });
 
   it("releases the offline download on every exit path", () => {

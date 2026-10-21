@@ -325,6 +325,12 @@ describe("what a download covers", () => {
 });
 
 describe("the background fill", () => {
+  it("does not fetch other languages, tool sets, or media engines without a selection", async () => {
+    const { worker, fetched } = loadWorker(new Map());
+    await worker.startLocaleFill("en", false);
+    expect(fetched.some((url) => url.includes("/fr/") || url.includes("/vendor/") || MANIFEST.toolsByLocale.en.some((page) => new URL(url, "https://trykit.pages.dev").pathname.startsWith(page)))).toBe(false);
+  });
+
   it("fetches the app's own pages before anything else", async () => {
     /* The fill pauses whenever someone is reading or scrolling, so on a first
        visit it may only get through a few dozen requests. The pages the app's

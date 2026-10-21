@@ -492,6 +492,7 @@
     "offlinePartial": "{done}/{total} mentve",
     "offlineStoredVersion": "Kit {version} verzióhoz letöltve",
     "offlineOutdated": "Elérhető a Kit {version}. Az eszközön mentett másolatok egy korábbi kiadásból származnak.",
+    "offlineUpdateAvailable": "Elérhető egy frissítés. Frissítsd a letöltéseket az offline használathoz.",
     "offlineUpdate": "Letöltések frissítése",
     "offlineRemoveAll": "Összes letöltés eltávolítása",
     "offlineRemoveConfirm": "Eltávolítja erről az eszközről az összes mentett nyelvet, eszközoldalt és médiamotort?",

@@ -17,7 +17,8 @@ describe("PWA zoom policy", () => {
   });
 
   it("locks page zoom only in the installed PWA boot script", () => {
-    expect(head).toMatch(/boot\/viewport\.js/);
+    expect(head).toMatch(/"theme", "viewport", "locale-lang"/);
+    expect(head).toMatch(/dangerouslySetInnerHTML/);
     expect(boot).toMatch(/display-mode:\s*standalone/);
     expect(boot).toMatch(/navigator\.standalone/);
     expect(boot).toMatch(/maximum-scale=1/);

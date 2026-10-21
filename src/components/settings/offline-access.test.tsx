@@ -19,6 +19,7 @@ function stubBrowser() {
     configurable: true,
     value: {
       ready: Promise.resolve({ active: worker }),
+      getRegistration: async () => ({ active: worker, update: async () => undefined, addEventListener() {}, removeEventListener() {} }),
       controller: worker,
       addEventListener: (_type: string, listener: (event: MessageEvent) => void) => {
         onMessage = listener;
@@ -53,7 +54,7 @@ function renderOffline() {
 
 function emit(data: Record<string, unknown>) {
   act(() => {
-    onMessage?.({ data: { type: "OFFLINE_PROGRESS", ...data } } as MessageEvent);
+    onMessage?.({ source: worker, data: { type: "OFFLINE_PROGRESS", requestId: sent("OFFLINE_DOWNLOAD")?.requestId, ...data } } as unknown as MessageEvent);
   });
 }
 
@@ -192,6 +193,7 @@ describe("OfflineAccess", () => {
   it("renders batched progress logs and the completed state", async () => {
     renderOffline();
     fireEvent.click(screen.getByRole("button", { name: "Download" }));
+    await sentEventually("OFFLINE_DOWNLOAD");
     emit({ status: "running", done: 1, total: 2, logs: ["Downloaded: /en/"] });
     expect(screen.getByText("Downloaded: /en/")).toBeInTheDocument();
     emit({ status: "complete", done: 2, total: 2, logs: ["Downloaded: /en/tools/pdf-merge/"] });
@@ -202,6 +204,7 @@ describe("OfflineAccess", () => {
   it("accepts a single-line progress payload", async () => {
     renderOffline();
     fireEvent.click(screen.getByRole("button", { name: "Download" }));
+    await sentEventually("OFFLINE_DOWNLOAD");
     emit({ status: "running", done: 1, total: 2, log: "Preparing 2 items" });
     expect(screen.getByText("Preparing 2 items")).toBeInTheDocument();
   });
@@ -499,7 +502,7 @@ describe("release changes", () => {
     emit({ type: "OFFLINE_STATE", state: savedState() });
     fireEvent.click(screen.getByRole("button", { name: "Update downloads" }));
     const payload = await sentEventually("OFFLINE_DOWNLOAD");
-    expect(payload.pages).toEqual(["home", "history"]);
+    expect(payload.pages).toEqual(["home", "history", "settings", "offline"]);
   });
 
   it("reports content a new release dropped, and offers to fetch it again", () => {

@@ -27,10 +27,19 @@ export function offlineProbeKeys(href: string, origin: string): { page: string[]
   };
 }
 
-/** The worker's own cache lookup, guarded: a failure reads as "not held". */
+/** Ask the controlling worker, rather than matching a waiting release's cache. */
 export async function matchHeld(key: string): Promise<boolean> {
   try {
-    return Boolean(await caches.match(key));
+    const worker = navigator.serviceWorker?.controller;
+    if (!worker) return false;
+    return await new Promise<boolean>((resolve) => {
+      const channel = new MessageChannel();
+      const finish = (held: boolean) => { clearTimeout(timer); channel.port1.close(); resolve(held); };
+      const timer = setTimeout(() => finish(false), 750);
+      channel.port1.onmessage = (event: MessageEvent<{ held?: boolean }>) => finish(event.data?.held === true);
+      try { worker.postMessage({ type: "OFFLINE_HAS", url: key }, [channel.port2]); }
+      catch { finish(false); }
+    });
   } catch {
     return false;
   }

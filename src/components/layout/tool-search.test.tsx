@@ -3,7 +3,7 @@ import "@testing-library/jest-dom/vitest";
 import { createElement, type ReactNode } from "react";
 import { NextIntlClientProvider } from "next-intl";
 import { afterEach, beforeEach, expect, it, vi } from "vitest";
-import { cleanup, fireEvent, render, screen, within } from "@testing-library/react";
+import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 import en from "../../../messages/en.json";
 import { ToolSearch } from "./tool-search";
 import { OPEN_TOOL_SEARCH_EVENT } from "@/lib/navigation/search";
@@ -15,42 +15,51 @@ vi.mock("@/lib/i18n/navigation", () => ({
     return createElement("a", { href, ...props }, children);
   },
 }));
-
-beforeEach(() => {
-  Object.defineProperty(HTMLDialogElement.prototype, "showModal", { configurable: true, value: vi.fn(function (this: HTMLDialogElement) { this.setAttribute("open", ""); }) });
-  Object.defineProperty(HTMLDialogElement.prototype, "close", { configurable: true, value: vi.fn(function (this: HTMLDialogElement) { this.removeAttribute("open"); }) });
-});
-
-afterEach(() => { cleanup(); Reflect.deleteProperty(HTMLDialogElement.prototype, "showModal"); Reflect.deleteProperty(HTMLDialogElement.prototype, "close"); });
-
-function openSearch() {
-  render(createElement(NextIntlClientProvider, { locale: "en", messages: en } as never, createElement("div", null,
-    createElement("button", null, "Search opener"), createElement(ToolSearch))));
-  const opener = screen.getByRole("button", { name: "Search opener" });
-  opener.focus();
+beforeEach(() => { vi.stubGlobal("matchMedia", () => ({ matches: false })); });
+afterEach(() => { cleanup(); vi.unstubAllGlobals(); });
+function search() {
+  render(createElement(NextIntlClientProvider, { locale: "en", messages: en } as never,
+    createElement("div", null, createElement(ToolSearch), createElement("button", null, "Outside"))));
+  const input = screen.getByRole("combobox", { name: "Search tools…" });
   fireEvent(window, new Event(OPEN_TOOL_SEARCH_EVENT));
-  return { opener, dialog: screen.getByRole("dialog"), input: screen.getByRole("textbox", { name: "Search tools…" }) };
+  return input;
 }
-
-it("opens from a tool page, searches localized names, and restores focus", () => {
-  const { opener, dialog, input } = openSearch();
+it("searches in an anchored dropdown without a modal or changing focus", () => {
+  const input = search();
   expect(input).toHaveFocus();
+  expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+  expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
   fireEvent.change(input, { target: { value: "world clock" } });
-  expect(within(dialog).getByRole("link", { name: /World clock/ })).toHaveAttribute("href", "/tools/world-clock?from=%2Ftools%2Fpdf-merge%2F");
-  expect(within(dialog).queryByRole("link", { name: /Merge PDFs/ })).not.toBeInTheDocument();
-  fireEvent.click(within(dialog).getByRole("button", { name: "Close" }));
-  expect(dialog).not.toHaveAttribute("open");
-  expect(opener).toHaveFocus();
+  expect(screen.getByRole("option", { name: /World clock/ })).toHaveAttribute("href", "/tools/world-clock?from=%2Ftools%2Fpdf-merge%2F");
+  expect(screen.queryByRole("option", { name: /Merge PDFs/ })).not.toBeInTheDocument();
+  expect(input).toHaveFocus();
+  fireEvent.keyDown(input, { key: "Escape" });
+  expect(input).toHaveAttribute("aria-expanded", "false");
+  expect(input).toHaveFocus();
 });
-
-it("supports arrow keys and handles an empty result set", () => {
-  const { dialog, input } = openSearch();
+it("supports active-descendant keyboard navigation, selection, and no matches", () => {
+  const input = search();
   fireEvent.change(input, { target: { value: "merge" } });
   fireEvent.keyDown(input, { key: "ArrowDown" });
-  expect(within(dialog).getAllByRole("link")[0]).toHaveFocus();
-  fireEvent.keyDown(document.activeElement!, { key: "ArrowUp" });
+  const first = screen.getAllByRole("option")[0];
+  expect(input).toHaveAttribute("aria-activedescendant", first.id);
+  expect(first).toHaveAttribute("aria-selected", "true");
   expect(input).toHaveFocus();
+  const click = vi.spyOn(first, "click").mockImplementation(() => undefined);
+  fireEvent.keyDown(input, { key: "Enter" });
+  expect(click).toHaveBeenCalledOnce();
   fireEvent.change(input, { target: { value: "no-such-tool-xyz" } });
-  expect(within(dialog).queryAllByRole("link")).toHaveLength(0);
-  expect(within(dialog).getByRole("status")).toHaveTextContent("No matches");
+  expect(screen.queryAllByRole("option")).toHaveLength(0);
+  expect(screen.getByRole("status")).toHaveTextContent("No matches");
+});
+it("closes on outside interaction and clears without leaving the field", () => {
+  const input = search();
+  fireEvent.change(input, { target: { value: "PDF" } });
+  expect(screen.getAllByRole("option").length).toBeLessThanOrEqual(8);
+  fireEvent.pointerDown(screen.getByRole("button", { name: "Outside" }));
+  expect(input).toHaveAttribute("aria-expanded", "false");
+  fireEvent.focus(input);
+  fireEvent.click(screen.getByRole("button", { name: "Clear" }));
+  expect(input).toHaveValue("");
+  expect(input).toHaveFocus();
 });

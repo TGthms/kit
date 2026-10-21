@@ -3,7 +3,7 @@
 import { lazy, Suspense, useEffect, useLayoutEffect, useRef, useState, useSyncExternalStore } from "react";
 import { useTranslations } from "next-intl";
 import { Link } from "@/lib/i18n/navigation";
-import { Home, History, Star, Settings, Search, FileText, ImageIcon, AudioLines, Clapperboard, Database, Type, Code2, Calculator, ArrowLeftRight } from "lucide-react";
+import { Home, History, Star, Settings, FileText, ImageIcon, AudioLines, Clapperboard, Database, Type, Code2, Calculator, ArrowLeftRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { FloatingNav } from "@/components/ui/floating-nav";
 import { GlidingPill, useGlidingPill } from "@/components/ui/gliding-pill";
@@ -16,7 +16,6 @@ import { useHydrated } from "@/lib/react/hydrated";
 import { categories, getTool, type ToolCategory } from "@/lib/tools/registry";
 import { homeHref, parseCategoryPath } from "@/lib/navigation/routes";
 import { isPlainNavigationClick } from "@/lib/navigation/intent";
-import { openToolSearch } from "@/lib/navigation/search";
 import { useLiquidGlassEnabled } from "@/lib/theme/liquid-glass";
 import { GlassBoundary } from "@/components/ui/glass-boundary";
 
@@ -63,11 +62,6 @@ export function SideNav({ pathname }: { pathname: string }) {
   const category = activeCategory(pathname);
   return (
     <nav className="flex flex-col gap-1" aria-label={t("tools")}>
-      <button type="button" onClick={openToolSearch} aria-haspopup="dialog" className="mb-2 flex min-h-11 items-center gap-2 rounded-xl border border-border/60 bg-background/60 px-3 text-sm text-muted-foreground hover:bg-secondary/70 hover:text-foreground">
-        <Search className="h-4 w-4 shrink-0" aria-hidden />
-        <span className="min-w-0 flex-1 truncate text-start">{t("searchPlaceholder")}</span>
-        <kbd aria-hidden className="rounded border border-border px-1.5 text-xs">/</kbd>
-      </button>
       {nav.map(({ href, key, icon: Icon }) => {
         const active = isActive(pathname, href);
         return (

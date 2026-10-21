@@ -492,6 +492,7 @@
     "offlinePartial": "{done} de {total} guardados",
     "offlineStoredVersion": "Transferido para o Kit {version}",
     "offlineOutdated": "O Kit {version} está disponível. As cópias guardadas neste dispositivo são de uma versão anterior.",
+    "offlineUpdateAvailable": "Está disponível uma atualização. Atualize as transferências para a usar offline.",
     "offlineUpdate": "Atualizar transferências",
     "offlineRemoveAll": "Remover todas as transferências",
     "offlineRemoveConfirm": "Remover deste dispositivo todos os idiomas, páginas de ferramentas e motores de multimédia guardados?",

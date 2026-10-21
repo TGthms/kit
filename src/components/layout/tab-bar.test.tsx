@@ -10,7 +10,7 @@ import en from "../../../messages/en.json";
 import { useAppearanceStore } from "@/stores/appearance-store";
 
 const messages = {
-  nav: { home: "Home", favorites: "Favorites", history: "History", settings: "Settings" },
+  nav: en.nav,
   brand: { name: "Kit" },
   categories: en.categories,
   home: { categories: "Categories" },
@@ -103,7 +103,6 @@ describe("navigation sections", () => {
     expect(screen.getByRole("link", { name: "PDF" })).toHaveAttribute("aria-current", "location");
     expect(screen.getByRole("link", { name: "Home" })).toHaveAttribute("aria-current", "location");
     expect(screen.getAllByRole("link")).toHaveLength(13);
-    expect(screen.getByRole("button")).toHaveAttribute("aria-haspopup", "dialog");
   });
 });
 

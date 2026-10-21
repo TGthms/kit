@@ -492,6 +492,7 @@
     "offlinePartial": "{total} में से {done} सहेजे गए",
     "offlineStoredVersion": "Kit {version} के लिए डाउनलोड किया गया",
     "offlineOutdated": "Kit {version} उपलब्ध है। इस डिवाइस पर सहेजी गई प्रतियाँ पिछले संस्करण की हैं।",
+    "offlineUpdateAvailable": "अपडेट तैयार है। इसे ऑफ़लाइन इस्तेमाल करने के लिए डाउनलोड अपडेट करें।",
     "offlineUpdate": "डाउनलोड अपडेट करें",
     "offlineRemoveAll": "सभी डाउनलोड हटाएँ",
     "offlineRemoveConfirm": "इस डिवाइस से सभी सहेजी गई भाषाएँ, टूल पेज और मीडिया इंजन हटाएँ?",

@@ -492,6 +492,7 @@
     "offlinePartial": "{done}/{total} tallennettu",
     "offlineStoredVersion": "Tallennettu Kit-versiolle {version}",
     "offlineOutdated": "Kit {version} on saatavilla. Tälle laitteelle tallennetut kopiot ovat aiemmasta versiosta.",
+    "offlineUpdateAvailable": "Päivitys on valmis. Päivitä latauksesi käyttääksesi sitä ilman verkkoyhteyttä.",
     "offlineUpdate": "Päivitä tallennukset",
     "offlineRemoveAll": "Poista kaikki tallennukset",
     "offlineRemoveConfirm": "Poistetaanko tästä laitteesta kaikki tallennetut kielet, työkalusivut ja mediamoottorit?",

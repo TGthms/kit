@@ -8,6 +8,7 @@ import { locales, localeNames, type Locale } from "@/lib/i18n/config";
 import { tools, type ToolCategory, type ToolId } from "@/lib/tools/registry";
 import { APP_PAGES, APP_PAGE_IDS, type AppPageId } from "@/lib/pwa/app-pages";
 import { useHydrated } from "@/lib/react/hydrated";
+import { offlineDownloadWorker, applyOfflineUpdate } from "@/lib/pwa/offline-worker";
 import { APP_VERSION } from "@/lib/version";
 import {
   clearPlan,
@@ -26,7 +27,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 const categories: ToolCategory[] = ["pdf", "image", "audio", "video", "data", "text", "developer", "converter", "everyday"];
 type DownloadState = { status: "idle" | "running" | "done" | "canceled" | "error"; done: number; total: number; logs: string[] };
-type ProgressMessage = { type?: string; status?: string; done?: number; total?: number; logs?: unknown; log?: unknown };
+type ProgressMessage = { type?: string; status?: string; done?: number; total?: number; logs?: unknown; log?: unknown; requestId?: string; generation?: string; version?: string };
 type Selection = { locales: Locale[]; tools: ToolId[]; pages: AppPageId[]; engines: boolean };
 /** What the removal menu has ticked at this moment. */
 type RemovalSelection = { locales: Set<Locale>; tools: Set<ToolId>; engines: boolean };
@@ -130,6 +131,9 @@ export function OfflineAccess() {
   /* What the running download was asked for, so the record of it can be written
      only once it finishes. */
   const request = useRef<Selection | null>(null);
+  const job = useRef<string | null>(null);
+  const [updateAvailable, setUpdateAvailable] = useState(false);
+  const downloadTarget = useRef<{ worker: ServiceWorker; waiting: boolean; id: string } | null>(null);
   const grouped = useMemo(() => categories.map((category) => ({ category, items: tools.filter((tool) => tool.category === category) })), []);
   const readStorage = useCallback(() => {
     navigator.storage?.estimate()
@@ -184,20 +188,21 @@ export function OfflineAccess() {
         return;
       }
       if (data.type !== "OFFLINE_PROGRESS") return;
+      const target = downloadTarget.current;
+      if (!target || data.requestId !== target.id || event.source !== target.worker) return;
       const incoming = readLogs(data);
       const status = readStatus(data.status);
       setDownload((current) => ({
-        status,
+        status: status === "done" && target?.waiting ? "running" : status,
         done: typeof data.done === "number" ? data.done : current.done,
         total: typeof data.total === "number" ? data.total : current.total,
         logs: incoming.length ? [...current.logs, ...incoming].slice(-MAX_LOGS) : current.logs,
       }));
       if (status === "done" && request.current) {
-  /* Written now rather than when the button was pressed, so a download
-     that was canceled or failed is not recorded as saved content. */
+        /* Record only completed downloads, using the worker’s actual release. */
         savePlan({
-          version: APP_VERSION,
-          generation: state?.generation ?? "",
+          version: data.version ?? APP_VERSION,
+          generation: data.generation ?? state?.generation ?? "",
           locales: request.current.locales,
           tools: request.current.tools,
           pages: request.current.pages,
@@ -205,11 +210,46 @@ export function OfflineAccess() {
           at: new Date().toISOString(),
         });
       }
-      if (status !== "running") readStorage();
+      if (status === "done" && target?.waiting) {
+        void applyOfflineUpdate(target.worker, target.id).then(() => window.location.reload()).catch((error: unknown) => {
+          request.current = null; downloadTarget.current = null;
+          setDownload((current) => ({ ...current, status: "error", logs: [...current.logs, error instanceof Error ? error.message : "Update failed"].slice(-MAX_LOGS) }));
+        });
+      }
+      if (status !== "running") {
+        readStorage();
+        if (!(status === "done" && target?.waiting)) { request.current = null; downloadTarget.current = null; }
+      }
     };
     navigator.serviceWorker.addEventListener("message", onMessage);
     return () => navigator.serviceWorker.removeEventListener("message", onMessage);
   }, [hydrated, readStorage, state]);
+
+  useEffect(() => {
+    if (!hydrated || !("serviceWorker" in navigator)) return;
+    let disposed = false;
+    let registration: ServiceWorkerRegistration | undefined;
+    let installing: ServiceWorker | null = null;
+    const changed = () => { if (!disposed && registration) setUpdateAvailable(Boolean(registration.waiting)); };
+    const found = () => {
+      installing?.removeEventListener("statechange", changed);
+      installing = registration?.installing ?? null;
+      installing?.addEventListener("statechange", changed);
+      changed();
+    };
+    void navigator.serviceWorker.getRegistration().then((value) => {
+      if (disposed || !value) return;
+      registration = value;
+      registration.addEventListener("updatefound", found);
+      found();
+      if (navigator.onLine !== false) void registration.update().catch(() => undefined);
+    }).catch(() => undefined);
+    return () => {
+      disposed = true;
+      registration?.removeEventListener("updatefound", found);
+      installing?.removeEventListener("statechange", changed);
+    };
+  }, [hydrated]);
 
   const toggleTool = (id: ToolId) => setSelectedTools((current) => { const next = new Set(current); if (next.has(id)) next.delete(id); else next.add(id); return next; });
   const toggleCategory = (category: ToolCategory) => {
@@ -223,14 +263,35 @@ export function OfflineAccess() {
     /* Something has to be asked for. A download of the app's own pages alone is
        a legitimate small one, so tools are not required. */
     if (!selection.locales.length || (!selection.tools.length && !selection.pages.length)) return;
-    const worker = await activeWorker();
-    if (!worker) return;
+    if (request.current) return;
+    const id = crypto.randomUUID();
+    job.current = id;
     request.current = selection;
     setDownload({ status: "running", done: 0, total: 0, logs: [] });
-    worker.postMessage({ type: "OFFLINE_DOWNLOAD", ...selection });
+    try {
+      const target = await offlineDownloadWorker();
+      if (job.current !== id) return;
+      downloadTarget.current = { ...target, id };
+      // Keep the install entry and offline settings usable after activation,
+      // even when the chosen selection contains only tools.
+      target.worker.postMessage({ type: "OFFLINE_DOWNLOAD", requestId: id, ...selection,
+        locales: [...new Set([locale, ...selection.locales])],
+        pages: [...new Set([...selection.pages, "home", "settings", "offline"])] });
+      void navigator.storage?.persist?.().catch(() => undefined);
+    } catch (error) {
+      if (job.current !== id) return;
+      job.current = null;
+      request.current = null;
+      downloadTarget.current = null;
+      setDownload({ status: "error", done: 0, total: 0, logs: [error instanceof Error ? error.message : "Download failed"] });
+    }
   };
   const downloadSelected = () => runDownload({ locales: selectedLocales, tools: [...selectedTools], pages: selectedPages, engines });
-  const cancelDownload = async () => (await activeWorker())?.postMessage({ type: "OFFLINE_CANCEL" });
+  const cancelDownload = () => {
+    const target = downloadTarget.current;
+    if (target) target.worker.postMessage({ type: "OFFLINE_CANCEL", requestId: target.id });
+    else { job.current = null; request.current = null; setDownload((current) => ({ ...current, status: "canceled" })); }
+  };
   const updateFromPlan = () => {
     if (!plan) return;
     /* The saved selection is re-run as it was, so an update costs one tap. */
@@ -264,6 +325,12 @@ export function OfflineAccess() {
        said they no longer want it, and the next release must not offer to fetch
        it again. */
     if (removalCount === savedCount) clearPlan();
+    else if (plan) savePlan({ ...plan,
+      locales: plan.locales.filter((value) => !removalLocales.includes(value)),
+      tools: plan.tools.filter((value) => !removalTools.some((tool) => tool.id === value)),
+      engines: plan.engines && !removalEngines,
+      at: new Date().toISOString(),
+    });
     worker.postMessage({
       type: "OFFLINE_REMOVE",
       locales: removalLocales,
@@ -319,13 +386,13 @@ export function OfflineAccess() {
       {/* A new release replaces the cache, so what was saved is either out of
           date or gone. Either way the answer is the same saved selection, and
           the visitor decides when to spend the data. */}
-      {plan && (planState === "stale" || planState === "cleared") ? (
+      {(updateAvailable || (plan && (planState === "stale" || planState === "cleared"))) ? (
         <Card className="border-primary/30">
           <CardContent className="flex flex-col gap-3 p-5 sm:flex-row sm:items-center sm:justify-between sm:p-6">
             <p className="type-body">
-              {planState === "stale" ? t("offlineOutdated", { version: APP_VERSION }) : t("offlineCleared")}
+              {updateAvailable ? t("offlineUpdateAvailable") : planState === "stale" ? t("offlineOutdated", { version: APP_VERSION }) : t("offlineCleared")}
             </p>
-            <Button className="shrink-0" onClick={updateFromPlan} disabled={download.status === "running"}>
+            <Button className="shrink-0" onClick={plan ? updateFromPlan : downloadSelected} disabled={download.status === "running"}>
               <Download className="me-2 h-4 w-4" />{t("offlineUpdate")}
             </Button>
           </CardContent>

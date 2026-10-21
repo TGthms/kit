@@ -70,6 +70,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
           </div>
           <div className="flex shrink-0 items-center gap-1">
             {/* Language lives in header + Settings — not a second mobile nav */}
+            <ToolSearch mobile />
             <LocaleSwitcher />
             <ThemeToggle />
           </div>
@@ -77,8 +78,9 @@ export function AppShell({ children }: { children: React.ReactNode }) {
         <RouteProgress />
       </header>
 
-      <aside className="kit-sidebar fixed bottom-0 start-0 top-[calc(3.5rem+env(safe-area-inset-top))] z-30 hidden w-60 overflow-y-auto overscroll-contain border-e border-border/60 px-3 py-5 md:block">
-        <SideNav pathname={pathname} />
+      <aside className="kit-sidebar fixed bottom-0 start-0 top-[calc(3.5rem+env(safe-area-inset-top))] z-30 hidden w-60 flex-col border-e border-border/60 px-3 py-5 md:flex">
+        <ToolSearch />
+        <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain"><SideNav pathname={pathname} /></div>
       </aside>
 
       <div className="min-w-0 flex-1 px-4 pb-5 pt-[calc(3rem+env(safe-area-inset-top)+1.25rem)] sm:px-6 sm:pt-[calc(3.5rem+env(safe-area-inset-top)+2rem)] md:ms-60 md:px-8 lg:px-10 xl:px-12">
@@ -90,7 +92,6 @@ export function AppShell({ children }: { children: React.ReactNode }) {
       </div>
 
       <TabBar pathname={pathname} />
-      <ToolSearch />
     </div>
   );
 }

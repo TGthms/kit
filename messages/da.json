@@ -492,6 +492,7 @@
     "offlinePartial": "{done} af {total} gemt",
     "offlineStoredVersion": "Hentet til Kit {version}",
     "offlineOutdated": "Kit {version} er tilgængelig. De gemte kopier på denne enhed er fra en tidligere udgivelse.",
+    "offlineUpdateAvailable": "En opdatering er klar. Opdater dine downloads for at bruge den offline.",
     "offlineUpdate": "Opdater downloads",
     "offlineRemoveAll": "Fjern alle downloads",
     "offlineRemoveConfirm": "Fjern alle gemte sprog, værktøjssider og mediemoduler fra denne enhed?",

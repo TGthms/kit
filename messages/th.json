@@ -492,6 +492,7 @@
     "offlinePartial": "บันทึกแล้ว {done} จาก {total}",
     "offlineStoredVersion": "ดาวน์โหลดสำหรับ Kit {version}",
     "offlineOutdated": "มี Kit {version} ให้ใช้แล้ว สำเนาที่บันทึกไว้ในอุปกรณ์นี้มาจากเวอร์ชันก่อนหน้า",
+    "offlineUpdateAvailable": "การอัปเดตพร้อมแล้ว อัปเดตไฟล์ที่ดาวน์โหลดเพื่อใช้งานแบบออฟไลน์",
     "offlineUpdate": "อัปเดตการดาวน์โหลด",
     "offlineRemoveAll": "ลบการดาวน์โหลดทั้งหมด",
     "offlineRemoveConfirm": "ลบภาษา หน้าเครื่องมือ และเอนจินสื่อที่บันทึกไว้ทั้งหมดออกจากอุปกรณ์นี้หรือไม่",

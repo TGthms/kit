@@ -2,6 +2,15 @@
 
 This file is the active implementation record. Current source is under `src/`, `messages/`, `content/`, `public/`, and `scripts/`. Do not use the disposable `out/` directory as source evidence.
 
+## Search, cold launch, and offline releases (2026-10-20)
+
+- Global search is an anchored combobox/dropdown in the desktop rail and mobile header, with a bounded result list, active-descendant keyboard selection, Escape/outside dismissal, and no modal backdrop. Page-local catalog filtering remains in place. Verified both the desktop layout and a 440 × 956 mobile viewport.
+- Critical theme, viewport, and language setup is inlined into the document head, removing four blocking external script requests. The root entry paints its existing icon/spinner while the client selects the locale. Added static iOS launch images in both appearances/orientations, including the exact iPhone 16 Pro Max dimensions; regenerate with `node scripts/generate-startup.mjs`. The native iOS 27 launch transition still needs a physical-device check after deployment.
+- Worker install stages startup documents and their actual JS/CSS dependencies before activation. Explicit offline selections are retained in a cache record and staged for subsequent releases; a failed stage leaves the previous cache intact. Background fill is limited to the current app shell and compatibility links, with other languages, full tool sets, and media engines left to explicit downloads.
+- Exported offline manifests now carry the release generation, version, and per-file SHA-256 values. HTML/payloads stay pinned to their worker's release, download success requires every selected resource to be verified, requests have deadlines and cancellation, and navigation probes consult the controlling worker rather than matching another release's caches. Updated status recognizes individually saved tools and requires both their HTML and payload.
+- Offline access checks for a waiting worker, downloads through it rather than the old controller, records its actual generation/version, and explicitly activates/reloads only after completion. Early activation refuses to interrupt another open Kit window. Removed selections update both saved records, so a later release does not restore content the visitor removed. Update availability copy is localized across all catalogs.
+- Validation: typecheck, lint, 777 tests across 122 files, and the 3,632-page static production export pass. A two-release browser canary verified update installation, application, and reopening the updated document/root entry with the local server disconnected. Browser console was clean in the final desktop/mobile search checks. No deployment or commit performed.
+
 ## Navigation and reliability pass (2026-10-19)
 
 - Desktop uses an anchored navigation rail, direct category links, responsive compact tool cards, and global tool search. Settings and legal content retain readable widths. Category cards omit favorite stars; tool pages retain the favorite action.

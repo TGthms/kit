@@ -492,6 +492,7 @@
     "offlinePartial": "{total} öğeden {done} tanesi kayıtlı",
     "offlineStoredVersion": "Kit {version} için indirildi",
     "offlineOutdated": "Kit {version} kullanılabilir. Bu cihazda kayıtlı kopyalar önceki bir sürüme ait.",
+    "offlineUpdateAvailable": "Bir güncelleme hazır. Çevrimdışı kullanmak için indirmelerinizi güncelleyin.",
     "offlineUpdate": "İndirmeleri güncelle",
     "offlineRemoveAll": "Tüm indirmeleri kaldır",
     "offlineRemoveConfirm": "Bu cihazdan kayıtlı tüm diller, araç sayfaları ve medya motorları kaldırılsın mı?",

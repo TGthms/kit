@@ -492,6 +492,7 @@
     "offlinePartial": "{done} di {total} salvati",
     "offlineStoredVersion": "Scaricato per Kit {version}",
     "offlineOutdated": "Kit {version} è disponibile. Le copie salvate su questo dispositivo provengono da una versione precedente.",
+    "offlineUpdateAvailable": "Un aggiornamento è pronto. Aggiorna i download per usarlo offline.",
     "offlineUpdate": "Aggiorna i download",
     "offlineRemoveAll": "Rimuovi tutti i download",
     "offlineRemoveConfirm": "Rimuovere da questo dispositivo tutte le lingue, le pagine degli strumenti e i motori multimediali salvati?",

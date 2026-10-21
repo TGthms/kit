@@ -102,10 +102,11 @@ describe("what is saved", () => {
   });
 
   it("keeps the resource list on the device so the report works offline", () => {
-    expect(sw).toMatch(/await cache\.add\(FILL_PRECACHE\)/);
+    expect(sw).toMatch(/await cache\.put\(FILL_PRECACHE, response\)/);
+    expect(sw).toMatch(/manifest.generation !== GENERATION/);
     const read = sw.slice(sw.indexOf("async function readManifest"), sw.indexOf("async function cachedPathnames"));
     expect(read).toMatch(/await cache\.match\(FILL_PRECACHE\)/);
-    expect(read).toMatch(/fetch\(FILL_PRECACHE, \{ cache: "no-store" \}\)/);
+    expect(read).toMatch(/deadlineFetch\(FILL_PRECACHE, \{ cache: "no-store" \}\)/);
     /* Read out of this build's own cache. Matching across all of them could
        answer with another generation's list, which names content that is not
        here — the report would then count it as saved. */
@@ -363,7 +364,7 @@ describe("the app's own pages", () => {
     const fill = sw.slice(sw.indexOf("async function startLocaleFill"), sw.indexOf("function isTrustedMessage"));
     expect(fill.indexOf("enqueueFill(chrome[locale] || [])")).toBeGreaterThan(-1);
     expect(fill.indexOf("enqueueFill(chrome[locale] || [])")).toBeLessThan(
-      fill.indexOf("enqueueFill(manifest.core || [])")
+      fill.indexOf("enqueueFill((manifest.core || [])")
     );
   });
 });

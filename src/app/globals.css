@@ -334,6 +334,12 @@ canvas {
   outline-offset: -3px;
 }
 
+/* The field carries the focus outline; a second square outline around the
+   text input would break the capsule and obscure its content. */
+.kit-search-input:focus-visible { outline: none; }
+.kit-search-field:focus-within { outline: 2px solid var(--ring); outline-offset: 2px; }
+
+
 /* Actual SDK switches/sliders, each with an isolated, bounded backdrop. */
 .kit-sdk-control {
   position: relative;
@@ -905,9 +911,7 @@ button[data-pressed]:not(:disabled),
   outline-offset: 2px;
 }
 
-.kit-search-dialog::backdrop {
-  background: var(--scrim);
-}
+
 
 /* Accessibility: reduced motion / transparency / contrast */
 @media (prefers-reduced-motion: reduce) {

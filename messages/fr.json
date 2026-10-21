@@ -492,6 +492,7 @@
     "offlinePartial": "{done} sur {total} enregistrés",
     "offlineStoredVersion": "Téléchargé pour Kit {version}",
     "offlineOutdated": "Kit {version} est disponible. Les copies enregistrées sur cet appareil proviennent d'une version antérieure.",
+    "offlineUpdateAvailable": "Une mise à jour est prête. Actualisez vos téléchargements pour l’utiliser hors ligne.",
     "offlineUpdate": "Mettre à jour les téléchargements",
     "offlineRemoveAll": "Supprimer tous les téléchargements",
     "offlineRemoveConfirm": "Supprimer de cet appareil toutes les langues, pages d'outils et moteurs multimédias enregistrés ?",
