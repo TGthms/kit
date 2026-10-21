@@ -1,4 +1,8 @@
 /** CSS screen sizes, including iPhone 16 Pro Max (440 × 956 at 3×). */
+// iOS also keeps native launch images outside the worker's release caches.
+// Change the URL when artwork changes so the old icon is not reused.
+export const STARTUP_IMAGE_VERSION = "spinner-1";
+
 export const STARTUP_SCREENS = [
   { width: 375, height: 667, scale: 2 },
   { width: 414, height: 736, scale: 3 },

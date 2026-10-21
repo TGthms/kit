@@ -508,7 +508,12 @@
     "offlinePagesDesc": "Las páginas de la propia aplicación, en los idiomas que elijas. Sin ellas Kit no puede abrirse sin conexión, así que todas vienen marcadas.",
     "navigationAppearance": "Apariencia experimental",
     "liquidGlass": "Liquid Glass",
-    "liquidGlassDesc": "Prueba el SDK de Liquid Glass en pestañas, interruptores y deslizadores. Usa una refracción suave dentro de cada control. Si no es compatible, se usan los controles habituales."
+    "liquidGlassDesc": "Prueba el SDK de Liquid Glass en pestañas, interruptores y deslizadores. Usa una refracción suave dentro de cada control. Si no es compatible, se usan los controles habituales.",
+    "haptics": "Respuesta háptica",
+    "hapticsDesc": "Vibraciones sutiles en dispositivos compatibles. Reducida mantiene la respuesta en las acciones principales y los controles.",
+    "hapticsFull": "Completa",
+    "hapticsReduced": "Reducida",
+    "hapticsOff": "Desactivada"
   },
   "shortcuts": {
     "title": "Atajos de teclado",

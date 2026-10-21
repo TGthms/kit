@@ -508,7 +508,12 @@
     "offlinePagesDesc": "Die Seiten der App selbst, in den Sprachen Ihrer Wahl. Ohne sie lässt sich Kit ohne Verbindung nicht öffnen, deshalb sind alle vorausgewählt.",
     "navigationAppearance": "Experimentelles Aussehen",
     "liquidGlass": "Liquid Glass",
-    "liquidGlassDesc": "Liquid Glass SDK für Tabs, Schalter und Schieberegler testen. Dezente Lichtbrechung bleibt auf das jeweilige Bedienelement begrenzt. Ohne Unterstützung bleiben die gewohnten Bedienelemente verfügbar."
+    "liquidGlassDesc": "Liquid Glass SDK für Tabs, Schalter und Schieberegler testen. Dezente Lichtbrechung bleibt auf das jeweilige Bedienelement begrenzt. Ohne Unterstützung bleiben die gewohnten Bedienelemente verfügbar.",
+    "haptics": "Haptisches Feedback",
+    "hapticsDesc": "Dezentes Feedback auf unterstützten Geräten. Reduziert beschränkt es auf wichtige Aktionen und Bedienelemente.",
+    "hapticsFull": "Voll",
+    "hapticsReduced": "Reduziert",
+    "hapticsOff": "Aus"
   },
   "shortcuts": {
     "title": "Tastenkürzel",

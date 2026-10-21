@@ -508,7 +508,12 @@
     "offlinePagesDesc": "Sidene i selve appen, på språkene du velger. Uten dem kan ikke Kit åpnes uten tilkobling, så alle er valgt på forhånd.",
     "navigationAppearance": "Eksperimentelt utseende",
     "liquidGlass": "Liquid Glass",
-    "liquidGlassDesc": "Prøv Liquid Glass SDK for faner, brytere og glidebrytere. Lett lysbrytning holdes innenfor hver kontroll. Vanlige kontroller brukes når støtte mangler."
+    "liquidGlassDesc": "Prøv Liquid Glass SDK for faner, brytere og glidebrytere. Lett lysbrytning holdes innenfor hver kontroll. Vanlige kontroller brukes når støtte mangler.",
+    "haptics": "Haptisk tilbakemelding",
+    "hapticsDesc": "Diskret tilbakemelding på støttede enheter. Redusert beholder tilbakemelding for hovedhandlinger og kontroller.",
+    "hapticsFull": "Full",
+    "hapticsReduced": "Redusert",
+    "hapticsOff": "Av"
   },
   "shortcuts": {
     "title": "Tastatursnarveier",

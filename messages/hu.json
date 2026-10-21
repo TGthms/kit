@@ -508,7 +508,12 @@
     "offlinePagesDesc": "Az alkalmazás saját oldalai a választott nyelveken. Ezek nélkül a Kit nem nyílik meg kapcsolat nélkül, ezért mind be van jelölve.",
     "navigationAppearance": "Kísérleti megjelenés",
     "liquidGlass": "Liquid Glass",
-    "liquidGlassDesc": "Próbáld ki a Liquid Glass SDK-t a fülekhez, kapcsolókhoz és csúszkákhoz. Az enyhe fénytörés az egyes vezérlőkön belül marad. Támogatás hiányában a szokásos vezérlők maradnak."
+    "liquidGlassDesc": "Próbáld ki a Liquid Glass SDK-t a fülekhez, kapcsolókhoz és csúszkákhoz. Az enyhe fénytörés az egyes vezérlőkön belül marad. Támogatás hiányában a szokásos vezérlők maradnak.",
+    "haptics": "Haptikus visszajelzés",
+    "hapticsDesc": "Finom visszajelzés a támogatott eszközökön. A csökkentett mód csak a fő műveleteknél és vezérlőknél tartja meg.",
+    "hapticsFull": "Teljes",
+    "hapticsReduced": "Csökkentett",
+    "hapticsOff": "Ki"
   },
   "shortcuts": {
     "title": "Billentyűparancsok",

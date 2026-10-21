@@ -5,6 +5,7 @@ import { ThemeProvider, useTheme } from "next-themes";
 import { useTranslations } from "next-intl";
 import { Toaster } from "sonner";
 import { PressFeedback } from "@/components/layout/press-feedback";
+import { HapticFeedback } from "@/components/layout/haptic-feedback";
 import { THEME_COLOR } from "@/lib/theme/circular-transition";
 import { currentSystemTheme, msUntilNextNightBoundary, syncAppliedTheme } from "@/lib/theme/resolve";
 
@@ -31,6 +32,7 @@ export function Providers({
         <ThemePreferenceSync />
         <ThemeColorSync />
         <PressFeedback />
+        <HapticFeedback />
         {children}
         <KitToaster />
       </ThemeProvider>

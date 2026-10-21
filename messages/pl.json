@@ -508,7 +508,12 @@
     "offlinePagesDesc": "Strony samej aplikacji w wybranych językach. Bez nich Kit nie otworzy się bez połączenia, więc wszystkie są zaznaczone.",
     "navigationAppearance": "Eksperymentalny wygląd",
     "liquidGlass": "Liquid Glass",
-    "liquidGlassDesc": "Wypróbuj SDK Liquid Glass dla kart, przełączników i suwaków. Delikatne załamanie światła pozostaje wewnątrz każdej kontrolki. Gdy brak obsługi, dostępne są zwykłe kontrolki."
+    "liquidGlassDesc": "Wypróbuj SDK Liquid Glass dla kart, przełączników i suwaków. Delikatne załamanie światła pozostaje wewnątrz każdej kontrolki. Gdy brak obsługi, dostępne są zwykłe kontrolki.",
+    "haptics": "Reakcje haptyczne",
+    "hapticsDesc": "Delikatne wibracje na obsługiwanych urządzeniach. Tryb ograniczony zachowuje je dla głównych działań i elementów sterujących.",
+    "hapticsFull": "Pełne",
+    "hapticsReduced": "Ograniczone",
+    "hapticsOff": "Wyłączone"
   },
   "shortcuts": {
     "title": "Skróty klawiszowe",

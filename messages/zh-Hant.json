@@ -508,7 +508,12 @@
     "offlinePagesDesc": "應用程式自身的頁面，依你選擇的語言儲存。沒有它們，Kit 無法在無網路時開啟，因此預設全部勾選。",
     "navigationAppearance": "實驗性外觀",
     "liquidGlass": "Liquid Glass",
-    "liquidGlassDesc": "為標籤列、開關和滑桿試用 Liquid Glass SDK。輕微折射僅作用於控制項內部。不支援時仍使用標準控制項。"
+    "liquidGlassDesc": "為標籤列、開關和滑桿試用 Liquid Glass SDK。輕微折射僅作用於控制項內部。不支援時仍使用標準控制項。",
+    "haptics": "觸覺回饋",
+    "hapticsDesc": "在支援的裝置上提供輕微震動。選擇「減少」時，僅主要操作和控制項保留回饋。",
+    "hapticsFull": "完整",
+    "hapticsReduced": "減少",
+    "hapticsOff": "關閉"
   },
   "shortcuts": {
     "title": "键盤快捷键",

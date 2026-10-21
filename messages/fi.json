@@ -508,7 +508,12 @@
     "offlinePagesDesc": "Sovelluksen omat sivut valitsemillasi kielillä. Ilman niitä Kit ei avaudu ilman yhteyttä, joten kaikki on valittu valmiiksi.",
     "navigationAppearance": "Kokeellinen ulkoasu",
     "liquidGlass": "Liquid Glass",
-    "liquidGlassDesc": "Kokeile Liquid Glass SDK:ta välilehdissä, kytkimissä ja liukusäätimissä. Kevyt valon taittuminen pysyy kunkin säätimen sisällä. Tavalliset säätimet toimivat ilman tukea."
+    "liquidGlassDesc": "Kokeile Liquid Glass SDK:ta välilehdissä, kytkimissä ja liukusäätimissä. Kevyt valon taittuminen pysyy kunkin säätimen sisällä. Tavalliset säätimet toimivat ilman tukea.",
+    "haptics": "Tuntopalaute",
+    "hapticsDesc": "Hienovarainen palaute tuetuissa laitteissa. Vähennetty tila säilyttää palautteen tärkeimmissä toiminnoissa ja säätimissä.",
+    "hapticsFull": "Täysi",
+    "hapticsReduced": "Vähennetty",
+    "hapticsOff": "Pois"
   },
   "shortcuts": {
     "title": "Pikanäppäimet",

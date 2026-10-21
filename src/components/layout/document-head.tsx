@@ -1,6 +1,6 @@
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
-import { STARTUP_SCREENS } from "@/lib/pwa/startup-screens";
+import { STARTUP_IMAGE_VERSION, STARTUP_SCREENS } from "@/lib/pwa/startup-screens";
 import { withBasePath, basePath } from "@/lib/base-path";
 import { locales } from "@/lib/i18n/config";
 import { CONTENT_SECURITY_POLICY } from "@/lib/seo/site";
@@ -28,7 +28,7 @@ export function DocumentHead() {
       {STARTUP_SCREENS.flatMap(({ width, height, scale }) => ["portrait", "landscape"].flatMap((orientation) => ["light", "dark"].map((appearance) => (
         <link key={`${width}-${height}-${scale}-${orientation}-${appearance}`} rel="apple-touch-startup-image"
           media={`screen and (device-width: ${width}px) and (device-height: ${height}px) and (-webkit-device-pixel-ratio: ${scale}) and (orientation: ${orientation}) and (prefers-color-scheme: ${appearance})`}
-          href={withBasePath(`/startup/${width}-${height}-${scale}-${orientation}-${appearance}.png`)} />
+          href={`${withBasePath(`/startup/${width}-${height}-${scale}-${orientation}-${appearance}.png`)}?v=${STARTUP_IMAGE_VERSION}`} />
       ))))}
     </>
   );

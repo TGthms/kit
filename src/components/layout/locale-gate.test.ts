@@ -17,10 +17,13 @@ describe("LocaleGate", () => {
     vi.restoreAllMocks();
   });
 
-  it("ssr includes a Kit heading and noscript locale homes", () => {
+  it("shows only the spinner while retaining the no-script introduction and language homes", () => {
     const html = renderToStaticMarkup(createElement(LocaleGate, COUNTS));
+    const visible = html.replace(/<noscript>[\s\S]*?<\/noscript>/g, "");
+    expect(visible).not.toMatch(/<h1|<img|Private by design|tools across/);
+    expect(visible).toContain('class="kit-spinner"');
+    expect(visible).toContain('role="status">Loading');
     expect(html).toContain(">Kit</h1>");
-    expect(html).toContain('alt="Kit"');
     expect(html).toContain("<noscript>");
     for (const locale of locales) {
       expect(html).toContain(`href="/${locale}/"`);

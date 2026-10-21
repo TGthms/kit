@@ -508,7 +508,12 @@
     "offlinePagesDesc": "アプリ自身のページを、選んだ言語で保存します。これらがないと Kit はオフラインで開けないため、すべて最初から選択されています。",
     "navigationAppearance": "試験的な外観",
     "liquidGlass": "Liquid Glass",
-    "liquidGlassDesc": "タブ、スイッチ、スライダーでLiquid Glass SDKを試せます。軽い屈折効果は各コントロール内に限定されます。未対応の場合は通常のコントロールを使用します。"
+    "liquidGlassDesc": "タブ、スイッチ、スライダーでLiquid Glass SDKを試せます。軽い屈折効果は各コントロール内に限定されます。未対応の場合は通常のコントロールを使用します。",
+    "haptics": "触覚フィードバック",
+    "hapticsDesc": "対応デバイスで軽い振動を返します。「控えめ」では主な操作とコントロールに限定します。",
+    "hapticsFull": "すべて",
+    "hapticsReduced": "控えめ",
+    "hapticsOff": "オフ"
   },
   "shortcuts": {
     "title": "キーボードショートカット",

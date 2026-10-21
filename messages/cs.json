@@ -508,7 +508,12 @@
     "offlinePagesDesc": "Stránky samotné aplikace ve zvolených jazycích. Bez nich se Kit bez připojení neotevře, proto jsou všechny předvybrané.",
     "navigationAppearance": "Experimentální vzhled",
     "liquidGlass": "Liquid Glass",
-    "liquidGlassDesc": "Vyzkoušejte SDK Liquid Glass pro karty, přepínače a posuvníky. Jemný lom světla zůstává uvnitř každého ovládacího prvku. Bez podpory zůstávají běžné ovládací prvky."
+    "liquidGlassDesc": "Vyzkoušejte SDK Liquid Glass pro karty, přepínače a posuvníky. Jemný lom světla zůstává uvnitř každého ovládacího prvku. Bez podpory zůstávají běžné ovládací prvky.",
+    "haptics": "Haptická odezva",
+    "hapticsDesc": "Jemná odezva na podporovaných zařízeních. Omezený režim ji zachovává u hlavních akcí a ovládacích prvků.",
+    "hapticsFull": "Plná",
+    "hapticsReduced": "Omezená",
+    "hapticsOff": "Vypnuto"
   },
   "shortcuts": {
     "title": "Klávesové zkratky",

@@ -156,6 +156,7 @@ export function MediaTimeline({ file, start, end, onChange, startLabel, endLabel
           <button
             key={key}
             type="button"
+            data-haptic="off"
             aria-label={label}
             className={cn(
               "absolute top-0 z-10 h-full w-3 -translate-x-1/2 cursor-ew-resize rounded-sm bg-primary",

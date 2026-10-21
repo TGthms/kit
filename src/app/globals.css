@@ -536,6 +536,25 @@ scritto-flow.kit-scritto-inline {
     background-color 0.3s;
 }
 
+/* Trusted label taps drive an optional native iOS switch tick. The switch
+   itself stays display:none in a separate shadow tree; scrolling stays native. */
+@layer base {
+  /* A base rule survives React className updates, while position utilities
+     still win for controls intentionally placed absolute/fixed/sticky. */
+  button:has(> .kit-ios-haptic-hit) { position: relative; }
+}
+.kit-ios-haptic-hit {
+  position: absolute;
+  inset: 0;
+  display: block;
+  border-radius: inherit;
+  clip-path: border-box;
+  cursor: inherit;
+  z-index: 5;
+}
+button:disabled > .kit-ios-haptic-hit,
+button[aria-disabled="true"] > .kit-ios-haptic-hit { display: none; }
+
 [data-sonner-toaster] {
   --width: min(22.5rem, calc(100vw - 1.5rem));
 }

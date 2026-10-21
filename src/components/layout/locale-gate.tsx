@@ -1,7 +1,7 @@
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { localeNames, locales } from "@/lib/i18n/config";
-import { basePath, withAsset, withBasePath } from "@/lib/base-path";
+import { basePath, withBasePath } from "@/lib/base-path";
 import { SITE_NAME } from "@/lib/seo/site";
 
 const TAGLINE = "Everyday tools in your browser. Private by design.";
@@ -14,7 +14,6 @@ const ENTRY_STYLE = `
 html,body{margin:0;background:#f5f5f7;color:#171717;font-family:system-ui,-apple-system,sans-serif}
 html.dark,html.dark body{background:#000;color:#f5f5f7}
 .kit-entry{box-sizing:border-box;min-height:100vh;min-height:100dvh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;padding:32px 24px;text-align:center}
-.kit-entry img{width:64px;height:64px;border-radius:14px}
 .kit-entry h1{margin:0 0 8px;font-size:30px;letter-spacing:-.04em}
 .kit-entry p{max-width:28rem;margin:8px auto;font-size:14px;line-height:1.5;opacity:.65}
 .kit-entry .kit-spinner{box-sizing:border-box;width:28px;height:28px;border:3px solid #007aff33;border-top-color:#007aff;border-radius:50%;animation:kit-entry-spin .8s linear infinite}
@@ -47,30 +46,19 @@ export function LocaleGate({
     <>
     <style id="kit-entry-style">{ENTRY_STYLE}</style>
     <div className="kit-entry flex min-h-dvh flex-col items-center justify-center gap-5 bg-background px-6 text-center">
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        src={withAsset("/icons/icon.svg")}
-        alt={SITE_NAME}
-        width={64}
-        height={64}
-        className="h-16 w-16 rounded-[14px] shadow-sm"
-        draggable={false}
-      />
-      <div className="space-y-2">
-        <h1 className="type-display text-3xl text-foreground">{SITE_NAME}</h1>
-        <p className="mx-auto max-w-sm text-sm text-muted-foreground">{TAGLINE}</p>
-        <p className="mx-auto max-w-md text-sm text-muted-foreground">
-          {tools} tools across {sections} sections, each at its own address in {languages} languages. Everything runs
-          in your browser; nothing is uploaded.
-        </p>
-      </div>
       <span className="kit-spinner" aria-hidden />
-      <p className="sr-only" role="status">
-        Loading
-      </p>
+      <p className="sr-only" role="status">Loading</p>
       <noscript>
+        <style>{".kit-entry>.kit-spinner,.kit-entry>[role=status]{display:none}"}</style>
+        <div className="space-y-2">
+          <h1 className="type-display text-3xl text-foreground">{SITE_NAME}</h1>
+          <p className="mx-auto max-w-sm text-sm text-muted-foreground">{TAGLINE}</p>
+          <p className="mx-auto max-w-md text-sm text-muted-foreground">
+            {tools} tools across {sections} sections, each at its own address in {languages} languages. Everything runs
+            in your browser; nothing is uploaded.
+          </p>
+        </div>
         <nav aria-label="Languages" className="mt-4 max-w-md text-sm text-muted-foreground">
-          <p className="mb-3">{TAGLINE}</p>
           <ul className="flex flex-wrap justify-center gap-x-3 gap-y-1">
             {locales.map((locale) => (
               <li key={locale}>

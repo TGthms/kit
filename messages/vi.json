@@ -508,7 +508,12 @@
     "offlinePagesDesc": "Các trang của chính ứng dụng, bằng những ngôn ngữ bạn chọn. Không có chúng, Kit không mở được khi không có kết nối, nên tất cả đều được chọn sẵn.",
     "navigationAppearance": "Giao diện thử nghiệm",
     "liquidGlass": "Liquid Glass",
-    "liquidGlassDesc": "Thử SDK Liquid Glass cho thẻ, công tắc và thanh trượt. Khúc xạ nhẹ được giới hạn bên trong từng điều khiển. Các điều khiển thông thường vẫn có sẵn nếu không được hỗ trợ."
+    "liquidGlassDesc": "Thử SDK Liquid Glass cho thẻ, công tắc và thanh trượt. Khúc xạ nhẹ được giới hạn bên trong từng điều khiển. Các điều khiển thông thường vẫn có sẵn nếu không được hỗ trợ.",
+    "haptics": "Phản hồi xúc giác",
+    "hapticsDesc": "Phản hồi nhẹ trên thiết bị được hỗ trợ. Chế độ giảm chỉ giữ phản hồi cho thao tác chính và các nút điều khiển.",
+    "hapticsFull": "Đầy đủ",
+    "hapticsReduced": "Giảm",
+    "hapticsOff": "Tắt"
   },
   "shortcuts": {
     "title": "Phím tắt",

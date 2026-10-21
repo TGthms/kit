@@ -508,7 +508,12 @@
     "offlinePagesDesc": "Appens egna sidor, på de språk du väljer. Utan dem kan Kit inte öppnas utan anslutning, så alla är förvalda.",
     "navigationAppearance": "Experimentellt utseende",
     "liquidGlass": "Liquid Glass",
-    "liquidGlassDesc": "Prova Liquid Glass SDK för flikar, reglage och skjutreglage. Lätt ljusbrytning hålls inom varje kontroll. Vanliga kontroller finns kvar om stöd saknas."
+    "liquidGlassDesc": "Prova Liquid Glass SDK för flikar, reglage och skjutreglage. Lätt ljusbrytning hålls inom varje kontroll. Vanliga kontroller finns kvar om stöd saknas.",
+    "haptics": "Haptisk återkoppling",
+    "hapticsDesc": "Diskret återkoppling på enheter som stöds. Reducerad behåller återkoppling för huvudsakliga åtgärder och reglage.",
+    "hapticsFull": "Fullständig",
+    "hapticsReduced": "Reducerad",
+    "hapticsOff": "Av"
   },
   "shortcuts": {
     "title": "Kortkommandon",

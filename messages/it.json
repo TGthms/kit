@@ -508,7 +508,12 @@
     "offlinePagesDesc": "Le pagine dell’app stessa, nelle lingue che scegli. Senza di esse Kit non può aprirsi senza connessione, quindi sono tutte preselezionate.",
     "navigationAppearance": "Aspetto sperimentale",
     "liquidGlass": "Liquid Glass",
-    "liquidGlassDesc": "Prova l’SDK Liquid Glass per schede, interruttori e cursori. Una lieve rifrazione resta all’interno di ogni controllo. Se non supportato, restano disponibili i controlli normali."
+    "liquidGlassDesc": "Prova l’SDK Liquid Glass per schede, interruttori e cursori. Una lieve rifrazione resta all’interno di ogni controllo. Se non supportato, restano disponibili i controlli normali.",
+    "haptics": "Feedback aptico",
+    "hapticsDesc": "Vibrazioni discrete sui dispositivi compatibili. La modalità ridotta le mantiene per le azioni principali e i controlli.",
+    "hapticsFull": "Completo",
+    "hapticsReduced": "Ridotto",
+    "hapticsOff": "Disattivato"
   },
   "shortcuts": {
     "title": "Scorciatoie da tastiera",

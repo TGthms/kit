@@ -508,7 +508,12 @@
     "offlinePagesDesc": "Halaman aplikasi itu sendiri, dalam bahasa yang Anda pilih. Tanpanya Kit tidak dapat dibuka tanpa koneksi, jadi semuanya tercentang sejak awal.",
     "navigationAppearance": "Tampilan eksperimental",
     "liquidGlass": "Liquid Glass",
-    "liquidGlassDesc": "Coba SDK Liquid Glass untuk tab, sakelar, dan penggeser. Pembiasan ringan dibatasi di dalam setiap kontrol. Kontrol standar tetap tersedia jika tidak didukung."
+    "liquidGlassDesc": "Coba SDK Liquid Glass untuk tab, sakelar, dan penggeser. Pembiasan ringan dibatasi di dalam setiap kontrol. Kontrol standar tetap tersedia jika tidak didukung.",
+    "haptics": "Umpan balik haptik",
+    "hapticsDesc": "Getaran halus pada perangkat yang didukung. Mode dikurangi mempertahankan umpan balik untuk tindakan utama dan kontrol.",
+    "hapticsFull": "Penuh",
+    "hapticsReduced": "Dikurangi",
+    "hapticsOff": "Mati"
   },
   "shortcuts": {
     "title": "Pintasan papan ketik",

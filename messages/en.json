@@ -508,7 +508,12 @@
     "offlinePagesDesc": "The app's own pages, in the languages you choose. Kit needs them to open with no connection, so all of them start selected.",
     "navigationAppearance": "Experimental appearance",
     "liquidGlass": "Liquid Glass",
-    "liquidGlassDesc": "Try the Liquid Glass SDK on tabs, switches, and sliders. Uses gentle refraction within each control. Standard controls stay available when unsupported."
+    "liquidGlassDesc": "Try the Liquid Glass SDK on tabs, switches, and sliders. Uses gentle refraction within each control. Standard controls stay available when unsupported.",
+    "haptics": "Haptic feedback",
+    "hapticsDesc": "Subtle feedback on supported devices. Reduced keeps feedback for primary actions and controls.",
+    "hapticsFull": "Full",
+    "hapticsReduced": "Reduced",
+    "hapticsOff": "Off"
   },
   "shortcuts": {
     "title": "Keyboard shortcuts",

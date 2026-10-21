@@ -16,6 +16,7 @@ import { useHydrated } from "@/lib/react/hydrated";
 import { runCircularThemeTransition } from "@/lib/theme/circular-transition";
 import { HardDriveDownload } from "lucide-react";
 import { useAppearanceStore } from "@/stores/appearance-store";
+import { useFeedbackStore } from "@/stores/feedback-store";
 
 export default function SettingsPage() {
   const t = useTranslations("settings");
@@ -29,6 +30,8 @@ export default function SettingsPage() {
   const hydrated = useHydrated();
   const liquidGlass = useAppearanceStore((state) => state.liquidGlass);
   const setLiquidGlass = useAppearanceStore((state) => state.setLiquidGlass);
+  const haptics = useFeedbackStore((state) => state.haptics);
+  const setHaptics = useFeedbackStore((state) => state.setHaptics);
   // Painted Light/Dark. Stored intent may still be System until the user taps.
   const appearance = hydrated && resolvedTheme === "dark" ? "dark" : "light";
 
@@ -75,6 +78,18 @@ export default function SettingsPage() {
         </CardHeader>
         <CardContent>
           <LocaleSwitcher variant="settings" />
+        </CardContent>
+      </Card>
+
+      <Card className="border-border/40">
+        <CardHeader><CardTitle>{t("haptics")}</CardTitle></CardHeader>
+        <CardContent className="space-y-3">
+          <p className="type-caption text-muted-foreground">{t("hapticsDesc")}</p>
+          {hydrated ? <SegmentedControl value={haptics} onChange={setHaptics} aria-label={t("haptics")} options={[
+            { value: "full", label: t("hapticsFull") },
+            { value: "reduced", label: t("hapticsReduced") },
+            { value: "off", label: t("hapticsOff") },
+          ]} /> : <div className="h-11 w-56 rounded-2xl bg-secondary/80" aria-hidden />}
         </CardContent>
       </Card>
 

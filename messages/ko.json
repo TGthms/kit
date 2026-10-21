@@ -508,7 +508,12 @@
     "offlinePagesDesc": "앱 자체의 페이지를 선택한 언어로 저장합니다. 이것이 없으면 Kit을 오프라인에서 열 수 없으므로 모두 기본 선택되어 있습니다.",
     "navigationAppearance": "실험적 외관",
     "liquidGlass": "Liquid Glass",
-    "liquidGlassDesc": "탭, 스위치, 슬라이더에 Liquid Glass SDK를 사용해 보세요. 약한 굴절 효과가 각 컨트롤 내부에만 적용됩니다. 지원되지 않으면 기본 컨트롤을 사용합니다."
+    "liquidGlassDesc": "탭, 스위치, 슬라이더에 Liquid Glass SDK를 사용해 보세요. 약한 굴절 효과가 각 컨트롤 내부에만 적용됩니다. 지원되지 않으면 기본 컨트롤을 사용합니다.",
+    "haptics": "햅틱 피드백",
+    "hapticsDesc": "지원되는 기기에서 가벼운 진동을 제공합니다. 줄임 모드에서는 주요 동작과 컨트롤에만 피드백을 제공합니다.",
+    "hapticsFull": "전체",
+    "hapticsReduced": "줄임",
+    "hapticsOff": "끔"
   },
   "shortcuts": {
     "title": "키보드 단축키",
