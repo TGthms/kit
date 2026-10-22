@@ -5,7 +5,7 @@ import { toast } from "sonner";
 import { FileDropzone, type FileItem } from "@/components/shared/file-dropzone";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { Field } from "@/components/ui/field";
 import { downloadBlob, bytesToBlob } from "@/lib/utils";
 import { lockPdf, unlockPdf } from "@/lib/pdf/protect";
 import { translateOr } from "@/lib/i18n/translate";
@@ -66,10 +66,9 @@ export function PdfProtect() {
           )}
         </p>
       ) : null}
-      <div className="space-y-2">
-        <Label>{t("password")}</Label>
+      <Field className="space-y-2" label={t("password")}>
         <Input type="password" value={password} onChange={(e) => setPassword(e.target.value)} autoComplete="off" />
-      </div>
+      </Field>
       <ActionBar
         onRun={run}
         loading={loading}

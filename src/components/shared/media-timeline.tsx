@@ -33,8 +33,9 @@ export function MediaTimeline({ file, start, end, onChange, startLabel, endLabel
   const peaks = file && loaded?.file === file ? loaded.peaks : [];
 
   useEffect(() => {
+    drag.current = null;
+    onDurationRef.current?.(0);
     if (!file) {
-      onDurationRef.current?.(0);
       return;
     }
     const url = URL.createObjectURL(file);
@@ -56,6 +57,7 @@ export function MediaTimeline({ file, start, end, onChange, startLabel, endLabel
     let cancelled = false;
     if (file.size <= MAX_WAVEFORM_BYTES) {
       file.arrayBuffer().then(async (buf) => {
+        if (cancelled) return;
         let ctx: AudioContext | null = null;
         try {
           const Ctx =
@@ -84,28 +86,37 @@ export function MediaTimeline({ file, start, end, onChange, startLabel, endLabel
         } finally {
           await ctx?.close().catch(() => undefined);
         }
-      });
+      }).catch(() => { /* Metadata/numeric fields still work if reading fails. */ });
     }
 
     return () => {
       cancelled = true;
       el.removeEventListener("loadedmetadata", onMeta);
+      el.removeAttribute("src");
+      el.load();
       URL.revokeObjectURL(url);
     };
   }, [file]);
 
   const ratio = (value: number) => (duration > 0 ? Math.min(1, Math.max(0, value / duration)) : 0);
 
+  const setEndpoint = (value: number, which: "start" | "end") => {
+    if (duration <= 0) return;
+    const gap = Math.min(0.05, duration);
+    if (which === "start") onChange(Math.max(0, Math.min(value, end - gap)), end);
+    else onChange(start, Math.min(duration, Math.max(value, start + gap)));
+  };
+
   const setFromClientX = (clientX: number, which: "start" | "end") => {
     const rect = trackRef.current?.getBoundingClientRect();
-    if (!rect || duration <= 0) return;
+    if (!rect || rect.width <= 0 || duration <= 0) return;
     const t = ((clientX - rect.left) / rect.width) * duration;
     const clamped = Math.min(duration, Math.max(0, t));
-    if (which === "start") onChange(Math.min(clamped, end - 0.05), end);
-    else onChange(start, Math.max(clamped, start + 0.05));
+    setEndpoint(clamped, which);
   };
 
   const onPointerDown = (which: "start" | "end") => (e: React.PointerEvent) => {
+    if (e.button !== 0 || duration <= 0) return;
     drag.current = which;
     (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
     setFromClientX(e.clientX, which);
@@ -157,13 +168,32 @@ export function MediaTimeline({ file, start, end, onChange, startLabel, endLabel
             key={key}
             type="button"
             data-haptic="off"
+            role="slider"
             aria-label={label}
+            aria-valuemin={key === "start" ? 0 : Math.min(duration, start + Math.min(0.05, duration))}
+            aria-valuemax={key === "start" ? Math.max(0, end - Math.min(0.05, duration)) : duration}
+            aria-valuenow={Math.max(0, Math.min(duration, value))}
+            aria-valuetext={`${value.toFixed(2)}s`}
+            disabled={duration <= 0}
             className={cn(
               "absolute top-0 z-10 h-full w-3 -translate-x-1/2 cursor-ew-resize rounded-sm bg-primary",
               "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             )}
             style={{ left: `${ratio(value) * 100}%` }}
             onPointerDown={onPointerDown(key)}
+            onKeyDown={(event) => {
+              let next = value;
+              const step = event.shiftKey ? 1 : 0.05;
+              if (event.key === "ArrowRight" || event.key === "ArrowUp") next += step;
+              else if (event.key === "ArrowLeft" || event.key === "ArrowDown") next -= step;
+              else if (event.key === "PageUp") next += 10;
+              else if (event.key === "PageDown") next -= 10;
+              else if (event.key === "Home") next = 0;
+              else if (event.key === "End") next = duration;
+              else return;
+              event.preventDefault();
+              setEndpoint(next, key);
+            }}
           />
         ))}
       </div>

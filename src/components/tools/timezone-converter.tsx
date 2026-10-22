@@ -8,7 +8,7 @@ import { clockFace } from "@/components/shared/clock-face";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { Field } from "@/components/ui/field";
 import {
   convertLocalTimeZone,
   formatTimeZone,
@@ -64,10 +64,9 @@ export function TimezoneConverter() {
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="grid gap-4 md:grid-cols-3 md:items-end">
-              <div className="space-y-2">
-                <Label>{text(t, "localTime", "Local date and time")}</Label>
+              <Field className="space-y-2" label={text(t, "localTime", "Local date and time")}>
                 <Input type="datetime-local" value={localDateTime} onChange={(event) => setLocalDateTime(event.target.value)} />
-              </div>
+              </Field>
               <SearchableSelect label={text(t, "from", "From time zone")} value={fromZone} options={zoneOptions} onChange={setFromZone} />
               <SearchableSelect label={text(t, "to", "To time zone")} value={toZone} options={zoneOptions} onChange={setToZone} />
             </div>
@@ -76,7 +75,7 @@ export function TimezoneConverter() {
                 <div><p className="text-xs text-muted-foreground">{fromZone}</p><p className="mt-1 font-mono text-lg">{partLabel(conversion.from)}</p></div>
                 <div><p className="text-xs text-muted-foreground">{toZone}</p><p className="mt-1 font-mono text-lg">{partLabel(conversion.to)}</p></div>
               </div>
-            ) : <p className="text-sm text-destructive">{text(t, "invalid", "Enter a valid local date and time.")}</p>}
+            ) : <p role="status" className="text-sm text-destructive">{text(t, "invalid", "Enter a valid local date and time.")} {t("clockChangeHint")}</p>}
             <Button variant="outline" disabled={!conversion} onClick={() => { if (conversion) { note(`${fromZone} → ${toZone}`, text(t, "saved", "Conversion saved to history.")); } }}>
               <Check /> {text(t, "record", "Record conversion")}
             </Button>

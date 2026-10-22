@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 import { FileDropzone, type FileItem } from "@/components/shared/file-dropzone";
-import { Label } from "@/components/ui/label";
+import { Field } from "@/components/ui/field";
 import { Progress } from "@/components/ui/progress";
 import { downloadMany, bytesToBlob } from "@/lib/utils";
 import { AUDIO_FORMATS, audioConvertArgs, audioNormalizeArgs, audioSilenceSkipArgs } from "@/lib/media/ffmpeg-args";
@@ -70,16 +70,14 @@ export function AudioConvert() {
       <ToolLimits>
         <p>{t("note")}</p>
       </ToolLimits>
-      <div className="space-y-2">
-        <Label>{t("operation")}</Label>
+      <Field className="space-y-2" label={t("operation")}>
         <select className={selectClass} value={operation} onChange={(e) => setOperation(e.target.value as typeof operation)}>
           <option value="convert">{t("convert")}</option>
           <option value="normalize">{t("normalize")}</option>
           <option value="silence">{t("skipSilence")}</option>
         </select>
-      </div>
-      <div className="space-y-2">
-        <Label>{tc("format")}</Label>
+      </Field>
+      <Field className="space-y-2" label={tc("format")}>
         <select className={selectClass} value={format} onChange={(e) => setFormat(e.target.value)} disabled={operation !== "convert"}>
           {AUDIO_FORMATS.map((f) => (
             <option key={f} value={f}>
@@ -87,7 +85,7 @@ export function AudioConvert() {
             </option>
           ))}
         </select>
-      </div>
+      </Field>
       <FileDropzone accept="audio/*" files={files} onChange={setFiles} />
       {job.loading && <Progress value={job.progress} />}
       <ActionBar

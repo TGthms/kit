@@ -125,7 +125,9 @@
     "fileRejectedSize": "A fájl 200 MB feletti, ezért a Kit nem sorolja be ezen a lapon.",
     "fileRejectedType": "Ez a fájltípus itt nem fogadható el.",
     "fileRejectedEmpty": "Nem került hozzá használható fájl.",
-    "offlineIndicator": "Offline: nincs internetkapcsolat"
+    "offlineIndicator": "Offline: nincs internetkapcsolat",
+    "moveEarlier": "Előrébb helyezés",
+    "moveLater": "Hátrébb helyezés"
   },
   "home": {
     "title": "Mit szeretnél csinálni?",
@@ -1390,7 +1392,8 @@
       "zoneAsiaTokyo": "Tokió",
       "zoneAustraliaSydney": "Sydney",
       "zoneAsiaKolkata": "Kalkutta",
-      "zoneAmericaChicago": "Chicago"
+      "zoneAmericaChicago": "Chicago",
+      "clockChangeHint": "Óraátállításkor egy helyi időpont kimaradhat vagy megismétlődhet. Válassz olyan időpontot, amely csak egyszer fordul elő."
     },
     "date-calculator": {
       "name": "Dátumkalkulátor",

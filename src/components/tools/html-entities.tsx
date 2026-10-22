@@ -9,6 +9,7 @@ import { decodeHtmlEntities, encodeHtmlEntities } from "@/lib/text/entities";
 import { ToolShell, useToolHistory } from "./shared";
 
 export function HtmlEntities() {
+  const fieldText = useTranslations("common");
   const t = useTranslations("tools.html-entities");
   const log = useToolHistory("html-entities");
   const [text, setText] = useState("<Hello & goodbye>");
@@ -30,7 +31,7 @@ export function HtmlEntities() {
           {t("decode")}
         </Button>
       </div>
-      <Textarea value={text} onChange={(e) => setText(e.target.value)} className="min-h-40 font-mono" />
+      <Textarea aria-label={fieldText("input")} value={text} onChange={(e) => setText(e.target.value)} className="min-h-40 font-mono" />
       <Button onClick={run}>{t("run")}</Button>
     </ToolShell>
   );

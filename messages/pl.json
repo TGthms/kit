@@ -125,7 +125,9 @@
     "fileRejectedSize": "Ten plik ma ponad 200 MB, więc Kit nie doda go do kolejki w tej karcie.",
     "fileRejectedType": "Ten typ pliku nie jest tu akceptowany.",
     "fileRejectedEmpty": "Nie dodano użytecznych plików.",
-    "offlineIndicator": "Offline: brak połączenia z internetem"
+    "offlineIndicator": "Offline: brak połączenia z internetem",
+    "moveEarlier": "Przenieś wcześniej",
+    "moveLater": "Przenieś później"
   },
   "home": {
     "title": "Co chcesz zrobić?",
@@ -1390,7 +1392,8 @@
       "zoneAsiaTokyo": "Tokio",
       "zoneAustraliaSydney": "Sydney",
       "zoneAsiaKolkata": "Kalkuta",
-      "zoneAmericaChicago": "Chicago"
+      "zoneAmericaChicago": "Chicago",
+      "clockChangeHint": "Zmiana czasu może pominąć lub powtórzyć godzinę lokalną. Wybierz godzinę, która występuje tylko raz."
     },
     "date-calculator": {
       "name": "Kalkulator dat",

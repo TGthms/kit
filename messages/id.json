@@ -125,7 +125,9 @@
     "fileRejectedSize": "Berkas itu lebih dari 200 MB, jadi Kit tidak mengantrikannya di tab ini.",
     "fileRejectedType": "Jenis berkas itu tidak diterima di sini.",
     "fileRejectedEmpty": "Tidak ada berkas yang dapat digunakan.",
-    "offlineIndicator": "Offline: tidak ada koneksi internet"
+    "offlineIndicator": "Offline: tidak ada koneksi internet",
+    "moveEarlier": "Pindahkan lebih awal",
+    "moveLater": "Pindahkan lebih akhir"
   },
   "home": {
     "title": "Apa yang ingin Anda lakukan?",
@@ -1390,7 +1392,8 @@
       "zoneAsiaTokyo": "Tokyo",
       "zoneAustraliaSydney": "Sydney",
       "zoneAsiaKolkata": "Kolkata",
-      "zoneAmericaChicago": "Chicago"
+      "zoneAmericaChicago": "Chicago",
+      "clockChangeHint": "Perubahan jam dapat melewati atau mengulang waktu setempat. Pilih waktu yang hanya terjadi sekali."
     },
     "date-calculator": {
       "name": "Kalkulator tanggal",

@@ -125,7 +125,9 @@
     "fileRejectedSize": "Bu dosya 200 MB’ı aşıyor, Kit bu sekmede kuyruğa almaz.",
     "fileRejectedType": "Bu dosya türü burada kabul edilmiyor.",
     "fileRejectedEmpty": "Kullanılabilir dosya eklenmedi.",
-    "offlineIndicator": "Çevrimdışı: internet bağlantısı yok"
+    "offlineIndicator": "Çevrimdışı: internet bağlantısı yok",
+    "moveEarlier": "Öne taşı",
+    "moveLater": "Arkaya taşı"
   },
   "home": {
     "title": "Ne yapmak istiyorsunuz?",
@@ -1390,7 +1392,8 @@
       "zoneAsiaTokyo": "Tokyo",
       "zoneAustraliaSydney": "Sidney",
       "zoneAsiaKolkata": "Kalküta",
-      "zoneAmericaChicago": "Chicago"
+      "zoneAmericaChicago": "Chicago",
+      "clockChangeHint": "Saat değişiklikleri yerel bir saati atlayabilir veya tekrarlayabilir. Yalnızca bir kez gerçekleşen bir saat seçin."
     },
     "date-calculator": {
       "name": "Tarih hesaplayıcı",

@@ -4,7 +4,7 @@ import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 import { FileDropzone, type FileItem } from "@/components/shared/file-dropzone";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { Field } from "@/components/ui/field";
 import { downloadMany, extensionForMime } from "@/lib/utils";
 import { watermarkImage } from "@/lib/image/core";
 import { ActionBar, ToolShell, useToolHistory } from "./shared";
@@ -47,12 +47,10 @@ export function ImageWatermark() {
   return (
     <ToolShell toolId="image-watermark">
       <FileDropzone accept="image/*" files={files} onChange={setFiles} />
-      <div className="space-y-2">
-        <Label>{t("text")}</Label>
+      <Field className="space-y-2" label={t("text")}>
         <Input value={text} onChange={(e) => setText(e.target.value)} />
-      </div>
-      <div className="space-y-2">
-        <Label>{t("position")}</Label>
+      </Field>
+      <Field className="space-y-2" label={t("position")}>
         <select
           className={selectClass}
           value={position}
@@ -63,7 +61,7 @@ export function ImageWatermark() {
           <option value="top-right">{t("topRight")}</option>
           <option value="center">{t("center")}</option>
         </select>
-      </div>
+      </Field>
       <ActionBar onRun={run} loading={loading} label={t("run")} disabled={!files.length || !text.trim()} />
     </ToolShell>
   );

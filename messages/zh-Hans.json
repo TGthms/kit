@@ -125,7 +125,9 @@
     "fileRejectedSize": "该文件超过 200 MB，Kit 不会在此标签页排队处理。",
     "fileRejectedType": "此处不接受该文件类型。",
     "fileRejectedEmpty": "没有加入可用文件。",
-    "offlineIndicator": "离线：没有互联网连接"
+    "offlineIndicator": "离线：没有互联网连接",
+    "moveEarlier": "向前移动",
+    "moveLater": "向后移动"
   },
   "home": {
     "title": "今天有什么要做的？",
@@ -1390,7 +1392,8 @@
       "zoneAsiaTokyo": "东京",
       "zoneAustraliaSydney": "悉尼",
       "zoneAsiaKolkata": "加尔各答",
-      "zoneAmericaChicago": "芝加哥"
+      "zoneAmericaChicago": "芝加哥",
+      "clockChangeHint": "时钟调整可能会跳过或重复某个当地时间。请选择只出现一次的时间。"
     },
     "date-calculator": {
       "name": "日期计算器",

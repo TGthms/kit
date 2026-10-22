@@ -4,7 +4,7 @@ import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 import { FileDropzone, type FileItem } from "@/components/shared/file-dropzone";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { Field } from "@/components/ui/field";
 import { downloadMany, bytesToBlob } from "@/lib/utils";
 import { numberPdfPages, type PageNumberPosition } from "@/lib/pdf/core";
 import { ActionBar, ToolShell, useToolHistory } from "./shared";
@@ -49,17 +49,14 @@ export function PdfNumbers() {
     <ToolShell toolId="pdf-numbers">
       <FileDropzone accept="application/pdf" files={files} onChange={setFiles} />
       <div className="grid gap-4 sm:grid-cols-3">
-        <div className="space-y-2 sm:col-span-2">
-          <Label>{t("template")}</Label>
+        <Field className="space-y-2 sm:col-span-2" label={t("template")}>
           <Input value={template} onChange={(e) => setTemplate(e.target.value)} />
-        </div>
-        <div className="space-y-2">
-          <Label>{t("start")}</Label>
+        </Field>
+        <Field className="space-y-2" label={t("start")}>
           <Input type="number" min={1} value={start} onChange={(e) => setStart(Number(e.target.value) || 1)} />
-        </div>
+        </Field>
       </div>
-      <div className="space-y-2">
-        <Label>{t("position")}</Label>
+      <Field className="space-y-2" label={t("position")}>
         <select className={selectClass} value={position} onChange={(e) => setPosition(e.target.value as PageNumberPosition)}>
           <option value="header-left">{t("headerLeft")}</option>
           <option value="header-center">{t("headerCenter")}</option>
@@ -68,7 +65,7 @@ export function PdfNumbers() {
           <option value="footer-center">{t("footerCenter")}</option>
           <option value="footer-right">{t("footerRight")}</option>
         </select>
-      </div>
+      </Field>
       <ActionBar onRun={run} loading={loading} label={t("run")} disabled={!files.length} />
     </ToolShell>
   );

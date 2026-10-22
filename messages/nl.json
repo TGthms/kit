@@ -125,7 +125,9 @@
     "fileRejectedSize": "Dat bestand is groter dan 200 MB, dus Kit zet het niet in de wachtrij in dit tabblad.",
     "fileRejectedType": "Dat bestandstype wordt hier niet geaccepteerd.",
     "fileRejectedEmpty": "Er zijn geen bruikbare bestanden toegevoegd.",
-    "offlineIndicator": "Offline: geen internetverbinding"
+    "offlineIndicator": "Offline: geen internetverbinding",
+    "moveEarlier": "Eerder plaatsen",
+    "moveLater": "Later plaatsen"
   },
   "home": {
     "title": "Wat wil je doen?",
@@ -1390,7 +1392,8 @@
       "zoneAsiaTokyo": "Tokio",
       "zoneAustraliaSydney": "Sydney",
       "zoneAsiaKolkata": "Calcutta",
-      "zoneAmericaChicago": "Chicago"
+      "zoneAmericaChicago": "Chicago",
+      "clockChangeHint": "Bij een klokwijziging kan een lokale tijd worden overgeslagen of herhaald. Kies een tijd die één keer voorkomt."
     },
     "date-calculator": {
       "name": "Datumberekenaar",

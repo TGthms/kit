@@ -125,7 +125,9 @@
     "fileRejectedSize": "הקובץ גדול מ־200 MB, לכן Kit לא יכניס אותו לתור בלשונית הזו.",
     "fileRejectedType": "סוג הקובץ הזה אינו מתקבל כאן.",
     "fileRejectedEmpty": "לא נוספו קבצים שמישים.",
-    "offlineIndicator": "לא מקוון: אין חיבור לאינטרנט"
+    "offlineIndicator": "לא מקוון: אין חיבור לאינטרנט",
+    "moveEarlier": "העברה למיקום קודם",
+    "moveLater": "העברה למיקום הבא"
   },
   "home": {
     "title": "מה תרצו לעשות?",
@@ -1390,7 +1392,8 @@
       "zoneAsiaTokyo": "טוקיו",
       "zoneAustraliaSydney": "סידני",
       "zoneAsiaKolkata": "קולקטה",
-      "zoneAmericaChicago": "שיקגו"
+      "zoneAmericaChicago": "שיקגו",
+      "clockChangeHint": "מעבר שעון עשוי לדלג על שעה מקומית או לחזור עליה. יש לבחור שעה שמתרחשת פעם אחת בלבד."
     },
     "date-calculator": {
       "name": "מחשבון תאריכים",

@@ -131,6 +131,7 @@ export async function cropImage(
   region: { x: number; y: number; w: number; h: number },
   mime?: string
 ): Promise<Blob> {
+  if (!Number.isFinite(region.x) || !Number.isFinite(region.y)) throw new Error("Crop coordinates must be finite numbers.");
   if (!Number.isFinite(region.w) || !Number.isFinite(region.h) || region.w <= 0 || region.h <= 0) {
     throw new Error("Crop width and height must be positive numbers.");
   }

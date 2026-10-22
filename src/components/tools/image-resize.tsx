@@ -5,6 +5,7 @@ import { toast } from "sonner";
 import { FileDropzone, type FileItem } from "@/components/shared/file-dropzone";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Field } from "@/components/ui/field";
 import { Switch } from "@/components/ui/switch";
 import { downloadMany, extensionForMime } from "@/lib/utils";
 import { resizeImage } from "@/lib/image/core";
@@ -47,14 +48,12 @@ export function ImageResize() {
     <ToolShell toolId="image-resize">
       <FileDropzone accept="image/*" files={files} onChange={setFiles} />
       <div className="grid gap-4 sm:grid-cols-3">
-        <div className="space-y-2">
-          <Label>{tc("width")}</Label>
+        <Field className="space-y-2" label={tc("width")}>
           <Input type="number" min={0} value={width} onChange={(e) => setWidth(Number(e.target.value) || 0)} />
-        </div>
-        <div className="space-y-2">
-          <Label>{tc("height")}</Label>
+        </Field>
+        <Field className="space-y-2" label={tc("height")}>
           <Input type="number" min={0} value={height} onChange={(e) => setHeight(Number(e.target.value) || 0)} />
-        </div>
+        </Field>
         <div className="flex items-end gap-2 pb-2">
           <Switch checked={lock} onCheckedChange={setLock} id="lock" />
           <Label htmlFor="lock">{t("lockAspect")}</Label>

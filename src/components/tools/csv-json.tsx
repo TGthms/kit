@@ -9,6 +9,7 @@ import { csvToJson, jsonToCsv } from "@/lib/text/core";
 import { ToolShell, useToolHistory } from "./shared";
 
 export function CsvJson() {
+  const fieldText = useTranslations("common");
   const t = useTranslations("tools.csv-json");
   const log = useToolHistory("csv-json");
   const [input, setInput] = useState("name,role\nKit,toolkit\n");
@@ -34,7 +35,7 @@ export function CsvJson() {
           {t("toCsv")}
         </Button>
       </div>
-      <Textarea value={input} onChange={(e) => setInput(e.target.value)} className="min-h-64" />
+      <Textarea aria-label={fieldText("input")} value={input} onChange={(e) => setInput(e.target.value)} className="min-h-64" />
       <Button onClick={run}>{t("run")}</Button>
     </ToolShell>
   );

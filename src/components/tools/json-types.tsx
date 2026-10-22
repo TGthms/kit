@@ -10,6 +10,7 @@ import { jsonToTypescript } from "@/lib/text/json-types";
 import { ToolShell, useToolHistory } from "./shared";
 
 export function JsonTypes() {
+  const fieldText = useTranslations("common");
   const t = useTranslations("tools.json-types");
   const log = useToolHistory("json-types");
   const [input, setInput] = useState('{\n  "name": "Kit",\n  "ok": true\n}');
@@ -28,7 +29,7 @@ export function JsonTypes() {
 
   return (
     <ToolShell toolId="json-types">
-      <Textarea value={input} onChange={(e) => setInput(e.target.value)} className="min-h-64 font-mono" />
+      <Textarea aria-label={fieldText("input")} value={input} onChange={(e) => setInput(e.target.value)} className="min-h-64 font-mono" />
       <div className="flex gap-2">
         <Button onClick={run}>{t("run")}</Button>
         <CopyButton value={input} />

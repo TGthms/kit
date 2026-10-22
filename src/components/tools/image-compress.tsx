@@ -2,13 +2,12 @@
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { toast } from "sonner";
-import JSZip from "jszip";
 import { FileDropzone, type FileItem } from "@/components/shared/file-dropzone";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { Field } from "@/components/ui/field";
 import { Slider } from "@/components/ui/slider";
 import { Progress } from "@/components/ui/progress";
-import { downloadBlob, extensionForMime } from "@/lib/utils";
+import { downloadMany, extensionForMime } from "@/lib/utils";
 import { compressImage, compressOutputMime } from "@/lib/image/core";
 import { ActionBar, ToolShell, useToolHistory } from "./shared";
 
@@ -30,7 +29,7 @@ export function ImageCompress() {
     setLoading(true);
     setProgress(0);
     try {
-      const zip = new JSZip();
+      const results: Array<{ name: string; blob: Blob }> = [];
       for (let i = 0; i < files.length; i++) {
         const f = files[i];
         const blob = await compressImage(f.file, {
@@ -40,14 +39,10 @@ export function ImageCompress() {
           mime: compressOutputMime(f.file.type),
         });
         const name = f.file.name.replace(/\.\w+$/, "") + `-compressed.${extensionForMime(blob.type, "jpg")}`;
-        zip.file(name, blob);
-        if (files.length === 1) downloadBlob(blob, name);
+        results.push({ name, blob });
         setProgress(Math.round(((i + 1) / files.length) * 100));
       }
-      if (files.length > 1) {
-        const z = await zip.generateAsync({ type: "blob" });
-        downloadBlob(z, "compressed-images.zip");
-      }
+      await downloadMany(results, "compressed-images.zip");
       toast.success(t("success", { count: files.length }));
       log(`${files.length} images`, "success", { quality, maxW });
     } catch (e) {
@@ -63,17 +58,13 @@ export function ImageCompress() {
       <FileDropzone accept="image/*" files={files} onChange={setFiles} />
       <div className="grid gap-4 sm:grid-cols-2">
         {qualityApplies ? (
-          <div className="space-y-2">
-            <Label>
-              {tc("quality")}: {Math.round(quality * 100)}%
-            </Label>
+          <Field className="space-y-2" label={<>{tc("quality")}: {Math.round(quality * 100)}%</>}>
             <Slider aria-label={tc("quality")} value={[quality]} min={0.1} max={1} step={0.05} onValueChange={(v) => setQuality(v[0])} />
-          </div>
+          </Field>
         ) : null}
-        <div className="space-y-2">
-          <Label>{tc("maxWidth")}</Label>
+        <Field className="space-y-2" label={tc("maxWidth")}>
           <Input type="number" value={maxW} onChange={(e) => setMaxW(Number(e.target.value) || 1920)} />
-        </div>
+        </Field>
       </div>
       {loading && <Progress value={progress} />}
       <ActionBar onRun={run} loading={loading} label={t("run")} disabled={!files.length} />

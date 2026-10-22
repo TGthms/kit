@@ -3,9 +3,15 @@ import {
   canvasOutputMime,
   clampImageSize,
   compressOutputMime,
+  cropImage,
   MAX_IMAGE_CANVAS_EDGE,
   MAX_IMAGE_CANVAS_PIXELS,
 } from "./core";
+
+it("rejects invalid crop coordinates before allocating an image bitmap", async () => {
+  await expect(cropImage(new Blob(), { x: NaN, y: 0, w: 10, h: 10 })).rejects.toThrow(/coordinates/);
+  await expect(cropImage(new Blob(), { x: 0, y: Infinity, w: 10, h: 10 })).rejects.toThrow(/coordinates/);
+});
 
 describe("clampImageSize", () => {
   it("leaves small images alone", () => {

@@ -10,9 +10,11 @@ import { Input } from "@/components/ui/input";
 import { SegmentedControl } from "@/components/ui/segmented-control";
 import { Textarea } from "@/components/ui/textarea";
 import { flattenJson, jsonPathGet } from "@/lib/text/json-query";
+import { parseToolJson } from "@/lib/text/budget";
 import { ToolShell, useToolHistory } from "./shared";
 
 export function JsonQuery() {
+  const fieldText = useTranslations("common");
   const t = useTranslations("tools.json-query");
   const log = useToolHistory("json-query");
   const [input, setInput] = useState('{\n  "user": { "name": "Kit", "tags": ["pdf", "image"] },\n  "count": 2\n}');
@@ -23,7 +25,7 @@ export function JsonQuery() {
 
   const run = () => {
     try {
-      const data = JSON.parse(input) as unknown;
+      const data = parseToolJson(input);
       if (mode === "flatten") {
         const flat = flattenJson(data);
         const text = Object.entries(flat)
@@ -72,7 +74,7 @@ export function JsonQuery() {
         <CopyButton value={out} disabled={!out} />
       </div>
       {error ? <p className="text-sm text-destructive">{error}</p> : null}
-      {out ? <Textarea value={out} readOnly className="min-h-32 font-mono" /> : null}
+      {out ? <Textarea aria-label={fieldText("output")} value={out} readOnly className="min-h-32 font-mono" /> : null}
     </ToolShell>
   );
 }

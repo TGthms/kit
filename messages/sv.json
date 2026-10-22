@@ -125,7 +125,9 @@
     "fileRejectedSize": "Filen är över 200 MB, så Kit köar den inte i den här fliken.",
     "fileRejectedType": "Den filtypen accepteras inte här.",
     "fileRejectedEmpty": "Inga användbara filer lades till.",
-    "offlineIndicator": "Offline: ingen internetanslutning"
+    "offlineIndicator": "Offline: ingen internetanslutning",
+    "moveEarlier": "Flytta tidigare",
+    "moveLater": "Flytta senare"
   },
   "home": {
     "title": "Vad behöver du göra?",
@@ -1390,7 +1392,8 @@
       "zoneAsiaTokyo": "Tokyo",
       "zoneAustraliaSydney": "Sydney",
       "zoneAsiaKolkata": "Kolkata",
-      "zoneAmericaChicago": "Chicago"
+      "zoneAmericaChicago": "Chicago",
+      "clockChangeHint": "Vid tidsomställning kan en lokal tid hoppas över eller upprepas. Välj en tid som bara inträffar en gång."
     },
     "date-calculator": {
       "name": "Datumkalkylator",

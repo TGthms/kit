@@ -13,6 +13,7 @@ import { ToolShell, useToolHistory } from "./shared";
 import { selectClass } from "./text-extra-shared";
 
 export function UuidGenerator() {
+  const fieldText = useTranslations("common");
   const t = useTranslations("tools.uuid-generator");
   const log = useToolHistory("uuid-generator");
   const [count, setCount] = useState(5);
@@ -47,7 +48,7 @@ export function UuidGenerator() {
         <Button onClick={run}>{t("run")}</Button>
         <CopyButton value={out} disabled={!out} />
       </div>
-      {out ? <Textarea value={out} readOnly className="min-h-40 font-mono" /> : null}
+      {out ? <Textarea aria-label={fieldText("output")} value={out} readOnly className="min-h-40 font-mono" /> : null}
     </ToolShell>
   );
 }

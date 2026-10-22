@@ -41,14 +41,16 @@ async function embedBrowserText(
   const canvas = document.createElement("canvas");
   const measure = canvas.getContext("2d");
   if (!measure) throw new Error("Canvas is unavailable");
-  measure.font = `${italic ? "italic " : ""}600 ${fontSize}px system-ui, sans-serif`;
+  const font = `${italic ? "italic " : ""}600 ${fontSize}px system-ui, sans-serif`;
+  measure.font = font;
   const metrics = measure.measureText(text);
   const pad = Math.ceil(fontSize * 0.35);
   canvas.width = Math.max(1, Math.ceil(metrics.width + pad * 2));
   canvas.height = Math.max(1, Math.ceil(fontSize * 1.6));
   const ctx = canvas.getContext("2d");
   if (!ctx) throw new Error("Canvas is unavailable");
-  ctx.font = measure.font;
+  // Resizing a canvas resets its context, including the measuring font.
+  ctx.font = font;
   ctx.textBaseline = "middle";
   const alpha = Math.min(1, Math.max(0, opacity));
   ctx.fillStyle = `rgba(${Math.round(color[0] * 255)}, ${Math.round(color[1] * 255)}, ${Math.round(

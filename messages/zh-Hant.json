@@ -125,7 +125,9 @@
     "fileRejectedSize": "該檔案超過 200 MB，Kit 不會在此分頁排隊處理。",
     "fileRejectedType": "此處不接受該檔案類型。",
     "fileRejectedEmpty": "沒有加入可用檔案。",
-    "offlineIndicator": "離線：沒有網際網路連線"
+    "offlineIndicator": "離線：沒有網際網路連線",
+    "moveEarlier": "向前移動",
+    "moveLater": "向後移動"
   },
   "home": {
     "title": "今天有什麼要做的？",
@@ -1390,7 +1392,8 @@
       "zoneAsiaTokyo": "東京",
       "zoneAustraliaSydney": "雪梨",
       "zoneAsiaKolkata": "加爾各答",
-      "zoneAmericaChicago": "芝加哥"
+      "zoneAmericaChicago": "芝加哥",
+      "clockChangeHint": "時鐘調整可能會跳過或重複某個當地時間。請選擇只出現一次的時間。"
     },
     "date-calculator": {
       "name": "日期計算器",

@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 import { FileDropzone, type FileItem } from "@/components/shared/file-dropzone";
-import { Label } from "@/components/ui/label";
+import { Field } from "@/components/ui/field";
 import { downloadMany, extensionForMime } from "@/lib/utils";
 import { rotateImage, flipImage } from "@/lib/image/core";
 import { ActionBar, ToolShell, useToolHistory } from "./shared";
@@ -46,8 +46,7 @@ export function ImageRotate() {
   return (
     <ToolShell toolId="image-rotate">
       <FileDropzone accept="image/*" files={files} onChange={setFiles} />
-      <div className="space-y-2">
-        <Label>{t("operation")}</Label>
+      <Field className="space-y-2" label={t("operation")}>
         <select className={selectClass} value={op} onChange={(e) => setOp(e.target.value as typeof op)}>
           <option value="90">{t("rot90")}</option>
           <option value="180">{t("rot180")}</option>
@@ -55,7 +54,7 @@ export function ImageRotate() {
           <option value="h">{t("flipH")}</option>
           <option value="v">{t("flipV")}</option>
         </select>
-      </div>
+      </Field>
       <ActionBar onRun={run} loading={loading} label={t("run")} disabled={!files.length} />
     </ToolShell>
   );

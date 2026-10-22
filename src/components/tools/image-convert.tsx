@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 import { FileDropzone, type FileItem } from "@/components/shared/file-dropzone";
-import { Label } from "@/components/ui/label";
+import { Field } from "@/components/ui/field";
 import { downloadMany, extensionForMime } from "@/lib/utils";
 import { convertImage, type ImageMime } from "@/lib/image/core";
 import { ActionBar, ToolShell, useToolHistory } from "./shared";
@@ -42,8 +42,7 @@ export function ImageConvert() {
   return (
     <ToolShell toolId="image-convert">
       <FileDropzone accept="image/*" files={files} onChange={setFiles} />
-      <div className="space-y-2">
-        <Label>{tc("format")}</Label>
+      <Field className="space-y-2" label={tc("format")}>
         <select
           className="h-10 w-full rounded-xl border border-input bg-background px-3 text-base"
           value={mime}
@@ -53,7 +52,7 @@ export function ImageConvert() {
           <option value="image/png">PNG</option>
           <option value="image/webp">WEBP</option>
         </select>
-      </div>
+      </Field>
       <ActionBar onRun={run} loading={loading} label={t("run")} disabled={!files.length} />
     </ToolShell>
   );

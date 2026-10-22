@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Field } from "@/components/ui/field";
 import { Switch } from "@/components/ui/switch";
 import { calculateTip, MAX_TIP_PEOPLE } from "@/lib/converter/tip";
 import { ToolLimits, ToolShell, useHistoryNote } from "./shared";
@@ -49,13 +50,11 @@ export function TipSplitCalculator() {
           [text(t, "tipPercent", "Tip %"), tipPercent, setTipPercent],
           [text(t, "taxPercent", "Tax %"), taxPercent, setTaxPercent],
         ] as const).map(([label, value, setValue]) => (
-          <div key={label} className="space-y-2">
-            <Label>{label}</Label>
+          <Field key={label} className="space-y-2" label={label}>
             <Input type="number" min="0" step="any" value={value} onChange={(event) => setValue(event.target.value)} />
-          </div>
+          </Field>
         ))}
-        <div className="space-y-2">
-          <Label>{text(t, "people", "People")}</Label>
+        <Field className="space-y-2" label={text(t, "people", "People")}>
           <Input
             type="number"
             min={1}
@@ -64,7 +63,7 @@ export function TipSplitCalculator() {
             value={people}
             onChange={(event) => setPeople(limitPeople(event.target.value))}
           />
-        </div>
+        </Field>
       </div>
       <div className="flex items-center gap-3"><Switch checked={splitRemainder} onCheckedChange={setSplitRemainder} id="split-remainder" /><Label htmlFor="split-remainder">{text(t, "distributeRoundingRemainder", "Distribute rounding remainder")}</Label></div>
       {result ? (

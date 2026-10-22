@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 import { FileDropzone, type FileItem } from "@/components/shared/file-dropzone";
-import { Label } from "@/components/ui/label";
+import { Field } from "@/components/ui/field";
 import { downloadMany, extensionForMime } from "@/lib/utils";
 import { filterImage } from "@/lib/image/core";
 import type { FilterName } from "@/lib/image/transform";
@@ -44,8 +44,7 @@ export function ImageFilters() {
   return (
     <ToolShell toolId="image-filters">
       <FileDropzone accept="image/*" files={files} onChange={setFiles} />
-      <div className="space-y-2">
-        <Label>{t("filter")}</Label>
+      <Field className="space-y-2" label={t("filter")}>
         <select
           className={selectClass}
           value={filter}
@@ -55,7 +54,7 @@ export function ImageFilters() {
           <option value="sepia">{t("sepia")}</option>
           <option value="invert">{t("invert")}</option>
         </select>
-      </div>
+      </Field>
       <ActionBar onRun={run} loading={loading} label={t("run")} disabled={!files.length} />
     </ToolShell>
   );

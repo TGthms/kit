@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
-import { Upload } from "lucide-react";
+import { Upload, ArrowUp, ArrowDown } from "lucide-react";
 import { cn, formatBytes, isLargeFile } from "@/lib/utils";
 import { classifyDroppedFiles } from "@/lib/files/accept";
 import { Button } from "@/components/ui/button";
@@ -162,6 +162,18 @@ export function FileDropzone({
                 </p>
                 <p className="text-xs text-muted-foreground">{formatBytes(item.file.size)}</p>
               </div>
+              {reorder ? <div className="flex shrink-0 gap-1">
+                <Button type="button" size="icon" variant="ghost" disabled={index === 0} aria-label={`${t("moveEarlier")} · ${item.file.name}`} onClick={() => {
+                  const next = [...files];
+                  [next[index - 1], next[index]] = [next[index], next[index - 1]];
+                  onChange(next);
+                }}><ArrowUp aria-hidden /></Button>
+                <Button type="button" size="icon" variant="ghost" disabled={index === files.length - 1} aria-label={`${t("moveLater")} · ${item.file.name}`} onClick={() => {
+                  const next = [...files];
+                  [next[index + 1], next[index]] = [next[index], next[index + 1]];
+                  onChange(next);
+                }}><ArrowDown aria-hidden /></Button>
+              </div> : null}
               <Button
                 size="sm"
                 variant="ghost"

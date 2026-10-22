@@ -4,10 +4,11 @@ import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 import { FileDropzone, type FileItem } from "@/components/shared/file-dropzone";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { Field } from "@/components/ui/field";
 import { downloadBlob, extensionForMime } from "@/lib/utils";
 import { cropImage } from "@/lib/image/core";
 import { ActionBar, DownloadResult, ToolShell, useToolHistory } from "./shared";
+import { useTaskScope } from "@/lib/react/task-scope";
 
 function CropBox({
   x,
@@ -81,6 +82,7 @@ function CropBox({
   return (
     <div
       ref={boxRef}
+      aria-hidden="true"
       className="absolute border-2 border-primary/90 bg-primary/15"
       style={{
         left: `${(x / Math.max(natural.width, 1)) * 100}%`,
@@ -120,6 +122,8 @@ export function ImageCrop() {
   const [natural, setNatural] = useState({ width: 400, height: 300 });
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState<{ blob: Blob; name: string } | null>(null);
+  const [readyId, setReadyId] = useState<string | null>(null);
+  const source = useTaskScope();
   const imgRef = useRef<HTMLImageElement>(null);
 
   /* The preview bitmap is a browser resource and not React state, so it is
@@ -138,36 +142,43 @@ export function ImageCrop() {
   }, [files]);
 
   const run = async () => {
-    if (!files[0]) return;
+    if (!files[0] || readyId !== files[0].id || loading) return;
+    const current = source.capture();
     setLoading(true);
     try {
       const blob = await cropImage(files[0].file, { x, y, w, h });
+      if (!current()) return;
       const name = `cropped.${extensionForMime(blob.type, "png")}`;
       downloadBlob(blob, name);
       setResult({ blob, name });
       toast.success(t("success"));
       log(`${w}x${h}`, "success");
     } catch (e) {
+      if (!current()) return;
       toast.error(e instanceof Error ? e.message : tc("error"));
       log("failed", "failed");
     } finally {
-      setLoading(false);
+      if (current()) setLoading(false);
     }
   };
 
   return (
     <ToolShell toolId="image-crop">
-      <FileDropzone accept="image/*" multiple={false} files={files} onChange={setFiles} />
+      <FileDropzone accept="image/*" multiple={false} files={files} onChange={(next) => {
+        source.invalidate(); setFiles(next); setReadyId(null); setResult(null); setLoading(false);
+      }} />
       {files[0] ? (
         <div className="overflow-auto rounded-2xl border bg-card">
           <div className="relative inline-block max-w-full">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
+              key={files[0].id}
               ref={imgRef}
               alt=""
               className="block max-h-[min(28rem,70vh)] w-auto max-w-full"
               onLoad={(event) => {
                 const image = event.currentTarget;
+                if (image !== imgRef.current) return;
                 const width = image.naturalWidth;
                 const height = image.naturalHeight;
                 setNatural({ width, height });
@@ -175,6 +186,7 @@ export function ImageCrop() {
                 setY(0);
                 setW(width);
                 setH(height);
+                setReadyId(files[0].id);
               }}
             />
             <CropBox
@@ -195,9 +207,9 @@ export function ImageCrop() {
       ) : null}
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
         {(["x", "y", "w", "h"] as const).map((k) => (
-          <div key={k} className="space-y-2">
-            <Label>{k.toUpperCase()}</Label>
+          <Field key={k} className="space-y-2" label={k.toUpperCase()}>
             <Input
+              disabled={readyId !== files[0]?.id || loading}
               type="number"
               min={k === "w" || k === "h" ? 1 : 0}
               value={{ x, y, w, h }[k]}
@@ -209,10 +221,10 @@ export function ImageCrop() {
                 if (k === "h") setH(n);
               }}
             />
-          </div>
+          </Field>
         ))}
       </div>
-      <ActionBar onRun={run} loading={loading} label={t("run")} disabled={!files[0]} />
+      <ActionBar onRun={run} loading={loading} label={t("run")} disabled={!files[0] || readyId !== files[0].id} />
       <DownloadResult file={result} />
     </ToolShell>
   );

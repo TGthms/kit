@@ -125,7 +125,9 @@
     "fileRejectedSize": "फ़ाइल 200 MB से बड़ी है, इसलिए Kit इसे इस टैब में कतार में नहीं रखेगा।",
     "fileRejectedType": "यह फ़ाइल प्रकार यहाँ स्वीकार नहीं है।",
     "fileRejectedEmpty": "कोई उपयोगी फ़ाइल नहीं जोड़ी गई।",
-    "offlineIndicator": "ऑफ़लाइन: इंटरनेट कनेक्शन नहीं है"
+    "offlineIndicator": "ऑफ़लाइन: इंटरनेट कनेक्शन नहीं है",
+    "moveEarlier": "पहले ले जाएँ",
+    "moveLater": "बाद में ले जाएँ"
   },
   "home": {
     "title": "आपको क्या करना है?",
@@ -1390,7 +1392,8 @@
       "zoneAsiaTokyo": "टोक्यो",
       "zoneAustraliaSydney": "सिडनी",
       "zoneAsiaKolkata": "कोलकाता",
-      "zoneAmericaChicago": "शिकागो"
+      "zoneAmericaChicago": "शिकागो",
+      "clockChangeHint": "घड़ी बदलने पर स्थानीय समय छूट सकता है या दो बार आ सकता है। ऐसा समय चुनें जो केवल एक बार आए।"
     },
     "date-calculator": {
       "name": "तारीख कैलकुलेटर",

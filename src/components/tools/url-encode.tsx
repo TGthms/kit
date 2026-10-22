@@ -36,7 +36,7 @@ export function UrlEncodeTool() {
           {tc("decode")}
         </Button>
       </div>
-      <Textarea value={text} onChange={(e) => setText(e.target.value)} />
+      <Textarea aria-label={tc("input")} value={text} onChange={(e) => setText(e.target.value)} />
       <Button onClick={run}>{t("run")}</Button>
     </ToolShell>
   );

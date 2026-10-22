@@ -125,7 +125,9 @@
     "fileRejectedSize": "Esse ficheiro tem mais de 200 MB, pelo que o Kit não o coloca em fila neste separador.",
     "fileRejectedType": "Esse tipo de ficheiro não é aceite aqui.",
     "fileRejectedEmpty": "Não foram adicionados ficheiros utilizáveis.",
-    "offlineIndicator": "Offline: sem ligação à Internet"
+    "offlineIndicator": "Offline: sem ligação à Internet",
+    "moveEarlier": "Mover para antes",
+    "moveLater": "Mover para depois"
   },
   "home": {
     "title": "O que precisa de fazer?",
@@ -1390,7 +1392,8 @@
       "zoneAsiaTokyo": "Tóquio",
       "zoneAustraliaSydney": "Sydney",
       "zoneAsiaKolkata": "Calcutá",
-      "zoneAmericaChicago": "Chicago"
+      "zoneAmericaChicago": "Chicago",
+      "clockChangeHint": "As mudanças de hora podem omitir ou repetir uma hora local. Escolha uma hora que ocorra apenas uma vez."
     },
     "date-calculator": {
       "name": "Calculadora de datas",

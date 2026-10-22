@@ -75,7 +75,7 @@ export function PdfExtract() {
         </Button>
       </div>
       {job.loading && <Progress value={job.progress} aria-label={t("run")} />}
-      {result && <Textarea value={result} readOnly className="min-h-48" />}
+      {result && <Textarea aria-label={tc("output")} value={result} readOnly className="min-h-48" />}
       <ActionBar
         onRun={run}
         loading={job.loading}

@@ -4,12 +4,13 @@ import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 import { FileDropzone, type FileItem } from "@/components/shared/file-dropzone";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { Field } from "@/components/ui/field";
 import { Progress } from "@/components/ui/progress";
 import { downloadBlob, bytesToBlob } from "@/lib/utils";
 import { MediaTimeline } from "@/components/shared/media-timeline";
 import { trimArgs } from "@/lib/media/ffmpeg-args";
 import { ActionBar, ToolShell, useToolHistory, useToolJob, loadFfmpeg } from "./shared";
+import { clampMediaTimes } from "./video-shared";
 
 export function AudioTrim() {
   const t = useTranslations("tools.audio-trim");
@@ -18,10 +19,17 @@ export function AudioTrim() {
   const [files, setFiles] = useState<FileItem[]>([]);
   const [start, setStart] = useState(0);
   const [end, setEnd] = useState(10);
+  const [duration, setDuration] = useState(0);
+  const setRange = (nextStart: number, nextEnd: number, knownDuration = duration) => {
+    const range = clampMediaTimes(nextStart, nextEnd, knownDuration);
+    setStart(range.start);
+    setEnd(range.end);
+  };
   const job = useToolJob();
 
   const run = async () => {
-    if (!files[0] || !Number.isFinite(start) || !Number.isFinite(end) || end <= start) {
+    const range = clampMediaTimes(start, end, duration);
+    if (!files[0] || range.end <= range.start) {
       toast.error(tc("error"));
       return;
     }
@@ -36,7 +44,7 @@ export function AudioTrim() {
         input,
         data,
         output,
-        trimArgs(input, output, start, end),
+        trimArgs(input, output, range.start, range.end),
         (p) => job.setProgress(Math.round(p * 100)),
         ac.signal
       );
@@ -62,34 +70,26 @@ export function AudioTrim() {
         file={files[0]?.file ?? null}
         start={start}
         end={end}
-        onChange={(a, b) => {
-          setStart(a);
-          setEnd(b);
-        }}
+        onChange={setRange}
+        onDuration={(value) => { setDuration(value); setRange(start, end, value); }}
         startLabel={tc("start")}
         endLabel={tc("end")}
       />
       <div className="grid gap-4 sm:grid-cols-2">
-        <div className="space-y-2">
-          <Label>
-            {tc("start")} (s)
-          </Label>
+        <Field className="space-y-2" label={<>{tc("start")} (s)</>}>
           <Input
             value={start}
-            onChange={(e) => setStart(Number(e.target.value) || 0)}
+            onChange={(e) => setRange(Number(e.target.value) || 0, end)}
             inputMode="decimal"
           />
-        </div>
-        <div className="space-y-2">
-          <Label>
-            {tc("end")} (s)
-          </Label>
+        </Field>
+        <Field className="space-y-2" label={<>{tc("end")} (s)</>}>
           <Input
             value={end}
-            onChange={(e) => setEnd(Number(e.target.value) || 0)}
+            onChange={(e) => setRange(start, Number(e.target.value) || 0)}
             inputMode="decimal"
           />
-        </div>
+        </Field>
       </div>
       {job.loading && <Progress value={job.progress} />}
       <ActionBar

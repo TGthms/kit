@@ -125,7 +125,9 @@
     "fileRejectedSize": "Tiedosto on yli 200 Mt, joten Kit ei jonota sitä tässä välilehdessä.",
     "fileRejectedType": "Tätä tiedostotyyppiä ei hyväksytä täällä.",
     "fileRejectedEmpty": "Käyttökelpoisia tiedostoja ei lisätty.",
-    "offlineIndicator": "Offline: ei internetyhteyttä"
+    "offlineIndicator": "Offline: ei internetyhteyttä",
+    "moveEarlier": "Siirrä aiemmaksi",
+    "moveLater": "Siirrä myöhemmäksi"
   },
   "home": {
     "title": "Mitä haluat tehdä?",
@@ -1390,7 +1392,8 @@
       "zoneAsiaTokyo": "Tokio",
       "zoneAustraliaSydney": "Sydney",
       "zoneAsiaKolkata": "Kolkata",
-      "zoneAmericaChicago": "Chicago"
+      "zoneAmericaChicago": "Chicago",
+      "clockChangeHint": "Kellonajan siirto voi ohittaa tai toistaa paikallisen ajan. Valitse aika, joka esiintyy vain kerran."
     },
     "date-calculator": {
       "name": "Päivämäärälaskuri",

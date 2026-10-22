@@ -1,5 +1,19 @@
 import { describe, expect, it } from "vitest";
-import { blobFromDataUrl, downloadRevokeDelayMs, uniqueArchiveNames } from "./utils";
+import { archiveBlob, blobFromDataUrl, downloadRevokeDelayMs, uniqueArchiveNames } from "./utils";
+import JSZip from "jszip";
+
+it("preserves the contents of same-name files in a real archive", async () => {
+  const blob = await archiveBlob([
+    { name: "report.txt", blob: new Blob(["first"]) },
+    { name: "report.txt", blob: new Blob(["second"]) },
+    { name: "../report.txt", blob: new Blob(["third"]) },
+  ]);
+  const zip = await JSZip.loadAsync(await blob.arrayBuffer());
+  expect(Object.keys(zip.files)).toEqual(["report.txt", "report (2).txt", "report (3).txt"]);
+  expect(await zip.file("report.txt")!.async("string")).toBe("first");
+  expect(await zip.file("report (2).txt")!.async("string")).toBe("second");
+  expect(await zip.file("report (3).txt")!.async("string")).toBe("third");
+});
 
 describe("blobFromDataUrl", () => {
   it("decodes a base64 PNG data URL without fetch", async () => {

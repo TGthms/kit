@@ -9,6 +9,7 @@ import { formatToml } from "@/lib/text/core";
 import { ToolShell, useToolHistory } from "./shared";
 
 export function TomlFormat() {
+  const fieldText = useTranslations("common");
   const t = useTranslations("tools.toml-format");
   const log = useToolHistory("toml-format");
   const [input, setInput] = useState('title = "Kit"\n');
@@ -25,7 +26,7 @@ export function TomlFormat() {
   };
   return (
     <ToolShell toolId="toml-format">
-      <Textarea value={input} onChange={(e) => setInput(e.target.value)} className="min-h-64" />
+      <Textarea aria-label={fieldText("input")} value={input} onChange={(e) => setInput(e.target.value)} className="min-h-64" />
       <Button onClick={run}>{t("run")}</Button>
     </ToolShell>
   );

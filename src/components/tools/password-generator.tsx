@@ -57,7 +57,7 @@ export function PasswordGenerator() {
         <Button onClick={run}>{t("run")}</Button>
         <CopyButton value={out} disabled={!out} />
       </div>
-      {out ? <Input readOnly value={out} className="font-mono" /> : null}
+      {out ? <Input aria-label={tc("output")} readOnly value={out} className="font-mono" /> : null}
     </ToolShell>
   );
 }

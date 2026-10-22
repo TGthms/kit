@@ -125,7 +125,9 @@
     "fileRejectedSize": "ไฟล์นี้เกิน 200 MB ดังนั้น Kit จะไม่ใส่คิวในแท็บนี้",
     "fileRejectedType": "ไม่รับชนิดไฟล์นี้ที่นี่",
     "fileRejectedEmpty": "ไม่ได้เพิ่มไฟล์ที่ใช้ได้",
-    "offlineIndicator": "ออฟไลน์: ไม่มีการเชื่อมต่ออินเทอร์เน็ต"
+    "offlineIndicator": "ออฟไลน์: ไม่มีการเชื่อมต่ออินเทอร์เน็ต",
+    "moveEarlier": "เลื่อนขึ้น",
+    "moveLater": "เลื่อนลง"
   },
   "home": {
     "title": "คุณต้องการทำอะไร",
@@ -1390,7 +1392,8 @@
       "zoneAsiaTokyo": "โตเกียว",
       "zoneAustraliaSydney": "ซิดนีย์",
       "zoneAsiaKolkata": "โกลกาตา",
-      "zoneAmericaChicago": "ชิคาโก"
+      "zoneAmericaChicago": "ชิคาโก",
+      "clockChangeHint": "การเปลี่ยนเวลานาฬิกาอาจข้ามหรือทำให้เวลาท้องถิ่นซ้ำกัน เลือกเวลาที่เกิดขึ้นเพียงครั้งเดียว"
     },
     "date-calculator": {
       "name": "เครื่องคำนวณวันที่",

@@ -9,6 +9,7 @@ import { markdownToHtml, htmlToMarkdown } from "@/lib/text/core";
 import { ToolShell, useToolHistory } from "./shared";
 
 export function MarkdownHtml() {
+  const fieldText = useTranslations("common");
   const t = useTranslations("tools.markdown-html");
   const log = useToolHistory("markdown-html");
   const [input, setInput] = useState("# Hello Kit\n\nPrivate tools.");
@@ -34,7 +35,7 @@ export function MarkdownHtml() {
           {t("toMd")}
         </Button>
       </div>
-      <Textarea value={input} onChange={(e) => setInput(e.target.value)} className="min-h-64" />
+      <Textarea aria-label={fieldText("input")} value={input} onChange={(e) => setInput(e.target.value)} className="min-h-64" />
       <Button onClick={run}>{t("run")}</Button>
     </ToolShell>
   );

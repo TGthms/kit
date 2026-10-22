@@ -5,12 +5,13 @@ import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { Field } from "@/components/ui/field";
 import { Textarea } from "@/components/ui/textarea";
 import { runRegexAsync, replaceRegexAsync, type RegexResult } from "@/lib/text/regex";
 import { ToolShell, useToolHistory } from "./shared";
 
 export function RegexTester() {
+  const fieldText = useTranslations("common");
   const t = useTranslations("tools.regex-tester");
   const log = useToolHistory("regex-tester");
   const [pattern, setPattern] = useState("(\\w+)");
@@ -50,19 +51,16 @@ export function RegexTester() {
   return (
     <ToolShell toolId="regex-tester">
       <div className="grid gap-3 sm:grid-cols-3">
-        <div className="space-y-2 sm:col-span-2">
-          <Label>{t("pattern")}</Label>
+        <Field className="space-y-2 sm:col-span-2" label={t("pattern")}>
           <Input value={pattern} onChange={(e) => setPattern(e.target.value)} className="font-mono" />
-        </div>
-        <div className="space-y-2">
-          <Label>{t("flags")}</Label>
+        </Field>
+        <Field className="space-y-2" label={t("flags")}>
           <Input value={flags} onChange={(e) => setFlags(e.target.value)} className="font-mono" />
-        </div>
+        </Field>
       </div>
-      <div className="space-y-2">
-        <Label>{t("input")}</Label>
+      <Field className="space-y-2" label={t("input")}>
         <Textarea value={input} onChange={(e) => setInput(e.target.value)} className="min-h-32 font-mono" />
-      </div>
+      </Field>
       {!result.ok ? (
         <p className="text-sm text-destructive">{result.error}</p>
       ) : (
@@ -78,12 +76,11 @@ export function RegexTester() {
           ))}
         </ul>
       )}
-      <div className="space-y-2">
-        <Label>{t("replace")}</Label>
+      <Field className="space-y-2" label={t("replace")}>
         <Input value={repl} onChange={(e) => setRepl(e.target.value)} className="font-mono" />
-      </div>
+      </Field>
       <Button onClick={replace}>{t("runReplace")}</Button>
-      {out ? <Textarea value={out} readOnly className="min-h-24 font-mono" /> : null}
+      {out ? <Textarea aria-label={fieldText("output")} value={out} readOnly className="min-h-24 font-mono" /> : null}
     </ToolShell>
   );
 }

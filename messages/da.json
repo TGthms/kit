@@ -125,7 +125,9 @@
     "fileRejectedSize": "Filen er over 200 MB, så Kit sætter den ikke i kø i denne fane.",
     "fileRejectedType": "Den filtype accepteres ikke her.",
     "fileRejectedEmpty": "Ingen brugbare filer blev tilføjet.",
-    "offlineIndicator": "Offline: ingen internetforbindelse"
+    "offlineIndicator": "Offline: ingen internetforbindelse",
+    "moveEarlier": "Flyt tidligere",
+    "moveLater": "Flyt senere"
   },
   "home": {
     "title": "Hvad skal du have gjort?",
@@ -1390,7 +1392,8 @@
       "zoneAsiaTokyo": "Tokyo",
       "zoneAustraliaSydney": "Sydney",
       "zoneAsiaKolkata": "Kolkata",
-      "zoneAmericaChicago": "Chicago"
+      "zoneAmericaChicago": "Chicago",
+      "clockChangeHint": "Ved tidsomstilling kan et lokalt tidspunkt blive sprunget over eller gentaget. Vælg et tidspunkt, der kun forekommer én gang."
     },
     "date-calculator": {
       "name": "Datoberegner",

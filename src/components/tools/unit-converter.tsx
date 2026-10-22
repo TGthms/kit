@@ -428,7 +428,7 @@ function UnitConverter({
       ) : null}
       {presets.length ? (
         <div className="space-y-2">
-          <Label>{text(t, "presets", "Presets")}</Label>
+          <p className="text-sm font-medium">{text(t, "presets", "Presets")}</p>
           <div className="flex flex-wrap gap-2">
             {presets.map(([labelKey, presetFrom, presetTo]) => (
               <Button key={labelKey} type="button" size="sm" variant="outline" onClick={() => setPreset(presetFrom, presetTo)}>

@@ -125,7 +125,9 @@
     "fileRejectedSize": "Soubor je větší než 200 MB, proto ho Kit v tomto panelu nezařadí.",
     "fileRejectedType": "Tento typ souboru zde není přijímán.",
     "fileRejectedEmpty": "Nebyly přidány žádné použitelné soubory.",
-    "offlineIndicator": "Offline: bez připojení k internetu"
+    "offlineIndicator": "Offline: bez připojení k internetu",
+    "moveEarlier": "Přesunout dříve",
+    "moveLater": "Přesunout později"
   },
   "home": {
     "title": "Co potřebujete udělat?",
@@ -1390,7 +1392,8 @@
       "zoneAsiaTokyo": "Tokio",
       "zoneAustraliaSydney": "Sydney",
       "zoneAsiaKolkata": "Kalkata",
-      "zoneAmericaChicago": "Chicago"
+      "zoneAmericaChicago": "Chicago",
+      "clockChangeHint": "Při změně času může místní čas chybět nebo se opakovat. Vyberte čas, který nastává jen jednou."
     },
     "date-calculator": {
       "name": "Kalkulačka data",

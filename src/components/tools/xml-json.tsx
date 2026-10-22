@@ -9,6 +9,7 @@ import { xmlToJsonText, jsonToXmlText } from "@/lib/text/xml";
 import { ToolShell, useToolHistory } from "./shared";
 
 export function XmlJson() {
+  const fieldText = useTranslations("common");
   const t = useTranslations("tools.xml-json");
   const log = useToolHistory("xml-json");
   const [input, setInput] = useState("<note><to>Kit</to></note>");
@@ -36,7 +37,7 @@ export function XmlJson() {
           {t("toXml")}
         </Button>
       </div>
-      <Textarea value={input} onChange={(e) => setInput(e.target.value)} className="min-h-64" />
+      <Textarea aria-label={fieldText("input")} value={input} onChange={(e) => setInput(e.target.value)} className="min-h-64" />
       <Button onClick={run}>{t("run")}</Button>
     </ToolShell>
   );

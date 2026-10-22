@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 import { FileDropzone, type FileItem } from "@/components/shared/file-dropzone";
-import { Label } from "@/components/ui/label";
+import { Field } from "@/components/ui/field";
 import { Slider } from "@/components/ui/slider";
 import { Progress } from "@/components/ui/progress";
 import { downloadBlob, bytesToBlob } from "@/lib/utils";
@@ -69,18 +69,12 @@ export function VideoSpeed() {
   return (
     <ToolShell toolId="video-speed">
       <FileDropzone accept="video/*" multiple={false} files={files} onChange={setFiles} />
-      <div className="space-y-2">
-        <Label>
-          {tc("speed")}: {speed.toFixed(2)}x
-        </Label>
+      <Field className="space-y-2" label={<>{tc("speed")}: {speed.toFixed(2)}x</>}>
         <Slider aria-label={tc("speed")} value={[speed]} min={0.5} max={2} step={0.05} onValueChange={(v) => setSpeed(v[0])} />
-      </div>
-      <div className="space-y-2">
-        <Label>
-          {tc("volume")}: {volume.toFixed(2)}
-        </Label>
+      </Field>
+      <Field className="space-y-2" label={<>{tc("volume")}: {volume.toFixed(2)}</>}>
         <Slider aria-label={tc("volume")} value={[volume]} min={0} max={2} step={0.05} onValueChange={(v) => setVolume(v[0])} />
-      </div>
+      </Field>
       {job.loading && <Progress value={job.progress} />}
       <ActionBar
         onRun={run}

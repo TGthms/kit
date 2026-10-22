@@ -125,7 +125,9 @@
     "fileRejectedSize": "Tệp đó hơn 200 MB nên Kit không xếp hàng trong thẻ này.",
     "fileRejectedType": "Loại tệp đó không được chấp nhận ở đây.",
     "fileRejectedEmpty": "Không có tệp dùng được nào được thêm.",
-    "offlineIndicator": "Ngoại tuyến: không có kết nối Internet"
+    "offlineIndicator": "Ngoại tuyến: không có kết nối Internet",
+    "moveEarlier": "Di chuyển lên trước",
+    "moveLater": "Di chuyển ra sau"
   },
   "home": {
     "title": "Bạn cần làm gì?",
@@ -1390,7 +1392,8 @@
       "zoneAsiaTokyo": "Tokyo",
       "zoneAustraliaSydney": "Sydney",
       "zoneAsiaKolkata": "Kolkata",
-      "zoneAmericaChicago": "Chicago"
+      "zoneAmericaChicago": "Chicago",
+      "clockChangeHint": "Việc đổi giờ có thể bỏ qua hoặc lặp lại một giờ địa phương. Hãy chọn giờ chỉ xuất hiện một lần."
     },
     "date-calculator": {
       "name": "Tính ngày tháng",

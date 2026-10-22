@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { CopyButton } from "@/components/ui/copy-button";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { Field } from "@/components/ui/field";
 import { Switch } from "@/components/ui/switch";
 import { Textarea } from "@/components/ui/textarea";
 import {
@@ -113,36 +113,30 @@ export function RandomGenerator() {
       </div>
       {mode === "integer" || mode === "decimal" ? (
         <div className="grid gap-4 sm:grid-cols-2">
-          <div className="space-y-2">
-            <Label>{text(t, "minimum", "Minimum")}</Label>
+          <Field className="space-y-2" label={text(t, "minimum", "Minimum")}>
             <Input type="number" value={min} onChange={(event) => setMin(event.target.value)} />
-          </div>
-          <div className="space-y-2">
-            <Label>{text(t, "maximum", "Maximum")}</Label>
+          </Field>
+          <Field className="space-y-2" label={text(t, "maximum", "Maximum")}>
             <Input type="number" value={max} onChange={(event) => setMax(event.target.value)} />
-          </div>
+          </Field>
           {mode === "integer" ? (
-            <div className="space-y-2">
-              <Label>{text(t, "step", "Count by")}</Label>
+            <Field className="space-y-2" label={text(t, "step", "Count by")}>
               <Input type="number" min="1" value={step} onChange={(event) => setStep(event.target.value)} />
-            </div>
+            </Field>
           ) : (
-            <div className="space-y-2">
-              <Label>{text(t, "precision", "Decimal places")}</Label>
+            <Field className="space-y-2" label={text(t, "precision", "Decimal places")}>
               <Input type="number" min="0" max="15" value={precision} onChange={(event) => setPrecision(event.target.value)} />
-            </div>
+            </Field>
           )}
         </div>
       ) : null}
       {mode === "pick" ? (
-        <div className="space-y-2">
-          <Label>{text(t, "choices", "Choices, one per line")}</Label>
+        <Field className="space-y-2" label={text(t, "choices", "Choices, one per line")}>
           <Textarea value={items} onChange={(event) => setItems(event.target.value)} />
-        </div>
+        </Field>
       ) : null}
       {mode === "password" ? (
-        <div className="space-y-2">
-          <Label>{text(t, "passwordLength", "Password length")}</Label>
+        <Field className="space-y-2" label={text(t, "passwordLength", "Password length")}>
           <Input
             type="number"
             min={1}
@@ -151,15 +145,14 @@ export function RandomGenerator() {
             onChange={(event) => setLength(limitPasswordLength(event.target.value))}
           />
 
-        </div>
+        </Field>
       ) : null}
       <div className="rounded-2xl border border-border/60 bg-card p-4">
         <p className="mb-3 text-sm font-medium">{text(t, "batch", "Batch")}</p>
         <div className="grid gap-4 sm:grid-cols-2">
-          <div className="space-y-2">
-            <Label>{text(t, "count", "How many")}</Label>
+          <Field className="space-y-2" label={text(t, "count", "How many")}>
             <Input type="number" min="1" max={MAX_RANDOM_BATCH} value={count} onChange={(event) => setCount(event.target.value)} />
-          </div>
+          </Field>
           {mode === "integer" || mode === "pick" ? (
             <div className="flex items-end pb-1">
               <label htmlFor="random-unique" className="flex items-center gap-2 text-sm">

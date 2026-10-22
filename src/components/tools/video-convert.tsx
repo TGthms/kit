@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 import { FileDropzone, type FileItem } from "@/components/shared/file-dropzone";
-import { Label } from "@/components/ui/label";
+import { Field } from "@/components/ui/field";
 import { Progress } from "@/components/ui/progress";
 import { downloadMany, bytesToBlob } from "@/lib/utils";
 import { VIDEO_FORMATS, videoConvertArgs } from "@/lib/media/ffmpeg-args";
@@ -64,8 +64,7 @@ export function VideoConvert() {
       <ToolLimits>
         <p>{t("note")}</p>
       </ToolLimits>
-      <div className="space-y-2">
-        <Label>{tc("format")}</Label>
+      <Field className="space-y-2" label={tc("format")}>
         <select className={selectClass} value={format} onChange={(e) => setFormat(e.target.value)}>
           {VIDEO_FORMATS.map((f) => (
             <option key={f} value={f}>
@@ -73,7 +72,7 @@ export function VideoConvert() {
             </option>
           ))}
         </select>
-      </div>
+      </Field>
       <FileDropzone accept="video/*" files={files} onChange={setFiles} />
       {job.loading && <Progress value={job.progress} />}
       <ActionBar

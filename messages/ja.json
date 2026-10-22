@@ -125,7 +125,9 @@
     "fileRejectedSize": "そのファイルは 200 MB を超えるため、このタブではキューに入れません。",
     "fileRejectedType": "この種類のファイルはここでは受け付けません。",
     "fileRejectedEmpty": "使えるファイルは追加されませんでした。",
-    "offlineIndicator": "オフライン：インターネット接続なし"
+    "offlineIndicator": "オフライン：インターネット接続なし",
+    "moveEarlier": "前へ移動",
+    "moveLater": "後ろへ移動"
   },
   "home": {
     "title": "何をしますか？",
@@ -1390,7 +1392,8 @@
       "zoneAsiaTokyo": "東京",
       "zoneAustraliaSydney": "シドニー",
       "zoneAsiaKolkata": "コルカタ",
-      "zoneAmericaChicago": "シカゴ"
+      "zoneAmericaChicago": "シカゴ",
+      "clockChangeHint": "時刻の切り替えにより、存在しない時刻や2回現れる時刻があります。1回だけ現れる時刻を選んでください。"
     },
     "date-calculator": {
       "name": "日付計算",

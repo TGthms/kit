@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 import { FileDropzone, type FileItem } from "@/components/shared/file-dropzone";
-import { Label } from "@/components/ui/label";
+import { Field } from "@/components/ui/field";
 import { Slider } from "@/components/ui/slider";
 import { downloadMany, bytesToBlob } from "@/lib/utils";
 import { Progress } from "@/components/ui/progress";
@@ -64,12 +64,9 @@ export function PdfCompress() {
         <p>{t("note")}</p>
       </ToolLimits>
       <FileDropzone accept="application/pdf" files={files} onChange={setFiles} />
-      <div className="space-y-2">
-        <Label>
-          {tc("quality")}: {Math.round(quality * 100)}%
-        </Label>
+      <Field className="space-y-2" label={<>{tc("quality")}: {Math.round(quality * 100)}%</>}>
         <Slider aria-label={tc("quality")} value={[quality]} min={0.3} max={0.95} step={0.05} onValueChange={(v) => setQuality(v[0])} />
-      </div>
+      </Field>
       {job.loading && <Progress value={job.progress} />}
       <ActionBar
         onRun={run}

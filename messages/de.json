@@ -125,7 +125,9 @@
     "fileRejectedSize": "Diese Datei ist größer als 200 MB, daher reiht Kit sie in diesem Tab nicht ein.",
     "fileRejectedType": "Dieser Dateityp wird hier nicht akzeptiert.",
     "fileRejectedEmpty": "Es wurden keine nutzbaren Dateien hinzugefügt.",
-    "offlineIndicator": "Offline: keine Internetverbindung"
+    "offlineIndicator": "Offline: keine Internetverbindung",
+    "moveEarlier": "Nach vorne",
+    "moveLater": "Nach hinten"
   },
   "home": {
     "title": "Was möchten Sie tun?",
@@ -1390,7 +1392,8 @@
       "zoneAsiaTokyo": "Tokio",
       "zoneAustraliaSydney": "Sydney",
       "zoneAsiaKolkata": "Kalkutta",
-      "zoneAmericaChicago": "Chicago"
+      "zoneAmericaChicago": "Chicago",
+      "clockChangeHint": "Bei Zeitumstellungen können Ortszeiten ausfallen oder doppelt vorkommen. Wähle eine eindeutige Uhrzeit."
     },
     "date-calculator": {
       "name": "Datumsrechner",

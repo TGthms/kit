@@ -125,7 +125,9 @@
     "searchResults": "{label} search results",
     "skipToContent": "Skip to content",
     "pdfPageCap": "This PDF has {total} pages. Kit processed the first {processed} in this tab.",
-    "offlineIndicator": "Offline: no internet connection"
+    "offlineIndicator": "Offline: no internet connection",
+    "moveEarlier": "Move earlier",
+    "moveLater": "Move later"
   },
   "home": {
     "title": "What do you need to do?",
@@ -1390,7 +1392,8 @@
       "zoneAsiaTokyo": "Tokyo",
       "zoneAustraliaSydney": "Sydney",
       "zoneAsiaKolkata": "Kolkata",
-      "zoneAmericaChicago": "Chicago"
+      "zoneAmericaChicago": "Chicago",
+      "clockChangeHint": "Clock changes can skip or repeat a local time. Choose a time that occurs once."
     },
     "date-calculator": {
       "name": "Date calculator",

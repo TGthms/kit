@@ -125,7 +125,9 @@
     "fileRejectedSize": "هذا الملف أكبر من 200 ميغابايت، لذا لن يضعه Kit في قائمة هذه العلامة.",
     "fileRejectedType": "نوع الملف هذا غير مقبول هنا.",
     "fileRejectedEmpty": "لم تُضف ملفات صالحة.",
-    "offlineIndicator": "غير متصل: لا يوجد اتصال بالإنترنت"
+    "offlineIndicator": "غير متصل: لا يوجد اتصال بالإنترنت",
+    "moveEarlier": "نقل إلى موضع سابق",
+    "moveLater": "نقل إلى موضع لاحق"
   },
   "home": {
     "title": "ماذا تريد أن تفعل؟",
@@ -1390,7 +1392,8 @@
       "zoneAsiaTokyo": "طوكيو",
       "zoneAustraliaSydney": "سيدني",
       "zoneAsiaKolkata": "كولكاتا",
-      "zoneAmericaChicago": "شيكاغو"
+      "zoneAmericaChicago": "شيكاغو",
+      "clockChangeHint": "قد يؤدي تغيير الساعة إلى تخطي وقت محلي أو تكراره. اختر وقتًا يحدث مرة واحدة فقط."
     },
     "date-calculator": {
       "name": "حاسبة التواريخ",

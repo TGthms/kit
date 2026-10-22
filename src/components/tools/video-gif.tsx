@@ -4,7 +4,7 @@ import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 import { FileDropzone, type FileItem } from "@/components/shared/file-dropzone";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { Field } from "@/components/ui/field";
 import { Progress } from "@/components/ui/progress";
 import { downloadBlob, bytesToBlob } from "@/lib/utils";
 import { MediaTimeline } from "@/components/shared/media-timeline";
@@ -82,26 +82,20 @@ export function VideoGif() {
         endLabel={tc("end")}
       />
       <div className="grid gap-4 sm:grid-cols-2">
-        <div className="space-y-2">
-          <Label>
-            {tc("start")} (s)
-          </Label>
+        <Field className="space-y-2" label={<>{tc("start")} (s)</>}>
           <Input
             value={start}
             onChange={(e) => setRange(Number(e.target.value) || 0, end)}
             inputMode="decimal"
           />
-        </div>
-        <div className="space-y-2">
-          <Label>
-            {tc("end")} (s)
-          </Label>
+        </Field>
+        <Field className="space-y-2" label={<>{tc("end")} (s)</>}>
           <Input
             value={end}
             onChange={(e) => setRange(start, Number(e.target.value) || 0)}
             inputMode="decimal"
           />
-        </div>
+        </Field>
       </div>
       {job.loading && <Progress value={job.progress} />}
       <ActionBar

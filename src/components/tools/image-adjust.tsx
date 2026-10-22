@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 import { FileDropzone, type FileItem } from "@/components/shared/file-dropzone";
-import { Label } from "@/components/ui/label";
+import { Field } from "@/components/ui/field";
 import { Slider } from "@/components/ui/slider";
 import { downloadMany, extensionForMime } from "@/lib/utils";
 import { adjustImage } from "@/lib/image/core";
@@ -52,12 +52,9 @@ export function ImageAdjust() {
           [t("saturation"), saturation, setSaturation],
         ] as const
       ).map(([label, val, set]) => (
-        <div key={label} className="space-y-2">
-          <Label>
-            {label}: {val}%
-          </Label>
+        <Field key={label} className="space-y-2" label={<>{label}: {val}%</>}>
           <Slider aria-label={label} value={[val]} min={0} max={200} step={1} onValueChange={(v) => set(v[0])} />
-        </div>
+        </Field>
       ))}
       <ActionBar onRun={run} loading={loading} label={t("run")} disabled={!files.length} />
     </ToolShell>

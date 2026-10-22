@@ -5,7 +5,7 @@ import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
-import { Label } from "@/components/ui/label";
+import { Field } from "@/components/ui/field";
 import { textDiff } from "@/lib/text/core";
 import { ToolShell, useToolHistory } from "./shared";
 
@@ -17,23 +17,26 @@ export function TextDiff() {
   const [parts, setParts] = useState<ReturnType<typeof textDiff>>([]);
 
   const run = () => {
-    const d = textDiff(left, right);
-    setParts(d);
-    toast.success(t("success"));
-    log("diff", "success");
+    try {
+      const d = textDiff(left, right);
+      setParts(d);
+      toast.success(t("success"));
+      log("diff", "success");
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : "error");
+      log("failed", "failed");
+    }
   };
 
   return (
     <ToolShell toolId="text-diff">
       <div className="grid gap-4 md:grid-cols-2">
-        <div className="space-y-2">
-          <Label>{t("left")}</Label>
+        <Field className="space-y-2" label={t("left")}>
           <Textarea value={left} onChange={(e) => setLeft(e.target.value)} />
-        </div>
-        <div className="space-y-2">
-          <Label>{t("right")}</Label>
+        </Field>
+        <Field className="space-y-2" label={t("right")}>
           <Textarea value={right} onChange={(e) => setRight(e.target.value)} />
-        </div>
+        </Field>
       </div>
       <Button onClick={run}>{t("run")}</Button>
       {parts.length > 0 && (

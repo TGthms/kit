@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { Field } from "@/components/ui/field";
 import { convertBase } from "@/lib/text/base";
 import { ToolShell } from "./shared";
 
@@ -17,18 +17,15 @@ export function NumberBase() {
   return (
     <ToolShell toolId="number-base">
       <div className="grid gap-3 sm:grid-cols-3">
-        <div className="space-y-2 sm:col-span-3">
-          <Label>{t("value")}</Label>
+        <Field className="space-y-2 sm:col-span-3" label={t("value")}>
           <Input value={input} onChange={(e) => setInput(e.target.value)} className="font-mono" />
-        </div>
-        <div className="space-y-2">
-          <Label>{t("from")}</Label>
+        </Field>
+        <Field className="space-y-2" label={t("from")}>
           <Input type="number" min={2} max={36} value={from} onChange={(e) => setFrom(Number(e.target.value) || 10)} />
-        </div>
-        <div className="space-y-2">
-          <Label>{t("to")}</Label>
+        </Field>
+        <Field className="space-y-2" label={t("to")}>
           <Input type="number" min={2} max={36} value={to} onChange={(e) => setTo(Number(e.target.value) || 16)} />
-        </div>
+        </Field>
       </div>
       {result.ok ? (
         <div className="rounded-2xl border bg-card p-4 font-mono text-sm">

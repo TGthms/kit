@@ -194,8 +194,8 @@ export function BmiCalorieCalculator() {
           <Input id="bmi-age" type="number" min="2" max="120" step="1" inputMode="numeric" value={age} onChange={(event) => setAge(event.target.value)} />
         </div>
         <div className="space-y-2">
-          <Label>{text(t, "sex", "Sex")}</Label>
-          <div className="flex gap-2">
+          <p id="bmi-sex-label" className="text-sm font-medium">{text(t, "sex", "Sex")}</p>
+          <div className="flex gap-2" role="group" aria-labelledby="bmi-sex-label">
             {(["female", "male"] as const).map((value) => (
               <Button key={value} type="button" className="flex-1" variant={sex === value ? "default" : "outline"} aria-pressed={sex === value} onClick={() => setSex(value)}>
                 {value === "female" ? text(t, "female", "Female") : text(t, "male", "Male")}

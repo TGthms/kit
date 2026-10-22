@@ -33,7 +33,7 @@ export function JsonFormat() {
 
   return (
     <ToolShell toolId="json-format">
-      <Textarea
+      <Textarea aria-label={tc("input")}
         value={input}
         onChange={(e) => setInput(e.target.value)}
         className="min-h-64"

@@ -6,13 +6,14 @@ import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { CopyButton } from "@/components/ui/copy-button";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { Field } from "@/components/ui/field";
 import { Textarea } from "@/components/ui/textarea";
 import { generateLorem, type LoremMode } from "@/lib/text/lorem";
 import { ToolShell, useToolHistory } from "./shared";
 import { selectClass } from "./text-extra-shared";
 
 export function LoremIpsum() {
+  const fieldText = useTranslations("common");
   const t = useTranslations("tools.lorem-ipsum");
   const log = useToolHistory("lorem-ipsum");
   const [count, setCount] = useState(2);
@@ -29,24 +30,22 @@ export function LoremIpsum() {
   return (
     <ToolShell toolId="lorem-ipsum">
       <div className="grid gap-3 sm:grid-cols-2">
-        <div className="space-y-2">
-          <Label>{t("count")}</Label>
+        <Field className="space-y-2" label={t("count")}>
           <Input type="number" min={1} max={200} value={count} onChange={(e) => setCount(Number(e.target.value) || 1)} />
-        </div>
-        <div className="space-y-2">
-          <Label>{t("mode")}</Label>
+        </Field>
+        <Field className="space-y-2" label={t("mode")}>
           <select className={selectClass} value={mode} onChange={(e) => setMode(e.target.value as LoremMode)}>
             <option value="paragraphs">{t("paragraphs")}</option>
             <option value="sentences">{t("sentences")}</option>
             <option value="words">{t("words")}</option>
           </select>
-        </div>
+        </Field>
       </div>
       <div className="flex gap-2">
         <Button onClick={run}>{t("run")}</Button>
         <CopyButton value={out} disabled={!out} />
       </div>
-      {out ? <Textarea value={out} readOnly className="min-h-48" /> : null}
+      {out ? <Textarea aria-label={fieldText("output")} value={out} readOnly className="min-h-48" /> : null}
     </ToolShell>
   );
 }

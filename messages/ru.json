@@ -125,7 +125,9 @@
     "fileRejectedSize": "Файл больше 200 МБ, поэтому Kit не ставит его в очередь в этой вкладке.",
     "fileRejectedType": "Этот тип файла здесь не принимается.",
     "fileRejectedEmpty": "Подходящие файлы не добавлены.",
-    "offlineIndicator": "Офлайн: нет подключения к интернету"
+    "offlineIndicator": "Офлайн: нет подключения к интернету",
+    "moveEarlier": "Переместить раньше",
+    "moveLater": "Переместить позже"
   },
   "home": {
     "title": "Что нужно сделать?",
@@ -1390,7 +1392,8 @@
       "zoneAsiaTokyo": "Токио",
       "zoneAustraliaSydney": "Сидней",
       "zoneAsiaKolkata": "Калькутта",
-      "zoneAmericaChicago": "Чикаго"
+      "zoneAmericaChicago": "Чикаго",
+      "clockChangeHint": "При переводе часов местное время может отсутствовать или повторяться. Выберите время, которое встречается один раз."
     },
     "date-calculator": {
       "name": "Калькулятор дат",

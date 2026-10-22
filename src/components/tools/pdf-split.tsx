@@ -4,7 +4,7 @@ import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 import { FileDropzone, type FileItem } from "@/components/shared/file-dropzone";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { Field } from "@/components/ui/field";
 import { downloadBlob, bytesToBlob } from "@/lib/utils";
 import { ActionBar, ToolShell, useToolHistory } from "./shared";
 import { splitPdf } from "@/lib/pdf/core";
@@ -36,10 +36,9 @@ export function PdfSplit() {
   return (
     <ToolShell toolId="pdf-split">
       <FileDropzone accept="application/pdf" multiple={false} files={files} onChange={setFiles} />
-      <div className="space-y-2">
-        <Label>{t("range")}</Label>
+      <Field className="space-y-2" label={t("range")}>
         <Input value={range} onChange={(e) => setRange(e.target.value)} />
-      </div>
+      </Field>
       <ActionBar onRun={run} loading={loading} label={t("run")} disabled={!files[0]} />
     </ToolShell>
   );

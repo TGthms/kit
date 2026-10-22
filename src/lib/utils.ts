@@ -136,9 +136,17 @@ export async function downloadMany(
     downloadBlob(items[0].blob, items[0].name);
     return;
   }
+  downloadBlob(await archiveBlob(items), zipName);
+}
+
+/** All user-named archives share sanitization and collision handling. */
+export async function archiveBlob(items: ReadonlyArray<{ blob: Blob; name: string }>): Promise<Blob> {
   const JSZip = (await import("jszip")).default;
   const zip = new JSZip();
   const names = uniqueArchiveNames(items.map((item) => item.name));
-  items.forEach((item, index) => zip.file(names[index], item.blob));
-  downloadBlob(await zip.generateAsync({ type: "blob" }), zipName);
+  // Uint8Array also works in worker/test environments without FileReader.
+  for (let index = 0; index < items.length; index += 1) {
+    zip.file(names[index], new Uint8Array(await items[index].blob.arrayBuffer()));
+  }
+  return zip.generateAsync({ type: "blob" });
 }

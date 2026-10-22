@@ -4,7 +4,7 @@ import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 import { FileDropzone, type FileItem } from "@/components/shared/file-dropzone";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { Field } from "@/components/ui/field";
 import { Slider } from "@/components/ui/slider";
 import { downloadMany, bytesToBlob } from "@/lib/utils";
 import { Progress } from "@/components/ui/progress";
@@ -56,12 +56,10 @@ export function PdfWatermark() {
     <ToolShell toolId="pdf-watermark">
       <FileDropzone accept="application/pdf" files={files} onChange={setFiles} />
       <div className="grid gap-4 sm:grid-cols-2">
-        <div className="space-y-2">
-          <Label>{t("text")}</Label>
+        <Field className="space-y-2" label={t("text")}>
           <Input value={text} onChange={(e) => setText(e.target.value)} />
-        </div>
-        <div className="space-y-2">
-          <Label>{t("position")}</Label>
+        </Field>
+        <Field className="space-y-2" label={t("position")}>
           <select
             className="h-10 w-full rounded-xl border border-input bg-background px-3 text-base"
             value={position}
@@ -71,14 +69,11 @@ export function PdfWatermark() {
             <option value="header">{t("header")}</option>
             <option value="footer">{t("footer")}</option>
           </select>
-        </div>
+        </Field>
       </div>
-      <div className="space-y-2">
-        <Label>
-          {t("opacity")}: {Math.round(opacity * 100)}%
-        </Label>
+      <Field className="space-y-2" label={<>{t("opacity")}: {Math.round(opacity * 100)}%</>}>
         <Slider aria-label={t("opacity")} value={[opacity]} min={0.05} max={0.8} step={0.05} onValueChange={(v) => setOpacity(v[0])} />
-      </div>
+      </Field>
       {job.loading && <Progress value={job.progress} />}
       <ActionBar
         onRun={run}

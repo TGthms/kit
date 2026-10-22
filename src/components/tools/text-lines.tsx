@@ -12,6 +12,7 @@ import { findReplace, sortLines, uniqueLines } from "@/lib/text/lines";
 import { ToolShell, useToolHistory } from "./shared";
 
 export function TextLines() {
+  const fieldText = useTranslations("common");
   const t = useTranslations("tools.text-lines");
   const log = useToolHistory("text-lines");
   const [text, setText] = useState("banana\napple\nbanana\nCherry\n10\n2");
@@ -27,7 +28,7 @@ export function TextLines() {
 
   return (
     <ToolShell toolId="text-lines">
-      <Textarea value={text} onChange={(e) => setText(e.target.value)} className="min-h-48 font-mono" />
+      <Textarea aria-label={fieldText("input")} value={text} onChange={(e) => setText(e.target.value)} className="min-h-48 font-mono" />
       <div className="grid gap-3 sm:grid-cols-2">
         <Field label={t("find")}>
           <Input value={find} onChange={(e) => setFind(e.target.value)} />

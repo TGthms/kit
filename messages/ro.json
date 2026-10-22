@@ -125,7 +125,9 @@
     "fileRejectedSize": "Fișierul depășește 200 MB, deci Kit nu îl pune în coadă în această filă.",
     "fileRejectedType": "Acest tip de fișier nu este acceptat aici.",
     "fileRejectedEmpty": "Nu au fost adăugate fișiere utilizabile.",
-    "offlineIndicator": "Offline: fără conexiune la internet"
+    "offlineIndicator": "Offline: fără conexiune la internet",
+    "moveEarlier": "Mută mai devreme",
+    "moveLater": "Mută mai târziu"
   },
   "home": {
     "title": "Ce ai de făcut?",
@@ -1390,7 +1392,8 @@
       "zoneAsiaTokyo": "Tokyo",
       "zoneAustraliaSydney": "Sydney",
       "zoneAsiaKolkata": "Calcutta",
-      "zoneAmericaChicago": "Chicago"
+      "zoneAmericaChicago": "Chicago",
+      "clockChangeHint": "Schimbarea orei poate sări sau repeta o oră locală. Alege o oră care apare o singură dată."
     },
     "date-calculator": {
       "name": "Calculator de date",

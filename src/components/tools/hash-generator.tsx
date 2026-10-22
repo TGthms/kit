@@ -6,7 +6,7 @@ import { toast } from "sonner";
 import { FileDropzone, type FileItem } from "@/components/shared/file-dropzone";
 import { Button } from "@/components/ui/button";
 import { CopyButton } from "@/components/ui/copy-button";
-import { Label } from "@/components/ui/label";
+import { Field } from "@/components/ui/field";
 import { Textarea } from "@/components/ui/textarea";
 import { HASH_ALGOS, hashBytes, hashText, type HashAlgo } from "@/lib/text/hash";
 import { ToolShell, useToolHistory } from "./shared";
@@ -42,8 +42,7 @@ export function HashGenerator() {
   return (
     <ToolShell toolId="hash-generator">
       <p className="text-sm text-muted-foreground">{t("limits")}</p>
-      <div className="space-y-2">
-        <Label>{t("algo")}</Label>
+      <Field className="space-y-2" label={t("algo")}>
         <select className={selectClass} value={algo} onChange={(e) => setAlgo(e.target.value as HashAlgo)}>
           {HASH_ALGOS.map((a) => (
             <option key={a} value={a}>
@@ -51,16 +50,15 @@ export function HashGenerator() {
             </option>
           ))}
         </select>
-      </div>
-      <Textarea value={text} onChange={(e) => setText(e.target.value)} className="min-h-28 font-mono" />
+      </Field>
+      <Textarea aria-label={tc("input")} value={text} onChange={(e) => setText(e.target.value)} className="min-h-28 font-mono" />
       <FileDropzone multiple={false} files={files} onChange={setFiles} />
       <Button onClick={run} disabled={loading}>
         {loading ? tc("processing") : t("run")}
       </Button>
       {digest ? (
         <div className="space-y-2">
-          <Label>{t("digest")}</Label>
-          <Textarea value={digest} readOnly className="min-h-20 break-all font-mono" />
+          <Field label={t("digest")}><Textarea value={digest} readOnly className="min-h-20 break-all font-mono" /></Field>
           <CopyButton value={digest} />
         </div>
       ) : null}

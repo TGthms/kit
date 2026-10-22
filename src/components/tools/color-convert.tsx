@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { CopyButton } from "@/components/ui/copy-button";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { Field } from "@/components/ui/field";
 import { convertColor, hslToRgb, rgbToHex } from "@/lib/text/color";
 import { ToolShell, useToolHistory } from "./shared";
 
@@ -28,10 +28,9 @@ export function ColorConvert() {
             log("pick", "success");
           }}
         />
-        <div className="space-y-2">
-          <Label>HEX</Label>
+        <Field className="space-y-2" label={<>HEX</>}>
           <Input value={hex} onChange={(e) => setHex(e.target.value)} className="font-mono" />
-        </div>
+        </Field>
       </div>
       {parsed ? (
         <div className="grid gap-2 rounded-2xl border bg-card p-4 text-sm">

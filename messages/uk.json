@@ -125,7 +125,9 @@
     "fileRejectedSize": "Файл більший за 200 МБ, тож Kit не ставить його в чергу в цій вкладці.",
     "fileRejectedType": "Цей тип файлу тут не приймається.",
     "fileRejectedEmpty": "Придатних файлів не додано.",
-    "offlineIndicator": "Офлайн: немає підключення до Інтернету"
+    "offlineIndicator": "Офлайн: немає підключення до Інтернету",
+    "moveEarlier": "Перемістити раніше",
+    "moveLater": "Перемістити пізніше"
   },
   "home": {
     "title": "Що потрібно зробити?",
@@ -1390,7 +1392,8 @@
       "zoneAsiaTokyo": "Токіо",
       "zoneAustraliaSydney": "Сідней",
       "zoneAsiaKolkata": "Калькутта",
-      "zoneAmericaChicago": "Чикаго"
+      "zoneAmericaChicago": "Чикаго",
+      "clockChangeHint": "Під час переведення годинника місцевий час може бути пропущений або повторений. Виберіть час, який трапляється лише раз."
     },
     "date-calculator": {
       "name": "Калькулятор дат",

@@ -5,7 +5,7 @@ import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 import { FileDropzone, type FileItem } from "@/components/shared/file-dropzone";
 import { Button } from "@/components/ui/button";
-import { Label } from "@/components/ui/label";
+import { Field } from "@/components/ui/field";
 import { Textarea } from "@/components/ui/textarea";
 import { blobFromDataUrl, downloadBlob } from "@/lib/utils";
 import { generateQrDataUrl, readQrFromImageData } from "@/lib/text/qr";
@@ -56,10 +56,9 @@ export function QrCodeTool() {
 
   return (
     <ToolShell toolId="qr-code">
-      <div className="space-y-2">
-        <Label>{t("payload")}</Label>
+      <Field className="space-y-2" label={t("payload")}>
         <Textarea value={text} onChange={(e) => setText(e.target.value)} />
-      </div>
+      </Field>
       <Button onClick={generate}>{t("run")}</Button>
       {dataUrl ? (
         <div className="space-y-2">
@@ -80,12 +79,12 @@ export function QrCodeTool() {
         </div>
       ) : null}
       <div className="space-y-2">
-        <Label>{t("read")}</Label>
+        <p className="text-sm font-medium">{t("read")}</p>
         <FileDropzone accept="image/*" multiple={false} files={files} onChange={setFiles} />
         <Button variant="secondary" onClick={read} disabled={!files[0]}>
           {t("runRead")}
         </Button>
-        {decoded ? <Textarea value={decoded} readOnly /> : null}
+        {decoded ? <Textarea aria-label={tc("output")} value={decoded} readOnly /> : null}
       </div>
     </ToolShell>
   );

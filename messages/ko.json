@@ -125,7 +125,9 @@
     "fileRejectedSize": "파일이 200MB를 넘어 Kit이 이 탭에서 대기열에 넣지 않습니다.",
     "fileRejectedType": "이 파일 형식은 여기서 받을 수 없습니다.",
     "fileRejectedEmpty": "쓸 수 있는 파일이 추가되지 않았습니다.",
-    "offlineIndicator": "오프라인: 인터넷 연결 없음"
+    "offlineIndicator": "오프라인: 인터넷 연결 없음",
+    "moveEarlier": "앞으로 이동",
+    "moveLater": "뒤로 이동"
   },
   "home": {
     "title": "무엇을 하시겠어요?",
@@ -1390,7 +1392,8 @@
       "zoneAsiaTokyo": "도쿄",
       "zoneAustraliaSydney": "시드니",
       "zoneAsiaKolkata": "콜카타",
-      "zoneAmericaChicago": "시카고"
+      "zoneAmericaChicago": "시카고",
+      "clockChangeHint": "시간이 변경될 때 특정 현지 시간이 건너뛰어지거나 반복될 수 있습니다. 한 번만 나타나는 시간을 선택하세요."
     },
     "date-calculator": {
       "name": "날짜 계산기",

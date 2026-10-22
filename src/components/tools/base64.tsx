@@ -64,9 +64,9 @@ export function Base64Tool() {
       {kind === "file" ? (
         <FileDropzone multiple={false} files={files} onChange={setFiles} />
       ) : null}
-      <Textarea value={text} onChange={(e) => setText(e.target.value)} className="min-h-40" />
+      <Textarea aria-label={tc("input")} value={text} onChange={(e) => setText(e.target.value)} className="min-h-40" />
       {out && kind === "file" && mode === "encode" && (
-        <Textarea value={out} readOnly className="min-h-32" />
+        <Textarea aria-label={tc("output")} value={out} readOnly className="min-h-32" />
       )}
       <Button onClick={run}>{t("run")}</Button>
     </ToolShell>

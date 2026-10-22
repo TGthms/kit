@@ -125,7 +125,9 @@
     "fileRejectedSize": "Ese archivo supera 200 MB, así que Kit no lo pondrá en cola en esta pestaña.",
     "fileRejectedType": "Ese tipo de archivo no se acepta aquí.",
     "fileRejectedEmpty": "No se añadieron archivos utilizables.",
-    "offlineIndicator": "Sin conexión a Internet"
+    "offlineIndicator": "Sin conexión a Internet",
+    "moveEarlier": "Mover antes",
+    "moveLater": "Mover después"
   },
   "home": {
     "title": "¿Qué quieres hacer?",
@@ -1390,7 +1392,8 @@
       "zoneAsiaTokyo": "Tokio",
       "zoneAustraliaSydney": "Sídney",
       "zoneAsiaKolkata": "Calcuta",
-      "zoneAmericaChicago": "Chicago"
+      "zoneAmericaChicago": "Chicago",
+      "clockChangeHint": "Los cambios de hora pueden omitir o repetir una hora local. Elige una hora que ocurra una sola vez."
     },
     "date-calculator": {
       "name": "Calculadora de fechas",

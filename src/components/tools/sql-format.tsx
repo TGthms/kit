@@ -9,6 +9,7 @@ import { formatSql } from "@/lib/text/sql";
 import { ToolShell, useToolHistory } from "./shared";
 
 export function SqlFormat() {
+  const fieldText = useTranslations("common");
   const t = useTranslations("tools.sql-format");
   const log = useToolHistory("sql-format");
   const [input, setInput] = useState("select id, name from users where active = 1 order by name");
@@ -27,7 +28,7 @@ export function SqlFormat() {
 
   return (
     <ToolShell toolId="sql-format">
-      <Textarea value={input} onChange={(e) => setInput(e.target.value)} className="min-h-64 font-mono" />
+      <Textarea aria-label={fieldText("input")} value={input} onChange={(e) => setInput(e.target.value)} className="min-h-64 font-mono" />
       <Button onClick={run}>{t("run")}</Button>
     </ToolShell>
   );
