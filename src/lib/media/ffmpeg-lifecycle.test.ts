@@ -113,6 +113,10 @@ async function startAndLoad(): Promise<FakeFFmpeg> {
 const OUTPUT = new Uint8Array([1, 2, 3]);
 
 beforeEach(() => {
+  // Blob URL allocation is a browser capability, not the subject of the fake
+  // engine tests. Avoid mixing Node and jsdom Blob internals in Vitest 4.1.12.
+  vi.spyOn(URL, "createObjectURL").mockReturnValue("blob:fake-core-wasm");
+  vi.spyOn(URL, "revokeObjectURL").mockImplementation(() => {});
   // The loader fetches the gzipped WASM core from the same origin and
   // decompresses it; serve a small valid gzip body instead of the network.
   vi.stubGlobal(
@@ -123,6 +127,7 @@ beforeEach(() => {
 
 afterEach(() => {
   vi.unstubAllGlobals();
+  vi.restoreAllMocks();
 });
 
 describe("runFFmpeg lifecycle", () => {
