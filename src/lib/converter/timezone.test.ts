@@ -27,4 +27,18 @@ describe("timezone helpers", () => {
     expect(conversion.instant.toISOString()).toBe("2024-01-15T17:00:00.000Z");
     expect(() => convertLocalTimeZone("bad", "UTC", "UTC")).toThrow(RangeError);
   });
+  it.each([
+    ["2026-03-08T02:30", "America/Los_Angeles"],
+    ["2026-11-01T01:30", "America/Los_Angeles"],
+    ["2026-10-04T02:15", "Australia/Lord_Howe"],
+    ["2026-04-05T01:45", "Australia/Lord_Howe"],
+    ["2011-12-30T12:00", "Pacific/Apia"],
+  ])("rejects skipped or repeated local time %s in %s", (time, zone) => {
+    expect(() => convertLocalTimeZone(time, zone, "UTC")).toThrow(/does not exist|occurs twice/);
+  });
+  it("keeps the wall clock and milliseconds across valid transition boundaries", () => {
+    const conversion = convertLocalTimeZone("2026-03-08T03:30:15.123", "America/Los_Angeles", "UTC");
+    expect(conversion.instant.toISOString()).toBe("2026-03-08T10:30:15.123Z");
+    expect(conversion.from).toMatchObject({ hour: 3, minute: 30, second: 15 });
+  });
 });

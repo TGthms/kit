@@ -27,21 +27,16 @@ function startOfDay(value: DateInput): Date {
   return date;
 }
 
-function dateKey(value: DateInput): string {
-  const date = toDate(value);
-  const year = date.getFullYear().toString().padStart(4, "0");
-  const month = (date.getMonth() + 1).toString().padStart(2, "0");
-  const day = date.getDate().toString().padStart(2, "0");
-  return `${year}-${month}-${day}`;
-}
-
 function calendarDayNumber(value: DateInput): number {
   const date = toDate(value);
-  return Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()) / 86400000;
+  const calendar = new Date(0);
+  calendar.setUTCFullYear(date.getFullYear(), date.getMonth(), date.getDate());
+  calendar.setUTCHours(0, 0, 0, 0);
+  return calendar.getTime() / 86400000;
 }
 
 function assertInteger(value: number, name: string): void {
-  if (!Number.isInteger(value) || !Number.isFinite(value)) throw new RangeError(`${name} must be an integer.`);
+  if (!Number.isSafeInteger(value)) throw new RangeError(`${name} must be an integer.`);
 }
 
 export function differenceBetweenDates(start: DateInput, end: DateInput, absolute = false): DateDifference {
@@ -80,54 +75,79 @@ export function addDate(value: DateInput, amount: number, unit: DateUnit): Date 
   } else {
     throw new RangeError("Unsupported date unit.");
   }
-  return date;
+  return toDate(date);
 }
 
 export function subtractDate(value: DateInput, amount: number, unit: DateUnit): Date {
   return addDate(value, -amount, unit);
 }
 
-function holidaySet(holidays: readonly string[]): Set<string> {
-  for (const holiday of holidays) {
-    if (!/^\d{4}-\d{2}-\d{2}$/.test(holiday)) throw new RangeError("Holidays must use YYYY-MM-DD format.");
-  }
-  return new Set(holidays);
+/** Bounded calendar work remains instant even for very distant dates. */
+export const MAX_BUSINESS_DAY_ADDITION = 1_000_000;
+const MAX_HOLIDAYS = 10_000;
+
+function holidayDays(holidays: readonly string[]): Set<number> {
+  if (holidays.length > MAX_HOLIDAYS) throw new RangeError(`Use at most ${MAX_HOLIDAYS} holidays.`);
+  return new Set(holidays.map((holiday) => {
+    const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(holiday);
+    if (!match) throw new RangeError("Holidays must use YYYY-MM-DD format.");
+    const [, year, month, day] = match.map(Number);
+    const check = new Date(0);
+    check.setUTCFullYear(year, month - 1, day);
+    check.setUTCHours(0, 0, 0, 0);
+    if (check.getUTCFullYear() !== year || check.getUTCMonth() !== month - 1 || check.getUTCDate() !== day) {
+      throw new RangeError("Holiday date is invalid.");
+    }
+    return check.getTime() / 86400000;
+  }));
+}
+
+const weekday = (day: number) => ((day + 4) % 7 + 7) % 7;
+const workday = (day: number) => weekday(day) !== 0 && weekday(day) !== 6;
+
+/** Inclusive interval: count whole weeks, at most six days, then holidays. */
+function countInterval(first: number, last: number, holidays: ReadonlySet<number>): number {
+  const length = last - first + 1;
+  if (length <= 0) return 0;
+  let count = Math.floor(length / 7) * 5;
+  for (let i = 0; i < length % 7; i += 1) if (workday(first + i)) count += 1;
+  for (const holiday of holidays) if (holiday >= first && holiday <= last && workday(holiday)) count -= 1;
+  return count;
 }
 
 export function isBusinessDay(value: DateInput, holidays: readonly string[] = []): boolean {
-  const date = toDate(value);
-  const day = date.getDay();
-  return day !== 0 && day !== 6 && !holidaySet(holidays).has(dateKey(date));
+  const day = calendarDayNumber(value);
+  return workday(day) && !holidayDays(holidays).has(day);
 }
 
 export function countBusinessDays(start: DateInput, end: DateInput, options: BusinessDayOptions = {}): number {
-  const startDay = startOfDay(start);
-  const endDay = startOfDay(end);
-  const startNumber = startDay.getTime();
-  const endNumber = endDay.getTime();
-  if (startNumber === endNumber) return options.inclusive && isBusinessDay(startDay, options.holidays ?? []) ? 1 : 0;
-  const direction = startNumber < endNumber ? 1 : -1;
-  const first = direction === 1 ? startDay : endDay;
-  const last = direction === 1 ? endDay : startDay;
-  const cursor = options.inclusive ? new Date(first) : addDate(first, 1, "days");
-  const holidays = options.holidays ?? [];
-  let count = 0;
-  while (cursor.getTime() <= last.getTime()) {
-    if (isBusinessDay(cursor, holidays)) count += 1;
-    cursor.setDate(cursor.getDate() + 1);
-  }
-  return count * direction;
+  const first = calendarDayNumber(start);
+  const last = calendarDayNumber(end);
+  const holidays = holidayDays(options.holidays ?? []);
+  if (first === last) return options.inclusive ? countInterval(first, last, holidays) : 0;
+  const direction = first < last ? 1 : -1;
+  return direction * countInterval(Math.min(first, last) + (options.inclusive ? 0 : 1), Math.max(first, last), holidays);
 }
 
 export function addBusinessDays(value: DateInput, amount: number, holidays: readonly string[] = []): Date {
   assertInteger(amount, "amount");
+  if (Math.abs(amount) > MAX_BUSINESS_DAY_ADDITION) throw new RangeError(`Use at most ${MAX_BUSINESS_DAY_ADDITION} business days.`);
   const result = startOfDay(value);
+  const excluded = holidayDays(holidays);
   if (amount === 0) return result;
+  const start = calendarDayNumber(result);
   const direction = amount > 0 ? 1 : -1;
-  let remaining = Math.abs(amount);
-  while (remaining > 0) {
-    result.setDate(result.getDate() + direction);
-    if (isBusinessDay(result, holidays)) remaining -= 1;
+  const required = Math.abs(amount);
+  // Even if every supplied holiday falls in the interval, this is sufficient.
+  let low = 1;
+  let high = Math.ceil((required + excluded.size) / 5) * 7 + 7;
+  while (low < high) {
+    const distance = Math.floor((low + high) / 2);
+    const available = direction > 0 ? countInterval(start + 1, start + distance, excluded)
+      : countInterval(start - distance, start - 1, excluded);
+    if (available >= required) high = distance;
+    else low = distance + 1;
   }
-  return result;
+  result.setDate(result.getDate() + direction * low);
+  return toDate(result);
 }

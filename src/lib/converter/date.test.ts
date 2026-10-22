@@ -27,4 +27,29 @@ describe("date helpers", () => {
     expect(addBusinessDays(friday, 1).getDate()).toBe(8);
     expect(addBusinessDays(monday, -1).getDate()).toBe(5);
   });
+  it("rejects unsafe amounts, invalid holidays, and dates outside the supported range", () => {
+    for (const amount of [1e20, Infinity, NaN, 1.5, 1_000_001]) expect(() => addBusinessDays(new Date(), amount)).toThrow(RangeError);
+    expect(() => addBusinessDays(new Date(), 0, ["2026-02-30"])).toThrow();
+    expect(() => countBusinessDays(new Date(), new Date(), { holidays: ["bad"] })).toThrow();
+    expect(() => addDate(new Date(), 1e20, "days")).toThrow();
+  });
+  it("matches a simple calendar walk across weekends, holidays, and both directions", () => {
+    const holidays = ["2026-01-01", "2026-01-05", "2026-01-05", "2026-01-10"];
+    for (let day = 1; day <= 7; day += 1) for (const amount of [-50, -5, -1, 0, 1, 5, 50]) {
+      const start = new Date(2026, 0, day);
+      const expected = new Date(start);
+      let remaining = Math.abs(amount);
+      while (remaining) {
+        expected.setDate(expected.getDate() + Math.sign(amount));
+        if (isBusinessDay(expected, holidays)) remaining -= 1;
+      }
+      expect(addBusinessDays(start, amount, holidays)).toEqual(expected);
+    }
+  });
+  it("handles distant dates without walking every day", () => {
+    const start = new Date(2026, 0, 5);
+    const end = addBusinessDays(start, 1_000_000);
+    expect(countBusinessDays(start, end)).toBe(1_000_000);
+    expect(addBusinessDays(end, -1_000_000)).toEqual(start);
+  });
 });

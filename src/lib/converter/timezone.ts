@@ -22,6 +22,19 @@ export type TimeZoneConversion = {
   to: ZonedParts;
 };
 
+// World-clock cards format several views of each instant every second. Reuse
+// the ICU formatters rather than reconstructing them on every render.
+const formatters = new Map<string, Intl.DateTimeFormat>();
+function formatter(locale: string, options: Intl.DateTimeFormatOptions): Intl.DateTimeFormat {
+  const key = JSON.stringify([locale, options]);
+  const cached = formatters.get(key);
+  if (cached) return cached;
+  const next = new Intl.DateTimeFormat(locale, options);
+  if (formatters.size >= 128) formatters.delete(formatters.keys().next().value!);
+  formatters.set(key, next);
+  return next;
+}
+
 function toDate(value: DateInput): Date {
   const date = value instanceof Date ? new Date(value.getTime()) : new Date(value);
   if (Number.isNaN(date.getTime())) throw new RangeError("Date must be valid.");
@@ -30,7 +43,7 @@ function toDate(value: DateInput): Date {
 
 export function isValidTimeZone(timeZone: string): boolean {
   try {
-    new Intl.DateTimeFormat("en-US", { timeZone }).format();
+    formatter("en-US", { timeZone });
     return true;
   } catch {
     return false;
@@ -50,7 +63,7 @@ function partNumber(parts: Intl.DateTimeFormatPart[], type: string): number {
 export function getTimeZoneParts(value: DateInput, timeZone: string, locale = "en-US"): ZonedParts {
   const date = toDate(value);
   assertTimeZone(timeZone);
-  const parts = new Intl.DateTimeFormat(locale, {
+  const parts = formatter(locale, {
     timeZone,
     calendar: "gregory",
     numberingSystem: "latn",
@@ -76,7 +89,7 @@ export function getTimeZoneParts(value: DateInput, timeZone: string, locale = "e
 export function formatTimeZone(value: DateInput, timeZone: string, options: TimeZoneFormatOptions = {}): string {
   assertTimeZone(timeZone);
   const { locale = "en-US", ...formatOptions } = options;
-  return new Intl.DateTimeFormat(locale, { ...formatOptions, timeZone }).format(toDate(value));
+  return formatter(locale, { ...formatOptions, timeZone }).format(toDate(value));
 }
 
 export function getTimeZoneOffsetMinutes(value: DateInput, timeZone: string): number {
@@ -116,8 +129,21 @@ export function convertLocalTimeZone(localDateTime: string, fromTimeZone: string
   const wall = new Date(0);
   wall.setUTCFullYear(year, month - 1, day);
   wall.setUTCHours(hour, minute, second, milliseconds);
-  let instantMs = wall.getTime() - getTimeZoneOffsetMinutes(wall, fromTimeZone) * 60000;
-  instantMs -= getTimeZoneOffsetMinutes(new Date(instantMs), fromTimeZone) * 60000 - getTimeZoneOffsetMinutes(wall, fromTimeZone) * 60000;
-  const instant = new Date(instantMs);
+  // Collect offsets on both sides of a nearby transition, then round-trip
+  // candidates. No match is a DST gap; two matches are an ambiguous fold.
+  // Reject both rather than silently picking a different wall time or instant.
+  const offsets = new Set<number>();
+  for (let hours = -48; hours <= 48; hours += 12) {
+    offsets.add(getTimeZoneOffsetMinutes(new Date(wall.getTime() + hours * 3_600_000), fromTimeZone));
+  }
+  const candidates = [...offsets].map((offset) => new Date(wall.getTime() - offset * 60000)).filter((date) => {
+    const parts = getTimeZoneParts(date, fromTimeZone);
+    return parts.year === year && parts.month === month && parts.day === day
+      && parts.hour === hour && parts.minute === minute && parts.second === second;
+  });
+  if (candidates.length !== 1) throw new RangeError(candidates.length === 0
+    ? "This local time does not exist in the selected time zone."
+    : "This local time occurs twice in the selected time zone.");
+  const instant = candidates[0];
   return convertTimeZone(instant, fromTimeZone, toTimeZone, locale);
 }

@@ -1,15 +1,24 @@
+import { assertJsonBudget, MAX_TEXT_LENGTH } from "./budget";
+
 function isPlainObject(value: unknown): value is Record<string, unknown> {
   return typeof value === "object" && value !== null && !Array.isArray(value);
 }
 
 /** Flatten nested JSON into dotted paths; arrays use `[i]` segments. */
 export function flattenJson(value: unknown, prefix = ""): Record<string, unknown> {
-  const out: Record<string, unknown> = {};
+  assertJsonBudget(value);
+  const out: Record<string, unknown> = Object.create(null);
+  let outputSize = 0;
+  const put = (path: string, item: unknown) => {
+    outputSize += path.length + (JSON.stringify(item)?.length ?? 0);
+    if (outputSize > MAX_TEXT_LENGTH * 4) throw new RangeError("Flattened JSON is too large to display. Use a smaller document.");
+    out[path] = item;
+  };
 
   const walk = (current: unknown, path: string): void => {
     if (Array.isArray(current)) {
-      if (current.length === 0 && path) {
-        out[path] = current;
+      if (current.length === 0) {
+        put(path, current);
         return;
       }
       current.forEach((item, index) => {
@@ -20,24 +29,21 @@ export function flattenJson(value: unknown, prefix = ""): Record<string, unknown
     }
     if (isPlainObject(current)) {
       const keys = Object.keys(current);
-      if (keys.length === 0 && path) {
-        out[path] = current;
+      if (keys.length === 0) {
+        put(path, current);
         return;
       }
       for (const key of keys) {
-        const next = path ? `${path}.${key}` : key;
+        const plain = /^[A-Za-z_$][\w$]*$/u.test(key);
+        const next = plain ? (path ? `${path}.${key}` : key) : `${path}[${JSON.stringify(key)}]`;
         walk(current[key], next);
       }
       return;
     }
-    if (path) out[path] = current;
-    else out[""] = current;
+    put(path, current);
   };
 
   walk(value, prefix);
-  if (prefix === "" && (value === null || typeof value !== "object")) {
-    return { "": value };
-  }
   return out;
 }
 
@@ -59,7 +65,22 @@ function parseJsonPath(path: string): PathSegment[] {
     }
     if (trimmed[i] === "[") {
       i += 1;
-      if (trimmed[i] === "'" || trimmed[i] === '"') {
+      if (trimmed[i] === '"') {
+        const start = i;
+        i += 1;
+        while (i < trimmed.length) {
+          if (trimmed[i] === "\\") { i += 2; continue; }
+          if (trimmed[i] === '"') break;
+          i += 1;
+        }
+        let key: unknown;
+        try { key = JSON.parse(trimmed.slice(start, i + 1)); } catch { throw new Error(`Invalid JSONPath: ${path}`); }
+        if (typeof key !== "string" || trimmed[i + 1] !== "]") throw new Error(`Invalid JSONPath: ${path}`);
+        segments.push({ type: "key", key });
+        i += 2;
+        continue;
+      }
+      if (trimmed[i] === "'") {
         const quote = trimmed[i]!;
         i += 1;
         let key = "";

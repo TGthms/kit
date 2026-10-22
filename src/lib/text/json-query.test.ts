@@ -23,4 +23,16 @@ describe("json query helpers", () => {
     expect(() => jsonPathGet({}, "a.b")).toThrow(/Invalid JSONPath/);
     expect(() => jsonPathGet({}, "$.")).toThrow(/Invalid JSONPath/);
   });
+  it("preserves reserved keys, empty containers, and keys that resemble paths", () => {
+    const input = JSON.parse('{"a.b":1,"a":{"b":2},"__proto__":3,"":{},"items[0]":4,"line\\nkey":5,"quote\\\"key":6}');
+    const flat = flattenJson(input);
+    expect(Object.keys(flat)).toHaveLength(7);
+    expect(Object.getPrototypeOf(flat)).toBeNull();
+    expect(flat.__proto__).toBe(3);
+    for (const [key, value] of Object.entries(flat)) {
+      expect(jsonPathGet(input, `$${key.startsWith("[") ? "" : "."}${key}`)).toEqual([value]);
+    }
+    expect(flattenJson([])).toEqual({ "": [] });
+    expect(flattenJson({})).toEqual({ "": {} });
+  });
 });
