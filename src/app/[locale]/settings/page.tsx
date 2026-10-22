@@ -14,7 +14,7 @@ import { rememberThemeChoice } from "@/lib/theme/resolve";
 import { APP_VERSION } from "@/lib/version";
 import { useHydrated } from "@/lib/react/hydrated";
 import { runCircularThemeTransition } from "@/lib/theme/circular-transition";
-import { HardDriveDownload } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 import { useAppearanceStore } from "@/stores/appearance-store";
 import { useFeedbackStore } from "@/stores/feedback-store";
 
@@ -106,10 +106,11 @@ export default function SettingsPage() {
         </CardContent>
       </Card>
 
-      <Card className="anim-stagger border-primary/20 bg-primary/[0.035]" style={{ animationDelay: "120ms" }}>
-        <CardContent className="flex flex-col gap-4 p-5 sm:flex-row sm:items-center sm:justify-between sm:p-6">
-          <div className="flex items-start gap-3"><span className="rounded-xl bg-primary/12 p-2.5 text-primary"><HardDriveDownload className="h-5 w-5" /></span><div><CardTitle>{t("offlineAccess")}</CardTitle><p className="mt-1 type-body text-muted-foreground">{t("offlineAccessDesc")}</p></div></div>
-          <Button asChild className="shrink-0"><Link href="/settings/offline">{t("offlineOpen")}</Link></Button>
+      <Card className="anim-stagger border-border/40" style={{ animationDelay: "120ms" }}>
+        <CardHeader><CardTitle>{t("offlineAccess")}</CardTitle></CardHeader>
+        <CardContent className="space-y-4">
+          <p className="type-caption text-muted-foreground">{t("offlineAccessDesc")}</p>
+          <Button asChild variant="outline"><Link href="/settings/offline">{t("offlineOpen")}<ChevronRight aria-hidden className="ms-2 h-4 w-4" /></Link></Button>
         </CardContent>
       </Card>
 
