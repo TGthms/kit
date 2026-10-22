@@ -44,7 +44,7 @@ describe("service worker offline selection", () => {
 
   it("gives a user-requested download priority over the background fill", () => {
     expect(sw).toMatch(/let offlineBusy = false/);
-    expect(sw).toMatch(/while \(fillPaused \|\| offlineBusy\) await sleep\(400\)/);
+    expect(sw).toMatch(/while \(fillQueue\.length && !fillPaused && !offlineBusy\)/);
     const fn = sw.slice(sw.indexOf("async function downloadSelectedOffline"), sw.indexOf("async function startLocaleFill"));
     expect(fn).toMatch(/offlineBusy = true/);
     expect(fn).toMatch(/offlineBusy = false/);
@@ -76,7 +76,7 @@ describe("offline indicator placement", () => {
 
 describe("what is saved", () => {
   it("reports the state from the cache keys rather than by probing each address", () => {
-    expect(sw).toMatch(/async function cachedPathnames\(\)/);
+    expect(sw).toMatch(/async function cachedPathnames\(/);
     expect(sw).toMatch(/\(await caches\.open\(name\)\)\.keys\(\)/);
     expect(sw).toMatch(/async function offlineState\(\)/);
     expect(sw).toMatch(/function countPresent\(urls, present\)/);
@@ -89,7 +89,7 @@ describe("what is saved", () => {
     const fn = sw.slice(sw.indexOf("async function offlineState"), sw.indexOf("async function removeOffline"));
     expect(fn).toMatch(/const pages = \[\.\.\.\(chrome\[locale\] \|\| \[\]\), \.\.\.\(toolsByLocale\[locale\] \|\| \[\]\)\]/);
     expect(fn).toMatch(/const done = countPresent\(pages, shell\) \+ countPresent\(payloads, rsc\)/);
-    expect(fn).toMatch(/ready: total > 0 && done === total/);
+    expect(fn).toMatch(/ready: runtimeReady && total > 0 && done === total/);
     /* Compatibility addresses for old links are prefetched but never counted:
        Offline access cannot offer them, so counting them would leave every
        language permanently incomplete. */
@@ -138,7 +138,7 @@ describe("removing downloads", () => {
     expect(fn()).toMatch(/for \(const locale of scope\.locales \|\| \[\]\) addLocale\(locale\)/);
     expect(fn()).toMatch(/for \(const tool of scope\.tools \|\| \[\]\) addTool\(tool\)/);
     expect(fn()).toMatch(/await caches\.open\(CACHE\)/);
-    expect(fn()).toMatch(/await caches\.open\(RSC_CACHE\)/);
+    expect(fn()).toMatch(/name\.startsWith\("kit-rsc-"\)/);
   });
 
   it("reads a message as a selection, never as a request for everything", () => {
@@ -227,7 +227,7 @@ describe("offline page state", () => {
 
   it("records only a download that reported completion", () => {
     const handler = offlineAccess.slice(offlineAccess.indexOf('data.type === "OFFLINE_STATE"'));
-    expect(handler).toMatch(/status === "done" && request\.current/);
+    expect(handler).toMatch(/status === "done" && !requiresActivation/);
     expect(handler).toMatch(/savePlan\(\{/);
   });
 
@@ -278,10 +278,10 @@ describe("offline page state", () => {
   });
 
   it("takes the whole ticked set in one message, and offers everything at once", () => {
-    expect(offlineAccess).toMatch(/type: "OFFLINE_REMOVE",\n\s*locales: removalLocales,/);
+    expect(offlineAccess).toMatch(/removeOfflineDownloads\(worker, \{ locales: removalLocales,/);
     expect(offlineAccess).toMatch(/\{t\("offlineRemoveSelected"\)\}/);
     expect(offlineAccess).toMatch(/\{removalCount \? \(/);
-    expect(offlineAccess).toMatch(/postMessage\(\{ type: "OFFLINE_REMOVE", all: true \}\)/);
+    expect(offlineAccess).toMatch(/removeOfflineDownloads\(worker, \{ all: true \}\)/);
   });
 
   it("waits for the worker's report instead of claiming nothing is saved", () => {
@@ -289,9 +289,9 @@ describe("offline page state", () => {
     expect(offlineAccess).toMatch(/\{waitingForReport \? \(/);
     /* The worker answers even when it has nothing to report, so the page can
        tell "there is nothing here" apart from "no answer yet". */
-    expect(sw).toMatch(/await sendOfflineState\(await offlineState\(\)\)/);
+    expect(sw).toMatch(/event\.source\?\.postMessage\(\{ type: "OFFLINE_STATE", state \}\)/);
     // And a worker that never answers must not leave the page waiting for ever.
-    expect(offlineAccess).toMatch(/window\.setTimeout\(\(\) => setReportLoaded\(true\), STATUS_WAIT_MS\)/);
+    expect(offlineAccess).toMatch(/if \(!reportReceived\.current\) \{ setReportError\(true\)/);
   });
 
   it("shows a wait rather than a figure it has not measured, and never the selection", () => {
@@ -300,7 +300,7 @@ describe("offline page state", () => {
     expect(offlineAccess).toMatch(/const waitingForStorage = !hydrated \|\| \(canEstimateStorage && !storageRead\)/);
     const card = offlineAccess.slice(
       offlineAccess.indexOf("<Figure"),
-      offlineAccess.indexOf('{planState === "saved"')
+      offlineAccess.indexOf("</dl>")
     );
     // Four figures, each of which waits for its own source.
     expect(card.match(/<Figure /g)).toHaveLength(4);
@@ -311,9 +311,9 @@ describe("offline page state", () => {
   });
 
   it("reports saved content that belongs to an earlier release and re-runs that selection", () => {
-    expect(offlineAccess).toMatch(/planState === "stale" \|\| planState === "cleared"/);
+    expect(offlineAccess).toMatch(/planState === "cleared" \|\| planState === "incomplete"/);
     expect(offlineAccess).toMatch(/t\("offlineOutdated", \{ version: APP_VERSION \}\)/);
-    expect(offlineAccess).toMatch(/t\("offlineCleared"\)/);
+    expect(offlineAccess).toMatch(/t\("offlineRepair"\)/);
     expect(offlineAccess).toMatch(/t\("offlineStoredVersion", \{ version: plan\.version \}\)/);
   });
 });
@@ -325,12 +325,12 @@ describe("the app's own pages", () => {
     expect(offlineAccess).toMatch(/t\("offlinePagesDesc"\)/);
     /* Every one of them starts ticked: Kit cannot open with no connection
        without them, and the page that manages all of this is one of them. */
-    expect(offlineAccess).toMatch(/useState<AppPageId\[\]>\(\[\.\.\.APP_PAGE_IDS\]\)/);
+    expect(offlineAccess).toMatch(/pages: \[\.\.\.APP_PAGE_IDS\]/);
   });
 
   it("carry the selection through the download and into the record", () => {
     expect(offlineAccess).toMatch(/pages: selectedPages, engines \}/);
-    expect(offlineAccess).toMatch(/pages: request\.current\.pages,/);
+    expect(offlineAccess).toMatch(/const selection = data\.selection \?\? request\.current/);
     expect(offlineAccess).toMatch(/setSelectedPages\(plan\.pages\)/);
     // A download with no tools at all is a legitimate one, so tools are not
     // required — but something has to be asked for.

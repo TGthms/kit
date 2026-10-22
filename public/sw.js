@@ -8,10 +8,11 @@
  *
  * `<build>` is a digest of the content this worker serves, written into the
  * exported copy of this file by `scripts/sw-precache.mjs`. Naming the caches
- * after the content is what keeps a device from ever serving an older build: a
- * new build changes this file, so the browser installs it, it opens a fresh
- * pair of caches, and activating it deletes the previous pair. Anything saved
- * by an earlier build is gone rather than quietly answering requests.
+ * after the content keeps releases separate. An update prepares fresh caches
+ * and preserves saved choices. A complete previous release remains available
+ * until its replacement is verified; HTML, Flight and runtime files always
+ * come from the same serving release. A small scope-specific metadata cache
+ * records that choice and remembers removals across worker restarts.
  *
  * A new worker waits for existing tabs to close before taking over. Seizing
  * open tabs mid-navigation can orphan a navigate fetch and leave the page
@@ -43,6 +44,14 @@ const CACHE_PREFIX = "kit-";
 const LAST_HOME = "./last-home";
 const NAV_FETCH_MS = 8000;
 const UPDATE_READY = "./offline-update-ready";
+// Small durable records survive worker suspension and release replacement.
+// A scope-specific cache keeps separate installations on the same origin apart.
+const META_CACHE = `kit-offline-${encodeURIComponent(new URL(self.registration?.scope || "/", self.location.origin).pathname)}`;
+const ACTIVE_RELEASE = "./active-release";
+const RETIRED = "./retired-releases";
+const REMOVED = "./removed-downloads";
+const JOB = "./offline-job";
+const VERIFIED = "./offline-verified";
 const NAV_CACHE_MS = 400;
 const FILL_PRECACHE = "./sw-precache.json";
 const OFFLINE_PROGRESS_MS = 250;
@@ -55,6 +64,91 @@ const MAX_OFFLINE_PAGES = 40;
    optional background fill stays strictly one at a time, so this only applies
    while someone is waiting on the page and watching the progress bar. */
 const OFFLINE_CONCURRENCY = 6;
+const DOWNLOAD_FETCH_MS = 120_000;
+
+async function readRecord(cacheName, key) {
+  // An unreadable store is not an empty store. Propagate API failures so they
+  // cannot erase a saved plan or authorize retiring the previous release.
+  const response = await (await caches.open(cacheName)).match(key);
+  if (!response) return null;
+  try { return await response.json(); }
+  catch (error) { if (error?.name === "SyntaxError") return null; throw error; }
+}
+
+async function writeRecord(cacheName, key, value) {
+  await (await caches.open(cacheName)).put(key, new Response(JSON.stringify(value)));
+}
+
+let servingSnapshot = null;
+async function servingRelease() {
+  if (servingSnapshot) return servingSnapshot;
+  const active = await readRecord(META_CACHE, ACTIVE_RELEASE);
+  return (servingSnapshot = active?.workerGeneration === GENERATION
+    ? active : { cache: CACHE, rsc: RSC_CACHE, generation: GENERATION });
+}
+
+async function servingManifest() {
+  const release = await servingRelease();
+  return release.cache === CACHE ? readManifest() : readRecord(release.cache, FILL_PRECACHE);
+}
+
+async function retireReleases() {
+  // A fallback is retained in full until the replacement is verified. Never
+  // clean a different Kit installation sharing this origin (e.g. /kit/).
+  const root = new URL("./", self.registration.scope).pathname;
+  const names = await caches.keys();
+  const retired = await readRecord(META_CACHE, RETIRED);
+  const candidates = new Set(retired?.names || []);
+  const remove = new Set();
+  for (const name of names) {
+    if (!name.startsWith(`${CACHE_PREFIX}shell-`) || name === CACHE || !candidates.has(name)) continue;
+    const manifest = await readRecord(name, FILL_PRECACHE);
+    if (manifest?.core?.includes(root)) {
+      remove.add(name);
+      const rsc = name.replace("kit-shell-", "kit-rsc-");
+      if (names.includes(rsc)) remove.add(rsc);
+    }
+  }
+  await Promise.all([...remove].map((name) => caches.delete(name).catch(() => false)));
+  await writeRecord(META_CACHE, RETIRED, { names: [...candidates].filter((name) => name !== CACHE && !remove.has(name)) });
+}
+
+async function rememberRetired(cache) {
+  if (!cache || cache === CACHE) return;
+  const retired = await readRecord(META_CACHE, RETIRED);
+  await writeRecord(META_CACHE, RETIRED, { names: [...new Set([...(retired?.names || []), cache])] });
+}
+
+function mergeSelection(first, second) {
+  const list = (key) => [...new Set([...(first?.[key] || []), ...(second?.[key] || [])])];
+  return { locales: list("locales"), tools: list("tools"), pages: list("pages"), engines: Boolean(first?.engines || second?.engines) };
+}
+
+function normalizedSelection(data, manifest) {
+  const strings = (value, limit) => (Array.isArray(value) ? value : []).filter((id) => typeof id === "string").slice(0, limit);
+  const segments = new Set(Object.values(manifest.toolsByLocale || {}).flat().map(segmentOfToolUrl));
+  const pages = new Set(Object.values(manifest.pagesByLocale || {}).flatMap((entry) => Object.keys(entry)));
+  return {
+    locales: strings(data?.locales, MAX_OFFLINE_LOCALES).filter((id) => Object.hasOwn(manifest.chromeByLocale || {}, id)),
+    tools: strings(data?.tools, MAX_OFFLINE_TOOLS).filter((id) => segments.has(toolPathSegment(id))),
+    pages: data && !Array.isArray(data.pages) ? [...pages] : strings(data?.pages, MAX_OFFLINE_PAGES).filter((id) => pages.has(id)),
+    engines: data?.engines === true,
+  };
+}
+
+async function pruneRemovedResources() {
+  const removed = await readRecord(META_CACHE, REMOVED);
+  if (!removed) return;
+  for (const path of removed.paths || []) await (await caches.open(cacheNameFor(path))).delete(path);
+  const ready = await readRecord(CACHE, UPDATE_READY);
+  if (ready?.selection) {
+    ready.selection.locales = (ready.selection.locales || []).filter((id) => !(removed.locales || []).includes(id));
+    ready.selection.tools = (ready.selection.tools || []).filter((id) => !(removed.tools || []).includes(id));
+    if (removed.engines) ready.selection.engines = false;
+    if (!ready.selection.locales.length) await (await caches.open(CACHE)).delete(UPDATE_READY);
+    else await writeRecord(CACHE, UPDATE_READY, ready);
+  }
+}
 
 /* Mirrors toolPathSegment() in src/lib/navigation/routes.ts. A tool id is not
    always its public route segment, so selected ids must be resolved before
@@ -83,15 +177,9 @@ self.addEventListener("install", (event) => {
   event.waitUntil(
     (async () => {
       const cache = await caches.open(CACHE);
-      try {
-        const appManifest = await deadlineFetch("./manifest.webmanifest", { cache: "no-store" });
-        if (appManifest.ok) await cache.put("./manifest.webmanifest", appManifest);
-      } catch {
-        /* offline install */
-      }
       // Installation must keep the manifest that belongs to this worker. A
       // deployment changing mid-install must fail rather than mix releases.
-      const response = await deadlineFetch(FILL_PRECACHE, { cache: "no-store" });
+      const response = await downloadResponse(FILL_PRECACHE);
       const manifest = await response.clone().json();
       if (!response.ok || manifest.generation !== GENERATION) throw new Error("Build changed during install");
       await cache.put(FILL_PRECACHE, response);
@@ -106,12 +194,16 @@ self.addEventListener("install", (event) => {
 async function stageRelease(manifest) {
   const cache = await caches.open(CACHE);
   let previous = null;
+  let previousCache = null;
+  const active = await readRecord(META_CACHE, ACTIVE_RELEASE);
   for (const name of await caches.keys()) {
-    if (!name.startsWith("kit-shell-") || name === CACHE) continue;
-    const marker = await (await caches.open(name)).match(UPDATE_READY);
-    if (!marker) continue;
-    const entry = await marker.json();
-    if (entry.selection && (!previous || entry.at > previous.at)) previous = entry;
+    if (!name.startsWith("kit-shell-") || name === CACHE || (active?.cache && name !== active.cache)) continue;
+    const entry = await readRecord(name, UPDATE_READY);
+    if (entry?.selection && (!previous || entry.at > previous.at)) { previous = entry; previousCache = name; }
+  }
+  if (!active && previousCache) {
+    const generation = previousCache.slice("kit-shell-".length);
+    await writeRecord(META_CACHE, ACTIVE_RELEASE, { cache: previousCache, rsc: previousCache.replace("kit-shell-", "kit-rsc-"), generation, workerGeneration: generation });
   }
   const windows = await self.clients.matchAll({ type: "window", includeUncontrolled: true });
   const locale = Object.keys(manifest.chromeByLocale).find((value) => windows.some((client) => new URL(client.url).pathname.startsWith(new URL(`${value}/`, self.registration.scope).pathname))) || "en";
@@ -122,7 +214,7 @@ async function stageRelease(manifest) {
   // Inspect actual documents, rather than preloading every tool's JS on first
   // visit. These include CSS and runtime chunks needed before first paint.
   for (const page of [new URL("./", self.registration.scope).pathname, home].filter(Boolean)) {
-    const response = await asDirectResponse(await deadlineFetch(new URL(page, self.location.origin).href, { cache: "no-store" }));
+    const response = await downloadResponse(page);
     if (!isUsableHtml(response) || !await matchesBuild(page, response)) throw new Error("Startup document changed during install");
     const html = await response.clone().text();
     await cache.put(page, response);
@@ -138,29 +230,73 @@ async function stageRelease(manifest) {
       const href = pending[cursor++];
       const destination = await caches.open(cacheNameFor(href));
       if (await destination.match(href)) continue;
-      const response = await asDirectResponse(await deadlineFetch(new URL(href, self.location.origin).href, { cache: "no-store" }));
-      if (!usableOfflineResource(href, response) || !await matchesBuild(href, response)) throw new Error(`Could not prepare ${href}`);
-      await destination.put(href, response);
+      await saveOfflineResource(href);
     }
   }));
+  const held = await cachedPathnames();
+  if (pending.some((url) => !(/\.txt$/iu.test(url) ? held.rsc : held.shell).has(url))) throw new Error("Some prepared files were removed from storage");
   if (home) {
     const response = await cache.match(home);
     if (response) await cache.put(LAST_HOME, response);
   }
-  if (previous) await cache.put(UPDATE_READY, new Response(JSON.stringify({ ...previous, generation: GENERATION })));
+  if (previous) await writeRecord(CACHE, UPDATE_READY, { ...previous, selection: normalizedSelection(previous.selection, manifest), generation: GENERATION, version: manifest.version });
+  await pruneRemovedResources();
 }
 
 self.addEventListener("activate", (event) => {
-  event.waitUntil(
-    caches.keys().then((keys) =>
-      Promise.all(
-        keys
-          .filter((key) => key.startsWith(CACHE_PREFIX) && key !== CACHE && key !== RSC_CACHE)
-          .map((key) => caches.delete(key))
-      )
-    )
-  );
+  event.waitUntil((async () => {
+    await pruneRemovedResources();
+    const previous = await readRecord(META_CACHE, ACTIVE_RELEASE);
+    const plan = previous?.cache && await readRecord(previous.cache, UPDATE_READY);
+    const staged = await readRecord(CACHE, UPDATE_READY);
+    const manifest = await readManifest();
+    const selection = mergeSelection(normalizedSelection(plan?.selection, manifest || {}), normalizedSelection(staged?.selection, manifest || {}));
+    const paths = await cachedPathnames();
+    const needed = plan?.selection || staged?.selection ? await selectedOfflineUrls(selection) : [];
+    const carried = needed.every((url) => (/\.txt$/iu.test(url) ? paths.rsc : paths.shell).has(url));
+    // A user may add downloads after installation has already staged a newer
+    // worker. If those choices are not yet in the new release, keep serving the
+    // previous complete release. Activation never fetches or delays cold boot.
+    const release = !carried && previous?.cache
+      ? { ...previous, workerGeneration: GENERATION }
+      : { cache: CACHE, rsc: RSC_CACHE, generation: GENERATION, workerGeneration: GENERATION };
+    if (release.cache === CACHE) await rememberRetired(previous?.cache);
+    await writeRecord(META_CACHE, ACTIVE_RELEASE, release);
+    servingSnapshot = null;
+    if (release.cache === CACHE) {
+      if (plan?.selection || staged?.selection) await writeRecord(CACHE, UPDATE_READY, { ...(staged || plan), selection, generation: GENERATION, version: manifest?.version });
+      const priorJob = previous?.cache !== CACHE && previous?.cache && await readRecord(previous.cache, JOB);
+      if (priorJob && priorJob.status !== "complete" && !await readRecord(CACHE, JOB)) {
+        await writeRecord(CACHE, JOB, { ...priorJob, status: priorJob.status === "running" ? "interrupted" : priorJob.status, generation: GENERATION });
+      }
+      await retireReleases();
+    }
+  })());
 });
+
+/** An older frontend may not understand activationRequired. A subsequent
+ * document navigation can safely finish its prepared update, provided no
+ * other app window is still using the previous release. The embedded root
+ * entry remains immediate; this check happens on the following locale load. */
+async function promotePreparedNavigation(event) {
+  const serving = await servingRelease();
+  if (serving.cache === CACHE) return;
+  const ready = await readRecord(CACHE, UPDATE_READY);
+  if (!ready?.selection || !await readRecord(CACHE, VERIFIED)) return;
+  const previous = await readRecord(serving.cache, UPDATE_READY);
+  const manifest = await readManifest();
+  if (!manifest) return;
+  const selection = mergeSelection(normalizedSelection(previous?.selection, manifest), normalizedSelection(ready.selection, manifest));
+  const held = await cachedPathnames();
+  if (!(await selectedOfflineUrls(selection)).every((url) => (/\.txt$/iu.test(url) ? held.rsc : held.shell).has(url))) return;
+  const windows = (await self.clients.matchAll({ type: "window", includeUncontrolled: true })).filter((client) => client.url.startsWith(self.registration.scope));
+  if (windows.some((client) => client.id !== event.clientId && client.id !== event.resultingClientId)) return;
+  await writeRecord(CACHE, UPDATE_READY, { ...ready, selection });
+  await rememberRetired(serving.cache);
+  await writeRecord(META_CACHE, ACTIVE_RELEASE, { cache: CACHE, rsc: RSC_CACHE, generation: GENERATION, workerGeneration: GENERATION });
+  servingSnapshot = null;
+  await retireReleases();
+}
 
 function isIconOrManifest(url) {
   const p = url.pathname;
@@ -261,9 +397,58 @@ function deadlineFetch(resource, init) {
   });
 }
 
+/** The deadline covers the response body as well as headers. Large engines get
+ * a separate budget from navigation and cancellation interrupts their streams. */
+async function downloadResponse(href, signal, timeout = DOWNLOAD_FETCH_MS) {
+  const ctrl = new AbortController();
+  const abort = () => ctrl.abort();
+  if (signal?.aborted) ctrl.abort();
+  signal?.addEventListener("abort", abort, { once: true });
+  let timer;
+  try {
+    return await Promise.race([
+      (async () => {
+        const response = await fetch(new URL(href, self.registration.scope).href, { cache: "no-store", priority: "low", signal: ctrl.signal });
+        if (!usableOfflineResource(href, response)) throw new Error(`Invalid response: ${href}`);
+        const body = await response.arrayBuffer();
+        const headers = new Headers(response.headers);
+        headers.delete("content-encoding");
+        headers.delete("content-length");
+        return new Response(body, { status: response.status, statusText: response.statusText, headers });
+      })(),
+      new Promise((_, reject) => {
+        timer = setTimeout(() => { ctrl.abort(); reject(new Error(`Download timed out: ${href}`)); }, timeout);
+      }),
+    ]);
+  } finally {
+    clearTimeout(timer);
+    signal?.removeEventListener("abort", abort);
+  }
+}
+
+/** Reuse an identical verified resource (not an obsolete page) across releases.
+ * In particular, updating Kit should not redownload unchanged WASM engines. */
+async function saveOfflineResource(href, signal) {
+  const destination = await caches.open(cacheNameFor(href));
+  if (await destination.match(href)) return;
+  for (const name of await caches.keys()) {
+    if (name === CACHE || name === RSC_CACHE || !(name.startsWith("kit-shell-") || name.startsWith("kit-rsc-"))) continue;
+    const held = await (await caches.open(name)).match(href);
+    if (held && usableOfflineResource(href, held) && await matchesBuild(href, held, undefined, signal)) {
+      if (signal?.aborted) throw new DOMException("Canceled", "AbortError");
+      await destination.put(href, held);
+      return;
+    }
+  }
+  const response = await downloadResponse(href, signal);
+  if (!await matchesBuild(href, response)) throw new Error(`Release changed: ${href}`);
+  if (signal?.aborted) throw new DOMException("Canceled", "AbortError");
+  await destination.put(href, response);
+}
+
 /** Exact URL, the same URL without the reload marker, or the path without search. */
 async function cachedExactNavigation(req) {
-  const cache = await caches.open(CACHE);
+  const cache = await caches.open((await servingRelease()).cache);
   const exact = await cache.match(req);
   if (isUsableHtml(exact)) return await asDirectResponse(exact);
   const normalized = await cache.match(cacheKeyFor(req));
@@ -284,7 +469,7 @@ async function cachedExactNavigation(req) {
 async function cachedNavigation(req) {
   const exact = await cachedExactNavigation(req);
   if (isUsableHtml(exact)) return exact;
-  const cache = await caches.open(CACHE);
+  const cache = await caches.open((await servingRelease()).cache);
   const lastHome = await cache.match(LAST_HOME);
   if (isUsableHtml(lastHome)) return await asDirectResponse(lastHome);
   const shell = await cache.match("./");
@@ -293,16 +478,18 @@ async function cachedNavigation(req) {
 }
 
 async function networkHtml(resource) {
+  const manifest = await servingManifest();
+  const release = await servingRelease();
   const res = await asDirectResponse(await deadlineFetch(resource));
-  if (isUsableHtml(res) && await matchesBuild(resource, res)) {
-    const cache = await caches.open(CACHE);
+  if (isUsableHtml(res) && await matchesBuild(resource, res, manifest)) {
+    const cache = await caches.open(release.cache);
     await cache.put(cacheKeyFor(resource), res.clone());
     return res;
   }
   if (res && !isHtmlResponse(res)) {
     const url = typeof resource === "string" ? resource : resource.url;
     const retry = await asDirectResponse(await deadlineFetch(url, { headers: { Accept: "text/html" }, cache: "no-store" }));
-    if (isUsableHtml(retry) && await matchesBuild(resource, retry)) return retry;
+    if (isUsableHtml(retry) && await matchesBuild(resource, retry, manifest)) return retry;
   }
   return isUsableHtml(res) ? Response.error() : res;
 }
@@ -360,7 +547,7 @@ async function navigateDocument(req, dest) {
 
 /** Cache-first Flight payloads. Never stored in the HTML shell cache. */
 async function respondRsc(event, req) {
-  const cache = await caches.open(RSC_CACHE);
+  const cache = await caches.open((await servingRelease()).rsc);
   const url = new URL(req.url);
   url.search = "";
   if (url.pathname.endsWith("/")) url.pathname += "index.txt";
@@ -369,7 +556,7 @@ async function respondRsc(event, req) {
   if (isUsableRsc(cached)) return cached;
   try {
     const fresh = await asDirectResponse(await deadlineFetch(req));
-    if (isUsableRsc(fresh) && await matchesBuild(key, fresh)) {
+    if (isUsableRsc(fresh) && await matchesBuild(key, fresh, await servingManifest())) {
       await cache.put(key, fresh.clone());
       return fresh;
     }
@@ -390,6 +577,7 @@ let offlineRequestId = null;
 /* A user-requested offline download owns the connection; the background fill
    yields until it finishes so the two never compete for bandwidth. */
 let offlineBusy = false;
+let offlineProgress = null;
 
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -413,6 +601,8 @@ function cacheNameFor(href) {
 
 async function cacheFillUrl(href) {
   if (fillSeen.has(href)) return;
+  const removed = await readRecord(META_CACHE, REMOVED);
+  if (removed?.paths?.includes(new URL(href).pathname)) { fillSeen.add(href); return; }
   const cache = await caches.open(cacheNameFor(href));
   /* Held for this build, as the cache's own name guarantees. */
   if (await cache.match(href)) {
@@ -424,7 +614,7 @@ async function cacheFillUrl(href) {
   try {
     const init = { cache: "no-store", priority: "low", signal: ctrl.signal };
     if (href.endsWith("/") || href.endsWith(".html")) init.headers = { Accept: "text/html" };
-    const res = await asDirectResponse(await fetch(href, init));
+    const res = await downloadResponse(href, init.signal, NAV_FETCH_MS);
     if (!res || !res.ok || !TRUSTED_TYPES.has(res.type) || !await matchesBuild(href, res)) return;
     if (fillPaused || fillSeen.has(href)) return;
     if (/\.txt$/i.test(href)) {
@@ -446,14 +636,15 @@ async function pumpFill() {
   if (fillBusy) return;
   fillBusy = true;
   try {
-    while (fillQueue.length) {
-      while (fillPaused || offlineBusy) await sleep(400);
+    // Pausing must settle this event, not leave an eternal waitUntil(). A
+    // pending background event can prevent a waiting release from activating.
+    while (fillQueue.length && !fillPaused && !offlineBusy) {
       const href = fillQueue.shift();
       if (!href) continue;
       try {
         await cacheFillUrl(href);
       } catch (err) {
-        if (err && err.name === "AbortError") fillQueue.unshift(href);
+        if (err && err.name === "AbortError" && (fillPaused || offlineBusy)) fillQueue.unshift(href);
       }
       await sleep(0);
     }
@@ -464,7 +655,7 @@ async function pumpFill() {
 
 async function sendOfflineProgress(data) {
   const windows = await self.clients.matchAll({ type: "window", includeUncontrolled: true });
-  windows.forEach((client) => client.postMessage({ type: "OFFLINE_PROGRESS", ...data }));
+  windows.forEach((client) => { try { client.postMessage({ type: "OFFLINE_PROGRESS", ...data }); } catch { /* closed window */ } });
 }
 
 /**
@@ -473,7 +664,7 @@ async function sendOfflineProgress(data) {
  */
 async function sendOfflineState(state) {
   const windows = await self.clients.matchAll({ type: "window", includeUncontrolled: true });
-  windows.forEach((client) => client.postMessage({ type: "OFFLINE_STATE", state }));
+  windows.forEach((client) => { try { client.postMessage({ type: "OFFLINE_STATE", state }); } catch { /* closed window */ } });
 }
 
 /**
@@ -499,8 +690,11 @@ async function readManifest() {
     /* fall through to the network */
   }
   try {
-    const manifest = await (await deadlineFetch(FILL_PRECACHE, { cache: "no-store" })).json();
-    return !manifest.generation || manifest.generation === GENERATION ? (manifestSnapshot = manifest) : null;
+    const response = await deadlineFetch(FILL_PRECACHE, { cache: "no-store" });
+    const manifest = await response.clone().json();
+    if (!response.ok || (manifest.generation && manifest.generation !== GENERATION)) return null;
+    await (await caches.open(CACHE)).put(FILL_PRECACHE, response);
+    return (manifestSnapshot = manifest);
   } catch {
     return null;
   }
@@ -514,19 +708,32 @@ function deploymentHtml(html) {
 }
 
 /** Validate mutable URLs against the release, including downloads during deploys. */
-async function matchesBuild(resource, response) {
-  const manifest = await readManifest();
+async function matchesBuild(resource, response, suppliedManifest, signal) {
+  const manifest = suppliedManifest === undefined ? await readManifest() : suppliedManifest;
   if (!manifest) return false;
   // Legacy/test manifests have no integrity table. Shipped manifests always do.
   if (!manifest.integrity) return true;
   const url = new URL(typeof resource === "string" ? resource : resource.url, self.registration.scope);
   const expected = manifest.integrity[url.pathname];
   if (!expected) return false;
-  const digest = await crypto.subtle.digest("SHA-256", await response.clone().arrayBuffer());
+  if (signal?.aborted) throw new DOMException("Canceled", "AbortError");
+  let timer;
+  let abort;
+  let body;
+  try {
+    const canceled = new Promise((_, reject) => {
+      abort = () => reject(new DOMException("Canceled", "AbortError"));
+      signal?.addEventListener("abort", abort, { once: true });
+    });
+    body = await Promise.race([response.clone().arrayBuffer(), canceled, new Promise((_, reject) => {
+      timer = setTimeout(() => reject(new Error("Cached file could not be read. Retry.")), 30_000);
+    })]);
+  } finally { clearTimeout(timer); if (abort) signal?.removeEventListener("abort", abort); }
+  const digest = await crypto.subtle.digest("SHA-256", body);
   const actual = Array.from(new Uint8Array(digest), (byte) => byte.toString(16).padStart(2, "0")).join("");
   if (expected === actual) return true;
   if (!isHtmlResponse(response)) return false;
-  const html = await response.clone().text();
+  const html = await new Response(body).text();
   const normalized = deploymentHtml(html);
   if (normalized === html) return false;
   const canonicalDigest = await crypto.subtle.digest("SHA-256", await new Response(normalized).arrayBuffer());
@@ -543,7 +750,7 @@ function usableOfflineResource(href, response) {
 }
 
 /** Every URL currently held, as pathnames, for each of the two caches. */
-async function cachedPathnames() {
+async function cachedPathnames(shellName = CACHE, rscName = RSC_CACHE) {
   const paths = async (name) => {
     const requests = await (await caches.open(name)).keys();
     const set = new Set();
@@ -556,7 +763,7 @@ async function cachedPathnames() {
     }
     return set;
   };
-  return { shell: await paths(CACHE), rsc: await paths(RSC_CACHE) };
+  return { shell: await paths(shellName), rsc: await paths(rscName) };
 }
 
 function countPresent(urls, present) {
@@ -570,6 +777,12 @@ function segmentOfToolUrl(url) {
   return url.split("/tools/")[1]?.replace(/\/$/u, "") || null;
 }
 
+function essentialUrls(manifest, locale) {
+  const pages = manifest.pagesByLocale?.[locale] || {};
+  return new Set(["home", "settings", "offline"].flatMap((id) =>
+    (pages[id] || []).flatMap((url) => [url, `${url}index.txt`])));
+}
+
 /**
  * What is saved right now, in the terms the Offline access page shows: per
  * language, per tool, for the media engines, and for the app's own files.
@@ -581,32 +794,64 @@ function segmentOfToolUrl(url) {
  * different generation is looking at copies this worker has already replaced.
  */
 async function offlineState() {
-  const manifest = await readManifest();
+  const release = await servingRelease();
+  const manifest = await servingManifest();
   if (!manifest) return null;
-  const { shell, rsc } = await cachedPathnames();
+  const { shell, rsc } = await cachedPathnames(release.cache, release.rsc);
   const chrome = manifest.chromeByLocale || {};
   const toolsByLocale = manifest.toolsByLocale || {};
   const rscByLocale = manifest.rscByLocale || {};
+  const runtime = manifest.runtime || (manifest.core || []).filter((url) => /\.(?:js|css|woff2?)$/u.test(url));
+  const runtimeReady = countPresent(runtime, shell) === runtime.length;
 
   const locales = {};
+  const essentialsByLocale = {};
+  const pagesByLocale = {};
+  const toolsByLanguage = {};
   const toolLocales = {};
   for (const locale of Object.keys(chrome)) {
     const pages = [...(chrome[locale] || []), ...(toolsByLocale[locale] || [])];
     const payloads = rscByLocale[locale] || [];
     const done = countPresent(pages, shell) + countPresent(payloads, rsc);
     const total = pages.length + payloads.length;
-    locales[locale] = { done, total, ready: total > 0 && done === total };
+    const essentials = essentialUrls(manifest, locale);
+    const essentialDone = [...essentials].filter((url) => (/\.txt$/iu.test(url) ? rsc : shell).has(url)).length;
+    essentialsByLocale[locale] = { done: essentialDone, total: essentials.size, ready: runtimeReady && essentials.size >= 6 && essentialDone === essentials.size };
+    pagesByLocale[locale] = Object.entries(manifest.pagesByLocale?.[locale] || {}).filter(([, urls]) => runtimeReady && urls.length > 0 && urls.every((url) => shell.has(url) && rsc.has(`${url}index.txt`))).map(([id]) => id);
+    toolsByLanguage[locale] = [];
+    const removable = pages.some((url) => !essentials.has(url) && shell.has(url)) || payloads.some((url) => !essentials.has(url) && rsc.has(url));
+    locales[locale] = { done, total, ready: runtimeReady && total > 0 && done === total, removable };
     for (const url of toolsByLocale[locale] || []) {
       const segment = segmentOfToolUrl(url);
-      if (!segment || !shell.has(url) || !rsc.has(`${url}index.txt`)) continue;
+      if (!runtimeReady || !segment || !shell.has(url) || !rsc.has(`${url}index.txt`)) continue;
       toolLocales[segment] = (toolLocales[segment] || 0) + 1;
+      toolsByLanguage[locale].push(segment);
     }
   }
 
   const core = manifest.core || [];
   const engines = manifest.engines || [];
+  const marker = await readRecord(release.cache, UPDATE_READY);
+  const plan = marker?.selection ? { ...normalizedSelection(marker.selection, manifest), generation: release.generation, version: manifest.version,
+    at: new Date(marker.at || 0).toISOString(),
+    ready: (await selectedOfflineUrls(marker.selection, manifest)).every((url) => (/\.txt$/iu.test(url) ? rsc : shell).has(url)),
+  } : null;
+  const progress = offlineProgress || await readRecord(CACHE, JOB);
+  // iOS may kill a worker when the app is swiped away. Never show that dead job
+  // as still running; a retry reuses every file already saved for this release.
+  const job = progress?.status === "running" && !offlineBusy
+    ? { ...progress, status: "interrupted", logs: ["Download interrupted. Retry to continue with the files already saved."] }
+    : progress;
   return {
-    generation: GENERATION,
+    generation: release.generation,
+    version: manifest.version,
+    pendingUpdate: release.generation !== GENERATION,
+    verifiedAt: (await readRecord(release.cache, VERIFIED))?.at || null,
+    essentials: essentialsByLocale,
+    pages: pagesByLocale,
+    toolPages: toolsByLanguage,
+    plan,
+    job,
     core: { done: countPresent(core, shell), total: core.length },
     engines: { done: countPresent(engines, shell), total: engines.length },
     locales,
@@ -615,16 +860,69 @@ async function offlineState() {
   };
 }
 
+let verification = null;
+let verificationEpoch = 0;
+async function verifyOffline(locale, requested) {
+  if (verification) return verification;
+  const epoch = ++verificationEpoch;
+  let timer;
+  const task = (async () => {
+    if (offlineBusy) return;
+    const release = await servingRelease();
+    const manifest = await readRecord(release.cache, FILL_PRECACHE);
+    if (!manifest?.integrity || manifest.generation !== release.generation) throw new Error("Offline resources are unavailable.");
+    const marker = await readRecord(release.cache, UPDATE_READY);
+    const selection = mergeSelection(normalizedSelection(marker?.selection, manifest), normalizedSelection(requested || { locales: [locale], tools: [], pages: ["home", "settings", "offline"], engines: false }, manifest));
+    const saved = await cachedPathnames(release.cache, release.rsc);
+    const urls = [...new Set([...(await selectedOfflineUrls(selection, manifest)), ...saved.shell, ...saved.rsc])].filter((url) => Object.hasOwn(manifest.integrity, url));
+    let cursor = 0;
+    await Promise.all(Array.from({ length: Math.min(OFFLINE_CONCURRENCY, urls.length) }, async () => {
+      while (cursor < urls.length && epoch === verificationEpoch) {
+        const url = urls[cursor++];
+        const cache = await caches.open(/\.txt$/iu.test(url) ? release.rsc : release.cache);
+        const response = await cache.match(url, { ignoreSearch: true });
+        // Missing resources stay missing; damaged cached copies cannot be
+        // advertised as ready simply because their keys are still present.
+        const valid = !response || (usableOfflineResource(url, response) && await matchesBuild(url, response, manifest));
+        if (epoch !== verificationEpoch) return;
+        if (!valid) await cache.delete(url, { ignoreSearch: true });
+      }
+    }));
+    if (epoch !== verificationEpoch) return;
+    const held = await cachedPathnames(release.cache, release.rsc);
+    if (!marker && requested && selection.locales.length && urls.every((url) => (/\.txt$/iu.test(url) ? held.rsc : held.shell).has(url))) {
+      await writeRecord(release.cache, UPDATE_READY, { selection, generation: release.generation, version: manifest.version, at: Date.now() });
+    }
+    await writeRecord(release.cache, VERIFIED, { at: Date.now() });
+  })();
+  verification = Promise.race([task, new Promise((_, reject) => {
+    timer = setTimeout(() => { verificationEpoch++; reject(new Error("Offline verification timed out. Retry.")); }, 30_000);
+  })]);
+  try { await verification; }
+  finally { clearTimeout(timer); verificationEpoch++; verification = null; }
+}
+
+function waitForVerification(signal) {
+  if (!verification) return Promise.resolve();
+  return new Promise((resolve, reject) => {
+    const abort = () => { signal.removeEventListener("abort", abort); reject(new DOMException("Canceled", "AbortError")); };
+    signal.addEventListener("abort", abort, { once: true });
+    verification.catch(() => undefined).then(() => { signal.removeEventListener("abort", abort); resolve(); });
+    if (signal.aborted) abort();
+  });
+}
+
 /**
  * Remove saved offline copies: a chosen set of languages and tools, or
  * everything the Offline access page can add.
  *
- * The app's own scripts, styles and icons are left alone: those are the
- * application itself rather than something chosen on that page, they are
- * refilled as the visitor browses, and dropping them would leave the app unable
- * to open its own pages.
+ * Runtime files and the minimal Home/Settings/Offline access documents remain
+ * available. Optional content is removed from both the running and staged
+ * releases, with persistent tombstones preventing automatic refill.
  */
 async function removeOffline(scope) {
+  if (verification) await verification;
+  if (offlineBusy) throw new Error("Cancel the current download before removing files.");
   const manifest = await readManifest();
   if (!manifest) return null;
   const chrome = manifest.chromeByLocale || {};
@@ -673,33 +971,47 @@ async function removeOffline(scope) {
     if (scope.engines) for (const url of manifest.engines || []) targets.add(url);
   }
 
-  const shellCache = await caches.open(CACHE);
-  const rscCache = await caches.open(RSC_CACHE);
-  // Do not let queued automatic work immediately restore removed content.
+  // Keep the minimal app usable after optional downloads are removed. These
+  // documents let the visitor reopen Kit and return to Offline access.
+  for (const locale of Object.keys(chrome)) for (const url of essentialUrls(manifest, locale)) targets.delete(url);
+
+  // Persist the decision before deleting anything. A suspended background fill,
+  // a staged update, or another worker restart cannot restore these addresses.
+  const prior = await readRecord(META_CACHE, REMOVED);
+  await writeRecord(META_CACHE, REMOVED, {
+    paths: [...new Set([...(prior?.paths || []), ...targets])],
+    locales: [...new Set([...(prior?.locales || []), ...(scope.all ? Object.keys(chrome) : scope.locales || [])])],
+    tools: [...new Set([...(prior?.tools || []), ...(scope.all ? Object.values(toolsByLocale).flat().map(segmentOfToolUrl) : scope.tools || [])])],
+    engines: Boolean(prior?.engines || scope.all || scope.engines),
+    at: `${Date.now()}-${Math.random()}`,
+  });
   for (const url of targets) fillSeen.add(new URL(url, self.location.origin).href);
   if (fillAbort) fillAbort.abort();
-  try {
-    const marker = await shellCache.match(UPDATE_READY);
-    const ready = marker && await marker.json();
+  let removed = 0;
+  // Also remove from an already waiting release; otherwise the next update
+  // would bring the files back after the current report said they were gone.
+  const names = typeof caches.keys === "function" ? await caches.keys() : [CACHE, RSC_CACHE];
+  for (const name of names) {
+    if (!(name.startsWith("kit-shell-") || name.startsWith("kit-rsc-"))) continue;
+    const cache = await caches.open(name);
+    const ready = await readRecord(name, UPDATE_READY);
     if (ready?.selection) {
       const selection = ready.selection;
       selection.locales = (selection.locales || []).filter((locale) => !(scope.locales || []).includes(locale));
       selection.tools = (selection.tools || []).filter((tool) => !(scope.tools || []).includes(tool));
       if (scope.engines) selection.engines = false;
-      if (scope.all || !selection.locales.length) await shellCache.delete(UPDATE_READY);
-      else await shellCache.put(UPDATE_READY, new Response(JSON.stringify({ ...ready, selection, at: Date.now() })));
+      if (scope.all || !selection.locales.length) await cache.delete(UPDATE_READY);
+      else await writeRecord(name, UPDATE_READY, { ...ready, selection, requestId: null, at: Date.now() });
     }
-  } catch { /* A damaged record must not prevent removing the files. */ }
-  let removed = 0;
-  for (const url of targets) {
-    const cache = /\.txt$/i.test(url) ? rscCache : shellCache;
-    if (await cache.delete(url)) removed += 1;
+    for (const url of targets) if (await cache.delete(url)) removed += 1;
   }
+  await (await caches.open(CACHE)).delete(JOB);
+  offlineProgress = null;
   return removed;
 }
 
-async function selectedOfflineUrls(data) {
-  const manifest = await readManifest();
+async function selectedOfflineUrls(data, suppliedManifest) {
+  const manifest = suppliedManifest || await readManifest();
   if (!manifest) return [];
   const locales = (Array.isArray(data.locales) ? data.locales : [])
     .slice(0, MAX_OFFLINE_LOCALES)
@@ -760,12 +1072,35 @@ async function downloadSelectedOffline(data) {
   /* Stop the background fill immediately; it waits on offlineBusy to resume. */
   if (fillAbort) fillAbort.abort();
   let done = 0;
-  const manifest = await readManifest();
-  const report = (progress) => sendOfflineProgress({ ...progress, requestId: data.requestId, generation: GENERATION, version: manifest?.version });
+  let manifest;
+  let activationRequired = false;
+  let heartbeat;
+  let reporting = Promise.resolve();
+  const report = (progress) => reporting = reporting.catch(() => undefined).then(async () => {
+    offlineProgress = { ...progress, logs: (progress.logs || []).slice(-40), selection: { locales: data.locales, tools: data.tools, pages: data.pages, engines: data.engines }, requestId: data.requestId, generation: GENERATION, version: manifest?.version, activationRequired, at: Date.now() };
+    try { await writeRecord(CACHE, JOB, offlineProgress); }
+    finally { await sendOfflineProgress(offlineProgress); }
+  });
   try {
+    await waitForVerification(ctrl.signal);
+    if (offlineCancelRequested) throw new DOMException("Canceled", "AbortError");
+    manifest = await readManifest();
+    const previous = await readRecord(CACHE, UPDATE_READY);
+    const serving = await servingRelease();
+    activationRequired = serving.cache !== CACHE;
+    const prior = activationRequired ? await readRecord(serving.cache, UPDATE_READY) : null;
+    data = { ...data, ...mergeSelection(mergeSelection(normalizedSelection(previous?.selection, manifest), normalizedSelection(prior?.selection, manifest)), normalizedSelection(data, manifest)) };
     const urls = await selectedOfflineUrls(data);
-    const updateCache = await caches.open(CACHE);
-    await updateCache.delete(UPDATE_READY);
+    const removed = await readRecord(META_CACHE, REMOVED);
+    const requestedPaths = new Set(urls);
+    for (const path of urls) fillSeen.delete(new URL(path, self.location.origin).href);
+    await writeRecord(META_CACHE, REMOVED, {
+      paths: (removed?.paths || []).filter((path) => !requestedPaths.has(path)),
+      locales: (removed?.locales || []).filter((id) => !(data.locales || []).includes(id)),
+      tools: (removed?.tools || []).filter((id) => !(data.tools || []).includes(id)),
+      engines: Boolean(removed?.engines && !data.engines), at: `${Date.now()}-${Math.random()}`,
+    });
+    const mutationAt = (await readRecord(META_CACHE, REMOVED))?.at;
     /* One message per URL would mean thousands of postMessages and React renders.
        Coalesce log lines and flush at most every OFFLINE_PROGRESS_MS, always
        flushing the terminal state. */
@@ -797,6 +1132,7 @@ async function downloadSelectedOffline(data) {
     }
     pendingLogs.push(`Preparing ${urls.length} items`);
     await flush("running", true);
+    heartbeat = setInterval(() => { void report({ status: "running", done, total: urls.length, logs: [] }).catch(() => undefined); }, 5000);
 
     /* The visitor is waiting on this page and watching the bar, so several are
        fetched at once. The background fill, which runs while nobody is waiting,
@@ -807,42 +1143,55 @@ async function downloadSelectedOffline(data) {
         const href = urls[cursor];
         cursor += 1;
         if (href === undefined) return;
-        const cache = await caches.open(cacheNameFor(href));
-        /* Already held means already held *for this build*: the caches carry
-           the build's stamp, so anything an earlier build wrote lives in a
-           different cache and is fetched again here rather than counted. */
-        if (await cache.match(href)) {
-          done += 1;
-          await note(`Already ready: ${pathOf(href)}`);
-          continue;
-        }
         try {
-          const res = await asDirectResponse(await deadlineFetch(href, { cache: "no-store", priority: "low", signal: ctrl.signal }));
-          if (usableOfflineResource(href, res) && await matchesBuild(href, res)) {
-            await cache.put(href, res);
-            done += 1;
-            await note(`Downloaded: ${pathOf(href)}`);
-          } else {
-            await note(`Skipped: ${pathOf(href)}`);
+          const cache = await caches.open(cacheNameFor(href));
+          // This release's own entries have already passed integrity checks.
+          const held = await cache.match(href);
+          let valid = false;
+          if (held && usableOfflineResource(href, held)) {
+            try { valid = await matchesBuild(href, held, undefined, ctrl.signal); }
+            catch (error) { if (ctrl.signal.aborted) throw error; /* Repair unreadable cached copies. */ }
           }
+          if (valid) {
+            done += 1;
+            await note(`Already ready: ${pathOf(href)}`);
+            continue;
+          }
+          if (held) await cache.delete(href);
+          await saveOfflineResource(href, ctrl.signal);
+          done += 1;
+          await note(`Downloaded: ${pathOf(href)}`);
         } catch (err) {
-          if (err && err.name === "AbortError") return;
-          await note(`Could not download: ${pathOf(href)}`);
+          if (offlineCancelRequested) return;
+          await note(`${err?.name === "QuotaExceededError" ? "Storage is full" : "Could not download"}: ${pathOf(href)}`);
         }
       }
     };
     const lanes = Math.max(1, Math.min(OFFLINE_CONCURRENCY, urls.length));
     await Promise.all(Array.from({ length: lanes }, takeNext));
 
-    const complete = !offlineCancelRequested && done === urls.length;
-    if (complete) await updateCache.put(UPDATE_READY, new Response(JSON.stringify({ generation: GENERATION, requestId: data.requestId, selection: { locales: data.locales, tools: data.tools, pages: data.pages, engines: data.engines }, at: Date.now() })));
+    clearInterval(heartbeat);
+    const changed = (await readRecord(META_CACHE, REMOVED))?.at !== mutationAt;
+    await pruneRemovedResources();
+    const held = await cachedPathnames();
+    done = urls.filter((url) => (/\.txt$/iu.test(url) ? held.rsc : held.shell).has(url)).length;
+    const complete = !offlineCancelRequested && !changed && done === urls.length;
+    if (complete) {
+      const selection = normalizedSelection(data, manifest);
+      await writeRecord(CACHE, UPDATE_READY, { generation: GENERATION, version: manifest?.version, requestId: data.requestId, selection, at: Date.now() });
+      await writeRecord(CACHE, VERIFIED, { at: Date.now() });
+    }
     pendingLogs.push(offlineCancelRequested ? "Download canceled" : complete ? "Offline access is ready" : "Some files could not be saved. Reconnect and retry.");
     await flush(offlineCancelRequested ? "canceled" : complete ? "complete" : "error", true);
     const state = await offlineState();
     if (state) await sendOfflineState(state);
+  } catch (error) {
+    await report({ status: offlineCancelRequested ? "canceled" : "error", done, total: offlineProgress?.total || 0,
+      logs: [error?.name === "QuotaExceededError" ? "Storage is full. Remove some downloads and retry." : "Download interrupted. Retry to continue with the files already saved."] }).catch(() => undefined);
   } finally {
     /* Released on every path, including a failed progress report, so the
        background fill is never left waiting on a download that has ended. */
+    clearInterval(heartbeat);
     if (offlineAbort === ctrl) offlineAbort = null;
     offlineBusy = false;
     offlineRequestId = null;
@@ -898,7 +1247,8 @@ self.addEventListener("message", (event) => {
       url.hash = "";
       const payload = url.pathname.endsWith(".txt");
       if (!payload && !url.pathname.endsWith("/")) url.pathname += "/";
-      const cache = await caches.open(payload ? RSC_CACHE : CACHE);
+      const release = await servingRelease();
+      const cache = await caches.open(payload ? release.rsc : release.cache);
       event.ports[0]?.postMessage({ held: Boolean(await cache.match(url.href)) });
     })());
     return;
@@ -906,21 +1256,43 @@ self.addEventListener("message", (event) => {
 
   if (data.type === "ACTIVATE_UPDATE") {
     event.waitUntil((async () => {
-      const marker = await (await caches.open(CACHE)).match(UPDATE_READY);
-      const ready = marker && await marker.json();
-      const windows = (await self.clients.matchAll({ type: "window", includeUncontrolled: true }))
-        .filter((client) => client.url.startsWith(self.registration.scope));
-      if (ready?.requestId !== data.requestId || windows.some((client) => client.id !== event.source.id)) {
-        event.ports[0]?.postMessage({ ok: false, error: "Close other Kit windows, then retry the update." });
-        return;
+      try {
+        await pruneRemovedResources();
+        const ready = await readRecord(CACHE, UPDATE_READY);
+        const windows = (await self.clients.matchAll({ type: "window", includeUncontrolled: true }))
+          .filter((client) => client.url.startsWith(self.registration.scope));
+        if (!ready?.selection || typeof data.requestId !== "string" || ready.requestId !== data.requestId || !event.source?.id || windows.some((client) => client.id !== event.source.id)) {
+          event.ports[0]?.postMessage({ ok: false, error: "Close other Kit windows, then retry the update." });
+          return;
+        }
+        const { shell, rsc } = await cachedPathnames();
+        const urls = await selectedOfflineUrls(ready.selection);
+        if ((offlineBusy && offlineRequestId !== data.requestId) || !urls.length || !urls.every((url) => (/\.txt$/iu.test(url) ? rsc : shell).has(url))) {
+          event.ports[0]?.postMessage({ ok: false, error: "Some downloads are missing. Retry the download before applying the update." });
+          return;
+        }
+        const serving = await servingRelease();
+        if (self.registration.active?.state === "activated" && serving.cache !== CACHE) {
+          await rememberRetired(serving.cache);
+          await writeRecord(META_CACHE, ACTIVE_RELEASE, { cache: CACHE, rsc: RSC_CACHE, generation: GENERATION, workerGeneration: GENERATION });
+          servingSnapshot = null;
+          await retireReleases();
+          event.ports[0]?.postMessage({ ok: true, applied: true });
+        } else {
+          event.ports[0]?.postMessage({ ok: true });
+          await self.skipWaiting();
+        }
+      } catch (error) {
+        event.ports[0]?.postMessage({ ok: false, error: error?.message || "Could not apply the update. Retry." });
       }
-      event.ports[0]?.postMessage({ ok: true });
-      await self.skipWaiting();
     })());
     return;
   }
 
   if (data.type === "PING") {
+    event.waitUntil((async () => {
+      if ((await servingRelease()).generation !== GENERATION) event.source?.postMessage({ type: "OFFLINE_UPDATE_AVAILABLE" });
+    })());
     return;
   }
 
@@ -940,12 +1312,28 @@ self.addEventListener("message", (event) => {
     offlineAbort?.abort();
     return;
   }
+  if (data.type === "OFFLINE_VERIFY") {
+    event.waitUntil((async () => {
+      try {
+        await verifyOffline(data.locale, data.selection);
+        event.source?.postMessage({ type: "OFFLINE_STATE", state: await offlineState(), verified: true });
+      } catch {
+        event.source?.postMessage({ type: "OFFLINE_STATE", state: null, verified: true, error: "Could not verify offline storage. Retry." });
+      }
+    })());
+    return;
+  }
   if (data.type === "OFFLINE_STATUS") {
     event.waitUntil(
       (async () => {
         /* Always answered, even when there is nothing to report, so the page can
            tell "there is nothing here" apart from "no answer yet". */
-        await sendOfflineState(await offlineState());
+        try {
+          const state = await offlineState();
+          event.source?.postMessage({ type: "OFFLINE_STATE", state });
+        } catch {
+          event.source?.postMessage({ type: "OFFLINE_STATE", state: null, error: "Could not read offline storage. Retry." });
+        }
       })()
     );
     return;
@@ -955,24 +1343,43 @@ self.addEventListener("message", (event) => {
       (async () => {
         /* One message for the whole chosen set, so several at once cost one
            round trip and one report back. */
-        await removeOffline({
-          all: data.all === true,
-          engines: data.engines === true,
-          locales: (Array.isArray(data.locales) ? data.locales : [])
-            .slice(0, MAX_OFFLINE_LOCALES)
-            .filter((locale) => typeof locale === "string"),
-          tools: (Array.isArray(data.tools) ? data.tools : [])
-            .slice(0, MAX_OFFLINE_TOOLS)
-            .filter((tool) => typeof tool === "string"),
-        });
-        const state = await offlineState();
-        if (state) await sendOfflineState(state);
+        try {
+          await removeOffline({
+            all: data.all === true,
+            engines: data.engines === true,
+            locales: (Array.isArray(data.locales) ? data.locales : [])
+              .slice(0, MAX_OFFLINE_LOCALES)
+              .filter((locale) => typeof locale === "string"),
+            tools: (Array.isArray(data.tools) ? data.tools : [])
+              .slice(0, MAX_OFFLINE_TOOLS)
+              .filter((tool) => typeof tool === "string"),
+          });
+          const state = await offlineState();
+          if (state) await sendOfflineState(state);
+          event.ports[0]?.postMessage({ ok: true, state });
+        } catch (error) {
+          event.ports[0]?.postMessage({ ok: false, error: error?.message || "Could not remove downloads. Retry." });
+        }
       })()
     );
     return;
   }
   if (data.type === "OFFLINE_DOWNLOAD") {
-    event.waitUntil(downloadSelectedOffline(data));
+    event.waitUntil((async () => {
+      if (!data.update) { await downloadSelectedOffline(data); return; }
+      const manifest = await readManifest();
+      if (!manifest) {
+        await sendOfflineProgress({ status: "error", requestId: data.requestId, logs: ["Update resources are unavailable. Reconnect and retry."] });
+        return;
+      }
+      const path = event.source?.url ? new URL(event.source.url).pathname : "";
+      const locale = Object.keys(manifest.chromeByLocale || {}).find((id) => path.startsWith(new URL(`${id}/`, self.registration.scope).pathname)) || "en";
+      const pages = ["home", "settings", "offline"];
+      for (const [id, urls] of Object.entries(manifest.pagesByLocale?.[locale] || {})) if (urls.includes(path)) pages.push(id);
+      const toolSegment = segmentOfToolUrl(path);
+      const tool = Object.keys(TOOL_PATH_SEGMENT).find((id) => TOOL_PATH_SEGMENT[id] === toolSegment) || toolSegment;
+      await downloadSelectedOffline({ ...data, locales: [locale], tools: tool ? [tool] : [], pages, engines: false });
+    })());
     return;
   }
 
@@ -988,7 +1395,9 @@ self.addEventListener("message", (event) => {
   event.waitUntil(
     (async () => {
       try {
-        const res = await asDirectResponse(await fetch(url.href, { headers: { Accept: "text/html" }, cache: "no-store" }));
+        const removed = await readRecord(META_CACHE, REMOVED);
+        if (removed?.paths?.includes(url.pathname)) return;
+        const res = await asDirectResponse(await deadlineFetch(url.href, { headers: { Accept: "text/html" }, cache: "no-store" }));
         if (!isUsableHtml(res) || !await matchesBuild(url.href, res)) return;
         const cache = await caches.open(CACHE);
         await cache.put(url.href, res.clone());
@@ -1025,23 +1434,24 @@ self.addEventListener("fetch", (event) => {
          re-resolved against this origin; anything that could leave it falls back
          to the request URL. */
       const dest = sameOriginUrl(htmlPathFromTxt(url.pathname) + url.search);
-      event.respondWith(navigateDocument(req, dest ? dest.href : null));
+      event.respondWith(promotePreparedNavigation(event).then(() => navigateDocument(req, dest ? dest.href : null)));
       return;
     }
-    event.respondWith(navigateDocument(req));
+    event.respondWith(promotePreparedNavigation(event).then(() => navigateDocument(req)));
     return;
   }
 
-  if (isIconOrManifest(url) || isStaticAsset(url) || url.pathname.includes("/startup/")) {
+  if (isIconOrManifest(url) || isStaticAsset(url) || url.pathname.includes("/startup/") || url.pathname.includes("/vendor/")) {
     event.respondWith((async () => {
-      const cache = await caches.open(CACHE);
+      const cache = await caches.open((await servingRelease()).cache);
       const cached = await cache.match(req, { ignoreSearch: true });
       if (cached) return cached;
       const direct = await asDirectResponse(await fetch(req));
-      if (usableOfflineResource(req.url, direct) && await matchesBuild(req.url, direct)) {
+      if (usableOfflineResource(req.url, direct) && await matchesBuild(req.url, direct, await servingManifest())) {
         event.waitUntil(cache.put(req, direct.clone()));
+        return direct;
       }
-      return direct;
+      return Response.error();
     })());
   }
 });

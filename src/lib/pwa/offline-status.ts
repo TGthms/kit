@@ -7,7 +7,7 @@ import { toolPathSegment } from "@/lib/navigation/routes";
 export const OFFLINE_PLAN_KEY = "kit-offline-plan";
 
 export type OfflineCount = { done: number; total: number };
-export type OfflineLocaleState = OfflineCount & { ready: boolean };
+export type OfflineLocaleState = OfflineCount & { ready: boolean; removable?: boolean };
 
 /**
  * What the worker reports holding. Counted from the cache keys, so it describes
@@ -22,6 +22,15 @@ export type OfflineState = {
   /** How many languages hold each tool, keyed by public route segment. */
   tools: Record<string, number>;
   readyLocales: number;
+  version?: string;
+  pendingUpdate?: boolean;
+  verifiedAt?: number | null;
+  essentials?: Record<string, OfflineLocaleState>;
+  pages?: Record<string, string[]>;
+  toolPages?: Record<string, string[]>;
+  /** The worker's completed selection is authoritative after automatic updates. */
+  plan?: (OfflinePlan & { ready: boolean }) | null;
+  job?: { status: string; requestId: string; done: number; total: number; logs?: string[]; selection?: Pick<OfflinePlan, "locales" | "tools" | "pages" | "engines">; generation?: string; version?: string } | null;
 };
 
 /**
@@ -45,7 +54,7 @@ export type OfflinePlan = {
  * `stale` — saved content is from an earlier release and should be fetched again.
  * `cleared` — this release replaced saved content, so there is none left.
  */
-export type PlanStatus = "none" | "saved" | "stale" | "cleared";
+export type PlanStatus = "none" | "saved" | "stale" | "cleared" | "incomplete";
 
 function isStringArray(value: unknown): value is string[] {
   return Array.isArray(value) && value.every((item) => typeof item === "string");
@@ -110,8 +119,11 @@ export function getPlanServerSnapshot(): OfflinePlan | null {
 
 export function subscribePlan(listener: () => void): () => void {
   listeners.add(listener);
+  const changed = (event: StorageEvent) => { if (event.key === OFFLINE_PLAN_KEY || event.key === null) listener(); };
+  if (typeof window !== "undefined") window.addEventListener("storage", changed);
   return () => {
     listeners.delete(listener);
+    if (typeof window !== "undefined") window.removeEventListener("storage", changed);
   };
 }
 
@@ -149,7 +161,8 @@ export function planStatus(plan: OfflinePlan | null, state: OfflineState | null,
   if (!plan || !state) return "none";
   const generationMoved = Boolean(plan.generation && state.generation && plan.generation !== state.generation);
   if (!Object.values(state.locales).some((entry) => entry.done > 0)) return generationMoved ? "cleared" : "none";
-  const sameVersion = plan.version === version;
+  if (state.plan && !state.plan.ready) return "incomplete";
+  const sameVersion = plan.version === (state.version || version);
   const sameGeneration = !plan.generation || !state.generation || plan.generation === state.generation;
   return sameVersion && sameGeneration ? "saved" : "stale";
 }

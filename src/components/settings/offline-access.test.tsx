@@ -13,6 +13,7 @@ import { OfflineAccess } from "./offline-access";
 const postMessage = vi.fn();
 const worker = { postMessage };
 let onMessage: ((event: MessageEvent) => void) | null = null;
+let lastState: OfflineState | null = null;
 
 function stubBrowser() {
   Object.defineProperty(navigator, "serviceWorker", {
@@ -33,8 +34,8 @@ function stubBrowser() {
   });
 }
 
-function renderOffline() {
-  return render(
+function renderOffline(customize = true) {
+  const view = render(
     <NextIntlClientProvider
       locale="en"
       messages={{
@@ -50,11 +51,14 @@ function renderOffline() {
       <OfflineAccess />
     </NextIntlClientProvider>,
   );
+  if (customize) fireEvent.click(screen.getByRole("button", { name: /Customize downloads/ }));
+  return view;
 }
 
 function emit(data: Record<string, unknown>) {
+  if (data.type === "OFFLINE_STATE") lastState = data.state as OfflineState | null;
   act(() => {
-    onMessage?.({ source: worker, data: { type: "OFFLINE_PROGRESS", requestId: sent("OFFLINE_DOWNLOAD")?.requestId, ...data } } as unknown as MessageEvent);
+    onMessage?.({ source: worker, data: { type: "OFFLINE_PROGRESS", verified: data.type === "OFFLINE_STATE", requestId: sent("OFFLINE_DOWNLOAD")?.requestId, ...data } } as unknown as MessageEvent);
   });
 }
 
@@ -62,6 +66,10 @@ function emit(data: Record<string, unknown>) {
 function savedState(overrides: Partial<OfflineState> = {}): OfflineState {
   return {
     generation: "3f9a1c4e77b2",
+    verifiedAt: Date.now(),
+    essentials: { en: { done: 6, total: 6, ready: true }, fr: { done: 3, total: 6, ready: false } },
+    pages: { en: [...APP_PAGE_IDS], fr: [] },
+    toolPages: { en: ["pdf-merge"], fr: [] },
     core: { done: 10, total: 10 },
     engines: { done: 4, total: 4 },
     locales: { en: { done: 12, total: 12, ready: true }, fr: { done: 3, total: 12, ready: false } },
@@ -89,9 +97,20 @@ async function sentEventually(type: string): Promise<Record<string, unknown>> {
   return sent(type) as Record<string, unknown>;
 }
 
+async function startDownload() {
+  await sentEventually("OFFLINE_VERIFY");
+  emit({ type: "OFFLINE_STATE", state: lastState ?? savedState() });
+  if (!screen.queryByRole("button", { name: "Download" })) fireEvent.click(screen.getByRole("button", { name: /Customize downloads/ }));
+  fireEvent.click(screen.getByRole("button", { name: "Download" }));
+}
+
 beforeEach(() => {
-  postMessage.mockClear();
+  postMessage.mockReset();
+  postMessage.mockImplementation((data, ports) => {
+    if (data.type === "OFFLINE_REMOVE") { ports?.[0]?.postMessage({ ok: true }); ports?.[0]?.close(); }
+  });
   onMessage = null;
+  lastState = null;
   window.localStorage.clear();
   stubBrowser();
 });
@@ -111,7 +130,7 @@ function figures(): HTMLElement {
 /** The card headed by `title`, so one picker can be scoped on its own. */
 function card(title: string): HTMLElement {
   const heading = screen.getByRole("heading", { name: title, level: 3 });
-  const found = heading.closest("div.rounded-2xl");
+  const found = heading.closest("[data-offline-picker]");
   expect(found).not.toBeNull();
   return found as HTMLElement;
 }
@@ -153,7 +172,7 @@ describe("OfflineAccess", () => {
 
     emit({ type: "OFFLINE_STATE", state: savedState() });
     await waitFor(() => expect(within(figures()).queryAllByText("Loading…")).toHaveLength(0));
-    expect(within(figures()).getByText("1 / 2")).toBeInTheDocument();
+    expect(within(figures()).getByText("English")).toBeInTheDocument();
   });
 
   it("reports the device rather than the current selection", async () => {
@@ -162,9 +181,9 @@ describe("OfflineAccess", () => {
     /* One of two languages ready, one of 94 tools usable offline, the engines
        complete, and the storage estimate. The selection belongs to the pickers,
        where it is chosen, so a figure here is never a selection count. */
-    await waitFor(() => expect(within(figures()).getByText("5.0 MB / 100.0 MB")).toBeInTheDocument());
-    expect(within(figures()).getByText("1 / 2")).toBeInTheDocument();
-    expect(within(figures()).getByText("1 / 94")).toBeInTheDocument();
+    await waitFor(() => expect(within(figures()).getByText("5.0 MB")).toBeInTheDocument());
+    expect(within(figures()).getByText("English")).toBeInTheDocument();
+    expect(within(figures()).getByText("1")).toBeInTheDocument();
     expect(within(figures()).getByText("Ready")).toBeInTheDocument();
   });
 
@@ -175,7 +194,7 @@ describe("OfflineAccess", () => {
 
   it("requests a download with the selected languages, tools, pages, and engines", async () => {
     renderOffline();
-    fireEvent.click(screen.getByRole("button", { name: "Download" }));
+    await startDownload();
     await waitFor(() => expect(sent("OFFLINE_DOWNLOAD")).toBeTruthy());
     const payload = sent("OFFLINE_DOWNLOAD") as {
       locales: string[];
@@ -192,7 +211,7 @@ describe("OfflineAccess", () => {
 
   it("renders batched progress logs and the completed state", async () => {
     renderOffline();
-    fireEvent.click(screen.getByRole("button", { name: "Download" }));
+    await startDownload();
     await sentEventually("OFFLINE_DOWNLOAD");
     emit({ status: "running", done: 1, total: 2, logs: ["Downloaded: /en/"] });
     expect(screen.getByText("Downloaded: /en/")).toBeInTheDocument();
@@ -203,7 +222,7 @@ describe("OfflineAccess", () => {
 
   it("accepts a single-line progress payload", async () => {
     renderOffline();
-    fireEvent.click(screen.getByRole("button", { name: "Download" }));
+    await startDownload();
     await sentEventually("OFFLINE_DOWNLOAD");
     emit({ status: "running", done: 1, total: 2, log: "Preparing 2 items" });
     expect(screen.getByText("Preparing 2 items")).toBeInTheDocument();
@@ -235,7 +254,7 @@ describe("what is already saved", () => {
   it("marks a ready language in the picker and leaves a part-saved one unmarked", () => {
     renderOffline();
     emit({ type: "OFFLINE_STATE", state: savedState() });
-    const english = screen.getByText("English").closest("label") as HTMLElement;
+    const english = within(card("Languages")).getByText("English").closest("label") as HTMLElement;
     const french = screen.getByText("Français").closest("label") as HTMLElement;
     expect(within(english).getByText("Ready")).toBeInTheDocument();
     expect(within(french).queryByText("Ready")).not.toBeInTheDocument();
@@ -244,7 +263,7 @@ describe("what is already saved", () => {
   it("keeps the picker free of any remove control", () => {
     renderOffline();
     emit({ type: "OFFLINE_STATE", state: savedState() });
-    const picker = screen.getByText("English").closest("label") as HTMLElement;
+    const picker = within(card("Languages")).getByText("English").closest("label") as HTMLElement;
     // Choosing and removing are separate jobs, so a picker row holds one control.
     expect(within(picker).getAllByRole("checkbox")).toHaveLength(1);
     expect(within(picker).queryAllByRole("button")).toHaveLength(0);
@@ -264,7 +283,7 @@ describe("the app's own pages", () => {
   it("takes the ticked set with the download", async () => {
     renderOffline();
     fireEvent.click(screen.getByRole("checkbox", { name: "History" }));
-    fireEvent.click(screen.getByRole("button", { name: "Download" }));
+    await startDownload();
 
     const payload = await sentEventually("OFFLINE_DOWNLOAD");
     expect(payload.pages).not.toContain("history");
@@ -282,9 +301,11 @@ describe("the app's own pages", () => {
     expect(pageBoxes().every((box) => box.checked)).toBe(true);
   });
 
-  it("is a download in its own right, without any tool", () => {
+  it("is a download in its own right, without any tool", async () => {
     renderOffline();
     fireEvent.click(within(header("Tools")).getByRole("button", { name: "Clear" }));
+    await sentEventually("OFFLINE_VERIFY");
+    emit({ type: "OFFLINE_STATE", state: savedState() });
     // Preparing the app itself for offline is a small, legitimate download.
     expect(screen.getByRole("button", { name: "Download" })).toBeEnabled();
   });
@@ -423,7 +444,7 @@ describe("manage downloads", () => {
     fireEvent.click(body.getByRole("button", { name: "Select all" }));
     fireEvent.click(body.getByRole("button", { name: /Remove selected/ }));
     await sentEventually("OFFLINE_REMOVE");
-    expect(window.localStorage.getItem(OFFLINE_PLAN_KEY)).toBeNull();
+    await waitFor(() => expect(window.localStorage.getItem(OFFLINE_PLAN_KEY)).toBeNull());
   });
 
   it("keeps the record when only part of it goes", async () => {
@@ -449,7 +470,7 @@ describe("manage downloads", () => {
 
     expect(confirmSpy).toHaveBeenCalled();
     expect(await sentEventually("OFFLINE_REMOVE")).toMatchObject({ all: true });
-    expect(window.localStorage.getItem(OFFLINE_PLAN_KEY)).toBeNull();
+    await waitFor(() => expect(window.localStorage.getItem(OFFLINE_PLAN_KEY)).toBeNull());
   });
 
   it("sends nothing when the removal is not confirmed", async () => {
@@ -467,7 +488,7 @@ describe("release changes", () => {
   it("records the selection only once the download reports completion", async () => {
     renderOffline();
     emit({ type: "OFFLINE_STATE", state: savedState() });
-    fireEvent.click(screen.getByRole("button", { name: "Download" }));
+    await startDownload();
     await sentEventually("OFFLINE_DOWNLOAD");
     expect(window.localStorage.getItem(OFFLINE_PLAN_KEY)).toBeNull();
     emit({ status: "complete", done: 2, total: 2, logs: [] });
@@ -491,7 +512,7 @@ describe("release changes", () => {
     emit({ type: "OFFLINE_STATE", state: savedState() });
     expect(screen.getByText(/from an earlier release/)).toBeInTheDocument();
 
-    fireEvent.click(screen.getByRole("button", { name: "Update downloads" }));
+    fireEvent.click(screen.getByRole("button", { name: "Update" }));
     // The saved selection is re-run as it was, not whatever is on screen.
     expect(await sentEventually("OFFLINE_DOWNLOAD")).toMatchObject({ locales: ["en"], tools: ["pdf-merge"], engines: true });
   });
@@ -500,7 +521,7 @@ describe("release changes", () => {
     record({ version: "1.0.0", pages: ["home", "history"] });
     renderOffline();
     emit({ type: "OFFLINE_STATE", state: savedState() });
-    fireEvent.click(screen.getByRole("button", { name: "Update downloads" }));
+    fireEvent.click(screen.getByRole("button", { name: "Update" }));
     const payload = await sentEventually("OFFLINE_DOWNLOAD");
     expect(payload.pages).toEqual(["home", "history", "settings", "offline"]);
   });
@@ -509,7 +530,178 @@ describe("release changes", () => {
     record({ generation: "v12" });
     renderOffline();
     emit({ type: "OFFLINE_STATE", state: savedState({ locales: {}, tools: {}, readyLocales: 0 }) });
-    expect(screen.getByText(/removed when Kit updated/)).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: "Update downloads" })).toBeInTheDocument();
+    expect(screen.getByText(en.settings.offlineRepair)).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Repair" })).toBeInTheDocument();
   });
+});
+
+describe("reliable progress and status", () => {
+  const chosen = { locales: ["en"] as const, tools: ["pdf-merge"] as const, pages: ["home"] as const, engines: false };
+
+  it("reattaches to a download after leaving and returning, including a missed completion", async () => {
+    const first = renderOffline();
+    first.unmount();
+    renderOffline();
+    const running = { requestId: "background-job", status: "running", done: 2, total: 6, selection: chosen };
+    emit({ type: "OFFLINE_STATE", state: savedState({ job: running as unknown as OfflineState["job"] }) });
+    expect(screen.getByText("Progress · 33%")).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Cancel" })).toBeInTheDocument();
+    // A status response can recover the terminal message that arrived while away.
+    emit({ type: "OFFLINE_STATE", state: savedState({ job: { ...running, status: "complete", done: 6 } as unknown as OfflineState["job"] }) });
+    expect(screen.getByText("Offline access is ready")).toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: "Cancel" })).not.toBeInTheDocument();
+  });
+
+  it("offers continuation after the worker was terminated, rather than an endless running bar", async () => {
+    renderOffline();
+    emit({ type: "OFFLINE_STATE", state: savedState({ job: {
+      requestId: "terminated", status: "interrupted", done: 2, total: 6, logs: ["Download interrupted"], selection: chosen,
+    } as unknown as OfflineState["job"] }) });
+    expect(screen.getAllByText("Download interrupted").length).toBeGreaterThan(0);
+    fireEvent.click(screen.getByRole("button", { name: "Try again" }));
+    expect(await sentEventually("OFFLINE_DOWNLOAD")).toMatchObject({ locales: ["en"], tools: ["pdf-merge"], engines: false });
+  });
+
+  it("does not let a waiting worker's report replace the active release's saved status", async () => {
+    const waiting = { postMessage: vi.fn() };
+    navigator.serviceWorker.getRegistration = vi.fn(async () => ({ active: worker, waiting, update: async () => undefined, addEventListener() {}, removeEventListener() {} })) as never;
+    renderOffline();
+    await waitFor(() => expect(waiting.postMessage).toHaveBeenCalledWith({ type: "OFFLINE_STATUS" }));
+    emit({ type: "OFFLINE_STATE", state: savedState() });
+    act(() => { onMessage?.({ source: waiting, data: { type: "OFFLINE_STATE", state: savedState({ tools: {}, readyLocales: 0 }) } } as unknown as MessageEvent); });
+    expect(within(figures()).getByText("1")).toBeInTheDocument();
+    expect(within(figures()).getByText("English")).toBeInTheDocument();
+  });
+
+  it("synchronizes automatically carried downloads with the worker's actual release", () => {
+    record({ generation: "old-generation" });
+    renderOffline();
+    emit({ type: "OFFLINE_STATE", state: savedState({ version: "1.2.4", plan: {
+      locales: ["en"], tools: ["pdf-merge"], pages: ["home"], engines: true, version: "1.2.4", generation: "3f9a1c4e77b2", ready: true, at: "2026-10-21T00:00:00.000Z",
+    } }) });
+    expect(screen.queryByRole("button", { name: "Update" })).not.toBeInTheDocument();
+    expect(JSON.parse(window.localStorage.getItem(OFFLINE_PLAN_KEY)!)).toMatchObject({ generation: "3f9a1c4e77b2" });
+  });
+
+  it("shows repair for an evicted file instead of claiming the recorded selection is ready", () => {
+    record({ version: "1.2.4" });
+    renderOffline();
+    emit({ type: "OFFLINE_STATE", state: savedState({ plan: {
+      locales: ["en"], tools: ["pdf-merge"], pages: ["home"], engines: false, version: "1.2.4", generation: "3f9a1c4e77b2", ready: false, at: "2026-10-21T00:00:00.000Z",
+    } }) });
+    expect(screen.getByText(en.settings.offlineRepair)).toBeInTheDocument();
+  });
+
+  it("does not forget the saved plan when removal fails", async () => {
+    record();
+    renderOffline();
+    emit({ type: "OFFLINE_STATE", state: savedState() });
+    postMessage.mockImplementation((data, ports) => {
+      if (data.type === "OFFLINE_REMOVE") { ports[0].postMessage({ ok: false, error: "Storage is unavailable" }); ports[0].close(); }
+    });
+    openManageMenu();
+    vi.stubGlobal("confirm", () => true);
+    fireEvent.click(screen.getByRole("button", { name: "Remove all downloads" }));
+    await waitFor(() => expect(screen.getAllByText("Storage is unavailable").length).toBeGreaterThan(0));
+    expect(window.localStorage.getItem(OFFLINE_PLAN_KEY)).not.toBeNull();
+  });
+
+  it("reports a status failure rather than displaying an empty download list", () => {
+    renderOffline();
+    emit({ type: "OFFLINE_STATE", state: null, error: "Storage is unavailable" });
+    expect(screen.getAllByText(en.settings.offlineUnavailable).length).toBeGreaterThan(0);
+    expect(screen.queryByText(en.settings.offlineNothingSaved)).not.toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Try again" })).toBeInTheDocument();
+  });
+
+  it("distinguishes preparation from a measured download percentage", async () => {
+    navigator.serviceWorker.getRegistration = vi.fn(() => new Promise<ServiceWorkerRegistration | undefined>(() => {}));
+    renderOffline();
+    await startDownload();
+    expect(screen.getByText(en.settings.offlinePreparing)).toBeInTheDocument();
+    expect(screen.queryByText("Progress · 0%")).not.toBeInTheDocument();
+    fireEvent.click(screen.getByRole("button", { name: "Cancel" }));
+    await waitFor(() => expect(screen.getByText("Download canceled")).toBeInTheDocument());
+  });
+
+  it("does not offer to remove a language holding only essential app pages", () => {
+    renderOffline();
+    emit({ type: "OFFLINE_STATE", state: savedState({ locales: { en: { done: 6, total: 200, ready: false, removable: false } }, tools: {}, engines: { done: 0, total: 4 }, readyLocales: 0 }) });
+    expect(screen.getByText(en.settings.offlineNothingSaved)).toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: /Manage downloads/ })).not.toBeInTheDocument();
+  });
+});
+
+describe("clear offline readiness", () => {
+  it("starts compact, with the choices behind one Customize downloads control", () => {
+    renderOffline(false);
+    expect(screen.getByRole("button", { name: /Customize downloads/ })).toHaveAttribute("aria-expanded", "false");
+    expect(screen.queryByRole("checkbox")).not.toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: en.settings.offlineChecking })).toBeInTheDocument();
+    fireEvent.click(screen.getByRole("button", { name: /Customize downloads/ }));
+    expect(screen.getByRole("checkbox", { name: "English" })).toBeInTheDocument();
+  });
+
+  it("does not claim readiness from a report that has not been verified", async () => {
+    renderOffline(false);
+    await sentEventually("OFFLINE_VERIFY");
+    emit({ type: "OFFLINE_STATE", state: savedState(), verified: false });
+    expect(screen.queryByRole("heading", { name: en.settings.offlineReadyTitle })).not.toBeInTheDocument();
+    emit({ type: "OFFLINE_STATE", state: savedState(), verified: true });
+    expect(screen.getByRole("heading", { name: en.settings.offlineReadyTitle })).toBeInTheDocument();
+  });
+
+  it("keeps verification failures visible until a successful check", async () => {
+    renderOffline(false);
+    await sentEventually("OFFLINE_VERIFY");
+    emit({ type: "OFFLINE_STATE", state: null, verified: true, error: "could not verify" });
+    emit({ type: "OFFLINE_STATE", state: savedState(), verified: false });
+    expect(screen.getByRole("heading", { name: en.settings.offlineUnavailable })).toBeInTheDocument();
+    emit({ type: "OFFLINE_STATE", state: savedState(), verified: true });
+    expect(screen.getByRole("heading", { name: en.settings.offlineReadyTitle })).toBeInTheDocument();
+  });
+
+  it("preserves repair intent when cache metadata disappears", async () => {
+    record({ version: "1.2.4", pages: ["home"] });
+    renderOffline(false);
+    await sentEventually("OFFLINE_VERIFY");
+    emit({ type: "OFFLINE_STATE", state: savedState({ plan: null, toolPages: { en: [] }, essentials: { en: { done: 0, total: 6, ready: false } } }) });
+    expect(window.localStorage.getItem(OFFLINE_PLAN_KEY)).not.toBeNull();
+    expect(screen.getByRole("heading", { name: en.settings.offlineRepairTitle })).toBeInTheDocument();
+    fireEvent.click(screen.getByRole("button", { name: "Repair" }));
+    expect(await sentEventually("OFFLINE_DOWNLOAD")).toMatchObject({ tools: ["pdf-merge"], engines: true });
+  });
+
+  it("reattaches to release preparation after leaving the page without sending duplicate downloads", async () => {
+    const preparingPost = vi.fn();
+    const installing = Object.assign(new EventTarget(), { state: "installing", postMessage: preparingPost });
+    const registration = Object.assign(new EventTarget(), { active: worker, waiting: null as typeof installing | null, installing, update: vi.fn(async () => undefined) });
+    navigator.serviceWorker.getRegistration = vi.fn(async () => registration) as never;
+    const first = renderOffline(false);
+    await startDownload();
+    expect(screen.getByText(en.settings.offlinePreparing)).toBeInTheDocument();
+    first.unmount();
+    renderOffline(false);
+    await waitFor(() => expect(screen.getByText(en.settings.offlinePreparing)).toBeInTheDocument());
+    registration.waiting = installing; installing.state = "installed";
+    act(() => installing.dispatchEvent(new Event("statechange")));
+    await waitFor(() => expect(preparingPost).toHaveBeenCalledOnce());
+    const payload = preparingPost.mock.calls[0][0];
+    expect(payload.type).toBe("OFFLINE_DOWNLOAD");
+    act(() => onMessage?.({ source: installing, data: { type: "OFFLINE_PROGRESS", requestId: payload.requestId, status: "running", done: 1, total: 6 } } as unknown as MessageEvent));
+    expect(screen.getByText("Progress · 17%")).toBeInTheDocument();
+    fireEvent.click(screen.getByRole("button", { name: "Cancel" }));
+    expect(preparingPost).toHaveBeenLastCalledWith({ type: "OFFLINE_CANCEL", requestId: payload.requestId });
+  });
+});
+it("lets partial media downloads be removed instead of leaving unmanageable storage behind", async () => {
+  renderOffline(false);
+  await sentEventually("OFFLINE_VERIFY");
+  emit({ type: "OFFLINE_STATE", state: savedState({ engines: { done: 1, total: 4 }, locales: {}, tools: {}, toolPages: {}, readyLocales: 0 }) });
+  expect(within(figures()).getByText("1 of 4 saved")).toBeInTheDocument();
+  openManageMenu();
+  const menu = within(manageMenu());
+  fireEvent.click(menu.getByRole("checkbox", { name: "Include large media engines" }));
+  fireEvent.click(menu.getByRole("button", { name: /Remove selected/ }));
+  expect(await sentEventually("OFFLINE_REMOVE")).toMatchObject({ engines: true });
 });

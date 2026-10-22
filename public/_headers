@@ -8,6 +8,12 @@
 # No Cross-Origin-Opener-Policy: it severs window.opener for cross-origin
 # windows, and the checkout frames allowed below under `payment` are
 # third-party flows whose completion may depend on it.
+/sw.js
+  Cache-Control: no-store
+/sw-precache.json
+  Cache-Control: no-store
+/manifest.webmanifest
+  Cache-Control: no-cache
 /*
   X-Frame-Options: DENY
   X-Content-Type-Options: nosniff

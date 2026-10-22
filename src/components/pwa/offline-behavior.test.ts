@@ -79,6 +79,7 @@ function fullCache() {
  */
 function loadWorker(seed: Map<string, boolean> = fullCache(), source = swSource) {
   const store = new Map(seed);
+  const records = new Map<string, Response>();
   /** Every address the worker asked the network for, in order. */
   const fetched: string[] = [];
   /** Every cache the worker opened, by name. */
@@ -90,18 +91,21 @@ function loadWorker(seed: Map<string, boolean> = fullCache(), source = swSource)
         return [...store.keys()].map((url) => ({ url: `https://trykit.pages.dev${url}` }));
       },
       async match(url: string) {
-        return store.has(url) ? { url } : undefined;
+        return records.get(`${name}:${url}`)?.clone() || (store.has(url) ? { url } : undefined);
       },
-      async put(url: string) {
-        store.set(url, true);
+      async put(url: string, response?: Response) {
+        if (response) records.set(`${name}:${url}`, response.clone());
+        else store.set(url, true);
       },
       async delete(url: string) {
+        records.delete(`${name}:${url}`);
         return store.delete(url);
       },
     };
   };
   const self = {
     location: { origin: "https://trykit.pages.dev" },
+    registration: { scope: "https://trykit.pages.dev/" },
     addEventListener: () => undefined,
     clients: { matchAll: async () => [] },
     skipWaiting: () => undefined,
@@ -112,13 +116,17 @@ function loadWorker(seed: Map<string, boolean> = fullCache(), source = swSource)
     fetch: async (input: string) => {
       fetched.push(String(input));
       return String(input).includes(FILL_PRECACHE)
-        ? { ok: true, type: "basic", json: async () => MANIFEST }
+        ? Response.json(MANIFEST)
         : { ok: true, type: "basic", status: 200 };
     },
     console,
     setTimeout,
     clearTimeout,
+    setInterval,
+    clearInterval,
     AbortController,
+    Response,
+    Headers,
     URL,
   });
   vm.runInContext(source, context, { filename: "sw.js" });
@@ -172,15 +180,15 @@ describe("removing what was downloaded", () => {
   it("takes a whole chosen set in one pass", async () => {
     const { worker, paths } = loadWorker();
     // Both languages in full, which already covers the tool named with them.
-    expect(await worker.removeOffline({ locales: ["en", "fr"], tools: ["pdf-merge"] })).toBe(20);
-    expect(paths().filter((path) => path.startsWith("/en/") || path.startsWith("/fr/"))).toEqual([]);
+    expect(await worker.removeOffline({ locales: ["en", "fr"], tools: ["pdf-merge"] })).toBe(16);
+    expect(paths().filter((path) => path.startsWith("/en/") || path.startsWith("/fr/"))).toEqual(["/en/", "/fr/", "/en/index.txt", "/fr/index.txt"]);
   });
 
   it("takes a language's compatibility addresses with it", async () => {
     const { worker, paths } = loadWorker();
     await worker.removeOffline({ locales: ["en"] });
 
-    expect(paths().filter((path) => path.startsWith("/en/"))).toEqual([]);
+    expect(paths().filter((path) => path.startsWith("/en/"))).toEqual(["/en/", "/en/index.txt"]);
     expect(paths()).toContain("/fr/");
     // The application itself is not something this page can remove.
     expect(paths()).toContain("/app.js");
@@ -213,7 +221,7 @@ describe("removing what was downloaded", () => {
        they were stored under, including one that is only ever a compatibility
        address. The engines do go: they are offered on this page, so they are part
        of what it can add. */
-    expect(paths()).toEqual(["/app.js"]);
+    expect(paths()).toEqual(["/app.js", "/en/", "/fr/", "/en/index.txt", "/fr/index.txt"]);
   });
 });
 
@@ -358,7 +366,7 @@ describe("reporting what is saved", () => {
 
     expect(Object.keys(state.locales).sort()).toEqual(["en", "fr"]);
     expect(state.readyLocales).toBe(2);
-    expect(state.locales.en).toEqual({ done: 8, total: 8, ready: true });
+    expect(state.locales.en).toEqual({ done: 8, total: 8, ready: true, removable: true });
     expect(state.tools["world-clock"]).toBe(2);
     expect(state.engines).toEqual({ done: 1, total: 1 });
   });
@@ -378,7 +386,7 @@ describe("reporting what is saved", () => {
     const { worker } = loadWorker(seed);
     const state = await worker.offlineState();
 
-    expect(state.locales.en).toEqual({ done: 7, total: 8, ready: false });
+    expect(state.locales.en).toEqual({ done: 7, total: 8, ready: false, removable: true });
     expect(state.locales.fr.ready).toBe(true);
     expect(state.readyLocales).toBe(1);
   });
@@ -388,7 +396,7 @@ describe("reporting what is saved", () => {
     await worker.removeOffline({ locales: ["en"] });
     const state = await worker.offlineState();
 
-    expect(state.locales.en).toEqual({ done: 0, total: 8, ready: false });
+    expect(state.locales.en).toEqual({ done: 2, total: 8, ready: false, removable: false });
     expect(state.readyLocales).toBe(1);
     expect(paths()).toContain("/fr/");
   });
@@ -404,7 +412,7 @@ describe("the build a worker belongs to", () => {
     const { worker, opened } = loadWorker(fullCache(), stamped("0123456789ab"));
     await worker.offlineState();
 
-    expect([...opened].sort()).toEqual(["kit-rsc-0123456789ab", "kit-shell-0123456789ab"]);
+    expect([...opened].sort()).toEqual(["kit-offline-%2F", "kit-rsc-0123456789ab", "kit-shell-0123456789ab"]);
   });
 
   it("reports the build it carries, so a page can tell one release from the next", async () => {
@@ -417,6 +425,6 @@ describe("the build a worker belongs to", () => {
     await worker.offlineState();
 
     /* Nothing ships from there, so the name only has to be stable. */
-    expect([...opened].sort()).toEqual(["kit-rsc-dev", "kit-shell-dev"]);
+    expect([...opened].sort()).toEqual(["kit-offline-%2F", "kit-rsc-dev", "kit-shell-dev"]);
   });
 });

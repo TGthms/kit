@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { toast } from "sonner";
-import { useRouter } from "@/lib/i18n/navigation";
+import { updateOfflineApp } from "@/lib/pwa/offline-worker";
 import { observeWaitingWorker } from "@/lib/pwa/update-notice";
 import { withBasePath } from "@/lib/base-path";
 import {
@@ -17,7 +17,6 @@ import {
 export function ServiceWorkerRegister() {
   const locale = useLocale();
   const t = useTranslations("settings");
-  const router = useRouter();
 
   useEffect(() => {
     if (typeof window === "undefined" || !("serviceWorker" in navigator)) return;
@@ -48,18 +47,33 @@ export function ServiceWorkerRegister() {
     let registration: ServiceWorkerRegistration | null = null;
     let disposed = false;
     let stopUpdateNotice = () => {};
-    const offerUpdate = () => {
-      // This page already presents the update in context, alongside its status.
-      if (/\/settings\/offline\/?$/u.test(window.location.pathname)) return;
-      toast(t("updateAvailable"), {
-        id: "kit-update-ready",
-        duration: Infinity,
-        action: { label: t("reviewUpdate"), onClick: () => {
-          toast.dismiss("kit-update-ready");
-          router.push("/settings/offline");
-        } },
+    let updating = false;
+    let attempts = 0;
+    const startUpdate = () => {
+      if (updating) return;
+      updating = true;
+      toast.loading(t("offlinePreparing"), { id: "kit-update-ready", duration: Infinity });
+      void updateOfflineApp((progress) => {
+        const percent = progress.total ? Math.round(progress.done / progress.total * 100) : null;
+        toast.loading(progress.status === "complete" ? t("offlineApplying") : `${t("offlinePreparing")}${percent === null ? "" : ` · ${percent}%`}`, { id: "kit-update-ready", duration: Infinity });
+      }, attempts++ > 0).then(() => window.location.reload()).catch((error: unknown) => {
+        updating = false;
+        toast.error(error instanceof Error ? error.message : t("offlineUnavailable"), { id: "kit-update-ready", duration: Infinity,
+          action: { label: t("reviewUpdate"), onClick: startUpdate } });
       });
     };
+    const offerUpdate = () => {
+      // The manager already presents this action alongside its saved status.
+      if (updating || /\/settings\/offline\/?$/u.test(window.location.pathname)) return;
+      toast(t("updateAvailable"), {
+        id: "kit-update-ready", duration: Infinity,
+        action: { label: t("reviewUpdate"), onClick: startUpdate },
+      });
+    };
+    const onWorkerMessage = (event: MessageEvent) => {
+      if (event.source === navigator.serviceWorker.controller && event.data?.type === "OFFLINE_UPDATE_AVAILABLE") offerUpdate();
+    };
+    navigator.serviceWorker.addEventListener("message", onWorkerMessage);
     let lastUpdateAt = 0;
     let visibleTimer = 0;
     let fillTimer = 0;
@@ -84,7 +98,7 @@ export function ServiceWorkerRegister() {
       visibleTimer = 0;
       if (document.visibilityState !== "visible") return;
       window.clearTimeout(resumeTimer);
-      post(activeWorker(), { type: "PRECACHE_PAUSE" });
+      pauseFill();
       post(activeWorker(), { type: "PING" });
       try {
         const path = window.location.pathname.endsWith("/") ? window.location.pathname : `${window.location.pathname}/`;
@@ -133,6 +147,7 @@ export function ServiceWorkerRegister() {
         stopUpdateNotice = observeWaitingWorker(reg, offerUpdate);
         lastUpdateAt = Date.now();
         precacheHome(reg.active);
+        post(reg.active, { type: "PING" });
         navigator.serviceWorker.ready.then((ready) => {
           if (disposed) return;
           precacheHome(ready.active);
@@ -148,6 +163,7 @@ export function ServiceWorkerRegister() {
     return () => {
       disposed = true;
       stopUpdateNotice();
+      navigator.serviceWorker.removeEventListener("message", onWorkerMessage);
       toast.dismiss("kit-update-ready");
       window.clearTimeout(visibleTimer);
       window.clearTimeout(fillTimer);
@@ -160,7 +176,7 @@ export function ServiceWorkerRegister() {
       document.removeEventListener("wheel", onInteract, true);
       document.removeEventListener("touchstart", onInteract, true);
     };
-  }, [locale, router, t]);
+  }, [locale, t]);
 
   return null;
 }

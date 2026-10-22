@@ -59,9 +59,9 @@ describe("service worker update policy", () => {
 
   it("only evicts caches that belong to Kit", () => {
     expect(sw).toMatch(/CACHE_PREFIX\s*=\s*["']kit-["']/);
-    const activate = sw.slice(sw.indexOf('addEventListener("activate"'), sw.indexOf("function isIconOrManifest"));
-    expect(activate).toMatch(/startsWith\(CACHE_PREFIX\)/);
-    expect(activate).toMatch(/key !== CACHE && key !== RSC_CACHE/);
+    const cleanup = sw.slice(sw.indexOf("async function retireReleases"), sw.indexOf("function mergeSelection"));
+    expect(cleanup).toMatch(/manifest\?\.core\?\.includes\(root\)/);
+    expect(cleanup).toMatch(/name === CACHE/);
   });
 
   it("refuses document and Flight responses it cannot vouch for", () => {
@@ -97,13 +97,14 @@ describe("service worker update policy", () => {
     expect(sw).toMatch(/isRscRequest\(req\)/);
     expect(sw).toMatch(/RSC_CACHE/);
     const rscFn = sw.slice(sw.indexOf("async function respondRsc"), sw.indexOf("\nlet fillPaused"));
-    expect(rscFn).toMatch(/caches\.open\(RSC_CACHE\)/);
+    expect(rscFn).toMatch(/caches\.open\(\(await servingRelease\(\)\)\.rsc\)/);
     expect(rscFn).not.toMatch(/caches\.open\(CACHE\)/);
   });
 
   it("does not reload the tab when the controller changes", () => {
     expect(register).not.toMatch(/addEventListener\(\s*["']controllerchange["']/);
-    expect(register).not.toMatch(/location\.reload\s*\(/);
+    expect(register).toMatch(/updateOfflineApp\(/);
+    expect(register).toMatch(/onClick: startUpdate/);
   });
 
   it("throttles update checks after the tab becomes visible", () => {
