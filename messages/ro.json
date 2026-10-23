@@ -1963,8 +1963,8 @@
     },
     "function-grapher": {
       "name": "Grafice de funcții",
-      "description": "Trasează până la trei funcții reale, deplasează și mărește graficul și explorează un tabel de valori cu aceeași intrare matematică.",
-      "summary": "Trasează până la trei funcții reale, deplasează și mărește graficul și explorează un tabel de valori cu aceeași intrare matematică.",
+      "description": "Trasează până la opt funcții reale, deplasează și mărește graficul și explorează un tabel de valori cu aceeași intrare matematică.",
+      "summary": "Trasează până la opt funcții reale, deplasează și mărește graficul și explorează un tabel de valori cu aceeași intrare matematică.",
       "keywords": "Grafice de funcții"
     },
     "equation-solver": {
@@ -2175,7 +2175,7 @@
     "solutions": "Soluții",
     "showSteps": "Arată pașii și explicațiile",
     "addFunction": "Adaugă funcție",
-    "graphScope": "Până la trei funcții de x: rădăcini, puteri, logaritmi, valori absolute și trigonometrie.",
+    "graphScope": "Până la opt funcții de x: rădăcini, puteri, logaritmi, valori absolute și trigonometrie.",
     "zoomIn": "Mărește",
     "zoomOut": "Micșorează",
     "graphLabel": "Grafic interactiv de funcții",
@@ -2188,7 +2188,11 @@
       "polynomialOnly": "Introdu o ecuație polinomială liniară sau de gradul doi în x, fără numitori variabili sau puteri mai mari.",
       "rationalOnly": "Folosește o expresie cu rezultat rațional.",
       "timeout": "Calculul a durat prea mult. Simplifică expresia.",
-      "unavailable": "Motorul matematic nu s-a încărcat. Reconectează-te sau repară fișierele offline."
+      "unavailable": "Motorul matematic nu s-a încărcat. Reconectează-te sau repară fișierele offline.",
+      "functionDefinition": "Alege o literă mică unică, exceptând a, b, c, e, i, x și y. Introdu o expresie sau o definiție corespunzătoare ca h(x)=d(x)+g(x).",
+      "duplicateFunction": "Fiecare funcție are nevoie de alt nume.",
+      "missingFunction": "O funcție referită lipsește sau are o definiție invalidă.",
+      "circularFunction": "Funcțiile se referă reciproc într-o buclă. Elimină referința circulară."
     },
     "steps": {
       "collect": "Mută totul în stânga, dezvoltă parantezele și adună termenii asemenea.",
@@ -2198,6 +2202,40 @@
       "discriminant": "Calculează discriminantul Δ = b² − 4ac.",
       "negativeDiscriminant": "Un discriminant negativ înseamnă că nu există rădăcini reale.",
       "quadraticFormula": "Aplică formula de gradul doi și simplifică fiecare rezultat."
+    },
+    "guide": {
+      "open": "Ghid de introducere",
+      "title": "Scrierea matematicii în Kit",
+      "roots": "Scrie sqrt, apoi radicandul. Săgețile intră și ies din rădăcini.",
+      "powers": "^ deschide un exponent. → sau Spațiu îl părăsește. Folosește paranteze pentru exponenți compuși. Puterile preced semnul minus inițial.",
+      "fractions": "/ creează o fracție. Săgețile trec între numărător și numitor. Numerele și parantezele alăturate se înmulțesc.",
+      "functions": "Folosește tastatura matematică. log are baza 10, ln este natural. Trigonometria folosește unitatea unghiulară aleasă.",
+      "editing": "Săgețile parcurg formula, Backspace șterge. Enter calculează sau rezolvă. Pe ecran tactil folosește pictograma tastaturii.",
+      "scope": "Graficul acceptă opt funcții reale f, g, h, d… Poți folosi d(x) sau d(2x). a, b, c sunt glisoare comune. Rezolvitorul acceptă ecuații reale liniare și de gradul doi."
+    },
+    "graph": {
+      "settings": "Setări grafic",
+      "grid": "Arată grila",
+      "xMin": "Minim x",
+      "xMax": "Maxim x",
+      "yMin": "Minim y",
+      "yMax": "Maxim y",
+      "boundsError": "Introdu limite finite crescătoare cu un interval între 0.000001 și 100000000.",
+      "apply": "Aplică limite",
+      "functionCount": "{count} din {max} funcții",
+      "restore": "Ieși din vizualizarea extinsă",
+      "expand": "Extinde spațiul de lucru",
+      "color": "Culoarea graficului",
+      "name": "Numele funcției",
+      "show": "Arată",
+      "hide": "Ascunde",
+      "parameters": "Parametri",
+      "parameter": "Parametru",
+      "trace": "Urmărește coordonatele",
+      "traceX": "Urmărește la x",
+      "traceHint": "Mișcă sau trage pe grafic. ←/→ schimbă x; Shift mărește pasul. Poți introduce x și mai jos.",
+      "approximate": "Coordonatele sunt aproximări numerice. O liniuță indică o funcție nedefinită.",
+      "scope": "Până la opt funcții reale cu nume. a, b, c sunt glisoare; d(x)+g(x) combină funcții. Rădăcini, puteri, logaritmi, valori absolute și trigonometrie."
     }
   }
 }

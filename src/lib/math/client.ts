@@ -1,3 +1,4 @@
+import type { Parameters } from "./numeric";
 export type Viewport = {
   xMin: number;
   xMax: number;
@@ -9,15 +10,24 @@ export type MathRequest = {
   latex: string;
   angle?: "deg" | "rad";
   viewport?: Viewport;
-  curves?: { id: number; latex: string }[];
+  parameters?: Parameters;
+  curves?: { id: number; latex: string; name?: string; hidden?: boolean }[];
 };
-export type MathValue = { latex: string; plain: string; decimal: string };
+export type MathValue = {
+  latex: string;
+  plain: string;
+  decimal: string;
+  approximate: boolean;
+};
 export type Solution = {
   kind: "linear" | "quadratic" | "none" | "identity";
   roots: MathValue[];
   steps: { key: string; latex: string; detail?: string[] }[];
 };
 export type Plot = {
+  expression: unknown;
+  definitions: Record<string, unknown>;
+  parameters: (keyof Parameters)[];
   segments: [number, number][][];
   table: [number, number | null][];
 };
@@ -87,5 +97,45 @@ export class MathClient {
       };
       worker.postMessage({ ...request, id });
     });
+  }
+}
+
+/** Keep one engine warm during continuous pan/slider input. At most one job
+ * runs and one (the newest) waits; superseded queued promises always settle. */
+export class GraphClient {
+  private client = new MathClient();
+  private pending: {
+    request: MathRequest;
+    resolve: (reply: MathReply<unknown>) => void;
+  } | null = null;
+  private running = false;
+  private disposed = false;
+  run<T>(request: MathRequest): Promise<MathReply<T>> {
+    if (this.disposed) return Promise.resolve({ ok: false, error: "canceled" });
+    this.pending?.resolve({ ok: false, error: "canceled" });
+    return new Promise((resolve) => {
+      this.pending = {
+        request,
+        resolve: (reply) => resolve(reply as MathReply<T>),
+      };
+      this.pump();
+    });
+  }
+  private pump() {
+    if (this.running || this.disposed || !this.pending) return;
+    const job = this.pending;
+    this.pending = null;
+    this.running = true;
+    void this.client.run(job.request).then((reply) => {
+      job.resolve(reply);
+      this.running = false;
+      this.pump();
+    });
+  }
+  dispose() {
+    this.disposed = true;
+    this.pending?.resolve({ ok: false, error: "canceled" });
+    this.pending = null;
+    this.client.dispose();
   }
 }

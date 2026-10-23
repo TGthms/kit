@@ -1963,8 +1963,8 @@
     },
     "function-grapher": {
       "name": "Function grapher",
-      "description": "Plot up to three real functions, pan and zoom the graph, and explore a table of values using the same intelligent math input.",
-      "summary": "Plot up to three real functions, pan and zoom the graph, and explore a table of values using the same intelligent math input.",
+      "description": "Plot up to eight real functions, pan and zoom the graph, and explore a table of values using the same intelligent math input.",
+      "summary": "Plot up to eight real functions, pan and zoom the graph, and explore a table of values using the same intelligent math input.",
       "keywords": "Function grapher"
     },
     "equation-solver": {
@@ -2175,7 +2175,7 @@
     "solutions": "Solutions",
     "showSteps": "Show steps and explanations",
     "addFunction": "Add function",
-    "graphScope": "Up to three functions of x. Supports roots, powers, logs, absolute values, and trigonometry.",
+    "graphScope": "Up to eight functions of x. Supports roots, powers, logs, absolute values, and trigonometry.",
     "zoomIn": "Zoom in",
     "zoomOut": "Zoom out",
     "graphLabel": "Interactive function graph",
@@ -2188,7 +2188,11 @@
       "polynomialOnly": "Enter a linear or quadratic polynomial equation in x. Variable denominators and higher powers are not supported.",
       "rationalOnly": "Use an expression with a rational result.",
       "timeout": "This calculation took too long. Try a simpler expression.",
-      "unavailable": "The math engine could not load. Reconnect or repair saved offline files."
+      "unavailable": "The math engine could not load. Reconnect or repair saved offline files.",
+      "functionDefinition": "Choose a unique lowercase function name, excluding a, b, c, e, i, x and y. Enter its expression or a matching definition such as h(x)=d(x)+g(x).",
+      "duplicateFunction": "Each function needs a different name.",
+      "missingFunction": "A referenced function is missing or has an invalid definition.",
+      "circularFunction": "These functions depend on themselves in a loop. Remove the circular reference."
     },
     "steps": {
       "collect": "Move everything to the left, expand brackets, and collect like terms.",
@@ -2198,6 +2202,40 @@
       "discriminant": "Calculate the discriminant Δ = b² − 4ac.",
       "negativeDiscriminant": "A negative discriminant means there are no real roots.",
       "quadraticFormula": "Apply the quadratic formula and simplify each result."
+    },
+    "guide": {
+      "open": "Input guide",
+      "title": "Writing math in Kit",
+      "roots": "Type sqrt, then the radicand. Arrows move inside and outside roots.",
+      "powers": "^ opens an exponent. → or Space leaves it. Use parentheses for a multi-term exponent. Powers precede a leading minus.",
+      "fractions": "/ creates a fraction. Arrows move between numerator and denominator. Adjacent numbers and brackets multiply.",
+      "functions": "Use the math keyboard for functions. log is base 10; ln is natural log. Trigonometry uses the selected angle unit.",
+      "editing": "Arrow keys move through a formula. Backspace deletes. Enter calculates or solves. Use the keyboard icon on touch devices.",
+      "scope": "The grapher supports eight real functions. Name rows f, g, h, d, etc.; call d(x) or d(2x). a, b, c are shared sliders. The solver supports real linear/quadratic equations only."
+    },
+    "graph": {
+      "settings": "Graph settings",
+      "grid": "Show grid",
+      "xMin": "Minimum x",
+      "xMax": "Maximum x",
+      "yMin": "Minimum y",
+      "yMax": "Maximum y",
+      "boundsError": "Enter finite bounds in increasing order, with a span from 0.000001 to 100000000.",
+      "apply": "Apply bounds",
+      "functionCount": "{count} of {max} functions",
+      "restore": "Exit expanded view",
+      "expand": "Expand workspace",
+      "color": "Graph color",
+      "name": "Function name",
+      "show": "Show",
+      "hide": "Hide",
+      "parameters": "Parameters",
+      "parameter": "Parameter",
+      "trace": "Trace coordinates",
+      "traceX": "Trace at x",
+      "traceHint": "Move over or drag the graph to trace. ←/→ adjusts x; Shift takes larger steps. You can also enter x below.",
+      "approximate": "Coordinates are numerical approximations. A dash means the function is undefined here.",
+      "scope": "Up to eight named real functions. Use a, b, c for sliders and d(x)+g(x) for composition. Roots, powers, logs, absolute values and trigonometry are supported."
     }
   }
 }

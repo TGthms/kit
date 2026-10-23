@@ -54,3 +54,16 @@ export function gridTicks(min: number, max: number): number[] {
     (_, i) => (start + i) * step,
   );
 }
+
+export function validView(view: Viewport): boolean {
+  const { xMin, xMax, yMin, yMax } = view;
+  return (
+    [xMin, xMax, yMin, yMax].every(
+      (n) => Number.isFinite(n) && Math.abs(n) <= 1e10,
+    ) &&
+    xMax - xMin >= 1e-6 &&
+    xMax - xMin <= 1e8 &&
+    yMax - yMin >= 1e-6 &&
+    yMax - yMin <= 1e8
+  );
+}

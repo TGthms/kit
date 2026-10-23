@@ -1963,8 +1963,8 @@
     },
     "function-grapher": {
       "name": "Grafy funkcí",
-      "description": "Nakreslete až tři reálné funkce, posouvejte a přibližujte graf a prozkoumejte tabulku hodnot se stejným matematickým vstupem.",
-      "summary": "Nakreslete až tři reálné funkce, posouvejte a přibližujte graf a prozkoumejte tabulku hodnot se stejným matematickým vstupem.",
+      "description": "Nakreslete až osm reálné funkce, posouvejte a přibližujte graf a prozkoumejte tabulku hodnot se stejným matematickým vstupem.",
+      "summary": "Nakreslete až osm reálné funkce, posouvejte a přibližujte graf a prozkoumejte tabulku hodnot se stejným matematickým vstupem.",
       "keywords": "Grafy funkcí"
     },
     "equation-solver": {
@@ -2175,7 +2175,7 @@
     "solutions": "Řešení",
     "showSteps": "Zobrazit kroky a vysvětlení",
     "addFunction": "Přidat funkci",
-    "graphScope": "Až tři funkce x: odmocniny, mocniny, logaritmy, absolutní hodnoty a goniometrie.",
+    "graphScope": "Až osm funkce x: odmocniny, mocniny, logaritmy, absolutní hodnoty a goniometrie.",
     "zoomIn": "Přiblížit",
     "zoomOut": "Oddálit",
     "graphLabel": "Interaktivní graf funkcí",
@@ -2188,7 +2188,11 @@
       "polynomialOnly": "Zadejte lineární nebo kvadratickou polynomickou rovnici s x bez proměnných jmenovatelů a vyšších mocnin.",
       "rationalOnly": "Použijte výraz s racionálním výsledkem.",
       "timeout": "Výpočet trval příliš dlouho. Zjednodušte výraz.",
-      "unavailable": "Matematický modul se nepodařilo načíst. Připojte se nebo opravte offline soubory."
+      "unavailable": "Matematický modul se nepodařilo načíst. Připojte se nebo opravte offline soubory.",
+      "functionDefinition": "Zvolte jedinečné malé písmeno kromě a, b, c, e, i, x a y. Zadejte výraz nebo odpovídající definici jako h(x)=d(x)+g(x).",
+      "duplicateFunction": "Každá funkce potřebuje jiný název.",
+      "missingFunction": "Odkazovaná funkce chybí nebo má neplatnou definici.",
+      "circularFunction": "Funkce na sebe odkazují v kruhu. Odstraňte kruhový odkaz."
     },
     "steps": {
       "collect": "Převeďte vše doleva, roznásobte závorky a slučte podobné členy.",
@@ -2198,6 +2202,40 @@
       "discriminant": "Vypočítejte diskriminant Δ = b² − 4ac.",
       "negativeDiscriminant": "Záporný diskriminant znamená, že neexistují reálné kořeny.",
       "quadraticFormula": "Použijte kvadratický vzorec a zjednodušte každý výsledek."
+    },
+    "guide": {
+      "open": "Průvodce zadáváním",
+      "title": "Psaní matematiky v Kitu",
+      "roots": "Napište sqrt a odmocňovaný výraz. Šipky vstupují do odmocnin a opouštějí je.",
+      "powers": "^ otevře exponent. → nebo mezerník jej opustí. Složené exponenty dejte do závorek. Mocniny mají přednost před úvodním minusem.",
+      "fractions": "/ vytvoří zlomek. Šipky přepínají čitatele a jmenovatele. Sousední čísla a závorky se násobí.",
+      "functions": "Použijte matematickou klávesnici. log je o základu 10, ln přirozený. Goniometrie používá zvolenou jednotku úhlu.",
+      "editing": "Šipky procházejí vzorec, Backspace maže. Enter počítá nebo řeší. Na dotykových zařízeních použijte ikonu klávesnice.",
+      "scope": "Graf podporuje osm reálných funkcí f, g, h, d… Použijte d(x) či d(2x). a, b, c jsou společné posuvníky. Řešič podporuje reálné lineární a kvadratické rovnice."
+    },
+    "graph": {
+      "settings": "Nastavení grafu",
+      "grid": "Zobrazit mřížku",
+      "xMin": "Nejmenší x",
+      "xMax": "Největší x",
+      "yMin": "Nejmenší y",
+      "yMax": "Největší y",
+      "boundsError": "Zadejte konečné rostoucí meze s rozsahem od 0.000001 do 100000000.",
+      "apply": "Použít meze",
+      "functionCount": "{count} z {max} funkcí",
+      "restore": "Opustit rozšířený pohled",
+      "expand": "Zvětšit pracovní plochu",
+      "color": "Barva grafu",
+      "name": "Název funkce",
+      "show": "Zobrazit",
+      "hide": "Skrýt",
+      "parameters": "Parametry",
+      "parameter": "Parametr",
+      "trace": "Sledovat souřadnice",
+      "traceX": "Sledovat při x",
+      "traceHint": "Pohybujte nebo táhněte po grafu. ←/→ mění x, Shift zvětší krok. x lze zadat i níže.",
+      "approximate": "Souřadnice jsou číselné aproximace. Pomlčka znamená nedefinovanou funkci.",
+      "scope": "Až osm pojmenovaných reálných funkcí. a, b, c jsou posuvníky, d(x)+g(x) kombinuje funkce. Odmocniny, mocniny, logaritmy, absolutní hodnoty a goniometrie."
     }
   }
 }

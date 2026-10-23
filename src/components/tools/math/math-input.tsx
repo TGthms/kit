@@ -12,6 +12,7 @@ import {
 import type { MathfieldElement } from "mathlive";
 import { useLocale, useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
+import { InputGuide } from "./input-guide";
 import { LoaderCircle } from "lucide-react";
 
 declare module "react" {
@@ -182,9 +183,10 @@ export function MathInput({
         </p>
       )}
       {!readOnly && (
-        <p id={`${fieldId}-hint`} className="text-xs text-muted-foreground">
-          {t("inputHint")}
-        </p>
+        <div className="text-xs text-muted-foreground">
+          <span id={`${fieldId}-hint`}>{t("inputHint")}</span>
+          <InputGuide />
+        </div>
       )}
     </div>
   );

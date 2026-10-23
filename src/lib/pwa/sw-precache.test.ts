@@ -46,10 +46,10 @@ describe("sw-precache manifest", () => {
     try {
       writeAppPages(root, "en");
       mkdirSync(join(root, "vendor/math/fonts"), { recursive: true });
-      for (const path of ["math-worker.js", "vendor/math/compute-engine.js", "vendor/math/fonts/KaTeX_Main-Regular.woff2", "vendor/math/mathlive-LICENSE.txt"]) writeFileSync(join(root, path), "asset");
+      for (const path of ["math-worker.js", "vendor/math/compute-engine.js", "vendor/math/numeric.js", "vendor/math/fonts/KaTeX_Main-Regular.woff2", "vendor/math/mathlive-LICENSE.txt"]) writeFileSync(join(root, path), "asset");
       for (const base of ["", "/kit"]) {
         const manifest = buildPrecacheManifest(root, base) as unknown as Manifest;
-        for (const path of ["/math-worker.js", "/vendor/math/compute-engine.js", "/vendor/math/fonts/KaTeX_Main-Regular.woff2"]) expect(manifest.core).toContain(`${base}${path}`);
+        for (const path of ["/math-worker.js", "/vendor/math/compute-engine.js", "/vendor/math/numeric.js", "/vendor/math/fonts/KaTeX_Main-Regular.woff2"]) expect(manifest.core).toContain(`${base}${path}`);
         expect(manifest.core.some((url) => url.includes("LICENSE"))).toBe(false);
         expect(manifest.engines).toEqual([]);
       }

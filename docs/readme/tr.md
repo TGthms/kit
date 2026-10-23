@@ -66,7 +66,7 @@ Ana ekran araçları işe göre gruplar (PDF sayfaları, veri, geliştirme…) d
 ### Matematik
 
 - **Bilimsel hesap makinesi** — Kökleri, kuvvetleri, kesirleri, logaritmaları ve trigonometrik fonksiyonları derece veya radyanla yapılandırılmış girişte hesaplayın.
-- **Fonksiyon grafiği** — Üç gerçek fonksiyona kadar çizin, grafiği kaydırıp yakınlaştırın ve aynı matematik girişiyle değer tablosunu inceleyin.
+- **Fonksiyon grafiği** — Sekiz gerçek fonksiyona kadar çizin, grafiği kaydırıp yakınlaştırın ve aynı matematik girişiyle değer tablosunu inceleyin.
 - **Denklem çözücü** — x cinsinden gerçek doğrusal ve ikinci derece denklemleri çözün, tam ve ondalık cevapları ve her adımın açıklamasını görün.
 - **Kesir hesaplayıcı** — Kesirleri toplayın, çıkarın, çarpın ve bölün; tam rasyonel sonuçlarla ondalık yaklaşımları yan yana görün.
 

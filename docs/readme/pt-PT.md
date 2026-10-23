@@ -66,7 +66,7 @@ A página inicial agrupa as ferramentas por trabalho (páginas PDF, dados, desen
 ### Matemática
 
 - **Calculadora científica** — Calcule raízes, potências, frações, logaritmos e funções trigonométricas com entrada estruturada em graus ou radianos.
-- **Gráfico de funções** — Trace até três funções reais, mova e amplie o gráfico e consulte uma tabela de valores com a mesma entrada matemática.
+- **Gráfico de funções** — Trace até oito funções reais, mova e amplie o gráfico e consulte uma tabela de valores com a mesma entrada matemática.
 - **Resolvedor de equações** — Resolva equações reais lineares e quadráticas em x, veja respostas exatas e decimais e expanda as explicações de cada etapa.
 - **Calculadora de frações** — Some, subtraia, multiplique e divida frações mantendo resultados racionais exatos junto de aproximações decimais.
 

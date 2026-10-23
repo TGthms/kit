@@ -66,7 +66,7 @@ Layar beranda mengelompokkan alat menurut pekerjaan (halaman PDF, data, pengemba
 ### Matematika
 
 - **Kalkulator ilmiah** — Hitung akar, pangkat, pecahan, logaritma, dan fungsi trigonometri dengan masukan terstruktur dalam derajat atau radian.
-- **Grafik fungsi** — Gambar hingga tiga fungsi nyata, geser dan perbesar grafik, serta jelajahi tabel nilai dengan masukan matematika yang sama.
+- **Grafik fungsi** — Gambar hingga delapan fungsi nyata, geser dan perbesar grafik, serta jelajahi tabel nilai dengan masukan matematika yang sama.
 - **Pemecah persamaan** — Selesaikan persamaan linear dan kuadrat nyata dalam x, lihat jawaban eksak dan desimal, serta penjelasan setiap langkah.
 - **Kalkulator pecahan** — Jumlahkan, kurangi, kalikan, dan bagi pecahan dengan hasil rasional eksak beserta pendekatan desimalnya.
 

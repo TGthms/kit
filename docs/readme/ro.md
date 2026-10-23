@@ -66,7 +66,7 @@ Ecranul principal grupează uneltele pe sarcini (pagini PDF, date, dezvoltare…
 ### Matematică
 
 - **Calculator științific** — Calculează rădăcini, puteri, fracții, logaritmi și funcții trigonometrice cu introducere structurată în grade sau radiani.
-- **Grafice de funcții** — Trasează până la trei funcții reale, deplasează și mărește graficul și explorează un tabel de valori cu aceeași intrare matematică.
+- **Grafice de funcții** — Trasează până la opt funcții reale, deplasează și mărește graficul și explorează un tabel de valori cu aceeași intrare matematică.
 - **Rezolvarea ecuațiilor** — Rezolvă ecuații reale liniare și de gradul doi în x, vezi răspunsuri exacte și zecimale și explicații pentru fiecare pas.
 - **Calculator de fracții** — Adună, scade, înmulțește și împarte fracții păstrând rezultatele raționale exacte alături de aproximările zecimale.
 

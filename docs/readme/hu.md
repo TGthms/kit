@@ -66,7 +66,7 @@ A kezdőlap feladatonként csoportosítja az eszközöket (PDF-oldalak, adatok, 
 ### Matematika
 
 - **Tudományos számológép** — Számoljon gyökökkel, hatványokkal, törtekkel, logaritmusokkal és trigonometrikus függvényekkel, fokban vagy radiánban.
-- **Függvényábrázoló** — Ábrázoljon legfeljebb három valós függvényt, mozgassa és nagyítsa a grafikont, és vizsgálja az értéktáblázatot.
+- **Függvényábrázoló** — Ábrázoljon legfeljebb nyolc valós függvényt, mozgassa és nagyítsa a grafikont, és vizsgálja az értéktáblázatot.
 - **Egyenletmegoldó** — Oldjon meg valós első- és másodfokú egyenleteket x-re, tekintse meg a pontos és tizedes eredményeket, valamint a lépések magyarázatát.
 - **Törtszámológép** — Adjon össze, vonjon ki, szorozzon és osszon törteket pontos racionális eredményekkel és tizedes közelítésekkel.
 

@@ -66,7 +66,7 @@ L’accueil groupe les outils par tâche (pages PDF, données, développement…
 ### Mathématiques
 
 - **Calculatrice scientifique** — Calculez racines, puissances, fractions, logarithmes et fonctions trigonométriques avec une saisie structurée en degrés ou radians.
-- **Traceur de fonctions** — Tracez jusqu’à trois fonctions réelles, déplacez et zoomez le graphique, puis explorez un tableau de valeurs.
+- **Traceur de fonctions** — Tracez jusqu’à huit fonctions réelles, déplacez et zoomez le graphique, puis explorez un tableau de valeurs.
 - **Résolution d’équations** — Résolvez des équations réelles linéaires et quadratiques en x, avec réponses exactes, décimales et explications des étapes.
 - **Calculatrice de fractions** — Additionnez, soustrayez, multipliez et divisez des fractions en conservant les résultats exacts et les approximations décimales.
 

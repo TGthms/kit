@@ -1963,8 +1963,8 @@
     },
     "function-grapher": {
       "name": "Đồ thị hàm số",
-      "description": "Vẽ tối đa ba hàm số thực, kéo và thu phóng đồ thị, xem bảng giá trị bằng cùng cách nhập công thức thông minh.",
-      "summary": "Vẽ tối đa ba hàm số thực, kéo và thu phóng đồ thị, xem bảng giá trị bằng cùng cách nhập công thức thông minh.",
+      "description": "Vẽ tối đa tám hàm số thực, kéo và thu phóng đồ thị, xem bảng giá trị bằng cùng cách nhập công thức thông minh.",
+      "summary": "Vẽ tối đa tám hàm số thực, kéo và thu phóng đồ thị, xem bảng giá trị bằng cùng cách nhập công thức thông minh.",
       "keywords": "Đồ thị hàm số"
     },
     "equation-solver": {
@@ -2175,7 +2175,7 @@
     "solutions": "Nghiệm",
     "showSteps": "Hiện các bước và giải thích",
     "addFunction": "Thêm hàm số",
-    "graphScope": "Tối đa ba hàm của x: căn, lũy thừa, logarit, trị tuyệt đối và lượng giác.",
+    "graphScope": "Tối đa tám hàm của x: căn, lũy thừa, logarit, trị tuyệt đối và lượng giác.",
     "zoomIn": "Phóng to",
     "zoomOut": "Thu nhỏ",
     "graphLabel": "Đồ thị hàm số tương tác",
@@ -2188,7 +2188,11 @@
       "polynomialOnly": "Nhập phương trình đa thức bậc nhất hoặc hai theo x, không có mẫu biến hoặc lũy thừa cao hơn.",
       "rationalOnly": "Dùng biểu thức có kết quả hữu tỉ.",
       "timeout": "Phép tính quá lâu. Hãy thử biểu thức đơn giản hơn.",
-      "unavailable": "Không tải được bộ máy toán. Kết nối lại hoặc sửa tệp ngoại tuyến."
+      "unavailable": "Không tải được bộ máy toán. Kết nối lại hoặc sửa tệp ngoại tuyến.",
+      "functionDefinition": "Chọn chữ thường duy nhất, trừ a, b, c, e, i, x, y. Nhập biểu thức hoặc định nghĩa khớp như h(x)=d(x)+g(x).",
+      "duplicateFunction": "Mỗi hàm cần tên khác nhau.",
+      "missingFunction": "Hàm được gọi không tồn tại hoặc định nghĩa không hợp lệ.",
+      "circularFunction": "Các hàm tham chiếu nhau thành vòng. Hãy xóa tham chiếu vòng."
     },
     "steps": {
       "collect": "Chuyển tất cả sang trái, khai triển ngoặc và thu gọn hạng tử đồng dạng.",
@@ -2198,6 +2202,40 @@
       "discriminant": "Tính biệt thức Δ = b² − 4ac.",
       "negativeDiscriminant": "Biệt thức âm nghĩa là không có nghiệm thực.",
       "quadraticFormula": "Áp dụng công thức nghiệm bậc hai và rút gọn từng kết quả."
+    },
+    "guide": {
+      "open": "Hướng dẫn nhập",
+      "title": "Viết công thức trong Kit",
+      "roots": "Gõ sqrt rồi nhập biểu thức dưới căn. Phím mũi tên đi vào và ra khỏi căn.",
+      "powers": "^ mở số mũ. → hoặc Dấu cách để thoát. Dùng ngoặc cho số mũ nhiều hạng. Lũy thừa được tính trước dấu trừ đầu.",
+      "fractions": "/ tạo phân số. Phím mũi tên chuyển giữa tử và mẫu. Số và ngoặc liền nhau là phép nhân.",
+      "functions": "Dùng bàn phím toán. log là cơ số 10, ln là tự nhiên. Lượng giác dùng đơn vị góc đã chọn.",
+      "editing": "Mũi tên di chuyển trong công thức, Backspace xóa. Enter tính hoặc giải. Trên màn hình cảm ứng dùng biểu tượng bàn phím.",
+      "scope": "Đồ thị hỗ trợ tám hàm thực f, g, h, d… Gọi d(x) hoặc d(2x). a, b, c là thanh trượt chung. Bộ giải hỗ trợ phương trình thực bậc nhất và bậc hai."
+    },
+    "graph": {
+      "settings": "Cài đặt đồ thị",
+      "grid": "Hiện lưới",
+      "xMin": "x nhỏ nhất",
+      "xMax": "x lớn nhất",
+      "yMin": "y nhỏ nhất",
+      "yMax": "y lớn nhất",
+      "boundsError": "Nhập giới hạn hữu hạn tăng dần với khoảng từ 0.000001 đến 100000000.",
+      "apply": "Áp dụng giới hạn",
+      "functionCount": "{count} trong {max} hàm",
+      "restore": "Thoát chế độ mở rộng",
+      "expand": "Mở rộng không gian",
+      "color": "Màu đồ thị",
+      "name": "Tên hàm",
+      "show": "Hiện",
+      "hide": "Ẩn",
+      "parameters": "Tham số",
+      "parameter": "Giá trị tham số",
+      "trace": "Dò tọa độ",
+      "traceX": "Dò tại x",
+      "traceHint": "Di chuyển hoặc kéo trên đồ thị. ←/→ đổi x; Shift tăng bước. Bạn cũng có thể nhập x bên dưới.",
+      "approximate": "Tọa độ là xấp xỉ số. Dấu gạch nghĩa là hàm không xác định.",
+      "scope": "Tối đa tám hàm thực có tên. a, b, c tạo thanh trượt; d(x)+g(x) kết hợp hàm. Căn, lũy thừa, logarit, trị tuyệt đối và lượng giác."
     }
   }
 }

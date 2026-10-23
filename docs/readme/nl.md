@@ -66,7 +66,7 @@ Het startscherm groepeert tools per taak (pdf-pagina’s, data, ontwikkeling…)
 ### Wiskunde
 
 - **Wetenschappelijke rekenmachine** — Bereken wortels, machten, breuken, logaritmen en goniometrische functies met gestructureerde invoer in graden of radialen.
-- **Functiegrafieken** — Teken tot drie reële functies, verschuif en vergroot de grafiek en bekijk een waardentabel met dezelfde wiskundige invoer.
+- **Functiegrafieken** — Teken tot acht reële functies, verschuif en vergroot de grafiek en bekijk een waardentabel met dezelfde wiskundige invoer.
 - **Vergelijkingen oplossen** — Los reële lineaire en kwadratische vergelijkingen in x op, bekijk exacte en decimale antwoorden en uitleg per stap.
 - **Breukenrekenmachine** — Tel breuken op, trek ze af, vermenigvuldig en deel met exacte rationale resultaten en decimale benaderingen.
 

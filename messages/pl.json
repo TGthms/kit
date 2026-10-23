@@ -1963,8 +1963,8 @@
     },
     "function-grapher": {
       "name": "Wykresy funkcji",
-      "description": "Rysuj do trzech funkcji rzeczywistych, przesuwaj i powiększaj wykres oraz przeglądaj tabelę wartości z tym samym edytorem matematycznym.",
-      "summary": "Rysuj do trzech funkcji rzeczywistych, przesuwaj i powiększaj wykres oraz przeglądaj tabelę wartości z tym samym edytorem matematycznym.",
+      "description": "Rysuj do ośmiu funkcji rzeczywistych, przesuwaj i powiększaj wykres oraz przeglądaj tabelę wartości z tym samym edytorem matematycznym.",
+      "summary": "Rysuj do ośmiu funkcji rzeczywistych, przesuwaj i powiększaj wykres oraz przeglądaj tabelę wartości z tym samym edytorem matematycznym.",
       "keywords": "Wykresy funkcji"
     },
     "equation-solver": {
@@ -2175,7 +2175,7 @@
     "solutions": "Rozwiązania",
     "showSteps": "Pokaż kroki i wyjaśnienia",
     "addFunction": "Dodaj funkcję",
-    "graphScope": "Do trzech funkcji x: pierwiastki, potęgi, logarytmy, wartości bezwzględne i trygonometria.",
+    "graphScope": "Do ośmiu funkcji x: pierwiastki, potęgi, logarytmy, wartości bezwzględne i trygonometria.",
     "zoomIn": "Powiększ",
     "zoomOut": "Pomniejsz",
     "graphLabel": "Interaktywny wykres funkcji",
@@ -2188,7 +2188,11 @@
       "polynomialOnly": "Wpisz liniowe lub kwadratowe równanie wielomianowe z x, bez zmiennych mianowników ani wyższych potęg.",
       "rationalOnly": "Użyj wyrażenia o wyniku wymiernym.",
       "timeout": "Obliczenie trwało zbyt długo. Uprość wyrażenie.",
-      "unavailable": "Nie udało się załadować silnika matematycznego. Połącz z siecią lub napraw pliki offline."
+      "unavailable": "Nie udało się załadować silnika matematycznego. Połącz z siecią lub napraw pliki offline.",
+      "functionDefinition": "Wybierz unikalną małą literę poza a, b, c, e, i, x i y. Wpisz wyrażenie lub zgodną definicję, np. h(x)=d(x)+g(x).",
+      "duplicateFunction": "Każda funkcja musi mieć inną nazwę.",
+      "missingFunction": "Brakuje przywołanej funkcji lub jej definicja jest nieprawidłowa.",
+      "circularFunction": "Funkcje odwołują się do siebie w pętli. Usuń cykliczne odwołanie."
     },
     "steps": {
       "collect": "Przenieś wszystko na lewą stronę, rozwiń nawiasy i zredukuj wyrazy podobne.",
@@ -2198,6 +2202,40 @@
       "discriminant": "Oblicz wyróżnik Δ = b² − 4ac.",
       "negativeDiscriminant": "Ujemny wyróżnik oznacza brak pierwiastków rzeczywistych.",
       "quadraticFormula": "Zastosuj wzór kwadratowy i uprość każdy wynik."
+    },
+    "guide": {
+      "open": "Przewodnik wprowadzania",
+      "title": "Zapisywanie matematyki w Kit",
+      "roots": "Wpisz sqrt, a potem liczbę pod pierwiastkiem. Strzałki wchodzą i wychodzą z pierwiastków.",
+      "powers": "^ otwiera wykładnik. → lub Spacja wychodzi z niego. Złożone wykładniki ujmuj w nawiasy. Potęgi mają pierwszeństwo przed początkowym minusem.",
+      "fractions": "/ tworzy ułamek. Strzałki przechodzą między licznikiem a mianownikiem. Sąsiednie liczby i nawiasy oznaczają mnożenie.",
+      "functions": "Użyj klawiatury matematycznej. log ma podstawę 10, ln jest naturalny. Trygonometria używa wybranej jednostki kąta.",
+      "editing": "Strzałki poruszają po wzorze, Backspace usuwa. Enter oblicza lub rozwiązuje. Na ekranie dotykowym użyj ikony klawiatury.",
+      "scope": "Wykres obsługuje osiem funkcji rzeczywistych f, g, h, d… Używaj d(x) lub d(2x). a, b, c to wspólne suwaki. Solver obsługuje rzeczywiste równania liniowe i kwadratowe."
+    },
+    "graph": {
+      "settings": "Ustawienia wykresu",
+      "grid": "Pokaż siatkę",
+      "xMin": "x minimalne",
+      "xMax": "x maksymalne",
+      "yMin": "y minimalne",
+      "yMax": "y maksymalne",
+      "boundsError": "Wpisz skończone rosnące granice o rozpiętości od 0.000001 do 100000000.",
+      "apply": "Zastosuj granice",
+      "functionCount": "{count} z {max} funkcji",
+      "restore": "Opuść powiększony widok",
+      "expand": "Powiększ obszar roboczy",
+      "color": "Kolor wykresu",
+      "name": "Nazwa funkcji",
+      "show": "Pokaż",
+      "hide": "Ukryj",
+      "parameters": "Parametry",
+      "parameter": "Parametr",
+      "trace": "Śledź współrzędne",
+      "traceX": "Śledź dla x",
+      "traceHint": "Przesuń wskaźnik lub przeciągnij po wykresie. ←/→ zmienia x; Shift zwiększa krok. Możesz też wpisać x poniżej.",
+      "approximate": "Współrzędne są przybliżeniami numerycznymi. Kreska oznacza niezdefiniowaną funkcję.",
+      "scope": "Do ośmiu nazwanych funkcji rzeczywistych. a, b, c to suwaki, d(x)+g(x) łączy funkcje. Pierwiastki, potęgi, logarytmy, wartości bezwzględne i trygonometria."
     }
   }
 }

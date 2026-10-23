@@ -9,6 +9,7 @@
 import { copyFileSync, cpSync, existsSync, mkdirSync, readFileSync, unlinkSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
+import ts from "typescript";
 import { gzipSync } from "node:zlib";
 
 const rootDir = dirname(dirname(fileURLToPath(import.meta.url)));
@@ -93,6 +94,19 @@ function syncMath() {
   copyFileSync(join(rootDir, "node_modules/@cortex-js/compute-engine/dist/umd-min/compute-engine.cjs"), join(dest, "compute-engine.js"));
   copyFileSync(join(rootDir, "node_modules/mathlive/LICENSE.txt"), join(dest, "mathlive-LICENSE.txt"));
   copyFileSync(join(rootDir, "node_modules/@cortex-js/compute-engine/LICENSE"), join(dest, "compute-engine-LICENSE.txt"));
+  const numeric = ts.transpileModule(
+    readFileSync(join(rootDir, "src/lib/math/numeric.ts"), "utf8"),
+    {
+      compilerOptions: {
+        module: ts.ModuleKind.CommonJS,
+        target: ts.ScriptTarget.ES2020,
+      },
+    },
+  ).outputText;
+  writeFileSync(
+    join(dest, "numeric.js"),
+    `// Generated from src/lib/math/numeric.ts.\n(function(exports){\n${numeric}\n})(globalThis.KitMathGraph = {});\n`,
+  );
   console.log("[sync-vendor] Copied local math engine and fonts");
 }
 syncMath();

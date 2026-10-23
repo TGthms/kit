@@ -1963,8 +1963,8 @@
     },
     "function-grapher": {
       "name": "Grafik fungsi",
-      "description": "Gambar hingga tiga fungsi nyata, geser dan perbesar grafik, serta jelajahi tabel nilai dengan masukan matematika yang sama.",
-      "summary": "Gambar hingga tiga fungsi nyata, geser dan perbesar grafik, serta jelajahi tabel nilai dengan masukan matematika yang sama.",
+      "description": "Gambar hingga delapan fungsi nyata, geser dan perbesar grafik, serta jelajahi tabel nilai dengan masukan matematika yang sama.",
+      "summary": "Gambar hingga delapan fungsi nyata, geser dan perbesar grafik, serta jelajahi tabel nilai dengan masukan matematika yang sama.",
       "keywords": "Grafik fungsi"
     },
     "equation-solver": {
@@ -2175,7 +2175,7 @@
     "solutions": "Solusi",
     "showSteps": "Tampilkan langkah dan penjelasan",
     "addFunction": "Tambah fungsi",
-    "graphScope": "Hingga tiga fungsi x: akar, pangkat, logaritma, nilai mutlak, dan trigonometri.",
+    "graphScope": "Hingga delapan fungsi x: akar, pangkat, logaritma, nilai mutlak, dan trigonometri.",
     "zoomIn": "Perbesar",
     "zoomOut": "Perkecil",
     "graphLabel": "Grafik fungsi interaktif",
@@ -2188,7 +2188,11 @@
       "polynomialOnly": "Masukkan persamaan polinomial linear atau kuadrat dalam x tanpa penyebut variabel atau pangkat lebih tinggi.",
       "rationalOnly": "Gunakan ekspresi dengan hasil rasional.",
       "timeout": "Perhitungan terlalu lama. Coba ekspresi lebih sederhana.",
-      "unavailable": "Mesin matematika gagal dimuat. Hubungkan kembali atau perbaiki berkas offline."
+      "unavailable": "Mesin matematika gagal dimuat. Hubungkan kembali atau perbaiki berkas offline.",
+      "functionDefinition": "Pilih huruf kecil unik selain a, b, c, e, i, x, y. Masukkan ekspresi atau definisi yang cocok seperti h(x)=d(x)+g(x).",
+      "duplicateFunction": "Setiap fungsi memerlukan nama berbeda.",
+      "missingFunction": "Fungsi yang dirujuk tidak ada atau definisinya tidak valid.",
+      "circularFunction": "Fungsi-fungsi ini saling merujuk dalam lingkaran. Hapus rujukan melingkar."
     },
     "steps": {
       "collect": "Pindahkan semuanya ke kiri, buka kurung, dan gabungkan suku sejenis.",
@@ -2198,6 +2202,40 @@
       "discriminant": "Hitung diskriminan Δ = b² − 4ac.",
       "negativeDiscriminant": "Diskriminan negatif berarti tidak ada akar nyata.",
       "quadraticFormula": "Gunakan rumus kuadrat dan sederhanakan tiap hasil."
+    },
+    "guide": {
+      "open": "Panduan masukan",
+      "title": "Menulis matematika di Kit",
+      "roots": "Ketik sqrt lalu isi akarnya. Panah masuk dan keluar dari akar.",
+      "powers": "^ membuka eksponen. → atau Spasi keluar. Gunakan kurung untuk eksponen majemuk. Pangkat mendahului tanda minus awal.",
+      "fractions": "/ membuat pecahan. Panah berpindah antara pembilang dan penyebut. Angka dan kurung berdampingan berarti perkalian.",
+      "functions": "Gunakan papan ketik matematika. log berbasis 10, ln alami. Trigonometri memakai satuan sudut pilihan.",
+      "editing": "Panah berpindah dalam rumus, Backspace menghapus. Enter menghitung atau menyelesaikan. Pada layar sentuh gunakan ikon papan ketik.",
+      "scope": "Grafik mendukung delapan fungsi nyata f, g, h, d… Panggil d(x) atau d(2x). a, b, c adalah penggeser bersama. Pemecah mendukung persamaan linear dan kuadrat nyata."
+    },
+    "graph": {
+      "settings": "Pengaturan grafik",
+      "grid": "Tampilkan kisi",
+      "xMin": "x minimum",
+      "xMax": "x maksimum",
+      "yMin": "y minimum",
+      "yMax": "y maksimum",
+      "boundsError": "Masukkan batas berhingga yang meningkat dengan rentang 0.000001 hingga 100000000.",
+      "apply": "Terapkan batas",
+      "functionCount": "{count} dari {max} fungsi",
+      "restore": "Keluar dari tampilan luas",
+      "expand": "Perluas ruang kerja",
+      "color": "Warna grafik",
+      "name": "Nama fungsi",
+      "show": "Tampilkan",
+      "hide": "Sembunyikan",
+      "parameters": "Parameter fungsi",
+      "parameter": "Nilai parameter",
+      "trace": "Lacak koordinat",
+      "traceX": "Lacak pada x",
+      "traceHint": "Gerakkan atau seret di grafik. ←/→ mengubah x; Shift memperbesar langkah. Anda juga bisa memasukkan x di bawah.",
+      "approximate": "Koordinat adalah pendekatan numerik. Tanda garis berarti fungsi tidak terdefinisi.",
+      "scope": "Hingga delapan fungsi nyata bernama. a, b, c untuk penggeser, d(x)+g(x) untuk komposisi. Akar, pangkat, logaritma, nilai mutlak, dan trigonometri."
     }
   }
 }

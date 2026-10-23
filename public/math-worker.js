@@ -1,6 +1,6 @@
 /* All computation stays in an isolated, replaceable worker. Local UMD build
  * avoids dynamic code generation (and works with Kit's existing CSP). */
-importScripts("./vendor/math/compute-engine.js");
+importScripts("./vendor/math/compute-engine.js", "./vendor/math/numeric.js");
 const engine = new globalThis.ComputeEngine.ComputeEngine({ precision: 50 });
 
 function invalid(code = "invalid") {
@@ -27,10 +27,12 @@ function real(expression) {
 function display(expression) {
   const exact = expression.evaluate();
   const decimal = real(exact);
+  const text = Number(decimal.toPrecision(14)).toString();
   return {
     latex: exact.latex,
     plain: exact.toString(),
-    decimal: Number(decimal.toPrecision(14)).toString(),
+    decimal: text,
+    approximate: !globalThis.KitMathGraph.decimalIsExact(exact.json, text),
   };
 }
 
@@ -58,72 +60,6 @@ function rationalize(node) {
         { num: digits.toString() },
         { num: (10n ** BigInt(places)).toString() },
       ];
-}
-
-// An explicit whitelist turns parsed MathJSON into small numeric closures.
-// No eval/Function, assignments, loops, arbitrary JS, or engine calls per pixel.
-function numeric(node, angle = "rad", level = 0) {
-  if (level > 40) invalid();
-  if (typeof node === "number") return () => node;
-  if (
-    node &&
-    typeof node === "object" &&
-    !Array.isArray(node) &&
-    "num" in node
-  ) {
-    const n = Number(node.num);
-    if (!Number.isFinite(n)) invalid();
-    return () => n;
-  }
-  if (node === "x") return (x) => x;
-  if (node === "Pi") return () => Math.PI;
-  if (node === "ExponentialE") return () => Math.E;
-  if (!Array.isArray(node)) invalid("unsupported");
-  const [op, ...args] = node;
-  const f = args.map((arg) => numeric(arg, angle, level + 1));
-  const radians = angle === "deg" ? Math.PI / 180 : 1;
-  const unary = {
-    Negate: (x) => -x,
-    Sqrt: Math.sqrt,
-    Abs: Math.abs,
-    Exp: Math.exp,
-    Ln: Math.log,
-    Log: Math.log10,
-    Floor: Math.floor,
-    Ceil: Math.ceil,
-    Sin: (x) => Math.sin(x * radians),
-    Cos: (x) => Math.cos(x * radians),
-    Tan: (x) => Math.tan(x * radians),
-    Arcsin: (x) => Math.asin(x) / radians,
-    Arccos: (x) => Math.acos(x) / radians,
-    Arctan: (x) => Math.atan(x) / radians,
-    Sinh: Math.sinh,
-    Cosh: Math.cosh,
-    Tanh: Math.tanh,
-    Square: (x) => x * x,
-  };
-  if (Object.hasOwn(unary, op) && f.length === 1)
-    return (x) => unary[op](f[0](x));
-  if (op === "Delimiter" && f.length === 1) return f[0];
-  if (op === "Add" && f.length)
-    return (x) => f.reduce((sum, a) => sum + a(x), 0);
-  if ((op === "Multiply" || op === "InvisibleOperator") && f.length)
-    return (x) => f.reduce((product, a) => product * a(x), 1);
-  if (f.length === 2) {
-    if (op === "Subtract") return (x) => f[0](x) - f[1](x);
-    if (op === "Divide" || op === "Rational") return (x) => f[0](x) / f[1](x);
-    if (op === "Power") return (x) => f[0](x) ** f[1](x);
-    if (op === "Root")
-      return (x) => {
-        const v = f[0](x),
-          n = f[1](x);
-        return v < 0 && Number.isInteger(n) && n % 2
-          ? -((-v) ** (1 / n))
-          : v ** (1 / n);
-      };
-    if (op === "Log") return (x) => Math.log(f[0](x)) / Math.log(f[1](x));
-  }
-  invalid("unsupported");
 }
 
 // Validate BEFORE canonicalization: cancellation must never silently turn
@@ -266,14 +202,39 @@ function solve(expression) {
   };
 }
 
-function graph(latex, viewport, angle) {
-  const expression = parse(latex);
-  const json = expression.json;
-  const body =
-    Array.isArray(json) && json[0] === "Equal" && json[1] === "y"
-      ? json[2]
-      : json;
-  const f = numeric(body, angle);
+const graphParseCache = new Map();
+function graphBody(latex, name) {
+  const key = `${name || ""}:${latex}`;
+  if (graphParseCache.has(key)) return graphParseCache.get(key);
+  const json = parse(latex).json;
+  let body = json;
+  if (Array.isArray(json) && json[0] === "Equal") {
+    const lhs = json[1];
+    const valid =
+      lhs === "y" ||
+      (Array.isArray(lhs) &&
+        lhs[0] === "InvisibleOperator" &&
+        lhs[1] === name &&
+        Array.isArray(lhs[2]) &&
+        lhs[2][0] === "Delimiter" &&
+        lhs[2][1] === "x" &&
+        lhs.length === 3);
+    if (!valid || json.length !== 3) invalid("functionDefinition");
+    body = json[2];
+  }
+  if (graphParseCache.size >= 64)
+    graphParseCache.delete(graphParseCache.keys().next().value);
+  graphParseCache.set(key, body);
+  return body;
+}
+function graph(latex, viewport, angle, parameters, name, definitions = {}) {
+  const body = graphBody(latex, name);
+  const f = globalThis.KitMathGraph.compileNumeric(
+    body,
+    angle,
+    parameters,
+    definitions,
+  );
   const { xMin, xMax, yMin, yMax } = viewport;
   if (
     ![xMin, xMax, yMin, yMax].every(Number.isFinite) ||
@@ -311,7 +272,13 @@ function graph(latex, viewport, angle) {
     const y = f(x);
     return [x, Number.isFinite(y) ? y : null];
   });
-  return { segments, table };
+  return {
+    segments,
+    table,
+    expression: body,
+    definitions,
+    parameters: globalThis.KitMathGraph.parameterNames(body),
+  };
 }
 
 self.onmessage = ({ data }) => {
@@ -320,26 +287,79 @@ self.onmessage = ({ data }) => {
     engine.angularUnit = angle === "deg" ? "deg" : "rad";
     const result = engine.withTimeLimit(1200, () => {
       if (kind === "graphs") {
-        if (!Array.isArray(data.curves) || data.curves.length > 3) invalid();
+        if (!Array.isArray(data.curves) || data.curves.length > 8) invalid();
+        const definitions = Object.create(null),
+          failures = new Map();
+        const names = new Map();
+        data.curves.forEach((curve, i) => {
+          const name =
+            curve.name === undefined
+              ? ["f", "g", "h", "d", "p", "q", "r", "s"][i]
+              : curve.name;
+          names.set(curve.id, name);
+          if (!/^[dfghj-wz]$/.test(name))
+            failures.set(curve.id, "functionDefinition");
+          else if (
+            data.curves.some(
+              (other) => other.id !== curve.id && other.name === name,
+            )
+          )
+            failures.set(curve.id, "duplicateFunction");
+          else if (curve.latex.trim()) {
+            try {
+              definitions[name] = graphBody(curve.latex, name);
+            } catch (error) {
+              failures.set(curve.id, error.message);
+            }
+          }
+        });
+        const parameterList = [
+          ...new Set(
+            Object.values(definitions).flatMap((body) =>
+              globalThis.KitMathGraph.parameterNames(body),
+            ),
+          ),
+        ];
         return data.curves.map((curve) => {
           try {
+            if (failures.has(curve.id)) invalid(failures.get(curve.id));
             return {
-              ...curve,
-              plot: curve.latex.trim()
-                ? graph(curve.latex, viewport, angle)
-                : undefined,
+              id: curve.id,
+              latex: curve.latex,
+              parameters: parameterList,
+              plot:
+                curve.latex.trim() && !curve.hidden
+                  ? graph(
+                      curve.latex,
+                      viewport,
+                      angle,
+                      data.parameters,
+                      names.get(curve.id),
+                      definitions,
+                    )
+                  : undefined,
             };
           } catch (error) {
             return {
-              ...curve,
-              error: ["invalid", "unsupported"].includes(error.message)
+              id: curve.id,
+              latex: curve.latex,
+              parameters: parameterList,
+              error: [
+                "invalid",
+                "unsupported",
+                "functionDefinition",
+                "duplicateFunction",
+                "missingFunction",
+                "circularFunction",
+              ].includes(error.message)
                 ? error.message
                 : "invalid",
             };
           }
         });
       }
-      if (kind === "graph") return graph(latex, viewport, angle);
+      if (kind === "graph")
+        return graph(latex, viewport, angle, data.parameters);
       const parsed = parse(latex);
       const expression =
         kind === "fraction" ? engine.box(rationalize(parsed.json)) : parsed;
@@ -371,6 +391,10 @@ self.onmessage = ({ data }) => {
       "unsupported",
       "polynomialOnly",
       "rationalOnly",
+      "functionDefinition",
+      "duplicateFunction",
+      "missingFunction",
+      "circularFunction",
     ];
     self.postMessage({
       id,

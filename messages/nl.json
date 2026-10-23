@@ -1963,8 +1963,8 @@
     },
     "function-grapher": {
       "name": "Functiegrafieken",
-      "description": "Teken tot drie reële functies, verschuif en vergroot de grafiek en bekijk een waardentabel met dezelfde wiskundige invoer.",
-      "summary": "Teken tot drie reële functies, verschuif en vergroot de grafiek en bekijk een waardentabel met dezelfde wiskundige invoer.",
+      "description": "Teken tot acht reële functies, verschuif en vergroot de grafiek en bekijk een waardentabel met dezelfde wiskundige invoer.",
+      "summary": "Teken tot acht reële functies, verschuif en vergroot de grafiek en bekijk een waardentabel met dezelfde wiskundige invoer.",
       "keywords": "Functiegrafieken"
     },
     "equation-solver": {
@@ -2175,7 +2175,7 @@
     "solutions": "Oplossingen",
     "showSteps": "Stappen en uitleg tonen",
     "addFunction": "Functie toevoegen",
-    "graphScope": "Tot drie functies van x: wortels, machten, logaritmen, absolute waarden en goniometrie.",
+    "graphScope": "Tot acht functies van x: wortels, machten, logaritmen, absolute waarden en goniometrie.",
     "zoomIn": "Inzoomen",
     "zoomOut": "Uitzoomen",
     "graphLabel": "Interactieve functiegrafiek",
@@ -2188,7 +2188,11 @@
       "polynomialOnly": "Voer een lineaire of kwadratische polynoomvergelijking in x in, zonder variabele noemers of hogere machten.",
       "rationalOnly": "Gebruik een uitdrukking met een rationaal resultaat.",
       "timeout": "De berekening duurde te lang. Vereenvoudig de uitdrukking.",
-      "unavailable": "De rekenmodule kon niet laden. Maak verbinding of herstel offlinebestanden."
+      "unavailable": "De rekenmodule kon niet laden. Maak verbinding of herstel offlinebestanden.",
+      "functionDefinition": "Kies een unieke kleine letter behalve a, b, c, e, i, x en y. Voer een uitdrukking of passende definitie in zoals h(x)=d(x)+g(x).",
+      "duplicateFunction": "Elke functie heeft een andere naam nodig.",
+      "missingFunction": "Een gebruikte functie ontbreekt of heeft een ongeldige definitie.",
+      "circularFunction": "De functies verwijzen in een kring naar elkaar. Verwijder de cirkelverwijzing."
     },
     "steps": {
       "collect": "Breng alles naar links, werk haakjes uit en verzamel gelijksoortige termen.",
@@ -2198,6 +2202,40 @@
       "discriminant": "Bereken de discriminant Δ = b² − 4ac.",
       "negativeDiscriminant": "Een negatieve discriminant betekent dat er geen reële wortels zijn.",
       "quadraticFormula": "Pas de kwadratische formule toe en vereenvoudig elk resultaat."
+    },
+    "guide": {
+      "open": "Invoergids",
+      "title": "Wiskunde schrijven in Kit",
+      "roots": "Typ sqrt en daarna het grondtal. Pijlen gaan in en uit wortels.",
+      "powers": "^ opent een exponent. → of Spatie verlaat deze. Gebruik haakjes voor samengestelde exponenten. Machten gaan voor een minteken.",
+      "fractions": "/ maakt een breuk. Pijlen wisselen teller en noemer. Aangrenzende getallen en haakjes vermenigvuldigen.",
+      "functions": "Gebruik het wiskundetoetsenbord. log is grondtal 10, ln natuurlijk. Goniometrie gebruikt de gekozen hoekeenheid.",
+      "editing": "Pijlen bewegen door de formule, Backspace wist. Enter berekent of lost op. Gebruik op touch het toetsenbordpictogram.",
+      "scope": "De grafiek ondersteunt acht reële functies f, g, h, d… Gebruik d(x) of d(2x). a, b, c zijn gedeelde schuifregelaars. De oplosser ondersteunt reële lineaire en kwadratische vergelijkingen."
+    },
+    "graph": {
+      "settings": "Grafiekinstellingen",
+      "grid": "Raster tonen",
+      "xMin": "Kleinste x",
+      "xMax": "Grootste x",
+      "yMin": "Kleinste y",
+      "yMax": "Grootste y",
+      "boundsError": "Voer eindige oplopende grenzen in met een bereik van 0.000001 tot 100000000.",
+      "apply": "Grenzen toepassen",
+      "functionCount": "{count} van {max} functies",
+      "restore": "Vergrote weergave sluiten",
+      "expand": "Werkruimte vergroten",
+      "color": "Grafiekkleur",
+      "name": "Functienaam",
+      "show": "Tonen",
+      "hide": "Verbergen",
+      "parameters": "Parameters",
+      "parameter": "Parameterwaarde",
+      "trace": "Coördinaten volgen",
+      "traceX": "Volgen bij x",
+      "traceHint": "Beweeg of sleep over de grafiek. ←/→ wijzigt x; Shift vergroot de stap. Je kunt x hieronder invoeren.",
+      "approximate": "Coördinaten zijn numerieke benaderingen. Een streep betekent dat de functie onbepaald is.",
+      "scope": "Tot acht benoemde reële functies. a, b, c zijn schuifregelaars, d(x)+g(x) combineert functies. Wortels, machten, logaritmen, absolute waarden en goniometrie."
     }
   }
 }

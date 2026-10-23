@@ -66,7 +66,7 @@ La portada agrupa las herramientas por trabajo (páginas PDF, datos, desarrollo�
 ### Matemáticas
 
 - **Calculadora científica** — Calcula raíces, potencias, fracciones, logaritmos y funciones trigonométricas con entrada matemática en grados o radianes.
-- **Gráficas de funciones** — Representa hasta tres funciones reales, desplaza y amplía la gráfica y consulta una tabla de valores con entrada matemática.
+- **Gráficas de funciones** — Representa hasta ocho funciones reales, desplaza y amplía la gráfica y consulta una tabla de valores con entrada matemática.
 - **Resolución de ecuaciones** — Resuelve ecuaciones lineales y cuadráticas reales en x, consulta resultados exactos y decimales y despliega cada paso algebraico.
 - **Calculadora de fracciones** — Suma, resta, multiplica y divide fracciones con resultados racionales exactos y sus aproximaciones decimales.
 

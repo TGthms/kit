@@ -66,7 +66,7 @@ Startsiden grupperer verktøy etter oppgave (PDF-sider, data, utvikling …) i s
 ### Matematikk
 
 - **Vitenskapelig kalkulator** — Beregn røtter, potenser, brøker, logaritmer og trigonometriske funksjoner med strukturert inndata i grader eller radianer.
-- **Funksjonsgrafer** — Tegn opptil tre reelle funksjoner, flytt og zoom grafen og utforsk en verditabell med samme matematiske inndata.
+- **Funksjonsgrafer** — Tegn opptil åtte reelle funksjoner, flytt og zoom grafen og utforsk en verditabell med samme matematiske inndata.
 - **Ligningsløser** — Løs reelle lineære og kvadratiske ligninger i x med eksakte og desimale svar og forklaringer til hvert trinn.
 - **Brøkkalkulator** — Legg sammen, trekk fra, multipliser og divider brøker med eksakte rasjonale resultater og desimale tilnærminger.
 

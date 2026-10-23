@@ -1963,8 +1963,8 @@
     },
     "function-grapher": {
       "name": "Funktiopiirturi",
-      "description": "Piirrä enintään kolme reaalifunktiota, siirrä ja suurenna kuvaajaa ja tutki arvotaulukkoa samalla matemaattisella syötöllä.",
-      "summary": "Piirrä enintään kolme reaalifunktiota, siirrä ja suurenna kuvaajaa ja tutki arvotaulukkoa samalla matemaattisella syötöllä.",
+      "description": "Piirrä enintään kahdeksan reaalifunktiota, siirrä ja suurenna kuvaajaa ja tutki arvotaulukkoa samalla matemaattisella syötöllä.",
+      "summary": "Piirrä enintään kahdeksan reaalifunktiota, siirrä ja suurenna kuvaajaa ja tutki arvotaulukkoa samalla matemaattisella syötöllä.",
       "keywords": "Funktiopiirturi"
     },
     "equation-solver": {
@@ -2175,7 +2175,7 @@
     "solutions": "Ratkaisut",
     "showSteps": "Näytä vaiheet ja selitykset",
     "addFunction": "Lisää funktio",
-    "graphScope": "Enintään kolme x:n funktiota: juuret, potenssit, logaritmit, itseisarvot ja trigonometria.",
+    "graphScope": "Enintään kahdeksan x:n funktiota: juuret, potenssit, logaritmit, itseisarvot ja trigonometria.",
     "zoomIn": "Lähennä",
     "zoomOut": "Loitonna",
     "graphLabel": "Vuorovaikutteinen funktiokuvaaja",
@@ -2188,7 +2188,11 @@
       "polynomialOnly": "Syötä ensimmäisen tai toisen asteen polynomiyhtälö muuttujalla x ilman muuttuvia nimittäjiä tai suurempia potensseja.",
       "rationalOnly": "Käytä lauseketta, jonka tulos on rationaaliluku.",
       "timeout": "Laskenta kesti liian kauan. Yksinkertaista lauseketta.",
-      "unavailable": "Laskentamoottoria ei voitu ladata. Yhdistä verkkoon tai korjaa offline-tiedostot."
+      "unavailable": "Laskentamoottoria ei voitu ladata. Yhdistä verkkoon tai korjaa offline-tiedostot.",
+      "functionDefinition": "Valitse yksilöllinen pieni kirjain, paitsi a, b, c, e, i, x ja y. Syötä lauseke tai vastaava määritelmä kuten h(x)=d(x)+g(x).",
+      "duplicateFunction": "Jokaisella funktiolla on oltava eri nimi.",
+      "missingFunction": "Viitattu funktio puuttuu tai sen määritelmä on virheellinen.",
+      "circularFunction": "Funktiot viittaavat toisiinsa kehämäisesti. Poista kehäviittaus."
     },
     "steps": {
       "collect": "Siirrä kaikki vasemmalle, avaa sulut ja yhdistä samanmuotoiset termit.",
@@ -2198,6 +2202,40 @@
       "discriminant": "Laske diskriminantti Δ = b² − 4ac.",
       "negativeDiscriminant": "Negatiivinen diskriminantti tarkoittaa, ettei reaalisia juuria ole.",
       "quadraticFormula": "Sovella toisen asteen yhtälön ratkaisukaavaa ja sievennä tulokset."
+    },
+    "guide": {
+      "open": "Syöttöopas",
+      "title": "Matematiikan kirjoittaminen Kitissä",
+      "roots": "Kirjoita sqrt ja sitten juurrettava. Nuolet siirtävät juuren sisään ja ulos.",
+      "powers": "^ avaa eksponentin. → tai välilyönti poistuu siitä. Käytä sulkeita moniosaisissa eksponenteissa. Potenssi lasketaan ennen alun miinusta.",
+      "fractions": "/ luo murtoluvun. Nuolet vaihtavat osoittajan ja nimittäjän välillä. Vierekkäiset luvut ja sulut kerrotaan.",
+      "functions": "Käytä matematiikkanäppäimistöä. log on 10-kantainen, ln luonnollinen. Trigonometria käyttää valittua kulmayksikköä.",
+      "editing": "Nuolet liikkuvat kaavassa, askelpalautin poistaa. Enter laskee tai ratkaisee. Kosketusnäytöllä käytä näppäimistökuvaketta.",
+      "scope": "Kuvaaja tukee kahdeksaa reaalifunktiota f, g, h, d… Käytä d(x) tai d(2x). a, b, c ovat yhteisiä liukusäätimiä. Ratkaisija tukee reaalisia ensimmäisen ja toisen asteen yhtälöitä."
+    },
+    "graph": {
+      "settings": "Kuvaajan asetukset",
+      "grid": "Näytä ruudukko",
+      "xMin": "Pienin x",
+      "xMax": "Suurin x",
+      "yMin": "Pienin y",
+      "yMax": "Suurin y",
+      "boundsError": "Anna äärelliset kasvavat rajat, joiden erotus on 0.000001–100000000.",
+      "apply": "Käytä rajoja",
+      "functionCount": "{count}/{max} funktiota",
+      "restore": "Poistu laajennetusta näkymästä",
+      "expand": "Laajenna työtila",
+      "color": "Kuvaajan väri",
+      "name": "Funktion nimi",
+      "show": "Näytä",
+      "hide": "Piilota",
+      "parameters": "Parametrit",
+      "parameter": "Parametri",
+      "trace": "Seuraa koordinaatteja",
+      "traceX": "Seuraa kohdassa x",
+      "traceHint": "Liikuta osoitinta tai vedä kuvaajaa. ←/→ muuttaa x:ää, Vaihto suurentaa askelta. Voit myös syöttää x:n alla.",
+      "approximate": "Koordinaatit ovat numeerisia likiarvoja. Viiva tarkoittaa määrittelemätöntä arvoa.",
+      "scope": "Enintään kahdeksan nimettyä reaalifunktiota. a, b, c ovat liukusäätimiä, d(x)+g(x) yhdistää funktioita. Juuret, potenssit, logaritmit, itseisarvot ja trigonometria."
     }
   }
 }

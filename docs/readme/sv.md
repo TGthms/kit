@@ -66,7 +66,7 @@ Startsidan grupperar verktyg efter uppgift (PDF-sidor, data, utveckling …) i s
 ### Matematik
 
 - **Vetenskaplig räknare** — Beräkna rötter, potenser, bråk, logaritmer och trigonometriska funktioner med strukturerad inmatning i grader eller radianer.
-- **Funktionsgrafer** — Rita upp till tre reella funktioner, flytta och zooma grafen och utforska en värdetabell med samma matematiska inmatning.
+- **Funktionsgrafer** — Rita upp till åtta reella funktioner, flytta och zooma grafen och utforska en värdetabell med samma matematiska inmatning.
 - **Ekvationslösare** — Lös reella linjära och kvadratiska ekvationer i x med exakta och decimala svar samt förklaringar till varje steg.
 - **Bråkräknare** — Addera, subtrahera, multiplicera och dividera bråk med exakta rationella resultat och decimala approximationer.
 

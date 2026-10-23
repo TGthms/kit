@@ -1963,8 +1963,8 @@
     },
     "function-grapher": {
       "name": "Fonksiyon grafiği",
-      "description": "Üç gerçek fonksiyona kadar çizin, grafiği kaydırıp yakınlaştırın ve aynı matematik girişiyle değer tablosunu inceleyin.",
-      "summary": "Üç gerçek fonksiyona kadar çizin, grafiği kaydırıp yakınlaştırın ve aynı matematik girişiyle değer tablosunu inceleyin.",
+      "description": "Sekiz gerçek fonksiyona kadar çizin, grafiği kaydırıp yakınlaştırın ve aynı matematik girişiyle değer tablosunu inceleyin.",
+      "summary": "Sekiz gerçek fonksiyona kadar çizin, grafiği kaydırıp yakınlaştırın ve aynı matematik girişiyle değer tablosunu inceleyin.",
       "keywords": "Fonksiyon grafiği"
     },
     "equation-solver": {
@@ -2188,7 +2188,11 @@
       "polynomialOnly": "Değişken payda veya yüksek kuvvet içermeyen, x cinsinden doğrusal ya da ikinci derece polinom denklemi girin.",
       "rationalOnly": "Rasyonel sonuç veren bir ifade kullanın.",
       "timeout": "Hesaplama çok uzun sürdü. İfadeyi basitleştirin.",
-      "unavailable": "Matematik motoru yüklenemedi. Yeniden bağlanın veya çevrimdışı dosyaları onarın."
+      "unavailable": "Matematik motoru yüklenemedi. Yeniden bağlanın veya çevrimdışı dosyaları onarın.",
+      "functionDefinition": "a, b, c, e, i, x ve y dışında benzersiz bir küçük harf seçin. İfade veya h(x)=d(x)+g(x) gibi eşleşen tanım girin.",
+      "duplicateFunction": "Her fonksiyonun farklı bir adı olmalı.",
+      "missingFunction": "Başvurulan bir fonksiyon eksik veya tanımı geçersiz.",
+      "circularFunction": "Fonksiyonlar birbirine döngüsel bağlı. Döngüsel başvuruyu kaldırın."
     },
     "steps": {
       "collect": "Her şeyi sola taşıyın, parantezleri açın ve benzer terimleri toplayın.",
@@ -2198,6 +2202,40 @@
       "discriminant": "Diskriminantı hesaplayın: Δ = b² − 4ac.",
       "negativeDiscriminant": "Negatif diskriminant gerçek kök olmadığını gösterir.",
       "quadraticFormula": "İkinci derece denklem formülünü uygulayın ve sonuçları sadeleştirin."
+    },
+    "guide": {
+      "open": "Giriş kılavuzu",
+      "title": "Kit’te matematik yazmak",
+      "roots": "sqrt ve ardından kök içini yazın. Oklar kök içine girer ve çıkar.",
+      "powers": "^ bir üs açar. → veya Boşluk çıkar. Çok terimli üslerde parantez kullanın. Üsler baştaki eksiden önce gelir.",
+      "fractions": "/ kesir oluşturur. Oklar pay ve payda arasında geçer. Yan yana sayılar ve parantezler çarpılır.",
+      "functions": "Matematik klavyesini kullanın. log taban 10, ln doğal logaritmadır. Trigonometri seçilen açı birimini kullanır.",
+      "editing": "Oklar formülde ilerler, Backspace siler. Enter hesaplar veya çözer. Dokunmatik cihazlarda klavye simgesini kullanın.",
+      "scope": "Grafik f, g, h, d… adlı sekiz gerçek fonksiyonu destekler. d(x) veya d(2x) kullanın. a, b, c ortak kaydırıcılardır. Çözücü gerçek doğrusal ve ikinci derece denklemleri destekler."
+    },
+    "graph": {
+      "settings": "Grafik ayarları",
+      "grid": "Izgarayı göster",
+      "xMin": "En küçük x",
+      "xMax": "En büyük x",
+      "yMin": "En küçük y",
+      "yMax": "En büyük y",
+      "boundsError": "0.000001 ile 100000000 arasında açıklığa sahip sonlu artan sınırlar girin.",
+      "apply": "Sınırları uygula",
+      "functionCount": "{max} fonksiyondan {count}",
+      "restore": "Geniş görünümden çık",
+      "expand": "Çalışma alanını genişlet",
+      "color": "Grafik rengi",
+      "name": "Fonksiyon adı",
+      "show": "Göster",
+      "hide": "Gizle",
+      "parameters": "Parametreler",
+      "parameter": "Parametre",
+      "trace": "Koordinatları izle",
+      "traceX": "x noktasında izle",
+      "traceHint": "Grafik üzerinde hareket edin veya sürükleyin. ←/→ x’i değiştirir, Shift adımı büyütür. x’i aşağıya da girebilirsiniz.",
+      "approximate": "Koordinatlar sayısal yaklaşımlardır. Tire, fonksiyonun tanımsız olduğunu belirtir.",
+      "scope": "Sekize kadar adlandırılmış gerçek fonksiyon. a, b, c kaydırıcılar; d(x)+g(x) birleşim içindir. Kök, kuvvet, logaritma, mutlak değer ve trigonometri."
     }
   }
 }

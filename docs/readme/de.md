@@ -66,7 +66,7 @@ Die Startseite gruppiert Werkzeuge nach Aufgabe (PDF-Seiten, Daten, Entwicklung 
 ### Mathematik
 
 - **Wissenschaftlicher Rechner** — Berechne Wurzeln, Potenzen, Brüche, Logarithmen und trigonometrische Funktionen mit strukturierter Eingabe in Grad oder Bogenmaß.
-- **Funktionsplotter** — Zeichne bis zu drei reelle Funktionen, verschiebe und zoome die Grafik und erkunde die zugehörige Wertetabelle.
+- **Funktionsplotter** — Zeichne bis zu acht reelle Funktionen, verschiebe und zoome die Grafik und erkunde die zugehörige Wertetabelle.
 - **Gleichungslöser** — Löse reelle lineare und quadratische Gleichungen in x mit exakten und dezimalen Ergebnissen sowie erklärten Rechenschritten.
 - **Bruchrechner** — Addiere, subtrahiere, multipliziere und dividiere Brüche mit exakten rationalen Ergebnissen und Dezimalnäherungen.
 

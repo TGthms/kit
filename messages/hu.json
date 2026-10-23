@@ -1963,8 +1963,8 @@
     },
     "function-grapher": {
       "name": "Függvényábrázoló",
-      "description": "Ábrázoljon legfeljebb három valós függvényt, mozgassa és nagyítsa a grafikont, és vizsgálja az értéktáblázatot.",
-      "summary": "Ábrázoljon legfeljebb három valós függvényt, mozgassa és nagyítsa a grafikont, és vizsgálja az értéktáblázatot.",
+      "description": "Ábrázoljon legfeljebb nyolc valós függvényt, mozgassa és nagyítsa a grafikont, és vizsgálja az értéktáblázatot.",
+      "summary": "Ábrázoljon legfeljebb nyolc valós függvényt, mozgassa és nagyítsa a grafikont, és vizsgálja az értéktáblázatot.",
       "keywords": "Függvényábrázoló"
     },
     "equation-solver": {
@@ -2175,7 +2175,7 @@
     "solutions": "Megoldások",
     "showSteps": "Lépések és magyarázatok megjelenítése",
     "addFunction": "Függvény hozzáadása",
-    "graphScope": "Legfeljebb három x-függvény: gyökök, hatványok, logaritmusok, abszolútérték és trigonometria.",
+    "graphScope": "Legfeljebb nyolc x-függvény: gyökök, hatványok, logaritmusok, abszolútérték és trigonometria.",
     "zoomIn": "Nagyítás",
     "zoomOut": "Kicsinyítés",
     "graphLabel": "Interaktív függvénygrafikon",
@@ -2188,7 +2188,11 @@
       "polynomialOnly": "Adjon meg első- vagy másodfokú polinomegyenletet x-szel, változó nevezők és magasabb hatványok nélkül.",
       "rationalOnly": "Használjon racionális eredményt adó kifejezést.",
       "timeout": "A számítás túl sokáig tartott. Egyszerűsítse a kifejezést.",
-      "unavailable": "A matematikai motor nem tölthető be. Csatlakozzon, vagy javítsa az offline fájlokat."
+      "unavailable": "A matematikai motor nem tölthető be. Csatlakozzon, vagy javítsa az offline fájlokat.",
+      "functionDefinition": "Válasszon egyedi kisbetűt az a, b, c, e, i, x és y kivételével. Adjon meg kifejezést vagy egyező definíciót, például h(x)=d(x)+g(x).",
+      "duplicateFunction": "Minden függvénynek külön név kell.",
+      "missingFunction": "Egy hivatkozott függvény hiányzik vagy hibásan van definiálva.",
+      "circularFunction": "A függvények körkörösen hivatkoznak egymásra. Szüntesse meg a körhivatkozást."
     },
     "steps": {
       "collect": "Vigyen mindent balra, bontsa fel a zárójeleket, és vonja össze az egynemű tagokat.",
@@ -2198,6 +2202,40 @@
       "discriminant": "Számítsa ki a diszkriminánst: Δ = b² − 4ac.",
       "negativeDiscriminant": "A negatív diszkrimináns azt jelenti, hogy nincs valós gyök.",
       "quadraticFormula": "Alkalmazza a másodfokú megoldóképletet, és egyszerűsítse az eredményeket."
+    },
+    "guide": {
+      "open": "Beviteli útmutató",
+      "title": "Matematikai bevitel a Kitben",
+      "roots": "Írjon sqrt-t, majd a gyök alatti kifejezést. A nyilak be- és kilépnek a gyökből.",
+      "powers": "A ^ kitevőt nyit. → vagy Szóköz lép ki. Összetett kitevőhöz használjon zárójelet. A hatvány megelőzi a kezdő mínuszt.",
+      "fractions": "A / törtet készít. A nyilak váltanak számláló és nevező között. Egymás melletti számok és zárójelek szorzást jelentenek.",
+      "functions": "Használja a matematikai billentyűzetet. log tízes alapú, ln természetes. A trigonometria a választott szögegységet használja.",
+      "editing": "A nyilak mozgatnak, a Backspace töröl. Az Enter számol vagy megold. Érintőképernyőn használja a billentyűzet ikont.",
+      "scope": "A grafikon nyolc valós függvényt támogat f, g, h, d… néven. Használhat d(x) vagy d(2x) hívást. a, b, c közös csúszkák. A megoldó valós első- és másodfokú egyenleteket kezel."
+    },
+    "graph": {
+      "settings": "Grafikonbeállítások",
+      "grid": "Rács megjelenítése",
+      "xMin": "Legkisebb x",
+      "xMax": "Legnagyobb x",
+      "yMin": "Legkisebb y",
+      "yMax": "Legnagyobb y",
+      "boundsError": "Adjon meg véges, növekvő határokat 0.000001 és 100000000 közötti tartománnyal.",
+      "apply": "Határok alkalmazása",
+      "functionCount": "{count}/{max} függvény",
+      "restore": "Kilépés a nagyított nézetből",
+      "expand": "Munkaterület nagyítása",
+      "color": "Grafikon színe",
+      "name": "Függvénynév",
+      "show": "Megjelenítés",
+      "hide": "Elrejtés",
+      "parameters": "Paraméterek",
+      "parameter": "Paraméter",
+      "trace": "Koordináták követése",
+      "traceX": "Követés x-nél",
+      "traceHint": "Mozgassa vagy húzza a grafikonon. ←/→ módosítja x-et, Shift növeli a lépést. x alább is megadható.",
+      "approximate": "A koordináták numerikus közelítések. A vonás nem értelmezett függvényt jelez.",
+      "scope": "Legfeljebb nyolc elnevezett valós függvény. a, b, c csúszkák; d(x)+g(x) függvényeket kapcsol össze. Gyökök, hatványok, logaritmusok, abszolútérték és trigonometria."
     }
   }
 }

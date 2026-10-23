@@ -66,7 +66,7 @@ Domovská obrazovka seskupuje nástroje podle úlohy (stránky PDF, data, vývoj
 ### Matematika
 
 - **Vědecká kalkulačka** — Počítejte odmocniny, mocniny, zlomky, logaritmy a goniometrické funkce se strukturovaným vstupem ve stupních či radiánech.
-- **Grafy funkcí** — Nakreslete až tři reálné funkce, posouvejte a přibližujte graf a prozkoumejte tabulku hodnot se stejným matematickým vstupem.
+- **Grafy funkcí** — Nakreslete až osm reálné funkce, posouvejte a přibližujte graf a prozkoumejte tabulku hodnot se stejným matematickým vstupem.
 - **Řešení rovnic** — Řešte reálné lineární a kvadratické rovnice s x, zobrazte přesné i desetinné výsledky a vysvětlení jednotlivých kroků.
 - **Kalkulačka zlomků** — Sčítejte, odčítejte, násobte a dělte zlomky se zachováním přesných racionálních výsledků a desetinných aproximací.
 

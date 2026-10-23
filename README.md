@@ -73,7 +73,7 @@ The home screen groups tools by job (PDF pages vs markup, developer inspect vs e
 ### Math
 
 - **Scientific calculator** — Calculate with roots, powers, fractions, logarithms, and trigonometric functions using a structured math editor with degree and radian modes.
-- **Function grapher** — Plot up to three real functions, pan and zoom the graph, and explore a table of values using the same intelligent math input.
+- **Function grapher** — Plot up to eight real functions, pan and zoom the graph, and explore a table of values using the same intelligent math input.
 - **Equation solver** — Solve real linear and quadratic equations in x, see exact and decimal answers, and expand explanations of each algebra step.
 - **Fraction calculator** — Add, subtract, multiply, and divide fractions with structured input, keeping exact rational results alongside decimal approximations.
 

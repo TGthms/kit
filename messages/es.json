@@ -1963,8 +1963,8 @@
     },
     "function-grapher": {
       "name": "Gráficas de funciones",
-      "description": "Representa hasta tres funciones reales, desplaza y amplía la gráfica y consulta una tabla de valores con entrada matemática.",
-      "summary": "Representa hasta tres funciones reales, desplaza y amplía la gráfica y consulta una tabla de valores con entrada matemática.",
+      "description": "Representa hasta ocho funciones reales, desplaza y amplía la gráfica y consulta una tabla de valores con entrada matemática.",
+      "summary": "Representa hasta ocho funciones reales, desplaza y amplía la gráfica y consulta una tabla de valores con entrada matemática.",
       "keywords": "Gráficas de funciones"
     },
     "equation-solver": {
@@ -2175,7 +2175,7 @@
     "solutions": "Soluciones",
     "showSteps": "Mostrar pasos y explicaciones",
     "addFunction": "Añadir función",
-    "graphScope": "Hasta tres funciones de x. Admite raíces, potencias, logaritmos, valores absolutos y trigonometría.",
+    "graphScope": "Hasta ocho funciones de x. Admite raíces, potencias, logaritmos, valores absolutos y trigonometría.",
     "zoomIn": "Acercar",
     "zoomOut": "Alejar",
     "graphLabel": "Gráfica interactiva de funciones",
@@ -2188,7 +2188,11 @@
       "polynomialOnly": "Introduce una ecuación polinómica lineal o cuadrática en x, sin denominadores variables ni potencias superiores.",
       "rationalOnly": "Usa una expresión con resultado racional.",
       "timeout": "El cálculo tardó demasiado. Simplifica la expresión.",
-      "unavailable": "No se pudo cargar el motor matemático. Reconecta o repara los archivos sin conexión."
+      "unavailable": "No se pudo cargar el motor matemático. Reconecta o repara los archivos sin conexión.",
+      "functionDefinition": "Elige un nombre único en minúscula, excepto a, b, c, e, i, x e y. Introduce una expresión o una definición coincidente como h(x)=d(x)+g(x).",
+      "duplicateFunction": "Cada función necesita un nombre distinto.",
+      "missingFunction": "Falta una función referenciada o su definición no es válida.",
+      "circularFunction": "Las funciones se referencian en un bucle. Elimina la referencia circular."
     },
     "steps": {
       "collect": "Pasa todo a la izquierda, desarrolla los paréntesis y agrupa términos semejantes.",
@@ -2198,6 +2202,40 @@
       "discriminant": "Calcula el discriminante Δ = b² − 4ac.",
       "negativeDiscriminant": "Un discriminante negativo indica que no hay raíces reales.",
       "quadraticFormula": "Aplica la fórmula cuadrática y simplifica cada resultado."
+    },
+    "guide": {
+      "open": "Guía de entrada",
+      "title": "Escribir matemáticas en Kit",
+      "roots": "Escribe sqrt y el radicando. Las flechas entran y salen de las raíces.",
+      "powers": "^ abre un exponente. → o Espacio sale de él. Usa paréntesis para exponentes de varios términos. Las potencias preceden al signo menos.",
+      "fractions": "/ crea una fracción. Las flechas recorren numerador y denominador. Números y paréntesis adyacentes multiplican.",
+      "functions": "Usa el teclado matemático. log es base 10 y ln natural. La trigonometría usa la unidad angular seleccionada.",
+      "editing": "Las flechas recorren la fórmula; Retroceso borra. Intro calcula o resuelve. En pantallas táctiles usa el icono de teclado.",
+      "scope": "El gráfico admite ocho funciones reales con nombres f, g, h, d… Puedes usar d(x) o d(2x). a, b, c son deslizadores compartidos. El solucionador admite ecuaciones lineales y cuadráticas reales."
+    },
+    "graph": {
+      "settings": "Ajustes del gráfico",
+      "grid": "Mostrar cuadrícula",
+      "xMin": "Mínimo x",
+      "xMax": "Máximo x",
+      "yMin": "Mínimo y",
+      "yMax": "Máximo y",
+      "boundsError": "Introduce límites finitos crecientes con una amplitud entre 0.000001 y 100000000.",
+      "apply": "Aplicar límites",
+      "functionCount": "{count} de {max} funciones",
+      "restore": "Salir de vista ampliada",
+      "expand": "Ampliar espacio",
+      "color": "Color del gráfico",
+      "name": "Nombre de función",
+      "show": "Mostrar",
+      "hide": "Ocultar",
+      "parameters": "Parámetros",
+      "parameter": "Parámetro",
+      "trace": "Trazar coordenadas",
+      "traceX": "Trazar en x",
+      "traceHint": "Mueve el puntero o arrastra para trazar. ←/→ ajusta x; Mayús amplía el paso. También puedes introducir x abajo.",
+      "approximate": "Las coordenadas son aproximaciones numéricas. Un guion indica que la función no está definida.",
+      "scope": "Hasta ocho funciones reales con nombre. a, b, c crean deslizadores; d(x)+g(x) permite composición. Admite raíces, potencias, logaritmos, valor absoluto y trigonometría."
     }
   }
 }

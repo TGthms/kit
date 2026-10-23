@@ -1963,8 +1963,8 @@
     },
     "function-grapher": {
       "name": "Funktionsgrafer",
-      "description": "Rita upp till tre reella funktioner, flytta och zooma grafen och utforska en värdetabell med samma matematiska inmatning.",
-      "summary": "Rita upp till tre reella funktioner, flytta och zooma grafen och utforska en värdetabell med samma matematiska inmatning.",
+      "description": "Rita upp till åtta reella funktioner, flytta och zooma grafen och utforska en värdetabell med samma matematiska inmatning.",
+      "summary": "Rita upp till åtta reella funktioner, flytta och zooma grafen och utforska en värdetabell med samma matematiska inmatning.",
       "keywords": "Funktionsgrafer"
     },
     "equation-solver": {
@@ -2175,7 +2175,7 @@
     "solutions": "Lösningar",
     "showSteps": "Visa steg och förklaringar",
     "addFunction": "Lägg till funktion",
-    "graphScope": "Upp till tre funktioner av x med rötter, potenser, logaritmer, absolutbelopp och trigonometri.",
+    "graphScope": "Upp till åtta funktioner av x med rötter, potenser, logaritmer, absolutbelopp och trigonometri.",
     "zoomIn": "Zooma in",
     "zoomOut": "Zooma ut",
     "graphLabel": "Interaktiv funktionsgraf",
@@ -2188,7 +2188,11 @@
       "polynomialOnly": "Ange en linjär eller kvadratisk polynomekvation i x utan variabla nämnare eller högre potenser.",
       "rationalOnly": "Använd ett uttryck med ett rationellt resultat.",
       "timeout": "Beräkningen tog för lång tid. Förenkla uttrycket.",
-      "unavailable": "Matematikmotorn kunde inte läsas in. Anslut eller reparera offlinefiler."
+      "unavailable": "Matematikmotorn kunde inte läsas in. Anslut eller reparera offlinefiler.",
+      "functionDefinition": "Välj en unik liten bokstav utom a, b, c, e, i, x och y. Ange ett uttryck eller en matchande definition som h(x)=d(x)+g(x).",
+      "duplicateFunction": "Varje funktion behöver ett annat namn.",
+      "missingFunction": "En refererad funktion saknas eller har ogiltig definition.",
+      "circularFunction": "Funktionerna hänvisar till varandra i en slinga. Ta bort den cirkulära referensen."
     },
     "steps": {
       "collect": "Flytta allt till vänster, utveckla parenteser och samla liknande termer.",
@@ -2198,6 +2202,40 @@
       "discriminant": "Beräkna diskriminanten Δ = b² − 4ac.",
       "negativeDiscriminant": "En negativ diskriminant innebär att det saknas reella rötter.",
       "quadraticFormula": "Använd andragradsformeln och förenkla varje resultat."
+    },
+    "guide": {
+      "open": "Inmatningsguide",
+      "title": "Skriva matematik i Kit",
+      "roots": "Skriv sqrt och sedan radikanden. Pilar går in och ut ur rötter.",
+      "powers": "^ öppnar en exponent. → eller Blanksteg lämnar den. Använd parenteser för sammansatta exponenter. Potenser går före ett inledande minus.",
+      "fractions": "/ skapar ett bråk. Pilar växlar mellan täljare och nämnare. Intilliggande tal och parenteser multipliceras.",
+      "functions": "Använd matematiktangentbordet. log är bas 10, ln naturlig. Trigonometri använder vald vinkelenhet.",
+      "editing": "Pilar flyttar genom formeln, Backspace raderar. Retur beräknar eller löser. Använd tangentbordsikonen på pekskärmar.",
+      "scope": "Grafen stöder åtta reella funktioner f, g, h, d… Använd d(x) eller d(2x). a, b, c är gemensamma reglage. Lösaren stöder reella linjära och kvadratiska ekvationer."
+    },
+    "graph": {
+      "settings": "Grafinställningar",
+      "grid": "Visa rutnät",
+      "xMin": "Minsta x",
+      "xMax": "Största x",
+      "yMin": "Minsta y",
+      "yMax": "Största y",
+      "boundsError": "Ange ändliga stigande gränser med spann från 0.000001 till 100000000.",
+      "apply": "Använd gränser",
+      "functionCount": "{count} av {max} funktioner",
+      "restore": "Lämna utökad vy",
+      "expand": "Utöka arbetsytan",
+      "color": "Graffärg",
+      "name": "Funktionsnamn",
+      "show": "Visa",
+      "hide": "Dölj",
+      "parameters": "Parametrar",
+      "parameter": "Parametervärde",
+      "trace": "Spåra koordinater",
+      "traceX": "Spåra vid x",
+      "traceHint": "Flytta eller dra över grafen. ←/→ ändrar x; Skift ökar steget. Du kan även ange x nedan.",
+      "approximate": "Koordinater är numeriska närmevärden. Ett streck betyder att funktionen är odefinierad.",
+      "scope": "Upp till åtta namngivna reella funktioner. a, b, c är reglage, d(x)+g(x) kombinerar funktioner. Rötter, potenser, logaritmer, absolutbelopp och trigonometri."
     }
   }
 }

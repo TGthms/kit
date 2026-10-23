@@ -66,7 +66,7 @@ Startsiden grupperer værktøjer efter opgave (PDF-sider, data, udvikling …) i
 ### Matematik
 
 - **Videnskabelig lommeregner** — Beregn rødder, potenser, brøker, logaritmer og trigonometriske funktioner med struktureret input i grader eller radianer.
-- **Funktionsgrafer** — Tegn op til tre reelle funktioner, flyt og zoom grafen, og udforsk en værditabel med samme matematiske input.
+- **Funktionsgrafer** — Tegn op til otte reelle funktioner, flyt og zoom grafen, og udforsk en værditabel med samme matematiske input.
 - **Ligningsløser** — Løs reelle lineære og kvadratiske ligninger i x med eksakte og decimale svar samt forklaringer til hvert trin.
 - **Brøkregner** — Læg brøker sammen, træk fra, gang og dividér med eksakte rationale resultater og decimale tilnærmelser.
 

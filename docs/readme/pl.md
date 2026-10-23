@@ -66,7 +66,7 @@ Ekran główny grupuje narzędzia według zadania (strony PDF, dane, rozwój…)
 ### Matematyka
 
 - **Kalkulator naukowy** — Obliczaj pierwiastki, potęgi, ułamki, logarytmy i funkcje trygonometryczne ze strukturalnym wprowadzaniem w stopniach lub radianach.
-- **Wykresy funkcji** — Rysuj do trzech funkcji rzeczywistych, przesuwaj i powiększaj wykres oraz przeglądaj tabelę wartości z tym samym edytorem matematycznym.
+- **Wykresy funkcji** — Rysuj do ośmiu funkcji rzeczywistych, przesuwaj i powiększaj wykres oraz przeglądaj tabelę wartości z tym samym edytorem matematycznym.
 - **Rozwiązywanie równań** — Rozwiązuj rzeczywiste równania liniowe i kwadratowe z x, oglądaj wyniki dokładne i dziesiętne oraz objaśnienia kroków.
 - **Kalkulator ułamków** — Dodawaj, odejmuj, mnóż i dziel ułamki, zachowując dokładne wyniki wymierne i przybliżenia dziesiętne.
 

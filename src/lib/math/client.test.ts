@@ -77,3 +77,33 @@ describe("math worker lifecycle", () => {
     expect(vi.getTimerCount()).toBe(0);
   });
 });
+
+describe("graph job coalescing", () => {
+  it("keeps the worker warm and runs only the latest queued request", async () => {
+    const { GraphClient } = await import("./client");
+    const client = new GraphClient();
+    const first = client.run({ kind: "graphs", latex: "first" });
+    const obsolete = client.run({ kind: "graphs", latex: "obsolete" });
+    const latest = client.run({ kind: "graphs", latex: "latest" });
+    expect(await obsolete).toEqual({ ok: false, error: "canceled" });
+    expect(FakeWorker.instances).toHaveLength(1);
+    const worker = FakeWorker.instances[0];
+    worker.reply("first");
+    expect((await first).ok).toBe(true);
+    expect(worker.messages.at(-1)?.latex).toBe("latest");
+    worker.reply("latest");
+    expect((await latest).ok).toBe(true);
+    expect(worker.terminated).toBe(false);
+    client.dispose();
+  });
+  it("settles running and queued work when the page closes", async () => {
+    const { GraphClient } = await import("./client");
+    const client = new GraphClient();
+    const running = client.run({ kind: "graphs", latex: "first" });
+    const pending = client.run({ kind: "graphs", latex: "next" });
+    client.dispose();
+    expect(await pending).toEqual({ ok: false, error: "canceled" });
+    expect(await running).toEqual({ ok: false, error: "canceled" });
+    expect(FakeWorker.instances[0].terminated).toBe(true);
+  });
+});

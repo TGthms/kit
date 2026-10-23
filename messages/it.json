@@ -1963,8 +1963,8 @@
     },
     "function-grapher": {
       "name": "Grafici di funzioni",
-      "description": "Traccia fino a tre funzioni reali, sposta e ingrandisci il grafico ed esplora una tabella di valori con inserimento matematico.",
-      "summary": "Traccia fino a tre funzioni reali, sposta e ingrandisci il grafico ed esplora una tabella di valori con inserimento matematico.",
+      "description": "Traccia fino a otto funzioni reali, sposta e ingrandisci il grafico ed esplora una tabella di valori con inserimento matematico.",
+      "summary": "Traccia fino a otto funzioni reali, sposta e ingrandisci il grafico ed esplora una tabella di valori con inserimento matematico.",
       "keywords": "Grafici di funzioni"
     },
     "equation-solver": {
@@ -2175,7 +2175,7 @@
     "solutions": "Soluzioni reali",
     "showSteps": "Mostra passaggi e spiegazioni",
     "addFunction": "Aggiungi funzione",
-    "graphScope": "Fino a tre funzioni di x: radici, potenze, logaritmi, valori assoluti e trigonometria.",
+    "graphScope": "Fino a otto funzioni di x: radici, potenze, logaritmi, valori assoluti e trigonometria.",
     "zoomIn": "Ingrandisci",
     "zoomOut": "Riduci",
     "graphLabel": "Grafico interattivo di funzioni",
@@ -2188,7 +2188,11 @@
       "polynomialOnly": "Inserisci un’equazione polinomiale lineare o quadratica in x, senza denominatori variabili né potenze superiori.",
       "rationalOnly": "Usa un’espressione con risultato razionale.",
       "timeout": "Il calcolo è durato troppo. Semplifica l’espressione.",
-      "unavailable": "Impossibile caricare il motore matematico. Riconnettiti o ripara i file offline."
+      "unavailable": "Impossibile caricare il motore matematico. Riconnettiti o ripara i file offline.",
+      "functionDefinition": "Scegli una minuscola unica tranne a, b, c, e, i, x e y. Inserisci un’espressione o una definizione corrispondente come h(x)=d(x)+g(x).",
+      "duplicateFunction": "Ogni funzione richiede un nome diverso.",
+      "missingFunction": "Una funzione richiamata manca o ha una definizione non valida.",
+      "circularFunction": "Le funzioni si richiamano in un ciclo. Rimuovi il riferimento circolare."
     },
     "steps": {
       "collect": "Porta tutto a sinistra, sviluppa le parentesi e raccogli i termini simili.",
@@ -2198,6 +2202,40 @@
       "discriminant": "Calcola il discriminante Δ = b² − 4ac.",
       "negativeDiscriminant": "Un discriminante negativo indica l’assenza di radici reali.",
       "quadraticFormula": "Applica la formula quadratica e semplifica ogni risultato."
+    },
+    "guide": {
+      "open": "Guida all’inserimento",
+      "title": "Scrivere matematica in Kit",
+      "roots": "Digita sqrt e poi il radicando. Le frecce entrano ed escono dalle radici.",
+      "powers": "^ apre un esponente. → o Spazio ne esce. Usa parentesi per esponenti composti. Le potenze precedono il segno meno iniziale.",
+      "fractions": "/ crea una frazione. Le frecce passano fra numeratore e denominatore. Numeri e parentesi adiacenti si moltiplicano.",
+      "functions": "Usa la tastiera matematica. log è in base 10, ln è naturale. La trigonometria usa l’unità angolare selezionata.",
+      "editing": "Le frecce percorrono la formula, Backspace cancella. Invio calcola o risolve. Su touch usa l’icona della tastiera.",
+      "scope": "Il grafico supporta otto funzioni reali chiamate f, g, h, d… Usa d(x) o d(2x). a, b, c sono cursori condivisi. Il risolutore supporta equazioni reali lineari e quadratiche."
+    },
+    "graph": {
+      "settings": "Impostazioni del grafico",
+      "grid": "Mostra griglia",
+      "xMin": "Minimo x",
+      "xMax": "Massimo x",
+      "yMin": "Minimo y",
+      "yMax": "Massimo y",
+      "boundsError": "Inserisci limiti finiti crescenti con ampiezza da 0.000001 a 100000000.",
+      "apply": "Applica limiti",
+      "functionCount": "{count} di {max} funzioni",
+      "restore": "Esci dalla vista estesa",
+      "expand": "Espandi area di lavoro",
+      "color": "Colore del grafico",
+      "name": "Nome funzione",
+      "show": "Mostra",
+      "hide": "Nascondi",
+      "parameters": "Parametri",
+      "parameter": "Parametro",
+      "trace": "Traccia coordinate",
+      "traceX": "Traccia in x",
+      "traceHint": "Muovi il puntatore o trascina per tracciare. ←/→ modifica x; Maiusc aumenta il passo. Puoi inserire x sotto.",
+      "approximate": "Le coordinate sono approssimazioni numeriche. Un trattino indica una funzione non definita.",
+      "scope": "Fino a otto funzioni reali con nome. a, b, c per cursori, d(x)+g(x) per composizioni. Supporta radici, potenze, logaritmi, valori assoluti e trigonometria."
     }
   }
 }

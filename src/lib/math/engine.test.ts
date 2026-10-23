@@ -1,5 +1,6 @@
 import { readFileSync } from "node:fs";
 import vm from "node:vm";
+import * as KitMathGraph from "./numeric";
 import { ComputeEngine } from "@cortex-js/compute-engine";
 import { describe, expect, it } from "vitest";
 import type {
@@ -20,7 +21,7 @@ function worker() {
   };
   vm.runInNewContext(source, {
     self: scope,
-    globalThis: { ComputeEngine: { ComputeEngine } },
+    globalThis: { ComputeEngine: { ComputeEngine }, KitMathGraph },
     importScripts() {},
     console,
   });
@@ -75,6 +76,18 @@ describe("isolated math computation", () => {
         ).decimal,
       ),
     ).toBeCloseTo(1);
+  });
+  it("distinguishes exact results from rounded decimal approximations", () => {
+    for (const latex of ["4", "1.3", "2+2", "\\sqrt{4}", "\\frac{1}{2}"])
+      expect(
+        success(run<MathValue>({ kind: "calculate", latex })).approximate,
+        latex,
+      ).toBe(false);
+    for (const latex of ["\\frac{1}{3}", "\\sqrt{2}", "\\pi"])
+      expect(
+        success(run<MathValue>({ kind: "calculate", latex })).approximate,
+        latex,
+      ).toBe(true);
   });
   it("keeps fractions exact", () => {
     expect(
@@ -149,6 +162,73 @@ describe("isolated math computation", () => {
     "x=2=3",
   ])("does not invent polynomial steps for %s", (latex) => {
     expect(run({ kind: "solve", latex }).ok).toBe(false);
+  });
+  it("plots eight named functions and resolves hidden dependencies", () => {
+    const curves = [
+      { id: 0, name: "d", latex: "x^2", hidden: true },
+      { id: 1, name: "g", latex: "2x" },
+      { id: 2, name: "h", latex: "h(x)=d(x)+g(x)" },
+      ...["f", "p", "q", "r", "s"].map((name, i) => ({
+        id: i + 3,
+        name,
+        latex: `${i + 1}x`,
+      })),
+    ];
+    const result = success(
+      run<Array<{ id: number; plot?: Plot; error?: string }>>({
+        kind: "graphs",
+        latex: "",
+        curves,
+        viewport: { xMin: -4, xMax: 4, yMin: -10, yMax: 20 },
+      }),
+    );
+    expect(result).toHaveLength(8);
+    expect(result[0].plot).toBeUndefined();
+    expect(result[2].error).toBeUndefined();
+    expect(result[2].plot?.table[6]).toEqual([2, 8]);
+  });
+  it("reports duplicate names, missing definitions and loops per expression", () => {
+    const viewport = { xMin: -4, xMax: 4, yMin: -4, yMax: 4 };
+    const check = (curves: { id: number; name: string; latex: string }[]) =>
+      success(
+        run<Array<{ error?: string }>>({
+          kind: "graphs",
+          latex: "",
+          curves,
+          viewport,
+        }),
+      );
+    expect(check([{ id: 0, name: "f", latex: "g(x)" }])[0].error).toBe(
+      "missingFunction",
+    );
+    expect(
+      check([
+        { id: 0, name: "f", latex: "g(x)" },
+        { id: 1, name: "g", latex: "f(x)" },
+      ]).map((r) => r.error),
+    ).toEqual(["circularFunction", "circularFunction"]);
+    expect(
+      check([
+        { id: 0, name: "f", latex: "x" },
+        { id: 1, name: "f", latex: "x^2" },
+      ]).every((r) => r.error === "duplicateFunction"),
+    ).toBe(true);
+  });
+  it("updates slider parameters and degree mode in composed functions", () => {
+    const result = success(
+      run<Array<{ plot: Plot }>>({
+        kind: "graphs",
+        latex: "",
+        curves: [
+          { id: 0, name: "d", latex: "a\\sin(x)+c" },
+          { id: 1, name: "h", latex: "d(x)+b" },
+        ],
+        parameters: { a: 2, b: 3, c: 4 },
+        angle: "deg",
+        viewport: { xMin: 0, xMax: 180, yMin: -10, yMax: 10 },
+      }),
+    );
+    expect(result[1].plot.table[4][1]).toBeCloseTo(9);
   });
   it("samples several functions without dynamic code generation", () => {
     const result = success(

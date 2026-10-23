@@ -66,7 +66,7 @@ Etusivu ryhmittelee työkalut tehtävän mukaan (PDF-sivut, data, kehitys…) yh
 ### Matematiikka
 
 - **Tieteislaskin** — Laske juuria, potensseja, murtolukuja, logaritmeja ja trigonometrisia funktioita jäsennellyllä syötöllä asteina tai radiaaneina.
-- **Funktiopiirturi** — Piirrä enintään kolme reaalifunktiota, siirrä ja suurenna kuvaajaa ja tutki arvotaulukkoa samalla matemaattisella syötöllä.
+- **Funktiopiirturi** — Piirrä enintään kahdeksan reaalifunktiota, siirrä ja suurenna kuvaajaa ja tutki arvotaulukkoa samalla matemaattisella syötöllä.
 - **Yhtälönratkaisija** — Ratkaise reaaliset ensimmäisen ja toisen asteen yhtälöt muuttujan x suhteen, näe tarkat ja desimaalitulokset sekä vaiheiden selitykset.
 - **Murtolukulaskin** — Laske murtolukujen yhteen-, vähennys-, kerto- ja jakolaskuja tarkoilla rationaalituloksilla ja desimaalilikiarvoilla.
 

@@ -1963,8 +1963,8 @@
     },
     "function-grapher": {
       "name": "Traceur de fonctions",
-      "description": "Tracez jusqu’à trois fonctions réelles, déplacez et zoomez le graphique, puis explorez un tableau de valeurs.",
-      "summary": "Tracez jusqu’à trois fonctions réelles, déplacez et zoomez le graphique, puis explorez un tableau de valeurs.",
+      "description": "Tracez jusqu’à huit fonctions réelles, déplacez et zoomez le graphique, puis explorez un tableau de valeurs.",
+      "summary": "Tracez jusqu’à huit fonctions réelles, déplacez et zoomez le graphique, puis explorez un tableau de valeurs.",
       "keywords": "Traceur de fonctions"
     },
     "equation-solver": {
@@ -2188,7 +2188,11 @@
       "polynomialOnly": "Saisissez une équation polynomiale linéaire ou quadratique en x, sans dénominateur variable ni puissance supérieure.",
       "rationalOnly": "Utilisez une expression donnant un résultat rationnel.",
       "timeout": "Calcul trop long. Essayez une expression plus simple.",
-      "unavailable": "Le moteur mathématique n’a pas pu se charger. Reconnectez-vous ou réparez les fichiers hors ligne."
+      "unavailable": "Le moteur mathématique n’a pas pu se charger. Reconnectez-vous ou réparez les fichiers hors ligne.",
+      "functionDefinition": "Choisissez une minuscule unique sauf a, b, c, e, i, x et y. Saisissez une expression ou une définition correspondante comme h(x)=d(x)+g(x).",
+      "duplicateFunction": "Chaque fonction doit avoir un nom différent.",
+      "missingFunction": "Une fonction référencée manque ou sa définition est invalide.",
+      "circularFunction": "Ces fonctions se référencent en boucle. Supprimez la référence circulaire."
     },
     "steps": {
       "collect": "Passez tout à gauche, développez les parenthèses et regroupez les termes semblables.",
@@ -2198,6 +2202,40 @@
       "discriminant": "Calculez le discriminant Δ = b² − 4ac.",
       "negativeDiscriminant": "Un discriminant négatif signifie qu’il n’y a pas de racines réelles.",
       "quadraticFormula": "Appliquez la formule quadratique et simplifiez chaque résultat."
+    },
+    "guide": {
+      "open": "Guide de saisie",
+      "title": "Écrire des maths dans Kit",
+      "roots": "Tapez sqrt puis le radicande. Les flèches entrent et sortent des racines.",
+      "powers": "^ ouvre un exposant. → ou Espace en sort. Mettez les exposants composés entre parenthèses. La puissance précède le signe moins.",
+      "fractions": "/ crée une fraction. Les flèches passent du numérateur au dénominateur. Les nombres et parenthèses adjacents se multiplient.",
+      "functions": "Utilisez le clavier mathématique. log est en base 10, ln naturel. La trigonométrie utilise l’unité d’angle sélectionnée.",
+      "editing": "Les flèches parcourent la formule, Retour arrière efface. Entrée calcule ou résout. Sur écran tactile, touchez l’icône du clavier.",
+      "scope": "Le graphe accepte huit fonctions réelles nommées f, g, h, d… Appelez d(x) ou d(2x). a, b, c sont des curseurs communs. Le solveur reste limité aux équations réelles linéaires et quadratiques."
+    },
+    "graph": {
+      "settings": "Réglages du graphique",
+      "grid": "Afficher le quadrillage",
+      "xMin": "x minimal",
+      "xMax": "x maximal",
+      "yMin": "y minimal",
+      "yMax": "y maximal",
+      "boundsError": "Saisissez des bornes finies croissantes avec une étendue de 0.000001 à 100000000.",
+      "apply": "Appliquer les bornes",
+      "functionCount": "{count} fonctions sur {max}",
+      "restore": "Quitter la vue agrandie",
+      "expand": "Agrandir l’espace",
+      "color": "Couleur du graphe",
+      "name": "Nom de fonction",
+      "show": "Afficher",
+      "hide": "Masquer",
+      "parameters": "Paramètres",
+      "parameter": "Paramètre",
+      "trace": "Lire les coordonnées",
+      "traceX": "Lire à x",
+      "traceHint": "Déplacez le pointeur ou faites glisser pour lire. ←/→ ajuste x ; Maj agrandit le pas. Vous pouvez saisir x ci-dessous.",
+      "approximate": "Les coordonnées sont des approximations numériques. Un tiret indique une fonction non définie.",
+      "scope": "Jusqu’à huit fonctions réelles nommées. a, b, c créent des curseurs ; d(x)+g(x) permet la composition. Racines, puissances, logarithmes, valeurs absolues et trigonométrie."
     }
   }
 }

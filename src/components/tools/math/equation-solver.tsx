@@ -78,12 +78,14 @@ export function EquationSolver() {
                 latex={`x=${root.latex}`}
                 label={`${t("solutions")} ${i + 1}`}
               />
-              <p
-                className="mt-1 font-mono text-sm text-muted-foreground"
-                dir="ltr"
-              >
-                x ≈ {root.decimal}
-              </p>
+              {(root.approximate || root.plain !== root.decimal) && (
+                <p
+                  className="mt-1 font-mono text-sm text-muted-foreground"
+                  dir="ltr"
+                >
+                  x {root.approximate ? "≈" : "="} {root.decimal}
+                </p>
+              )}
               <CopyButton
                 value={`x = ${root.plain}`}
                 aria-label={`${tc("copy")} · ${t("solutions")} ${i + 1}`}

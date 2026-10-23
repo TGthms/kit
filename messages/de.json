@@ -1963,8 +1963,8 @@
     },
     "function-grapher": {
       "name": "Funktionsplotter",
-      "description": "Zeichne bis zu drei reelle Funktionen, verschiebe und zoome die Grafik und erkunde die zugehörige Wertetabelle.",
-      "summary": "Zeichne bis zu drei reelle Funktionen, verschiebe und zoome die Grafik und erkunde die zugehörige Wertetabelle.",
+      "description": "Zeichne bis zu acht reelle Funktionen, verschiebe und zoome die Grafik und erkunde die zugehörige Wertetabelle.",
+      "summary": "Zeichne bis zu acht reelle Funktionen, verschiebe und zoome die Grafik und erkunde die zugehörige Wertetabelle.",
       "keywords": "Funktionsplotter"
     },
     "equation-solver": {
@@ -2175,7 +2175,7 @@
     "solutions": "Lösungen",
     "showSteps": "Rechenschritte mit Erklärungen anzeigen",
     "addFunction": "Funktion hinzufügen",
-    "graphScope": "Bis zu drei Funktionen von x: Wurzeln, Potenzen, Logarithmen, Beträge und Trigonometrie.",
+    "graphScope": "Bis zu acht Funktionen von x: Wurzeln, Potenzen, Logarithmen, Beträge und Trigonometrie.",
     "zoomIn": "Vergrößern",
     "zoomOut": "Verkleinern",
     "graphLabel": "Interaktive Funktionsgrafik",
@@ -2188,7 +2188,11 @@
       "polynomialOnly": "Lineare oder quadratische Polynomgleichung in x eingeben. Variable Nenner und höhere Potenzen werden nicht unterstützt.",
       "rationalOnly": "Einen Ausdruck mit rationalem Ergebnis verwenden.",
       "timeout": "Die Berechnung dauerte zu lange. Ausdruck vereinfachen.",
-      "unavailable": "Die Rechen-Engine konnte nicht geladen werden. Verbindung herstellen oder Offline-Dateien reparieren."
+      "unavailable": "Die Rechen-Engine konnte nicht geladen werden. Verbindung herstellen oder Offline-Dateien reparieren.",
+      "functionDefinition": "Einen eindeutigen Kleinbuchstaben außer a, b, c, e, i, x und y wählen. Ausdruck oder passende Definition wie h(x)=d(x)+g(x) eingeben.",
+      "duplicateFunction": "Jede Funktion braucht einen anderen Namen.",
+      "missingFunction": "Eine verwendete Funktion fehlt oder ist ungültig definiert.",
+      "circularFunction": "Die Funktionen verweisen im Kreis aufeinander. Den Zirkelbezug entfernen."
     },
     "steps": {
       "collect": "Alles auf die linke Seite bringen, Klammern auflösen und gleichartige Terme zusammenfassen.",
@@ -2198,6 +2202,40 @@
       "discriminant": "Die Diskriminante Δ = b² − 4ac berechnen.",
       "negativeDiscriminant": "Eine negative Diskriminante bedeutet, dass es keine reellen Nullstellen gibt.",
       "quadraticFormula": "Die quadratische Lösungsformel anwenden und jedes Ergebnis vereinfachen."
+    },
+    "guide": {
+      "open": "Eingabehilfe",
+      "title": "Mathematik in Kit eingeben",
+      "roots": "sqrt eingeben, dann den Radikanden. Pfeile führen in die Wurzel und hinaus.",
+      "powers": "^ öffnet einen Exponenten. → oder Leertaste verlässt ihn. Mehrteilige Exponenten einklammern. Potenzen stehen vor führendem Minus.",
+      "fractions": "/ erzeugt einen Bruch. Pfeile wechseln zwischen Zähler und Nenner. Benachbarte Zahlen und Klammern werden multipliziert.",
+      "functions": "Die Mathetastatur bietet Funktionen. log ist zur Basis 10, ln der natürliche Logarithmus. Trigonometrie nutzt die gewählte Winkeleinheit.",
+      "editing": "Pfeile bewegen durch die Formel, Rücktaste löscht. Eingabe berechnet oder löst. Auf Touchgeräten das Tastatursymbol nutzen.",
+      "scope": "Der Plotter erlaubt acht reelle Funktionen namens f, g, h, d… Aufrufe wie d(x) und d(2x) sind möglich. a, b, c sind gemeinsame Regler. Der Löser unterstützt reelle lineare/quadratische Gleichungen."
+    },
+    "graph": {
+      "settings": "Grafikeinstellungen",
+      "grid": "Gitter anzeigen",
+      "xMin": "Kleinster x-Wert",
+      "xMax": "Größter x-Wert",
+      "yMin": "Kleinster y-Wert",
+      "yMax": "Größter y-Wert",
+      "boundsError": "Endliche aufsteigende Grenzen mit einer Spanne von 0.000001 bis 100000000 eingeben.",
+      "apply": "Grenzen anwenden",
+      "functionCount": "{count} von {max} Funktionen",
+      "restore": "Großansicht verlassen",
+      "expand": "Arbeitsfläche vergrößern",
+      "color": "Graphfarbe",
+      "name": "Funktionsname",
+      "show": "Einblenden",
+      "hide": "Ausblenden",
+      "parameters": "Parameter",
+      "parameter": "Parameterwert",
+      "trace": "Koordinaten verfolgen",
+      "traceX": "Bei x verfolgen",
+      "traceHint": "Über die Grafik bewegen oder ziehen. ←/→ ändert x, Umschalt vergrößert die Schritte. x kann unten eingegeben werden.",
+      "approximate": "Koordinaten sind numerische Näherungen. Ein Strich bedeutet, die Funktion ist dort undefiniert.",
+      "scope": "Bis zu acht benannte reelle Funktionen. a, b, c für Regler, d(x)+g(x) für Verknüpfungen. Wurzeln, Potenzen, Logarithmen, Beträge und Trigonometrie."
     }
   }
 }

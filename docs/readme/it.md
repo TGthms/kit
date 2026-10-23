@@ -66,7 +66,7 @@ La home raggruppa gli strumenti per lavoro (pagine PDF, dati, sviluppo…) invec
 ### Matematica
 
 - **Calcolatrice scientifica** — Calcola radici, potenze, frazioni, logaritmi e funzioni trigonometriche con un editor strutturato in gradi o radianti.
-- **Grafici di funzioni** — Traccia fino a tre funzioni reali, sposta e ingrandisci il grafico ed esplora una tabella di valori con inserimento matematico.
+- **Grafici di funzioni** — Traccia fino a otto funzioni reali, sposta e ingrandisci il grafico ed esplora una tabella di valori con inserimento matematico.
 - **Risolutore di equazioni** — Risolvi equazioni reali lineari e quadratiche in x con risultati esatti e decimali e spiegazioni dei passaggi algebrici.
 - **Calcolatrice di frazioni** — Somma, sottrai, moltiplica e dividi frazioni mantenendo risultati razionali esatti e approssimazioni decimali.
 

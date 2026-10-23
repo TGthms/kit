@@ -1963,8 +1963,8 @@
     },
     "function-grapher": {
       "name": "Funktionsgrafer",
-      "description": "Tegn op til tre reelle funktioner, flyt og zoom grafen, og udforsk en værditabel med samme matematiske input.",
-      "summary": "Tegn op til tre reelle funktioner, flyt og zoom grafen, og udforsk en værditabel med samme matematiske input.",
+      "description": "Tegn op til otte reelle funktioner, flyt og zoom grafen, og udforsk en værditabel med samme matematiske input.",
+      "summary": "Tegn op til otte reelle funktioner, flyt og zoom grafen, og udforsk en værditabel med samme matematiske input.",
       "keywords": "Funktionsgrafer"
     },
     "equation-solver": {
@@ -2175,7 +2175,7 @@
     "solutions": "Løsninger",
     "showSteps": "Vis trin og forklaringer",
     "addFunction": "Tilføj funktion",
-    "graphScope": "Op til tre funktioner af x med rødder, potenser, logaritmer, absolutværdi og trigonometri.",
+    "graphScope": "Op til otte funktioner af x med rødder, potenser, logaritmer, absolutværdi og trigonometri.",
     "zoomIn": "Zoom ind",
     "zoomOut": "Zoom ud",
     "graphLabel": "Interaktiv funktionsgraf",
@@ -2188,7 +2188,11 @@
       "polynomialOnly": "Indtast en lineær eller kvadratisk polynomiel ligning i x uden variable nævnere eller højere potenser.",
       "rationalOnly": "Brug et udtryk med et rationalt resultat.",
       "timeout": "Beregningen tog for lang tid. Prøv et enklere udtryk.",
-      "unavailable": "Regnemotoren kunne ikke indlæses. Opret forbindelse eller reparér offlinefiler."
+      "unavailable": "Regnemotoren kunne ikke indlæses. Opret forbindelse eller reparér offlinefiler.",
+      "functionDefinition": "Vælg et unikt lille bogstav undtagen a, b, c, e, i, x og y. Indtast et udtryk eller en matchende definition som h(x)=d(x)+g(x).",
+      "duplicateFunction": "Hver funktion skal have et forskelligt navn.",
+      "missingFunction": "En refereret funktion mangler eller er ugyldigt defineret.",
+      "circularFunction": "Funktionerne henviser til hinanden i en løkke. Fjern den cirkulære reference."
     },
     "steps": {
       "collect": "Flyt alt til venstre, gang parenteser ud, og saml ens led.",
@@ -2198,6 +2202,40 @@
       "discriminant": "Beregn diskriminanten Δ = b² − 4ac.",
       "negativeDiscriminant": "En negativ diskriminant betyder, at der ikke er reelle rødder.",
       "quadraticFormula": "Brug andengradsligningsformlen, og forkort hvert resultat."
+    },
+    "guide": {
+      "open": "Indtastningsguide",
+      "title": "Skriv matematik i Kit",
+      "roots": "Skriv sqrt og så radikanden. Pile går ind og ud af rødder.",
+      "powers": "^ åbner en eksponent. → eller Mellemrum forlader den. Brug parenteser til sammensatte eksponenter. Potenser går før et indledende minus.",
+      "fractions": "/ opretter en brøk. Pile skifter mellem tæller og nævner. Tal og parenteser ved siden af hinanden ganges.",
+      "functions": "Brug matematiktastaturet. log er base 10, ln naturlig. Trigonometri bruger den valgte vinkelenhed.",
+      "editing": "Pile flytter gennem formlen, Backspace sletter. Enter beregner eller løser. Brug tastaturikonet på touchskærme.",
+      "scope": "Grafen understøtter otte reelle funktioner f, g, h, d… Brug d(x) eller d(2x). a, b, c er fælles skydere. Løseren understøtter reelle lineære og kvadratiske ligninger."
+    },
+    "graph": {
+      "settings": "Grafindstillinger",
+      "grid": "Vis gitter",
+      "xMin": "Mindste x",
+      "xMax": "Største x",
+      "yMin": "Mindste y",
+      "yMax": "Største y",
+      "boundsError": "Angiv endelige stigende grænser med spænd fra 0.000001 til 100000000.",
+      "apply": "Anvend grænser",
+      "functionCount": "{count} af {max} funktioner",
+      "restore": "Afslut udvidet visning",
+      "expand": "Udvid arbejdsområdet",
+      "color": "Graffarve",
+      "name": "Funktionsnavn",
+      "show": "Vis",
+      "hide": "Skjul",
+      "parameters": "Parametre",
+      "parameter": "Parameter",
+      "trace": "Spor koordinater",
+      "traceX": "Spor ved x",
+      "traceHint": "Flyt eller træk på grafen. ←/→ ændrer x; Shift øger trinnet. Du kan også indtaste x nedenfor.",
+      "approximate": "Koordinater er numeriske tilnærmelser. En streg betyder, at funktionen er udefineret.",
+      "scope": "Op til otte navngivne reelle funktioner. a, b, c er skydere, d(x)+g(x) sammensætter funktioner. Rødder, potenser, logaritmer, absolutværdi og trigonometri."
     }
   }
 }

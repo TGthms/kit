@@ -179,12 +179,20 @@ function Calculator({ fraction = false }: { fraction?: boolean }) {
           ) : reply?.ok ? (
             <div className="mt-3 space-y-4">
               <MathResult latex={reply.result.latex} label={tc("result")} />
-              <div>
-                <p className="text-xs text-muted-foreground">{t("decimal")}</p>
-                <p className="mt-1 break-all font-mono text-xl" dir="ltr">
-                  ≈ {reply.result.decimal}
-                </p>
-              </div>
+              {(reply.result.approximate ||
+                reply.result.plain !== reply.result.decimal) && (
+                <div>
+                  {reply.result.approximate && (
+                    <p className="text-xs text-muted-foreground">
+                      {t("decimal")}
+                    </p>
+                  )}
+                  <p className="mt-1 break-all font-mono text-xl" dir="ltr">
+                    {reply.result.approximate ? "≈" : "="}{" "}
+                    {reply.result.decimal}
+                  </p>
+                </div>
+              )}
               <CopyButton
                 value={fraction ? reply.result.plain : reply.result.decimal}
               />
