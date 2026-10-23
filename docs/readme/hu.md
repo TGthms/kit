@@ -58,6 +58,18 @@ Az alkalmazás felülete és ez a GitHub README **30 nyelven** elérhető. Vált
 
 A kezdőlap feladatonként csoportosítja az eszközöket (PDF-oldalak, adatok, fejlesztés…) egy lapos lista helyett.
 
+### Mindennapi
+
+- **Szimbólumböngésző** — Keressen és másoljon íráshoz, matematikához és pénznemekhez való jeleket név, karakter vagy Unicode-kódpont alapján.
+- **Unicode-szövegstílusok** — Alakítson betűket másolható Unicode-stílusokká profilokhoz és üzenetekhez, vagy állítsa vissza a díszített szöveget egyszerűvé.
+
+### Matematika
+
+- **Tudományos számológép** — Számoljon gyökökkel, hatványokkal, törtekkel, logaritmusokkal és trigonometrikus függvényekkel, fokban vagy radiánban.
+- **Függvényábrázoló** — Ábrázoljon legfeljebb három valós függvényt, mozgassa és nagyítsa a grafikont, és vizsgálja az értéktáblázatot.
+- **Egyenletmegoldó** — Oldjon meg valós első- és másodfokú egyenleteket x-re, tekintse meg a pontos és tizedes eredményeket, valamint a lépések magyarázatát.
+- **Törtszámológép** — Adjon össze, vonjon ki, szorozzon és osszon törteket pontos racionális eredményekkel és tizedes közelítésekkel.
+
 ### PDF
 - Összefűzés, darabolás, rendezés, oldalszámok
 - Tömörítés, zárolás/feloldás, metaadatok, lapítás
@@ -92,7 +104,7 @@ A kezdőlap feladatonként csoportosítja az eszközöket (PDF-oldalak, adatok, 
 - Az eszközök az adatokat **az Ön készülékén** dolgozzák fel
 - Az előzmények csak **összefoglalókat** tárolnak (nem a fájltartalmat)
 - A beállítások a helyi tárolóban maradnak
-- [Hogyan működik a Kit](https://trykit.pages.dev/hu/how/) · [Adatvédelmi irányelvek](https://trykit.pages.dev/hu/privacy/) · [Felhasználási feltételek](https://trykit.pages.dev/hu/terms/)
+- [Hogyan működik Kit](https://trykit.pages.dev/hu/how/) · [Adatvédelmi irányelvek](https://trykit.pages.dev/hu/privacy/) · [Felhasználási feltételek](https://trykit.pages.dev/hu/terms/)
 
 ## Helyi fejlesztés
 

@@ -58,6 +58,18 @@ Interfața aplicației și acest README GitHub sunt în **30 de limbi**. Schimb�
 
 Ecranul principal grupează uneltele pe sarcini (pagini PDF, date, dezvoltare…) în loc de o listă plată.
 
+### De zi cu zi
+
+- **Explorator de simboluri** — Găsește și copiază simboluri pentru scriere, matematică și monede. Caută după nume, caracter sau punct de cod Unicode.
+- **Stiluri de text Unicode** — Transformă literele în stiluri Unicode pentru profiluri și mesaje sau convertește textul stilizat înapoi în text simplu.
+
+### Matematică
+
+- **Calculator științific** — Calculează rădăcini, puteri, fracții, logaritmi și funcții trigonometrice cu introducere structurată în grade sau radiani.
+- **Grafice de funcții** — Trasează până la trei funcții reale, deplasează și mărește graficul și explorează un tabel de valori cu aceeași intrare matematică.
+- **Rezolvarea ecuațiilor** — Rezolvă ecuații reale liniare și de gradul doi în x, vezi răspunsuri exacte și zecimale și explicații pentru fiecare pas.
+- **Calculator de fracții** — Adună, scade, înmulțește și împarte fracții păstrând rezultatele raționale exacte alături de aproximările zecimale.
+
 ### PDF
 - Unește, împarte, organizează, numere de pagină
 - Comprimă, blochează/deblochează, metadate, aplatizează

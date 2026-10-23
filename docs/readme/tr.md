@@ -58,6 +58,18 @@ Uygulama arayüzü ve bu GitHub README **30 dilde** vardır. Ayarlar’da (veya 
 
 Ana ekran araçları işe göre gruplar (PDF sayfaları, veri, geliştirme…) düz bir liste yerine.
 
+### Günlük
+
+- **Simge tarayıcısı** — Yazı, matematik ve para birimleri için simgeleri bulup kopyalayın. Ada, karaktere veya Unicode kod noktasına göre arayın.
+- **Unicode metin stilleri** — Harfleri profil ve mesajlar için kopyalanabilir Unicode stillerine dönüştürün veya stilli metni yeniden düz metin yapın.
+
+### Matematik
+
+- **Bilimsel hesap makinesi** — Kökleri, kuvvetleri, kesirleri, logaritmaları ve trigonometrik fonksiyonları derece veya radyanla yapılandırılmış girişte hesaplayın.
+- **Fonksiyon grafiği** — Üç gerçek fonksiyona kadar çizin, grafiği kaydırıp yakınlaştırın ve aynı matematik girişiyle değer tablosunu inceleyin.
+- **Denklem çözücü** — x cinsinden gerçek doğrusal ve ikinci derece denklemleri çözün, tam ve ondalık cevapları ve her adımın açıklamasını görün.
+- **Kesir hesaplayıcı** — Kesirleri toplayın, çıkarın, çarpın ve bölün; tam rasyonel sonuçlarla ondalık yaklaşımları yan yana görün.
+
 ### PDF
 - Birleştir, böl, düzenle, sayfa numaraları
 - Sıkıştır, kilitle/aç, üst veri, düzleştir

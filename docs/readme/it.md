@@ -58,6 +58,18 @@ L’interfaccia dell’app e questo README GitHub sono in **30 lingue**. Cambia 
 
 La home raggruppa gli strumenti per lavoro (pagine PDF, dati, sviluppo…) invece di un elenco piatto.
 
+### Quotidiano
+
+- **Esplora simboli** — Trova e copia simboli per scrivere, fare matematica o indicare valute. Cerca per nome, carattere o codice Unicode.
+- **Stili di testo Unicode** — Trasforma lettere in stili Unicode da copiare per profili e messaggi, oppure ripristina il testo normale da quello stilizzato.
+
+### Matematica
+
+- **Calcolatrice scientifica** — Calcola radici, potenze, frazioni, logaritmi e funzioni trigonometriche con un editor strutturato in gradi o radianti.
+- **Grafici di funzioni** — Traccia fino a tre funzioni reali, sposta e ingrandisci il grafico ed esplora una tabella di valori con inserimento matematico.
+- **Risolutore di equazioni** — Risolvi equazioni reali lineari e quadratiche in x con risultati esatti e decimali e spiegazioni dei passaggi algebrici.
+- **Calcolatrice di frazioni** — Somma, sottrai, moltiplica e dividi frazioni mantenendo risultati razionali esatti e approssimazioni decimali.
+
 ### PDF
 - Unisci, dividi, organizza, numeri di pagina
 - Comprimi, blocca/sblocca, metadati, appiattisci

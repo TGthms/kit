@@ -58,6 +58,18 @@ Appens gränssnitt och denna GitHub-README finns på **30 språk**. Byt i Instä
 
 Startsidan grupperar verktyg efter uppgift (PDF-sidor, data, utveckling …) i stället för en platt lista.
 
+### Vardag
+
+- **Symbolbläddrare** — Hitta och kopiera symboler för text, matematik och valutor. Sök efter namn, tecken eller Unicode-kodpunkt.
+- **Unicode-textstilar** — Gör bokstäver till kopierbara Unicode-stilar för profiler och meddelanden, eller återställ vanlig text från formaterad text.
+
+### Matematik
+
+- **Vetenskaplig räknare** — Beräkna rötter, potenser, bråk, logaritmer och trigonometriska funktioner med strukturerad inmatning i grader eller radianer.
+- **Funktionsgrafer** — Rita upp till tre reella funktioner, flytta och zooma grafen och utforska en värdetabell med samma matematiska inmatning.
+- **Ekvationslösare** — Lös reella linjära och kvadratiska ekvationer i x med exakta och decimala svar samt förklaringar till varje steg.
+- **Bråkräknare** — Addera, subtrahera, multiplicera och dividera bråk med exakta rationella resultat och decimala approximationer.
+
 ### PDF
 - Slå ihop, dela, organisera, sidnummer
 - Komprimera, lås/lås upp, metadata, platta ut

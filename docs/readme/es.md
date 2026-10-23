@@ -58,6 +58,18 @@ La interfaz de la app y este README de GitHub están en **30 idiomas**. Cámbial
 
 La portada agrupa las herramientas por trabajo (páginas PDF, datos, desarrollo…) en lugar de una lista plana.
 
+### Cotidiano
+
+- **Explorador de símbolos** — Busca y copia símbolos para escribir, calcular o indicar monedas. Encuéntralos por nombre, carácter o código Unicode.
+- **Estilos de texto Unicode** — Convierte letras en estilos Unicode para perfiles, mensajes y publicaciones, o recupera el texto sin formato original.
+
+### Matemáticas
+
+- **Calculadora científica** — Calcula raíces, potencias, fracciones, logaritmos y funciones trigonométricas con entrada matemática en grados o radianes.
+- **Gráficas de funciones** — Representa hasta tres funciones reales, desplaza y amplía la gráfica y consulta una tabla de valores con entrada matemática.
+- **Resolución de ecuaciones** — Resuelve ecuaciones lineales y cuadráticas reales en x, consulta resultados exactos y decimales y despliega cada paso algebraico.
+- **Calculadora de fracciones** — Suma, resta, multiplica y divide fracciones con resultados racionales exactos y sus aproximaciones decimales.
+
 ### PDF
 - Unir, dividir, organizar, numerar
 - Comprimir, bloquear/desbloquear, metadatos, aplanar

@@ -96,7 +96,7 @@ COPY: dict[str, dict[str, str]] = {
         "site": "Live site",
         "author": "About the author",
         "what_h": "What you get",
-        "what": "A complete, polished toolkit: 94 tools, clear layout, light and dark appearance, a 30-language UI with a native picker, an installable PWA shell, and honest limits about what a browser can do.",
+        "what": "A complete, polished toolkit: 100 tools, clear layout, light and dark appearance, a 30-language UI with a native picker, an installable PWA shell, and honest limits about what a browser can do.",
         "lang_h": "Languages",
         "lang": "The app interface and this GitHub README are available in **30 languages**. Switch in Settings (or the header) with a native picker, or use the links at the top of this file. Translations live in [`docs/readme/`](docs/readme/). Included: English, Español, Français, Deutsch, Italiano, Português (Brasil / Portugal), Nederlands, Dansk, Svenska, Norsk Bokmål, Suomi, Polski, Čeština, Magyar, Română, Ελληνικά, Türkçe, Русский, Українська, العربية, עברית, हिन्दी, ไทย, Tiếng Việt, Bahasa Indonesia, 日本語, 한국어, 简体中文, and 繁體中文. Arabic and Hebrew use right-to-left layout. Privacy and Terms are localized where we have native legal text; other locales fall back to English. Old `/zh/` app links still resolve to Simplified Chinese.",
         "tools_h": "Tools",
@@ -1672,7 +1672,28 @@ def render(code: str) -> str:
     privacy_url = f"{SITE}/{loc}/privacy/"
     terms_url = f"{SITE}/{loc}/terms/"
     how_url = f"{SITE}/{code}/how/"
-    how_label = json.loads((ROOT / "messages" / f"{code}.json").read_text(encoding="utf-8"))["footer"]["how"]
+    catalog = json.loads((ROOT / "messages" / f"{code}.json").read_text(encoding="utf-8"))
+    how_label = catalog["footer"]["how"]
+    # The newest tool families use the same translated inventory as the app.
+    # Keeping this generated avoids a second set of names in thirty languages.
+    new_sections = []
+    for category, ids in [
+        ("everyday", ["symbol-browser", "unicode-styles"]),
+        ("math", ["scientific-calculator", "function-grapher", "equation-solver", "fraction-calculator"]),
+    ]:
+        rows = [f"### {catalog['categories'][category]}", ""]
+        rows += [f"- **{catalog['tools'][tool]['name']}** — {catalog['tools'][tool]['description']}" for tool in ids]
+        new_sections.append("\n".join(rows))
+    new_tools = "\n\n".join(new_sections)
+    support = "" if code != "en" else """
+## Support the Project
+
+If Kit saved you some time or you simply found it useful,
+consider buying me a coffee. It helps me keep improving and maintaining it.
+
+[☕ Support on Ko-fi](https://ko-fi.com/tgthms)
+"""
+
     extra_en = ""
     if code == "en":
         extra_en = """
@@ -1706,7 +1727,7 @@ npm run lint
 ## {c["what_h"]}
 
 {c["what"]}
-
+{support}
 ## {c["lang_h"]}
 
 {c["lang"]}
@@ -1714,6 +1735,8 @@ npm run lint
 ## {c["tools_h"]}
 
 {c["tools_intro"]}
+
+{new_tools}
 
 ### {c["h_pdf"]}
 - {c["pdf"]}

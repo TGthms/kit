@@ -58,6 +58,18 @@ Appgrensesnittet og denne GitHub-README-en finnes på **30 språk**. Bytt i Inns
 
 Startsiden grupperer verktøy etter oppgave (PDF-sider, data, utvikling …) i stedet for én flat liste.
 
+### Hverdag
+
+- **Symboloversikt** — Finn og kopier symboler for skriving, matematikk og valutaer. Søk etter navn, tegn eller Unicode-kodepunkt.
+- **Unicode-tekststiler** — Gjør bokstaver om til Unicode-stiler for profiler og meldinger, eller konverter stilisert tekst tilbake til vanlig tekst.
+
+### Matematikk
+
+- **Vitenskapelig kalkulator** — Beregn røtter, potenser, brøker, logaritmer og trigonometriske funksjoner med strukturert inndata i grader eller radianer.
+- **Funksjonsgrafer** — Tegn opptil tre reelle funksjoner, flytt og zoom grafen og utforsk en verditabell med samme matematiske inndata.
+- **Ligningsløser** — Løs reelle lineære og kvadratiske ligninger i x med eksakte og desimale svar og forklaringer til hvert trinn.
+- **Brøkkalkulator** — Legg sammen, trekk fra, multipliser og divider brøker med eksakte rasjonale resultater og desimale tilnærminger.
+
 ### PDF
 - Slå sammen, del, organiser, sidetall
 - Komprimer, lås/lås opp, metadata, flat ut

@@ -58,6 +58,18 @@ Interfejs aplikacji i ten README na GitHubie są w **30 językach**. Zmień w Us
 
 Ekran główny grupuje narzędzia według zadania (strony PDF, dane, rozwój…) zamiast płaskiej listy.
 
+### Codzienne
+
+- **Przeglądarka symboli** — Znajduj i kopiuj symbole do pisania, matematyki i walut. Wyszukuj według nazwy, znaku lub punktu kodowego Unicode.
+- **Style tekstu Unicode** — Zmieniaj litery w kopiowalne style Unicode do profili i wiadomości lub przywracaj zwykły tekst z tekstu stylizowanego.
+
+### Matematyka
+
+- **Kalkulator naukowy** — Obliczaj pierwiastki, potęgi, ułamki, logarytmy i funkcje trygonometryczne ze strukturalnym wprowadzaniem w stopniach lub radianach.
+- **Wykresy funkcji** — Rysuj do trzech funkcji rzeczywistych, przesuwaj i powiększaj wykres oraz przeglądaj tabelę wartości z tym samym edytorem matematycznym.
+- **Rozwiązywanie równań** — Rozwiązuj rzeczywiste równania liniowe i kwadratowe z x, oglądaj wyniki dokładne i dziesiętne oraz objaśnienia kroków.
+- **Kalkulator ułamków** — Dodawaj, odejmuj, mnóż i dziel ułamki, zachowując dokładne wyniki wymierne i przybliżenia dziesiętne.
+
 ### PDF
 - Łączenie, dzielenie, porządkowanie, numery stron
 - Kompresja, blokada/odblokowanie, metadane, spłaszczanie

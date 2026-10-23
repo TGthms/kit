@@ -48,7 +48,7 @@ Kit is a set of PDF, image, media, converter, and text tools that run on your de
 
 ## What you get
 
-A complete, polished toolkit: 94 tools, clear layout, light and dark appearance, a 30-language UI with a native picker, an installable PWA shell, and honest limits about what a browser can do.
+A complete, polished toolkit: 100 tools, clear layout, light and dark appearance, a 30-language UI with a native picker, an installable PWA shell, and honest limits about what a browser can do.
 
 ## Support the Project
 
@@ -64,6 +64,18 @@ The app interface and this GitHub README are available in **30 languages**. Swit
 ## Tools
 
 The home screen groups tools by job (PDF pages vs markup, developer inspect vs encode) instead of one flat dump. Converters cover units, currency, and aspect ratio. Everyday covers clocks, meeting overlap, percentages, loans, BMI, and a stopwatch & countdown.
+
+### Everyday tools
+
+- **Symbol browser** — Find and copy useful symbols for writing, mathematics, currencies, and more. Search by name, character, or Unicode code point.
+- **Unicode text styles** — Turn ordinary letters into copyable Unicode text styles for profiles, captions, and messages, or convert styled text back to plain text.
+
+### Math
+
+- **Scientific calculator** — Calculate with roots, powers, fractions, logarithms, and trigonometric functions using a structured math editor with degree and radian modes.
+- **Function grapher** — Plot up to three real functions, pan and zoom the graph, and explore a table of values using the same intelligent math input.
+- **Equation solver** — Solve real linear and quadratic equations in x, see exact and decimal answers, and expand explanations of each algebra step.
+- **Fraction calculator** — Add, subtract, multiply, and divide fractions with structured input, keeping exact rational results alongside decimal approximations.
 
 ### PDF
 - Merge, split, organize, page numbers

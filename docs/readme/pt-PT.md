@@ -58,6 +58,18 @@ A interface da aplicação e este README do GitHub estão em **30 idiomas**. Mud
 
 A página inicial agrupa as ferramentas por trabalho (páginas PDF, dados, desenvolvimento…) em vez de uma lista plana.
 
+### Dia a dia
+
+- **Explorador de símbolos** — Encontre e copie símbolos para escrita, matemática e moedas. Pesquise por nome, carácter ou código Unicode.
+- **Estilos de texto Unicode** — Transforme letras em estilos Unicode para perfis, publicações e mensagens, ou converta texto estilizado de volta ao texto simples.
+
+### Matemática
+
+- **Calculadora científica** — Calcule raízes, potências, frações, logaritmos e funções trigonométricas com entrada estruturada em graus ou radianos.
+- **Gráfico de funções** — Trace até três funções reais, mova e amplie o gráfico e consulte uma tabela de valores com a mesma entrada matemática.
+- **Resolvedor de equações** — Resolva equações reais lineares e quadráticas em x, veja respostas exatas e decimais e expanda as explicações de cada etapa.
+- **Calculadora de frações** — Some, subtraia, multiplique e divida frações mantendo resultados racionais exatos junto de aproximações decimais.
+
 ### PDF
 - Juntar, dividir, organizar, números de página
 - Comprimir, bloquear/desbloquear, metadados, achatar

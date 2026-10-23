@@ -58,6 +58,18 @@ App-grænsefladen og denne GitHub-README findes på **30 sprog**. Skift i Indsti
 
 Startsiden grupperer værktøjer efter opgave (PDF-sider, data, udvikling …) i stedet for én flad liste.
 
+### Hverdag
+
+- **Symboloversigt** — Find og kopiér symboler til tekst, matematik og valutaer. Søg efter navn, tegn eller Unicode-kodepunkt.
+- **Unicode-tekststile** — Lav bogstaver om til Unicode-stile til profiler og beskeder, eller konvertér formateret tekst tilbage til almindelig tekst.
+
+### Matematik
+
+- **Videnskabelig lommeregner** — Beregn rødder, potenser, brøker, logaritmer og trigonometriske funktioner med struktureret input i grader eller radianer.
+- **Funktionsgrafer** — Tegn op til tre reelle funktioner, flyt og zoom grafen, og udforsk en værditabel med samme matematiske input.
+- **Ligningsløser** — Løs reelle lineære og kvadratiske ligninger i x med eksakte og decimale svar samt forklaringer til hvert trin.
+- **Brøkregner** — Læg brøker sammen, træk fra, gang og dividér med eksakte rationale resultater og decimale tilnærmelser.
+
 ### PDF
 - Flet, split, organisér, sidetal
 - Komprimér, lås/lås op, metadata, fladgør

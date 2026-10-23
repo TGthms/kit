@@ -58,6 +58,18 @@ App-Oberfläche und dieses GitHub-README gibt es in **30 Sprachen**. Wechseln Si
 
 Die Startseite gruppiert Werkzeuge nach Aufgabe (PDF-Seiten, Daten, Entwicklung …), nicht als flache Liste.
 
+### Alltag
+
+- **Symbolübersicht** — Finde und kopiere Zeichen zum Schreiben, Rechnen oder für Währungen. Suche nach Namen, Zeichen oder Unicode-Codepunkt.
+- **Unicode-Textstile** — Verwandle Buchstaben in kopierbare Unicode-Stile für Profile und Nachrichten oder wandle gestalteten Text in normalen Text zurück.
+
+### Mathematik
+
+- **Wissenschaftlicher Rechner** — Berechne Wurzeln, Potenzen, Brüche, Logarithmen und trigonometrische Funktionen mit strukturierter Eingabe in Grad oder Bogenmaß.
+- **Funktionsplotter** — Zeichne bis zu drei reelle Funktionen, verschiebe und zoome die Grafik und erkunde die zugehörige Wertetabelle.
+- **Gleichungslöser** — Löse reelle lineare und quadratische Gleichungen in x mit exakten und dezimalen Ergebnissen sowie erklärten Rechenschritten.
+- **Bruchrechner** — Addiere, subtrahiere, multipliziere und dividiere Brüche mit exakten rationalen Ergebnissen und Dezimalnäherungen.
+
 ### PDF
 - Zusammenführen, teilen, organisieren, Seitenzahlen
 - Komprimieren, sperren/entsperren, Metadaten, flachlegen

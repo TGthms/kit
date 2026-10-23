@@ -58,6 +58,18 @@ Antarmuka aplikasi dan README GitHub ini tersedia dalam **30 bahasa**. Ganti di 
 
 Layar beranda mengelompokkan alat menurut pekerjaan (halaman PDF, data, pengembangan…) alih-alih satu daftar datar.
 
+### Sehari-hari
+
+- **Penjelajah simbol** — Temukan dan salin simbol untuk tulisan, matematika, dan mata uang. Cari berdasarkan nama, karakter, atau titik kode Unicode.
+- **Gaya teks Unicode** — Ubah huruf menjadi gaya Unicode yang bisa disalin untuk profil dan pesan, atau kembalikan teks bergaya ke teks biasa.
+
+### Matematika
+
+- **Kalkulator ilmiah** — Hitung akar, pangkat, pecahan, logaritma, dan fungsi trigonometri dengan masukan terstruktur dalam derajat atau radian.
+- **Grafik fungsi** — Gambar hingga tiga fungsi nyata, geser dan perbesar grafik, serta jelajahi tabel nilai dengan masukan matematika yang sama.
+- **Pemecah persamaan** — Selesaikan persamaan linear dan kuadrat nyata dalam x, lihat jawaban eksak dan desimal, serta penjelasan setiap langkah.
+- **Kalkulator pecahan** — Jumlahkan, kurangi, kalikan, dan bagi pecahan dengan hasil rasional eksak beserta pendekatan desimalnya.
+
 ### PDF
 - Gabung, pisah, atur, nomor halaman
 - Kompres, kunci/buka, metadata, ratakan

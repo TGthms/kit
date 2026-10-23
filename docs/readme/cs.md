@@ -58,6 +58,18 @@ Rozhraní aplikace i tento GitHub README jsou v **30 jazycích**. Přepínejte v
 
 Domovská obrazovka seskupuje nástroje podle úlohy (stránky PDF, data, vývoj…) místo jedné ploché nabídky.
 
+### Každodenní
+
+- **Prohlížeč symbolů** — Najděte a kopírujte symboly pro psaní, matematiku a měny. Hledejte podle názvu, znaku nebo kódového bodu Unicode.
+- **Styly textu Unicode** — Převeďte písmena na kopírovatelné styly Unicode pro profily a zprávy nebo vraťte stylizovaný text do běžné podoby.
+
+### Matematika
+
+- **Vědecká kalkulačka** — Počítejte odmocniny, mocniny, zlomky, logaritmy a goniometrické funkce se strukturovaným vstupem ve stupních či radiánech.
+- **Grafy funkcí** — Nakreslete až tři reálné funkce, posouvejte a přibližujte graf a prozkoumejte tabulku hodnot se stejným matematickým vstupem.
+- **Řešení rovnic** — Řešte reálné lineární a kvadratické rovnice s x, zobrazte přesné i desetinné výsledky a vysvětlení jednotlivých kroků.
+- **Kalkulačka zlomků** — Sčítejte, odčítejte, násobte a dělte zlomky se zachováním přesných racionálních výsledků a desetinných aproximací.
+
 ### PDF
 - Sloučit, rozdělit, uspořádat, čísla stránek
 - Komprimovat, zamknout/odemknout, metadata, zploštit

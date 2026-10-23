@@ -58,6 +58,18 @@ Giao diện ứng dụng và README GitHub này có **30 ngôn ngữ**. Đổi t
 
 Màn hình chính nhóm công cụ theo việc (trang PDF, dữ liệu, phát triển…) thay vì một danh sách phẳng.
 
+### Hằng ngày
+
+- **Tìm ký hiệu** — Tìm và sao chép ký hiệu cho văn bản, toán học và tiền tệ. Tìm theo tên, ký tự hoặc mã Unicode của ký hiệu.
+- **Kiểu chữ Unicode** — Đổi chữ thành kiểu Unicode có thể sao chép cho hồ sơ và tin nhắn, hoặc chuyển chữ cách điệu về văn bản thường.
+
+### Toán học
+
+- **Máy tính khoa học** — Tính căn, lũy thừa, phân số, logarit và hàm lượng giác bằng ô nhập toán có cấu trúc, hỗ trợ độ và radian.
+- **Đồ thị hàm số** — Vẽ tối đa ba hàm số thực, kéo và thu phóng đồ thị, xem bảng giá trị bằng cùng cách nhập công thức thông minh.
+- **Giải phương trình** — Giải phương trình bậc nhất và bậc hai thực theo x, xem nghiệm chính xác và thập phân cùng giải thích từng bước.
+- **Máy tính phân số** — Cộng, trừ, nhân và chia phân số, giữ kết quả hữu tỉ chính xác bên cạnh giá trị gần đúng dạng thập phân.
+
 ### PDF
 - Gộp, tách, sắp xếp, số trang
 - Nén, khóa/mở, siêu dữ liệu, làm phẳng

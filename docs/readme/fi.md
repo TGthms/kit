@@ -58,6 +58,18 @@ Sovelluksen käyttöliittymä ja tämä GitHub-README ovat saatavilla **30 kiele
 
 Etusivu ryhmittelee työkalut tehtävän mukaan (PDF-sivut, data, kehitys…) yhden litteän listan sijaan.
 
+### Arki
+
+- **Symboliselain** — Etsi ja kopioi symboleja kirjoittamiseen, matematiikkaan ja valuuttoihin nimen, merkin tai Unicode-koodipisteen perusteella.
+- **Unicode-tekstityylit** — Muunna kirjaimet kopioitaviksi Unicode-tyyleiksi profiileihin ja viesteihin tai palauta tyylitelty teksti tavalliseksi tekstiksi.
+
+### Matematiikka
+
+- **Tieteislaskin** — Laske juuria, potensseja, murtolukuja, logaritmeja ja trigonometrisia funktioita jäsennellyllä syötöllä asteina tai radiaaneina.
+- **Funktiopiirturi** — Piirrä enintään kolme reaalifunktiota, siirrä ja suurenna kuvaajaa ja tutki arvotaulukkoa samalla matemaattisella syötöllä.
+- **Yhtälönratkaisija** — Ratkaise reaaliset ensimmäisen ja toisen asteen yhtälöt muuttujan x suhteen, näe tarkat ja desimaalitulokset sekä vaiheiden selitykset.
+- **Murtolukulaskin** — Laske murtolukujen yhteen-, vähennys-, kerto- ja jakolaskuja tarkoilla rationaalituloksilla ja desimaalilikiarvoilla.
+
 ### PDF
 - Yhdistä, jaa, järjestä, sivunumerot
 - Pakkaa, lukitse/avaa, metatiedot, litistä
