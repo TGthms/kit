@@ -3,9 +3,10 @@
 import "@testing-library/jest-dom/vitest";
 import { createElement, type ReactNode } from "react";
 import { NextIntlClientProvider } from "next-intl";
-import { cleanup, fireEvent, render, screen } from "@testing-library/react";
+import { act, cleanup, fireEvent, render, screen } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { activeCategory, isActive, SideNav, TabBar } from "./tab-bar";
+import { updateMathKeyboard } from "@/lib/math/keyboard";
 import en from "../../../messages/en.json";
 import { useAppearanceStore } from "@/stores/appearance-store";
 
@@ -108,6 +109,13 @@ describe("navigation sections", () => {
 });
 
 describe("TabBar highlight", () => {
+  it("hides navigation for the SDK keyboard even without a visual-viewport resize",()=>{
+    renderTabBar("/");
+    act(()=>updateMathKeyboard(300));
+    expect(document.querySelector(".floating-nav")).toHaveAttribute("aria-hidden","true");
+    act(()=>updateMathKeyboard(0));
+    expect(document.querySelector(".floating-nav")).not.toHaveAttribute("aria-hidden");
+  });
   it("uses the original capsule by default and when an opted-in browser lacks WebGPU", () => {
     const { unmount } = renderTabBar("/favorites");
     expect(document.querySelector(".floating-nav-face")).toBeInTheDocument();

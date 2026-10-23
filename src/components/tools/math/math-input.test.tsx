@@ -7,7 +7,8 @@ import {
   waitFor,
 } from "@testing-library/react";
 import { NextIntlClientProvider } from "next-intl";
-import { afterEach, describe, expect, it, vi } from "vitest";
+import { useState } from "react";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { MathInput } from "./math-input";
 import en from "../../../../messages/en.json";
 
@@ -31,7 +32,14 @@ vi.mock("mathlive", () => {
     customElements.define("math-field", Mathfield);
   return { MathfieldElement: Mathfield };
 });
-afterEach(cleanup);
+beforeEach(() => {
+  vi.stubGlobal("matchMedia", () => ({ matches: false }));
+  vi.stubGlobal("scrollBy", vi.fn());
+});
+afterEach(() => {
+  cleanup();
+  vi.unstubAllGlobals();
+});
 async function editor(props: Partial<Parameters<typeof MathInput>[0]> = {}) {
   const change = vi.fn(),
     commit = vi.fn();
@@ -76,6 +84,80 @@ describe("structured math input", () => {
     field.addEventListener("keydown", (event) => event.stopPropagation());
     fireEvent.keyDown(field, { key: "Enter" });
     expect(commit).toHaveBeenCalledOnce();
+  });
+  it("handles the virtual Return input as a commit without committing on blur", async () => {
+    const { field, commit } = await editor();
+    const event = new InputEvent("beforeinput", {
+      bubbles: true,
+      cancelable: true,
+      inputType: "insertLineBreak",
+    });
+    expect(fireEvent(field, event)).toBe(false);
+    expect(commit).toHaveBeenCalledOnce();
+    fireEvent.change(field);
+    fireEvent.blur(field);
+    expect(commit).toHaveBeenCalledOnce();
+  });
+  it("focuses a newly added editor before returning from virtual Return", async () => {
+    await editor(); // Warm the same locally loaded SDK used by the first row.
+    cleanup();
+    function Rows() {
+      const [next, setNext] = useState(false);
+      return (
+        <NextIntlClientProvider locale="en" messages={en}>
+          <MathInput
+            id="first-row"
+            label="f(x)"
+            value="x"
+            onCommit={() => setNext(true)}
+          />
+          {next && <MathInput id="next-row" label="g(x)" value="" autoFocus />}
+        </NextIntlClientProvider>
+      );
+    }
+    render(<Rows />);
+    act(() => {
+      document.getElementById("first-row")!.dispatchEvent(
+        new InputEvent("beforeinput", {
+          bubbles: true,
+          cancelable: true,
+          inputType: "insertLineBreak",
+        }),
+      );
+      expect(document.activeElement?.id).toBe("next-row");
+    });
+  });
+  it("uses compact fields without duplicating the guide and hints", async () => {
+    const { queryByText, field } = await editor({ compact: true });
+    expect(queryByText(en.math.inputHint)).toBeNull();
+    expect(field.getAttribute("aria-describedby")).toBeNull();
+  });
+  it("shows the touch keyboard immediately and leaves the SDK delay disabled", async () => {
+    vi.stubGlobal("matchMedia", () => ({ matches: true }));
+    const show = vi.fn(),
+      hide = vi.fn();
+    Object.defineProperty(window, "mathVirtualKeyboard", {
+      configurable: true,
+      value: {
+        show,
+        hide,
+        visible: true,
+        boundingRect: { height: 240 },
+        addEventListener() {},
+      },
+    });
+    const { field } = await editor();
+    fireEvent.focus(field);
+    expect(show).toHaveBeenCalledWith({ animate: false });
+    expect(
+      (field as unknown as { mathVirtualKeyboardPolicy: string })
+        .mathVirtualKeyboardPolicy,
+    ).toBe("manual");
+    expect(
+      document.documentElement.style.getPropertyValue(
+        "--kit-math-keyboard-height",
+      ),
+    ).toBe("240px");
   });
   it("does not replace a matching value during a normal rerender", async () => {
     const { field, rerender } = await editor();

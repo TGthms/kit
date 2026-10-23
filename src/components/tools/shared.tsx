@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { useHistoryStore } from "@/stores/history-store";
 import { notifyHistoryEnabled, notifyHistoryOff, notifySuccess } from "@/lib/notify";
 import { SHORTCUT_RUN_EVENT } from "@/components/layout/shortcuts-provider";
+import { MathKeyboardAccessory } from "./math/keyboard-accessory";
 import { downloadBlob } from "@/lib/utils";
 
 export async function loadPdfjs() {
@@ -205,6 +206,7 @@ export function ToolShell({
 }) {
   return (
     <div data-tool={toolId}>
+      {["scientific-calculator", "function-grapher", "equation-solver", "fraction-calculator"].includes(toolId) && <MathKeyboardAccessory/>}
       <div className="space-y-6">{children}</div>
     </div>
   );

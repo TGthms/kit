@@ -5,6 +5,7 @@ import { useTranslations } from "next-intl";
 import { Link } from "@/lib/i18n/navigation";
 import { Home, History, Star, Settings, FileText, ImageIcon, AudioLines, Clapperboard, Database, Type, Code2, Sigma, Calculator, ArrowLeftRight } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { MATH_KEYBOARD_EVENT, mathKeyboardHeight } from "@/lib/math/keyboard";
 import { FloatingNav } from "@/components/ui/floating-nav";
 import { GlidingPill, useGlidingPill } from "@/components/ui/gliding-pill";
 import {
@@ -108,17 +109,18 @@ function useKeyboardHidesTabBar() {
 
   useEffect(() => {
     const visual = window.visualViewport;
-    if (!visual) return;
     const update = () => {
       const viewportHeight = window.innerHeight;
-      setHidden(shouldHideFloatingTabBar(keyboardCoverPx(viewportHeight, visual), viewportHeight));
+      setHidden(shouldHideFloatingTabBar(Math.max(mathKeyboardHeight(),keyboardCoverPx(viewportHeight, visual)), viewportHeight));
     };
     update();
-    visual.addEventListener("resize", update);
-    visual.addEventListener("scroll", update);
+    window.addEventListener(MATH_KEYBOARD_EVENT,update);
+    visual?.addEventListener("resize", update);
+    visual?.addEventListener("scroll", update);
     return () => {
-      visual.removeEventListener("resize", update);
-      visual.removeEventListener("scroll", update);
+      window.removeEventListener(MATH_KEYBOARD_EVENT,update);
+      visual?.removeEventListener("resize", update);
+      visual?.removeEventListener("scroll", update);
     };
   }, []);
 
