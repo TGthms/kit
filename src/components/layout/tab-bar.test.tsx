@@ -98,11 +98,12 @@ describe("navigation sections", () => {
     expect(activeCategory("/tools/media-convert/")).toBe("video");
   });
 
-  it("offers all nine categories and highlights the tool's category on desktop", () => {
+  it("offers all ten categories and highlights the tool's category on desktop", () => {
     render(createElement(NextIntlClientProvider, { locale: "en", messages } as never, createElement(SideNav, { pathname: "/tools/pdf-merge/" })));
     expect(screen.getByRole("link", { name: "PDF" })).toHaveAttribute("aria-current", "location");
     expect(screen.getByRole("link", { name: "Home" })).toHaveAttribute("aria-current", "location");
-    expect(screen.getAllByRole("link")).toHaveLength(13);
+    expect(screen.getAllByRole("link")).toHaveLength(14);
+    expect(screen.getByRole("link", { name: "Math" })).toHaveAttribute("href", "/c/math/");
   });
 });
 

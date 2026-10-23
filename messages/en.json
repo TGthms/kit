@@ -162,7 +162,8 @@
       "money": "Money",
       "health": "Health",
       "everyday-text": "Everyday text",
-      "quick": "Quick"
+      "quick": "Quick",
+      "calculate": "Calculate"
     },
     "greeting": {
       "morning": "Good morning — start the day at your own pace.",
@@ -432,7 +433,9 @@
     "converter": "Everyday converters",
     "converterDesc": "Units, currencies, and more—organized for quick conversions",
     "everyday": "Everyday tools",
-    "everydayDesc": "Practical converters, clocks, calculators, and quick helpers"
+    "everydayDesc": "Practical converters, clocks, calculators, and quick helpers",
+    "math": "Math",
+    "mathDesc": "Calculate, graph functions, and explore equations with clear explanations"
   },
   "history": {
     "title": "History",
@@ -1914,6 +1917,67 @@
       "normalized": "Normalized",
       "record": "Record check",
       "saved": "Saved to history."
+    },
+    "symbol-browser": {
+      "name": "Symbol browser",
+      "description": "Find and copy useful symbols for writing, mathematics, currencies, and more. Search by name, character, or Unicode code point.",
+      "summary": "Find and copy useful symbols for writing, mathematics, currencies, and more. Search by name, character, or Unicode code point.",
+      "keywords": "Symbol browser",
+      "searchHint": "Search a name, symbol, or U+ code…",
+      "tapToCopy": "Tap a symbol to copy it.",
+      "groupPopular": "Popular",
+      "groupArrows": "Arrows",
+      "groupMath": "Math",
+      "groupPunctuation": "Punctuation",
+      "groupCurrency": "Currencies",
+      "groupGreek": "Greek",
+      "groupShapes": "Shapes"
+    },
+    "unicode-styles": {
+      "name": "Unicode text styles",
+      "description": "Turn ordinary letters into copyable Unicode text styles for profiles, captions, and messages, or convert styled text back to plain text.",
+      "summary": "Turn ordinary letters into copyable Unicode text styles for profiles, captions, and messages, or convert styled text back to plain text.",
+      "keywords": "Unicode text styles",
+      "placeholder": "Type or paste your text…",
+      "note": "These are Unicode characters, not fonts. Mainly Latin letters and digits change; other characters stay as entered. Screen readers, search, and some apps may not read them well.",
+      "plain": "Plain text",
+      "styleLabel": "Text styles",
+      "styleBold": "Bold",
+      "styleItalic": "Italic",
+      "styleBoldItalic": "Bold italic",
+      "styleScript": "Script",
+      "styleBoldScript": "Bold script",
+      "styleFraktur": "Fraktur",
+      "styleDoubleStruck": "Double-struck",
+      "styleSans": "Sans serif",
+      "styleSansBold": "Bold sans serif",
+      "styleMonospace": "Monospace",
+      "styleCircled": "Circled",
+      "styleFullwidth": "Fullwidth"
+    },
+    "scientific-calculator": {
+      "name": "Scientific calculator",
+      "description": "Calculate with roots, powers, fractions, logarithms, and trigonometric functions using a structured math editor with degree and radian modes.",
+      "summary": "Calculate with roots, powers, fractions, logarithms, and trigonometric functions using a structured math editor with degree and radian modes.",
+      "keywords": "Scientific calculator"
+    },
+    "function-grapher": {
+      "name": "Function grapher",
+      "description": "Plot up to three real functions, pan and zoom the graph, and explore a table of values using the same intelligent math input.",
+      "summary": "Plot up to three real functions, pan and zoom the graph, and explore a table of values using the same intelligent math input.",
+      "keywords": "Function grapher"
+    },
+    "equation-solver": {
+      "name": "Equation solver",
+      "description": "Solve real linear and quadratic equations in x, see exact and decimal answers, and expand explanations of each algebra step.",
+      "summary": "Solve real linear and quadratic equations in x, see exact and decimal answers, and expand explanations of each algebra step.",
+      "keywords": "Equation solver"
+    },
+    "fraction-calculator": {
+      "name": "Fraction calculator",
+      "description": "Add, subtract, multiply, and divide fractions with structured input, keeping exact rational results alongside decimal approximations.",
+      "summary": "Add, subtract, multiply, and divide fractions with structured input, keeping exact rational results alongside decimal approximations.",
+      "keywords": "Fraction calculator"
     }
   },
   "how": {
@@ -2091,5 +2155,49 @@
   },
   "toolPage": {
     "related": "Related tools"
+  },
+  "math": {
+    "inputHint": "Type sqrt for √, / for a fraction, and ^ for a power. Use → or Space to leave an exponent.",
+    "angle": "Angle unit",
+    "radians": "Radians",
+    "degrees": "Degrees",
+    "expression": "Expression",
+    "backspace": "Delete previous character",
+    "calculate": "Calculate",
+    "decimal": "Decimal approximation",
+    "calculateHint": "Enter an expression, then press = or Enter.",
+    "fractionHint": "Use fractions, integers, or terminating decimals. Results remain exact.",
+    "equation": "Equation in x",
+    "solve": "Solve",
+    "solverScope": "Real linear and quadratic equations in x. An expression without = is treated as = 0.",
+    "allReal": "All real numbers are solutions.",
+    "noReal": "No real solutions.",
+    "solutions": "Solutions",
+    "showSteps": "Show steps and explanations",
+    "addFunction": "Add function",
+    "graphScope": "Up to three functions of x. Supports roots, powers, logs, absolute values, and trigonometry.",
+    "zoomIn": "Zoom in",
+    "zoomOut": "Zoom out",
+    "graphLabel": "Interactive function graph",
+    "graphHint": "Drag to pan; pinch to zoom. With the graph focused, use arrows, +/−, or Home to reset.",
+    "valueTable": "Table of values",
+    "errors": {
+      "invalid": "Check the expression and complete any empty boxes.",
+      "domain": "The result is undefined or outside the real numbers.",
+      "unsupported": "This function is not supported here.",
+      "polynomialOnly": "Enter a linear or quadratic polynomial equation in x. Variable denominators and higher powers are not supported.",
+      "rationalOnly": "Use an expression with a rational result.",
+      "timeout": "This calculation took too long. Try a simpler expression.",
+      "unavailable": "The math engine could not load. Reconnect or repair saved offline files."
+    },
+    "steps": {
+      "collect": "Move everything to the left, expand brackets, and collect like terms.",
+      "isolate": "Move the constant to the right by subtracting it from both sides.",
+      "divide": "Divide both sides by the coefficient of x.",
+      "coefficients": "Match the coefficients to ax² + bx + c = 0.",
+      "discriminant": "Calculate the discriminant Δ = b² − 4ac.",
+      "negativeDiscriminant": "A negative discriminant means there are no real roots.",
+      "quadraticFormula": "Apply the quadratic formula and simplify each result."
+    }
   }
 }

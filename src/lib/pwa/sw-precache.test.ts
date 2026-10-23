@@ -41,6 +41,21 @@ function writeAppPages(root: string, locale: string) {
 }
 
 describe("sw-precache manifest", () => {
+  it("keeps the math worker, local engine and fonts offline at either deployment base", () => {
+    const root = mkdtempSync(join(tmpdir(), "kit-precache-math-"));
+    try {
+      writeAppPages(root, "en");
+      mkdirSync(join(root, "vendor/math/fonts"), { recursive: true });
+      for (const path of ["math-worker.js", "vendor/math/compute-engine.js", "vendor/math/fonts/KaTeX_Main-Regular.woff2", "vendor/math/mathlive-LICENSE.txt"]) writeFileSync(join(root, path), "asset");
+      for (const base of ["", "/kit"]) {
+        const manifest = buildPrecacheManifest(root, base) as unknown as Manifest;
+        for (const path of ["/math-worker.js", "/vendor/math/compute-engine.js", "/vendor/math/fonts/KaTeX_Main-Regular.woff2"]) expect(manifest.core).toContain(`${base}${path}`);
+        expect(manifest.core.some((url) => url.includes("LICENSE"))).toBe(false);
+        expect(manifest.engines).toEqual([]);
+      }
+    } finally { rmSync(root, { recursive: true, force: true }); }
+  });
+
   it("lists core assets, chrome for every locale, and tools only under that locale", () => {
     const root = mkdtempSync(join(tmpdir(), "kit-precache-"));
     mkdirSync(join(root, "_next/static/chunks"), { recursive: true });

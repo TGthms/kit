@@ -162,7 +162,8 @@
       "money": "Tiền",
       "everyday-text": "Văn bản hằng ngày",
       "quick": "Nhanh",
-      "health": "Sức khỏe"
+      "health": "Sức khỏe",
+      "calculate": "Tính toán"
     },
     "greeting": {
       "morning": "Chào buổi sáng — ngày mới cứ bắt đầu chậm cũng được.",
@@ -432,7 +433,9 @@
     "everyday": "Hằng ngày",
     "everydayDesc": "Công cụ chuyển đổi, đồng hồ, máy tính và tiện ích nhanh thiết thực",
     "converter": "Bộ chuyển đổi hằng ngày",
-    "converterDesc": "Đơn vị, tiền tệ và nhiều hơn — sắp xếp để chuyển đổi nhanh"
+    "converterDesc": "Đơn vị, tiền tệ và nhiều hơn — sắp xếp để chuyển đổi nhanh",
+    "math": "Toán học",
+    "mathDesc": "Tính toán, vẽ hàm số và khám phá phương trình với lời giải thích"
   },
   "history": {
     "title": "Lịch sử",
@@ -1914,6 +1917,67 @@
       "normalized": "Đã chuẩn hóa",
       "record": "Lưu kết quả kiểm tra",
       "saved": "Đã lưu vào lịch sử."
+    },
+    "symbol-browser": {
+      "name": "Tìm ký hiệu",
+      "description": "Tìm và sao chép ký hiệu cho văn bản, toán học và tiền tệ. Tìm theo tên, ký tự hoặc mã Unicode của ký hiệu.",
+      "summary": "Tìm và sao chép ký hiệu cho văn bản, toán học và tiền tệ. Tìm theo tên, ký tự hoặc mã Unicode của ký hiệu.",
+      "keywords": "Tìm ký hiệu",
+      "searchHint": "Tìm tên, ký hiệu hoặc mã U+…",
+      "tapToCopy": "Chạm ký hiệu để sao chép.",
+      "groupPopular": "Phổ biến",
+      "groupArrows": "Mũi tên",
+      "groupMath": "Toán học",
+      "groupPunctuation": "Dấu câu",
+      "groupCurrency": "Tiền tệ",
+      "groupGreek": "Hy Lạp",
+      "groupShapes": "Hình dạng"
+    },
+    "unicode-styles": {
+      "name": "Kiểu chữ Unicode",
+      "description": "Đổi chữ thành kiểu Unicode có thể sao chép cho hồ sơ và tin nhắn, hoặc chuyển chữ cách điệu về văn bản thường.",
+      "summary": "Đổi chữ thành kiểu Unicode có thể sao chép cho hồ sơ và tin nhắn, hoặc chuyển chữ cách điệu về văn bản thường.",
+      "keywords": "Kiểu chữ Unicode",
+      "placeholder": "Nhập hoặc dán văn bản…",
+      "note": "Đây là ký tự Unicode, không phải phông chữ. Chủ yếu chữ Latin và chữ số thay đổi; ký tự khác giữ nguyên. Trình đọc màn hình, tìm kiếm và một số ứng dụng có thể đọc không tốt.",
+      "plain": "Văn bản thường",
+      "styleLabel": "Kiểu văn bản",
+      "styleBold": "Đậm",
+      "styleItalic": "Nghiêng",
+      "styleBoldItalic": "Đậm nghiêng",
+      "styleScript": "Viết tay",
+      "styleBoldScript": "Viết tay đậm",
+      "styleFraktur": "Chữ Gothic",
+      "styleDoubleStruck": "Nét đôi",
+      "styleSans": "Không chân",
+      "styleSansBold": "Không chân đậm",
+      "styleMonospace": "Đơn cách",
+      "styleCircled": "Trong vòng tròn",
+      "styleFullwidth": "Độ rộng đầy đủ"
+    },
+    "scientific-calculator": {
+      "name": "Máy tính khoa học",
+      "description": "Tính căn, lũy thừa, phân số, logarit và hàm lượng giác bằng ô nhập toán có cấu trúc, hỗ trợ độ và radian.",
+      "summary": "Tính căn, lũy thừa, phân số, logarit và hàm lượng giác bằng ô nhập toán có cấu trúc, hỗ trợ độ và radian.",
+      "keywords": "Máy tính khoa học"
+    },
+    "function-grapher": {
+      "name": "Đồ thị hàm số",
+      "description": "Vẽ tối đa ba hàm số thực, kéo và thu phóng đồ thị, xem bảng giá trị bằng cùng cách nhập công thức thông minh.",
+      "summary": "Vẽ tối đa ba hàm số thực, kéo và thu phóng đồ thị, xem bảng giá trị bằng cùng cách nhập công thức thông minh.",
+      "keywords": "Đồ thị hàm số"
+    },
+    "equation-solver": {
+      "name": "Giải phương trình",
+      "description": "Giải phương trình bậc nhất và bậc hai thực theo x, xem nghiệm chính xác và thập phân cùng giải thích từng bước.",
+      "summary": "Giải phương trình bậc nhất và bậc hai thực theo x, xem nghiệm chính xác và thập phân cùng giải thích từng bước.",
+      "keywords": "Giải phương trình"
+    },
+    "fraction-calculator": {
+      "name": "Máy tính phân số",
+      "description": "Cộng, trừ, nhân và chia phân số, giữ kết quả hữu tỉ chính xác bên cạnh giá trị gần đúng dạng thập phân.",
+      "summary": "Cộng, trừ, nhân và chia phân số, giữ kết quả hữu tỉ chính xác bên cạnh giá trị gần đúng dạng thập phân.",
+      "keywords": "Máy tính phân số"
     }
   },
   "legal": {
@@ -2091,5 +2155,49 @@
   },
   "toolPage": {
     "related": "Công cụ tương tự"
+  },
+  "math": {
+    "inputHint": "Gõ sqrt để nhập √, / cho phân số, ^ cho lũy thừa. Dùng → hoặc Dấu cách để rời số mũ.",
+    "angle": "Đơn vị góc",
+    "radians": "Radian",
+    "degrees": "Độ",
+    "expression": "Biểu thức",
+    "backspace": "Xóa ký tự trước",
+    "calculate": "Tính",
+    "decimal": "Giá trị thập phân gần đúng",
+    "calculateHint": "Nhập biểu thức rồi nhấn = hoặc Enter.",
+    "fractionHint": "Dùng phân số, số nguyên hoặc số thập phân hữu hạn. Kết quả vẫn chính xác.",
+    "equation": "Phương trình theo x",
+    "solve": "Giải",
+    "solverScope": "Phương trình bậc nhất và bậc hai thực theo x. Không có = được hiểu là = 0.",
+    "allReal": "Mọi số thực đều là nghiệm.",
+    "noReal": "Không có nghiệm thực.",
+    "solutions": "Nghiệm",
+    "showSteps": "Hiện các bước và giải thích",
+    "addFunction": "Thêm hàm số",
+    "graphScope": "Tối đa ba hàm của x: căn, lũy thừa, logarit, trị tuyệt đối và lượng giác.",
+    "zoomIn": "Phóng to",
+    "zoomOut": "Thu nhỏ",
+    "graphLabel": "Đồ thị hàm số tương tác",
+    "graphHint": "Kéo để di chuyển, chụm ngón để thu phóng. Khi đồ thị có tiêu điểm: phím mũi tên, +/− hoặc Home để đặt lại.",
+    "valueTable": "Bảng giá trị",
+    "errors": {
+      "invalid": "Kiểm tra biểu thức và điền các ô trống.",
+      "domain": "Kết quả không xác định hoặc không thuộc số thực.",
+      "unsupported": "Hàm này chưa được hỗ trợ tại đây.",
+      "polynomialOnly": "Nhập phương trình đa thức bậc nhất hoặc hai theo x, không có mẫu biến hoặc lũy thừa cao hơn.",
+      "rationalOnly": "Dùng biểu thức có kết quả hữu tỉ.",
+      "timeout": "Phép tính quá lâu. Hãy thử biểu thức đơn giản hơn.",
+      "unavailable": "Không tải được bộ máy toán. Kết nối lại hoặc sửa tệp ngoại tuyến."
+    },
+    "steps": {
+      "collect": "Chuyển tất cả sang trái, khai triển ngoặc và thu gọn hạng tử đồng dạng.",
+      "isolate": "Trừ hằng số ở cả hai vế để chuyển nó sang phải.",
+      "divide": "Chia cả hai vế cho hệ số của x.",
+      "coefficients": "Xác định hệ số trong ax² + bx + c = 0.",
+      "discriminant": "Tính biệt thức Δ = b² − 4ac.",
+      "negativeDiscriminant": "Biệt thức âm nghĩa là không có nghiệm thực.",
+      "quadraticFormula": "Áp dụng công thức nghiệm bậc hai và rút gọn từng kết quả."
+    }
   }
 }

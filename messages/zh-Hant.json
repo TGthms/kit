@@ -162,7 +162,8 @@
       "money": "金錢",
       "everyday-text": "日常文字",
       "quick": "快速",
-      "health": "健康"
+      "health": "健康",
+      "calculate": "計算"
     },
     "greeting": {
       "morning": "早安。今天就照自己的步調開始吧。",
@@ -432,7 +433,9 @@
     "everyday": "日常",
     "everydayDesc": "實用的轉換器、時鐘、計算器與快速工具",
     "converter": "日常轉換器",
-    "converterDesc": "單位、貨幣等內容，依快速轉換需求整理"
+    "converterDesc": "單位、貨幣等內容，依快速轉換需求整理",
+    "math": "數學",
+    "mathDesc": "計算、繪製函數圖形，並透過清楚講解學習方程式"
   },
   "history": {
     "title": "歷史记錄",
@@ -1914,6 +1917,67 @@
       "normalized": "正規化結果",
       "record": "記錄檢查",
       "saved": "已儲存至歷史記錄。"
+    },
+    "symbol-browser": {
+      "name": "符號查找",
+      "description": "尋找並複製寫作、數學、貨幣等常用符號。可依名稱、符號本身或 Unicode 碼位搜尋，輕點即可複製到剪貼簿。",
+      "summary": "尋找並複製寫作、數學、貨幣等常用符號。可依名稱、符號本身或 Unicode 碼位搜尋，輕點即可複製到剪貼簿。",
+      "keywords": "符號查找",
+      "searchHint": "搜尋名稱、符號或 U+ 碼位…",
+      "tapToCopy": "輕點符號即可複製。",
+      "groupPopular": "常用",
+      "groupArrows": "箭頭",
+      "groupMath": "數學",
+      "groupPunctuation": "標點",
+      "groupCurrency": "貨幣",
+      "groupGreek": "希臘字母",
+      "groupShapes": "圖形"
+    },
+    "unicode-styles": {
+      "name": "Unicode 文字樣式",
+      "description": "把一般字母和數字轉成可複製的 Unicode 文字樣式，用於社群個人檔案、貼文和訊息，也可還原為一般文字。",
+      "summary": "把一般字母和數字轉成可複製的 Unicode 文字樣式，用於社群個人檔案、貼文和訊息，也可還原為一般文字。",
+      "keywords": "Unicode 文字樣式",
+      "placeholder": "輸入或貼上文字…",
+      "note": "這些是 Unicode 字元，並非字型。主要轉換拉丁字母和數字，其他字元保持原樣。螢幕閱讀器、搜尋和部分應用程式可能無法正常識別。",
+      "plain": "一般文字",
+      "styleLabel": "文字樣式",
+      "styleBold": "粗體",
+      "styleItalic": "斜體",
+      "styleBoldItalic": "粗斜體",
+      "styleScript": "手寫體",
+      "styleBoldScript": "粗手寫體",
+      "styleFraktur": "哥德體",
+      "styleDoubleStruck": "雙線體",
+      "styleSans": "無襯線",
+      "styleSansBold": "粗無襯線",
+      "styleMonospace": "等寬",
+      "styleCircled": "圈字",
+      "styleFullwidth": "全形"
+    },
+    "scientific-calculator": {
+      "name": "科學計算機",
+      "description": "使用結構化數學輸入計算根式、冪、分數、對數及三角函數。支援角度制與弧度制，並顯示精確值及小數近似值。",
+      "summary": "使用結構化數學輸入計算根式、冪、分數、對數及三角函數。支援角度制與弧度制，並顯示精確值及小數近似值。",
+      "keywords": "科學計算機"
+    },
+    "function-grapher": {
+      "name": "函數繪圖",
+      "description": "繪製最多三個實函數，拖曳平移、縮放圖形，並查看數值表。與其他數學工具共用智慧公式輸入，探索函數變化。",
+      "summary": "繪製最多三個實函數，拖曳平移、縮放圖形，並查看數值表。與其他數學工具共用智慧公式輸入，探索函數變化。",
+      "keywords": "函數繪圖"
+    },
+    "equation-solver": {
+      "name": "方程式求解",
+      "description": "求解關於 x 的實數一次及二次方程式，查看精確解和小數近似值，並展開每一步代數變換的學習講解。",
+      "summary": "求解關於 x 的實數一次及二次方程式，查看精確解和小數近似值，並展開每一步代數變換的學習講解。",
+      "keywords": "方程式求解"
+    },
+    "fraction-calculator": {
+      "name": "分數計算機",
+      "description": "透過結構化輸入進行分數加減乘除，保留精確的有理數結果，同時提供小數近似值，方便核對與繼續計算。",
+      "summary": "透過結構化輸入進行分數加減乘除，保留精確的有理數結果，同時提供小數近似值，方便核對與繼續計算。",
+      "keywords": "分數計算機"
     }
   },
   "legal": {
@@ -2091,5 +2155,49 @@
   },
   "toolPage": {
     "related": "相關工具"
+  },
+  "math": {
+    "inputHint": "輸入 sqrt 變成 √，/ 輸入分數，^ 輸入指數。用 → 或空白鍵離開指數。",
+    "angle": "角度單位",
+    "radians": "弧度",
+    "degrees": "角度",
+    "expression": "運算式",
+    "backspace": "刪除前一個字元",
+    "calculate": "計算",
+    "decimal": "小數近似值",
+    "calculateHint": "輸入運算式，再按 = 或 Enter 計算。",
+    "fractionHint": "支援分數、整數和有限小數，結果保持精確。",
+    "equation": "關於 x 的方程式",
+    "solve": "求解",
+    "solverScope": "支援實數一次及二次方程式。沒有等號的運算式視為 = 0。",
+    "allReal": "所有實數皆為解。",
+    "noReal": "無實數解。",
+    "solutions": "解",
+    "showSteps": "顯示步驟與講解",
+    "addFunction": "新增函數",
+    "graphScope": "最多三個關於 x 的函數，支援根式、冪、對數、絕對值和三角函數。",
+    "zoomIn": "放大",
+    "zoomOut": "縮小",
+    "graphLabel": "可互動的函數圖形",
+    "graphHint": "拖曳平移，雙指縮放。聚焦圖形後可用方向鍵、+/−，按 Home 重設。",
+    "valueTable": "數值表",
+    "errors": {
+      "invalid": "請檢查運算式並填妥空位。",
+      "domain": "結果未定義或超出實數範圍。",
+      "unsupported": "此處尚不支援此函數。",
+      "polynomialOnly": "請輸入關於 x 的一次或二次多項式方程式，不支援含變數的分母及更高次冪。",
+      "rationalOnly": "請使用結果為有理數的運算式。",
+      "timeout": "計算耗時過長，請嘗試更簡單的運算式。",
+      "unavailable": "數學引擎未能載入，請連線重試或修復離線檔案。"
+    },
+    "steps": {
+      "collect": "將各項移到等號左側，展開括號並合併同類項。",
+      "isolate": "兩邊同時減去常數項，將其移到右側。",
+      "divide": "兩邊同時除以 x 的係數。",
+      "coefficients": "按 ax² + bx + c = 0 識別各項係數。",
+      "discriminant": "計算判別式 Δ = b² − 4ac。",
+      "negativeDiscriminant": "判別式為負數，因此沒有實數根。",
+      "quadraticFormula": "代入二次方程式求根公式並化簡各個結果。"
+    }
   }
 }

@@ -162,7 +162,8 @@
       "money": "Pengar",
       "everyday-text": "Vardagstext",
       "quick": "Snabbt",
-      "health": "Hälsa"
+      "health": "Hälsa",
+      "calculate": "Beräkna"
     },
     "greeting": {
       "morning": "God morgon — börja dagen i din egen takt.",
@@ -432,7 +433,9 @@
     "everyday": "Vardag",
     "everydayDesc": "Praktiska konverterare, klockor, kalkylatorer och snabbverktyg",
     "converter": "Vardagsomvandlare",
-    "converterDesc": "Enheter, valutor och mer – samlat för snabba omvandlingar"
+    "converterDesc": "Enheter, valutor och mer – samlat för snabba omvandlingar",
+    "math": "Matematik",
+    "mathDesc": "Beräkna, rita funktioner och utforska ekvationer med förklaringar"
   },
   "history": {
     "title": "Historik",
@@ -1914,6 +1917,67 @@
       "normalized": "Normaliserat",
       "record": "Spara kontroll",
       "saved": "Sparad i historiken."
+    },
+    "symbol-browser": {
+      "name": "Symbolbläddrare",
+      "description": "Hitta och kopiera symboler för text, matematik och valutor. Sök efter namn, tecken eller Unicode-kodpunkt.",
+      "summary": "Hitta och kopiera symboler för text, matematik och valutor. Sök efter namn, tecken eller Unicode-kodpunkt.",
+      "keywords": "Symbolbläddrare",
+      "searchHint": "Sök namn, symbol eller U+-kod…",
+      "tapToCopy": "Tryck på en symbol för att kopiera den.",
+      "groupPopular": "Vanliga",
+      "groupArrows": "Pilar",
+      "groupMath": "Matematik",
+      "groupPunctuation": "Skiljetecken",
+      "groupCurrency": "Valutor",
+      "groupGreek": "Grekiska",
+      "groupShapes": "Former"
+    },
+    "unicode-styles": {
+      "name": "Unicode-textstilar",
+      "description": "Gör bokstäver till kopierbara Unicode-stilar för profiler och meddelanden, eller återställ vanlig text från formaterad text.",
+      "summary": "Gör bokstäver till kopierbara Unicode-stilar för profiler och meddelanden, eller återställ vanlig text från formaterad text.",
+      "keywords": "Unicode-textstilar",
+      "placeholder": "Skriv eller klistra in text…",
+      "note": "Detta är Unicode-tecken, inte typsnitt. Främst latinska bokstäver och siffror ändras; övriga tecken bevaras. Skärmläsare, sökning och vissa appar kan ha svårt att läsa dem.",
+      "plain": "Vanlig text",
+      "styleLabel": "Textstilar",
+      "styleBold": "Fet",
+      "styleItalic": "Kursiv",
+      "styleBoldItalic": "Fet kursiv",
+      "styleScript": "Skrivstil",
+      "styleBoldScript": "Fet skrivstil",
+      "styleFraktur": "Fraktur",
+      "styleDoubleStruck": "Dubbelstreck",
+      "styleSans": "Utan seriffer",
+      "styleSansBold": "Fet utan seriffer",
+      "styleMonospace": "Fast bredd",
+      "styleCircled": "Inringad",
+      "styleFullwidth": "Full bredd"
+    },
+    "scientific-calculator": {
+      "name": "Vetenskaplig räknare",
+      "description": "Beräkna rötter, potenser, bråk, logaritmer och trigonometriska funktioner med strukturerad inmatning i grader eller radianer.",
+      "summary": "Beräkna rötter, potenser, bråk, logaritmer och trigonometriska funktioner med strukturerad inmatning i grader eller radianer.",
+      "keywords": "Vetenskaplig räknare"
+    },
+    "function-grapher": {
+      "name": "Funktionsgrafer",
+      "description": "Rita upp till tre reella funktioner, flytta och zooma grafen och utforska en värdetabell med samma matematiska inmatning.",
+      "summary": "Rita upp till tre reella funktioner, flytta och zooma grafen och utforska en värdetabell med samma matematiska inmatning.",
+      "keywords": "Funktionsgrafer"
+    },
+    "equation-solver": {
+      "name": "Ekvationslösare",
+      "description": "Lös reella linjära och kvadratiska ekvationer i x med exakta och decimala svar samt förklaringar till varje steg.",
+      "summary": "Lös reella linjära och kvadratiska ekvationer i x med exakta och decimala svar samt förklaringar till varje steg.",
+      "keywords": "Ekvationslösare"
+    },
+    "fraction-calculator": {
+      "name": "Bråkräknare",
+      "description": "Addera, subtrahera, multiplicera och dividera bråk med exakta rationella resultat och decimala approximationer.",
+      "summary": "Addera, subtrahera, multiplicera och dividera bråk med exakta rationella resultat och decimala approximationer.",
+      "keywords": "Bråkräknare"
     }
   },
   "legal": {
@@ -2091,5 +2155,49 @@
   },
   "toolPage": {
     "related": "Liknande verktyg"
+  },
+  "math": {
+    "inputHint": "Skriv sqrt för √, / för bråk och ^ för potens. Använd → eller Blanksteg för att lämna exponenten.",
+    "angle": "Vinkelenhet",
+    "radians": "Radianer",
+    "degrees": "Grader",
+    "expression": "Uttryck",
+    "backspace": "Radera föregående tecken",
+    "calculate": "Beräkna",
+    "decimal": "Närmevärde i decimalform",
+    "calculateHint": "Ange ett uttryck och tryck på = eller Retur.",
+    "fractionHint": "Använd bråk, heltal eller ändliga decimaltal. Resultaten förblir exakta.",
+    "equation": "Ekvation i x",
+    "solve": "Lös",
+    "solverScope": "Reella linjära och kvadratiska ekvationer i x. Utan = antas = 0.",
+    "allReal": "Alla reella tal är lösningar.",
+    "noReal": "Inga reella lösningar.",
+    "solutions": "Lösningar",
+    "showSteps": "Visa steg och förklaringar",
+    "addFunction": "Lägg till funktion",
+    "graphScope": "Upp till tre funktioner av x med rötter, potenser, logaritmer, absolutbelopp och trigonometri.",
+    "zoomIn": "Zooma in",
+    "zoomOut": "Zooma ut",
+    "graphLabel": "Interaktiv funktionsgraf",
+    "graphHint": "Dra för att flytta och nyp för att zooma. Med fokus: pilar, +/− eller Home för att återställa.",
+    "valueTable": "Värdetabell",
+    "errors": {
+      "invalid": "Kontrollera uttrycket och fyll i tomma rutor.",
+      "domain": "Resultatet är odefinierat eller inte reellt.",
+      "unsupported": "Den här funktionen stöds inte här.",
+      "polynomialOnly": "Ange en linjär eller kvadratisk polynomekvation i x utan variabla nämnare eller högre potenser.",
+      "rationalOnly": "Använd ett uttryck med ett rationellt resultat.",
+      "timeout": "Beräkningen tog för lång tid. Förenkla uttrycket.",
+      "unavailable": "Matematikmotorn kunde inte läsas in. Anslut eller reparera offlinefiler."
+    },
+    "steps": {
+      "collect": "Flytta allt till vänster, utveckla parenteser och samla liknande termer.",
+      "isolate": "Subtrahera konstanten från båda sidor för att flytta den åt höger.",
+      "divide": "Dividera båda sidor med koefficienten för x.",
+      "coefficients": "Identifiera koefficienterna i ax² + bx + c = 0.",
+      "discriminant": "Beräkna diskriminanten Δ = b² − 4ac.",
+      "negativeDiscriminant": "En negativ diskriminant innebär att det saknas reella rötter.",
+      "quadraticFormula": "Använd andragradsformeln och förenkla varje resultat."
+    }
   }
 }

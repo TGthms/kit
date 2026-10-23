@@ -1,0 +1,56 @@
+import type { Viewport } from "./client";
+export const DEFAULT_VIEW: Viewport = {
+  xMin: -10,
+  xMax: 10,
+  yMin: -7.5,
+  yMax: 7.5,
+};
+export function zoomView(
+  view: Viewport,
+  factor: number,
+  cx = (view.xMin + view.xMax) / 2,
+  cy = (view.yMin + view.yMax) / 2,
+): Viewport {
+  const width = (view.xMax - view.xMin) * factor;
+  const height = (view.yMax - view.yMin) * factor;
+  if (
+    !Number.isFinite(factor) ||
+    factor <= 0 ||
+    width < 1e-6 ||
+    width > 1e8 ||
+    height < 1e-6 ||
+    height > 1e8
+  )
+    return view;
+  return {
+    xMin: cx + (view.xMin - cx) * factor,
+    xMax: cx + (view.xMax - cx) * factor,
+    yMin: cy + (view.yMin - cy) * factor,
+    yMax: cy + (view.yMax - cy) * factor,
+  };
+}
+export function panView(view: Viewport, dx: number, dy: number): Viewport {
+  if (
+    ![dx, dy].every(Number.isFinite) ||
+    Math.abs(view.xMin + dx) > 1e10 ||
+    Math.abs(view.yMin + dy) > 1e10
+  )
+    return view;
+  return {
+    xMin: view.xMin + dx,
+    xMax: view.xMax + dx,
+    yMin: view.yMin + dy,
+    yMax: view.yMax + dy,
+  };
+}
+export function gridTicks(min: number, max: number): number[] {
+  const raw = (max - min) / 8;
+  if (!Number.isFinite(raw) || raw <= 0) return [];
+  const power = 10 ** Math.floor(Math.log10(raw));
+  const step = [1, 2, 5, 10].find((n) => n * power >= raw)! * power;
+  const start = Math.ceil(min / step);
+  return Array.from(
+    { length: Math.min(24, Math.max(0, Math.floor(max / step) - start + 1)) },
+    (_, i) => (start + i) * step,
+  );
+}

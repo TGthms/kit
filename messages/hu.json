@@ -162,7 +162,8 @@
       "money": "Pénz",
       "everyday-text": "Mindennapi szöveg",
       "quick": "Gyors",
-      "health": "Egészség"
+      "health": "Egészség",
+      "calculate": "Számítás"
     },
     "greeting": {
       "morning": "Jó reggelt. Kezdd a napot a saját tempódban.",
@@ -432,7 +433,9 @@
     "everyday": "Mindennapi",
     "everydayDesc": "Praktikus átváltók, órák, kalkulátorok és gyors segédeszközök",
     "converter": "Mindennapi átváltók",
-    "converterDesc": "Mértékegységek, pénznemek és egyebek gyors átváltáshoz"
+    "converterDesc": "Mértékegységek, pénznemek és egyebek gyors átváltáshoz",
+    "math": "Matematika",
+    "mathDesc": "Számoljon, ábrázoljon függvényeket és oldjon egyenleteket magyarázatokkal"
   },
   "history": {
     "title": "Előzmények",
@@ -1914,6 +1917,67 @@
       "normalized": "Normalizálva",
       "record": "Ellenőrzés mentése",
       "saved": "Elmentve az előzményekbe."
+    },
+    "symbol-browser": {
+      "name": "Szimbólumböngésző",
+      "description": "Keressen és másoljon íráshoz, matematikához és pénznemekhez való jeleket név, karakter vagy Unicode-kódpont alapján.",
+      "summary": "Keressen és másoljon íráshoz, matematikához és pénznemekhez való jeleket név, karakter vagy Unicode-kódpont alapján.",
+      "keywords": "Szimbólumböngésző",
+      "searchHint": "Név, jel vagy U+-kód keresése…",
+      "tapToCopy": "Másoláshoz koppintson egy jelre.",
+      "groupPopular": "Gyakori",
+      "groupArrows": "Nyilak",
+      "groupMath": "Matematika",
+      "groupPunctuation": "Írásjelek",
+      "groupCurrency": "Pénznemek",
+      "groupGreek": "Görög",
+      "groupShapes": "Alakzatok"
+    },
+    "unicode-styles": {
+      "name": "Unicode-szövegstílusok",
+      "description": "Alakítson betűket másolható Unicode-stílusokká profilokhoz és üzenetekhez, vagy állítsa vissza a díszített szöveget egyszerűvé.",
+      "summary": "Alakítson betűket másolható Unicode-stílusokká profilokhoz és üzenetekhez, vagy állítsa vissza a díszített szöveget egyszerűvé.",
+      "keywords": "Unicode-szövegstílusok",
+      "placeholder": "Írjon vagy illesszen be szöveget…",
+      "note": "Ezek Unicode-karakterek, nem betűtípusok. Főleg a latin betűk és számjegyek változnak, a többi megmarad. A képernyőolvasók, keresők és egyes alkalmazások nehezen olvashatják őket.",
+      "plain": "Egyszerű szöveg",
+      "styleLabel": "Szövegstílusok",
+      "styleBold": "Félkövér",
+      "styleItalic": "Dőlt",
+      "styleBoldItalic": "Félkövér dőlt",
+      "styleScript": "Kézírásos",
+      "styleBoldScript": "Félkövér kézírásos",
+      "styleFraktur": "Fraktúr",
+      "styleDoubleStruck": "Dupla vonalas",
+      "styleSans": "Talpatlan",
+      "styleSansBold": "Félkövér talpatlan",
+      "styleMonospace": "Rögzített szélességű",
+      "styleCircled": "Karikázott",
+      "styleFullwidth": "Teljes szélességű"
+    },
+    "scientific-calculator": {
+      "name": "Tudományos számológép",
+      "description": "Számoljon gyökökkel, hatványokkal, törtekkel, logaritmusokkal és trigonometrikus függvényekkel, fokban vagy radiánban.",
+      "summary": "Számoljon gyökökkel, hatványokkal, törtekkel, logaritmusokkal és trigonometrikus függvényekkel, fokban vagy radiánban.",
+      "keywords": "Tudományos számológép"
+    },
+    "function-grapher": {
+      "name": "Függvényábrázoló",
+      "description": "Ábrázoljon legfeljebb három valós függvényt, mozgassa és nagyítsa a grafikont, és vizsgálja az értéktáblázatot.",
+      "summary": "Ábrázoljon legfeljebb három valós függvényt, mozgassa és nagyítsa a grafikont, és vizsgálja az értéktáblázatot.",
+      "keywords": "Függvényábrázoló"
+    },
+    "equation-solver": {
+      "name": "Egyenletmegoldó",
+      "description": "Oldjon meg valós első- és másodfokú egyenleteket x-re, tekintse meg a pontos és tizedes eredményeket, valamint a lépések magyarázatát.",
+      "summary": "Oldjon meg valós első- és másodfokú egyenleteket x-re, tekintse meg a pontos és tizedes eredményeket, valamint a lépések magyarázatát.",
+      "keywords": "Egyenletmegoldó"
+    },
+    "fraction-calculator": {
+      "name": "Törtszámológép",
+      "description": "Adjon össze, vonjon ki, szorozzon és osszon törteket pontos racionális eredményekkel és tizedes közelítésekkel.",
+      "summary": "Adjon össze, vonjon ki, szorozzon és osszon törteket pontos racionális eredményekkel és tizedes közelítésekkel.",
+      "keywords": "Törtszámológép"
     }
   },
   "legal": {
@@ -2091,5 +2155,49 @@
   },
   "toolPage": {
     "related": "Kapcsolódó eszközök"
+  },
+  "math": {
+    "inputHint": "sqrt: √, /: tört, ^: hatvány. Az exponensből a → vagy a Szóköz lép ki.",
+    "angle": "Szögegység",
+    "radians": "Radián",
+    "degrees": "Fok",
+    "expression": "Kifejezés",
+    "backspace": "Előző karakter törlése",
+    "calculate": "Kiszámítás",
+    "decimal": "Tizedes közelítés",
+    "calculateHint": "Írjon be egy kifejezést, majd nyomjon = vagy Enter billentyűt.",
+    "fractionHint": "Használjon törteket, egészeket vagy véges tizedeseket. Az eredmények pontosak.",
+    "equation": "Egyenlet x-szel",
+    "solve": "Megoldás",
+    "solverScope": "Valós első- és másodfokú egyenletek x-szel. = nélkül = 0-t feltételezünk.",
+    "allReal": "Minden valós szám megoldás.",
+    "noReal": "Nincs valós megoldás.",
+    "solutions": "Megoldások",
+    "showSteps": "Lépések és magyarázatok megjelenítése",
+    "addFunction": "Függvény hozzáadása",
+    "graphScope": "Legfeljebb három x-függvény: gyökök, hatványok, logaritmusok, abszolútérték és trigonometria.",
+    "zoomIn": "Nagyítás",
+    "zoomOut": "Kicsinyítés",
+    "graphLabel": "Interaktív függvénygrafikon",
+    "graphHint": "Húzza a mozgatáshoz, csippentse a nagyításhoz. Fókuszban: nyilak, +/− vagy Home a visszaállításhoz.",
+    "valueTable": "Értéktáblázat",
+    "errors": {
+      "invalid": "Ellenőrizze a kifejezést, és töltse ki az üres mezőket.",
+      "domain": "Az eredmény nem értelmezett vagy nem valós.",
+      "unsupported": "Ez a függvény itt nem támogatott.",
+      "polynomialOnly": "Adjon meg első- vagy másodfokú polinomegyenletet x-szel, változó nevezők és magasabb hatványok nélkül.",
+      "rationalOnly": "Használjon racionális eredményt adó kifejezést.",
+      "timeout": "A számítás túl sokáig tartott. Egyszerűsítse a kifejezést.",
+      "unavailable": "A matematikai motor nem tölthető be. Csatlakozzon, vagy javítsa az offline fájlokat."
+    },
+    "steps": {
+      "collect": "Vigyen mindent balra, bontsa fel a zárójeleket, és vonja össze az egynemű tagokat.",
+      "isolate": "Vonja ki az állandót mindkét oldalból, hogy jobbra kerüljön.",
+      "divide": "Ossza el mindkét oldalt x együtthatójával.",
+      "coefficients": "Azonosítsa az együtthatókat: ax² + bx + c = 0.",
+      "discriminant": "Számítsa ki a diszkriminánst: Δ = b² − 4ac.",
+      "negativeDiscriminant": "A negatív diszkrimináns azt jelenti, hogy nincs valós gyök.",
+      "quadraticFormula": "Alkalmazza a másodfokú megoldóképletet, és egyszerűsítse az eredményeket."
+    }
   }
 }

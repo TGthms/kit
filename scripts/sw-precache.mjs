@@ -68,6 +68,7 @@ export function buildPrecacheManifest(outDir, basePath = "") {
   for (const file of files) {
     const path = toSitePath(outDir, file);
     if (path.includes("/_next/static/") && /\.(js|css|woff2?)$/u.test(path)) core.push(withBase(path));
+    else if (path === "/math-worker.js" || (path.startsWith("/vendor/math/") && /\.(?:js|woff2?)$/u.test(path))) core.push(withBase(path));
     else if (path.startsWith("/boot/") && path.endsWith(".js")) core.push(withBase(path));
     else if (path.startsWith("/startup/") || path.startsWith("/icons/") || path.endsWith("manifest.webmanifest") || path.endsWith("/favicon.ico") || path.endsWith("/favicon.svg")) {
       core.push(withBase(path));

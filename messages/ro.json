@@ -162,7 +162,8 @@
       "money": "Bani",
       "everyday-text": "Text de zi cu zi",
       "quick": "Rapid",
-      "health": "Sănătate"
+      "health": "Sănătate",
+      "calculate": "Calcul"
     },
     "greeting": {
       "morning": "Bună dimineața — începe ziua în ritmul tău.",
@@ -432,7 +433,9 @@
     "everyday": "De zi cu zi",
     "everydayDesc": "Convertori, ceasuri, calculatoare și ajutoare rapide",
     "converter": "Convertori pentru zi cu zi",
-    "converterDesc": "Unități, valute și altele, organizate pentru conversii rapide"
+    "converterDesc": "Unități, valute și altele, organizate pentru conversii rapide",
+    "math": "Matematică",
+    "mathDesc": "Calculează, trasează funcții și explorează ecuații cu explicații"
   },
   "history": {
     "title": "Istoric",
@@ -1914,6 +1917,67 @@
       "normalized": "Normalizat",
       "record": "Salvează verificarea",
       "saved": "Salvat în istoric."
+    },
+    "symbol-browser": {
+      "name": "Explorator de simboluri",
+      "description": "Găsește și copiază simboluri pentru scriere, matematică și monede. Caută după nume, caracter sau punct de cod Unicode.",
+      "summary": "Găsește și copiază simboluri pentru scriere, matematică și monede. Caută după nume, caracter sau punct de cod Unicode.",
+      "keywords": "Explorator de simboluri",
+      "searchHint": "Caută nume, simbol sau cod U+…",
+      "tapToCopy": "Atinge un simbol pentru a-l copia.",
+      "groupPopular": "Populare",
+      "groupArrows": "Săgeți",
+      "groupMath": "Matematică",
+      "groupPunctuation": "Punctuație",
+      "groupCurrency": "Monede",
+      "groupGreek": "Greacă",
+      "groupShapes": "Forme"
+    },
+    "unicode-styles": {
+      "name": "Stiluri de text Unicode",
+      "description": "Transformă literele în stiluri Unicode pentru profiluri și mesaje sau convertește textul stilizat înapoi în text simplu.",
+      "summary": "Transformă literele în stiluri Unicode pentru profiluri și mesaje sau convertește textul stilizat înapoi în text simplu.",
+      "keywords": "Stiluri de text Unicode",
+      "placeholder": "Scrie sau lipește textul…",
+      "note": "Sunt caractere Unicode, nu fonturi. Se schimbă mai ales literele latine și cifrele; restul se păstrează. Cititoarele de ecran, căutarea și unele aplicații le pot citi greșit.",
+      "plain": "Text simplu",
+      "styleLabel": "Stiluri de text",
+      "styleBold": "Aldin",
+      "styleItalic": "Cursiv",
+      "styleBoldItalic": "Aldin cursiv",
+      "styleScript": "Caligrafic",
+      "styleBoldScript": "Caligrafic aldin",
+      "styleFraktur": "Fraktur",
+      "styleDoubleStruck": "Linie dublă",
+      "styleSans": "Fără serife",
+      "styleSansBold": "Aldin fără serife",
+      "styleMonospace": "Monospațiat",
+      "styleCircled": "Încercuit",
+      "styleFullwidth": "Lățime completă"
+    },
+    "scientific-calculator": {
+      "name": "Calculator științific",
+      "description": "Calculează rădăcini, puteri, fracții, logaritmi și funcții trigonometrice cu introducere structurată în grade sau radiani.",
+      "summary": "Calculează rădăcini, puteri, fracții, logaritmi și funcții trigonometrice cu introducere structurată în grade sau radiani.",
+      "keywords": "Calculator științific"
+    },
+    "function-grapher": {
+      "name": "Grafice de funcții",
+      "description": "Trasează până la trei funcții reale, deplasează și mărește graficul și explorează un tabel de valori cu aceeași intrare matematică.",
+      "summary": "Trasează până la trei funcții reale, deplasează și mărește graficul și explorează un tabel de valori cu aceeași intrare matematică.",
+      "keywords": "Grafice de funcții"
+    },
+    "equation-solver": {
+      "name": "Rezolvarea ecuațiilor",
+      "description": "Rezolvă ecuații reale liniare și de gradul doi în x, vezi răspunsuri exacte și zecimale și explicații pentru fiecare pas.",
+      "summary": "Rezolvă ecuații reale liniare și de gradul doi în x, vezi răspunsuri exacte și zecimale și explicații pentru fiecare pas.",
+      "keywords": "Rezolvarea ecuațiilor"
+    },
+    "fraction-calculator": {
+      "name": "Calculator de fracții",
+      "description": "Adună, scade, înmulțește și împarte fracții păstrând rezultatele raționale exacte alături de aproximările zecimale.",
+      "summary": "Adună, scade, înmulțește și împarte fracții păstrând rezultatele raționale exacte alături de aproximările zecimale.",
+      "keywords": "Calculator de fracții"
     }
   },
   "legal": {
@@ -2091,5 +2155,49 @@
   },
   "toolPage": {
     "related": "Instrumente similare"
+  },
+  "math": {
+    "inputHint": "Scrie sqrt pentru √, / pentru fracție și ^ pentru putere. → sau Spațiu iese din exponent.",
+    "angle": "Unitate unghiulară",
+    "radians": "Radiani",
+    "degrees": "Grade",
+    "expression": "Expresie",
+    "backspace": "Șterge caracterul anterior",
+    "calculate": "Calculează",
+    "decimal": "Aproximare zecimală",
+    "calculateHint": "Introdu o expresie, apoi apasă = sau Enter.",
+    "fractionHint": "Folosește fracții, întregi sau zecimale finite. Rezultatele rămân exacte.",
+    "equation": "Ecuație în x",
+    "solve": "Rezolvă",
+    "solverScope": "Ecuații reale liniare și de gradul doi în x. Fără = se presupune = 0.",
+    "allReal": "Toate numerele reale sunt soluții.",
+    "noReal": "Nu există soluții reale.",
+    "solutions": "Soluții",
+    "showSteps": "Arată pașii și explicațiile",
+    "addFunction": "Adaugă funcție",
+    "graphScope": "Până la trei funcții de x: rădăcini, puteri, logaritmi, valori absolute și trigonometrie.",
+    "zoomIn": "Mărește",
+    "zoomOut": "Micșorează",
+    "graphLabel": "Grafic interactiv de funcții",
+    "graphHint": "Trage pentru deplasare, ciupește pentru zoom. Cu graficul focalizat: săgeți, +/− sau Home pentru resetare.",
+    "valueTable": "Tabel de valori",
+    "errors": {
+      "invalid": "Verifică expresia și completează casetele goale.",
+      "domain": "Rezultatul este nedefinit sau nu este real.",
+      "unsupported": "Această funcție nu este acceptată aici.",
+      "polynomialOnly": "Introdu o ecuație polinomială liniară sau de gradul doi în x, fără numitori variabili sau puteri mai mari.",
+      "rationalOnly": "Folosește o expresie cu rezultat rațional.",
+      "timeout": "Calculul a durat prea mult. Simplifică expresia.",
+      "unavailable": "Motorul matematic nu s-a încărcat. Reconectează-te sau repară fișierele offline."
+    },
+    "steps": {
+      "collect": "Mută totul în stânga, dezvoltă parantezele și adună termenii asemenea.",
+      "isolate": "Scade constanta din ambele părți pentru a o muta în dreapta.",
+      "divide": "Împarte ambele părți la coeficientul lui x.",
+      "coefficients": "Identifică coeficienții din ax² + bx + c = 0.",
+      "discriminant": "Calculează discriminantul Δ = b² − 4ac.",
+      "negativeDiscriminant": "Un discriminant negativ înseamnă că nu există rădăcini reale.",
+      "quadraticFormula": "Aplică formula de gradul doi și simplifică fiecare rezultat."
+    }
   }
 }

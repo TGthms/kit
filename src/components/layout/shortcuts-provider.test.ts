@@ -60,6 +60,19 @@ describe("ShortcutsProvider", () => {
     window.removeEventListener(SHORTCUT_RUN_EVENT, onRun);
   });
 
+  it("leaves fraction, root, and help keys to the structured math editor", () => {
+    const onRun = vi.fn();
+    window.addEventListener(SHORTCUT_RUN_EVENT, onRun);
+    render(createElement(ShortcutsProvider, null, createElement("math-field", { "aria-label": "Expression", tabIndex: 0 })));
+    const field = document.querySelector("math-field")! as HTMLElement;
+    field.focus();
+    for (const key of ["/", "r", "?"]) expect(fireEvent.keyDown(field, { key })).toBe(true);
+    expect(onRun).not.toHaveBeenCalled();
+    expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+    expect(document.activeElement).toBe(field);
+    window.removeEventListener(SHORTCUT_RUN_EVENT, onRun);
+  });
+
   it("moves focus into the help panel and returns it when the panel closes", () => {
     render(createElement(ShortcutsProvider, null, createElement("button", { type: "button" }, "Behind")));
     const behind = screen.getByRole("button", { name: "Behind" });

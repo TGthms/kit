@@ -162,7 +162,8 @@
       "money": "Dinheiro",
       "everyday-text": "Texto do dia a dia",
       "quick": "Rápido",
-      "health": "Saúde"
+      "health": "Saúde",
+      "calculate": "Calcular"
     },
     "greeting": {
       "morning": "Bom dia — comece o dia no seu ritmo.",
@@ -432,7 +433,9 @@
     "everyday": "Dia a dia",
     "everydayDesc": "Conversores, relógios, calculadoras e utilitários rápidos",
     "converter": "Conversores do dia a dia",
-    "converterDesc": "Unidades, moedas e muito mais, organizados para conversões rápidas"
+    "converterDesc": "Unidades, moedas e muito mais, organizados para conversões rápidas",
+    "math": "Matemática",
+    "mathDesc": "Calcule, trace funções e explore equações com explicações claras"
   },
   "history": {
     "title": "Histórico",
@@ -1914,6 +1917,67 @@
       "normalized": "Normalizado",
       "record": "Registrar verificação",
       "saved": "Salvo no histórico."
+    },
+    "symbol-browser": {
+      "name": "Explorador de símbolos",
+      "description": "Encontre e copie símbolos para escrita, matemática e moedas. Pesquise por nome, caractere ou código Unicode.",
+      "summary": "Encontre e copie símbolos para escrita, matemática e moedas. Pesquise por nome, caractere ou código Unicode.",
+      "keywords": "Explorador de símbolos",
+      "searchHint": "Pesquise nome, símbolo ou código U+…",
+      "tapToCopy": "Toque em um símbolo para copiá-lo.",
+      "groupPopular": "Populares",
+      "groupArrows": "Setas",
+      "groupMath": "Matemática",
+      "groupPunctuation": "Pontuação",
+      "groupCurrency": "Moedas",
+      "groupGreek": "Grego",
+      "groupShapes": "Formas"
+    },
+    "unicode-styles": {
+      "name": "Estilos de texto Unicode",
+      "description": "Transforme letras em estilos Unicode para perfis, publicações e mensagens, ou converta texto estilizado de volta ao texto simples.",
+      "summary": "Transforme letras em estilos Unicode para perfis, publicações e mensagens, ou converta texto estilizado de volta ao texto simples.",
+      "keywords": "Estilos de texto Unicode",
+      "placeholder": "Digite ou cole seu texto…",
+      "note": "São caracteres Unicode, não fontes. Mudam principalmente letras latinas e dígitos; o restante é preservado. Leitores de tela, buscas e alguns aplicativos podem não interpretá-los bem.",
+      "plain": "Texto simples",
+      "styleLabel": "Estilos de texto",
+      "styleBold": "Negrito",
+      "styleItalic": "Itálico",
+      "styleBoldItalic": "Negrito itálico",
+      "styleScript": "Caligráfico",
+      "styleBoldScript": "Caligráfico negrito",
+      "styleFraktur": "Fraktur",
+      "styleDoubleStruck": "Traço duplo",
+      "styleSans": "Sem serifa",
+      "styleSansBold": "Sem serifa negrito",
+      "styleMonospace": "Monoespaçado",
+      "styleCircled": "Circulado",
+      "styleFullwidth": "Largura completa"
+    },
+    "scientific-calculator": {
+      "name": "Calculadora científica",
+      "description": "Calcule raízes, potências, frações, logaritmos e funções trigonométricas com entrada estruturada em graus ou radianos.",
+      "summary": "Calcule raízes, potências, frações, logaritmos e funções trigonométricas com entrada estruturada em graus ou radianos.",
+      "keywords": "Calculadora científica"
+    },
+    "function-grapher": {
+      "name": "Gráfico de funções",
+      "description": "Trace até três funções reais, mova e amplie o gráfico e consulte uma tabela de valores com a mesma entrada matemática.",
+      "summary": "Trace até três funções reais, mova e amplie o gráfico e consulte uma tabela de valores com a mesma entrada matemática.",
+      "keywords": "Gráfico de funções"
+    },
+    "equation-solver": {
+      "name": "Resolvedor de equações",
+      "description": "Resolva equações reais lineares e quadráticas em x, veja respostas exatas e decimais e expanda as explicações de cada etapa.",
+      "summary": "Resolva equações reais lineares e quadráticas em x, veja respostas exatas e decimais e expanda as explicações de cada etapa.",
+      "keywords": "Resolvedor de equações"
+    },
+    "fraction-calculator": {
+      "name": "Calculadora de frações",
+      "description": "Some, subtraia, multiplique e divida frações mantendo resultados racionais exatos junto de aproximações decimais.",
+      "summary": "Some, subtraia, multiplique e divida frações mantendo resultados racionais exatos junto de aproximações decimais.",
+      "keywords": "Calculadora de frações"
     }
   },
   "legal": {
@@ -2091,5 +2155,49 @@
   },
   "toolPage": {
     "related": "Ferramentas relacionadas"
+  },
+  "math": {
+    "inputHint": "Digite sqrt para √, / para fração e ^ para potência. Use → ou Espaço para sair do expoente.",
+    "angle": "Unidade angular",
+    "radians": "Radianos",
+    "degrees": "Graus",
+    "expression": "Expressão",
+    "backspace": "Apagar caractere anterior",
+    "calculate": "Calcular",
+    "decimal": "Aproximação decimal",
+    "calculateHint": "Digite uma expressão e pressione = ou Enter.",
+    "fractionHint": "Use frações, inteiros ou decimais finitos. Os resultados são exatos.",
+    "equation": "Equação em x",
+    "solve": "Resolver",
+    "solverScope": "Equações reais lineares e quadráticas em x. Sem =, a expressão é tratada como = 0.",
+    "allReal": "Todos os números reais são soluções.",
+    "noReal": "Não há soluções reais.",
+    "solutions": "Soluções",
+    "showSteps": "Mostrar etapas e explicações",
+    "addFunction": "Adicionar função",
+    "graphScope": "Até três funções de x, com raízes, potências, logaritmos, valores absolutos e trigonometria.",
+    "zoomIn": "Ampliar",
+    "zoomOut": "Reduzir",
+    "graphLabel": "Gráfico interativo de funções",
+    "graphHint": "Arraste para mover e pince para ampliar. Com o gráfico em foco, use setas, +/− ou Home para redefinir.",
+    "valueTable": "Tabela de valores",
+    "errors": {
+      "invalid": "Confira a expressão e preencha os campos vazios.",
+      "domain": "O resultado é indefinido ou não é real.",
+      "unsupported": "Esta função não é compatível aqui.",
+      "polynomialOnly": "Digite uma equação polinomial linear ou quadrática em x, sem denominadores variáveis nem potências superiores.",
+      "rationalOnly": "Use uma expressão com resultado racional.",
+      "timeout": "O cálculo demorou demais. Simplifique a expressão.",
+      "unavailable": "Não foi possível carregar o motor matemático. Reconecte ou repare os arquivos offline."
+    },
+    "steps": {
+      "collect": "Passe tudo para a esquerda, desenvolva os parênteses e reúna termos semelhantes.",
+      "isolate": "Subtraia a constante dos dois lados para passá-la à direita.",
+      "divide": "Divida os dois lados pelo coeficiente de x.",
+      "coefficients": "Identifique os coeficientes em ax² + bx + c = 0.",
+      "discriminant": "Calcule o discriminante Δ = b² − 4ac.",
+      "negativeDiscriminant": "Um discriminante negativo indica que não há raízes reais.",
+      "quadraticFormula": "Aplique a fórmula quadrática e simplifique cada resultado."
+    }
   }
 }

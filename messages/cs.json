@@ -162,7 +162,8 @@
       "money": "Peníze",
       "everyday-text": "Každodenní text",
       "quick": "Rychlé",
-      "health": "Zdraví"
+      "health": "Zdraví",
+      "calculate": "Výpočty"
     },
     "greeting": {
       "morning": "Dobré ráno. Den může začít ve vašem tempu.",
@@ -432,7 +433,9 @@
     "everyday": "Každodenní",
     "everydayDesc": "Praktické převodníky, hodiny, kalkulačky a rychlé pomůcky",
     "converter": "Každodenní převodníky",
-    "converterDesc": "Jednotky, měny a další převody přehledně a rychle"
+    "converterDesc": "Jednotky, měny a další převody přehledně a rychle",
+    "math": "Matematika",
+    "mathDesc": "Počítejte, kreslete funkce a řešte rovnice s vysvětlením"
   },
   "history": {
     "title": "Historie",
@@ -1914,6 +1917,67 @@
       "normalized": "Normalizováno",
       "record": "Uložit kontrolu",
       "saved": "Uloženo do historie."
+    },
+    "symbol-browser": {
+      "name": "Prohlížeč symbolů",
+      "description": "Najděte a kopírujte symboly pro psaní, matematiku a měny. Hledejte podle názvu, znaku nebo kódového bodu Unicode.",
+      "summary": "Najděte a kopírujte symboly pro psaní, matematiku a měny. Hledejte podle názvu, znaku nebo kódového bodu Unicode.",
+      "keywords": "Prohlížeč symbolů",
+      "searchHint": "Hledat název, symbol nebo kód U+…",
+      "tapToCopy": "Klepnutím na symbol jej zkopírujete.",
+      "groupPopular": "Oblíbené",
+      "groupArrows": "Šipky",
+      "groupMath": "Matematika",
+      "groupPunctuation": "Interpunkce",
+      "groupCurrency": "Měny",
+      "groupGreek": "Řečtina",
+      "groupShapes": "Tvary"
+    },
+    "unicode-styles": {
+      "name": "Styly textu Unicode",
+      "description": "Převeďte písmena na kopírovatelné styly Unicode pro profily a zprávy nebo vraťte stylizovaný text do běžné podoby.",
+      "summary": "Převeďte písmena na kopírovatelné styly Unicode pro profily a zprávy nebo vraťte stylizovaný text do běžné podoby.",
+      "keywords": "Styly textu Unicode",
+      "placeholder": "Napište nebo vložte text…",
+      "note": "Jde o znaky Unicode, ne písma. Mění se hlavně latinská písmena a číslice, ostatní zůstávají. Čtečky obrazovky, vyhledávání a některé aplikace je nemusí správně číst.",
+      "plain": "Prostý text",
+      "styleLabel": "Styly textu",
+      "styleBold": "Tučné",
+      "styleItalic": "Kurzíva",
+      "styleBoldItalic": "Tučná kurzíva",
+      "styleScript": "Psací",
+      "styleBoldScript": "Tučné psací",
+      "styleFraktur": "Fraktura",
+      "styleDoubleStruck": "Dvojitý tah",
+      "styleSans": "Bezpatkové",
+      "styleSansBold": "Tučné bezpatkové",
+      "styleMonospace": "Stejná šířka",
+      "styleCircled": "V kroužcích",
+      "styleFullwidth": "Plná šířka"
+    },
+    "scientific-calculator": {
+      "name": "Vědecká kalkulačka",
+      "description": "Počítejte odmocniny, mocniny, zlomky, logaritmy a goniometrické funkce se strukturovaným vstupem ve stupních či radiánech.",
+      "summary": "Počítejte odmocniny, mocniny, zlomky, logaritmy a goniometrické funkce se strukturovaným vstupem ve stupních či radiánech.",
+      "keywords": "Vědecká kalkulačka"
+    },
+    "function-grapher": {
+      "name": "Grafy funkcí",
+      "description": "Nakreslete až tři reálné funkce, posouvejte a přibližujte graf a prozkoumejte tabulku hodnot se stejným matematickým vstupem.",
+      "summary": "Nakreslete až tři reálné funkce, posouvejte a přibližujte graf a prozkoumejte tabulku hodnot se stejným matematickým vstupem.",
+      "keywords": "Grafy funkcí"
+    },
+    "equation-solver": {
+      "name": "Řešení rovnic",
+      "description": "Řešte reálné lineární a kvadratické rovnice s x, zobrazte přesné i desetinné výsledky a vysvětlení jednotlivých kroků.",
+      "summary": "Řešte reálné lineární a kvadratické rovnice s x, zobrazte přesné i desetinné výsledky a vysvětlení jednotlivých kroků.",
+      "keywords": "Řešení rovnic"
+    },
+    "fraction-calculator": {
+      "name": "Kalkulačka zlomků",
+      "description": "Sčítejte, odčítejte, násobte a dělte zlomky se zachováním přesných racionálních výsledků a desetinných aproximací.",
+      "summary": "Sčítejte, odčítejte, násobte a dělte zlomky se zachováním přesných racionálních výsledků a desetinných aproximací.",
+      "keywords": "Kalkulačka zlomků"
     }
   },
   "legal": {
@@ -2091,5 +2155,49 @@
   },
   "toolPage": {
     "related": "Podobné nástroje"
+  },
+  "math": {
+    "inputHint": "Napište sqrt pro √, / pro zlomek a ^ pro mocninu. → nebo mezerník opustí exponent.",
+    "angle": "Jednotka úhlu",
+    "radians": "Radiány",
+    "degrees": "Stupně",
+    "expression": "Výraz",
+    "backspace": "Smazat předchozí znak",
+    "calculate": "Vypočítat",
+    "decimal": "Desetinná aproximace",
+    "calculateHint": "Zadejte výraz a stiskněte = nebo Enter.",
+    "fractionHint": "Používejte zlomky, celá čísla nebo konečné desetinné hodnoty. Výsledky zůstávají přesné.",
+    "equation": "Rovnice s x",
+    "solve": "Vyřešit",
+    "solverScope": "Reálné lineární a kvadratické rovnice s x. Bez = se předpokládá = 0.",
+    "allReal": "Všechna reálná čísla jsou řešením.",
+    "noReal": "Žádná reálná řešení.",
+    "solutions": "Řešení",
+    "showSteps": "Zobrazit kroky a vysvětlení",
+    "addFunction": "Přidat funkci",
+    "graphScope": "Až tři funkce x: odmocniny, mocniny, logaritmy, absolutní hodnoty a goniometrie.",
+    "zoomIn": "Přiblížit",
+    "zoomOut": "Oddálit",
+    "graphLabel": "Interaktivní graf funkcí",
+    "graphHint": "Tažením posunete, sevřením přiblížíte. Při zaměření grafu: šipky, +/− nebo Home obnoví pohled.",
+    "valueTable": "Tabulka hodnot",
+    "errors": {
+      "invalid": "Zkontrolujte výraz a vyplňte prázdná pole.",
+      "domain": "Výsledek není definován nebo není reálný.",
+      "unsupported": "Tato funkce zde není podporována.",
+      "polynomialOnly": "Zadejte lineární nebo kvadratickou polynomickou rovnici s x bez proměnných jmenovatelů a vyšších mocnin.",
+      "rationalOnly": "Použijte výraz s racionálním výsledkem.",
+      "timeout": "Výpočet trval příliš dlouho. Zjednodušte výraz.",
+      "unavailable": "Matematický modul se nepodařilo načíst. Připojte se nebo opravte offline soubory."
+    },
+    "steps": {
+      "collect": "Převeďte vše doleva, roznásobte závorky a slučte podobné členy.",
+      "isolate": "Odečtěte konstantu od obou stran a přesuňte ji doprava.",
+      "divide": "Vydělte obě strany koeficientem u x.",
+      "coefficients": "Určete koeficienty v ax² + bx + c = 0.",
+      "discriminant": "Vypočítejte diskriminant Δ = b² − 4ac.",
+      "negativeDiscriminant": "Záporný diskriminant znamená, že neexistují reálné kořeny.",
+      "quadraticFormula": "Použijte kvadratický vzorec a zjednodušte každý výsledek."
+    }
   }
 }

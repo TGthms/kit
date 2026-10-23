@@ -162,7 +162,8 @@
       "money": "Geld",
       "everyday-text": "Alltagstext",
       "quick": "Schnell",
-      "health": "Gesundheit"
+      "health": "Gesundheit",
+      "calculate": "Berechnen"
     },
     "greeting": {
       "morning": "Guten Morgen — starten Sie den Tag in Ihrem Tempo.",
@@ -432,7 +433,9 @@
     "everyday": "Alltag",
     "everydayDesc": "Praktische Umrechner, Uhren, Rechner und schnelle Helfer",
     "converter": "Alltagsumrechner",
-    "converterDesc": "Einheiten, Währungen und mehr – übersichtlich und schnell umrechnen"
+    "converterDesc": "Einheiten, Währungen und mehr – übersichtlich und schnell umrechnen",
+    "math": "Mathematik",
+    "mathDesc": "Rechnen, Funktionen zeichnen und Gleichungen mit Erklärungen lösen"
   },
   "history": {
     "title": "Verlauf",
@@ -1914,6 +1917,67 @@
       "normalized": "Normalisiert",
       "record": "Prüfung speichern",
       "saved": "Im Verlauf gespeichert."
+    },
+    "symbol-browser": {
+      "name": "Symbolübersicht",
+      "description": "Finde und kopiere Zeichen zum Schreiben, Rechnen oder für Währungen. Suche nach Namen, Zeichen oder Unicode-Codepunkt.",
+      "summary": "Finde und kopiere Zeichen zum Schreiben, Rechnen oder für Währungen. Suche nach Namen, Zeichen oder Unicode-Codepunkt.",
+      "keywords": "Symbolübersicht",
+      "searchHint": "Name, Symbol oder U+-Code suchen…",
+      "tapToCopy": "Zum Kopieren auf ein Symbol tippen.",
+      "groupPopular": "Häufig",
+      "groupArrows": "Pfeile",
+      "groupMath": "Mathematik",
+      "groupPunctuation": "Satzzeichen",
+      "groupCurrency": "Währungen",
+      "groupGreek": "Griechisch",
+      "groupShapes": "Formen"
+    },
+    "unicode-styles": {
+      "name": "Unicode-Textstile",
+      "description": "Verwandle Buchstaben in kopierbare Unicode-Stile für Profile und Nachrichten oder wandle gestalteten Text in normalen Text zurück.",
+      "summary": "Verwandle Buchstaben in kopierbare Unicode-Stile für Profile und Nachrichten oder wandle gestalteten Text in normalen Text zurück.",
+      "keywords": "Unicode-Textstile",
+      "placeholder": "Text eingeben oder einfügen…",
+      "note": "Dies sind Unicode-Zeichen, keine Schriftarten. Vor allem lateinische Buchstaben und Ziffern ändern sich; andere Zeichen bleiben erhalten. Screenreader, Suche und manche Apps können sie schlecht lesen.",
+      "plain": "Normaler Text",
+      "styleLabel": "Textstile",
+      "styleBold": "Fett",
+      "styleItalic": "Kursiv",
+      "styleBoldItalic": "Fett kursiv",
+      "styleScript": "Schreibschrift",
+      "styleBoldScript": "Fette Schreibschrift",
+      "styleFraktur": "Fraktur",
+      "styleDoubleStruck": "Doppelstrich",
+      "styleSans": "Serifenlos",
+      "styleSansBold": "Fett serifenlos",
+      "styleMonospace": "Festbreite",
+      "styleCircled": "Eingekreist",
+      "styleFullwidth": "Vollbreite"
+    },
+    "scientific-calculator": {
+      "name": "Wissenschaftlicher Rechner",
+      "description": "Berechne Wurzeln, Potenzen, Brüche, Logarithmen und trigonometrische Funktionen mit strukturierter Eingabe in Grad oder Bogenmaß.",
+      "summary": "Berechne Wurzeln, Potenzen, Brüche, Logarithmen und trigonometrische Funktionen mit strukturierter Eingabe in Grad oder Bogenmaß.",
+      "keywords": "Wissenschaftlicher Rechner"
+    },
+    "function-grapher": {
+      "name": "Funktionsplotter",
+      "description": "Zeichne bis zu drei reelle Funktionen, verschiebe und zoome die Grafik und erkunde die zugehörige Wertetabelle.",
+      "summary": "Zeichne bis zu drei reelle Funktionen, verschiebe und zoome die Grafik und erkunde die zugehörige Wertetabelle.",
+      "keywords": "Funktionsplotter"
+    },
+    "equation-solver": {
+      "name": "Gleichungslöser",
+      "description": "Löse reelle lineare und quadratische Gleichungen in x mit exakten und dezimalen Ergebnissen sowie erklärten Rechenschritten.",
+      "summary": "Löse reelle lineare und quadratische Gleichungen in x mit exakten und dezimalen Ergebnissen sowie erklärten Rechenschritten.",
+      "keywords": "Gleichungslöser"
+    },
+    "fraction-calculator": {
+      "name": "Bruchrechner",
+      "description": "Addiere, subtrahiere, multipliziere und dividiere Brüche mit exakten rationalen Ergebnissen und Dezimalnäherungen.",
+      "summary": "Addiere, subtrahiere, multipliziere und dividiere Brüche mit exakten rationalen Ergebnissen und Dezimalnäherungen.",
+      "keywords": "Bruchrechner"
     }
   },
   "legal": {
@@ -2091,5 +2155,49 @@
   },
   "toolPage": {
     "related": "Ähnliche Werkzeuge"
+  },
+  "math": {
+    "inputHint": "sqrt ergibt √, / einen Bruch und ^ eine Potenz. Mit → oder Leertaste den Exponenten verlassen.",
+    "angle": "Winkeleinheit",
+    "radians": "Bogenmaß",
+    "degrees": "Grad",
+    "expression": "Ausdruck",
+    "backspace": "Vorheriges Zeichen löschen",
+    "calculate": "Berechnen",
+    "decimal": "Dezimalnäherung",
+    "calculateHint": "Ausdruck eingeben und = oder Eingabe drücken.",
+    "fractionHint": "Brüche, ganze Zahlen oder endliche Dezimalzahlen verwenden. Ergebnisse bleiben exakt.",
+    "equation": "Gleichung in x",
+    "solve": "Lösen",
+    "solverScope": "Reelle lineare und quadratische Gleichungen in x. Ohne = gilt der Ausdruck als = 0.",
+    "allReal": "Alle reellen Zahlen sind Lösungen.",
+    "noReal": "Keine reellen Lösungen.",
+    "solutions": "Lösungen",
+    "showSteps": "Rechenschritte mit Erklärungen anzeigen",
+    "addFunction": "Funktion hinzufügen",
+    "graphScope": "Bis zu drei Funktionen von x: Wurzeln, Potenzen, Logarithmen, Beträge und Trigonometrie.",
+    "zoomIn": "Vergrößern",
+    "zoomOut": "Verkleinern",
+    "graphLabel": "Interaktive Funktionsgrafik",
+    "graphHint": "Ziehen zum Verschieben, Finger spreizen zum Zoomen. Bei Fokus: Pfeile, +/− oder Pos1 zum Zurücksetzen.",
+    "valueTable": "Wertetabelle",
+    "errors": {
+      "invalid": "Ausdruck prüfen und leere Felder ausfüllen.",
+      "domain": "Das Ergebnis ist undefiniert oder nicht reell.",
+      "unsupported": "Diese Funktion wird hier nicht unterstützt.",
+      "polynomialOnly": "Lineare oder quadratische Polynomgleichung in x eingeben. Variable Nenner und höhere Potenzen werden nicht unterstützt.",
+      "rationalOnly": "Einen Ausdruck mit rationalem Ergebnis verwenden.",
+      "timeout": "Die Berechnung dauerte zu lange. Ausdruck vereinfachen.",
+      "unavailable": "Die Rechen-Engine konnte nicht geladen werden. Verbindung herstellen oder Offline-Dateien reparieren."
+    },
+    "steps": {
+      "collect": "Alles auf die linke Seite bringen, Klammern auflösen und gleichartige Terme zusammenfassen.",
+      "isolate": "Die Konstante auf beiden Seiten subtrahieren und so nach rechts bringen.",
+      "divide": "Beide Seiten durch den Koeffizienten von x teilen.",
+      "coefficients": "Die Koeffizienten in ax² + bx + c = 0 bestimmen.",
+      "discriminant": "Die Diskriminante Δ = b² − 4ac berechnen.",
+      "negativeDiscriminant": "Eine negative Diskriminante bedeutet, dass es keine reellen Nullstellen gibt.",
+      "quadraticFormula": "Die quadratische Lösungsformel anwenden und jedes Ergebnis vereinfachen."
+    }
   }
 }

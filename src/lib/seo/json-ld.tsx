@@ -120,6 +120,7 @@ const APPLICATION_CATEGORY: Record<string, string> = {
   text: "UtilitiesApplication",
   converter: "UtilitiesApplication",
   everyday: "UtilitiesApplication",
+  math: "EducationalApplication",
 };
 
 /**

@@ -162,7 +162,8 @@
       "money": "Uang",
       "everyday-text": "Teks sehari-hari",
       "quick": "Cepat",
-      "health": "Kesehatan"
+      "health": "Kesehatan",
+      "calculate": "Perhitungan"
     },
     "greeting": {
       "morning": "Selamat pagi — hari boleh dimulai pelan.",
@@ -432,7 +433,9 @@
     "everyday": "Sehari-hari",
     "everydayDesc": "Konverter, jam, kalkulator, dan alat bantu cepat yang praktis",
     "converter": "Konverter sehari-hari",
-    "converterDesc": "Satuan, mata uang, dan lainnya—diatur untuk konversi cepat"
+    "converterDesc": "Satuan, mata uang, dan lainnya—diatur untuk konversi cepat",
+    "math": "Matematika",
+    "mathDesc": "Hitung, gambar fungsi, dan jelajahi persamaan dengan penjelasan"
   },
   "history": {
     "title": "Riwayat",
@@ -1914,6 +1917,67 @@
       "normalized": "Ternormalisasi",
       "record": "Catat pemeriksaan",
       "saved": "Tersimpan di riwayat."
+    },
+    "symbol-browser": {
+      "name": "Penjelajah simbol",
+      "description": "Temukan dan salin simbol untuk tulisan, matematika, dan mata uang. Cari berdasarkan nama, karakter, atau titik kode Unicode.",
+      "summary": "Temukan dan salin simbol untuk tulisan, matematika, dan mata uang. Cari berdasarkan nama, karakter, atau titik kode Unicode.",
+      "keywords": "Penjelajah simbol",
+      "searchHint": "Cari nama, simbol, atau kode U+…",
+      "tapToCopy": "Ketuk simbol untuk menyalinnya.",
+      "groupPopular": "Populer",
+      "groupArrows": "Panah",
+      "groupMath": "Matematika",
+      "groupPunctuation": "Tanda baca",
+      "groupCurrency": "Mata uang",
+      "groupGreek": "Yunani",
+      "groupShapes": "Bentuk"
+    },
+    "unicode-styles": {
+      "name": "Gaya teks Unicode",
+      "description": "Ubah huruf menjadi gaya Unicode yang bisa disalin untuk profil dan pesan, atau kembalikan teks bergaya ke teks biasa.",
+      "summary": "Ubah huruf menjadi gaya Unicode yang bisa disalin untuk profil dan pesan, atau kembalikan teks bergaya ke teks biasa.",
+      "keywords": "Gaya teks Unicode",
+      "placeholder": "Ketik atau tempel teks…",
+      "note": "Ini karakter Unicode, bukan fon. Terutama huruf Latin dan angka yang berubah; lainnya tetap. Pembaca layar, pencarian, dan beberapa aplikasi mungkin sulit membacanya.",
+      "plain": "Teks biasa",
+      "styleLabel": "Gaya teks",
+      "styleBold": "Tebal",
+      "styleItalic": "Miring",
+      "styleBoldItalic": "Tebal miring",
+      "styleScript": "Kaligrafi",
+      "styleBoldScript": "Kaligrafi tebal",
+      "styleFraktur": "Fraktur",
+      "styleDoubleStruck": "Garis ganda",
+      "styleSans": "Tanpa serif",
+      "styleSansBold": "Tanpa serif tebal",
+      "styleMonospace": "Lebar tetap",
+      "styleCircled": "Dilingkari",
+      "styleFullwidth": "Lebar penuh"
+    },
+    "scientific-calculator": {
+      "name": "Kalkulator ilmiah",
+      "description": "Hitung akar, pangkat, pecahan, logaritma, dan fungsi trigonometri dengan masukan terstruktur dalam derajat atau radian.",
+      "summary": "Hitung akar, pangkat, pecahan, logaritma, dan fungsi trigonometri dengan masukan terstruktur dalam derajat atau radian.",
+      "keywords": "Kalkulator ilmiah"
+    },
+    "function-grapher": {
+      "name": "Grafik fungsi",
+      "description": "Gambar hingga tiga fungsi nyata, geser dan perbesar grafik, serta jelajahi tabel nilai dengan masukan matematika yang sama.",
+      "summary": "Gambar hingga tiga fungsi nyata, geser dan perbesar grafik, serta jelajahi tabel nilai dengan masukan matematika yang sama.",
+      "keywords": "Grafik fungsi"
+    },
+    "equation-solver": {
+      "name": "Pemecah persamaan",
+      "description": "Selesaikan persamaan linear dan kuadrat nyata dalam x, lihat jawaban eksak dan desimal, serta penjelasan setiap langkah.",
+      "summary": "Selesaikan persamaan linear dan kuadrat nyata dalam x, lihat jawaban eksak dan desimal, serta penjelasan setiap langkah.",
+      "keywords": "Pemecah persamaan"
+    },
+    "fraction-calculator": {
+      "name": "Kalkulator pecahan",
+      "description": "Jumlahkan, kurangi, kalikan, dan bagi pecahan dengan hasil rasional eksak beserta pendekatan desimalnya.",
+      "summary": "Jumlahkan, kurangi, kalikan, dan bagi pecahan dengan hasil rasional eksak beserta pendekatan desimalnya.",
+      "keywords": "Kalkulator pecahan"
     }
   },
   "legal": {
@@ -2091,5 +2155,49 @@
   },
   "toolPage": {
     "related": "Alat serupa"
+  },
+  "math": {
+    "inputHint": "Ketik sqrt untuk √, / untuk pecahan, ^ untuk pangkat. → atau Spasi untuk keluar dari eksponen.",
+    "angle": "Satuan sudut",
+    "radians": "Radian",
+    "degrees": "Derajat",
+    "expression": "Ekspresi",
+    "backspace": "Hapus karakter sebelumnya",
+    "calculate": "Hitung",
+    "decimal": "Pendekatan desimal",
+    "calculateHint": "Masukkan ekspresi, lalu tekan = atau Enter.",
+    "fractionHint": "Gunakan pecahan, bilangan bulat, atau desimal berhingga. Hasil tetap eksak.",
+    "equation": "Persamaan dalam x",
+    "solve": "Selesaikan",
+    "solverScope": "Persamaan linear dan kuadrat nyata dalam x. Tanpa = dianggap = 0.",
+    "allReal": "Semua bilangan nyata adalah solusi.",
+    "noReal": "Tidak ada solusi nyata.",
+    "solutions": "Solusi",
+    "showSteps": "Tampilkan langkah dan penjelasan",
+    "addFunction": "Tambah fungsi",
+    "graphScope": "Hingga tiga fungsi x: akar, pangkat, logaritma, nilai mutlak, dan trigonometri.",
+    "zoomIn": "Perbesar",
+    "zoomOut": "Perkecil",
+    "graphLabel": "Grafik fungsi interaktif",
+    "graphHint": "Seret untuk menggeser, cubit untuk zoom. Saat grafik fokus: panah, +/−, atau Home untuk mengatur ulang.",
+    "valueTable": "Tabel nilai",
+    "errors": {
+      "invalid": "Periksa ekspresi dan lengkapi kotak kosong.",
+      "domain": "Hasil tidak terdefinisi atau bukan bilangan nyata.",
+      "unsupported": "Fungsi ini tidak didukung di sini.",
+      "polynomialOnly": "Masukkan persamaan polinomial linear atau kuadrat dalam x tanpa penyebut variabel atau pangkat lebih tinggi.",
+      "rationalOnly": "Gunakan ekspresi dengan hasil rasional.",
+      "timeout": "Perhitungan terlalu lama. Coba ekspresi lebih sederhana.",
+      "unavailable": "Mesin matematika gagal dimuat. Hubungkan kembali atau perbaiki berkas offline."
+    },
+    "steps": {
+      "collect": "Pindahkan semuanya ke kiri, buka kurung, dan gabungkan suku sejenis.",
+      "isolate": "Kurangi konstanta dari kedua sisi untuk memindahkannya ke kanan.",
+      "divide": "Bagi kedua sisi dengan koefisien x.",
+      "coefficients": "Tentukan koefisien pada ax² + bx + c = 0.",
+      "discriminant": "Hitung diskriminan Δ = b² − 4ac.",
+      "negativeDiscriminant": "Diskriminan negatif berarti tidak ada akar nyata.",
+      "quadraticFormula": "Gunakan rumus kuadrat dan sederhanakan tiap hasil."
+    }
   }
 }

@@ -162,7 +162,8 @@
       "money": "돈",
       "everyday-text": "일상 텍스트",
       "quick": "빠른 도구",
-      "health": "건강"
+      "health": "건강",
+      "calculate": "계산"
     },
     "greeting": {
       "morning": "좋은 아침이에요. 오늘은 천천히 시작해도 돼요.",
@@ -432,7 +433,9 @@
     "everyday": "일상",
     "everydayDesc": "실용적인 변환기, 시계, 계산기와 빠른 도구",
     "converter": "일상 변환기",
-    "converterDesc": "단위, 통화 등을 빠르게 변환할 수 있도록 정리했습니다"
+    "converterDesc": "단위, 통화 등을 빠르게 변환할 수 있도록 정리했습니다",
+    "math": "수학",
+    "mathDesc": "계산, 함수 그래프, 방정식을 명확한 설명과 함께 탐색하세요"
   },
   "history": {
     "title": "기록",
@@ -1914,6 +1917,67 @@
       "normalized": "정규화됨",
       "record": "판정 기록",
       "saved": "기록에 저장되었습니다."
+    },
+    "symbol-browser": {
+      "name": "기호 찾기",
+      "description": "글쓰기, 수학, 통화 등에 필요한 기호를 찾아 복사하세요. 이름, 문자 또는 유니코드 코드 포인트로 검색할 수 있습니다.",
+      "summary": "글쓰기, 수학, 통화 등에 필요한 기호를 찾아 복사하세요. 이름, 문자 또는 유니코드 코드 포인트로 검색할 수 있습니다.",
+      "keywords": "기호 찾기",
+      "searchHint": "이름, 기호 또는 U+ 코드 검색…",
+      "tapToCopy": "기호를 누르면 복사됩니다.",
+      "groupPopular": "자주 쓰는 기호",
+      "groupArrows": "화살표",
+      "groupMath": "수학",
+      "groupPunctuation": "문장 부호",
+      "groupCurrency": "통화",
+      "groupGreek": "그리스 문자",
+      "groupShapes": "도형"
+    },
+    "unicode-styles": {
+      "name": "유니코드 텍스트 스타일",
+      "description": "프로필이나 메시지에 쓸 문자를 복사 가능한 유니코드 스타일로 바꾸거나 꾸민 텍스트를 일반 문자로 되돌리세요.",
+      "summary": "프로필이나 메시지에 쓸 문자를 복사 가능한 유니코드 스타일로 바꾸거나 꾸민 텍스트를 일반 문자로 되돌리세요.",
+      "keywords": "유니코드 텍스트 스타일",
+      "placeholder": "텍스트를 입력하거나 붙여 넣으세요…",
+      "note": "글꼴이 아닌 유니코드 문자입니다. 주로 라틴 문자와 숫자가 바뀌며 다른 문자는 유지됩니다. 화면 읽기, 검색, 일부 앱에서 잘 읽히지 않을 수 있습니다.",
+      "plain": "일반 텍스트",
+      "styleLabel": "텍스트 스타일",
+      "styleBold": "굵게",
+      "styleItalic": "기울임",
+      "styleBoldItalic": "굵은 기울임",
+      "styleScript": "필기체",
+      "styleBoldScript": "굵은 필기체",
+      "styleFraktur": "프락투어",
+      "styleDoubleStruck": "이중선",
+      "styleSans": "산세리프",
+      "styleSansBold": "굵은 산세리프",
+      "styleMonospace": "고정폭",
+      "styleCircled": "원문자",
+      "styleFullwidth": "전각"
+    },
+    "scientific-calculator": {
+      "name": "공학용 계산기",
+      "description": "제곱근, 거듭제곱, 분수, 로그, 삼각함수를 구조화된 수식 입력으로 계산하세요. 도와 라디안 단위를 지원합니다.",
+      "summary": "제곱근, 거듭제곱, 분수, 로그, 삼각함수를 구조화된 수식 입력으로 계산하세요. 도와 라디안 단위를 지원합니다.",
+      "keywords": "공학용 계산기"
+    },
+    "function-grapher": {
+      "name": "함수 그래프",
+      "description": "실수 함수 최대 세 개를 그려 보세요. 그래프를 이동하고 확대하며 같은 수식 입력으로 값 표도 확인할 수 있습니다.",
+      "summary": "실수 함수 최대 세 개를 그려 보세요. 그래프를 이동하고 확대하며 같은 수식 입력으로 값 표도 확인할 수 있습니다.",
+      "keywords": "함수 그래프"
+    },
+    "equation-solver": {
+      "name": "방정식 풀이",
+      "description": "x에 관한 실수 일차 및 이차 방정식을 풀고 정확한 값과 소수 근삿값, 각 대수 풀이 단계의 설명을 확인하세요.",
+      "summary": "x에 관한 실수 일차 및 이차 방정식을 풀고 정확한 값과 소수 근삿값, 각 대수 풀이 단계의 설명을 확인하세요.",
+      "keywords": "방정식 풀이"
+    },
+    "fraction-calculator": {
+      "name": "분수 계산기",
+      "description": "구조화된 입력으로 분수의 덧셈, 뺄셈, 곱셈, 나눗셈을 계산하고 정확한 유리수 결과와 소수 근삿값을 확인하세요.",
+      "summary": "구조화된 입력으로 분수의 덧셈, 뺄셈, 곱셈, 나눗셈을 계산하고 정확한 유리수 결과와 소수 근삿값을 확인하세요.",
+      "keywords": "분수 계산기"
     }
   },
   "legal": {
@@ -2091,5 +2155,49 @@
   },
   "toolPage": {
     "related": "관련 도구"
+  },
+  "math": {
+    "inputHint": "sqrt는 √, /는 분수, ^는 거듭제곱입니다. → 또는 스페이스로 지수에서 나옵니다.",
+    "angle": "각도 단위",
+    "radians": "라디안",
+    "degrees": "도",
+    "expression": "수식",
+    "backspace": "이전 문자 삭제",
+    "calculate": "계산하기",
+    "decimal": "소수 근삿값",
+    "calculateHint": "수식을 입력한 뒤 = 또는 Enter를 누르세요.",
+    "fractionHint": "분수, 정수, 유한소수를 쓰세요. 결과는 정확한 값으로 유지됩니다.",
+    "equation": "x에 관한 방정식",
+    "solve": "풀기",
+    "solverScope": "실수 일차·이차 방정식을 지원합니다. =가 없으면 = 0으로 처리합니다.",
+    "allReal": "모든 실수가 해입니다.",
+    "noReal": "실수해가 없습니다.",
+    "solutions": "해",
+    "showSteps": "풀이 단계와 설명 보기",
+    "addFunction": "함수 추가",
+    "graphScope": "x의 함수 최대 세 개를 지원합니다. 근호, 거듭제곱, 로그, 절댓값, 삼각함수를 쓸 수 있습니다.",
+    "zoomIn": "확대",
+    "zoomOut": "축소",
+    "graphLabel": "대화형 함수 그래프",
+    "graphHint": "드래그로 이동, 두 손가락으로 확대합니다. 그래프에 초점이 있을 때 방향키, +/−, Home으로 조작합니다.",
+    "valueTable": "값 표",
+    "errors": {
+      "invalid": "수식을 확인하고 빈칸을 채우세요.",
+      "domain": "결과가 정의되지 않거나 실수 범위를 벗어납니다.",
+      "unsupported": "여기서는 이 함수를 지원하지 않습니다.",
+      "polynomialOnly": "x에 관한 일차 또는 이차 다항방정식을 입력하세요. 변수 분모나 더 높은 차수는 지원하지 않습니다.",
+      "rationalOnly": "결과가 유리수인 수식을 사용하세요.",
+      "timeout": "계산 시간이 너무 길었습니다. 더 간단한 수식을 시도하세요.",
+      "unavailable": "수학 엔진을 불러오지 못했습니다. 다시 연결하거나 오프라인 파일을 복구하세요."
+    },
+    "steps": {
+      "collect": "모든 항을 왼쪽으로 옮기고 괄호를 전개한 뒤 동류항을 모읍니다.",
+      "isolate": "양변에서 상수를 빼서 오른쪽으로 옮깁니다.",
+      "divide": "양변을 x의 계수로 나눕니다.",
+      "coefficients": "ax² + bx + c = 0에서 계수를 찾습니다.",
+      "discriminant": "판별식 Δ = b² − 4ac를 계산합니다.",
+      "negativeDiscriminant": "판별식이 음수이므로 실수근이 없습니다.",
+      "quadraticFormula": "이차방정식의 근의 공식을 적용하고 각 결과를 정리합니다."
+    }
   }
 }

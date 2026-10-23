@@ -23,6 +23,7 @@ function isTypingTarget(target: EventTarget | null): boolean {
       (element.tagName === "INPUT" ||
         element.tagName === "TEXTAREA" ||
         element.tagName === "SELECT" ||
+        element.tagName === "MATH-FIELD" ||
         element.isContentEditable)
   );
 }

@@ -162,7 +162,8 @@
       "money": "Penger",
       "everyday-text": "Hverdagstekst",
       "quick": "Hurtig",
-      "health": "Helse"
+      "health": "Helse",
+      "calculate": "Beregn"
     },
     "greeting": {
       "morning": "God morgen — start dagen i ditt eget tempo.",
@@ -432,7 +433,9 @@
     "everyday": "Hverdag",
     "everydayDesc": "Praktiske konverterere, klokker, kalkulatorer og hurtighjelpere",
     "converter": "Hverdagskonverterere",
-    "converterDesc": "Enheter, valuta og mer – samlet for raske konverteringer"
+    "converterDesc": "Enheter, valuta og mer – samlet for raske konverteringer",
+    "math": "Matematikk",
+    "mathDesc": "Regn, tegn funksjoner og utforsk ligninger med forklaringer"
   },
   "history": {
     "title": "Historikk",
@@ -1914,6 +1917,67 @@
       "normalized": "Normalisert",
       "record": "Lagre sjekk",
       "saved": "Lagret i historikken."
+    },
+    "symbol-browser": {
+      "name": "Symboloversikt",
+      "description": "Finn og kopier symboler for skriving, matematikk og valutaer. Søk etter navn, tegn eller Unicode-kodepunkt.",
+      "summary": "Finn og kopier symboler for skriving, matematikk og valutaer. Søk etter navn, tegn eller Unicode-kodepunkt.",
+      "keywords": "Symboloversikt",
+      "searchHint": "Søk navn, symbol eller U+-kode…",
+      "tapToCopy": "Trykk på et symbol for å kopiere det.",
+      "groupPopular": "Vanlige",
+      "groupArrows": "Piler",
+      "groupMath": "Matematikk",
+      "groupPunctuation": "Tegnsetting",
+      "groupCurrency": "Valutaer",
+      "groupGreek": "Gresk",
+      "groupShapes": "Former"
+    },
+    "unicode-styles": {
+      "name": "Unicode-tekststiler",
+      "description": "Gjør bokstaver om til Unicode-stiler for profiler og meldinger, eller konverter stilisert tekst tilbake til vanlig tekst.",
+      "summary": "Gjør bokstaver om til Unicode-stiler for profiler og meldinger, eller konverter stilisert tekst tilbake til vanlig tekst.",
+      "keywords": "Unicode-tekststiler",
+      "placeholder": "Skriv eller lim inn tekst…",
+      "note": "Dette er Unicode-tegn, ikke skrifttyper. Særlig latinske bokstaver og sifre endres; resten beholdes. Skjermlesere, søk og enkelte apper kan ha problemer med å lese dem.",
+      "plain": "Vanlig tekst",
+      "styleLabel": "Tekststiler",
+      "styleBold": "Fet",
+      "styleItalic": "Kursiv",
+      "styleBoldItalic": "Fet kursiv",
+      "styleScript": "Skriftstil",
+      "styleBoldScript": "Fet skriftstil",
+      "styleFraktur": "Fraktur",
+      "styleDoubleStruck": "Dobbeltstrek",
+      "styleSans": "Uten seriffer",
+      "styleSansBold": "Fet uten seriffer",
+      "styleMonospace": "Fast bredde",
+      "styleCircled": "Innsirklet",
+      "styleFullwidth": "Full bredde"
+    },
+    "scientific-calculator": {
+      "name": "Vitenskapelig kalkulator",
+      "description": "Beregn røtter, potenser, brøker, logaritmer og trigonometriske funksjoner med strukturert inndata i grader eller radianer.",
+      "summary": "Beregn røtter, potenser, brøker, logaritmer og trigonometriske funksjoner med strukturert inndata i grader eller radianer.",
+      "keywords": "Vitenskapelig kalkulator"
+    },
+    "function-grapher": {
+      "name": "Funksjonsgrafer",
+      "description": "Tegn opptil tre reelle funksjoner, flytt og zoom grafen og utforsk en verditabell med samme matematiske inndata.",
+      "summary": "Tegn opptil tre reelle funksjoner, flytt og zoom grafen og utforsk en verditabell med samme matematiske inndata.",
+      "keywords": "Funksjonsgrafer"
+    },
+    "equation-solver": {
+      "name": "Ligningsløser",
+      "description": "Løs reelle lineære og kvadratiske ligninger i x med eksakte og desimale svar og forklaringer til hvert trinn.",
+      "summary": "Løs reelle lineære og kvadratiske ligninger i x med eksakte og desimale svar og forklaringer til hvert trinn.",
+      "keywords": "Ligningsløser"
+    },
+    "fraction-calculator": {
+      "name": "Brøkkalkulator",
+      "description": "Legg sammen, trekk fra, multipliser og divider brøker med eksakte rasjonale resultater og desimale tilnærminger.",
+      "summary": "Legg sammen, trekk fra, multipliser og divider brøker med eksakte rasjonale resultater og desimale tilnærminger.",
+      "keywords": "Brøkkalkulator"
     }
   },
   "legal": {
@@ -2091,5 +2155,49 @@
   },
   "toolPage": {
     "related": "Lignende verktøy"
+  },
+  "math": {
+    "inputHint": "Skriv sqrt for √, / for brøk og ^ for potens. Bruk → eller Mellomrom for å forlate eksponenten.",
+    "angle": "Vinkelenhet",
+    "radians": "Radianer",
+    "degrees": "Grader",
+    "expression": "Uttrykk",
+    "backspace": "Slett forrige tegn",
+    "calculate": "Beregn",
+    "decimal": "Desimal tilnærming",
+    "calculateHint": "Skriv et uttrykk og trykk = eller Enter.",
+    "fractionHint": "Bruk brøker, heltall eller endelige desimaltall. Resultatene forblir eksakte.",
+    "equation": "Ligning i x",
+    "solve": "Løs",
+    "solverScope": "Reelle lineære og kvadratiske ligninger i x. Uten = antas = 0.",
+    "allReal": "Alle reelle tall er løsninger.",
+    "noReal": "Ingen reelle løsninger.",
+    "solutions": "Løsninger",
+    "showSteps": "Vis trinn og forklaringer",
+    "addFunction": "Legg til funksjon",
+    "graphScope": "Opptil tre funksjoner av x med røtter, potenser, logaritmer, absoluttverdier og trigonometri.",
+    "zoomIn": "Zoom inn",
+    "zoomOut": "Zoom ut",
+    "graphLabel": "Interaktiv funksjonsgraf",
+    "graphHint": "Dra for å flytte og knip for å zoome. Med fokus: piler, +/− eller Home for å tilbakestille.",
+    "valueTable": "Verditabell",
+    "errors": {
+      "invalid": "Sjekk uttrykket og fyll ut tomme felt.",
+      "domain": "Resultatet er udefinert eller ikke reelt.",
+      "unsupported": "Denne funksjonen støttes ikke her.",
+      "polynomialOnly": "Skriv en lineær eller kvadratisk polynomligning i x uten variable nevnere eller høyere potenser.",
+      "rationalOnly": "Bruk et uttrykk med rasjonalt resultat.",
+      "timeout": "Beregningen tok for lang tid. Forenkle uttrykket.",
+      "unavailable": "Matematikkmotoren kunne ikke lastes. Koble til eller reparer frakoblede filer."
+    },
+    "steps": {
+      "collect": "Flytt alt til venstre, løs opp parenteser og samle like ledd.",
+      "isolate": "Trekk konstanten fra begge sider for å flytte den til høyre.",
+      "divide": "Divider begge sider med koeffisienten til x.",
+      "coefficients": "Finn koeffisientene i ax² + bx + c = 0.",
+      "discriminant": "Beregn diskriminanten Δ = b² − 4ac.",
+      "negativeDiscriminant": "En negativ diskriminant betyr at det ikke finnes reelle røtter.",
+      "quadraticFormula": "Bruk andregradsformelen og forenkle hvert resultat."
+    }
   }
 }

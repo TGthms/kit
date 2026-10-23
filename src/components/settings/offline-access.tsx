@@ -5,7 +5,7 @@ import { useLocale, useTranslations } from "next-intl";
 import { Check, ChevronDown, Download, HardDriveDownload, LoaderCircle, RefreshCw, ShieldCheck, Wrench, Trash2, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { locales, localeNames, type Locale } from "@/lib/i18n/config";
-import { tools, type ToolCategory, type ToolId } from "@/lib/tools/registry";
+import { tools, categories, type ToolCategory, type ToolId } from "@/lib/tools/registry";
 import { APP_PAGES, APP_PAGE_IDS, type AppPageId } from "@/lib/pwa/app-pages";
 import { useHydrated } from "@/lib/react/hydrated";
 import { offlineDownloadWorker, applyOfflineUpdate, removeOfflineDownloads } from "@/lib/pwa/offline-worker";
@@ -26,7 +26,6 @@ import {
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
-const categories: ToolCategory[] = ["pdf", "image", "audio", "video", "data", "text", "developer", "converter", "everyday"];
 type DownloadState = { status: "idle" | "running" | "done" | "canceled" | "error"; done: number; total: number; logs: string[]; phase?: "preparing" | "downloading" | "applying" };
 type ProgressMessage = { type?: string; status?: string; done?: number; total?: number; logs?: unknown; log?: unknown; requestId?: string; generation?: string; version?: string; selection?: Selection; activationRequired?: boolean };
 type Selection = { locales: Locale[]; tools: ToolId[]; pages: AppPageId[]; engines: boolean };
@@ -658,6 +657,7 @@ export function OfflineAccess() {
                   <button
                     type="button"
                     aria-expanded={open}
+                    aria-label={`${tcat(category)} (${items.length})`}
                     className="flex min-w-0 flex-1 items-center gap-2 text-start font-medium"
                     onClick={() => setOpenCategories((current) => { const next = new Set(current); if (next.has(category)) next.delete(category); else next.add(category); return next; })}
                   >

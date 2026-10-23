@@ -162,7 +162,8 @@
       "money": "Para",
       "everyday-text": "Günlük metin",
       "quick": "Hızlı",
-      "health": "Sağlık"
+      "health": "Sağlık",
+      "calculate": "Hesaplama"
     },
     "greeting": {
       "morning": "Günaydın — gün kendi temposunda başlasın.",
@@ -432,7 +433,9 @@
     "everyday": "Günlük",
     "everydayDesc": "Pratik dönüştürücüler, saatler, hesaplayıcılar ve hızlı yardımcılar",
     "converter": "Günlük dönüştürücüler",
-    "converterDesc": "Birimler, para birimleri ve daha fazlası — hızlı dönüşümler için düzenlendi"
+    "converterDesc": "Birimler, para birimleri ve daha fazlası — hızlı dönüşümler için düzenlendi",
+    "math": "Matematik",
+    "mathDesc": "Hesaplayın, fonksiyon çizin ve denklemleri açıklamalarla keşfedin"
   },
   "history": {
     "title": "Geçmiş",
@@ -1914,6 +1917,67 @@
       "normalized": "Normalleştirildi",
       "record": "Kontrolü kaydet",
       "saved": "Geçmişe kaydedildi."
+    },
+    "symbol-browser": {
+      "name": "Simge tarayıcısı",
+      "description": "Yazı, matematik ve para birimleri için simgeleri bulup kopyalayın. Ada, karaktere veya Unicode kod noktasına göre arayın.",
+      "summary": "Yazı, matematik ve para birimleri için simgeleri bulup kopyalayın. Ada, karaktere veya Unicode kod noktasına göre arayın.",
+      "keywords": "Simge tarayıcısı",
+      "searchHint": "Ad, simge veya U+ kodu ara…",
+      "tapToCopy": "Kopyalamak için simgeye dokunun.",
+      "groupPopular": "Popüler",
+      "groupArrows": "Oklar",
+      "groupMath": "Matematik",
+      "groupPunctuation": "Noktalama",
+      "groupCurrency": "Para birimleri",
+      "groupGreek": "Yunanca",
+      "groupShapes": "Şekiller"
+    },
+    "unicode-styles": {
+      "name": "Unicode metin stilleri",
+      "description": "Harfleri profil ve mesajlar için kopyalanabilir Unicode stillerine dönüştürün veya stilli metni yeniden düz metin yapın.",
+      "summary": "Harfleri profil ve mesajlar için kopyalanabilir Unicode stillerine dönüştürün veya stilli metni yeniden düz metin yapın.",
+      "keywords": "Unicode metin stilleri",
+      "placeholder": "Metin yazın veya yapıştırın…",
+      "note": "Bunlar yazı tipi değil Unicode karakterleridir. Başlıca Latin harfleri ve rakamlar değişir, diğerleri korunur. Ekran okuyucular, aramalar ve bazı uygulamalar bunları iyi okuyamayabilir.",
+      "plain": "Düz metin",
+      "styleLabel": "Metin stilleri",
+      "styleBold": "Kalın",
+      "styleItalic": "Eğik",
+      "styleBoldItalic": "Kalın eğik",
+      "styleScript": "El yazısı",
+      "styleBoldScript": "Kalın el yazısı",
+      "styleFraktur": "Fraktur",
+      "styleDoubleStruck": "Çift çizgili",
+      "styleSans": "Serifsiz",
+      "styleSansBold": "Kalın serifsiz",
+      "styleMonospace": "Eş aralıklı",
+      "styleCircled": "Daire içinde",
+      "styleFullwidth": "Tam genişlik"
+    },
+    "scientific-calculator": {
+      "name": "Bilimsel hesap makinesi",
+      "description": "Kökleri, kuvvetleri, kesirleri, logaritmaları ve trigonometrik fonksiyonları derece veya radyanla yapılandırılmış girişte hesaplayın.",
+      "summary": "Kökleri, kuvvetleri, kesirleri, logaritmaları ve trigonometrik fonksiyonları derece veya radyanla yapılandırılmış girişte hesaplayın.",
+      "keywords": "Bilimsel hesap makinesi"
+    },
+    "function-grapher": {
+      "name": "Fonksiyon grafiği",
+      "description": "Üç gerçek fonksiyona kadar çizin, grafiği kaydırıp yakınlaştırın ve aynı matematik girişiyle değer tablosunu inceleyin.",
+      "summary": "Üç gerçek fonksiyona kadar çizin, grafiği kaydırıp yakınlaştırın ve aynı matematik girişiyle değer tablosunu inceleyin.",
+      "keywords": "Fonksiyon grafiği"
+    },
+    "equation-solver": {
+      "name": "Denklem çözücü",
+      "description": "x cinsinden gerçek doğrusal ve ikinci derece denklemleri çözün, tam ve ondalık cevapları ve her adımın açıklamasını görün.",
+      "summary": "x cinsinden gerçek doğrusal ve ikinci derece denklemleri çözün, tam ve ondalık cevapları ve her adımın açıklamasını görün.",
+      "keywords": "Denklem çözücü"
+    },
+    "fraction-calculator": {
+      "name": "Kesir hesaplayıcı",
+      "description": "Kesirleri toplayın, çıkarın, çarpın ve bölün; tam rasyonel sonuçlarla ondalık yaklaşımları yan yana görün.",
+      "summary": "Kesirleri toplayın, çıkarın, çarpın ve bölün; tam rasyonel sonuçlarla ondalık yaklaşımları yan yana görün.",
+      "keywords": "Kesir hesaplayıcı"
     }
   },
   "legal": {
@@ -2091,5 +2155,49 @@
   },
   "toolPage": {
     "related": "Benzer araçlar"
+  },
+  "math": {
+    "inputHint": "√ için sqrt, kesir için /, kuvvet için ^ yazın. Üsten çıkmak için → veya Boşluk kullanın.",
+    "angle": "Açı birimi",
+    "radians": "Radyan",
+    "degrees": "Derece",
+    "expression": "İfade",
+    "backspace": "Önceki karakteri sil",
+    "calculate": "Hesapla",
+    "decimal": "Ondalık yaklaşım",
+    "calculateHint": "Bir ifade girin ve = veya Enter tuşuna basın.",
+    "fractionHint": "Kesir, tam sayı veya sonlu ondalık kullanın. Sonuçlar tam kalır.",
+    "equation": "x cinsinden denklem",
+    "solve": "Çöz",
+    "solverScope": "x cinsinden gerçek doğrusal ve ikinci derece denklemler. = yoksa = 0 kabul edilir.",
+    "allReal": "Tüm gerçek sayılar çözümdür.",
+    "noReal": "Gerçek çözüm yok.",
+    "solutions": "Çözümler",
+    "showSteps": "Adımları ve açıklamaları göster",
+    "addFunction": "Fonksiyon ekle",
+    "graphScope": "En fazla üç x fonksiyonu: kökler, kuvvetler, logaritmalar, mutlak değer ve trigonometri.",
+    "zoomIn": "Yakınlaştır",
+    "zoomOut": "Uzaklaştır",
+    "graphLabel": "Etkileşimli fonksiyon grafiği",
+    "graphHint": "Kaydırmak için sürükleyin, yakınlaştırmak için kıstırın. Odaktayken oklar, +/− veya sıfırlamak için Home kullanın.",
+    "valueTable": "Değer tablosu",
+    "errors": {
+      "invalid": "İfadeyi kontrol edip boş kutuları doldurun.",
+      "domain": "Sonuç tanımsız veya gerçek sayı değil.",
+      "unsupported": "Bu fonksiyon burada desteklenmiyor.",
+      "polynomialOnly": "Değişken payda veya yüksek kuvvet içermeyen, x cinsinden doğrusal ya da ikinci derece polinom denklemi girin.",
+      "rationalOnly": "Rasyonel sonuç veren bir ifade kullanın.",
+      "timeout": "Hesaplama çok uzun sürdü. İfadeyi basitleştirin.",
+      "unavailable": "Matematik motoru yüklenemedi. Yeniden bağlanın veya çevrimdışı dosyaları onarın."
+    },
+    "steps": {
+      "collect": "Her şeyi sola taşıyın, parantezleri açın ve benzer terimleri toplayın.",
+      "isolate": "Sabiti sağa taşımak için iki taraftan da çıkarın.",
+      "divide": "İki tarafı da x katsayısına bölün.",
+      "coefficients": "ax² + bx + c = 0 içindeki katsayıları belirleyin.",
+      "discriminant": "Diskriminantı hesaplayın: Δ = b² − 4ac.",
+      "negativeDiscriminant": "Negatif diskriminant gerçek kök olmadığını gösterir.",
+      "quadraticFormula": "İkinci derece denklem formülünü uygulayın ve sonuçları sadeleştirin."
+    }
   }
 }

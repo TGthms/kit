@@ -3,7 +3,7 @@
 import { lazy, Suspense, useEffect, useLayoutEffect, useRef, useState, useSyncExternalStore } from "react";
 import { useTranslations } from "next-intl";
 import { Link } from "@/lib/i18n/navigation";
-import { Home, History, Star, Settings, FileText, ImageIcon, AudioLines, Clapperboard, Database, Type, Code2, Calculator, ArrowLeftRight } from "lucide-react";
+import { Home, History, Star, Settings, FileText, ImageIcon, AudioLines, Clapperboard, Database, Type, Code2, Sigma, Calculator, ArrowLeftRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { FloatingNav } from "@/components/ui/floating-nav";
 import { GlidingPill, useGlidingPill } from "@/components/ui/gliding-pill";
@@ -46,7 +46,7 @@ export function isActive(pathname: string, href: string): boolean {
   return pathname === href || pathname.startsWith(`${href}/`);
 }
 
-const categoryIcons = { pdf: FileText, image: ImageIcon, audio: AudioLines, video: Clapperboard, data: Database, text: Type, developer: Code2, everyday: Calculator, converter: ArrowLeftRight };
+const categoryIcons = { math: Sigma, pdf: FileText, image: ImageIcon, audio: AudioLines, video: Clapperboard, data: Database, text: Type, developer: Code2, everyday: Calculator, converter: ArrowLeftRight };
 
 export function activeCategory(pathname: string): ToolCategory | null {
   const category = parseCategoryPath(pathname);

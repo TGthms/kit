@@ -162,7 +162,8 @@
       "money": "Geld",
       "everyday-text": "Dagelijkse tekst",
       "quick": "Snel",
-      "health": "Gezondheid"
+      "health": "Gezondheid",
+      "calculate": "Berekenen"
     },
     "greeting": {
       "morning": "Goedemorgen — begin de dag in je eigen tempo.",
@@ -432,7 +433,9 @@
     "everyday": "Dagelijks",
     "everydayDesc": "Praktische omzetters, klokken, calculators en snelle hulpmiddelen",
     "converter": "Dagelijkse converters",
-    "converterDesc": "Eenheden, valuta en meer, overzichtelijk voor snelle conversies"
+    "converterDesc": "Eenheden, valuta en meer, overzichtelijk voor snelle conversies",
+    "math": "Wiskunde",
+    "mathDesc": "Reken, teken functies en verken vergelijkingen met heldere uitleg"
   },
   "history": {
     "title": "Geschiedenis",
@@ -1914,6 +1917,67 @@
       "normalized": "Genormaliseerd",
       "record": "Controle vastleggen",
       "saved": "Opgeslagen in de geschiedenis."
+    },
+    "symbol-browser": {
+      "name": "Symboolverkenner",
+      "description": "Zoek en kopieer symbolen voor schrijven, wiskunde en valuta. Zoek op naam, teken of Unicode-codepunt.",
+      "summary": "Zoek en kopieer symbolen voor schrijven, wiskunde en valuta. Zoek op naam, teken of Unicode-codepunt.",
+      "keywords": "Symboolverkenner",
+      "searchHint": "Zoek naam, symbool of U+-code…",
+      "tapToCopy": "Tik op een symbool om het te kopiëren.",
+      "groupPopular": "Populair",
+      "groupArrows": "Pijlen",
+      "groupMath": "Wiskunde",
+      "groupPunctuation": "Leestekens",
+      "groupCurrency": "Valuta",
+      "groupGreek": "Grieks",
+      "groupShapes": "Vormen"
+    },
+    "unicode-styles": {
+      "name": "Unicode-tekststijlen",
+      "description": "Zet letters om in kopieerbare Unicode-stijlen voor profielen en berichten, of herstel gewone tekst uit gestileerde tekst.",
+      "summary": "Zet letters om in kopieerbare Unicode-stijlen voor profielen en berichten, of herstel gewone tekst uit gestileerde tekst.",
+      "keywords": "Unicode-tekststijlen",
+      "placeholder": "Typ of plak tekst…",
+      "note": "Dit zijn Unicode-tekens, geen lettertypen. Vooral Latijnse letters en cijfers veranderen; andere tekens blijven staan. Schermlezers, zoekfuncties en sommige apps lezen ze mogelijk slecht.",
+      "plain": "Gewone tekst",
+      "styleLabel": "Tekststijlen",
+      "styleBold": "Vet",
+      "styleItalic": "Cursief",
+      "styleBoldItalic": "Vet cursief",
+      "styleScript": "Schrijfschrift",
+      "styleBoldScript": "Vet schrijfschrift",
+      "styleFraktur": "Fraktur",
+      "styleDoubleStruck": "Dubbele lijn",
+      "styleSans": "Schreefloos",
+      "styleSansBold": "Vet schreefloos",
+      "styleMonospace": "Vaste breedte",
+      "styleCircled": "Omcirkeld",
+      "styleFullwidth": "Volledige breedte"
+    },
+    "scientific-calculator": {
+      "name": "Wetenschappelijke rekenmachine",
+      "description": "Bereken wortels, machten, breuken, logaritmen en goniometrische functies met gestructureerde invoer in graden of radialen.",
+      "summary": "Bereken wortels, machten, breuken, logaritmen en goniometrische functies met gestructureerde invoer in graden of radialen.",
+      "keywords": "Wetenschappelijke rekenmachine"
+    },
+    "function-grapher": {
+      "name": "Functiegrafieken",
+      "description": "Teken tot drie reële functies, verschuif en vergroot de grafiek en bekijk een waardentabel met dezelfde wiskundige invoer.",
+      "summary": "Teken tot drie reële functies, verschuif en vergroot de grafiek en bekijk een waardentabel met dezelfde wiskundige invoer.",
+      "keywords": "Functiegrafieken"
+    },
+    "equation-solver": {
+      "name": "Vergelijkingen oplossen",
+      "description": "Los reële lineaire en kwadratische vergelijkingen in x op, bekijk exacte en decimale antwoorden en uitleg per stap.",
+      "summary": "Los reële lineaire en kwadratische vergelijkingen in x op, bekijk exacte en decimale antwoorden en uitleg per stap.",
+      "keywords": "Vergelijkingen oplossen"
+    },
+    "fraction-calculator": {
+      "name": "Breukenrekenmachine",
+      "description": "Tel breuken op, trek ze af, vermenigvuldig en deel met exacte rationale resultaten en decimale benaderingen.",
+      "summary": "Tel breuken op, trek ze af, vermenigvuldig en deel met exacte rationale resultaten en decimale benaderingen.",
+      "keywords": "Breukenrekenmachine"
     }
   },
   "legal": {
@@ -2091,5 +2155,49 @@
   },
   "toolPage": {
     "related": "Gerelateerde hulpmiddelen"
+  },
+  "math": {
+    "inputHint": "Typ sqrt voor √, / voor een breuk en ^ voor een macht. Verlaat een exponent met → of Spatie.",
+    "angle": "Hoekeenheid",
+    "radians": "Radialen",
+    "degrees": "Graden",
+    "expression": "Uitdrukking",
+    "backspace": "Vorig teken verwijderen",
+    "calculate": "Berekenen",
+    "decimal": "Decimale benadering",
+    "calculateHint": "Voer een uitdrukking in en druk op = of Enter.",
+    "fractionHint": "Gebruik breuken, gehele getallen of eindige decimalen. Resultaten blijven exact.",
+    "equation": "Vergelijking in x",
+    "solve": "Oplossen",
+    "solverScope": "Reële lineaire en kwadratische vergelijkingen in x. Zonder = wordt = 0 aangenomen.",
+    "allReal": "Alle reële getallen zijn oplossingen.",
+    "noReal": "Geen reële oplossingen.",
+    "solutions": "Oplossingen",
+    "showSteps": "Stappen en uitleg tonen",
+    "addFunction": "Functie toevoegen",
+    "graphScope": "Tot drie functies van x: wortels, machten, logaritmen, absolute waarden en goniometrie.",
+    "zoomIn": "Inzoomen",
+    "zoomOut": "Uitzoomen",
+    "graphLabel": "Interactieve functiegrafiek",
+    "graphHint": "Sleep om te verschuiven, knijp om te zoomen. Bij focus: pijlen, +/− of Home om te herstellen.",
+    "valueTable": "Waardentabel",
+    "errors": {
+      "invalid": "Controleer de uitdrukking en vul lege vakken in.",
+      "domain": "Het resultaat is onbepaald of niet reëel.",
+      "unsupported": "Deze functie wordt hier niet ondersteund.",
+      "polynomialOnly": "Voer een lineaire of kwadratische polynoomvergelijking in x in, zonder variabele noemers of hogere machten.",
+      "rationalOnly": "Gebruik een uitdrukking met een rationaal resultaat.",
+      "timeout": "De berekening duurde te lang. Vereenvoudig de uitdrukking.",
+      "unavailable": "De rekenmodule kon niet laden. Maak verbinding of herstel offlinebestanden."
+    },
+    "steps": {
+      "collect": "Breng alles naar links, werk haakjes uit en verzamel gelijksoortige termen.",
+      "isolate": "Trek de constante van beide kanten af om deze naar rechts te brengen.",
+      "divide": "Deel beide kanten door de coëfficiënt van x.",
+      "coefficients": "Bepaal de coëfficiënten in ax² + bx + c = 0.",
+      "discriminant": "Bereken de discriminant Δ = b² − 4ac.",
+      "negativeDiscriminant": "Een negatieve discriminant betekent dat er geen reële wortels zijn.",
+      "quadraticFormula": "Pas de kwadratische formule toe en vereenvoudig elk resultaat."
+    }
   }
 }

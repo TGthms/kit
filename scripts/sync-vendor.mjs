@@ -84,6 +84,19 @@ function syncFfmpeg() {
   return true;
 }
 
+// MathLive and Compute Engine remain local, including every font requested
+// inside the editor's shadow DOM. No CDN or automatic engine download.
+function syncMath() {
+  const dest = join(rootDir, "public/vendor/math");
+  mkdirSync(dest, { recursive: true });
+  cpSync(join(rootDir, "node_modules/mathlive/fonts"), join(dest, "fonts"), { recursive: true });
+  copyFileSync(join(rootDir, "node_modules/@cortex-js/compute-engine/dist/umd-min/compute-engine.cjs"), join(dest, "compute-engine.js"));
+  copyFileSync(join(rootDir, "node_modules/mathlive/LICENSE.txt"), join(dest, "mathlive-LICENSE.txt"));
+  copyFileSync(join(rootDir, "node_modules/@cortex-js/compute-engine/LICENSE"), join(dest, "compute-engine-LICENSE.txt"));
+  console.log("[sync-vendor] Copied local math engine and fonts");
+}
+syncMath();
+
 const pdf = syncPdfjs();
 const ffmpeg = syncFfmpeg();
 if (!pdf && !ffmpeg) process.exit(0);

@@ -78,6 +78,12 @@ import {
   RectangleHorizontal,
   Users,
   BadgeCheck,
+  Sigma,
+  ChartSpline,
+  Radical,
+  Divide,
+  Calculator,
+  Omega,
 } from "lucide-react";
 
 /** Precise product categories (one job family each). */
@@ -90,7 +96,8 @@ export type ToolCategory =
   | "text"
   | "developer"
   | "converter"
-  | "everyday";
+  | "everyday"
+  | "math";
 
 export type ToolGroup =
   | "pages"
@@ -111,7 +118,8 @@ export type ToolGroup =
   | "money"
   | "health"
   | "everyday-text"
-  | "quick";
+  | "quick"
+  | "calculate";
 
 export type ToolId =
   | "pdf-merge"
@@ -207,7 +215,13 @@ export type ToolId =
   | "image-palette"
   | "aspect-ratio"
   | "json-query"
-  | "check-digits";
+  | "check-digits"
+  | "symbol-browser"
+  | "unicode-styles"
+  | "scientific-calculator"
+  | "function-grapher"
+  | "equation-solver"
+  | "fraction-calculator";
 
 export interface ToolDef {
   id: ToolId;
@@ -296,6 +310,12 @@ export const tools: ToolDef[] = [
   { id: "electrical-converter", category: "converter", group: "convert", icon: Cable },
   { id: "typography-converter", category: "converter", group: "convert", icon: Type },
   { id: "aspect-ratio", category: "converter", group: "convert", icon: RectangleHorizontal },
+  { id: "scientific-calculator", category: "math", group: "calculate", icon: Calculator },
+  { id: "function-grapher", category: "math", group: "calculate", icon: ChartSpline },
+  { id: "equation-solver", category: "math", group: "calculate", icon: Radical },
+  { id: "fraction-calculator", category: "math", group: "calculate", icon: Divide },
+  { id: "symbol-browser", category: "everyday", group: "everyday-text", icon: Omega },
+  { id: "unicode-styles", category: "everyday", group: "everyday-text", icon: Sigma },
   { id: "text-counter", category: "everyday", group: "everyday-text", icon: TextCursorInput },
   { id: "timezone-converter", category: "everyday", group: "time", icon: Globe2 },
   { id: "meeting-planner", category: "everyday", group: "time", icon: Users },
@@ -323,8 +343,8 @@ export const tools: ToolDef[] = [
 ];
 
 export const featuredToolIds: ToolId[] = [
-  "currency-converter",
-  "timezone-converter",
+  "unicode-styles",
+  "equation-solver",
   "random-generator",
   "stopwatch-timer",
   "password-generator",
@@ -339,6 +359,7 @@ export const toolMap = Object.fromEntries(tools.map((t) => [t.id, t])) as Record
 export const categories: ToolCategory[] = [
   "converter",
   "everyday",
+  "math",
   "pdf",
   "image",
   "audio",
@@ -357,6 +378,7 @@ export const categoryGroupOrder: Record<ToolCategory, ToolGroup[]> = {
   text: ["write"],
   developer: ["inspect", "encode", "generate"],
   converter: ["convert"],
+  math: ["calculate"],
   everyday: ["convert", "time", "money", "health", "everyday-text", "quick"],
 };
 

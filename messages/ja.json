@@ -162,7 +162,8 @@
       "money": "お金",
       "everyday-text": "日常のテキスト",
       "quick": "クイック",
-      "health": "健康"
+      "health": "健康",
+      "calculate": "計算"
     },
     "greeting": {
       "morning": "おはようございます。今日は自分のペースで。",
@@ -432,7 +433,9 @@
     "everyday": "日常",
     "everydayDesc": "便利な変換、時計、計算、クイックツール",
     "converter": "日常の単位変換",
-    "converterDesc": "単位・通貨などを、すばやく変換できるよう整理"
+    "converterDesc": "単位・通貨などを、すばやく変換できるよう整理",
+    "math": "数学",
+    "mathDesc": "計算、関数グラフ、方程式をわかりやすい解説とともに"
   },
   "history": {
     "title": "履歴",
@@ -1914,6 +1917,67 @@
       "normalized": "正規化後",
       "record": "判定を記録",
       "saved": "履歴に保存しました。"
+    },
+    "symbol-browser": {
+      "name": "記号ブラウザー",
+      "description": "文章や数学、通貨などに使う記号を探してコピーできます。名前、文字、Unicodeコードポイントで検索できます。",
+      "summary": "文章や数学、通貨などに使う記号を探してコピーできます。名前、文字、Unicodeコードポイントで検索できます。",
+      "keywords": "記号ブラウザー",
+      "searchHint": "名前、記号、U+コードを検索…",
+      "tapToCopy": "記号をタップしてコピーできます。",
+      "groupPopular": "よく使う記号",
+      "groupArrows": "矢印",
+      "groupMath": "数学",
+      "groupPunctuation": "句読点",
+      "groupCurrency": "通貨",
+      "groupGreek": "ギリシャ文字",
+      "groupShapes": "図形"
+    },
+    "unicode-styles": {
+      "name": "Unicode文字スタイル",
+      "description": "プロフィールやメッセージ向けに英数字をコピー可能なUnicodeスタイルに変換したり、装飾文字を通常の文字に戻したりできます。",
+      "summary": "プロフィールやメッセージ向けに英数字をコピー可能なUnicodeスタイルに変換したり、装飾文字を通常の文字に戻したりできます。",
+      "keywords": "Unicode文字スタイル",
+      "placeholder": "文字を入力または貼り付け…",
+      "note": "フォントではなくUnicode文字です。主にラテン文字と数字を変換し、他の文字は保持します。読み上げ、検索、一部のアプリでは正しく扱えない場合があります。",
+      "plain": "通常のテキスト",
+      "styleLabel": "文字スタイル",
+      "styleBold": "太字",
+      "styleItalic": "斜体",
+      "styleBoldItalic": "太字斜体",
+      "styleScript": "筆記体",
+      "styleBoldScript": "太字筆記体",
+      "styleFraktur": "フラクトゥール",
+      "styleDoubleStruck": "二重線",
+      "styleSans": "サンセリフ",
+      "styleSansBold": "太字サンセリフ",
+      "styleMonospace": "等幅",
+      "styleCircled": "丸囲み",
+      "styleFullwidth": "全角"
+    },
+    "scientific-calculator": {
+      "name": "関数電卓",
+      "description": "累乗、根号、分数、対数、三角関数を構造化された数式入力で計算できます。角度は度数法と弧度法に対応しています。",
+      "summary": "累乗、根号、分数、対数、三角関数を構造化された数式入力で計算できます。角度は度数法と弧度法に対応しています。",
+      "keywords": "関数電卓"
+    },
+    "function-grapher": {
+      "name": "関数グラフ",
+      "description": "最大3つの実関数を描画できます。グラフの移動や拡大縮小、数値表の確認に、共通の数式入力を使えます。",
+      "summary": "最大3つの実関数を描画できます。グラフの移動や拡大縮小、数値表の確認に、共通の数式入力を使えます。",
+      "keywords": "関数グラフ"
+    },
+    "equation-solver": {
+      "name": "方程式ソルバー",
+      "description": "実数範囲の一次・二次方程式をxについて解きます。厳密値と近似値を確認し、各計算手順の説明を展開できます。",
+      "summary": "実数範囲の一次・二次方程式をxについて解きます。厳密値と近似値を確認し、各計算手順の説明を展開できます。",
+      "keywords": "方程式ソルバー"
+    },
+    "fraction-calculator": {
+      "name": "分数計算",
+      "description": "分数の加減乗除を構造化された入力で計算します。正確な有理数の結果と小数による近似値を並べて確認できます。",
+      "summary": "分数の加減乗除を構造化された入力で計算します。正確な有理数の結果と小数による近似値を並べて確認できます。",
+      "keywords": "分数計算"
     }
   },
   "legal": {
@@ -2091,5 +2155,49 @@
   },
   "toolPage": {
     "related": "関連ツール"
+  },
+  "math": {
+    "inputHint": "sqrtで√、/で分数、^で累乗を入力できます。→またはスペースで指数から抜けます。",
+    "angle": "角度の単位",
+    "radians": "ラジアン",
+    "degrees": "度",
+    "expression": "数式",
+    "backspace": "直前の文字を削除",
+    "calculate": "計算する",
+    "decimal": "小数の近似値",
+    "calculateHint": "数式を入力して = またはEnterを押してください。",
+    "fractionHint": "分数、整数、有限小数を使えます。結果は厳密値を保ちます。",
+    "equation": "xの方程式",
+    "solve": "解く",
+    "solverScope": "実数範囲の一次・二次方程式に対応します。=がない式は = 0 として扱います。",
+    "allReal": "すべての実数が解です。",
+    "noReal": "実数解はありません。",
+    "solutions": "解",
+    "showSteps": "手順と解説を表示",
+    "addFunction": "関数を追加",
+    "graphScope": "xの関数を最大3つ表示できます。根号、累乗、対数、絶対値、三角関数に対応します。",
+    "zoomIn": "拡大",
+    "zoomOut": "縮小",
+    "graphLabel": "操作できる関数グラフ",
+    "graphHint": "ドラッグで移動、ピンチで拡大縮小。選択中は矢印と+/−で操作し、Homeでリセットできます。",
+    "valueTable": "数値表",
+    "errors": {
+      "invalid": "式を確認し、空欄を埋めてください。",
+      "domain": "結果が未定義、または実数の範囲外です。",
+      "unsupported": "ここではこの関数に対応していません。",
+      "polynomialOnly": "xの一次・二次の多項式方程式を入力してください。変数を含む分母や高次の式には対応していません。",
+      "rationalOnly": "結果が有理数になる式を使ってください。",
+      "timeout": "計算に時間がかかりすぎました。式を簡単にしてください。",
+      "unavailable": "計算エンジンを読み込めませんでした。再接続するかオフラインファイルを修復してください。"
+    },
+    "steps": {
+      "collect": "すべての項を左辺に移し、括弧を展開して同類項をまとめます。",
+      "isolate": "両辺から定数項を引き、右辺に移します。",
+      "divide": "両辺をxの係数で割ります。",
+      "coefficients": "ax² + bx + c = 0 の係数を確認します。",
+      "discriminant": "判別式 Δ = b² − 4ac を計算します。",
+      "negativeDiscriminant": "判別式が負なので、実数解はありません。",
+      "quadraticFormula": "二次方程式の解の公式を使い、結果を簡単にします。"
+    }
   }
 }

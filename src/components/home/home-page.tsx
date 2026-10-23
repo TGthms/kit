@@ -13,6 +13,7 @@ import {
   Type,
   Code2,
   Calculator,
+  Sigma,
   ArrowLeftRight,
 } from "lucide-react";
 import { tools, categories, featuredToolIds, groupedTools, type ToolCategory, type ToolId } from "@/lib/tools/registry";
@@ -75,6 +76,11 @@ const categoryMeta: Record<
     icon: Code2,
     tint: "bg-slate-500/12 text-slate-700 dark:text-slate-300",
     ring: "hover:ring-slate-500/25",
+  },
+  math: {
+    icon: Sigma,
+    tint: "bg-indigo-500/12 text-indigo-700 dark:text-indigo-400",
+    ring: "hover:ring-indigo-500/25",
   },
   everyday: {
     icon: Calculator,

@@ -5,7 +5,7 @@ import { act, cleanup, fireEvent, render, screen, waitFor, within } from "@testi
 import { NextIntlClientProvider } from "next-intl";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import en from "../../../messages/en.json";
-import { tools } from "@/lib/tools/registry";
+import { tools, categories } from "@/lib/tools/registry";
 import { APP_PAGE_IDS } from "@/lib/pwa/app-pages";
 import { OFFLINE_PLAN_KEY, type OfflineState } from "@/lib/pwa/offline-status";
 import { OfflineAccess } from "./offline-access";
@@ -164,6 +164,18 @@ function pageBoxes(): HTMLInputElement[] {
 }
 
 describe("OfflineAccess", () => {
+  it("offers every registered category, including new math tools", () => {
+    renderOffline();
+    const picker = within(card("Tools"));
+    for (const category of categories) {
+      const label = en.categories[category];
+      expect(picker.getByRole("button", { name: new RegExp(`^${label} `) })).toBeInTheDocument();
+    }
+    fireEvent.click(picker.getByRole("button", { name: /^Math / }));
+    expect(picker.getByRole("checkbox", { name: "Scientific calculator" })).toBeChecked();
+    expect(picker.getByRole("checkbox", { name: "Equation solver" })).toBeChecked();
+  });
+
   it("waits for each figure rather than showing one it has not measured", async () => {
     renderOffline();
     /* Nothing has been read yet, so all four figures are waits: a number here
@@ -319,12 +331,12 @@ describe("the app's own pages", () => {
 });
 
 describe("the tool categories", () => {
-  it("start closed, rather than nine lists at once", () => {
+  it("start closed, rather than every list at once", () => {
     renderOffline();
     const tools = within(card("Tools"));
     expect(tools.queryByText("Merge PDFs")).toBeNull();
     expect(tools.getByRole("button", { name: /^PDF/ })).toHaveAttribute("aria-expanded", "false");
-    expect(tools.getAllByRole("button", { expanded: false })).toHaveLength(9);
+    expect(tools.getAllByRole("button", { expanded: false })).toHaveLength(categories.length);
   });
 
   it("open one at a time, and the tools inside still choose", () => {

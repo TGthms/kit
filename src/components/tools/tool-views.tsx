@@ -9,6 +9,12 @@ function load(importer: () => Promise<ComponentType>): ComponentType {
 }
 
 const TOOL_COMPONENTS: Record<ToolId, ComponentType> = {
+  "symbol-browser": load(() => import("./symbol-browser").then((m) => m.SymbolBrowser)),
+  "unicode-styles": load(() => import("./unicode-styles").then((m) => m.UnicodeStyles)),
+  "scientific-calculator": load(() => import("./math/calculator").then((m) => m.ScientificCalculator)),
+  "function-grapher": load(() => import("./math/grapher").then((m) => m.FunctionGrapher)),
+  "equation-solver": load(() => import("./math/equation-solver").then((m) => m.EquationSolver)),
+  "fraction-calculator": load(() => import("./math/calculator").then((m) => m.FractionCalculator)),
   "pdf-merge": load(() => import("./pdf-merge").then((m) => m.PdfMerge)),
   "pdf-split": load(() => import("./pdf-split").then((m) => m.PdfSplit)),
   "pdf-organize": load(() => import("./pdf-organize").then((m) => m.PdfOrganize)),

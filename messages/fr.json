@@ -162,7 +162,8 @@
       "money": "Argent",
       "everyday-text": "Texte du quotidien",
       "quick": "Rapide",
-      "health": "Santé"
+      "health": "Santé",
+      "calculate": "Calculer"
     },
     "greeting": {
       "morning": "Bonjour — commencez la journée à votre rythme.",
@@ -432,7 +433,9 @@
     "everyday": "Quotidien",
     "everydayDesc": "Convertisseurs, horloges, calculateurs et outils rapides",
     "converter": "Convertisseurs du quotidien",
-    "converterDesc": "Unités, devises et autres conversions, organisées pour aller vite"
+    "converterDesc": "Unités, devises et autres conversions, organisées pour aller vite",
+    "math": "Mathématiques",
+    "mathDesc": "Calculez, tracez des fonctions et explorez les équations avec des explications"
   },
   "history": {
     "title": "Historique",
@@ -1914,6 +1917,67 @@
       "normalized": "Normalisé",
       "record": "Enregistrer la vérification",
       "saved": "Enregistré dans l’historique."
+    },
+    "symbol-browser": {
+      "name": "Explorateur de symboles",
+      "description": "Trouvez et copiez des symboles utiles à l’écriture, aux mathématiques et aux monnaies, par nom, caractère ou code Unicode.",
+      "summary": "Trouvez et copiez des symboles utiles à l’écriture, aux mathématiques et aux monnaies, par nom, caractère ou code Unicode.",
+      "keywords": "Explorateur de symboles",
+      "searchHint": "Nom, symbole ou code U+…",
+      "tapToCopy": "Touchez un symbole pour le copier.",
+      "groupPopular": "Courants",
+      "groupArrows": "Flèches",
+      "groupMath": "Mathématiques",
+      "groupPunctuation": "Ponctuation",
+      "groupCurrency": "Monnaies",
+      "groupGreek": "Grec",
+      "groupShapes": "Formes"
+    },
+    "unicode-styles": {
+      "name": "Styles de texte Unicode",
+      "description": "Transformez des lettres en styles Unicode pour vos profils et messages, ou retrouvez le texte ordinaire à partir du texte stylisé.",
+      "summary": "Transformez des lettres en styles Unicode pour vos profils et messages, ou retrouvez le texte ordinaire à partir du texte stylisé.",
+      "keywords": "Styles de texte Unicode",
+      "placeholder": "Saisissez ou collez votre texte…",
+      "note": "Ce sont des caractères Unicode, pas des polices. Surtout les lettres latines et chiffres changent ; le reste est conservé. Lecteurs d’écran, recherches et certaines applications peuvent mal les interpréter.",
+      "plain": "Texte ordinaire",
+      "styleLabel": "Styles de texte",
+      "styleBold": "Gras",
+      "styleItalic": "Italique",
+      "styleBoldItalic": "Gras italique",
+      "styleScript": "Calligraphique",
+      "styleBoldScript": "Calligraphique gras",
+      "styleFraktur": "Fracture",
+      "styleDoubleStruck": "Double trait",
+      "styleSans": "Sans empattement",
+      "styleSansBold": "Sans empattement gras",
+      "styleMonospace": "Chasse fixe",
+      "styleCircled": "Cerclé",
+      "styleFullwidth": "Pleine chasse"
+    },
+    "scientific-calculator": {
+      "name": "Calculatrice scientifique",
+      "description": "Calculez racines, puissances, fractions, logarithmes et fonctions trigonométriques avec une saisie structurée en degrés ou radians.",
+      "summary": "Calculez racines, puissances, fractions, logarithmes et fonctions trigonométriques avec une saisie structurée en degrés ou radians.",
+      "keywords": "Calculatrice scientifique"
+    },
+    "function-grapher": {
+      "name": "Traceur de fonctions",
+      "description": "Tracez jusqu’à trois fonctions réelles, déplacez et zoomez le graphique, puis explorez un tableau de valeurs.",
+      "summary": "Tracez jusqu’à trois fonctions réelles, déplacez et zoomez le graphique, puis explorez un tableau de valeurs.",
+      "keywords": "Traceur de fonctions"
+    },
+    "equation-solver": {
+      "name": "Résolution d’équations",
+      "description": "Résolvez des équations réelles linéaires et quadratiques en x, avec réponses exactes, décimales et explications des étapes.",
+      "summary": "Résolvez des équations réelles linéaires et quadratiques en x, avec réponses exactes, décimales et explications des étapes.",
+      "keywords": "Résolution d’équations"
+    },
+    "fraction-calculator": {
+      "name": "Calculatrice de fractions",
+      "description": "Additionnez, soustrayez, multipliez et divisez des fractions en conservant les résultats exacts et les approximations décimales.",
+      "summary": "Additionnez, soustrayez, multipliez et divisez des fractions en conservant les résultats exacts et les approximations décimales.",
+      "keywords": "Calculatrice de fractions"
     }
   },
   "legal": {
@@ -2091,5 +2155,49 @@
   },
   "toolPage": {
     "related": "Outils similaires"
+  },
+  "math": {
+    "inputHint": "Tapez sqrt pour √, / pour une fraction et ^ pour une puissance. → ou Espace quitte l’exposant.",
+    "angle": "Unité angulaire",
+    "radians": "Radians",
+    "degrees": "Degrés",
+    "expression": "Expression",
+    "backspace": "Effacer le caractère précédent",
+    "calculate": "Calculer",
+    "decimal": "Approximation décimale",
+    "calculateHint": "Saisissez une expression, puis appuyez sur = ou Entrée.",
+    "fractionHint": "Utilisez des fractions, entiers ou décimaux finis. Les résultats restent exacts.",
+    "equation": "Équation en x",
+    "solve": "Résoudre",
+    "solverScope": "Équations réelles linéaires et quadratiques en x. Sans =, l’expression vaut = 0.",
+    "allReal": "Tous les réels sont solutions.",
+    "noReal": "Aucune solution réelle.",
+    "solutions": "Solutions réelles",
+    "showSteps": "Afficher les étapes et explications",
+    "addFunction": "Ajouter une fonction",
+    "graphScope": "Trois fonctions de x maximum : racines, puissances, logarithmes, valeurs absolues et trigonométrie.",
+    "zoomIn": "Agrandir",
+    "zoomOut": "Réduire",
+    "graphLabel": "Graphique interactif de fonctions",
+    "graphHint": "Faites glisser pour déplacer, pincez pour zoomer. Graphique sélectionné : flèches, +/− ou Origine pour réinitialiser.",
+    "valueTable": "Tableau de valeurs",
+    "errors": {
+      "invalid": "Vérifiez l’expression et complétez les cases vides.",
+      "domain": "Le résultat est indéfini ou hors des réels.",
+      "unsupported": "Cette fonction n’est pas prise en charge ici.",
+      "polynomialOnly": "Saisissez une équation polynomiale linéaire ou quadratique en x, sans dénominateur variable ni puissance supérieure.",
+      "rationalOnly": "Utilisez une expression donnant un résultat rationnel.",
+      "timeout": "Calcul trop long. Essayez une expression plus simple.",
+      "unavailable": "Le moteur mathématique n’a pas pu se charger. Reconnectez-vous ou réparez les fichiers hors ligne."
+    },
+    "steps": {
+      "collect": "Passez tout à gauche, développez les parenthèses et regroupez les termes semblables.",
+      "isolate": "Soustrayez la constante des deux côtés pour la passer à droite.",
+      "divide": "Divisez les deux côtés par le coefficient de x.",
+      "coefficients": "Repérez les coefficients dans ax² + bx + c = 0.",
+      "discriminant": "Calculez le discriminant Δ = b² − 4ac.",
+      "negativeDiscriminant": "Un discriminant négatif signifie qu’il n’y a pas de racines réelles.",
+      "quadraticFormula": "Appliquez la formule quadratique et simplifiez chaque résultat."
+    }
   }
 }

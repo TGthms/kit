@@ -162,7 +162,8 @@
       "money": "Raha",
       "everyday-text": "Arjen teksti",
       "quick": "Pikatyökalut",
-      "health": "Terveys"
+      "health": "Terveys",
+      "calculate": "Laske"
     },
     "greeting": {
       "morning": "Hyvää huomenta — päivä saa alkaa rauhassa.",
@@ -432,7 +433,9 @@
     "everyday": "Arki",
     "everydayDesc": "Käytännön muuntimet, kellot, laskurit ja pikatyökalut",
     "converter": "Arjen muuntimet",
-    "converterDesc": "Yksiköt, valuutat ja muu – järjestetty nopeita muunnoksia varten"
+    "converterDesc": "Yksiköt, valuutat ja muu – järjestetty nopeita muunnoksia varten",
+    "math": "Matematiikka",
+    "mathDesc": "Laske, piirrä funktioita ja ratkaise yhtälöitä selitysten avulla"
   },
   "history": {
     "title": "Historia",
@@ -1914,6 +1917,67 @@
       "normalized": "Normalisoitu",
       "record": "Tallenna tarkistus",
       "saved": "Tallennettu historiaan."
+    },
+    "symbol-browser": {
+      "name": "Symboliselain",
+      "description": "Etsi ja kopioi symboleja kirjoittamiseen, matematiikkaan ja valuuttoihin nimen, merkin tai Unicode-koodipisteen perusteella.",
+      "summary": "Etsi ja kopioi symboleja kirjoittamiseen, matematiikkaan ja valuuttoihin nimen, merkin tai Unicode-koodipisteen perusteella.",
+      "keywords": "Symboliselain",
+      "searchHint": "Etsi nimi, symboli tai U+-koodi…",
+      "tapToCopy": "Kopioi symboli napauttamalla.",
+      "groupPopular": "Suositut",
+      "groupArrows": "Nuolet",
+      "groupMath": "Matematiikka",
+      "groupPunctuation": "Välimerkit",
+      "groupCurrency": "Valuutat",
+      "groupGreek": "Kreikka",
+      "groupShapes": "Muodot"
+    },
+    "unicode-styles": {
+      "name": "Unicode-tekstityylit",
+      "description": "Muunna kirjaimet kopioitaviksi Unicode-tyyleiksi profiileihin ja viesteihin tai palauta tyylitelty teksti tavalliseksi tekstiksi.",
+      "summary": "Muunna kirjaimet kopioitaviksi Unicode-tyyleiksi profiileihin ja viesteihin tai palauta tyylitelty teksti tavalliseksi tekstiksi.",
+      "keywords": "Unicode-tekstityylit",
+      "placeholder": "Kirjoita tai liitä teksti…",
+      "note": "Nämä ovat Unicode-merkkejä, eivät fontteja. Lähinnä latinalaiset kirjaimet ja numerot muuttuvat, muut säilyvät. Ruudunlukijat, haku ja jotkin sovellukset eivät välttämättä lue niitä oikein.",
+      "plain": "Tavallinen teksti",
+      "styleLabel": "Tekstityylit",
+      "styleBold": "Lihavoitu",
+      "styleItalic": "Kursiivi",
+      "styleBoldItalic": "Lihavoitu kursiivi",
+      "styleScript": "Kaunokirjoitus",
+      "styleBoldScript": "Lihavoitu kaunokirjoitus",
+      "styleFraktur": "Fraktuura",
+      "styleDoubleStruck": "Kaksoisviiva",
+      "styleSans": "Päätteetön",
+      "styleSansBold": "Lihavoitu päätteetön",
+      "styleMonospace": "Tasalevyinen",
+      "styleCircled": "Ympyröity",
+      "styleFullwidth": "Täysleveä"
+    },
+    "scientific-calculator": {
+      "name": "Tieteislaskin",
+      "description": "Laske juuria, potensseja, murtolukuja, logaritmeja ja trigonometrisia funktioita jäsennellyllä syötöllä asteina tai radiaaneina.",
+      "summary": "Laske juuria, potensseja, murtolukuja, logaritmeja ja trigonometrisia funktioita jäsennellyllä syötöllä asteina tai radiaaneina.",
+      "keywords": "Tieteislaskin"
+    },
+    "function-grapher": {
+      "name": "Funktiopiirturi",
+      "description": "Piirrä enintään kolme reaalifunktiota, siirrä ja suurenna kuvaajaa ja tutki arvotaulukkoa samalla matemaattisella syötöllä.",
+      "summary": "Piirrä enintään kolme reaalifunktiota, siirrä ja suurenna kuvaajaa ja tutki arvotaulukkoa samalla matemaattisella syötöllä.",
+      "keywords": "Funktiopiirturi"
+    },
+    "equation-solver": {
+      "name": "Yhtälönratkaisija",
+      "description": "Ratkaise reaaliset ensimmäisen ja toisen asteen yhtälöt muuttujan x suhteen, näe tarkat ja desimaalitulokset sekä vaiheiden selitykset.",
+      "summary": "Ratkaise reaaliset ensimmäisen ja toisen asteen yhtälöt muuttujan x suhteen, näe tarkat ja desimaalitulokset sekä vaiheiden selitykset.",
+      "keywords": "Yhtälönratkaisija"
+    },
+    "fraction-calculator": {
+      "name": "Murtolukulaskin",
+      "description": "Laske murtolukujen yhteen-, vähennys-, kerto- ja jakolaskuja tarkoilla rationaalituloksilla ja desimaalilikiarvoilla.",
+      "summary": "Laske murtolukujen yhteen-, vähennys-, kerto- ja jakolaskuja tarkoilla rationaalituloksilla ja desimaalilikiarvoilla.",
+      "keywords": "Murtolukulaskin"
     }
   },
   "legal": {
@@ -2091,5 +2155,49 @@
   },
   "toolPage": {
     "related": "Samankaltaiset työkalut"
+  },
+  "math": {
+    "inputHint": "Kirjoita sqrt → √, / → murtoluku ja ^ → potenssi. Poistu eksponentista nuolella → tai välilyönnillä.",
+    "angle": "Kulmayksikkö",
+    "radians": "Radiaanit",
+    "degrees": "Asteet",
+    "expression": "Lauseke",
+    "backspace": "Poista edellinen merkki",
+    "calculate": "Laske",
+    "decimal": "Desimaalilikiarvo",
+    "calculateHint": "Syötä lauseke ja paina = tai Enter.",
+    "fractionHint": "Käytä murtolukuja, kokonaislukuja tai päättyviä desimaalilukuja. Tulokset säilyvät tarkkoina.",
+    "equation": "Yhtälö muuttujalla x",
+    "solve": "Ratkaise",
+    "solverScope": "Reaaliset ensimmäisen ja toisen asteen yhtälöt. Ilman =-merkkiä oletetaan = 0.",
+    "allReal": "Kaikki reaaliluvut ovat ratkaisuja.",
+    "noReal": "Ei reaalisia ratkaisuja.",
+    "solutions": "Ratkaisut",
+    "showSteps": "Näytä vaiheet ja selitykset",
+    "addFunction": "Lisää funktio",
+    "graphScope": "Enintään kolme x:n funktiota: juuret, potenssit, logaritmit, itseisarvot ja trigonometria.",
+    "zoomIn": "Lähennä",
+    "zoomOut": "Loitonna",
+    "graphLabel": "Vuorovaikutteinen funktiokuvaaja",
+    "graphHint": "Siirrä vetämällä, suurenna nipistämällä. Kun kuvaaja on valittu: nuolet, +/− tai Home palauttaa näkymän.",
+    "valueTable": "Arvotaulukko",
+    "errors": {
+      "invalid": "Tarkista lauseke ja täytä tyhjät ruudut.",
+      "domain": "Tulos on määrittelemätön tai ei ole reaaliluku.",
+      "unsupported": "Tätä funktiota ei tueta tässä.",
+      "polynomialOnly": "Syötä ensimmäisen tai toisen asteen polynomiyhtälö muuttujalla x ilman muuttuvia nimittäjiä tai suurempia potensseja.",
+      "rationalOnly": "Käytä lauseketta, jonka tulos on rationaaliluku.",
+      "timeout": "Laskenta kesti liian kauan. Yksinkertaista lauseketta.",
+      "unavailable": "Laskentamoottoria ei voitu ladata. Yhdistä verkkoon tai korjaa offline-tiedostot."
+    },
+    "steps": {
+      "collect": "Siirrä kaikki vasemmalle, avaa sulut ja yhdistä samanmuotoiset termit.",
+      "isolate": "Vähennä vakio molemmilta puolilta siirtääksesi sen oikealle.",
+      "divide": "Jaa molemmat puolet x:n kertoimella.",
+      "coefficients": "Tunnista kertoimet muodosta ax² + bx + c = 0.",
+      "discriminant": "Laske diskriminantti Δ = b² − 4ac.",
+      "negativeDiscriminant": "Negatiivinen diskriminantti tarkoittaa, ettei reaalisia juuria ole.",
+      "quadraticFormula": "Sovella toisen asteen yhtälön ratkaisukaavaa ja sievennä tulokset."
+    }
   }
 }

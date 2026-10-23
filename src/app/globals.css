@@ -1041,3 +1041,44 @@ button[data-pressed]:not(:disabled),
     border: 1px solid var(--border);
   }
 }
+
+/* MathLive is loaded on math routes only. Its fonts are served locally. */
+math-field.kit-math-input,
+math-field.kit-math-result {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  overflow-x: auto;
+  border-radius: 0.85rem;
+  color: var(--foreground);
+  background: var(--background);
+  --caret-color: var(--primary);
+  --selection-color: var(--foreground);
+  --composition-text-color: var(--foreground);
+  --composition-background-color: var(--secondary);
+  --selection-background-color: color-mix(in srgb, var(--primary) 20%, transparent);
+  --contains-highlight-background-color: color-mix(in srgb, var(--primary) 10%, transparent);
+  --smart-fence-color: var(--primary);
+}
+math-field.kit-math-input { min-height: 4rem; border: 1px solid var(--border); padding: 0.65rem; font-size: 1.4rem; }
+math-field.kit-math-input:focus-within { outline: 2px solid var(--ring); outline-offset: 2px; }
+math-field.kit-math-result { border: 0; background: transparent; font-size: 1.5rem; padding: 0.2rem 0; pointer-events: none; }
+math-field.kit-math-result::part(virtual-keyboard-toggle),
+math-field.kit-math-result::part(menu-toggle) { display: none; }
+body {
+  --keyboard-zindex: 90;
+  --keyboard-accent-color: var(--primary);
+  --keyboard-background: var(--secondary);
+  --keyboard-border: var(--border);
+  --keyboard-toolbar-text: var(--foreground);
+  --keyboard-toolbar-background-hover: var(--accent);
+  --keycap-background: var(--card);
+  --keycap-background-hover: var(--accent);
+  --keycap-text: var(--foreground);
+  --keycap-border: var(--border);
+  --keycap-border-bottom: var(--border);
+  --keycap-primary-background: var(--primary);
+  --keycap-primary-text: var(--primary-foreground);
+  --keycap-secondary-background: var(--muted);
+  --keycap-secondary-text: var(--foreground);
+}

@@ -162,7 +162,8 @@
       "money": "Pieniądze",
       "everyday-text": "Tekst codzienny",
       "quick": "Szybkie",
-      "health": "Zdrowie"
+      "health": "Zdrowie",
+      "calculate": "Obliczenia"
     },
     "greeting": {
       "morning": "Dzień dobry. Zacznij dzień we własnym tempie.",
@@ -432,7 +433,9 @@
     "everyday": "Codzienne",
     "everydayDesc": "Praktyczne konwertery, zegary, kalkulatory i szybkie narzędzia",
     "converter": "Przeliczniki codzienne",
-    "converterDesc": "Jednostki, waluty i nie tylko — wszystko do szybkich przeliczeń"
+    "converterDesc": "Jednostki, waluty i nie tylko — wszystko do szybkich przeliczeń",
+    "math": "Matematyka",
+    "mathDesc": "Obliczaj, rysuj funkcje i rozwiązuj równania z wyjaśnieniami"
   },
   "history": {
     "title": "Historia",
@@ -1914,6 +1917,67 @@
       "normalized": "Znormalizowano",
       "record": "Zapisz sprawdzenie",
       "saved": "Zapisano w historii."
+    },
+    "symbol-browser": {
+      "name": "Przeglądarka symboli",
+      "description": "Znajduj i kopiuj symbole do pisania, matematyki i walut. Wyszukuj według nazwy, znaku lub punktu kodowego Unicode.",
+      "summary": "Znajduj i kopiuj symbole do pisania, matematyki i walut. Wyszukuj według nazwy, znaku lub punktu kodowego Unicode.",
+      "keywords": "Przeglądarka symboli",
+      "searchHint": "Szukaj nazwy, symbolu lub kodu U+…",
+      "tapToCopy": "Dotknij symbolu, aby go skopiować.",
+      "groupPopular": "Popularne",
+      "groupArrows": "Strzałki",
+      "groupMath": "Matematyka",
+      "groupPunctuation": "Interpunkcja",
+      "groupCurrency": "Waluty",
+      "groupGreek": "Grecki",
+      "groupShapes": "Kształty"
+    },
+    "unicode-styles": {
+      "name": "Style tekstu Unicode",
+      "description": "Zmieniaj litery w kopiowalne style Unicode do profili i wiadomości lub przywracaj zwykły tekst z tekstu stylizowanego.",
+      "summary": "Zmieniaj litery w kopiowalne style Unicode do profili i wiadomości lub przywracaj zwykły tekst z tekstu stylizowanego.",
+      "keywords": "Style tekstu Unicode",
+      "placeholder": "Wpisz lub wklej tekst…",
+      "note": "To znaki Unicode, a nie czcionki. Zmieniają się głównie litery łacińskie i cyfry; pozostałe znaki pozostają. Czytniki ekranu, wyszukiwarki i niektóre aplikacje mogą je źle odczytywać.",
+      "plain": "Zwykły tekst",
+      "styleLabel": "Style tekstu",
+      "styleBold": "Pogrubiony",
+      "styleItalic": "Kursywa",
+      "styleBoldItalic": "Pogrubiona kursywa",
+      "styleScript": "Kaligraficzny",
+      "styleBoldScript": "Pogrubiony kaligraficzny",
+      "styleFraktur": "Fraktura",
+      "styleDoubleStruck": "Podwójna kreska",
+      "styleSans": "Bezszeryfowy",
+      "styleSansBold": "Pogrubiony bezszeryfowy",
+      "styleMonospace": "Stała szerokość",
+      "styleCircled": "W kółkach",
+      "styleFullwidth": "Pełna szerokość"
+    },
+    "scientific-calculator": {
+      "name": "Kalkulator naukowy",
+      "description": "Obliczaj pierwiastki, potęgi, ułamki, logarytmy i funkcje trygonometryczne ze strukturalnym wprowadzaniem w stopniach lub radianach.",
+      "summary": "Obliczaj pierwiastki, potęgi, ułamki, logarytmy i funkcje trygonometryczne ze strukturalnym wprowadzaniem w stopniach lub radianach.",
+      "keywords": "Kalkulator naukowy"
+    },
+    "function-grapher": {
+      "name": "Wykresy funkcji",
+      "description": "Rysuj do trzech funkcji rzeczywistych, przesuwaj i powiększaj wykres oraz przeglądaj tabelę wartości z tym samym edytorem matematycznym.",
+      "summary": "Rysuj do trzech funkcji rzeczywistych, przesuwaj i powiększaj wykres oraz przeglądaj tabelę wartości z tym samym edytorem matematycznym.",
+      "keywords": "Wykresy funkcji"
+    },
+    "equation-solver": {
+      "name": "Rozwiązywanie równań",
+      "description": "Rozwiązuj rzeczywiste równania liniowe i kwadratowe z x, oglądaj wyniki dokładne i dziesiętne oraz objaśnienia kroków.",
+      "summary": "Rozwiązuj rzeczywiste równania liniowe i kwadratowe z x, oglądaj wyniki dokładne i dziesiętne oraz objaśnienia kroków.",
+      "keywords": "Rozwiązywanie równań"
+    },
+    "fraction-calculator": {
+      "name": "Kalkulator ułamków",
+      "description": "Dodawaj, odejmuj, mnóż i dziel ułamki, zachowując dokładne wyniki wymierne i przybliżenia dziesiętne.",
+      "summary": "Dodawaj, odejmuj, mnóż i dziel ułamki, zachowując dokładne wyniki wymierne i przybliżenia dziesiętne.",
+      "keywords": "Kalkulator ułamków"
     }
   },
   "legal": {
@@ -2091,5 +2155,49 @@
   },
   "toolPage": {
     "related": "Podobne narzędzia"
+  },
+  "math": {
+    "inputHint": "Wpisz sqrt, aby uzyskać √, / dla ułamka i ^ dla potęgi. → lub Spacja opuszcza wykładnik.",
+    "angle": "Jednostka kąta",
+    "radians": "Radiany",
+    "degrees": "Stopnie",
+    "expression": "Wyrażenie",
+    "backspace": "Usuń poprzedni znak",
+    "calculate": "Oblicz",
+    "decimal": "Przybliżenie dziesiętne",
+    "calculateHint": "Wpisz wyrażenie i naciśnij = lub Enter.",
+    "fractionHint": "Używaj ułamków, liczb całkowitych lub skończonych dziesiętnych. Wyniki pozostają dokładne.",
+    "equation": "Równanie z x",
+    "solve": "Rozwiąż",
+    "solverScope": "Rzeczywiste równania liniowe i kwadratowe z x. Bez = przyjmowane jest = 0.",
+    "allReal": "Wszystkie liczby rzeczywiste są rozwiązaniami.",
+    "noReal": "Brak rozwiązań rzeczywistych.",
+    "solutions": "Rozwiązania",
+    "showSteps": "Pokaż kroki i wyjaśnienia",
+    "addFunction": "Dodaj funkcję",
+    "graphScope": "Do trzech funkcji x: pierwiastki, potęgi, logarytmy, wartości bezwzględne i trygonometria.",
+    "zoomIn": "Powiększ",
+    "zoomOut": "Pomniejsz",
+    "graphLabel": "Interaktywny wykres funkcji",
+    "graphHint": "Przeciągnij, aby przesunąć; uszczypnij, aby przybliżyć. Po wybraniu wykresu: strzałki, +/− lub Home resetuje widok.",
+    "valueTable": "Tabela wartości",
+    "errors": {
+      "invalid": "Sprawdź wyrażenie i uzupełnij puste pola.",
+      "domain": "Wynik jest nieokreślony lub nie jest rzeczywisty.",
+      "unsupported": "Ta funkcja nie jest tutaj obsługiwana.",
+      "polynomialOnly": "Wpisz liniowe lub kwadratowe równanie wielomianowe z x, bez zmiennych mianowników ani wyższych potęg.",
+      "rationalOnly": "Użyj wyrażenia o wyniku wymiernym.",
+      "timeout": "Obliczenie trwało zbyt długo. Uprość wyrażenie.",
+      "unavailable": "Nie udało się załadować silnika matematycznego. Połącz z siecią lub napraw pliki offline."
+    },
+    "steps": {
+      "collect": "Przenieś wszystko na lewą stronę, rozwiń nawiasy i zredukuj wyrazy podobne.",
+      "isolate": "Odejmij stałą od obu stron, aby przenieść ją na prawą stronę.",
+      "divide": "Podziel obie strony przez współczynnik przy x.",
+      "coefficients": "Odczytaj współczynniki z ax² + bx + c = 0.",
+      "discriminant": "Oblicz wyróżnik Δ = b² − 4ac.",
+      "negativeDiscriminant": "Ujemny wyróżnik oznacza brak pierwiastków rzeczywistych.",
+      "quadraticFormula": "Zastosuj wzór kwadratowy i uprość każdy wynik."
+    }
   }
 }
