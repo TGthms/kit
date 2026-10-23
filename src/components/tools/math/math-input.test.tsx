@@ -52,6 +52,11 @@ async function editor(props: Partial<Parameters<typeof MathInput>[0]> = {}) {
   const field = rendered.container.querySelector(
     "math-field",
   )! as HTMLElement & { value: string; readOnly: boolean };
+  // DOM insertion alone does not imply custom-element configuration finished.
+  await waitFor(() => {
+    expect(field.value).toBe("x^2");
+    expect(field.readOnly).toBe(props.readOnly ?? false);
+  });
   return { field, change, commit, ...rendered };
 }
 describe("structured math input", () => {
@@ -97,6 +102,28 @@ describe("structured math input", () => {
     });
     expect(accepted).toBe(false);
     expect(getByRole("alert").textContent).toContain("Check the expression");
+  });
+  it("applies read-only changes before the next paint without resetting content", async () => {
+    const { field, rerender } = await editor();
+    const setter = vi.spyOn(
+      field as unknown as { setValue: (value: string) => void },
+      "setValue",
+    );
+    rerender(
+      <NextIntlClientProvider locale="en" messages={en}>
+        <MathInput value="x^2" label="Equation" readOnly />
+      </NextIntlClientProvider>,
+    );
+    expect(field.readOnly).toBe(true);
+    expect(field.tabIndex).toBe(-1);
+    expect(setter).not.toHaveBeenCalled();
+    rerender(
+      <NextIntlClientProvider locale="en" messages={en}>
+        <MathInput value="x^2" label="Equation" />
+      </NextIntlClientProvider>,
+    );
+    expect(field.readOnly).toBe(false);
+    expect(field.tabIndex).toBe(0);
   });
   it("marks output read-only and removes it from tab order", async () => {
     const { field } = await editor({ readOnly: true });

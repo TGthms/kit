@@ -3,6 +3,7 @@
 import {
   useEffect,
   useId,
+  useLayoutEffect,
   useRef,
   useState,
   type DetailedHTMLProps,
@@ -79,7 +80,7 @@ export function MathInput({
       mounted = false;
     };
   }, []);
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!ready || !ref.current) return;
     const field = ref.current;
     field.readOnly = readOnly;
@@ -95,12 +96,13 @@ export function MathInput({
       pi: "\\pi",
       theta: "\\theta",
     };
-    field.setValue(value, { silenceNotifications: true });
+    if (field.value !== value)
+      field.setValue(value, { silenceNotifications: true });
     // Deliberately initialize once per mounted editor; later updates below
     // preserve selection and the undo stack while typing.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [ready, readOnly, locale]);
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (ready && ref.current && ref.current.value !== value)
       ref.current.setValue(value, { silenceNotifications: true });
   }, [ready, value]);
