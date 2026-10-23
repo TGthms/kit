@@ -2235,7 +2235,9 @@
       "traceX": "Urmărește la x",
       "traceHint": "Mișcă sau trage pe grafic. ←/→ schimbă x; Shift mărește pasul. Poți introduce x și mai jos.",
       "approximate": "Coordonatele sunt aproximări numerice. O liniuță indică o funcție nedefinită.",
-      "scope": "Până la opt funcții reale cu nume. a, b, c sunt glisoare; d(x)+g(x) combină funcții. Rădăcini, puteri, logaritmi, valori absolute și trigonometrie."
+      "scope": "Până la opt funcții reale cu nume. a, b, c sunt glisoare; d(x)+g(x) combină funcții. Rădăcini, puteri, logaritmi, valori absolute și trigonometrie.",
+      "expressions": "Expresii",
+      "pan": "Deplasare"
     }
   }
 }

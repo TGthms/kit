@@ -2235,7 +2235,9 @@
       "traceX": "Volgen bij x",
       "traceHint": "Beweeg of sleep over de grafiek. ←/→ wijzigt x; Shift vergroot de stap. Je kunt x hieronder invoeren.",
       "approximate": "Coördinaten zijn numerieke benaderingen. Een streep betekent dat de functie onbepaald is.",
-      "scope": "Tot acht benoemde reële functies. a, b, c zijn schuifregelaars, d(x)+g(x) combineert functies. Wortels, machten, logaritmen, absolute waarden en goniometrie."
+      "scope": "Tot acht benoemde reële functies. a, b, c zijn schuifregelaars, d(x)+g(x) combineert functies. Wortels, machten, logaritmen, absolute waarden en goniometrie.",
+      "expressions": "Uitdrukkingen",
+      "pan": "Verschuiven"
     }
   }
 }

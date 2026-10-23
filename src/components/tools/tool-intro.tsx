@@ -40,11 +40,14 @@ export function ToolIntro({ toolId, subtitle }: { toolId: ToolId; subtitle?: str
   const tool = getTool(toolId);
   const back = useToolBack(toolId);
   const backLabel = back.fromElsewhere ? tc("back") : tool ? tCat(tool.category) : tc("back");
+  const graphWorkspace = toolId === "function-grapher";
   const showClientSideNote = tool ? isFileTool(tool) : false;
 
   return (
     <PageHeader
       title={t("name")}
+      sticky={!graphWorkspace}
+      className={graphWorkspace ? "graph-tool-intro mb-3 sm:mb-4 [&>div]:flex-row [&>div]:items-center [&_h1]:text-xl sm:[&_h1]:text-2xl [&_p.type-body]:sr-only" : undefined}
       subtitle={subtitle || t("description")}
       backHref={back.href}
       backLabel={backLabel}
@@ -56,16 +59,18 @@ export function ToolIntro({ toolId, subtitle }: { toolId: ToolId; subtitle?: str
         ) : undefined
       }
       trailing={
-        <div className="flex w-full flex-col gap-2 sm:w-fit sm:flex-row">
-          <ShareButton title={t("name")} text={t("description")} url={toolShareUrl(locale, toolId)} />
+        <div className={graphWorkspace ? "flex w-fit gap-1.5" : "flex w-full flex-col gap-2 sm:w-fit sm:flex-row"}>
+          <ShareButton title={t("name")} text={t("description")} url={toolShareUrl(locale, toolId)} iconOnly={graphWorkspace} className={graphWorkspace ? "size-9 w-9 rounded-lg px-0 sm:w-9" : undefined}/>
           <Button
             variant={fav ? "default" : "outline"}
             size="sm"
-            className="h-10 w-full rounded-full sm:w-fit"
+            className={graphWorkspace ? "size-9 w-9 rounded-lg px-0 sm:w-9" : "h-10 w-full rounded-full sm:w-fit"}
+            aria-label={graphWorkspace ? (fav ? tc("unfavorite") : tc("favorite")) : undefined}
+            title={graphWorkspace ? (fav ? tc("unfavorite") : tc("favorite")) : undefined}
             onClick={() => toggle(toolId)}
           >
             <Star className={fav ? "fill-current" : ""} />
-            {fav ? tc("unfavorite") : tc("favorite")}
+            {!graphWorkspace && (fav ? tc("unfavorite") : tc("favorite"))}
           </Button>
         </div>
       }

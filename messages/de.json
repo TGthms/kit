@@ -2235,7 +2235,9 @@
       "traceX": "Bei x verfolgen",
       "traceHint": "Über die Grafik bewegen oder ziehen. ←/→ ändert x, Umschalt vergrößert die Schritte. x kann unten eingegeben werden.",
       "approximate": "Koordinaten sind numerische Näherungen. Ein Strich bedeutet, die Funktion ist dort undefiniert.",
-      "scope": "Bis zu acht benannte reelle Funktionen. a, b, c für Regler, d(x)+g(x) für Verknüpfungen. Wurzeln, Potenzen, Logarithmen, Beträge und Trigonometrie."
+      "scope": "Bis zu acht benannte reelle Funktionen. a, b, c für Regler, d(x)+g(x) für Verknüpfungen. Wurzeln, Potenzen, Logarithmen, Beträge und Trigonometrie.",
+      "expressions": "Ausdrücke",
+      "pan": "Verschieben"
     }
   }
 }

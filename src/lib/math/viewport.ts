@@ -43,14 +43,19 @@ export function panView(view: Viewport, dx: number, dy: number): Viewport {
     yMax: view.yMax + dy,
   };
 }
-export function gridTicks(min: number, max: number): number[] {
-  const raw = (max - min) / 8;
+export function gridTicks(min: number, max: number, divisions = 8): number[] {
+  const raw = (max - min) / Math.max(1, Math.min(48, divisions));
   if (!Number.isFinite(raw) || raw <= 0) return [];
   const power = 10 ** Math.floor(Math.log10(raw));
   const step = [1, 2, 5, 10].find((n) => n * power >= raw)! * power;
   const start = Math.ceil(min / step);
   return Array.from(
-    { length: Math.min(24, Math.max(0, Math.floor(max / step) - start + 1)) },
+    {
+      length: Math.min(
+        Math.max(24, divisions * 2),
+        Math.max(0, Math.floor(max / step) - start + 1),
+      ),
+    },
     (_, i) => (start + i) * step,
   );
 }
@@ -66,4 +71,23 @@ export function validView(view: Viewport): boolean {
     yMax - yMin >= 1e-6 &&
     yMax - yMin <= 1e8
   );
+}
+
+/** Preserve equal x/y units when the working surface changes size. */
+export function viewForAspect(
+  view: Viewport,
+  width: number,
+  height: number,
+): Viewport {
+  if (
+    !Number.isFinite(width) ||
+    !Number.isFinite(height) ||
+    width <= 0 ||
+    height <= 0
+  )
+    return view;
+  const span = ((view.xMax - view.xMin) * height) / width;
+  const center = (view.yMin + view.yMax) / 2;
+  const next = { ...view, yMin: center - span / 2, yMax: center + span / 2 };
+  return validView(next) ? next : view;
 }

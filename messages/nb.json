@@ -2235,7 +2235,9 @@
       "traceX": "Spor ved x",
       "traceHint": "Flytt eller dra over grafen. ←/→ endrer x; Shift øker trinnet. Du kan også skrive x nedenfor.",
       "approximate": "Koordinater er numeriske tilnærminger. En strek betyr at funksjonen er udefinert.",
-      "scope": "Opptil åtte navngitte reelle funksjoner. a, b, c er skyveknapper, d(x)+g(x) kombinerer funksjoner. Røtter, potenser, logaritmer, absoluttverdi og trigonometri."
+      "scope": "Opptil åtte navngitte reelle funksjoner. a, b, c er skyveknapper, d(x)+g(x) kombinerer funksjoner. Røtter, potenser, logaritmer, absoluttverdi og trigonometri.",
+      "expressions": "Uttrykk",
+      "pan": "Flytt"
     }
   }
 }

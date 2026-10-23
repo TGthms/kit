@@ -1,5 +1,11 @@
 import { describe, expect, it } from "vitest";
-import { DEFAULT_VIEW, gridTicks, panView, zoomView } from "./viewport";
+import {
+  DEFAULT_VIEW,
+  gridTicks,
+  panView,
+  zoomView,
+  viewForAspect,
+} from "./viewport";
 describe("graph navigation", () => {
   it("zooms around a fixed point and can invert the change", () => {
     const zoomed = zoomView(DEFAULT_VIEW, 0.5, 2, 3);
@@ -17,6 +23,12 @@ describe("graph navigation", () => {
     expect(zoomView(DEFAULT_VIEW, 0)).toEqual(DEFAULT_VIEW);
     expect(zoomView(DEFAULT_VIEW, 1e20)).toEqual(DEFAULT_VIEW);
     expect(panView(DEFAULT_VIEW, NaN, 0)).toEqual(DEFAULT_VIEW);
+  });
+  it("preserves equal unit scales on resize and respects invalid geometry", () => {
+    const view = viewForAspect(DEFAULT_VIEW, 800, 400);
+    expect(view.yMax - view.yMin).toBe(10);
+    expect((view.xMax - view.xMin) / 800).toBe((view.yMax - view.yMin) / 400);
+    expect(viewForAspect(DEFAULT_VIEW, 0, 400)).toEqual(DEFAULT_VIEW);
   });
   it("keeps grid lines finite and bounded at every scale", () => {
     for (const scale of [1e-6, 1, 1e6]) {

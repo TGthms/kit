@@ -2235,7 +2235,9 @@
       "traceX": "Seuraa kohdassa x",
       "traceHint": "Liikuta osoitinta tai vedä kuvaajaa. ←/→ muuttaa x:ää, Vaihto suurentaa askelta. Voit myös syöttää x:n alla.",
       "approximate": "Koordinaatit ovat numeerisia likiarvoja. Viiva tarkoittaa määrittelemätöntä arvoa.",
-      "scope": "Enintään kahdeksan nimettyä reaalifunktiota. a, b, c ovat liukusäätimiä, d(x)+g(x) yhdistää funktioita. Juuret, potenssit, logaritmit, itseisarvot ja trigonometria."
+      "scope": "Enintään kahdeksan nimettyä reaalifunktiota. a, b, c ovat liukusäätimiä, d(x)+g(x) yhdistää funktioita. Juuret, potenssit, logaritmit, itseisarvot ja trigonometria.",
+      "expressions": "Lausekkeet",
+      "pan": "Siirrä"
     }
   }
 }

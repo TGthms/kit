@@ -50,14 +50,25 @@ vi.mock("./math-input", () => ({
     value,
     label,
     onChange,
+    onCommit,
+    autoFocus,
+    id,
   }: {
     value: string;
     label: string;
     onChange: (v: string) => void;
+    onCommit?: () => void;
+    autoFocus?: boolean;
+    id?: string;
   }) => (
     <input
+      id={id}
       aria-label={label}
       value={value}
+      autoFocus={autoFocus}
+      onKeyDown={(e) => {
+        if (e.key === "Enter") onCommit?.();
+      }}
       onChange={(e) => onChange(e.target.value)}
     />
   ),
@@ -108,9 +119,8 @@ describe("graph workspace", () => {
     for (let i = 1; i < 8; i++)
       fireEvent.click(screen.getByRole("button", { name: "Add function" }));
     expect(screen.getByRole("button", { name: "Add function" })).toBeDisabled();
-    expect(
-      screen.getAllByRole("textbox", { name: /Function name/ }),
-    ).toHaveLength(8);
+    expect(screen.getAllByRole("textbox", { name: /\(x\) =/ })).toHaveLength(8);
+    fireEvent.click(screen.getByRole("button", { name: "Options h(x)" }));
     fireEvent.change(screen.getByRole("textbox", { name: "Function name 3" }), {
       target: { value: "z" },
     });
@@ -120,6 +130,7 @@ describe("graph workspace", () => {
     setup();
     await waitFor(() => expect(requests).toHaveBeenCalled());
     const count = requests.mock.calls.length;
+    fireEvent.click(screen.getByRole("button", { name: "Options f(x)" }));
     fireEvent.change(screen.getByLabelText("Graph color f(x)"), {
       target: { value: "#ff0000" },
     });
@@ -151,7 +162,7 @@ describe("graph workspace", () => {
   });
   it("rejects invalid bounds and applies valid ones", async () => {
     setup();
-    fireEvent.click(screen.getByText("Graph settings", { exact: true }));
+    fireEvent.click(screen.getByRole("button", { name: "Graph settings" }));
     fireEvent.change(screen.getByRole("spinbutton", { name: "Minimum x" }), {
       target: { value: "20" },
     });
@@ -164,6 +175,20 @@ describe("graph workspace", () => {
     await waitFor(() =>
       expect(requests.mock.lastCall?.[0].viewport.xMin).toBe(-2),
     );
+  });
+  it("moves directly to the next expression with Enter and can clear the last row", () => {
+    setup();
+    const first = screen.getByRole("textbox", { name: "f(x) =" });
+    fireEvent.keyDown(first, { key: "Enter" });
+    expect(screen.getByRole("textbox", { name: "g(x) =" })).toHaveFocus();
+    first.focus();
+    fireEvent.keyDown(first, { key: "Enter" });
+    expect(screen.getByRole("textbox", { name: "g(x) =" })).toHaveFocus();
+    fireEvent.click(screen.getByRole("button", { name: "Options g(x)" }));
+    fireEvent.click(screen.getByRole("button", { name: "Remove g(x)" }));
+    fireEvent.click(screen.getByRole("button", { name: "Options f(x)" }));
+    fireEvent.click(screen.getByRole("button", { name: "Remove f(x)" }));
+    expect(screen.getByRole("textbox", { name: "f(x) =" })).toHaveValue("");
   });
   it("restores the page and focus on leaving expanded view", () => {
     setup();

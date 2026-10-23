@@ -14,11 +14,13 @@ export function ShareButton({
   text,
   url,
   className,
+  iconOnly = false,
 }: {
   title: string;
   text: string;
   url: string;
   className?: string;
+  iconOnly?: boolean;
 }) {
   const t = useTranslations("common");
   const idle = t("share");
@@ -59,13 +61,15 @@ export function ShareButton({
       variant="outline"
       size="sm"
       onClick={share}
+      aria-label={iconOnly ? (copied ? done : idle) : undefined}
+      title={iconOnly ? idle : undefined}
       className={cn("h-10 w-full rounded-full sm:w-fit", copied && "copy-btn-copied", className)}
     >
       <span className="copy-icon" aria-hidden>
         <Share2 className="ic-copy" />
         <Check className="ic-check" />
       </span>
-      <span className="inline-grid justify-items-start">
+      <span className={iconOnly ? "sr-only" : "inline-grid justify-items-start"}>
         <span className="invisible col-start-1 row-start-1" aria-hidden>
           {widthAnchor}
         </span>

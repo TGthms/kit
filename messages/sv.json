@@ -2235,7 +2235,9 @@
       "traceX": "Spåra vid x",
       "traceHint": "Flytta eller dra över grafen. ←/→ ändrar x; Skift ökar steget. Du kan även ange x nedan.",
       "approximate": "Koordinater är numeriska närmevärden. Ett streck betyder att funktionen är odefinierad.",
-      "scope": "Upp till åtta namngivna reella funktioner. a, b, c är reglage, d(x)+g(x) kombinerar funktioner. Rötter, potenser, logaritmer, absolutbelopp och trigonometri."
+      "scope": "Upp till åtta namngivna reella funktioner. a, b, c är reglage, d(x)+g(x) kombinerar funktioner. Rötter, potenser, logaritmer, absolutbelopp och trigonometri.",
+      "expressions": "Uttryck",
+      "pan": "Flytta"
     }
   }
 }

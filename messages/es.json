@@ -2235,7 +2235,9 @@
       "traceX": "Trazar en x",
       "traceHint": "Mueve el puntero o arrastra para trazar. ←/→ ajusta x; Mayús amplía el paso. También puedes introducir x abajo.",
       "approximate": "Las coordenadas son aproximaciones numéricas. Un guion indica que la función no está definida.",
-      "scope": "Hasta ocho funciones reales con nombre. a, b, c crean deslizadores; d(x)+g(x) permite composición. Admite raíces, potencias, logaritmos, valor absoluto y trigonometría."
+      "scope": "Hasta ocho funciones reales con nombre. a, b, c crean deslizadores; d(x)+g(x) permite composición. Admite raíces, potencias, logaritmos, valor absoluto y trigonometría.",
+      "expressions": "Expresiones",
+      "pan": "Mover"
     }
   }
 }

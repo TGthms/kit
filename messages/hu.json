@@ -2235,7 +2235,9 @@
       "traceX": "Követés x-nél",
       "traceHint": "Mozgassa vagy húzza a grafikonon. ←/→ módosítja x-et, Shift növeli a lépést. x alább is megadható.",
       "approximate": "A koordináták numerikus közelítések. A vonás nem értelmezett függvényt jelez.",
-      "scope": "Legfeljebb nyolc elnevezett valós függvény. a, b, c csúszkák; d(x)+g(x) függvényeket kapcsol össze. Gyökök, hatványok, logaritmusok, abszolútérték és trigonometria."
+      "scope": "Legfeljebb nyolc elnevezett valós függvény. a, b, c csúszkák; d(x)+g(x) függvényeket kapcsol össze. Gyökök, hatványok, logaritmusok, abszolútérték és trigonometria.",
+      "expressions": "Kifejezések",
+      "pan": "Mozgatás"
     }
   }
 }

@@ -2235,7 +2235,9 @@
       "traceX": "Spor ved x",
       "traceHint": "Flyt eller træk på grafen. ←/→ ændrer x; Shift øger trinnet. Du kan også indtaste x nedenfor.",
       "approximate": "Koordinater er numeriske tilnærmelser. En streg betyder, at funktionen er udefineret.",
-      "scope": "Op til otte navngivne reelle funktioner. a, b, c er skydere, d(x)+g(x) sammensætter funktioner. Rødder, potenser, logaritmer, absolutværdi og trigonometri."
+      "scope": "Op til otte navngivne reelle funktioner. a, b, c er skydere, d(x)+g(x) sammensætter funktioner. Rødder, potenser, logaritmer, absolutværdi og trigonometri.",
+      "expressions": "Udtryk",
+      "pan": "Flyt"
     }
   }
 }

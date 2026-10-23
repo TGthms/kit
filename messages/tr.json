@@ -2235,7 +2235,9 @@
       "traceX": "x noktasında izle",
       "traceHint": "Grafik üzerinde hareket edin veya sürükleyin. ←/→ x’i değiştirir, Shift adımı büyütür. x’i aşağıya da girebilirsiniz.",
       "approximate": "Koordinatlar sayısal yaklaşımlardır. Tire, fonksiyonun tanımsız olduğunu belirtir.",
-      "scope": "Sekize kadar adlandırılmış gerçek fonksiyon. a, b, c kaydırıcılar; d(x)+g(x) birleşim içindir. Kök, kuvvet, logaritma, mutlak değer ve trigonometri."
+      "scope": "Sekize kadar adlandırılmış gerçek fonksiyon. a, b, c kaydırıcılar; d(x)+g(x) birleşim içindir. Kök, kuvvet, logaritma, mutlak değer ve trigonometri.",
+      "expressions": "İfadeler",
+      "pan": "Kaydır"
     }
   }
 }

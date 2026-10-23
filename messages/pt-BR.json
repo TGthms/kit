@@ -2235,7 +2235,9 @@
       "traceX": "Traçar em x",
       "traceHint": "Mova o ponteiro ou arraste para traçar. ←/→ ajusta x; Shift aumenta o passo. Você também pode informar x abaixo.",
       "approximate": "As coordenadas são aproximações numéricas. Um traço indica função indefinida.",
-      "scope": "Até oito funções reais com nome. a, b, c criam controles e d(x)+g(x) permite composição. Suporta raízes, potências, logaritmos, valores absolutos e trigonometria."
+      "scope": "Até oito funções reais com nome. a, b, c criam controles e d(x)+g(x) permite composição. Suporta raízes, potências, logaritmos, valores absolutos e trigonometria.",
+      "expressions": "Expressões",
+      "pan": "Mover"
     }
   }
 }

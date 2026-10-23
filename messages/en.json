@@ -2235,7 +2235,9 @@
       "traceX": "Trace at x",
       "traceHint": "Move over or drag the graph to trace. ←/→ adjusts x; Shift takes larger steps. You can also enter x below.",
       "approximate": "Coordinates are numerical approximations. A dash means the function is undefined here.",
-      "scope": "Up to eight named real functions. Use a, b, c for sliders and d(x)+g(x) for composition. Roots, powers, logs, absolute values and trigonometry are supported."
+      "scope": "Up to eight named real functions. Use a, b, c for sliders and d(x)+g(x) for composition. Roots, powers, logs, absolute values and trigonometry are supported.",
+      "expressions": "Expressions",
+      "pan": "Pan"
     }
   }
 }

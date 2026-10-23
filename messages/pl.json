@@ -2235,7 +2235,9 @@
       "traceX": "Śledź dla x",
       "traceHint": "Przesuń wskaźnik lub przeciągnij po wykresie. ←/→ zmienia x; Shift zwiększa krok. Możesz też wpisać x poniżej.",
       "approximate": "Współrzędne są przybliżeniami numerycznymi. Kreska oznacza niezdefiniowaną funkcję.",
-      "scope": "Do ośmiu nazwanych funkcji rzeczywistych. a, b, c to suwaki, d(x)+g(x) łączy funkcje. Pierwiastki, potęgi, logarytmy, wartości bezwzględne i trygonometria."
+      "scope": "Do ośmiu nazwanych funkcji rzeczywistych. a, b, c to suwaki, d(x)+g(x) łączy funkcje. Pierwiastki, potęgi, logarytmy, wartości bezwzględne i trygonometria.",
+      "expressions": "Wyrażenia",
+      "pan": "Przesuwanie"
     }
   }
 }

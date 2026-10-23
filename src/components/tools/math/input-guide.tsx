@@ -32,7 +32,7 @@ export function InputGuide() {
     <>
       <button
         type="button"
-        className="ms-1 inline-flex min-h-8 items-center rounded text-xs font-medium text-primary underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-ring"
+        className="mx-1 inline-flex min-h-9 items-center rounded text-xs font-medium text-primary underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-ring"
         onClick={() => dialog.current?.showModal()}
       >
         {t("open")}

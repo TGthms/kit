@@ -3,35 +3,39 @@ import { useEffect, useId, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { useTranslations } from "next-intl";
 import {
-  Eye,
-  EyeOff,
   Maximize2,
   Minimize2,
   Crosshair,
   Minus,
   Plus,
   RotateCcw,
-  X,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Field } from "@/components/ui/field";
 import { Slider } from "@/components/ui/slider";
-import { SegmentedControl } from "@/components/ui/segmented-control";
+import {
+  PanelLeftClose,
+  PanelLeftOpen,
+  Table2,
+  MousePointer2,
+} from "lucide-react";
+import { InputGuide } from "./input-guide";
+import { ExpressionRow, type GraphExpression } from "./expression-row";
 import { GraphSettings } from "./graph-settings";
+import { hideMathKeyboard, mathKeyboardHeight } from "@/lib/math/keyboard";
 import {
   compileNumeric,
   DEFAULT_PARAMETERS,
   type Parameters,
 } from "@/lib/math/numeric";
 import { ToolShell } from "../shared";
-import { MathInput } from "./math-input";
 import { GraphClient, type Plot, type Viewport } from "@/lib/math/client";
 import {
   DEFAULT_VIEW,
   gridTicks,
   panView,
   zoomView,
+  viewForAspect,
 } from "@/lib/math/viewport";
 
 const COLORS = [
@@ -46,13 +50,7 @@ const COLORS = [
 ];
 const NAMES = ["f", "g", "h", "d", "p", "q", "r", "s"];
 const MAX_FUNCTIONS = 8;
-type Curve = {
-  id: number;
-  latex: string;
-  name: string;
-  color: string;
-  hidden: boolean;
-};
+type Curve = GraphExpression;
 type CurvePlot = {
   id: number;
   latex: string;
@@ -88,6 +86,8 @@ export function FunctionGrapher() {
   const [parameters, setParameters] = useState<Parameters>(DEFAULT_PARAMETERS);
   const [angle, setAngle] = useState<"rad" | "deg">("rad");
   const [grid, setGrid] = useState(true);
+  const [focusId, setFocusId] = useState<number | null>(null);
+  const [tableOpen, setTableOpen] = useState(false);
   const [expressionsOpen, setExpressionsOpen] = useState(true);
   const [expanded, setExpanded] = useState(false);
   const workspace = useRef<HTMLDivElement>(null);
@@ -111,6 +111,8 @@ export function FunctionGrapher() {
   });
   const [plottedKey, setPlottedKey] = useState("");
   const [loading, setLoading] = useState(false);
+  const [canvas, setCanvas] = useState({ width: 800, height: 600 });
+  const squareUnits = useRef(true);
   const graph = useRef<SVGSVGElement>(null);
   const pointers = useRef(new Map<number, { x: number; y: number }>());
   const client = useRef<GraphClient | null>(null);
@@ -172,7 +174,8 @@ export function FunctionGrapher() {
           sibling !== branch &&
           sibling instanceof HTMLElement &&
           !["SCRIPT", "STYLE"].includes(sibling.tagName) &&
-          !sibling.classList.contains("ML__keyboard")
+          !sibling.classList.contains("ML__keyboard") &&
+          !sibling.classList.contains("math-keyboard-accessory")
         ) {
           inertSiblings.push({ element: sibling, inert: sibling.inert });
           sibling.inert = true;
@@ -187,6 +190,10 @@ export function FunctionGrapher() {
             'button:not([disabled]), input:not([disabled]), summary, [tabindex="0"]',
           ) || [],
         ).filter((control) => control.getClientRects().length > 0);
+        const done = document.querySelector<HTMLElement>(
+          ".math-keyboard-accessory button",
+        );
+        if (done) controls.push(done);
         const first = controls[0],
           last = controls.at(-1),
           active = document.activeElement;
@@ -200,6 +207,11 @@ export function FunctionGrapher() {
       }
       if (event.key === "Escape" && !document.querySelector("dialog[open]")) {
         event.preventDefault();
+        if (mathKeyboardHeight()) {
+          hideMathKeyboard();
+          return;
+        }
+        setFocusId(null);
         setExpanded(false);
       }
     };
@@ -235,8 +247,36 @@ export function FunctionGrapher() {
     element.addEventListener("wheel", wheel, { passive: false });
     return () => element.removeEventListener("wheel", wheel);
   }, [expanded]);
-  const px = (x: number) => ((x - view.xMin) / (view.xMax - view.xMin)) * 800;
-  const py = (y: number) => ((view.yMax - y) / (view.yMax - view.yMin)) * 600;
+  useEffect(() => {
+    const node = graph.current;
+    if (!node) return;
+    const resize = () => {
+      const { width, height } = node.getBoundingClientRect();
+      if (width < 1 || height < 1) return;
+      setCanvas((old) =>
+        old.width === Math.round(width) && old.height === Math.round(height)
+          ? old
+          : { width: Math.round(width), height: Math.round(height) },
+      );
+      if (squareUnits.current)
+        setView((old) => {
+          const next = viewForAspect(old, width, height);
+          return next.yMin === old.yMin && next.yMax === old.yMax ? old : next;
+        });
+    };
+    resize();
+    const observer = new ResizeObserver(resize);
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, [expanded, expressionsOpen]);
+  const resetView = () => {
+    squareUnits.current = true;
+    setView(viewForAspect(DEFAULT_VIEW, canvas.width, canvas.height));
+  };
+  const px = (x: number) =>
+    ((x - view.xMin) / (view.xMax - view.xMin)) * canvas.width;
+  const py = (y: number) =>
+    ((view.yMax - y) / (view.yMax - view.yMin)) * canvas.height;
   const xticks = gridTicks(view.xMin, view.xMax),
     yticks = gridTicks(view.yMin, view.yMax);
   const matching = plots.filter((plot) =>
@@ -304,7 +344,7 @@ export function FunctionGrapher() {
                 segment
                   .map(
                     ([x, y], i) =>
-                      `${i ? "L" : "M"}${(((x - view.xMin) / (view.xMax - view.xMin)) * 800).toFixed(2)},${(((view.yMax - y) / (view.yMax - view.yMin)) * 600).toFixed(2)}`,
+                      `${i ? "L" : "M"}${(((x - view.xMin) / (view.xMax - view.xMin)) * canvas.width).toFixed(2)},${(((view.yMax - y) / (view.yMax - view.yMin)) * canvas.height).toFixed(2)}`,
                   )
                   .join(" "),
               )
@@ -312,8 +352,35 @@ export function FunctionGrapher() {
           },
         ];
       }),
-    [plots, curves, view],
+    [plots, curves, view, canvas],
   );
+  const addExpression = () => {
+    if (curves.length >= MAX_FUNCTIONS) return;
+    const id = nextId.current++;
+    const name =
+      NAMES.find((name) => !curves.some((curve) => curve.name === name)) || "t";
+    const color =
+      COLORS.find((color) => !curves.some((curve) => curve.color === color)) ||
+      COLORS[curves.length % COLORS.length];
+    setCurves((all) => [...all, { id, name, color, hidden: false, latex: "" }]);
+    setExpressionsOpen(true);
+    setFocusId(id);
+  };
+  const removeExpression = (id: number) => {
+    if (curves.length === 1) {
+      const replacement = nextId.current++;
+      setCurves([
+        {
+          id: replacement,
+          name: "f",
+          color: COLORS[0],
+          hidden: false,
+          latex: "",
+        },
+      ]);
+      setFocusId(replacement);
+    } else setCurves((all) => all.filter((curve) => curve.id !== id));
+  };
   const updateCurve = (id: number, change: Partial<Curve>) =>
     setCurves((all) =>
       all.map((curve) => (curve.id === id ? { ...curve, ...change } : curve)),
@@ -321,239 +388,216 @@ export function FunctionGrapher() {
   const content = (
     <div
       ref={workspace}
+      data-graph-expanded={expanded || undefined}
       role={expanded ? "region" : undefined}
       aria-label={expanded ? t("graphLabel") : undefined}
       className={
         expanded
-          ? "fixed inset-2 z-[70] overflow-y-auto overscroll-contain rounded-2xl border bg-background p-4 shadow-xl sm:inset-4 sm:p-6"
+          ? "fixed inset-2 z-[70] overflow-y-auto overscroll-contain rounded-2xl bg-background shadow-xl sm:inset-4"
           : ""
       }
     >
-      <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
-        <span className="text-xs text-muted-foreground">
-          {tg("functionCount", { count: curves.length, max: MAX_FUNCTIONS })}
-        </span>
-        <Button
-          className="lg:hidden"
-          size="sm"
-          variant="outline"
-          aria-expanded={expressionsOpen}
-          aria-controls="kit-graph-expressions"
-          onClick={() => setExpressionsOpen((open) => !open)}
-        >
-          {t("expression")}
-        </Button>
-        <Button
-          data-expand-control
-          size="sm"
-          variant="outline"
-          aria-pressed={expanded}
-          onClick={() => setExpanded((value) => !value)}
-        >
-          {expanded ? (
-            <Minimize2 className="size-4" />
-          ) : (
-            <Maximize2 className="size-4" />
-          )}
-          {expanded ? tg("restore") : tg("expand")}
-        </Button>
-      </div>
-      <div className="grid items-start gap-5 lg:grid-cols-[minmax(240px,0.7fr)_minmax(0,2fr)]">
+      <div className="graph-workbench overflow-hidden rounded-2xl border border-border/70 bg-card shadow-sm">
+        <div className="graph-workbench-toolbar flex min-h-12 flex-wrap items-center justify-between gap-2 border-b border-border/60 px-2 py-1.5 sm:px-3">
+          <div className="flex items-center gap-1">
+            <Button
+              size="sm"
+              variant="ghost"
+              className="h-9 gap-2 rounded-lg px-2"
+              aria-expanded={expressionsOpen}
+              aria-controls="kit-graph-expressions"
+              onClick={() => setExpressionsOpen((open) => !open)}
+            >
+              {expressionsOpen ? (
+                <PanelLeftClose className="size-4" />
+              ) : (
+                <PanelLeftOpen className="size-4" />
+              )}
+              <span className="text-xs font-medium">{tg("expressions")}</span>
+              <span className="rounded-md bg-secondary px-1.5 py-0.5 text-[10px] tabular-nums text-muted-foreground">
+                {curves.length}/{MAX_FUNCTIONS}
+              </span>
+            </Button>
+          </div>
+          <div className="flex items-center gap-0.5">
+            <InputGuide />
+            <GraphSettings
+              view={view}
+              onApply={(next) => {
+                squareUnits.current = false;
+                setView(next);
+              }}
+              grid={grid}
+              setGrid={setGrid}
+              angle={angle}
+              setAngle={setAngle}
+            />
+            <Button
+              data-expand-control
+              size="icon"
+              variant="ghost"
+              className="size-9 rounded-lg"
+              title={expanded ? tg("restore") : tg("expand")}
+              aria-label={expanded ? tg("restore") : tg("expand")}
+              aria-pressed={expanded}
+              onClick={() => {
+                hideMathKeyboard();
+                setFocusId(null);
+                setExpanded((value) => !value);
+              }}
+            >
+              {expanded ? (
+                <Minimize2 className="size-4" />
+              ) : (
+                <Maximize2 className="size-4" />
+              )}
+            </Button>
+          </div>
+        </div>
         <div
-          id="kit-graph-expressions"
-          className={`${expressionsOpen ? "block" : "hidden lg:block"} space-y-4 lg:max-h-[calc(100dvh-9rem)] lg:overflow-y-auto lg:overscroll-contain lg:pe-1`}
+          data-expressions-open={expressionsOpen || undefined}
+          className={`graph-workbench-body grid ${expressionsOpen ? "lg:grid-cols-[300px_minmax(0,1fr)] xl:grid-cols-[320px_minmax(0,1fr)]" : ""}`}
         >
-          {curves.map((curve, i) => {
-            const result = matching.find((plot) => plot.id === curve.id);
-            return (
-              <div
-                key={curve.id}
-                className="min-w-0 space-y-2 rounded-2xl border bg-card p-3"
-                style={{
-                  borderInlineStartColor: curve.color,
-                  borderInlineStartWidth: 3,
-                }}
-              >
-                <div className="flex items-center gap-2">
-                  <label
-                    className="relative inline-flex size-8 shrink-0 cursor-pointer items-center justify-center overflow-hidden rounded-full border"
-                    style={{ background: curve.color }}
-                  >
-                    <span className="sr-only">
-                      {tg("color")} {curve.name}(x)
-                    </span>
-                    <input
-                      type="color"
-                      aria-label={`${tg("color")} ${curve.name}(x)`}
-                      value={curve.color}
-                      className="absolute inset-0 h-full w-full cursor-pointer opacity-0"
-                      onInput={(e) =>
-                        updateCurve(curve.id, { color: e.currentTarget.value })
-                      }
-                      onChange={(e) =>
-                        updateCurve(curve.id, { color: e.target.value })
-                      }
-                    />
-                  </label>
-                  <Input
-                    aria-label={`${tg("name")} ${i + 1}`}
-                    className="h-9 w-12 px-2 text-center font-mono"
-                    maxLength={1}
-                    value={curve.name}
-                    onChange={(e) =>
-                      updateCurve(curve.id, {
-                        name: e.target.value.toLowerCase(),
-                      })
-                    }
-                  />
-                  <span className="font-mono text-sm">(x)</span>
-                  <Button
-                    size="icon"
-                    variant="ghost"
-                    className="ms-auto size-9"
-                    aria-label={`${curve.hidden ? tg("show") : tg("hide")} ${curve.name}(x)`}
-                    aria-pressed={!curve.hidden}
-                    onClick={() =>
-                      updateCurve(curve.id, { hidden: !curve.hidden })
-                    }
-                  >
-                    {curve.hidden ? (
-                      <EyeOff className="size-4" />
-                    ) : (
-                      <Eye className="size-4" />
-                    )}
-                  </Button>
-                  <Button
-                    size="icon"
-                    variant="ghost"
-                    className="size-9"
-                    disabled={curves.length === 1}
-                    aria-label={`${tc("remove")} ${curve.name}(x)`}
-                    onClick={() =>
-                      setCurves((all) => all.filter((c) => c.id !== curve.id))
-                    }
-                  >
-                    <X className="size-4" />
-                  </Button>
-                </div>
-                <MathInput
-                  value={curve.latex}
-                  label={`${curve.name || "?"}(x) =`}
-                  onChange={(latex) => updateCurve(curve.id, { latex })}
-                />
-                {result?.error && result.error !== "canceled" && (
-                  <p role="status" className="text-xs text-destructive">
-                    {t(`errors.${result.error}`)}
-                  </p>
-                )}
-              </div>
-            );
-          })}
-          <Button
-            variant="outline"
-            disabled={curves.length >= MAX_FUNCTIONS}
-            onClick={() =>
-              setCurves((all) => [
-                ...all,
-                {
-                  id: nextId.current++,
-                  name:
-                    NAMES.find(
-                      (name) => !all.some((curve) => curve.name === name),
-                    ) || "t",
-                  color:
-                    COLORS.find(
-                      (color) => !all.some((curve) => curve.color === color),
-                    ) || COLORS[all.length % COLORS.length],
-                  hidden: false,
-                  latex: "",
-                },
-              ])
-            }
+          <aside
+            id="kit-graph-expressions"
+            aria-label={tg("expressions")}
+            className={`${expressionsOpen ? "flex" : "hidden"} graph-expression-panel order-2 min-h-0 flex-col border-t border-border/60 lg:order-1 lg:border-e lg:border-t-0`}
           >
-            <Plus className="size-4" />
-            {t("addFunction")}
-          </Button>
-          <p className="text-xs text-muted-foreground">{tg("scope")}</p>
-          {activeParameters.length > 0 && (
-            <section className="space-y-5 rounded-2xl border bg-card p-4">
-              <h2 className="text-sm font-medium">{tg("parameters")}</h2>
-              {activeParameters.map((key) => (
-                <ParameterControl
-                  key={key}
-                  name={key}
-                  value={parameters[key]}
-                  onChange={(value) =>
-                    setParameters((old) => ({ ...old, [key]: value }))
-                  }
+            <div
+              data-math-scroll
+              className="graph-expression-scroll min-h-0 flex-1 overflow-y-auto overscroll-contain"
+            >
+              {curves.map((curve, index) => (
+                <ExpressionRow
+                  key={curve.id}
+                  curve={curve}
+                  index={index}
+                  autoFocus={focusId === curve.id}
+                  error={matching.find((plot) => plot.id === curve.id)?.error}
+                  onChange={(change) => updateCurve(curve.id, change)}
+                  onRemove={() => removeExpression(curve.id)}
+                  onCommit={() => {
+                    const next = curves[index + 1];
+                    if (next)
+                      document
+                        .getElementById(`graph-expression-input-${next.id}`)
+                        ?.focus();
+                    else if (curve.latex.trim()) addExpression();
+                  }}
                 />
               ))}
-            </section>
-          )}
-          <GraphSettings
-            view={view}
-            onApply={setView}
-            grid={grid}
-            setGrid={setGrid}
-          />
-          <SegmentedControl
-            value={angle}
-            onChange={setAngle}
-            aria-label={t("angle")}
-            options={[
-              { value: "rad", label: t("radians") },
-              { value: "deg", label: t("degrees") },
-            ]}
-          />
-        </div>
-        <div className="min-w-0 space-y-3 lg:sticky lg:top-20">
-          <div className="overflow-hidden rounded-2xl border bg-card">
-            <div className="flex flex-wrap items-center justify-between gap-2 border-b px-3 py-2">
-              <span className="text-xs text-muted-foreground" role="status">
-                {loading
-                  ? tc("processing")
-                  : t(angle === "deg" ? "degrees" : "radians")}
-              </span>
-              <div className="flex gap-1">
+              <div className="px-3 py-3">
                 <Button
-                  size="icon"
-                  variant={trace ? "secondary" : "ghost"}
-                  aria-label={tg("trace")}
-                  aria-pressed={trace}
-                  onClick={() => setTrace((value) => !value)}
-                >
-                  <Crosshair className="size-4" />
-                </Button>
-                <Button
-                  size="icon"
                   variant="ghost"
-                  aria-label={t("zoomIn")}
-                  onClick={() => setView((v) => zoomView(v, 0.7))}
+                  size="sm"
+                  className="h-10 w-full justify-start rounded-lg border border-dashed border-border/70 text-sm text-muted-foreground hover:text-foreground"
+                  disabled={curves.length >= MAX_FUNCTIONS}
+                  onClick={addExpression}
                 >
                   <Plus className="size-4" />
-                </Button>
-                <Button
-                  size="icon"
-                  variant="ghost"
-                  aria-label={t("zoomOut")}
-                  onClick={() => setView((v) => zoomView(v, 1 / 0.7))}
-                >
-                  <Minus className="size-4" />
-                </Button>
-                <Button
-                  size="icon"
-                  variant="ghost"
-                  aria-label={tc("reset")}
-                  onClick={() => setView(DEFAULT_VIEW)}
-                >
-                  <RotateCcw className="size-4" />
+                  {t("addFunction")}
                 </Button>
               </div>
+              {activeParameters.length > 0 && (
+                <section
+                  aria-label={tg("parameters")}
+                  className="space-y-4 border-t border-border/60 px-4 py-4"
+                >
+                  <h2 className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
+                    {tg("parameters")}
+                  </h2>
+                  {activeParameters.map((key) => (
+                    <ParameterControl
+                      key={key}
+                      name={key}
+                      value={parameters[key]}
+                      onChange={(value) =>
+                        setParameters((old) => ({ ...old, [key]: value }))
+                      }
+                    />
+                  ))}
+                </section>
+              )}
+            </div>
+            <div
+              className="hidden border-t border-border/60 bg-secondary/20 px-4 py-2 text-[11px] text-muted-foreground lg:block"
+              role="status"
+            >
+              {tg("functionCount", {
+                count: curves.length,
+                max: MAX_FUNCTIONS,
+              })}
+            </div>
+          </aside>
+          <div className="graph-plot-panel relative order-1 min-w-0 lg:order-2">
+            <div
+              className="absolute start-3 top-3 z-10 inline-flex gap-1 rounded-xl border border-border/60 bg-card/95 p-1 shadow-sm"
+              role="group"
+              aria-label={t("graphLabel")}
+            >
+              <Button
+                size="sm"
+                variant={!trace ? "secondary" : "ghost"}
+                className="h-8 gap-1.5 rounded-lg px-2 text-xs"
+                aria-label={tg("pan")}
+                title={tg("pan")}
+                aria-pressed={!trace}
+                onClick={() => setTrace(false)}
+              >
+                <MousePointer2 className="size-3.5" />
+                <span className="hidden sm:inline">{tg("pan")}</span>
+              </Button>
+              <Button
+                size="sm"
+                variant={trace ? "secondary" : "ghost"}
+                className="h-8 gap-1.5 rounded-lg px-2 text-xs"
+                aria-label={tg("trace")}
+                title={tg("trace")}
+                aria-pressed={trace}
+                onClick={() => setTrace(true)}
+              >
+                <Crosshair className="size-3.5" />
+                <span className="hidden sm:inline">{tg("trace")}</span>
+              </Button>
+            </div>
+            <div className="absolute end-3 top-3 z-10 flex flex-col gap-0.5 rounded-xl border border-border/60 bg-card/95 p-1 shadow-sm">
+              <Button
+                size="icon"
+                variant="ghost"
+                className="size-8 rounded-lg"
+                aria-label={t("zoomIn")}
+                title={t("zoomIn")}
+                onClick={() => setView((v) => zoomView(v, 0.7))}
+              >
+                <Plus className="size-4" />
+              </Button>
+              <Button
+                size="icon"
+                variant="ghost"
+                className="size-8 rounded-lg"
+                aria-label={t("zoomOut")}
+                title={t("zoomOut")}
+                onClick={() => setView((v) => zoomView(v, 1 / 0.7))}
+              >
+                <Minus className="size-4" />
+              </Button>
+              <div className="mx-1 border-t border-border/60" />
+              <Button
+                size="icon"
+                variant="ghost"
+                className="size-8 rounded-lg"
+                aria-label={tc("reset")}
+                title={tc("reset")}
+                onClick={resetView}
+              >
+                <RotateCcw className="size-4" />
+              </Button>
             </div>
             <svg
               ref={graph}
-              viewBox="0 0 800 600"
-              className="block aspect-[4/3] w-full touch-none select-none outline-offset-[-3px] focus-visible:outline-2 focus-visible:outline-ring"
+              viewBox={`0 0 ${canvas.width} ${canvas.height}`}
+              className="graph-canvas block h-full w-full touch-none select-none outline-offset-[-3px] focus-visible:outline-2 focus-visible:outline-ring"
+              preserveAspectRatio="none"
               tabIndex={0}
               role="application"
               aria-label={t("graphLabel")}
@@ -585,7 +629,7 @@ export function FunctionGrapher() {
                   "+": () => setView(zoomView(view, 0.7)),
                   "=": () => setView(zoomView(view, 0.7)),
                   "-": () => setView(zoomView(view, 1 / 0.7)),
-                  Home: () => setView(DEFAULT_VIEW),
+                  Home: resetView,
                 };
                 if (actions[event.key]) {
                   event.preventDefault();
@@ -667,10 +711,33 @@ export function FunctionGrapher() {
             >
               <defs>
                 <clipPath id={clipId}>
-                  <rect width="800" height="600" />
+                  <rect width={canvas.width} height={canvas.height} />
                 </clipPath>
               </defs>
               <g aria-hidden="true">
+                {grid && (
+                  <g stroke="currentColor" opacity={0.035}>
+                    {gridTicks(view.xMin, view.xMax, 40).map((x) => (
+                      <line
+                        key={`minor-x${x}`}
+                        x1={px(x)}
+                        x2={px(x)}
+                        y1={0}
+                        y2={canvas.height}
+                      />
+                    ))}
+                    {gridTicks(view.yMin, view.yMax, 40).map((y) => (
+                      <line
+                        key={`minor-y${y}`}
+                        y1={py(y)}
+                        y2={py(y)}
+                        x1={0}
+                        x2={canvas.width}
+                      />
+                    ))}
+                  </g>
+                )}
+
                 {xticks
                   .filter((x) => grid || x === 0)
                   .map((x) => (
@@ -679,7 +746,7 @@ export function FunctionGrapher() {
                       x1={px(x)}
                       x2={px(x)}
                       y1={0}
-                      y2={600}
+                      y2={canvas.height}
                       stroke="currentColor"
                       opacity={x === 0 ? 0.45 : 0.1}
                     />
@@ -692,7 +759,7 @@ export function FunctionGrapher() {
                       y1={py(y)}
                       y2={py(y)}
                       x1={0}
-                      x2={800}
+                      x2={canvas.width}
                       stroke="currentColor"
                       opacity={y === 0 ? 0.45 : 0.1}
                     />
@@ -703,9 +770,9 @@ export function FunctionGrapher() {
                     <text
                       key={`xl${x}`}
                       x={px(x) + 4}
-                      y={Math.min(582, Math.max(18, py(0) + 20))}
+                      y={Math.min(canvas.height - 18, Math.max(18, py(0) + 20))}
                       fill="currentColor"
-                      fontSize="16"
+                      fontSize="12"
                       opacity="0.65"
                     >
                       {shown(x)}
@@ -716,10 +783,10 @@ export function FunctionGrapher() {
                   .map((y) => (
                     <text
                       key={`yl${y}`}
-                      x={Math.min(745, Math.max(5, px(0) + 5))}
+                      x={Math.min(canvas.width - 55, Math.max(5, px(0) + 5))}
                       y={py(y) - 5}
                       fill="currentColor"
-                      fontSize="16"
+                      fontSize="12"
                       opacity="0.65"
                     >
                       {shown(y)}
@@ -759,88 +826,128 @@ export function FunctionGrapher() {
                       ))}
                 </g>
               </g>
-            </svg>
+            </svg>{" "}
+            <div
+              className={`pointer-events-none absolute bottom-3 start-3 flex items-center gap-2 text-[10px] text-muted-foreground ${trace ? "hidden" : ""}`}
+            >
+              <span
+                className={`size-1.5 rounded-full ${loading ? "animate-pulse bg-primary" : "bg-muted-foreground/40"}`}
+                aria-hidden
+              />
+              <span role="status">
+                {loading
+                  ? tc("processing")
+                  : t(angle === "deg" ? "degrees" : "radians")}
+              </span>
+            </div>
+            {trace && (
+              <section
+                aria-label={tg("trace")}
+                className="absolute inset-x-0 bottom-0 z-10 flex max-h-[40%] flex-wrap items-center gap-x-5 gap-y-2 overflow-y-auto border-t border-border/60 bg-card/95 px-3 py-2.5"
+              >
+                <div className="flex items-center gap-2">
+                  <label
+                    htmlFor={`${clipId}-trace`}
+                    className="text-xs text-muted-foreground"
+                  >
+                    {tg("traceX")}
+                  </label>
+                  <Input
+                    id={`${clipId}-trace`}
+                    type="number"
+                    step="any"
+                    value={traceText}
+                    className="h-8 w-24 rounded-lg font-mono text-base md:text-xs"
+                    onChange={(e) => setTraceText(e.target.value)}
+                  />
+                </div>
+                <div
+                  className="flex flex-wrap gap-x-4 gap-y-2 font-mono text-base md:text-xs"
+                  dir="ltr"
+                >
+                  {tracePoints.map((point) => (
+                    <p key={point.id} className="flex items-center gap-1.5">
+                      <span
+                        className="size-2 rounded-full"
+                        style={{ background: point.color }}
+                        aria-hidden
+                      />
+                      <span>
+                        {point.name}(
+                        {Number.isFinite(traceX) ? shown(traceX) : "—"}) ={" "}
+                        {point.y == null ? "—" : shown(point.y)}
+                      </span>
+                    </p>
+                  ))}
+                </div>
+              </section>
+            )}
           </div>
-          <p className="text-xs text-muted-foreground" id="kit-graph-hint">
+        </div>
+        <div className="graph-workbench-footer flex min-h-11 items-center justify-between gap-3 border-t border-border/60 bg-secondary/10 px-3 py-2">
+          <p
+            id="kit-graph-hint"
+            className="min-w-0 text-[11px] text-muted-foreground"
+          >
             {trace ? tg("traceHint") : t("graphHint")}
           </p>
-          <p className="font-mono text-xs text-muted-foreground" dir="ltr">
-            x: {shown(view.xMin)} … {shown(view.xMax)} · y: {shown(view.yMin)} …{" "}
-            {shown(view.yMax)}
-          </p>
-          {trace && (
-            <section
-              className="space-y-3 rounded-xl border bg-card p-4"
-              aria-label={tg("trace")}
-            >
-              <Field label={tg("traceX")}>
-                <Input
-                  type="number"
-                  step="any"
-                  value={traceText}
-                  onChange={(e) => setTraceText(e.target.value)}
-                />
-              </Field>
-              <div
-                className="flex flex-wrap gap-x-4 gap-y-2 font-mono text-sm"
-                dir="ltr"
-              >
-                {tracePoints.map((point) => (
-                  <p key={point.id} style={{ color: point.color }}>
-                    {point.name}({Number.isFinite(traceX) ? shown(traceX) : "—"}
-                    ) = {point.y == null ? "—" : shown(point.y)}
-                  </p>
-                ))}
-              </div>
-              <p className="text-xs text-muted-foreground">
-                {tg("approximate")}
-              </p>
-            </section>
-          )}
-          <details className="rounded-xl border p-3 text-sm">
-            <summary className="cursor-pointer font-medium">
-              {t("valueTable")}
-            </summary>
-            <div className="mt-3 overflow-x-auto">
-              <table className="w-full text-start font-mono" dir="ltr">
-                <caption className="sr-only">{t("valueTable")}</caption>
-                <thead>
-                  <tr>
-                    <th scope="col" className="p-2 text-start">
-                      x
-                    </th>
-                    {curves.map((curve) => (
-                      <th key={curve.id} scope="col" className="p-2 text-start">
-                        {curve.name}(x)
-                      </th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody>
-                  {Array.from({ length: 9 }, (_, i) => (
-                    <tr key={i} className="border-t">
-                      <th scope="row" className="p-2 text-start font-normal">
-                        {shown(view.xMin + ((view.xMax - view.xMin) * i) / 8)}
-                      </th>
-                      {curves.map((curve) => {
-                        const y =
-                          !fresh || curve.hidden
-                            ? null
-                            : matching.find((plot) => plot.id === curve.id)
-                                ?.plot?.table[i]?.[1];
-                        return (
-                          <td key={curve.id} className="p-2">
-                            {y == null ? "—" : shown(y)}
-                          </td>
-                        );
-                      })}
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </details>
+          <Button
+            size="sm"
+            variant={tableOpen ? "secondary" : "ghost"}
+            className="h-8 shrink-0 gap-1.5 rounded-lg px-2 text-xs"
+            aria-expanded={tableOpen}
+            aria-controls="kit-graph-table"
+            onClick={() => setTableOpen((open) => !open)}
+          >
+            <Table2 className="size-3.5" />
+            <span className="hidden sm:inline">{t("valueTable")}</span>
+            <span className="sr-only sm:hidden">{t("valueTable")}</span>
+          </Button>
         </div>
+        {tableOpen && (
+          <div
+            id="kit-graph-table"
+            className="max-h-64 overflow-auto border-t border-border/60 p-3 text-xs"
+          >
+            {" "}
+            <table className="w-full text-start font-mono" dir="ltr">
+              <caption className="sr-only">{t("valueTable")}</caption>
+              <thead>
+                <tr>
+                  <th scope="col" className="p-2 text-start">
+                    x
+                  </th>
+                  {curves.map((curve) => (
+                    <th key={curve.id} scope="col" className="p-2 text-start">
+                      {curve.name}(x)
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {Array.from({ length: 9 }, (_, i) => (
+                  <tr key={i} className="border-t">
+                    <th scope="row" className="p-2 text-start font-normal">
+                      {shown(view.xMin + ((view.xMax - view.xMin) * i) / 8)}
+                    </th>
+                    {curves.map((curve) => {
+                      const y =
+                        !fresh || curve.hidden
+                          ? null
+                          : matching.find((plot) => plot.id === curve.id)?.plot
+                              ?.table[i]?.[1];
+                      return (
+                        <td key={curve.id} className="p-2">
+                          {y == null ? "—" : shown(y)}
+                        </td>
+                      );
+                    })}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
       </div>
     </div>
   );
@@ -867,9 +974,18 @@ function ParameterControl({
     Number.isFinite(Number(draft)) &&
     Math.abs(Number(draft)) <= 1e6;
   return (
-    <div className="space-y-3">
-      <Field label={`${t("parameter")} ${name}`}>
+    <div className="space-y-2.5">
+      <div className="flex items-center justify-between gap-2">
+        <label
+          htmlFor={`graph-parameter-${name}`}
+          className="font-mono text-sm"
+        >
+          {name}
+        </label>
         <Input
+          id={`graph-parameter-${name}`}
+          aria-label={`${t("parameter")} ${name}`}
+          className="h-8 w-24 rounded-lg px-2 text-end font-mono text-base md:text-xs"
           type="number"
           step="any"
           value={draft}
@@ -885,7 +1001,7 @@ function ParameterControl({
               onChange(Number(next));
           }}
         />
-      </Field>
+      </div>
       <Slider
         aria-label={`${t("parameter")} ${name}`}
         min={Math.min(-10, value)}

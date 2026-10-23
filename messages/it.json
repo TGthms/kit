@@ -2235,7 +2235,9 @@
       "traceX": "Traccia in x",
       "traceHint": "Muovi il puntatore o trascina per tracciare. ←/→ modifica x; Maiusc aumenta il passo. Puoi inserire x sotto.",
       "approximate": "Le coordinate sono approssimazioni numeriche. Un trattino indica una funzione non definita.",
-      "scope": "Fino a otto funzioni reali con nome. a, b, c per cursori, d(x)+g(x) per composizioni. Supporta radici, potenze, logaritmi, valori assoluti e trigonometria."
+      "scope": "Fino a otto funzioni reali con nome. a, b, c per cursori, d(x)+g(x) per composizioni. Supporta radici, potenze, logaritmi, valori assoluti e trigonometria.",
+      "expressions": "Espressioni",
+      "pan": "Sposta"
     }
   }
 }

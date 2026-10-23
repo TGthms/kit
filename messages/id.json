@@ -2235,7 +2235,9 @@
       "traceX": "Lacak pada x",
       "traceHint": "Gerakkan atau seret di grafik. ←/→ mengubah x; Shift memperbesar langkah. Anda juga bisa memasukkan x di bawah.",
       "approximate": "Koordinat adalah pendekatan numerik. Tanda garis berarti fungsi tidak terdefinisi.",
-      "scope": "Hingga delapan fungsi nyata bernama. a, b, c untuk penggeser, d(x)+g(x) untuk komposisi. Akar, pangkat, logaritma, nilai mutlak, dan trigonometri."
+      "scope": "Hingga delapan fungsi nyata bernama. a, b, c untuk penggeser, d(x)+g(x) untuk komposisi. Akar, pangkat, logaritma, nilai mutlak, dan trigonometri.",
+      "expressions": "Ekspresi",
+      "pan": "Geser"
     }
   }
 }

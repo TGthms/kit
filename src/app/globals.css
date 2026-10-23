@@ -1082,3 +1082,25 @@ body {
   --keycap-secondary-background: var(--muted);
   --keycap-secondary-text: var(--foreground);
 }
+
+/* One working surface: compact expressions, a persistent plot and contextual controls. */
+math-field.kit-math-input-compact { min-height: 2.6rem; border: 0; background: transparent; border-radius: .4rem; padding: .2rem 0; font-size: 1.2rem; }
+math-field.kit-math-input-compact:focus-within { outline: 0; }
+math-field.kit-math-input-compact::part(menu-toggle) { display: none; }
+.graph-expression:focus-within { box-shadow: inset 3px 0 0 var(--primary); }
+.graph-plot-panel { height: clamp(310px, 48dvh, 500px); }
+.graph-canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+.graph-expression-scroll { max-height: 38dvh; }
+@media (min-width: 1024px) {
+  .graph-workbench-body { min-height: 360px; height: clamp(360px, calc(100dvh - 300px), 760px); }
+  .graph-plot-panel { height: 100%; }
+  .graph-expression-scroll { max-height: none; }
+  [data-graph-expanded] .graph-workbench-body { height: calc(100dvh - 180px); }
+}
+:root[data-math-keyboard] .graph-plot-panel { height: clamp(170px, calc(100dvh - var(--kit-math-keyboard-height) - 330px), 300px); }
+:root[data-math-keyboard] .graph-expression-scroll { max-height: max(130px, calc(100dvh - var(--kit-math-keyboard-height) - 180px)); }
+@media (min-width: 1024px) { :root[data-math-keyboard] .graph-plot-panel { height: 100%; } }
+@media (max-width: 1023px) {
+  [data-graph-expanded] .graph-workbench-body:not([data-expressions-open]) .graph-plot-panel { height: max(170px, calc(100dvh - 140px - var(--kit-math-keyboard-height, 0px))); }
+}
+.graph-tool-intro h1 { font-size: clamp(1.25rem, 2vw, 1.625rem); }

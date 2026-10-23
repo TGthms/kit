@@ -2235,7 +2235,9 @@
       "traceX": "Dò tại x",
       "traceHint": "Di chuyển hoặc kéo trên đồ thị. ←/→ đổi x; Shift tăng bước. Bạn cũng có thể nhập x bên dưới.",
       "approximate": "Tọa độ là xấp xỉ số. Dấu gạch nghĩa là hàm không xác định.",
-      "scope": "Tối đa tám hàm thực có tên. a, b, c tạo thanh trượt; d(x)+g(x) kết hợp hàm. Căn, lũy thừa, logarit, trị tuyệt đối và lượng giác."
+      "scope": "Tối đa tám hàm thực có tên. a, b, c tạo thanh trượt; d(x)+g(x) kết hợp hàm. Căn, lũy thừa, logarit, trị tuyệt đối và lượng giác.",
+      "expressions": "Biểu thức",
+      "pan": "Di chuyển"
     }
   }
 }

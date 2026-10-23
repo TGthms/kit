@@ -2235,7 +2235,9 @@
       "traceX": "Sledovat při x",
       "traceHint": "Pohybujte nebo táhněte po grafu. ←/→ mění x, Shift zvětší krok. x lze zadat i níže.",
       "approximate": "Souřadnice jsou číselné aproximace. Pomlčka znamená nedefinovanou funkci.",
-      "scope": "Až osm pojmenovaných reálných funkcí. a, b, c jsou posuvníky, d(x)+g(x) kombinuje funkce. Odmocniny, mocniny, logaritmy, absolutní hodnoty a goniometrie."
+      "scope": "Až osm pojmenovaných reálných funkcí. a, b, c jsou posuvníky, d(x)+g(x) kombinuje funkce. Odmocniny, mocniny, logaritmy, absolutní hodnoty a goniometrie.",
+      "expressions": "Výrazy",
+      "pan": "Posun"
     }
   }
 }

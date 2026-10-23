@@ -2235,7 +2235,9 @@
       "traceX": "Lire à x",
       "traceHint": "Déplacez le pointeur ou faites glisser pour lire. ←/→ ajuste x ; Maj agrandit le pas. Vous pouvez saisir x ci-dessous.",
       "approximate": "Les coordonnées sont des approximations numériques. Un tiret indique une fonction non définie.",
-      "scope": "Jusqu’à huit fonctions réelles nommées. a, b, c créent des curseurs ; d(x)+g(x) permet la composition. Racines, puissances, logarithmes, valeurs absolues et trigonométrie."
+      "scope": "Jusqu’à huit fonctions réelles nommées. a, b, c créent des curseurs ; d(x)+g(x) permet la composition. Racines, puissances, logarithmes, valeurs absolues et trigonométrie.",
+      "expressions": "Expressions",
+      "pan": "Déplacer"
     }
   }
 }
