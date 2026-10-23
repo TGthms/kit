@@ -15,7 +15,11 @@ import type { MathfieldElement } from "mathlive";
 import { useLocale, useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import { InputGuide } from "./input-guide";
-import { revealMathInput, updateMathKeyboard } from "@/lib/math/keyboard";
+import {
+  revealMathInput,
+  syncMathKeyboard,
+  updateMathKeyboard,
+} from "@/lib/math/keyboard";
 import { LoaderCircle } from "lucide-react";
 
 declare module "react" {
@@ -32,6 +36,7 @@ declare module "react" {
 
 let loading: Promise<typeof import("mathlive")> | undefined;
 let loaded = false;
+let keyboardLocale: string | undefined;
 function loadMathfield() {
   return (loading ??= import("mathlive")
     .then((module) => {
@@ -40,10 +45,7 @@ function loadMathfield() {
       module.MathfieldElement.computeEngine = null;
       if (window.mathVirtualKeyboard) {
         window.mathVirtualKeyboard.addEventListener("geometrychange", () => {
-          const keyboard = window.mathVirtualKeyboard;
-          updateMathKeyboard(
-            keyboard.visible ? keyboard.boundingRect.height : 0,
-          );
+          syncMathKeyboard();
           const field = document.activeElement;
           if (field instanceof HTMLElement && field.tagName === "MATH-FIELD")
             revealMathInput(field);
@@ -82,6 +84,13 @@ export function MathInput({
   const generatedId = useId();
   const fieldId = id || generatedId;
   const ref = useRef<MathfieldElement | null>(null);
+  const touch = useRef<{
+    id: number;
+    x: number;
+    y: number;
+    moved: boolean;
+  } | null>(null);
+  const suppressTouchFocus = useRef(false);
   // A new expression must be ready before the next virtual key arrives. Once
   // the SDK is loaded, mount/configure/focus it in the same commit.
   const [ready, setReady] = useState(loaded);
@@ -109,10 +118,22 @@ export function MathInput({
     field.readOnly = readOnly;
     void loadMathfield().then(({ MathfieldElement }) => {
       MathfieldElement.locale = locale;
+      // Build the locale-aware alphabetic layout after setting the language,
+      // once per language rather than rebuilding it for every expression.
+      if (window.mathVirtualKeyboard && keyboardLocale !== locale) {
+        window.mathVirtualKeyboard.layouts = [
+          "numeric",
+          "alphabetic",
+          "symbols",
+          "greek",
+        ];
+        keyboardLocale = locale;
+      }
     });
     field.mathVirtualKeyboardPolicy = "manual";
     field.onScrollIntoView = () => {
-      if (document.activeElement === field) revealMathInput(field);
+      if (!suppressTouchFocus.current && document.activeElement === field)
+        revealMathInput(field);
     };
     field.smartFence = true;
     field.smartSuperscript = true;
@@ -182,13 +203,83 @@ export function MathInput({
         <math-field
           id={fieldId}
           ref={setFieldRef}
+          onPointerDownCapture={(event) => {
+            const isTouch =
+              event.pointerType === "touch" || event.pointerType === "pen";
+            const control = event.nativeEvent
+              .composedPath()
+              .some(
+                (node) =>
+                  node instanceof Element &&
+                  node.getAttribute("part") === "menu-toggle",
+              );
+            if (readOnly || !isTouch) return;
+            if (control || window.mathVirtualKeyboard?.visible) {
+              suppressTouchFocus.current = false;
+              touch.current = null;
+              return;
+            }
+            // Let the browser pan the page without starting SDK selection or
+            // focusing an editor. A deliberate tap below places the caret via
+            // MathLive's supported point-to-offset API.
+            suppressTouchFocus.current = true;
+            if (event.isPrimary === false) {
+              touch.current = null;
+              event.stopPropagation();
+              return;
+            }
+            touch.current = {
+              id: event.pointerId,
+              x: event.clientX,
+              y: event.clientY,
+              moved: false,
+            };
+            event.stopPropagation();
+          }}
+          onPointerMoveCapture={(event) => {
+            const start = touch.current;
+            if (
+              start?.id === event.pointerId &&
+              Math.hypot(event.clientX - start.x, event.clientY - start.y) > 10
+            )
+              start.moved = true;
+          }}
+          onPointerCancelCapture={() => {
+            touch.current = null;
+          }}
+          onPointerUpCapture={(event) => {
+            const start = touch.current;
+            touch.current = null;
+            if (
+              !start ||
+              start.id !== event.pointerId ||
+              start.moved ||
+              Math.hypot(event.clientX - start.x, event.clientY - start.y) > 10
+            )
+              return;
+            suppressTouchFocus.current = false;
+            const field = event.currentTarget;
+            const offset = field.getOffsetFromPoint(
+              event.clientX,
+              event.clientY,
+              { bias: 0 },
+            );
+            if (offset >= 0) field.position = offset;
+            field.focus();
+            window.mathVirtualKeyboard?.show({ animate: false });
+            syncMathKeyboard();
+            revealMathInput(field);
+          }}
           onFocusCapture={(event) => {
+            if (
+              suppressTouchFocus.current &&
+              !window.mathVirtualKeyboard?.visible
+            )
+              return;
+            suppressTouchFocus.current = false;
             if (!readOnly && window.matchMedia("(pointer: coarse)").matches) {
               window.mathVirtualKeyboard?.show({ animate: false });
-              if (window.mathVirtualKeyboard)
-                updateMathKeyboard(
-                  window.mathVirtualKeyboard.boundingRect.height,
-                );
+              syncMathKeyboard();
             }
             revealMathInput(event.currentTarget);
           }}
@@ -234,6 +325,7 @@ export function MathInput({
             onChange?.(event.currentTarget.value);
           }}
           onKeyDownCapture={(event) => {
+            suppressTouchFocus.current = false;
             if (event.key === "Enter") {
               event.preventDefault();
               event.stopPropagation();

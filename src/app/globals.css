@@ -1062,6 +1062,11 @@ math-field.kit-math-result {
 }
 math-field.kit-math-input { min-height: 4rem; border: 1px solid var(--border); padding: 0.65rem; font-size: 1.4rem; }
 math-field.kit-math-input:focus-within { outline: 2px solid var(--ring); outline-offset: 2px; }
+/* Closed editors must allow a page swipe to begin over the formula. */
+@media (pointer: coarse) {
+  :root:not([data-math-keyboard]) math-field.kit-math-input,
+  :root:not([data-math-keyboard]) math-field.kit-math-input::part(container) { touch-action: pan-y pinch-zoom; }
+}
 math-field.kit-math-result { border: 0; background: transparent; font-size: 1.5rem; padding: 0.2rem 0; pointer-events: none; }
 math-field.kit-math-result::part(virtual-keyboard-toggle),
 math-field.kit-math-result::part(menu-toggle) { display: none; }

@@ -21,6 +21,10 @@ vi.mock("mathlive", () => {
     value = "";
     readOnly = false;
     inlineShortcuts = {};
+    position = 0;
+    getOffsetFromPoint() {
+      return 2;
+    }
     set locale(_value: string) {
       throw new Error("Use MathfieldElement.locale instead");
     }
@@ -35,6 +39,18 @@ vi.mock("mathlive", () => {
 beforeEach(() => {
   vi.stubGlobal("matchMedia", () => ({ matches: false }));
   vi.stubGlobal("scrollBy", vi.fn());
+  vi.stubGlobal(
+    "PointerEvent",
+    class extends MouseEvent {
+      pointerId: number;
+      pointerType: string;
+      constructor(type: string, init: PointerEventInit = {}) {
+        super(type, init);
+        this.pointerId = init.pointerId ?? 1;
+        this.pointerType = init.pointerType ?? "touch";
+      }
+    },
+  );
 });
 afterEach(() => {
   cleanup();
@@ -68,6 +84,69 @@ async function editor(props: Partial<Parameters<typeof MathInput>[0]> = {}) {
   return { field, change, commit, ...rendered };
 }
 describe("structured math input", () => {
+  function touchKeyboard() {
+    const keyboard = {
+      visible: false,
+      boundingRect: { height: 240, top: window.innerHeight - 240 },
+      show: vi.fn(),
+      hide: vi.fn(),
+      addEventListener() {},
+    };
+    keyboard.show.mockImplementation(() => {
+      keyboard.visible = true;
+    });
+    Object.defineProperty(window, "mathVirtualKeyboard", {
+      configurable: true,
+      value: keyboard,
+    });
+    vi.stubGlobal("matchMedia", () => ({ matches: true }));
+    return keyboard;
+  }
+  it("lets a scroll start on a closed touch editor without opening the keyboard", async () => {
+    const { field } = await editor();
+    const keyboard = touchKeyboard();
+    const sdkPointerDown = vi.fn();
+    field.addEventListener("pointerdown", sdkPointerDown);
+    fireEvent.pointerDown(field, {
+      pointerId: 1,
+      pointerType: "touch",
+      clientX: 40,
+      clientY: 100,
+    });
+    fireEvent.focus(field);
+    fireEvent.pointerMove(field, { pointerId: 1, clientX: 40, clientY: 160 });
+    fireEvent.pointerUp(field, { pointerId: 1, clientX: 40, clientY: 100 });
+    fireEvent.focus(field); // Delayed SDK focus must not undo the scroll decision.
+    expect(keyboard.show).not.toHaveBeenCalled();
+    expect(sdkPointerDown).not.toHaveBeenCalled();
+  });
+  it("opens on an intentional touch tap and places the caret at the tap", async () => {
+    const { field } = await editor();
+    const keyboard = touchKeyboard();
+    fireEvent.pointerDown(field, { pointerId: 1, clientX: 40, clientY: 100 });
+    expect(keyboard.show).not.toHaveBeenCalled();
+    fireEvent.pointerUp(field, { pointerId: 1, clientX: 43, clientY: 102 });
+    expect(keyboard.show).toHaveBeenCalledWith({ animate: false });
+    expect((field as unknown as { position: number }).position).toBe(2);
+  });
+  it("does not open after a cancelled touch gesture", async () => {
+    const { field } = await editor();
+    const keyboard = touchKeyboard();
+    fireEvent.pointerDown(field, { pointerId: 1, clientX: 40, clientY: 100 });
+    fireEvent.pointerCancel(field, { pointerId: 1 });
+    fireEvent.pointerUp(field, { pointerId: 1, clientX: 40, clientY: 100 });
+    fireEvent.focus(field);
+    expect(keyboard.show).not.toHaveBeenCalled();
+  });
+  it("allows focus handoff into a previously scrolled editor once editing is active", async () => {
+    const { field } = await editor();
+    const keyboard = touchKeyboard();
+    fireEvent.pointerDown(field, { pointerId: 1, clientX: 40, clientY: 100 });
+    fireEvent.pointerCancel(field, { pointerId: 1 });
+    keyboard.visible = true; // Editing began in a different expression.
+    fireEvent.focus(field);
+    expect(keyboard.show).toHaveBeenCalledWith({ animate: false });
+  });
   it("initializes through the supported class API and reports input", async () => {
     const { field, change } = await editor();
     expect(field.value).toBe("x^2");
@@ -78,6 +157,41 @@ describe("structured math input", () => {
     expect(MathfieldElement.fontsDirectory).toMatch(/\/vendor\/math\/fonts$/);
     expect(MathfieldElement.computeEngine).toBeNull();
     expect(MathfieldElement.soundsDirectory).toBeNull();
+  });
+  it("configures the letter layout after the language and only once for that language", async () => {
+    const { rerender } = await editor();
+    const { MathfieldElement } = await import("mathlive");
+    const layouts = vi.fn((value: unknown) => ({
+      value,
+      locale: MathfieldElement.locale,
+    }));
+    Object.defineProperty(window, "mathVirtualKeyboard", {
+      configurable: true,
+      value: {
+        set layouts(value: unknown) {
+          layouts(value);
+        },
+      },
+    });
+    const rows = (second: boolean) => (
+      <NextIntlClientProvider locale="fr" messages={en}>
+        <MathInput value="x^2" label="Equation" />
+        {second && <MathInput value="" label="Next" />}
+      </NextIntlClientProvider>
+    );
+    rerender(rows(false));
+    await waitFor(() => expect(layouts).toHaveBeenCalledOnce());
+    expect(layouts.mock.results[0].value.locale).toBe("fr");
+    expect(layouts).toHaveBeenCalledWith([
+      "numeric",
+      "alphabetic",
+      "symbols",
+      "greek",
+    ]);
+    await act(async () => rerender(rows(true)));
+    expect(layouts).toHaveBeenCalledOnce();
+    delete (window as unknown as { mathVirtualKeyboard?: unknown })
+      .mathVirtualKeyboard;
   });
   it("captures Enter before the editor consumes bubbling key events", async () => {
     const { field, commit } = await editor();

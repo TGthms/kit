@@ -22,6 +22,30 @@ export function updateMathKeyboard(heightPx: number) {
   height = next;
   window.dispatchEvent(new Event(MATH_KEYBOARD_EVENT));
 }
+/** The SDK reports the key plate, excluding its bottom safe-area padding.
+ * Use the distance from its top to the viewport bottom so our accessory never
+ * covers the layout tabs on an installed iPhone app. */
+export function syncMathKeyboard() {
+  const keyboard = window.mathVirtualKeyboard;
+  const rect = keyboard?.visible ? keyboard.boundingRect : null;
+  const coverage =
+    rect && rect.height > 0
+      ? Math.max(
+          rect.height,
+          Number.isFinite(rect.top)
+            ? window.innerHeight - rect.top
+            : rect.height,
+        )
+      : 0;
+  updateMathKeyboard(coverage);
+}
+export function switchMathKeyboardLayout(layout: "numeric" | "alphabetic") {
+  const keyboard = window.mathVirtualKeyboard;
+  if (!keyboard?.visible) return;
+  const index = keyboard.layouts.indexOf(layout);
+  const layer = keyboard.normalizedLayouts[index]?.layers[0]?.id;
+  if (layer) keyboard.executeCommand(["switchKeyboardLayer", layer]);
+}
 export function hideMathKeyboard() {
   const active = document.activeElement;
   if (active instanceof HTMLElement && active.tagName === "MATH-FIELD")

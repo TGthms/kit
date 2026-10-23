@@ -6,6 +6,8 @@ import {
   revealMathInput,
   subscribeMathKeyboard,
   updateMathKeyboard,
+  syncMathKeyboard,
+  switchMathKeyboardLayout,
 } from "./keyboard";
 afterEach(() => {
   updateMathKeyboard(0);
@@ -13,6 +15,46 @@ afterEach(() => {
   document.body.replaceChildren();
 });
 describe("math keyboard integration", () => {
+  it("includes iPhone safe-area space below the SDK plate", () => {
+    Object.defineProperty(window, "mathVirtualKeyboard", {
+      configurable: true,
+      value: {
+        visible: true,
+        boundingRect: { top: window.innerHeight - 300, height: 266 },
+      },
+    });
+    syncMathKeyboard();
+    expect(mathKeyboardHeight()).toBe(300);
+  });
+  it("does not cover the whole screen while the SDK is still measuring", () => {
+    Object.defineProperty(window, "mathVirtualKeyboard", {
+      configurable: true,
+      value: { visible: true, boundingRect: { top: 0, height: 0 } },
+    });
+    syncMathKeyboard();
+    expect(mathKeyboardHeight()).toBe(0);
+  });
+  it("switches alphabetic and numeric layers through the public SDK command", () => {
+    const executeCommand = vi.fn();
+    Object.defineProperty(window, "mathVirtualKeyboard", {
+      configurable: true,
+      value: {
+        visible: true,
+        layouts: ["numeric", "alphabetic"],
+        normalizedLayouts: [
+          { layers: [{ id: "digits" }] },
+          { layers: [{ id: "letters" }] },
+        ],
+        executeCommand,
+      },
+    });
+    switchMathKeyboardLayout("alphabetic");
+    switchMathKeyboardLayout("numeric");
+    expect(executeCommand.mock.calls).toEqual([
+      [["switchKeyboardLayer", "letters"]],
+      [["switchKeyboardLayer", "digits"]],
+    ]);
+  });
   it("publishes stable geometry and clears invalid values", () => {
     const listener = vi.fn();
     const stop = subscribeMathKeyboard(listener);

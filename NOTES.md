@@ -2,6 +2,13 @@
 
 This file is the active implementation record. Current source is under `src/`, `messages/`, `content/`, `public/`, and `scripts/`. Do not use the disposable `out/` directory as source evidence.
 
+## iPhone letter keyboard and scroll intent (2026-10-22)
+
+- The iPhone screenshot exposed a real overlap: MathLive reports the key plate without its bottom safe-area space, so positioning Done by plate height covered the layout tabs. The shared keyboard coverage now measures from the plate's top to the viewport bottom. The accessory rechecks after layout and SDK transitions, plus viewport changes. In a browser probe with 34 px of bottom padding, the accessory ended at y=661 and the SDK toolbar began at y=661; all tabs remained visible. The temporary probe was removed before production builds.
+- Added prominent ABC and 123 actions beside Done using MathLive's public layout command; alphabetic layout is next to numeric in the SDK toolbar as well. Layouts initialize after the field language, once per language, preserving SDK locale-aware letter arrangements without rebuilding for every expression. Browser key presses entered a–e, and switching between letters and numbers entered ax+b without losing the caret.
+- Closed touch editors defer SDK focus/selection until a deliberate tap. Movement beyond 10 px, pointer cancellation and secondary pointers do not open the keyboard; the exposed container allows native vertical pan and pinch zoom. Taps place the caret using the public point-to-offset API. Once editing is active, the normal SDK selection behavior and expression-to-expression focus transfer remain available. Regression tests exercise scroll, tap, cancellation and subsequent focus handoff; physical iPhone gesture feel remains a device check.
+- Start here now features Function grapher in place of Equation solver. Verified the production home card and navigation. With Function grapher downloaded and the server returning HTTP 503, a fresh navigation still opened ABC, accepted b through a virtual letter key, and traced f(3)=1. Typecheck, lint and all 989 tests in 149 files pass. The final root export 02feb71857e2 also passed; GitHub Actions verifies the /kit deployment build.
+
 ## Unified grapher workspace and mobile math keyboard (2026-10-22)
 
 - Replaced the separate function cards, repeated shortcut hints and detached settings with one workspace: compact expressions beside the desktop plot, graph first with a collapsible expression list on phones, one input guide, and contextual rename/color/remove controls. Parameters stay with expressions; bounds, grid and angle units share a settings popover. The tool header is compact, with labeled icon actions. Tracing values stay in a dock inside the plot; the table opens only when requested.
