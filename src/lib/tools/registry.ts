@@ -344,7 +344,7 @@ export const tools: ToolDef[] = [
 
 export const featuredToolIds: ToolId[] = [
   "unicode-styles",
-  "equation-solver",
+  "function-grapher",
   "random-generator",
   "stopwatch-timer",
   "password-generator",
