@@ -2,6 +2,12 @@
 
 This file is the active implementation record. Current source is under `src/`, `messages/`, `content/`, `public/`, and `scripts/`. Do not use the disposable `out/` directory as source evidence.
 
+## Mac installation icon (2026-10-23)
+
+- The newly installed Mac icon's nested frame matches the shipped maskable image: a rounded 320px Kit tile was centered in a 512px dark square. Safari adds the system shape around that already inset tile. WebKit recommends an opaque, full-bleed maskable square for Add to Dock: https://webkit.org/blog/14787/webkit-features-in-safari-17-2/.
+- Replaced that asset with a continuous square background while retaining the original mark and its shadow at full scale. Added a 1024px maskable variant and versioned both manifest URLs. Existing browser/in-app/iPhone assets are unchanged. Regenerate with `node scripts/generate-install-icons.mjs`; the script takes the existing 512px master and feathers only background texture outside the mark, excluding its baked-in rounded rim.
+- Regression coverage verifies manifest dimensions, opacity, unchanged artwork, and absence of a light perimeter. The icon and offline packaging tests (24 total), lint, and the production export (`d4adbc4f492a`, including TypeScript) pass. Both exported PNGs match their source bytes. Native Add to Dock appearance still needs a fresh installation on the user's Mac; an existing installed app may retain its saved icon.
+
 ## iPhone letter keyboard and scroll intent (2026-10-22)
 
 - The iPhone screenshot exposed a real overlap: MathLive reports the key plate without its bottom safe-area space, so positioning Done by plate height covered the layout tabs. The shared keyboard coverage now measures from the plate's top to the viewport bottom. The accessory rechecks after layout and SDK transitions, plus viewport changes. In a browser probe with 34 px of bottom padding, the accessory ended at y=661 and the SDK toolbar began at y=661; all tabs remained visible. The temporary probe was removed before production builds.
