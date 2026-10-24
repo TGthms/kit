@@ -531,7 +531,14 @@
     "offlineCheck": "检查已保存的文件",
     "offlineRepairAction": "修复",
     "offlineRepairTitle": "需要修复",
-    "offlineRatesNote": "离线时，货币换算使用已保存的汇率。获取新汇率需要联网。"
+    "offlineRatesNote": "离线时，货币换算使用已保存的汇率。获取新汇率需要联网。",
+    "installTitle": "安装 Kit",
+    "installDesc": "像应用一样打开 Kit。请在“离线访问”中选择断网时可用的工具。",
+    "installInstalled": "Kit 已安装。",
+    "installIos": "在 Safari 中打开“分享”，然后选择“添加到主屏幕”。",
+    "installMac": "在 Safari 中选择“文件”→“添加到程序坞”。",
+    "installBrowser": "如果浏览器支持，请在菜单中查找“安装 Kit”或“安装应用”。",
+    "installFailed": "无法打开安装提示。请尝试使用浏览器的安装菜单。"
   },
   "shortcuts": {
     "title": "键盘快捷键",
@@ -2002,7 +2009,7 @@
     "whyCaps": "没有服务器强加的限制",
     "whyCapsBody": "没有上传上限，没有排队，没有为大文件准备的高级套餐。真正的上限是这台设备的内存。",
     "whyOffline": "没有信号也能用",
-    "whyOfflineBody": "页面一旦加载，工具在飞行模式下也能继续运行。安装 Kit 后，再次访问时同样如此。在设置的“离线访问”中，可以提前选择要准备的语言和工具。",
+    "whyOfflineBody": "请在设置的“离线访问”中下载语言和工具，并在断网前确认已准备就绪。仅安装 Kit 不会下载所有工具。",
     "exampleTitle": "跟着一个任务走完全程",
     "exampleLede": "两个真实的例子，一步一步跟踪。除了加载 Kit 本身，都不接触网络。",
     "exampleMergeHeading": "合并两个 PDF",
@@ -2036,7 +2043,7 @@
     "faqFilesQ": "我的文件到底去了哪里？",
     "faqFilesA": "哪儿也没去。它们在这个标签页里被读取和处理，保存时写回你的磁盘。本页的网络日志会准确显示哪些东西过了网络。",
     "faqOfflineQ": "Kit 离线能用吗？",
-    "faqOfflineA": "可以。工具页面加载过一次，或安装 Kit 之后，即使没有网络连接，工具也能继续使用。在设置的“离线访问”中，可以提前下载你选择的语言和工具。唯一的例外是货币换算，而且只在需要最新汇率时。",
+    "faqOfflineA": "可以，设置的“离线访问”中显示已准备就绪的页面和工具可离线使用。请在断网前下载；仅安装 Kit 不会保存所有工具。获取最新汇率仍需联网。",
     "faqMediaQ": "为什么媒体工具要一次性下载约 {mediaMb} MB？",
     "faqMediaA": "音频和视频跑在编译成 WebAssembly 的 FFmpeg 上。这个引擎只下载一次，由 Service worker 缓存，之后的每个文件都复用它。",
     "faqStoredQ": "两次访问之间 Kit 存了什么？",
@@ -2057,7 +2064,7 @@
     "techCryptoDl": "无需额外下载 — 浏览器已经内置",
     "techPwaDl": "无需额外下载 — 它只缓存，不发送",
     "techUiDl": "页面和脚本本身",
-    "exceptionOffline": "页面加载后断网了？工具仍可继续使用。安装 Kit 后，再次访问时同样如此；设置中的“离线访问”会提前准备好你需要的内容。"
+    "exceptionOffline": "下次要在断网时使用，请先在设置的“离线访问”中准备并验证下载。仅安装 Kit 不会保存所有工具。"
   },
   "toolPage": {
     "related": "相关工具"

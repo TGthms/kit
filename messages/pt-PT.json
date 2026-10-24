@@ -531,7 +531,14 @@
     "offlineCheck": "Verificar ficheiros",
     "offlineRepairAction": "Reparar",
     "offlineRepairTitle": "Precisa de reparação",
-    "offlineRatesNote": "Offline, as moedas usam taxas guardadas. Novas taxas precisam de internet."
+    "offlineRatesNote": "Offline, as moedas usam taxas guardadas. Novas taxas precisam de internet.",
+    "installTitle": "Instalar Kit",
+    "installDesc": "Abra o Kit como uma aplicação. Em Acesso offline, escolha o que usar sem ligação à internet.",
+    "installInstalled": "O Kit está instalado.",
+    "installIos": "No Safari, abra Partilhar e escolha Adicionar ao ecrã principal.",
+    "installMac": "No Safari, escolha Ficheiro → Adicionar à Dock.",
+    "installBrowser": "Procure Instalar Kit ou Instalar aplicação no menu do navegador, se disponível.",
+    "installFailed": "Não foi possível abrir a instalação. Tente pelo menu do navegador."
   },
   "shortcuts": {
     "title": "Atalhos de teclado",
@@ -2096,7 +2103,7 @@
     "whyCaps": "Sem limites impostos por um servidor",
     "whyCapsBody": "Sem limite de envio, sem fila, sem nível premium para ficheiros maiores. O teto real é a memória deste dispositivo.",
     "whyOffline": "Funciona sem rede",
-    "whyOfflineBody": "Depois de uma página carregar, a ferramenta continua a funcionar em modo de avião. Se instalar o Kit, o mesmo acontece entre visitas. Em Acesso offline, nas Definições, escolhe os idiomas e as ferramentas para preparar com antecedência.",
+    "whyOfflineBody": "Use Acesso offline nas Definições para descarregar idiomas e ferramentas e confirmar que estão prontos antes de desligar a internet. Instalar o Kit não descarrega todas as ferramentas.",
     "exampleTitle": "Siga uma tarefa de ponta a ponta",
     "exampleLede": "Dois exemplos reais, seguidos passo a passo. Nenhum dos dois toca na rede para além de carregar o próprio Kit.",
     "exampleMergeHeading": "Juntar dois PDFs",
@@ -2130,7 +2137,7 @@
     "faqFilesQ": "Para onde vão realmente os meus ficheiros?",
     "faqFilesA": "Para lado nenhum. São lidos e tratados dentro deste separador e escritos de volta no seu disco quando guarda. O registo de rede desta página mostra exatamente o que atravessou o cabo.",
     "faqOfflineQ": "O Kit funciona sem rede?",
-    "faqOfflineA": "Sim. Depois de uma página de ferramenta carregar — ou de o Kit estar instalado — as ferramentas continuam a funcionar sem ligação. Em Acesso offline, nas Definições, os idiomas e as ferramentas escolhidos são transferidos com antecedência. O conversor de moedas é a única exceção, e apenas para obter taxas novas.",
+    "faqOfflineA": "Sim, para páginas e ferramentas indicadas como prontas em Acesso offline nas Definições. Descarregue-as antes de desligar a internet; instalar o Kit não as guarda todas. Taxas de câmbio recentes continuam a precisar de ligação.",
     "faqMediaQ": "Porque é que a ferramenta de som e vídeo descarrega cerca de {mediaMb} MB uma só vez?",
     "faqMediaA": "O som e o vídeo funcionam sobre FFmpeg compilado para WebAssembly. Esse motor é descarregado uma vez, o service worker põe-no em cache e cada ficheiro seguinte volta a usá-lo.",
     "faqStoredQ": "O que o Kit guarda entre visitas?",
@@ -2151,7 +2158,7 @@
     "techCryptoDl": "Nada extra — o browser já o tem",
     "techPwaDl": "Nada extra — põe em cache, não envia nada",
     "techUiDl": "As páginas e os scripts em si",
-    "exceptionOffline": "Perdeu a ligação depois de carregar uma página? As ferramentas continuam a funcionar. Se instalar o Kit, o mesmo acontece entre visitas, e o Acesso offline, nas Definições, prepara o que precisa antes de sair."
+    "exceptionOffline": "Para voltar sem internet, prepare e verifique as transferências em Acesso offline nas Definições. Instalar o Kit não guarda todas as ferramentas."
   },
   "toolPage": {
     "related": "Ferramentas relacionadas"

@@ -531,7 +531,14 @@
     "offlineCheck": "Verifică fișierele",
     "offlineRepairAction": "Repară",
     "offlineRepairTitle": "Necesită reparare",
-    "offlineRatesNote": "Offline se folosesc cursurile valutare salvate. Cursurile noi necesită internet."
+    "offlineRatesNote": "Offline se folosesc cursurile valutare salvate. Cursurile noi necesită internet.",
+    "installTitle": "Instalează Kit",
+    "installDesc": "Deschide Kit ca aplicație. În Acces offline, alege ce poți folosi fără conexiune.",
+    "installInstalled": "Kit este instalat.",
+    "installIos": "În Safari, deschide Partajare, apoi alege Adăugați la ecranul principal.",
+    "installMac": "În Safari, alege Fișier → Adaugă în Dock.",
+    "installBrowser": "Caută Instalează Kit sau Instalează aplicația în meniul browserului, dacă opțiunea există.",
+    "installFailed": "Instalarea nu s-a putut deschide. Încearcă din meniul browserului."
   },
   "shortcuts": {
     "title": "Scurtături de tastatură",
@@ -2096,7 +2103,7 @@
     "whyCaps": "Fără limite impuse de un server",
     "whyCapsBody": "Fără limită de încărcare, fără coadă, fără nivel premium pentru fișiere mai mari. Tavanul real e memoria acestui dispozitiv.",
     "whyOffline": "Funcționează fără rețea",
-    "whyOfflineBody": "După ce o pagină s-a încărcat, instrumentul funcționează în continuare în modul avion. Dacă instalezi Kit, același lucru se aplică între vizite. În Acces offline, din Setări, alegi limbile și instrumentele care se pregătesc din timp.",
+    "whyOfflineBody": "Descarcă limbile și instrumentele din Acces offline în Setări și verifică dacă sunt pregătite înainte de deconectare. Instalarea Kit nu descarcă toate instrumentele.",
     "exampleTitle": "Urmărește o sarcină de la un capăt la altul",
     "exampleLede": "Două exemple reale, urmărite pas cu pas. Niciunul nu atinge rețeaua dincolo de încărcarea lui Kit însuși.",
     "exampleMergeHeading": "Unirea a două PDF-uri",
@@ -2130,7 +2137,7 @@
     "faqFilesQ": "Unde ajung, de fapt, fișierele mele?",
     "faqFilesA": "Nicăieri. Sunt citite și prelucrate în această filă și scrise înapoi pe discul tău când salvezi. Jurnalul de rețea al acestei pagini arată exact ce a trecut prin cablu.",
     "faqOfflineQ": "Kit merge offline?",
-    "faqOfflineA": "Da. După ce o pagină de instrument s-a încărcat — sau după ce Kit este instalat — instrumentele funcționează fără conexiune. În Acces offline, din Setări, limbile și instrumentele alese se descarcă din timp. Convertorul valutar este singura excepție, și doar pentru cursuri noi.",
+    "faqOfflineA": "Da, pentru paginile și instrumentele indicate ca pregătite în Acces offline din Setări. Descarcă-le înainte de deconectare; instalarea Kit nu le salvează pe toate. Cursurile valutare actualizate necesită în continuare conexiune.",
     "faqMediaQ": "De ce descarcă unealta de audio și video o singură dată cam {mediaMb} MB?",
     "faqMediaA": "Audio și video rulează pe FFmpeg compilat în WebAssembly. Motorul ăsta se descarcă o dată, service workerul îl ține în cache, iar fiecare fișier de după îl refolosește.",
     "faqStoredQ": "Ce păstrează Kit între vizite?",
@@ -2151,7 +2158,7 @@
     "techCryptoDl": "Nimic în plus — browserul îl are deja",
     "techPwaDl": "Nimic în plus — pune în cache, nu trimite",
     "techUiDl": "Chiar paginile și scripturile",
-    "exceptionOffline": "Ai pierdut conexiunea după încărcarea unei pagini? Instrumentele funcționează în continuare. Dacă instalezi Kit, același lucru se aplică între vizite, iar Acces offline, din Setări, pregătește ce ai nevoie."
+    "exceptionOffline": "Pentru o vizită ulterioară fără internet, pregătește și verifică descărcările în Acces offline din Setări. Instalarea Kit nu salvează toate instrumentele."
   },
   "toolPage": {
     "related": "Instrumente similare"

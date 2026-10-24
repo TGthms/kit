@@ -531,7 +531,14 @@
     "offlineCheck": "Kontroller gemte filer",
     "offlineRepairAction": "Reparer",
     "offlineRepairTitle": "Reparation nødvendig",
-    "offlineRatesNote": "Valuta bruger gemte kurser offline. Nye kurser kræver internet."
+    "offlineRatesNote": "Valuta bruger gemte kurser offline. Nye kurser kræver internet.",
+    "installTitle": "Installer Kit",
+    "installDesc": "Åbn Kit som en app. Vælg under Offlineadgang, hvad der skal fungere uden forbindelse.",
+    "installInstalled": "Kit er installeret.",
+    "installIos": "Åbn Del i Safari, og vælg Føj til hjemmeskærm.",
+    "installMac": "Vælg Arkiv → Føj til Dock i Safari.",
+    "installBrowser": "Se efter Installer Kit eller Installer app i browsermenuen, hvis det er tilgængeligt.",
+    "installFailed": "Installationen kunne ikke åbnes. Prøv via browsermenuen."
   },
   "shortcuts": {
     "title": "Tastaturgenveje",
@@ -2096,7 +2103,7 @@
     "whyCaps": "Ingen grænser fra en server",
     "whyCapsBody": "Ingen uploadgrænse, ingen kø, intet premiumniveau for større filer. Den reelle grænse er denne enheds hukommelse.",
     "whyOffline": "Virker uden signal",
-    "whyOfflineBody": "Når en side er indlæst, kører værktøjet videre i flytilstand. Installerer du Kit, gælder det også mellem besøg. Under Offlineadgang i Indstillinger kan du vælge de sprog og værktøjer, der gøres klar på forhånd.",
+    "whyOfflineBody": "Download sprog og værktøjer via Offlineadgang i Indstillinger, og kontrollér, at de er klar, før du afbryder forbindelsen. Installation af Kit downloader ikke alle værktøjer.",
     "exampleTitle": "Følg én opgave fra start til slut",
     "exampleLede": "To rigtige eksempler, fulgt trin for trin. Ingen af dem rører nettet ud over at hente Kit selv.",
     "exampleMergeHeading": "Fletning af to PDF’er",
@@ -2130,7 +2137,7 @@
     "faqFilesQ": "Hvor går mine filer faktisk hen?",
     "faqFilesA": "Ingen steder hen. De læses og behandles inde i denne fane og skrives tilbage til din disk, når du gemmer. Netværksloggen på denne side viser præcis, hvad der gik over ledningen.",
     "faqOfflineQ": "Virker Kit offline?",
-    "faqOfflineA": "Ja. Når en værktøjsside er indlæst – eller når Kit er installeret – virker værktøjerne uden forbindelse. Under Offlineadgang i Indstillinger hentes de valgte sprog og værktøjer på forhånd. Valutakonverteren er den eneste undtagelse, og kun for friske kurser.",
+    "faqOfflineA": "Ja, for sider og værktøjer, der vises som klar under Offlineadgang i Indstillinger. Download dem, før du går offline; installation af Kit gemmer ikke alle værktøjer. Nye valutakurser kræver stadig forbindelse.",
     "faqMediaQ": "Hvorfor henter medieværktøjet omkring {mediaMb} MB én gang?",
     "faqMediaA": "Lyd og video kører på FFmpeg, kompileret til WebAssembly. Motoren hentes én gang, service workeren cacher den, og hver fil bagefter genbruger den.",
     "faqStoredQ": "Hvad gemmer Kit mellem besøg?",
@@ -2151,7 +2158,7 @@
     "techCryptoDl": "Intet ekstra — browseren har det allerede",
     "techPwaDl": "Intet ekstra — den cacher, den sender ikke",
     "techUiDl": "Siderne og scriptsene selv",
-    "exceptionOffline": "Mistet forbindelsen efter at have indlæst en side? Værktøjerne virker videre. Installerer du Kit, gælder det også mellem besøg, og Offlineadgang i Indstillinger gør det klar, du har brug for."
+    "exceptionOffline": "Forbered og kontrollér dine downloads under Offlineadgang i Indstillinger, før du vender tilbage uden internet. Installation af Kit gemmer ikke alle værktøjer."
   },
   "toolPage": {
     "related": "Relaterede værktøjer"

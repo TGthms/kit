@@ -531,7 +531,14 @@
     "offlineCheck": "Kontroller lagrede filer",
     "offlineRepairAction": "Reparer",
     "offlineRepairTitle": "Trenger reparasjon",
-    "offlineRatesNote": "Valuta bruker lagrede kurser frakoblet. Nye kurser krever internett."
+    "offlineRatesNote": "Valuta bruker lagrede kurser frakoblet. Nye kurser krever internett.",
+    "installTitle": "Installer Kit",
+    "installDesc": "Åpne Kit som en app. Velg under Frakoblet tilgang hva som skal fungere uten nett.",
+    "installInstalled": "Kit er installert.",
+    "installIos": "Åpne Del i Safari og velg Legg til på Hjem-skjerm.",
+    "installMac": "Velg Arkiv → Legg til i Dock i Safari.",
+    "installBrowser": "Se etter Installer Kit eller Installer app i nettlesermenyen, hvis tilgjengelig.",
+    "installFailed": "Installasjonen kunne ikke åpnes. Prøv via nettlesermenyen."
   },
   "shortcuts": {
     "title": "Tastatursnarveier",
@@ -2096,7 +2103,7 @@
     "whyCaps": "Ingen grenser fra en server",
     "whyCapsBody": "Ingen opplastingsgrense, ingen kø, intet premiumnivå for større filer. Den reelle grensen er minnet på denne enheten.",
     "whyOffline": "Virker uten signal",
-    "whyOfflineBody": "Når en side først er lastet, fortsetter verktøyet å virke i flymodus. Installerer du Kit, gjelder det samme mellom besøk. Under Frakoblet tilgang i Innstillinger velger du språkene og verktøyene som klargjøres på forhånd.",
+    "whyOfflineBody": "Last ned språk og verktøy via Frakoblet tilgang i Innstillinger, og sjekk at de er klare før du kobler fra. Å installere Kit laster ikke ned alle verktøy.",
     "exampleTitle": "Følg én oppgave fra start til slutt",
     "exampleLede": "To ekte eksempler, fulgt trinn for trinn. Ingen av dem rører nettet utover å laste Kit selv.",
     "exampleMergeHeading": "Å slå sammen to PDF-er",
@@ -2130,7 +2137,7 @@
     "faqFilesQ": "Hvor går filene mine egentlig hen?",
     "faqFilesA": "Ingen steder. De leses og behandles inne i denne fanen og skrives tilbake til disken din når du lagrer. Nettverksloggen på denne siden viser nøyaktig hva som gikk over ledningen.",
     "faqOfflineQ": "Fungerer Kit offline?",
-    "faqOfflineA": "Ja. Når en verktøyside er lastet – eller når Kit er installert – virker verktøyene uten tilkobling. Under Frakoblet tilgang i Innstillinger lastes språkene og verktøyene du velger ned på forhånd. Valutakonvertereren er det eneste unntaket, og bare for ferske kurser.",
+    "faqOfflineA": "Ja, for sider og verktøy som vises som klare under Frakoblet tilgang i Innstillinger. Last dem ned før du kobler fra; installasjon av Kit lagrer ikke alle verktøy. Nye valutakurser krever fortsatt tilkobling.",
     "faqMediaQ": "Hvorfor laster mediaverktøyet ned omtrent {mediaMb} MB én gang?",
     "faqMediaA": "Lyd og video kjører på FFmpeg, kompilert til WebAssembly. Motoren lastes ned én gang, service workeren lagrer den i hurtiglageret, og hver fil etterpå gjenbruker den.",
     "faqStoredQ": "Hva lagrer Kit mellom besøk?",
@@ -2151,7 +2158,7 @@
     "techCryptoDl": "Ingenting ekstra — nettleseren har det allerede",
     "techPwaDl": "Ingenting ekstra — den bufrer, den sender ikke",
     "techUiDl": "Sidene og skriptene selv",
-    "exceptionOffline": "Mistet tilkoblingen etter at en side ble lastet? Verktøyene virker videre. Installerer du Kit, gjelder det samme mellom besøk, og Frakoblet tilgang i Innstillinger klargjør det du trenger."
+    "exceptionOffline": "Forbered og sjekk nedlastingene under Frakoblet tilgang i Innstillinger før du kommer tilbake uten internett. Å installere Kit lagrer ikke alle verktøy."
   },
   "toolPage": {
     "related": "Lignende verktøy"

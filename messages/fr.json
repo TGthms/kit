@@ -531,7 +531,14 @@
     "offlineCheck": "Vérifier les fichiers",
     "offlineRepairAction": "Réparer",
     "offlineRepairTitle": "Réparation nécessaire",
-    "offlineRatesNote": "Hors ligne, les devises utilisent les taux enregistrés. Les nouveaux taux nécessitent internet."
+    "offlineRatesNote": "Hors ligne, les devises utilisent les taux enregistrés. Les nouveaux taux nécessitent internet.",
+    "installTitle": "Installer Kit",
+    "installDesc": "Ouvrez Kit comme une app. Choisissez les outils disponibles sans connexion dans Accès hors ligne.",
+    "installInstalled": "Kit est installé.",
+    "installIos": "Dans Safari, ouvrez Partager, puis choisissez Sur l’écran d’accueil.",
+    "installMac": "Dans Safari, choisissez Fichier → Ajouter au Dock.",
+    "installBrowser": "Cherchez Installer Kit ou Installer l’application dans le menu de votre navigateur, si proposé.",
+    "installFailed": "L’installation n’a pas pu s’ouvrir. Essayez depuis le menu du navigateur."
   },
   "shortcuts": {
     "title": "Raccourcis clavier",
@@ -2096,7 +2103,7 @@
     "whyCaps": "Aucune limite imposée par un serveur",
     "whyCapsBody": "Pas de plafond d’envoi, pas de file d’attente, pas d’offre premium pour les fichiers plus gros. La vraie limite, c’est la mémoire de cet appareil.",
     "whyOffline": "Fonctionne sans réseau",
-    "whyOfflineBody": "Une fois une page chargée, l’outil continue de fonctionner en mode avion. Installez Kit et il en va de même entre les visites. L’Accès hors ligne, dans les Réglages, vous permet de choisir à l’avance les langues et les outils à préparer.",
+    "whyOfflineBody": "Dans les Réglages, utilisez Accès hors ligne pour télécharger langues et outils, puis vérifiez qu’ils sont prêts avant de vous déconnecter. Installer Kit ne télécharge pas tous les outils.",
     "exampleTitle": "Suivez une tâche de bout en bout",
     "exampleLede": "Deux exemples réels, suivis pas à pas. Ni l’un ni l’autre ne touche le réseau au-delà du chargement de Kit lui-même.",
     "exampleMergeHeading": "Fusionner deux PDF",
@@ -2130,7 +2137,7 @@
     "faqFilesQ": "Où vont vraiment mes fichiers ?",
     "faqFilesA": "Nulle part. Ils sont lus et traités dans cet onglet, puis réécrits sur votre disque quand vous enregistrez. Le journal réseau de cette page montre exactement ce qui a circulé sur le réseau.",
     "faqOfflineQ": "Kit fonctionne-t-il hors ligne ?",
-    "faqOfflineA": "Oui. Une fois une page d’outil chargée — ou une fois Kit installé — les outils continuent de fonctionner sans connexion. L’Accès hors ligne, dans les Réglages, télécharge à l’avance les langues et les outils que vous choisissez. Le convertisseur de devises est la seule exception, et uniquement pour obtenir des taux à jour.",
+    "faqOfflineA": "Oui, pour les pages et outils indiqués comme prêts dans Accès hors ligne, dans les Réglages. Téléchargez-les avant de vous déconnecter : installer Kit ne les enregistre pas tous. Les taux de change récents nécessitent une connexion.",
     "faqMediaQ": "Pourquoi l’outil média télécharge-t-il environ {mediaMb} Mo une seule fois ?",
     "faqMediaA": "L’audio et la vidéo tournent sur FFmpeg compilé en WebAssembly. Ce moteur se télécharge une fois, le service worker le met en cache, et chaque fichier suivant le réutilise.",
     "faqStoredQ": "Que garde Kit entre les visites ?",
@@ -2151,7 +2158,7 @@
     "techCryptoDl": "Rien de plus — le navigateur l’a déjà",
     "techPwaDl": "Rien de plus — il met en cache, il n’envoie rien",
     "techUiDl": "Les pages et les scripts eux-mêmes",
-    "exceptionOffline": "Connexion perdue après le chargement d’une page ? Les outils continuent de fonctionner. Installez Kit et il en va de même entre les visites, et l’Accès hors ligne, dans les Réglages, prépare ce dont vous avez besoin avant de partir."
+    "exceptionOffline": "Pour une prochaine visite sans internet, préparez et vérifiez vos téléchargements dans Accès hors ligne, dans les Réglages. Installer Kit n’enregistre pas tous les outils."
   },
   "toolPage": {
     "related": "Outils similaires"

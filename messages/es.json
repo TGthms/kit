@@ -531,7 +531,14 @@
     "offlineCheck": "Comprobar archivos",
     "offlineRepairAction": "Reparar",
     "offlineRepairTitle": "Necesita reparación",
-    "offlineRatesNote": "Sin conexión se usan tipos de cambio guardados. Los nuevos requieren internet."
+    "offlineRatesNote": "Sin conexión se usan tipos de cambio guardados. Los nuevos requieren internet.",
+    "installTitle": "Instalar Kit",
+    "installDesc": "Abre Kit como una app. En Acceso sin conexión puedes elegir qué estará disponible sin internet.",
+    "installInstalled": "Kit está instalado.",
+    "installIos": "En Safari, abre Compartir y elige Añadir a pantalla de inicio.",
+    "installMac": "En Safari, elige Archivo → Añadir al Dock.",
+    "installBrowser": "Busca Instalar Kit o Instalar aplicación en el menú del navegador, si está disponible.",
+    "installFailed": "No se pudo abrir la instalación. Prueba desde el menú del navegador."
   },
   "shortcuts": {
     "title": "Atajos de teclado",
@@ -2096,7 +2103,7 @@
     "whyCaps": "Sin límites impuestos por el servidor",
     "whyCapsBody": "Sin límite de subida, sin cola, sin nivel premium para archivos más grandes. El techo real es la memoria de este dispositivo.",
     "whyOffline": "Funciona sin señal",
-    "whyOfflineBody": "Cuando una página ya se ha cargado, la herramienta sigue funcionando en modo avión. Si instalas Kit, ocurre lo mismo entre visitas. En Acceso sin conexión, en Ajustes, puedes elegir los idiomas y las herramientas que quieras preparar con antelación.",
+    "whyOfflineBody": "Usa Acceso sin conexión en Ajustes para descargar idiomas y herramientas, y comprueba que estén listos antes de desconectarte. Instalar Kit no descarga todas las herramientas.",
     "exampleTitle": "Sigue una tarea de principio a fin",
     "exampleLede": "Dos ejemplos reales, seguidos paso a paso. Ninguno toca la red más allá de cargar el propio Kit.",
     "exampleMergeHeading": "Unir dos PDF",
@@ -2130,7 +2137,7 @@
     "faqFilesQ": "¿Adónde van realmente mis archivos?",
     "faqFilesA": "A ningún sitio. Se leen y se procesan dentro de esta pestaña y se escriben en tu disco cuando guardas. El registro de red de esta página muestra exactamente qué cruzó el cable.",
     "faqOfflineQ": "¿Funciona Kit sin conexión?",
-    "faqOfflineA": "Sí. Cuando una página de herramienta ya se ha cargado —o cuando Kit está instalado— las herramientas siguen funcionando sin conexión. En Acceso sin conexión, en Ajustes, se descargan de antemano los idiomas y las herramientas que elijas. El conversor de divisas es la única excepción, y solo para obtener tasas nuevas.",
+    "faqOfflineA": "Sí, para las páginas y herramientas que aparecen listas en Acceso sin conexión, en Ajustes. Descárgalas antes de desconectarte; instalar Kit no las guarda todas. Los tipos de cambio actualizados requieren conexión.",
     "faqMediaQ": "¿Por qué la herramienta de audio y vídeo descarga unos {mediaMb} MB una sola vez?",
     "faqMediaA": "El audio y el vídeo funcionan sobre FFmpeg compilado a WebAssembly. Ese motor se descarga una vez, el service worker lo guarda en caché y cada archivo posterior lo reutiliza.",
     "faqStoredQ": "¿Qué guarda Kit entre visitas?",
@@ -2151,7 +2158,7 @@
     "techCryptoDl": "Nada extra — el navegador ya lo tiene",
     "techPwaDl": "Nada extra — guarda en caché, no envía nada",
     "techUiDl": "Las páginas y los scripts en sí",
-    "exceptionOffline": "¿Has perdido la conexión después de cargar una página? Las herramientas siguen funcionando. Si instalas Kit, ocurre lo mismo entre visitas, y Acceso sin conexión, en Ajustes, prepara lo que necesitas antes de salir."
+    "exceptionOffline": "Para volver sin internet, prepara y verifica tus descargas en Acceso sin conexión, en Ajustes. Instalar Kit no guarda todas las herramientas."
   },
   "toolPage": {
     "related": "Herramientas relacionadas"

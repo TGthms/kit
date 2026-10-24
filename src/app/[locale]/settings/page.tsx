@@ -17,6 +17,7 @@ import { runCircularThemeTransition } from "@/lib/theme/circular-transition";
 import { ChevronRight } from "lucide-react";
 import { useAppearanceStore } from "@/stores/appearance-store";
 import { useFeedbackStore } from "@/stores/feedback-store";
+import { InstallApp } from "@/components/settings/install-app";
 
 export default function SettingsPage() {
   const t = useTranslations("settings");
@@ -105,6 +106,8 @@ export default function SettingsPage() {
           </div>
         </CardContent>
       </Card>
+
+      <InstallApp />
 
       <Card className="anim-stagger border-border/40" style={{ animationDelay: "120ms" }}>
         <CardHeader><CardTitle>{t("offlineAccess")}</CardTitle></CardHeader>

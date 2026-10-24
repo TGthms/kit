@@ -531,7 +531,14 @@
     "offlineCheck": "Sprawdź zapisane pliki",
     "offlineRepairAction": "Napraw",
     "offlineRepairTitle": "Wymaga naprawy",
-    "offlineRatesNote": "Offline używane są zapisane kursy walut. Nowe kursy wymagają internetu."
+    "offlineRatesNote": "Offline używane są zapisane kursy walut. Nowe kursy wymagają internetu.",
+    "installTitle": "Zainstaluj Kit",
+    "installDesc": "Otwieraj Kit jak aplikację. W Dostępie offline wybierz, z czego korzystać bez połączenia.",
+    "installInstalled": "Kit jest zainstalowany.",
+    "installIos": "W Safari otwórz Udostępnij i wybierz Do ekranu początkowego.",
+    "installMac": "W Safari wybierz Plik → Dodaj do Docka.",
+    "installBrowser": "Poszukaj opcji Zainstaluj Kit lub Zainstaluj aplikację w menu przeglądarki, jeśli jest dostępna.",
+    "installFailed": "Nie udało się otworzyć instalacji. Spróbuj przez menu przeglądarki."
   },
   "shortcuts": {
     "title": "Skróty klawiszowe",
@@ -2096,7 +2103,7 @@
     "whyCaps": "Żadnych limitów narzuconych przez serwer",
     "whyCapsBody": "Żadnego limitu wysyłki, żadnej kolejki, żadnej wersji premium dla większych plików. Prawdziwym ograniczeniem jest pamięć tego urządzenia.",
     "whyOffline": "Działa bez zasięgu",
-    "whyOfflineBody": "Gdy strona jest już wczytana, narzędzie działa dalej w trybie samolotowym. Po zainstalowaniu Kit to samo dotyczy kolejnych wizyt. W Dostępie offline w Ustawieniach wybierasz języki i narzędzia do przygotowania z wyprzedzeniem.",
+    "whyOfflineBody": "Pobierz języki i narzędzia w Dostępie offline w Ustawieniach i sprawdź ich gotowość przed rozłączeniem. Sama instalacja Kit nie pobiera wszystkich narzędzi.",
     "exampleTitle": "Prześledź jedno zadanie od początku do końca",
     "exampleLede": "Dwa prawdziwe przykłady, prześledzone krok po kroku. Żaden nie dotyka sieci poza wczytaniem samego Kit.",
     "exampleMergeHeading": "Scalanie dwóch PDF-ów",
@@ -2130,7 +2137,7 @@
     "faqFilesQ": "Dokąd tak naprawdę trafiają moje pliki?",
     "faqFilesA": "Nikąd. Są odczytywane i przetwarzane wewnątrz tej karty, a przy zapisie trafiają z powrotem na twój dysk. Dziennik sieciowy na tej stronie pokazuje dokładnie, co przeszło przez sieć.",
     "faqOfflineQ": "Czy Kit działa offline?",
-    "faqOfflineA": "Tak. Gdy strona narzędzia jest wczytana — lub gdy Kit jest zainstalowany — narzędzia działają bez połączenia. W Dostępie offline w Ustawieniach wybrane języki i narzędzia są pobierane z wyprzedzeniem. Konwerter walut jest jedynym wyjątkiem i tylko dla świeżych kursów.",
+    "faqOfflineA": "Tak, w przypadku stron i narzędzi oznaczonych jako gotowe w Dostępie offline w Ustawieniach. Pobierz je przed rozłączeniem; sama instalacja Kit nie zapisuje wszystkiego. Aktualne kursy walut nadal wymagają połączenia.",
     "faqMediaQ": "Dlaczego narzędzie multimedialne raz pobiera około {mediaMb} MB?",
     "faqMediaA": "Dźwięk i wideo działają na FFmpeg skompilowanym do WebAssembly. Ten silnik pobiera się raz, service worker zapisuje go w pamięci podręcznej, a każdy kolejny plik używa go ponownie.",
     "faqStoredQ": "Co Kit przechowuje między wizytami?",
@@ -2151,7 +2158,7 @@
     "techCryptoDl": "Nic dodatkowego — przeglądarka już to ma",
     "techPwaDl": "Nic dodatkowego — zapisuje w pamięci podręcznej, niczego nie wysyła",
     "techUiDl": "Same strony i skrypty",
-    "exceptionOffline": "Utracono połączenie po wczytaniu strony? Narzędzia działają dalej. Po zainstalowaniu Kit to samo dotyczy kolejnych wizyt, a Dostęp offline w Ustawieniach przygotowuje to, czego potrzebujesz."
+    "exceptionOffline": "Przed kolejną wizytą bez internetu przygotuj i sprawdź pobrane pliki w Dostępie offline w Ustawieniach. Sama instalacja Kit nie zapisuje wszystkich narzędzi."
   },
   "toolPage": {
     "related": "Podobne narzędzia"

@@ -531,7 +531,14 @@
     "offlineCheck": "Tarkista tiedostot",
     "offlineRepairAction": "Korjaa",
     "offlineRepairTitle": "Korjaus tarvitaan",
-    "offlineRatesNote": "Offline-tilassa käytetään tallennettuja valuuttakursseja. Uudet kurssit vaativat internetin."
+    "offlineRatesNote": "Offline-tilassa käytetään tallennettuja valuuttakursseja. Uudet kurssit vaativat internetin.",
+    "installTitle": "Asenna Kit",
+    "installDesc": "Avaa Kit sovelluksena. Valitse offline-käytön asetuksista, mitä voit käyttää ilman verkkoyhteyttä.",
+    "installInstalled": "Kit on asennettu.",
+    "installIos": "Avaa Safarissa Jaa ja valitse Lisää Koti-valikkoon.",
+    "installMac": "Valitse Safarissa Arkisto → Lisää Dockiin.",
+    "installBrowser": "Etsi selaimen valikosta Asenna Kit tai Asenna sovellus, jos se on saatavilla.",
+    "installFailed": "Asennusta ei voitu avata. Kokeile selaimen valikkoa."
   },
   "shortcuts": {
     "title": "Pikanäppäimet",
@@ -2096,7 +2103,7 @@
     "whyCaps": "Ei palvelimen asettamia rajoituksia",
     "whyCapsBody": "Ei lähetysrajaa, ei jonoa, ei premium-tasoa isommille tiedostoille. Oikea katto on tämän laitteen muisti.",
     "whyOffline": "Toimii ilman verkkoa",
-    "whyOfflineBody": "Kun sivu on latautunut, työkalu toimii edelleen lentotilassa. Jos asennat Kitin, sama pätee käyntien välillä. Offline-käytössä asetuksissa valitset kielet ja työkalut, jotka valmistellaan etukäteen.",
+    "whyOfflineBody": "Lataa kielet ja työkalut asetusten offline-käytön kautta ja varmista, että ne ovat valmiina ennen yhteyden katkaisua. Kitin asentaminen ei lataa kaikkia työkaluja.",
     "exampleTitle": "Seuraa yhden tehtävän kulku alusta loppuun",
     "exampleLede": "Kaksi aitoa esimerkkiä, jäljitetty askel askeleelta. Kumpikaan ei käytä verkkoa muuhun kuin Kitin itsensä lataamiseen.",
     "exampleMergeHeading": "Kahden PDF:n yhdistäminen",
@@ -2130,7 +2137,7 @@
     "faqFilesQ": "Minne tiedostoni oikeasti menevät?",
     "faqFilesA": "Ei minnekään. Ne luetaan ja käsitellään tässä välilehdessä ja kirjoitetaan takaisin levyllesi, kun tallennat. Tämän sivun verkkoloki näyttää täsmälleen, mitä verkon yli kulki.",
     "faqOfflineQ": "Toimiiko Kit ilman verkkoa?",
-    "faqOfflineA": "Kyllä. Kun työkalusivu on latautunut – tai kun Kit on asennettu – työkalut toimivat ilman yhteyttä. Offline-käytössä asetuksissa valitsemasi kielet ja työkalut ladataan etukäteen. Valuuttamuunnin on ainoa poikkeus, ja vain tuoreita kursseja varten.",
+    "faqOfflineA": "Kyllä, niiden sivujen ja työkalujen osalta, jotka näkyvät valmiina asetusten offline-käytössä. Lataa ne ennen yhteyden katkaisua; Kitin asentaminen ei tallenna kaikkia työkaluja. Uudet valuuttakurssit vaativat edelleen verkkoyhteyden.",
     "faqMediaQ": "Miksi mediatyökalu lataa kerran noin {mediaMb} MB?",
     "faqMediaA": "Ääni ja video toimivat WebAssemblyksi käännetyn FFmpegin päällä. Moottori ladataan kerran, service worker pitää sen välimuistissa, ja jokainen tiedosto sen jälkeen käyttää sitä uudelleen.",
     "faqStoredQ": "Mitä Kit säilyttää käyntien välillä?",
@@ -2151,7 +2158,7 @@
     "techCryptoDl": "Ei mitään ylimääräistä — selain sisältää sen jo",
     "techPwaDl": "Ei mitään ylimääräistä — se välimuistittaa, se ei lähetä",
     "techUiDl": "Itse sivut ja skriptit",
-    "exceptionOffline": "Yhteys katkesi sivun latauduttua? Työkalut toimivat edelleen. Jos asennat Kitin, sama pätee käyntien välillä, ja Offline-käyttö asetuksissa valmistelee tarvitsemasi."
+    "exceptionOffline": "Valmistele ja tarkista lataukset asetusten offline-käytössä ennen myöhempää käyntiä ilman verkkoyhteyttä. Kitin asentaminen ei tallenna kaikkia työkaluja."
   },
   "toolPage": {
     "related": "Samankaltaiset työkalut"

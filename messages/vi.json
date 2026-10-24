@@ -531,7 +531,14 @@
     "offlineCheck": "Kiểm tra tệp đã lưu",
     "offlineRepairAction": "Sửa chữa",
     "offlineRepairTitle": "Cần sửa chữa",
-    "offlineRatesNote": "Ngoại tuyến dùng tỷ giá đã lưu. Tỷ giá mới cần internet."
+    "offlineRatesNote": "Ngoại tuyến dùng tỷ giá đã lưu. Tỷ giá mới cần internet.",
+    "installTitle": "Cài đặt Kit",
+    "installDesc": "Mở Kit như một ứng dụng. Chọn công cụ dùng được khi không có kết nối trong Truy cập ngoại tuyến.",
+    "installInstalled": "Kit đã được cài đặt.",
+    "installIos": "Trong Safari, mở Chia sẻ rồi chọn Thêm vào Màn hình chính.",
+    "installMac": "Trong Safari, chọn Tệp → Thêm vào Dock.",
+    "installBrowser": "Tìm Cài đặt Kit hoặc Cài đặt ứng dụng trong menu trình duyệt, nếu có.",
+    "installFailed": "Không mở được hộp thoại cài đặt. Hãy thử từ menu trình duyệt."
   },
   "shortcuts": {
     "title": "Phím tắt",
@@ -2096,7 +2103,7 @@
     "whyCaps": "Không giới hạn do máy chủ áp đặt",
     "whyCapsBody": "Không trần tải lên, không hàng đợi, không gói premium cho tệp lớn hơn. Trần thật sự là bộ nhớ của máy này.",
     "whyOffline": "Hoạt động khi không có mạng",
-    "whyOfflineBody": "Sau khi một trang đã tải xong, công cụ vẫn chạy ở chế độ máy bay. Nếu cài đặt Kit, điều này cũng đúng giữa các lần truy cập. Trong Truy cập ngoại tuyến ở Cài đặt, bạn chọn ngôn ngữ và công cụ để chuẩn bị trước.",
+    "whyOfflineBody": "Tải ngôn ngữ và công cụ trong Truy cập ngoại tuyến ở Cài đặt, rồi kiểm tra trạng thái sẵn sàng trước khi ngắt kết nối. Chỉ cài Kit không tải mọi công cụ.",
     "exampleTitle": "Theo một công việc từ đầu đến cuối",
     "exampleLede": "Hai ví dụ thật, được lần theo từng bước. Không ví dụ nào chạm mạng ngoài việc tải chính Kit.",
     "exampleMergeHeading": "Gộp hai tệp PDF",
@@ -2130,7 +2137,7 @@
     "faqFilesQ": "Tệp của tôi thực sự đi đâu?",
     "faqFilesA": "Không đi đâu. Chúng được đọc và xử lý trong tab này, và được ghi lại xuống đĩa của bạn khi bạn lưu. Nhật ký mạng trên trang này cho thấy chính xác những gì đã đi qua mạng.",
     "faqOfflineQ": "Kit có hoạt động ngoại tuyến không?",
-    "faqOfflineA": "Có. Sau khi một trang công cụ đã tải — hoặc sau khi cài đặt Kit — các công cụ vẫn hoạt động khi không có kết nối. Trong Truy cập ngoại tuyến ở Cài đặt, ngôn ngữ và công cụ bạn chọn được tải trước. Công cụ chuyển đổi tiền tệ là ngoại lệ duy nhất, và chỉ để lấy tỷ giá mới.",
+    "faqOfflineA": "Có, với các trang và công cụ được báo sẵn sàng trong Truy cập ngoại tuyến ở Cài đặt. Tải trước khi ngắt kết nối; chỉ cài Kit không lưu tất cả công cụ. Tỷ giá mới vẫn cần kết nối.",
     "faqMediaQ": "Tại sao công cụ media tải khoảng {mediaMb} MB một lần?",
     "faqMediaA": "Âm thanh và video chạy trên FFmpeg biên dịch sang WebAssembly. Engine đó tải một lần, service worker cache nó, và mọi tệp sau đó dùng lại nó.",
     "faqStoredQ": "Kit lưu gì giữa các lần truy cập?",
@@ -2151,7 +2158,7 @@
     "techCryptoDl": "Không thêm gì cả — trình duyệt có sẵn rồi",
     "techPwaDl": "Không thêm gì cả — nó cache, không gửi đi",
     "techUiDl": "Chính các trang và script đó",
-    "exceptionOffline": "Mất kết nối sau khi tải một trang? Các công cụ vẫn hoạt động. Nếu cài đặt Kit, điều này cũng đúng giữa các lần truy cập, và Truy cập ngoại tuyến ở Cài đặt sẽ chuẩn bị trước những gì bạn cần."
+    "exceptionOffline": "Để quay lại khi không có internet, chuẩn bị và kiểm tra bản tải xuống trong Truy cập ngoại tuyến ở Cài đặt. Chỉ cài Kit không lưu mọi công cụ."
   },
   "toolPage": {
     "related": "Công cụ tương tự"

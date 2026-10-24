@@ -9,6 +9,7 @@ import { HapticFeedback } from "@/components/layout/haptic-feedback";
 import { THEME_COLOR } from "@/lib/theme/circular-transition";
 import { currentSystemTheme, msUntilNextNightBoundary, syncAppliedTheme } from "@/lib/theme/resolve";
 import { observeInstalledViewport } from "@/lib/pwa/viewport";
+import { InstallProvider } from "@/components/pwa/install-provider";
 
 export { rememberThemeChoice } from "@/lib/theme/resolve";
 
@@ -35,7 +36,7 @@ export function Providers({
         <ThemeColorSync />
         <PressFeedback />
         <HapticFeedback />
-        {children}
+        <InstallProvider>{children}</InstallProvider>
         <KitToaster />
       </ThemeProvider>
     </>

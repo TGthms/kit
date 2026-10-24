@@ -531,7 +531,14 @@
     "offlineCheck": "Dosyaları denetle",
     "offlineRepairAction": "Onar",
     "offlineRepairTitle": "Onarım gerekli",
-    "offlineRatesNote": "Çevrimdışı durumda kayıtlı döviz kurları kullanılır. Yeni kurlar için internet gerekir."
+    "offlineRatesNote": "Çevrimdışı durumda kayıtlı döviz kurları kullanılır. Yeni kurlar için internet gerekir.",
+    "installTitle": "Kit’i yükle",
+    "installDesc": "Kit’i bir uygulama gibi aç. Çevrimdışı erişimden, bağlantı olmadan kullanılabilecek araçları seç.",
+    "installInstalled": "Kit yüklü.",
+    "installIos": "Safari’de Paylaş’ı aç, ardından Ana Ekrana Ekle’yi seç.",
+    "installMac": "Safari’de Dosya → Dock’a Ekle’yi seç.",
+    "installBrowser": "Varsa tarayıcı menüsünde Kit’i yükle veya Uygulamayı yükle seçeneğini ara.",
+    "installFailed": "Yükleme istemi açılamadı. Tarayıcının menüsünden dene."
   },
   "shortcuts": {
     "title": "Klavye kısayolları",
@@ -2096,7 +2103,7 @@
     "whyCaps": "Sunucudan dayatılan sınır yok",
     "whyCapsBody": "Yükleme sınırı yok, kuyruk yok, büyük dosyalar için premium katman yok. Gerçek tavan bu cihazın belleğidir.",
     "whyOffline": "Sinyalsiz çalışır",
-    "whyOfflineBody": "Bir sayfa yüklendikten sonra araç uçak modunda çalışmaya devam eder. Kit’i kurarsanız bu, ziyaretler arasında da geçerlidir. Ayarlar’daki Çevrimdışı erişim ile dilleri ve araçları önceden hazırlayabilirsiniz.",
+    "whyOfflineBody": "Ayarlar’daki Çevrimdışı erişimden dilleri ve araçları indir, sonra bağlantıyı kesmeden önce hazır olduklarını kontrol et. Kit’i yüklemek tek başına tüm araçları indirmez.",
     "exampleTitle": "Bir işi baştan sona izle",
     "exampleLede": "İki gerçek örnek, adım adım. İkisi de Kit’in kendisini yüklemenin ötesinde ağa dokunmaz.",
     "exampleMergeHeading": "İki PDF’i birleştirmek",
@@ -2130,7 +2137,7 @@
     "faqFilesQ": "Dosyalarım aslında nereye gidiyor?",
     "faqFilesA": "Hiçbir yere. Bu sekmenin içinde okunur ve işlenir, kaydettiğinde diske geri yazılır. Bu sayfadaki ağ kaydı, hattan gerçekten ne geçtiğini tam olarak gösterir.",
     "faqOfflineQ": "Kit çevrimdışı çalışır mı?",
-    "faqOfflineA": "Evet. Bir araç sayfası yüklendikten sonra — ya da Kit kurulduktan sonra — araçlar bağlantı olmadan çalışmaya devam eder. Ayarlar’daki Çevrimdışı erişim, seçtiğiniz dilleri ve araçları önceden indirir. Döviz çevirici tek istisnadır ve yalnızca güncel kurlar içindir.",
+    "faqOfflineA": "Evet, Ayarlar’daki Çevrimdışı erişimde hazır görünen sayfalar ve araçlar için. Bağlantıyı kesmeden indir; Kit’i yüklemek tek başına tüm araçları kaydetmez. Güncel döviz kurları için yine bağlantı gerekir.",
     "faqMediaQ": "Medya aracı neden bir kez yaklaşık {mediaMb} MB indiriyor?",
     "faqMediaA": "Ses ve video, WebAssembly’ye derlenmiş FFmpeg üzerinde çalışır. O motor bir kez indirilir, Service worker önbelleğe alır ve sonraki her dosya onu yeniden kullanır.",
     "faqStoredQ": "Kit ziyaretler arasında ne saklar?",
@@ -2151,7 +2158,7 @@
     "techCryptoDl": "Ekstra bir şey yok — tarayıcıda zaten var",
     "techPwaDl": "Ekstra bir şey yok — önbelleğe alır, göndermez",
     "techUiDl": "Sayfaların ve betiklerin kendisi",
-    "exceptionOffline": "Bir sayfa yüklendikten sonra bağlantı mı koptu? Araçlar çalışmaya devam eder. Kit’i kurarsanız bu, ziyaretler arasında da geçerlidir; Ayarlar’daki Çevrimdışı erişim ise ihtiyacınız olanı önceden hazırlar."
+    "exceptionOffline": "İnternet olmadan sonraki ziyaretin için Ayarlar’daki Çevrimdışı erişimde indirmelerini hazırla ve doğrula. Kit’i yüklemek tek başına tüm araçları kaydetmez."
   },
   "toolPage": {
     "related": "Benzer araçlar"

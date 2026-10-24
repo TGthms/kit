@@ -531,7 +531,14 @@
     "offlineCheck": "Zkontrolovat soubory",
     "offlineRepairAction": "Opravit",
     "offlineRepairTitle": "Vyžaduje opravu",
-    "offlineRatesNote": "Offline se používají uložené měnové kurzy. Nové kurzy vyžadují internet."
+    "offlineRatesNote": "Offline se používají uložené měnové kurzy. Nové kurzy vyžadují internet.",
+    "installTitle": "Nainstalovat Kit",
+    "installDesc": "Otevírej Kit jako aplikaci. V přístupu offline vyber, co má fungovat bez připojení.",
+    "installInstalled": "Kit je nainstalovaný.",
+    "installIos": "V Safari otevři Sdílet a vyber Přidat na plochu.",
+    "installMac": "V Safari vyber Soubor → Přidat do Docku.",
+    "installBrowser": "V nabídce prohlížeče hledej Nainstalovat Kit nebo Nainstalovat aplikaci, pokud je tato možnost dostupná.",
+    "installFailed": "Instalaci se nepodařilo otevřít. Zkus nabídku prohlížeče."
   },
   "shortcuts": {
     "title": "Klávesové zkratky",
@@ -2096,7 +2103,7 @@
     "whyCaps": "Žádná omezení ze serveru",
     "whyCapsBody": "Žádný strop pro nahrávání, žádná fronta, žádná prémiová úroveň pro větší soubory. Skutečným stropem je paměť tohoto zařízení.",
     "whyOffline": "Funguje bez signálu",
-    "whyOfflineBody": "Jakmile je stránka načtená, nástroj funguje dál v režimu letadlo. Po instalaci Kitu to platí i mezi návštěvami. V Přístupu offline v Nastavení vyberete jazyky a nástroje, které se předem připraví.",
+    "whyOfflineBody": "V přístupu offline v Nastavení stáhni jazyky a nástroje a před odpojením ověř, že jsou připravené. Samotná instalace Kitu nestáhne všechny nástroje.",
     "exampleTitle": "Sledujte jeden úkol od začátku do konce",
     "exampleLede": "Dva skutečné příklady, sledované krok za krokem. Žádný se nedotkne sítě, kromě načtení samotného Kit.",
     "exampleMergeHeading": "Sloučení dvou PDF souborů",
@@ -2130,7 +2137,7 @@
     "faqFilesQ": "Kam vlastně jdou mé soubory?",
     "faqFilesA": "Nikam. Čtou se a zpracovávají uvnitř této karty a při ukládání se zapisují zpět na váš disk. Síťový protokol na této stránce přesně ukazuje, co prošlo po síti.",
     "faqOfflineQ": "Funguje Kit offline?",
-    "faqOfflineA": "Ano. Jakmile je stránka nástroje načtená – nebo jakmile je Kit nainstalovaný – nástroje fungují bez připojení. V Přístupu offline v Nastavení se zvolené jazyky a nástroje stáhnou předem. Převodník měn je jediná výjimka, a to jen pro čerstvé kurzy.",
+    "faqOfflineA": "Ano, pro stránky a nástroje označené jako připravené v přístupu offline v Nastavení. Stáhni je před odpojením; samotná instalace Kitu je všechny neuloží. Aktuální směnné kurzy stále vyžadují připojení.",
     "faqMediaQ": "Proč si nástroj pro média jednou stáhne asi {mediaMb} MB?",
     "faqMediaA": "Zvuk a video běží na FFmpeg zkompilovaném do WebAssembly. Ten motor se stáhne jednou, service worker si ho uloží do mezipaměti, a každý další soubor ho znovu použije.",
     "faqStoredQ": "Co Kit ukládá mezi návštěvami?",
@@ -2151,7 +2158,7 @@
     "techCryptoDl": "Nic navíc — prohlížeč to už má",
     "techPwaDl": "Nic navíc — ukládá do mezipaměti, nic neposílá",
     "techUiDl": "Samotné stránky a skripty",
-    "exceptionOffline": "Ztratili jste připojení po načtení stránky? Nástroje fungují dál. Po instalaci Kitu to platí i mezi návštěvami a Přístup offline v Nastavení připraví, co potřebujete."
+    "exceptionOffline": "Pro pozdější návštěvu bez internetu připrav a ověř stažené soubory v přístupu offline v Nastavení. Samotná instalace Kitu neuloží všechny nástroje."
   },
   "toolPage": {
     "related": "Podobné nástroje"
