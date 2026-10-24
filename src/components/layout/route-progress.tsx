@@ -1,15 +1,17 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { isPlainNavigationClick } from "@/lib/navigation/intent";
 
 const SHOW_AFTER_MS = 140;
+const STOP_AFTER_MS = 12_000;
 
 function hrefKey() {
   return `${window.location.pathname}${window.location.search}`;
 }
 
 function isInAppNavigation(link: HTMLAnchorElement) {
-  if (link.target === "_blank" || link.hasAttribute("download")) return false;
+  if ((link.target && link.target !== "_self") || link.hasAttribute("download")) return false;
   if (link.origin !== window.location.origin) return false;
   return `${link.pathname}${link.search}` !== hrefKey();
 }
@@ -21,12 +23,14 @@ export function RouteProgress() {
   useEffect(() => {
     let armedFrom: string | null = null;
     let showTimer = 0;
-    let raf = 0;
+    let pollTimer = 0;
+    let stopTimer = 0;
 
     const clear = (update = true) => {
       armedFrom = null;
       window.clearTimeout(showTimer);
-      window.cancelAnimationFrame(raf);
+      window.clearTimeout(pollTimer);
+      window.clearTimeout(stopTimer);
       if (update) setActive(false);
     };
 
@@ -36,30 +40,44 @@ export function RouteProgress() {
         clear();
         return;
       }
-      raf = window.requestAnimationFrame(watch);
+      pollTimer = window.setTimeout(watch, 100);
     };
 
     const arm = () => {
+      clear();
       armedFrom = hrefKey();
-      window.clearTimeout(showTimer);
       showTimer = window.setTimeout(() => {
         if (armedFrom) setActive(true);
       }, SHOW_AFTER_MS);
-      window.cancelAnimationFrame(raf);
-      raf = window.requestAnimationFrame(watch);
+      pollTimer = window.setTimeout(watch, 100);
+      // Cancelled/failed routes must not leave a permanent spinner or an
+      // animation-frame loop running for the rest of this app session.
+      stopTimer = window.setTimeout(clear, STOP_AFTER_MS);
     };
 
     const onClick = (event: MouseEvent) => {
-      if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+      if (!isPlainNavigationClick(event)) return;
       const link = event.target instanceof Element ? event.target.closest("a[href]") : null;
       if (!(link instanceof HTMLAnchorElement) || !isInAppNavigation(link)) return;
       arm();
     };
+    const onHidden = () => {
+      if (document.visibilityState === "hidden") clear();
+    };
+    const reset = () => clear();
 
     document.addEventListener("click", onClick, true);
+    document.addEventListener("visibilitychange", onHidden);
+    window.addEventListener("pagehide", reset);
+    window.addEventListener("pageshow", reset);
+    window.addEventListener("popstate", reset);
     return () => {
       clear(false);
       document.removeEventListener("click", onClick, true);
+      document.removeEventListener("visibilitychange", onHidden);
+      window.removeEventListener("pagehide", reset);
+      window.removeEventListener("pageshow", reset);
+      window.removeEventListener("popstate", reset);
     };
   }, []);
 

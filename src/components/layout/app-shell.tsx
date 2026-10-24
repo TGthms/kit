@@ -34,7 +34,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
   }, [pathname]);
 
   return (
-    <div className="flex min-h-dvh flex-col overflow-x-clip bg-background">
+    <div className="kit-app-shell flex min-h-dvh flex-col overflow-x-clip bg-background">
       <a
         href="#kit-main"
         className="sr-only focus:not-sr-only focus:absolute focus:z-[80] focus:m-3 focus:rounded-xl focus:bg-background focus:px-4 focus:py-2 focus:text-sm focus:shadow-lg focus:ring-2 focus:ring-ring"
@@ -45,7 +45,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
         <ScrollRestorationBound pathname={pathname} />
       </Suspense>
       <header className="glass chrome-edge chrome-touch fixed inset-x-0 top-0 z-50 shrink-0 pt-[env(safe-area-inset-top)]">
-        <div className="flex h-12 w-full items-center justify-between gap-2 px-4 sm:h-14 sm:gap-3 sm:px-6">
+        <div className="kit-chrome-gutters flex h-12 w-full items-center justify-between gap-2 px-4 sm:h-14 sm:gap-3 sm:px-6">
           {/* The offline indicator sits outside the home link so it does not join
               that link's accessible name. */}
           <div className="flex min-w-0 items-center gap-2">

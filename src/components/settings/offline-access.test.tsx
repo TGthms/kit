@@ -645,6 +645,39 @@ describe("reliable progress and status", () => {
 });
 
 describe("clear offline readiness", () => {
+  it("honors edited download choices when an update is available", async () => {
+    renderOffline();
+    emit({ type: "OFFLINE_STATE", state: savedState({ pendingUpdate: true }) });
+    fireEvent.click(within(header("Tools")).getByRole("button", { name: "Clear" }));
+    fireEvent.click(screen.getByRole("button", { name: "Math (4)" }));
+    fireEvent.click(screen.getByRole("checkbox", { name: "Function grapher" }));
+    fireEvent.click(screen.getByRole("checkbox", { name: /Include large media engines/ }));
+    fireEvent.click(screen.getByRole("button", { name: "Update" }));
+    expect(await sentEventually("OFFLINE_DOWNLOAD")).toMatchObject({ tools: ["function-grapher"], engines: false });
+  });
+
+  it("does not overwrite customized choices with an old saved plan during update", async () => {
+    record();
+    renderOffline();
+    emit({ type: "OFFLINE_STATE", state: savedState({ pendingUpdate: true }) });
+    fireEvent.click(within(header("Tools")).getByRole("button", { name: "Clear" }));
+    fireEvent.click(screen.getByRole("button", { name: "Math (4)" }));
+    fireEvent.click(screen.getByRole("checkbox", { name: "Function grapher" }));
+    fireEvent.click(screen.getByRole("button", { name: "Update" }));
+    expect(await sentEventually("OFFLINE_DOWNLOAD")).toMatchObject({ tools: ["function-grapher"] });
+  });
+
+  it("does not discard edits when the primary action is repair", async () => {
+    record({ version: "1.2.4", pages: ["home"] });
+    renderOffline();
+    emit({ type: "OFFLINE_STATE", state: savedState({ essentials: { en: { done: 0, total: 6, ready: false } } }) });
+    fireEvent.click(within(header("Tools")).getByRole("button", { name: "Clear" }));
+    fireEvent.click(screen.getByRole("button", { name: "Math (4)" }));
+    fireEvent.click(screen.getByRole("checkbox", { name: "Function grapher" }));
+    fireEvent.click(screen.getByRole("button", { name: "Repair" }));
+    expect(await sentEventually("OFFLINE_DOWNLOAD")).toMatchObject({ tools: ["function-grapher"] });
+  });
+
   it("starts compact, with the choices behind one Customize downloads control", () => {
     renderOffline(false);
     expect(screen.getByRole("button", { name: /Customize downloads/ })).toHaveAttribute("aria-expanded", "false");

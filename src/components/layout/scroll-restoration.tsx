@@ -2,6 +2,7 @@
 
 import { useLayoutEffect } from "react";
 import { scrollKeyFromLocation, scrollKeyFromUrl } from "@/lib/navigation/scroll";
+import { isPlainNavigationClick } from "@/lib/navigation/intent";
 
 const SCROLL_PREFIX = "kit-scroll:";
 const RESTORE_NEXT = "kit-scroll-restore";
@@ -93,9 +94,16 @@ export function ScrollRestoration({ locationKey }: { locationKey: string }) {
       lastY = window.scrollY;
     };
     const save = () => writeY(key, lastY);
+    // iOS may suspend/terminate a home-screen app without firing pagehide.
+    // Capture position as it backgrounds, without doing storage writes on
+    // every scroll frame.
+    const onVisibility = () => {
+      if (document.visibilityState === "hidden") save();
+    };
 
     window.addEventListener("scroll", rememberScroll, { passive: true });
     window.addEventListener("pagehide", save);
+    document.addEventListener("visibilitychange", onVisibility);
     const onPageShow = (event: PageTransitionEvent) => {
       if (!event.persisted) return;
       const y = readY(currentKey());
@@ -108,6 +116,7 @@ export function ScrollRestoration({ locationKey }: { locationKey: string }) {
       save();
       window.removeEventListener("scroll", rememberScroll);
       window.removeEventListener("pagehide", save);
+      document.removeEventListener("visibilitychange", onVisibility);
       window.removeEventListener("pageshow", onPageShow);
       window.history.scrollRestoration = previousRestoration;
     };
@@ -115,10 +124,11 @@ export function ScrollRestoration({ locationKey }: { locationKey: string }) {
 
   useLayoutEffect(() => {
     const rememberBeforeNavigation = (event: MouseEvent) => {
+      if (!isPlainNavigationClick(event)) return;
       const target = event.target instanceof Element ? event.target.closest("a,button") : null;
       if (!target) return;
       if (target instanceof HTMLAnchorElement) {
-        if (target.target === "_blank" || target.hasAttribute("download")) return;
+        if ((target.target && target.target !== "_self") || target.hasAttribute("download")) return;
         if (target.origin !== window.location.origin) return;
       } else if (!(target instanceof HTMLButtonElement) || !target.hasAttribute("data-navigation-intent")) {
         return;

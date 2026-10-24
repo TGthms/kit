@@ -8,6 +8,7 @@
           window.matchMedia("(display-mode: fullscreen)").matches ||
           window.matchMedia("(display-mode: minimal-ui)").matches));
     if (!standalone) return;
+    document.documentElement.setAttribute("data-kit-standalone", "");
 
     var meta = document.querySelector('meta[name="viewport"]');
     if (!meta) {
@@ -15,6 +16,7 @@
       meta.setAttribute("name", "viewport");
       document.head.appendChild(meta);
     }
+    meta.setAttribute("data-kit-viewport-original", meta.getAttribute("content") || "");
     var parts = String(meta.getAttribute("content") || "")
       .split(",")
       .map(function (part) {

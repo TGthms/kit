@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { htmlHref, isRscDocumentPath } from "@/lib/navigation/html-path";
 import { isHeldOffline } from "@/lib/pwa/offline-navigation";
+import { isPlainNavigationClick } from "@/lib/navigation/intent";
 
 const HANG_MS = 8000;
 
@@ -32,10 +33,10 @@ export function NavigationGuard() {
 
     let hangTimer = 0;
     const onClick = (event: MouseEvent) => {
-      if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+      if (!isPlainNavigationClick(event)) return;
       const link = event.target instanceof Element ? event.target.closest("a[href]") : null;
       if (!(link instanceof HTMLAnchorElement)) return;
-      if (link.target === "_blank" || link.hasAttribute("download")) return;
+      if ((link.target && link.target !== "_self") || link.hasAttribute("download")) return;
       if (link.origin !== window.location.origin) return;
       const next = htmlHref(link.href, window.location.origin);
       const from = htmlHref(window.location.href, window.location.origin);

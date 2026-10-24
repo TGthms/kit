@@ -45,6 +45,7 @@ export function ServiceWorkerRegister() {
       post(worker, { type: "PRECACHE_LOCALE", locale, skipHeavy });
     };
     let registration: ServiceWorkerRegistration | null = null;
+    let registering = false;
     let disposed = false;
     let stopUpdateNotice = () => {};
     let updating = false;
@@ -81,11 +82,11 @@ export function ServiceWorkerRegister() {
 
     const update = () => {
       visibleTimer = 0;
-      if (!registration) return;
+      if (!registration || !navigator.onLine || document.visibilityState === "hidden") return;
       const now = Date.now();
       if (!shouldCheckForUpdate(now, lastUpdateAt)) return;
       lastUpdateAt = now;
-      registration.update().catch(() => undefined);
+      registration.update().catch(() => { lastUpdateAt = 0; });
     };
 
     const scheduleUpdate = () => {
@@ -97,6 +98,7 @@ export function ServiceWorkerRegister() {
       window.clearTimeout(visibleTimer);
       visibleTimer = 0;
       if (document.visibilityState !== "visible") return;
+      if (!registration) registerWorker();
       window.clearTimeout(resumeTimer);
       pauseFill();
       post(activeWorker(), { type: "PING" });
@@ -130,6 +132,16 @@ export function ServiceWorkerRegister() {
       window.clearTimeout(resumeTimer);
       post(activeWorker(), { type: "PRECACHE_RESUME" });
     };
+    const onOnline = () => {
+      if (!registration) {
+        registerWorker();
+        return;
+      }
+      post(activeWorker(), { type: "PING" });
+      window.clearTimeout(fillTimer);
+      fillTimer = window.setTimeout(() => startFill(activeWorker()), FILL_AFTER_IDLE_MS);
+      scheduleUpdate();
+    };
 
     document.addEventListener("visibilitychange", onVisible);
     document.addEventListener("visibilitychange", onHidden);
@@ -138,27 +150,35 @@ export function ServiceWorkerRegister() {
     document.addEventListener("keydown", onInteract, { capture: true, passive: true });
     document.addEventListener("wheel", onInteract, { capture: true, passive: true });
     document.addEventListener("touchstart", onInteract, { capture: true, passive: true });
+    window.addEventListener("online", onOnline);
 
-    navigator.serviceWorker
-      .register(swUrl, { updateViaCache: "none" })
-      .then((reg) => {
-        if (disposed) return;
-        registration = reg;
-        stopUpdateNotice = observeWaitingWorker(reg, offerUpdate);
-        lastUpdateAt = Date.now();
-        precacheHome(reg.active);
-        post(reg.active, { type: "PING" });
-        navigator.serviceWorker.ready.then((ready) => {
+    // An offline cold launch can reject registration even when a controlling
+    // worker is still available. Retry on reconnect/resume, once at a time.
+    function registerWorker() {
+      if (disposed || registering || registration) return;
+      registering = true;
+      void navigator.serviceWorker
+        .register(swUrl, { updateViaCache: "none" })
+        .then((reg) => {
           if (disposed) return;
-          precacheHome(ready.active);
-          window.clearTimeout(fillTimer);
-          fillTimer = window.setTimeout(() => startFill(ready.active), FILL_AFTER_IDLE_MS);
-        });
-        return reg.update();
-      })
-      .catch(() => {
-        /* ignore offline registration failures in dev */
-      });
+          registration = reg;
+          stopUpdateNotice = observeWaitingWorker(reg, offerUpdate);
+          lastUpdateAt = Date.now();
+          precacheHome(reg.active);
+          post(reg.active, { type: "PING" });
+          void navigator.serviceWorker.ready.then((ready) => {
+            if (disposed) return;
+            precacheHome(ready.active);
+            window.clearTimeout(fillTimer);
+            fillTimer = window.setTimeout(() => startFill(ready.active), FILL_AFTER_IDLE_MS);
+          }).catch(() => undefined);
+          if (navigator.onLine) return reg.update().catch(() => { lastUpdateAt = 0; });
+        })
+        .catch(() => {
+          /* The current page remains usable; reconnect/resume can retry. */
+        }).finally(() => { registering = false; });
+    }
+    registerWorker();
 
     return () => {
       disposed = true;
@@ -175,6 +195,7 @@ export function ServiceWorkerRegister() {
       document.removeEventListener("keydown", onInteract, true);
       document.removeEventListener("wheel", onInteract, true);
       document.removeEventListener("touchstart", onInteract, true);
+      window.removeEventListener("online", onOnline);
     };
   }, [locale, t]);
 

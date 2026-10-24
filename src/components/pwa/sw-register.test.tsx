@@ -15,7 +15,7 @@ beforeEach(() => {
   updateApp.mockReset(); updateApp.mockImplementation(() => new Promise(() => {}));
   window.history.replaceState({}, "", "/en/tools/length-converter/");
 });
-afterEach(() => { cleanup(); vi.useRealTimers(); vi.unstubAllEnvs(); vi.restoreAllMocks(); });
+afterEach(() => { cleanup(); vi.useRealTimers(); vi.unstubAllEnvs(); vi.unstubAllGlobals(); vi.restoreAllMocks(); });
 function workerRegistration(waiting: EventTarget | null) {
   const worker = Object.assign(new EventTarget(), { postMessage: vi.fn() });
   const registration = Object.assign(new EventTarget(), { active: worker, installing: null, waiting, update: async () => undefined });
@@ -66,4 +66,41 @@ it("resumes a visibility-paused fill without needing a subsequent interaction", 
   expect(registration.active.postMessage).toHaveBeenCalledWith({ type: "PRECACHE_PAUSE" });
   await act(async () => { await vi.advanceTimersByTimeAsync(2000); });
   expect(registration.active.postMessage).toHaveBeenCalledWith({ type: "PRECACHE_RESUME" });
+});
+
+it("retries an offline registration failure on reconnect without duplicate registrations", async () => {
+  const registration = workerRegistration(null);
+  const register = vi.spyOn(navigator.serviceWorker, "register");
+  let complete!: (value: ServiceWorkerRegistration) => void;
+  register.mockRejectedValueOnce(new Error("offline")).mockImplementationOnce(() => new Promise((resolve) => { complete = resolve; }));
+  render(<ServiceWorkerRegister />);
+  await waitFor(() => expect(register).toHaveBeenCalledOnce());
+  await act(async () => { await Promise.resolve(); });
+  act(() => { window.dispatchEvent(new Event("online")); window.dispatchEvent(new Event("online")); });
+  expect(register).toHaveBeenCalledTimes(2);
+  await act(async () => { complete(registration as unknown as ServiceWorkerRegistration); });
+  expect(registration.active.postMessage).toHaveBeenCalledWith({ type: "PRECACHE_HOME", url: expect.stringContaining("/en/") });
+});
+
+it("cleans up reconnect listeners when leaving the app shell", async () => {
+  workerRegistration(null);
+  const register = vi.spyOn(navigator.serviceWorker, "register").mockRejectedValue(new Error("offline"));
+  const { unmount } = render(<ServiceWorkerRegister />);
+  await waitFor(() => expect(register).toHaveBeenCalledOnce());
+  unmount();
+  window.dispatchEvent(new Event("online"));
+  expect(register).toHaveBeenCalledOnce();
+});
+
+it("does not throttle a reconnect check after an earlier update request failed", async () => {
+  vi.useFakeTimers();
+  const registration = workerRegistration(null);
+  const update = vi.spyOn(registration, "update").mockRejectedValueOnce(new Error("offline"));
+  Object.defineProperty(document, "visibilityState", { configurable: true, value: "visible" });
+  render(<ServiceWorkerRegister />);
+  await act(async () => { await Promise.resolve(); });
+  expect(update).toHaveBeenCalledOnce();
+  act(() => { window.dispatchEvent(new Event("online")); });
+  await act(async () => { await vi.advanceTimersByTimeAsync(4000); });
+  expect(update).toHaveBeenCalledTimes(2);
 });

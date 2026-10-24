@@ -521,6 +521,14 @@ export function OfflineAccess() {
   const busy = download.status === "running" || removing;
   const needsRepair = readiness.repair || (reportError && Boolean(plan)) || planState === "cleared" || planState === "incomplete";
   const summaryWaiting = waitingForReport || checking;
+  const selectionEmpty = !selectedLocales.length || (!selectedTools.size && !selectedPages.length);
+  // Updating/repairing preserves the saved collection by default. Once the
+  // visitor edits it, their visible choices are the request, including when a
+  // new release is waiting. Do not silently replace those edits with the plan.
+  const primaryAction = draft ? downloadSelected
+    : newerRelease || planState === "stale" ? (plan ? updateFromPlan : () => void runDownload({ locales: [locale], tools: [], pages: ["home", "settings", "offline"], engines: false }))
+    : needsRepair ? repairDownloads : downloadSelected;
+  const primaryDisabled = busy || (summaryWaiting && !newerRelease) || (selectionEmpty && (Boolean(draft) || (!newerRelease && !needsRepair)));
   const statusTitle = summaryWaiting ? t("offlineChecking") : reportError ? t("offlineUnavailable") : needsRepair ? t("offlineRepairTitle") : readiness.ready ? t("offlineReadyTitle") : t("offlineSetupTitle");
   const languageNames = readiness.languages.map((id) => localeNames[id as Locale] || id);
   const languagesValue = reportError ? "—" : waitingForReport ? null : languageNames.length ? languageNames.slice(0, 2).join(", ") + (languageNames.length > 2 ? ` +${languageNames.length - 2}` : "") : t("offlineNotSaved");
@@ -555,7 +563,7 @@ export function OfflineAccess() {
           </dl>
           {newerRelease || planState === "stale" ? <p className="rounded-xl bg-primary/5 px-3 py-2 text-sm text-primary">{newerRelease ? t("offlineUpdateAvailable") : t("offlineOutdated", { version: APP_VERSION })}</p> : null}
           <div className="flex flex-wrap items-center gap-2">
-            {newerRelease || planState === "stale" || needsRepair || !readiness.ready || customizeOpen || draft ? <Button onClick={newerRelease || planState === "stale" ? (plan ? updateFromPlan : () => void runDownload({ locales: [locale], tools: [], pages: ["home", "settings", "offline"], engines: false })) : needsRepair ? repairDownloads : downloadSelected} disabled={busy || (summaryWaiting && !newerRelease) || (!newerRelease && !needsRepair && (!selectedLocales.length || (!selectedTools.size && !selectedPages.length)))}>
+            {newerRelease || planState === "stale" || needsRepair || !readiness.ready || customizeOpen || draft ? <Button onClick={primaryAction} disabled={primaryDisabled}>
               {needsRepair && !newerRelease ? <Wrench className="me-2 h-4 w-4" /> : <Download className="me-2 h-4 w-4" />}
               {newerRelease || planState === "stale" ? t("reviewUpdate") : needsRepair ? t("offlineRepairAction") : tc("download")}
             </Button> : null}

@@ -150,6 +150,41 @@ html.dark {
   color-scheme: dark;
 }
 
+/* Installed Kit owns page scale. Keep ordinary panning/scrolling and local
+   pointer gestures (the grapher), but do not let a pinch magnify app chrome.
+   Browser tabs retain their normal zoom behavior. */
+html[data-kit-standalone] {
+  touch-action: pan-x pan-y;
+}
+
+/* Rotated phones still need horizontal notch clearance, including when the
+   wider viewport activates the desktop rail. Keep chrome full bleed. */
+.kit-app-shell {
+  padding-left: env(safe-area-inset-left, 0px);
+  padding-right: env(safe-area-inset-right, 0px);
+}
+.kit-chrome-gutters {
+  padding-left: max(1rem, env(safe-area-inset-left, 0px));
+  padding-right: max(1rem, env(safe-area-inset-right, 0px));
+}
+.kit-app-shell .kit-sidebar {
+  inset-inline-start: env(safe-area-inset-left, 0px);
+  padding-bottom: max(1.25rem, env(safe-area-inset-bottom, 0px));
+}
+.kit-app-shell:dir(rtl) .kit-sidebar {
+  inset-inline-start: env(safe-area-inset-right, 0px);
+}
+.kit-compact-header > div {
+  padding-left: max(0.75rem, env(safe-area-inset-left, 0px));
+  padding-right: max(0.75rem, env(safe-area-inset-right, 0px));
+}
+@media (min-width: 640px) {
+  .kit-chrome-gutters {
+    padding-left: max(1.5rem, env(safe-area-inset-left, 0px));
+    padding-right: max(1.5rem, env(safe-area-inset-right, 0px));
+  }
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
@@ -896,6 +931,11 @@ button[data-pressed]:not(:disabled),
   border-radius: 999px;
   background: var(--primary);
   animation: kit-route-slide 1.05s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  animation-play-state: paused;
+}
+
+.kit-route-progress[data-active="true"]::after {
+  animation-play-state: running;
 }
 
 @keyframes kit-route-slide {

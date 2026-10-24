@@ -8,6 +8,7 @@ import { PressFeedback } from "@/components/layout/press-feedback";
 import { HapticFeedback } from "@/components/layout/haptic-feedback";
 import { THEME_COLOR } from "@/lib/theme/circular-transition";
 import { currentSystemTheme, msUntilNextNightBoundary, syncAppliedTheme } from "@/lib/theme/resolve";
+import { observeInstalledViewport } from "@/lib/pwa/viewport";
 
 export { rememberThemeChoice } from "@/lib/theme/resolve";
 
@@ -23,6 +24,7 @@ export function Providers({
   return (
     <>
       <HtmlLang lang={lang} dir={dir} />
+      <InstalledViewport />
       <ThemeProvider
         attribute="class"
         defaultTheme="system"
@@ -38,6 +40,11 @@ export function Providers({
       </ThemeProvider>
     </>
   );
+}
+
+function InstalledViewport() {
+  useLayoutEffect(observeInstalledViewport, []);
+  return null;
 }
 
 function KitToaster() {
