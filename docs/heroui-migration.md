@@ -1,6 +1,29 @@
 # HeroUI adoption plan
 
-Assessment: 2026-10-24. Requested direction: gradual migration across Kit. This document plans adoption; no HeroUI dependencies or production components have been changed in this pass.
+Assessment and approval: 2026-10-24. Requested direction: gradual migration across Kit. Batch 1 is the Settings pilot; later batches remain staged work rather than a global replacement.
+
+## Batch 1 implementation
+
+- Pinned `@heroui/react` and `@heroui/styles` to 3.2.6 and their directly used React Aria Components peer to 1.22.1. Component imports use published subpaths.
+- Added an opt-in `HeroButton` adapter and a shared `ConfirmDialog`. Settings' Clear history action is the pilot: a named/described alert dialog, initial Cancel focus, Escape cancellation, focus containment/return, background inertness, and explicit destructive activation. The history store and existing Button callers keep their contracts.
+- Only button and alert-dialog component CSS is imported. The bridge scopes conflicting variables to each HeroUI control and its portalled backdrop; it does not load HeroUI's default theme, base reset, global dark-mode variant or global view-transition policy. Existing page colors, system fonts, Dynamic Type and Liquid Glass fallbacks remain Kit-owned. Filled action colors retain Kit's hues with darker tones for normal-text contrast.
+- The dialog's React Aria locale follows Kit's selected locale, including RTL. All visible copy reuses existing translations. PostCSS now uses the standard plugin-object configuration accepted by both Next and Vitest/Vite.
+- Server-rendered pilot buttons stay disabled until their handlers are attached, preventing a misleading early tap during hydration. Modal behavior preserves React Aria's Safari focus workaround: inert/hidden background content supplies modality without manually forcing `aria-modal`.
+- License texts and dependency notices are distributed under `public/licenses/`. The published HeroUI packages declare MIT while the versioned repository license is Apache-2.0; the shipped notices preserve both declarations and the upstream text.
+- Validation and final bundle measurements are recorded in NOTES.md. Measurements distinguish initial HTML-referenced assets from later prefetches/dynamic imports; package unpacked size is not a loading-performance measurement. Physical iPhone gesture and VoiceOver verification remains a device check before broader rollout.
+
+### Initial asset measurement
+
+Gzip bytes summed over unique scripts and stylesheets referenced by each `/kit` production HTML document, measured against the pre-pilot export. This excludes HTML, images, later route prefetches/dynamic imports and worker background fills; it is not a browser timing or frame-rate claim.
+
+| Route | Before | Pilot | Difference |
+| --- | ---: | ---: | ---: |
+| Home | 300,426 | 301,029 | +603 |
+| Settings | 288,256 | 335,082 | +46,826 |
+| Function grapher | 283,671 | 284,275 | +604 |
+| Unicode text styles | 283,671 | 284,275 | +604 |
+
+The shared increase comes from CSS utilities; the HeroUI pilot code/component stylesheet is confined to Settings. The framework-free `/kit/` startup document remains 32,422 bytes. These figures establish the pilot's cost, not a startup-speed improvement.
 
 ## Decision
 

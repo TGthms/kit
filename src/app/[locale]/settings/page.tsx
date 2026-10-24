@@ -18,6 +18,7 @@ import { ChevronRight } from "lucide-react";
 import { useAppearanceStore } from "@/stores/appearance-store";
 import { useFeedbackStore } from "@/stores/feedback-store";
 import { InstallApp } from "@/components/settings/install-app";
+import { ClearHistory } from "@/components/settings/clear-history";
 
 export default function SettingsPage() {
   const t = useTranslations("settings");
@@ -25,7 +26,6 @@ export default function SettingsPage() {
   const th = useTranslations("history");
   const tn = useTranslations("nav");
   const { resolvedTheme, setTheme, systemTheme } = useTheme();
-  const clear = useHistoryStore((s) => s.clear);
   const historyEnabled = useHistoryStore((s) => s.enabled);
   const setHistoryEnabled = useHistoryStore((s) => s.setEnabled);
   const hydrated = useHydrated();
@@ -144,16 +144,7 @@ export default function SettingsPage() {
           <div className="rounded-xl border border-border/50 p-4">
             <p className="font-medium tracking-[-0.01em]">{t("clearHistory")}</p>
             <p className="mt-1 type-caption text-muted-foreground">{t("clearHistoryDesc")}</p>
-            <Button
-              className="mt-3"
-              variant="destructive"
-              size="sm"
-              onClick={() => {
-                if (confirm(th("clearConfirm"))) clear();
-              }}
-            >
-              {t("clearHistory")}
-            </Button>
+            <div className="mt-3"><ClearHistory /></div>
           </div>
           <p className="type-caption text-muted-foreground">{t("shortcutsHelp")}</p>
         </CardContent>
