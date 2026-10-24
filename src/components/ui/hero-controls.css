@@ -1,0 +1,91 @@
+/* Route-local pilot: component styles only. Importing HeroUI's default theme
+   would redefine Kit's accent, muted, radius and motion tokens globally. */
+@reference "../../app/globals.css";
+@import "tw-animate-css";
+@import "@heroui/styles/utilities";
+@import "@heroui/styles/components/button.css" layer(components);
+@import "@heroui/styles/components/alert-dialog.css" layer(components);
+
+@theme inline {
+  --color-focus: var(--focus, var(--ring));
+  --color-default: var(--default, var(--secondary));
+  --color-overlay: var(--overlay, var(--card));
+  --color-backdrop: var(--backdrop, var(--scrim));
+  --color-accent-soft: var(--accent-soft);
+  --color-accent-soft-foreground: var(--accent-soft-foreground);
+  --color-success-soft: var(--success-soft);
+  --color-success-soft-foreground: var(--success-soft-foreground);
+  --color-warning-soft: var(--warning-soft);
+  --color-warning-soft-foreground: var(--warning-soft-foreground);
+  --color-danger: var(--danger, var(--destructive));
+  --color-danger-soft: var(--danger-soft);
+  --color-danger-soft-foreground: var(--danger-soft-foreground);
+  --shadow-overlay: var(--overlay-shadow, var(--shadow-float));
+  --ease-out-quad: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Put the scope on each control and on the portalled backdrop so variables
+   follow the overlay without changing its trigger's surrounding page. */
+.kit-hero {
+  --accent: color-mix(in srgb, var(--primary) 85%, #000);
+  --accent-foreground: var(--primary-foreground);
+  --accent-hover: color-mix(in srgb, var(--accent) 90%, #000);
+  --accent-soft: color-mix(in srgb, var(--primary) 12%, transparent);
+  --accent-soft-foreground: var(--primary);
+  --muted: var(--muted-foreground);
+  --default: var(--secondary);
+  --default-hover: color-mix(in srgb, var(--secondary) 88%, var(--foreground));
+  --default-foreground: var(--secondary-foreground);
+  --overlay: var(--card);
+  --overlay-shadow: var(--shadow-float);
+  --focus: var(--ring);
+  --backdrop: var(--scrim);
+  /* Keep Kit's red hue while meeting normal-text contrast with white labels. */
+  --danger: color-mix(in srgb, var(--destructive) 80%, #000);
+  --danger-foreground: var(--destructive-foreground);
+  --danger-hover: color-mix(in srgb, var(--danger) 90%, #000);
+  --danger-soft: color-mix(in srgb, var(--destructive) 12%, transparent);
+  --danger-soft-foreground: var(--destructive);
+  --success-soft: color-mix(in srgb, #18854a 12%, transparent);
+  --success-soft-foreground: var(--foreground);
+  --warning-soft: color-mix(in srgb, #a45b00 12%, transparent);
+  --warning-soft-foreground: var(--foreground);
+  --radius-3xl: calc(var(--radius) + 14px);
+  --ease-smooth: var(--ease-out-soft);
+  --ease-out-quart: var(--ease-out-soft);
+  --z-index-overlay: 100000;
+  --disabled-opacity: 0.5;
+  --cursor-interactive: pointer;
+  --cursor-disabled: default;
+  --ring-offset-width: 0px;
+  --scrollbar-width: auto;
+  --scrollbar-color: auto;
+  --scrollbar-gutter: auto;
+  font-family: var(--font-sans);
+}
+
+.kit-hero-button {
+  min-height: 2.75rem;
+  border-radius: 0.75rem;
+}
+
+.kit-hero.alert-dialog__backdrop {
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  padding-left: env(safe-area-inset-left, 0px);
+  padding-right: env(safe-area-inset-right, 0px);
+}
+
+.kit-hero .alert-dialog__dialog {
+  border: 1px solid var(--border);
+  gap: 1rem;
+}
+
+.kit-hero .alert-dialog__heading {
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.kit-hero .alert-dialog__footer {
+  flex-wrap: wrap;
+}
