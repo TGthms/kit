@@ -305,7 +305,15 @@ export function writePrecacheManifest(outDir, basePath = "") {
     if (existsSync(file)) integrity[url] = createHash("sha256").update(readFileSync(file)).digest("hex");
   }
   const version = JSON.parse(readFileSync(new URL("../package.json", import.meta.url), "utf8")).version;
-  Object.assign(manifest, { generation, version, integrity });
+  // The worker's recovery document must work even when route scripts or Cache
+  // Storage cannot be read. Reuse the app's existing localized recovery copy.
+  const offlineCopy = {};
+  for (const locale of Object.keys(manifest.chromeByLocale)) {
+    const messages = JSON.parse(readFileSync(new URL(`../messages/${locale}.json`, import.meta.url), "utf8"));
+    offlineCopy[locale] = { title: messages.settings.offlineSetupTitle, description: messages.settings.offlineRepair,
+      home: messages.nav.home, offline: messages.settings.offlineAccess, retry: messages.common.retry };
+  }
+  Object.assign(manifest, { generation, version, integrity, offlineCopy });
   writeFileSync(join(outDir, "sw-precache.json"), `${JSON.stringify(manifest)}\n`);
   stampServiceWorker(outDir, generation);
   return manifest;

@@ -16,7 +16,7 @@ const HANG_MS = 8000;
  * payload is held: the worker answers without the network and the router
  * changes page in place, exactly as it does online. When it is not held, the
  * document load is what keeps the tap from doing nothing — the worker serves
- * the cached page, or the last home it has.
+ * the cached page, or an explicit recovery document when it is unavailable.
  *
  * Do not turn a slow client navigation into a full document load — that is the
  * tab spinner after the tab has been sitting idle.

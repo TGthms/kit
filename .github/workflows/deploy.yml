@@ -35,6 +35,8 @@ jobs:
         env:
           NEXT_PUBLIC_BASE_PATH: /kit
         run: npm run build
+      - name: Check cold offline routes and release updates
+        run: node scripts/check-offline-export.mjs
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v5
         with:

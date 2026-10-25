@@ -233,8 +233,9 @@ async function stageRelease(manifest) {
       await saveOfflineResource(href);
     }
   }));
-  const held = await cachedPathnames();
-  if (pending.some((url) => !(/\.txt$/iu.test(url) ? held.rsc : held.shell).has(url))) throw new Error("Some prepared files were removed from storage");
+  const held = await inspectCachedResources(pending, { cache: CACHE, rsc: RSC_CACHE }, manifest);
+  if (pending.some((url) => !held.has(url))) throw new Error("Some prepared files were removed from storage");
+  await writeRecord(CACHE, VERIFIED, { at: Date.now(), paths: [...held] });
   if (home) {
     const response = await cache.match(home);
     if (response) await cache.put(LAST_HOME, response);
@@ -362,6 +363,21 @@ function htmlPathFromTxt(pathname) {
   return "/" + html.replace(/^\/+/, "");
 }
 
+/** Static export has one document per directory. Bookmarks and tool links can
+ * omit the slash; Next then requests `tool.txt` rather than `tool/index.txt`.
+ * Resolve those spellings to the same stored route, including explicit HTML. */
+function documentPath(pathname) {
+  const path = pathname.replace(/\/index\.html$/iu, "/");
+  return /\/[^/.]+$/u.test(path) ? `${path}/` : path;
+}
+
+function flightPath(pathname) {
+  if (/\/__next\.[^/]+\.txt$/u.test(pathname)) return pathname;
+  if (pathname.endsWith("/")) return `${pathname}index.txt`;
+  if (!/\/index\.txt$/iu.test(pathname) && /\.txt$/iu.test(pathname)) return `${htmlPathFromTxt(pathname)}index.txt`;
+  return pathname;
+}
+
 /** Cache key without the stale-chunk reload marker, so recovery cannot grow the cache. */
 function cacheKeyFor(resource) {
   const href = typeof resource === "string" ? resource : resource.url;
@@ -454,7 +470,10 @@ async function cachedExactNavigation(req) {
   const normalized = await cache.match(cacheKeyFor(req));
   if (isUsableHtml(normalized)) return await asDirectResponse(normalized);
   try {
-    const url = new URL(typeof req === "string" ? req : req.url);
+    const url = new URL(typeof req === "string" ? req : req.url, self.location.origin);
+    url.pathname = documentPath(url.pathname);
+    const canonical = await cache.match(url.href);
+    if (isUsableHtml(canonical)) return await asDirectResponse(canonical);
     if (url.search) {
       url.search = "";
       const noSearch = await cache.match(url.href);
@@ -467,14 +486,19 @@ async function cachedExactNavigation(req) {
 }
 
 async function cachedNavigation(req) {
-  const exact = await cachedExactNavigation(req);
+  const exact = await cachedExactNavigation(req).catch(() => null);
   if (isUsableHtml(exact)) return exact;
-  const cache = await caches.open((await servingRelease()).cache);
-  const lastHome = await cache.match(LAST_HOME);
-  if (isUsableHtml(lastHome)) return await asDirectResponse(lastHome);
-  const shell = await cache.match("./");
-  if (isUsableHtml(shell)) return await asDirectResponse(shell);
-  return Response.error();
+  // Never substitute Home for an unavailable tool. Keep the requested address
+  // and show a useful recovery page that itself needs no assets or JavaScript.
+  const manifest = await servingManifest().catch(() => null);
+  const root = new URL("./", self.registration?.scope || `${self.location.origin}/`);
+  const url = new URL(typeof req === "string" ? req : req.url, root);
+  const locale = Object.keys(manifest?.chromeByLocale || {}).find((id) => url.pathname.startsWith(`${root.pathname}${id}/`)) || "en";
+  const copy = manifest?.offlineCopy?.[locale] || { title: "Not saved", description: "This page is unavailable offline. Reconnect, then repair downloads in Offline access.", home: "Home", offline: "Offline access", retry: "Retry" };
+  const escape = (value) => String(value).replace(/[&<>"']/gu, (char) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[char]);
+  const home = new URL(`${locale}/`, root).pathname;
+  const offline = new URL(`${locale}/settings/offline/`, root).pathname;
+  return new Response(`<!doctype html><html lang="${escape(locale)}" dir="${locale === "ar" || locale === "he" ? "rtl" : "ltr"}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>${escape(copy.title)} · Kit</title><style>:root{color-scheme:light dark;font-family:system-ui}body{margin:0;padding: max(24px,env(safe-area-inset-top)) max(24px,env(safe-area-inset-right)) max(24px,env(safe-area-inset-bottom)) max(24px,env(safe-area-inset-left));min-height:80svh;display:grid;place-items:center}main{max-width:32rem}p{line-height:1.6;opacity:.75}nav{display:flex;gap:12px;flex-wrap:wrap}a{color:inherit;padding:12px 16px;border:1px solid GrayText;border-radius:12px;text-underline-offset:4px}a:focus-visible{outline:3px solid Highlight;outline-offset:3px}</style></head><body><main><p>Kit</p><h1>${escape(copy.title)}</h1><p>${escape(copy.description)}</p><nav><a href="${escape(offline)}">${escape(copy.offline)}</a><a href="${escape(url.pathname + url.search)}">${escape(copy.retry)}</a><a href="${escape(home)}">${escape(copy.home)}</a></nav></main></body></html>`, { status: 503, headers: { "Content-Type": "text/html; charset=utf-8", "Cache-Control": "no-store" } });
 }
 
 async function networkHtml(resource) {
@@ -501,25 +525,29 @@ async function networkHtml(resource) {
  */
 async function navigateDocument(req, dest) {
   const target = dest || req;
-  const exact = await cachedExactNavigation(target);
+  const exact = await cachedExactNavigation(target).catch(() => null);
   if (isUsableHtml(exact)) {
     return exact;
   }
 
-  const exactP = cachedExactNavigation(req);
-  const cachedP = cachedNavigation(req);
+  const exactP = cachedExactNavigation(req).catch(() => null);
+  const cachedP = cachedNavigation(target).catch(() => null);
   /* A cache read can fail. Treat that as "nothing cached" so the navigation
      always settles instead of waiting on a promise that never resolves. */
   const orNone = (promise) => promise.then((res) => res, () => null);
 
   return await new Promise((resolve) => {
     let settled = false;
+    let cacheTimer;
+    let networkTimer;
     const settle = (res) => {
       if (settled || !res) return;
       settled = true;
+      clearTimeout(cacheTimer);
+      clearTimeout(networkTimer);
       resolve(asDirectResponse(res));
     };
-    const settleFromCache = (res) => settle(isUsableHtml(res) ? res : Response.error());
+    const settleFromCache = (res) => settle(res || Response.error());
 
     networkHtml(target).then(
       (res) => {
@@ -533,13 +561,13 @@ async function navigateDocument(req, dest) {
       }
     );
 
-    setTimeout(() => {
+    cacheTimer = setTimeout(() => {
       orNone(exactP).then((cached) => {
         if (isUsableHtml(cached)) settle(cached);
       });
     }, NAV_CACHE_MS);
 
-    setTimeout(() => {
+    networkTimer = setTimeout(() => {
       orNone(cachedP).then(settleFromCache);
     }, NAV_FETCH_MS);
   });
@@ -550,7 +578,7 @@ async function respondRsc(event, req) {
   const cache = await caches.open((await servingRelease()).rsc);
   const url = new URL(req.url);
   url.search = "";
-  if (url.pathname.endsWith("/")) url.pathname += "index.txt";
+  url.pathname = flightPath(url.pathname);
   const key = url.href;
   const cached = await cache.match(key);
   if (isUsableRsc(cached)) return cached;
@@ -708,7 +736,7 @@ function deploymentHtml(html) {
 }
 
 /** Validate mutable URLs against the release, including downloads during deploys. */
-async function matchesBuild(resource, response, suppliedManifest, signal) {
+async function matchesBuild(resource, response, suppliedManifest, signal, consume = false) {
   const manifest = suppliedManifest === undefined ? await readManifest() : suppliedManifest;
   if (!manifest) return false;
   // Legacy/test manifests have no integrity table. Shipped manifests always do.
@@ -725,7 +753,7 @@ async function matchesBuild(resource, response, suppliedManifest, signal) {
       abort = () => reject(new DOMException("Canceled", "AbortError"));
       signal?.addEventListener("abort", abort, { once: true });
     });
-    body = await Promise.race([response.clone().arrayBuffer(), canceled, new Promise((_, reject) => {
+    body = await Promise.race([(consume ? response : response.clone()).arrayBuffer(), canceled, new Promise((_, reject) => {
       timer = setTimeout(() => reject(new Error("Cached file could not be read. Retry.")), 30_000);
     })]);
   } finally { clearTimeout(timer); if (abort) signal?.removeEventListener("abort", abort); }
@@ -798,11 +826,16 @@ async function offlineState() {
   const manifest = await servingManifest();
   if (!manifest) return null;
   const { shell, rsc } = await cachedPathnames(release.cache, release.rsc);
+  const receipt = await readRecord(release.cache, VERIFIED);
+  // A listed key is not proof that its body can be read. Legacy timestamps
+  // without resource receipts need a check before this worker promises Ready.
+  const verified = new Set(receipt?.paths || []);
+  const usable = (url) => !manifest.integrity || verified.has(url);
   const chrome = manifest.chromeByLocale || {};
   const toolsByLocale = manifest.toolsByLocale || {};
   const rscByLocale = manifest.rscByLocale || {};
   const runtime = manifest.runtime || (manifest.core || []).filter((url) => /\.(?:js|css|woff2?)$/u.test(url));
-  const runtimeReady = countPresent(runtime, shell) === runtime.length;
+  const runtimeReady = runtime.every((url) => shell.has(url) && usable(url));
 
   const locales = {};
   const essentialsByLocale = {};
@@ -815,15 +848,15 @@ async function offlineState() {
     const done = countPresent(pages, shell) + countPresent(payloads, rsc);
     const total = pages.length + payloads.length;
     const essentials = essentialUrls(manifest, locale);
-    const essentialDone = [...essentials].filter((url) => (/\.txt$/iu.test(url) ? rsc : shell).has(url)).length;
+    const essentialDone = [...essentials].filter((url) => usable(url) && (/\.txt$/iu.test(url) ? rsc : shell).has(url)).length;
     essentialsByLocale[locale] = { done: essentialDone, total: essentials.size, ready: runtimeReady && essentials.size >= 6 && essentialDone === essentials.size };
-    pagesByLocale[locale] = Object.entries(manifest.pagesByLocale?.[locale] || {}).filter(([, urls]) => runtimeReady && urls.length > 0 && urls.every((url) => shell.has(url) && rsc.has(`${url}index.txt`))).map(([id]) => id);
+    pagesByLocale[locale] = Object.entries(manifest.pagesByLocale?.[locale] || {}).filter(([, urls]) => runtimeReady && urls.length > 0 && urls.every((url) => usable(url) && usable(`${url}index.txt`) && shell.has(url) && rsc.has(`${url}index.txt`))).map(([id]) => id);
     toolsByLanguage[locale] = [];
     const removable = pages.some((url) => !essentials.has(url) && shell.has(url)) || payloads.some((url) => !essentials.has(url) && rsc.has(url));
-    locales[locale] = { done, total, ready: runtimeReady && total > 0 && done === total, removable };
+    locales[locale] = { done, total, ready: runtimeReady && total > 0 && done === total && [...pages, ...payloads].every(usable), removable };
     for (const url of toolsByLocale[locale] || []) {
       const segment = segmentOfToolUrl(url);
-      if (!runtimeReady || !segment || !shell.has(url) || !rsc.has(`${url}index.txt`)) continue;
+      if (!runtimeReady || !segment || !usable(url) || !usable(`${url}index.txt`) || !shell.has(url) || !rsc.has(`${url}index.txt`)) continue;
       toolLocales[segment] = (toolLocales[segment] || 0) + 1;
       toolsByLanguage[locale].push(segment);
     }
@@ -834,7 +867,7 @@ async function offlineState() {
   const marker = await readRecord(release.cache, UPDATE_READY);
   const plan = marker?.selection ? { ...normalizedSelection(marker.selection, manifest), generation: release.generation, version: manifest.version,
     at: new Date(marker.at || 0).toISOString(),
-    ready: (await selectedOfflineUrls(marker.selection, manifest)).every((url) => (/\.txt$/iu.test(url) ? rsc : shell).has(url)),
+    ready: (await selectedOfflineUrls(marker.selection, manifest)).every((url) => usable(url) && (/\.txt$/iu.test(url) ? rsc : shell).has(url)),
   } : null;
   const progress = offlineProgress || await readRecord(CACHE, JOB);
   // iOS may kill a worker when the app is swiped away. Never show that dead job
@@ -846,14 +879,14 @@ async function offlineState() {
     generation: release.generation,
     version: manifest.version,
     pendingUpdate: release.generation !== GENERATION,
-    verifiedAt: (await readRecord(release.cache, VERIFIED))?.at || null,
+    verifiedAt: (!manifest.integrity || receipt?.paths) ? receipt?.at || null : null,
     essentials: essentialsByLocale,
     pages: pagesByLocale,
     toolPages: toolsByLanguage,
     plan,
     job,
     core: { done: countPresent(core, shell), total: core.length },
-    engines: { done: countPresent(engines, shell), total: engines.length },
+    engines: { done: countPresent(engines.filter(usable), shell), total: engines.length },
     locales,
     tools: toolLocales,
     readyLocales: Object.values(locales).filter((entry) => entry.ready).length,
@@ -862,44 +895,83 @@ async function offlineState() {
 
 let verification = null;
 let verificationEpoch = 0;
+
+/** Read back actual stored bodies, with only two in memory at a time. A damaged
+ * file needs repair; it must not make the entire storage report unreadable.
+ * Cache API failures themselves still propagate instead of pretending empty. */
+async function inspectCachedResources(urls, release, manifest, signal, checked = () => {}) {
+  const validPaths = new Set();
+  let cursor = 0;
+  await Promise.all(Array.from({ length: Math.min(2, urls.length) }, async () => {
+    while (cursor < urls.length) {
+      if (signal?.aborted) throw new DOMException("Canceled", "AbortError");
+      const url = urls[cursor++];
+      const cache = await caches.open(/\.txt$/iu.test(url) ? release.rsc : release.cache);
+      const response = await cache.match(url);
+      let valid = false;
+      if (response && usableOfflineResource(url, response)) {
+        try { valid = await matchesBuild(url, response, manifest, signal, true); }
+        catch (error) { if (signal?.aborted) throw error; }
+      }
+      if (signal?.aborted) throw new DOMException("Canceled", "AbortError");
+      if (valid) validPaths.add(url);
+      else if (response) await cache.delete(url);
+      checked(url, valid);
+    }
+  }));
+  return validPaths;
+}
+
 async function verifyOffline(locale, requested) {
   if (verification) return verification;
   const epoch = ++verificationEpoch;
   let timer;
+  let heartbeat;
+  const controller = new AbortController();
+  let lastProgress = Date.now();
   const task = (async () => {
     if (offlineBusy) return;
     const release = await servingRelease();
     const manifest = await readRecord(release.cache, FILL_PRECACHE);
     if (!manifest?.integrity || manifest.generation !== release.generation) throw new Error("Offline resources are unavailable.");
     const marker = await readRecord(release.cache, UPDATE_READY);
-    const selection = mergeSelection(normalizedSelection(marker?.selection, manifest), normalizedSelection(requested || { locales: [locale], tools: [], pages: ["home", "settings", "offline"], engines: false }, manifest));
+    const removed = await readRecord(META_CACHE, REMOVED);
+    const intent = normalizedSelection(requested || { locales: [locale], tools: [], pages: ["home", "settings", "offline"], engines: false }, manifest);
+    // A stale tab's local plan cannot undo explicit removals on this device.
+    intent.locales = intent.locales.filter((id) => !(removed?.locales || []).includes(id));
+    intent.tools = intent.tools.filter((id) => !(removed?.tools || []).includes(id));
+    if (removed?.engines) intent.engines = false;
+    const selection = mergeSelection(normalizedSelection(marker?.selection, manifest), intent);
     const saved = await cachedPathnames(release.cache, release.rsc);
     const urls = [...new Set([...(await selectedOfflineUrls(selection, manifest)), ...saved.shell, ...saved.rsc])].filter((url) => Object.hasOwn(manifest.integrity, url));
-    let cursor = 0;
-    await Promise.all(Array.from({ length: Math.min(OFFLINE_CONCURRENCY, urls.length) }, async () => {
-      while (cursor < urls.length && epoch === verificationEpoch) {
-        const url = urls[cursor++];
-        const cache = await caches.open(/\.txt$/iu.test(url) ? release.rsc : release.cache);
-        const response = await cache.match(url, { ignoreSearch: true });
-        // Missing resources stay missing; damaged cached copies cannot be
-        // advertised as ready simply because their keys are still present.
-        const valid = !response || (usableOfflineResource(url, response) && await matchesBuild(url, response, manifest));
-        if (epoch !== verificationEpoch) return;
-        if (!valid) await cache.delete(url, { ignoreSearch: true });
-      }
-    }));
+    await (await caches.open(release.cache)).delete(VERIFIED);
+    let done = 0;
+    heartbeat = setInterval(() => {
+      void self.clients.matchAll({ type: "window", includeUncontrolled: true }).then((windows) => windows.forEach((client) => {
+        try { client.postMessage({ type: "OFFLINE_VERIFY_PROGRESS", done, total: urls.length }); } catch { /* closed window */ }
+      })).catch(() => undefined);
+    }, 5000);
+    const valid = await inspectCachedResources(urls, release, manifest, controller.signal, () => { done++; lastProgress = Date.now(); });
     if (epoch !== verificationEpoch) return;
-    const held = await cachedPathnames(release.cache, release.rsc);
-    if (!marker && requested && selection.locales.length && urls.every((url) => (/\.txt$/iu.test(url) ? held.rsc : held.shell).has(url))) {
-      await writeRecord(release.cache, UPDATE_READY, { selection, generation: release.generation, version: manifest.version, at: Date.now() });
+    if (requested && selection.locales.length) {
+      // Remember the whole requested collection even when files are missing.
+      // Otherwise a smaller previous marker overwrites client intent and makes
+      // Repair download only the shell while claiming the collection is ready.
+      await writeRecord(release.cache, UPDATE_READY, { ...marker, selection, generation: release.generation, version: manifest.version, at: marker?.at || Date.now() });
     }
-    await writeRecord(release.cache, VERIFIED, { at: Date.now() });
+    await writeRecord(release.cache, VERIFIED, { at: Date.now(), paths: [...valid] });
   })();
   verification = Promise.race([task, new Promise((_, reject) => {
-    timer = setTimeout(() => { verificationEpoch++; reject(new Error("Offline verification timed out. Retry.")); }, 30_000);
+    // A large collection may take longer than 30 seconds on a phone. Bound
+    // inactivity, not useful work; a hard ten-minute ceiling still settles it.
+    const started = Date.now();
+    timer = setInterval(() => {
+      if (Date.now() - lastProgress < 45_000 && Date.now() - started < 600_000) return;
+      verificationEpoch++; controller.abort(); reject(new Error("Offline verification timed out. Retry."));
+    }, 1000);
   })]);
   try { await verification; }
-  finally { clearTimeout(timer); verificationEpoch++; verification = null; }
+  finally { clearInterval(timer); clearInterval(heartbeat); controller.abort(); verificationEpoch++; verification = null; }
 }
 
 function waitForVerification(signal) {
@@ -1091,6 +1163,11 @@ async function downloadSelectedOffline(data) {
     const prior = activationRequired ? await readRecord(serving.cache, UPDATE_READY) : null;
     data = { ...data, ...mergeSelection(mergeSelection(normalizedSelection(previous?.selection, manifest), normalizedSelection(prior?.selection, manifest)), normalizedSelection(data, manifest)) };
     const urls = await selectedOfflineUrls(data);
+    // Keep desired choices through failure or process termination. The pending
+    // record cannot authorize activation: only a completed read-back writes the
+    // request ID that ACTIVATE_UPDATE requires.
+    await writeRecord(CACHE, UPDATE_READY, { generation: GENERATION, version: manifest?.version, requestId: null,
+      selection: normalizedSelection(data, manifest), at: previous?.at || Date.now() });
     const removed = await readRecord(META_CACHE, REMOVED);
     const requestedPaths = new Set(urls);
     for (const path of urls) fillSeen.delete(new URL(path, self.location.origin).href);
@@ -1170,16 +1247,23 @@ async function downloadSelectedOffline(data) {
     const lanes = Math.max(1, Math.min(OFFLINE_CONCURRENCY, urls.length));
     await Promise.all(Array.from({ length: lanes }, takeNext));
 
-    clearInterval(heartbeat);
     const changed = (await readRecord(META_CACHE, REMOVED))?.at !== mutationAt;
     await pruneRemovedResources();
-    const held = await cachedPathnames();
-    done = urls.filter((url) => (/\.txt$/iu.test(url) ? held.rsc : held.shell).has(url)).length;
+    // Cache.put succeeding and keys being listed do not prove a readable body.
+    // Verify the committed copies before reporting completion or activation.
+    pendingLogs.push("Checking saved files");
+    await flush("running", true);
+    if (!offlineCancelRequested) await (await caches.open(CACHE)).delete(VERIFIED);
+    const held = offlineCancelRequested ? new Set() : await inspectCachedResources(urls,
+      { cache: CACHE, rsc: RSC_CACHE }, manifest, ctrl.signal);
+    if (!offlineCancelRequested) {
+      done = held.size;
+      await writeRecord(CACHE, VERIFIED, { at: Date.now(), paths: [...held] });
+    }
     const complete = !offlineCancelRequested && !changed && done === urls.length;
     if (complete) {
       const selection = normalizedSelection(data, manifest);
       await writeRecord(CACHE, UPDATE_READY, { generation: GENERATION, version: manifest?.version, requestId: data.requestId, selection, at: Date.now() });
-      await writeRecord(CACHE, VERIFIED, { at: Date.now() });
     }
     pendingLogs.push(offlineCancelRequested ? "Download canceled" : complete ? "Offline access is ready" : "Some files could not be saved. Reconnect and retry.");
     await flush(offlineCancelRequested ? "canceled" : complete ? "complete" : "error", true);
@@ -1192,6 +1276,7 @@ async function downloadSelectedOffline(data) {
     /* Released on every path, including a failed progress report, so the
        background fill is never left waiting on a download that has ended. */
     clearInterval(heartbeat);
+    ctrl.abort();
     if (offlineAbort === ctrl) offlineAbort = null;
     offlineBusy = false;
     offlineRequestId = null;
@@ -1317,8 +1402,8 @@ self.addEventListener("message", (event) => {
       try {
         await verifyOffline(data.locale, data.selection);
         event.source?.postMessage({ type: "OFFLINE_STATE", state: await offlineState(), verified: true });
-      } catch {
-        event.source?.postMessage({ type: "OFFLINE_STATE", state: null, verified: true, error: "Could not verify offline storage. Retry." });
+      } catch (error) {
+        event.source?.postMessage({ type: "OFFLINE_STATE", state: null, verified: true, error: `Verification · ${GENERATION} · ${error?.name || "Error"}: ${String(error?.message || "Could not verify offline storage. Retry.").slice(0, 300)}` });
       }
     })());
     return;
@@ -1331,8 +1416,8 @@ self.addEventListener("message", (event) => {
         try {
           const state = await offlineState();
           event.source?.postMessage({ type: "OFFLINE_STATE", state });
-        } catch {
-          event.source?.postMessage({ type: "OFFLINE_STATE", state: null, error: "Could not read offline storage. Retry." });
+        } catch (error) {
+          event.source?.postMessage({ type: "OFFLINE_STATE", state: null, error: `Storage report · ${GENERATION} · ${error?.name || "Error"}: ${String(error?.message || "Could not read offline storage. Retry.").slice(0, 300)}` });
         }
       })()
     );
@@ -1411,11 +1496,22 @@ self.addEventListener("message", (event) => {
 
 self.addEventListener("fetch", (event) => {
   const req = event.request;
-  if (req.method !== "GET") return;
+  if (req.method !== "GET" && req.method !== "HEAD") return;
 
   const url = new URL(req.url);
   if (!url.protocol.startsWith("http")) return;
   if (url.origin !== self.location.origin) return;
+
+  // Next's segment router probes a new route with HEAD before fetching Flight.
+  // It must see a saved page even with no socket, not depend on a prior visit.
+  if (req.method === "HEAD") {
+    event.respondWith((async () => {
+      const cached = await cachedExactNavigation(req).catch(() => null);
+      if (cached) return new Response(null, { status: cached.status, statusText: cached.statusText, headers: cached.headers });
+      return fetch(req);
+    })());
+    return;
+  }
 
   if (isRscRequest(req)) {
     event.respondWith(respondRsc(event, req));

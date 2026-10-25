@@ -1,6 +1,7 @@
 import { readFileSync } from "node:fs";
 import { createHash, webcrypto } from "node:crypto";
 import vm from "node:vm";
+import { setImmediate as yieldEventLoop } from "node:timers/promises";
 import { afterEach, describe, expect, it, vi } from "vitest";
 
 afterEach(() => vi.useRealTimers());
@@ -31,6 +32,9 @@ function load({ stores = new Map<string, Map<string, Response>>(), build = gener
   const currentManifest = { ...manifest, generation: build };
   const fetched: string[] = [];
   const writeErrors = new Map<string, Error>();
+  const writtenBodies = new Map<string, Response>();
+  const readDelays = new Map<string, number>();
+  const readErrors = new Map<string, Error>();
   const messages: Record<string, unknown>[] = [];
   const handlers: Record<string, (event: unknown) => void> = {};
   const overrides = new Map<string, Response | Error | ((init?: RequestInit) => Response)>();
@@ -42,13 +46,17 @@ function load({ stores = new Map<string, Map<string, Response>>(), build = gener
     return {
       async match(input: string | Request, options?: { ignoreSearch?: boolean }) {
         const wanted = key(input);
+        const readError = readErrors.get(new URL(wanted).pathname);
+        if (readError) throw readError;
+        const delay = readDelays.get(new URL(wanted).pathname);
+        if (delay) await new Promise((resolve) => setTimeout(resolve, delay));
         const value = options?.ignoreSearch ? [...store.entries()].find(([url]) => url.split("?")[0] === wanted.split("?")[0])?.[1] : store.get(wanted);
         return value?.clone();
       },
       async put(input: string | Request, response: Response) {
         const error = writeErrors.get(new URL(key(input)).pathname);
         if (error) throw error;
-        store.set(key(input), response.clone());
+        store.set(key(input), (writtenBodies.get(new URL(key(input)).pathname) ?? response).clone());
       },
       async delete(input: string | Request) { return store.delete(key(input)); },
       async keys() { return [...store.keys()].map((url) => new Request(url)); },
@@ -100,15 +108,42 @@ function load({ stores = new Map<string, Map<string, Response>>(), build = gener
     handlers[type]({ waitUntil: (promise: Promise<unknown>) => { pending = promise; } });
     await pending;
   };
-  const resource = async (url: string) => {
+  const resource = async (url: string, init?: RequestInit) => {
     let pending: Promise<Response> | undefined;
-    handlers.fetch({ request: new Request(`${origin}${url}`), waitUntil: () => {}, respondWith: (promise: Promise<Response>) => { pending = promise; } });
+    handlers.fetch({ request: new Request(`${origin}${url}`, init), waitUntil: () => {}, respondWith: (promise: Promise<Response>) => { pending = promise; } });
     return pending;
   };
-  return { worker, stores, open, messages, overrides, windows, message, lifecycle, resource, fetched, writeErrors, activations: () => activations };
+  return { worker, stores, open, messages, overrides, windows, message, lifecycle, resource, fetched, writeErrors, writtenBodies, readDelays, readErrors, activations: () => activations };
 }
 
 describe("offline release transactions", () => {
+  it("serves a never-opened tool through Next's slashless Flight URL after a worker restart", async () => {
+    const downloaded = load();
+    await downloaded.lifecycle("install");
+    await downloaded.worker.downloadSelectedOffline(selection);
+    const cold = load({ stores: downloaded.stores });
+    cold.overrides.set("/en/tools/pdf-merge.txt", new Error("offline"));
+    const response = await cold.resource("/en/tools/pdf-merge.txt?from=%2Fen%2Fc%2Fpdf%2F&_rsc=cold", { headers: { RSC: "1" } });
+    expect(response?.status).toBe(200);
+    expect(await response?.text()).toBe("new tool flight");
+    expect(cold.fetched).toEqual([]);
+  });
+  it("matches slashless and explicit index documents to the saved route", async () => {
+    const run = load();
+    await run.worker.downloadSelectedOffline(selection);
+    for (const path of ["/en/tools/pdf-merge?from=home", "/en/tools/pdf-merge/index.html?from=home"]) {
+      const response = await run.worker.cachedExactNavigation(new Request(`${origin}${path}`));
+      expect(response?.status).toBe(200);
+    }
+  });
+  it("answers Next's cold-route HEAD probe from the saved document without the network", async () => {
+    const run = load();
+    await run.worker.downloadSelectedOffline(selection);
+    const response = await run.resource("/en/tools/pdf-merge?from=home", { method: "HEAD" });
+    expect(response?.status).toBe(200);
+    expect(await response?.text()).toBe("");
+    expect(run.fetched).not.toContain("/en/tools/pdf-merge");
+  });
   it("can serve the installed entry before Cache Storage or the network opens", async () => {
     const handlers: Record<string, (event: unknown) => void> = {};
     const cacheOpen = () => { throw new Error("cold cache must not be touched"); };
@@ -137,7 +172,8 @@ describe("offline release transactions", () => {
     await run.worker.downloadSelectedOffline(selection);
     expect(run.messages.some((m) => m.status === "complete")).toBe(false);
     expect(run.messages.some((m) => m.status === "error")).toBe(true);
-    expect(await (await run.open(shellName)).match("/offline-update-ready")).toBeFalsy();
+    expect((await run.worker.offlineState()).plan).toMatchObject({ tools: ["pdf-merge"], ready: false });
+    expect((await run.message({ type: "ACTIVATE_UPDATE", requestId: selection.requestId }))[0].ok).toBe(false);
     expect(await (await run.open(shellName)).match(script)).toBeFalsy();
   });
   it("does not advertise a tool whose navigation payload is missing", async () => {
@@ -244,15 +280,19 @@ describe("suspension, progress, and release handoff", () => {
     expect(await (await run.open(shellName)).match("/en/")).toBeTruthy();
   });
 
-  it("preserves earlier completed choices when a later download fails", async () => {
+  it("preserves earlier files and the complete desired selection when a later download fails", async () => {
     const run = load();
     await run.worker.downloadSelectedOffline({ ...selection, tools: [] });
     run.overrides.set("/en/tools/pdf-merge/", new Error("offline"));
     await run.worker.downloadSelectedOffline({ ...selection, requestId: "failed-job" });
     const marker = await (await (await run.open(shellName)).match("/offline-update-ready"))?.json();
-    expect(marker.requestId).toBe("request-1");
-    expect(marker.selection.tools).toEqual([]);
-    expect((await run.worker.offlineState()).plan.ready).toBe(true);
+    expect(marker.requestId).toBeNull();
+    expect(marker.selection.tools).toEqual(["pdf-merge"]);
+    expect((await run.worker.offlineState()).plan.ready).toBe(false);
+    expect(await run.worker.cachedExactNavigation(new Request(`${origin}/en/`))).toBeTruthy();
+    const restarted = load({ stores: run.stores });
+    expect((await restarted.worker.offlineState()).plan).toMatchObject({ tools: ["pdf-merge"], ready: false });
+    expect((await restarted.message({ type: "ACTIVATE_UPDATE", requestId: "failed-job" }))[0].ok).toBe(false);
   });
 
   it("keeps prior tools when downloading just app pages later", async () => {
@@ -432,19 +472,96 @@ it("recovers an evicted selection record from the client intent after verifying 
   await run.worker.verifyOffline("en", selection);
   expect((await run.worker.offlineState()).plan).toMatchObject({ ready: true, tools: ["pdf-merge"] });
 });
+it("keeps missing client intent instead of declaring an older smaller collection ready", async () => {
+  const run = load();
+  await run.lifecycle("install");
+  await run.worker.downloadSelectedOffline({ ...selection, tools: [] });
+  run.fetched.length = 0;
+  await run.worker.verifyOffline("en", selection);
+  expect(run.fetched).toEqual([]);
+  expect((await run.worker.offlineState()).plan).toMatchObject({ tools: ["pdf-merge"], ready: false });
+  // Repair the worker's authoritative intent, rather than the older shell-only
+  // marker, and prove that the previously unopened page is now present.
+  await run.worker.downloadSelectedOffline(selection);
+  expect((await run.worker.offlineState()).plan.ready).toBe(true);
+});
+it("does not resurrect removed tools when verification receives a stale tab's plan", async () => {
+  const run = load();
+  await run.lifecycle("install");
+  await run.worker.downloadSelectedOffline(selection);
+  await run.worker.removeOffline({ tools: ["pdf-merge"] });
+  await run.worker.verifyOffline("en", selection);
+  expect((await run.worker.offlineState()).plan).toMatchObject({ tools: [], ready: true });
+});
 it("can cancel a download queued behind a stalled verification", async () => {
   vi.useFakeTimers();
   const run = load();
   await run.lifecycle("install");
   await run.worker.downloadSelectedOffline(selection);
   await (await run.open(shellName)).put(script, new Response(new ReadableStream({ start() {} }), { headers: { "content-type": "text/javascript" } }));
-  const check = expect(run.worker.verifyOffline("en", selection)).rejects.toThrow("timed out");
+  const check = run.worker.verifyOffline("en", selection);
   const pending = run.worker.downloadSelectedOffline({ ...selection, requestId: "queued" });
   await run.message({ type: "OFFLINE_CANCEL", requestId: "queued" });
   await pending;
   expect(run.messages.some((item) => item.requestId === "queued" && item.status === "canceled")).toBe(true);
   await vi.advanceTimersByTimeAsync(30_001);
   await check;
+  // One stalled body is now isolated as damage, rather than making the whole
+  // manager fail with "couldn't read offline storage".
+  expect((await run.worker.offlineState()).plan.ready).toBe(false);
+});
+
+it("checks stored bodies after writes rather than reporting complete from keys alone", async () => {
+  const run = load();
+  run.writtenBodies.set(script, new Response("damaged stored bytes", { headers: { "content-type": "text/javascript" } }));
+  await run.worker.downloadSelectedOffline(selection);
+  expect(run.messages.some((entry) => entry.status === "complete")).toBe(false);
+  expect(run.messages.some((entry) => entry.status === "error")).toBe(true);
+  expect(await (await run.open(shellName)).match(script)).toBeFalsy();
+  run.writtenBodies.clear();
+  await run.worker.downloadSelectedOffline(selection);
+  expect((await run.worker.offlineState()).plan.ready).toBe(true);
+});
+it("reports the actual storage failure and recovers without discarding the saved collection", async () => {
+  const run = load();
+  await run.lifecycle("install");
+  await run.worker.downloadSelectedOffline(selection);
+  run.readErrors.set("/offline-update-ready", new DOMException("Internal error", "UnknownError"));
+  await run.message({ type: "OFFLINE_STATUS" });
+  expect(run.messages.at(-1)).toMatchObject({ type: "OFFLINE_STATE", state: null, error: expect.stringContaining("UnknownError: Internal error") });
+  run.readErrors.clear();
+  await run.message({ type: "OFFLINE_STATUS" });
+  expect(run.messages.at(-1)).toMatchObject({ state: { plan: { tools: ["pdf-merge"], ready: true } } });
+});
+
+it("does not treat an old timestamp as proof of readable files", async () => {
+  const run = load();
+  await run.lifecycle("install");
+  await run.worker.downloadSelectedOffline(selection);
+  await (await run.open(shellName)).put("/offline-verified", Response.json({ at: Date.now() }));
+  expect((await run.worker.offlineState()).plan.ready).toBe(false);
+  await run.worker.verifyOffline("en", selection);
+  expect((await run.worker.offlineState()).plan.ready).toBe(true);
+});
+
+it("keeps a large verification alive while files make progress beyond thirty seconds", async () => {
+  vi.useFakeTimers();
+  const run = load();
+  await run.lifecycle("install");
+  await run.worker.downloadSelectedOffline(selection);
+  for (const path of Object.keys(files)) run.readDelays.set(path, 20_000);
+  const checking = run.worker.verifyOffline("en", selection);
+  let finished = false;
+  void checking.then(() => { finished = true; }, () => { finished = true; });
+  for (let step = 0; step < 12 && !finished; step++) {
+    await vi.advanceTimersByTimeAsync(10_000);
+    await yieldEventLoop();
+  }
+  expect(finished).toBe(true);
+  await checking;
+  run.readDelays.clear();
+  expect((await run.worker.offlineState()).plan.ready).toBe(true);
+  expect(run.messages.some((entry) => entry.type === "OFFLINE_VERIFY_PROGRESS")).toBe(true);
 });
 it("does not delete a newer staged release while retiring the serving ancestor", async () => {
   const first = load({ build: "aaaaaaaaaaaa", active: true });

@@ -9,6 +9,7 @@ import { tools, categories } from "@/lib/tools/registry";
 import { APP_PAGE_IDS } from "@/lib/pwa/app-pages";
 import { OFFLINE_PLAN_KEY, type OfflineState } from "@/lib/pwa/offline-status";
 import { OfflineAccess } from "./offline-access";
+import { APP_VERSION } from "@/lib/version";
 
 const postMessage = vi.fn();
 const worker = { postMessage };
@@ -117,6 +118,7 @@ beforeEach(() => {
 
 afterEach(() => {
   cleanup();
+  vi.useRealTimers();
   vi.unstubAllGlobals();
 });
 
@@ -588,18 +590,18 @@ describe("reliable progress and status", () => {
   it("synchronizes automatically carried downloads with the worker's actual release", () => {
     record({ generation: "old-generation" });
     renderOffline();
-    emit({ type: "OFFLINE_STATE", state: savedState({ version: "1.2.4", plan: {
-      locales: ["en"], tools: ["pdf-merge"], pages: ["home"], engines: true, version: "1.2.4", generation: "3f9a1c4e77b2", ready: true, at: "2026-10-21T00:00:00.000Z",
+    emit({ type: "OFFLINE_STATE", state: savedState({ version: APP_VERSION, plan: {
+      locales: ["en"], tools: ["pdf-merge"], pages: ["home"], engines: true, version: APP_VERSION, generation: "3f9a1c4e77b2", ready: true, at: "2026-10-21T00:00:00.000Z",
     } }) });
     expect(screen.queryByRole("button", { name: "Update" })).not.toBeInTheDocument();
     expect(JSON.parse(window.localStorage.getItem(OFFLINE_PLAN_KEY)!)).toMatchObject({ generation: "3f9a1c4e77b2" });
   });
 
   it("shows repair for an evicted file instead of claiming the recorded selection is ready", () => {
-    record({ version: "1.2.4" });
+    record({ version: APP_VERSION });
     renderOffline();
     emit({ type: "OFFLINE_STATE", state: savedState({ plan: {
-      locales: ["en"], tools: ["pdf-merge"], pages: ["home"], engines: false, version: "1.2.4", generation: "3f9a1c4e77b2", ready: false, at: "2026-10-21T00:00:00.000Z",
+      locales: ["en"], tools: ["pdf-merge"], pages: ["home"], engines: false, version: APP_VERSION, generation: "3f9a1c4e77b2", ready: false, at: "2026-10-21T00:00:00.000Z",
     } }) });
     expect(screen.getByText(en.settings.offlineRepair)).toBeInTheDocument();
   });
@@ -645,6 +647,42 @@ describe("reliable progress and status", () => {
 });
 
 describe("clear offline readiness", () => {
+  it("keeps a larger local collection until verification reconciles a smaller worker marker", async () => {
+    record({ version: APP_VERSION });
+    renderOffline(false);
+    await sentEventually("OFFLINE_VERIFY");
+    emit({ type: "OFFLINE_STATE", verified: false, state: savedState({ plan: {
+      locales: ["en"], tools: [], pages: ["home"], engines: false, version: APP_VERSION, generation: "3f9a1c4e77b2", ready: true, at: "2026-10-21T00:00:00.000Z",
+    } }) });
+    expect(JSON.parse(window.localStorage.getItem(OFFLINE_PLAN_KEY)!)).toMatchObject({ tools: ["pdf-merge"], engines: true });
+  });
+
+  it("extends the checking deadline only for the controlling worker's verification progress", async () => {
+    renderOffline(false);
+    await sentEventually("OFFLINE_VERIFY");
+    // Arm the timer with fake time after the initial ready promise has settled.
+    vi.useFakeTimers();
+    emit({ type: "OFFLINE_STATE", state: savedState() });
+    fireEvent.click(screen.getByRole("button", { name: "Check saved files" }));
+    await act(async () => { await vi.advanceTimersByTimeAsync(30_000); });
+    emit({ type: "OFFLINE_VERIFY_PROGRESS", done: 50, total: 100 });
+    await act(async () => { await vi.advanceTimersByTimeAsync(30_000); });
+    expect(screen.getByRole("heading", { name: en.settings.offlineChecking })).toBeInTheDocument();
+    expect(screen.getByText("Progress · 50%")).toBeInTheDocument();
+    emit({ type: "OFFLINE_STATE", state: savedState() });
+    expect(screen.getByRole("heading", { name: en.settings.offlineReadyTitle })).toBeInTheDocument();
+  });
+
+  it("keeps the actual worker failure available in download details", async () => {
+    renderOffline(false);
+    await sentEventually("OFFLINE_VERIFY");
+    const detail = "Storage report · abc123 · UnknownError: Internal error";
+    emit({ type: "OFFLINE_STATE", state: null, error: detail });
+    expect(screen.getByText(detail)).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: en.settings.offlineUnavailable })).toBeInTheDocument();
+    emit({ type: "OFFLINE_STATE", state: savedState() });
+    expect(screen.queryByText(detail)).not.toBeInTheDocument();
+  });
   it("honors edited download choices when an update is available", async () => {
     renderOffline();
     emit({ type: "OFFLINE_STATE", state: savedState({ pendingUpdate: true }) });
@@ -668,7 +706,7 @@ describe("clear offline readiness", () => {
   });
 
   it("does not discard edits when the primary action is repair", async () => {
-    record({ version: "1.2.4", pages: ["home"] });
+    record({ version: APP_VERSION, pages: ["home"] });
     renderOffline();
     emit({ type: "OFFLINE_STATE", state: savedState({ essentials: { en: { done: 0, total: 6, ready: false } } }) });
     fireEvent.click(within(header("Tools")).getByRole("button", { name: "Clear" }));
@@ -707,7 +745,7 @@ describe("clear offline readiness", () => {
   });
 
   it("preserves repair intent when cache metadata disappears", async () => {
-    record({ version: "1.2.4", pages: ["home"] });
+    record({ version: APP_VERSION, pages: ["home"] });
     renderOffline(false);
     await sentEventually("OFFLINE_VERIFY");
     emit({ type: "OFFLINE_STATE", state: savedState({ plan: null, toolPages: { en: [] }, essentials: { en: { done: 0, total: 6, ready: false } } }) });

@@ -143,6 +143,8 @@ export function OfflineAccess() {
      rather than a number it has not been told yet. */
   const [reportLoaded, setReportLoaded] = useState(false);
   const [reportError, setReportError] = useState(false);
+  const [reportDetail, setReportDetail] = useState<string | null>(null);
+  const [verificationProgress, setVerificationProgress] = useState<{ done: number; total: number } | null>(null);
   const [removing, setRemoving] = useState(false);
   const reportWorker = useRef<ServiceWorker | null>(null);
   const activeState = useRef<OfflineState | null>(null);
@@ -223,8 +225,10 @@ export function OfflineAccess() {
   const checkStatus = useCallback(() => {
     setChecking(true);
     setReportError(false);
+    setReportDetail(null);
+    setVerificationProgress(null);
     if (verificationTimer.current) clearTimeout(verificationTimer.current);
-    verificationTimer.current = setTimeout(() => { verificationFailed.current = true; setChecking(false); setReportError(true); }, 45_000);
+    verificationTimer.current = setTimeout(() => { verificationTimer.current = null; verificationFailed.current = true; setChecking(false); setReportError(true); }, 45_000);
     void activeWorker().then((worker) => worker?.postMessage({ type: "OFFLINE_VERIFY", locale, selection: plan })).catch(() => {
       verificationFailed.current = true; setChecking(false); setReportError(true);
     });
@@ -241,6 +245,7 @@ export function OfflineAccess() {
     }, STATUS_WAIT_MS);
     const visible = () => { if (document.visibilityState === "visible") { refreshStatus(); checkStatus(); } };
     document.addEventListener("visibilitychange", visible);
+    window.addEventListener("online", visible);
     navigator.serviceWorker?.addEventListener("controllerchange", refreshStatus);
     // Polling also recovers progress after leaving this route or iOS suspending
     // its worker. It never guesses that an unanswered job is complete.
@@ -249,7 +254,9 @@ export function OfflineAccess() {
       disposed = true;
       window.clearTimeout(giveUp); window.clearInterval(poll);
       if (verificationTimer.current) clearTimeout(verificationTimer.current);
+      verificationTimer.current = null;
       document.removeEventListener("visibilitychange", visible);
+      window.removeEventListener("online", visible);
       navigator.serviceWorker?.removeEventListener("controllerchange", refreshStatus);
     };
   }, [hydrated, refreshStatus, checkStatus]);
@@ -259,6 +266,14 @@ export function OfflineAccess() {
     const onMessage = (event: MessageEvent) => {
       const data = event.data as ProgressMessage & { state?: OfflineState | null; error?: string; verified?: boolean } | null;
       if (!data || typeof data !== "object") return;
+      if (data.type === "OFFLINE_VERIFY_PROGRESS" && event.source === (navigator.serviceWorker.controller ?? reportWorker.current)) {
+        if (verificationTimer.current) {
+          clearTimeout(verificationTimer.current);
+          verificationTimer.current = setTimeout(() => { verificationTimer.current = null; verificationFailed.current = true; setChecking(false); setReportError(true); }, 45_000);
+          if (typeof data.done === "number" && typeof data.total === "number") setVerificationProgress({ done: data.done, total: data.total });
+        }
+        return;
+      }
       if (data.type === "OFFLINE_STATE") {
         const runningWorker = navigator.serviceWorker.controller ?? reportWorker.current;
         const fromActive = event.source === runningWorker;
@@ -269,13 +284,16 @@ export function OfflineAccess() {
             verificationFailed.current = Boolean(data.error);
             setChecking(false);
             if (verificationTimer.current) clearTimeout(verificationTimer.current);
+            verificationTimer.current = null;
           }
           reportReceived.current = true;
           setReportLoaded(true);
           setReportError(verificationFailed.current || !current || Boolean(data.error));
+          if (data.error) setReportDetail(data.error);
+          else if (data.verified) setReportDetail(null);
           setState(current ?? null);
           activeState.current = current ?? null;
-          if (current && "plan" in current) {
+          if (data.verified && current && "plan" in current) {
             if (current.plan) {
               savePlan(current.plan);
             }
@@ -325,7 +343,7 @@ export function OfflineAccess() {
         savePlan({ version: data.version ?? APP_VERSION, generation: data.generation ?? activeState.current?.generation ?? "",
           ...selection, at: new Date().toISOString() });
       };
-      if (status === "done" && !requiresActivation) { verificationFailed.current = false; if (verificationTimer.current) clearTimeout(verificationTimer.current); setChecking(false); setReportError(false); record(); refreshStatus(); }
+      if (status === "done" && !requiresActivation) { verificationFailed.current = false; if (verificationTimer.current) clearTimeout(verificationTimer.current); verificationTimer.current = null; setChecking(false); setReportError(false); record(); refreshStatus(); }
       if (applying) {
         // Clear ownership before awaiting activation so a repeated terminal
         // report cannot apply the same update twice.
@@ -547,6 +565,7 @@ export function OfflineAccess() {
             </span>
             <div className="min-w-0 space-y-1">
               <h2 className="text-lg font-semibold tracking-tight">{statusTitle}</h2>
+              {checking && verificationProgress?.total ? <p className="type-caption text-muted-foreground">{tc("progress")} · {Math.min(100, Math.round(verificationProgress.done / verificationProgress.total * 100))}%</p> : null}
               {!summaryWaiting && !reportError ? <p className="type-body text-muted-foreground">{needsRepair ? t("offlineRepair") : readiness.ready ? t("offlineSummary", { count: readiness.usable.size, language: localeNames[locale] }) : t("offlineAccessDesc")}</p> : null}
             </div>
           </div>
@@ -561,6 +580,7 @@ export function OfflineAccess() {
             <Figure label={t("offlineEnginesLabel")} value={enginesValue} waiting={tc("loading")} />
             <Figure label={t("offlineStorage")} value={storageValue} waiting={tc("loading")} />
           </dl>
+          {reportError && reportDetail ? <details className="text-xs text-muted-foreground"><summary className="cursor-pointer">{t("offlineLog")}</summary><p className="mt-2 break-words font-mono">{reportDetail}</p></details> : null}
           {newerRelease || planState === "stale" ? <p className="rounded-xl bg-primary/5 px-3 py-2 text-sm text-primary">{newerRelease ? t("offlineUpdateAvailable") : t("offlineOutdated", { version: APP_VERSION })}</p> : null}
           <div className="flex flex-wrap items-center gap-2">
             {newerRelease || planState === "stale" || needsRepair || !readiness.ready || customizeOpen || draft ? <Button onClick={primaryAction} disabled={primaryDisabled}>

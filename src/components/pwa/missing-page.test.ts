@@ -95,7 +95,7 @@ function loadWorker({
       /* The host's answer for an address that does not exist. */
       return page(404);
     },
-    Response: { error: () => page(0) },
+    Response,
     DOMException,
     AbortController,
     URL,
@@ -134,10 +134,11 @@ describe("a navigation to an address that does not exist", () => {
     expect([...store]).toEqual([]);
   });
 
-  it("still lands on what was downloaded when there is no network", async () => {
+  it("shows an explicit recovery document instead of substituting Home when offline", async () => {
     const { worker } = loadWorker({ cached: [LAST_HOME], network: "offline" });
     const answered = await worker.navigateDocument({ url: ORIGIN + MISSING });
 
-    expect(answered?.status).toBe(200);
+    expect(answered?.status).toBe(503);
+    expect(await (answered as unknown as Response).text()).toContain("Offline access");
   });
 });
