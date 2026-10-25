@@ -22,14 +22,14 @@ afterEach(() => {
 });
 
 describe("math keyboard accessory", () => {
-  it("remeasures the safe-area offset after layout and preserves editing focus when switching to letters", () => {
+  it("remeasures the safe-area offset and keeps only the Done accessory", () => {
     const frames: FrameRequestCallback[] = [];
     vi.spyOn(window, "requestAnimationFrame").mockImplementation((callback) => {
       frames.push(callback);
       return frames.length;
     });
     vi.spyOn(window, "cancelAnimationFrame").mockImplementation(() => {});
-    const executeCommand = vi.fn();
+    const hide = vi.fn();
     Object.defineProperty(window, "mathVirtualKeyboard", {
       configurable: true,
       value: {
@@ -40,7 +40,7 @@ describe("math keyboard accessory", () => {
           { layers: [{ id: "numbers" }] },
           { layers: [{ id: "letters" }] },
         ],
-        executeCommand,
+        hide,
       },
     });
     updateMathKeyboard(262); // SDK notification before its final positioning.
@@ -56,13 +56,13 @@ describe("math keyboard accessory", () => {
     });
     const input = screen.getByRole("textbox", { name: "Formula" });
     input.focus();
-    const letters = screen.getByRole("button", { name: "ABC" });
-    expect(fireEvent.pointerDown(letters)).toBe(false);
-    fireEvent.click(letters);
+    expect(screen.queryByRole("button", { name: "ABC" })).not.toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: "123" })).not.toBeInTheDocument();
+    const done = screen.getByRole("button", { name: "Done" });
+    expect(fireEvent.pointerDown(done)).toBe(false);
     expect(input).toHaveFocus();
-    expect(executeCommand).toHaveBeenCalledWith([
-      "switchKeyboardLayer",
-      "letters",
-    ]);
+    fireEvent.click(done);
+    expect(hide).toHaveBeenCalledWith({ animate: false });
+    expect(document.querySelector(".math-keyboard-accessory")).not.toBeInTheDocument();
   });
 });

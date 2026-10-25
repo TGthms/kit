@@ -7,7 +7,6 @@ import {
   subscribeMathKeyboard,
   hideMathKeyboard,
   syncMathKeyboard,
-  switchMathKeyboardLayout,
 } from "@/lib/math/keyboard";
 export function MathKeyboardAccessory() {
   const height = useSyncExternalStore(
@@ -41,22 +40,9 @@ export function MathKeyboardAccessory() {
   if (!height) return null;
   return createPortal(
     <div
-      className="math-keyboard-accessory fixed inset-x-0 z-[95] flex h-11 items-center justify-between border-t border-border bg-secondary px-4 shadow-sm"
+      className="math-keyboard-accessory fixed inset-x-0 z-[95] flex h-11 items-center justify-end border-t border-border bg-secondary px-4 shadow-sm"
       style={{ bottom: height }}
     >
-      <div className="flex gap-1">
-        {(["numeric", "alphabetic"] as const).map((layout) => (
-          <button
-            key={layout}
-            type="button"
-            className="flex min-h-10 min-w-12 items-center justify-center rounded-lg px-3 text-sm font-medium text-primary hover:bg-accent focus-visible:outline-2 focus-visible:outline-ring"
-            onPointerDown={(event) => event.preventDefault()}
-            onClick={() => switchMathKeyboardLayout(layout)}
-          >
-            {layout === "numeric" ? "123" : "ABC"}
-          </button>
-        ))}
-      </div>
       <button
         type="button"
         className="flex min-h-10 items-center rounded-lg px-3 text-sm font-semibold text-primary focus-visible:outline-2 focus-visible:outline-ring"

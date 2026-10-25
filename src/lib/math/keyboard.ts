@@ -39,13 +39,6 @@ export function syncMathKeyboard() {
       : 0;
   updateMathKeyboard(coverage);
 }
-export function switchMathKeyboardLayout(layout: "numeric" | "alphabetic") {
-  const keyboard = window.mathVirtualKeyboard;
-  if (!keyboard?.visible) return;
-  const index = keyboard.layouts.indexOf(layout);
-  const layer = keyboard.normalizedLayouts[index]?.layers[0]?.id;
-  if (layer) keyboard.executeCommand(["switchKeyboardLayer", layer]);
-}
 export function hideMathKeyboard() {
   const active = document.activeElement;
   if (active instanceof HTMLElement && active.tagName === "MATH-FIELD")

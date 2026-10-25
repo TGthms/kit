@@ -1127,6 +1127,18 @@ body {
   --keycap-secondary-background: var(--muted);
   --keycap-secondary-text: var(--foreground);
 }
+/* Safari can retain :hover after a tap. Touch keys use the SDK's press state
+   for feedback; hover colors must not leave the last released key highlighted.
+   Selected layers, Shift and held-key variants keep their SDK active states. */
+@media (hover: none) {
+  body {
+    --keycap-background-hover: var(--keycap-background);
+    --keycap-text-hover: var(--keycap-text);
+    --keycap-primary-background-hover: var(--keycap-primary-background);
+    --keycap-secondary-background-hover: var(--keycap-secondary-background);
+    --keyboard-toolbar-background-hover: var(--keyboard-toolbar-background, transparent);
+  }
+}
 
 /* One working surface: compact expressions, a persistent plot and contextual controls. */
 math-field.kit-math-input-compact { min-height: 2.6rem; border: 0; background: transparent; border-radius: .4rem; padding: .2rem 0; font-size: 1.2rem; }
