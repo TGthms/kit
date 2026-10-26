@@ -16,6 +16,11 @@ const nextConfig: NextConfig = {
   // pdf.js optionally imports node-canvas when it detects a Node runtime. The
   // browser bundle has no such module, so the import resolves to an empty one.
   turbopack: {
+    rules: {
+      "**/@ffmpeg/ffmpeg/dist/esm/classes.js": {
+        loaders: ["./scripts/ffmpeg-worker-loader.cjs"],
+      },
+    },
     resolveAlias: {
       canvas: {
         browser: "./src/lib/empty-module.ts",
