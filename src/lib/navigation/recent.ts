@@ -7,7 +7,7 @@ const INSTANCE_ID =
 type RecentState = { paths: string[]; index: number };
 
 function readState(): RecentState {
-  if (typeof sessionStorage === "undefined") return { paths: [], index: -1 };
+  if (typeof window === "undefined") return { paths: [], index: -1 };
   try {
     const raw = sessionStorage.getItem(KEY);
     const parsed: unknown = raw ? JSON.parse(raw) : null;
@@ -37,7 +37,7 @@ function writeState(state: RecentState): void {
  * document; client-side route changes in this document still retain it.
  */
 export function startRecentSession(path: string): void {
-  if (!path || typeof sessionStorage === "undefined") return;
+  if (!path || typeof window === "undefined") return;
   try {
     if (sessionStorage.getItem(INSTANCE_KEY) !== INSTANCE_ID) {
       sessionStorage.removeItem(KEY);
@@ -54,7 +54,7 @@ export function startRecentSession(path: string): void {
  * stale forward entries; consecutive duplicates (reloads) are ignored.
  */
 export function recordRecentPath(path: string): void {
-  if (!path || typeof sessionStorage === "undefined") return;
+  if (!path || typeof window === "undefined") return;
   const state = readState();
   if (state.paths[state.index] === path) return;
   if (state.paths[state.index - 1] === path) {

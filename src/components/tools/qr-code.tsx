@@ -8,7 +8,8 @@ import { Button } from "@/components/ui/button";
 import { Field } from "@/components/ui/field";
 import { Textarea } from "@/components/ui/textarea";
 import { blobFromDataUrl, downloadBlob } from "@/lib/utils";
-import { generateQrDataUrl, readQrFromImageData } from "@/lib/text/qr";
+import { generateQrDataUrl, readQrImage } from "@/lib/text/qr";
+import { useTaskScope } from "@/lib/react/task-scope";
 import { ToolShell, useToolHistory } from "./shared";
 
 export function QrCodeTool() {
@@ -19,14 +20,19 @@ export function QrCodeTool() {
   const [dataUrl, setDataUrl] = useState("");
   const [decoded, setDecoded] = useState("");
   const [files, setFiles] = useState<FileItem[]>([]);
+  const generation = useTaskScope();
+  const decoding = useTaskScope();
 
   const generate = async () => {
+    const current = generation.begin();
     try {
       const url = await generateQrDataUrl(text, 320);
+      if (!current()) return;
       setDataUrl(url);
       toast.success(t("generated"));
       log("generate", "success");
     } catch (e) {
+      if (!current()) return;
       toast.error(e instanceof Error ? e.message : tc("error"));
       log("failed", "failed");
     }
@@ -34,21 +40,16 @@ export function QrCodeTool() {
 
   const read = async () => {
     if (!files[0]) return;
+    const current = decoding.begin();
     try {
-      const bmp = await createImageBitmap(files[0].file);
-      const canvas = document.createElement("canvas");
-      canvas.width = bmp.width;
-      canvas.height = bmp.height;
-      const ctx = canvas.getContext("2d")!;
-      ctx.drawImage(bmp, 0, 0);
-      bmp.close();
-      const img = ctx.getImageData(0, 0, canvas.width, canvas.height);
-      const value = readQrFromImageData(img.data, img.width, img.height);
+      const value = await readQrImage(files[0].file);
+      if (!current()) return;
       if (!value) throw new Error(t("none"));
       setDecoded(value);
       toast.success(t("decoded"));
       log("read", "success");
     } catch (e) {
+      if (!current()) return;
       toast.error(e instanceof Error ? e.message : tc("error"));
       log("failed", "failed");
     }
@@ -57,7 +58,7 @@ export function QrCodeTool() {
   return (
     <ToolShell toolId="qr-code">
       <Field className="space-y-2" label={t("payload")}>
-        <Textarea value={text} onChange={(e) => setText(e.target.value)} />
+        <Textarea value={text} onChange={(e) => { generation.invalidate(); setDataUrl(""); setText(e.target.value); }} />
       </Field>
       <Button onClick={generate}>{t("run")}</Button>
       {dataUrl ? (
@@ -80,7 +81,7 @@ export function QrCodeTool() {
       ) : null}
       <div className="space-y-2">
         <p className="text-sm font-medium">{t("read")}</p>
-        <FileDropzone accept="image/*" multiple={false} files={files} onChange={setFiles} />
+        <FileDropzone accept="image/*" multiple={false} files={files} onChange={(next) => { decoding.invalidate(); setDecoded(""); setFiles(next); }} />
         <Button variant="secondary" onClick={read} disabled={!files[0]}>
           {t("runRead")}
         </Button>

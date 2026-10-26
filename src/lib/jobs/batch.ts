@@ -15,6 +15,7 @@ export async function runSequentialBatch<T>(
   for (let i = 0; i < items.length; i++) {
     throwIfAborted(opts?.signal);
     out.push(await worker(items[i], i));
+    throwIfAborted(opts?.signal);
     opts?.onProgress?.(jobRatio(i + 1, items.length));
   }
   return out;
@@ -33,6 +34,7 @@ export async function forEachJobIndex(
   for (let i = 1; i <= count; i++) {
     throwIfAborted(opts?.signal);
     await worker(i);
+    throwIfAborted(opts?.signal);
     opts?.onProgress?.(jobRatio(i, count));
   }
 }

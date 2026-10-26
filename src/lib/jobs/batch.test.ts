@@ -30,6 +30,16 @@ describe("runPooled", () => {
 });
 
 describe("runSequentialBatch", () => {
+  it("does not report success when canceled during its final item", async () => {
+    const controller = new AbortController();
+    const onProgress = () => { throw new Error("Must not report completion"); };
+    await expect(runSequentialBatch([1], async () => {
+      controller.abort();
+      return { name: "canceled", blob: new Blob() };
+    }, { signal: controller.signal, onProgress })).rejects.toMatchObject({ name: "AbortError" });
+    const pages = new AbortController();
+    await expect(forEachJobIndex(1, async () => { pages.abort(); }, { signal: pages.signal, onProgress })).rejects.toMatchObject({ name: "AbortError" });
+  });
   it("maps every item and reports progress", async () => {
     const ratios: number[] = [];
     const out = await runSequentialBatch(

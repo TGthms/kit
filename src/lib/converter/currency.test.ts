@@ -24,6 +24,7 @@ describe("currency helpers", () => {
     expect(validateFrankfurterRatesResponse(rates, "USD", ["EUR", "JPY"])).toEqual(rates);
     expect(() => validateFrankfurterRatesResponse([{ ...rates[0], rate: 0 }])).toThrow(TypeError);
     expect(() => validateFrankfurterRatesResponse({ rates })).toThrow(TypeError);
+    expect(() => validateFrankfurterRatesResponse([{ ...rates[0], date: "2024-02-31" }])).toThrow(TypeError);
     expect(
       validateFrankfurterRatesResponse(
         [...rates, { date: "2024-01-02", base: "USD", quote: "USD", rate: 1 }],
@@ -51,7 +52,7 @@ describe("currency helpers", () => {
       json: async () => [rates[0]],
     }) as Response);
     await expect(fetchFrankfurterRates({ base: "USD", symbols: ["EUR"] }, fetchImpl)).resolves.toEqual([rates[0]]);
-    expect(fetchImpl).toHaveBeenCalledWith("https://api.frankfurter.dev/v2/rates?base=USD&quotes=EUR");
+    expect(fetchImpl).toHaveBeenCalledWith("https://api.frankfurter.dev/v2/rates?base=USD&quotes=EUR", { signal: undefined });
 
     const failedFetch = vi.fn(async () => ({ ok: false, status: 503, json: async () => [] }) as Response);
     await expect(fetchFrankfurterRates({ base: "USD" }, failedFetch)).rejects.toThrow("503");

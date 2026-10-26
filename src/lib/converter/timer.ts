@@ -55,7 +55,9 @@ export function durationFromHms(hours: number, minutes: number, seconds: number)
   const h = Number.isFinite(hours) && hours > 0 ? Math.floor(hours) : 0;
   const m = Number.isFinite(minutes) && minutes > 0 ? Math.floor(minutes) : 0;
   const s = Number.isFinite(seconds) && seconds > 0 ? Math.floor(seconds) : 0;
-  return h * 3_600_000 + m * 60_000 + s * 1_000;
+  // User-edited number fields can contain finite values whose conversion
+  // overflows. Keep state and clock rendering within exact milliseconds.
+  return Math.min(Number.MAX_SAFE_INTEGER, h * 3_600_000 + m * 60_000 + s * 1_000);
 }
 
 export function createTimer(durationMs: number): TimerState {

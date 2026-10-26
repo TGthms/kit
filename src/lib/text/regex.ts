@@ -163,50 +163,23 @@ function createRegexWorker(): { worker: Worker; blobUrl: string } | null {
   if (typeof Blob === "undefined" || typeof URL === "undefined" || typeof URL.createObjectURL !== "function") {
     return null;
   }
+  let blobUrl: string | null = null;
   try {
-    const blobUrl = URL.createObjectURL(new Blob([REGEX_WORKER_SOURCE], { type: "text/javascript" }));
+    blobUrl = URL.createObjectURL(new Blob([REGEX_WORKER_SOURCE], { type: "text/javascript" }));
     return { worker: new Worker(blobUrl), blobUrl };
   } catch {
+    if (blobUrl) URL.revokeObjectURL(blobUrl);
     return null;
   }
 }
 
-/**
- * True for the shape `(…*…)*`: a quantified group whose body can itself vary in
- * length. A single `exec()` on such a pattern can run for an unbounded time, so
- * it is never evaluated on the main thread. The check is a heuristic — nesting
- * deeper than one level is not detected — and it only ever governs the
- * no-worker path, where a runaway pattern could not be interrupted.
- */
-export function canBacktrackUnboundedly(pattern: string): boolean {
-  /* The lookahead skips `(?:`, `(?=`/`(?!` and `(?<=`/`(?<!`, whose `?` is part
-     of the group marker rather than a quantifier. */
-  return /\((?!\?(?:[:=!]|<[=!]))[^()]*[*+?{][^()]*\)\s*[*+?{]/.test(pattern);
-}
-
-/** Runs on the main thread only when no worker is available. */
-function runRegexOnMainThread(pattern: string, flags: string, input: string): RegexResult {
-  if (canBacktrackUnboundedly(pattern)) {
-    return { ok: false, error: "This pattern is too complex to run without a background worker." };
-  }
-  return runRegex(pattern, flags, input);
-}
-
-function replaceRegexOnMainThread(
-  pattern: string,
-  flags: string,
-  input: string,
-  replacement: string
-): RegexReplaceResult {
-  if (canBacktrackUnboundedly(pattern)) {
-    return { ok: false, error: "This pattern is too complex to run without a background worker." };
-  }
-  return replaceRegex(pattern, flags, input, replacement);
-}
+// A heuristic cannot prove arbitrary JavaScript regexes safe: alternation,
+// lookarounds and backreferences can also backtrack exponentially. Never move
+// untrusted patterns onto the UI thread when worker startup fails.
+const WORKER_UNAVAILABLE = "This browser could not start a background worker. Reopen Kit and try again.";
 
 function getWorker(): Worker | null {
-  // No Worker (tests, exotic browsers, a locked-down page) means the guarded
-  // main-thread path above is used instead.
+  // A locked-down page must fail explicitly rather than freeze the UI.
   if (typeof Worker === "undefined") return null;
   if (worker) return worker;
   const created = createRegexWorker();
@@ -223,6 +196,7 @@ function getWorker(): Worker | null {
   created.worker.onerror = () => {
     // Drop the failed worker so the next request starts a fresh one; one
     // transient failure must not leave the rest of the session unprotected.
+    if (worker !== created.worker) return;
     killWorker();
     failAllPending("Regex worker failed");
   };
@@ -256,20 +230,18 @@ function toReplaceResult(data: unknown): RegexReplaceResult {
 
 function runInWorker<T>(
   request: Record<string, unknown>,
-  decode: (data: unknown) => T,
-  fallback: () => T
+  decode: (data: unknown) => T
 ): Promise<T> {
   const w = getWorker();
-  if (!w) return Promise.resolve(fallback());
+  if (!w) return Promise.resolve(decode({ ok: false, error: WORKER_UNAVAILABLE }));
   return new Promise<T>((resolve) => {
     const id = nextRequestId;
     nextRequestId += 1;
     const timer = setTimeout(() => {
-      pending.delete(id);
       // A runaway exec() can only be stopped by killing the worker; the next
       // request compiles a fresh one.
       killWorker();
-      resolve(decode({ ok: false, error: "The pattern took too long and was stopped." }));
+      failAllPending("The pattern took too long and was stopped.");
     }, MATCH_TIMEOUT_MS);
     pending.set(id, {
       deliver: (data) => resolve(decode(data)),
@@ -278,9 +250,8 @@ function runInWorker<T>(
     try {
       w.postMessage({ id, ...request });
     } catch {
-      pending.delete(id);
-      clearTimeout(timer);
-      resolve(fallback());
+      killWorker();
+      failAllPending("Regex worker failed");
     }
   });
 }
@@ -288,8 +259,7 @@ function runInWorker<T>(
 export function runRegexAsync(pattern: string, flags: string, input: string): Promise<RegexResult> {
   return runInWorker(
     { kind: "match", pattern, flags, input },
-    toMatchResult,
-    () => runRegexOnMainThread(pattern, flags, input)
+    toMatchResult
   );
 }
 
@@ -301,7 +271,6 @@ export function replaceRegexAsync(
 ): Promise<RegexReplaceResult> {
   return runInWorker(
     { kind: "replace", pattern, flags, input, replacement },
-    toReplaceResult,
-    () => replaceRegexOnMainThread(pattern, flags, input, replacement)
+    toReplaceResult
   );
 }

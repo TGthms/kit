@@ -28,6 +28,9 @@ describe("clampImageSize", () => {
     const out = clampImageSize(8000, 8000);
     expect(out.width * out.height).toBeLessThanOrEqual(MAX_IMAGE_CANVAS_PIXELS);
     expect(out.width).toBeLessThanOrEqual(MAX_IMAGE_CANVAS_EDGE);
+    const photo = clampImageSize(16000, 12000);
+    expect(photo.width * photo.height).toBeLessThanOrEqual(MAX_IMAGE_CANVAS_PIXELS);
+    expect(clampImageSize(Infinity, 600)).toEqual({ width: 1, height: 1 });
   });
 });
 

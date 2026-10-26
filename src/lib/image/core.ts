@@ -8,13 +8,13 @@ export const MAX_IMAGE_CANVAS_EDGE = 8192;
 export const MAX_IMAGE_CANVAS_PIXELS = 16_777_216;
 
 export function clampImageSize(width: number, height: number): { width: number; height: number } {
-  if (!(width > 0) || !(height > 0)) return { width: 1, height: 1 };
+  if (!Number.isFinite(width) || !Number.isFinite(height) || !(width > 0) || !(height > 0)) return { width: 1, height: 1 };
   const edgeScale = MAX_IMAGE_CANVAS_EDGE / Math.max(width, height);
   const pixelScale = Math.sqrt(MAX_IMAGE_CANVAS_PIXELS / (width * height));
   const scale = Math.min(1, edgeScale, pixelScale);
   return {
-    width: Math.max(1, Math.round(width * scale)),
-    height: Math.max(1, Math.round(height * scale)),
+    width: Math.max(1, Math.floor(width * scale)),
+    height: Math.max(1, Math.floor(height * scale)),
   };
 }
 

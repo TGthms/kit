@@ -14,6 +14,11 @@ describe("loan and compound helpers", () => {
     expect(compoundAmount({ principal: 1000, annualRatePercent: 6, years: 2, compoundsPerYear: 12 })).toBeCloseTo(1127.16, 1);
   });
 
+  it("stays accurate at tiny positive rates and finite for long terms", () => {
+    expect(monthlyPayment({ principal: 12000, annualRatePercent: 1e-14, years: 1 })).toBeCloseTo(1000, 8);
+    expect(monthlyPayment({ principal: 12000, annualRatePercent: 100, years: 1000 })).toBeCloseTo(1000, 8);
+  });
+
   it("rejects invalid inputs", () => {
     expect(() => monthlyPayment({ principal: -1, annualRatePercent: 1, years: 1 })).toThrow(RangeError);
     expect(() => monthlyPayment({ principal: 1, annualRatePercent: 1, years: 0 })).toThrow(RangeError);
@@ -22,7 +27,7 @@ describe("loan and compound helpers", () => {
   });
 
   it("reports a result too large to show rather than formatting it", () => {
-    expect(() => monthlyPayment({ principal: 1e308, annualRatePercent: 1000, years: 1000 })).toThrow(RangeError);
+    expect(() => monthlyPayment({ principal: 1e308, annualRatePercent: 1e308, years: 1000 })).toThrow(RangeError);
     expect(() => compoundAmount({ principal: 1e308, annualRatePercent: 1000, years: 1000 })).toThrow(RangeError);
     expect(() => amortizationTotal(Number.MAX_VALUE, 1e300)).toThrow(RangeError);
   });

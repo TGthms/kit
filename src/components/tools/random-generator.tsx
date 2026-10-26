@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { Check, Dice5 } from "lucide-react";
 import { AnimatedNumber } from "@/components/shared/animated-number";
@@ -36,11 +36,14 @@ function limitPasswordLength(raw: string): string {
   return String(Math.min(MAX_RANDOM_PASSWORD_LENGTH, value));
 }
 
+type RandomMode = "integer" | "decimal" | "boolean" | "pick" | "password";
+type RandomResult = { mode: RandomMode; values: string[]; precision: number };
+
 export function RandomGenerator() {
   const t = useTranslations("tools.random-generator");
   const log = useToolHistory(toolId("random-generator"));
   const note = useHistoryNote(toolId("random-generator"));
-  const [mode, setMode] = useState<"integer" | "decimal" | "boolean" | "pick" | "password">("integer");
+  const [mode, setMode] = useState<RandomMode>("integer");
   const [min, setMin] = useState("1");
   const [max, setMax] = useState("100");
   const [precision, setPrecision] = useState("2");
@@ -49,10 +52,8 @@ export function RandomGenerator() {
   const [unique, setUnique] = useState(false);
   const [items, setItems] = useState("red\nblue\ngreen\nyellow");
   const [length, setLength] = useState("16");
-  const [values, setValues] = useState<string[]>([]);
-  const [shown, setShown] = useState<number[]>([]);
+  const [result, setResult] = useState<RandomResult | null>(null);
   const [error, setError] = useState("");
-  const roll = useRef(0);
   const batch = Math.min(MAX_RANDOM_BATCH, Math.max(1, Number(count) || 1));
   const passwordLength = Math.min(MAX_RANDOM_PASSWORD_LENGTH, Math.max(1, Math.floor(Number(length)) || 1));
   const generate = () => {
@@ -70,34 +71,21 @@ export function RandomGenerator() {
       } else {
         next = Array.from({ length: batch }, () => randomPassword({ length: passwordLength, rng: cryptoRandom }));
       }
-      setValues(next);
+      // A result belongs to the settings that produced it. Later edits must
+      // not reformat it or expose password results to the history action.
+      setResult({ mode, values: next, precision: Number(precision) });
       setError("");
-      const numericNext = mode === "integer" || mode === "decimal";
-      const id = ++roll.current;
-      if (numericNext) {
-        const nums = next.map(Number);
-        const reduce = nums.length > 10 || window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-        if (reduce) setShown(nums);
-        else {
-          setShown(nums.map(() => 0));
-          window.requestAnimationFrame(() => {
-            window.requestAnimationFrame(() => {
-              if (roll.current === id) setShown(nums);
-            });
-          });
-        }
-      } else {
-        setShown([]);
-      }
     } catch (reason) {
       setError(reason instanceof Error ? reason.message : text(t, "invalid", "Check the settings."));
       log(`${mode}: failed`, "failed");
     }
   };
+  const values = result?.values ?? [];
   const joined = values.join("\n");
-  const numeric = mode === "integer" || mode === "decimal";
-  const numberFormat = mode === "decimal"
-    ? { minimumFractionDigits: Number(precision) || 0, maximumFractionDigits: Number(precision) || 0 }
+  const numeric = result?.mode === "integer" || result?.mode === "decimal";
+  const shown = numeric ? values.map(Number) : [];
+  const numberFormat = result?.mode === "decimal"
+    ? { minimumFractionDigits: result.precision, maximumFractionDigits: result.precision }
     : undefined;
   return (
     <ToolShell toolId={toolId("random-generator")}>
@@ -199,12 +187,12 @@ export function RandomGenerator() {
                   {text(t, "download", "Download list")}
                 </Button>
               ) : null}
-              {mode !== "password" ? (
+              {result && result.mode !== "password" ? (
                 <Button
                   variant="outline"
                   size="sm"
                   onClick={() => {
-                    note(randomResultSummary(mode as RecordableRandomMode, values), text(t, "saved", "Saved to history."));
+                    note(randomResultSummary(result.mode as RecordableRandomMode, values), text(t, "saved", "Saved to history."));
                   }}
                 >
                   <Check /> {text(t, "record", "Record result")}

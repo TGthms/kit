@@ -95,7 +95,14 @@ export class MathClient {
         worker.terminate();
         if (this.worker === worker) this.worker = null;
       };
-      worker.postMessage({ ...request, id });
+      try { worker.postMessage({ ...request, id }); }
+      catch {
+        // postMessage can fail synchronously (terminated worker/clone error).
+        // Settle through the same path so graph queues never remain locked.
+        finish({ ok: false, error: "unavailable" });
+        worker.terminate();
+        if (this.worker === worker) this.worker = null;
+      }
     });
   }
 }

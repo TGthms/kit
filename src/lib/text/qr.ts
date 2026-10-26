@@ -1,5 +1,6 @@
 import QRCode from "qrcode";
 import jsQR from "jsqr";
+import { clampImageSize, loadImageBitmap } from "@/lib/image/core";
 
 export async function generateQrDataUrl(text: string, size = 256): Promise<string> {
   if (!text) throw new Error("Text is empty");
@@ -17,6 +18,26 @@ export function readQrFromImageData(
 ): string | null {
   const result = jsQR(data, width, height, { inversionAttempts: "attemptBoth" });
   return result?.data ?? null;
+}
+
+/** Bound canvas allocation for high-resolution photos and always release the
+ * decoded bitmap, including context-allocation/draw failures on mobile. */
+export async function readQrImage(file: Blob): Promise<string | null> {
+  const bitmap = await loadImageBitmap(file);
+  const canvas = document.createElement("canvas");
+  try {
+    const { width, height } = clampImageSize(bitmap.width, bitmap.height);
+    canvas.width = width;
+    canvas.height = height;
+    const context = canvas.getContext("2d");
+    if (!context) throw new Error("Could not create a 2D canvas context");
+    context.drawImage(bitmap, 0, 0, width, height);
+    const pixels = context.getImageData(0, 0, width, height);
+    return readQrFromImageData(pixels.data, width, height);
+  } finally {
+    bitmap.close();
+    canvas.width = canvas.height = 0;
+  }
 }
 
 /** Render a QR matrix to RGBA pixels (quiet zone included). Used by decode tests. */

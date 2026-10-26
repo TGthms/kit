@@ -31,6 +31,18 @@ afterEach(() => {
   vi.unstubAllGlobals();
 });
 describe("math worker lifecycle", () => {
+  it("settles a synchronous post failure, clears its timer and allows retry", async () => {
+    const client = new MathClient();
+    const post = vi.spyOn(FakeWorker.prototype, "postMessage").mockImplementationOnce(() => { throw new Error("Worker closed"); });
+    try {
+      expect(await client.run({ kind: "calculate", latex: "1" })).toEqual({ ok: false, error: "unavailable" });
+      expect(vi.getTimerCount()).toBe(0);
+      const retry = client.run({ kind: "calculate", latex: "2" });
+      FakeWorker.instances[1].reply("2");
+      expect((await retry).ok).toBe(true);
+      client.dispose();
+    } finally { post.mockRestore(); }
+  });
   it("reuses an idle worker and matches replies", async () => {
     const client = new MathClient();
     const job = client.run({ kind: "calculate", latex: "2+3" });

@@ -9,6 +9,7 @@ import { useHistoryStore } from "@/stores/history-store";
 import { notifyHistoryEnabled, notifyHistoryOff, notifySuccess } from "@/lib/notify";
 import { SHORTCUT_RUN_EVENT } from "@/components/layout/shortcuts-provider";
 import { MathKeyboardAccessory } from "./math/keyboard-accessory";
+import { hasOpenDialog } from "@/lib/navigation/dialog";
 import { downloadBlob } from "@/lib/utils";
 
 export async function loadPdfjs() {
@@ -115,14 +116,14 @@ export function ActionBar({
   const t = useTranslations("common");
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
-      if (document.querySelector("dialog[open]")) return;
+      if (e.defaultPrevented || e.isComposing || hasOpenDialog()) return;
       if (e.key === "Enter" && (e.metaKey || e.ctrlKey) && !loading && !disabled) {
         e.preventDefault();
         onRun();
       }
     };
     const onShortcutRun = () => {
-      if (!loading && !disabled) onRun();
+      if (!loading && !disabled && !hasOpenDialog()) onRun();
     };
     window.addEventListener("keydown", onKey);
     window.addEventListener(SHORTCUT_RUN_EVENT, onShortcutRun);

@@ -35,5 +35,7 @@ describe("stopwatch and timer state math", () => {
     expect(durationFromHms(0, 5, 0)).toBe(300_000);
     expect(durationFromHms(0, 0, 0)).toBe(0);
     expect(durationFromHms(Number.NaN, -1, 1.8)).toBe(1_000);
+    expect(durationFromHms(1e308, 0, 0)).toBe(Number.MAX_SAFE_INTEGER);
+    expect(() => createTimer(durationFromHms(1e308, 0, 0))).not.toThrow();
   });
 });

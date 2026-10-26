@@ -10,6 +10,7 @@ import { Field } from "@/components/ui/field";
 import { Textarea } from "@/components/ui/textarea";
 import { HASH_ALGOS, hashBytes, hashText, type HashAlgo } from "@/lib/text/hash";
 import { ToolShell, useToolHistory } from "./shared";
+import { useTaskScope } from "@/lib/react/task-scope";
 import { selectClass } from "./text-extra-shared";
 
 export function HashGenerator() {
@@ -21,21 +22,26 @@ export function HashGenerator() {
   const [files, setFiles] = useState<FileItem[]>([]);
   const [digest, setDigest] = useState("");
   const [loading, setLoading] = useState(false);
+  const scope = useTaskScope();
+  const changed = () => { scope.invalidate(); setDigest(""); setLoading(false); };
 
   const run = async () => {
+    const current = scope.begin();
     setLoading(true);
     try {
       const value = files[0]
         ? await hashBytes(new Uint8Array(await files[0].file.arrayBuffer()), algo)
         : await hashText(text, algo);
+      if (!current()) return;
       setDigest(value);
       toast.success(t("success"));
       log(algo, "success");
     } catch (e) {
+      if (!current()) return;
       toast.error(e instanceof Error ? e.message : tc("error"));
       log("failed", "failed");
     } finally {
-      setLoading(false);
+      if (current()) setLoading(false);
     }
   };
 
@@ -43,7 +49,7 @@ export function HashGenerator() {
     <ToolShell toolId="hash-generator">
       <p className="text-sm text-muted-foreground">{t("limits")}</p>
       <Field className="space-y-2" label={t("algo")}>
-        <select className={selectClass} value={algo} onChange={(e) => setAlgo(e.target.value as HashAlgo)}>
+        <select className={selectClass} value={algo} onChange={(e) => { changed(); setAlgo(e.target.value as HashAlgo); }}>
           {HASH_ALGOS.map((a) => (
             <option key={a} value={a}>
               {a}
@@ -51,8 +57,8 @@ export function HashGenerator() {
           ))}
         </select>
       </Field>
-      <Textarea aria-label={tc("input")} value={text} onChange={(e) => setText(e.target.value)} className="min-h-28 font-mono" />
-      <FileDropzone multiple={false} files={files} onChange={setFiles} />
+      <Textarea aria-label={tc("input")} value={text} onChange={(e) => { changed(); setText(e.target.value); }} className="min-h-28 font-mono" />
+      <FileDropzone multiple={false} files={files} onChange={(next) => { changed(); setFiles(next); }} />
       <Button onClick={run} disabled={loading}>
         {loading ? tc("processing") : t("run")}
       </Button>

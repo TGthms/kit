@@ -40,8 +40,9 @@ export function monthlyPayment({ principal, annualRatePercent, years }: LoanPaym
   const months = years * 12;
   if (annualRatePercent === 0) return assertAmount(principal / months, "Monthly payment");
   const monthlyRate = annualRatePercent / 100 / 12;
-  const factor = (1 + monthlyRate) ** months;
-  return assertAmount((principal * monthlyRate * factor) / (factor - 1), "Monthly payment");
+  // Avoid cancellation for tiny rates and overflow for long terms.
+  const denominator = -Math.expm1(-months * Math.log1p(monthlyRate));
+  return assertAmount(principal * (monthlyRate / denominator), "Monthly payment");
 }
 
 /** Total amount paid over the loan term. */

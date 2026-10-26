@@ -6,6 +6,12 @@ export const CHUNK_RELOAD_GUARD_MS = 10_000;
 const CHUNK_LOAD_PATTERN =
   /Loading chunk|Failed to fetch dynamically imported module|Importing a module script failed|error loading dynamically imported module/i;
 
+function sessionStorageOrNull(): Storage | null {
+  // Accessing the property itself can throw in restricted/private contexts.
+  try { return typeof window === "undefined" ? null : window.sessionStorage; }
+  catch { return null; }
+}
+
 export function isChunkLoadError(error: unknown): boolean {
   if (!error) return false;
   if (typeof error === "string") return CHUNK_LOAD_PATTERN.test(error);
@@ -20,7 +26,7 @@ export function isChunkLoadError(error: unknown): boolean {
 
 export function shouldReloadForChunkError(
   now = Date.now(),
-  storage: Pick<Storage, "getItem" | "setItem"> | null | undefined = typeof window === "undefined" ? null : window.sessionStorage,
+  storage: Pick<Storage, "getItem" | "setItem"> | null | undefined = sessionStorageOrNull(),
 ): boolean {
   if (!storage) return false;
   try {
@@ -35,7 +41,7 @@ export function shouldReloadForChunkError(
 
 export function reloadForStaleChunk(force = false): boolean {
   if (typeof window === "undefined") return false;
-  if (!force && !shouldReloadForChunkError(Date.now(), window.sessionStorage)) return false;
+  if (!force && !shouldReloadForChunkError()) return false;
   if (force) {
     try {
       window.sessionStorage.setItem(CHUNK_RELOAD_KEY, String(Date.now()));

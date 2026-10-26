@@ -56,6 +56,14 @@ describe("shouldReloadForChunkError", () => {
     };
     expect(shouldReloadForChunkError(1, throwing)).toBe(false);
   });
+
+  it("does not throw when the browser denies access to sessionStorage itself", () => {
+    vi.spyOn(window, "sessionStorage", "get").mockImplementation(() => { throw new DOMException("Denied", "SecurityError"); });
+    try {
+      expect(shouldReloadForChunkError()).toBe(false);
+      expect(reloadForStaleChunk()).toBe(false);
+    } finally { vi.restoreAllMocks(); }
+  });
 });
 
 describe("reloadForStaleChunk", () => {

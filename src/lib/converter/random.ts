@@ -25,14 +25,16 @@ function nextRandom(rng: RandomSource): number {
 }
 
 function assertInteger(value: number, name: string): void {
-  if (!Number.isInteger(value) || !Number.isFinite(value)) throw new RangeError(`${name} must be an integer.`);
+  if (!Number.isSafeInteger(value)) throw new RangeError(`${name} must be a safe integer.`);
 }
 
 export function randomInteger(min: number, max: number, rng: RandomSource = Math.random): number {
   assertInteger(min, "min");
   assertInteger(max, "max");
   if (min > max) throw new RangeError("min must not exceed max.");
-  return min + Math.floor(nextRandom(rng) * (max - min + 1));
+  const span = max - min + 1;
+  assertInteger(span, "Range size");
+  return min + Math.floor(nextRandom(rng) * span);
 }
 
 export const MAX_RANDOM_BATCH = 200;
@@ -63,6 +65,7 @@ export function randomIntegers(min: number, max: number, options: RandomIntegerB
   assertInteger(max, "max");
   if (min > max) throw new RangeError("min must not exceed max.");
   const span = Math.floor((max - min) / step) + 1;
+  assertInteger(span, "Range size");
   if (span < 1) throw new RangeError("step is larger than the range.");
   const pick = () => min + step * randomInteger(0, span - 1, rng);
   if (!options.unique) return Array.from({ length: count }, pick);
@@ -71,9 +74,16 @@ export function randomIntegers(min: number, max: number, options: RandomIntegerB
     const domain = Array.from({ length: span }, (_, i) => min + i * step);
     return randomUnique(domain, count, rng);
   }
-  const seen = new Set<number>();
-  while (seen.size < count) seen.add(pick());
-  return [...seen];
+  // Sparse Fisher–Yates: bounded work even if the source repeats a value.
+  const swaps = new Map<number, number>();
+  return Array.from({ length: count }, (_, index) => {
+    const last = span - index - 1;
+    const chosen = randomInteger(0, last, rng);
+    const value = swaps.get(chosen) ?? chosen;
+    swaps.set(chosen, swaps.get(last) ?? last);
+    swaps.delete(last);
+    return min + step * value;
+  });
 }
 
 export function randomDecimals(min: number, max: number, options: RandomDecimalOptions & { count?: number } = {}): number[] {
@@ -91,10 +101,10 @@ const STEP_TOLERANCE = 1e-9;
 
 export function randomDecimal(min: number, max: number, options: RandomDecimalOptions = {}): number {
   if (!Number.isFinite(min) || !Number.isFinite(max) || min > max) throw new RangeError("Decimal bounds must be finite and ordered.");
-  if (min === max) return min;
   const rng = options.rng ?? Math.random;
   const random = nextRandom(rng);
-  if (options.precision === undefined) return min + random * (max - min);
+  // A weighted sum avoids overflowing max - min for opposite large bounds.
+  if (options.precision === undefined) return (1 - random) * min + random * max;
   assertInteger(options.precision, "precision");
   if (options.precision < 0 || options.precision > 15) throw new RangeError("precision must be between 0 and 15.");
   /* Both bounds are included, matching Integer mode: the lowest and the highest
@@ -102,8 +112,12 @@ export function randomDecimal(min: number, max: number, options: RandomDecimalOp
   const factor = 10 ** options.precision;
   const lower = Math.ceil(min * factor - STEP_TOLERANCE);
   const upper = Math.floor(max * factor + STEP_TOLERANCE);
-  if (upper < lower) return min;
-  return (lower + Math.floor(random * (upper - lower + 1))) / factor;
+  assertInteger(lower, "Scaled minimum");
+  assertInteger(upper, "Scaled maximum");
+  const span = upper - lower + 1;
+  assertInteger(span, "Range size");
+  if (span < 1) throw new RangeError("No values in this range have the chosen decimal places.");
+  return (lower + Math.floor(random * span)) / factor;
 }
 
 export function randomBoolean(rng: RandomSource = Math.random): boolean {

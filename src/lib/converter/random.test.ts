@@ -34,6 +34,9 @@ describe("random generation helpers", () => {
     expect(stepped.every((n) => n % 2 === 0 && n >= 0 && n <= 10)).toBe(true);
     expect(() => randomIntegers(1, 3, { count: 4, unique: true })).toThrow(RangeError);
     expect(randomDecimals(0, 1, { count: 2, precision: 1, rng: () => 0 })).toEqual([0, 0]);
+    const sparse = randomIntegers(0, 10000, { count: 200, unique: true, rng: () => 0 });
+    expect(sparse.slice(0, 3)).toEqual([0, 10000, 9999]);
+    expect(new Set(sparse).size).toBe(200);
   });
 
   it("includes both ends of a decimal range without stepping past them", () => {
@@ -51,6 +54,16 @@ describe("random generation helpers", () => {
   it("refuses a password longer than the maximum", () => {
     expect(() => randomPassword({ length: MAX_RANDOM_PASSWORD_LENGTH + 1 })).toThrow(RangeError);
     expect(randomPassword({ length: MAX_RANDOM_PASSWORD_LENGTH, rng: () => 0 })).toHaveLength(MAX_RANDOM_PASSWORD_LENGTH);
+  });
+
+  it("refuses unsafe integer ranges and decimal scales instead of producing invalid numbers", () => {
+    expect(() => randomInteger(0, Number.MAX_VALUE)).toThrow(RangeError);
+    expect(() => randomInteger(-Number.MAX_SAFE_INTEGER, Number.MAX_SAFE_INTEGER)).toThrow(RangeError);
+    expect(() => randomIntegers(0, Number.MAX_VALUE, { unique: true })).toThrow(RangeError);
+    expect(() => randomDecimal(1e308, 1.1e308, { precision: 2 })).toThrow(RangeError);
+    expect(() => randomDecimal(1, 1, { precision: -1 })).toThrow(RangeError);
+    expect(() => randomDecimal(0.01, 0.02, { precision: 0 })).toThrow(RangeError);
+    expect(Number.isFinite(randomDecimal(-1e308, 1e308, { rng: () => 0.5 }))).toBe(true);
   });
 
   it("formats non-password rolls for history without persisting rolled values", () => {

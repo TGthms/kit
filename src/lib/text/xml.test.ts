@@ -111,3 +111,11 @@ describe("text wrappers", () => {
     expect(jsonToXmlText("{nope").ok).toBe(false);
   });
 });
+
+it("rejects excessive document sizes and nesting before recursive conversion", () => {
+  expect(xmlToJsonText("<a>" + "x".repeat(1_000_000) + "</a>").ok).toBe(false);
+  const nested = "<a>".repeat(110) + "x" + "</a>".repeat(110);
+  expect(xmlToJsonText(nested)).toMatchObject({ ok: false, error: expect.stringMatching(/nested/) });
+  expect(jsonToXmlText("[".repeat(110) + "0" + "]".repeat(110)).ok).toBe(false);
+  expect(xmlToJsonText("<!--a-->".repeat(110) + "<a/>").ok).toBe(false);
+});

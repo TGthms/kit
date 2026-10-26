@@ -1,5 +1,5 @@
-import { describe, expect, it } from "vitest";
-import { canBacktrackUnboundedly, REGEX_WORKER_SOURCE, replaceRegexAsync, runRegex, runRegexAsync } from "./regex";
+import { afterEach, describe, expect, it, vi } from "vitest";
+import { REGEX_WORKER_SOURCE, replaceRegexAsync, runRegex, runRegexAsync } from "./regex";
 
 describe("empty Unicode matches", () => {
   it.each(["gu", "guy"])("advances by code point with %s", (flags) => {
@@ -18,25 +18,11 @@ describe("empty Unicode matches", () => {
   });
 });
 
-describe("canBacktrackUnboundedly", () => {
-  it("flags a quantified group whose body can vary in length", () => {
-    for (const pattern of ["(a+)+", "(a*)*", "(a?)?", "(\\d+)+", "([a-z]+)*", "(\\d{2,})+", "(a+)+$"]) {
-      expect(canBacktrackUnboundedly(pattern), pattern).toBe(true);
-    }
-  });
-
-  it("leaves patterns that consume a fixed amount per step alone", () => {
-    for (const pattern of ["(\\d+)-(\\d+)", "(a|b)+", "(foo)+", "(?:ab)+", "(foo){2,4}", "abc", "[a-z]+"]) {
-      expect(canBacktrackUnboundedly(pattern), pattern).toBe(false);
-    }
-  });
-});
-
 describe("main-thread fallback", () => {
-  it("still answers ordinary patterns without a worker", async () => {
+  it("reports worker unavailability instead of evaluating on the UI thread", async () => {
     const result = await runRegexAsync("a+", "g", "aaa b aa");
-    expect(result.ok).toBe(true);
-    expect(result.ok && result.matches.map((m) => m.text)).toEqual(["aaa", "aa"]);
+    expect(result.ok).toBe(false);
+    expect(!result.ok && result.error).toMatch(/background worker/);
   });
 
   it("refuses a pattern that could backtrack without bound", async () => {
@@ -53,4 +39,40 @@ describe("main-thread fallback", () => {
   it("keeps the synchronous path available for callers that want it", () => {
     expect(runRegex("a+", "g", "aaa").ok).toBe(true);
   });
+});
+
+class FakeWorker {
+  static instances: FakeWorker[] = [];
+  onmessage: ((event: { data: unknown }) => void) | null = null;
+  onerror: (() => void) | null = null;
+  postMessage() {}
+  terminate = vi.fn();
+  constructor() { FakeWorker.instances.push(this); }
+}
+afterEach(() => { vi.useRealTimers(); vi.unstubAllGlobals(); vi.restoreAllMocks(); });
+
+it("settles every queued job when a runaway pattern kills their worker and permits retry", async () => {
+  vi.useFakeTimers();
+  vi.stubGlobal("Worker", FakeWorker);
+  vi.spyOn(URL, "createObjectURL").mockReturnValue("blob:regex");
+  vi.spyOn(URL, "revokeObjectURL").mockImplementation(() => {});
+  const first = runRegexAsync("a+", "g", "aaa");
+  const second = runRegexAsync("b+", "g", "bbb");
+  await vi.advanceTimersByTimeAsync(1500);
+  expect((await first).ok).toBe(false);
+  expect((await second).ok).toBe(false);
+  expect(vi.getTimerCount()).toBe(0);
+  const retry = runRegexAsync("c+", "g", "ccc");
+  expect(FakeWorker.instances).toHaveLength(2);
+  FakeWorker.instances[1].onerror?.();
+  expect((await retry).ok).toBe(false);
+});
+
+it("releases its blob when worker construction is blocked and rejects patterns heuristics miss", async () => {
+  vi.stubGlobal("Worker", class { constructor() { throw new Error("Blocked"); } });
+  vi.spyOn(URL, "createObjectURL").mockReturnValue("blob:blocked");
+  const revoke = vi.spyOn(URL, "revokeObjectURL").mockImplementation(() => {});
+  const reply = await runRegexAsync("(a|aa)+$", "g", "a".repeat(100) + "!");
+  expect(reply.ok).toBe(false);
+  expect(revoke).toHaveBeenCalledWith("blob:blocked");
 });

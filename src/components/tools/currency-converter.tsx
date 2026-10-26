@@ -180,6 +180,7 @@ export function CurrencyConverter({ namespace = "tools.currency-converter" }: { 
     let active = true;
     const cached = readCurrencyCache();
     if (base === quote) {
+      void Promise.resolve().then(() => { if (active) setLoading(false); });
       return () => {
         active = false;
       };
@@ -194,6 +195,7 @@ export function CurrencyConverter({ namespace = "tools.currency-converter" }: { 
     lastRefreshToken.current = refreshToken;
     const existing = findCachedRate(cached, base, quote);
     if (!forced && existing && !isCachedRateStale(existing.record)) {
+      void Promise.resolve().then(() => { if (active) setLoading(false); });
       return () => {
         active = false;
       };
@@ -201,7 +203,9 @@ export function CurrencyConverter({ namespace = "tools.currency-converter" }: { 
     void Promise.resolve().then(() => {
       if (active) setLoading(true);
     });
-    fetchFrankfurterRates({ base, symbols: [quote] })
+    const controller = new AbortController();
+    const timeout = window.setTimeout(() => controller.abort(new Error("Rate service timed out. Try refreshing rates.")), 15_000);
+    fetchFrankfurterRates({ base, symbols: [quote], signal: controller.signal })
       .then((fetched) => {
         if (!active) return;
         // A recovered fetch must retire the previous failure message.
@@ -219,10 +223,13 @@ export function CurrencyConverter({ namespace = "tools.currency-converter" }: { 
         }
       })
       .finally(() => {
+        window.clearTimeout(timeout);
         if (active) setLoading(false);
       });
     return () => {
       active = false;
+      window.clearTimeout(timeout);
+      controller.abort();
     };
   }, [base, quote, refreshToken]);
 

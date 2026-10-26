@@ -1,6 +1,6 @@
 // @vitest-environment jsdom
 
-import { beforeEach, describe, expect, it } from "vitest";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import { previousRecentPath, recordRecentPath, startRecentSession } from "./recent";
 
 describe("recent path stack", () => {
@@ -60,4 +60,14 @@ describe("recent path stack", () => {
     recordRecentPath("");
     expect(previousRecentPath()).toBeNull();
   });
+});
+
+
+it("keeps navigation usable when sessionStorage access itself is denied", () => {
+  const denied = vi.spyOn(window, "sessionStorage", "get").mockImplementation(() => { throw new DOMException("Denied", "SecurityError"); });
+  try {
+    expect(() => startRecentSession("/home")).not.toThrow();
+    expect(() => recordRecentPath("/tools/random-generator")).not.toThrow();
+    expect(previousRecentPath()).toBeNull();
+  } finally { denied.mockRestore(); }
 });

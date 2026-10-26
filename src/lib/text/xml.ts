@@ -1,3 +1,5 @@
+import { assertTextBudget, assertJsonBudget, MAX_JSON_DEPTH, parseToolJson } from "./budget";
+
 export type XmlNode = {
   name: string;
   attributes: Record<string, string>;
@@ -63,14 +65,15 @@ function parseAttributes(raw: string): Record<string, string> {
   return attrs;
 }
 
-function parseNode(input: string, start: number): { node: XmlNode; next: number } {
+function parseNode(input: string, start: number, depth = 0): { node: XmlNode; next: number } {
+  if (depth > MAX_JSON_DEPTH) throw new RangeError("XML is too deeply nested for this tool.");
   let i = skipWs(input, start);
   if (input[i] !== "<") throw new Error(`Expected '<' at ${i}`);
   i++;
   if (input.startsWith("!--", i)) {
     const end = input.indexOf("-->", i);
     if (end < 0) throw new Error("Unterminated comment");
-    return parseNode(input, end + 3);
+    return parseNode(input, end + 3, depth + 1);
   }
   if (input.startsWith("![CDATA[", i)) {
     throw new Error("CDATA must be inside an element");
@@ -78,7 +81,7 @@ function parseNode(input: string, start: number): { node: XmlNode; next: number 
   if (input[i] === "?") {
     const end = input.indexOf("?>", i);
     if (end < 0) throw new Error("Unterminated processing instruction");
-    return parseNode(input, end + 2);
+    return parseNode(input, end + 2, depth + 1);
   }
   if (input[i] === "!") {
     // A DOCTYPE with an internal subset (`<!DOCTYPE foo [ ... ]>`) can
@@ -98,7 +101,7 @@ function parseNode(input: string, start: number): { node: XmlNode; next: number 
       }
     }
     if (end < 0) throw new Error("Unterminated declaration");
-    return parseNode(input, end + 1);
+    return parseNode(input, end + 1, depth + 1);
   }
 
   const nameMatch = input.slice(i).match(/^[/]?[A-Za-z_:][\w:.-]*/);
@@ -154,7 +157,7 @@ function parseNode(input: string, start: number): { node: XmlNode; next: number 
       continue;
     }
     if (input[i] === "<") {
-      const child = parseNode(input, i);
+      const child = parseNode(input, i, depth + 1);
       node.children.push(child.node);
       i = child.next;
     } else {
@@ -169,6 +172,7 @@ function parseNode(input: string, start: number): { node: XmlNode; next: number 
 }
 
 export function parseXml(input: string): XmlNode {
+  assertTextBudget(input);
   const trimmed = input.trim();
   if (!trimmed) throw new Error("Empty XML");
   const { node } = parseNode(trimmed, 0);
@@ -206,6 +210,7 @@ function nodeToJson(node: XmlNode): unknown {
 }
 
 export function jsonToXml(value: unknown, rootName = "root"): string {
+  assertJsonBudget(value);
   return serializeNode(valueToNode(rootName, value), 0) + "\n";
 }
 
@@ -271,7 +276,7 @@ export function jsonToXmlText(
   rootName = "root"
 ): { ok: true; text: string } | { ok: false; error: string } {
   try {
-    const data = JSON.parse(input);
+    const data = parseToolJson(input);
     return { ok: true, text: jsonToXml(data, rootName) };
   } catch (e) {
     return { ok: false, error: e instanceof Error ? e.message : String(e) };
