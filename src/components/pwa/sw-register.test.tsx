@@ -2,6 +2,7 @@
 import { act, cleanup, render, waitFor } from "@testing-library/react";
 import { afterEach, beforeEach, expect, it, vi } from "vitest";
 import en from "../../../messages/en.json";
+import { OFFER_UPDATE_EVENT } from "@/lib/pwa/update-notice";
 import { ServiceWorkerRegister } from "./sw-register";
 
 const { notify, updateApp } = vi.hoisted(() => ({ notify: Object.assign(vi.fn(), { dismiss: vi.fn(), loading: vi.fn(), error: vi.fn() }), updateApp: vi.fn() }));
@@ -103,4 +104,18 @@ it("does not throttle a reconnect check after an earlier update request failed",
   act(() => { window.dispatchEvent(new Event("online")); });
   await act(async () => { await vi.advanceTimersByTimeAsync(4000); });
   expect(update).toHaveBeenCalledTimes(2);
+});
+
+
+it("lets Settings reopen the existing update action and cleans up its listener", async () => {
+  workerRegistration(new EventTarget());
+  const view = render(<ServiceWorkerRegister />);
+  await waitFor(() => expect(notify).toHaveBeenCalledOnce());
+  notify.mockClear();
+  act(() => { window.dispatchEvent(new Event(OFFER_UPDATE_EVENT)); });
+  expect(notify).toHaveBeenCalledOnce();
+  expect(notify.mock.calls[0][1].action.label).toBe(en.settings.reviewUpdate);
+  view.unmount(); notify.mockClear();
+  window.dispatchEvent(new Event(OFFER_UPDATE_EVENT));
+  expect(notify).not.toHaveBeenCalled();
 });

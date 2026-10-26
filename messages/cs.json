@@ -538,7 +538,13 @@
     "installIos": "V Safari otevři Sdílet a vyber Přidat na plochu.",
     "installMac": "V Safari vyber Soubor → Přidat do Docku.",
     "installBrowser": "V nabídce prohlížeče hledej Nainstalovat Kit nebo Nainstalovat aplikaci, pokud je tato možnost dostupná.",
-    "installFailed": "Instalaci se nepodařilo otevřít. Zkus nabídku prohlížeče."
+    "installFailed": "Instalaci se nepodařilo otevřít. Zkus nabídku prohlížeče.",
+    "checkUpdates": "Zkontrolovat aktualizace",
+    "updateCurrent": "Kit je aktuální.",
+    "updateChecking": "Kontrola aktualizací…",
+    "updatePreparing": "Připravuje se aktualizace. Kit vás upozorní, až bude připravena.",
+    "updateCheckFailed": "Aktualizace se nepodařilo zkontrolovat. Zkontrolujte připojení a zkuste to znovu.",
+    "updateCheckUnavailable": "Kontrola aktualizací zde není dostupná. Otevřete nainstalovanou aplikaci nebo oficiální web Kitu."
   },
   "shortcuts": {
     "title": "Klávesové zkratky",

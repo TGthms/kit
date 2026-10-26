@@ -538,7 +538,13 @@
     "installIos": "在 Safari 中開啟「分享」，然後選擇「加入主畫面」。",
     "installMac": "在 Safari 中選擇「檔案」→「加入 Dock」。",
     "installBrowser": "如果瀏覽器支援，請在選單中尋找「安裝 Kit」或「安裝應用程式」。",
-    "installFailed": "無法開啟安裝提示。請嘗試使用瀏覽器的安裝選單。"
+    "installFailed": "無法開啟安裝提示。請嘗試使用瀏覽器的安裝選單。",
+    "checkUpdates": "檢查更新",
+    "updateCurrent": "Kit 已是最新版本。",
+    "updateChecking": "正在檢查更新…",
+    "updatePreparing": "正在準備更新，準備就緒後 Kit 會通知你。",
+    "updateCheckFailed": "無法檢查更新，請檢查網路連線後重試。",
+    "updateCheckUnavailable": "此處無法檢查更新，請開啟已安裝的 App 或 Kit 官方網站。"
   },
   "shortcuts": {
     "title": "键盤快捷键",

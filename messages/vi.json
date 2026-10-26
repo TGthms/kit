@@ -538,7 +538,13 @@
     "installIos": "Trong Safari, mở Chia sẻ rồi chọn Thêm vào Màn hình chính.",
     "installMac": "Trong Safari, chọn Tệp → Thêm vào Dock.",
     "installBrowser": "Tìm Cài đặt Kit hoặc Cài đặt ứng dụng trong menu trình duyệt, nếu có.",
-    "installFailed": "Không mở được hộp thoại cài đặt. Hãy thử từ menu trình duyệt."
+    "installFailed": "Không mở được hộp thoại cài đặt. Hãy thử từ menu trình duyệt.",
+    "checkUpdates": "Kiểm tra bản cập nhật",
+    "updateCurrent": "Kit đã được cập nhật.",
+    "updateChecking": "Đang kiểm tra bản cập nhật…",
+    "updatePreparing": "Đang chuẩn bị bản cập nhật. Kit sẽ thông báo khi sẵn sàng.",
+    "updateCheckFailed": "Không thể kiểm tra bản cập nhật. Hãy kiểm tra kết nối và thử lại.",
+    "updateCheckUnavailable": "Không thể kiểm tra bản cập nhật ở đây. Hãy mở ứng dụng đã cài hoặc trang chính thức của Kit."
   },
   "shortcuts": {
     "title": "Phím tắt",

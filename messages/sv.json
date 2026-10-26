@@ -538,7 +538,13 @@
     "installIos": "Öppna Dela i Safari och välj Lägg till på hemskärmen.",
     "installMac": "Välj Arkiv → Lägg till i Dock i Safari.",
     "installBrowser": "Leta efter Installera Kit eller Installera app i webbläsarmenyn, om det finns.",
-    "installFailed": "Installationen kunde inte öppnas. Försök via webbläsarmenyn."
+    "installFailed": "Installationen kunde inte öppnas. Försök via webbläsarmenyn.",
+    "checkUpdates": "Sök efter uppdateringar",
+    "updateCurrent": "Kit är uppdaterat.",
+    "updateChecking": "Söker efter uppdateringar…",
+    "updatePreparing": "En uppdatering förbereds. Kit meddelar dig när den är klar.",
+    "updateCheckFailed": "Kunde inte söka efter uppdateringar. Kontrollera anslutningen och försök igen.",
+    "updateCheckUnavailable": "Uppdateringar kan inte kontrolleras här. Öppna den installerade appen eller Kits officiella webbplats."
   },
   "shortcuts": {
     "title": "Kortkommandon",

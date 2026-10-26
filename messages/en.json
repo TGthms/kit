@@ -538,7 +538,13 @@
     "installIos": "In Safari, open Share, then choose Add to Home Screen.",
     "installMac": "In Safari, choose File → Add to Dock.",
     "installBrowser": "Look for Install Kit or Install app in your browser’s menu, if available.",
-    "installFailed": "The install prompt couldn’t open. Try your browser’s install menu."
+    "installFailed": "The install prompt couldn’t open. Try your browser’s install menu.",
+    "checkUpdates": "Check for updates",
+    "updateCurrent": "Kit is up to date.",
+    "updateChecking": "Checking for updates…",
+    "updatePreparing": "An update is preparing. Kit will notify you when it’s ready.",
+    "updateCheckFailed": "Couldn’t check for updates. Check your connection and try again.",
+    "updateCheckUnavailable": "Update checking is unavailable here. Open the installed app or Kit’s production site."
   },
   "shortcuts": {
     "title": "Keyboard shortcuts",

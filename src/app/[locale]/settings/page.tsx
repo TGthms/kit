@@ -11,7 +11,7 @@ import { SegmentedControl } from "@/components/ui/segmented-control";
 import { useHistoryStore } from "@/stores/history-store";
 import { Switch } from "@/components/ui/switch";
 import { rememberThemeChoice } from "@/lib/theme/resolve";
-import { APP_VERSION } from "@/lib/version";
+import { CheckUpdates } from "@/components/settings/check-updates";
 import { useHydrated } from "@/lib/react/hydrated";
 import { runCircularThemeTransition } from "@/lib/theme/circular-transition";
 import { ChevronRight } from "lucide-react";
@@ -152,9 +152,7 @@ export default function SettingsPage() {
 
       {/* The release the visitor is running, kept on its own at the foot of the
           page so it can be read out when something needs looking up. */}
-      <p className="pb-4 text-center type-caption text-muted-foreground">
-        {t("version")} {APP_VERSION}
-      </p>
+      <CheckUpdates />
     </div>
   );
 }

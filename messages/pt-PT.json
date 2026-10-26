@@ -538,7 +538,13 @@
     "installIos": "No Safari, abra Partilhar e escolha Adicionar ao ecrã principal.",
     "installMac": "No Safari, escolha Ficheiro → Adicionar à Dock.",
     "installBrowser": "Procure Instalar Kit ou Instalar aplicação no menu do navegador, se disponível.",
-    "installFailed": "Não foi possível abrir a instalação. Tente pelo menu do navegador."
+    "installFailed": "Não foi possível abrir a instalação. Tente pelo menu do navegador.",
+    "checkUpdates": "Procurar atualizações",
+    "updateCurrent": "O Kit está atualizado.",
+    "updateChecking": "A procurar atualizações…",
+    "updatePreparing": "Está a ser preparada uma atualização. O Kit avisa quando estiver pronta.",
+    "updateCheckFailed": "Não foi possível procurar atualizações. Verifique a ligação e tente novamente.",
+    "updateCheckUnavailable": "A procura de atualizações não está disponível aqui. Abra a aplicação instalada ou o site oficial do Kit."
   },
   "shortcuts": {
     "title": "Atalhos de teclado",

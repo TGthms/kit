@@ -538,7 +538,13 @@
     "installIos": "Open in Safari Delen en kies Zet op beginscherm.",
     "installMac": "Kies in Safari Archief → Voeg toe aan Dock.",
     "installBrowser": "Zoek in het browsermenu naar Kit installeren of App installeren, indien beschikbaar.",
-    "installFailed": "De installatie kon niet worden geopend. Probeer het via het browsermenu."
+    "installFailed": "De installatie kon niet worden geopend. Probeer het via het browsermenu.",
+    "checkUpdates": "Controleren op updates",
+    "updateCurrent": "Kit is up-to-date.",
+    "updateChecking": "Controleren op updates…",
+    "updatePreparing": "Er wordt een update voorbereid. Kit laat het weten zodra deze klaar is.",
+    "updateCheckFailed": "Kon niet op updates controleren. Controleer je verbinding en probeer het opnieuw.",
+    "updateCheckUnavailable": "Hier kun je niet op updates controleren. Open de geïnstalleerde app of de officiële website van Kit."
   },
   "shortcuts": {
     "title": "Sneltoetsen",

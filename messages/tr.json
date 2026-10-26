@@ -538,7 +538,13 @@
     "installIos": "Safari’de Paylaş’ı aç, ardından Ana Ekrana Ekle’yi seç.",
     "installMac": "Safari’de Dosya → Dock’a Ekle’yi seç.",
     "installBrowser": "Varsa tarayıcı menüsünde Kit’i yükle veya Uygulamayı yükle seçeneğini ara.",
-    "installFailed": "Yükleme istemi açılamadı. Tarayıcının menüsünden dene."
+    "installFailed": "Yükleme istemi açılamadı. Tarayıcının menüsünden dene.",
+    "checkUpdates": "Güncellemeleri denetle",
+    "updateCurrent": "Kit güncel.",
+    "updateChecking": "Güncellemeler denetleniyor…",
+    "updatePreparing": "Bir güncelleme hazırlanıyor. Kit hazır olduğunda bildirecek.",
+    "updateCheckFailed": "Güncellemeler denetlenemedi. Bağlantınızı kontrol edip tekrar deneyin.",
+    "updateCheckUnavailable": "Burada güncellemeler denetlenemiyor. Yüklü uygulamayı veya Kit’in resmî sitesini açın."
   },
   "shortcuts": {
     "title": "Klavye kısayolları",

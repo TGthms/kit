@@ -1,3 +1,5 @@
+export const OFFER_UPDATE_EVENT = "kit:offer-update";
+
 /** Observe an installed update without interrupting the current tool. Each
  * waiting worker is announced once; initial installation is not an update. */
 export function observeWaitingWorker(

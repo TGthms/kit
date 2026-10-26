@@ -538,7 +538,13 @@
     "installIos": "A Safariban nyisd meg a Megosztást, majd válaszd a Főképernyőhöz adás lehetőséget.",
     "installMac": "A Safariban válaszd a Fájl → Hozzáadás a Dockhoz lehetőséget.",
     "installBrowser": "Keresd a Kit telepítése vagy az Alkalmazás telepítése lehetőséget a böngésző menüjében, ha elérhető.",
-    "installFailed": "Nem sikerült megnyitni a telepítést. Próbáld a böngésző menüjéből."
+    "installFailed": "Nem sikerült megnyitni a telepítést. Próbáld a böngésző menüjéből.",
+    "checkUpdates": "Frissítések keresése",
+    "updateCurrent": "A Kit naprakész.",
+    "updateChecking": "Frissítések keresése…",
+    "updatePreparing": "Egy frissítés előkészítése folyamatban van. A Kit értesít, amint elkészült.",
+    "updateCheckFailed": "Nem sikerült ellenőrizni a frissítéseket. Ellenőrizd a kapcsolatot, és próbáld újra.",
+    "updateCheckUnavailable": "Itt nem érhető el a frissítések keresése. Nyisd meg a telepített alkalmazást vagy a Kit hivatalos webhelyét."
   },
   "shortcuts": {
     "title": "Billentyűparancsok",

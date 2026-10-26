@@ -538,7 +538,13 @@
     "installIos": "Öffne in Safari Teilen und wähle Zum Home-Bildschirm.",
     "installMac": "Wähle in Safari Ablage → Zum Dock hinzufügen.",
     "installBrowser": "Suche im Browsermenü nach Kit installieren oder App installieren, falls verfügbar.",
-    "installFailed": "Der Installationsdialog konnte nicht geöffnet werden. Versuche es über das Browsermenü."
+    "installFailed": "Der Installationsdialog konnte nicht geöffnet werden. Versuche es über das Browsermenü.",
+    "checkUpdates": "Nach Updates suchen",
+    "updateCurrent": "Kit ist auf dem neuesten Stand.",
+    "updateChecking": "Suche nach Updates…",
+    "updatePreparing": "Ein Update wird vorbereitet. Kit benachrichtigt dich, sobald es bereit ist.",
+    "updateCheckFailed": "Updates konnten nicht geprüft werden. Prüfe deine Verbindung und versuche es erneut.",
+    "updateCheckUnavailable": "Updates können hier nicht geprüft werden. Öffne die installierte App oder die offizielle Kit-Website."
   },
   "shortcuts": {
     "title": "Tastenkürzel",

@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { toast } from "sonner";
 import { updateOfflineApp } from "@/lib/pwa/offline-worker";
-import { observeWaitingWorker } from "@/lib/pwa/update-notice";
+import { OFFER_UPDATE_EVENT, observeWaitingWorker } from "@/lib/pwa/update-notice";
 import { withBasePath } from "@/lib/base-path";
 import {
   FILL_AFTER_IDLE_MS,
@@ -71,6 +71,7 @@ export function ServiceWorkerRegister() {
         action: { label: t("reviewUpdate"), onClick: startUpdate },
       });
     };
+    window.addEventListener(OFFER_UPDATE_EVENT, offerUpdate);
     const onWorkerMessage = (event: MessageEvent) => {
       if (event.source === navigator.serviceWorker.controller && event.data?.type === "OFFLINE_UPDATE_AVAILABLE") offerUpdate();
     };
@@ -183,6 +184,7 @@ export function ServiceWorkerRegister() {
     return () => {
       disposed = true;
       stopUpdateNotice();
+      window.removeEventListener(OFFER_UPDATE_EVENT, offerUpdate);
       navigator.serviceWorker.removeEventListener("message", onWorkerMessage);
       toast.dismiss("kit-update-ready");
       window.clearTimeout(visibleTimer);

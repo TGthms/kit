@@ -538,7 +538,13 @@
     "installIos": "在 Safari 中打开“分享”，然后选择“添加到主屏幕”。",
     "installMac": "在 Safari 中选择“文件”→“添加到程序坞”。",
     "installBrowser": "如果浏览器支持，请在菜单中查找“安装 Kit”或“安装应用”。",
-    "installFailed": "无法打开安装提示。请尝试使用浏览器的安装菜单。"
+    "installFailed": "无法打开安装提示。请尝试使用浏览器的安装菜单。",
+    "checkUpdates": "检查更新",
+    "updateCurrent": "Kit 已是最新版本。",
+    "updateChecking": "正在检查更新…",
+    "updatePreparing": "正在准备更新，准备就绪后 Kit 会通知你。",
+    "updateCheckFailed": "无法检查更新，请检查网络连接后重试。",
+    "updateCheckUnavailable": "此处无法检查更新，请打开已安装的应用或 Kit 官方网站。"
   },
   "shortcuts": {
     "title": "键盘快捷键",

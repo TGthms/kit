@@ -538,7 +538,13 @@
     "installIos": "Avaa Safarissa Jaa ja valitse Lisää Koti-valikkoon.",
     "installMac": "Valitse Safarissa Arkisto → Lisää Dockiin.",
     "installBrowser": "Etsi selaimen valikosta Asenna Kit tai Asenna sovellus, jos se on saatavilla.",
-    "installFailed": "Asennusta ei voitu avata. Kokeile selaimen valikkoa."
+    "installFailed": "Asennusta ei voitu avata. Kokeile selaimen valikkoa.",
+    "checkUpdates": "Tarkista päivitykset",
+    "updateCurrent": "Kit on ajan tasalla.",
+    "updateChecking": "Tarkistetaan päivityksiä…",
+    "updatePreparing": "Päivitystä valmistellaan. Kit ilmoittaa, kun se on valmis.",
+    "updateCheckFailed": "Päivityksiä ei voitu tarkistaa. Tarkista yhteys ja yritä uudelleen.",
+    "updateCheckUnavailable": "Päivitysten tarkistus ei ole käytettävissä täällä. Avaa asennettu sovellus tai Kitin virallinen sivusto."
   },
   "shortcuts": {
     "title": "Pikanäppäimet",

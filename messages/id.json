@@ -538,7 +538,13 @@
     "installIos": "Di Safari, buka Bagikan, lalu pilih Tambahkan ke Layar Utama.",
     "installMac": "Di Safari, pilih File → Tambahkan ke Dock.",
     "installBrowser": "Cari Instal Kit atau Instal aplikasi di menu browser, jika tersedia.",
-    "installFailed": "Dialog instalasi tidak bisa dibuka. Coba melalui menu browser."
+    "installFailed": "Dialog instalasi tidak bisa dibuka. Coba melalui menu browser.",
+    "checkUpdates": "Periksa pembaruan",
+    "updateCurrent": "Kit sudah versi terbaru.",
+    "updateChecking": "Memeriksa pembaruan…",
+    "updatePreparing": "Pembaruan sedang disiapkan. Kit akan memberi tahu saat sudah siap.",
+    "updateCheckFailed": "Tidak dapat memeriksa pembaruan. Periksa koneksi dan coba lagi.",
+    "updateCheckUnavailable": "Pemeriksaan pembaruan tidak tersedia di sini. Buka aplikasi terinstal atau situs resmi Kit."
   },
   "shortcuts": {
     "title": "Pintasan papan ketik",

@@ -538,7 +538,13 @@
     "installIos": "În Safari, deschide Partajare, apoi alege Adăugați la ecranul principal.",
     "installMac": "În Safari, alege Fișier → Adaugă în Dock.",
     "installBrowser": "Caută Instalează Kit sau Instalează aplicația în meniul browserului, dacă opțiunea există.",
-    "installFailed": "Instalarea nu s-a putut deschide. Încearcă din meniul browserului."
+    "installFailed": "Instalarea nu s-a putut deschide. Încearcă din meniul browserului.",
+    "checkUpdates": "Caută actualizări",
+    "updateCurrent": "Kit este actualizat.",
+    "updateChecking": "Se caută actualizări…",
+    "updatePreparing": "Se pregătește o actualizare. Kit te va anunța când este gata.",
+    "updateCheckFailed": "Nu s-au putut căuta actualizări. Verifică conexiunea și încearcă din nou.",
+    "updateCheckUnavailable": "Căutarea actualizărilor nu este disponibilă aici. Deschide aplicația instalată sau site-ul oficial Kit."
   },
   "shortcuts": {
     "title": "Scurtături de tastatură",

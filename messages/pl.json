@@ -538,7 +538,13 @@
     "installIos": "W Safari otwórz Udostępnij i wybierz Do ekranu początkowego.",
     "installMac": "W Safari wybierz Plik → Dodaj do Docka.",
     "installBrowser": "Poszukaj opcji Zainstaluj Kit lub Zainstaluj aplikację w menu przeglądarki, jeśli jest dostępna.",
-    "installFailed": "Nie udało się otworzyć instalacji. Spróbuj przez menu przeglądarki."
+    "installFailed": "Nie udało się otworzyć instalacji. Spróbuj przez menu przeglądarki.",
+    "checkUpdates": "Sprawdź aktualizacje",
+    "updateCurrent": "Kit jest aktualny.",
+    "updateChecking": "Sprawdzanie aktualizacji…",
+    "updatePreparing": "Trwa przygotowywanie aktualizacji. Kit powiadomi Cię, gdy będzie gotowa.",
+    "updateCheckFailed": "Nie udało się sprawdzić aktualizacji. Sprawdź połączenie i spróbuj ponownie.",
+    "updateCheckUnavailable": "Sprawdzanie aktualizacji jest tutaj niedostępne. Otwórz zainstalowaną aplikację lub oficjalną stronę Kit."
   },
   "shortcuts": {
     "title": "Skróty klawiszowe",

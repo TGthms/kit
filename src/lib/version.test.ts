@@ -7,6 +7,7 @@ import { APP_VERSION } from "./version";
 const here = dirname(fileURLToPath(import.meta.url));
 const pkg = JSON.parse(readFileSync(join(here, "../../package.json"), "utf8")) as { version: string };
 const settingsPage = readFileSync(join(here, "../app/[locale]/settings/page.tsx"), "utf8");
+const settingsFooter = readFileSync(join(here, "../components/settings/check-updates.tsx"), "utf8");
 
 describe("app version", () => {
   it("is a plain three-part release number", () => {
@@ -18,8 +19,10 @@ describe("app version", () => {
   });
 
   it("is the only copy of the number Settings shows", () => {
-    expect(settingsPage).toContain("{APP_VERSION}");
+    expect(settingsPage).toContain("<CheckUpdates />");
+    expect(settingsFooter).toContain("{APP_VERSION}");
     /* A second copy typed into the page would go stale on the next release. */
     expect(settingsPage).not.toMatch(/\b\d+\.\d+\.\d+\b/);
+    expect(settingsFooter).not.toMatch(/\b\d+\.\d+\.\d+\b/);
   });
 });

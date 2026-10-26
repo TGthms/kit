@@ -538,7 +538,13 @@
     "installIos": "In Safari, apri Condividi e scegli Aggiungi alla schermata Home.",
     "installMac": "In Safari, scegli File → Aggiungi al Dock.",
     "installBrowser": "Cerca Installa Kit o Installa app nel menu del browser, se disponibile.",
-    "installFailed": "Impossibile aprire l’installazione. Prova dal menu del browser."
+    "installFailed": "Impossibile aprire l’installazione. Prova dal menu del browser.",
+    "checkUpdates": "Cerca aggiornamenti",
+    "updateCurrent": "Kit è aggiornato.",
+    "updateChecking": "Ricerca aggiornamenti…",
+    "updatePreparing": "Un aggiornamento è in preparazione. Kit ti avviserà quando sarà pronto.",
+    "updateCheckFailed": "Impossibile cercare aggiornamenti. Controlla la connessione e riprova.",
+    "updateCheckUnavailable": "La ricerca di aggiornamenti non è disponibile qui. Apri l’app installata o il sito ufficiale di Kit."
   },
   "shortcuts": {
     "title": "Scorciatoie da tastiera",

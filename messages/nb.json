@@ -538,7 +538,13 @@
     "installIos": "Åpne Del i Safari og velg Legg til på Hjem-skjerm.",
     "installMac": "Velg Arkiv → Legg til i Dock i Safari.",
     "installBrowser": "Se etter Installer Kit eller Installer app i nettlesermenyen, hvis tilgjengelig.",
-    "installFailed": "Installasjonen kunne ikke åpnes. Prøv via nettlesermenyen."
+    "installFailed": "Installasjonen kunne ikke åpnes. Prøv via nettlesermenyen.",
+    "checkUpdates": "Se etter oppdateringer",
+    "updateCurrent": "Kit er oppdatert.",
+    "updateChecking": "Ser etter oppdateringer…",
+    "updatePreparing": "En oppdatering klargjøres. Kit gir beskjed når den er klar.",
+    "updateCheckFailed": "Kunne ikke se etter oppdateringer. Sjekk tilkoblingen og prøv igjen.",
+    "updateCheckUnavailable": "Oppdateringer kan ikke sjekkes her. Åpne den installerte appen eller Kits offisielle nettsted."
   },
   "shortcuts": {
     "title": "Tastatursnarveier",

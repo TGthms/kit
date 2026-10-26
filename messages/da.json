@@ -538,7 +538,13 @@
     "installIos": "Åbn Del i Safari, og vælg Føj til hjemmeskærm.",
     "installMac": "Vælg Arkiv → Føj til Dock i Safari.",
     "installBrowser": "Se efter Installer Kit eller Installer app i browsermenuen, hvis det er tilgængeligt.",
-    "installFailed": "Installationen kunne ikke åbnes. Prøv via browsermenuen."
+    "installFailed": "Installationen kunne ikke åbnes. Prøv via browsermenuen.",
+    "checkUpdates": "Søg efter opdateringer",
+    "updateCurrent": "Kit er opdateret.",
+    "updateChecking": "Søger efter opdateringer…",
+    "updatePreparing": "En opdatering forberedes. Kit giver besked, når den er klar.",
+    "updateCheckFailed": "Kunne ikke søge efter opdateringer. Tjek forbindelsen, og prøv igen.",
+    "updateCheckUnavailable": "Opdateringer kan ikke kontrolleres her. Åbn den installerede app eller Kits officielle websted."
   },
   "shortcuts": {
     "title": "Tastaturgenveje",

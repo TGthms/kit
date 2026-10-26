@@ -538,7 +538,13 @@
     "installIos": "Safariで「共有」を開き、「ホーム画面に追加」を選びます。",
     "installMac": "Safariで「ファイル」→「Dockに追加」を選びます。",
     "installBrowser": "ブラウザのメニューに「Kitをインストール」や「アプリをインストール」があれば選んでください。",
-    "installFailed": "インストール画面を開けませんでした。ブラウザのメニューからお試しください。"
+    "installFailed": "インストール画面を開けませんでした。ブラウザのメニューからお試しください。",
+    "checkUpdates": "アップデートを確認",
+    "updateCurrent": "Kit は最新です。",
+    "updateChecking": "アップデートを確認中…",
+    "updatePreparing": "アップデートを準備中です。準備ができたら Kit からお知らせします。",
+    "updateCheckFailed": "アップデートを確認できませんでした。接続を確認して再試行してください。",
+    "updateCheckUnavailable": "ここではアップデートを確認できません。インストール済みのアプリか Kit の公式サイトを開いてください。"
   },
   "shortcuts": {
     "title": "キーボードショートカット",

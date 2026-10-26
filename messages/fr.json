@@ -538,7 +538,13 @@
     "installIos": "Dans Safari, ouvrez Partager, puis choisissez Sur l’écran d’accueil.",
     "installMac": "Dans Safari, choisissez Fichier → Ajouter au Dock.",
     "installBrowser": "Cherchez Installer Kit ou Installer l’application dans le menu de votre navigateur, si proposé.",
-    "installFailed": "L’installation n’a pas pu s’ouvrir. Essayez depuis le menu du navigateur."
+    "installFailed": "L’installation n’a pas pu s’ouvrir. Essayez depuis le menu du navigateur.",
+    "checkUpdates": "Rechercher des mises à jour",
+    "updateCurrent": "Kit est à jour.",
+    "updateChecking": "Recherche de mises à jour…",
+    "updatePreparing": "Une mise à jour se prépare. Kit vous préviendra dès qu’elle sera prête.",
+    "updateCheckFailed": "Impossible de rechercher les mises à jour. Vérifiez votre connexion et réessayez.",
+    "updateCheckUnavailable": "La recherche de mises à jour est indisponible ici. Ouvrez l’application installée ou le site officiel de Kit."
   },
   "shortcuts": {
     "title": "Raccourcis clavier",
