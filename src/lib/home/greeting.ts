@@ -8,8 +8,6 @@
  *   home.subtitleFacts.{factN|kitN|prodN|periodN}
  *   home.subtitleObservance.{key} plus `{key}2` / `{key}3`
  *
- * Good Friday’s verse is NOT in catalogs. See `verses.ts` (WEB, untranslated).
- *
  * To add an observance later:
  *   1. Append a rule to OBSERVANCE_RULES and the key to OBSERVANCE_KEYS
  *   2. Add English occasionLabel, observance, and subtitleObservance strings
@@ -19,13 +17,11 @@
  *   1. Append the key to GREETING_PERIOD_KEYS
  *   2. Add copy in every catalog
  *
- * Christian observances (Christmas, Holy Week, Easter) are skipped for
- * `ar` / `he` / `hi`. Chinese (`zh`, `zh-Hans`, `zh-Hant`) is included.
+ * Observance greetings are a user preference; the locale is not used to infer beliefs.
  *
  * Distinct later variants must not recycle extra1–3.
  */
 import { subtitleMotionFor, type SubtitleMotion } from "@/lib/home/subtitle-motion";
-import { GOOD_FRIDAY_VERSE_ID, type WebVerseId } from "@/lib/home/verses";
 
 export type GreetingPeriod = "morning" | "afternoon" | "evening" | "night";
 
@@ -38,9 +34,7 @@ export const GREETING_PERIOD_BOUNDS = {
 } as const;
 export type GreetingCategory = "timeOfDay" | "weekend" | "productivity" | "kit" | "privacy";
 
-export type GreetingSubtitle =
-  | { kind: "i18n"; key: string }
-  | { kind: "verse"; id: WebVerseId };
+export type GreetingSubtitle = { kind: "i18n"; key: string };
 
 export type HomeGreetingSelection = {
   greetingKey: string;
@@ -118,20 +112,21 @@ export const SUBTITLE_FACT_KEYS = [
   "night1", "night2", "night3",
 ] as const;
 
-/** Kit-knowledge subs (privacy, browser-only, files stay). */
+/** A mix of practical Kit details and everyday task copy. */
 export const KIT_SUBTITLE_KEYS = [
-  "subtitleFacts.kit1",
-  "subtitleFacts.kit2",
-  "subtitleFacts.kit3",
   "subtitleFacts.kit4",
   "subtitleFacts.kit5",
-  "subtitleFacts.kit6",
   "subtitleFacts.kit7",
-  "subtitleFacts.kit8",
-  "subtitleFacts.fact2",
-  "subtitleFacts.fact4",
-  "subtitleFacts.fact6",
-  "subtitleFacts.fact7",
+  "subtitleFacts.fact1",
+  "subtitleFacts.fact3",
+  "subtitleFacts.fact5",
+  "subtitleFacts.fact8",
+  "subtitleFacts.prod1",
+  "subtitleFacts.prod2",
+  "subtitleFacts.prod3",
+  "subtitleFacts.prod4",
+  "subtitleFacts.prod5",
+  "subtitleFacts.prod6",
 ] as const;
 
 /** Workflow / two-minute-win subs. */
@@ -150,12 +145,8 @@ export const PRODUCTIVITY_SUBTITLE_KEYS = [
 export const GENERAL_SUBTITLE_KEYS = [
   "subtitle",
   "subtitleFacts.fact1",
-  "subtitleFacts.fact2",
   "subtitleFacts.fact3",
-  "subtitleFacts.fact4",
   "subtitleFacts.fact5",
-  "subtitleFacts.fact6",
-  "subtitleFacts.fact7",
   "subtitleFacts.fact8",
 ] as const;
 
@@ -169,26 +160,7 @@ export const PERIOD_SUBTITLE_KEYS: Record<GreetingPeriod, readonly string[]> = {
 export const WEEKEND_SUBTITLE_KEYS = [
   ...KIT_SUBTITLE_KEYS,
   "subtitle",
-  "subtitleFacts.fact1",
-  "subtitleFacts.fact5",
 ] as const;
-
-export const CHRISTIAN_OBSERVANCE_KEYS = [
-  "christmasEve",
-  "christmas",
-  "goodFriday",
-  "palmSunday",
-  "easterMonday",
-  "easterSunday",
-] as const;
-
-const CHRISTIAN_GREETING_EXCLUDED_LANGUAGES = new Set(["ar", "he", "hi"]);
-
-/** Chinese locales are included; Arabic, Hebrew, and Hindi are not. */
-export function localeAllowsChristianGreeting(locale: string): boolean {
-  const language = locale.toLowerCase().replace(/_/g, "-").split("-")[0] ?? locale;
-  return !CHRISTIAN_GREETING_EXCLUDED_LANGUAGES.has(language);
-}
 
 export const OBSERVANCE_KEYS = [
   "newYear",
@@ -335,15 +307,15 @@ function getChristianObservanceKey(date: Date): string | null {
   return null;
 }
 
-function isChristianObservanceKey(key: string): boolean {
-  return (CHRISTIAN_OBSERVANCE_KEYS as readonly string[]).includes(key);
-}
-
-function pickObservanceKey(date: Date, locale: string, skipOccasionKeys: readonly string[] = []): string | null {
+function pickObservanceKey(
+  date: Date,
+  skipOccasionKeys: readonly string[] = [],
+  includeObservances = true,
+): string | null {
+  if (!includeObservances) return null;
   const candidate = getChristianObservanceKey(date) ?? getObservanceKey(date);
   if (!candidate) return null;
   if (skipOccasionKeys.includes(candidate)) return null;
-  if (isChristianObservanceKey(candidate) && !localeAllowsChristianGreeting(locale)) return null;
   return candidate;
 }
 
@@ -368,16 +340,16 @@ export function subtitlePoolFor(category: GreetingCategory, period: GreetingPeri
   return [...GENERAL_SUBTITLE_KEYS, ...PERIOD_SUBTITLE_KEYS[period]];
 }
 
-/** Observance subtitles. Good Friday selection uses the WEB verse; catalogs still keep three slots. */
+/** Observance subtitles, including Good Friday, stay in the locale catalog. */
 export function observanceSubtitleKeys(occasionKey: string): readonly string[] {
   return [`subtitleObservance.${occasionKey}`, `subtitleObservance.${occasionKey}2`, `subtitleObservance.${occasionKey}3`];
 }
 
-/** Time-of-day lines plus signature extras; weekend / Monday / Friday flavor joins the pool. */
+/** Time-of-day greetings lead; a small contextual selection adds variety. */
 export function getGreetingPoolKeys(date: Date): readonly string[] {
   const period = getGreetingPeriod(date);
   const periodKeys = GREETING_PERIOD_KEYS[period];
-  const extras = ["kit", "kit2", "kit3", "productivity", "productivity2", "productivity3", "privacy", "privacy2", "privacy3"] as const;
+  const extras = ["productivity"] as const;
   const weekday = date.getDay();
   const flavor: string[] = [];
   if (weekday === 1 && period === "morning") flavor.push("monday");
@@ -390,25 +362,13 @@ export function getHomeGreetingSelection(
   date: Date,
   locale: string,
   variant: number,
-  options?: { skipOccasionKeys?: readonly string[] },
+  options?: { skipOccasionKeys?: readonly string[]; includeObservances?: boolean },
 ): HomeGreetingSelection {
   const day = getGreetingDay(date, locale);
   const period = getGreetingPeriod(date);
   const entropy = Math.abs(Math.trunc(variant));
   const subtitleEntropy = Math.abs(Math.trunc(variant * 5 + date.getDate()));
-  const observance = pickObservanceKey(date, locale, options?.skipOccasionKeys);
-
-  if (observance === "goodFriday") {
-    const greetingKey = "greeting.observance.goodFriday";
-    return {
-      greetingKey,
-      subtitle: { kind: "verse", id: GOOD_FRIDAY_VERSE_ID },
-      motion: subtitleMotionFor({ occasionKey: observance, period }),
-      occasionKey: observance,
-      category: "kit",
-      day,
-    };
-  }
+  const observance = pickObservanceKey(date, options?.skipOccasionKeys, options?.includeObservances);
 
   if (observance) {
     const greetingKey = `greeting.observance.${observance}`;

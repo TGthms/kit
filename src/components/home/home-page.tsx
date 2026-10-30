@@ -24,6 +24,7 @@ import { Input } from "@/components/ui/input";
 import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { PageHeader } from "@/components/layout/page-header";
 import { useFavoritesStore } from "@/stores/favorites-store";
+import { useGreetingPreferencesStore } from "@/stores/greeting-preferences-store";
 import { useHydrated } from "@/lib/react/hydrated";
 import { cn } from "@/lib/utils";
 import { GreetingHeadline } from "@/components/home/greeting-headline";
@@ -36,7 +37,6 @@ import { getGreetingPeriod, getGreetingPoolKeys, getGreetingVariant, getGreeting
 import { greetingSearchFromLocation, overlayGreetingDate, readGreetingPreview, virtualGreetingNow } from "@/lib/home/greeting-qa";
 import { getNewYearCardState, nextNewYearTickMs, NEW_YEAR_FIREWORKS_MS, shouldBurstNewYearFireworks, shouldPlayNewYearFireworks, type NewYearCardState } from "@/lib/home/new-year";
 import type { SubtitleMotion } from "@/lib/home/subtitle-motion";
-import { WEB_VERSES } from "@/lib/home/verses";
 
 const categoryMeta: Record<
   ToolCategory,
@@ -172,6 +172,8 @@ function HomePageInner() {
   const tcommon = useTranslations("common");
   const tt = useTranslations("tools");
   const tn = useTranslations("nav");
+  const showObservances = useGreetingPreferencesStore((state) => state.showObservances);
+  const hydrated = useHydrated();
   const pathname = usePathname();
   /* The address bar answers for the legacy `?c=` form, which is rewritten in
      place with `replaceState` and so is not visible to the router. Asking the
@@ -246,7 +248,10 @@ function HomePageInner() {
       const skip = card.phase === "hidden" ? [] : ["newYear"];
       const pool = getGreetingPoolKeys(now);
       const variant = getGreetingVariant(now, pool.length, visitSeed);
-      const selection = getHomeGreetingSelection(now, locale, variant, { skipOccasionKeys: skip });
+      const selection = getHomeGreetingSelection(now, locale, variant, {
+        skipOccasionKeys: skip,
+        includeObservances: showObservances,
+      });
       setGreeting({
         period: getGreetingPeriod(now),
         day: selection.day,
@@ -273,11 +278,10 @@ function HomePageInner() {
     updateGreeting();
     return () => window.clearTimeout(timeout);
     // eslint-disable-next-line react-hooks/exhaustive-deps -- query strings are the identity; preview objects are new each render
-  }, [greetingDateParam, greetingSeedParam, greetingTimeParam, locale]);
+  }, [greetingDateParam, greetingSeedParam, greetingTimeParam, locale, showObservances]);
 
   // Rehydrated favorites may differ from the server-rendered ids:[] — gating
   // on useHydrated keeps the first client render identical to the SSR tree.
-  const hydrated = useHydrated();
   const storedFavIds = useFavoritesStore((s) => s.ids);
   const favIds = hydrated ? storedFavIds : EMPTY_FAV_IDS;
   const toggle = useFavoritesStore((s) => s.toggle);
@@ -352,18 +356,11 @@ function HomePageInner() {
                 className="type-body max-w-xl text-muted-foreground"
                 motion={greeting.motion}
               >
-                {greeting.subtitle.kind === "verse" ? (
-                  <>
-                    <span>{WEB_VERSES[greeting.subtitle.id].text}</span>{" "}
-                    <cite className="not-italic text-muted-foreground/80">{WEB_VERSES[greeting.subtitle.id].citation}</cite>
-                  </>
-                ) : (
-                  <GreetingSubtitleText
-                    subtitleKey={greeting.subtitle.key}
-                    day={greeting.day}
-                    occasion={greeting.occasionKey ? t(`greeting.occasionLabel.${greeting.occasionKey}`) : ""}
-                  />
-                )}
+                <GreetingSubtitleText
+                  subtitleKey={greeting.subtitle.key}
+                  day={greeting.day}
+                  occasion={greeting.occasionKey ? t(`greeting.occasionLabel.${greeting.occasionKey}`) : ""}
+                />
               </GreetingSubtitle>
             ) : (
               <p className="type-body max-w-xl text-muted-foreground">{t("subtitle")}</p>

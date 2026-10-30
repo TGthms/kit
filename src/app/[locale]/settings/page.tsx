@@ -17,6 +17,7 @@ import { runCircularThemeTransition } from "@/lib/theme/circular-transition";
 import { ChevronRight } from "lucide-react";
 import { useAppearanceStore } from "@/stores/appearance-store";
 import { useFeedbackStore } from "@/stores/feedback-store";
+import { useGreetingPreferencesStore } from "@/stores/greeting-preferences-store";
 import { InstallApp } from "@/components/settings/install-app";
 import { ClearHistory } from "@/components/settings/clear-history";
 
@@ -33,6 +34,8 @@ export default function SettingsPage() {
   const setLiquidGlass = useAppearanceStore((state) => state.setLiquidGlass);
   const haptics = useFeedbackStore((state) => state.haptics);
   const setHaptics = useFeedbackStore((state) => state.setHaptics);
+  const showObservances = useGreetingPreferencesStore((state) => state.showObservances);
+  const setShowObservances = useGreetingPreferencesStore((state) => state.setShowObservances);
   // Painted Light/Dark. Stored intent may still be System until the user taps.
   const appearance = hydrated && resolvedTheme === "dark" ? "dark" : "light";
 
@@ -79,6 +82,24 @@ export default function SettingsPage() {
         </CardHeader>
         <CardContent>
           <LocaleSwitcher variant="settings" />
+        </CardContent>
+      </Card>
+
+      <Card className="border-border/40">
+        <CardHeader><CardTitle>{t("observanceGreetings")}</CardTitle></CardHeader>
+        <CardContent>
+          <div className="flex items-start justify-between gap-4">
+            <p id="kit-observance-greetings-description" className="type-caption text-muted-foreground">
+              {t("observanceGreetingsDesc")}
+            </p>
+            <Switch
+              checked={hydrated && showObservances}
+              disabled={!hydrated}
+              onCheckedChange={setShowObservances}
+              aria-label={t("observanceGreetings")}
+              aria-describedby="kit-observance-greetings-description"
+            />
+          </div>
         </CardContent>
       </Card>
 
