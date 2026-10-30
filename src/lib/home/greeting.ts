@@ -349,7 +349,7 @@ export function observanceSubtitleKeys(occasionKey: string): readonly string[] {
 export function getGreetingPoolKeys(date: Date): readonly string[] {
   const period = getGreetingPeriod(date);
   const periodKeys = GREETING_PERIOD_KEYS[period];
-  const extras = ["productivity"] as const;
+  const extras = ["kit", "productivity"] as const;
   const weekday = date.getDay();
   const flavor: string[] = [];
   if (weekday === 1 && period === "morning") flavor.push("monday");
