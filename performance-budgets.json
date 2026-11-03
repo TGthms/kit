@@ -1,0 +1,10 @@
+{
+  "description": "Unique HTML-referenced JS/CSS, gzip bytes. Excludes HTML, media runtimes and subsequent route/prefetch assets. Limits are ceilings, not goals. Changes require review.",
+  "routes": {
+    "en": 312000,
+    "en/settings": 370000,
+    "en/settings/offline": 300000,
+    "en/tools/function-grapher": 300000,
+    "en/tools/image-convert": 300000
+  }
+}

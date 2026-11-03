@@ -23,3 +23,24 @@ jobs:
         run: npm run lint
       - name: Test
         run: npm test
+      - name: Production export
+        run: npm run build
+      - name: Check cold offline routes and release updates
+        run: node scripts/check-offline-export.mjs
+      - name: Check startup asset budgets
+        run: npm run check:assets
+      - name: Install browser test runtimes
+        run: npx playwright install --with-deps chromium webkit
+      - name: Production browser journeys
+        env:
+          NEXT_PUBLIC_BASE_PATH: ""
+        run: npm run test:e2e
+      - name: Retain browser failure evidence
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: browser-test-evidence
+          path: |
+            playwright-report
+            test-results
+          retention-days: 7

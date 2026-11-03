@@ -52,3 +52,7 @@ __pycache__/
 # local agent scratch (not product source)
 .planning/
 CODEBASE_NOTES.md
+
+# browser test artifacts
+/playwright-report/
+/test-results/
