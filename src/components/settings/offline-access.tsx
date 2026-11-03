@@ -618,8 +618,8 @@ export function OfflineAccess() {
           <div className="flex flex-wrap items-start justify-between gap-3">
             <div><CardTitle>{t("offlineLanguages")}</CardTitle><p className="mt-1 type-caption text-muted-foreground">{t("offlineLanguagesDesc")}</p></div>
             <div className="flex gap-2">
-              <Button size="sm" variant="outline" onClick={() => setSelectedLocales([...locales])}>{tc("selectAll")}</Button>
-              <Button size="sm" variant="ghost" onClick={() => setSelectedLocales([])}>{tc("clear")}</Button>
+              <Button aria-label={`${tc("selectAll")} · ${t("offlineLanguages")}`} size="sm" variant="outline" onClick={() => setSelectedLocales([...locales])}>{tc("selectAll")}</Button>
+              <Button aria-label={`${tc("clear")} · ${t("offlineLanguages")}`} size="sm" variant="ghost" onClick={() => setSelectedLocales([])}>{tc("clear")}</Button>
             </div>
           </div>
         </CardHeader>
@@ -648,8 +648,8 @@ export function OfflineAccess() {
           <div className="flex flex-wrap items-start justify-between gap-3">
             <div><CardTitle>{t("offlinePages")}</CardTitle><p className="mt-1 type-caption text-muted-foreground">{t("offlinePagesDesc")}</p></div>
             <div className="flex gap-2">
-              <Button size="sm" variant="outline" onClick={() => setSelectedPages([...APP_PAGE_IDS])}>{tc("selectAll")}</Button>
-              <Button size="sm" variant="ghost" onClick={() => setSelectedPages([])}>{tc("clear")}</Button>
+              <Button aria-label={`${tc("selectAll")} · ${t("offlinePages")}`} size="sm" variant="outline" onClick={() => setSelectedPages([...APP_PAGE_IDS])}>{tc("selectAll")}</Button>
+              <Button aria-label={`${tc("clear")} · ${t("offlinePages")}`} size="sm" variant="ghost" onClick={() => setSelectedPages([])}>{tc("clear")}</Button>
             </div>
           </div>
         </CardHeader>
@@ -670,8 +670,8 @@ export function OfflineAccess() {
           <div className="flex flex-wrap items-start justify-between gap-3">
             <div><CardTitle>{t("offlineTools")}</CardTitle><p className="mt-1 type-caption text-muted-foreground">{t("offlineToolsDesc")}</p></div>
             <div className="flex gap-2">
-              <Button size="sm" variant="outline" onClick={() => setSelectedTools(new Set(tools.map((tool) => tool.id)))}>{tc("selectAll")}</Button>
-              <Button size="sm" variant="ghost" onClick={() => setSelectedTools(new Set())}>{tc("clear")}</Button>
+              <Button aria-label={`${tc("selectAll")} · ${t("offlineTools")}`} size="sm" variant="outline" onClick={() => setSelectedTools(new Set(tools.map((tool) => tool.id)))}>{tc("selectAll")}</Button>
+              <Button aria-label={`${tc("clear")} · ${t("offlineTools")}`} size="sm" variant="ghost" onClick={() => setSelectedTools(new Set())}>{tc("clear")}</Button>
             </div>
           </div>
         </CardHeader>
@@ -699,7 +699,7 @@ export function OfflineAccess() {
                       </span>
                     ) : null}
                   </button>
-                  <Button size="sm" variant="ghost" className="shrink-0" onClick={() => toggleCategory(category)}>{allSelected ? tc("clear") : tc("selectAll")}</Button>
+                  <Button aria-label={`${allSelected ? tc("clear") : tc("selectAll")} · ${tcat(category)}`} size="sm" variant="ghost" className="shrink-0" onClick={() => toggleCategory(category)}>{allSelected ? tc("clear") : tc("selectAll")}</Button>
                 </div>
                 {open ? (
                   <div className="grid gap-1 border-t border-border/40 p-2 sm:grid-cols-2">

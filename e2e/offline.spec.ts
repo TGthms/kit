@@ -44,7 +44,7 @@ test("cold saved math tools work offline, including after an interrupted update"
   const tools = page
     .locator("section[data-offline-picker]")
     .filter({ has: page.getByRole("heading", { name: "Tools", exact: true }) });
-  await tools.getByRole("button", { name: "Clear", exact: true }).click();
+  await tools.getByRole("button", { name: "Clear · Tools", exact: true }).click();
   await tools.getByRole("button", { name: "Math (4)", exact: true }).click();
   await tools.getByRole("checkbox", { name: /^Scientific calculator/ }).check();
   await tools.getByRole("checkbox", { name: /^Equation solver/ }).check();
@@ -53,7 +53,7 @@ test("cold saved math tools work offline, including after an interrupted update"
     .uncheck();
   await page.getByRole("button", { name: "Download", exact: true }).click();
   await expect(
-    page.getByText("Offline access is ready", { exact: true }),
+    page.getByText("Offline access is ready", { exact: true }).first(),
   ).toBeVisible({ timeout: 90000 });
   await expect(
     page.getByText("Ready for offline", { exact: true }),
