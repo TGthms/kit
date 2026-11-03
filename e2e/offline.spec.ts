@@ -39,15 +39,15 @@ test("cold saved math tools work offline, including after an interrupted update"
     .poll(() => page.evaluate(() => !!navigator.serviceWorker.controller))
     .toBe(true);
   await page
-    .getByRole("button", { name: "Customize downloads", exact: true })
+    .getByRole("button", { name: /^Customize downloads/ })
     .click();
   const tools = page
     .locator("section[data-offline-picker]")
     .filter({ has: page.getByRole("heading", { name: "Tools", exact: true }) });
   await tools.getByRole("button", { name: "Clear", exact: true }).click();
   await tools.getByRole("button", { name: "Math (4)", exact: true }).click();
-  await tools.getByLabel("Scientific calculator", { exact: true }).check();
-  await tools.getByLabel("Equation solver", { exact: true }).check();
+  await tools.getByRole("checkbox", { name: /^Scientific calculator/ }).check();
+  await tools.getByRole("checkbox", { name: /^Equation solver/ }).check();
   await page
     .getByLabel("Include large media engines", { exact: false })
     .uncheck();

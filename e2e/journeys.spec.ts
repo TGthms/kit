@@ -47,8 +47,13 @@ test("graph edits survive navigation and reload; saved graph stays separate", as
   const field = page.locator("math-field").first();
   await expect(field).toBeVisible();
   await field.click();
-  await page.keyboard.press("ControlOrMeta+A");
-  await page.keyboard.type("x^2+2");
+  // The host is contenteditable too, but MathLive receives native keyboard
+  // events through its accessible shadow textbox. Target that actual editor.
+  const editor = field.getByRole("textbox");
+  await editor.focus();
+  await expect(editor).toBeFocused();
+  await editor.press("ControlOrMeta+A");
+  await editor.pressSequentially("x^2+2");
   await expect
     .poll(() =>
       field.evaluate(

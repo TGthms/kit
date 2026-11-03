@@ -9,6 +9,7 @@ export default defineConfig({
   retries: process.env.CI ? 1 : 0,
   reporter: [["list"], ["html", { open: "never" }]],
   use: {
+    actionTimeout: 15000,
     baseURL: `http://127.0.0.1:4173${base}/`,
     trace: "retain-on-failure",
     screenshot: "only-on-failure",
