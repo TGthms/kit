@@ -27,6 +27,13 @@ test("cold saved math tools work offline, including after an interrupted update"
   request,
 }) => {
   test.setTimeout(240000);
+  await page.addInitScript(() => {
+    const failures: string[] = [];
+    (window as Window & { kitInstallFailures?: string[] }).kitInstallFailures = failures;
+    navigator.serviceWorker?.addEventListener("message", (event) => {
+      if (event.data?.type === "OFFLINE_INSTALL_ERROR") failures.push(event.data.error);
+    });
+  });
   await request.post("http://127.0.0.1:4173/__test__/release?next=0");
   await page.goto("en/settings/offline/");
   await page.evaluate(async () => {
@@ -113,7 +120,10 @@ test("cold saved math tools work offline, including after an interrupted update"
       () => page.evaluate(async () => {
         const registration = await navigator.serviceWorker.getRegistration();
         if (registration?.waiting) return "waiting";
-        return registration?.installing?.state ?? "no installing worker";
+        return JSON.stringify({
+          installing: registration?.installing?.state ?? null,
+          failures: (window as Window & { kitInstallFailures?: string[] }).kitInstallFailures,
+        });
       }),
       { timeout: 120000 },
     )

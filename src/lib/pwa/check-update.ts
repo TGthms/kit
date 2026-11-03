@@ -22,12 +22,13 @@ export function checkForAppUpdate(signal?: AbortSignal): Promise<UpdateCheck> {
       if (!registration) return "unavailable";
       // A fully staged release is still useful without a connection.
       if (registration.waiting) return "available";
-      if (registration.installing) return "preparing";
+      if (registration.installing && registration.installing.state !== "redundant") return "preparing";
       if (navigator.onLine === false) throw new Error("Offline");
       try { await registration.update(); }
       catch (error) { if (!registration.waiting) throw error; }
       signal?.throwIfAborted();
       if (registration.waiting) return "available";
+      if (registration.installing?.state === "redundant") throw new Error("Update preparation failed");
       if (registration.installing || !registration.active) return "preparing";
       return "current";
     })().then((result) => finish(() => resolve(result)), (error) => finish(() => reject(error)));

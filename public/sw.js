@@ -184,7 +184,17 @@ self.addEventListener("install", (event) => {
       if (!response.ok || manifest.generation !== GENERATION) throw new Error("Build changed during install");
       await cache.put(FILL_PRECACHE, response);
       await stageRelease(manifest);
-    })()
+    })().catch(async (error) => {
+      // A rejected install leaves the current release intact, but normally
+      // exposes no reason to the page. Report only technical install context;
+      // these URLs are app assets, never user-selected files or tool inputs.
+      const detail = `${error?.name || "Error"}: ${error?.message || "Offline update preparation failed"}`.slice(0, 500);
+      const windows = await self.clients.matchAll({ type: "window", includeUncontrolled: true }).catch(() => []);
+      for (const client of windows) {
+        try { client.postMessage({ type: "OFFLINE_INSTALL_ERROR", generation: GENERATION, error: detail }); } catch { /* closed window */ }
+      }
+      throw error;
+    })
   );
 });
 

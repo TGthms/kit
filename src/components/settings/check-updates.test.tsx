@@ -40,3 +40,19 @@ it("aborts a pending check on leaving Settings", () => {
   const signal = check.mock.calls[0][0] as AbortSignal;
   view.unmount(); expect(signal.aborted).toBe(true);
 });
+it("replaces preparing with a retryable failure when the browser discards the installer", async () => {
+  class Installer extends EventTarget { state = "installing"; }
+  const installer = new Installer();
+  const registration = Object.assign(new EventTarget(), { installing: installer as Installer | null, waiting: null, active: {} });
+  const prior = Object.getOwnPropertyDescriptor(navigator, "serviceWorker");
+  Object.defineProperty(navigator, "serviceWorker", { configurable: true, value: { getRegistration: vi.fn().mockResolvedValue(registration) } });
+  try {
+    check.mockResolvedValueOnce("preparing").mockResolvedValueOnce("current"); setup();
+    fireEvent.click(screen.getByRole("button"));
+    await waitFor(() => expect(screen.getByRole("status")).toHaveTextContent(en.settings.updatePreparing));
+    await act(async () => { registration.installing = null; installer.state = "redundant"; installer.dispatchEvent(new Event("statechange")); });
+    await waitFor(() => expect(screen.getByRole("status")).toHaveTextContent(en.settings.updateCheckFailed));
+    fireEvent.click(screen.getByRole("button"));
+    await waitFor(() => expect(screen.getByRole("status")).toHaveTextContent(en.settings.updateCurrent));
+  } finally { if (prior) Object.defineProperty(navigator, "serviceWorker", prior); else Reflect.deleteProperty(navigator, "serviceWorker"); }
+});

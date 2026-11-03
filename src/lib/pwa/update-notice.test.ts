@@ -1,5 +1,5 @@
 import { describe, expect, it, vi } from "vitest";
-import { observeWaitingWorker } from "./update-notice";
+import { observeWaitingWorker, observeUpdatePreparation } from "./update-notice";
 
 class Worker extends EventTarget { state = "installing"; }
 class Registration extends EventTarget {
@@ -51,5 +51,27 @@ describe("update availability", () => {
     const stop = observe(registration, offer);
     expect(offer).not.toHaveBeenCalled();
     stop();
+  });
+});
+
+describe("preparation feedback", () => {
+  it("settles a failed installer and releases listeners", () => {
+    const registration = new Registration();
+    const worker = new Worker(); registration.installing = worker;
+    const changed = vi.fn();
+    const stop = observeUpdatePreparation(registration as unknown as ServiceWorkerRegistration, changed);
+    expect(changed).not.toHaveBeenCalled();
+    registration.installing = null; worker.state = "redundant"; worker.dispatchEvent(new Event("statechange"));
+    expect(changed).toHaveBeenLastCalledWith("error");
+    stop(); changed.mockClear(); worker.dispatchEvent(new Event("statechange"));
+    expect(changed).not.toHaveBeenCalled();
+  });
+  it("announces completion and detects an installer already discarded before observation", () => {
+    const registration = new Registration(); const changed = vi.fn();
+    const stop = observeUpdatePreparation(registration as unknown as ServiceWorkerRegistration, changed);
+    expect(changed).toHaveBeenLastCalledWith("error"); stop();
+    registration.waiting = new Worker();
+    const next = observeUpdatePreparation(registration as unknown as ServiceWorkerRegistration, changed);
+    expect(changed).toHaveBeenLastCalledWith("available"); next();
   });
 });

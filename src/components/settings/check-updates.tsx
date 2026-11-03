@@ -6,7 +6,8 @@ import { LoaderCircle, RefreshCw } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useHydrated } from "@/lib/react/hydrated";
 import { checkForAppUpdate, type UpdateCheck } from "@/lib/pwa/check-update";
-import { OFFER_UPDATE_EVENT } from "@/lib/pwa/update-notice";
+import { OFFER_UPDATE_EVENT, observeUpdatePreparation } from "@/lib/pwa/update-notice";
+import { withBasePath } from "@/lib/base-path";
 import { APP_VERSION } from "@/lib/version";
 
 export function CheckUpdates() {
@@ -15,6 +16,21 @@ export function CheckUpdates() {
   const request = useRef<AbortController | null>(null);
   const [status, setStatus] = useState<UpdateCheck | "checking" | "error" | null>(null);
   useEffect(() => () => request.current?.abort(), []);
+  useEffect(() => {
+    if (status !== "preparing") return;
+    let disposed = false;
+    let stop = () => {};
+    void navigator.serviceWorker?.getRegistration(withBasePath("/")).then((registration) => {
+      if (disposed) return;
+      if (!registration) { setStatus("error"); return; }
+      stop = observeUpdatePreparation(registration, (next) => {
+        if (disposed) return;
+        setStatus(next);
+        if (next === "available") window.dispatchEvent(new Event(OFFER_UPDATE_EVENT));
+      });
+    }).catch(() => { if (!disposed) setStatus("error"); });
+    return () => { disposed = true; stop(); };
+  }, [status]);
   const check = async () => {
     if (request.current) return;
     const controller = new AbortController();

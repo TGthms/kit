@@ -593,3 +593,15 @@ it("does not delete a newer staged release while retiring the serving ancestor",
   expect(first.stores.has("kit-shell-cccccccccccc")).toBe(true);
   expect(await (await newer.open("kit-shell-cccccccccccc")).match("/en/tools/pdf-merge/")).toBeTruthy();
 });
+
+it("reports failed installation context without replacing the serving release", async () => {
+  const first = load({ build: "aaaaaaaaaaaa", active: true });
+  await first.lifecycle("install"); await first.lifecycle("activate");
+  await first.worker.downloadSelectedOffline(selection);
+  const next = load({ stores: first.stores });
+  next.overrides.set("/", new Response("temporarily unavailable", { status: 503 }));
+  await expect(next.lifecycle("install")).rejects.toThrow();
+  expect(next.messages.at(-1)).toMatchObject({ type: "OFFLINE_INSTALL_ERROR", generation, error: expect.stringContaining("Invalid response") });
+  expect(first.stores.has("kit-shell-aaaaaaaaaaaa")).toBe(true);
+  expect(next.activations()).toBe(0);
+});

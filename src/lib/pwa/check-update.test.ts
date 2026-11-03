@@ -56,3 +56,10 @@ it("reports missing registration and unsupported service workers honestly", asyn
   Reflect.deleteProperty(navigator, "serviceWorker");
   await expect(checkForAppUpdate()).resolves.toBe("unavailable");
 });
+it("retries a discarded installer instead of repeatedly reporting preparing", async () => {
+  const { registration } = setup();
+  registration.installing = { state: "redundant" };
+  registration.update.mockImplementationOnce(async () => { registration.installing = { state: "installing" }; });
+  await expect(checkForAppUpdate()).resolves.toBe("preparing");
+  expect(registration.update).toHaveBeenCalledOnce();
+});
