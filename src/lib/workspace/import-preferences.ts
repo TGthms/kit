@@ -1,3 +1,4 @@
+import { recordDiagnostic } from "@/lib/pwa/diagnostics";
 import { useFavoritesStore } from "@/stores/favorites-store";
 import { useFeedbackStore } from "@/stores/feedback-store";
 import { useAppearanceStore } from "@/stores/appearance-store";
@@ -53,6 +54,7 @@ export function importPreferences(input: Preferences) {
       if (localStorage.getItem(key) !== value) throw new Error("storage");
     }
   } catch (error) {
+    recordDiagnostic("storage", "failed");
     for (const [key, value] of Object.entries(prior)) {
       try {
         if (value === null) localStorage.removeItem(key);

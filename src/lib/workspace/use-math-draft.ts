@@ -1,4 +1,5 @@
 "use client";
+import { recordDiagnostic } from "@/lib/pwa/diagnostics";
 import { useEffect, useRef, useState } from "react";
 import {
   DRAFT_EVENT,
@@ -47,6 +48,7 @@ export function useMathDraft<T>(
           if (clean) localStorage.setItem(draftKey(key), JSON.stringify(clean));
         }
       } catch {
+        recordDiagnostic("storage", "failed");
         setFailed(true);
       }
     };
@@ -71,6 +73,7 @@ export function useMathDraft<T>(
         if (recoveryEnabled() && parseMathDraft(key, JSON.parse(serialized)))
           localStorage.setItem(draftKey(key), serialized);
       } catch {
+        recordDiagnostic("storage", "failed");
         setFailed(true);
       }
     }, 300);

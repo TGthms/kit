@@ -2,6 +2,18 @@
 
 This file is the active implementation record. Current source is under `src/`, `messages/`, `content/`, `public/`, and `scripts/`. Do not use the disposable `out/` directory as source evidence.
 
+## Cohesive tools and release safeguards — 1.3.0 (2026-11-02)
+
+- Added automatic math-only recovery for all four Math tools and up to 20 named saved graphs. Settings can disable and clear automatic drafts while retaining explicit graphs. Storage/input limits and deletion confirmation are enforced.
+- Unified Home/category/global search with deterministic ranking, Latin accent normalization, preserved non-Latin marks, conservative typos and common task aliases. Your observance greeting preferences/copy are retained.
+- Shared file results support explicit download, supported-device sharing and size comparisons. Image compression/conversion retain results and can pass them directly to conversion/compression/Images to PDF in memory. Handoffs are targeted, single-use, limited to 100 images/80 MiB and expire after five minutes. Cancellation/source changes and late share/ZIP completions cannot publish a different source's result.
+- Expanded the HeroUI pilot to shared help/review modals and graph-settings popovers. Settings groups appearance/language/greetings/haptics. Connected Field descriptions/errors preserve existing IDs. Stable mobile navigation and experimental-only glass remain unchanged.
+- Added reviewed, allowlisted preference import/export and diagnostics. History/files/saved graph contents are excluded from preferences; diagnostics exclude inputs, filenames, arbitrary errors/stacks and URLs and never upload automatically. Local-storage failures produce bounded diagnostic codes. Updated localized copy and privacy disclosures.
+- Added production Chromium/mobile WebKit journeys for navigation/help, graph recovery, image handoffs/downloads, preference export/diagnostic review, RTL/larger text, eight-curve responsiveness and interrupted worker updates. Existing all-tool cold offline/update validation remains. Added explicit gzip route-asset budgets and a physical installed-device release checklist.
+- Local verification: TypeScript, lint and **1,084 tests / 169 files** pass. Canonical and `/kit` production exports, asset budgets and all-tool offline/update gates passed before the final result-ownership refinement; the final refinement is separately regression-tested and production/browser CI must pass before merging. CI/build logs provide the generation-specific evidence.
+- Production dependency scan: zero advisories. Development tooling reports the new minimatch glob-amplification advisory through ESLint; incompatible major overrides/downgrades were not applied. See [docs/release-1.3.0.md](docs/release-1.3.0.md).
+- Browser access is disabled locally and was not bypassed. Physical iPhone/Home Screen/VoiceOver/haptics checks remain explicit device checks, not desktop-emulation claims.
+
 ## Tool polish and production audit — 1.2.6 (2026-10-25)
 
 - Removed Random generator's forced zero/two-frame reset. Results now retain their generating mode/precision, protecting formatting and password history behavior when inputs change. Unsafe numeric ranges/decimal scales fail clearly; large unique batches use bounded sparse sampling.

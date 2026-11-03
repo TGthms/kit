@@ -4,11 +4,24 @@ import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import dynamic from "next/dynamic";
 const UseIn = dynamic(() => import("./use-in").then((module) => module.UseIn));
-import { downloadBlob, downloadMany, formatBytes } from "@/lib/utils";
+import { downloadBlob, archiveBlob, formatBytes } from "@/lib/utils";
+import { useTaskScope } from "@/lib/react/task-scope";
 import { HANDOFF_BYTES } from "@/lib/workspace/handoff";
 export type ResultFile = { blob: Blob; name: string; originalBytes?: number };
+const identities = new WeakMap<Blob, number>();
+let identity = 0;
 export function ResultFiles({ files }: { files: ResultFile[] }) {
+  const key = JSON.stringify(
+    files.map((file) => {
+      if (!identities.has(file.blob)) identities.set(file.blob, ++identity);
+      return [identities.get(file.blob), file.name];
+    }),
+  );
+  return <FileResultPanel key={key} files={files} />;
+}
+function FileResultPanel({ files }: { files: ResultFile[] }) {
   const t = useTranslations("common");
+  const operation = useTaskScope();
   const [canShare, setCanShare] = useState(false);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState(false);
@@ -37,15 +50,19 @@ export function ResultFiles({ files }: { files: ResultFile[] }) {
     files.every((item) => item.blob.type.startsWith("image/"));
   const download = async () => {
     if (busy) return;
+    const current = operation.begin();
     setBusy(true);
     setError(false);
     try {
       if (files.length === 1) downloadBlob(files[0].blob, files[0].name);
-      else await downloadMany(files, "kit-results.zip");
+      else {
+        const archive = await archiveBlob(files);
+        if (current()) downloadBlob(archive, "kit-results.zip");
+      }
     } catch {
-      setError(true);
+      if (current()) setError(true);
     } finally {
-      setBusy(false);
+      if (current()) setBusy(false);
     }
   };
   return (
@@ -89,6 +106,7 @@ export function ResultFiles({ files }: { files: ResultFile[] }) {
             disabled={busy}
             onClick={() => {
               if (busy) return;
+              const current = operation.begin();
               setBusy(true);
               setError(false);
               // Keep share() in the original tap's activation window (iOS).
@@ -104,6 +122,7 @@ export function ResultFiles({ files }: { files: ResultFile[] }) {
                   })
                   .catch((reason) => {
                     if (
+                      current() &&
                       !(
                         reason instanceof DOMException &&
                         reason.name === "AbortError"
@@ -111,10 +130,14 @@ export function ResultFiles({ files }: { files: ResultFile[] }) {
                     )
                       setError(true);
                   })
-                  .finally(() => setBusy(false));
+                  .finally(() => {
+                    if (current()) setBusy(false);
+                  });
               } catch {
-                setError(true);
-                setBusy(false);
+                if (current()) {
+                  setError(true);
+                  setBusy(false);
+                }
               }
             }}
           >

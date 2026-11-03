@@ -19,7 +19,7 @@ const { download, archive } = vi.hoisted(() => ({
 vi.mock("@/lib/utils", async (original) => ({
   ...(await original<typeof import("@/lib/utils")>()),
   downloadBlob: download,
-  downloadMany: archive,
+  archiveBlob: archive,
 }));
 afterEach(() => {
   cleanup();
@@ -81,4 +81,64 @@ describe("file results", () => {
     expect(screen.getByRole("alert")).toHaveTextContent("Try again");
     expect(screen.getByRole("button", { name: "Download" })).toBeEnabled();
   });
+});
+
+it("discards a late share error when the result changes", async () => {
+  let reject!: (reason: unknown) => void;
+  const share = vi.fn(
+    () =>
+      new Promise<void>((_, fail) => {
+        reject = fail;
+      }),
+  );
+  Object.defineProperty(navigator, "canShare", {
+    configurable: true,
+    value: () => true,
+  });
+  Object.defineProperty(navigator, "share", {
+    configurable: true,
+    value: share,
+  });
+  const view = setup();
+  fireEvent.click(await screen.findByRole("button", { name: "Share" }));
+  view.rerender(
+    <NextIntlClientProvider locale="en" messages={en}>
+      <ResultFiles
+        files={[
+          {
+            name: "new.pdf",
+            blob: new Blob(["new"], { type: "application/pdf" }),
+          },
+        ]}
+      />
+    </NextIntlClientProvider>,
+  );
+  await act(async () => reject(new Error("old share failed")));
+  expect(screen.queryByRole("alert")).toBeNull();
+  expect(screen.getByRole("button", { name: "Share" })).toBeEnabled();
+  Reflect.deleteProperty(navigator, "share");
+  Reflect.deleteProperty(navigator, "canShare");
+});
+
+it("does not download an archive after its source result has been replaced", async () => {
+  let complete!: (blob: Blob) => void;
+  archive.mockReturnValue(
+    new Promise<Blob>((resolve) => {
+      complete = resolve;
+    }),
+  );
+  const view = render(
+    <NextIntlClientProvider locale="en" messages={en}>
+      <ResultFiles files={[file, { ...file, name: "two.pdf" }]} />
+    </NextIntlClientProvider>,
+  );
+  fireEvent.click(screen.getByRole("button", { name: "Download" }));
+  expect(archive).toHaveBeenCalledOnce();
+  view.rerender(
+    <NextIntlClientProvider locale="en" messages={en}>
+      <ResultFiles files={[]} />
+    </NextIntlClientProvider>,
+  );
+  await act(async () => complete(new Blob(["archive"])));
+  expect(download).not.toHaveBeenCalled();
 });
