@@ -605,3 +605,15 @@ it("reports failed installation context without replacing the serving release", 
   expect(first.stores.has("kit-shell-aaaaaaaaaaaa")).toBe(true);
   expect(next.activations()).toBe(0);
 });
+
+it("repairs a damaged partial installer entry before reusing the earlier release", async () => {
+  const first = load({ build: "aaaaaaaaaaaa", active: true });
+  await first.lifecycle("install"); await first.lifecycle("activate");
+  await first.worker.downloadSelectedOffline(selection);
+  const next = load({ stores: first.stores });
+  await (await next.open(shellName)).put(script, new Response("damaged partial entry", { headers: { "content-type": "text/javascript" } }));
+  await next.lifecycle("install");
+  expect(await (await (await next.open(shellName)).match(script))!.text()).toBe(files[script][0]);
+  expect(first.stores.has("kit-shell-aaaaaaaaaaaa")).toBe(true);
+  expect(next.activations()).toBe(0);
+});

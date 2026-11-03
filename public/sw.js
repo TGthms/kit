@@ -238,14 +238,13 @@ async function stageRelease(manifest) {
   await Promise.all(Array.from({ length: Math.min(OFFLINE_CONCURRENCY, pending.length) }, async () => {
     while (cursor < pending.length) {
       const href = pending[cursor++];
-      const destination = await caches.open(cacheNameFor(href));
-      if (await destination.match(href)) continue;
       await saveOfflineResource(href);
     }
   }));
-  const held = await inspectCachedResources(pending, { cache: CACHE, rsc: RSC_CACHE }, manifest);
+  const failures = new Map();
+  const held = await inspectCachedResources(pending, { cache: CACHE, rsc: RSC_CACHE }, manifest, undefined, (url, valid, reason) => { if (!valid) failures.set(url, reason); });
   const missing = pending.filter((url) => !held.has(url));
-  if (missing.length) throw new Error(`Prepared files failed verification (${missing.length}): ${missing.slice(0, 3).join(", ")}`);
+  if (missing.length) throw new Error(`Prepared files failed verification (${missing.length}): ${missing.slice(0, 3).map((url) => `${url} (${failures.get(url)})`).join(", ")}`);
   await writeRecord(CACHE, VERIFIED, { at: Date.now(), paths: [...held] });
   if (home) {
     const response = await cache.match(home);
@@ -457,18 +456,40 @@ async function downloadResponse(href, signal, timeout = DOWNLOAD_FETCH_MS) {
  * In particular, updating Kit should not redownload unchanged WASM engines. */
 async function saveOfflineResource(href, signal) {
   const destination = await caches.open(cacheNameFor(href));
-  if (await destination.match(href)) return;
+  const manifest = await readManifest();
+  const existing = await destination.match(href);
+  if (existing) {
+    let valid = false;
+    try { valid = usableOfflineResource(href, existing) && await matchesBuild(href, existing, manifest, signal, true); }
+    catch (error) { if (signal?.aborted) throw error; }
+    if (valid) return;
+    // A canceled or failed installer may have left partial/damaged entries.
+    // Existence alone cannot authorize skipping a repair on the next attempt.
+    await destination.delete(href);
+  }
   for (const name of await caches.keys()) {
     if (name === CACHE || name === RSC_CACHE || !(name.startsWith("kit-shell-") || name.startsWith("kit-rsc-"))) continue;
     const held = await (await caches.open(name)).match(href);
-    if (held && usableOfflineResource(href, held) && await matchesBuild(href, held, undefined, signal)) {
-      if (signal?.aborted) throw new DOMException("Canceled", "AbortError");
-      await destination.put(href, held);
-      return;
-    }
+    if (!held || !usableOfflineResource(href, held)) continue;
+    let body;
+    let valid = false;
+    try {
+      body = await resourceBody(held, signal, true);
+      valid = await matchesBody(href, held, body, manifest);
+    } catch (error) { if (signal?.aborted) throw error; }
+    if (!valid) continue;
+    if (signal?.aborted) throw new DOMException("Canceled", "AbortError");
+    // Cache-backed Response streams are not portable across cache stores in
+    // every engine. Store a fresh response from the very bytes we verified,
+    // without a clone/tee or a second source-body read.
+    const headers = new Headers(held.headers);
+    headers.delete("content-encoding");
+    headers.delete("content-length");
+    await destination.put(href, new Response(body, { status: held.status, statusText: held.statusText, headers }));
+    return;
   }
   const response = await downloadResponse(href, signal);
-  if (!await matchesBuild(href, response)) throw new Error(`Release changed: ${href}`);
+  if (!await matchesBuild(href, response, manifest, signal)) throw new Error(`Release changed: ${href}`);
   if (signal?.aborted) throw new DOMException("Canceled", "AbortError");
   await destination.put(href, response);
 }
@@ -747,14 +768,7 @@ function deploymentHtml(html) {
 }
 
 /** Validate mutable URLs against the release, including downloads during deploys. */
-async function matchesBuild(resource, response, suppliedManifest, signal, consume = false) {
-  const manifest = suppliedManifest === undefined ? await readManifest() : suppliedManifest;
-  if (!manifest) return false;
-  // Legacy/test manifests have no integrity table. Shipped manifests always do.
-  if (!manifest.integrity) return true;
-  const url = new URL(typeof resource === "string" ? resource : resource.url, self.registration.scope);
-  const expected = manifest.integrity[url.pathname];
-  if (!expected) return false;
+async function resourceBody(response, signal, consume = false) {
   if (signal?.aborted) throw new DOMException("Canceled", "AbortError");
   let timer;
   let abort;
@@ -768,6 +782,23 @@ async function matchesBuild(resource, response, suppliedManifest, signal, consum
       timer = setTimeout(() => reject(new Error("Cached file could not be read. Retry.")), 30_000);
     })]);
   } finally { clearTimeout(timer); if (abort) signal?.removeEventListener("abort", abort); }
+  return body;
+}
+
+async function matchesBuild(resource, response, suppliedManifest, signal, consume = false) {
+  const manifest = suppliedManifest === undefined ? await readManifest() : suppliedManifest;
+  if (!manifest) return false;
+  if (!manifest.integrity) return true;
+  const body = await resourceBody(response, signal, consume);
+  return matchesBody(resource, response, body, manifest);
+}
+
+async function matchesBody(resource, response, body, manifest) {
+  if (!manifest) return false;
+  if (!manifest.integrity) return true;
+  const url = new URL(typeof resource === "string" ? resource : resource.url, self.registration.scope);
+  const expected = manifest.integrity[url.pathname];
+  if (!expected) return false;
   const digest = await crypto.subtle.digest("SHA-256", body);
   const actual = Array.from(new Uint8Array(digest), (byte) => byte.toString(16).padStart(2, "0")).join("");
   if (expected === actual) return true;
@@ -920,14 +951,15 @@ async function inspectCachedResources(urls, release, manifest, signal, checked =
       const cache = await caches.open(/\.txt$/iu.test(url) ? release.rsc : release.cache);
       const response = await cache.match(url);
       let valid = false;
+      let reason = response ? `response ${response.type}/${response.status}` : "missing";
       if (response && usableOfflineResource(url, response)) {
-        try { valid = await matchesBuild(url, response, manifest, signal, true); }
-        catch (error) { if (signal?.aborted) throw error; }
+        try { valid = await matchesBuild(url, response, manifest, signal, true); reason = "checksum"; }
+        catch (error) { if (signal?.aborted) throw error; reason = error?.name || "read failure"; }
       }
       if (signal?.aborted) throw new DOMException("Canceled", "AbortError");
       if (valid) validPaths.add(url);
       else if (response) await cache.delete(url);
-      checked(url, valid);
+      checked(url, valid, reason);
     }
   }));
   return validPaths;
