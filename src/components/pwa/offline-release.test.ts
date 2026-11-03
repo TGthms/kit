@@ -644,3 +644,29 @@ it("settles pending cache writes before rejecting a failed parallel installer", 
   await expect(installing).rejects.toThrow("interrupted staging");
   expect(settled).toBe(true);
 });
+
+it("recreates only failed unverified staging caches while preserving the serving collection", async () => {
+  const first = load({ build: "aaaaaaaaaaaa", active: true });
+  await first.lifecycle("install"); await first.lifecycle("activate");
+  await first.worker.downloadSelectedOffline(selection);
+  const retry = load({ stores: first.stores });
+  const staged = await retry.open(shellName);
+  await staged.put("/sw-precache.json", Response.json(manifest));
+  await staged.put("/unfinished-staging-marker", new Response("partial"));
+  await (await retry.open(rscName)).put("/unfinished-payload", new Response("partial"));
+  await retry.lifecycle("install");
+  expect(await (await retry.open(shellName)).match("/unfinished-staging-marker")).toBeFalsy();
+  expect(await (await retry.open(rscName)).match("/unfinished-payload")).toBeFalsy();
+  expect(await (await (await first.open("kit-shell-aaaaaaaaaaaa")).match("/en/tools/pdf-merge/"))!.text()).toBe(html);
+  expect(await (await (await retry.open(rscName)).match("/en/tools/pdf-merge/index.txt"))!.text()).toBe(files["/en/tools/pdf-merge/index.txt"][0]);
+});
+it("does not discard verified caches when installation resumes after registration loss", async () => {
+  const first = load({ active: true });
+  await first.lifecycle("install"); await first.lifecycle("activate");
+  await first.worker.downloadSelectedOffline(selection);
+  const cache = await first.open(shellName);
+  await cache.put("/keep-verified-marker", new Response("keep"));
+  const resumed = load({ stores: first.stores });
+  await resumed.lifecycle("install");
+  expect(await (await (await resumed.open(shellName)).match("/keep-verified-marker"))!.text()).toBe("keep");
+});
