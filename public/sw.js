@@ -244,7 +244,8 @@ async function stageRelease(manifest) {
     }
   }));
   const held = await inspectCachedResources(pending, { cache: CACHE, rsc: RSC_CACHE }, manifest);
-  if (pending.some((url) => !held.has(url))) throw new Error("Some prepared files were removed from storage");
+  const missing = pending.filter((url) => !held.has(url));
+  if (missing.length) throw new Error(`Prepared files failed verification (${missing.length}): ${missing.slice(0, 3).join(", ")}`);
   await writeRecord(CACHE, VERIFIED, { at: Date.now(), paths: [...held] });
   if (home) {
     const response = await cache.match(home);
