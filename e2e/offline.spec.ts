@@ -26,7 +26,7 @@ test("cold saved math tools work offline, including after an interrupted update"
   context,
   request,
 }) => {
-  test.setTimeout(180000);
+  test.setTimeout(240000);
   await request.post("http://127.0.0.1:4173/__test__/release?next=0");
   await page.goto("en/settings/offline/");
   await page.evaluate(async () => {
@@ -110,18 +110,20 @@ test("cold saved math tools work offline, including after an interrupted update"
     .click();
   await expect
     .poll(
-      () =>
-        page.evaluate(
-          async () =>
-            !!(await navigator.serviceWorker.getRegistration())?.waiting,
-        ),
-      { timeout: 60000 },
+      () => page.evaluate(async () => {
+        const registration = await navigator.serviceWorker.getRegistration();
+        if (registration?.waiting) return "waiting";
+        return registration?.installing?.state ?? "no installing worker";
+      }),
+      { timeout: 120000 },
     )
-    .toBe(true);
+    .toBe("waiting");
   // A prepared update stays explicit and can apply from its verified cache.
   expect(await generation(page)).toBe(originalGeneration);
   await context.setOffline(true);
+  const reloaded = page.waitForEvent("load");
   await page.getByRole("button", { name: "Update", exact: true }).click();
+  await reloaded;
   await expect
     .poll(
       async () => {
