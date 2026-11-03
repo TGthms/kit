@@ -31,6 +31,8 @@ function load({ stores = new Map<string, Map<string, Response>>(), build = gener
   const currentManifest = { ...manifest, generation: build };
   const fetched: string[] = [];
   const writeErrors = new Map<string, Error>();
+  const writeGates = new Map<string, Promise<void>>();
+  const writesStarted = new Set<string>();
   const writtenBodies = new Map<string, Response>();
   const readDelays = new Map<string, number>();
   let delayedReads = 0;
@@ -39,7 +41,7 @@ function load({ stores = new Map<string, Map<string, Response>>(), build = gener
   const readErrors = new Map<string, Error>();
   const messages: Record<string, unknown>[] = [];
   const handlers: Record<string, (event: unknown) => void> = {};
-  const overrides = new Map<string, Response | Error | ((init?: RequestInit) => Response)>();
+  const overrides = new Map<string, Response | Error | ((init?: RequestInit) => Response | Promise<Response>)>();
   const windows = [{ id: "current", url: `${origin}/en/settings/offline/`, postMessage: (data: Record<string, unknown>) => messages.push(data) }];
   const key = (input: string | Request) => new URL(typeof input === "string" ? input : input.url, `${origin}/`).href;
   const open = async (name: string) => {
@@ -61,6 +63,9 @@ function load({ stores = new Map<string, Map<string, Response>>(), build = gener
         return value?.clone();
       },
       async put(input: string | Request, response: Response) {
+        const path = new URL(key(input)).pathname;
+        writesStarted.add(path);
+        await writeGates.get(path);
         const error = writeErrors.get(new URL(key(input)).pathname);
         if (error) throw error;
         store.set(key(input), (writtenBodies.get(new URL(key(input)).pathname) ?? response).clone());
@@ -120,7 +125,7 @@ function load({ stores = new Map<string, Map<string, Response>>(), build = gener
     handlers.fetch({ request: new Request(`${origin}${url}`, init), waitUntil: () => {}, respondWith: (promise: Promise<Response>) => { pending = promise; } });
     return pending;
   };
-  return { worker, stores, open, messages, overrides, windows, message, lifecycle, resource, fetched, writeErrors, writtenBodies, readDelays, whenReadDelayed, readErrors, activations: () => activations };
+  return { worker, stores, open, messages, overrides, windows, message, lifecycle, resource, fetched, writeErrors, writeGates, writesStarted, writtenBodies, readDelays, whenReadDelayed, readErrors, activations: () => activations };
 }
 
 describe("offline release transactions", () => {
@@ -616,4 +621,26 @@ it("repairs a damaged partial installer entry before reusing the earlier release
   expect(await (await (await next.open(shellName)).match(script))!.text()).toBe(files[script][0]);
   expect(first.stores.has("kit-shell-aaaaaaaaaaaa")).toBe(true);
   expect(next.activations()).toBe(0);
+});
+
+it("settles pending cache writes before rejecting a failed parallel installer", async () => {
+  const run = load();
+  let release!: () => void;
+  run.writeGates.set(script, new Promise<void>((resolve) => { release = resolve; }));
+  let failed = false;
+  run.overrides.set("/en/index.txt", async () => {
+    await vi.waitFor(() => expect(run.writesStarted.has(script)).toBe(true));
+    failed = true;
+    throw new Error("interrupted staging");
+  });
+  let settled = false;
+  const installing = run.lifecycle("install");
+  void installing.then(() => { settled = true; }, () => { settled = true; });
+  try {
+    await vi.waitFor(() => expect(failed).toBe(true));
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    expect(settled).toBe(false);
+  } finally { release(); }
+  await expect(installing).rejects.toThrow("interrupted staging");
+  expect(settled).toBe(true);
 });

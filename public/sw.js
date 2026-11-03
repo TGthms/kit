@@ -235,12 +235,24 @@ async function stageRelease(manifest) {
   }
   const pending = [...urls];
   let cursor = 0;
-  await Promise.all(Array.from({ length: Math.min(OFFLINE_CONCURRENCY, pending.length) }, async () => {
-    while (cursor < pending.length) {
-      const href = pending[cursor++];
-      await saveOfflineResource(href);
+  const controller = new AbortController();
+  let failure;
+  let failed = false;
+  // Do not reject install while another lane still owns a Cache.put. Some
+  // engines terminate a failed installer immediately; a retry must not race
+  // writes still associated with that discarded worker's cache handles.
+  await Promise.allSettled(Array.from({ length: Math.min(OFFLINE_CONCURRENCY, pending.length) }, async () => {
+    try {
+      while (cursor < pending.length) {
+        if (controller.signal.aborted) return;
+        const href = pending[cursor++];
+        await saveOfflineResource(href, controller.signal);
+      }
+    } catch (error) {
+      if (!failed) { failed = true; failure = error; controller.abort(); }
     }
   }));
+  if (failed) throw failure;
   const failures = new Map();
   const held = await inspectCachedResources(pending, { cache: CACHE, rsc: RSC_CACHE }, manifest, undefined, (url, valid, reason) => { if (!valid) failures.set(url, reason); });
   const missing = pending.filter((url) => !held.has(url));
