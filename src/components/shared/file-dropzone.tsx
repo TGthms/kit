@@ -6,6 +6,7 @@ import { Upload, ArrowUp, ArrowDown } from "lucide-react";
 import { cn, formatBytes, isLargeFile } from "@/lib/utils";
 import { classifyDroppedFiles } from "@/lib/files/accept";
 import { Button } from "@/components/ui/button";
+import { useHydrated } from "@/lib/react/hydrated";
 
 export interface FileItem {
   id: string;
@@ -28,6 +29,7 @@ export function FileDropzone({
   reorder = false,
 }: Props) {
   const t = useTranslations("common");
+  const hydrated = useHydrated();
   const inputRef = useRef<HTMLInputElement>(null);
   const [drag, setDrag] = useState(false);
   const [rejectMessage, setRejectMessage] = useState<string | null>(null);
@@ -97,7 +99,8 @@ export function FileDropzone({
         }}
         onClick={() => inputRef.current?.click()}
         role="button"
-        tabIndex={0}
+        tabIndex={hydrated ? 0 : -1}
+        aria-disabled={!hydrated}
         aria-label={t("dropFiles")}
         onKeyDown={(e) => {
           if (e.key === "Enter" || e.key === " ") {
@@ -113,6 +116,7 @@ export function FileDropzone({
         <input
           ref={inputRef}
           type="file"
+          disabled={!hydrated}
           className="hidden"
           accept={accept}
           multiple={multiple}

@@ -248,6 +248,13 @@ export function MathInput({
             touch.current = null;
           }}
           onPointerUpCapture={(event) => {
+            // A rendered caret is not sufficient to focus MathLive's shadow
+            // keyboard sink on every desktop engine. Use its public focus API
+            // after a deliberate primary mouse release, preserving selection.
+            if (event.pointerType === "mouse" && event.button === 0 && !readOnly) {
+              event.currentTarget.focus();
+              return;
+            }
             const start = touch.current;
             touch.current = null;
             if (

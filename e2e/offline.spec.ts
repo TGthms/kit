@@ -32,6 +32,9 @@ test("cold saved math tools work offline, including after an interrupted update"
   await page.evaluate(async () => {
     await navigator.serviceWorker.ready;
   });
+  // Kit intentionally does not claim open documents. A fresh navigation,
+  // matching the next installed-app launch, attaches the activated worker.
+  await page.reload();
   await expect
     .poll(() => page.evaluate(() => !!navigator.serviceWorker.controller))
     .toBe(true);
@@ -64,46 +67,70 @@ test("cold saved math tools work offline, including after an interrupted update"
   await expect(page.getByText("Solutions", { exact: true })).toBeVisible();
   await context.setOffline(false);
   await page.goto("en/settings/");
-  await request.post("http://127.0.0.1:4173/__test__/release?next=1");
+  // Fail a genuinely changed saved document *during* worker installation.
+  // Kit stages saved selections before a worker becomes waiting/available.
+  await request.post("http://127.0.0.1:4173/__test__/release?next=1&blocked=1");
   await page.evaluate(async () => {
-    await (await navigator.serviceWorker.getRegistration())?.update();
+    await (await navigator.serviceWorker.getRegistration())
+      ?.update()
+      .catch(() => undefined);
   });
   await expect
-    .poll(() =>
-      page.evaluate(
-        async () =>
-          !!(await navigator.serviceWorker.getRegistration())?.waiting,
-      ),
+    .poll(
+      async () =>
+        (
+          await (
+            await request.get("http://127.0.0.1:4173/__test__/state")
+          ).json()
+        ).blockedRequests,
+      { timeout: 60000 },
     )
-    .toBe(true);
-  // Checking for an update must never silently activate it.
-  await page
-    .getByRole("button", { name: "Check for updates", exact: true })
-    .click();
-  await expect(
-    page.getByText("A Kit update is ready.", { exact: true }).first(),
-  ).toBeVisible();
+    .toBeGreaterThan(0);
+  await expect
+    .poll(
+      () =>
+        page.evaluate(
+          async () =>
+            !!(await navigator.serviceWorker.getRegistration())?.installing,
+        ),
+      { timeout: 60000 },
+    )
+    .toBe(false);
+  expect(await generation(page)).toBe(originalGeneration);
   await context.setOffline(true);
-  await page.getByRole("button", { name: "Update", exact: true }).click();
-  await expect(
-    page.getByRole("button", { name: "Try again", exact: true }).first(),
-  ).toBeVisible({ timeout: 60000 });
   await page.goto("en/tools/scientific-calculator/");
   await expect(
     page.locator('[data-tool="scientific-calculator"]'),
   ).toBeVisible();
   await context.setOffline(false);
-  await page.goto("en/settings/offline/");
+  await page.goto("en/settings/");
+  await request.post("http://127.0.0.1:4173/__test__/release?next=1&blocked=0");
   await page
-    .getByRole("button", { name: "Update downloads", exact: true })
+    .getByRole("button", { name: "Check for updates", exact: true })
     .click();
-  await expect(
-    page.getByText("Ready for offline", { exact: true }),
-  ).toBeVisible({ timeout: 90000 });
   await expect
-    .poll(() => generation(page), { timeout: 90000 })
-    .not.toBe(originalGeneration);
+    .poll(
+      () =>
+        page.evaluate(
+          async () =>
+            !!(await navigator.serviceWorker.getRegistration())?.waiting,
+        ),
+      { timeout: 60000 },
+    )
+    .toBe(true);
+  // A prepared update stays explicit and can apply from its verified cache.
+  expect(await generation(page)).toBe(originalGeneration);
   await context.setOffline(true);
+  await page.getByRole("button", { name: "Update", exact: true }).click();
+  await expect
+    .poll(
+      async () => {
+        const current = await generation(page);
+        return !!current && current !== originalGeneration;
+      },
+      { timeout: 90000 },
+    )
+    .toBe(true);
   await page.goto("en/tools/equation-solver/");
   await expect(page.locator('[data-tool="equation-solver"]')).toBeVisible();
 });

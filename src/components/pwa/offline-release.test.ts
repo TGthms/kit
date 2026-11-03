@@ -1,7 +1,6 @@
 import { readFileSync } from "node:fs";
 import { createHash, webcrypto } from "node:crypto";
 import vm from "node:vm";
-import { setImmediate as yieldEventLoop } from "node:timers/promises";
 import { afterEach, describe, expect, it, vi } from "vitest";
 
 afterEach(() => vi.useRealTimers());
@@ -34,6 +33,9 @@ function load({ stores = new Map<string, Map<string, Response>>(), build = gener
   const writeErrors = new Map<string, Error>();
   const writtenBodies = new Map<string, Response>();
   const readDelays = new Map<string, number>();
+  let delayedReads = 0;
+  const readWaiters: Array<() => void> = [];
+  const whenReadDelayed = () => delayedReads ? Promise.resolve() : new Promise<void>((resolve) => readWaiters.push(resolve));
   const readErrors = new Map<string, Error>();
   const messages: Record<string, unknown>[] = [];
   const handlers: Record<string, (event: unknown) => void> = {};
@@ -49,7 +51,12 @@ function load({ stores = new Map<string, Map<string, Response>>(), build = gener
         const readError = readErrors.get(new URL(wanted).pathname);
         if (readError) throw readError;
         const delay = readDelays.get(new URL(wanted).pathname);
-        if (delay) await new Promise((resolve) => setTimeout(resolve, delay));
+        if (delay) {
+          delayedReads++;
+          readWaiters.splice(0).forEach((resolve) => resolve());
+          try { await new Promise((resolve) => setTimeout(resolve, delay)); }
+          finally { delayedReads--; }
+        }
         const value = options?.ignoreSearch ? [...store.entries()].find(([url]) => url.split("?")[0] === wanted.split("?")[0])?.[1] : store.get(wanted);
         return value?.clone();
       },
@@ -113,7 +120,7 @@ function load({ stores = new Map<string, Map<string, Response>>(), build = gener
     handlers.fetch({ request: new Request(`${origin}${url}`, init), waitUntil: () => {}, respondWith: (promise: Promise<Response>) => { pending = promise; } });
     return pending;
   };
-  return { worker, stores, open, messages, overrides, windows, message, lifecycle, resource, fetched, writeErrors, writtenBodies, readDelays, readErrors, activations: () => activations };
+  return { worker, stores, open, messages, overrides, windows, message, lifecycle, resource, fetched, writeErrors, writtenBodies, readDelays, whenReadDelayed, readErrors, activations: () => activations };
 }
 
 describe("offline release transactions", () => {
@@ -553,11 +560,18 @@ it("keeps a large verification alive while files make progress beyond thirty sec
   const checking = run.worker.verifyOffline("en", selection);
   let finished = false;
   void checking.then(() => { finished = true; }, () => { finished = true; });
-  for (let step = 0; step < 12 && !finished; step++) {
-    await vi.advanceTimersByTimeAsync(10_000);
-    await yieldEventLoop();
+  let elapsed = 0;
+  while (!finished && elapsed < 200_000) {
+    // Cache bodies and WebCrypto settle through native I/O, outside the fake
+    // timer queue. Advance only after a simulated slow read is actually waiting;
+    // a fixed number of event-loop turns races Linux I/O under CI contention.
+    await Promise.race([checking, run.whenReadDelayed()]);
+    if (finished) break;
+    await vi.advanceTimersByTimeAsync(20_000);
+    elapsed += 20_000;
   }
   expect(finished).toBe(true);
+  expect(elapsed).toBeGreaterThan(30_000);
   await checking;
   run.readDelays.clear();
   expect((await run.worker.offlineState()).plan.ready).toBe(true);

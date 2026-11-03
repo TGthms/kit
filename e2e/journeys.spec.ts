@@ -1,3 +1,4 @@
+import { readFileSync } from "node:fs";
 import { test, expect } from "@playwright/test";
 
 async function route(page: import("@playwright/test").Page, path: string) {
@@ -10,8 +11,19 @@ test("search, client navigation, Back, and accessible help", async ({
   await route(page, "");
   const search = page.locator("#kit-search");
   await search.fill("make PDF smaller");
+  await page.evaluate(() => {
+    (window as Window & { kitNavigationProbe?: boolean }).kitNavigationProbe =
+      true;
+  });
   await page.locator('main a[href*="pdf-compress"]').click();
   await expect(page.locator('[data-tool="pdf-compress"]')).toBeVisible();
+  expect(
+    await page.evaluate(
+      () =>
+        (window as Window & { kitNavigationProbe?: boolean })
+          .kitNavigationProbe,
+    ),
+  ).toBe(true);
   await page.goBack();
   await expect(page.locator("#kit-search")).toBeVisible();
   await search.blur();
@@ -44,6 +56,10 @@ test("graph edits survive navigation and reload; saved graph stays separate", as
       ),
     )
     .toContain("2");
+  const expression = await field.evaluate(
+    (element) => (element as HTMLElement & { value: string }).value,
+  );
+  expect(expression).not.toContain("sin");
   // Dispatch pagehide to exercise the same synchronous flush as a cold close.
   await page.evaluate(() => window.dispatchEvent(new Event("pagehide")));
   const before = await page.evaluate(() =>
@@ -58,7 +74,7 @@ test("graph edits survive navigation and reload; saved graph stays separate", as
         (element) => (element as HTMLElement & { value: string }).value,
       ),
     )
-    .toContain("2");
+    .toBe(expression);
   await page.reload();
   await expect(field).toBeVisible();
   await expect
@@ -67,7 +83,7 @@ test("graph edits survive navigation and reload; saved graph stays separate", as
         (element) => (element as HTMLElement & { value: string }).value,
       ),
     )
-    .toContain("2");
+    .toBe(expression);
   await page.getByText("Saved graphs", { exact: true }).click();
   await page.getByLabel("Graph name", { exact: true }).fill("Parabola");
   await page.getByRole("button", { name: "Save (0/20)", exact: true }).click();
@@ -87,17 +103,15 @@ test("graph edits survive navigation and reload; saved graph stays separate", as
         (element) => (element as HTMLElement & { value: string }).value,
       ),
     )
-    .toContain("2");
+    .toBe(expression);
 });
 
 test("image result download and local handoff preserve the output", async ({
   page,
 }) => {
   await route(page, "tools/image-convert/");
-  const png = Buffer.from(
-    "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+j5ZkAAAAASUVORK5CYII=",
-    "base64",
-  );
+  const png = readFileSync("public/icons/icon-192.png");
+  await expect(page.locator('input[type="file"]')).toBeEnabled();
   await page
     .locator('input[type="file"]')
     .setInputFiles({ name: "sample.png", mimeType: "image/png", buffer: png });
@@ -111,7 +125,7 @@ test("image result download and local handoff preserve the output", async ({
     .getByRole("button", { name: "Images → PDF", exact: true })
     .click();
   await expect(page.locator('[data-tool="images-to-pdf"]')).toBeVisible();
-  await expect(page.getByText("sample.webp", { exact: true })).toBeVisible();
+  await expect(page.getByText("1. sample.webp", { exact: true })).toBeVisible();
 });
 
 test("settings export is valid and diagnostic review excludes user input", async ({

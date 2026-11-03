@@ -17,6 +17,8 @@ const types = {
   ".webmanifest": "application/manifest+json",
 };
 let release = 0;
+let blocked = false;
+let blockedRequests = 0;
 const server = createServer(async (request, response) => {
   try {
     const url = new URL(request.url, "http://127.0.0.1");
@@ -27,7 +29,15 @@ const server = createServer(async (request, response) => {
       request.method === "POST"
     ) {
       release = url.searchParams.get("next") === "1" ? 1 : 0;
+      blocked = url.searchParams.get("blocked") === "1";
+      blockedRequests = 0;
       response.writeHead(200).end();
+      return;
+    }
+    if (process.env.KIT_E2E_SERVER === "1" && path === "/__test__/state") {
+      response
+        .writeHead(200, { "content-type": "application/json" })
+        .end(JSON.stringify({ blockedRequests }));
       return;
     }
     if (base && path !== base && !path.startsWith(`${base}/`)) {
@@ -52,7 +62,14 @@ const server = createServer(async (request, response) => {
         Buffer.from("<!-- browser test release -->"),
         await readFile(changedTarget),
       ]);
-      if (target === changedTarget) body = changedBody;
+      if (target === changedTarget) {
+        if (blocked) {
+          blockedRequests++;
+          response.writeHead(503).end("Interrupted test release");
+          return;
+        }
+        body = changedBody;
+      }
       if (
         ["sw.js", "sw-precache.json"].some(
           (name) => target === resolve(root, name),

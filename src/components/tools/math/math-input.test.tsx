@@ -328,3 +328,13 @@ describe("structured math input", () => {
     expect(field.getAttribute("aria-readonly")).toBe("true");
   });
 });
+
+it("uses the SDK focus entry point after a primary mouse release", async () => {
+  const { field } = await editor();
+  const focus = vi.spyOn(field, "focus");
+  fireEvent.pointerUp(field, { pointerType: "mouse", button: 0 });
+  expect(focus).toHaveBeenCalledOnce();
+  focus.mockClear();
+  fireEvent.pointerUp(field, { pointerType: "mouse", button: 2 });
+  expect(focus).not.toHaveBeenCalled();
+});
