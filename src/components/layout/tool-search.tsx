@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useId, useRef, useState } from "react";
+import { useEffect, useId, useMemo, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 import { Search, X } from "lucide-react";
 import { Link, usePathname } from "@/lib/i18n/navigation";
@@ -9,6 +9,7 @@ import { toolHref } from "@/lib/navigation/routes";
 import { OPEN_TOOL_SEARCH_EVENT } from "@/lib/navigation/search";
 import { usePrimarySearchVisible } from "@/lib/navigation/primary-search";
 import { isPlainNavigationClick } from "@/lib/navigation/intent";
+import { searchTools } from "@/lib/tools/search";
 import { cn } from "@/lib/utils";
 
 /** An anchored combobox: typing never takes the visitor out of their page. */
@@ -27,7 +28,11 @@ export function ToolSearch({ mobile = false }: { mobile?: boolean }) {
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState(-1);
   const normalized = query.trim().toLocaleLowerCase();
-  const results = normalized ? tools.filter((tool) => [tool.id, tt(`${tool.id}.name`), tt(`${tool.id}.description`), tt(`${tool.id}.keywords`), categories(tool.category)].some((text) => text.toLocaleLowerCase().includes(normalized))).slice(0, 8) : [];
+  const results = useMemo(() => searchTools(tools.map((tool) => ({
+    item: tool, id: tool.id, name: tt(`${tool.id}.name`),
+    keywords: tt(`${tool.id}.keywords`), description: tt(`${tool.id}.description`),
+    category: categories(tool.category),
+  })), query).slice(0, 8), [query, tt, categories]);
   const expanded = open && Boolean(normalized);
 
   useEffect(() => {

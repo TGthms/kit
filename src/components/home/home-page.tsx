@@ -20,6 +20,7 @@ import { tools, categories, featuredToolIds, groupedTools, type ToolCategory, ty
 import { homeHref, parseCategoryPath, rewriteCategoryQuery, toolHref } from "@/lib/navigation/routes";
 import { useLegacyCategory } from "@/lib/navigation/address";
 import { Link, usePathname } from "@/lib/i18n/navigation";
+import { searchTools } from "@/lib/tools/search";
 import { Input } from "@/components/ui/input";
 import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { PageHeader } from "@/components/layout/page-header";
@@ -289,33 +290,14 @@ function HomePageInner() {
   const query = q.trim().toLowerCase();
   const isSearching = query.length > 0;
 
-  const matchesQuery = useCallback(
-    (toolId: string) => {
-      if (!isSearching) return true;
-      const name = tt(`${toolId}.name`).toLowerCase();
-      const desc = tt(`${toolId}.description`).toLowerCase();
-      const kw = tt(`${toolId}.keywords`).toLowerCase();
-      return (
-        name.includes(query) ||
-        desc.includes(query) ||
-        kw.includes(query) ||
-        toolId.includes(query)
-      );
-    },
-    [isSearching, query, tt]
-  );
-
-  const searchResults = useMemo(() => {
-    if (!isSearching) return [];
-    return tools.filter((tool) => matchesQuery(tool.id));
-  }, [isSearching, matchesQuery]);
-
-  const categoryTools = useMemo(() => {
-    if (!selectedCat) return [];
-    return tools.filter(
-      (tool) => tool.category === selectedCat && matchesQuery(tool.id)
-    );
-  }, [selectedCat, matchesQuery]);
+  const searchResults = useMemo(() => searchTools(tools.map((tool) => ({
+    item: tool, id: tool.id, name: tt(`${tool.id}.name`),
+    keywords: tt(`${tool.id}.keywords`), description: tt(`${tool.id}.description`),
+    category: tc(tool.category),
+  })), q), [q, tt, tc]);
+  const categoryTools = useMemo(() =>
+    (isSearching ? searchResults : tools).filter((tool) => tool.category === selectedCat),
+    [isSearching, searchResults, selectedCat]);
 
   const pinned = tools.filter((x) => favIds.includes(x.id));
   const showCategories = !isSearching && !selectedCat;
@@ -519,7 +501,7 @@ function HomePageInner() {
               {groupedTools(selectedCat)
                 .map((block) => ({
                   ...block,
-                  tools: block.tools.filter((tool) => matchesQuery(tool.id)),
+                  tools: block.tools.filter((tool) => categoryTools.some((result) => result.id === tool.id)),
                 }))
                 .filter((block) => block.tools.length > 0)
                 .map((block) => (
