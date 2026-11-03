@@ -1,21 +1,15 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
-import { Button } from "@/components/ui/button";
+import dynamic from "next/dynamic";
+const ModalSurface = dynamic(() =>
+  import("@/components/ui/modal-surface").then((module) => module.ModalSurface),
+);
 import { hasOpenDialog } from "@/lib/navigation/dialog";
 import { openToolSearch } from "@/lib/navigation/search";
 
 export const SHORTCUT_RUN_EVENT = "kit:run";
-
-const FOCUSABLE = [
-  "a[href]",
-  "button:not([disabled])",
-  "input:not([disabled])",
-  "select:not([disabled])",
-  "textarea:not([disabled])",
-  '[tabindex]:not([tabindex="-1"])',
-].join(", ");
 
 function isTypingTarget(target: EventTarget | null): boolean {
   const element = target instanceof HTMLElement ? target : null;
@@ -25,53 +19,13 @@ function isTypingTarget(target: EventTarget | null): boolean {
         element.tagName === "TEXTAREA" ||
         element.tagName === "SELECT" ||
         element.tagName === "MATH-FIELD" ||
-        element.isContentEditable)
+        element.isContentEditable),
   );
 }
 
 export function ShortcutsProvider({ children }: { children: React.ReactNode }) {
   const t = useTranslations("shortcuts");
   const [open, setOpen] = useState(false);
-  const panelRef = useRef<HTMLDivElement>(null);
-  const restoreRef = useRef<HTMLElement | null>(null);
-
-  /* While the help panel is open it takes focus, keeps Tab inside itself, and
-     hands focus back to whatever it interrupted when it closes. */
-  useEffect(() => {
-    if (!open) return;
-    const panel = panelRef.current;
-    if (!panel) return;
-    restoreRef.current = document.activeElement instanceof HTMLElement ? document.activeElement : null;
-    panel.focus();
-
-    const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key !== "Tab") return;
-      const focusable = Array.from(panel.querySelectorAll<HTMLElement>(FOCUSABLE));
-      if (!focusable.length) {
-        event.preventDefault();
-        panel.focus();
-        return;
-      }
-      const first = focusable[0];
-      const last = focusable[focusable.length - 1];
-      const active = document.activeElement;
-      if (event.shiftKey && (active === first || active === panel)) {
-        event.preventDefault();
-        last.focus();
-      } else if (!event.shiftKey && active === last) {
-        event.preventDefault();
-        first.focus();
-      }
-    };
-
-    panel.addEventListener("keydown", onKeyDown);
-    return () => {
-      panel.removeEventListener("keydown", onKeyDown);
-      restoreRef.current?.focus();
-      restoreRef.current = null;
-    };
-  }, [open]);
-
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape" && open) {
@@ -79,7 +33,8 @@ export function ShortcutsProvider({ children }: { children: React.ReactNode }) {
         setOpen(false);
         return;
       }
-      if (e.defaultPrevented || e.isComposing || isTypingTarget(e.target)) return;
+      if (e.defaultPrevented || e.isComposing || isTypingTarget(e.target))
+        return;
       if (!open && hasOpenDialog()) return;
 
       // Use unmodified, app-local keys instead of Cmd/Ctrl combinations that
@@ -109,48 +64,33 @@ export function ShortcutsProvider({ children }: { children: React.ReactNode }) {
     <>
       {children}
       {open && (
-        <div
-          className="fixed inset-0 z-[60] flex items-center justify-center bg-black/40 p-4"
-          role="presentation"
-          onClick={() => setOpen(false)}
+        <ModalSurface
+          open={open}
+          onOpenChange={setOpen}
+          title={t("title")}
+          closeLabel={t("close")}
         >
-          <div
-            ref={panelRef}
-            tabIndex={-1}
-            className="w-full max-w-md rounded-2xl border bg-card p-5 shadow-xl outline-none"
-            role="dialog"
-            aria-modal="true"
-            aria-labelledby="kit-shortcuts-title"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="mb-4 flex items-center justify-between">
-              <h2 id="kit-shortcuts-title" className="text-lg font-semibold">
-                {t("title")}
-              </h2>
-              <Button size="sm" variant="ghost" onClick={() => setOpen(false)} aria-label={t("close")}>
-                ×
-              </Button>
-            </div>
-            <ul className="space-y-2 text-sm">
-              <li className="flex justify-between gap-4">
-                <span>{t("search")}</span>
-                <kbd className="rounded bg-secondary px-2 py-0.5 text-xs">/</kbd>
-              </li>
-              <li className="flex justify-between gap-4">
-                <span>{t("run")}</span>
-                <kbd className="rounded bg-secondary px-2 py-0.5 text-xs">R</kbd>
-              </li>
-              <li className="flex justify-between gap-4">
-                <span>{t("help")}</span>
-                <kbd className="rounded bg-secondary px-2 py-0.5 text-xs">?</kbd>
-              </li>
-              <li className="flex justify-between gap-4">
-                <span>{t("close")}</span>
-                <kbd className="rounded bg-secondary px-2 py-0.5 text-xs">Esc</kbd>
-              </li>
-            </ul>
-          </div>
-        </div>
+          <ul className="space-y-2 text-sm">
+            <li className="flex justify-between gap-4">
+              <span>{t("search")}</span>
+              <kbd className="rounded bg-secondary px-2 py-0.5 text-xs">/</kbd>
+            </li>
+            <li className="flex justify-between gap-4">
+              <span>{t("run")}</span>
+              <kbd className="rounded bg-secondary px-2 py-0.5 text-xs">R</kbd>
+            </li>
+            <li className="flex justify-between gap-4">
+              <span>{t("help")}</span>
+              <kbd className="rounded bg-secondary px-2 py-0.5 text-xs">?</kbd>
+            </li>
+            <li className="flex justify-between gap-4">
+              <span>{t("close")}</span>
+              <kbd className="rounded bg-secondary px-2 py-0.5 text-xs">
+                Esc
+              </kbd>
+            </li>
+          </ul>
+        </ModalSurface>
       )}
     </>
   );

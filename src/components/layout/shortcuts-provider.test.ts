@@ -1,19 +1,20 @@
 // @vitest-environment jsdom
 
 import { createElement } from "react";
-import { cleanup, fireEvent, render, screen, within } from "@testing-library/react";
+import { cleanup, fireEvent, render, screen, within, waitFor } from "@testing-library/react";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import "@testing-library/jest-dom/vitest";
 import { SHORTCUT_RUN_EVENT, ShortcutsProvider } from "./shortcuts-provider";
 
 vi.mock("next-intl", () => ({
+  useLocale: () => "en",
   useTranslations: () => (key: string) => key,
 }));
 
 afterEach(() => { cleanup(); vi.restoreAllMocks(); });
 
 describe("ShortcutsProvider", () => {
-  it("uses app-local keys and avoids modifier collisions", () => {
+  it("uses app-local keys and avoids modifier collisions", async () => {
     const onRun = vi.fn();
     window.addEventListener(SHORTCUT_RUN_EVENT, onRun);
     render(
@@ -53,7 +54,7 @@ describe("ShortcutsProvider", () => {
     select.remove();
 
     fireEvent.keyDown(window, { key: "?" });
-    expect(screen.getByRole("dialog")).toBeInTheDocument();
+    expect(await screen.findByRole("dialog")).toBeInTheDocument();
     fireEvent.keyDown(window, { key: "Escape" });
     expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
 
@@ -73,25 +74,25 @@ describe("ShortcutsProvider", () => {
     window.removeEventListener(SHORTCUT_RUN_EVENT, onRun);
   });
 
-  it("moves focus into the help panel and returns it when the panel closes", () => {
+  it("moves focus into the help panel and returns it when the panel closes", async () => {
     render(createElement(ShortcutsProvider, null, createElement("button", { type: "button" }, "Behind")));
     const behind = screen.getByRole("button", { name: "Behind" });
     behind.focus();
     expect(document.activeElement).toBe(behind);
 
     fireEvent.keyDown(window, { key: "?" });
-    const dialog = screen.getByRole("dialog");
-    expect(document.activeElement).toBe(dialog);
+    const dialog = await screen.findByRole("dialog");
+    await waitFor(() => expect(dialog.contains(document.activeElement)).toBe(true));
 
     fireEvent.keyDown(window, { key: "Escape" });
-    expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
-    expect(document.activeElement).toBe(behind);
+    await waitFor(() => expect(screen.queryByRole("dialog")).not.toBeInTheDocument());
+    await waitFor(() => expect(document.activeElement).toBe(behind));
   });
 
-  it("keeps Tab inside the open panel", () => {
+  it("keeps Tab inside the open panel", async () => {
     render(createElement(ShortcutsProvider, null, createElement("button", { type: "button" }, "Behind")));
     fireEvent.keyDown(window, { key: "?" });
-    const dialog = screen.getByRole("dialog");
+    const dialog = await screen.findByRole("dialog");
     const close = within(dialog).getByRole("button");
 
     close.focus();

@@ -1,8 +1,10 @@
 "use client";
-import { useId, useRef } from "react";
+import { useState } from "react";
+import dynamic from "next/dynamic";
+const ModalSurface = dynamic(() =>
+  import("@/components/ui/modal-surface").then((module) => module.ModalSurface),
+);
 import { useTranslations } from "next-intl";
-import { X } from "lucide-react";
-import { Button } from "@/components/ui/button";
 
 const headings = {
   roots: "√ · sqrt",
@@ -26,60 +28,43 @@ const examples = [
 export function InputGuide() {
   const t = useTranslations("math.guide");
   const tc = useTranslations("common");
-  const dialog = useRef<HTMLDialogElement>(null);
-  const title = useId();
+  const [open, setOpen] = useState(false);
   return (
     <>
       <button
         type="button"
         className="mx-1 inline-flex min-h-9 items-center rounded text-xs font-medium text-primary underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-ring"
-        onClick={() => dialog.current?.showModal()}
+        onClick={() => setOpen(true)}
       >
         {t("open")}
       </button>
-      <dialog
-        ref={dialog}
-        aria-labelledby={title}
-        className="fixed inset-0 m-auto max-h-[min(85dvh,800px)] w-[calc(100%_-_2rem)] max-w-2xl overflow-y-auto overscroll-contain rounded-2xl border bg-card p-0 text-foreground shadow-xl backdrop:bg-black/50"
-        dir="auto"
-        onClick={(event) => {
-          if (event.target === event.currentTarget) dialog.current?.close();
-        }}
-      >
-        <div className="sticky top-0 z-10 flex items-center justify-between gap-3 border-b bg-card p-4">
-          <h2 id={title} className="text-lg font-semibold">
-            {t("title")}
-          </h2>
-          <form method="dialog">
-            <Button
-              type="submit"
-              variant="ghost"
-              size="icon"
-              aria-label={tc("close")}
-            >
-              <X className="size-4" />
-            </Button>
-          </form>
-        </div>
-        <div className="space-y-5 p-4 sm:p-6">
-          {examples.map(([key, sample]) => (
-            <section key={key}>
-              <h3 className="font-mono text-sm font-medium" dir="ltr">
-                {headings[key]}
-              </h3>
-              <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
-                {t(key)}
-              </p>
-              <pre
-                className="mt-2 overflow-x-auto whitespace-pre-wrap break-words rounded-xl bg-secondary/60 p-3 font-mono text-xs leading-relaxed"
-                dir="ltr"
-              >
-                {sample}
-              </pre>
-            </section>
-          ))}
-        </div>
-      </dialog>
+      {open && (
+        <ModalSurface
+          open={open}
+          onOpenChange={setOpen}
+          title={t("title")}
+          closeLabel={tc("close")}
+        >
+          <div className="space-y-5 p-4 sm:p-6">
+            {examples.map(([key, sample]) => (
+              <section key={key}>
+                <h3 className="font-mono text-sm font-medium" dir="ltr">
+                  {headings[key]}
+                </h3>
+                <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
+                  {t(key)}
+                </p>
+                <pre
+                  className="mt-2 overflow-x-auto whitespace-pre-wrap break-words rounded-xl bg-secondary/60 p-3 font-mono text-xs leading-relaxed"
+                  dir="ltr"
+                >
+                  {sample}
+                </pre>
+              </section>
+            ))}
+          </div>
+        </ModalSurface>
+      )}
     </>
   );
 }

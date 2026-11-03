@@ -5,6 +5,8 @@
 @import "@heroui/styles/utilities";
 @import "@heroui/styles/components/button.css" layer(components);
 @import "@heroui/styles/components/alert-dialog.css" layer(components);
+@import "@heroui/styles/components/modal.css" layer(components);
+@import "@heroui/styles/components/popover.css" layer(components);
 
 @theme inline {
   --color-focus: var(--focus, var(--ring));
@@ -22,6 +24,7 @@
   --color-danger-soft-foreground: var(--danger-soft-foreground);
   --shadow-overlay: var(--overlay-shadow, var(--shadow-float));
   --ease-out-quad: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --ease-smooth: var(--ease-out-soft);
 }
 
 /* Put the scope on each control and on the portalled backdrop so variables
@@ -88,4 +91,12 @@
 
 .kit-hero .alert-dialog__footer {
   flex-wrap: wrap;
+}
+
+.kit-hero.modal__backdrop { padding: max(1rem, env(safe-area-inset-top)) max(1rem, env(safe-area-inset-right)) max(1rem, env(safe-area-inset-bottom)) max(1rem, env(safe-area-inset-left)); }
+.kit-hero .modal__dialog { border: 1px solid var(--border); }
+.kit-hero .modal__heading { font-weight: 600; letter-spacing: -0.01em; }
+.kit-hero.popover { border: 1px solid var(--border); max-width: calc(100vw - 2rem); }
+@media (prefers-reduced-motion: reduce) {
+  .kit-hero, .kit-hero * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
 }

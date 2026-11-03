@@ -69,3 +69,19 @@ Each batch should be reviewable and deployed independently after validation. Pau
 - [Published React package metadata](https://registry.npmjs.org/@heroui/react/latest)
 
 Published package metadata and repository HEAD are different artifacts and can change independently. Check the chosen release itself during Batch 1, including the license notices shipped with it.
+
+## Batch 2: shared help and graph settings (1.3.0)
+
+Shortcut help, math input guidance, and settings import/diagnostic reviews now
+use a shared, lazily loaded HeroUI Modal wrapper. React Aria supplies modality,
+focus containment/return and scroll locking. Math keyboards dismiss on opening.
+Graph settings use HeroUI Popover with locale-aware placement/dismissal. The
+existing Kit colors, native selects, stable navigation and opt-in glass remain.
+Only modal/popover component CSS and the required motion token were added.
+Shared Field now connects optional hints/errors to the control without dropping
+existing descriptions or IDs. Broader form replacement stays staged by family.
+
+Kit 1.3.0 adds production browser journeys and the physical-device checklist.
+Do not treat emulation as physical iPhone/VoiceOver validation. The comparison of
+HTML-referenced gzip JS/CSS is recorded in the 1.3.0 release report; lazy overlays
+and tool runtimes are outside that narrow measurement.

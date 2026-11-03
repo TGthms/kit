@@ -1,6 +1,11 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { useTranslations } from "next-intl";
+import { Popover } from "@heroui/react/popover";
+import { I18nProvider } from "react-aria-components/I18nProvider";
+import { useLocale } from "next-intl";
+import { HeroButton } from "@/components/ui/hero-button";
+import { hideMathKeyboard } from "@/lib/math/keyboard";
 import { Settings2, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Field } from "@/components/ui/field";
@@ -27,92 +32,76 @@ export function GraphSettings({
     tm = useTranslations("math"),
     tc = useTranslations("common");
   const [open, setOpen] = useState(false);
-  const container = useRef<HTMLDivElement>(null);
-  useEffect(() => {
-    if (!open) return;
-    const outside = (event: PointerEvent) => {
-      if (
-        event.target instanceof Node &&
-        !container.current?.contains(event.target)
-      )
-        setOpen(false);
-    };
-    const escape = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        event.preventDefault();
-        event.stopPropagation();
-        setOpen(false);
-        container.current?.querySelector<HTMLButtonElement>("button")?.focus();
-      }
-    };
-    document.addEventListener("pointerdown", outside);
-    container.current?.addEventListener("keydown", escape);
-    const node = container.current;
-    return () => {
-      document.removeEventListener("pointerdown", outside);
-      node?.removeEventListener("keydown", escape);
-    };
-  }, [open]);
+  const locale = useLocale();
   return (
-    <div ref={container} className="relative">
-      <Button
-        size="icon"
-        variant={open ? "secondary" : "ghost"}
-        className="size-9 rounded-lg"
-        title={t("settings")}
-        aria-label={t("settings")}
-        aria-expanded={open}
-        onClick={() => setOpen(!open)}
+    <I18nProvider locale={locale}>
+      <Popover
+        isOpen={open}
+        onOpenChange={(next) => {
+          if (next) hideMathKeyboard();
+          setOpen(next);
+        }}
       >
-        <Settings2 className="size-4" />
-      </Button>
-      {open && (
-        <section
+        <HeroButton
+          isIconOnly
+          variant="ghost"
+          className="size-9 rounded-lg"
           aria-label={t("settings")}
-          className="absolute end-0 top-11 z-30 max-h-[min(70dvh,520px)] w-[min(290px,calc(100vw-3rem))] overflow-y-auto overscroll-contain rounded-xl border bg-card p-4 text-sm shadow-xl"
+          aria-expanded={open}
         >
-          <div className="mb-4 flex items-center justify-between gap-2">
-            <h2 className="font-semibold">{t("settings")}</h2>
-            <Button
-              size="icon"
-              variant="ghost"
-              className="size-7"
-              aria-label={tc("close")}
-              onClick={() => setOpen(false)}
-            >
-              <X className="size-4" />
-            </Button>
-          </div>
-          <Bounds
-            key={Object.values(view).join(":")}
-            view={view}
-            onApply={(next) => {
-              onApply(next);
-              setOpen(false);
-            }}
-          />
-          <div className="mt-4 space-y-3 border-t pt-3">
-            <label className="flex min-h-9 items-center gap-2">
-              <input
-                type="checkbox"
-                checked={grid}
-                onChange={(e) => setGrid(e.target.checked)}
-              />
-              {t("grid")}
-            </label>
-            <SegmentedControl
-              value={angle}
-              onChange={setAngle}
-              aria-label={tm("angle")}
-              options={[
-                { value: "rad", label: tm("radians") },
-                { value: "deg", label: tm("degrees") },
-              ]}
+          <Settings2 className="size-4" />
+        </HeroButton>
+        <Popover.Content
+          className="kit-hero w-[min(290px,calc(100vw-3rem))]"
+          placement="bottom end"
+        >
+          <Popover.Dialog
+            aria-label={t("settings")}
+            className="max-h-[min(70dvh,520px)] overflow-y-auto overscroll-contain p-4 text-sm outline-none"
+          >
+            <div className="mb-4 flex items-center justify-between gap-2">
+              <h2 className="font-semibold">{t("settings")}</h2>
+              <Button
+                size="icon"
+                variant="ghost"
+                className="size-7"
+                aria-label={tc("close")}
+                onClick={() => setOpen(false)}
+              >
+                <X className="size-4" />
+              </Button>
+            </div>
+            <Bounds
+              key={Object.values(view).join(":")}
+              view={view}
+              onApply={(next) => {
+                onApply(next);
+                setOpen(false);
+              }}
             />
-          </div>
-        </section>
-      )}
-    </div>
+            <div className="mt-4 space-y-3 border-t pt-3">
+              <label className="flex min-h-9 items-center gap-2">
+                <input
+                  type="checkbox"
+                  checked={grid}
+                  onChange={(e) => setGrid(e.target.checked)}
+                />
+                {t("grid")}
+              </label>
+              <SegmentedControl
+                value={angle}
+                onChange={setAngle}
+                aria-label={tm("angle")}
+                options={[
+                  { value: "rad", label: tm("radians") },
+                  { value: "deg", label: tm("degrees") },
+                ]}
+              />
+            </div>
+          </Popover.Dialog>
+        </Popover.Content>
+      </Popover>
+    </I18nProvider>
   );
 }
 function Bounds({
