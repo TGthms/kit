@@ -1,6 +1,6 @@
 # Política de privacidad
 
-**Última actualización:** September 1, 2026
+**Última actualización:** 2 de noviembre de 2026
 
 Esta política explica cómo se trata la información cuando usas **Kit**, un conjunto de utilidades publicadas como sitio web estático y pensadas para funcionar en el navegador.
 
@@ -62,3 +62,11 @@ Podemos actualizar esta política cuando cambie el producto o la normativa. Modi
 Para preguntas sobre privacidad: [contact.timg@icloud.com](mailto:contact.timg@icloud.com).
 
 Publicado por **Tim G (GitHub: TGthms)**.
+
+## Configuración personal
+
+Restaura expresiones y ajustes de gráficas en este dispositivo. Al desactivarlo se borran los borradores automáticos; las gráficas guardadas se conservan.
+
+Transfiere favoritos y preferencias entre dispositivos. La importación sustituye estas opciones; no incluye archivos, historial ni gráficas guardadas.
+
+Revisa el estado técnico antes de copiarlo. No incluye archivos, datos introducidos ni direcciones de navegación. Nada se envía automáticamente.

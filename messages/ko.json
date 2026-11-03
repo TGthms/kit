@@ -2254,5 +2254,20 @@
       "expressions": "수식",
       "pan": "이동"
     }
+  },
+  "workspace": {
+    "savedGraphs": "저장된 그래프",
+    "graphName": "그래프 이름",
+    "startFresh": "새로 시작",
+    "storageFailed": "데이터를 읽거나 저장하지 못했습니다. 파일과 브라우저 저장 공간을 확인한 후 다시 시도하세요.",
+    "useIn": "다른 도구에서 사용",
+    "personalSetup": "개인 설정",
+    "mathRecovery": "수학 작업 복구",
+    "mathRecoveryDesc": "이 기기에서 수식과 그래프 설정을 복원합니다. 끄면 자동 초안이 삭제되지만 저장된 그래프는 유지됩니다.",
+    "transferDesc": "즐겨찾기와 환경설정을 기기 간에 옮깁니다. 가져오면 현재 선택을 대체하며 파일, 기록, 저장된 그래프는 포함되지 않습니다.",
+    "exportPreferences": "환경설정 내보내기",
+    "importPreferences": "환경설정 가져오기",
+    "diagnostics": "진단",
+    "diagnosticsDesc": "복사 전에 기술 상태를 검토하세요. 파일, 입력 내용, 방문한 주소는 포함되지 않습니다. 자동으로 전송되는 정보는 없습니다."
   }
 }

@@ -2254,5 +2254,20 @@
       "expressions": "数式",
       "pan": "移動"
     }
+  },
+  "workspace": {
+    "savedGraphs": "保存したグラフ",
+    "graphName": "グラフ名",
+    "startFresh": "最初から始める",
+    "storageFailed": "データを読み取り、または保存できませんでした。ファイルとブラウザーのストレージを確認して、もう一度お試しください。",
+    "useIn": "別のツールで使う",
+    "personalSetup": "個人設定",
+    "mathRecovery": "数学の作業を復元",
+    "mathRecoveryDesc": "この端末で数式とグラフの設定を復元します。オフにすると自動下書きは削除されますが、保存したグラフは残ります。",
+    "transferDesc": "お気に入りと設定を端末間で移行します。読み込むと現在の設定が置き換わります。ファイル、履歴、保存したグラフは含まれません。",
+    "exportPreferences": "設定を書き出す",
+    "importPreferences": "設定を読み込む",
+    "diagnostics": "診断",
+    "diagnosticsDesc": "コピーする前に技術的な状態を確認できます。ファイル、入力内容、閲覧先のアドレスは含まれません。自動送信は行いません。"
   }
 }

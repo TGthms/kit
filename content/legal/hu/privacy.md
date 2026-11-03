@@ -1,6 +1,6 @@
 # Adatvédelmi szabályzat
 
-**Utoljára frissítve:** 2026. július 15.
+**Utoljára frissítve:** 2026. november 2.
 
 Ez a szabályzat azt ismerteti, hogyan kezeljük az információkat a **Kit** használata során. A Kit segédprogramok gyűjteménye, amelyet statikus webhely formájában teszünk közzé, és amelyet böngészőben való futásra terveztünk.
 
@@ -62,3 +62,11 @@ Ezt a szabályzatot frissíthetjük, ha a termék vagy a jogi követelmények v�
 Adatvédelmi kérdések: [contact.timg@icloud.com](mailto:contact.timg@icloud.com).
 
 Közzétette: **Tim G (GitHub: TGthms)**.
+
+## Személyes beállítások
+
+Visszaállítja a kifejezéseket és a grafikonbeállításokat ezen az eszközön. Kikapcsolása törli az automatikus piszkozatokat; a mentett grafikonok megmaradnak.
+
+Kedvencek és beállítások átvitele az eszközök között. Az importálás felülírja ezeket; a fájlok, előzmények és mentett grafikonok kimaradnak.
+
+Másolás előtt tekintsd át a műszaki állapotot. A fájlok, bevitt tartalmak és meglátogatott címek kimaradnak. Semmi nem kerül automatikusan elküldésre.

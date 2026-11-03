@@ -2254,5 +2254,20 @@
       "expressions": "Expresii",
       "pan": "Deplasare"
     }
+  },
+  "workspace": {
+    "savedGraphs": "Grafice salvate",
+    "graphName": "Numele graficului",
+    "startFresh": "Începe din nou",
+    "storageFailed": "Datele nu au putut fi citite sau salvate. Verifică fișierul și spațiul de stocare al browserului, apoi încearcă din nou.",
+    "useIn": "Folosește în alt instrument",
+    "personalSetup": "Configurare personală",
+    "mathRecovery": "Recuperează lucrul matematic",
+    "mathRecoveryDesc": "Restaurează expresiile și setările graficelor pe acest dispozitiv. Dezactivarea șterge ciornele automate; graficele salvate rămân.",
+    "transferDesc": "Mută favoritele și preferințele între dispozitive. Importul înlocuiește aceste alegeri; fișierele, istoricul și graficele salvate sunt excluse.",
+    "exportPreferences": "Exportă preferințele",
+    "importPreferences": "Importă preferințele",
+    "diagnostics": "Diagnosticare",
+    "diagnosticsDesc": "Verifică starea tehnică înainte de copiere. Fișierele, conținutul introdus și adresele vizitate sunt excluse. Nimic nu este trimis automat."
   }
 }

@@ -2254,5 +2254,20 @@
       "expressions": "表达式",
       "pan": "平移"
     }
+  },
+  "workspace": {
+    "savedGraphs": "已保存的图像",
+    "graphName": "图像名称",
+    "startFresh": "重新开始",
+    "storageFailed": "无法读取或保存这些数据。请检查文件及浏览器存储空间，然后重试。",
+    "useIn": "在其他工具中使用",
+    "personalSetup": "个人设置",
+    "mathRecovery": "恢复数学作业",
+    "mathRecoveryDesc": "在此设备上恢复表达式和绘图设置。关闭后将清除自动草稿，已保存的图像会保留。",
+    "transferDesc": "在设备间转移收藏和偏好设置。导入将替换这些选项，不包含文件、历史记录及已保存的图像。",
+    "exportPreferences": "导出偏好设置",
+    "importPreferences": "导入偏好设置",
+    "diagnostics": "诊断",
+    "diagnosticsDesc": "复制前可查看技术状态。不包含文件、输入内容及浏览地址，也不会自动发送任何信息。"
   }
 }

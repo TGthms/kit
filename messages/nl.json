@@ -2254,5 +2254,20 @@
       "expressions": "Uitdrukkingen",
       "pan": "Verschuiven"
     }
+  },
+  "workspace": {
+    "savedGraphs": "Opgeslagen grafieken",
+    "graphName": "Grafieknaam",
+    "startFresh": "Opnieuw beginnen",
+    "storageFailed": "Deze gegevens konden niet worden gelezen of opgeslagen. Controleer het bestand en de browseropslag en probeer het opnieuw.",
+    "useIn": "In ander hulpmiddel gebruiken",
+    "personalSetup": "Persoonlijke instellingen",
+    "mathRecovery": "Wiskundewerk herstellen",
+    "mathRecoveryDesc": "Herstelt uitdrukkingen en grafiekinstellingen op dit apparaat. Uitschakelen wist automatische concepten; opgeslagen grafieken blijven behouden.",
+    "transferDesc": "Verplaats favorieten en voorkeuren tussen apparaten. Importeren vervangt deze keuzes; bestanden, geschiedenis en opgeslagen grafieken zijn uitgesloten.",
+    "exportPreferences": "Voorkeuren exporteren",
+    "importPreferences": "Voorkeuren importeren",
+    "diagnostics": "Diagnostiek",
+    "diagnosticsDesc": "Controleer de technische status voordat je die kopieert. Bestanden, invoer en bezochte adressen zijn uitgesloten. Er wordt niets automatisch verzonden."
   }
 }

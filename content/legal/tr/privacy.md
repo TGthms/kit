@@ -1,6 +1,6 @@
 # Gizlilik Politikası
 
-**Son güncelleme:** 15 Temmuz 2026
+**Son güncelleme:** 2 Kasım 2026
 
 Bu politika, statik bir web sitesi olarak yayımlanan ve tarayıcınızda çalışmak üzere tasarlanan bir yardımcı araçlar koleksiyonu olan **Kit**'i kullandığınızda bilgilerin nasıl işlendiğini açıklar.
 
@@ -62,3 +62,11 @@ Kit genel amaçlı bir yardımcı araçtır. 13 yaşın altındaki çocuklara y�
 Gizlilik soruları: [contact.timg@icloud.com](mailto:contact.timg@icloud.com).
 
 **Tim G (GitHub: TGthms)** tarafından yayımlanmıştır.
+
+## Kişisel ayarlar
+
+Bu cihazdaki ifadeleri ve grafik ayarlarını geri yükler. Kapatıldığında otomatik taslaklar silinir; kaydedilen grafikler korunur.
+
+Favorileri ve tercihleri cihazlar arasında taşıyın. İçe aktarma bu seçimleri değiştirir; dosyalar, geçmiş ve kaydedilen grafikler dahil edilmez.
+
+Kopyalamadan önce teknik durumu inceleyin. Dosyalar, girilen içerikler ve ziyaret edilen adresler dahil edilmez. Hiçbir şey otomatik gönderilmez.

@@ -2254,5 +2254,20 @@
       "expressions": "Ausdrücke",
       "pan": "Verschieben"
     }
+  },
+  "workspace": {
+    "savedGraphs": "Gespeicherte Graphen",
+    "graphName": "Name des Graphen",
+    "startFresh": "Neu beginnen",
+    "storageFailed": "Diese Daten konnten nicht gelesen oder gespeichert werden. Prüfe die Datei und den Browserspeicher und versuche es erneut.",
+    "useIn": "In anderem Werkzeug verwenden",
+    "personalSetup": "Persönliche Einrichtung",
+    "mathRecovery": "Mathematische Arbeit wiederherstellen",
+    "mathRecoveryDesc": "Stellt Ausdrücke und Grapheneinstellungen auf diesem Gerät wieder her. Beim Ausschalten werden automatische Entwürfe gelöscht; gespeicherte Graphen bleiben erhalten.",
+    "transferDesc": "Übertrage Favoriten und Einstellungen zwischen Geräten. Ein Import ersetzt diese Auswahl; Dateien, Verlauf und gespeicherte Graphen sind ausgeschlossen.",
+    "exportPreferences": "Einstellungen exportieren",
+    "importPreferences": "Einstellungen importieren",
+    "diagnostics": "Diagnose",
+    "diagnosticsDesc": "Prüfe den technischen Status vor dem Kopieren. Dateien, Eingaben und besuchte Adressen sind ausgeschlossen. Es wird nichts automatisch gesendet."
   }
 }

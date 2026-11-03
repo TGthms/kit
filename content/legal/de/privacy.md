@@ -1,6 +1,6 @@
 # Datenschutzrichtlinie
 
-**Zuletzt aktualisiert:** 15. Juli 2026
+**Zuletzt aktualisiert:** 2. November 2026
 
 Diese Richtlinie beschreibt, wie Informationen behandelt werden, wenn Sie **Kit** verwenden, eine Sammlung von Dienstprogrammen, die als statische Website veröffentlicht wurde und in Ihrem Browser ausgeführt werden soll.
 
@@ -62,3 +62,11 @@ Wir können diese Richtlinie aktualisieren, wenn sich das Produkt oder gesetzlic
 Fragen zum Datenschutz: [contact.timg@icloud.com](mailto:contact.timg@icloud.com).
 
 Veröffentlicht von **Tim G (GitHub: TGthms)**.
+
+## Persönliche Einrichtung
+
+Stellt Ausdrücke und Grapheneinstellungen auf diesem Gerät wieder her. Beim Ausschalten werden automatische Entwürfe gelöscht; gespeicherte Graphen bleiben erhalten.
+
+Übertrage Favoriten und Einstellungen zwischen Geräten. Ein Import ersetzt diese Auswahl; Dateien, Verlauf und gespeicherte Graphen sind ausgeschlossen.
+
+Prüfe den technischen Status vor dem Kopieren. Dateien, Eingaben und besuchte Adressen sind ausgeschlossen. Es wird nichts automatisch gesendet.

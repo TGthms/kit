@@ -1,6 +1,6 @@
 # Privacy Policy
 
-**Last updated:** September 2, 2026
+**Last updated:** November 2, 2026
 
 This policy describes how information is handled when you use **Kit**, a set of utilities published as a static website and built to run in your browser.
 
@@ -66,3 +66,11 @@ We may update this policy when the product or legal requirements change. We will
 Privacy questions: [contact.timg@icloud.com](mailto:contact.timg@icloud.com).
 
 Published by **Tim G (GitHub: TGthms)**.
+
+## Personal setup
+
+Restore math expressions and graph settings on this device. Turning this off clears automatic drafts; saved graphs remain.
+
+Move favorites and preferences between devices. Import replaces these choices; files, history and saved graphs are excluded.
+
+Review technical status before copying. Files, input contents and browsing addresses are excluded. Nothing is sent automatically.

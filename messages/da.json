@@ -2254,5 +2254,20 @@
       "expressions": "Udtryk",
       "pan": "Flyt"
     }
+  },
+  "workspace": {
+    "savedGraphs": "Gemte grafer",
+    "graphName": "Grafnavn",
+    "startFresh": "Start forfra",
+    "storageFailed": "Disse data kunne ikke læses eller gemmes. Kontrollér filen og browserens lager, og prøv igen.",
+    "useIn": "Brug i et andet værktøj",
+    "personalSetup": "Personlig opsætning",
+    "mathRecovery": "Gendan matematikarbejde",
+    "mathRecoveryDesc": "Gendan udtryk og grafindstillinger på denne enhed. Deaktivering sletter automatiske kladder; gemte grafer bevares.",
+    "transferDesc": "Flyt favoritter og indstillinger mellem enheder. Import erstatter disse valg; filer, historik og gemte grafer medtages ikke.",
+    "exportPreferences": "Eksportér indstillinger",
+    "importPreferences": "Importér indstillinger",
+    "diagnostics": "Diagnostik",
+    "diagnosticsDesc": "Gennemgå den tekniske status, før du kopierer. Filer, indtastet indhold og besøgte adresser medtages ikke. Intet sendes automatisk."
   }
 }

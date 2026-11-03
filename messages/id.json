@@ -2254,5 +2254,20 @@
       "expressions": "Ekspresi",
       "pan": "Geser"
     }
+  },
+  "workspace": {
+    "savedGraphs": "Grafik tersimpan",
+    "graphName": "Nama grafik",
+    "startFresh": "Mulai baru",
+    "storageFailed": "Data ini tidak dapat dibaca atau disimpan. Periksa file dan penyimpanan browser, lalu coba lagi.",
+    "useIn": "Gunakan di alat lain",
+    "personalSetup": "Pengaturan pribadi",
+    "mathRecovery": "Pulihkan pekerjaan matematika",
+    "mathRecoveryDesc": "Memulihkan ekspresi dan pengaturan grafik di perangkat ini. Menonaktifkan akan menghapus draf otomatis; grafik tersimpan tetap ada.",
+    "transferDesc": "Pindahkan favorit dan preferensi antarperangkat. Impor mengganti pilihan ini; file, riwayat, dan grafik tersimpan tidak disertakan.",
+    "exportPreferences": "Ekspor preferensi",
+    "importPreferences": "Impor preferensi",
+    "diagnostics": "Diagnostik",
+    "diagnosticsDesc": "Tinjau status teknis sebelum menyalin. File, konten masukan, dan alamat penjelajahan tidak disertakan. Tidak ada yang dikirim otomatis."
   }
 }

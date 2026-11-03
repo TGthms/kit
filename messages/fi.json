@@ -2254,5 +2254,20 @@
       "expressions": "Lausekkeet",
       "pan": "Siirrä"
     }
+  },
+  "workspace": {
+    "savedGraphs": "Tallennetut kuvaajat",
+    "graphName": "Kuvaajan nimi",
+    "startFresh": "Aloita alusta",
+    "storageFailed": "Tietoja ei voitu lukea tai tallentaa. Tarkista tiedosto ja selaimen tallennustila ja yritä uudelleen.",
+    "useIn": "Käytä toisessa työkalussa",
+    "personalSetup": "Omat asetukset",
+    "mathRecovery": "Palauta matematiikkatyö",
+    "mathRecoveryDesc": "Palauttaa lausekkeet ja kuvaaja-asetukset tällä laitteella. Poistaminen käytöstä tyhjentää automaattiset luonnokset; tallennetut kuvaajat säilyvät.",
+    "transferDesc": "Siirrä suosikit ja asetukset laitteiden välillä. Tuonti korvaa nämä valinnat; tiedostot, historia ja tallennetut kuvaajat eivät sisälly.",
+    "exportPreferences": "Vie asetukset",
+    "importPreferences": "Tuo asetukset",
+    "diagnostics": "Diagnostiikka",
+    "diagnosticsDesc": "Tarkista tekninen tila ennen kopiointia. Tiedostot, syötetty sisältö ja selatut osoitteet eivät sisälly. Mitään ei lähetetä automaattisesti."
   }
 }

@@ -2254,5 +2254,20 @@
       "expressions": "Kifejezések",
       "pan": "Mozgatás"
     }
+  },
+  "workspace": {
+    "savedGraphs": "Mentett grafikonok",
+    "graphName": "Grafikon neve",
+    "startFresh": "Újrakezdés",
+    "storageFailed": "Az adatok nem olvashatók vagy menthetők. Ellenőrizd a fájlt és a böngésző tárhelyét, majd próbáld újra.",
+    "useIn": "Használat másik eszközben",
+    "personalSetup": "Személyes beállítások",
+    "mathRecovery": "Matematikai munka helyreállítása",
+    "mathRecoveryDesc": "Visszaállítja a kifejezéseket és a grafikonbeállításokat ezen az eszközön. Kikapcsolása törli az automatikus piszkozatokat; a mentett grafikonok megmaradnak.",
+    "transferDesc": "Kedvencek és beállítások átvitele az eszközök között. Az importálás felülírja ezeket; a fájlok, előzmények és mentett grafikonok kimaradnak.",
+    "exportPreferences": "Beállítások exportálása",
+    "importPreferences": "Beállítások importálása",
+    "diagnostics": "Diagnosztika",
+    "diagnosticsDesc": "Másolás előtt tekintsd át a műszaki állapotot. A fájlok, bevitt tartalmak és meglátogatott címek kimaradnak. Semmi nem kerül automatikusan elküldésre."
   }
 }

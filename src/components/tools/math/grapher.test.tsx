@@ -91,6 +91,7 @@ vi.mock("@/components/ui/slider", () => ({
   ),
 }));
 beforeEach(() => {
+  localStorage.clear();
   requests.mockClear();
   dispose.mockClear();
   vi.stubGlobal(

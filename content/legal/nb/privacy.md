@@ -1,6 +1,6 @@
 # Personvernerklæring
 
-**Sist oppdatert:** 15. juli 2026
+**Sist oppdatert:** 2. november 2026
 
 Denne erklæringen beskriver hvordan informasjon håndteres når du bruker **Kit**, en samling verktøy som er publisert som et statisk nettsted og er laget for å kjøre i nettleseren din.
 
@@ -62,3 +62,11 @@ Vi kan oppdatere denne erklæringen når produktet eller juridiske krav endres. 
 Personvernspørsmål: [contact.timg@icloud.com](mailto:contact.timg@icloud.com).
 
 Publisert av **Tim G (GitHub: TGthms)**.
+
+## Personlig oppsett
+
+Gjenoppretter uttrykk og grafinnstillinger på denne enheten. Når det slås av, slettes automatiske utkast; lagrede grafer beholdes.
+
+Flytt favoritter og innstillinger mellom enheter. Import erstatter disse valgene; filer, historikk og lagrede grafer er ikke inkludert.
+
+Se gjennom teknisk status før du kopierer. Filer, inntastet innhold og besøkte adresser er ikke inkludert. Ingenting sendes automatisk.

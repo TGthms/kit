@@ -2254,5 +2254,20 @@
       "expressions": "Expressions",
       "pan": "Pan"
     }
+  },
+  "workspace": {
+    "savedGraphs": "Saved graphs",
+    "graphName": "Graph name",
+    "startFresh": "Start fresh",
+    "storageFailed": "Couldn’t read or save this data. Check the file and browser storage, then try again.",
+    "useIn": "Use in another tool",
+    "personalSetup": "Personal setup",
+    "mathRecovery": "Recover math work",
+    "mathRecoveryDesc": "Restore math expressions and graph settings on this device. Turning this off clears automatic drafts; saved graphs remain.",
+    "transferDesc": "Move favorites and preferences between devices. Import replaces these choices; files, history and saved graphs are excluded.",
+    "exportPreferences": "Export preferences",
+    "importPreferences": "Import preferences",
+    "diagnostics": "Diagnostics",
+    "diagnosticsDesc": "Review technical status before copying. Files, input contents and browsing addresses are excluded. Nothing is sent automatically."
   }
 }

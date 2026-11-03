@@ -2254,5 +2254,20 @@
       "expressions": "運算式",
       "pan": "平移"
     }
+  },
+  "workspace": {
+    "savedGraphs": "已儲存的圖形",
+    "graphName": "圖形名稱",
+    "startFresh": "重新開始",
+    "storageFailed": "無法讀取或儲存這些資料。請檢查檔案及瀏覽器儲存空間，然後再試一次。",
+    "useIn": "在其他工具中使用",
+    "personalSetup": "個人設定",
+    "mathRecovery": "復原數學工作",
+    "mathRecoveryDesc": "在此裝置上復原運算式與繪圖設定。關閉後會清除自動草稿，已儲存的圖形則會保留。",
+    "transferDesc": "在裝置間轉移收藏與偏好設定。匯入會取代這些選項，不包含檔案、歷史記錄及已儲存的圖形。",
+    "exportPreferences": "匯出偏好設定",
+    "importPreferences": "匯入偏好設定",
+    "diagnostics": "診斷",
+    "diagnosticsDesc": "複製前可檢視技術狀態。不包含檔案、輸入內容及瀏覽位址，也不會自動傳送任何資訊。"
   }
 }

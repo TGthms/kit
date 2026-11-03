@@ -1,6 +1,6 @@
 # Polityka prywatności
 
-**Ostatnia aktualizacja:** 15 lipca 2026 r.
+**Ostatnia aktualizacja:** 2 listopada 2026
 
 Niniejsza polityka opisuje sposób przetwarzania informacji podczas korzystania z **Kit** — zestawu narzędzi opublikowanego jako statyczna strona internetowa i przeznaczonego do działania w przeglądarce.
 
@@ -62,3 +62,11 @@ Możemy aktualizować tę politykę, gdy zmieni się produkt lub wymagania prawn
 Pytania dotyczące prywatności: [contact.timg@icloud.com](mailto:contact.timg@icloud.com).
 
 Opublikowano przez **Tim G (GitHub: TGthms)**.
+
+## Ustawienia osobiste
+
+Przywraca wyrażenia i ustawienia wykresów na tym urządzeniu. Wyłączenie usuwa automatyczne szkice; zapisane wykresy pozostają.
+
+Przenoś ulubione i preferencje między urządzeniami. Import zastępuje te wybory; pliki, historia i zapisane wykresy nie są uwzględniane.
+
+Sprawdź stan techniczny przed skopiowaniem. Pliki, wpisana treść i odwiedzone adresy są pomijane. Nic nie jest wysyłane automatycznie.

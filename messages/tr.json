@@ -2254,5 +2254,20 @@
       "expressions": "İfadeler",
       "pan": "Kaydır"
     }
+  },
+  "workspace": {
+    "savedGraphs": "Kaydedilen grafikler",
+    "graphName": "Grafik adı",
+    "startFresh": "Yeniden başla",
+    "storageFailed": "Bu veriler okunamadı veya kaydedilemedi. Dosyayı ve tarayıcı depolamasını kontrol edip yeniden deneyin.",
+    "useIn": "Başka bir araçta kullan",
+    "personalSetup": "Kişisel ayarlar",
+    "mathRecovery": "Matematik çalışmasını kurtar",
+    "mathRecoveryDesc": "Bu cihazdaki ifadeleri ve grafik ayarlarını geri yükler. Kapatıldığında otomatik taslaklar silinir; kaydedilen grafikler korunur.",
+    "transferDesc": "Favorileri ve tercihleri cihazlar arasında taşıyın. İçe aktarma bu seçimleri değiştirir; dosyalar, geçmiş ve kaydedilen grafikler dahil edilmez.",
+    "exportPreferences": "Tercihleri dışa aktar",
+    "importPreferences": "Tercihleri içe aktar",
+    "diagnostics": "Tanılama",
+    "diagnosticsDesc": "Kopyalamadan önce teknik durumu inceleyin. Dosyalar, girilen içerikler ve ziyaret edilen adresler dahil edilmez. Hiçbir şey otomatik gönderilmez."
   }
 }

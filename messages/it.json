@@ -2254,5 +2254,20 @@
       "expressions": "Espressioni",
       "pan": "Sposta"
     }
+  },
+  "workspace": {
+    "savedGraphs": "Grafici salvati",
+    "graphName": "Nome del grafico",
+    "startFresh": "Ricomincia",
+    "storageFailed": "Impossibile leggere o salvare questi dati. Controlla il file e lo spazio del browser, poi riprova.",
+    "useIn": "Usa in un altro strumento",
+    "personalSetup": "Configurazione personale",
+    "mathRecovery": "Recupera il lavoro matematico",
+    "mathRecoveryDesc": "Ripristina espressioni e impostazioni dei grafici su questo dispositivo. Disattivando questa opzione si eliminano le bozze automatiche; i grafici salvati restano.",
+    "transferDesc": "Trasferisci preferiti e preferenze tra dispositivi. L’importazione sostituisce queste scelte; file, cronologia e grafici salvati sono esclusi.",
+    "exportPreferences": "Esporta preferenze",
+    "importPreferences": "Importa preferenze",
+    "diagnostics": "Diagnostica",
+    "diagnosticsDesc": "Controlla lo stato tecnico prima di copiarlo. File, contenuti inseriti e indirizzi visitati sono esclusi. Nulla viene inviato automaticamente."
   }
 }

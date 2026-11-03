@@ -1,6 +1,6 @@
 # Informativa sulla privacy
 
-**Ultimo aggiornamento:** 15 luglio 2026
+**Ultimo aggiornamento:** 2 novembre 2026
 
 Questa informativa descrive come vengono gestite le informazioni quando utilizzi **Kit**, una raccolta di utilità pubblicata come sito web statico e progettata per funzionare nel tuo browser.
 
@@ -62,3 +62,11 @@ Potremmo aggiornare questa informativa quando cambiano il prodotto o i requisiti
 Domande sulla privacy: [contact.timg@icloud.com](mailto:contact.timg@icloud.com).
 
 Pubblicato da **Tim G (GitHub: TGthms)**.
+
+## Configurazione personale
+
+Ripristina espressioni e impostazioni dei grafici su questo dispositivo. Disattivando questa opzione si eliminano le bozze automatiche; i grafici salvati restano.
+
+Trasferisci preferiti e preferenze tra dispositivi. L’importazione sostituisce queste scelte; file, cronologia e grafici salvati sono esclusi.
+
+Controlla lo stato tecnico prima di copiarlo. File, contenuti inseriti e indirizzi visitati sono esclusi. Nulla viene inviato automaticamente.

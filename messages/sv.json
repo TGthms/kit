@@ -2254,5 +2254,20 @@
       "expressions": "Uttryck",
       "pan": "Flytta"
     }
+  },
+  "workspace": {
+    "savedGraphs": "Sparade grafer",
+    "graphName": "Grafnamn",
+    "startFresh": "Börja om",
+    "storageFailed": "Dessa data kunde inte läsas eller sparas. Kontrollera filen och webbläsarens lagring och försök igen.",
+    "useIn": "Använd i ett annat verktyg",
+    "personalSetup": "Personliga inställningar",
+    "mathRecovery": "Återställ matematikarbete",
+    "mathRecoveryDesc": "Återställer uttryck och grafinställningar på den här enheten. Avstängning raderar automatiska utkast; sparade grafer behålls.",
+    "transferDesc": "Flytta favoriter och inställningar mellan enheter. Import ersätter dessa val; filer, historik och sparade grafer ingår inte.",
+    "exportPreferences": "Exportera inställningar",
+    "importPreferences": "Importera inställningar",
+    "diagnostics": "Diagnostik",
+    "diagnosticsDesc": "Granska teknisk status innan du kopierar. Filer, inmatat innehåll och besökta adresser ingår inte. Inget skickas automatiskt."
   }
 }

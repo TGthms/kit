@@ -2254,5 +2254,20 @@
       "expressions": "Expressions",
       "pan": "Déplacer"
     }
+  },
+  "workspace": {
+    "savedGraphs": "Graphiques enregistrés",
+    "graphName": "Nom du graphique",
+    "startFresh": "Recommencer",
+    "storageFailed": "Impossible de lire ou d’enregistrer ces données. Vérifiez le fichier et le stockage du navigateur, puis réessayez.",
+    "useIn": "Utiliser dans un autre outil",
+    "personalSetup": "Configuration personnelle",
+    "mathRecovery": "Retrouver le travail mathématique",
+    "mathRecoveryDesc": "Restaure les expressions et les réglages du graphique sur cet appareil. Désactiver cette option efface les brouillons automatiques ; les graphiques enregistrés sont conservés.",
+    "transferDesc": "Transférez favoris et préférences entre appareils. L’importation remplace ces choix ; fichiers, historique et graphiques enregistrés sont exclus.",
+    "exportPreferences": "Exporter les préférences",
+    "importPreferences": "Importer les préférences",
+    "diagnostics": "Diagnostic",
+    "diagnosticsDesc": "Vérifiez l’état technique avant de le copier. Les fichiers, les saisies et les adresses consultées sont exclus. Rien n’est envoyé automatiquement."
   }
 }

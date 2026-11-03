@@ -1,6 +1,6 @@
 # Zásady ochrany soukromí
 
-**Naposledy aktualizováno:** 15. července 2026
+**Naposledy aktualizováno:** 2. listopadu 2026
 
 Tyto zásady popisují, jak se nakládá s informacemi, když používáte **Kit**, sadu nástrojů zveřejněnou jako statický web určený ke spuštění ve vašem prohlížeči.
 
@@ -62,3 +62,11 @@ Tyto zásady můžeme aktualizovat, pokud se změní produkt nebo právní poža
 Dotazy týkající se soukromí: [contact.timg@icloud.com](mailto:contact.timg@icloud.com).
 
 Vydal **Tim G (GitHub: TGthms)**.
+
+## Osobní nastavení
+
+Obnoví výrazy a nastavení grafů na tomto zařízení. Vypnutí smaže automatické koncepty; uložené grafy zůstanou.
+
+Přeneste oblíbené a předvolby mezi zařízeními. Import nahradí tyto volby; soubory, historie a uložené grafy nejsou zahrnuty.
+
+Před kopírováním zkontrolujte technický stav. Soubory, zadaný obsah a navštívené adresy nejsou zahrnuty. Nic se neposílá automaticky.

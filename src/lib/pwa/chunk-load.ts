@@ -1,3 +1,4 @@
+import { recordDiagnostic } from "./diagnostics";
 /** Stale hashed chunks after a deploy. Retrying the same import URL cannot recover. */
 
 export const CHUNK_RELOAD_KEY = "kit-chunk-reload-at";
@@ -40,6 +41,7 @@ export function shouldReloadForChunkError(
 }
 
 export function reloadForStaleChunk(force = false): boolean {
+  recordDiagnostic("navigation", "recovery");
   if (typeof window === "undefined") return false;
   if (!force && !shouldReloadForChunkError()) return false;
   if (force) {

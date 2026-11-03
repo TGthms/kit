@@ -1,6 +1,6 @@
 # Politica de confidențialitate
 
-**Ultima actualizare:** 15 iulie 2026
+**Ultima actualizare:** 2 noiembrie 2026
 
 Această politică descrie modul în care sunt gestionate informațiile atunci când utilizați **Kit**, o colecție de utilitare publicată ca site static și concepută să ruleze în browserul dumneavoastră.
 
@@ -62,3 +62,11 @@ Putem actualiza această politică atunci când se modifică produsul sau cerin�
 Întrebări despre confidențialitate: [contact.timg@icloud.com](mailto:contact.timg@icloud.com).
 
 Publicat de **Tim G (GitHub: TGthms)**.
+
+## Configurare personală
+
+Restaurează expresiile și setările graficelor pe acest dispozitiv. Dezactivarea șterge ciornele automate; graficele salvate rămân.
+
+Mută favoritele și preferințele între dispozitive. Importul înlocuiește aceste alegeri; fișierele, istoricul și graficele salvate sunt excluse.
+
+Verifică starea tehnică înainte de copiere. Fișierele, conținutul introdus și adresele vizitate sunt excluse. Nimic nu este trimis automat.

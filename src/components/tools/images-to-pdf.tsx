@@ -1,4 +1,5 @@
 "use client";
+import { useHandoff } from "@/lib/workspace/use-handoff";
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { toast } from "sonner";
@@ -15,6 +16,7 @@ export function ImagesToPdf() {
   const tc = useTranslations("common");
   const log = useToolHistory("images-to-pdf");
   const [files, setFiles] = useState<FileItem[]>([]);
+  useHandoff("images-to-pdf", setFiles);
   const [pageSize, setPageSize] = useState<"a4" | "image">("a4");
   const job = useToolJob();
   const [result, setResult] = useState<{ blob: Blob; name: string } | null>(null);
@@ -22,6 +24,7 @@ export function ImagesToPdf() {
   const run = async () => {
     if (!files.length) return;
     const ac = job.start();
+    setResult(null);
     try {
       const { convertImage } = await import("@/lib/image/core");
       const images: EmbeddableImage[] = [];
@@ -68,12 +71,12 @@ export function ImagesToPdf() {
       <ToolLimits>
         <p>{t("limits")}</p>
       </ToolLimits>
-      <FileDropzone accept="image/*" files={files} onChange={setFiles} reorder />
+      <FileDropzone accept="image/*" files={files} onChange={(next) => { job.cancel(); setFiles(next); setResult(null); }} reorder />
       <div className="flex flex-wrap gap-2">
-        <Button type="button" variant={pageSize === "a4" ? "default" : "outline"} onClick={() => setPageSize("a4")}>
+        <Button type="button" variant={pageSize === "a4" ? "default" : "outline"} onClick={() => { job.cancel(); setPageSize("a4"); setResult(null); }}>
           {t("fitA4")}
         </Button>
-        <Button type="button" variant={pageSize === "image" ? "default" : "outline"} onClick={() => setPageSize("image")}>
+        <Button type="button" variant={pageSize === "image" ? "default" : "outline"} onClick={() => { job.cancel(); setPageSize("image"); setResult(null); }}>
           {t("fitImage")}
         </Button>
       </div>

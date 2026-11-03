@@ -1,6 +1,6 @@
 # Tietosuojakäytäntö
 
-**Päivitetty viimeksi:** 15. heinäkuuta 2026
+**Päivitetty viimeksi:** 2. marraskuuta 2026
 
 Tässä käytännössä kuvataan, miten tietoja käsitellään, kun käytät **Kitiä**, staattisena verkkosivustona julkaistua työkalukokoelmaa, joka on suunniteltu toimimaan selaimessasi.
 
@@ -62,3 +62,11 @@ Voimme päivittää tätä käytäntöä, kun tuote tai lakisääteiset vaatimuk
 Tietosuojaa koskevat kysymykset: [contact.timg@icloud.com](mailto:contact.timg@icloud.com).
 
 Julkaisija **Tim G (GitHub: TGthms)**.
+
+## Omat asetukset
+
+Palauttaa lausekkeet ja kuvaaja-asetukset tällä laitteella. Poistaminen käytöstä tyhjentää automaattiset luonnokset; tallennetut kuvaajat säilyvät.
+
+Siirrä suosikit ja asetukset laitteiden välillä. Tuonti korvaa nämä valinnat; tiedostot, historia ja tallennetut kuvaajat eivät sisälly.
+
+Tarkista tekninen tila ennen kopiointia. Tiedostot, syötetty sisältö ja selatut osoitteet eivät sisälly. Mitään ei lähetetä automaattisesti.

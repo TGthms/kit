@@ -19,6 +19,7 @@ import { useAppearanceStore } from "@/stores/appearance-store";
 import { useFeedbackStore } from "@/stores/feedback-store";
 import { useGreetingPreferencesStore } from "@/stores/greeting-preferences-store";
 import { InstallApp } from "@/components/settings/install-app";
+import { PersonalData, Diagnostics } from "@/components/settings/personal-data";
 import { ClearHistory } from "@/components/settings/clear-history";
 
 export default function SettingsPage() {
@@ -47,7 +48,7 @@ export default function SettingsPage() {
         <CardHeader>
           <CardTitle>{t("appearance")}</CardTitle>
         </CardHeader>
-        <CardContent>
+        <CardContent className="space-y-5">
           {hydrated ? (
             <SegmentedControl
               value={appearance}
@@ -73,21 +74,12 @@ export default function SettingsPage() {
           ) : (
             <div className="h-11 w-40 rounded-2xl bg-secondary/80" aria-hidden />
           )}
-        </CardContent>
-      </Card>
-
-      <Card className="anim-stagger border-border/40" style={{ animationDelay: "80ms" }}>
-        <CardHeader>
-          <CardTitle>{t("language")}</CardTitle>
-        </CardHeader>
-        <CardContent>
+          <section className="space-y-3 border-t border-border/50 pt-5">
+            <h3 className="text-sm font-medium">{t("language")}</h3>
           <LocaleSwitcher variant="settings" />
-        </CardContent>
-      </Card>
-
-      <Card className="border-border/40">
-        <CardHeader><CardTitle>{t("observanceGreetings")}</CardTitle></CardHeader>
-        <CardContent>
+          </section>
+          <section className="space-y-3 border-t border-border/50 pt-5">
+            <h3 className="text-sm font-medium">{t("observanceGreetings")}</h3>
           <div className="flex items-start justify-between gap-4">
             <p id="kit-observance-greetings-description" className="type-caption text-muted-foreground">
               {t("observanceGreetingsDesc")}
@@ -100,35 +92,18 @@ export default function SettingsPage() {
               aria-describedby="kit-observance-greetings-description"
             />
           </div>
-        </CardContent>
-      </Card>
-
-      <Card className="border-border/40">
-        <CardHeader><CardTitle>{t("haptics")}</CardTitle></CardHeader>
-        <CardContent className="space-y-3">
+          </section>
+          <section className="space-y-3 border-t border-border/50 pt-5">
+            <h3 className="text-sm font-medium">{t("haptics")}</h3>
           <p className="type-caption text-muted-foreground">{t("hapticsDesc")}</p>
           {hydrated ? <SegmentedControl value={haptics} onChange={setHaptics} aria-label={t("haptics")} options={[
             { value: "full", label: t("hapticsFull") },
             { value: "reduced", label: t("hapticsReduced") },
             { value: "off", label: t("hapticsOff") },
           ]} /> : <div className="h-11 w-56 rounded-2xl bg-secondary/80" aria-hidden />}
+          </section>
         </CardContent>
       </Card>
-
-      <Card className="border-border/40">
-        <CardHeader><CardTitle>{t("navigationAppearance")}</CardTitle></CardHeader>
-        <CardContent>
-          <div className="flex items-start justify-between gap-4">
-            <div>
-              <p id="kit-liquid-glass-label" className="font-medium tracking-[-0.01em]">{t("liquidGlass")}</p>
-              <p id="kit-liquid-glass-description" className="mt-1 type-caption text-muted-foreground">{t("liquidGlassDesc")}</p>
-            </div>
-            <Switch glass={false} checked={hydrated && liquidGlass} disabled={!hydrated} onCheckedChange={setLiquidGlass} aria-labelledby="kit-liquid-glass-label" aria-describedby="kit-liquid-glass-description" />
-          </div>
-        </CardContent>
-      </Card>
-
-      <InstallApp />
 
       <Card className="anim-stagger border-border/40" style={{ animationDelay: "120ms" }}>
         <CardHeader><CardTitle>{t("offlineAccess")}</CardTitle></CardHeader>
@@ -149,7 +124,7 @@ export default function SettingsPage() {
               <p className="font-medium tracking-[-0.01em]">{th("recordingTitle")}</p>
               <p className="mt-1 type-caption text-muted-foreground">{historyEnabled ? th("recordingOn") : th("recordingOff")}</p>
             </div>
-            <Switch checked={historyEnabled} onCheckedChange={setHistoryEnabled} aria-label={th("recordingTitle")} />
+            <Switch disabled={!hydrated} checked={hydrated && historyEnabled} onCheckedChange={setHistoryEnabled} aria-label={th("recordingTitle")} />
           </div>
           <div className="flex flex-wrap gap-2">
             <Button asChild variant="outline" size="sm">
@@ -170,6 +145,23 @@ export default function SettingsPage() {
           <p className="type-caption text-muted-foreground">{t("shortcutsHelp")}</p>
         </CardContent>
       </Card>
+
+      <PersonalData />
+      <Diagnostics />
+      <Card className="border-border/40">
+        <CardHeader><CardTitle>{t("navigationAppearance")}</CardTitle></CardHeader>
+        <CardContent>
+          <div className="flex items-start justify-between gap-4">
+            <div>
+              <p id="kit-liquid-glass-label" className="font-medium tracking-[-0.01em]">{t("liquidGlass")}</p>
+              <p id="kit-liquid-glass-description" className="mt-1 type-caption text-muted-foreground">{t("liquidGlassDesc")}</p>
+            </div>
+            <Switch glass={false} checked={hydrated && liquidGlass} disabled={!hydrated} onCheckedChange={setLiquidGlass} aria-labelledby="kit-liquid-glass-label" aria-describedby="kit-liquid-glass-description" />
+          </div>
+        </CardContent>
+      </Card>
+
+      <InstallApp />
 
       {/* The release the visitor is running, kept on its own at the foot of the
           page so it can be read out when something needs looking up. */}

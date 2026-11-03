@@ -1,6 +1,6 @@
 # Privatlivspolitik
 
-**Senest opdateret:** 15. juli 2026
+**Senest opdateret:** 2. november 2026
 
 Denne politik beskriver, hvordan oplysninger håndteres, når du bruger **Kit**, en samling hjælpeværktøjer, der er udgivet som et statisk websted og er beregnet til at køre i din browser.
 
@@ -62,3 +62,11 @@ Vi kan opdatere denne politik, når produktet eller de juridiske krav ændrer si
 Spørgsmål om privatliv: [contact.timg@icloud.com](mailto:contact.timg@icloud.com).
 
 Udgivet af **Tim G (GitHub: TGthms)**.
+
+## Personlig opsætning
+
+Gendan udtryk og grafindstillinger på denne enhed. Deaktivering sletter automatiske kladder; gemte grafer bevares.
+
+Flyt favoritter og indstillinger mellem enheder. Import erstatter disse valg; filer, historik og gemte grafer medtages ikke.
+
+Gennemgå den tekniske status, før du kopierer. Filer, indtastet indhold og besøgte adresser medtages ikke. Intet sendes automatisk.

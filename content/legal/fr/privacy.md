@@ -1,6 +1,6 @@
 # Politique de confidentialité
 
-**Dernière mise à jour :** September 1, 2026
+**Dernière mise à jour :** 2 novembre 2026
 
 Cette politique décrit la manière dont les informations sont traitées lorsque vous utilisez **Kit**, un ensemble d'utilitaires publié sous la forme d'un site web statique et conçu pour fonctionner dans votre navigateur.
 
@@ -62,3 +62,11 @@ Nous pouvons mettre à jour cette politique lorsque le produit ou les exigences 
 Questions relatives à la confidentialité : [contact.timg@icloud.com](mailto:contact.timg@icloud.com).
 
 Publié par **Tim G (GitHub : TGthms)**.
+
+## Configuration personnelle
+
+Restaure les expressions et les réglages du graphique sur cet appareil. Désactiver cette option efface les brouillons automatiques ; les graphiques enregistrés sont conservés.
+
+Transférez favoris et préférences entre appareils. L’importation remplace ces choix ; fichiers, historique et graphiques enregistrés sont exclus.
+
+Vérifiez l’état technique avant de le copier. Les fichiers, les saisies et les adresses consultées sont exclus. Rien n’est envoyé automatiquement.

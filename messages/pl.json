@@ -2254,5 +2254,20 @@
       "expressions": "Wyrażenia",
       "pan": "Przesuwanie"
     }
+  },
+  "workspace": {
+    "savedGraphs": "Zapisane wykresy",
+    "graphName": "Nazwa wykresu",
+    "startFresh": "Zacznij od nowa",
+    "storageFailed": "Nie można odczytać lub zapisać tych danych. Sprawdź plik i pamięć przeglądarki, a potem spróbuj ponownie.",
+    "useIn": "Użyj w innym narzędziu",
+    "personalSetup": "Ustawienia osobiste",
+    "mathRecovery": "Odzyskiwanie pracy matematycznej",
+    "mathRecoveryDesc": "Przywraca wyrażenia i ustawienia wykresów na tym urządzeniu. Wyłączenie usuwa automatyczne szkice; zapisane wykresy pozostają.",
+    "transferDesc": "Przenoś ulubione i preferencje między urządzeniami. Import zastępuje te wybory; pliki, historia i zapisane wykresy nie są uwzględniane.",
+    "exportPreferences": "Eksportuj preferencje",
+    "importPreferences": "Importuj preferencje",
+    "diagnostics": "Diagnostyka",
+    "diagnosticsDesc": "Sprawdź stan techniczny przed skopiowaniem. Pliki, wpisana treść i odwiedzone adresy są pomijane. Nic nie jest wysyłane automatycznie."
   }
 }

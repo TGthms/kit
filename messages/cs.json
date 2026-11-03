@@ -2254,5 +2254,20 @@
       "expressions": "Výrazy",
       "pan": "Posun"
     }
+  },
+  "workspace": {
+    "savedGraphs": "Uložené grafy",
+    "graphName": "Název grafu",
+    "startFresh": "Začít znovu",
+    "storageFailed": "Tato data se nepodařilo přečíst nebo uložit. Zkontrolujte soubor a úložiště prohlížeče a zkuste to znovu.",
+    "useIn": "Použít v jiném nástroji",
+    "personalSetup": "Osobní nastavení",
+    "mathRecovery": "Obnovovat matematickou práci",
+    "mathRecoveryDesc": "Obnoví výrazy a nastavení grafů na tomto zařízení. Vypnutí smaže automatické koncepty; uložené grafy zůstanou.",
+    "transferDesc": "Přeneste oblíbené a předvolby mezi zařízeními. Import nahradí tyto volby; soubory, historie a uložené grafy nejsou zahrnuty.",
+    "exportPreferences": "Exportovat předvolby",
+    "importPreferences": "Importovat předvolby",
+    "diagnostics": "Diagnostika",
+    "diagnosticsDesc": "Před kopírováním zkontrolujte technický stav. Soubory, zadaný obsah a navštívené adresy nejsou zahrnuty. Nic se neposílá automaticky."
   }
 }

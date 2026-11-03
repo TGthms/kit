@@ -1,5 +1,8 @@
 "use client";
 import { useEffect, useId, useMemo, useRef, useState } from "react";
+import { useMathDraft } from "@/lib/workspace/use-math-draft";
+import { freshGraph, type GraphDocument } from "@/lib/workspace/math";
+import { GraphLibrary } from "@/components/workspace/graph-library";
 import { createPortal } from "react-dom";
 import { useTranslations } from "next-intl";
 import {
@@ -116,6 +119,17 @@ export function FunctionGrapher() {
   const graph = useRef<SVGSVGElement>(null);
   const pointers = useRef(new Map<number, { x: number; y: number }>());
   const client = useRef<GraphClient | null>(null);
+
+  const graphDocument: GraphDocument = { curves, view, parameters, angle, grid };
+  const restoreDocument = (doc: GraphDocument) => {
+    hideMathKeyboard();
+    setCurves(doc.curves);
+    nextId.current = Math.max(...doc.curves.map((curve) => curve.id)) + 1;
+    squareUnits.current = false;
+    setView(doc.view); setParameters(doc.parameters); setAngle(doc.angle); setGrid(doc.grid);
+    setFocusId(null); setTrace(false); setTraceText("0");
+  };
+  const recovery = useMathDraft("graph", graphDocument, restoreDocument);
 
   const graphSession = useRef(0);
   const latestRequest = useRef("");
@@ -953,6 +967,7 @@ export function FunctionGrapher() {
   );
   return (
     <ToolShell toolId="function-grapher">
+      <GraphLibrary document={graphDocument} onLoad={restoreDocument} onFresh={() => restoreDocument(freshGraph())} failed={recovery.failed} />
       {expanded ? createPortal(content, document.body) : content}
     </ToolShell>
   );

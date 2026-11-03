@@ -1,6 +1,6 @@
 # Chính sách quyền riêng tư
 
-**Cập nhật lần cuối:** 15 tháng 7 năm 2026
+**Cập nhật lần cuối:** 2 tháng 11, 2026
 
 Chính sách này mô tả cách thông tin được xử lý khi bạn sử dụng **Kit**, một bộ tiện ích được phát hành dưới dạng trang web tĩnh và được thiết kế để chạy trong trình duyệt của bạn.
 
@@ -62,3 +62,11 @@ Chúng tôi có thể cập nhật chính sách này khi sản phẩm hoặc yê
 Câu hỏi về quyền riêng tư: [contact.timg@icloud.com](mailto:contact.timg@icloud.com).
 
 Được xuất bản bởi **Tim G (GitHub: TGthms)**.
+
+## Thiết lập cá nhân
+
+Khôi phục biểu thức và cài đặt đồ thị trên thiết bị này. Tắt sẽ xóa bản nháp tự động; đồ thị đã lưu vẫn được giữ.
+
+Chuyển mục yêu thích và tùy chọn giữa các thiết bị. Nhập sẽ thay thế các lựa chọn này; không bao gồm tệp, lịch sử và đồ thị đã lưu.
+
+Xem trạng thái kỹ thuật trước khi sao chép. Không bao gồm tệp, nội dung nhập và địa chỉ đã duyệt. Không có gì được gửi tự động.

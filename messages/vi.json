@@ -2254,5 +2254,20 @@
       "expressions": "Biểu thức",
       "pan": "Di chuyển"
     }
+  },
+  "workspace": {
+    "savedGraphs": "Đồ thị đã lưu",
+    "graphName": "Tên đồ thị",
+    "startFresh": "Bắt đầu lại",
+    "storageFailed": "Không thể đọc hoặc lưu dữ liệu này. Kiểm tra tệp và bộ nhớ trình duyệt rồi thử lại.",
+    "useIn": "Dùng trong công cụ khác",
+    "personalSetup": "Thiết lập cá nhân",
+    "mathRecovery": "Khôi phục bài toán đang làm",
+    "mathRecoveryDesc": "Khôi phục biểu thức và cài đặt đồ thị trên thiết bị này. Tắt sẽ xóa bản nháp tự động; đồ thị đã lưu vẫn được giữ.",
+    "transferDesc": "Chuyển mục yêu thích và tùy chọn giữa các thiết bị. Nhập sẽ thay thế các lựa chọn này; không bao gồm tệp, lịch sử và đồ thị đã lưu.",
+    "exportPreferences": "Xuất tùy chọn",
+    "importPreferences": "Nhập tùy chọn",
+    "diagnostics": "Chẩn đoán",
+    "diagnosticsDesc": "Xem trạng thái kỹ thuật trước khi sao chép. Không bao gồm tệp, nội dung nhập và địa chỉ đã duyệt. Không có gì được gửi tự động."
   }
 }

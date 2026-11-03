@@ -1,6 +1,6 @@
 # Privacybeleid
 
-**Laatst bijgewerkt:** 15 juli 2026
+**Laatst bijgewerkt:** 2 november 2026
 
 Dit beleid beschrijft hoe informatie wordt verwerkt wanneer je **Kit** gebruikt, een verzameling hulpprogramma's die als statische website is gepubliceerd en in je browser hoort te werken.
 
@@ -62,3 +62,11 @@ We kunnen dit beleid bijwerken wanneer het product of wettelijke vereisten veran
 Vragen over privacy: [contact.timg@icloud.com](mailto:contact.timg@icloud.com).
 
 Gepubliceerd door **Tim G (GitHub: TGthms)**.
+
+## Persoonlijke instellingen
+
+Herstelt uitdrukkingen en grafiekinstellingen op dit apparaat. Uitschakelen wist automatische concepten; opgeslagen grafieken blijven behouden.
+
+Verplaats favorieten en voorkeuren tussen apparaten. Importeren vervangt deze keuzes; bestanden, geschiedenis en opgeslagen grafieken zijn uitgesloten.
+
+Controleer de technische status voordat je die kopieert. Bestanden, invoer en bezochte adressen zijn uitgesloten. Er wordt niets automatisch verzonden.

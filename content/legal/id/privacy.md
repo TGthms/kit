@@ -1,6 +1,6 @@
 # Kebijakan Privasi
 
-**Terakhir diperbarui:** 15 Juli 2026
+**Terakhir diperbarui:** 2 November 2026
 
 Kebijakan ini menjelaskan cara informasi ditangani ketika Anda menggunakan **Kit**, kumpulan utilitas yang diterbitkan sebagai situs web statis dan dirancang untuk berjalan di browser Anda.
 
@@ -62,3 +62,11 @@ Kami dapat memperbarui kebijakan ini ketika produk atau persyaratan hukum beruba
 Pertanyaan privasi: [contact.timg@icloud.com](mailto:contact.timg@icloud.com).
 
 Diterbitkan oleh **Tim G (GitHub: TGthms)**.
+
+## Pengaturan pribadi
+
+Memulihkan ekspresi dan pengaturan grafik di perangkat ini. Menonaktifkan akan menghapus draf otomatis; grafik tersimpan tetap ada.
+
+Pindahkan favorit dan preferensi antarperangkat. Impor mengganti pilihan ini; file, riwayat, dan grafik tersimpan tidak disertakan.
+
+Tinjau status teknis sebelum menyalin. File, konten masukan, dan alamat penjelajahan tidak disertakan. Tidak ada yang dikirim otomatis.

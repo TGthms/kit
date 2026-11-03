@@ -1,5 +1,6 @@
 "use client";
 
+import { recordDiagnostic } from "@/lib/pwa/diagnostics";
 import { useCallback, useEffect, useMemo, useRef, useState, useSyncExternalStore } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { Check, ChevronDown, Download, HardDriveDownload, LoaderCircle, RefreshCw, ShieldCheck, Wrench, Trash2, X } from "lucide-react";
@@ -289,7 +290,7 @@ export function OfflineAccess() {
           reportReceived.current = true;
           setReportLoaded(true);
           setReportError(verificationFailed.current || !current || Boolean(data.error));
-          if (data.error) setReportDetail(data.error);
+          if (data.error) { setReportDetail(data.error); recordDiagnostic("offline", "failed"); }
           else if (data.verified) setReportDetail(null);
           setState(current ?? null);
           activeState.current = current ?? null;

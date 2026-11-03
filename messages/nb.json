@@ -2254,5 +2254,20 @@
       "expressions": "Uttrykk",
       "pan": "Flytt"
     }
+  },
+  "workspace": {
+    "savedGraphs": "Lagrede grafer",
+    "graphName": "Grafnavn",
+    "startFresh": "Start på nytt",
+    "storageFailed": "Disse dataene kunne ikke leses eller lagres. Kontroller filen og nettleserlagringen, og prøv igjen.",
+    "useIn": "Bruk i et annet verktøy",
+    "personalSetup": "Personlig oppsett",
+    "mathRecovery": "Gjenopprett matematikkarbeid",
+    "mathRecoveryDesc": "Gjenoppretter uttrykk og grafinnstillinger på denne enheten. Når det slås av, slettes automatiske utkast; lagrede grafer beholdes.",
+    "transferDesc": "Flytt favoritter og innstillinger mellom enheter. Import erstatter disse valgene; filer, historikk og lagrede grafer er ikke inkludert.",
+    "exportPreferences": "Eksporter innstillinger",
+    "importPreferences": "Importer innstillinger",
+    "diagnostics": "Diagnostikk",
+    "diagnosticsDesc": "Se gjennom teknisk status før du kopierer. Filer, inntastet innhold og besøkte adresser er ikke inkludert. Ingenting sendes automatisk."
   }
 }

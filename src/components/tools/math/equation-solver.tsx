@@ -1,4 +1,7 @@
 "use client";
+import { DraftStatus } from "@/components/workspace/draft-status";
+import { useMathDraft } from "@/lib/workspace/use-math-draft";
+import type { SimpleMathDraft } from "@/lib/workspace/math";
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { CopyButton } from "@/components/ui/copy-button";
@@ -14,6 +17,7 @@ export function EquationSolver() {
   const [value, setValue] = useState("x^2-5x+6=0");
   const { loading, reply, run, clear } = useMath<Solution>();
   const log = useToolHistory("equation-solver");
+  const recovery = useMathDraft<SimpleMathDraft>("equation-solver", { value }, (draft) => { setValue(draft.value); clear(); });
   const solve = async () => {
     const reply = await run({ kind: "solve", latex: value });
     if (reply.ok)
@@ -25,6 +29,7 @@ export function EquationSolver() {
   };
   return (
     <ToolShell toolId="equation-solver">
+      <DraftStatus failed={recovery.failed} />
       <div className="space-y-4 rounded-2xl border bg-card p-4 sm:p-5">
         <MathInput
           value={value}
@@ -50,6 +55,7 @@ export function EquationSolver() {
             </Button>
           ))}
         </div>
+        <Button variant="outline" onClick={() => { setValue(""); clear(); }}>{tc("clear")}</Button>
         <Button onClick={solve} disabled={loading || !value.trim()}>
           {loading ? tc("processing") : t("solve")}
         </Button>

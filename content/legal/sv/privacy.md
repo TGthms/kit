@@ -1,6 +1,6 @@
 # Integritetspolicy
 
-**Senast uppdaterad:** 15 juli 2026
+**Senast uppdaterad:** 2 november 2026
 
 Den här policyn beskriver hur information hanteras när du använder **Kit**, en samling verktyg som publiceras som en statisk webbplats och är avsedd att köras i din webbläsare.
 
@@ -62,3 +62,11 @@ Vi kan uppdatera den här policyn när produkten eller juridiska krav ändras. D
 Frågor om integritet: [contact.timg@icloud.com](mailto:contact.timg@icloud.com).
 
 Publicerad av **Tim G (GitHub: TGthms)**.
+
+## Personliga inställningar
+
+Återställer uttryck och grafinställningar på den här enheten. Avstängning raderar automatiska utkast; sparade grafer behålls.
+
+Flytta favoriter och inställningar mellan enheter. Import ersätter dessa val; filer, historik och sparade grafer ingår inte.
+
+Granska teknisk status innan du kopierar. Filer, inmatat innehåll och besökta adresser ingår inte. Inget skickas automatiskt.

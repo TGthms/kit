@@ -1,4 +1,7 @@
 "use client";
+import { DraftStatus } from "@/components/workspace/draft-status";
+import { useMathDraft } from "@/lib/workspace/use-math-draft";
+import type { SimpleMathDraft } from "@/lib/workspace/math";
 import { useRef, useState } from "react";
 import type { MathfieldElement } from "mathlive";
 import { useTranslations } from "next-intl";
@@ -21,6 +24,7 @@ function Calculator({ fraction = false }: { fraction?: boolean }) {
   const field = useRef<MathfieldElement | null>(null);
   const { loading, reply, run, clear } = useMath<MathValue>();
   const log = useToolHistory(id);
+  const recovery = useMathDraft<SimpleMathDraft>(id, { value, angle }, (draft) => { setValue(draft.value); setAngle(draft.angle ?? "rad"); clear(); });
   const calculate = async () => {
     if (!value.trim()) return;
     const result = await run({
@@ -72,6 +76,7 @@ function Calculator({ fraction = false }: { fraction?: boolean }) {
   };
   return (
     <ToolShell toolId={id}>
+      <DraftStatus failed={recovery.failed} />
       <div className="grid items-start gap-6 lg:grid-cols-[minmax(0,1.35fr)_minmax(240px,1fr)]">
         <div className="min-w-0 space-y-4 rounded-2xl border bg-card p-4 sm:p-5">
           {!fraction && (
