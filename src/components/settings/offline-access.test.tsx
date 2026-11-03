@@ -308,16 +308,16 @@ describe("the app's own pages", () => {
   it("selects and clears the whole card from its own controls", () => {
     renderOffline();
     const pages = within(header("Pages"));
-    fireEvent.click(pages.getByRole("button", { name: "Clear" }));
+    fireEvent.click(pages.getByRole("button", { name: "Clear · Pages" }));
     expect(pageBoxes().some((box) => box.checked)).toBe(false);
 
-    fireEvent.click(pages.getByRole("button", { name: "Select all" }));
+    fireEvent.click(pages.getByRole("button", { name: "Select all · Pages" }));
     expect(pageBoxes().every((box) => box.checked)).toBe(true);
   });
 
   it("is a download in its own right, without any tool", async () => {
     renderOffline();
-    fireEvent.click(within(header("Tools")).getByRole("button", { name: "Clear" }));
+    fireEvent.click(within(header("Tools")).getByRole("button", { name: "Clear · Tools" }));
     await sentEventually("OFFLINE_VERIFY");
     emit({ type: "OFFLINE_STATE", state: savedState() });
     // Preparing the app itself for offline is a small, legitimate download.
@@ -326,8 +326,8 @@ describe("the app's own pages", () => {
 
   it("will not start a download that asks for nothing at all", () => {
     renderOffline();
-    fireEvent.click(within(header("Tools")).getByRole("button", { name: "Clear" }));
-    fireEvent.click(within(header("Pages")).getByRole("button", { name: "Clear" }));
+    fireEvent.click(within(header("Tools")).getByRole("button", { name: "Clear · Tools" }));
+    fireEvent.click(within(header("Pages")).getByRole("button", { name: "Clear · Pages" }));
     expect(screen.getByRole("button", { name: "Download" })).toBeDisabled();
   });
 });
@@ -686,7 +686,7 @@ describe("clear offline readiness", () => {
   it("honors edited download choices when an update is available", async () => {
     renderOffline();
     emit({ type: "OFFLINE_STATE", state: savedState({ pendingUpdate: true }) });
-    fireEvent.click(within(header("Tools")).getByRole("button", { name: "Clear" }));
+    fireEvent.click(within(header("Tools")).getByRole("button", { name: "Clear · Tools" }));
     fireEvent.click(screen.getByRole("button", { name: "Math (4)" }));
     fireEvent.click(screen.getByRole("checkbox", { name: "Function grapher" }));
     fireEvent.click(screen.getByRole("checkbox", { name: /Include large media engines/ }));
@@ -698,7 +698,7 @@ describe("clear offline readiness", () => {
     record();
     renderOffline();
     emit({ type: "OFFLINE_STATE", state: savedState({ pendingUpdate: true }) });
-    fireEvent.click(within(header("Tools")).getByRole("button", { name: "Clear" }));
+    fireEvent.click(within(header("Tools")).getByRole("button", { name: "Clear · Tools" }));
     fireEvent.click(screen.getByRole("button", { name: "Math (4)" }));
     fireEvent.click(screen.getByRole("checkbox", { name: "Function grapher" }));
     fireEvent.click(screen.getByRole("button", { name: "Update" }));
@@ -709,7 +709,7 @@ describe("clear offline readiness", () => {
     record({ version: APP_VERSION, pages: ["home"] });
     renderOffline();
     emit({ type: "OFFLINE_STATE", state: savedState({ essentials: { en: { done: 0, total: 6, ready: false } } }) });
-    fireEvent.click(within(header("Tools")).getByRole("button", { name: "Clear" }));
+    fireEvent.click(within(header("Tools")).getByRole("button", { name: "Clear · Tools" }));
     fireEvent.click(screen.getByRole("button", { name: "Math (4)" }));
     fireEvent.click(screen.getByRole("checkbox", { name: "Function grapher" }));
     fireEvent.click(screen.getByRole("button", { name: "Repair" }));
