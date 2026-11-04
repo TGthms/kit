@@ -338,3 +338,24 @@ it("uses the SDK focus entry point after a primary mouse release", async () => {
   fireEvent.pointerUp(field, { pointerType: "mouse", button: 2 });
   expect(focus).not.toHaveBeenCalled();
 });
+
+it("delegates native host focus to the accessible keyboard sink", async () => {
+  const { field } = await editor();
+  const shadow = field.attachShadow({ mode: "open" });
+  const sink = document.createElement("span"); sink.tabIndex = 0; sink.setAttribute("part", "keyboard-sink");
+  shadow.append(sink);
+  field.focus();
+  expect(shadow.activeElement).toBe(sink);
+});
+it("keeps a native sink closed when a touch scroll only focuses the host", async () => {
+  vi.stubGlobal("mathVirtualKeyboard", { visible: false, hide: vi.fn(), show: vi.fn(), addEventListener: vi.fn() });
+  const { field } = await editor();
+  const shadow = field.attachShadow({ mode: "open" });
+  const sink = document.createElement("span"); sink.tabIndex = 0; sink.setAttribute("part", "keyboard-sink");
+  shadow.append(sink);
+  const focus = vi.spyOn(sink, "focus");
+  fireEvent.pointerDown(field, { pointerType: "touch", pointerId: 12, clientX: 5, clientY: 5 });
+  fireEvent.pointerMove(field, { pointerType: "touch", pointerId: 12, clientX: 5, clientY: 80 });
+  field.focus();
+  expect(focus).not.toHaveBeenCalled();
+});

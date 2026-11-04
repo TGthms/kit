@@ -50,7 +50,6 @@ test("graph edits survive navigation and reload; saved graph stays separate", as
   // The host is contenteditable too, but MathLive receives native keyboard
   // events through its accessible shadow textbox. Target that actual editor.
   const editor = field.getByRole("textbox");
-  await editor.focus();
   await expect(editor).toBeFocused();
   await editor.press("ControlOrMeta+A");
   await editor.pressSequentially("x^2+2");

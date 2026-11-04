@@ -284,6 +284,20 @@ export function MathInput({
             )
               return;
             suppressTouchFocus.current = false;
+            // The host is also contenteditable. A click on its empty area can
+            // land native focus there while the SDK only paints a caret.
+            // Forward host-originated focus to its exposed keyboard-sink part;
+            // never steal focus from SDK menu/toggle controls or a touch scroll.
+            if (
+              !readOnly &&
+              event.nativeEvent.composedPath()[0] === event.currentTarget
+            ) {
+              const sink = event.currentTarget.shadowRoot?.querySelector<HTMLElement>(
+                '[part="keyboard-sink"]',
+              );
+              if (sink && event.currentTarget.shadowRoot?.activeElement !== sink)
+                sink.focus({ preventScroll: true });
+            }
             if (!readOnly && window.matchMedia("(pointer: coarse)").matches) {
               window.mathVirtualKeyboard?.show({ animate: false });
               syncMathKeyboard();
