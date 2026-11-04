@@ -9,7 +9,7 @@ test("search, client navigation, Back, and accessible help", async ({
   page,
 }) => {
   await route(page, "");
-  const search = page.locator("#kit-search");
+  const search = page.locator("#kit-search:visible");
   await search.fill("make PDF smaller");
   await page.evaluate(() => {
     (window as Window & { kitNavigationProbe?: boolean }).kitNavigationProbe =
@@ -25,7 +25,7 @@ test("search, client navigation, Back, and accessible help", async ({
     ),
   ).toBe(true);
   await page.goBack();
-  await expect(page.locator("#kit-search")).toBeVisible();
+  await expect(page.locator("#kit-search:visible")).toBeVisible();
   await search.blur();
   await page.keyboard.press("?");
   const help = page.getByRole("dialog");
@@ -120,17 +120,18 @@ test("image result download and local handoff preserve the output", async ({
   await page
     .locator('input[type="file"]')
     .setInputFiles({ name: "sample.png", mimeType: "image/png", buffer: png });
+  await page.locator('[data-tool="image-convert"]:visible').getByRole("combobox").selectOption("image/jpeg");
   await page.getByRole("button", { name: "Convert", exact: true }).click();
   const result = page.getByRole("region", { name: "Result", exact: true });
   await expect(result).toBeVisible();
   const download = page.waitForEvent("download");
   await result.getByRole("button", { name: "Download", exact: true }).click();
-  expect((await download).suggestedFilename()).toBe("sample.webp");
+  expect((await download).suggestedFilename()).toBe("sample.jpg");
   await result
     .getByRole("button", { name: "Images → PDF", exact: true })
     .click();
   await expect(page.locator('[data-tool="images-to-pdf"]:visible')).toBeVisible();
-  await expect(page.getByText("1. sample.webp", { exact: true })).toBeVisible();
+  await expect(page.getByText("1. sample.jpg", { exact: true })).toBeVisible();
 });
 
 test("settings export is valid and diagnostic review excludes user input", async ({

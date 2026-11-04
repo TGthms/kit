@@ -1,0 +1,40 @@
+name: Isolated worker recovery diagnosis
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  probe:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-latest
+            browser: chromium
+          - os: ubuntu-latest
+            browser: webkit
+          - os: macos-15
+            browser: webkit
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: ".nvmrc"
+      - name: Install isolated test dependency
+        run: npm install --prefix "$RUNNER_TEMP/kit-worker-probe" --ignore-scripts --no-audit --no-fund --package-lock=false @playwright/test@1.64.1
+      - name: Install browser runtime
+        run: node "$RUNNER_TEMP/kit-worker-probe/node_modules/@playwright/test/cli.js" install --with-deps ${{ matrix.browser }}
+      - name: Exercise actual Kit worker with synthetic app files
+        env:
+          KIT_PROBE_PACKAGE_ROOT: ${{ runner.temp }}/kit-worker-probe
+          KIT_PROBE_BROWSER: ${{ matrix.browser }}
+        run: node scripts/probe-worker-recovery.mjs
+      - name: Preserve diagnostic results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: worker-probe-${{ matrix.os }}-${{ matrix.browser }}
+          path: worker-probe-results.json
+          retention-days: 7
