@@ -7,7 +7,8 @@ const UseIn = dynamic(() => import("./use-in").then((module) => module.UseIn));
 import { downloadBlob, archiveBlob, formatBytes } from "@/lib/utils";
 import { useTaskScope } from "@/lib/react/task-scope";
 import { HANDOFF_BYTES } from "@/lib/workspace/handoff";
-export type ResultFile = { blob: Blob; name: string; originalBytes?: number };
+export type ResultFile = { blob: Blob; name: string; originalBytes?: number; requestedMime?: string };
+const imageFormat = (mime: string) => ({ "image/jpeg": "JPEG", "image/png": "PNG", "image/webp": "WebP" }[mime] ?? mime);
 const identities = new WeakMap<Blob, number>();
 let identity = 0;
 export function ResultFiles({ files }: { files: ResultFile[] }) {
@@ -87,6 +88,9 @@ function FileResultPanel({ files }: { files: ResultFile[] }) {
                 ? ` (${Math.round((item.blob.size / item.originalBytes - 1) * 100)}%)`
                 : ""}
             </p>
+            {item.requestedMime && item.blob.type !== item.requestedMime && <p className="mt-1 text-xs text-amber-800 dark:text-amber-200">
+              {tw("formatFallback", { requested: imageFormat(item.requestedMime), actual: imageFormat(item.blob.type) })}
+            </p>}
           </li>
         ))}
       </ul>

@@ -2269,6 +2269,7 @@
     "importPreferences": "匯入偏好設定",
     "diagnostics": "診斷",
     "diagnosticsDesc": "複製前可檢視技術狀態。不包含檔案、輸入內容及瀏覽位址，也不會自動傳送任何資訊。",
-    "offlineDestination": "此工具尚未下載。請連上網路，或先在「離線存取」中儲存此工具。"
+    "offlineDestination": "此工具尚未下載。請連上網路，或先在「離線存取」中儲存此工具。",
+    "formatFallback": "此瀏覽器不支援 {requested}。結果使用 {actual} 格式。"
   }
 }

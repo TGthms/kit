@@ -2269,6 +2269,7 @@
     "importPreferences": "Importar preferências",
     "diagnostics": "Diagnóstico",
     "diagnosticsDesc": "Reveja o estado técnico antes de copiar. Ficheiros, conteúdos introduzidos e endereços visitados não são incluídos. Nada é enviado automaticamente.",
-    "offlineDestination": "Esta ferramenta não foi transferida. Ligue-se à Internet ou guarde-a primeiro em Acesso offline."
+    "offlineDestination": "Esta ferramenta não foi transferida. Ligue-se à Internet ou guarde-a primeiro em Acesso offline.",
+    "formatFallback": "Este navegador não suporta {requested}. O resultado usa {actual}."
   }
 }

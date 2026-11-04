@@ -2269,6 +2269,7 @@
     "importPreferences": "Importovat předvolby",
     "diagnostics": "Diagnostika",
     "diagnosticsDesc": "Před kopírováním zkontrolujte technický stav. Soubory, zadaný obsah a navštívené adresy nejsou zahrnuty. Nic se neposílá automaticky.",
-    "offlineDestination": "Tento nástroj není stažený. Připojte se k internetu nebo jej nejprve uložte v Přístupu offline."
+    "offlineDestination": "Tento nástroj není stažený. Připojte se k internetu nebo jej nejprve uložte v Přístupu offline.",
+    "formatFallback": "Tento prohlížeč nepodporuje {requested}. Výsledek používá {actual}."
   }
 }

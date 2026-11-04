@@ -2269,6 +2269,7 @@
     "importPreferences": "Beállítások importálása",
     "diagnostics": "Diagnosztika",
     "diagnosticsDesc": "Másolás előtt tekintsd át a műszaki állapotot. A fájlok, bevitt tartalmak és meglátogatott címek kimaradnak. Semmi nem kerül automatikusan elküldésre.",
-    "offlineDestination": "Ez az eszköz nincs letöltve. Csatlakozz az internethez, vagy előbb mentsd el az Offline elérésnél."
+    "offlineDestination": "Ez az eszköz nincs letöltve. Csatlakozz az internethez, vagy előbb mentsd el az Offline elérésnél.",
+    "formatFallback": "Ez a böngésző nem támogatja a(z) {requested} formátumot. Az eredmény formátuma {actual}."
   }
 }

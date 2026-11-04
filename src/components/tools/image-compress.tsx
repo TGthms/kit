@@ -48,7 +48,7 @@ export function ImageCompress() {
         });
         const name = f.file.name.replace(/\.\w+$/, "") + `-compressed.${extensionForMime(blob.type, "jpg")}`;
         throwIfAborted(ac.signal);
-        results.push({ name, blob, originalBytes: f.file.size });
+        results.push({ name, blob, originalBytes: f.file.size, requestedMime: compressOutputMime(f.file.type) });
         setProgress(Math.round(((i + 1) / files.length) * 100));
       }
       setResults(results);

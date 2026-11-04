@@ -2269,6 +2269,7 @@
     "importPreferences": "Einstellungen importieren",
     "diagnostics": "Diagnose",
     "diagnosticsDesc": "Prüfe den technischen Status vor dem Kopieren. Dateien, Eingaben und besuchte Adressen sind ausgeschlossen. Es wird nichts automatisch gesendet.",
-    "offlineDestination": "Dieses Werkzeug ist nicht heruntergeladen. Verbinde dich mit dem Internet oder speichere es zuerst unter Offlinezugriff."
+    "offlineDestination": "Dieses Werkzeug ist nicht heruntergeladen. Verbinde dich mit dem Internet oder speichere es zuerst unter Offlinezugriff.",
+    "formatFallback": "Dieser Browser unterstützt {requested} nicht. Das Ergebnis verwendet {actual}."
   }
 }

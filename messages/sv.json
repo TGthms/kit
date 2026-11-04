@@ -2269,6 +2269,7 @@
     "importPreferences": "Importera inställningar",
     "diagnostics": "Diagnostik",
     "diagnosticsDesc": "Granska teknisk status innan du kopierar. Filer, inmatat innehåll och besökta adresser ingår inte. Inget skickas automatiskt.",
-    "offlineDestination": "Det här verktyget är inte nedladdat. Anslut till internet eller spara det först under Offlineåtkomst."
+    "offlineDestination": "Det här verktyget är inte nedladdat. Anslut till internet eller spara det först under Offlineåtkomst.",
+    "formatFallback": "Den här webbläsaren stöder inte {requested}. Resultatet använder {actual}."
   }
 }

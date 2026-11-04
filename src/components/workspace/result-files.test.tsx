@@ -142,3 +142,8 @@ it("does not download an archive after its source result has been replaced", asy
   await act(async () => complete(new Blob(["archive"])));
   expect(download).not.toHaveBeenCalled();
 });
+
+it("explains when the browser produces a different image format", () => {
+  render(<NextIntlClientProvider locale="en" messages={en}><ResultFiles files={[{ name: "photo.png", blob: new Blob(["pixels"], { type: "image/png" }), requestedMime: "image/webp" }]} /></NextIntlClientProvider>);
+  expect(screen.getByText("WebP isn’t supported by this browser. The result uses PNG.")).toBeVisible();
+});

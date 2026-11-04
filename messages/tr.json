@@ -2269,6 +2269,7 @@
     "importPreferences": "Tercihleri içe aktar",
     "diagnostics": "Tanılama",
     "diagnosticsDesc": "Kopyalamadan önce teknik durumu inceleyin. Dosyalar, girilen içerikler ve ziyaret edilen adresler dahil edilmez. Hiçbir şey otomatik gönderilmez.",
-    "offlineDestination": "Bu araç indirilmemiş. İnternete bağlanın veya önce Çevrimdışı erişim bölümünde kaydedin."
+    "offlineDestination": "Bu araç indirilmemiş. İnternete bağlanın veya önce Çevrimdışı erişim bölümünde kaydedin.",
+    "formatFallback": "Bu tarayıcı {requested} biçimini desteklemiyor. Sonuç {actual} biçiminde."
   }
 }

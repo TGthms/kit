@@ -2269,6 +2269,7 @@
     "importPreferences": "Voorkeuren importeren",
     "diagnostics": "Diagnostiek",
     "diagnosticsDesc": "Controleer de technische status voordat je die kopieert. Bestanden, invoer en bezochte adressen zijn uitgesloten. Er wordt niets automatisch verzonden.",
-    "offlineDestination": "Dit hulpmiddel is niet gedownload. Maak verbinding met internet of sla het eerst op bij Offline toegang."
+    "offlineDestination": "Dit hulpmiddel is niet gedownload. Maak verbinding met internet of sla het eerst op bij Offline toegang.",
+    "formatFallback": "Deze browser ondersteunt {requested} niet. Het resultaat gebruikt {actual}."
   }
 }

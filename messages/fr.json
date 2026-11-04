@@ -2269,6 +2269,7 @@
     "importPreferences": "Importer les préférences",
     "diagnostics": "Diagnostic",
     "diagnosticsDesc": "Vérifiez l’état technique avant de le copier. Les fichiers, les saisies et les adresses consultées sont exclus. Rien n’est envoyé automatiquement.",
-    "offlineDestination": "Cet outil n’est pas téléchargé. Connectez-vous à Internet ou enregistrez-le d’abord dans Accès hors ligne."
+    "offlineDestination": "Cet outil n’est pas téléchargé. Connectez-vous à Internet ou enregistrez-le d’abord dans Accès hors ligne.",
+    "formatFallback": "Ce navigateur ne prend pas en charge {requested}. Le résultat utilise {actual}."
   }
 }

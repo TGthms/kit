@@ -2269,6 +2269,7 @@
     "importPreferences": "Nhập tùy chọn",
     "diagnostics": "Chẩn đoán",
     "diagnosticsDesc": "Xem trạng thái kỹ thuật trước khi sao chép. Không bao gồm tệp, nội dung nhập và địa chỉ đã duyệt. Không có gì được gửi tự động.",
-    "offlineDestination": "Công cụ này chưa được tải xuống. Hãy kết nối internet hoặc lưu trước trong Truy cập ngoại tuyến."
+    "offlineDestination": "Công cụ này chưa được tải xuống. Hãy kết nối internet hoặc lưu trước trong Truy cập ngoại tuyến.",
+    "formatFallback": "Trình duyệt này không hỗ trợ {requested}. Kết quả dùng {actual}."
   }
 }

@@ -2269,6 +2269,7 @@
     "importPreferences": "Tuo asetukset",
     "diagnostics": "Diagnostiikka",
     "diagnosticsDesc": "Tarkista tekninen tila ennen kopiointia. Tiedostot, syötetty sisältö ja selatut osoitteet eivät sisälly. Mitään ei lähetetä automaattisesti.",
-    "offlineDestination": "Tätä työkalua ei ole ladattu. Yhdistä internetiin tai tallenna se ensin offline-käyttöä varten."
+    "offlineDestination": "Tätä työkalua ei ole ladattu. Yhdistä internetiin tai tallenna se ensin offline-käyttöä varten.",
+    "formatFallback": "Tämä selain ei tue muotoa {requested}. Tulos käyttää muotoa {actual}."
   }
 }

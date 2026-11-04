@@ -2269,6 +2269,7 @@
     "importPreferences": "Importer innstillinger",
     "diagnostics": "Diagnostikk",
     "diagnosticsDesc": "Se gjennom teknisk status før du kopierer. Filer, inntastet innhold og besøkte adresser er ikke inkludert. Ingenting sendes automatisk.",
-    "offlineDestination": "Dette verktøyet er ikke lastet ned. Koble til internett, eller lagre det først under Frakoblet tilgang."
+    "offlineDestination": "Dette verktøyet er ikke lastet ned. Koble til internett, eller lagre det først under Frakoblet tilgang.",
+    "formatFallback": "Denne nettleseren støtter ikke {requested}. Resultatet bruker {actual}."
   }
 }

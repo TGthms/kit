@@ -33,6 +33,7 @@ export function ImageConvert() {
         const blob = await convertImage(f.file, mime);
         throwIfAborted(ac.signal);
         items.push({
+          requestedMime: mime,
           originalBytes: f.file.size,
           blob,
           name: f.file.name.replace(/\.\w+$/, "") + `.${extensionForMime(blob.type, "webp")}`,

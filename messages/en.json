@@ -2269,6 +2269,7 @@
     "importPreferences": "Import preferences",
     "diagnostics": "Diagnostics",
     "diagnosticsDesc": "Review technical status before copying. Files, input contents and browsing addresses are excluded. Nothing is sent automatically.",
-    "offlineDestination": "This tool is not downloaded. Connect to the internet or save it in Offline access first."
+    "offlineDestination": "This tool is not downloaded. Connect to the internet or save it in Offline access first.",
+    "formatFallback": "{requested} isn’t supported by this browser. The result uses {actual}."
   }
 }

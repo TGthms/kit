@@ -2269,6 +2269,7 @@
     "importPreferences": "导入偏好设置",
     "diagnostics": "诊断",
     "diagnosticsDesc": "复制前可查看技术状态。不包含文件、输入内容及浏览地址，也不会自动发送任何信息。",
-    "offlineDestination": "此工具尚未下载。请连接互联网，或先在“离线访问”中保存此工具。"
+    "offlineDestination": "此工具尚未下载。请连接互联网，或先在“离线访问”中保存此工具。",
+    "formatFallback": "此浏览器不支持 {requested}。结果使用 {actual} 格式。"
   }
 }
