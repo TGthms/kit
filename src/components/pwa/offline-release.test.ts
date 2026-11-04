@@ -711,3 +711,28 @@ it("stamps reused app resources with their cache writer without changing their v
   expect(copied!.headers.get("X-Kit-Cached-By")).toBe(generation);
   expect(await copied!.text()).toBe(files[script][0]);
 });
+
+it("discards failed unverified staging before the installer is retired, so retry opens fresh caches", async () => {
+  const first = load({ build: "aaaaaaaaaaaa", active: true });
+  await first.lifecycle("install"); await first.lifecycle("activate");
+  await first.worker.downloadSelectedOffline(selection);
+  const failed = load({ stores: first.stores });
+  failed.writeErrors.set(script, new Error("storage interrupted"));
+  await expect(failed.lifecycle("install")).rejects.toThrow("storage interrupted");
+  expect(first.stores.has(shellName)).toBe(false);
+  expect(first.stores.has(rscName)).toBe(false);
+  expect(first.stores.has("kit-shell-aaaaaaaaaaaa")).toBe(true);
+  expect((await first.worker.offlineState()).plan.ready).toBe(true);
+  const retry = load({ stores: first.stores }); await retry.lifecycle("install");
+  expect(await (await (await retry.open(shellName)).match("/en/tools/pdf-merge/"))!.text()).toBe(html);
+  expect(retry.activations()).toBe(0);
+});
+it("never clears the currently serving cache after an installation error", async () => {
+  const run = load({ active: true });
+  await run.lifecycle("install"); await run.lifecycle("activate");
+  await run.worker.downloadSelectedOffline(selection);
+  const same = load({ stores: run.stores });
+  same.overrides.set("/", new Response("unavailable", { status: 503 }));
+  await expect(same.lifecycle("install")).rejects.toThrow();
+  expect((await run.worker.offlineState()).plan.ready).toBe(true);
+});

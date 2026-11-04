@@ -96,7 +96,8 @@ up when compatible upstream fixes/backports are available.
 
 Update preparation now shares native update requests across callers and reuses
 only the exact installed Kit registration. Failed installers cancel and settle
-all staging lanes. Partial entries are validated before reuse; cache-backed
+all staging lanes, then discard their own unverified non-serving staging caches
+before the failed worker is retired. Serving and verified caches are protected. Partial entries are validated before reuse; cache-backed
 copies are reconstructed from verified bytes. If staged files disappear before
 readback, one bounded network repair pass uses stable handles and sequential writes to verify the exact release bytes,
 then repeats full storage verification and restores/verifies the manifest. A

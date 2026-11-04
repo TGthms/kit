@@ -174,6 +174,7 @@ function sameOriginUrl(path) {
 }
 
 self.addEventListener("install", (event) => {
+  let installManifest = null;
   event.waitUntil(
     (async () => {
       // Installation must keep the manifest that belongs to this worker. A
@@ -181,10 +182,16 @@ self.addEventListener("install", (event) => {
       const response = await downloadResponse(FILL_PRECACHE);
       const manifest = await response.clone().json();
       if (!response.ok || manifest.generation !== GENERATION) throw new Error("Build changed during install");
+      installManifest = manifest;
       const cache = await caches.open(CACHE);
       await cache.put(FILL_PRECACHE, response);
       await stageRelease(manifest);
     })().catch(async (error) => {
+      // Remove this failed attempt while its cache connection is still alive.
+      // Reopening a discarded installer's cache on WebKit can acknowledge
+      // writes without retaining them. Never discard a serving/verified store.
+      try { await discardFailedInstall(installManifest); }
+      catch { /* Storage failure keeps the old release and remains retryable. */ }
       // A rejected install leaves the current release intact, but normally
       // exposes no reason to the page. Report only technical install context;
       // these URLs are app assets, never user-selected files or tool inputs.
@@ -197,6 +204,16 @@ self.addEventListener("install", (event) => {
     })
   );
 });
+
+async function discardFailedInstall(manifest) {
+  const root = new URL("./", self.registration.scope).pathname;
+  if (manifest?.generation !== GENERATION || !manifest.core?.includes(root)) return;
+  const active = await readRecord(META_CACHE, ACTIVE_RELEASE);
+  if (active?.cache === CACHE) return;
+  const receipt = await readRecord(CACHE, VERIFIED);
+  if (Array.isArray(receipt?.paths) && receipt.paths.length) return;
+  await Promise.all([caches.delete(CACHE), caches.delete(RSC_CACHE)]);
+}
 
 /** A new worker cannot replace a usable offline release with an empty shell.
  * Carry explicit saved choices forward; on first install, stage just the
