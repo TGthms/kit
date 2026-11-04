@@ -16,7 +16,7 @@ test("search, client navigation, Back, and accessible help", async ({
       true;
   });
   await page.locator('main a[href*="pdf-compress"]').click();
-  await expect(page.locator('[data-tool="pdf-compress"]')).toBeVisible();
+  await expect(page.locator('[data-tool="pdf-compress"]:visible')).toBeVisible();
   expect(
     await page.evaluate(
       () =>
@@ -129,7 +129,7 @@ test("image result download and local handoff preserve the output", async ({
   await result
     .getByRole("button", { name: "Images → PDF", exact: true })
     .click();
-  await expect(page.locator('[data-tool="images-to-pdf"]')).toBeVisible();
+  await expect(page.locator('[data-tool="images-to-pdf"]:visible')).toBeVisible();
   await expect(page.getByText("1. sample.webp", { exact: true })).toBeVisible();
 });
 

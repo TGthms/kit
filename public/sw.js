@@ -242,7 +242,12 @@ async function stageRelease(manifest) {
     // A cache-backed copy can be acknowledged yet disappear before readback.
     // One bounded network repair avoids depending on that reuse path. Every
     // fetched byte must still belong to this release; the serving cache stays.
-    await stageResources(missing, (url, signal) => saveNetworkResource(url, manifest, signal));
+    const repairedShell = await caches.open(CACHE);
+    const repairedPayloads = await caches.open(RSC_CACHE);
+    // Recovery uses stable handles and serial writes, so it does not repeat
+    // the concurrent cache transaction pattern which lost the first copies.
+    await stageResources(missing, (url, signal) => saveNetworkResource(url, manifest, signal,
+      /\.txt$/iu.test(url) ? repairedPayloads : repairedShell), 1);
     failures.clear();
     held = await inspectCachedResources(pending, { cache: CACHE, rsc: RSC_CACHE }, manifest, undefined,
       (url, valid, reason) => { if (!valid) failures.set(url, reason); });
@@ -271,7 +276,7 @@ async function stageRelease(manifest) {
 }
 
 /** Settle every write before another installer or phase may reuse its cache. */
-async function stageResources(urls, save) {
+async function stageResources(urls, save, concurrency = OFFLINE_CONCURRENCY) {
   let cursor = 0;
   const controller = new AbortController();
   let failure;
@@ -279,7 +284,7 @@ async function stageResources(urls, save) {
   // Do not reject install while another lane still owns a Cache.put. Some
   // engines terminate a failed installer immediately; a retry must not race
   // writes still associated with that discarded worker's cache handles.
-  await Promise.allSettled(Array.from({ length: Math.min(OFFLINE_CONCURRENCY, urls.length) }, async () => {
+  await Promise.allSettled(Array.from({ length: Math.min(concurrency, urls.length) }, async () => {
     try {
       while (cursor < urls.length) {
         if (controller.signal.aborted) return;
@@ -479,6 +484,7 @@ async function downloadResponse(href, signal, timeout = DOWNLOAD_FETCH_MS) {
         const headers = new Headers(response.headers);
         headers.delete("content-encoding");
         headers.delete("content-length");
+        headers.set("X-Kit-Cached-By", GENERATION);
         return new Response(body, { status: response.status, statusText: response.statusText, headers });
       })(),
       new Promise((_, reject) => {
@@ -524,17 +530,18 @@ async function saveOfflineResource(href, signal) {
     const headers = new Headers(held.headers);
     headers.delete("content-encoding");
     headers.delete("content-length");
+    headers.set("X-Kit-Cached-By", GENERATION);
     await destination.put(href, new Response(body, { status: held.status, statusText: held.statusText, headers }));
     return;
   }
   await saveNetworkResource(href, manifest, signal);
 }
 
-async function saveNetworkResource(href, manifest, signal) {
+async function saveNetworkResource(href, manifest, signal, destination) {
   const response = await downloadResponse(href, signal);
   if (!await matchesBuild(href, response, manifest, signal)) throw new Error(`Release changed: ${href}`);
   if (signal?.aborted) throw new DOMException("Canceled", "AbortError");
-  await (await caches.open(cacheNameFor(href))).put(href, response);
+  await (destination || await caches.open(cacheNameFor(href))).put(href, response);
 }
 
 /** Exact URL, the same URL without the reload marker, or the path without search. */

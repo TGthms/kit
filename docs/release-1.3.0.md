@@ -98,7 +98,7 @@ Update preparation now shares native update requests across callers and reuses
 only the exact installed Kit registration. Failed installers cancel and settle
 all staging lanes. Partial entries are validated before reuse; cache-backed
 copies are reconstructed from verified bytes. If staged files disappear before
-readback, one bounded network repair pass verifies the exact release bytes,
+readback, one bounded network repair pass uses stable handles and sequential writes to verify the exact release bytes,
 then repeats full storage verification and restores/verifies the manifest. A
 persistent failure cannot activate the replacement or claim it is ready. The
 Settings preparation status follows installer success/failure and permits retry.

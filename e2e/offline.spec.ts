@@ -71,7 +71,7 @@ test("cold saved math tools work offline, including after an interrupted update"
   expect(originalGeneration).toBeTruthy();
   await context.setOffline(true);
   await page.goto("en/tools/equation-solver/");
-  await expect(page.locator('[data-tool="equation-solver"]')).toBeVisible();
+  await expect(page.locator('[data-tool="equation-solver"]:visible')).toBeVisible();
   await page.getByRole("button", { name: "Solve", exact: true }).click();
   await expect(page.getByText("Solutions", { exact: true })).toBeVisible();
   await context.setOffline(false);
@@ -111,7 +111,7 @@ test("cold saved math tools work offline, including after an interrupted update"
   await context.setOffline(true);
   await page.goto("en/tools/scientific-calculator/");
   await expect(
-    page.locator('[data-tool="scientific-calculator"]'),
+    page.locator('[data-tool="scientific-calculator"]:visible'),
   ).toBeVisible();
   await request.post("http://127.0.0.1:4173/__test__/release?next=1&blocked=0");
   await context.setOffline(false);
@@ -150,7 +150,7 @@ test("cold saved math tools work offline, including after an interrupted update"
     )
     .toBe(true);
   await page.goto("en/tools/equation-solver/");
-  await expect(page.locator('[data-tool="equation-solver"]')).toBeVisible();
+  await expect(page.locator('[data-tool="equation-solver"]:visible')).toBeVisible();
   await page.getByRole("button", { name: "Solve", exact: true }).click();
   await expect(page.getByText("Solutions", { exact: true })).toBeVisible();
 });

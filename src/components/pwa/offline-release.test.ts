@@ -699,3 +699,15 @@ it("stops after one network repair when the store keeps damaging a staged file",
   expect((await first.worker.offlineState()).plan.ready).toBe(true);
   expect(next.activations()).toBe(0);
 });
+
+it("stamps reused app resources with their cache writer without changing their verified bytes", async () => {
+  const first = load({ build: "aaaaaaaaaaaa", active: true });
+  await first.lifecycle("install"); await first.lifecycle("activate");
+  await first.worker.downloadSelectedOffline(selection);
+  const next = load({ stores: first.stores }); await next.lifecycle("install");
+  const old = await (await first.open("kit-shell-aaaaaaaaaaaa")).match(script);
+  const copied = await (await next.open(shellName)).match(script);
+  expect(old!.headers.get("X-Kit-Cached-By")).toBe("aaaaaaaaaaaa");
+  expect(copied!.headers.get("X-Kit-Cached-By")).toBe(generation);
+  expect(await copied!.text()).toBe(files[script][0]);
+});
