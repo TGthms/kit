@@ -1,4 +1,7 @@
-# Kit 1.3.0 — cohesive tools and release safeguards
+# Kit 1.3.1 — cohesive tools and release safeguards
+
+This release completes the 1.3 feature work and the update-recovery fixes
+identified during browser validation.
 
 Approved scope: all eight recommendations from the 2026-11-02 review. Recent
 observance greeting preferences and copy are preserved.
@@ -19,6 +22,8 @@ observance greeting preferences and copy are preserved.
   the multilingual source; the additional English task aliases do not imply
   natural-language understanding in every locale. Non-Latin combining marks
   are preserved. No search requests leave the device.
+- Image results explicitly explain a browser encoding fallback and identify
+  the actual output format; file names and sharing use that actual format.
 - Shared file results show download, device-supported file sharing, size and
   optional before/after comparison. Image conversion and compression now retain
   their result for explicit download/share or continuation. Existing other tools
@@ -58,12 +63,22 @@ and a real worker update with a changed saved document interrupted offline.
 Browser reports/traces/screenshots are retained on CI failure. Main pushes run
 the canonical CI export/browser gate and the `/kit` deployment gate.
 
+An isolated comparison uses the actual worker with small and large synthetic
+file collections, with and without an interrupted installation. All 12 cases
+passed across Chromium, Linux WebKit and native macOS WebKit after cleanup was
+moved into the failing installer, before its cache connection is retired.
+
 The existing exported-worker gate still verifies all 100 tools cold in English
 and Arabic before/after a changed-resource update with the network disabled.
 Both `/` and `/kit` exports must pass. The physical-device checklist is in
 `docs/device-release-checklist.md`; desktop emulation cannot certify Home Screen
 cold launch, storage retention, haptics, VoiceOver or native keyboard behavior.
 Local browser access was disabled in this session and was not bypassed.
+Browser validation executes in CI, including a native macOS WebKit comparison.
+
+The test fixtures use JPEG encoding for portable browser workflow coverage.
+Mac WebKit can decode WebP while falling back to PNG for canvas encoding; the
+product now makes that fallback explicit.
 
 `performance-budgets.json` limits unique HTML-referenced gzip JS/CSS for five
 representative routes. This excludes HTML, dynamic imports, worker runtimes,

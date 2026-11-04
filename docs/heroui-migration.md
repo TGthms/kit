@@ -83,5 +83,5 @@ existing descriptions or IDs. Broader form replacement stays staged by family.
 
 Kit 1.3.0 adds production browser journeys and the physical-device checklist.
 Do not treat emulation as physical iPhone/VoiceOver validation. The comparison of
-HTML-referenced gzip JS/CSS is recorded in the 1.3.0 release report; lazy overlays
+HTML-referenced gzip JS/CSS is recorded in the 1.3.1 release report; lazy overlays
 and tool runtimes are outside that narrow measurement.
