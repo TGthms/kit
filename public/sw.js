@@ -181,7 +181,7 @@ self.addEventListener("install", (event) => {
       const response = await downloadResponse(FILL_PRECACHE);
       const manifest = await response.clone().json();
       if (!response.ok || manifest.generation !== GENERATION) throw new Error("Build changed during install");
-      const cache = await installCache();
+      const cache = await caches.open(CACHE);
       await cache.put(FILL_PRECACHE, response);
       await stageRelease(manifest);
     })().catch(async (error) => {
@@ -197,20 +197,6 @@ self.addEventListener("install", (event) => {
     })
   );
 });
-
-/** Failed installers can leave cache handles which no longer expose their
- * writes in WebKit. Recreate only an unverified cache of this exact generation
- * and scope. The serving release and every verified selection stay intact. */
-async function installCache() {
-  const active = await readRecord(META_CACHE, ACTIVE_RELEASE);
-  const prior = await readRecord(CACHE, FILL_PRECACHE);
-  const receipt = await readRecord(CACHE, VERIFIED);
-  const root = new URL("./", self.registration.scope).pathname;
-  if (active?.cache !== CACHE && prior?.generation === GENERATION && prior.core?.includes(root) && !receipt?.paths?.length) {
-    await Promise.all([caches.delete(CACHE), caches.delete(RSC_CACHE)]);
-  }
-  return caches.open(CACHE);
-}
 
 /** A new worker cannot replace a usable offline release with an empty shell.
  * Carry explicit saved choices forward; on first install, stage just the

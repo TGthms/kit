@@ -645,7 +645,7 @@ it("settles pending cache writes before rejecting a failed parallel installer", 
   expect(settled).toBe(true);
 });
 
-it("recreates only failed unverified staging caches while preserving the serving collection", async () => {
+it("retains partial staging files and the serving collection while retrying installation", async () => {
   const first = load({ build: "aaaaaaaaaaaa", active: true });
   await first.lifecycle("install"); await first.lifecycle("activate");
   await first.worker.downloadSelectedOffline(selection);
@@ -655,8 +655,8 @@ it("recreates only failed unverified staging caches while preserving the serving
   await staged.put("/unfinished-staging-marker", new Response("partial"));
   await (await retry.open(rscName)).put("/unfinished-payload", new Response("partial"));
   await retry.lifecycle("install");
-  expect(await (await retry.open(shellName)).match("/unfinished-staging-marker")).toBeFalsy();
-  expect(await (await retry.open(rscName)).match("/unfinished-payload")).toBeFalsy();
+  expect(await (await (await retry.open(shellName)).match("/unfinished-staging-marker"))!.text()).toBe("partial");
+  expect(await (await (await retry.open(rscName)).match("/unfinished-payload"))!.text()).toBe("partial");
   expect(await (await (await first.open("kit-shell-aaaaaaaaaaaa")).match("/en/tools/pdf-merge/"))!.text()).toBe(html);
   expect(await (await (await retry.open(rscName)).match("/en/tools/pdf-merge/index.txt"))!.text()).toBe(files["/en/tools/pdf-merge/index.txt"][0]);
 });

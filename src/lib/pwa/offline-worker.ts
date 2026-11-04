@@ -1,3 +1,4 @@
+import { requestWorkerUpdate, hasLiveInstaller } from "@/lib/pwa/update-request";
 import type { OfflineState } from "./offline-status";
 
 export type OfflineProgress = {
@@ -28,8 +29,8 @@ export async function offlineDownloadWorker(signal?: AbortSignal, refresh = fals
   if (!("serviceWorker" in navigator)) throw new Error("Offline access is unavailable in this browser.");
   const registration = await bounded(navigator.serviceWorker.getRegistration(), 10_000, signal);
   if (!registration) throw new Error("Offline access is not ready. Reconnect and retry.");
-  if (!registration.installing && (refresh || !registration.waiting) && navigator.onLine !== false) {
-    try { await bounded(registration.update(), 30_000, signal); }
+  if (!hasLiveInstaller(registration) && (refresh || !registration.waiting) && navigator.onLine !== false) {
+    try { await bounded(requestWorkerUpdate(registration), 30_000, signal); }
     catch (error) { if (!registration.waiting) throw error; }
   }
   const installing = registration.installing;

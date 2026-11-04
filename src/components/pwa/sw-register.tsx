@@ -1,10 +1,18 @@
 "use client";
 
+import {
+  requestWorkerUpdate,
+  hasLiveInstaller,
+} from "@/lib/pwa/update-request";
+
 import { useEffect } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { toast } from "sonner";
 import { updateOfflineApp } from "@/lib/pwa/offline-worker";
-import { OFFER_UPDATE_EVENT, observeWaitingWorker } from "@/lib/pwa/update-notice";
+import {
+  OFFER_UPDATE_EVENT,
+  observeWaitingWorker,
+} from "@/lib/pwa/update-notice";
 import { withBasePath } from "@/lib/base-path";
 import {
   FILL_AFTER_IDLE_MS,
@@ -19,23 +27,38 @@ export function ServiceWorkerRegister() {
   const t = useTranslations("settings");
 
   useEffect(() => {
-    if (typeof window === "undefined" || !("serviceWorker" in navigator)) return;
+    if (typeof window === "undefined" || !("serviceWorker" in navigator))
+      return;
 
     const base = process.env.NEXT_PUBLIC_BASE_PATH || "";
     const swUrl = `${base}/sw.js`;
     // A development server has no generated precache manifest. Do not let a
     // previously installed Kit worker serve stale shell/CSS during hot reload.
     if (process.env.NODE_ENV !== "production") {
-      void navigator.serviceWorker.getRegistration(`${window.location.origin}${base}/`).then((registration) => {
-        const worker = registration?.active ?? registration?.waiting ?? registration?.installing;
-        if (worker?.scriptURL === `${window.location.origin}${swUrl}`) void registration?.unregister();
-      }).catch(() => undefined);
+      void navigator.serviceWorker
+        .getRegistration(`${window.location.origin}${base}/`)
+        .then((registration) => {
+          const worker =
+            registration?.active ??
+            registration?.waiting ??
+            registration?.installing;
+          if (worker?.scriptURL === `${window.location.origin}${swUrl}`)
+            void registration?.unregister();
+        })
+        .catch(() => undefined);
       return;
     }
     const homeUrl = `${window.location.origin}${withBasePath(`/${locale}/`)}`;
-    const connection = (navigator as Navigator & { connection?: { saveData?: boolean; effectiveType?: string } }).connection;
+    const connection = (
+      navigator as Navigator & {
+        connection?: { saveData?: boolean; effectiveType?: string };
+      }
+    ).connection;
     const skipHeavy = shouldSkipHeavyFill(connection);
-    const post = (worker: ServiceWorker | null, message: Record<string, unknown>) => {
+    const post = (
+      worker: ServiceWorker | null,
+      message: Record<string, unknown>,
+    ) => {
       worker?.postMessage(message);
     };
     const precacheHome = (worker: ServiceWorker | null) => {
@@ -53,27 +76,51 @@ export function ServiceWorkerRegister() {
     const startUpdate = () => {
       if (updating) return;
       updating = true;
-      toast.loading(t("offlinePreparing"), { id: "kit-update-ready", duration: Infinity });
-      void updateOfflineApp((progress) => {
-        const percent = progress.total ? Math.round(progress.done / progress.total * 100) : null;
-        toast.loading(progress.status === "complete" ? t("offlineApplying") : `${t("offlinePreparing")}${percent === null ? "" : ` · ${percent}%`}`, { id: "kit-update-ready", duration: Infinity });
-      }, attempts++ > 0).then(() => window.location.reload()).catch((error: unknown) => {
-        updating = false;
-        toast.error(error instanceof Error ? error.message : t("offlineUnavailable"), { id: "kit-update-ready", duration: Infinity,
-          action: { label: t("reviewUpdate"), onClick: startUpdate } });
+      toast.loading(t("offlinePreparing"), {
+        id: "kit-update-ready",
+        duration: Infinity,
       });
+      void updateOfflineApp((progress) => {
+        const percent = progress.total
+          ? Math.round((progress.done / progress.total) * 100)
+          : null;
+        toast.loading(
+          progress.status === "complete"
+            ? t("offlineApplying")
+            : `${t("offlinePreparing")}${percent === null ? "" : ` · ${percent}%`}`,
+          { id: "kit-update-ready", duration: Infinity },
+        );
+      }, attempts++ > 0)
+        .then(() => window.location.reload())
+        .catch((error: unknown) => {
+          updating = false;
+          toast.error(
+            error instanceof Error ? error.message : t("offlineUnavailable"),
+            {
+              id: "kit-update-ready",
+              duration: Infinity,
+              action: { label: t("reviewUpdate"), onClick: startUpdate },
+            },
+          );
+        });
     };
     const offerUpdate = () => {
       // The manager already presents this action alongside its saved status.
-      if (updating || /\/settings\/offline\/?$/u.test(window.location.pathname)) return;
+      if (updating || /\/settings\/offline\/?$/u.test(window.location.pathname))
+        return;
       toast(t("updateAvailable"), {
-        id: "kit-update-ready", duration: Infinity,
+        id: "kit-update-ready",
+        duration: Infinity,
         action: { label: t("reviewUpdate"), onClick: startUpdate },
       });
     };
     window.addEventListener(OFFER_UPDATE_EVENT, offerUpdate);
     const onWorkerMessage = (event: MessageEvent) => {
-      if (event.source === navigator.serviceWorker.controller && event.data?.type === "OFFLINE_UPDATE_AVAILABLE") offerUpdate();
+      if (
+        event.source === navigator.serviceWorker.controller &&
+        event.data?.type === "OFFLINE_UPDATE_AVAILABLE"
+      )
+        offerUpdate();
     };
     navigator.serviceWorker.addEventListener("message", onWorkerMessage);
     let lastUpdateAt = 0;
@@ -83,11 +130,20 @@ export function ServiceWorkerRegister() {
 
     const update = () => {
       visibleTimer = 0;
-      if (!registration || !navigator.onLine || document.visibilityState === "hidden") return;
+      if (
+        !registration ||
+        !navigator.onLine ||
+        document.visibilityState === "hidden" ||
+        hasLiveInstaller(registration) ||
+        registration.waiting
+      )
+        return;
       const now = Date.now();
       if (!shouldCheckForUpdate(now, lastUpdateAt)) return;
       lastUpdateAt = now;
-      registration.update().catch(() => { lastUpdateAt = 0; });
+      requestWorkerUpdate(registration).catch(() => {
+        lastUpdateAt = 0;
+      });
     };
 
     const scheduleUpdate = () => {
@@ -104,8 +160,13 @@ export function ServiceWorkerRegister() {
       pauseFill();
       post(activeWorker(), { type: "PING" });
       try {
-        const path = window.location.pathname.endsWith("/") ? window.location.pathname : `${window.location.pathname}/`;
-        fetch(`${window.location.origin}${path}index.txt`, { headers: { RSC: "1" }, cache: "reload" }).catch(() => undefined);
+        const path = window.location.pathname.endsWith("/")
+          ? window.location.pathname
+          : `${window.location.pathname}/`;
+        fetch(`${window.location.origin}${path}index.txt`, {
+          headers: { RSC: "1" },
+          cache: "reload",
+        }).catch(() => undefined);
       } catch {
         /* ignore */
       }
@@ -123,7 +184,10 @@ export function ServiceWorkerRegister() {
     const pauseFill = () => {
       window.clearTimeout(resumeTimer);
       post(activeWorker(), { type: "PRECACHE_PAUSE" });
-      resumeTimer = window.setTimeout(() => post(activeWorker(), { type: "PRECACHE_RESUME" }), FILL_RESUME_MS);
+      resumeTimer = window.setTimeout(
+        () => post(activeWorker(), { type: "PRECACHE_RESUME" }),
+        FILL_RESUME_MS,
+      );
     };
 
     const onInteract = () => pauseFill();
@@ -140,17 +204,32 @@ export function ServiceWorkerRegister() {
       }
       post(activeWorker(), { type: "PING" });
       window.clearTimeout(fillTimer);
-      fillTimer = window.setTimeout(() => startFill(activeWorker()), FILL_AFTER_IDLE_MS);
+      fillTimer = window.setTimeout(
+        () => startFill(activeWorker()),
+        FILL_AFTER_IDLE_MS,
+      );
       scheduleUpdate();
     };
 
     document.addEventListener("visibilitychange", onVisible);
     document.addEventListener("visibilitychange", onHidden);
     document.addEventListener("click", onClick, true);
-    document.addEventListener("pointerdown", onInteract, { capture: true, passive: true });
-    document.addEventListener("keydown", onInteract, { capture: true, passive: true });
-    document.addEventListener("wheel", onInteract, { capture: true, passive: true });
-    document.addEventListener("touchstart", onInteract, { capture: true, passive: true });
+    document.addEventListener("pointerdown", onInteract, {
+      capture: true,
+      passive: true,
+    });
+    document.addEventListener("keydown", onInteract, {
+      capture: true,
+      passive: true,
+    });
+    document.addEventListener("wheel", onInteract, {
+      capture: true,
+      passive: true,
+    });
+    document.addEventListener("touchstart", onInteract, {
+      capture: true,
+      passive: true,
+    });
     window.addEventListener("online", onOnline);
 
     // An offline cold launch can reject registration even when a controlling
@@ -158,26 +237,56 @@ export function ServiceWorkerRegister() {
     function registerWorker() {
       if (disposed || registering || registration) return;
       registering = true;
-      void navigator.serviceWorker
-        .register(swUrl, { updateViaCache: "none" })
-        .then((reg) => {
-          if (disposed) return;
-          registration = reg;
-          stopUpdateNotice = observeWaitingWorker(reg, offerUpdate);
-          lastUpdateAt = Date.now();
-          precacheHome(reg.active);
-          post(reg.active, { type: "PING" });
-          void navigator.serviceWorker.ready.then((ready) => {
+      void (async () => {
+        const scope = new URL(`${base}/`, window.location.origin).href;
+        const script = new URL(swUrl, window.location.origin).href;
+        const prior = await navigator.serviceWorker.getRegistration(scope);
+        const reusable =
+          prior?.scope === scope &&
+          prior.updateViaCache === "none" &&
+          [prior.active, prior.waiting, prior.installing].some(
+            (worker) => worker?.scriptURL === script,
+          );
+        const reg = reusable
+          ? prior
+          : await navigator.serviceWorker.register(swUrl, {
+              updateViaCache: "none",
+            });
+        if (disposed) return;
+        registration = reg;
+        stopUpdateNotice = observeWaitingWorker(reg, offerUpdate);
+        lastUpdateAt = Date.now();
+        precacheHome(reg.active);
+        post(reg.active, { type: "PING" });
+        void navigator.serviceWorker.ready
+          .then((ready) => {
             if (disposed) return;
             precacheHome(ready.active);
             window.clearTimeout(fillTimer);
-            fillTimer = window.setTimeout(() => startFill(ready.active), FILL_AFTER_IDLE_MS);
-          }).catch(() => undefined);
-          if (navigator.onLine) return reg.update().catch(() => { lastUpdateAt = 0; });
-        })
+            fillTimer = window.setTimeout(
+              () => startFill(ready.active),
+              FILL_AFTER_IDLE_MS,
+            );
+          })
+          .catch(() => undefined);
+        // register() already checks its script. Existing registrations need
+        // one coordinated check, never a second job during installation.
+        if (
+          reusable &&
+          navigator.onLine &&
+          !hasLiveInstaller(reg) &&
+          !reg.waiting
+        )
+          await requestWorkerUpdate(reg).catch(() => {
+            lastUpdateAt = 0;
+          });
+      })()
         .catch(() => {
           /* The current page remains usable; reconnect/resume can retry. */
-        }).finally(() => { registering = false; });
+        })
+        .finally(() => {
+          registering = false;
+        });
     }
     registerWorker();
 

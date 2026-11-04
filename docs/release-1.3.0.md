@@ -28,6 +28,8 @@ observance greeting preferences and copy are preserved.
   handoffs. Transfers are single-use, targeted, expire after five minutes and
   cap at 100 files/80 MiB. They are held in memory, not cache/storage/URLs/history.
   Source/options changes cancel processing and invalidate displayed results.
+  Offline handoffs check the controlling release before navigation and retain the
+  current result when the destination is not downloaded.
 - Shortcut help, math guidance and settings reviews use a shared HeroUI modal;
   graph settings use HeroUI Popover. Shared Field supports connected descriptions
   and errors. Native mobile selects, math editing and stable mobile navigation
@@ -53,7 +55,8 @@ exports. They exercise search/navigation/Back/help focus, real MathLive graph
 recovery and named graphs, image conversion/download/handoff, settings export
 and diagnostic review, RTL/larger-text reflow, an eight-curve responsiveness guard,
 and a real worker update with a changed saved document interrupted offline.
-Browser reports/traces/screenshots are retained on CI failure.
+Browser reports/traces/screenshots are retained on CI failure. Main pushes run
+the canonical CI export/browser gate and the `/kit` deployment gate.
 
 The existing exported-worker gate still verifies all 100 tools cold in English
 and Arabic before/after a changed-resource update with the network disabled.

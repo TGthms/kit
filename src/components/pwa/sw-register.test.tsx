@@ -5,23 +5,63 @@ import en from "../../../messages/en.json";
 import { OFFER_UPDATE_EVENT } from "@/lib/pwa/update-notice";
 import { ServiceWorkerRegister } from "./sw-register";
 
-const { notify, updateApp } = vi.hoisted(() => ({ notify: Object.assign(vi.fn(), { dismiss: vi.fn(), loading: vi.fn(), error: vi.fn() }), updateApp: vi.fn() }));
+const { notify, updateApp } = vi.hoisted(() => ({
+  notify: Object.assign(vi.fn(), {
+    dismiss: vi.fn(),
+    loading: vi.fn(),
+    error: vi.fn(),
+  }),
+  updateApp: vi.fn(),
+}));
 vi.mock("sonner", () => ({ toast: notify }));
-vi.mock("next-intl", () => ({ useLocale: () => "en", useTranslations: () => (key: string) => en.settings[key as keyof typeof en.settings] }));
+vi.mock("next-intl", () => ({
+  useLocale: () => "en",
+  useTranslations: () => (key: string) =>
+    en.settings[key as keyof typeof en.settings],
+}));
 vi.mock("@/lib/pwa/offline-worker", () => ({ updateOfflineApp: updateApp }));
 
 beforeEach(() => {
   vi.stubEnv("NODE_ENV", "production");
-  notify.mockClear(); notify.dismiss.mockClear(); notify.loading.mockClear(); notify.error.mockClear();
-  updateApp.mockReset(); updateApp.mockImplementation(() => new Promise(() => {}));
+  notify.mockClear();
+  notify.dismiss.mockClear();
+  notify.loading.mockClear();
+  notify.error.mockClear();
+  updateApp.mockReset();
+  updateApp.mockImplementation(() => new Promise(() => {}));
   window.history.replaceState({}, "", "/en/tools/length-converter/");
 });
-afterEach(() => { cleanup(); vi.useRealTimers(); vi.unstubAllEnvs(); vi.unstubAllGlobals(); vi.restoreAllMocks(); });
-function workerRegistration(waiting: EventTarget | null) {
-  const worker = Object.assign(new EventTarget(), { postMessage: vi.fn() });
-  const registration = Object.assign(new EventTarget(), { active: worker, installing: null, waiting, update: async () => undefined });
-  const container = Object.assign(new EventTarget(), { register: async () => registration, ready: Promise.resolve(registration) });
-  Object.defineProperty(navigator, "serviceWorker", { configurable: true, value: container });
+afterEach(() => {
+  cleanup();
+  vi.useRealTimers();
+  vi.unstubAllEnvs();
+  vi.unstubAllGlobals();
+  vi.restoreAllMocks();
+});
+function workerRegistration(waiting: EventTarget | null, existing = false) {
+  const worker = Object.assign(new EventTarget(), {
+    postMessage: vi.fn(),
+    scriptURL: `${window.location.origin}/sw.js`,
+  });
+  const registration = Object.assign(new EventTarget(), {
+    scope: `${window.location.origin}/`,
+    updateViaCache: "none",
+    active: worker,
+    installing: null,
+    waiting,
+    update: async () => undefined,
+  });
+  const container = Object.assign(new EventTarget(), {
+    getRegistration: vi
+      .fn()
+      .mockResolvedValue(existing ? registration : undefined),
+    register: async () => registration,
+    ready: Promise.resolve(registration),
+  });
+  Object.defineProperty(navigator, "serviceWorker", {
+    configurable: true,
+    value: container,
+  });
   return registration;
 }
 it("offers an Update action that starts the update directly and suppresses duplicate clicks", async () => {
@@ -35,14 +75,22 @@ it("offers an Update action that starts the update directly and suppresses dupli
   options.action.onClick();
   options.action.onClick();
   expect(updateApp).toHaveBeenCalledOnce();
-  expect(notify.loading).toHaveBeenCalledWith(en.settings.offlinePreparing, expect.any(Object));
+  expect(notify.loading).toHaveBeenCalledWith(
+    en.settings.offlinePreparing,
+    expect.any(Object),
+  );
 });
 it("does not duplicate the notice already shown on the offline page", async () => {
   const registration = workerRegistration(new EventTarget());
   const update = vi.spyOn(registration, "update");
   window.history.replaceState({}, "", "/en/settings/offline/");
   render(<ServiceWorkerRegister />);
-  await waitFor(() => expect(update).toHaveBeenCalledOnce());
+  await waitFor(() =>
+    expect(registration.active.postMessage).toHaveBeenCalledWith({
+      type: "PING",
+    }),
+  );
+  expect(update).not.toHaveBeenCalled();
   expect(notify).not.toHaveBeenCalled();
 });
 it("lets the error toast retry the update directly and refresh an obsolete waiting release", async () => {
@@ -59,33 +107,64 @@ it("lets the error toast retry the update directly and refresh an obsolete waiti
 it("resumes a visibility-paused fill without needing a subsequent interaction", async () => {
   vi.useFakeTimers();
   const registration = workerRegistration(null);
-  vi.stubGlobal("fetch", vi.fn(async () => new Response("flight")));
+  vi.stubGlobal(
+    "fetch",
+    vi.fn(async () => new Response("flight")),
+  );
   render(<ServiceWorkerRegister />);
-  await act(async () => { await Promise.resolve(); });
-  Object.defineProperty(document, "visibilityState", { configurable: true, value: "visible" });
+  await act(async () => {
+    await Promise.resolve();
+  });
+  Object.defineProperty(document, "visibilityState", {
+    configurable: true,
+    value: "visible",
+  });
   document.dispatchEvent(new Event("visibilitychange"));
-  expect(registration.active.postMessage).toHaveBeenCalledWith({ type: "PRECACHE_PAUSE" });
-  await act(async () => { await vi.advanceTimersByTimeAsync(2000); });
-  expect(registration.active.postMessage).toHaveBeenCalledWith({ type: "PRECACHE_RESUME" });
+  expect(registration.active.postMessage).toHaveBeenCalledWith({
+    type: "PRECACHE_PAUSE",
+  });
+  await act(async () => {
+    await vi.advanceTimersByTimeAsync(2000);
+  });
+  expect(registration.active.postMessage).toHaveBeenCalledWith({
+    type: "PRECACHE_RESUME",
+  });
 });
 
 it("retries an offline registration failure on reconnect without duplicate registrations", async () => {
   const registration = workerRegistration(null);
   const register = vi.spyOn(navigator.serviceWorker, "register");
   let complete!: (value: ServiceWorkerRegistration) => void;
-  register.mockRejectedValueOnce(new Error("offline")).mockImplementationOnce(() => new Promise((resolve) => { complete = resolve; }));
+  register.mockRejectedValueOnce(new Error("offline")).mockImplementationOnce(
+    () =>
+      new Promise((resolve) => {
+        complete = resolve;
+      }),
+  );
   render(<ServiceWorkerRegister />);
   await waitFor(() => expect(register).toHaveBeenCalledOnce());
-  await act(async () => { await Promise.resolve(); });
-  act(() => { window.dispatchEvent(new Event("online")); window.dispatchEvent(new Event("online")); });
-  expect(register).toHaveBeenCalledTimes(2);
-  await act(async () => { complete(registration as unknown as ServiceWorkerRegistration); });
-  expect(registration.active.postMessage).toHaveBeenCalledWith({ type: "PRECACHE_HOME", url: expect.stringContaining("/en/") });
+  await act(async () => {
+    await Promise.resolve();
+  });
+  act(() => {
+    window.dispatchEvent(new Event("online"));
+    window.dispatchEvent(new Event("online"));
+  });
+  await waitFor(() => expect(register).toHaveBeenCalledTimes(2));
+  await act(async () => {
+    complete(registration as unknown as ServiceWorkerRegistration);
+  });
+  expect(registration.active.postMessage).toHaveBeenCalledWith({
+    type: "PRECACHE_HOME",
+    url: expect.stringContaining("/en/"),
+  });
 });
 
 it("cleans up reconnect listeners when leaving the app shell", async () => {
   workerRegistration(null);
-  const register = vi.spyOn(navigator.serviceWorker, "register").mockRejectedValue(new Error("offline"));
+  const register = vi
+    .spyOn(navigator.serviceWorker, "register")
+    .mockRejectedValue(new Error("offline"));
   const { unmount } = render(<ServiceWorkerRegister />);
   await waitFor(() => expect(register).toHaveBeenCalledOnce());
   unmount();
@@ -95,27 +174,72 @@ it("cleans up reconnect listeners when leaving the app shell", async () => {
 
 it("does not throttle a reconnect check after an earlier update request failed", async () => {
   vi.useFakeTimers();
-  const registration = workerRegistration(null);
-  const update = vi.spyOn(registration, "update").mockRejectedValueOnce(new Error("offline"));
-  Object.defineProperty(document, "visibilityState", { configurable: true, value: "visible" });
+  const registration = workerRegistration(null, true);
+  const update = vi
+    .spyOn(registration, "update")
+    .mockRejectedValueOnce(new Error("offline"));
+  Object.defineProperty(document, "visibilityState", {
+    configurable: true,
+    value: "visible",
+  });
   render(<ServiceWorkerRegister />);
-  await act(async () => { await Promise.resolve(); });
+  await act(async () => {
+    await Promise.resolve();
+  });
   expect(update).toHaveBeenCalledOnce();
-  act(() => { window.dispatchEvent(new Event("online")); });
-  await act(async () => { await vi.advanceTimersByTimeAsync(4000); });
+  act(() => {
+    window.dispatchEvent(new Event("online"));
+  });
+  await act(async () => {
+    await vi.advanceTimersByTimeAsync(4000);
+  });
   expect(update).toHaveBeenCalledTimes(2);
 });
-
 
 it("lets Settings reopen the existing update action and cleans up its listener", async () => {
   workerRegistration(new EventTarget());
   const view = render(<ServiceWorkerRegister />);
   await waitFor(() => expect(notify).toHaveBeenCalledOnce());
   notify.mockClear();
-  act(() => { window.dispatchEvent(new Event(OFFER_UPDATE_EVENT)); });
+  act(() => {
+    window.dispatchEvent(new Event(OFFER_UPDATE_EVENT));
+  });
   expect(notify).toHaveBeenCalledOnce();
   expect(notify.mock.calls[0][1].action.label).toBe(en.settings.reviewUpdate);
-  view.unmount(); notify.mockClear();
+  view.unmount();
+  notify.mockClear();
   window.dispatchEvent(new Event(OFFER_UPDATE_EVENT));
   expect(notify).not.toHaveBeenCalled();
+});
+it("does not launch an extra update job while registration is already installing", async () => {
+  const registration = workerRegistration(null);
+  Object.assign(registration, {
+    installing: Object.assign(new EventTarget(), { state: "installing" }),
+  });
+  const register = vi.spyOn(navigator.serviceWorker, "register");
+  const update = vi.spyOn(registration, "update");
+  render(<ServiceWorkerRegister />);
+  await waitFor(() => expect(register).toHaveBeenCalledOnce());
+  await act(async () => {
+    await Promise.resolve();
+  });
+  expect(update).not.toHaveBeenCalled();
+});
+
+it("reuses the exact installed Kit registration and performs one coordinated check", async () => {
+  const registration = workerRegistration(null, true);
+  const register = vi.spyOn(navigator.serviceWorker, "register");
+  const update = vi.spyOn(registration, "update");
+  render(<ServiceWorkerRegister />);
+  await waitFor(() => expect(update).toHaveBeenCalledOnce());
+  expect(register).not.toHaveBeenCalled();
+});
+it("does not borrow a different app's worker registration", async () => {
+  const registration = workerRegistration(null, true);
+  registration.active.scriptURL = `${window.location.origin}/other-app/sw.js`;
+  const register = vi.spyOn(navigator.serviceWorker, "register");
+  render(<ServiceWorkerRegister />);
+  await waitFor(() =>
+    expect(register).toHaveBeenCalledWith("/sw.js", { updateViaCache: "none" }),
+  );
 });

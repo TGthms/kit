@@ -1,3 +1,4 @@
+import { requestWorkerUpdate, hasLiveInstaller } from "@/lib/pwa/update-request";
 import { withBasePath } from "@/lib/base-path";
 
 export type UpdateCheck = "current" | "available" | "preparing" | "unavailable";
@@ -22,9 +23,9 @@ export function checkForAppUpdate(signal?: AbortSignal): Promise<UpdateCheck> {
       if (!registration) return "unavailable";
       // A fully staged release is still useful without a connection.
       if (registration.waiting) return "available";
-      if (registration.installing && registration.installing.state !== "redundant") return "preparing";
+      if (hasLiveInstaller(registration)) return "preparing";
       if (navigator.onLine === false) throw new Error("Offline");
-      try { await registration.update(); }
+      try { await requestWorkerUpdate(registration); }
       catch (error) { if (!registration.waiting) throw error; }
       signal?.throwIfAborted();
       if (registration.waiting) return "available";
