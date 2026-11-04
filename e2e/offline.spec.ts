@@ -29,9 +29,11 @@ test("cold saved math tools work offline, including after an interrupted update"
   test.setTimeout(240000);
   await page.addInitScript(() => {
     const failures: string[] = [];
-    (window as Window & { kitInstallFailures?: string[] }).kitInstallFailures = failures;
+    (window as Window & { kitInstallFailures?: string[] }).kitInstallFailures =
+      failures;
     navigator.serviceWorker?.addEventListener("message", (event) => {
-      if (event.data?.type === "OFFLINE_INSTALL_ERROR") failures.push(event.data.error);
+      if (event.data?.type === "OFFLINE_INSTALL_ERROR")
+        failures.push(event.data.error);
     });
   });
   await request.post("http://127.0.0.1:4173/__test__/release?next=0");
@@ -45,13 +47,13 @@ test("cold saved math tools work offline, including after an interrupted update"
   await expect
     .poll(() => page.evaluate(() => !!navigator.serviceWorker.controller))
     .toBe(true);
-  await page
-    .getByRole("button", { name: /^Customize downloads/ })
-    .click();
+  await page.getByRole("button", { name: /^Customize downloads/ }).click();
   const tools = page
     .locator("section[data-offline-picker]")
     .filter({ has: page.getByRole("heading", { name: "Tools", exact: true }) });
-  await tools.getByRole("button", { name: "Clear · Tools", exact: true }).click();
+  await tools
+    .getByRole("button", { name: "Clear · Tools", exact: true })
+    .click();
   await tools.getByRole("button", { name: "Math (4)", exact: true }).click();
   await tools.getByRole("checkbox", { name: /^Scientific calculator/ }).check();
   await tools.getByRole("checkbox", { name: /^Equation solver/ }).check();
@@ -77,11 +79,9 @@ test("cold saved math tools work offline, including after an interrupted update"
   // Fail a genuinely changed saved document *during* worker installation.
   // Kit stages saved selections before a worker becomes waiting/available.
   await request.post("http://127.0.0.1:4173/__test__/release?next=1&blocked=1");
-  await page.evaluate(async () => {
-    await (await navigator.serviceWorker.getRegistration())
-      ?.update()
-      .catch(() => undefined);
-  });
+  await page
+    .getByRole("button", { name: "Check for updates", exact: true })
+    .click();
   await expect
     .poll(
       async () =>
@@ -117,14 +117,16 @@ test("cold saved math tools work offline, including after an interrupted update"
     .click();
   await expect
     .poll(
-      () => page.evaluate(async () => {
-        const registration = await navigator.serviceWorker.getRegistration();
-        if (registration?.waiting) return "waiting";
-        return JSON.stringify({
-          installing: registration?.installing?.state ?? null,
-          failures: (window as Window & { kitInstallFailures?: string[] }).kitInstallFailures,
-        });
-      }),
+      () =>
+        page.evaluate(async () => {
+          const registration = await navigator.serviceWorker.getRegistration();
+          if (registration?.waiting) return "waiting";
+          return JSON.stringify({
+            installing: registration?.installing?.state ?? null,
+            failures: (window as Window & { kitInstallFailures?: string[] })
+              .kitInstallFailures,
+          });
+        }),
       { timeout: 120000 },
     )
     .toBe("waiting");
