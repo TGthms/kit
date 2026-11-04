@@ -33,6 +33,7 @@ function load({ stores = new Map<string, Map<string, Response>>(), build = gener
   const writeErrors = new Map<string, Error>();
   const writeGates = new Map<string, Promise<void>>();
   const writesStarted = new Set<string>();
+  const eraseOnWrite = new Set<string>();
   const writtenBodies = new Map<string, Response>();
   const readDelays = new Map<string, number>();
   let delayedReads = 0;
@@ -66,6 +67,7 @@ function load({ stores = new Map<string, Map<string, Response>>(), build = gener
         const path = new URL(key(input)).pathname;
         writesStarted.add(path);
         await writeGates.get(path);
+        if (eraseOnWrite.delete(path)) store.clear();
         const error = writeErrors.get(new URL(key(input)).pathname);
         if (error) throw error;
         store.set(key(input), (writtenBodies.get(new URL(key(input)).pathname) ?? response).clone());
@@ -125,7 +127,7 @@ function load({ stores = new Map<string, Map<string, Response>>(), build = gener
     handlers.fetch({ request: new Request(`${origin}${url}`, init), waitUntil: () => {}, respondWith: (promise: Promise<Response>) => { pending = promise; } });
     return pending;
   };
-  return { worker, stores, open, messages, overrides, windows, message, lifecycle, resource, fetched, writeErrors, writeGates, writesStarted, writtenBodies, readDelays, whenReadDelayed, readErrors, activations: () => activations };
+  return { worker, stores, open, messages, overrides, windows, message, lifecycle, resource, fetched, writeErrors, writeGates, writesStarted, eraseOnWrite, writtenBodies, readDelays, whenReadDelayed, readErrors, activations: () => activations };
 }
 
 describe("offline release transactions", () => {
@@ -669,4 +671,31 @@ it("does not discard verified caches when installation resumes after registratio
   const resumed = load({ stores: first.stores });
   await resumed.lifecycle("install");
   expect(await (await (await resumed.open(shellName)).match("/keep-verified-marker"))!.text()).toBe("keep");
+});
+
+
+it("repairs acknowledged staging-store loss from the network and preserves its manifest offline", async () => {
+  const first = load({ build: "aaaaaaaaaaaa", active: true });
+  await first.lifecycle("install"); await first.lifecycle("activate");
+  await first.worker.downloadSelectedOffline(selection);
+  const next = load({ stores: first.stores });
+  next.eraseOnWrite.add(script);
+  await next.lifecycle("install");
+  const restart = load({ stores: next.stores });
+  restart.overrides.set("/sw-precache.json", new Error("offline"));
+  expect((await restart.worker.offlineState()).plan.ready).toBe(true);
+  expect(next.fetched.filter((path) => path === "/").length).toBeGreaterThan(1);
+  expect((await first.worker.offlineState()).plan.ready).toBe(true);
+  expect(next.activations()).toBe(0);
+});
+it("stops after one network repair when the store keeps damaging a staged file", async () => {
+  const first = load({ build: "aaaaaaaaaaaa", active: true });
+  await first.lifecycle("install"); await first.lifecycle("activate");
+  await first.worker.downloadSelectedOffline(selection);
+  const next = load({ stores: first.stores });
+  next.writtenBodies.set(script, new Response("damaged storage", { headers: { "content-type": "text/javascript" } }));
+  await expect(next.lifecycle("install")).rejects.toThrow("verification");
+  expect(next.fetched.filter((path) => path === script)).toHaveLength(1);
+  expect((await first.worker.offlineState()).plan.ready).toBe(true);
+  expect(next.activations()).toBe(0);
 });

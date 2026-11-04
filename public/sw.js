@@ -234,28 +234,20 @@ async function stageRelease(manifest) {
     }
   }
   const pending = [...urls];
-  let cursor = 0;
-  const controller = new AbortController();
-  let failure;
-  let failed = false;
-  // Do not reject install while another lane still owns a Cache.put. Some
-  // engines terminate a failed installer immediately; a retry must not race
-  // writes still associated with that discarded worker's cache handles.
-  await Promise.allSettled(Array.from({ length: Math.min(OFFLINE_CONCURRENCY, pending.length) }, async () => {
-    try {
-      while (cursor < pending.length) {
-        if (controller.signal.aborted) return;
-        const href = pending[cursor++];
-        await saveOfflineResource(href, controller.signal);
-      }
-    } catch (error) {
-      if (!failed) { failed = true; failure = error; controller.abort(); }
-    }
-  }));
-  if (failed) throw failure;
+  await stageResources(pending, saveOfflineResource);
   const failures = new Map();
-  const held = await inspectCachedResources(pending, { cache: CACHE, rsc: RSC_CACHE }, manifest, undefined, (url, valid, reason) => { if (!valid) failures.set(url, reason); });
-  const missing = pending.filter((url) => !held.has(url));
+  let held = await inspectCachedResources(pending, { cache: CACHE, rsc: RSC_CACHE }, manifest, undefined, (url, valid, reason) => { if (!valid) failures.set(url, reason); });
+  let missing = pending.filter((url) => !held.has(url));
+  if (missing.length) {
+    // A cache-backed copy can be acknowledged yet disappear before readback.
+    // One bounded network repair avoids depending on that reuse path. Every
+    // fetched byte must still belong to this release; the serving cache stays.
+    await stageResources(missing, (url, signal) => saveNetworkResource(url, manifest, signal));
+    failures.clear();
+    held = await inspectCachedResources(pending, { cache: CACHE, rsc: RSC_CACHE }, manifest, undefined,
+      (url, valid, reason) => { if (!valid) failures.set(url, reason); });
+    missing = pending.filter((url) => !held.has(url));
+  }
   if (missing.length) {
     const shellKeys = await (await caches.open(CACHE)).keys();
     const payloadKeys = await (await caches.open(RSC_CACHE)).keys();
@@ -263,13 +255,42 @@ async function stageRelease(manifest) {
     const probe = await (await caches.open(cacheNameFor(missing[0]))).match(missing[0], { ignoreVary: true });
     throw new Error(`Prepared files failed verification (${missing.length}); stores ${shellKeys.length}/${payloadKeys.length}; ignoreVary ${Boolean(probe)}; keys ${sample(shellKeys)} | ${sample(payloadKeys)}; missing ${missing.slice(0, 2).map((url) => `${url} (${failures.get(url)})`).join(", ")}`);
   }
+  // Repairing a lost store must also restore its manifest, or the next cold
+  // offline worker would lose the description of its verified resources.
+  await writeRecord(CACHE, FILL_PRECACHE, manifest);
+  if (JSON.stringify(await readRecord(CACHE, FILL_PRECACHE)) !== JSON.stringify(manifest))
+    throw new Error("Prepared release manifest could not be stored");
   await writeRecord(CACHE, VERIFIED, { at: Date.now(), paths: [...held] });
   if (home) {
-    const response = await cache.match(home);
-    if (response) await cache.put(LAST_HOME, response);
+    const homeCache = await caches.open(CACHE);
+    const response = await homeCache.match(home);
+    if (response) await homeCache.put(LAST_HOME, response);
   }
   if (previous) await writeRecord(CACHE, UPDATE_READY, { ...previous, selection: normalizedSelection(previous.selection, manifest), generation: GENERATION, version: manifest.version });
   await pruneRemovedResources();
+}
+
+/** Settle every write before another installer or phase may reuse its cache. */
+async function stageResources(urls, save) {
+  let cursor = 0;
+  const controller = new AbortController();
+  let failure;
+  let failed = false;
+  // Do not reject install while another lane still owns a Cache.put. Some
+  // engines terminate a failed installer immediately; a retry must not race
+  // writes still associated with that discarded worker's cache handles.
+  await Promise.allSettled(Array.from({ length: Math.min(OFFLINE_CONCURRENCY, urls.length) }, async () => {
+    try {
+      while (cursor < urls.length) {
+        if (controller.signal.aborted) return;
+        const href = urls[cursor++];
+        await save(href, controller.signal);
+      }
+    } catch (error) {
+      if (!failed) { failed = true; failure = error; controller.abort(); }
+    }
+  }));
+  if (failed) throw failure;
 }
 
 self.addEventListener("activate", (event) => {
@@ -506,10 +527,14 @@ async function saveOfflineResource(href, signal) {
     await destination.put(href, new Response(body, { status: held.status, statusText: held.statusText, headers }));
     return;
   }
+  await saveNetworkResource(href, manifest, signal);
+}
+
+async function saveNetworkResource(href, manifest, signal) {
   const response = await downloadResponse(href, signal);
   if (!await matchesBuild(href, response, manifest, signal)) throw new Error(`Release changed: ${href}`);
   if (signal?.aborted) throw new DOMException("Canceled", "AbortError");
-  await destination.put(href, response);
+  await (await caches.open(cacheNameFor(href))).put(href, response);
 }
 
 /** Exact URL, the same URL without the reload marker, or the path without search. */

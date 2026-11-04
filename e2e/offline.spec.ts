@@ -76,6 +76,10 @@ test("cold saved math tools work offline, including after an interrupted update"
   await expect(page.getByText("Solutions", { exact: true })).toBeVisible();
   await context.setOffline(false);
   await page.goto("en/settings/");
+  // Finish the baseline check before changing the origin's release. The app
+  // deliberately shares an in-flight native check across all callers.
+  await page.getByRole("button", { name: "Check for updates", exact: true }).click();
+  await expect(page.getByText("Kit is up to date.", { exact: true })).toBeVisible();
   // Fail a genuinely changed saved document *during* worker installation.
   // Kit stages saved selections before a worker becomes waiting/available.
   await request.post("http://127.0.0.1:4173/__test__/release?next=1&blocked=1");
@@ -109,9 +113,9 @@ test("cold saved math tools work offline, including after an interrupted update"
   await expect(
     page.locator('[data-tool="scientific-calculator"]'),
   ).toBeVisible();
+  await request.post("http://127.0.0.1:4173/__test__/release?next=1&blocked=0");
   await context.setOffline(false);
   await page.goto("en/settings/");
-  await request.post("http://127.0.0.1:4173/__test__/release?next=1&blocked=0");
   await page
     .getByRole("button", { name: "Check for updates", exact: true })
     .click();
@@ -147,4 +151,6 @@ test("cold saved math tools work offline, including after an interrupted update"
     .toBe(true);
   await page.goto("en/tools/equation-solver/");
   await expect(page.locator('[data-tool="equation-solver"]')).toBeVisible();
+  await page.getByRole("button", { name: "Solve", exact: true }).click();
+  await expect(page.getByText("Solutions", { exact: true })).toBeVisible();
 });

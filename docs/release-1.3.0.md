@@ -71,7 +71,7 @@ prefetches and background offline fills; it is not a startup-time claim. The
 browser graph guard detects coarse main-thread stalls and retains frame waits;
 it is not a real-device FPS or peak-memory benchmark.
 
-| Route | 1.2.6 baseline gzip bytes | 1.3.0 gzip bytes |
+| Route | 1.2.6 baseline gzip bytes | Initial 1.3.0 snapshot |
 | --- | ---: | ---: |
 | Home | 300,498 | 302,668 |
 | Settings | 335,442 | 357,515 |
@@ -93,5 +93,14 @@ glob amplification at optimizationLevel >= 2. Kit does not ship this lint runtim
 or accept user glob patterns there. No incompatible major minimatch override or
 npm's suggested downgrade to old ESLint/Next lint packages was applied. Follow
 up when compatible upstream fixes/backports are available.
+
+Update preparation now shares native update requests across callers and reuses
+only the exact installed Kit registration. Failed installers cancel and settle
+all staging lanes. Partial entries are validated before reuse; cache-backed
+copies are reconstructed from verified bytes. If staged files disappear before
+readback, one bounded network repair pass verifies the exact release bytes,
+then repeats full storage verification and restores/verifies the manifest. A
+persistent failure cannot activate the replacement or claim it is ready. The
+Settings preparation status follows installer success/failure and permits retry.
 
 Validation results and deployment status are recorded in NOTES.md.
