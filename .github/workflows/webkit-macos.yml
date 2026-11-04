@@ -1,0 +1,43 @@
+name: Native macOS WebKit verification
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: native-webkit-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    runs-on: macos-15
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: ".nvmrc"
+          cache: npm
+      - name: Install
+        run: npm ci
+      - name: Production export
+        run: npm run build
+      - name: Verify offline transactions and asset budgets
+        run: |
+          node scripts/check-offline-export.mjs
+          npm run check:assets
+      - name: Install native WebKit test runtime
+        run: npx playwright install webkit
+      - name: Native WebKit production journeys
+        run: npm run test:e2e -- --project=webkit-mobile
+      - name: Retain failure evidence
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: native-webkit-evidence
+          path: |
+            playwright-report
+            test-results
+          retention-days: 7
