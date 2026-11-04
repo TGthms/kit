@@ -1,5 +1,5 @@
 // @vitest-environment jsdom
-import { useState } from "react";
+import { useLayoutEffect, useState } from "react";
 import {
   act,
   cleanup,
@@ -74,4 +74,18 @@ describe("math recovery", () => {
     act(() => window.dispatchEvent(new Event("pagehide")));
     expect(screen.getByText("failed")).toBeTruthy();
   });
+});
+
+it("flushes the latest committed edit when pagehide occurs before passive effects", () => {
+  function ClosingEditor() {
+    const [value, setValue] = useState("");
+    useMathDraft("equation-solver", { value }, (draft) => setValue(draft.value));
+    useLayoutEffect(() => {
+      if (value === "latest") window.dispatchEvent(new Event("pagehide"));
+    }, [value]);
+    return <input aria-label="closing expression" value={value} onChange={(event) => setValue(event.target.value)} />;
+  }
+  render(<ClosingEditor />);
+  fireEvent.change(screen.getByLabelText("closing expression"), { target: { value: "latest" } });
+  expect(JSON.parse(localStorage.getItem(draftKey("equation-solver"))!).value).toBe("latest");
 });

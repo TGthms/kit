@@ -1,6 +1,6 @@
 "use client";
 import { recordDiagnostic } from "@/lib/pwa/diagnostics";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import {
   DRAFT_EVENT,
   draftKey,
@@ -20,7 +20,7 @@ export function useMathDraft<T>(
   const [failed, setFailed] = useState(false);
   const current = useRef(value);
   const restoreRef = useRef(restore);
-  useEffect(() => {
+  useLayoutEffect(() => {
     current.current = value;
     restoreRef.current = restore;
   });
