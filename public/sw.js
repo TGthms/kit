@@ -270,7 +270,13 @@ async function stageRelease(manifest) {
   const failures = new Map();
   const held = await inspectCachedResources(pending, { cache: CACHE, rsc: RSC_CACHE }, manifest, undefined, (url, valid, reason) => { if (!valid) failures.set(url, reason); });
   const missing = pending.filter((url) => !held.has(url));
-  if (missing.length) throw new Error(`Prepared files failed verification (${missing.length}): ${missing.slice(0, 3).map((url) => `${url} (${failures.get(url)})`).join(", ")}`);
+  if (missing.length) {
+    const shellKeys = await (await caches.open(CACHE)).keys();
+    const payloadKeys = await (await caches.open(RSC_CACHE)).keys();
+    const sample = (keys) => keys.length ? keys[0].url : "empty";
+    const probe = await (await caches.open(cacheNameFor(missing[0]))).match(missing[0], { ignoreVary: true });
+    throw new Error(`Prepared files failed verification (${missing.length}); stores ${shellKeys.length}/${payloadKeys.length}; ignoreVary ${Boolean(probe)}; keys ${sample(shellKeys)} | ${sample(payloadKeys)}; missing ${missing.slice(0, 2).map((url) => `${url} (${failures.get(url)})`).join(", ")}`);
+  }
   await writeRecord(CACHE, VERIFIED, { at: Date.now(), paths: [...held] });
   if (home) {
     const response = await cache.match(home);
