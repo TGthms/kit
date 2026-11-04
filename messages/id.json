@@ -2268,6 +2268,7 @@
     "exportPreferences": "Ekspor preferensi",
     "importPreferences": "Impor preferensi",
     "diagnostics": "Diagnostik",
-    "diagnosticsDesc": "Tinjau status teknis sebelum menyalin. File, konten masukan, dan alamat penjelajahan tidak disertakan. Tidak ada yang dikirim otomatis."
+    "diagnosticsDesc": "Tinjau status teknis sebelum menyalin. File, konten masukan, dan alamat penjelajahan tidak disertakan. Tidak ada yang dikirim otomatis.",
+    "offlineDestination": "Alat ini belum diunduh. Hubungkan ke internet atau simpan dahulu di Akses offline."
   }
 }

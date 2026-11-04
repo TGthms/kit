@@ -2268,6 +2268,7 @@
     "exportPreferences": "Beállítások exportálása",
     "importPreferences": "Beállítások importálása",
     "diagnostics": "Diagnosztika",
-    "diagnosticsDesc": "Másolás előtt tekintsd át a műszaki állapotot. A fájlok, bevitt tartalmak és meglátogatott címek kimaradnak. Semmi nem kerül automatikusan elküldésre."
+    "diagnosticsDesc": "Másolás előtt tekintsd át a műszaki állapotot. A fájlok, bevitt tartalmak és meglátogatott címek kimaradnak. Semmi nem kerül automatikusan elküldésre.",
+    "offlineDestination": "Ez az eszköz nincs letöltve. Csatlakozz az internethez, vagy előbb mentsd el az Offline elérésnél."
   }
 }

@@ -21,10 +21,11 @@ export function ResultFiles({ files }: { files: ResultFile[] }) {
 }
 function FileResultPanel({ files }: { files: ResultFile[] }) {
   const t = useTranslations("common");
+  const tw = useTranslations("workspace");
   const operation = useTaskScope();
   const [canShare, setCanShare] = useState(false);
   const [busy, setBusy] = useState(false);
-  const [error, setError] = useState(false);
+  const [error, setError] = useState<"offline" | "failed" | null>(null);
   useEffect(() => {
     try {
       // Probe capability without materializing a second copy of large outputs.
@@ -52,7 +53,7 @@ function FileResultPanel({ files }: { files: ResultFile[] }) {
     if (busy) return;
     const current = operation.begin();
     setBusy(true);
-    setError(false);
+    setError(null);
     try {
       if (files.length === 1) downloadBlob(files[0].blob, files[0].name);
       else {
@@ -60,7 +61,7 @@ function FileResultPanel({ files }: { files: ResultFile[] }) {
         if (current()) downloadBlob(archive, "kit-results.zip");
       }
     } catch {
-      if (current()) setError(true);
+      if (current()) setError("failed");
     } finally {
       if (current()) setBusy(false);
     }
@@ -71,7 +72,7 @@ function FileResultPanel({ files }: { files: ResultFile[] }) {
       className="space-y-3 rounded-2xl border border-primary/25 bg-primary/5 p-4"
     >
       <p role="status" className="text-sm font-medium">
-        {t("done")} · {files.length} {t("files")}
+        {t("done")} · {files.length}
       </p>
       <ul className="max-h-56 space-y-2 overflow-y-auto">
         {files.map((item, index) => (
@@ -108,7 +109,7 @@ function FileResultPanel({ files }: { files: ResultFile[] }) {
               if (busy) return;
               const current = operation.begin();
               setBusy(true);
-              setError(false);
+              setError(null);
               // Keep share() in the original tap's activation window (iOS).
               try {
                 void navigator
@@ -128,14 +129,14 @@ function FileResultPanel({ files }: { files: ResultFile[] }) {
                         reason.name === "AbortError"
                       )
                     )
-                      setError(true);
+                      setError("failed");
                   })
                   .finally(() => {
                     if (current()) setBusy(false);
                   });
               } catch {
                 if (current()) {
-                  setError(true);
+                  setError("failed");
                   setBusy(false);
                 }
               }
@@ -146,11 +147,17 @@ function FileResultPanel({ files }: { files: ResultFile[] }) {
         )}
       </div>
       {transferable && (
-        <UseIn files={files} disabled={busy} onError={() => setError(true)} />
+        <UseIn
+          files={files}
+          disabled={busy}
+          onError={(reason) => setError(reason ?? "failed")}
+        />
       )}
       {error && (
         <p role="alert" className="text-xs text-destructive">
-          {t("error")} · {t("retry")}
+          {error === "offline"
+            ? tw("offlineDestination")
+            : `${t("error")} · ${t("retry")}`}
         </p>
       )}
     </section>

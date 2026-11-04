@@ -2268,6 +2268,7 @@
     "exportPreferences": "Voorkeuren exporteren",
     "importPreferences": "Voorkeuren importeren",
     "diagnostics": "Diagnostiek",
-    "diagnosticsDesc": "Controleer de technische status voordat je die kopieert. Bestanden, invoer en bezochte adressen zijn uitgesloten. Er wordt niets automatisch verzonden."
+    "diagnosticsDesc": "Controleer de technische status voordat je die kopieert. Bestanden, invoer en bezochte adressen zijn uitgesloten. Er wordt niets automatisch verzonden.",
+    "offlineDestination": "Dit hulpmiddel is niet gedownload. Maak verbinding met internet of sla het eerst op bij Offline toegang."
   }
 }

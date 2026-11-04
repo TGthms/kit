@@ -1,5 +1,9 @@
 "use client";
-import { useTranslations } from "next-intl";
+import { useState } from "react";
+import { useTaskScope } from "@/lib/react/task-scope";
+import { isHeldOffline } from "@/lib/pwa/offline-navigation";
+import { withBasePath } from "@/lib/base-path";
+import { useLocale, useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import { usePathname, useRouter } from "@/lib/i18n/navigation";
 import { toolHref } from "@/lib/navigation/routes";
@@ -12,8 +16,11 @@ export function UseIn({
 }: {
   files: ResultFile[];
   disabled: boolean;
-  onError: () => void;
+  onError: (reason?: "offline") => void;
 }) {
+  const locale = useLocale();
+  const operation = useTaskScope();
+  const [working, setWorking] = useState(false);
   const pathname = usePathname(),
     router = useRouter();
   const t = useTranslations("tools"),
@@ -30,15 +37,35 @@ export function UseIn({
             type="button"
             size="sm"
             variant="outline"
-            disabled={disabled}
-            onClick={() => {
-              const incoming = files.map(
-                (item) =>
-                  new File([item.blob], item.name, { type: item.blob.type }),
-              );
-              if (stageHandoff(target, incoming))
-                router.push(toolHref(target, pathname));
-              else onError();
+            disabled={disabled || working}
+            onClick={async () => {
+              if (working) return;
+              const current = operation.begin();
+              setWorking(true);
+              try {
+                const href = toolHref(target, pathname);
+                if (
+                  !navigator.onLine &&
+                  !(await isHeldOffline(
+                    withBasePath(`/${locale}${href}`),
+                    window.location.origin,
+                  ))
+                ) {
+                  if (current()) onError("offline");
+                  return;
+                }
+                if (!current()) return;
+                const incoming = files.map(
+                  (item) =>
+                    new File([item.blob], item.name, { type: item.blob.type }),
+                );
+                if (stageHandoff(target, incoming)) router.push(href);
+                else onError();
+              } catch {
+                if (current()) onError();
+              } finally {
+                if (current()) setWorking(false);
+              }
             }}
           >
             {t(`${target}.name`)}

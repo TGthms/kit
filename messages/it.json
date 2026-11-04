@@ -2268,6 +2268,7 @@
     "exportPreferences": "Esporta preferenze",
     "importPreferences": "Importa preferenze",
     "diagnostics": "Diagnostica",
-    "diagnosticsDesc": "Controlla lo stato tecnico prima di copiarlo. File, contenuti inseriti e indirizzi visitati sono esclusi. Nulla viene inviato automaticamente."
+    "diagnosticsDesc": "Controlla lo stato tecnico prima di copiarlo. File, contenuti inseriti e indirizzi visitati sono esclusi. Nulla viene inviato automaticamente.",
+    "offlineDestination": "Questo strumento non è scaricato. Collegati a Internet o salvalo prima in Accesso offline."
   }
 }

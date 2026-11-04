@@ -2268,6 +2268,7 @@
     "exportPreferences": "Einstellungen exportieren",
     "importPreferences": "Einstellungen importieren",
     "diagnostics": "Diagnose",
-    "diagnosticsDesc": "Prüfe den technischen Status vor dem Kopieren. Dateien, Eingaben und besuchte Adressen sind ausgeschlossen. Es wird nichts automatisch gesendet."
+    "diagnosticsDesc": "Prüfe den technischen Status vor dem Kopieren. Dateien, Eingaben und besuchte Adressen sind ausgeschlossen. Es wird nichts automatisch gesendet.",
+    "offlineDestination": "Dieses Werkzeug ist nicht heruntergeladen. Verbinde dich mit dem Internet oder speichere es zuerst unter Offlinezugriff."
   }
 }

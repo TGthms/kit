@@ -2268,6 +2268,7 @@
     "exportPreferences": "匯出偏好設定",
     "importPreferences": "匯入偏好設定",
     "diagnostics": "診斷",
-    "diagnosticsDesc": "複製前可檢視技術狀態。不包含檔案、輸入內容及瀏覽位址，也不會自動傳送任何資訊。"
+    "diagnosticsDesc": "複製前可檢視技術狀態。不包含檔案、輸入內容及瀏覽位址，也不會自動傳送任何資訊。",
+    "offlineDestination": "此工具尚未下載。請連上網路，或先在「離線存取」中儲存此工具。"
   }
 }

@@ -2268,6 +2268,7 @@
     "exportPreferences": "Exportă preferințele",
     "importPreferences": "Importă preferințele",
     "diagnostics": "Diagnosticare",
-    "diagnosticsDesc": "Verifică starea tehnică înainte de copiere. Fișierele, conținutul introdus și adresele vizitate sunt excluse. Nimic nu este trimis automat."
+    "diagnosticsDesc": "Verifică starea tehnică înainte de copiere. Fișierele, conținutul introdus și adresele vizitate sunt excluse. Nimic nu este trimis automat.",
+    "offlineDestination": "Acest instrument nu este descărcat. Conectează-te la internet sau salvează-l mai întâi în Acces offline."
   }
 }

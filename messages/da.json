@@ -2268,6 +2268,7 @@
     "exportPreferences": "Eksportér indstillinger",
     "importPreferences": "Importér indstillinger",
     "diagnostics": "Diagnostik",
-    "diagnosticsDesc": "Gennemgå den tekniske status, før du kopierer. Filer, indtastet indhold og besøgte adresser medtages ikke. Intet sendes automatisk."
+    "diagnosticsDesc": "Gennemgå den tekniske status, før du kopierer. Filer, indtastet indhold og besøgte adresser medtages ikke. Intet sendes automatisk.",
+    "offlineDestination": "Dette værktøj er ikke hentet. Opret forbindelse til internettet, eller gem det først under Offlineadgang."
   }
 }

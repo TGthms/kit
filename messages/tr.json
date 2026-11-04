@@ -2268,6 +2268,7 @@
     "exportPreferences": "Tercihleri dışa aktar",
     "importPreferences": "Tercihleri içe aktar",
     "diagnostics": "Tanılama",
-    "diagnosticsDesc": "Kopyalamadan önce teknik durumu inceleyin. Dosyalar, girilen içerikler ve ziyaret edilen adresler dahil edilmez. Hiçbir şey otomatik gönderilmez."
+    "diagnosticsDesc": "Kopyalamadan önce teknik durumu inceleyin. Dosyalar, girilen içerikler ve ziyaret edilen adresler dahil edilmez. Hiçbir şey otomatik gönderilmez.",
+    "offlineDestination": "Bu araç indirilmemiş. İnternete bağlanın veya önce Çevrimdışı erişim bölümünde kaydedin."
   }
 }
