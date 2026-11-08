@@ -386,6 +386,19 @@ canvas {
   min-height: 2.5rem;
 }
 
+@media (forced-colors: active) {
+  .kit-liquid-style-menu :is(.lg-button, .lg-menu-surface),
+  .kit-liquid-transparency :is(.lg-slider-track, .lg-slider-thumb) {
+    border: 1px solid ButtonText;
+    background: Canvas;
+  }
+
+  .kit-liquid-transparency .lg-slider-fill {
+    forced-color-adjust: none;
+    background: Highlight;
+  }
+}
+
 .kit-liquid-history .lg-alert-action {
   white-space: normal;
   overflow-wrap: anywhere;

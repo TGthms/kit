@@ -1,6 +1,6 @@
 "use client";
 
-import { lazy, Suspense, useCallback, useEffect, useRef } from "react";
+import { lazy, Suspense } from "react";
 import { useFormatter, useTranslations } from "next-intl";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { GlassBoundary } from "@/components/ui/glass-boundary";
@@ -9,6 +9,7 @@ import { useLiquidGlassEnabled } from "@/lib/theme/liquid-glass";
 import { useAppearanceStore } from "@/stores/appearance-store";
 
 const StyleMenu = lazy(() => import("./liquid-glass-settings").then((module) => ({ default: module.StyleMenu })));
+const StyleTransparency = lazy(() => import("./liquid-glass-settings").then((module) => ({ default: module.StyleTransparency })));
 
 export function InterfaceStyle() {
   const t = useTranslations("settings");
@@ -19,80 +20,60 @@ export function InterfaceStyle() {
   const transparency = useAppearanceStore((state) => state.glassTransparency);
   const setTransparency = useAppearanceStore((state) => state.setGlassTransparency);
   const glassAvailable = useLiquidGlassEnabled();
-  const select = useRef<HTMLSelectElement>(null);
-  const restoreFocus = useRef(false);
   const title = t("navigationAppearance");
   const glass = t("liquidGlass");
   const classic = t("classicAppearance");
   const formattedTransparency = format.number(transparency / 100, { style: "percent" });
-  const focusMenuTrigger = useCallback((trigger: HTMLButtonElement | null) => {
-    if (!restoreFocus.current) return;
-    restoreFocus.current = false;
-    if (document.activeElement === document.body) trigger?.focus({ preventScroll: true });
-  }, []);
-
-  useEffect(() => {
-    if (!liquidGlass && restoreFocus.current) {
-      select.current?.focus({ preventScroll: true });
-      restoreFocus.current = false;
-    }
-  }, [liquidGlass]);
-
-  const standard = (
-    <select
-      ref={select}
-      aria-label={title}
-      disabled={!hydrated}
-      value={!hydrated || liquidGlass ? "glass" : "classic"}
-      onChange={(event) => {
-        const next = event.currentTarget.value === "glass";
-        restoreFocus.current = next && event.currentTarget === document.activeElement;
-        setLiquidGlass(next);
-      }}
-      className="h-10 max-w-full rounded-xl border border-input bg-background px-3 text-base focus-visible:outline-2 focus-visible:outline-ring"
-    >
-      <option value="glass">{glass}</option>
-      <option value="classic">{classic}</option>
-    </select>
-  );
+  const slider = {
+    id: "kit-glass-transparency",
+    min: 0,
+    max: 100,
+    step: 1,
+    value: transparency,
+    "aria-valuetext": formattedTransparency,
+    "aria-describedby": glassAvailable ? undefined : "kit-glass-unavailable",
+  };
+  const menuPlaceholder = <div className="h-10 w-32 rounded-full bg-secondary/80" aria-hidden />;
 
   return (
     <Card className="border-border/40">
       <CardHeader><CardTitle>{title}</CardTitle></CardHeader>
       <CardContent>
-        {glassAvailable ? (
-          <GlassBoundary fallback={standard}>
-            <Suspense fallback={standard}>
-              <StyleMenu
-                title={title}
-                glass={glass}
-                classic={classic}
-                onMount={focusMenuTrigger}
-                onClassic={() => {
-                  restoreFocus.current = true;
-                  setLiquidGlass(false);
-                }}
-              />
+        {hydrated ? (
+          <GlassBoundary fallback={
+            <fieldset className="flex flex-wrap gap-x-4 gap-y-2">
+              <legend className="sr-only">{title}</legend>
+              {[{ value: true, label: glass }, { value: false, label: classic }].map(({ value, label }) => (
+                <label key={label} className="inline-flex items-center gap-2 text-sm">
+                  <input type="radio" name="kit-interface-style" checked={value === liquidGlass} onChange={() => setLiquidGlass(value)} className="accent-primary" />
+                  {label}
+                </label>
+              ))}
+            </fieldset>
+          }>
+            <Suspense fallback={menuPlaceholder}>
+              <StyleMenu title={title} glass={glass} classic={classic} liquidGlass={liquidGlass} onChange={setLiquidGlass} />
             </Suspense>
           </GlassBoundary>
-        ) : standard}
+        ) : menuPlaceholder}
         {hydrated && liquidGlass && (
           <div className="mt-4 border-t border-border/50 pt-4">
             <div className="flex items-baseline justify-between gap-3">
-              <label htmlFor="kit-glass-transparency" className="text-sm font-medium">{t("glassTransparency")}</label>
+              <label htmlFor={slider.id} className="text-sm font-medium">{t("glassTransparency")}</label>
               <span aria-hidden className="text-sm tabular-nums text-muted-foreground">{formattedTransparency}</span>
             </div>
-            <input
-              id="kit-glass-transparency"
-              type="range"
-              min={0}
-              max={100}
-              value={transparency}
-              aria-valuetext={formattedTransparency}
-              aria-describedby={glassAvailable ? undefined : "kit-glass-unavailable"}
-              onChange={(event) => setTransparency(event.currentTarget.valueAsNumber)}
-              className="block h-11 w-full cursor-pointer accent-primary focus-visible:outline-2 focus-visible:outline-ring"
-            />
+            <GlassBoundary fallback={
+              <input
+                {...slider}
+                type="range"
+                onChange={(event) => setTransparency(event.currentTarget.valueAsNumber)}
+                className="block h-10 w-full cursor-pointer accent-primary focus-visible:outline-2 focus-visible:outline-ring"
+              />
+            }>
+              <Suspense fallback={<div className="h-10" aria-hidden />}>
+                <StyleTransparency {...slider} onValueChange={setTransparency} />
+              </Suspense>
+            </GlassBoundary>
             {!glassAvailable && <p id="kit-glass-unavailable" className="type-caption text-muted-foreground">{t("glassUnavailable")}</p>}
           </div>
         )}

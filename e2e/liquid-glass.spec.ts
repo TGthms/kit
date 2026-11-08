@@ -4,16 +4,16 @@ test("default glass preserves mobile navigation and persists the shared transpar
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("en/settings/");
   const style = page.getByRole("button", { name: "Interface style: Liquid Glass", exact: true });
-  const classic = page.getByRole("combobox", { name: "Interface style", exact: true });
+  const classic = page.getByRole("button", { name: "Interface style: Classic", exact: true });
+  const menu = page.getByRole("menu", { name: "Interface style" });
   async function chooseClassic(touch = false) {
     if (touch) await style.tap();
     else await style.press("Enter");
-    const menu = page.getByRole("menu", { name: "Interface style" });
     await expect(menu.getByRole("menuitemradio", { name: "Liquid Glass" })).toHaveAttribute("aria-checked", "true");
     const option = menu.getByRole("menuitemradio", { name: "Classic" });
     if (touch) await option.tap();
     else await option.press("Enter");
-    await expect(classic).toHaveValue("classic");
+    await expect(classic).toHaveText("Classic");
     if (!touch) await expect(classic).toBeFocused();
   }
   const transparency = page.getByRole("slider", { name: "Glass transparency" });
@@ -22,6 +22,7 @@ test("default glass preserves mobile navigation and persists the shared transpar
   const tab = (name: string) => glass.getByRole("link", { name, exact: true });
   await expect(glass).toHaveAttribute("data-ready", "");
   await expect(transparency).toHaveValue("50");
+  await expect(transparency.locator("..")).toHaveClass(/lg-slider/);
   await expect(style).toHaveText("Liquid Glass");
   await expect(page.getByRole("heading", { name: "Interface style" })).toHaveCSS("user-select", "none");
 
@@ -36,12 +37,13 @@ test("default glass preserves mobile navigation and persists the shared transpar
   await expect(stable).toBeVisible();
   const originalSize = (await stable.boundingBox())!;
   await page.reload();
-  await expect(classic).toHaveValue("classic");
-  await expect(page.locator("#liquidglass-styles")).toHaveCount(0);
+  await expect(classic).toHaveText("Classic");
+  await expect(page.getByRole("combobox", { name: "Interface style", exact: true })).toHaveCount(0);
   await expect(haptics).not.toHaveClass(/lg-segmented/);
 
-  await classic.focus();
-  await classic.selectOption("glass");
+  await classic.press("Enter");
+  await expect(menu.getByRole("menuitemradio", { name: "Classic" })).toHaveAttribute("aria-checked", "true");
+  await menu.getByRole("menuitemradio", { name: "Liquid Glass" }).press("Enter");
   await expect(style).toBeFocused();
   await expect(glass).toHaveAttribute("data-ready", "");
   const glassSize = (await glass.boundingBox())!;
@@ -52,6 +54,7 @@ test("default glass preserves mobile navigation and persists the shared transpar
   }
 
   await transparency.press("ArrowRight");
+  await expect(transparency).toHaveAttribute("aria-valuetext", "51%");
   await expect(glass.locator(".lg-tab-bar-glass")).toHaveCSS("--lg-transparency", "0.51");
   const greetings = page.getByRole("switch", { name: "Date-specific greetings" });
   await expect(greetings).toHaveClass(/lg-switch/);

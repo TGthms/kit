@@ -1,38 +1,44 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { Alert, Button, Menu } from "@onlymoein/liquidglass";
+import { Alert, Button, Menu, Slider, type SliderProps } from "@onlymoein/liquidglass";
+import { useLocale } from "next-intl";
+import { localeDir } from "@/lib/i18n/config";
 import { useGlassMaterial } from "@/lib/theme/liquid-glass";
 
-export function StyleMenu({ title, glass, classic, onMount, onClassic }: {
+export function StyleMenu({ title, glass, classic, liquidGlass, onChange }: {
   title: string;
   glass: string;
   classic: string;
-  onMount: (trigger: HTMLButtonElement | null) => void;
-  onClassic: () => void;
+  liquidGlass: boolean;
+  onChange: (liquidGlass: boolean) => void;
 }) {
   const material = useGlassMaterial();
-  const root = useRef<HTMLDivElement>(null);
-  useEffect(() => {
-    onMount(root.current?.querySelector("button") ?? null);
-  }, [onMount]);
+  const rtl = localeDir(useLocale()) === "rtl";
+  const selected = liquidGlass ? glass : classic;
 
   return (
-    <div {...material} ref={root} className="kit-liquid-control">
+    <div {...material} className="kit-liquid-control">
       <Menu
         aria-label={title}
         className="kit-liquid-style-menu"
-        label={glass}
-        align="start"
+        label={selected}
+        align={rtl ? "end" : "start"}
         chevron
-        trigger={{ "aria-label": `${title}: ${glass}` }}
+        trigger={{ "aria-label": `${title}: ${selected}` }}
         items={[
-          { label: glass, checked: true },
-          { label: classic, checked: false, onSelect: onClassic },
+          { label: glass, checked: liquidGlass, onSelect: () => onChange(true) },
+          { label: classic, checked: !liquidGlass, onSelect: () => onChange(false) },
         ]}
       />
     </div>
   );
+}
+
+export function StyleTransparency(props: SliderProps) {
+  const material = useGlassMaterial();
+  // The SDK positions and drags the thumb from the physical left.
+  return <div {...material} dir="ltr" className="kit-liquid-control kit-liquid-transparency"><Slider {...props} /></div>;
 }
 
 export function GlassClearHistory({ title, description, cancelLabel, onConfirm }: {
