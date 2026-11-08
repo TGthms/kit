@@ -51,7 +51,12 @@ test("graph edits survive navigation and reload; saved graph stays separate", as
   // events through its accessible shadow textbox. Target that actual editor.
   const editor = field.getByRole("textbox");
   await expect(editor).toBeFocused();
-  await editor.press("ControlOrMeta+A");
+  // MathLive follows the browser's reported platform. Playwright's desktop
+  // profile can report Windows even when the test runner is on a Mac.
+  const platform = await page.evaluate(() =>
+    (navigator as Navigator & { userAgentData?: { platform: string } }).userAgentData?.platform ?? navigator.platform,
+  );
+  await editor.press(/^mac/i.test(platform) ? "Meta+a" : "Control+a");
   await editor.pressSequentially("x^2+2");
   await expect
     .poll(() =>

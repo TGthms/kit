@@ -1,9 +1,32 @@
 "use client";
 
-import { Slider as GlassSlider, Switch as GlassSwitch, type SwitchProps } from "@onlymoein/liquidglass";
+import { SegmentedControl as GlassSegmented, Slider as GlassSlider, Switch as GlassSwitch, type SegmentedControlProps, type SwitchProps } from "@onlymoein/liquidglass";
 import { useGlassMaterial } from "@/lib/theme/liquid-glass";
 import { cn } from "@/lib/utils";
 import type { SliderProps } from "./slider";
+
+export function LiquidSegmented({ className, items, onValueChange, ...props }: SegmentedControlProps) {
+  const material = useGlassMaterial();
+  return (
+    <GlassSegmented
+      {...props}
+      {...material}
+      className={cn("kit-liquid-control kit-liquid-segments", className)}
+      items={items}
+      onValueChange={onValueChange}
+      onKeyDownCapture={(event) => {
+        if (event.key !== "Home" && event.key !== "End") return;
+        const radios = event.currentTarget.querySelectorAll<HTMLButtonElement>('[role="radio"]:not(:disabled)');
+        const index = event.key === "Home" ? 0 : radios.length - 1;
+        const radio = radios[index];
+        if (!radio) return;
+        event.preventDefault();
+        radio.focus();
+        radio.click();
+      }}
+    />
+  );
+}
 
 export function LiquidSwitch({ control }: { control: SwitchProps }) {
   const material = useGlassMaterial();

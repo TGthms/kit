@@ -1,21 +1,49 @@
 import { expect, test } from "@playwright/test";
 
-test("experimental glass preserves mobile navigation and persists the shared transparency", async ({ page, context }) => {
+test("default glass preserves mobile navigation and persists the shared transparency", async ({ page, context }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("en/settings/");
-  const toggle = page.getByRole("switch", { name: "Liquid Glass", exact: true });
+  const style = page.getByRole("button", { name: "Interface style: Liquid Glass", exact: true });
+  const classic = page.getByRole("combobox", { name: "Interface style", exact: true });
+  async function chooseClassic(touch = false) {
+    if (touch) await style.tap();
+    else await style.press("Enter");
+    const menu = page.getByRole("menu", { name: "Interface style" });
+    await expect(menu.getByRole("menuitemradio", { name: "Liquid Glass" })).toHaveAttribute("aria-checked", "true");
+    const option = menu.getByRole("menuitemradio", { name: "Classic" });
+    if (touch) await option.tap();
+    else await option.press("Enter");
+    await expect(classic).toHaveValue("classic");
+    if (!touch) await expect(classic).toBeFocused();
+  }
   const transparency = page.getByRole("slider", { name: "Glass transparency" });
   const stable = page.locator(".floating-nav-face:visible");
   const glass = page.locator(".kit-liquid-tab-bar:visible");
   const tab = (name: string) => glass.getByRole("link", { name, exact: true });
-  await expect(stable).toBeVisible();
-  await expect(transparency).toHaveCount(0);
-  await expect(page.locator("#liquidglass-styles")).toHaveCount(0);
-  const originalSize = (await stable.boundingBox())!;
-
-  await toggle.click();
   await expect(glass).toHaveAttribute("data-ready", "");
   await expect(transparency).toHaveValue("50");
+  await expect(style).toHaveText("Liquid Glass");
+  await expect(page.getByRole("heading", { name: "Interface style" })).toHaveCSS("user-select", "none");
+
+  const haptics = page.getByRole("radiogroup", { name: "Haptic feedback" });
+  await expect(haptics).toHaveClass(/lg-segmented/);
+  const selected = haptics.locator('[role="radio"][aria-checked="true"]');
+  await selected.press("End");
+  await expect(haptics.getByRole("radio", { name: "Off", exact: true })).toHaveAttribute("aria-checked", "true");
+
+  await chooseClassic();
+  await expect(transparency).toHaveCount(0);
+  await expect(stable).toBeVisible();
+  const originalSize = (await stable.boundingBox())!;
+  await page.reload();
+  await expect(classic).toHaveValue("classic");
+  await expect(page.locator("#liquidglass-styles")).toHaveCount(0);
+  await expect(haptics).not.toHaveClass(/lg-segmented/);
+
+  await classic.focus();
+  await classic.selectOption("glass");
+  await expect(style).toBeFocused();
+  await expect(glass).toHaveAttribute("data-ready", "");
   const glassSize = (await glass.boundingBox())!;
   expect(Math.abs(glassSize.width - originalSize.width)).toBeLessThan(2);
   expect(Math.abs(glassSize.height - originalSize.height)).toBeLessThan(2);
@@ -84,7 +112,50 @@ test("experimental glass preserves mobile navigation and persists the shared tra
   await expect(page).toHaveURL(/\/en\/favorites\/$/);
   await page.goBack();
   await expect(transparency).toHaveValue("52");
-  await toggle.click();
+  await chooseClassic(test.info().project.use.hasTouch);
   await expect(transparency).toHaveCount(0);
   await expect(stable).toBeVisible();
+});
+
+test("glass history alert protects destructive actions and leaves tool text editable", async ({ page }) => {
+  await page.goto("en/settings/");
+  const clear = page.locator(".kit-liquid-history > button");
+  await expect(clear).toHaveClass(/lg-button/);
+  await page.evaluate(() => {
+    localStorage.setItem("kit-history", JSON.stringify({
+      version: 2,
+      state: {
+        enabled: true,
+        entries: [{ id: "example", timestamp: Date.now(), toolId: "image-convert", summary: "completed", status: "success" }],
+      },
+    }));
+  });
+  await page.reload();
+  const count = () => page.evaluate(() => JSON.parse(localStorage.getItem("kit-history")!).state.entries.length);
+  await clear.click();
+  const alert = page.getByRole("alertdialog", { name: "Clear history" });
+  await expect(alert).toBeVisible();
+  const cancel = alert.getByRole("button", { name: "Cancel" });
+  await expect(cancel).toBeFocused();
+  await cancel.press("Escape");
+  await expect(alert).toBeHidden();
+  await expect(clear).toBeFocused();
+  expect(await count()).toBe(1);
+
+  await clear.click();
+  const confirm = alert.getByRole("button", { name: "Clear history" });
+  if (test.info().project.use.hasTouch) await confirm.tap();
+  else await confirm.click();
+  await expect(alert).toBeHidden();
+  expect(await count()).toBe(0);
+
+  await page.goto("en/tools/text-diff/");
+  const inputs = page.locator("[data-tool]:visible textarea");
+  await expect(inputs.first()).toHaveCSS("user-select", "text");
+  await inputs.first().fill("old text");
+  await inputs.last().fill("new text");
+  await page.getByRole("button", { name: "Compare", exact: true }).click();
+  const result = page.locator("[data-tool]:visible pre");
+  await expect(result).toContainText("new text");
+  await expect(result).toHaveCSS("user-select", "text");
 });

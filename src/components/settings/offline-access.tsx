@@ -581,7 +581,7 @@ export function OfflineAccess() {
             <Figure label={t("offlineEnginesLabel")} value={enginesValue} waiting={tc("loading")} />
             <Figure label={t("offlineStorage")} value={storageValue} waiting={tc("loading")} />
           </dl>
-          {reportError && reportDetail ? <details className="text-xs text-muted-foreground"><summary className="cursor-pointer">{t("offlineLog")}</summary><p className="mt-2 break-words font-mono">{reportDetail}</p></details> : null}
+          {reportError && reportDetail ? <details className="text-xs text-muted-foreground"><summary className="cursor-pointer">{t("offlineLog")}</summary><p data-selectable className="mt-2 break-words font-mono">{reportDetail}</p></details> : null}
           {newerRelease || planState === "stale" ? <p className="rounded-xl bg-primary/5 px-3 py-2 text-sm text-primary">{newerRelease ? t("offlineUpdateAvailable") : t("offlineOutdated", { version: APP_VERSION })}</p> : null}
           <div className="flex flex-wrap items-center gap-2">
             {newerRelease || planState === "stale" || needsRepair || !readiness.ready || customizeOpen || draft ? <Button onClick={primaryAction} disabled={primaryDisabled}>
@@ -599,7 +599,7 @@ export function OfflineAccess() {
               <div className={cn("h-full rounded-full bg-primary transition-[width]", !download.total && "motion-safe:animate-pulse")} style={{ width: `${download.total ? progressPercent : 100}%` }} />
             </div> : null}
             {download.status === "error" ? <p className="text-sm text-muted-foreground">{download.logs.at(-1)}</p> : null}
-            <details className="text-xs text-muted-foreground" aria-live="off"><summary className="cursor-pointer">{t("offlineLog")}</summary><div className="mt-2 max-h-32 overflow-auto whitespace-pre-wrap font-mono">{download.logs.map((line, index) => <div key={`${line}-${index}`}>{line}</div>)}</div></details>
+            <details className="text-xs text-muted-foreground" aria-live="off"><summary className="cursor-pointer">{t("offlineLog")}</summary><div data-selectable className="mt-2 max-h-32 overflow-auto whitespace-pre-wrap font-mono">{download.logs.map((line, index) => <div key={`${line}-${index}`}>{line}</div>)}</div></details>
           </div> : null}
           <p className="type-caption text-muted-foreground">{download.status === "running" ? t("offlineBackgroundNote") : planState === "saved" && plan ? t("offlineStoredVersion", { version: plan.version }) : t("offlineBackgroundNote")}</p>
         </CardContent>

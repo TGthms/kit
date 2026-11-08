@@ -89,6 +89,7 @@ export function GraphSettings({
                 {t("grid")}
               </label>
               <SegmentedControl
+                glass
                 value={angle}
                 onChange={setAngle}
                 aria-label={tm("angle")}

@@ -99,6 +99,7 @@ export function StopwatchTimer() {
   return (
     <ToolShell toolId={toolId("stopwatch-timer")}>
       <SegmentedControl
+        glass
         value={mode}
         aria-label={`${text(t, "stopwatch", "Stopwatch")} / ${text(t, "countdown", "Countdown")}`}
         onChange={(next) => setMode(next)}

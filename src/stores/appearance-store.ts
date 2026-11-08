@@ -11,10 +11,10 @@ interface AppearanceState {
   setLiquidGlass: (enabled: boolean) => void;
 }
 
-/** The real SDK is experimental; ordinary navigation always has a CSS fallback. */
+/** Classic remains available as an explicit choice and a capability fallback. */
 export const useAppearanceStore = create<AppearanceState>()(persist(
   (set) => ({
-    liquidGlass: false,
+    liquidGlass: true,
     glassTransparency: DEFAULT_GLASS_TRANSPARENCY,
     setLiquidGlass: (liquidGlass) => set({ liquidGlass }),
     setGlassTransparency: (glassTransparency) => {
@@ -28,7 +28,7 @@ export const useAppearanceStore = create<AppearanceState>()(persist(
       const saved = persisted as Partial<AppearanceState> | null;
       return {
         ...current,
-        liquidGlass: saved?.liquidGlass === true,
+        liquidGlass: typeof saved?.liquidGlass === "boolean" ? saved.liquidGlass : current.liquidGlass,
         glassTransparency: isGlassTransparency(saved?.glassTransparency)
           ? saved.glassTransparency : DEFAULT_GLASS_TRANSPARENCY,
       };

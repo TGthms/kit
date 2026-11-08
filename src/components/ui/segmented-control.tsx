@@ -1,24 +1,59 @@
 "use client";
 
-import { useRef, useState, type ComponentType, type KeyboardEvent, type MouseEvent } from "react";
+import { lazy, Suspense, useRef, useState, type ComponentType, type KeyboardEvent, type MouseEvent } from "react";
 import { cn } from "@/lib/utils";
+import { useLiquidGlassEnabled } from "@/lib/theme/liquid-glass";
+import { GlassBoundary } from "./glass-boundary";
 import { GlidingPill, useGlidingPill } from "./gliding-pill";
 
 type ActivateEvent = MouseEvent<HTMLButtonElement> | KeyboardEvent<HTMLButtonElement>;
 
-export function SegmentedControl<T extends string>({
-  value,
-  onChange,
-  options,
-  "aria-label": ariaLabel,
-  className,
-}: {
+const LiquidSegmented = lazy(() => import("./liquid-glass-controls").then((module) => ({ default: module.LiquidSegmented })));
+
+type SegmentedProps<T extends string> = {
   value: T;
   onChange: (value: T, event?: ActivateEvent) => void;
   options: { value: T; label: string; icon?: ComponentType<{ className?: string }> }[];
   "aria-label"?: string;
   className?: string;
-}) {
+};
+
+export function SegmentedControl<T extends string>({ glass, ...props }: SegmentedProps<T> & { glass?: boolean }) {
+  return glass ? <GlassSegmented {...props} /> : <ClassicSegmented {...props} />;
+}
+
+function GlassSegmented<T extends string>(props: SegmentedProps<T>) {
+  const glass = useLiquidGlassEnabled();
+  const fallback = <ClassicSegmented {...props} />;
+  if (!glass) return fallback;
+  return (
+    <GlassBoundary fallback={fallback}>
+      <Suspense fallback={fallback}>
+        <LiquidSegmented
+          value={props.value}
+          aria-label={props["aria-label"]}
+          className={props.className}
+          items={props.options.map(({ value, label, icon: Icon }) => ({
+            value,
+            label: Icon ? <span className="inline-flex items-center gap-2"><Icon className="size-4" />{label}</span> : label,
+          }))}
+          onValueChange={(next) => {
+            const option = props.options.find(({ value }) => value === next);
+            if (option && option.value !== props.value) props.onChange(option.value);
+          }}
+        />
+      </Suspense>
+    </GlassBoundary>
+  );
+}
+
+function ClassicSegmented<T extends string>({
+  value,
+  onChange,
+  options,
+  "aria-label": ariaLabel,
+  className,
+}: SegmentedProps<T>) {
   const [container, setContainer] = useState<HTMLDivElement | null>(null);
   const [target, setTarget] = useState<HTMLButtonElement | null>(null);
   const buttons = useRef<Array<HTMLButtonElement | null>>([]);

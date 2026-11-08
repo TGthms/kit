@@ -216,6 +216,10 @@ export function PersonalData() {
                     : tc("none")}
                 </dd>
               </div>
+              <div>
+                <dt className="text-muted-foreground">{ts("navigationAppearance")}</dt>
+                <dd>{ts(pending.liquidGlass ? "liquidGlass" : "classicAppearance")}</dd>
+              </div>
               {(pending.liquidGlass || pending.glassTransparency !== undefined) && (
                 <div>
                   <dt className="text-muted-foreground">{ts("glassTransparency")}</dt>
@@ -223,7 +227,6 @@ export function PersonalData() {
                 </div>
               )}
               {[
-                [ts("liquidGlass"), pending.liquidGlass],
                 [ts("observanceGreetings"), pending.showObservances],
                 [t("mathRecovery"), pending.mathRecovery],
               ].map(([label, enabled]) => (

@@ -81,6 +81,7 @@ function Calculator({ fraction = false }: { fraction?: boolean }) {
         <div className="min-w-0 space-y-4 rounded-2xl border bg-card p-4 sm:p-5">
           {!fraction && (
             <SegmentedControl
+              glass
               value={angle}
               onChange={(next) => {
                 setAngle(next);

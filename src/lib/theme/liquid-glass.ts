@@ -11,6 +11,7 @@ const fallbackPreferences = ["(prefers-reduced-transparency: reduce)", "(forced-
 function supported(): boolean {
   const css = window.CSS;
   return typeof ResizeObserver === "function"
+    && typeof window.matchMedia === "function"
     && !!css?.supports("color", "color-mix(in srgb, black, white)")
     && css.supports("width", "1cqi")
     && (css.supports("backdrop-filter", "blur(1px)") || css.supports("-webkit-backdrop-filter", "blur(1px)"))
@@ -18,22 +19,29 @@ function supported(): boolean {
 }
 
 function subscribe(listener: () => void): () => void {
+  if (typeof window.matchMedia !== "function") return () => {};
   const queries = fallbackPreferences.map((query) => window.matchMedia(query));
   queries.forEach((query) => query.addEventListener("change", listener));
   return () => queries.forEach((query) => query.removeEventListener("change", listener));
 }
 
-/** Do not download or initialize the SDK until it is opted into and supported. */
+const unavailable = () => false;
+const noSubscription = () => () => {};
+
+/** Use Classic during prerendering and whenever the glass controls are unavailable. */
 export function useLiquidGlassEnabled(): boolean {
-  // This release of the library measures all three drag gestures from the
+  // This release of the library measures its drag gestures from the
   // physical left. Keep Kit's mirrored controls in right-to-left locales.
   const ltr = localeDir(useLocale()) === "ltr";
   const enabled = useAppearanceStore((state) => state.liquidGlass);
-  const available = useSyncExternalStore(subscribe, supported, () => false);
-  return enabled && available && ltr;
+  return useSyncExternalStore(
+    enabled && ltr ? subscribe : noSubscription,
+    enabled && ltr ? supported : unavailable,
+    unavailable,
+  );
 }
 
-/** Scope the package's theme and tuning to the three experimental components. */
+/** Scope the package's theme and tuning to the glass controls. */
 export function useGlassMaterial() {
   const { resolvedTheme } = useTheme();
   const transparency = useAppearanceStore((state) => state.glassTransparency);
