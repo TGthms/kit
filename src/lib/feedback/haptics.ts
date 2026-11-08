@@ -46,7 +46,7 @@ export function installHaptics(readMode: () => HapticMode): () => void {
     // Combobox options intentionally leave focus on their input; slider handles
     // own pointer capture. Neither should acquire a label's focus behavior.
     && !button.matches('[role="option"], [role="slider"]')
-    && !button.closest(".kit-sdk-control")
+    && !button.closest(".kit-liquid-control")
     && !button.querySelector('input, select, textarea, [contenteditable], [role="slider"]');
 
   const mount = (button: HTMLButtonElement) => {

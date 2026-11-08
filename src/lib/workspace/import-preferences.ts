@@ -11,6 +11,7 @@ import {
 } from "./math";
 import { parsePreferences, type Preferences } from "./preferences";
 import { THEME_CONTEXT_KEY, THEME_STORAGE_KEY } from "@/lib/theme/resolve";
+import { DEFAULT_GLASS_TRANSPARENCY } from "@/lib/theme/glass-transparency";
 /** Stage and verify the fixed storage envelope before updating any live stores.
  * Roll back writes if storage fills or becomes unavailable during the import. */
 export function importPreferences(input: Preferences) {
@@ -25,7 +26,10 @@ export function importPreferences(input: Preferences) {
       version: 0,
     }),
     "kit-appearance": JSON.stringify({
-      state: { liquidGlass: p.liquidGlass },
+      state: {
+        liquidGlass: p.liquidGlass,
+        glassTransparency: p.glassTransparency ?? DEFAULT_GLASS_TRANSPARENCY,
+      },
       version: 0,
     }),
     "kit-greeting-preferences": JSON.stringify({

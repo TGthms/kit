@@ -17,6 +17,7 @@ import {
 import { parsePreferences, type Preferences } from "./preferences";
 import { importPreferences } from "./import-preferences";
 import { useFavoritesStore } from "@/stores/favorites-store";
+import { useAppearanceStore } from "@/stores/appearance-store";
 const preferences: Preferences = {
   kind: "kit-preferences",
   version: 1,
@@ -103,6 +104,9 @@ describe("preferences transfer", () => {
       { favorites: ["function-grapher", "function-grapher"] },
       { version: 99 },
       { liquidGlass: "false" },
+      { glassTransparency: -1 },
+      { glassTransparency: 101 },
+      { glassTransparency: "50" },
     ])
       expect(() =>
         parsePreferences(JSON.stringify({ ...preferences, ...change })),
@@ -111,10 +115,12 @@ describe("preferences transfer", () => {
   it("imports allowlisted preferences without enabling history or reading inputs", () => {
     localStorage.setItem("kit-history", "untouched");
     localStorage.setItem(draftKey("graph"), "untouched");
-    importPreferences(preferences);
+    const settings = { ...preferences, liquidGlass: true, glassTransparency: 0 };
+    importPreferences(parsePreferences(JSON.stringify(settings)));
     expect(useFavoritesStore.getState().ids).toEqual(["function-grapher"]);
     expect(localStorage.getItem("kit-history")).toBe("untouched");
     expect(localStorage.getItem(draftKey("graph"))).toBe("untouched");
+    expect(useAppearanceStore.getState()).toMatchObject({ liquidGlass: true, glassTransparency: 0 });
   });
   it("rolls back completed writes on quota failure without changing live stores", () => {
     localStorage.setItem(

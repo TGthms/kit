@@ -237,6 +237,6 @@ export function TabBar({ pathname }: { pathname: string }) {
   const fallback = <StandardTabBar pathname={pathname} keyboardHidden={keyboardHidden} />;
   if (!enabled || !mobile || keyboardHidden) return fallback;
   return <GlassBoundary fallback={fallback}><Suspense fallback={fallback}>
-    <LiquidTabBar pathname={pathname} fallback={fallback} />
+    <LiquidTabBar pathname={pathname} />
   </Suspense></GlassBoundary>;
 }

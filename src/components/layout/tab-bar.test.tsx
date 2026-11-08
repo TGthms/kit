@@ -116,10 +116,10 @@ describe("TabBar highlight", () => {
     act(()=>updateMathKeyboard(0));
     expect(document.querySelector(".floating-nav")).not.toHaveAttribute("aria-hidden");
   });
-  it("uses the original capsule by default and when an opted-in browser lacks WebGPU", () => {
+  it("uses the original capsule by default and when an opted-in browser lacks backdrop support", () => {
     const { unmount } = renderTabBar("/favorites");
     expect(document.querySelector(".floating-nav-face")).toBeInTheDocument();
-    expect(document.querySelector(".kit-sdk-tab-scene")).not.toBeInTheDocument();
+    expect(document.querySelector(".kit-liquid-tab-bar")).not.toBeInTheDocument();
     unmount();
     useAppearanceStore.setState({ liquidGlass: true });
     renderTabBar("/favorites");

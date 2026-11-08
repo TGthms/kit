@@ -121,7 +121,7 @@ describe("iOS trusted-label feedback", () => {
   });
   it("does not arm links, form actions, input-bearing buttons, focus-managed options, or SDK drag controls", () => {
     ios();
-    document.body.innerHTML = '<a href="/en/" data-pressable>Home</a><form><button>Submit</button><button type="reset">Reset</button></form><button><input></button><button role="option">Choice</button><button role="slider">Handle</button><div class="kit-sdk-control"><button role="switch">Glass</button></div>';
+    document.body.innerHTML = '<a href="/en/" data-pressable>Home</a><form><button>Submit</button><button type="reset">Reset</button></form><button><input></button><button role="option">Choice</button><button role="slider">Handle</button><button class="kit-liquid-control" role="switch">Glass</button>';
     dispose = installHaptics(() => "full");
     expect(document.querySelector(".kit-ios-haptic-hit")).toBeNull();
   });

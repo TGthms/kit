@@ -304,121 +304,46 @@ canvas {
   }
 }
 
-/* The experimental SDK scene is only as large as the existing mobile bar. */
-.kit-sdk-tab-scene {
+/* Keep the library's lens, labels and hit areas on the same responsive slots. */
+.kit-liquid-tab-bar.lg-tab-bar[data-icons] {
+  --lg-tab-width: calc((100cqi - 17px) / var(--lg-tabs));
+  --lg-tab-height: calc(3.6rem + 6px);
+  --lg-tab-accent: var(--primary);
+  --lg-selection: color-mix(in srgb, var(--primary) 14%, transparent);
+  --lg-transparency: var(--kit-glass-transparency);
+  --lg-ring: var(--ring);
   width: 100%;
-  border-radius: 9999px;
   box-shadow: var(--shadow-float);
 }
 
-.kit-sdk-tab-backdrop {
-  background: var(--card);
-  border-radius: 9999px;
-  pointer-events: none;
-}
-
-.kit-sdk-tabs {
-  width: 100%;
-}
-
-.kit-sdk-tab-list {
-  position: relative;
-  width: 100%;
-  align-items: stretch;
-  padding: 0.375rem;
-  border: 1px solid var(--glass-border);
-  touch-action: none;
-}
-
-.kit-sdk-tab {
-  flex: 1 1 0%;
-  min-width: 0;
-  height: 3.6rem;
-  border: 0;
-  padding: 0.25rem;
-  font-size: 11px;
-  font-weight: 500;
-  color: var(--muted-foreground);
-  opacity: 1;
-}
-
-.kit-sdk-tab .lg-tab-label {
-  display: flex;
-  min-width: 0;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+.kit-liquid-tab-bar.lg-tab-bar[data-icons] :is(.lg-tab-face, .lg-tab-copy) {
   gap: 2px;
+  font-size: 11px;
 }
 
-.kit-sdk-tab-selected {
-  color: var(--primary);
+.kit-liquid-tab-bar .lg-tab-icon {
+  width: 22px;
+  height: 22px;
 }
 
-.dark .kit-sdk-tab-selected {
-  color: #8cc8ff;
-}
-
-.kit-sdk-tab-indicator {
-  background: color-mix(in srgb, var(--primary) 12%, transparent);
+.kit-liquid-tab-bar .lg-tab-bar-glass {
   box-shadow: inset 0 0 0 1px var(--glass-border);
 }
 
-.kit-sdk-tab:focus-visible {
-  outline: 2px solid var(--ring);
-  outline-offset: -3px;
+.kit-liquid-control {
+  --lg-fill: var(--primary);
+  --lg-on: var(--primary);
+  --lg-ring: var(--ring);
+}
+
+.kit-liquid-control :is(.lg-switch-thumb, .lg-slider-thumb) {
+  --lg-transparency: var(--kit-glass-transparency);
 }
 
 /* The field carries the focus outline; a second square outline around the
    text input would break the capsule and obscure its content. */
 .kit-search-input:focus-visible { outline: none; }
 .kit-search-field:focus-within { outline: 2px solid var(--ring); outline-offset: 2px; }
-
-
-/* Actual SDK switches/sliders, each with an isolated, bounded backdrop. */
-.kit-sdk-control {
-  position: relative;
-  isolation: isolate;
-  flex-shrink: 0;
-}
-
-.kit-sdk-switch-scene {
-  width: 48px;
-  height: 28px;
-}
-
-.kit-sdk-control-backdrop {
-  background: var(--card);
-  pointer-events: none;
-}
-
-.kit-sdk-switch {
-  --lg-switch-travel: 20px;
-  width: 48px;
-  height: 28px;
-  padding: 3px;
-}
-
-.kit-sdk-switch:dir(rtl) {
-  --lg-switch-travel: -20px;
-}
-
-.kit-sdk-switch .lg-switch-thumb {
-  width: 22px;
-  height: 22px;
-}
-
-.kit-sdk-switch:focus-visible,
-.kit-sdk-slider .lg-slider-thumb:focus-within {
-  outline: 2px solid var(--ring);
-  outline-offset: 3px;
-}
-
-.kit-sdk-slider-scene,
-.kit-sdk-slider {
-  width: 100%;
-  min-height: 28px;
-}
 
 /* Typography scale helpers */
 .type-display {

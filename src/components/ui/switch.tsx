@@ -12,7 +12,7 @@ export type SwitchProps = React.ComponentPropsWithoutRef<typeof SwitchPrimitives
 const Switch = React.forwardRef<
   React.ElementRef<typeof SwitchPrimitives.Root>,
   SwitchProps
->(({ className, glass = true, ...props }, ref) => {
+>(({ className, glass = true, asChild, name, required, form, value, ...props }, ref) => {
   const enabled = useLiquidGlassEnabled();
   const fallback = (
   <SwitchPrimitives.Root
@@ -26,6 +26,11 @@ const Switch = React.forwardRef<
       className
     )}
     {...props}
+    asChild={asChild}
+    name={name}
+    required={required}
+    form={form}
+    value={value}
     ref={ref}
   >
     <SwitchPrimitives.Thumb
@@ -37,9 +42,9 @@ const Switch = React.forwardRef<
   </SwitchPrimitives.Root>
   );
   // Uncontrolled/ref-based/disabled controls retain their native contract.
-  if (!enabled || !glass || ref || props.disabled || props.asChild || props.checked === undefined) return fallback;
+  if (!enabled || !glass || ref || props.disabled || asChild || name || required || form || value !== undefined || props.checked === undefined) return fallback;
   return <GlassBoundary fallback={fallback}><React.Suspense fallback={fallback}>
-    <LiquidSwitch control={{ ...props, className }} fallback={fallback} />
+    <LiquidSwitch control={{ ...props, className }} />
   </React.Suspense></GlassBoundary>;
 });
 Switch.displayName = SwitchPrimitives.Root.displayName;

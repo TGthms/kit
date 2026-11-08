@@ -2,6 +2,7 @@ import { sanitizeFavoriteIds } from "@/stores/favorites-store";
 import { isLocale, type Locale } from "@/lib/i18n/config";
 import type { ThemeChoice } from "@/lib/theme/resolve";
 import type { HapticMode } from "@/lib/feedback/haptics";
+import { isGlassTransparency } from "@/lib/theme/glass-transparency";
 export type Preferences = {
   kind: "kit-preferences";
   version: 1;
@@ -10,6 +11,7 @@ export type Preferences = {
   favorites: string[];
   haptics: HapticMode;
   liquidGlass: boolean;
+  glassTransparency?: number;
   showObservances: boolean;
   mathRecovery: boolean;
 };
@@ -21,6 +23,7 @@ const KEYS = [
   "favorites",
   "haptics",
   "liquidGlass",
+  "glassTransparency",
   "showObservances",
   "mathRecovery",
 ];
@@ -42,6 +45,7 @@ export function parsePreferences(text: string): Preferences {
     !Array.isArray(p.favorites) ||
     p.favorites.length > 100 ||
     p.favorites.some((id) => typeof id !== "string") ||
+    ("glassTransparency" in p && !isGlassTransparency(p.glassTransparency)) ||
     [p.liquidGlass, p.showObservances, p.mathRecovery].some(
       (value) => typeof value !== "boolean",
     )
@@ -57,6 +61,9 @@ export function parsePreferences(text: string): Preferences {
     favorites,
     haptics: p.haptics as HapticMode,
     liquidGlass: p.liquidGlass as boolean,
+    ...(isGlassTransparency(p.glassTransparency)
+      ? { glassTransparency: p.glassTransparency }
+      : {}),
     showObservances: p.showObservances as boolean,
     mathRecovery: p.mathRecovery as boolean,
   };

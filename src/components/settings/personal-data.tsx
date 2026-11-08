@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import { useLocale, useTranslations } from "next-intl";
+import { useFormatter, useLocale, useTranslations } from "next-intl";
 import { useTheme } from "next-themes";
 import { useRouter } from "@/lib/i18n/navigation";
 import dynamic from "next/dynamic";
@@ -27,6 +27,7 @@ import {
 } from "@/lib/workspace/preferences";
 import { importPreferences } from "@/lib/workspace/import-preferences";
 import { collectDiagnostics } from "@/lib/pwa/diagnostics";
+import { DEFAULT_GLASS_TRANSPARENCY } from "@/lib/theme/glass-transparency";
 const ModalSurface = dynamic(() =>
   import("@/components/ui/modal-surface").then((module) => module.ModalSurface),
 );
@@ -41,6 +42,7 @@ export function PersonalData() {
     router = useRouter(),
     { setTheme } = useTheme();
   const hydrated = useHydrated();
+  const format = useFormatter();
   const [recovery, setRecovery] = useState(true);
   const [pending, setPending] = useState<Preferences | null>(null);
   const [error, setError] = useState(false);
@@ -111,6 +113,7 @@ export function PersonalData() {
                   favorites: useFavoritesStore.getState().ids,
                   haptics: useFeedbackStore.getState().haptics,
                   liquidGlass: useAppearanceStore.getState().liquidGlass,
+                  glassTransparency: useAppearanceStore.getState().glassTransparency,
                   showObservances:
                     useGreetingPreferencesStore.getState().showObservances,
                   mathRecovery: recoveryEnabled(),
@@ -213,6 +216,12 @@ export function PersonalData() {
                     : tc("none")}
                 </dd>
               </div>
+              {(pending.liquidGlass || pending.glassTransparency !== undefined) && (
+                <div>
+                  <dt className="text-muted-foreground">{ts("glassTransparency")}</dt>
+                  <dd>{format.number((pending.glassTransparency ?? DEFAULT_GLASS_TRANSPARENCY) / 100, { style: "percent" })}</dd>
+                </div>
+              )}
               {[
                 [ts("liquidGlass"), pending.liquidGlass],
                 [ts("observanceGreetings"), pending.showObservances],
