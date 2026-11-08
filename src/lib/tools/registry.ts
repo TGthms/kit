@@ -344,10 +344,10 @@ export const tools: ToolDef[] = [
 
 export const featuredToolIds: ToolId[] = [
   "unicode-styles",
+  "symbol-browser",
   "function-grapher",
   "random-generator",
   "stopwatch-timer",
-  "password-generator",
   "qr-code",
   "text-counter",
   "video-gif",
