@@ -1,6 +1,6 @@
 {
   "name": "kit",
-  "version": "1.3.5",
+  "version": "1.3.6",
   "private": true,
   "engines": {
     "node": "^24.0.0"
@@ -29,7 +29,7 @@
     "@ffmpeg/util": "^0.12.2",
     "@heroui/react": "3.2.6",
     "@heroui/styles": "3.2.6",
-    "@onlymoein/liquidglass": "0.13.0",
+    "@onlymoein/liquidglass": "0.15.0",
     "@radix-ui/react-label": "^2.1.11",
     "@radix-ui/react-progress": "^1.1.12",
     "@radix-ui/react-slider": "^1.4.3",
