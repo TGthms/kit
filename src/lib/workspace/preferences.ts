@@ -12,6 +12,7 @@ export type Preferences = {
   haptics: HapticMode;
   liquidGlass: boolean;
   glassTransparency?: number;
+  nightAppearance?: boolean;
   showObservances: boolean;
   mathRecovery: boolean;
 };
@@ -24,6 +25,7 @@ const KEYS = [
   "haptics",
   "liquidGlass",
   "glassTransparency",
+  "nightAppearance",
   "showObservances",
   "mathRecovery",
 ];
@@ -45,6 +47,7 @@ export function parsePreferences(text: string): Preferences {
     !Array.isArray(p.favorites) ||
     p.favorites.length > 100 ||
     p.favorites.some((id) => typeof id !== "string") ||
+    ("nightAppearance" in p && typeof p.nightAppearance !== "boolean") ||
     ("glassTransparency" in p && !isGlassTransparency(p.glassTransparency)) ||
     [p.liquidGlass, p.showObservances, p.mathRecovery].some(
       (value) => typeof value !== "boolean",
@@ -61,6 +64,7 @@ export function parsePreferences(text: string): Preferences {
     favorites,
     haptics: p.haptics as HapticMode,
     liquidGlass: p.liquidGlass as boolean,
+    ...(typeof p.nightAppearance === "boolean" ? { nightAppearance: p.nightAppearance } : {}),
     ...(isGlassTransparency(p.glassTransparency)
       ? { glassTransparency: p.glassTransparency }
       : {}),

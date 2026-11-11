@@ -1,21 +1,7 @@
-/**
- * Kit theme policy:
- *
- * - Default is System.
- * - OS light + daytime: a manual Light or Dark choice is honored.
- * - OS dark, or local night (22:00–04:59, same window as the home greeting):
- *   follow System by default (dark when the OS is dark); keep a Dark choice;
- *   auto-apply Dark even if the stored intent is Light.
- * - A Light/Dark tap always paints that appearance immediately and sticks for
- *   this page lifetime (auto policy does not slam it back). Boot still applies
- *   the force, so a reload at night starts Dark again.
- *
- * User intent is stored in `kit-theme-context`. next-themes' `theme` key holds
- * the value that should actually be applied, so its blocking script cannot
- * undo a night/OS-dark force after `public/boot/theme.js` runs.
- *
- * Keep `public/boot/theme.js` in sync with this file.
- */
+/** System/Light/Dark express stored intent. Scheduled night appearance is
+ * independently enabled by default. A direct appearance tap is honored for
+ * this visit; the explicit night policy applies again on the next cold launch.
+ * Keep public/boot/theme.js in sync. */
 
 export type ThemeChoice = "system" | "light" | "dark";
 export type ResolvedTheme = "light" | "dark";
@@ -27,6 +13,7 @@ export type ThemeContext = {
 
 export const THEME_STORAGE_KEY = "theme";
 export const THEME_CONTEXT_KEY = "kit-theme-context";
+export const THEME_CHOICE_EVENT = "kit:theme-choice";
 
 /** Inclusive start of the night force window (local hour). */
 export const NIGHT_START_HOUR = 22;
@@ -38,8 +25,8 @@ export function isNightHour(date: Date): boolean {
   return hour >= NIGHT_START_HOUR || hour < NIGHT_END_HOUR;
 }
 
-export function shouldForceDark(system: ResolvedTheme, date: Date): boolean {
-  return system === "dark" || isNightHour(date);
+export function shouldForceDark(_system: ResolvedTheme, date: Date, nightAppearance = true): boolean {
+  return nightAppearance && isNightHour(date);
 }
 
 /**
@@ -49,16 +36,16 @@ export function shouldForceDark(system: ResolvedTheme, date: Date): boolean {
  * `"system"` so a later daytime OS-light switch still follows the OS.
  * Night with OS light cannot use `"system"` (that would resolve to light).
  */
-export function nextThemesValue(choice: ThemeChoice, system: ResolvedTheme, date: Date): ThemeChoice {
-  if (shouldForceDark(system, date)) {
+export function nextThemesValue(choice: ThemeChoice, system: ResolvedTheme, date: Date, nightAppearance = true): ThemeChoice {
+  if (shouldForceDark(system, date, nightAppearance)) {
     if (choice === "system" && system === "dark") return "system";
     return "dark";
   }
   return choice;
 }
 
-export function resolveKitTheme(choice: ThemeChoice, system: ResolvedTheme, date: Date): ResolvedTheme {
-  const applied = nextThemesValue(choice, system, date);
+export function resolveKitTheme(choice: ThemeChoice, system: ResolvedTheme, date: Date, nightAppearance = true): ResolvedTheme {
+  const applied = nextThemesValue(choice, system, date, nightAppearance);
   return applied === "system" ? system : applied;
 }
 
@@ -115,6 +102,7 @@ export function writeThemeContext(context: ThemeContext) {
   if (typeof window === "undefined") return;
   try {
     window.localStorage.setItem(THEME_CONTEXT_KEY, JSON.stringify(context));
+    window.dispatchEvent(new Event(THEME_CHOICE_EVENT));
   } catch {
     /* localStorage may be unavailable */
   }
@@ -173,5 +161,10 @@ export function syncAppliedTheme(
     setTheme(choice);
     return;
   }
-  setTheme(nextThemesValue(choice, system, date));
+  setTheme(nextThemesValue(choice, system, date, readNightAppearance()));
+}
+
+export function readNightAppearance(): boolean {
+  try { return JSON.parse(localStorage.getItem("kit-appearance") || "null")?.state?.nightAppearance !== false; }
+  catch { return true; }
 }

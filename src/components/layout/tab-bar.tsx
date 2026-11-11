@@ -192,7 +192,7 @@ function StandardTabBar({ pathname, keyboardHidden }: { pathname: string; keyboa
             className={cn(
               "pressable-soft relative z-10 flex min-h-[3.6rem] min-w-0 flex-1 flex-col items-center justify-center gap-0.5 px-1 py-1",
               "text-[11px] font-medium tracking-[-0.01em]",
-              selected ? "text-primary" : "text-muted-foreground"
+              selected ? "text-primary dark:text-accent-foreground" : "text-muted-foreground"
             )}
             onClick={(event) => {
               if (!isPlainNavigationClick(event)) return;

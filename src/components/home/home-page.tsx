@@ -190,6 +190,7 @@ function HomePageInner() {
   const greetingTimeParam = greetingSearch.get("time") ?? greetingSearch.get("greetingTime");
   const showPreviewGreeting =
     greetingPreview.date !== null || greetingPreview.time !== null || greetingPreview.seed !== null;
+  const [moreFeatured, setMoreFeatured] = useState(false);
   const [q, setQ] = useState("");
   const [newYear, setNewYear] = useState<NewYearCardState | null>(null);
   const [fireworksOn, setFireworksOn] = useState(false);
@@ -398,23 +399,23 @@ function HomePageInner() {
           <h2 className="text-xs font-semibold uppercase tracking-[0.06em] text-muted-foreground">
             {t("featured")}
           </h2>
-          <div className="kit-tool-grid grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            {featuredToolIds.map((id) => {
+          <div className="kit-featured-grid kit-tool-grid grid grid-cols-2 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {featuredToolIds.map((id, featuredIndex) => {
               const tool = tools.find((x) => x.id === id);
               if (!tool) return null;
               const Icon = tool.icon;
               return (
-                <Link key={id} href={toolHref(id)} className="block" data-pressable>
+                <Link key={id} href={toolHref(id)} className={cn("block", featuredIndex >= 4 && !moreFeatured && "hidden sm:block")} data-pressable>
                   <Card className="h-full border-border/40 pressable-soft transition-shadow hover:surface-float-lg">
-                    <CardHeader className="flex-row items-center gap-3 space-y-0 p-4">
+                    <CardHeader className="flex-col items-start gap-3 space-y-0 p-3 sm:flex-row sm:items-center sm:p-4">
                       <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
                         <Icon className="h-5 w-5" />
                       </span>
                       <div className="min-w-0">
-                        <CardTitle className="truncate text-sm font-medium tracking-[-0.01em]">
+                        <CardTitle className="line-clamp-2 text-sm font-medium tracking-[-0.01em]">
                           {tt(`${id}.name`)}
                         </CardTitle>
-                        <CardDescription className="mt-0.5 line-clamp-2 text-xs">
+                        <CardDescription className="mt-0.5 hidden text-xs sm:line-clamp-2">
                           {tt(`${id}.description`)}
                         </CardDescription>
                       </div>
@@ -424,6 +425,7 @@ function HomePageInner() {
               );
             })}
           </div>
+          <button type="button" aria-expanded={moreFeatured} className="min-h-11 text-sm font-medium text-primary sm:hidden" onClick={() => setMoreFeatured(value => !value)}>{moreFeatured ? tcommon("close") : t("moreTools")}</button>
         </section>
       )}
 

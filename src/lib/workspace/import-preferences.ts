@@ -28,6 +28,7 @@ export function importPreferences(input: Preferences) {
     "kit-appearance": JSON.stringify({
       state: {
         liquidGlass: p.liquidGlass,
+        nightAppearance: p.nightAppearance ?? true,
         glassTransparency: p.glassTransparency ?? DEFAULT_GLASS_TRANSPARENCY,
       },
       version: 0,

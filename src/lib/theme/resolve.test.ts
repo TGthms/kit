@@ -44,8 +44,8 @@ describe("isNightHour", () => {
 });
 
 describe("shouldForceDark", () => {
-  it("forces when the OS is dark, even during the day", () => {
-    expect(shouldForceDark("dark", day)).toBe(true);
+  it("does not override explicit choices merely because the OS is dark", () => {
+    expect(shouldForceDark("dark", day)).toBe(false);
     expect(shouldForceDark("light", day)).toBe(false);
   });
 
@@ -62,10 +62,10 @@ describe("resolveKitTheme", () => {
     expect(resolveKitTheme("dark", "light", day)).toBe("dark");
   });
 
-  it("follows system dark by default, keeps dark, and forces a light choice to dark", () => {
+  it("follows system dark by default and honors an explicit daytime light choice", () => {
     expect(resolveKitTheme("system", "dark", day)).toBe("dark");
     expect(resolveKitTheme("dark", "dark", day)).toBe("dark");
-    expect(resolveKitTheme("light", "dark", day)).toBe("dark");
+    expect(resolveKitTheme("light", "dark", day)).toBe("light");
   });
 
   it("forces dark at night even if the OS is light, including an explicit light choice", () => {
@@ -185,4 +185,11 @@ describe("theme context persistence", () => {
     syncAppliedTheme(setTheme, day, "light");
     expect(applied.at(-1)).toBe("system");
   });
+});
+
+
+it("lets users disable forced night appearance while retaining it by default", () => {
+  expect(resolveKitTheme("light", "light", night)).toBe("dark");
+  expect(resolveKitTheme("light", "dark", night, false)).toBe("light");
+  expect(resolveKitTheme("system", "dark", night, false)).toBe("dark");
 });

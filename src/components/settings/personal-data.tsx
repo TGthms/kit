@@ -113,6 +113,7 @@ export function PersonalData() {
                   favorites: useFavoritesStore.getState().ids,
                   haptics: useFeedbackStore.getState().haptics,
                   liquidGlass: useAppearanceStore.getState().liquidGlass,
+                  nightAppearance: useAppearanceStore.getState().nightAppearance,
                   glassTransparency: useAppearanceStore.getState().glassTransparency,
                   showObservances:
                     useGreetingPreferencesStore.getState().showObservances,

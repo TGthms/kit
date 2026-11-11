@@ -9,6 +9,7 @@ import { HapticFeedback } from "@/components/layout/haptic-feedback";
 import { THEME_COLOR } from "@/lib/theme/circular-transition";
 import { currentSystemTheme, msUntilNextNightBoundary, syncAppliedTheme } from "@/lib/theme/resolve";
 import { observeInstalledViewport } from "@/lib/pwa/viewport";
+import { useAppearanceStore } from "@/stores/appearance-store";
 import { InstallProvider } from "@/components/pwa/install-provider";
 
 export { rememberThemeChoice } from "@/lib/theme/resolve";
@@ -83,6 +84,7 @@ function HtmlLang({ lang, dir }: { lang?: string; dir?: "ltr" | "rtl" }) {
  * was undoing a Light tap while Dark was enforced.
  */
 function ThemePreferenceSync() {
+  const nightAppearance = useAppearanceStore((state) => state.nightAppearance);
   const { setTheme } = useTheme();
   const setThemeRef = useRef(setTheme);
 
@@ -118,7 +120,7 @@ function ThemePreferenceSync() {
       unsubscribeMedia();
       window.clearTimeout(timer);
     };
-  }, []);
+  }, [nightAppearance]);
 
   return null;
 }

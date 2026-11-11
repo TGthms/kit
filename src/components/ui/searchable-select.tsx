@@ -190,6 +190,7 @@ function SearchableSelectField({
   }
 
   function onInputKeyDown(event: KeyboardEvent<HTMLInputElement>) {
+    if (event.nativeEvent.isComposing || event.defaultPrevented) return;
     if (event.key === "ArrowDown") {
       event.preventDefault();
       if (!open) {
@@ -227,7 +228,7 @@ function SearchableSelectField({
   };
 
   return (
-    <div className="space-y-2" ref={rootRef}>
+    <div className="space-y-2" ref={rootRef} onBlur={(event) => { if (!event.currentTarget.contains(event.relatedTarget as Node | null)) close(); }}>
       {labelNode}
       <div className="relative" ref={controlRef}>
         <Input

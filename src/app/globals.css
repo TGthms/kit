@@ -21,14 +21,14 @@
   --foreground: #1d1d1f;
   --card: #ffffff;
   --card-foreground: #1d1d1f;
-  --primary: #0071e3;
+  --primary: #0063c7;
   --primary-foreground: #ffffff;
   --secondary: #e8e8ed;
   --secondary-foreground: #1d1d1f;
   --muted: #e8e8ed;
-  --muted-foreground: #6e6e73;
+  --muted-foreground: #626268;
   --accent: #e8f2ff;
-  --accent-foreground: #0071e3;
+  --accent-foreground: #0063c7;
   --destructive: #ff3b30;
   --destructive-foreground: #ffffff;
   --border: rgba(0, 0, 0, 0.08);
@@ -99,6 +99,8 @@
   --color-card: var(--card);
   --color-card-foreground: var(--card-foreground);
   --color-primary: var(--primary);
+  --color-action: color-mix(in srgb, var(--primary) 82%, #000);
+  --color-danger-action: color-mix(in srgb, var(--destructive) 74%, #000);
   --color-primary-foreground: var(--primary-foreground);
   --color-secondary: var(--secondary);
   --color-secondary-foreground: var(--secondary-foreground);
@@ -342,6 +344,8 @@ canvas {
   width: 100%;
   box-shadow: var(--shadow-float);
 }
+
+.dark .kit-liquid-tab-bar.lg-tab-bar[data-icons] { --lg-tab-accent: var(--accent-foreground); }
 
 .kit-liquid-tab-bar.lg-tab-bar[data-icons] :is(.lg-tab-face, .lg-tab-copy) {
   gap: 2px;

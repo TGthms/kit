@@ -10,7 +10,9 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { SegmentedControl } from "@/components/ui/segmented-control";
 import { useHistoryStore } from "@/stores/history-store";
 import { Switch } from "@/components/ui/switch";
-import { rememberThemeChoice } from "@/lib/theme/resolve";
+import { useAppearanceStore } from "@/stores/appearance-store";
+import { useThemeChoice } from "@/lib/theme/use-theme-choice";
+import { resetSessionThemeOverride, syncAppliedTheme, rememberThemeChoice } from "@/lib/theme/resolve";
 import { CheckUpdates } from "@/components/settings/check-updates";
 import { useHydrated } from "@/lib/react/hydrated";
 import { runCircularThemeTransition } from "@/lib/theme/circular-transition";
@@ -27,7 +29,7 @@ export default function SettingsPage() {
   const tc = useTranslations("common");
   const th = useTranslations("history");
   const tn = useTranslations("nav");
-  const { resolvedTheme, setTheme, systemTheme } = useTheme();
+  const { setTheme, systemTheme } = useTheme();
   const historyEnabled = useHistoryStore((s) => s.enabled);
   const setHistoryEnabled = useHistoryStore((s) => s.setEnabled);
   const hydrated = useHydrated();
@@ -35,8 +37,9 @@ export default function SettingsPage() {
   const setHaptics = useFeedbackStore((state) => state.setHaptics);
   const showObservances = useGreetingPreferencesStore((state) => state.showObservances);
   const setShowObservances = useGreetingPreferencesStore((state) => state.setShowObservances);
-  // Painted Light/Dark. Stored intent may still be System until the user taps.
-  const appearance = hydrated && resolvedTheme === "dark" ? "dark" : "light";
+  const nightAppearance = useAppearanceStore((s) => s.nightAppearance);
+  const setNightAppearance = useAppearanceStore((s) => s.setNightAppearance);
+  const appearance = useThemeChoice();
 
   return (
     <div className="max-w-3xl space-y-6">
@@ -52,19 +55,20 @@ export default function SettingsPage() {
               value={appearance}
               aria-label={t("appearance")}
               onChange={(value, event) => {
-                const next = value === "dark" ? "dark" : "light";
+                const next = value;
                 const system = systemTheme === "dark" ? "dark" : "light";
                 const persist = () => {
                   rememberThemeChoice(next, setTheme, system);
                 };
                 if (next === appearance) return;
                 runCircularThemeTransition(
-                  next,
+                  next === "system" ? system : next,
                   persist,
                   event && "clientX" in event ? event : undefined
                 );
               }}
               options={[
+                { value: "system", label: tc("themeSystem") },
                 { value: "light", label: tc("themeLight") },
                 { value: "dark", label: tc("themeDark") },
               ]}
@@ -72,6 +76,12 @@ export default function SettingsPage() {
           ) : (
             <div className="h-11 w-40 rounded-2xl bg-secondary/80" aria-hidden />
           )}
+          <section className="space-y-3 border-t border-border/50 pt-5">
+            <div className="flex items-start justify-between gap-4">
+              <div><h3 className="text-sm font-medium">{t("nightAppearance")}</h3><p id="kit-night-description" className="mt-1 type-caption text-muted-foreground">{t("nightAppearanceDesc")}</p></div>
+              <Switch checked={hydrated && nightAppearance} disabled={!hydrated} aria-label={t("nightAppearance")} aria-describedby="kit-night-description" onCheckedChange={(enabled) => { setNightAppearance(enabled); resetSessionThemeOverride(); syncAppliedTheme(setTheme); }} />
+            </div>
+          </section>
           <section className="space-y-3 border-t border-border/50 pt-5">
             <h3 className="text-sm font-medium">{t("language")}</h3>
           <LocaleSwitcher variant="settings" />

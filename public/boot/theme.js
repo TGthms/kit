@@ -10,7 +10,9 @@
     var system = systemDark ? "dark" : "light";
     var hour = new Date().getHours();
     var night = hour >= NIGHT_START || hour < NIGHT_END;
-    var force = systemDark || night;
+    var nightEnabled = true;
+    try { nightEnabled = JSON.parse(localStorage.getItem("kit-appearance") || "null")?.state?.nightAppearance !== false; } catch {}
+    var force = nightEnabled && night;
 
     var stored = localStorage.getItem(THEME_KEY) || "system";
     if (stored !== "system" && stored !== "light" && stored !== "dark") stored = "system";
