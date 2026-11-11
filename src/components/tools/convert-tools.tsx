@@ -9,6 +9,7 @@ import { FileDropzone, type FileItem } from "@/components/shared/file-dropzone";
 import { Textarea } from "@/components/ui/textarea";
 import { Switch } from "@/components/ui/switch";
 import { Field } from "@/components/ui/field";
+import { useHydrated } from "@/lib/react/hydrated";
 import { archiveBlob, extensionForMime } from "@/lib/utils";
 import { conversionOutputs, detectConversionInput, type ConversionOutput } from "@/lib/files/conversion";
 import { assertTextBudget, MAX_TEXT_LENGTH } from "@/lib/text/budget";
@@ -19,6 +20,7 @@ import { ActionBar, ToolShell, useToolHistory } from "./shared";
 export function ConvertHub() {
   const t = useTranslations("tools.convert-hub");
   const tc = useTranslations("common");
+  const hydrated = useHydrated();
   const log = useToolHistory("convert-hub");
   const [files, setFiles] = useState<FileItem[]>([]);
   const [text, setText] = useState("");
@@ -73,13 +75,14 @@ export function ConvertHub() {
   return (
     <ToolShell toolId="convert-hub">
       <FileDropzone files={files} onChange={setFiles} />
-      <Textarea aria-label={tc("input")} value={text} onChange={(e) => setText(e.target.value)} placeholder="JSON / YAML / CSV…" />
+      <Textarea aria-label={tc("input")} value={text} disabled={!hydrated} onChange={(e) => setText(e.target.value)} placeholder="JSON / YAML / CSV…" />
       <p className="text-sm text-muted-foreground">
         {t("detect")}: <strong>{detected}</strong>
       </p>
       <Field className="space-y-2" label={t("chooseOutput")}>
         <select
           className="h-10 w-full rounded-xl border border-input bg-background px-3 text-base"
+          disabled={!hydrated}
           value={output}
           onChange={(e) => setOutput(e.target.value as ConversionOutput)}
         >
@@ -87,7 +90,7 @@ export function ConvertHub() {
         </select>
       </Field>
       {output === "csv" && <label className="flex items-center gap-3 text-sm"><Switch checked={spreadsheetSafe} onCheckedChange={setSpreadsheetSafe} />{tc("spreadsheetSafe")}</label>}
-      <ActionBar onCancel={job.cancel} onRun={run} loading={loading} label={t("run")} disabled={!files.length && !text.trim()} />
+      <ActionBar onCancel={job.cancel} onRun={run} loading={loading} label={t("run")} disabled={!hydrated || (!files.length && !text.trim())} />
       <FileJobResult job={job} />
     </ToolShell>
   );

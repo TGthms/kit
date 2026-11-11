@@ -80,8 +80,16 @@ test("default glass preserves mobile navigation and persists the shared transpar
   await expect(tab("Settings")).toHaveAttribute("aria-current", "page");
   await expect(transparency).toHaveValue("51");
 
-  const from = (await tab("Settings").boundingBox())!;
-  const to = (await tab("Home").boundingBox())!;
+  const settingsTab = tab("Settings");
+  const homeTab = tab("Home");
+  type TabBounds = Awaited<ReturnType<typeof settingsTab.boundingBox>>;
+  const bounds: { from: TabBounds; to: TabBounds } = { from: null, to: null };
+  await expect.poll(async () => {
+    [bounds.from, bounds.to] = await Promise.all([settingsTab.boundingBox(), homeTab.boundingBox()]);
+    return Boolean(bounds.from && bounds.to);
+  }).toBe(true);
+  const { from, to } = bounds;
+  if (!from || !to) throw new Error("The glass tabs did not have visible bounds after Back navigation.");
   await transparency.press("ArrowRight");
   await page.mouse.move(from.x + from.width / 2, from.y + from.height / 2);
   await page.mouse.down();

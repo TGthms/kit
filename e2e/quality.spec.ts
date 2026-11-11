@@ -53,7 +53,10 @@ test("media engine produces a reusable, playable-format result", async ({ page }
 
 test("document worker and formatting keep original inputs intact", async ({ page }) => {
   await page.goto("en/tools/convert-hub/");
-  await page.getByRole("textbox", { name: "Input", exact: true }).fill('{"hello":"kit"}');
+  const documentInput = page.getByRole("textbox", { name: "Input", exact: true });
+  await expect(documentInput).toBeEditable();
+  await documentInput.fill('{"hello":"kit"}');
+  await expect(documentInput).toHaveValue('{"hello":"kit"}');
   await page.locator("main").getByRole("combobox").selectOption("yaml");
   await page.getByRole("button", { name: "Convert", exact: true }).click();
   const result = page.getByRole("region", { name: "Result", exact: true });

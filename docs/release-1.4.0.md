@@ -90,3 +90,9 @@ journeys in Chromium and mobile WebKit. The GitHub Pages export passed the
 The offline export check covered 200 cold English and Arabic tool routes
 before and after an update. Physical iPhone cold launch, VoiceOver, and OS
 storage eviction still need device checks.
+
+## 1.4.1
+
+Smart Convert and JSON Formatter enable editing when their handlers are ready,
+so early typing survives a slow page load. The browser check for a sustained
+Liquid Glass drag waits for visible tab bounds after Back navigation.

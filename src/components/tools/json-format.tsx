@@ -6,12 +6,14 @@ import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
+import { useHydrated } from "@/lib/react/hydrated";
 import { formatJson } from "@/lib/text/core";
 import { ToolShell, useToolHistory } from "./shared";
 
 export function JsonFormat() {
   const t = useTranslations("tools.json-format");
   const tc = useTranslations("common");
+  const hydrated = useHydrated();
   const log = useToolHistory("json-format");
   const [input, setInput] = useState('{\n  "hello": "kit"\n}');
   const [derived, setDerived] = useState<{ key: string; text: string } | null>(null);
@@ -40,14 +42,15 @@ export function JsonFormat() {
     <ToolShell toolId="json-format">
       <TextWorkspace output={output} error={failure ?? liveError} filename="data.json">
       <Textarea aria-label={tc("input")}
+        disabled={!hydrated}
         value={input}
         onChange={(e) => { setFailure(null); setInput(e.target.value); }}
         className="min-h-64"
       />
       </TextWorkspace>
       <div className="flex flex-wrap gap-2">
-        <Button onClick={() => run(false)}>{tc("beautify")}</Button>
-        <Button variant="secondary" onClick={() => run(true)}>
+        <Button disabled={!hydrated} onClick={() => run(false)}>{tc("beautify")}</Button>
+        <Button variant="secondary" disabled={!hydrated} onClick={() => run(true)}>
           {tc("minify")}
         </Button>
 
