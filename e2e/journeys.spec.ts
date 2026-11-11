@@ -93,7 +93,7 @@ test("graph edits survive navigation and reload; saved graph stays separate", as
       ),
     )
     .toBe(expression);
-  await page.getByText("Saved graphs", { exact: true }).click();
+  await page.getByRole("button", { name: "Saved graphs", exact: true }).click();
   await page.getByLabel("Graph name", { exact: true }).fill("Parabola");
   await page.getByRole("button", { name: "Save (0/20)", exact: true }).click();
   await expect(page.getByText("Parabola", { exact: true })).toBeVisible();
@@ -105,6 +105,7 @@ test("graph edits survive navigation and reload; saved graph stays separate", as
       ),
     )
     .toContain("sin");
+  await page.getByRole("button", { name: "Saved graphs", exact: true }).click();
   await page.getByRole("button", { name: "Use preset", exact: true }).click();
   await expect
     .poll(() =>

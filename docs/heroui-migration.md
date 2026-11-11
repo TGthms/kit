@@ -1,5 +1,11 @@
 # HeroUI adoption plan
 
+Current status, Kit 1.4.0: the historical experimental-only Glass constraints
+below were superseded by later user approval. Liquid Glass is now the default,
+with Classic/capability fallbacks. Shared overlays, file results, scoped tool
+catalogs and accessibility browser checks have advanced beyond the initial
+pilot. The remaining migration stays incremental behind Kit-owned adapters.
+
 Assessment and approval: 2026-10-24. Requested direction: gradual migration across Kit. Batch 1 is the Settings pilot; later batches remain staged work rather than a global replacement.
 
 ## Batch 1 implementation

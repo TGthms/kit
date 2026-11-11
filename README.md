@@ -70,10 +70,15 @@ The home screen groups tools by job (PDF pages vs markup, developer inspect vs e
 - **Symbol browser** — Find and copy useful symbols for writing, mathematics, currencies, and more. Search by name, character, or Unicode code point.
 - **Unicode text styles** — Turn ordinary letters into copyable Unicode text styles for profiles, captions, and messages, or convert styled text back to plain text.
 
+File tools provide reusable outputs with explicit download/share controls. Image
+workspaces compare original and processed images, and text formatters keep input
+beside output. Settings offers System/Light/Dark with optional night appearance
+(enabled by default), plus Liquid Glass and Classic interface styles.
+
 ### Math
 
 - **Scientific calculator** — Calculate with roots, powers, fractions, logarithms, and trigonometric functions using a structured math editor with degree and radian modes.
-- **Function grapher** — Plot up to eight real functions, pan and zoom the graph, and explore a table of values using the same intelligent math input.
+- **Function grapher** — Plot up to eight named real functions with composition and parameter sliders, trace coordinates, explore tables, and save or import/export portable graphs.
 - **Equation solver** — Solve real linear and quadratic equations in x, see exact and decimal answers, and expand explanations of each algebra step.
 - **Fraction calculator** — Add, subtract, multiply, and divide fractions with structured input, keeping exact rational results alongside decimal approximations.
 
@@ -130,6 +135,8 @@ Open http://localhost:3000 — default locale redirects to `/en/`.
 npm run build      # static export → out/
 npm run typecheck
 npm run lint
+npm test
+npm run check:assets  # after a production export
 ```
 
 ### Base path

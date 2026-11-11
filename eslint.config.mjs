@@ -16,6 +16,8 @@ const eslintConfig = defineConfig([
     // linting it is both meaningless and extremely slow.
     "public/vendor/**",
     "coverage/**",
+    "playwright-report/**",
+    "test-results/**",
   ]),
 ]);
 

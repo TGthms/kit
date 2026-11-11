@@ -29,5 +29,18 @@ OS storage retention, VoiceOver, haptics or native keyboard gestures.
   Escape, focus containment/return, inert background and text scaling.
 - Export/import preferences on a second device. Review before confirming; history
   remains unchanged. Review diagnostics before copying; no file names or inputs.
-- Stable navigation and experimental Liquid Glass paths: drag, switch tabs and
+- Classic navigation and default Liquid Glass paths: drag, switch tabs and
   use switches/sliders. Unsupported SDK controls must retain their stable fallback.
+
+- Appearance: System/Light/Dark, night appearance enabled by default, manual tap
+  during the night window, cold reopen, disabling the schedule and changing OS
+  appearance. Check the installed status bar as well as the page.
+- Portable graph export/import: import first adds a saved item; current work
+  stays until Apply. Check invalid/oversized files and full library handling.
+- Real PDF compression: same physical page dimensions, readable output, refusal
+  of documents over 200 pages. Run media conversion and download/share an output.
+- Small offline collection containing PDF + Smart convert: cold previously
+  unopened tools work without downloading the media engine or math runtime.
+- Fresh iPhone installation: verify the unchanged spinner launch artwork after
+  native startup metadata is registered for this device. Recheck cold launch
+  online and in Airplane Mode after swiping the app away.
