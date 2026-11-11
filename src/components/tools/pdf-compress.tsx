@@ -1,14 +1,16 @@
 "use client";
+import { useToolJob } from "./use-tool-job";
+import { FileJobResult } from "./file-job-result";
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 import { FileDropzone, type FileItem } from "@/components/shared/file-dropzone";
 import { Field } from "@/components/ui/field";
 import { Slider } from "@/components/ui/slider";
-import { downloadMany, bytesToBlob } from "@/lib/utils";
+import { bytesToBlob } from "@/lib/utils";
 import { Progress } from "@/components/ui/progress";
 import { runSequentialBatch, stemmedName } from "@/lib/jobs/batch";
-import { ActionBar, DownloadResult, ToolLimits, ToolShell, useToolHistory, useToolJob, loadPdfjs } from "./shared";
+import { ActionBar, ToolLimits, ToolShell, useToolHistory, loadPdfjs } from "./shared";
 
 export function PdfCompress() {
   const t = useTranslations("tools.pdf-compress");
@@ -16,8 +18,7 @@ export function PdfCompress() {
   const log = useToolHistory("pdf-compress");
   const [files, setFiles] = useState<FileItem[]>([]);
   const [quality, setQuality] = useState(0.65);
-  const job = useToolJob();
-  const [result, setResult] = useState<{ blob: Blob; name: string } | null>(null);
+  const job = useToolJob([files, quality]);
 
   const run = async () => {
     if (!files.length) return;
@@ -30,7 +31,7 @@ export function PdfCompress() {
           const out = await compressPdfLossy(await f.file.arrayBuffer(), quality, 1.2, {
             signal: ac.signal,
             onProgress: (pageRatio) =>
-              job.setProgress(Math.round(((index + pageRatio) / files.length) * 100)),
+              job.report(ac, Math.round(((index + pageRatio) / files.length) * 100)),
           });
           if (out.truncated) {
             toast.warning(tc("pdfPageCap", { total: out.totalPages, processed: out.processedPages }));
@@ -42,15 +43,16 @@ export function PdfCompress() {
         },
         { signal: ac.signal }
       );
-      await downloadMany(items, "compressed-pdfs.zip");
-      if (items[0]) setResult(items[0]);
+      if (!job.complete(ac, items)) return;
       toast.success(t("success"));
       log(`q=${quality} n=${files.length}`, "success", { quality, count: files.length });
     } catch (e) {
+      const failure = e instanceof Error && e.message === "pdfFullDocumentLimit" ? new Error(tc("pdfFullDocumentLimit", { count: 200 })) : e;
+      if (!job.fail(ac, failure)) return;
       if (e instanceof DOMException && e.name === "AbortError") {
         toast.error(tc("cancel"));
       } else {
-        toast.error(e instanceof Error ? e.message : tc("error"));
+        toast.error(failure instanceof Error ? failure.message : tc("error"));
         log("failed", "failed");
       }
     } finally {
@@ -75,7 +77,8 @@ export function PdfCompress() {
         disabled={!files.length}
         onCancel={job.cancel}
       />
-      <DownloadResult file={result} />
+
+      <FileJobResult job={job} />
     </ToolShell>
   );
 }

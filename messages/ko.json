@@ -127,7 +127,9 @@
     "fileRejectedEmpty": "쓸 수 있는 파일이 추가되지 않았습니다.",
     "offlineIndicator": "오프라인: 인터넷 연결 없음",
     "moveEarlier": "앞으로 이동",
-    "moveLater": "뒤로 이동"
+    "moveLater": "뒤로 이동",
+    "pdfFullDocumentLimit": "압축은 최대 {count}페이지의 전체 PDF를 지원합니다. 긴 문서는 먼저 분할하세요.",
+    "spreadsheetSafe": "스프레드시트 수식 보호(셀 앞에 작은따옴표 추가)"
   },
   "home": {
     "title": "무엇을 하시겠어요?",
@@ -411,7 +413,8 @@
       "countdownLabel": "{year}년까지 {minutes}분 {seconds}초.",
       "countdownLabelMinute": "{year}년까지 1분 {seconds}초.",
       "countdownLabelSeconds": "{year}년까지 {seconds}초."
-    }
+    },
+    "moreTools": "더 많은 도구"
   },
   "categories": {
     "pdf": "PDF",
@@ -548,7 +551,9 @@
     "updateChecking": "업데이트 확인 중…",
     "updatePreparing": "업데이트를 준비 중입니다. 준비가 끝나면 Kit이 알려 드립니다.",
     "updateCheckFailed": "업데이트를 확인하지 못했습니다. 연결을 확인하고 다시 시도하세요.",
-    "updateCheckUnavailable": "여기서는 업데이트를 확인할 수 없습니다. 설치된 앱이나 Kit 공식 사이트를 여세요."
+    "updateCheckUnavailable": "여기서는 업데이트를 확인할 수 없습니다. 설치된 앱이나 Kit 공식 사이트를 여세요.",
+    "nightAppearance": "야간 화면",
+    "nightAppearanceDesc": "22:00~05:00에 다크 모드를 사용합니다. 수동 변경은 다음 실행까지 유지됩니다."
   },
   "shortcuts": {
     "title": "키보드 단축키",
@@ -1105,7 +1110,8 @@
       "description": "유닉스 시간을 ISO로, 다시 되돌립니다.",
       "summary": "Unix 시각을 읽을 수 있는 날짜와 시간으로, 또는 그 반대로, 고른 시간대에서 바꿉니다.",
       "keywords": "unix epoch 타임스탬프 iso 날짜",
-      "now": "지금 사용"
+      "now": "지금 사용",
+      "auto": "자동"
     },
     "cron-explain": {
       "name": "Cron 설명",
@@ -1113,7 +1119,14 @@
       "summary": "다섯 칸 cron 식을 평범한 문장으로 바꿔, 예약된 작업이 언제 얼마나 자주 도는지 분명하게 합니다.",
       "keywords": "cron 일정 crontab 설명",
       "run": "설명",
-      "success": "설명했습니다."
+      "success": "설명했습니다.",
+      "schedule": "이 값은 스케줄러의 시간대에서 적용됩니다.",
+      "dayRule": "날짜와 요일을 모두 제한하면 둘 중 하나만 일치해도 실행됩니다.",
+      "fieldmin": "분",
+      "fieldhour": "시",
+      "fielddom": "날짜",
+      "fieldmon": "월",
+      "fielddow": "요일"
     },
     "number-base": {
       "name": "진법",
@@ -2254,7 +2267,8 @@
       "approximate": "좌표는 수치 근삿값입니다. 대시는 함수가 정의되지 않았다는 뜻입니다.",
       "scope": "이름 있는 실수 함수 최대 8개를 지원합니다. a, b, c는 슬라이더, d(x)+g(x)는 함수 조합입니다. 근호, 거듭제곱, 로그, 절댓값, 삼각함수를 지원합니다.",
       "expressions": "수식",
-      "pan": "이동"
+      "pan": "이동",
+      "samplingWarning": "세부 사항이 표시되지 않을 수 있습니다. 확대하여 확인하세요."
     }
   },
   "workspace": {

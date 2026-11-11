@@ -1,14 +1,17 @@
 "use client";
+import { mediaMime } from "@/lib/media/ffmpeg-args";
+import { useToolJob } from "./use-tool-job";
+import { FileJobResult } from "./file-job-result";
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 import { FileDropzone, type FileItem } from "@/components/shared/file-dropzone";
 import { Field } from "@/components/ui/field";
 import { Progress } from "@/components/ui/progress";
-import { downloadMany, bytesToBlob } from "@/lib/utils";
+import { bytesToBlob } from "@/lib/utils";
 import { AUDIO_FORMATS, audioConvertArgs, audioNormalizeArgs, audioSilenceSkipArgs } from "@/lib/media/ffmpeg-args";
 import { runSequentialBatch, stemmedName } from "@/lib/jobs/batch";
-import { ActionBar, ToolLimits, ToolShell, useToolHistory, useToolJob, loadFfmpeg } from "./shared";
+import { ActionBar, ToolLimits, ToolShell, useToolHistory, loadFfmpeg } from "./shared";
 
 const selectClass =
   "flex h-10 w-full rounded-xl border border-input bg-background px-3 text-base focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring";
@@ -20,7 +23,7 @@ export function AudioConvert() {
   const [files, setFiles] = useState<FileItem[]>([]);
   const [format, setFormat] = useState("mp3");
   const [operation, setOperation] = useState<"convert" | "normalize" | "silence">("convert");
-  const job = useToolJob();
+  const job = useToolJob([files, format, operation]);
 
   const run = async () => {
     if (!files.length) return;
@@ -35,7 +38,7 @@ export function AudioConvert() {
           const input = `input-${index}.${ext}`;
           const output = `output-${index}.${format}`;
           const report = (p: number) =>
-            job.setProgress(Math.round(((index + p) / files.length) * 100));
+            job.report(ac, Math.round(((index + p) / files.length) * 100));
           const args =
             operation === "normalize"
               ? audioNormalizeArgs(input, output)
@@ -44,16 +47,17 @@ export function AudioConvert() {
                 : audioConvertArgs(input, output, format);
           const out = await runFFmpeg(input, data, output, args, report, ac.signal);
           return {
-            blob: bytesToBlob(out, "application/octet-stream"),
+            blob: bytesToBlob(out, mediaMime(format)),
             name: stemmedName(f.file.name, "-converted", format),
           };
         },
         { signal: ac.signal }
       );
-      await downloadMany(items, `converted-audio.${format}.zip`);
+      if (!job.complete(ac, items)) return;
       toast.success(t("success"));
       log(`${format} n=${files.length}`, "success");
     } catch (e) {
+      if (!job.fail(ac, e)) return;
       if (e instanceof DOMException && e.name === "AbortError") {
         toast.error(tc("cancel"));
       } else {
@@ -95,6 +99,7 @@ export function AudioConvert() {
         disabled={!files.length}
         onCancel={job.cancel}
       />
+      <FileJobResult job={job} />
     </ToolShell>
   );
 }

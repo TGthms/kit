@@ -179,3 +179,50 @@ export function decimalIsExact(expression: unknown, decimal: string): boolean {
     b = parts(decimal);
   return Boolean(a && b && a[0] * b[1] === b[0] * a[1]);
 }
+
+/** Bounded adaptive sampling. Off-center probes avoid the regular sampling
+ * grid aliasing an oscillating curve to a straight line. Unresolved intervals
+ * are broken and reported rather than connected with invented geometry. */
+export function sampleNumeric(f: (x: number) => number, view: { xMin: number; xMax: number; yMin: number; yMax: number }) {
+  const span = view.xMax - view.xMin, height = view.yMax - view.yMin;
+  const tolerance = height / 1200;
+  let evaluations = 0, undersampled = false;
+  const points: ([number, number] | null)[] = [];
+  const evaluate = (x: number) => { evaluations++; return f(x); };
+  const usable = (y: number) => Number.isFinite(y) && Math.abs(y - (view.yMin + view.yMax) / 2) <= height * 4;
+  const visit = (a: number, ya: number, b: number, yb: number, depth: number) => {
+    if (evaluations > 12000) { undersampled = true; points.push(null); return; }
+    const mid = (a + b) / 2, ym = evaluate(mid);
+    const ratio = 0.38196601125;
+    const yp = evaluate(a + (b - a) * ratio);
+    const deviation = Math.max(Math.abs(ym - (ya + yb) / 2), Math.abs(yp - (ya + (yb - ya) * ratio)));
+    if (!usable(ya) && !usable(yb) && !usable(ym) && !usable(yp)) { points.push(null); return; }
+    const smooth = [ya, yb, ym, yp].every(Number.isFinite) && deviation <= tolerance && Math.abs(yb - ya) <= height / 2;
+    if (smooth) {
+      if (usable(ya) && usable(yb)) points.push([a, ya], [b, yb]);
+      else points.push(null);
+      return;
+    }
+    if (depth >= 9 || b - a <= span / 8192) {
+      // Poles/domain boundaries are ordinary breaks. Highly curved finite
+      // intervals need a visible sampling-limit indication.
+      if ([ya, yb, ym, yp].every(usable) && Math.abs(yb - ya) < height / 2) undersampled = true;
+      points.push(null); return;
+    }
+    visit(a, ya, mid, ym, depth + 1);
+    visit(mid, ym, b, yb, depth + 1);
+  };
+  let a = view.xMin, ya = evaluate(a);
+  for (let i = 1; i <= 128; i++) {
+    const b = view.xMin + span * i / 128, yb = evaluate(b);
+    visit(a, ya, b, yb, 0); a = b; ya = yb;
+  }
+  const segments: [number, number][][] = [];
+  let current: [number, number][] = [];
+  for (const point of points) {
+    if (!point) { if (current.length > 1) segments.push(current); current = []; }
+    else if (current.at(-1)?.[0] !== point[0]) current.push(point);
+  }
+  if (current.length > 1) segments.push(current);
+  return { segments, undersampled };
+}

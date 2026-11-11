@@ -100,3 +100,7 @@ export function audioSilenceSkipArgs(input: string, output: string): string[] {
     output,
   ];
 }
+
+export function mediaMime(extension: string): string {
+  return ({ mp3: "audio/mpeg", wav: "audio/wav", wave: "audio/wav", ogg: "audio/ogg", oga: "audio/ogg", aac: "audio/aac", flac: "audio/flac", m4a: "audio/mp4", opus: "audio/ogg", mp4: "video/mp4", mov: "video/quicktime", webm: "video/webm", mkv: "video/x-matroska", gif: "image/gif" } as Record<string, string>)[extension.toLowerCase()] || "application/octet-stream";
+}

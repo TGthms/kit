@@ -127,7 +127,9 @@
     "fileRejectedEmpty": "Não foram adicionados ficheiros utilizáveis.",
     "offlineIndicator": "Offline: sem ligação à Internet",
     "moveEarlier": "Mover para antes",
-    "moveLater": "Mover para depois"
+    "moveLater": "Mover para depois",
+    "pdfFullDocumentLimit": "A compressão aceita PDF completos até {count} páginas. Divida primeiro documentos maiores.",
+    "spreadsheetSafe": "Proteger fórmulas de folhas de cálculo (antepor um apóstrofo)"
   },
   "home": {
     "title": "O que precisa de fazer?",
@@ -411,7 +413,8 @@
       "countdownLabel": "{minutes} minutos e {seconds} segundos até {year}.",
       "countdownLabelMinute": "1 minuto e {seconds} segundos até {year}.",
       "countdownLabelSeconds": "{seconds} segundos até {year}."
-    }
+    },
+    "moreTools": "Mais ferramentas"
   },
   "categories": {
     "pdf": "PDF",
@@ -548,7 +551,9 @@
     "updateChecking": "A procurar atualizações…",
     "updatePreparing": "Está a ser preparada uma atualização. O Kit avisa quando estiver pronta.",
     "updateCheckFailed": "Não foi possível procurar atualizações. Verifique a ligação e tente novamente.",
-    "updateCheckUnavailable": "A procura de atualizações não está disponível aqui. Abra a aplicação instalada ou o site oficial do Kit."
+    "updateCheckUnavailable": "A procura de atualizações não está disponível aqui. Abra a aplicação instalada ou o site oficial do Kit.",
+    "nightAppearance": "Aspeto noturno",
+    "nightAppearanceDesc": "Usar Escuro das 22h às 5h. As alterações manuais duram até à próxima abertura."
   },
   "shortcuts": {
     "title": "Atalhos de teclado",
@@ -1105,7 +1110,8 @@
       "description": "Converta tempo Unix para ISO e de volta.",
       "summary": "Converta um timestamp Unix numa data e hora legíveis, ou faça o contrário, no fuso horário que preferir.",
       "keywords": "unix epoch timestamp iso data",
-      "now": "Usar agora"
+      "now": "Usar agora",
+      "auto": "Automático"
     },
     "cron-explain": {
       "name": "Explicar cron",
@@ -1113,7 +1119,14 @@
       "summary": "Traduza uma expressão cron de cinco campos para uma frase clara, para saber quando e com que frequência corre uma tarefa.",
       "keywords": "cron agendamento crontab explicar",
       "run": "Explicar",
-      "success": "Explicado."
+      "success": "Explicado.",
+      "schedule": "Estes valores usam o fuso horário do agendador.",
+      "dayRule": "Se ambos os campos de dia estiverem limitados, basta uma correspondência.",
+      "fieldmin": "Minutos",
+      "fieldhour": "Horas",
+      "fielddom": "Dia do mês",
+      "fieldmon": "Mês",
+      "fielddow": "Dia da semana"
     },
     "number-base": {
       "name": "Base numérica",
@@ -2254,7 +2267,8 @@
       "approximate": "As coordenadas são aproximações numéricas. Um traço indica função indefinida.",
       "scope": "Até oito funções reais com nome. a, b, c criam controlos e d(x)+g(x) permite composição. Suporta raízes, potências, logaritmos, valores absolutos e trigonometria.",
       "expressions": "Expressões",
-      "pan": "Mover"
+      "pan": "Mover",
+      "samplingWarning": "Os detalhes finos podem não aparecer. Amplie para os examinar."
     }
   },
   "workspace": {

@@ -1,9 +1,12 @@
 "use client";
+import { useToolJob } from "./use-tool-job";
+import { FileJobResult } from "./file-job-result";
+import { useTaskScope } from "@/lib/react/task-scope";
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 import { FileDropzone, type FileItem } from "@/components/shared/file-dropzone";
-import { downloadMany, extensionForMime } from "@/lib/utils";
+import { extensionForMime } from "@/lib/utils";
 import { parseImageMetadata } from "@/lib/image/exif";
 import { stripMetadata } from "@/lib/image/core";
 import { ActionBar, ToolShell, useToolHistory } from "./shared";
@@ -14,9 +17,12 @@ export function ImageMetadata() {
   const log = useToolHistory("image-metadata");
   const [files, setFiles] = useState<FileItem[]>([]);
   const [tags, setTags] = useState<Array<{ tag: string; value: string }>>([]);
-  const [loading, setLoading] = useState(false);
+  const job = useToolJob([files]);
+  const loading = job.loading;
 
+  const source = useTaskScope();
   const onFiles = async (items: FileItem[]) => {
+    const current = source.begin();
     setFiles(items);
     if (!items[0]) {
       setTags([]);
@@ -24,37 +30,39 @@ export function ImageMetadata() {
     }
     try {
       const bytes = new Uint8Array(await items[0].file.arrayBuffer());
-      setTags(parseImageMetadata(bytes));
+      if (current()) setTags(parseImageMetadata(bytes));
     } catch {
-      setTags([]);
+      if (current()) setTags([]);
     }
   };
 
   const run = async () => {
     if (!files.length) return;
-    setLoading(true);
+    const ac = job.start();
     try {
       const items = [];
       for (const f of files) {
+        if (ac.signal.aborted) return;
         const blob = await stripMetadata(f.file);
         items.push({
           blob,
           name: f.file.name.replace(/\.\w+$/, "") + `-clean.${extensionForMime(blob.type, "jpg")}`,
         });
       }
-      await downloadMany(items, "stripped-images.zip");
+      if (!job.complete(ac, items)) return;
       toast.success(t("success", { count: files.length }));
       log(`${files.length}`, "success");
     } catch (e) {
+      if (!job.fail(ac, e)) return;
       toast.error(e instanceof Error ? e.message : tc("error"));
       log("failed", "failed");
     } finally {
-      setLoading(false);
+      job.stop(ac);
     }
   };
 
   return (
-    <ToolShell toolId="image-metadata">
+    <ToolShell toolId="image-metadata" result={<FileJobResult job={job} original={files[0]?.file} />}>
       <p className="text-sm text-muted-foreground">{t("note")}</p>
       <FileDropzone accept="image/*" files={files} onChange={onFiles} />
       {files[0] ? (
@@ -81,7 +89,8 @@ export function ImageMetadata() {
           <p className="text-sm text-muted-foreground">{t("noExif")}</p>
         )
       ) : null}
-      <ActionBar onRun={run} loading={loading} label={t("run")} disabled={!files.length} />
+      <ActionBar onCancel={job.cancel} onRun={run} loading={loading} label={t("run")} disabled={!files.length} />
+
     </ToolShell>
   );
 }

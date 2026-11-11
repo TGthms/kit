@@ -6,6 +6,7 @@ import type { MathfieldElement } from "mathlive";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Field } from "@/components/ui/field";
+import { contrastRatio } from "@/lib/text/contrast";
 import { MathInput } from "./math-input";
 export type GraphExpression = {
   id: number;
@@ -55,7 +56,7 @@ export function ExpressionRow({
             style={{
               borderColor: curve.color,
               background: curve.hidden ? "transparent" : curve.color,
-              color: curve.hidden ? curve.color : "white",
+              color: curve.hidden ? "var(--muted-foreground)" : contrastRatio(curve.color, "#ffffff") >= 4.5 ? "#ffffff" : "#000000",
             }}
             aria-hidden
           >

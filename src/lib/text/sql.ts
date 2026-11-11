@@ -1,3 +1,5 @@
+import { assertTextBudget } from "./budget";
+
 const KEYWORDS = new Set(
   [
     "select",
@@ -70,6 +72,7 @@ const BREAK_BEFORE = new Set([
 ]);
 
 export function formatSql(input: string): { ok: true; text: string } | { ok: false; error: string } {
+  try { assertTextBudget(input); } catch (error) { return { ok: false, error: (error as Error).message }; }
   const src = input.trim();
   if (!src) return { ok: false, error: "Empty SQL" };
 
@@ -80,6 +83,25 @@ export function formatSql(input: string): { ok: true; text: string } | { ok: fal
     if (/\s/.test(c)) {
       i++;
       continue;
+    }
+    // PostgreSQL dollar quotes can contain arbitrary SQL-looking text. Their
+    // contents are data, including whitespace and keyword capitalization.
+    const dollar = c === "$" ? /^(?:\$[A-Za-z_][A-Za-z0-9_]*\$|\$\$)/u.exec(src.slice(i))?.[0] : undefined;
+    if (dollar) {
+      const end = src.indexOf(dollar, i + dollar.length);
+      if (end < 0) return { ok: false, error: "Unclosed dollar-quoted string." };
+      tokens.push(src.slice(i, end + dollar.length));
+      i = end + dollar.length;
+      continue;
+    }
+    if (c === "[") {
+      let end = i + 1;
+      while (end < src.length) {
+        if (src[end] === "]" && src[end + 1] === "]") { end += 2; continue; }
+        if (src[end++] === "]") break;
+      }
+      if (src[end - 1] !== "]") return { ok: false, error: "Unclosed quoted identifier." };
+      tokens.push(src.slice(i, end)); i = end; continue;
     }
     if (c === "'" || c === '"' || c === "`") {
       let j = i + 1;
@@ -183,6 +205,6 @@ export function formatSql(input: string): { ok: true; text: string } | { ok: fal
     line += (line.trim() ? " " : "") + word;
   }
   pushLine();
-  const text = out.join("\n").replace(/\n{3,}/g, "\n\n").trim() + "\n";
+  const text = out.join("\n").trim() + "\n";
   return { ok: true, text };
 }

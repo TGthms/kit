@@ -29,6 +29,7 @@ export type Plot = {
   definitions: Record<string, unknown>;
   parameters: (keyof Parameters)[];
   segments: [number, number][][];
+  undersampled?: boolean;
   table: [number, number | null][];
 };
 export type MathReply<T> =

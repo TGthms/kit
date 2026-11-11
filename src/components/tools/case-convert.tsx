@@ -1,10 +1,10 @@
 "use client";
+import { TextWorkspace } from "./text-workspace";
 
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
-import { CopyButton } from "@/components/ui/copy-button";
 import { Field } from "@/components/ui/field";
 import { Textarea } from "@/components/ui/textarea";
 import { convertCase, type CaseStyle } from "@/lib/text/case";
@@ -20,8 +20,13 @@ export function CaseConvert() {
   const [text, setText] = useState("Hello Kit World");
   const [style, setStyle] = useState<CaseStyle>("camel");
 
+  const [derived, setDerived] = useState<{ key: string; text: string } | null>(null);
+  const [failure, setFailure] = useState<string | null>(null);
+  const sourceKey = text + style;
+  const output = derived?.key === sourceKey ? derived.text : null;
   const run = () => {
-    setText(convertCase(text, style));
+    setDerived({ key: sourceKey, text: convertCase(text, style) });
+    setFailure(null);
     toast.success(t("success"));
     log(style, "success");
   };
@@ -41,10 +46,11 @@ export function CaseConvert() {
           <option value="upper">UPPER CASE</option>
         </select>
       </Field>
-      <Textarea aria-label={fieldText("input")} value={text} onChange={(e) => setText(e.target.value)} />
+      <TextWorkspace output={output} error={failure} filename="converted.txt">
+      <Textarea aria-label={fieldText("input")} value={text} onChange={(e) => { setFailure(null); setText(e.target.value); }} />
+      </TextWorkspace>
       <div className="flex gap-2">
         <Button onClick={run}>{t("run")}</Button>
-        <CopyButton value={text} />
       </div>
     </ToolShell>
   );

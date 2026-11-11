@@ -27,5 +27,30 @@ export function parseToolJson(text: string): unknown {
   assertTextBudget(text);
   const value: unknown = JSON.parse(text);
   assertJsonBudget(value);
+  assertJsonNumberFidelity(text);
   return value;
+}
+
+/** Compare decimal literals without rounding them through IEEE-754 first.
+ * Quoted strings are consumed whole, including escaped quotes. Refusing a
+ * lossy conversion keeps identifiers and very small/large quantities intact. */
+export function assertJsonNumberFidelity(text: string): void {
+  const canonical = (literal: string) => {
+    const [mantissa, exponent = "0"] = literal.toLowerCase().split("e");
+    const negative = mantissa.startsWith("-");
+    let digits = mantissa.replace(/^[+-]/u, "").replace(".", "").replace(/^0+/u, "");
+    if (!digits) return "0";
+    const power = Number(exponent) - (mantissa.split(".")[1]?.length ?? 0);
+    const zeros = digits.length - digits.replace(/0+$/u, "").length;
+    digits = digits.slice(0, digits.length - zeros);
+    return `${negative ? "-" : ""}${digits}e${power + zeros}`;
+  };
+  for (const match of text.matchAll(/"(?:[^"\\]|\\.)*"|-?\d+(?:\.\d+)?(?:[eE][+-]?\d+)?/gu)) {
+    const literal = match[0];
+    if (literal.startsWith('"')) continue;
+    const number = Number(literal);
+    if (!Number.isFinite(number) || canonical(literal) !== canonical(String(number))) {
+      throw new RangeError("A number would lose precision during conversion. Keep it as a quoted string to preserve its exact value.");
+    }
+  }
 }

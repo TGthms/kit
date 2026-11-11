@@ -1,10 +1,12 @@
 "use client";
+import { useToolJob } from "./use-tool-job";
+import { FileJobResult } from "./file-job-result";
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 import { FileDropzone, type FileItem } from "@/components/shared/file-dropzone";
 import { Field } from "@/components/ui/field";
-import { downloadMany, extensionForMime } from "@/lib/utils";
+import { extensionForMime } from "@/lib/utils";
 import { rotateImage, flipImage } from "@/lib/image/core";
 import { ActionBar, ToolShell, useToolHistory } from "./shared";
 import { selectClass } from "./image-extra-shared";
@@ -15,14 +17,16 @@ export function ImageRotate() {
   const log = useToolHistory("image-rotate");
   const [files, setFiles] = useState<FileItem[]>([]);
   const [op, setOp] = useState<"90" | "180" | "270" | "h" | "v">("90");
-  const [loading, setLoading] = useState(false);
+  const job = useToolJob([files, op]);
+  const loading = job.loading;
 
   const run = async () => {
     if (!files.length) return;
-    setLoading(true);
+    const ac = job.start();
     try {
       const items: Array<{ blob: Blob; name: string }> = [];
       for (const f of files) {
+        if (ac.signal.aborted) return;
         const blob =
           op === "h" || op === "v"
             ? await flipImage(f.file, op)
@@ -32,19 +36,20 @@ export function ImageRotate() {
           name: f.file.name.replace(/\.\w+$/, "") + `-rotated.${extensionForMime(blob.type, "png")}`,
         });
       }
-      await downloadMany(items, "rotated-images.zip");
+      if (!job.complete(ac, items)) return;
       toast.success(t("success", { count: files.length }));
       log(op, "success");
     } catch (e) {
+      if (!job.fail(ac, e)) return;
       toast.error(e instanceof Error ? e.message : tc("error"));
       log("failed", "failed");
     } finally {
-      setLoading(false);
+      job.stop(ac);
     }
   };
 
   return (
-    <ToolShell toolId="image-rotate">
+    <ToolShell toolId="image-rotate" result={<FileJobResult job={job} original={files[0]?.file} />}>
       <FileDropzone accept="image/*" files={files} onChange={setFiles} />
       <Field className="space-y-2" label={t("operation")}>
         <select className={selectClass} value={op} onChange={(e) => setOp(e.target.value as typeof op)}>
@@ -55,7 +60,8 @@ export function ImageRotate() {
           <option value="v">{t("flipV")}</option>
         </select>
       </Field>
-      <ActionBar onRun={run} loading={loading} label={t("run")} disabled={!files.length} />
+      <ActionBar onCancel={job.cancel} onRun={run} loading={loading} label={t("run")} disabled={!files.length} />
+
     </ToolShell>
   );
 }

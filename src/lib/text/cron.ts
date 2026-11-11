@@ -66,20 +66,39 @@ function label(kind: "min" | "hour" | "dom" | "mon" | "dow", raw: string, names:
   return String(n);
 }
 
-export function explainCron(expr: string, locale?: string): { ok: true; text: string; fields: string[] } | { ok: false; error: string } {
+export type CronKind = "min" | "hour" | "dom" | "mon" | "dow";
+const BOUNDS: Record<CronKind, [number, number]> = { min: [0, 59], hour: [0, 23], dom: [1, 31], mon: [1, 12], dow: [0, 7] };
+export type CronField = { kind: CronKind; source: string; values: number[] };
+function parseField(source: string, kind: CronKind): CronField {
+  const [min, max] = BOUNDS[kind];
+  const values = new Set<number>();
+  for (const part of source.split(",")) {
+    const match = /^(\*|\d+(?:-\d+)?)(?:\/(\d+))?$/u.exec(part);
+    if (!match) throw new Error("Invalid cron field.");
+    const step = match[2] ? Number(match[2]) : 1;
+    if (step < 1 || step > max - min + 1) throw new Error("Invalid cron step.");
+    const range = match[1] === "*" ? [min, max] : match[1].split("-").map(Number);
+    const first = range[0], last = range[1] ?? (match[2] ? max : first);
+    if (first < min || last > max || last < first) throw new Error("Cron value is outside its field's range.");
+    for (let value = first; value <= last; value += step) values.add(kind === "dow" && value === 7 ? 0 : value);
+  }
+  return { kind, source, values: [...values].sort((a, b) => a - b) };
+}
+
+export function explainCron(expr: string, locale?: string): { ok: true; text: string; fields: string[]; schedule: CronField[]; dayUnion: boolean } | { ok: false; error: string } {
   const parts = expr.trim().split(/\s+/);
-  if (parts.length !== 5) {
+  if (parts.length !== 5 || expr.length > 512) {
     return { ok: false, error: "Use a 5-field cron: minute hour day-of-month month day-of-week" };
   }
-  const names = cronNames(locale);
-  const [min, hour, dom, mon, dow] = parts;
-  const fields = [
-    describeField(min, "min", names),
-    describeField(hour, "hour", names),
-    describeField(dom, "dom", names),
-    describeField(mon, "mon", names),
-    describeField(dow, "dow", names),
-  ];
-  const text = `At ${fields[0]}, ${fields[1]}; ${fields[2]}; ${fields[3]}; ${fields[4]}.`;
-  return { ok: true, text, fields };
+  try {
+    const kinds = ["min", "hour", "dom", "mon", "dow"] as const;
+    const schedule = parts.map((source, i) => parseField(source, kinds[i]));
+    const names = cronNames(locale);
+    const fields = parts.map((source, i) => describeField(source, kinds[i], names));
+    const dayUnion = !parts[2].startsWith("*") && !parts[4].startsWith("*");
+    const text = `At ${fields[0]}, ${fields[1]}; ${fields[2]}; ${fields[3]}; ${fields[4]}.`;
+    return { ok: true, text, fields, schedule, dayUnion };
+  } catch (error) {
+    return { ok: false, error: (error as Error).message };
+  }
 }

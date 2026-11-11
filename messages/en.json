@@ -127,7 +127,9 @@
     "pdfPageCap": "This PDF has {total} pages. Kit processed the first {processed} in this tab.",
     "offlineIndicator": "Offline: no internet connection",
     "moveEarlier": "Move earlier",
-    "moveLater": "Move later"
+    "moveLater": "Move later",
+    "pdfFullDocumentLimit": "Compression supports complete PDFs up to {count} pages. Split longer documents first.",
+    "spreadsheetSafe": "Protect spreadsheet formulas (prefix cells with an apostrophe)"
   },
   "home": {
     "title": "What do you need to do?",
@@ -411,7 +413,8 @@
       "countdownLabel": "{minutes} minutes and {seconds} seconds until {year}.",
       "countdownLabelMinute": "1 minute and {seconds} seconds until {year}.",
       "countdownLabelSeconds": "{seconds} seconds until {year}."
-    }
+    },
+    "moreTools": "More tools"
   },
   "categories": {
     "pdf": "PDF",
@@ -548,7 +551,9 @@
     "updateChecking": "Checking for updates…",
     "updatePreparing": "An update is preparing. Kit will notify you when it’s ready.",
     "updateCheckFailed": "Couldn’t check for updates. Check your connection and try again.",
-    "updateCheckUnavailable": "Update checking is unavailable here. Open the installed app or Kit’s production site."
+    "updateCheckUnavailable": "Update checking is unavailable here. Open the installed app or Kit’s production site.",
+    "nightAppearance": "Night appearance",
+    "nightAppearanceDesc": "Use Dark from 22:00–05:00. Manual changes last until the next launch."
   },
   "shortcuts": {
     "title": "Keyboard shortcuts",
@@ -1105,7 +1110,8 @@
       "description": "Convert Unix time to ISO and back.",
       "summary": "Convert a Unix timestamp into a readable date and time, or the other way round, in the time zone you choose.",
       "keywords": "unix epoch timestamp iso date",
-      "now": "Use now"
+      "now": "Use now",
+      "auto": "Automatic"
     },
     "cron-explain": {
       "name": "Cron explainer",
@@ -1113,7 +1119,14 @@
       "summary": "Turn a five-field cron expression into a plain sentence, so it is clear when a scheduled job runs and how often.",
       "keywords": "cron schedule crontab explain",
       "run": "Explain",
-      "success": "Explained."
+      "success": "Explained.",
+      "schedule": "Match these values in your scheduler’s time zone.",
+      "dayRule": "If both day fields are restricted, either may match.",
+      "fieldmin": "Minutes",
+      "fieldhour": "Hours",
+      "fielddom": "Day of month",
+      "fieldmon": "Month",
+      "fielddow": "Weekday"
     },
     "number-base": {
       "name": "Number base",
@@ -2254,7 +2267,8 @@
       "approximate": "Coordinates are numerical approximations. A dash means the function is undefined here.",
       "scope": "Up to eight named real functions. Use a, b, c for sliders and d(x)+g(x) for composition. Roots, powers, logs, absolute values and trigonometry are supported.",
       "expressions": "Expressions",
-      "pan": "Pan"
+      "pan": "Pan",
+      "samplingWarning": "Fine detail may be unresolved. Zoom in to inspect it."
     }
   },
   "workspace": {

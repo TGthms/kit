@@ -127,7 +127,9 @@
     "fileRejectedEmpty": "Kullanılabilir dosya eklenmedi.",
     "offlineIndicator": "Çevrimdışı: internet bağlantısı yok",
     "moveEarlier": "Öne taşı",
-    "moveLater": "Arkaya taşı"
+    "moveLater": "Arkaya taşı",
+    "pdfFullDocumentLimit": "Sıkıştırma en fazla {count} sayfalık tam PDF’leri destekler. Uzun belgeleri önce bölün.",
+    "spreadsheetSafe": "Elektronik tablo formüllerini koru (hücrelerin başına kesme işareti ekle)"
   },
   "home": {
     "title": "Ne yapmak istiyorsunuz?",
@@ -411,7 +413,8 @@
       "countdownLabel": "{year} yılına {minutes} dakika {seconds} saniye.",
       "countdownLabelMinute": "{year} için 1 dakika {seconds} saniye.",
       "countdownLabelSeconds": "{year} için {seconds} saniye."
-    }
+    },
+    "moreTools": "Diğer araçlar"
   },
   "categories": {
     "pdf": "PDF",
@@ -548,7 +551,9 @@
     "updateChecking": "Güncellemeler denetleniyor…",
     "updatePreparing": "Bir güncelleme hazırlanıyor. Kit hazır olduğunda bildirecek.",
     "updateCheckFailed": "Güncellemeler denetlenemedi. Bağlantınızı kontrol edip tekrar deneyin.",
-    "updateCheckUnavailable": "Burada güncellemeler denetlenemiyor. Yüklü uygulamayı veya Kit’in resmî sitesini açın."
+    "updateCheckUnavailable": "Burada güncellemeler denetlenemiyor. Yüklü uygulamayı veya Kit’in resmî sitesini açın.",
+    "nightAppearance": "Gece görünümü",
+    "nightAppearanceDesc": "22:00–05:00 arasında Koyu kullan. Elle yapılan değişiklikler sonraki açılışa kadar geçerlidir."
   },
   "shortcuts": {
     "title": "Klavye kısayolları",
@@ -1105,7 +1110,8 @@
       "description": "Unix zamanını ISO’ya ve geri dönüştürün.",
       "summary": "Bir Unix zaman damgasını okunabilir tarih ve saate, ya da tersine, seçtiğiniz saat diliminde çevirin.",
       "keywords": "unix epoch zaman damgası iso tarih",
-      "now": "Şimdi kullan"
+      "now": "Şimdi kullan",
+      "auto": "Otomatik"
     },
     "cron-explain": {
       "name": "Cron açıklayıcı",
@@ -1113,7 +1119,14 @@
       "summary": "Beş alanlı bir cron ifadesini düz bir cümleye çevirin; planlanmış bir işin ne zaman ve ne sıklıkla çalıştığı açık olsun.",
       "keywords": "cron zamanlama crontab açıkla",
       "run": "Açıkla",
-      "success": "Açıklandı."
+      "success": "Açıklandı.",
+      "schedule": "Bu değerler zamanlayıcının saat diliminde geçerlidir.",
+      "dayRule": "Her iki gün alanı da sınırlıysa birinin eşleşmesi yeterlidir.",
+      "fieldmin": "Dakika",
+      "fieldhour": "Saat",
+      "fielddom": "Ayın günü",
+      "fieldmon": "Ay",
+      "fielddow": "Haftanın günü"
     },
     "number-base": {
       "name": "Sayı tabanı",
@@ -2254,7 +2267,8 @@
       "approximate": "Koordinatlar sayısal yaklaşımlardır. Tire, fonksiyonun tanımsız olduğunu belirtir.",
       "scope": "Sekize kadar adlandırılmış gerçek fonksiyon. a, b, c kaydırıcılar; d(x)+g(x) birleşim içindir. Kök, kuvvet, logaritma, mutlak değer ve trigonometri.",
       "expressions": "İfadeler",
-      "pan": "Kaydır"
+      "pan": "Kaydır",
+      "samplingWarning": "İnce ayrıntılar çözümlenemeyebilir. İncelemek için yakınlaştırın."
     }
   },
   "workspace": {

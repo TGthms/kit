@@ -1,4 +1,6 @@
 "use client";
+import { useToolJob } from "./use-tool-job";
+import { FileJobResult } from "./file-job-result";
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { toast } from "sonner";
@@ -6,10 +8,10 @@ import { FileDropzone, type FileItem } from "@/components/shared/file-dropzone";
 import { Input } from "@/components/ui/input";
 import { Field } from "@/components/ui/field";
 import { Progress } from "@/components/ui/progress";
-import { downloadBlob, bytesToBlob } from "@/lib/utils";
+import { bytesToBlob } from "@/lib/utils";
 import { MediaTimeline } from "@/components/shared/media-timeline";
 import { gifClipArgs } from "@/lib/media/ffmpeg-args";
-import { ActionBar, ToolLimits, ToolShell, useToolHistory, useToolJob, loadFfmpeg } from "./shared";
+import { ActionBar, ToolLimits, ToolShell, useToolHistory, loadFfmpeg } from "./shared";
 import { clampMediaTimes } from "./video-shared";
 
 export function VideoGif() {
@@ -20,7 +22,7 @@ export function VideoGif() {
   const [start, setStart] = useState(0);
   const [end, setEnd] = useState(3);
   const [duration, setDuration] = useState(0);
-  const job = useToolJob();
+  const job = useToolJob([files, start, end]);
   const setRange = (nextStart: number, nextEnd: number, dur = duration) => {
     const next = clampMediaTimes(nextStart, nextEnd, dur);
     setStart(next.start);
@@ -45,13 +47,14 @@ export function VideoGif() {
         data,
         output,
         gifClipArgs(input, output, String(range.start), String(range.end)),
-        (p) => job.setProgress(Math.round(p * 100)),
+        (p) => job.report(ac, Math.round(p * 100)),
         ac.signal
       );
-      downloadBlob(bytesToBlob(out, "image/gif"), output);
+      if (!job.complete(ac, [{ blob: bytesToBlob(out, "image/gif"), name: output }])) return;
       toast.success(t("success"));
       log("completed", "success");
     } catch (e) {
+      if (!job.fail(ac, e)) return;
       if (e instanceof DOMException && e.name === "AbortError") {
         toast.error(tc("cancel"));
       } else {
@@ -105,6 +108,7 @@ export function VideoGif() {
         disabled={!files[0]}
         onCancel={job.cancel}
       />
+      <FileJobResult job={job} />
     </ToolShell>
   );
 }

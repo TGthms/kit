@@ -9,8 +9,9 @@ import { stageHandoff, clearHandoff } from "@/lib/workspace/handoff";
 const { convert } = vi.hoisted(() => ({ convert: vi.fn() }));
 vi.mock("@/lib/image/core", () => ({ convertImage: convert }));
 vi.mock("@/lib/i18n/navigation", () => ({ usePathname: () => "/tools/image-convert", useRouter: () => ({ push: vi.fn() }) }));
-afterEach(() => { cleanup(); clearHandoff(); vi.clearAllMocks(); });
+afterEach(() => { cleanup(); clearHandoff(); vi.clearAllMocks(); vi.unstubAllGlobals(); });
 function setup() {
+  vi.stubGlobal("URL", Object.assign(class extends URL {}, { createObjectURL: vi.fn(() => "blob:preview"), revokeObjectURL: vi.fn() }));
   stageHandoff("image-convert", [new File(["pixels"], "photo.png", { type: "image/png" })]);
   return render(<NextIntlClientProvider locale="en" messages={en}><ImageConvert /></NextIntlClientProvider>);
 }

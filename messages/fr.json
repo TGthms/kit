@@ -127,7 +127,9 @@
     "fileRejectedEmpty": "Aucun fichier utilisable n’a été ajouté.",
     "offlineIndicator": "Hors ligne : aucune connexion Internet",
     "moveEarlier": "Déplacer avant",
-    "moveLater": "Déplacer après"
+    "moveLater": "Déplacer après",
+    "pdfFullDocumentLimit": "La compression accepte les PDF complets de {count} pages maximum. Divisez d’abord les documents plus longs.",
+    "spreadsheetSafe": "Protéger les formules de tableur (préfixer les cellules par une apostrophe)"
   },
   "home": {
     "title": "Que voulez-vous faire ?",
@@ -411,7 +413,8 @@
       "countdownLabel": "{minutes} minutes et {seconds} secondes avant {year}.",
       "countdownLabelMinute": "1 minute et {seconds} secondes avant {year}.",
       "countdownLabelSeconds": "{seconds} secondes avant {year}."
-    }
+    },
+    "moreTools": "Autres outils"
   },
   "categories": {
     "pdf": "PDF",
@@ -548,7 +551,9 @@
     "updateChecking": "Recherche de mises à jour…",
     "updatePreparing": "Une mise à jour se prépare. Kit vous préviendra dès qu’elle sera prête.",
     "updateCheckFailed": "Impossible de rechercher les mises à jour. Vérifiez votre connexion et réessayez.",
-    "updateCheckUnavailable": "La recherche de mises à jour est indisponible ici. Ouvrez l’application installée ou le site officiel de Kit."
+    "updateCheckUnavailable": "La recherche de mises à jour est indisponible ici. Ouvrez l’application installée ou le site officiel de Kit.",
+    "nightAppearance": "Apparence nocturne",
+    "nightAppearanceDesc": "Utiliser le mode sombre de 22 h à 5 h. Les changements manuels durent jusqu’au prochain lancement."
   },
   "shortcuts": {
     "title": "Raccourcis clavier",
@@ -1105,7 +1110,8 @@
       "description": "Convertissez un temps Unix en ISO et inversement.",
       "summary": "Convertissez un horodatage Unix en date et heure lisibles, ou l’inverse, dans le fuseau horaire de votre choix.",
       "keywords": "unix epoch horodatage iso date",
-      "now": "Utiliser maintenant"
+      "now": "Utiliser maintenant",
+      "auto": "Automatique"
     },
     "cron-explain": {
       "name": "Expliquer une cron",
@@ -1113,7 +1119,14 @@
       "summary": "Traduisez une expression cron à cinq champs en une phrase claire, pour savoir quand une tâche planifiée s’exécute.",
       "keywords": "cron planning crontab expliquer",
       "run": "Expliquer",
-      "success": "Expliqué."
+      "success": "Expliqué.",
+      "schedule": "Ces valeurs utilisent le fuseau horaire du planificateur.",
+      "dayRule": "Si les deux champs de jour sont limités, un seul doit correspondre.",
+      "fieldmin": "Minutes",
+      "fieldhour": "Heures",
+      "fielddom": "Jour du mois",
+      "fieldmon": "Mois",
+      "fielddow": "Jour de la semaine"
     },
     "number-base": {
       "name": "Base numérique",
@@ -2254,7 +2267,8 @@
       "approximate": "Les coordonnées sont des approximations numériques. Un tiret indique une fonction non définie.",
       "scope": "Jusqu’à huit fonctions réelles nommées. a, b, c créent des curseurs ; d(x)+g(x) permet la composition. Racines, puissances, logarithmes, valeurs absolues et trigonométrie.",
       "expressions": "Expressions",
-      "pan": "Déplacer"
+      "pan": "Déplacer",
+      "samplingWarning": "Les détails fins peuvent manquer. Zoomez pour les examiner."
     }
   },
   "workspace": {

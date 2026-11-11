@@ -1,8 +1,10 @@
 "use client";
+import { TextWorkspace } from "./text-workspace";
 
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { toast } from "sonner";
+import { Switch } from "@/components/ui/switch";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { csvToJson, jsonToCsv } from "@/lib/text/core";
@@ -13,15 +15,22 @@ export function CsvJson() {
   const t = useTranslations("tools.csv-json");
   const log = useToolHistory("csv-json");
   const [input, setInput] = useState("name,role\nKit,toolkit\n");
+  const [spreadsheetSafe, setSpreadsheetSafe] = useState(true);
   const [toJson, setToJson] = useState(true);
+  const [derived, setDerived] = useState<{ key: string; text: string } | null>(null);
+  const [failure, setFailure] = useState<string | null>(null);
+  const sourceKey = input + String(toJson) + String(spreadsheetSafe);
+  const output = derived?.key === sourceKey ? derived.text : null;
   const run = () => {
-    const r = toJson ? csvToJson(input) : jsonToCsv(input);
+    const r = toJson ? csvToJson(input) : jsonToCsv(input, spreadsheetSafe);
     if (!r.ok) {
+      setFailure(r.error);
       toast.error(r.error);
       log("failed", "failed");
       return;
     }
-    setInput(r.text);
+    setDerived({ key: sourceKey, text: r.text });
+    setFailure(null);
     toast.success(t("success"));
     log(toJson ? "csv→json" : "json→csv", "success");
   };
@@ -35,7 +44,10 @@ export function CsvJson() {
           {t("toCsv")}
         </Button>
       </div>
-      <Textarea aria-label={fieldText("input")} value={input} onChange={(e) => setInput(e.target.value)} className="min-h-64" />
+      {!toJson && <label className="flex items-center gap-3 text-sm"><Switch checked={spreadsheetSafe} onCheckedChange={setSpreadsheetSafe} />{fieldText("spreadsheetSafe")}</label>}
+      <TextWorkspace output={output} error={failure} filename="converted.txt">
+      <Textarea aria-label={fieldText("input")} value={input} onChange={(e) => { setFailure(null); setInput(e.target.value); }} className="min-h-64" />
+      </TextWorkspace>
       <Button onClick={run}>{t("run")}</Button>
     </ToolShell>
   );

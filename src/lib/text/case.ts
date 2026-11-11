@@ -2,10 +2,12 @@ export type CaseStyle = "lower" | "upper" | "title" | "sentence" | "camel" | "pa
 
 function words(input: string): string[] {
   return input
-    .replace(/([a-z0-9])([A-Z])/g, "$1 $2")
+    .normalize("NFC")
+    .replace(/(\p{Lu})(\p{Lu}\p{Ll})/gu, "$1 $2")
+    .replace(/([\p{Ll}\p{N}])(\p{Lu})/gu, "$1 $2")
     .replace(/[_-]+/g, " ")
     .trim()
-    .split(/[^A-Za-z0-9]+/)
+    .split(/[^\p{L}\p{M}\p{N}]+/u)
     .filter(Boolean)
     .map((w) => w.toLowerCase());
 }

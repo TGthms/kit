@@ -1,11 +1,13 @@
 "use client";
+import { useToolJob } from "./use-tool-job";
+import { FileJobResult } from "./file-job-result";
 import { useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 import { FileDropzone, type FileItem } from "@/components/shared/file-dropzone";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { downloadBlob, bytesToBlob } from "@/lib/utils";
+import { bytesToBlob } from "@/lib/utils";
 import { ActionBar, ToolShell, useToolHistory, loadPdfjs } from "./shared";
 import { organizePdf, getPdfPageCount } from "@/lib/pdf/core";
 import { replaceObjectUrlRecord, revokeObjectUrls } from "@/lib/files/object-url";
@@ -22,7 +24,8 @@ export function PdfOrganize() {
   const [rotations, setRotations] = useState<Record<number, number>>({});
   const dragPage = useRef<number | null>(null);
   const [deleted, setDeleted] = useState<Set<number>>(new Set());
-  const [loading, setLoading] = useState(false);
+  const job = useToolJob([files, order, rotations, deleted]);
+  const loading = job.loading;
   const [reading, setReading] = useState(false);
   const source = useTaskScope();
 
@@ -53,7 +56,7 @@ export function PdfOrganize() {
     const current = source.begin();
     setFiles(items);
     resetPages();
-    setLoading(false);
+    job.cancel();
     setReading(Boolean(items[0]));
     if (!items[0]) {
       return;
@@ -102,19 +105,20 @@ export function PdfOrganize() {
       toast.error(t("keepOne"));
       return;
     }
-    setLoading(true);
+    const ac = job.start();
     try {
       const out = await organizePdf(await files[0].file.arrayBuffer(), order, rotations, deleted);
       if (!current()) return;
-      downloadBlob(bytesToBlob(out, "application/pdf"), "organized.pdf");
+      if (!job.complete(ac, [{ blob: bytesToBlob(out, "application/pdf"), name: "organized.pdf" }])) return;
       toast.success(t("success"));
       log(`${pageCount} pages`, "success");
     } catch (e) {
+      if (!job.fail(ac, e)) return;
       if (!current()) return;
       toast.error(e instanceof Error ? e.message : tc("error"));
       log("failed", "failed");
     } finally {
-      if (current()) setLoading(false);
+      if (current()) job.stop(ac);
     }
   };
 
@@ -205,13 +209,13 @@ export function PdfOrganize() {
           ))}
         </div>
       )}
-      <ActionBar
-        onRun={run}
+      <ActionBar onCancel={job.cancel}         onRun={run}
         loading={loading}
         label={t("run")}
         disabled={!files[0] || reading || pageCount === 0 || deleted.size >= pageCount}
         status={reading ? tc("loading") : undefined}
       />
+      <FileJobResult job={job} />
     </ToolShell>
   );
 }

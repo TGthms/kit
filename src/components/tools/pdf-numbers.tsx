@@ -1,11 +1,13 @@
 "use client";
+import { useToolJob } from "./use-tool-job";
+import { FileJobResult } from "./file-job-result";
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 import { FileDropzone, type FileItem } from "@/components/shared/file-dropzone";
 import { Input } from "@/components/ui/input";
 import { Field } from "@/components/ui/field";
-import { downloadMany, bytesToBlob } from "@/lib/utils";
+import { bytesToBlob } from "@/lib/utils";
 import { numberPdfPages, type PageNumberPosition } from "@/lib/pdf/core";
 import { ActionBar, ToolShell, useToolHistory } from "./shared";
 
@@ -20,28 +22,31 @@ export function PdfNumbers() {
   const [template, setTemplate] = useState("{page} / {pages}");
   const [position, setPosition] = useState<PageNumberPosition>("footer-center");
   const [start, setStart] = useState(1);
-  const [loading, setLoading] = useState(false);
+  const job = useToolJob([files, template, position, start]);
+  const loading = job.loading;
 
   const run = async () => {
     if (!files.length) return;
-    setLoading(true);
+    const ac = job.start();
     try {
       const items: Array<{ blob: Blob; name: string }> = [];
       for (const f of files) {
+        if (ac.signal.aborted) return;
         const out = await numberPdfPages(await f.file.arrayBuffer(), { template, position, start });
         items.push({
           blob: bytesToBlob(out, "application/pdf"),
           name: f.file.name.replace(/\.pdf$/i, "") + "-numbered.pdf",
         });
       }
-      await downloadMany(items, "numbered-pdfs.zip");
+      if (!job.complete(ac, items)) return;
       toast.success(t("success"));
       log(template, "success");
     } catch (e) {
+      if (!job.fail(ac, e)) return;
       toast.error(e instanceof Error ? e.message : tc("error"));
       log("failed", "failed");
     } finally {
-      setLoading(false);
+      job.stop(ac);
     }
   };
 
@@ -66,7 +71,8 @@ export function PdfNumbers() {
           <option value="footer-right">{t("footerRight")}</option>
         </select>
       </Field>
-      <ActionBar onRun={run} loading={loading} label={t("run")} disabled={!files.length} />
+      <ActionBar onCancel={job.cancel} onRun={run} loading={loading} label={t("run")} disabled={!files.length} />
+      <FileJobResult job={job} />
     </ToolShell>
   );
 }

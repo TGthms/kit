@@ -1,4 +1,5 @@
 "use client";
+import { ImageComparison } from "@/components/shared/image-comparison";
 import { ResultFiles, type ResultFile } from "@/components/workspace/result-files";
 import { useHandoff } from "@/lib/workspace/use-handoff";
 import { throwIfAborted } from "@/lib/jobs/abort";
@@ -22,7 +23,7 @@ export function ImageCompress() {
   const [quality, setQuality] = useState(0.75);
   const [maxW, setMaxW] = useState(1920);
   useHandoff("image-compress", setFiles);
-  const job = useToolJob();
+  const job = useToolJob([files, quality, maxW]);
   const loading = job.loading;
   const [results, setResults] = useState<ResultFile[]>([]);
   const [progress, setProgress] = useState(0);
@@ -56,6 +57,7 @@ export function ImageCompress() {
       log(`${files.length} images`, "success", { quality, maxW });
     } catch (e) {
       if (ac.signal.aborted) return;
+      job.fail(ac, e);
       toast.error(e instanceof Error ? e.message : tc("error"));
       log("failed", "failed");
     } finally {
@@ -64,7 +66,7 @@ export function ImageCompress() {
   };
 
   return (
-    <ToolShell toolId="image-compress">
+    <ToolShell toolId="image-compress" result={<div className="space-y-4">{files[0] && <ImageComparison original={files[0].file} result={results[0]?.blob} />}{job.error && <p role="alert" className="text-sm text-destructive">{job.error}</p>}<ResultFiles files={results} /></div>}>
       <FileDropzone accept="image/*" files={files} onChange={(next) => { job.cancel(); setFiles(next); setResults([]); }} />
       <div className="grid gap-4 sm:grid-cols-2">
         {qualityApplies ? (
@@ -78,7 +80,7 @@ export function ImageCompress() {
       </div>
       {loading && <Progress value={progress} />}
       <ActionBar onRun={run} loading={loading} label={t("run")} disabled={!files.length} onCancel={job.cancel} />
-      <ResultFiles files={results} />
+
     </ToolShell>
   );
 }

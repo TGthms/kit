@@ -127,7 +127,9 @@
     "fileRejectedEmpty": "Không có tệp dùng được nào được thêm.",
     "offlineIndicator": "Ngoại tuyến: không có kết nối Internet",
     "moveEarlier": "Di chuyển lên trước",
-    "moveLater": "Di chuyển ra sau"
+    "moveLater": "Di chuyển ra sau",
+    "pdfFullDocumentLimit": "Nén hỗ trợ PDF đầy đủ tối đa {count} trang. Hãy chia tài liệu dài hơn trước.",
+    "spreadsheetSafe": "Bảo vệ công thức bảng tính (thêm dấu nháy đơn trước ô)"
   },
   "home": {
     "title": "Bạn cần làm gì?",
@@ -411,7 +413,8 @@
       "countdownLabel": "Còn {minutes} phút {seconds} giây nữa đến {year}.",
       "countdownLabelMinute": "Còn 1 phút {seconds} giây đến {year}.",
       "countdownLabelSeconds": "Còn {seconds} giây đến {year}."
-    }
+    },
+    "moreTools": "Thêm công cụ"
   },
   "categories": {
     "pdf": "PDF",
@@ -548,7 +551,9 @@
     "updateChecking": "Đang kiểm tra bản cập nhật…",
     "updatePreparing": "Đang chuẩn bị bản cập nhật. Kit sẽ thông báo khi sẵn sàng.",
     "updateCheckFailed": "Không thể kiểm tra bản cập nhật. Hãy kiểm tra kết nối và thử lại.",
-    "updateCheckUnavailable": "Không thể kiểm tra bản cập nhật ở đây. Hãy mở ứng dụng đã cài hoặc trang chính thức của Kit."
+    "updateCheckUnavailable": "Không thể kiểm tra bản cập nhật ở đây. Hãy mở ứng dụng đã cài hoặc trang chính thức của Kit.",
+    "nightAppearance": "Giao diện ban đêm",
+    "nightAppearanceDesc": "Dùng giao diện tối từ 22:00–05:00. Thay đổi thủ công có hiệu lực đến lần mở tiếp theo."
   },
   "shortcuts": {
     "title": "Phím tắt",
@@ -1105,7 +1110,8 @@
       "description": "Chuyển thời gian Unix sang ISO và ngược lại.",
       "summary": "Chuyển mốc thời gian Unix thành ngày giờ đọc được, hoặc ngược lại, theo múi giờ bạn chọn.",
       "keywords": "unix epoch dấu thời gian iso ngày",
-      "now": "Dùng lúc này"
+      "now": "Dùng lúc này",
+      "auto": "Tự động"
     },
     "cron-explain": {
       "name": "Trình giải thích cron",
@@ -1113,7 +1119,14 @@
       "summary": "Chuyển biểu thức cron năm trường thành một câu đơn giản, để rõ tác vụ hẹn giờ chạy khi nào và bao lâu một lần.",
       "keywords": "cron lịch crontab giải thích",
       "run": "Giải thích",
-      "success": "Đã giải thích."
+      "success": "Đã giải thích.",
+      "schedule": "Các giá trị dùng múi giờ của trình lập lịch.",
+      "dayRule": "Nếu cả hai trường ngày bị giới hạn, chỉ cần một trường khớp.",
+      "fieldmin": "Phút",
+      "fieldhour": "Giờ",
+      "fielddom": "Ngày trong tháng",
+      "fieldmon": "Tháng",
+      "fielddow": "Ngày trong tuần"
     },
     "number-base": {
       "name": "Cơ số số",
@@ -2254,7 +2267,8 @@
       "approximate": "Tọa độ là xấp xỉ số. Dấu gạch nghĩa là hàm không xác định.",
       "scope": "Tối đa tám hàm thực có tên. a, b, c tạo thanh trượt; d(x)+g(x) kết hợp hàm. Căn, lũy thừa, logarit, trị tuyệt đối và lượng giác.",
       "expressions": "Biểu thức",
-      "pan": "Di chuyển"
+      "pan": "Di chuyển",
+      "samplingWarning": "Chi tiết nhỏ có thể chưa rõ. Phóng to để kiểm tra."
     }
   },
   "workspace": {

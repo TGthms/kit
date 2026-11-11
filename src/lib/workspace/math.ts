@@ -137,3 +137,19 @@ export function parseGraphLibrary(value: unknown): SavedGraph[] {
     return { id: entry.id, name: entry.name.trim(), document };
   });
 }
+
+/** Portable graph files carry only reviewed math state, never preferences or
+ * application storage keys. Import adds a saved graph before replacing work. */
+export function parseGraphFile(text: string): { name: string; document: GraphDocument } {
+  if (text.length > 40000) throw new Error("invalid");
+  const value: unknown = JSON.parse(text);
+  if (!record(value) || value.kind !== "kit-graph" || value.version !== 1 || typeof value.name !== "string" || !value.name.trim() || value.name.length > 80) throw new Error("invalid");
+  const document = parseGraph(value.document);
+  if (!document) throw new Error("invalid");
+  return { name: value.name.trim(), document };
+}
+export function graphFile(name: string, document: GraphDocument): string {
+  const text = JSON.stringify({ kind: "kit-graph", version: 1, name: name.trim() || "Kit", document }, null, 2);
+  parseGraphFile(text);
+  return text;
+}

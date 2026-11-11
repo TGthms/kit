@@ -114,3 +114,12 @@ syncMath();
 const pdf = syncPdfjs();
 const ffmpeg = syncFfmpeg();
 if (!pdf && !ffmpeg) process.exit(0);
+
+// Bundle the bounded document parser for a standalone same-origin worker.
+// Next treats new URL(...worker.ts) as an asset here rather than compiling its
+// imports. An explicit browser bundle makes the exported/offline bytes exact.
+const { buildSync } = await import("esbuild");
+const documents = join(rootDir, "public/vendor/documents");
+mkdirSync(documents, { recursive: true });
+buildSync({ entryPoints: [join(rootDir, "src/lib/text/document-worker.ts")], outfile: join(documents, "worker.js"), bundle: true, format: "iife", platform: "browser", target: "es2022", minify: true, legalComments: "eof" });
+console.log("[sync-vendor] Bundled local document worker");

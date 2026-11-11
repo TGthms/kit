@@ -1,4 +1,7 @@
 "use client";
+import { mediaMime } from "@/lib/media/ffmpeg-args";
+import { useToolJob } from "./use-tool-job";
+import { FileJobResult } from "./file-job-result";
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { toast } from "sonner";
@@ -6,10 +9,10 @@ import { FileDropzone, type FileItem } from "@/components/shared/file-dropzone";
 import { Input } from "@/components/ui/input";
 import { Field } from "@/components/ui/field";
 import { Progress } from "@/components/ui/progress";
-import { downloadBlob, bytesToBlob } from "@/lib/utils";
+import { bytesToBlob } from "@/lib/utils";
 import { MediaTimeline } from "@/components/shared/media-timeline";
 import { trimArgs } from "@/lib/media/ffmpeg-args";
-import { ActionBar, ToolShell, useToolHistory, useToolJob, loadFfmpeg } from "./shared";
+import { ActionBar, ToolShell, useToolHistory, loadFfmpeg } from "./shared";
 import { clampMediaTimes } from "./video-shared";
 
 export function VideoTrim() {
@@ -20,7 +23,7 @@ export function VideoTrim() {
   const [start, setStart] = useState(0);
   const [end, setEnd] = useState(10);
   const [duration, setDuration] = useState(0);
-  const job = useToolJob();
+  const job = useToolJob([files, start, end]);
   const setRange = (nextStart: number, nextEnd: number, dur = duration) => {
     const next = clampMediaTimes(nextStart, nextEnd, dur);
     setStart(next.start);
@@ -45,13 +48,14 @@ export function VideoTrim() {
         data,
         output,
         trimArgs(input, output, range.start, range.end),
-        (p) => job.setProgress(Math.round(p * 100)),
+        (p) => job.report(ac, Math.round(p * 100)),
         ac.signal
       );
-      downloadBlob(bytesToBlob(out, "application/octet-stream"), output);
+      if (!job.complete(ac, [{ blob: bytesToBlob(out, mediaMime(ext)), name: output }])) return;
       toast.success(t("success"));
       log("completed", "success");
     } catch (e) {
+      if (!job.fail(ac, e)) return;
       if (e instanceof DOMException && e.name === "AbortError") {
         toast.error(tc("cancel"));
       } else {
@@ -102,6 +106,7 @@ export function VideoTrim() {
         disabled={!files[0]}
         onCancel={job.cancel}
       />
+      <FileJobResult job={job} />
     </ToolShell>
   );
 }

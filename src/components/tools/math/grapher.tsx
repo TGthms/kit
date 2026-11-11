@@ -434,6 +434,7 @@ export function FunctionGrapher() {
             </Button>
           </div>
           <div className="flex items-center gap-0.5">
+            <GraphLibrary document={graphDocument} onLoad={restoreDocument} onFresh={() => restoreDocument(freshGraph())} failed={recovery.failed} />
             <InputGuide />
             <GraphSettings
               view={view}
@@ -904,6 +905,7 @@ export function FunctionGrapher() {
             className="min-w-0 text-[11px] text-muted-foreground"
           >
             {trace ? tg("traceHint") : t("graphHint")}
+            {fresh && matching.some(curve => curve.plot?.undersampled) && <span role="status" className="mt-1 block text-amber-800 dark:text-amber-200">{tg("samplingWarning")}</span>}
           </p>
           <Button
             size="sm"
@@ -967,7 +969,6 @@ export function FunctionGrapher() {
   );
   return (
     <ToolShell toolId="function-grapher">
-      <GraphLibrary document={graphDocument} onLoad={restoreDocument} onFresh={() => restoreDocument(freshGraph())} failed={recovery.failed} />
       {expanded ? createPortal(content, document.body) : content}
     </ToolShell>
   );

@@ -127,7 +127,9 @@
     "fileRejectedEmpty": "Tidak ada berkas yang dapat digunakan.",
     "offlineIndicator": "Offline: tidak ada koneksi internet",
     "moveEarlier": "Pindahkan lebih awal",
-    "moveLater": "Pindahkan lebih akhir"
+    "moveLater": "Pindahkan lebih akhir",
+    "pdfFullDocumentLimit": "Kompresi mendukung PDF lengkap hingga {count} halaman. Pisahkan dokumen yang lebih panjang terlebih dahulu.",
+    "spreadsheetSafe": "Lindungi rumus spreadsheet (awali sel dengan apostrof)"
   },
   "home": {
     "title": "Apa yang ingin Anda lakukan?",
@@ -411,7 +413,8 @@
       "countdownLabel": "{minutes} menit {seconds} detik menuju {year}.",
       "countdownLabelMinute": "1 menit {seconds} detik menuju {year}.",
       "countdownLabelSeconds": "{seconds} detik menuju {year}."
-    }
+    },
+    "moreTools": "Alat lainnya"
   },
   "categories": {
     "pdf": "PDF",
@@ -548,7 +551,9 @@
     "updateChecking": "Memeriksa pembaruan…",
     "updatePreparing": "Pembaruan sedang disiapkan. Kit akan memberi tahu saat sudah siap.",
     "updateCheckFailed": "Tidak dapat memeriksa pembaruan. Periksa koneksi dan coba lagi.",
-    "updateCheckUnavailable": "Pemeriksaan pembaruan tidak tersedia di sini. Buka aplikasi terinstal atau situs resmi Kit."
+    "updateCheckUnavailable": "Pemeriksaan pembaruan tidak tersedia di sini. Buka aplikasi terinstal atau situs resmi Kit.",
+    "nightAppearance": "Tampilan malam",
+    "nightAppearanceDesc": "Gunakan Gelap pukul 22.00–05.00. Perubahan manual berlaku hingga peluncuran berikutnya."
   },
   "shortcuts": {
     "title": "Pintasan papan ketik",
@@ -1105,7 +1110,8 @@
       "description": "Konversi waktu Unix ke ISO dan sebaliknya.",
       "summary": "Ubah stempel waktu Unix menjadi tanggal dan waktu yang terbaca, atau sebaliknya, di zona waktu yang Anda pilih.",
       "keywords": "unix epoch stempel waktu iso tanggal",
-      "now": "Gunakan sekarang"
+      "now": "Gunakan sekarang",
+      "auto": "Otomatis"
     },
     "cron-explain": {
       "name": "Penjelas cron",
@@ -1113,7 +1119,14 @@
       "summary": "Ubah ekspresi cron lima kolom menjadi kalimat biasa, supaya jelas kapan tugas terjadwal berjalan dan seberapa sering.",
       "keywords": "cron jadwal crontab jelaskan",
       "run": "Jelaskan",
-      "success": "Dijelaskan."
+      "success": "Dijelaskan.",
+      "schedule": "Nilai ini berlaku dalam zona waktu penjadwal.",
+      "dayRule": "Jika kedua kolom hari dibatasi, cukup salah satunya cocok.",
+      "fieldmin": "Menit",
+      "fieldhour": "Jam",
+      "fielddom": "Tanggal dalam bulan",
+      "fieldmon": "Bulan",
+      "fielddow": "Hari dalam minggu"
     },
     "number-base": {
       "name": "Basis bilangan",
@@ -2254,7 +2267,8 @@
       "approximate": "Koordinat adalah pendekatan numerik. Tanda garis berarti fungsi tidak terdefinisi.",
       "scope": "Hingga delapan fungsi nyata bernama. a, b, c untuk penggeser, d(x)+g(x) untuk komposisi. Akar, pangkat, logaritma, nilai mutlak, dan trigonometri.",
       "expressions": "Ekspresi",
-      "pan": "Geser"
+      "pan": "Geser",
+      "samplingWarning": "Detail halus mungkin belum terlihat. Perbesar untuk memeriksanya."
     }
   },
   "workspace": {

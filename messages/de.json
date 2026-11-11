@@ -127,7 +127,9 @@
     "fileRejectedEmpty": "Es wurden keine nutzbaren Dateien hinzugefügt.",
     "offlineIndicator": "Offline: keine Internetverbindung",
     "moveEarlier": "Nach vorne",
-    "moveLater": "Nach hinten"
+    "moveLater": "Nach hinten",
+    "pdfFullDocumentLimit": "Die Komprimierung unterstützt vollständige PDFs mit bis zu {count} Seiten. Längere Dokumente zuerst aufteilen.",
+    "spreadsheetSafe": "Tabellenformeln schützen (Apostroph vor Zellen setzen)"
   },
   "home": {
     "title": "Was möchten Sie tun?",
@@ -411,7 +413,8 @@
       "countdownLabel": "{minutes} Minuten und {seconds} Sekunden bis {year}.",
       "countdownLabelMinute": "1 Minute und {seconds} Sekunden bis {year}.",
       "countdownLabelSeconds": "{seconds} Sekunden bis {year}."
-    }
+    },
+    "moreTools": "Weitere Werkzeuge"
   },
   "categories": {
     "pdf": "PDF",
@@ -548,7 +551,9 @@
     "updateChecking": "Suche nach Updates…",
     "updatePreparing": "Ein Update wird vorbereitet. Kit benachrichtigt dich, sobald es bereit ist.",
     "updateCheckFailed": "Updates konnten nicht geprüft werden. Prüfe deine Verbindung und versuche es erneut.",
-    "updateCheckUnavailable": "Updates können hier nicht geprüft werden. Öffne die installierte App oder die offizielle Kit-Website."
+    "updateCheckUnavailable": "Updates können hier nicht geprüft werden. Öffne die installierte App oder die offizielle Kit-Website.",
+    "nightAppearance": "Nächtliches Erscheinungsbild",
+    "nightAppearanceDesc": "Von 22:00 bis 05:00 Uhr Dunkel verwenden. Manuelle Änderungen gelten bis zum nächsten Start."
   },
   "shortcuts": {
     "title": "Tastenkürzel",
@@ -1105,7 +1110,8 @@
       "description": "Unix-Zeit nach ISO und zurück wandeln.",
       "summary": "Rechnen Sie einen Unix-Zeitstempel in ein lesbares Datum und eine Uhrzeit um, oder umgekehrt, in der Zeitzone Ihrer Wahl.",
       "keywords": "unix epoch zeitstempel iso datum",
-      "now": "Jetzt verwenden"
+      "now": "Jetzt verwenden",
+      "auto": "Automatisch"
     },
     "cron-explain": {
       "name": "Cron erklären",
@@ -1113,7 +1119,14 @@
       "summary": "Übersetzen Sie einen Cron-Ausdruck mit fünf Feldern in einen klaren Satz, damit klar ist, wann und wie oft eine Aufgabe läuft.",
       "keywords": "cron zeitplan crontab erklären",
       "run": "Erklären",
-      "success": "Erklärt."
+      "success": "Erklärt.",
+      "schedule": "Diese Werte gelten in der Zeitzone des Zeitplaners.",
+      "dayRule": "Sind beide Tagesfelder eingeschränkt, genügt eine Übereinstimmung.",
+      "fieldmin": "Minuten",
+      "fieldhour": "Stunden",
+      "fielddom": "Tag des Monats",
+      "fieldmon": "Monat",
+      "fielddow": "Wochentag"
     },
     "number-base": {
       "name": "Zahlenbasis",
@@ -2254,7 +2267,8 @@
       "approximate": "Koordinaten sind numerische Näherungen. Ein Strich bedeutet, die Funktion ist dort undefiniert.",
       "scope": "Bis zu acht benannte reelle Funktionen. a, b, c für Regler, d(x)+g(x) für Verknüpfungen. Wurzeln, Potenzen, Logarithmen, Beträge und Trigonometrie.",
       "expressions": "Ausdrücke",
-      "pan": "Verschieben"
+      "pan": "Verschieben",
+      "samplingWarning": "Feine Details sind eventuell nicht aufgelöst. Zum Prüfen hineinzoomen."
     }
   },
   "workspace": {

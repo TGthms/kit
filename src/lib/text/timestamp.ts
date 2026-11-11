@@ -24,13 +24,17 @@ function toMilliseconds(value: number, digits: number): number {
   return Math.round(value / 1e6);
 }
 
-export function parseTimestamp(input: string): TimestampParse {
+export type TimestampUnit = "auto" | "seconds" | "milliseconds" | "microseconds" | "nanoseconds";
+
+export function parseTimestamp(input: string, unit: TimestampUnit = "auto"): TimestampParse {
   const raw = input.trim();
   if (!raw) return { ok: false, error: "Empty value" };
 
   let ms: number;
   if (/^-?\d+(\.\d+)?$/.test(raw)) {
-    ms = toMilliseconds(Number(raw), integerDigitCount(raw));
+    const value = Number(raw);
+    ms = unit === "auto" ? toMilliseconds(value, integerDigitCount(raw))
+      : Math.round(value * ({ seconds: 1000, milliseconds: 1, microseconds: 1e-3, nanoseconds: 1e-6 }[unit]));
   } else {
     const parsed = Date.parse(raw);
     if (Number.isNaN(parsed)) return { ok: false, error: "Not a Unix time or date string" };

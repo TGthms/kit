@@ -1,13 +1,15 @@
 "use client";
+import { useToolJob } from "./use-tool-job";
+import { FileJobResult } from "./file-job-result";
 import { useEffect, useRef, useState, type PointerEvent as ReactPointerEvent } from "react";
 import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 import { FileDropzone, type FileItem } from "@/components/shared/file-dropzone";
 import { Input } from "@/components/ui/input";
 import { Field } from "@/components/ui/field";
-import { downloadBlob, extensionForMime } from "@/lib/utils";
+import { extensionForMime } from "@/lib/utils";
 import { cropImage } from "@/lib/image/core";
-import { ActionBar, DownloadResult, ToolShell, useToolHistory } from "./shared";
+import { ActionBar, ToolShell, useToolHistory } from "./shared";
 import { useTaskScope } from "@/lib/react/task-scope";
 
 function CropBox({
@@ -120,9 +122,9 @@ export function ImageCrop() {
   const [w, setW] = useState(400);
   const [h, setH] = useState(300);
   const [natural, setNatural] = useState({ width: 400, height: 300 });
-  const [loading, setLoading] = useState(false);
-  const [result, setResult] = useState<{ blob: Blob; name: string } | null>(null);
-  const [readyId, setReadyId] = useState<string | null>(null);
+  const job = useToolJob([files, x, y, w, h]);
+  const loading = job.loading;
+    const [readyId, setReadyId] = useState<string | null>(null);
   const source = useTaskScope();
   const imgRef = useRef<HTMLImageElement>(null);
 
@@ -144,28 +146,29 @@ export function ImageCrop() {
   const run = async () => {
     if (!files[0] || readyId !== files[0].id || loading) return;
     const current = source.capture();
-    setLoading(true);
+    const ac = job.start();
     try {
       const blob = await cropImage(files[0].file, { x, y, w, h });
       if (!current()) return;
       const name = `cropped.${extensionForMime(blob.type, "png")}`;
-      downloadBlob(blob, name);
-      setResult({ blob, name });
+      if (!job.complete(ac, [{ blob: blob, name: name }])) return;
+
       toast.success(t("success"));
       log(`${w}x${h}`, "success");
     } catch (e) {
+      if (!job.fail(ac, e)) return;
       if (!current()) return;
       toast.error(e instanceof Error ? e.message : tc("error"));
       log("failed", "failed");
     } finally {
-      if (current()) setLoading(false);
+      if (current()) job.stop(ac);
     }
   };
 
   return (
     <ToolShell toolId="image-crop">
       <FileDropzone accept="image/*" multiple={false} files={files} onChange={(next) => {
-        source.invalidate(); setFiles(next); setReadyId(null); setResult(null); setLoading(false);
+        source.invalidate(); setFiles(next); setReadyId(null);  job.cancel();
       }} />
       {files[0] ? (
         <div className="overflow-auto rounded-2xl border bg-card">
@@ -224,8 +227,9 @@ export function ImageCrop() {
           </Field>
         ))}
       </div>
-      <ActionBar onRun={run} loading={loading} label={t("run")} disabled={!files[0] || readyId !== files[0].id} />
-      <DownloadResult file={result} />
+      <ActionBar onCancel={job.cancel} onRun={run} loading={loading} label={t("run")} disabled={!files[0] || readyId !== files[0].id} />
+
+      <FileJobResult job={job} original={files[0]?.file} />
     </ToolShell>
   );
 }

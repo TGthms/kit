@@ -1,5 +1,6 @@
 "use client";
 
+import { useTaskScope } from "@/lib/react/task-scope";
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { toast } from "sonner";
@@ -20,14 +21,18 @@ export function ImagePalette() {
   const [maxColors, setMaxColors] = useState("6");
   const [loading, setLoading] = useState(false);
 
+  const task = useTaskScope();
+  const reset = () => { task.invalidate(); setLoading(false); setColors([]); };
   const run = async () => {
     if (!files[0]) {
       toast.error(t("needImage"));
       return;
     }
+    const current = task.begin();
     setLoading(true);
     try {
       const bmp = await createImageBitmap(files[0].file);
+      if (!current()) { bmp.close(); return; }
       const maxSide = 256;
       const scale = Math.min(1, maxSide / Math.max(bmp.width, bmp.height));
       const width = Math.max(1, Math.round(bmp.width * scale));
@@ -45,19 +50,20 @@ export function ImagePalette() {
       log(`${palette.length} colors`, "success");
       toast.success(t("success"));
     } catch (e) {
+      if (!current()) return;
       toast.error(e instanceof Error ? e.message : tc("error"));
       log("failed", "failed");
     } finally {
-      setLoading(false);
+      if (current()) setLoading(false);
     }
   };
 
   return (
     <ToolShell toolId="image-palette">
       <p className="text-sm text-muted-foreground">{t("limits")}</p>
-      <FileDropzone accept="image/*" multiple={false} files={files} onChange={setFiles} />
+      <FileDropzone accept="image/*" multiple={false} files={files} onChange={next => { reset(); setFiles(next); }} />
       <Field label={t("maxColors")}>
-        <Input type="number" min={1} max={24} value={maxColors} onChange={(e) => setMaxColors(e.target.value)} />
+        <Input type="number" min={1} max={24} value={maxColors} onChange={(e) => { reset(); setMaxColors(e.target.value); }} />
       </Field>
       <Button onClick={run} disabled={loading || !files[0]}>
         {loading ? tc("processing") : t("run")}

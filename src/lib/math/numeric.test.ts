@@ -92,3 +92,18 @@ describe("exact decimal labels", () => {
     },
   );
 });
+
+it("detects oscillations between regular samples without drawing a false flat line", async () => {
+  const { sampleNumeric } = await import("./numeric");
+  const result = sampleNumeric(x => Math.sin(1000 * Math.PI * x), { xMin: -10, xMax: 10, yMin: -2, yMax: 2 });
+  expect(result.undersampled).toBe(true);
+});
+it("keeps simple lines and separates the two sides of a pole", async () => {
+  const { sampleNumeric } = await import("./numeric");
+  const view = { xMin: -10, xMax: 10, yMin: -5, yMax: 5 };
+  const line = sampleNumeric(x => x / 2, view);
+  expect(line.undersampled).toBe(false);
+  expect(line.segments).toHaveLength(1);
+  const pole = sampleNumeric(x => 1 / x, view);
+  for (const segment of pole.segments) expect(segment.some(([x]) => x < 0) && segment.some(([x]) => x > 0)).toBe(false);
+});

@@ -127,7 +127,9 @@
     "fileRejectedEmpty": "没有加入可用文件。",
     "offlineIndicator": "离线：没有互联网连接",
     "moveEarlier": "向前移动",
-    "moveLater": "向后移动"
+    "moveLater": "向后移动",
+    "pdfFullDocumentLimit": "压缩支持不超过 {count} 页的完整 PDF。请先拆分较长的文档。",
+    "spreadsheetSafe": "保护电子表格公式（在单元格前添加英文单引号）"
   },
   "home": {
     "title": "今天有什么要做的？",
@@ -411,7 +413,8 @@
       "countdownLabel": "距 {year} 还有 {minutes} 分 {seconds} 秒。",
       "countdownLabelMinute": "距 {year} 还有 1 分 {seconds} 秒。",
       "countdownLabelSeconds": "距 {year} 还有 {seconds} 秒。"
-    }
+    },
+    "moreTools": "更多工具"
   },
   "categories": {
     "pdf": "PDF",
@@ -548,7 +551,9 @@
     "updateChecking": "正在检查更新…",
     "updatePreparing": "正在准备更新，准备就绪后 Kit 会通知你。",
     "updateCheckFailed": "无法检查更新，请检查网络连接后重试。",
-    "updateCheckUnavailable": "此处无法检查更新，请打开已安装的应用或 Kit 官方网站。"
+    "updateCheckUnavailable": "此处无法检查更新，请打开已安装的应用或 Kit 官方网站。",
+    "nightAppearance": "夜间外观",
+    "nightAppearanceDesc": "22:00–05:00 使用深色。手动更改持续到下次启动。"
   },
   "shortcuts": {
     "title": "键盘快捷键",
@@ -1105,7 +1110,8 @@
       "description": "在 Unix 时间与 ISO 之间转换。",
       "summary": "把 Unix 时间戳换成可读的日期和时间，或反过来，时区由你选。",
       "keywords": "unix 时间戳 iso",
-      "now": "使用现在"
+      "now": "使用现在",
+      "auto": "自动"
     },
     "cron-explain": {
       "name": "Cron 说明",
@@ -1113,7 +1119,14 @@
       "summary": "把五段式的 cron 表达式翻成一句普通话，让定时任务什么时候跑、多久跑一次一目了然。",
       "keywords": "cron 定时 计划",
       "run": "说明",
-      "success": "已说明。"
+      "success": "已说明。",
+      "schedule": "这些值按任务调度器的时区匹配。",
+      "dayRule": "如果同时限制日期和星期，匹配其中一项即可运行。",
+      "fieldmin": "分钟",
+      "fieldhour": "小时",
+      "fielddom": "日期",
+      "fieldmon": "月份",
+      "fielddow": "星期"
     },
     "number-base": {
       "name": "进制转换",
@@ -2254,7 +2267,8 @@
       "approximate": "坐标为数值近似值。横线表示函数在此处未定义。",
       "scope": "支持最多八个具名实函数。a、b、c 控制共享滑块，d(x)+g(x) 可组合函数。支持根式、幂、对数、绝对值和三角函数。",
       "expressions": "表达式",
-      "pan": "平移"
+      "pan": "平移",
+      "samplingWarning": "细节可能未完全呈现，请放大检查。"
     }
   },
   "workspace": {

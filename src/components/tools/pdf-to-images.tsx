@@ -1,11 +1,13 @@
 "use client";
+import { useToolJob } from "./use-tool-job";
+import { FileJobResult } from "./file-job-result";
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 import JSZip from "jszip";
 import { FileDropzone, type FileItem } from "@/components/shared/file-dropzone";
-import { downloadBlob } from "@/lib/utils";
-import { ActionBar, ToolLimits, ToolShell, useToolHistory, useToolJob, loadPdfjs } from "./shared";
+
+import { ActionBar, ToolLimits, ToolShell, useToolHistory, loadPdfjs } from "./shared";
 import { Progress } from "@/components/ui/progress";
 
 export function PdfToImages() {
@@ -13,7 +15,7 @@ export function PdfToImages() {
   const tc = useTranslations("common");
   const log = useToolHistory("pdf-to-images");
   const [files, setFiles] = useState<FileItem[]>([]);
-  const job = useToolJob();
+  const job = useToolJob([files]);
 
   const run = async () => {
     if (!files[0]) return;
@@ -24,17 +26,18 @@ export function PdfToImages() {
         mime: "image/jpeg",
         scale: 1.6,
         signal: ac.signal,
-        onProgress: (ratio) => job.setProgress(Math.round(ratio * 100)),
+        onProgress: (ratio) => job.report(ac, Math.round(ratio * 100)),
       });
       if (raster.truncated) {
         toast.warning(tc("pdfPageCap", { total: raster.totalPages, processed: raster.processedPages }));
       }
       const zip = new JSZip();
       raster.blobs.forEach((blob: Blob, i: number) => zip.file(`page-${String(i + 1).padStart(3, "0")}.jpg`, blob));
-      downloadBlob(await zip.generateAsync({ type: "blob" }), "pdf-pages.zip");
+      if (!job.complete(ac, [{ blob: await zip.generateAsync({ type: "blob" }), name: "pdf-pages.zip" }])) return;
       toast.success(t("success", { count: raster.blobs.length }));
       log(`${raster.blobs.length} pages`, "success");
     } catch (e) {
+      if (!job.fail(ac, e)) return;
       if (e instanceof DOMException && e.name === "AbortError") {
         toast.error(tc("cancel"));
       } else {
@@ -60,6 +63,7 @@ export function PdfToImages() {
         disabled={!files[0]}
         onCancel={job.cancel}
       />
+      <FileJobResult job={job} />
     </ToolShell>
   );
 }

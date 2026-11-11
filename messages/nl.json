@@ -127,7 +127,9 @@
     "fileRejectedEmpty": "Er zijn geen bruikbare bestanden toegevoegd.",
     "offlineIndicator": "Offline: geen internetverbinding",
     "moveEarlier": "Eerder plaatsen",
-    "moveLater": "Later plaatsen"
+    "moveLater": "Later plaatsen",
+    "pdfFullDocumentLimit": "Compressie ondersteunt volledige pdf’s tot {count} pagina’s. Splits langere documenten eerst.",
+    "spreadsheetSafe": "Spreadsheetformules beveiligen (apostrof voor cellen plaatsen)"
   },
   "home": {
     "title": "Wat wil je doen?",
@@ -411,7 +413,8 @@
       "countdownLabel": "{minutes} minuten en {seconds} seconden tot {year}.",
       "countdownLabelMinute": "1 minuut en {seconds} seconden tot {year}.",
       "countdownLabelSeconds": "{seconds} seconden tot {year}."
-    }
+    },
+    "moreTools": "Meer hulpmiddelen"
   },
   "categories": {
     "pdf": "PDF",
@@ -548,7 +551,9 @@
     "updateChecking": "Controleren op updates…",
     "updatePreparing": "Er wordt een update voorbereid. Kit laat het weten zodra deze klaar is.",
     "updateCheckFailed": "Kon niet op updates controleren. Controleer je verbinding en probeer het opnieuw.",
-    "updateCheckUnavailable": "Hier kun je niet op updates controleren. Open de geïnstalleerde app of de officiële website van Kit."
+    "updateCheckUnavailable": "Hier kun je niet op updates controleren. Open de geïnstalleerde app of de officiële website van Kit.",
+    "nightAppearance": "Nachtweergave",
+    "nightAppearanceDesc": "Gebruik Donker van 22:00 tot 05:00. Handmatige wijzigingen gelden tot de volgende start."
   },
   "shortcuts": {
     "title": "Sneltoetsen",
@@ -1105,7 +1110,8 @@
       "description": "Zet Unix-tijd om naar ISO en terug.",
       "summary": "Zet een Unix-tijdstempel om in een leesbare datum en tijd, of andersom, in de tijdzone die je kiest.",
       "keywords": "unix epoch tijdstempel iso datum",
-      "now": "Nu gebruiken"
+      "now": "Nu gebruiken",
+      "auto": "Automatisch"
     },
     "cron-explain": {
       "name": "Cron uitleggen",
@@ -1113,7 +1119,14 @@
       "summary": "Vertaal een cron-uitdrukking met vijf velden naar een gewone zin, zodat duidelijk is wanneer en hoe vaak een taak loopt.",
       "keywords": "cron planning crontab uitleggen",
       "run": "Uitleggen",
-      "success": "Uitgelegd."
+      "success": "Uitgelegd.",
+      "schedule": "Deze waarden gelden in de tijdzone van de planner.",
+      "dayRule": "Zijn beide dagvelden beperkt, dan hoeft slechts één overeen te komen.",
+      "fieldmin": "Minuten",
+      "fieldhour": "Uren",
+      "fielddom": "Dag van de maand",
+      "fieldmon": "Maand",
+      "fielddow": "Weekdag"
     },
     "number-base": {
       "name": "Getallenstelsel",
@@ -2254,7 +2267,8 @@
       "approximate": "Coördinaten zijn numerieke benaderingen. Een streep betekent dat de functie onbepaald is.",
       "scope": "Tot acht benoemde reële functies. a, b, c zijn schuifregelaars, d(x)+g(x) combineert functies. Wortels, machten, logaritmen, absolute waarden en goniometrie.",
       "expressions": "Uitdrukkingen",
-      "pan": "Verschuiven"
+      "pan": "Verschuiven",
+      "samplingWarning": "Fijne details zijn mogelijk niet zichtbaar. Zoom in om ze te bekijken."
     }
   },
   "workspace": {

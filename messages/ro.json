@@ -127,7 +127,9 @@
     "fileRejectedEmpty": "Nu au fost adăugate fișiere utilizabile.",
     "offlineIndicator": "Offline: fără conexiune la internet",
     "moveEarlier": "Mută mai devreme",
-    "moveLater": "Mută mai târziu"
+    "moveLater": "Mută mai târziu",
+    "pdfFullDocumentLimit": "Comprimarea acceptă PDF-uri complete de până la {count} pagini. Împarte mai întâi documentele mai lungi.",
+    "spreadsheetSafe": "Protejează formulele foii de calcul (prefixează celulele cu apostrof)"
   },
   "home": {
     "title": "Ce ai de făcut?",
@@ -411,7 +413,8 @@
       "countdownLabel": "{minutes} minute și {seconds} secunde până în {year}.",
       "countdownLabelMinute": "1 minut și {seconds} secunde până la {year}.",
       "countdownLabelSeconds": "{seconds} secunde până la {year}."
-    }
+    },
+    "moreTools": "Mai multe instrumente"
   },
   "categories": {
     "pdf": "PDF",
@@ -548,7 +551,9 @@
     "updateChecking": "Se caută actualizări…",
     "updatePreparing": "Se pregătește o actualizare. Kit te va anunța când este gata.",
     "updateCheckFailed": "Nu s-au putut căuta actualizări. Verifică conexiunea și încearcă din nou.",
-    "updateCheckUnavailable": "Căutarea actualizărilor nu este disponibilă aici. Deschide aplicația instalată sau site-ul oficial Kit."
+    "updateCheckUnavailable": "Căutarea actualizărilor nu este disponibilă aici. Deschide aplicația instalată sau site-ul oficial Kit.",
+    "nightAppearance": "Aspect nocturn",
+    "nightAppearanceDesc": "Folosește modul întunecat între 22:00 și 05:00. Modificările manuale durează până la următoarea pornire."
   },
   "shortcuts": {
     "title": "Scurtături de tastatură",
@@ -1105,7 +1110,8 @@
       "description": "Convertește timpul Unix în ISO și înapoi.",
       "summary": "Convertește un timestamp Unix într-o dată și o oră lizibile, sau invers, în fusul orar ales.",
       "keywords": "unix epoch marcaj iso dată",
-      "now": "Folosește acum"
+      "now": "Folosește acum",
+      "auto": "Automat"
     },
     "cron-explain": {
       "name": "Explicator cron",
@@ -1113,7 +1119,14 @@
       "summary": "Transformă o expresie cron cu cinci câmpuri într-o propoziție simplă, ca să fie clar când rulează o sarcină programată.",
       "keywords": "cron program crontab explică",
       "run": "Explică",
-      "success": "Explicat."
+      "success": "Explicat.",
+      "schedule": "Aceste valori folosesc fusul orar al planificatorului.",
+      "dayRule": "Dacă ambele câmpuri de zi sunt restricționate, este suficient să corespundă unul.",
+      "fieldmin": "Minute",
+      "fieldhour": "Ore",
+      "fielddom": "Ziua lunii",
+      "fieldmon": "Luna",
+      "fielddow": "Ziua săptămânii"
     },
     "number-base": {
       "name": "Bază numerică",
@@ -2254,7 +2267,8 @@
       "approximate": "Coordonatele sunt aproximări numerice. O liniuță indică o funcție nedefinită.",
       "scope": "Până la opt funcții reale cu nume. a, b, c sunt glisoare; d(x)+g(x) combină funcții. Rădăcini, puteri, logaritmi, valori absolute și trigonometrie.",
       "expressions": "Expresii",
-      "pan": "Deplasare"
+      "pan": "Deplasare",
+      "samplingWarning": "Detaliile fine pot lipsi. Mărește pentru a le examina."
     }
   },
   "workspace": {

@@ -127,7 +127,9 @@
     "fileRejectedEmpty": "Ingen brukbare filer ble lagt til.",
     "offlineIndicator": "Frakoblet: ingen internettforbindelse",
     "moveEarlier": "Flytt tidligere",
-    "moveLater": "Flytt senere"
+    "moveLater": "Flytt senere",
+    "pdfFullDocumentLimit": "Komprimering støtter hele PDF-filer på opptil {count} sider. Del lengre dokumenter først.",
+    "spreadsheetSafe": "Beskytt regnearkformler (sett apostrof foran celler)"
   },
   "home": {
     "title": "Hva trenger du å gjøre?",
@@ -411,7 +413,8 @@
       "countdownLabel": "{minutes} minutter og {seconds} sekunder til {year}.",
       "countdownLabelMinute": "1 minutt og {seconds} sekunder til {year}.",
       "countdownLabelSeconds": "{seconds} sekunder til {year}."
-    }
+    },
+    "moreTools": "Flere verktøy"
   },
   "categories": {
     "pdf": "PDF",
@@ -548,7 +551,9 @@
     "updateChecking": "Ser etter oppdateringer…",
     "updatePreparing": "En oppdatering klargjøres. Kit gir beskjed når den er klar.",
     "updateCheckFailed": "Kunne ikke se etter oppdateringer. Sjekk tilkoblingen og prøv igjen.",
-    "updateCheckUnavailable": "Oppdateringer kan ikke sjekkes her. Åpne den installerte appen eller Kits offisielle nettsted."
+    "updateCheckUnavailable": "Oppdateringer kan ikke sjekkes her. Åpne den installerte appen eller Kits offisielle nettsted.",
+    "nightAppearance": "Nattvisning",
+    "nightAppearanceDesc": "Bruk Mørk fra 22.00 til 05.00. Manuelle endringer gjelder til neste oppstart."
   },
   "shortcuts": {
     "title": "Tastatursnarveier",
@@ -1105,7 +1110,8 @@
       "description": "Konverter Unix-tid til ISO og tilbake.",
       "summary": "Konverter et Unix-tidsstempel til en lesbar dato og tid, eller motsatt vei, i tidssonen du velger.",
       "keywords": "unix epoch tidsstempel iso dato",
-      "now": "Bruk nå"
+      "now": "Bruk nå",
+      "auto": "Automatisk"
     },
     "cron-explain": {
       "name": "Forklar cron",
@@ -1113,7 +1119,14 @@
       "summary": "Gjør et cron-uttrykk med fem felt om til en vanlig setning, så det er tydelig når en planlagt jobb kjører og hvor ofte.",
       "keywords": "cron tidsplan crontab forklare",
       "run": "Forklar",
-      "success": "Forklart."
+      "success": "Forklart.",
+      "schedule": "Disse verdiene gjelder i planleggerens tidssone.",
+      "dayRule": "Hvis begge dagfeltene er begrenset, holder det at ett samsvarer.",
+      "fieldmin": "Minutter",
+      "fieldhour": "Timer",
+      "fielddom": "Dag i måneden",
+      "fieldmon": "Måned",
+      "fielddow": "Ukedag"
     },
     "number-base": {
       "name": "Tallbase",
@@ -2254,7 +2267,8 @@
       "approximate": "Koordinater er numeriske tilnærminger. En strek betyr at funksjonen er udefinert.",
       "scope": "Opptil åtte navngitte reelle funksjoner. a, b, c er skyveknapper, d(x)+g(x) kombinerer funksjoner. Røtter, potenser, logaritmer, absoluttverdi og trigonometri.",
       "expressions": "Uttrykk",
-      "pan": "Flytt"
+      "pan": "Flytt",
+      "samplingWarning": "Fine detaljer kan mangle. Zoom inn for å undersøke dem."
     }
   },
   "workspace": {

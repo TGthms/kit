@@ -1,11 +1,13 @@
 "use client";
+import { useToolJob } from "./use-tool-job";
+import { FileJobResult } from "./file-job-result";
 import { useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 import { FileDropzone, type FileItem } from "@/components/shared/file-dropzone";
-import { downloadBlob, bytesToBlob } from "@/lib/utils";
+import { bytesToBlob } from "@/lib/utils";
 import { Progress } from "@/components/ui/progress";
-import { ActionBar, DownloadResult, ToolShell, useToolHistory, useToolJob, loadPdfjs } from "./shared";
+import { ActionBar, ToolShell, useToolHistory, loadPdfjs } from "./shared";
 import { mergePdfs } from "@/lib/pdf/core";
 import { replaceObjectUrlRecord, revokeObjectUrls } from "@/lib/files/object-url";
 
@@ -15,9 +17,8 @@ export function PdfMerge() {
   const log = useToolHistory("pdf-merge");
   const [files, setFiles] = useState<FileItem[]>([]);
   const [thumbs, setThumbs] = useState<Record<string, string>>({});
-  const job = useToolJob();
-  const [result, setResult] = useState<{ blob: Blob; name: string } | null>(null);
-  const thumbsGen = useRef(0);
+  const job = useToolJob([files]);
+    const thumbsGen = useRef(0);
   const thumbsRef = useRef(thumbs);
 
   useEffect(() => {
@@ -74,17 +75,18 @@ export function PdfMerge() {
       for (let i = 0; i < files.length; i += 1) {
         if (ac.signal.aborted) throw new DOMException("Aborted", "AbortError");
         buffers.push(await files[i].file.arrayBuffer());
-        job.setProgress(Math.round(((i + 1) / (files.length + 1)) * 100));
+        job.report(ac, Math.round(((i + 1) / (files.length + 1)) * 100));
       }
       const out = await mergePdfs(buffers);
       if (ac.signal.aborted) throw new DOMException("Aborted", "AbortError");
-      job.setProgress(100);
+      job.report(ac, 100);
       const blob = bytesToBlob(out, "application/pdf");
-      downloadBlob(blob, "merged.pdf");
-      setResult({ blob, name: "merged.pdf" });
+      if (!job.complete(ac, [{ blob: blob, name: "merged.pdf" }])) return;
+
       toast.success(t("success", { count: files.length }));
       log(`${files.length} files`, "success");
     } catch (e) {
+      if (!job.fail(ac, e)) return;
       if (e instanceof DOMException && e.name === "AbortError") {
         toast.error(tc("cancel"));
       } else {
@@ -117,7 +119,8 @@ export function PdfMerge() {
       {files.length > 1 ? <p className="text-xs text-muted-foreground">{tc("reorder")}</p> : null}
       {job.loading ? <Progress value={job.progress} /> : null}
       <ActionBar onRun={run} loading={job.loading} label={t("run")} disabled={files.length < 2} onCancel={job.cancel} />
-      <DownloadResult file={result} />
+
+      <FileJobResult job={job} />
     </ToolShell>
   );
 }

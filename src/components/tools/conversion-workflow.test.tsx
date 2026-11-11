@@ -18,6 +18,7 @@ vi.mock("@/components/shared/file-dropzone", () => ({ FileDropzone: ({ onChange 
   <button onClick={() => onChange(["first", "second"].map((text) => ({ id: text, file: Object.assign(new NodeBlob([text]), { name: "report.txt" }) })))}>Reports</button>
   <button onClick={() => onChange([{ id: "image", file: Object.assign(new NodeBlob(["png"], { type: "image/png" }), { name: "photo.png" }) }])}>Image</button>
 </> }));
+vi.mock("@/components/workspace/use-in", () => ({ UseIn: () => null }));
 import { ConvertHub } from "./convert-tools";
 afterEach(() => { cleanup(); vi.clearAllMocks(); vi.unstubAllGlobals(); });
 
@@ -27,7 +28,10 @@ it("exports both same-name inputs with their original contents", async () => {
   fireEvent.click(screen.getByText("Reports"));
   expect(screen.getAllByRole("option").map((option) => option.textContent)).toEqual(["ZIP"]);
   await act(async () => fireEvent.click(screen.getByText("Run")));
-  await waitFor(() => expect(output.download).toHaveBeenCalledOnce());
+  await waitFor(() => expect(screen.getByRole("button", { name: "download" })).toBeEnabled());
+  expect(output.download).not.toHaveBeenCalled();
+  await act(async () => fireEvent.click(screen.getByRole("button", { name: "download" })));
+  expect(output.download).toHaveBeenCalledOnce();
   const [blob, name] = output.download.mock.calls[0];
   expect(name).toBe("archive.zip");
   const zip = await JSZip.loadAsync(await blob.arrayBuffer());
@@ -43,5 +47,8 @@ it("never offers JSON for images and derives the saved extension from the actual
   fireEvent.change(screen.getByLabelText("chooseOutput"), { target: { value: "webp" } });
   await act(async () => fireEvent.click(screen.getByText("Run")));
   expect(output.image.mock.calls[0][1]).toBe("image/webp");
+  expect(screen.getByText("converted.png")).toBeVisible();
+  expect(output.download).not.toHaveBeenCalled();
+  await act(async () => fireEvent.click(screen.getByRole("button", { name: "download" })));
   expect(output.download.mock.calls[0][1]).toBe("converted.png");
 });

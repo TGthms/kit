@@ -127,7 +127,9 @@
     "fileRejectedEmpty": "Käyttökelpoisia tiedostoja ei lisätty.",
     "offlineIndicator": "Offline: ei internetyhteyttä",
     "moveEarlier": "Siirrä aiemmaksi",
-    "moveLater": "Siirrä myöhemmäksi"
+    "moveLater": "Siirrä myöhemmäksi",
+    "pdfFullDocumentLimit": "Pakkaus tukee kokonaisia PDF-tiedostoja, joissa on enintään {count} sivua. Jaa pidemmät asiakirjat ensin.",
+    "spreadsheetSafe": "Suojaa taulukkolaskennan kaavat (lisää soluihin heittomerkki)"
   },
   "home": {
     "title": "Mitä haluat tehdä?",
@@ -411,7 +413,8 @@
       "countdownLabel": "{minutes} minuuttia ja {seconds} sekuntia vuoteen {year}.",
       "countdownLabelMinute": "1 minuutti ja {seconds} sekuntia {year} asti.",
       "countdownLabelSeconds": "{seconds} sekuntia {year} asti."
-    }
+    },
+    "moreTools": "Lisää työkaluja"
   },
   "categories": {
     "pdf": "PDF",
@@ -548,7 +551,9 @@
     "updateChecking": "Tarkistetaan päivityksiä…",
     "updatePreparing": "Päivitystä valmistellaan. Kit ilmoittaa, kun se on valmis.",
     "updateCheckFailed": "Päivityksiä ei voitu tarkistaa. Tarkista yhteys ja yritä uudelleen.",
-    "updateCheckUnavailable": "Päivitysten tarkistus ei ole käytettävissä täällä. Avaa asennettu sovellus tai Kitin virallinen sivusto."
+    "updateCheckUnavailable": "Päivitysten tarkistus ei ole käytettävissä täällä. Avaa asennettu sovellus tai Kitin virallinen sivusto.",
+    "nightAppearance": "Yöulkoasu",
+    "nightAppearanceDesc": "Käytä tummaa tilaa klo 22–05. Manuaaliset muutokset säilyvät seuraavaan käynnistykseen."
   },
   "shortcuts": {
     "title": "Pikanäppäimet",
@@ -1105,7 +1110,8 @@
       "description": "Muunna Unix-aika ISO-muotoon ja takaisin.",
       "summary": "Muunna Unix-aikaleima luettavaksi päivämääräksi ja ajaksi tai toisin päin valitsemassasi aikavyöhykkeessä.",
       "keywords": "unix epoch aikaleima iso päivämäärä",
-      "now": "Käytä nykyhetkeä"
+      "now": "Käytä nykyhetkeä",
+      "auto": "Automaattinen"
     },
     "cron-explain": {
       "name": "Cron-selittäjä",
@@ -1113,7 +1119,14 @@
       "summary": "Muunna viisikenttäinen cron-lauseke tavalliseksi lauseeksi, jotta näkyy selvästi, milloin ajastettu tehtävä ajetaan ja kuinka usein.",
       "keywords": "cron aikataulu crontab selitä",
       "run": "Selitä",
-      "success": "Selitetty."
+      "success": "Selitetty.",
+      "schedule": "Nämä arvot käyttävät ajastimen aikavyöhykettä.",
+      "dayRule": "Jos molempia päiväkenttiä rajoitetaan, yhden täsmääminen riittää.",
+      "fieldmin": "Minuutit",
+      "fieldhour": "Tunnit",
+      "fielddom": "Kuukauden päivä",
+      "fieldmon": "Kuukausi",
+      "fielddow": "Viikonpäivä"
     },
     "number-base": {
       "name": "Lukujärjestelmä",
@@ -2254,7 +2267,8 @@
       "approximate": "Koordinaatit ovat numeerisia likiarvoja. Viiva tarkoittaa määrittelemätöntä arvoa.",
       "scope": "Enintään kahdeksan nimettyä reaalifunktiota. a, b, c ovat liukusäätimiä, d(x)+g(x) yhdistää funktioita. Juuret, potenssit, logaritmit, itseisarvot ja trigonometria.",
       "expressions": "Lausekkeet",
-      "pan": "Siirrä"
+      "pan": "Siirrä",
+      "samplingWarning": "Pieniä yksityiskohtia voi puuttua. Lähennä tarkastelua varten."
     }
   },
   "workspace": {

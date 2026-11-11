@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState, type ReactNode } from "react";
+import { useCallback, useEffect, type ReactNode } from "react";
 import { useTranslations } from "next-intl";
 import { LoaderCircle } from "lucide-react";
 import type { ToolId } from "@/lib/tools/registry";
@@ -20,39 +20,7 @@ export async function loadFfmpeg() {
   return import("@/lib/media/ffmpeg");
 }
 
-export function useToolJob() {
-  const controller = useRef<AbortController | null>(null);
-  const [loading, setLoading] = useState(false);
-  const [progress, setProgress] = useState(0);
-
-  useEffect(
-    () => () => {
-      controller.current?.abort();
-    },
-    []
-  );
-
-  const start = () => {
-    controller.current?.abort();
-    const ac = new AbortController();
-    controller.current = ac;
-    setLoading(true);
-    setProgress(0);
-    return ac;
-  };
-
-  const stop = (ac?: AbortController) => {
-    // A rapid double-start aborts run A while run B is already the current
-    // controller; A's finally must not hide B's Cancel button.
-    if (ac && controller.current !== ac) return;
-    setLoading(false);
-    controller.current = null;
-  };
-
-  const cancel = () => controller.current?.abort();
-
-  return { loading, progress, setProgress, start, stop, cancel };
-}
+export { useToolJob } from "./use-tool-job";
 
 export function useToolHistory(toolId: ToolId) {
   const add = useHistoryStore((s) => s.add);
@@ -192,14 +160,16 @@ export function ToolLimits({ children }: { children: ReactNode }) {
 export function ToolShell({
   toolId,
   children,
+  result,
 }: {
   toolId: ToolId;
   children: ReactNode;
+  result?: ReactNode;
 }) {
   return (
     <div data-tool={toolId}>
       {["scientific-calculator", "function-grapher", "equation-solver", "fraction-calculator"].includes(toolId) && <MathKeyboardAccessory/>}
-      <div className="space-y-6">{children}</div>
+      {result ? <div className="grid items-start gap-6 xl:grid-cols-[minmax(18rem,0.8fr)_minmax(0,1.2fr)]"><div className="min-w-0 space-y-6">{children}</div><div className="min-w-0 rounded-2xl border border-border/50 bg-card/30 p-4">{result}</div></div> : <div className="space-y-6">{children}</div>}
     </div>
   );
 }

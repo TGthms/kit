@@ -17,13 +17,29 @@ export function formatJson(input: string, minify = false): { ok: true; text: str
 
 export function formatYaml(input: string): { ok: true; text: string } | { ok: false; error: string } {
   try {
-    assertTextBudget(input);
-    const data = YAML.parse(input);
-    assertJsonBudget(data);
+    const data = parseToolYaml(input);
     return { ok: true, text: YAML.stringify(data) };
   } catch (e) {
     return { ok: false, error: e instanceof Error ? e.message : String(e) };
   }
+}
+
+export function parseToolYaml(input: string): unknown {
+  assertTextBudget(input);
+  const data: unknown = YAML.parse(input, { intAsBigInt: true });
+  assertJsonBudget(data);
+  const normalize = (value: unknown): unknown => {
+    if (typeof value === "bigint") {
+      const number = Number(value);
+      if (!Number.isSafeInteger(number)) throw new RangeError("An integer would lose precision. Quote it to preserve its exact value.");
+      return number;
+    }
+    if (typeof value === "number" && !Number.isFinite(value)) throw new RangeError("Non-finite numbers cannot be converted to JSON safely.");
+    if (Array.isArray(value)) return value.map(normalize);
+    if (value && typeof value === "object") return Object.fromEntries(Object.entries(value).map(([key, entry]) => [key, normalize(entry)]));
+    return value;
+  };
+  return normalize(data);
 }
 
 /**
@@ -61,11 +77,11 @@ export function csvToJson(csv: string): { ok: true; text: string } | { ok: false
   return { ok: true, text: JSON.stringify(parsed.data, null, 2) };
 }
 
-export function jsonToCsv(json: string): { ok: true; text: string } | { ok: false; error: string } {
+export function jsonToCsv(json: string, spreadsheetSafe = true): { ok: true; text: string } | { ok: false; error: string } {
   try {
     const data = parseToolJson(json);
     if (!Array.isArray(data)) return { ok: false, error: "JSON must be an array of objects" };
-    return { ok: true, text: Papa.unparse(data) };
+    return { ok: true, text: Papa.unparse(data, { escapeFormulae: spreadsheetSafe }) };
   } catch (e) {
     return { ok: false, error: e instanceof Error ? e.message : String(e) };
   }

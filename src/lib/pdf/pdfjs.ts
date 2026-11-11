@@ -268,6 +268,9 @@ export async function compressPdfLossy(
   const { doc: src, loadingTask } = await openPdfDocument(data);
   try {
     const window = pdfPageWindow(src.numPages);
+    // Compression must preserve a whole document. Exporting only its beginning
+    // under a normal PDF filename is unsafe even with a transient warning.
+    if (window.truncated) throw new RangeError("pdfFullDocumentLimit");
     const out = await PDFDocument.create();
 
     await forEachJobIndex(
@@ -288,8 +291,8 @@ export async function compressPdfLossy(
         );
         const pageBytes = new Uint8Array(await blob.arrayBuffer());
         const img = await out.embedJpg(pageBytes);
-        const p = out.addPage([size.width, size.height]);
-        p.drawImage(img, { x: 0, y: 0, width: size.width, height: size.height });
+        const p = out.addPage([base.width, base.height]);
+        p.drawImage(img, { x: 0, y: 0, width: base.width, height: base.height });
       },
       { signal: opts?.signal, onProgress: opts?.onProgress }
     );

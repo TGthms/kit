@@ -1,4 +1,7 @@
 "use client";
+import { mediaMime } from "@/lib/media/ffmpeg-args";
+import { useToolJob } from "./use-tool-job";
+import { FileJobResult } from "./file-job-result";
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { toast } from "sonner";
@@ -6,9 +9,9 @@ import { FileDropzone, type FileItem } from "@/components/shared/file-dropzone";
 import { Field } from "@/components/ui/field";
 import { Slider } from "@/components/ui/slider";
 import { Progress } from "@/components/ui/progress";
-import { downloadBlob, bytesToBlob } from "@/lib/utils";
+import { bytesToBlob } from "@/lib/utils";
 import { videoSpeedArgs, videoSpeedVideoOnlyArgs } from "@/lib/media/ffmpeg-args";
-import { ActionBar, ToolShell, useToolHistory, useToolJob, loadFfmpeg } from "./shared";
+import { ActionBar, ToolShell, useToolHistory, loadFfmpeg } from "./shared";
 import { isMissingAudioError } from "./video-shared";
 
 export function VideoSpeed() {
@@ -18,7 +21,7 @@ export function VideoSpeed() {
   const [files, setFiles] = useState<FileItem[]>([]);
   const [speed, setSpeed] = useState(1.25);
   const [volume, setVolume] = useState(1);
-  const job = useToolJob();
+  const job = useToolJob([files, speed, volume]);
 
   const run = async () => {
     if (!files[0]) return;
@@ -36,7 +39,7 @@ export function VideoSpeed() {
           data,
           output,
           videoSpeedArgs(input, output, speed, volume),
-          (p) => job.setProgress(Math.round(p * 100)),
+          (p) => job.report(ac, Math.round(p * 100)),
           ac.signal
         );
       } catch (err) {
@@ -47,14 +50,15 @@ export function VideoSpeed() {
           data,
           output,
           videoSpeedVideoOnlyArgs(input, output, speed),
-          (p) => job.setProgress(Math.round(p * 100)),
+          (p) => job.report(ac, Math.round(p * 100)),
           ac.signal
         );
       }
-      downloadBlob(bytesToBlob(out, "application/octet-stream"), output);
+      if (!job.complete(ac, [{ blob: bytesToBlob(out, mediaMime(ext)), name: output }])) return;
       toast.success(t("success"));
       log(`speed=${speed}`, "success");
     } catch (e) {
+      if (!job.fail(ac, e)) return;
       if (e instanceof DOMException && e.name === "AbortError") {
         toast.error(tc("cancel"));
       } else {
@@ -83,6 +87,7 @@ export function VideoSpeed() {
         disabled={!files[0]}
         onCancel={job.cancel}
       />
+      <FileJobResult job={job} />
     </ToolShell>
   );
 }

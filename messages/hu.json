@@ -127,7 +127,9 @@
     "fileRejectedEmpty": "Nem került hozzá használható fájl.",
     "offlineIndicator": "Offline: nincs internetkapcsolat",
     "moveEarlier": "Előrébb helyezés",
-    "moveLater": "Hátrébb helyezés"
+    "moveLater": "Hátrébb helyezés",
+    "pdfFullDocumentLimit": "A tömörítés legfeljebb {count} oldalas teljes PDF-eket támogat. A hosszabb dokumentumokat előbb bontsa részekre.",
+    "spreadsheetSafe": "Táblázatképletek védelme (aposztróf a cellák elé)"
   },
   "home": {
     "title": "Mit szeretnél csinálni?",
@@ -411,7 +413,8 @@
       "countdownLabel": "{minutes} perc és {seconds} másodperc {year}-ig.",
       "countdownLabelMinute": "1 perc és {seconds} másodperc {year}-ig.",
       "countdownLabelSeconds": "{seconds} másodperc {year}-ig."
-    }
+    },
+    "moreTools": "További eszközök"
   },
   "categories": {
     "pdf": "PDF",
@@ -548,7 +551,9 @@
     "updateChecking": "Frissítések keresése…",
     "updatePreparing": "Egy frissítés előkészítése folyamatban van. A Kit értesít, amint elkészült.",
     "updateCheckFailed": "Nem sikerült ellenőrizni a frissítéseket. Ellenőrizd a kapcsolatot, és próbáld újra.",
-    "updateCheckUnavailable": "Itt nem érhető el a frissítések keresése. Nyisd meg a telepített alkalmazást vagy a Kit hivatalos webhelyét."
+    "updateCheckUnavailable": "Itt nem érhető el a frissítések keresése. Nyisd meg a telepített alkalmazást vagy a Kit hivatalos webhelyét.",
+    "nightAppearance": "Éjszakai megjelenés",
+    "nightAppearanceDesc": "Sötét mód 22:00 és 05:00 között. A kézi módosítások a következő indításig érvényesek."
   },
   "shortcuts": {
     "title": "Billentyűparancsok",
@@ -1105,7 +1110,8 @@
       "description": "Unix-idő konvertálása ISO-ra és vissza.",
       "summary": "Unix időbélyeg átalakítása olvasható dátummá és idővé, vagy fordítva, a választott időzónában.",
       "keywords": "unix epoch időbélyeg iso dátum",
-      "now": "Most használata"
+      "now": "Most használata",
+      "auto": "Automatikus"
     },
     "cron-explain": {
       "name": "Cron-magyarázó",
@@ -1113,7 +1119,14 @@
       "summary": "Ötmezős cron-kifejezés átalakítása egyszerű mondattá, hogy világos legyen, mikor és milyen gyakran fut egy ütemezett feladat.",
       "keywords": "cron ütemezés crontab magyarázat",
       "run": "Magyarázat",
-      "success": "Megmagyarázva."
+      "success": "Megmagyarázva.",
+      "schedule": "Ezek az értékek az ütemező időzónájában érvényesek.",
+      "dayRule": "Ha mindkét napmező korlátozott, bármelyik egyezése elegendő.",
+      "fieldmin": "Percek",
+      "fieldhour": "Órák",
+      "fielddom": "A hónap napja",
+      "fieldmon": "Hónap",
+      "fielddow": "A hét napja"
     },
     "number-base": {
       "name": "Számrendszer",
@@ -2254,7 +2267,8 @@
       "approximate": "A koordináták numerikus közelítések. A vonás nem értelmezett függvényt jelez.",
       "scope": "Legfeljebb nyolc elnevezett valós függvény. a, b, c csúszkák; d(x)+g(x) függvényeket kapcsol össze. Gyökök, hatványok, logaritmusok, abszolútérték és trigonometria.",
       "expressions": "Kifejezések",
-      "pan": "Mozgatás"
+      "pan": "Mozgatás",
+      "samplingWarning": "Az apró részletek hiányozhatnak. Nagyítson az ellenőrzéshez."
     }
   },
   "workspace": {

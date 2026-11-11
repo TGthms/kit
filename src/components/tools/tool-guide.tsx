@@ -37,7 +37,7 @@ export async function ToolGuide({ toolId }: { toolId: ToolId }) {
   const related = relatedTools(toolId);
 
   return (
-    <div className="mt-10 space-y-10">
+    <div className="mt-8 space-y-6">
       {related.length ? (
         <section aria-labelledby="kit-related">
           <h2 id="kit-related" className="type-title text-lg font-semibold tracking-[-0.015em]">
@@ -59,10 +59,10 @@ export async function ToolGuide({ toolId }: { toolId: ToolId }) {
         </section>
       ) : null}
 
-      <section aria-labelledby="kit-tool-faq">
-        <h2 id="kit-tool-faq" className="type-title text-lg font-semibold tracking-[-0.015em]">
+      <details className="rounded-2xl border border-border/50 bg-card/40 p-4">
+        <summary className="cursor-pointer text-sm font-medium">
           {tHow("faqTitle")}
-        </h2>
+        </summary>
         <dl className="mt-3 space-y-5">
           {TOOL_FAQ.map(([question, answer]) => (
             <div key={question}>
@@ -71,7 +71,7 @@ export async function ToolGuide({ toolId }: { toolId: ToolId }) {
             </div>
           ))}
         </dl>
-      </section>
+      </details>
     </div>
   );
 }

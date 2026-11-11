@@ -1,14 +1,16 @@
 "use client";
+import { useToolJob } from "./use-tool-job";
+import { FileJobResult } from "./file-job-result";
 import { useHandoff } from "@/lib/workspace/use-handoff";
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 import { FileDropzone, type FileItem } from "@/components/shared/file-dropzone";
 import { Button } from "@/components/ui/button";
-import { downloadBlob, bytesToBlob } from "@/lib/utils";
+import { bytesToBlob } from "@/lib/utils";
 import { imagesToPdf, detectImageMime, type EmbeddableImage } from "@/lib/pdf/core";
 import { parseImageMetadata } from "@/lib/image/exif";
-import { ActionBar, DownloadResult, ToolLimits, ToolShell, useToolHistory, useToolJob } from "./shared";
+import { ActionBar, ToolLimits, ToolShell, useToolHistory } from "./shared";
 import { Progress } from "@/components/ui/progress";
 
 export function ImagesToPdf() {
@@ -18,13 +20,12 @@ export function ImagesToPdf() {
   const [files, setFiles] = useState<FileItem[]>([]);
   useHandoff("images-to-pdf", setFiles);
   const [pageSize, setPageSize] = useState<"a4" | "image">("a4");
-  const job = useToolJob();
-  const [result, setResult] = useState<{ blob: Blob; name: string } | null>(null);
+  const job = useToolJob([files, pageSize]);
 
   const run = async () => {
     if (!files.length) return;
     const ac = job.start();
-    setResult(null);
+
     try {
       const { convertImage } = await import("@/lib/image/core");
       const images: EmbeddableImage[] = [];
@@ -44,17 +45,18 @@ export function ImagesToPdf() {
           const png = await convertImage(files[i].file, "image/png");
           images.push({ bytes: new Uint8Array(await png.arrayBuffer()), mime: "image/png" });
         }
-        job.setProgress(Math.round(((i + 1) / (files.length + 1)) * 100));
+        job.report(ac, Math.round(((i + 1) / (files.length + 1)) * 100));
       }
       const output = await imagesToPdf(images, { pageSize, margin: 24 });
       if (ac.signal.aborted) throw new DOMException("Aborted", "AbortError");
-      job.setProgress(100);
+      job.report(ac, 100);
       const blob = bytesToBlob(output, "application/pdf");
-      downloadBlob(blob, "images.pdf");
-      setResult({ blob, name: "images.pdf" });
+      if (!job.complete(ac, [{ blob: blob, name: "images.pdf" }])) return;
+
       toast.success(t("success", { count: files.length }));
       log(`${files.length} images`, "success");
     } catch (reason) {
+      if (!job.fail(ac, reason)) return;
       if (reason instanceof DOMException && reason.name === "AbortError") {
         toast.error(tc("cancel"));
       } else {
@@ -71,18 +73,19 @@ export function ImagesToPdf() {
       <ToolLimits>
         <p>{t("limits")}</p>
       </ToolLimits>
-      <FileDropzone accept="image/*" files={files} onChange={(next) => { job.cancel(); setFiles(next); setResult(null); }} reorder />
+      <FileDropzone accept="image/*" files={files} onChange={(next) => { job.cancel(); setFiles(next);  }} reorder />
       <div className="flex flex-wrap gap-2">
-        <Button type="button" variant={pageSize === "a4" ? "default" : "outline"} onClick={() => { job.cancel(); setPageSize("a4"); setResult(null); }}>
+        <Button type="button" variant={pageSize === "a4" ? "default" : "outline"} onClick={() => { job.cancel(); setPageSize("a4");  }}>
           {t("fitA4")}
         </Button>
-        <Button type="button" variant={pageSize === "image" ? "default" : "outline"} onClick={() => { job.cancel(); setPageSize("image"); setResult(null); }}>
+        <Button type="button" variant={pageSize === "image" ? "default" : "outline"} onClick={() => { job.cancel(); setPageSize("image");  }}>
           {t("fitImage")}
         </Button>
       </div>
       {job.loading ? <Progress value={job.progress} /> : null}
       <ActionBar onRun={run} loading={job.loading} label={t("run")} disabled={!files.length} onCancel={job.cancel} />
-      <DownloadResult file={result} />
+
+      <FileJobResult job={job} />
     </ToolShell>
   );
 }

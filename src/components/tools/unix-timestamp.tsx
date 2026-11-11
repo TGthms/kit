@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { CopyButton } from "@/components/ui/copy-button";
 import { Field } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
-import { nowTimestamp, parseTimestamp } from "@/lib/text/timestamp";
+import { nowTimestamp, parseTimestamp, type TimestampUnit } from "@/lib/text/timestamp";
 import { ToolShell, useToolHistory } from "./shared";
 
 export function UnixTimestamp() {
@@ -14,7 +14,8 @@ export function UnixTimestamp() {
   const tc = useTranslations("common");
   const log = useToolHistory("unix-timestamp");
   const [value, setValue] = useState(() => String(nowTimestamp().unix));
-  const parsed = parseTimestamp(value);
+  const [unit, setUnit] = useState<TimestampUnit>("auto");
+  const parsed = parseTimestamp(value, unit);
 
   return (
     <ToolShell toolId="unix-timestamp">
@@ -22,6 +23,7 @@ export function UnixTimestamp() {
         <Button
           variant="outline"
           onClick={() => {
+            setUnit("seconds");
             setValue(String(nowTimestamp().unix));
             log("now", "success");
           }}
@@ -29,7 +31,13 @@ export function UnixTimestamp() {
           {t("now")}
         </Button>
       </div>
-      <Field label={tc("input")}>
+      <Field label={tc("format")}>
+        <select className="h-11 w-full max-w-sm rounded-xl border border-input bg-background px-3 text-base" value={unit} onChange={e => setUnit(e.target.value as TimestampUnit)}>
+          <option value="auto">{t("auto")}</option>
+          <option value="seconds">s</option><option value="milliseconds">ms</option><option value="microseconds">µs</option><option value="nanoseconds">ns</option>
+        </select>
+      </Field>
+      <Field label={tc("input")} error={!parsed.ok && value.trim() ? parsed.error : undefined}>
         <Input value={value} onChange={(e) => setValue(e.target.value)} className="font-mono" />
       </Field>
       {parsed.ok ? (
@@ -49,7 +57,7 @@ export function UnixTimestamp() {
           <CopyButton value={parsed.iso} label={`${tc("copy")} ISO`} />
         </div>
       ) : (
-        <p className="text-sm text-destructive">{parsed.error}</p>
+        null
       )}
     </ToolShell>
   );

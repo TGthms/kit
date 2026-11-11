@@ -145,3 +145,11 @@ describe("preferences transfer", () => {
     expect(useFavoritesStore.getState().ids).toEqual([]);
   });
 });
+
+it("exports and validates a bounded graph envelope", async () => {
+  const { graphFile, parseGraphFile } = await import("./math");
+  expect(parseGraphFile(graphFile("Parabola", freshGraph()))).toEqual({ name: "Parabola", document: freshGraph() });
+  expect(() => parseGraphFile(JSON.stringify({ kind: "kit-preferences", version: 1 }))).toThrow();
+  expect(() => parseGraphFile(" ".repeat(40001))).toThrow();
+  expect(() => parseGraphFile(JSON.stringify({ kind: "kit-graph", version: 1, name: "bad", document: { ...freshGraph(), view: {} } }))).toThrow();
+});

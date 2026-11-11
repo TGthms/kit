@@ -127,7 +127,9 @@
     "fileRejectedEmpty": "使えるファイルは追加されませんでした。",
     "offlineIndicator": "オフライン：インターネット接続なし",
     "moveEarlier": "前へ移動",
-    "moveLater": "後ろへ移動"
+    "moveLater": "後ろへ移動",
+    "pdfFullDocumentLimit": "圧縮は{count}ページまでのPDF全体に対応します。長い文書は先に分割してください。",
+    "spreadsheetSafe": "表計算の数式を保護（セルの先頭にアポストロフィを付加）"
   },
   "home": {
     "title": "何をしますか？",
@@ -411,7 +413,8 @@
       "countdownLabel": "{year} まで、あと {minutes} 分 {seconds} 秒。",
       "countdownLabelMinute": "{year} まで、あと 1 分 {seconds} 秒。",
       "countdownLabelSeconds": "{year} まで、あと {seconds} 秒。"
-    }
+    },
+    "moreTools": "その他のツール"
   },
   "categories": {
     "pdf": "PDF",
@@ -548,7 +551,9 @@
     "updateChecking": "アップデートを確認中…",
     "updatePreparing": "アップデートを準備中です。準備ができたら Kit からお知らせします。",
     "updateCheckFailed": "アップデートを確認できませんでした。接続を確認して再試行してください。",
-    "updateCheckUnavailable": "ここではアップデートを確認できません。インストール済みのアプリか Kit の公式サイトを開いてください。"
+    "updateCheckUnavailable": "ここではアップデートを確認できません。インストール済みのアプリか Kit の公式サイトを開いてください。",
+    "nightAppearance": "夜間の外観",
+    "nightAppearanceDesc": "22:00〜05:00はダークにします。手動の変更は次回の起動まで有効です。"
   },
   "shortcuts": {
     "title": "キーボードショートカット",
@@ -1105,7 +1110,8 @@
       "description": "Unix 時刻と ISO を相互変換します。",
       "summary": "Unix 時刻を読める日時に、またはその逆に、選んだ時間帯で変換します。",
       "keywords": "unix epoch iso",
-      "now": "現在を使う"
+      "now": "現在を使う",
+      "auto": "自動"
     },
     "cron-explain": {
       "name": "Cron の説明",
@@ -1113,7 +1119,14 @@
       "summary": "5 項目の cron 式を普通の文に直し、定期実行の仕事がいつ、どのくらいの頻度で走るかをはっきりさせます。",
       "keywords": "cron crontab スケジュール",
       "run": "説明する",
-      "success": "説明しました。"
+      "success": "説明しました。",
+      "schedule": "これらの値はスケジューラーのタイムゾーンで判定されます。",
+      "dayRule": "日付と曜日の両方を指定した場合は、どちらか一方の一致で実行されます。",
+      "fieldmin": "分",
+      "fieldhour": "時",
+      "fielddom": "日付",
+      "fieldmon": "月",
+      "fielddow": "曜日"
     },
     "number-base": {
       "name": "基数変換",
@@ -2254,7 +2267,8 @@
       "approximate": "座標は数値近似です。ダッシュは関数が未定義であることを表します。",
       "scope": "最大8つの名前付き実関数に対応します。a、b、cでスライダー、d(x)+g(x)で関数を組み合わせられます。根号、累乗、対数、絶対値、三角関数に対応。",
       "expressions": "数式",
-      "pan": "移動"
+      "pan": "移動",
+      "samplingWarning": "細かな部分を描画しきれない場合があります。拡大して確認してください。"
     }
   },
   "workspace": {

@@ -127,7 +127,9 @@
     "fileRejectedEmpty": "Nie dodano użytecznych plików.",
     "offlineIndicator": "Offline: brak połączenia z internetem",
     "moveEarlier": "Przenieś wcześniej",
-    "moveLater": "Przenieś później"
+    "moveLater": "Przenieś później",
+    "pdfFullDocumentLimit": "Kompresja obsługuje całe pliki PDF do {count} stron. Najpierw podziel dłuższe dokumenty.",
+    "spreadsheetSafe": "Zabezpiecz formuły arkusza (dodaj apostrof przed komórkami)"
   },
   "home": {
     "title": "Co chcesz zrobić?",
@@ -411,7 +413,8 @@
       "countdownLabel": "{minutes} min i {seconds} s do {year}.",
       "countdownLabelMinute": "1 min i {seconds} s do {year}.",
       "countdownLabelSeconds": "{seconds} s do {year}."
-    }
+    },
+    "moreTools": "Więcej narzędzi"
   },
   "categories": {
     "pdf": "PDF",
@@ -548,7 +551,9 @@
     "updateChecking": "Sprawdzanie aktualizacji…",
     "updatePreparing": "Trwa przygotowywanie aktualizacji. Kit powiadomi Cię, gdy będzie gotowa.",
     "updateCheckFailed": "Nie udało się sprawdzić aktualizacji. Sprawdź połączenie i spróbuj ponownie.",
-    "updateCheckUnavailable": "Sprawdzanie aktualizacji jest tutaj niedostępne. Otwórz zainstalowaną aplikację lub oficjalną stronę Kit."
+    "updateCheckUnavailable": "Sprawdzanie aktualizacji jest tutaj niedostępne. Otwórz zainstalowaną aplikację lub oficjalną stronę Kit.",
+    "nightAppearance": "Wygląd nocny",
+    "nightAppearanceDesc": "Używaj ciemnego wyglądu od 22:00 do 05:00. Ręczne zmiany obowiązują do następnego uruchomienia."
   },
   "shortcuts": {
     "title": "Skróty klawiszowe",
@@ -1105,7 +1110,8 @@
       "description": "Konwertuj czas Unix na ISO i z powrotem.",
       "summary": "Zamień znacznik czasu Unix na czytelną datę i godzinę albo odwrotnie, w wybranej strefie czasowej.",
       "keywords": "unix epoch znacznik czasu iso data",
-      "now": "Użyj teraz"
+      "now": "Użyj teraz",
+      "auto": "Automatycznie"
     },
     "cron-explain": {
       "name": "Wyjaśniacz cron",
@@ -1113,7 +1119,14 @@
       "summary": "Zamień pięciopolowe wyrażenie cron na zwykłe zdanie, żeby było jasne, kiedy i jak często uruchamia się zaplanowane zadanie.",
       "keywords": "cron harmonogram crontab wyjaśnij",
       "run": "Wyjaśnij",
-      "success": "Wyjaśniono."
+      "success": "Wyjaśniono.",
+      "schedule": "Wartości obowiązują w strefie czasowej harmonogramu.",
+      "dayRule": "Jeśli oba pola dnia są ograniczone, wystarczy zgodność jednego.",
+      "fieldmin": "Minuty",
+      "fieldhour": "Godziny",
+      "fielddom": "Dzień miesiąca",
+      "fieldmon": "Miesiąc",
+      "fielddow": "Dzień tygodnia"
     },
     "number-base": {
       "name": "System liczbowy",
@@ -2254,7 +2267,8 @@
       "approximate": "Współrzędne są przybliżeniami numerycznymi. Kreska oznacza niezdefiniowaną funkcję.",
       "scope": "Do ośmiu nazwanych funkcji rzeczywistych. a, b, c to suwaki, d(x)+g(x) łączy funkcje. Pierwiastki, potęgi, logarytmy, wartości bezwzględne i trygonometria.",
       "expressions": "Wyrażenia",
-      "pan": "Przesuwanie"
+      "pan": "Przesuwanie",
+      "samplingWarning": "Drobne szczegóły mogą być niewidoczne. Przybliż, aby je sprawdzić."
     }
   },
   "workspace": {

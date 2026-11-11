@@ -242,31 +242,7 @@ function graph(latex, viewport, angle, parameters, name, definitions = {}) {
     yMax <= yMin
   )
     invalid();
-  const height = yMax - yMin;
-  const segments = [];
-  let current = [];
-  for (let i = 0; i <= 1000; i++) {
-    const x = xMin + ((xMax - xMin) * i) / 1000;
-    const y = f(x);
-    const previous = current.at(-1);
-    const middle = previous ? f((previous[0] + x) / 2) : y;
-    // Break at poles and jump discontinuities rather than drawing a vertical
-    // connector that looks like part of the function.
-    if (
-      !Number.isFinite(y) ||
-      Math.abs(y - (yMin + yMax) / 2) > height * 4 ||
-      (previous &&
-        (!Number.isFinite(middle) ||
-          Math.abs(y - previous[1]) > height / 2 ||
-          Math.abs(middle - (y + previous[1]) / 2) > height / 8))
-    ) {
-      if (current.length > 1) segments.push(current);
-      current = [];
-      continue;
-    }
-    current.push([x, y]);
-  }
-  if (current.length > 1) segments.push(current);
+  const { segments, undersampled } = globalThis.KitMathGraph.sampleNumeric(f, viewport);
   const table = Array.from({ length: 9 }, (_, i) => {
     const x = xMin + ((xMax - xMin) * i) / 8;
     const y = f(x);
@@ -274,6 +250,7 @@ function graph(latex, viewport, angle, parameters, name, definitions = {}) {
   });
   return {
     segments,
+    undersampled,
     table,
     expression: body,
     definitions,

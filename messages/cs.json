@@ -127,7 +127,9 @@
     "fileRejectedEmpty": "Nebyly přidány žádné použitelné soubory.",
     "offlineIndicator": "Offline: bez připojení k internetu",
     "moveEarlier": "Přesunout dříve",
-    "moveLater": "Přesunout později"
+    "moveLater": "Přesunout později",
+    "pdfFullDocumentLimit": "Komprese podporuje celé PDF s nejvýše {count} stranami. Delší dokumenty nejprve rozdělte.",
+    "spreadsheetSafe": "Chránit vzorce tabulky (přidat před buňky apostrof)"
   },
   "home": {
     "title": "Co potřebujete udělat?",
@@ -411,7 +413,8 @@
       "countdownLabel": "{minutes} min a {seconds} s do roku {year}.",
       "countdownLabelMinute": "1 min a {seconds} s do roku {year}.",
       "countdownLabelSeconds": "{seconds} s do roku {year}."
-    }
+    },
+    "moreTools": "Další nástroje"
   },
   "categories": {
     "pdf": "PDF",
@@ -548,7 +551,9 @@
     "updateChecking": "Kontrola aktualizací…",
     "updatePreparing": "Připravuje se aktualizace. Kit vás upozorní, až bude připravena.",
     "updateCheckFailed": "Aktualizace se nepodařilo zkontrolovat. Zkontrolujte připojení a zkuste to znovu.",
-    "updateCheckUnavailable": "Kontrola aktualizací zde není dostupná. Otevřete nainstalovanou aplikaci nebo oficiální web Kitu."
+    "updateCheckUnavailable": "Kontrola aktualizací zde není dostupná. Otevřete nainstalovanou aplikaci nebo oficiální web Kitu.",
+    "nightAppearance": "Noční vzhled",
+    "nightAppearanceDesc": "Používat tmavý vzhled od 22:00 do 05:00. Ruční změny platí do dalšího spuštění."
   },
   "shortcuts": {
     "title": "Klávesové zkratky",
@@ -1105,7 +1110,8 @@
       "description": "Převádět unixový čas na ISO a zpět.",
       "summary": "Převést unixový časový údaj na čitelné datum a čas, nebo opačně, v časovém pásmu, které zvolíte.",
       "keywords": "unix epoch razítko iso datum",
-      "now": "Použít teď"
+      "now": "Použít teď",
+      "auto": "Automaticky"
     },
     "cron-explain": {
       "name": "Vysvětlení cronu",
@@ -1113,7 +1119,14 @@
       "summary": "Převést pětipolový cron výraz na obyčejnou větu, aby bylo jasné, kdy a jak často se naplánovaná úloha spouští.",
       "keywords": "cron plán crontab vysvětlit",
       "run": "Vysvětlit",
-      "success": "Vysvětleno."
+      "success": "Vysvětleno.",
+      "schedule": "Tyto hodnoty platí v časovém pásmu plánovače.",
+      "dayRule": "Jsou-li obě pole dne omezena, stačí shoda jednoho.",
+      "fieldmin": "Minuty",
+      "fieldhour": "Hodiny",
+      "fielddom": "Den v měsíci",
+      "fieldmon": "Měsíc",
+      "fielddow": "Den v týdnu"
     },
     "number-base": {
       "name": "Číselná soustava",
@@ -2254,7 +2267,8 @@
       "approximate": "Souřadnice jsou číselné aproximace. Pomlčka znamená nedefinovanou funkci.",
       "scope": "Až osm pojmenovaných reálných funkcí. a, b, c jsou posuvníky, d(x)+g(x) kombinuje funkce. Odmocniny, mocniny, logaritmy, absolutní hodnoty a goniometrie.",
       "expressions": "Výrazy",
-      "pan": "Posun"
+      "pan": "Posun",
+      "samplingWarning": "Jemné detaily mohou chybět. Přibližte je pro kontrolu."
     }
   },
   "workspace": {

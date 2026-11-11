@@ -127,7 +127,9 @@
     "fileRejectedEmpty": "No se añadieron archivos utilizables.",
     "offlineIndicator": "Sin conexión a Internet",
     "moveEarlier": "Mover antes",
-    "moveLater": "Mover después"
+    "moveLater": "Mover después",
+    "pdfFullDocumentLimit": "La compresión admite PDF completos de hasta {count} páginas. Divide primero los documentos más largos.",
+    "spreadsheetSafe": "Proteger fórmulas de hojas de cálculo (anteponer un apóstrofo)"
   },
   "home": {
     "title": "¿Qué quieres hacer?",
@@ -411,7 +413,8 @@
       "countdownLabel": "{minutes} minutos y {seconds} segundos para {year}.",
       "countdownLabelMinute": "1 minuto y {seconds} segundos hasta {year}.",
       "countdownLabelSeconds": "{seconds} segundos hasta {year}."
-    }
+    },
+    "moreTools": "Más herramientas"
   },
   "categories": {
     "pdf": "PDF",
@@ -548,7 +551,9 @@
     "updateChecking": "Buscando actualizaciones…",
     "updatePreparing": "Se está preparando una actualización. Kit te avisará cuando esté lista.",
     "updateCheckFailed": "No se pudieron buscar actualizaciones. Comprueba tu conexión e inténtalo de nuevo.",
-    "updateCheckUnavailable": "Aquí no se pueden buscar actualizaciones. Abre la app instalada o el sitio oficial de Kit."
+    "updateCheckUnavailable": "Aquí no se pueden buscar actualizaciones. Abre la app instalada o el sitio oficial de Kit.",
+    "nightAppearance": "Apariencia nocturna",
+    "nightAppearanceDesc": "Usar el modo oscuro de 22:00 a 05:00. Los cambios manuales duran hasta el siguiente inicio."
   },
   "shortcuts": {
     "title": "Atajos de teclado",
@@ -1105,7 +1110,8 @@
       "description": "Convierte tiempo Unix a ISO y al revés.",
       "summary": "Convierte una marca de tiempo Unix en fecha y hora legibles, o al contrario, en la zona horaria que elijas.",
       "keywords": "unix epoch timestamp iso",
-      "now": "Usar ahora"
+      "now": "Usar ahora",
+      "auto": "Automático"
     },
     "cron-explain": {
       "name": "Explicar cron",
@@ -1113,7 +1119,14 @@
       "summary": "Traduce una expresión cron de cinco campos a una frase clara, para saber cuándo y con qué frecuencia se ejecuta una tarea.",
       "keywords": "cron crontab horario",
       "run": "Explicar",
-      "success": "Explicado."
+      "success": "Explicado.",
+      "schedule": "Estos valores se aplican en la zona horaria del programador.",
+      "dayRule": "Si ambos campos de día están restringidos, basta con que coincida uno.",
+      "fieldmin": "Minutos",
+      "fieldhour": "Horas",
+      "fielddom": "Día del mes",
+      "fieldmon": "Mes",
+      "fielddow": "Día de la semana"
     },
     "number-base": {
       "name": "Base numérica",
@@ -2254,7 +2267,8 @@
       "approximate": "Las coordenadas son aproximaciones numéricas. Un guion indica que la función no está definida.",
       "scope": "Hasta ocho funciones reales con nombre. a, b, c crean deslizadores; d(x)+g(x) permite composición. Admite raíces, potencias, logaritmos, valor absoluto y trigonometría.",
       "expressions": "Expresiones",
-      "pan": "Mover"
+      "pan": "Mover",
+      "samplingWarning": "Puede faltar detalle fino. Acerca el gráfico para examinarlo."
     }
   },
   "workspace": {

@@ -1,4 +1,5 @@
 "use client";
+import { ImageComparison } from "@/components/shared/image-comparison";
 import { ResultFiles, type ResultFile } from "@/components/workspace/result-files";
 import { useHandoff } from "@/lib/workspace/use-handoff";
 import { throwIfAborted } from "@/lib/jobs/abort";
@@ -18,7 +19,7 @@ export function ImageConvert() {
   const [files, setFiles] = useState<FileItem[]>([]);
   const [mime, setMime] = useState<ImageMime>("image/webp");
   useHandoff("image-convert", setFiles);
-  const job = useToolJob();
+  const job = useToolJob([files, mime]);
   const loading = job.loading;
   const [results, setResults] = useState<ResultFile[]>([]);
 
@@ -44,6 +45,7 @@ export function ImageConvert() {
       log(mime, "success");
     } catch (e) {
       if (ac.signal.aborted) return;
+      job.fail(ac, e);
       toast.error(e instanceof Error ? e.message : tc("error"));
       log("failed", "failed");
     } finally {
@@ -52,7 +54,7 @@ export function ImageConvert() {
   };
 
   return (
-    <ToolShell toolId="image-convert">
+    <ToolShell toolId="image-convert" result={<div className="space-y-4">{files[0] && <ImageComparison original={files[0].file} result={results[0]?.blob} />}{job.error && <p role="alert" className="text-sm text-destructive">{job.error}</p>}<ResultFiles files={results} /></div>}>
       <FileDropzone accept="image/*" files={files} onChange={(next) => { job.cancel(); setFiles(next); setResults([]); }} />
       <Field className="space-y-2" label={tc("format")}>
         <select
@@ -66,7 +68,7 @@ export function ImageConvert() {
         </select>
       </Field>
       <ActionBar onRun={run} loading={loading} label={t("run")} disabled={!files.length} onCancel={job.cancel} />
-      <ResultFiles files={results} />
+
     </ToolShell>
   );
 }

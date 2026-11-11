@@ -1,4 +1,6 @@
 "use client";
+import { useToolJob } from "./use-tool-job";
+import { FileJobResult } from "./file-job-result";
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { toast } from "sonner";
@@ -6,7 +8,7 @@ import { FileDropzone, type FileItem } from "@/components/shared/file-dropzone";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Field } from "@/components/ui/field";
-import { downloadBlob, bytesToBlob } from "@/lib/utils";
+import { bytesToBlob } from "@/lib/utils";
 import { lockPdf, unlockPdf } from "@/lib/pdf/protect";
 import { translateOr } from "@/lib/i18n/translate";
 import { ActionBar, ToolLimits, ToolShell, useToolHistory } from "./shared";
@@ -18,28 +20,27 @@ export function PdfProtect() {
   const [files, setFiles] = useState<FileItem[]>([]);
   const [mode, setMode] = useState<"lock" | "unlock">("lock");
   const [password, setPassword] = useState("");
-  const [loading, setLoading] = useState(false);
+  const job = useToolJob([files, mode, password]);
+  const loading = job.loading;
 
   const run = async () => {
     // Unlock may run with an empty password: owner-restricted PDFs (empty
     // user password) decrypt freely and are exactly the files people need
     // Unlock for, so only lock requires a password here.
     if (!files[0] || (mode === "lock" && !password)) return;
-    setLoading(true);
+    const ac = job.start();
     try {
       const buf = await files[0].file.arrayBuffer();
       const out = mode === "lock" ? await lockPdf(buf, password) : await unlockPdf(buf, password);
-      downloadBlob(
-        bytesToBlob(out, "application/pdf"),
-        mode === "lock" ? "locked.pdf" : "unlocked.pdf"
-      );
+      if (!job.complete(ac, [{ blob: bytesToBlob(out, "application/pdf"), name: mode === "lock" ? "locked.pdf" : "unlocked.pdf" }])) return;
       toast.success(t("success"));
       log(mode, "success");
     } catch (e) {
+      if (!job.fail(ac, e)) return;
       toast.error(e instanceof Error ? e.message : tc("error"));
       log("failed", "failed");
     } finally {
-      setLoading(false);
+      job.stop(ac);
     }
   };
 
@@ -69,12 +70,12 @@ export function PdfProtect() {
       <Field className="space-y-2" label={t("password")}>
         <Input type="password" value={password} onChange={(e) => setPassword(e.target.value)} autoComplete="off" />
       </Field>
-      <ActionBar
-        onRun={run}
+      <ActionBar onCancel={job.cancel}         onRun={run}
         loading={loading}
         label={t("run")}
         disabled={!files[0] || (mode === "lock" && !password)}
       />
+      <FileJobResult job={job} />
     </ToolShell>
   );
 }

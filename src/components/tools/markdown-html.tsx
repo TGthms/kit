@@ -1,4 +1,5 @@
 "use client";
+import { TextWorkspace } from "./text-workspace";
 
 import { useState } from "react";
 import { useTranslations } from "next-intl";
@@ -14,13 +15,19 @@ export function MarkdownHtml() {
   const log = useToolHistory("markdown-html");
   const [input, setInput] = useState("# Hello Kit\n\nPrivate tools.");
   const [toHtml, setToHtml] = useState(true);
+  const [derived, setDerived] = useState<{ key: string; text: string } | null>(null);
+  const [failure, setFailure] = useState<string | null>(null);
+  const sourceKey = input + String(toHtml);
+  const output = derived?.key === sourceKey ? derived.text : null;
   const run = () => {
     try {
       const out = toHtml ? markdownToHtml(input) : htmlToMarkdown(input);
-      setInput(out);
+      setDerived({ key: sourceKey, text: out });
+    setFailure(null);
       toast.success(t("success"));
       log(toHtml ? "md→html" : "html→md", "success");
     } catch (e) {
+      setFailure(e instanceof Error ? e.message : String(e));
       toast.error(e instanceof Error ? e.message : "error");
       log("failed", "failed");
     }
@@ -35,7 +42,9 @@ export function MarkdownHtml() {
           {t("toMd")}
         </Button>
       </div>
-      <Textarea aria-label={fieldText("input")} value={input} onChange={(e) => setInput(e.target.value)} className="min-h-64" />
+      <TextWorkspace output={output} error={failure} filename="converted.txt">
+      <Textarea aria-label={fieldText("input")} value={input} onChange={(e) => { setFailure(null); setInput(e.target.value); }} className="min-h-64" />
+      </TextWorkspace>
       <Button onClick={run}>{t("run")}</Button>
     </ToolShell>
   );

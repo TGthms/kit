@@ -127,7 +127,9 @@
     "fileRejectedEmpty": "Inga användbara filer lades till.",
     "offlineIndicator": "Offline: ingen internetanslutning",
     "moveEarlier": "Flytta tidigare",
-    "moveLater": "Flytta senare"
+    "moveLater": "Flytta senare",
+    "pdfFullDocumentLimit": "Komprimering stöder hela PDF-filer med upp till {count} sidor. Dela längre dokument först.",
+    "spreadsheetSafe": "Skydda kalkylbladsformler (sätt apostrof före celler)"
   },
   "home": {
     "title": "Vad behöver du göra?",
@@ -411,7 +413,8 @@
       "countdownLabel": "{minutes} minuter och {seconds} sekunder till {year}.",
       "countdownLabelMinute": "1 minut och {seconds} sekunder till {year}.",
       "countdownLabelSeconds": "{seconds} sekunder till {year}."
-    }
+    },
+    "moreTools": "Fler verktyg"
   },
   "categories": {
     "pdf": "PDF",
@@ -548,7 +551,9 @@
     "updateChecking": "Söker efter uppdateringar…",
     "updatePreparing": "En uppdatering förbereds. Kit meddelar dig när den är klar.",
     "updateCheckFailed": "Kunde inte söka efter uppdateringar. Kontrollera anslutningen och försök igen.",
-    "updateCheckUnavailable": "Uppdateringar kan inte kontrolleras här. Öppna den installerade appen eller Kits officiella webbplats."
+    "updateCheckUnavailable": "Uppdateringar kan inte kontrolleras här. Öppna den installerade appen eller Kits officiella webbplats.",
+    "nightAppearance": "Nattutseende",
+    "nightAppearanceDesc": "Använd Mörkt från 22.00 till 05.00. Manuella ändringar gäller till nästa start."
   },
   "shortcuts": {
     "title": "Kortkommandon",
@@ -1105,7 +1110,8 @@
       "description": "Konvertera Unix-tid till ISO och tillbaka.",
       "summary": "Gör om en Unix-tidsstämpel till ett läsbart datum och en tid, eller tvärtom, i den tidszon du väljer.",
       "keywords": "unix epoch tidsstämpel iso datum",
-      "now": "Använd nu"
+      "now": "Använd nu",
+      "auto": "Automatiskt"
     },
     "cron-explain": {
       "name": "Förklara cron",
@@ -1113,7 +1119,14 @@
       "summary": "Översätt ett cron-uttryck med fem fält till en vanlig mening, så att det står klart när och hur ofta en uppgift körs.",
       "keywords": "cron schema crontab förklara",
       "run": "Förklara",
-      "success": "Förklarat."
+      "success": "Förklarat.",
+      "schedule": "Dessa värden gäller i schemaläggarens tidszon.",
+      "dayRule": "Om båda dagfälten är begränsade räcker det att ett stämmer.",
+      "fieldmin": "Minuter",
+      "fieldhour": "Timmar",
+      "fielddom": "Dag i månaden",
+      "fieldmon": "Månad",
+      "fielddow": "Veckodag"
     },
     "number-base": {
       "name": "Talbas",
@@ -2254,7 +2267,8 @@
       "approximate": "Koordinater är numeriska närmevärden. Ett streck betyder att funktionen är odefinierad.",
       "scope": "Upp till åtta namngivna reella funktioner. a, b, c är reglage, d(x)+g(x) kombinerar funktioner. Rötter, potenser, logaritmer, absolutbelopp och trigonometri.",
       "expressions": "Uttryck",
-      "pan": "Flytta"
+      "pan": "Flytta",
+      "samplingWarning": "Fina detaljer kanske inte syns. Zooma in för att granska dem."
     }
   },
   "workspace": {
