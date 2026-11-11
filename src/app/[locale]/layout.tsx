@@ -2,7 +2,7 @@ import { NextIntlClientProvider } from "next-intl";
 import { getMessages, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { pathLocales, isPathLocale, localeDir, localeHtmlLang } from "@/lib/i18n/config";
-import { omitHomeGreetingMessages, slimMessagesForShell } from "@/lib/i18n/slim";
+import { messagesForChrome } from "@/lib/i18n/slim";
 import { Providers } from "@/components/providers";
 import { AppShell } from "@/components/layout/app-shell";
 import { ShortcutsProvider } from "@/components/layout/shortcuts-provider";
@@ -25,7 +25,7 @@ export default async function LocaleLayout({
   const { locale } = await params;
   if (!isPathLocale(locale)) notFound();
   setRequestLocale(locale);
-  const messages = omitHomeGreetingMessages(slimMessagesForShell(await getMessages()));
+  const messages = messagesForChrome(await getMessages());
   const lang = localeHtmlLang(locale);
   const dir = localeDir(locale);
 

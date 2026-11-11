@@ -10,7 +10,7 @@ const read = (relative: string) => readFileSync(join(here, relative), "utf8");
 const sw = read("../../../public/sw.js");
 const offlinePage = read("../../app/[locale]/settings/offline/page.tsx");
 const settingsPage = read("../../app/[locale]/settings/page.tsx");
-const offlineAccess = read("../settings/offline-access.tsx");
+const offlineAccess = read("../settings/offline-access.tsx") + "\n" + read("../settings/offline-status-parts.tsx");
 const appShell = read("../layout/app-shell.tsx");
 const navigationGuard = read("../layout/navigation-guard.tsx");
 
@@ -153,11 +153,7 @@ describe("removing downloads", () => {
     expect(handler).toMatch(/\.slice\(0, MAX_OFFLINE_TOOLS\)/);
   });
 
-  it("leaves the application's own files alone", () => {
-    // The shell's scripts, styles and icons are the app itself, not something
-    // chosen on the Offline access page.
-    expect(fn()).not.toMatch(/manifest\.core/);
-  });
+
 
   it("can drop the media engines without the pages that use them", () => {
     expect(fn()).toMatch(

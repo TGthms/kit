@@ -1,5 +1,6 @@
 "use client";
 
+import { Figure, ReadyTick, formatBytes } from "./offline-status-parts";
 import { recordDiagnostic } from "@/lib/pwa/diagnostics";
 import { useCallback, useEffect, useMemo, useRef, useState, useSyncExternalStore } from "react";
 import { useLocale, useTranslations } from "next-intl";
@@ -44,32 +45,6 @@ const EMPTY_REMOVAL: RemovalSelection = { locales: new Set(), tools: new Set(), 
 /** How long to wait for the worker before the page speaks for itself. */
 const STATUS_WAIT_MS = 10_000;
 
-/** A figure that has not been measured yet. */
-function Waiting({ label }: { label: string }) {
-  return (
-    <span className="inline-flex items-center gap-1.5 text-muted-foreground">
-      <LoaderCircle aria-hidden className="h-3.5 w-3.5 shrink-0 animate-spin" />
-      <span className="sr-only">{label}</span>
-    </span>
-  );
-}
-
-/** One figure on the status card, waiting in place of a value not yet read. */
-function Figure({ label, value, waiting }: { label: string; value: string | null; waiting: string }) {
-  return (
-    <div className="min-w-0">
-      <dt className="type-caption text-muted-foreground">{label}</dt>
-      <dd className="font-semibold tabular-nums">{value ?? <Waiting label={waiting} />}</dd>
-    </div>
-  );
-}
-
-function formatBytes(value: number | null, unknown: string): string {
-  if (value === null || value < 0 || !Number.isFinite(value)) return unknown;
-  if (value < 1024 * 1024) return `${Math.round(value / 1024)} KB`;
-  return `${(value / (1024 * 1024)).toFixed(1)} MB`;
-}
-
 /** Accepts the batched `logs` array, or a single `log` string. */
 function readLogs(message: ProgressMessage): string[] {
   if (Array.isArray(message.logs)) return message.logs.filter((line): line is string => typeof line === "string");
@@ -87,16 +62,6 @@ function readStatus(status: unknown): DownloadState["status"] {
 async function activeWorker(): Promise<ServiceWorker | null> {
   if (!("serviceWorker" in navigator)) return null;
   return navigator.serviceWorker.controller ?? (await navigator.serviceWorker.getRegistration())?.active ?? null;
-}
-
-/** A tick marking something that works with the network off. */
-function ReadyTick({ label }: { label: string }) {
-  return (
-    <span className="shrink-0 text-primary">
-      <Check aria-hidden className="h-3.5 w-3.5" />
-      <span className="sr-only">{label}</span>
-    </span>
-  );
 }
 
 export function OfflineAccess() {
@@ -575,6 +540,10 @@ export function OfflineAccess() {
             {availableCategories.length ? <div className="flex flex-wrap gap-2">{availableCategories.map(({ category, count }) => <span key={category} className="rounded-lg bg-secondary px-2.5 py-1 text-xs text-muted-foreground">{tcat(category)} <span className="ms-1 tabular-nums text-foreground">{count}</span></span>)}</div> : null}
             {readiness.conditionalCurrency ? <p className="type-caption text-muted-foreground">{t("offlineRatesNote")}</p> : null}
           </div> : null}
+          {!waitingForReport && state?.engineGroups && <div className="flex flex-wrap gap-2 text-xs text-muted-foreground">{(["pdf", "media"] as const).map(kind => {
+            const group = state.engineGroups![kind];
+            return <span key={kind} className="rounded-lg bg-secondary px-2.5 py-1">{kind === "pdf" ? tcat("pdf") : `${tcat("audio")} / ${tcat("video")}`} · {group.total && group.done === group.total ? t("offlineReady") : `${group.done}/${group.total}`}</span>;
+          })}</div>}
           <dl className="grid grid-cols-2 gap-x-4 gap-y-4 border-t border-border/50 pt-4 sm:grid-cols-4">
             <Figure label={t("offlineLanguages")} value={languagesValue} waiting={tc("loading")} />
             <Figure label={t("offlineTools")} value={toolsValue} waiting={tc("loading")} />

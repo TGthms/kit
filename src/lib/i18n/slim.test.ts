@@ -48,3 +48,22 @@ describe("omitHomeGreetingMessages", () => {
     expect(slim.tools["pdf-merge"].run).toBe(en.tools["pdf-merge"].run);
   });
 });
+
+it("supplies only the active tool and its shared unit dictionary", async () => {
+  const { messagesForTool } = await import("./slim");
+  const graph = messagesForTool(en, "function-grapher");
+  expect(Object.keys(graph.tools!)).toEqual(["function-grapher"]);
+  expect(graph.math).toEqual(en.math);
+  const units = messagesForTool(en, "length-converter");
+  expect(Object.keys(units.tools!)).toEqual(["length-converter", "everyday-converter"]);
+  expect(units.how).toBeUndefined();
+});
+
+it("keeps handoff destination names without restoring other tools' UI payloads", async () => {
+  const { messagesForTool } = await import("./slim");
+  const messages = messagesForTool(en, "image-convert");
+  const catalog = messages.tools as Record<string, Record<string, string>>;
+  expect(catalog["images-to-pdf"]).toEqual({ name: en.tools["images-to-pdf"].name });
+  expect(catalog["image-compress"].quality).toBeUndefined();
+  expect(catalog["pdf-merge"]).toBeUndefined();
+});

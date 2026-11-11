@@ -34,3 +34,12 @@ describe("verified offline readiness", () => {
     expect(offlineReadiness(missing, "en", plan).repair).toBe(true);
   });
 });
+
+it("does not require the media engine for a verified PDF-only collection", () => {
+  const plan = { version: "1.4.0", generation: "abc", locales: ["en"], tools: ["pdf-merge"], pages: [], engines: true, at: "" } as import("./offline-status").OfflinePlan;
+  const state = { generation: "abc", version: "1.4.0", verifiedAt: 1, core: { done: 1, total: 1 }, engines: { done: 1, total: 2 }, engineGroups: { pdf: { done: 1, total: 1 }, media: { done: 0, total: 1 } }, essentials: { en: { done: 6, total: 6, ready: true } }, pages: { en: [] }, toolPages: { en: ["pdf-merge"] }, plan: { ...plan, ready: true }, tools: { "pdf-merge": 1 }, locales: {}, readyLocales: 0 };
+  const ready = offlineReadiness(state, "en", plan);
+  expect(ready.ready).toBe(true);
+  expect(ready.usable.has("pdf-merge")).toBe(true);
+  expect(ready.needsEngines).toBe(false);
+});

@@ -1,3 +1,4 @@
+import vm from "node:vm";
 import { readFileSync } from "node:fs";
 import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
@@ -18,15 +19,21 @@ describe("cold-launch setup", () => {
   });
   it("has exact native launch sizes, with both appearances and orientations", () => {
     expect(STARTUP_SCREENS).toContainEqual({ width: 440, height: 956, scale: 3 });
-    const head = renderToStaticMarkup(createElement(DocumentHead));
+    const source = readFileSync("public/boot/startup-images.js", "utf8");
     for (const { width, height, scale } of STARTUP_SCREENS) {
+      const links: { href?: string; media?: string; rel?: string }[] = [];
+      const attrs: Record<string, string> = { "data-base-path": "/kit", "data-startup-screens": JSON.stringify(STARTUP_SCREENS), "data-startup-version": "spinner-1" };
+      vm.runInNewContext(source, { screen: { width, height }, window: { devicePixelRatio: scale }, document: {
+        getElementById: () => ({ getAttribute: (key: string) => attrs[key] }), createElement: () => ({}), head: { appendChild: (link: object) => links.push(link) },
+      } });
+      expect(links).toHaveLength(4);
       for (const orientation of ["portrait", "landscape"]) for (const appearance of ["light", "dark"]) {
         const name = `${width}-${height}-${scale}-${orientation}-${appearance}.png`;
         const png = readFileSync(`public/startup/${name}`);
         expect(png.subarray(1, 4).toString()).toBe("PNG");
         expect(png.readUInt32BE(16)).toBe((orientation === "portrait" ? width : height) * scale);
         expect(png.readUInt32BE(20)).toBe((orientation === "portrait" ? height : width) * scale);
-        expect(head).toContain(`/startup/${name}`);
+        expect(links.some(link => link.href === `/kit/startup/${name}?v=spinner-1` && link.rel === "apple-touch-startup-image")).toBe(true);
       }
     }
   });

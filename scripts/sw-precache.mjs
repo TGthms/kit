@@ -5,6 +5,7 @@
  * Not committed; Cloudflare `npm run build` produces `out/sw-precache.json` and
  * rewrites `out/sw.js` with the stamp described below.
  */
+import { offlineDependencies } from "./offline-dependencies.mjs";
 import { createHash } from "node:crypto";
 import { existsSync, readFileSync, readdirSync, statSync, writeFileSync } from "node:fs";
 import { dirname, join, relative } from "node:path";
@@ -239,6 +240,7 @@ export function buildStamp(outDir, manifest, basePath = "") {
   const urls = new Set([
     ...manifest.core,
     ...manifest.engines,
+    ...Object.values(manifest.toolRuntime || {}).flat(),
     ...Object.values(manifest.chromeByLocale).flat(),
     ...Object.values(manifest.toolsByLocale).flat(),
     ...Object.values(manifest.rscByLocale).flat(),
@@ -293,8 +295,9 @@ export function stampServiceWorker(outDir, stamp) {
 export function writePrecacheManifest(outDir, basePath = "") {
   if (!existsSync(outDir)) throw new Error(`export directory not found: ${outDir}`);
   const manifest = buildPrecacheManifest(outDir, basePath);
+  Object.assign(manifest, offlineDependencies(outDir, manifest, basePath));
   const generation = buildStamp(outDir, manifest, basePath);
-  const urls = new Set([...manifest.core, ...manifest.engines,
+  const urls = new Set([...manifest.core, ...manifest.engines, ...Object.values(manifest.toolRuntime || {}).flat(),
     ...Object.values(manifest.chromeByLocale).flat(), ...Object.values(manifest.toolsByLocale).flat(),
     ...Object.values(manifest.rscByLocale).flat(), ...Object.values(manifest.extrasByLocale).flat()]);
   const prefix = basePath.replace(/\/$/, "");

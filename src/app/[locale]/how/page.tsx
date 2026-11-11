@@ -1,3 +1,5 @@
+import { NextIntlClientProvider } from "next-intl";
+import { getMessages } from "next-intl/server";
 import type { Metadata } from "next";
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import { isPathLocale, locales } from "@/lib/i18n/config";
@@ -32,7 +34,7 @@ export default async function HowPage({
 
   return (
     <LegalPageShell title={t("title")} backHref="/" backLabel={tn("home")}>
-      <HowStory toolCount={tools.length} languageCount={locales.length} />
+      <NextIntlClientProvider messages={{ common: (await getMessages()).common, how: (await getMessages()).how }}><HowStory toolCount={tools.length} languageCount={locales.length} /></NextIntlClientProvider>
       {jsonLd ? (
         <HowJsonLd {...jsonLd} questions={faq?.questions} />
       ) : null}

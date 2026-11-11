@@ -1,3 +1,4 @@
+import { ToolMessages } from "@/components/tools/tool-messages";
 import type { Metadata } from "next";
 import { setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
@@ -47,11 +48,11 @@ export default async function ToolPage({
      are what a crawler is given; the tool in between needs a browser and is
      rendered on the client, where it can do something. */
   return (
-    <>
+    <ToolMessages toolId={id}>
       <ToolIntro toolId={id} subtitle={subtitle} />
       <ToolPageClient toolId={id} />
       <ToolGuide toolId={id} />
       {jsonLd ? <ToolJsonLd {...jsonLd} /> : null}
-    </>
+    </ToolMessages>
   );
 }

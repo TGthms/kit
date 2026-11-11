@@ -134,7 +134,7 @@ async function checkColdRoutes() {
       count++;
     }
   }
-  for (const path of [...currentManifest.core, ...currentManifest.engines].filter((path) => /\.(?:js|mjs|css|woff2?|gz|wasm)$/u.test(path))) {
+  for (const path of [...currentManifest.core, ...currentManifest.engines, ...Object.values(currentManifest.toolRuntime || {}).flat()].filter((path) => /\.(?:js|mjs|css|woff2?|gz|wasm)$/u.test(path))) {
     const response = await cold.request(path);
     assert.equal(response.status, 200, `Missing runtime: ${path}`);
     const hash = createHash("sha256").update(Buffer.from(await response.arrayBuffer())).digest("hex");

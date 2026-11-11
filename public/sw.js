@@ -965,7 +965,8 @@ async function offlineState() {
     locales[locale] = { done, total, ready: runtimeReady && total > 0 && done === total && [...pages, ...payloads].every(usable), removable };
     for (const url of toolsByLocale[locale] || []) {
       const segment = segmentOfToolUrl(url);
-      if (!runtimeReady || !segment || !usable(url) || !usable(`${url}index.txt`) || !shell.has(url) || !rsc.has(`${url}index.txt`)) continue;
+      const dependenciesReady = (manifest.toolRuntime?.[segment] || []).every(path => shell.has(path) && usable(path));
+      if (!dependenciesReady || !runtimeReady || !segment || !usable(url) || !usable(`${url}index.txt`) || !shell.has(url) || !rsc.has(`${url}index.txt`)) continue;
       toolLocales[segment] = (toolLocales[segment] || 0) + 1;
       toolsByLanguage[locale].push(segment);
     }
@@ -996,6 +997,7 @@ async function offlineState() {
     job,
     core: { done: countPresent(core, shell), total: core.length },
     engines: { done: countPresent(engines.filter(usable), shell), total: engines.length },
+    engineGroups: manifest.engineGroups ? Object.fromEntries(Object.entries(manifest.engineGroups).map(([kind, urls]) => [kind, { done: countPresent(urls.filter(usable), shell), total: urls.length }])) : undefined,
     locales,
     tools: toolLocales,
     readyLocales: Object.values(locales).filter((entry) => entry.ready).length,
@@ -1153,6 +1155,20 @@ async function removeOffline(scope) {
     if (scope.engines) for (const url of manifest.engines || []) targets.add(url);
   }
 
+  // Reclaim exclusive lazy runtimes while preserving every dependency shared
+  // with a tool still saved in any language. The core remains installable.
+  if (manifest.toolRuntime) {
+    const held = await cachedPathnames();
+    const keep = new Set(manifest.core || []);
+    const candidates = new Set();
+    for (const urls of Object.values(toolsByLocale)) for (const url of urls) {
+      const dependencies = manifest.toolRuntime[segmentOfToolUrl(url)] || [];
+      if (!targets.has(url) && held.shell.has(url) && held.rsc.has(`${url}index.txt`)) dependencies.forEach(path => keep.add(path));
+      else if (targets.has(url)) dependencies.forEach(path => candidates.add(path));
+    }
+    for (const path of candidates) if (!keep.has(path)) targets.add(path);
+  }
+
   // Keep the minimal app usable after optional downloads are removed. These
   // documents let the visitor reopen Kit and return to Offline access.
   for (const locale of Object.keys(chrome)) for (const url of essentialUrls(manifest, locale)) targets.delete(url);
@@ -1192,6 +1208,18 @@ async function removeOffline(scope) {
   return removed;
 }
 
+/** Asset groups remain backwards compatible with pre-1.4 manifests. A PDF-only
+ * collection does not require the unrelated media engine or math fonts. */
+function selectedEngineUrls(data, manifest) {
+  if (!data.engines) return [];
+  if (!manifest.engineGroups) return manifest.engines || [];
+  const tools = data.tools || [];
+  return [...new Set([
+    ...(tools.some(id => id.startsWith("pdf-") || id === "images-to-pdf") ? manifest.engineGroups.pdf || [] : []),
+    ...(tools.some(id => /^(?:audio|video)-/u.test(id)) ? manifest.engineGroups.media || [] : []),
+  ])];
+}
+
 async function selectedOfflineUrls(data, suppliedManifest) {
   const manifest = suppliedManifest || await readManifest();
   if (!manifest) return [];
@@ -1229,6 +1257,7 @@ async function selectedOfflineUrls(data, suppliedManifest) {
     for (const url of toolsByLocale[locale] || []) {
       if (segments.has(segmentOfToolUrl(url))) pages.add(url);
     }
+    for (const segment of segments) for (const url of manifest.toolRuntime?.[segment] || []) urls.add(url);
     /* A page and the payload it navigates from are saved together, so every
        page included brings its payload: a language is counted complete only
        when both are present. */
@@ -1237,7 +1266,7 @@ async function selectedOfflineUrls(data, suppliedManifest) {
       urls.add(`${url}index.txt`);
     }
   }
-  if (data.engines) for (const url of manifest.engines || []) urls.add(url);
+  for (const url of selectedEngineUrls(data, manifest)) urls.add(url);
   return [...urls];
 }
 

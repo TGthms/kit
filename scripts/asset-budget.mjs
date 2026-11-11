@@ -1,4 +1,4 @@
-import { readFileSync, existsSync, writeFileSync } from "node:fs";
+import { readFileSync, existsSync, writeFileSync, readdirSync, statSync } from "node:fs";
 import { resolve } from "node:path";
 import { gzipSync } from "node:zlib";
 import { fileURLToPath } from "node:url";
@@ -42,6 +42,14 @@ if (
       JSON.stringify(result, null, 2),
     );
   console.log(JSON.stringify(result, null, 2));
+  const exportBytes = (directory) => readdirSync(directory, { withFileTypes: true }).reduce((total, entry) => {
+    const path = resolve(directory, entry.name);
+    return total + (entry.isDirectory() ? exportBytes(path) : statSync(path).size);
+  }, 0);
+  const bytes = exportBytes(resolve("out"));
+  const limit = budgets.exportBytes ?? 1_000_000_000;
+  if (bytes > limit) throw new Error(`Export ${bytes} bytes exceeds ${limit}; reduce repeated route payloads before publishing.`);
+  console.log(`[asset-budget] export ${bytes}/${limit} bytes`);
   if (!existsSync("out/sw.js"))
     throw new Error("Run against the production export");
 }

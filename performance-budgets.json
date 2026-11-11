@@ -6,5 +6,6 @@
     "en/settings/offline": 300000,
     "en/tools/function-grapher": 300000,
     "en/tools/image-convert": 300000
-  }
+  },
+  "exportBytes": 1000000000
 }

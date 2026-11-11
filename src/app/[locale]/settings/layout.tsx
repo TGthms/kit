@@ -1,3 +1,6 @@
+import { NextIntlClientProvider } from "next-intl";
+import { getMessages, setRequestLocale } from "next-intl/server";
+import { omitHomeGreetingMessages, slimMessagesForShell } from "@/lib/i18n/slim";
 import type { Metadata } from "next";
 import { buildSectionMetadata } from "@/lib/seo/metadata";
 
@@ -10,6 +13,9 @@ export async function generateMetadata({
   return buildSectionMetadata(locale, "settings");
 }
 
-export default function SettingsLayout({ children }: { children: React.ReactNode }) {
-  return children;
+export default async function SettingsLayout({ children, params }: { children: React.ReactNode; params: Promise<{locale: string}> }) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+  const messages = await getMessages();
+  return <NextIntlClientProvider messages={{ ...omitHomeGreetingMessages(slimMessagesForShell(messages)), how: { title: (messages.how as {title: string}).title } }}>{children}</NextIntlClientProvider>;
 }

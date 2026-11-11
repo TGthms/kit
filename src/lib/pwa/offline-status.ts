@@ -18,6 +18,7 @@ export type OfflineState = {
   generation: string;
   core: OfflineCount;
   engines: OfflineCount;
+  engineGroups?: { pdf: OfflineCount; media: OfflineCount };
   locales: Record<string, OfflineLocaleState>;
   /** How many languages hold each tool, keyed by public route segment. */
   tools: Record<string, number>;

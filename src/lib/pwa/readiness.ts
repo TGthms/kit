@@ -6,16 +6,22 @@ import type { OfflinePlan, OfflineState } from "./offline-status";
  * page found somewhere in another language's cache. Currency is conditional:
  * its live data cannot be promised by downloading the app. */
 export function offlineReadiness(state: OfflineState | null, locale: string, storedPlan: OfflinePlan | null) {
-  const enginesReady = Boolean(state && state.engines.total > 0 && state.engines.done === state.engines.total);
+  const allEnginesReady = Boolean(state && state.engines.total > 0 && state.engines.done === state.engines.total);
+  const engineReadyFor = (id: ToolId) => {
+    const category = tools.find(tool => tool.id === id)?.category;
+    const group = category === "pdf" ? state?.engineGroups?.pdf : ["audio", "video"].includes(category || "") ? state?.engineGroups?.media : undefined;
+    return group ? group.total > 0 && group.done === group.total : allEnginesReady;
+  };
   const toolPages = new Set(state?.toolPages?.[locale] || []);
   const requiresEngines = (id: ToolId) => {
     const tool = tools.find((entry) => entry.id === id);
     return tool && ["pdf", "audio", "video"].includes(tool.category);
   };
-  const usable = new Set(tools.filter((tool) => tool.id !== "currency-converter" && toolPages.has(toolPathSegment(tool.id)) && (!requiresEngines(tool.id) || enginesReady)).map((tool) => tool.id));
+  const usable = new Set(tools.filter((tool) => tool.id !== "currency-converter" && toolPages.has(toolPathSegment(tool.id)) && (!requiresEngines(tool.id) || engineReadyFor(tool.id))).map((tool) => tool.id));
   const plan = state?.plan ?? storedPlan;
   const appReady = Boolean(state?.essentials?.[locale]?.ready);
-  const missingRequiredEngines = Boolean(plan?.tools.some((id) => requiresEngines(id)) && !enginesReady);
+  const missingRequiredEngines = Boolean(plan?.tools.some((id) => requiresEngines(id) && !engineReadyFor(id)));
+  const enginesReady = !missingRequiredEngines && (allEnginesReady || Boolean(plan?.tools.some(requiresEngines)));
   const missingEssentials = Boolean(plan?.locales.some((id) => state?.essentials?.[id]?.ready === false));
   const missingSelection = Boolean(plan && state?.toolPages && state.pages && plan.locales.some((id) =>
     plan.tools.some((tool) => !(state.toolPages?.[id] || []).includes(toolPathSegment(tool))) || plan.pages.some((page) => !(state.pages?.[id] || []).includes(page))));
